@@ -56,7 +56,7 @@ int main() {
         qlSettingsSetEvaluationDate(evaluationDate, OH_NULL);
 
         std::string idBlackConstantVol = qlBlackConstantVol(
-            std::string("my_blackconstantvol"),
+            "my_blackconstantvol",
             settlementDate,
             calendar,
             volatility,

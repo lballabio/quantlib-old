@@ -117,7 +117,6 @@ Section
     File "framework\QuantLibXLDeveloperTeam.cer"
 
     SetOutPath "$INSTDIR\metadata"
-    ;File /r "metadata\*.xml"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
 
     SetOutPath "$INSTDIR\Docs"
@@ -131,9 +130,10 @@ Section
     ;File "Docs\images\logo_ql.jpg"
 
     SetOutPath "$INSTDIR"
+    File "QuantLibXL.nsi"
     File "QuantLibXL-bin.nsi"
     File "QuantLibXL-network.nsi"
-    File "QuantLibXL.nsi"
+    File "QuantLibXL-src.nsi"
 
     SetOutPath "$INSTDIR\xll"
     File "xll\QuantLibXLDynamic-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"

@@ -51,6 +51,10 @@ SectionIn 1 2 3
     File "framework\QuantLibXL.xla"
     File "framework\QuantLibXLDeveloperTeam.cer"
 
+    SetOutPath "$INSTDIR\Data"
+    File /r "Data\*.xls"
+    File /r "Data\*.xml"
+
     SetOutPath "$INSTDIR\metadata"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
     #File /r "metadata\*.xml"
@@ -60,9 +64,10 @@ SectionIn 1 2 3
     File "Docs\images\logo_ql.jpg"
 
     SetOutPath "$INSTDIR"
+    File "QuantLibXL.nsi"
     File "QuantLibXL-bin.nsi"
     File "QuantLibXL-network.nsi"
-    File "QuantLibXL.nsi"
+    File "QuantLibXL-src.nsi"
 
     SetOutPath "$INSTDIR\xll"
     File "xll\QuantLibXLDynamic-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
@@ -82,9 +87,9 @@ SectionIn 1 2 3
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Uninstall QuantLibXL.lnk" \
                    "$INSTDIR\QuantLibXLUninstall.exe" "" \
                    "$INSTDIR\QuantLibXLUninstall.exe" 0
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL-${VER_NUMBER}.lnk" \
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
                    "$INSTDIR\framework\QuantLibXL.xla"
-    CreateShortCut "$DESKTOP\QuantLibXL-${VER_NUMBER}.lnk" \
+    CreateShortCut "$DESKTOP\QuantLibXL.xla.lnk" \
                    "$INSTDIR\framework\QuantLibXL.xla"
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\README.txt.lnk" \
                    "$INSTDIR\README.txt"

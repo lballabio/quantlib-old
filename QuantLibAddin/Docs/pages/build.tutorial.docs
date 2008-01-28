@@ -233,7 +233,7 @@ report something like:
 To launch QuantLibXL:
 - start Excel
 - load the addin <tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_0.xll</tt>
-- load a sample spreadsheet e.g. <tt>QuantLibXL\\Workbooks\\StandaloneExamples\\YC_SwapDemo.xls</tt>
+- load a sample spreadsheet e.g. <tt>QuantLibXL\\Workbooks\\StandaloneExamples\\Option.xls</tt>
 - hit <tt>Ctrl-Alt-F9</tt> to force a recalculation of all formulas
 
 If you want to have QuantLibXL loaded every time you start Excel,

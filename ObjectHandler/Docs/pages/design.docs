@@ -181,8 +181,10 @@ private:
 \code
 #include "objecthandler.hpp"
 
-void ObjectHandler::storeObject(const Handle &handle, const obj_ptr &object) {
-   objectList_[handle] = object;
+void ObjectHandler::storeObject(
+        const Handle &handle,
+        const obj_ptr &object) {
+    objectList_[handle] = object;
 }
 
 obj_ptr ObjectHandler::retrieveObject(const Handle &handle) {

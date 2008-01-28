@@ -41,7 +41,9 @@ Section
 
     File "*.txt"
     File "*.TXT"
+    File "QuantLibXL.nsi"
     File "QuantLibXL-bin.nsi"
+    File "QuantLibXL-network.nsi"
     File "QuantLibXL-src.nsi"
     File /r "*.vcproj"
     File /r "*.hpp"
@@ -73,16 +75,8 @@ Section
 
     SetOutPath "$INSTDIR\Workbooks\StandaloneExamples"
     File "Workbooks\StandaloneExamples\README.txt"
-    File "Workbooks\StandaloneExamples\MarketData.xls"
-    File "Workbooks\StandaloneExamples\Option.xls"
-    File "Workbooks\StandaloneExamples\Swap.xls"
-    #File "Workbooks\StandaloneExamples\Swaption.xls"
-    File "Workbooks\StandaloneExamples\VanillaSwap.xls"
-    File "Workbooks\StandaloneExamples\serialize_swap.xla"
-    File "Workbooks\StandaloneExamples\serialize_utils.xla"
-    File "Workbooks\StandaloneExamples\YC_SwapDemo.xls"
-    File "Workbooks\StandaloneExamples\InterestRateDerivatives.xls"
-    File "Workbooks\StandaloneExamples\YieldCurveBootstrapping.xls"
+    File "Workbooks\StandaloneExamples\*.xls"
+    File "Workbooks\StandaloneExamples\*.xla"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"
@@ -99,6 +93,15 @@ Section
     CreateShortCut "$SMPROGRAMS\QuantLibXL-src-${VER_NUMBER}\Uninstall QuantLibXL.lnk" \
                    "$INSTDIR\QuantLibXLUninstall.exe" "" \
                    "$INSTDIR\QuantLibXLUninstall.exe" 0
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 7 project workspace.lnk" \
+                   "$INSTDIR\QuantLibAllStatic_vc7.sln"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 8 project workspace.lnk" \
+                   "$INSTDIR\QuantLibAllStatic_vc8.sln"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
+                   "$INSTDIR\framework\QuantLibXL.xla"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-src-${VER_NUMBER}\README.txt.lnk" \
                    "$INSTDIR\README.txt"
@@ -131,12 +134,14 @@ Section /o Framework
 
     SetOutPath "$INSTDIR\framework"
     File "framework\QuantLibXL.xla"
+    File "framework\QuantLibXLDeveloperTeam.cer"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r "Workbooks\*.xls"
 
-    SetOutPath "$INSTDIR\Data\XLS"
-    File /r "Data\XLS\*.xls"
+    SetOutPath "$INSTDIR\Data"
+    File /r "Data\*.xls"
+    File /r "Data\*.xml"
 
     # ObjectBuilder crashes if it can't find the icon
     SetOutPath "$INSTDIR\Docs\images"

@@ -53,16 +53,8 @@ Section
 
     SetOutPath "$INSTDIR\Workbooks\StandaloneExamples"
     File "Workbooks\StandaloneExamples\README.txt"
-    File "Workbooks\StandaloneExamples\MarketData.xls"
-    File "Workbooks\StandaloneExamples\Option.xls"
-    File "Workbooks\StandaloneExamples\Swap.xls"
-    #File "Workbooks\StandaloneExamples\Swaption.xls"
-    File "Workbooks\StandaloneExamples\VanillaSwap.xls"
-    File "Workbooks\StandaloneExamples\serialize_swap.xla"
-    File "Workbooks\StandaloneExamples\serialize_utils.xla"
-    File "Workbooks\StandaloneExamples\YC_SwapDemo.xls"
-    File "Workbooks\StandaloneExamples\InterestRateDerivatives.xls"
-    File "Workbooks\StandaloneExamples\YieldCurveBootstrapping.xls"
+    File "Workbooks\StandaloneExamples\*.xls"
+    File "Workbooks\StandaloneExamples\*.xla"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"
@@ -83,6 +75,9 @@ Section
     CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\Uninstall QuantLibXL.lnk" \
                    "$INSTDIR\QuantLibXLUninstall.exe" "" \
                    "$INSTDIR\QuantLibXLUninstall.exe" 0
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
+                   "$INSTDIR\framework\QuantLibXL.xla"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\README.txt.lnk" \
                    "$INSTDIR\README.txt"
@@ -110,12 +105,14 @@ Section /o Framework
 
     SetOutPath "$INSTDIR\framework"
     File "framework\QuantLibXL.xla"
+    File "framework\QuantLibXLDeveloperTeam.cer"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r "Workbooks\*.xls"
 
-    SetOutPath "$INSTDIR\Data\XLS"
-    File /r "Data\XLS\*.xls"
+    SetOutPath "$INSTDIR\Data"
+    File /r "Data\*.xls"
+    File /r "Data\*.xml"
 
     SetOutPath "$INSTDIR\metadata"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"

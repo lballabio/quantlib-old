@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -45,15 +45,12 @@ The table below summarizes the automatic coercions supported by QuantLibXL:
 <table>
 
 <tr><td><b>Value Required</b></td><td><b>Supported Inputs</b></td></tr>
-<tr><td>Index</td>
-<td>
-\li ID of an Index object as returned by a function such as qlIborIndex()
-\li string identifying an enumerated index, e.g. Euribor6M</td></tr>
 <tr><td>Quote</td>
 <td>
 \li ID of a Quote object as returned by qlSimpleQuote()
 \li ID of a Quote handle object as returned by qlHandleQuote()
-\li number representing quote value</td></tr>
+\li number representing quote value
+\li this logic is applied to the following Quote classes: FuturesConvAdjustmentQuote, Quote, SimpleQuote</td></tr>
 <tr><td>Date</td>
 <td>
 \li An integer representing the offset in days since 1 January 1970.  This is the format passed by Excel.
@@ -62,12 +59,9 @@ The table below summarizes the automatic coercions supported by QuantLibXL:
 <tr><td>TermStructure</td>
 <td>
 \li ID of a TermStructure object as returned by a function such as qlPiecewiseYieldCurve ()
-\li ID of a TermStructure handle object as returned by qlRelinkableHandleYieldTermStructure()</td></tr>
+\li ID of a TermStructure handle object as returned by qlRelinkableHandleYieldTermStructure()
+\li this logic is applied to the following Quote classes: SwaptionVolatilityCube, SwaptionVolatilityDiscrete, SwaptionVolatilityMatrix, SwaptionVolatilityStructure, SwaptionVolCube1, TermStructure, YieldTermStructure</td></tr>
 </table>
-
-The logic for TermStructures is also applied to the following classes:
-FuturesConvAdjustmentQuote, SwaptionVolatilityCube, SwaptionVolatilityDiscrete,
-SwaptionVolatilityStructure, CapletVolatilityStructure
 
 \section coercion_lists Lists
 

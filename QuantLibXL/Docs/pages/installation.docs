@@ -24,7 +24,7 @@
 /*! \page installation Installation
 
 Download QuantLibXL-bin-0.9.0.exe from the 
-<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=159049">Downloads page</a>.
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=260244">Downloads page</a>.
 
 Run the installer to install QuantLibXL to your system.  You are given the
 option to install the \ref framework if desired.  To use QuantLibXL:

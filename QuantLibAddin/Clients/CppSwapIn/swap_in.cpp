@@ -52,8 +52,8 @@ int main() {
 
         // Deserialize the objects
 
-        ohObjectLoad(std::string("."), std::string("qlxl_demo_market.xml"), false, OH_NULL, OH_NULL);
-        ohObjectLoad(std::string("."), std::string("qlxl_demo_swap.xml"), false, OH_NULL, OH_NULL);
+        ohObjectLoad(".", "qlxl_demo_market.xml", false, OH_NULL, OH_NULL);
+        ohObjectLoad(".", "qlxl_demo_swap.xml", false, OH_NULL, OH_NULL);
 
         // Enable extrapolation for the yield curve
 

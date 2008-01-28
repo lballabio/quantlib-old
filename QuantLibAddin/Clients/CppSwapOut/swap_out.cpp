@@ -63,11 +63,11 @@ int main() {
         // Create the market data objects
 
         std::string EuriborYC3M =
-            qlRelinkableHandleYieldTermStructure("EuriborYC3M", std::string(""), false, OH_NULL, false);
+            qlRelinkableHandleYieldTermStructure("EuriborYC3M", "", false, OH_NULL, false);
         marketObjects.push_back(EuriborYC3M);
 
         std::string EuriborYC6M =
-            qlRelinkableHandleYieldTermStructure("EuriborYC6M", std::string(""), false, OH_NULL, false);
+            qlRelinkableHandleYieldTermStructure("EuriborYC6M", "", false, OH_NULL, false);
         marketObjects.push_back(EuriborYC6M);
 
         char *tenors[] = {
@@ -99,19 +99,19 @@ int main() {
         }
 
         std::string ts_handle =
-            qlRelinkableHandleYieldTermStructure("ts_handle", std::string(""), false, OH_NULL, false);
+            qlRelinkableHandleYieldTermStructure("ts_handle", "", false, OH_NULL, false);
         marketObjects.push_back(ts_handle);
 
         std::string RH_EURIBOR6M =
             qlIborIndex("RH_EURIBOR6M",
-                std::string("EURIBOR"),
-                std::string("6M"),
+                "EURIBOR",
+                "6M",
                 2,
-                std::string("EUR"),
-                std::string("Target"),
-                std::string("Modified Following"),
+                "EUR",
+                "Target",
+                "Modified Following",
                 1,
-                std::string("Actual/360"),
+                "Actual/360",
                 ts_handle,
                 false,
                 OH_NULL,
@@ -216,7 +216,7 @@ int main() {
             objectId << "EURFUT" << futureData[i].tenor << "ConvAdj_Quote";
             quoteId << "EURFUT" << futureData[i].tenor << "_Quote";
             std::string futuresConvAdjQuoteId = qlFuturesConvAdjustmentQuote(objectId.str(),
-                std::string("Euribor3M"),
+                "Euribor3M",
                 futureData[i].tenor,
                 quoteId.str(),
                 HW_volatilityQuote,
@@ -234,10 +234,10 @@ int main() {
                 quoteId.str(),
                 depositData[i].period,
                 depositData[i].fixingdays,
-                std::string("Target"),
+                "Target",
                 depositData[i].convention,
                 false,
-                std::string("Actual/360"),
+                "Actual/360",
                 false, OH_NULL, false);
             marketObjects.push_back(rateHelperId);
             rateHelpers.push_back(rateHelperId);
@@ -253,10 +253,10 @@ int main() {
                 quoteId.str(),
                 std::string(futureData[i].tenor),
                 3L,
-                std::string("Target"),
-                std::string("Modified Following"),
+                "Target",
+                "Modified Following",
                 false,
-                std::string("Actual/360"),
+                "Actual/360",
                 convQuoteId.str(),
                 false, OH_NULL, false);
             marketObjects.push_back(futRateHelperId);
@@ -271,13 +271,13 @@ int main() {
                 objectId.str(),
                 quoteId.str(),
                 swapData[i].tenor,
-                std::string("Target"),
-                std::string("Annual"),
-                std::string("Unadjusted"),
-                std::string("30/360 (Bond Basis)"),
-                std::string("RH_EURIBOR6M"),
+                "Target",
+                "Annual",
+                "Unadjusted",
+                "30/360 (Bond Basis)",
+                "RH_EURIBOR6M",
                 0L,
-                std::string("0D"),
+                "0D",
                 false, OH_NULL, false);
             marketObjects.push_back(swapId);
             rateHelpers.push_back(swapId);
@@ -285,11 +285,11 @@ int main() {
 
         std::string EUR_YC = qlPiecewiseYieldCurve("EUR_YC",
             0L,
-            std::string("Target"),
+            "Target",
             rateHelpers,
-            std::string("Actual/365 (Fixed)"),
-            std::string("ZeroYield"),
-            std::string("Linear"),
+            "Actual/365 (Fixed)",
+            "ZeroYield",
+            "Linear",
             1.0e-12,
             false, OH_NULL, false);
         marketObjects.push_back(EUR_YC);
@@ -304,11 +304,11 @@ int main() {
             "sched_fix",
             39423L,
             42793L,
-            std::string("1Y"),
-            std::string("Target"),
-            std::string("Unadjusted"),
-            std::string("Modified Following"),
-            std::string("Backward"),
+            "1Y",
+            "Target",
+            "Unadjusted",
+            "Modified Following",
+            "Backward",
             false, OH_NULL, OH_NULL,
             false, OH_NULL, false);
         tradeObjects.push_back(sched_fix);
@@ -317,11 +317,11 @@ int main() {
             "sched_flt",
             39423L,
             42793L,
-            std::string("6M"),
-            std::string("Target"),
-            std::string("Modified Following"),
-            std::string("Modified Following"),
-            std::string("Backward"),
+            "6M",
+            "Target",
+            "Modified Following",
+            "Modified Following",
+            "Backward",
             false, OH_NULL, OH_NULL,
             false, OH_NULL, false);
         tradeObjects.push_back(sched_flt);

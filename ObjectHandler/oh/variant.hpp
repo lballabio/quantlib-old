@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2008 Luigi Ballabio
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -55,6 +56,7 @@ namespace ObjectHandler {
         Variant(const long &l) : variant_(l) {}
         Variant(const double &d) : variant_(d) {}
         Variant(const bool &b) : variant_(b) {}
+		Variant(const char *s) : variant_(std::string(s)) {}
 		Variant(const std::string &s) : variant_(s) {}
 
         //! \name Inspectors

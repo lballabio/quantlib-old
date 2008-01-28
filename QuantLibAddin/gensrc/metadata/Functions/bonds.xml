@@ -569,7 +569,7 @@
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
           <Parameter name='FaceAmount' default='100.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Face nominal amount. If omitted, default = 100.0</description>
           </Parameter>
@@ -584,9 +584,9 @@
             <description>payment business day convention. If omitted, default = Following.</description>
           </Parameter>
           <Parameter name='Redemption' default='100'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>redemption value</description>
+            <description>Redemption value. If omitted, default = 100.0</description>
           </Parameter>
           <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -622,7 +622,7 @@
             <description>settlement days</description>
           </Parameter>
           <Parameter name='FaceAmount' default='100.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Face nominal amount. If omitted, default = 100.0</description>
           </Parameter>
@@ -648,9 +648,9 @@
             <description>payment business day convention. If omitted, default = Following.</description>
           </Parameter>
           <Parameter name='Redemption' default='100.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>redemption value. If omitted, default = 100</description>
+            <description>Redemption value. If omitted, default = 100.0</description>
           </Parameter>
           <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -691,7 +691,7 @@
             <description>payment business day convention. If omitted, default = Following.</description>
           </Parameter>
           <Parameter name='FaceAmount' default='100.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Face nominal amount. If omitted, default = 100.0</description>
           </Parameter>
@@ -742,9 +742,9 @@
             <description>cap strikes. If omitted, default = no cap</description>
           </Parameter>
           <Parameter name='Redemption' default='100'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>redemption value. If omitted, default = 100</description>
+            <description>Redemption value. If omitted, default = 100.0</description>
           </Parameter>
           <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -785,7 +785,7 @@
             <description>payment business day convention. If omitted, default = Following.</description>
           </Parameter>
           <Parameter name='FaceAmount' default='100.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Face nominal amount. If omitted, default = 100.0</description>
           </Parameter>
@@ -836,9 +836,9 @@
             <description>cap strikes. If omitted, default = no cap</description>
           </Parameter>
           <Parameter name='Redemption' default='100'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>redemption value. If omitted, default = 100</description>
+            <description>Redemption value. If omitted, default = 100.0</description>
           </Parameter>
           <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -879,7 +879,7 @@
             <description>holiday calendar (e.g. TARGET)</description>
           </Parameter>
           <Parameter name='FaceAmount' default='100.0'>
-            <type>double</type>
+            <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Face nominal amount. If omitted, default = 100.0</description>
           </Parameter>
