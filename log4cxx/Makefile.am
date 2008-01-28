@@ -15,7 +15,5 @@ dist-hook:
 	$(distdir)/ltmain.sh \
 	$(distdir)/missing \
 	$(distdir)/mkinstalldirs \
-	$(distdir)/include/log4cxx/stamp* \
-	$(distdir)/include/log4cxx/config.h*
-
+	$(distdir)/include/log4cxx/stamp*
 
