@@ -552,6 +552,7 @@
 
     <Procedure name='qlRateHelperSelection'>
       <description>selects rate helpers for bootstrapping</description>
+      <alias>QuantLibAddin::rateHelperSelection</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>

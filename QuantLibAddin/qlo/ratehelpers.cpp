@@ -251,7 +251,7 @@ namespace QuantLibAddin {
         };
     }
 
-    std::vector<std::string> qlRateHelperSelection(
+    std::vector<std::string> rateHelperSelection(
         const std::vector<boost::shared_ptr<QuantLibAddin::RateHelper> >& qlarhs,
         const std::vector<QuantLib::Size>& priority,
         QuantLib::Natural nImmFutures,

@@ -173,7 +173,7 @@ namespace QuantLibAddin {
 
     // Processes the set of curve bootstrapping instruments
     // and selects a subset according to the given rules and parameters
-    std::vector<std::string> qlRateHelperSelection(
+    std::vector<std::string> rateHelperSelection(
         const std::vector<boost::shared_ptr<QuantLibAddin::RateHelper> >& qlarhs,
         const std::vector<QuantLib::Size>& priority,
         QuantLib::Natural nImmFutures,
