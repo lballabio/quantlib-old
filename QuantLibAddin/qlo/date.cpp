@@ -37,7 +37,7 @@ namespace QuantLibAddin {
         return p.frequency();
     }
 
-    QuantLib::Period qlPeriodEquivalent(const QuantLib::Period& p) {
+    QuantLib::Period periodEquivalent(const QuantLib::Period& p) {
         return p;
     }
 

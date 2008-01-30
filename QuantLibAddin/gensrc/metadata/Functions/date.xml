@@ -87,6 +87,7 @@
 
     <Procedure name='qlPeriodEquivalent'>
       <description>Returns the period equivalent to the input (e.g. 11M for 1Y-1M).</description>
+      <alias>QuantLibAddin::periodEquivalent</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
