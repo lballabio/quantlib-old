@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006, 2008 StatPro Italia srl
  Copyright (C) 2005 Johan Witters
 
  This file is part of QuantLib, a free-software/open-source library
@@ -126,6 +126,9 @@ class NLGCurrency : public Currency {};
 class NOKCurrency : public Currency {};
 class NPRCurrency : public Currency {};
 class NZDCurrency : public Currency {};
+class PEHCurrency : public Currency {};
+class PEICurrency : public Currency {};
+class PENCurrency : public Currency {};
 class PKRCurrency : public Currency {};
 class PLNCurrency : public Currency {};
 class PTECurrency : public Currency {};
