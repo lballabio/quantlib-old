@@ -239,6 +239,57 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlSwaptionVTSSwapLength' type='QuantLib::SwaptionVolatilityStructure' superType='libraryTermStructure' loopParameter='SwapTenor'>
+      <description>Returns the swap length corresponding to a given swap tenor for the given SwaptionVolatilityStructure object.</description>
+      <libraryFunction>swapLength</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwapTenor' exampleValue ='2y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>swap tenor</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionVTSSwapLength2' type='QuantLib::SwaptionVolatilityStructure' superType='libraryTermStructure'>
+      <description>Returns the swap length corresponding to a given swap start/end dates for the given SwaptionVolatilityStructure object.</description>
+      <libraryFunction>swapLength</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwapStart' exampleValue ='2y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap start date</description>
+          </Parameter>
+          <Parameter name='SwapEnd' exampleValue ='2y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap end date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <!-- RelinkableHandle<SwaptionVolatilityStructure> -->
     <Constructor name='qlRelinkableHandleSwaptionVolatilityStructure'>
       <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::SwaptionVolatilityStructure, QuantLib::SwaptionVolatilityStructure&gt;</libraryFunction>
