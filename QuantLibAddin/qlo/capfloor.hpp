@@ -38,6 +38,7 @@ namespace QuantLibAddin {
                  const boost::shared_ptr<Leg>& floatingLegWrapper,
                  const std::vector<QuantLib::Rate>& strikes,
                  bool permanent);
+        // MakeCapFloor
         CapFloor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                  QuantLib::CapFloor::Type capFloorType,
                  const QuantLib::Period& capFloorTenor,

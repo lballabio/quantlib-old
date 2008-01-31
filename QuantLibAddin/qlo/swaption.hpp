@@ -38,7 +38,7 @@ namespace QuantLibAddin {
                  const boost::shared_ptr<QuantLib::Exercise>& exercise,
                  QuantLib::Settlement::Type settlementType,
                  bool permanent);
-
+        // MakeSwaption
         Swaption(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                  const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
                  const QuantLib::Period& optionTenor,
