@@ -35,7 +35,7 @@ class TermStructureTest(unittest.TestCase):
                 QuoteHandle(SimpleQuote(rate/100)),
                 Period(n, units), self.settlementDays,
                 self.calendar, ModifiedFollowing,
-                False, self.settlementDays, Actual360())
+                False, Actual360())
             for (n,units,rate) in [ (1, Months, 4.581),
                                     (2, Months, 4.573),
                                     (3, Months, 4.557),

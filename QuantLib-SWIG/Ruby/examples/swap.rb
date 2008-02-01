@@ -58,7 +58,7 @@ depositHelpers = deposits.map { |n,unit,v|
   DepositRateHelper.new(QuoteHandle.new(v),
                         Period.new(n,unit), settlementDays,
                         calendar, ModifiedFollowing,
-                        false, settlementDays, dayCounter)
+                        false, dayCounter)
 }
 
 dayCounter = Actual360.new
@@ -67,7 +67,7 @@ fraHelpers = fras.map { |(n,m),v|
   FraRateHelper.new(QuoteHandle.new(v),
                     n, m, settlementDays,
                     calendar, ModifiedFollowing,
-                    false, settlementDays, dayCounter)
+                    false, dayCounter)
 }
 
 dayCounter = Actual360.new
@@ -75,7 +75,9 @@ months = 3
 futuresHelpers = futures.map { |d,v|
   FuturesRateHelper.new(QuoteHandle.new(v),
                         d, months,
-                        calendar, ModifiedFollowing, dayCounter)
+                        calendar, ModifiedFollowing,
+                        true, dayCounter,
+                        QuoteHandle.new(SimpleQuote.new(0.0)))
 }
 
 settlementDays = 2

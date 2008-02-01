@@ -96,8 +96,7 @@
                                          (new-Period n units)
                                          depo-settlement-days
                                          calendar (ModifiedFollowing)
-                                         #f depo-settlement-days
-                                         depo-day-counter))
+                                         #f depo-day-counter))
                 datum))
        deposit-data))
 
@@ -109,8 +108,7 @@
                   (new-FraRateHelper (new-QuoteHandle quote)
                                      n m fra-settlement-days
                                      calendar (ModifiedFollowing)
-                                     #f fra-settlement-days
-                                     fra-day-counter))
+                                     #f fra-day-counter))
                 datum))
        fra-data))
 
@@ -122,7 +120,9 @@
                   (new-FuturesRateHelper (new-QuoteHandle quote)
                                          date futures-months
                                          calendar (ModifiedFollowing)
-                                         futures-day-counter))
+                                         #t futures-day-counter
+                                         (new-QuoteHandle
+                                          (new-SimpleQuote 0.0))))
                 datum))
        futures-data))
 

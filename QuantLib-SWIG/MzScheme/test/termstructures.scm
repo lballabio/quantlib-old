@@ -49,7 +49,7 @@
                              (new-QuoteHandle (new-SimpleQuote (/ rate 100)))
                              (new-Period n units) settlement-days
                              calendar (ModifiedFollowing)
-                             #f settlement-days day-counter)))
+                             #f day-counter)))
                         deposit-data))
              (swaps (map
                      (lambda (datum)
