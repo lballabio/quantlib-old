@@ -35,7 +35,7 @@ passed as arguments to other functions, and destructed.
 <div id="download"><a class="imglink" id="imghover" href="http://downloads.sourceforge.net/quantlib/QuantLibXL-bin-0.9.0.exe"><img src="images/download_qlxl.jpg" border=0/></a></div>
 \endhtmlonly
 
-%QuantLibXL implements 832 functions in support of market data and pricing for
+%QuantLibXL implements 833 functions in support of market data and pricing for
 a variety of instruments including bonds, options, swaps, swaptions,
 caps/floors, etc.
 

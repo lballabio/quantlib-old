@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -64,10 +64,10 @@ have already compiled QuantLibXL from source code as explained in the document
 \subsubsection serialization_win_excel_build 1.1.1 Build
 
 Open <tt>QuantLibXL\\QuantLibAllStatic_vc8.sln</tt>, select configuration
-<tt>Release CRTDLL</tt> and build project <tt>QuantLibXLStatic</tt>.  The
+<tt>Release</tt> and build project <tt>QuantLibXLStatic</tt>.  The
 output file is
 
-\li <tt>QuantLibXL\xll\QuantLibXL-vc80-mt-0_9_0.xll</tt>
+\li <tt>QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_0.xll</tt>
 
 \subsubsection serialization_win_excel_export 1.1.2 Export
 
@@ -76,7 +76,8 @@ output file is
 <tt>QuantLibXL\\Workbooks\\StandaloneExamples\\serialize_swap.xla</tt>.  The addin
 contains some startup code which should automatically load the following:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc80-mt-0_9_0.xll
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_0.xll
+QuantLibXL\Workbooks\StandaloneExamples\serialize_utils.xla
 QuantLibXL\Workbooks\StandaloneExamples\MarketData.xls
 QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
 \endverbatim
@@ -96,7 +97,8 @@ C:\qlxl_demo_swap.xml
 <tt>QuantLibXL\\Workbooks\\StandaloneExamples\\serialize_swap.xla</tt>.  The addin
 contains some startup code which should automatically load the following:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc80-mt-0_9_0.xll
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_0.xll
+QuantLibXL\Workbooks\StandaloneExamples\serialize_utils.xla
 QuantLibXL\Workbooks\StandaloneExamples\MarketData.xls
 QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
 \endverbatim
@@ -305,6 +307,7 @@ INFO - XML =
                 </px>
         </item>
 </object_list>
+</boost_serialization>
 
 INFO - log dump of object with ID = quote1
 
