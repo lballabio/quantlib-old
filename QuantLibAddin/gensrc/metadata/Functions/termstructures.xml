@@ -76,7 +76,8 @@
       <libraryFunction>timeFromReference</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
+        <!-- This function does not compile on 64-bit Linux so temporarily excluding from C++ addin -->
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
