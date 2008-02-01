@@ -348,8 +348,8 @@ int main() {
 
         // Serialize the objects
 
-        ohObjectSave(marketObjects, "qlxl_demo_market.xml", true, OH_NULL);
-        ohObjectSave(tradeObjects, "qlxl_demo_swap.xml", true, OH_NULL);
+        ohObjectSave(marketObjects, "qlxl_swap_market.xml", true, OH_NULL);
+        ohObjectSave(tradeObjects, "qlxl_swap_trade.xml", true, OH_NULL);
 
         // Enable extrapolation for the yield curve
 

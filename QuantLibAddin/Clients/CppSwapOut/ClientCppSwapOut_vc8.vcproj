@@ -392,6 +392,14 @@
 	</References>
 	<Files>
 		<File
+			RelativePath="qlxl_swap_market.xml"
+			>
+		</File>
+		<File
+			RelativePath="qlxl_swap_trade.xml"
+			>
+		</File>
+		<File
 			RelativePath="swap_out.cpp"
 			>
 		</File>

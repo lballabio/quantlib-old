@@ -5,8 +5,8 @@ LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem
 
 EXTRA_DIST = \
     ClientCppSwapIn_vc8.vcproj \
-    qlxl_demo_market.xml \
-    qlxl_demo_swap.xml
+    qlxl_swap_market.xml \
+    qlxl_swap_trade.xml
 
 swap_in_SOURCES = swap_in.cpp
 

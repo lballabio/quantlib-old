@@ -392,11 +392,11 @@
 	</References>
 	<Files>
 		<File
-			RelativePath=".\qlxl_demo_market.xml"
+			RelativePath=".\qlxl_swap_market.xml"
 			>
 		</File>
 		<File
-			RelativePath=".\qlxl_demo_swap.xml"
+			RelativePath=".\qlxl_swap_trade.xml"
 			>
 		</File>
 		<File

@@ -86,8 +86,8 @@ QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
 \li Invoke menu item <tt>QLXL Demo / Export</tt>
 \li The following 2 files are produced:
 \verbatim
-C:\qlxl_demo_market.xml
-C:\qlxl_demo_swap.xml
+C:\qlxl_swap_market.xml
+C:\qlxl_swap_trade.xml
 \endverbatim
 
 \subsubsection serialization_win_excel_import 1.1.3 Import
@@ -106,8 +106,8 @@ QuantLibXL\Workbooks\StandaloneExamples\VanillaSwap.xls
 \li Invoke menu item <tt>QLXL Demo / Import</tt>
 \li The following 2 files are loaded:
 \verbatim
-C:\qlxl_demo_market.xml
-C:\qlxl_demo_swap.xml
+C:\qlxl_swap_market.xml
+C:\qlxl_swap_trade.xml
 \endverbatim
 \li Hit <tt>Ctrl-Alt-F9</tt>
 \li Confirm that a PV (on my machine, 36106.60) is showing in cell <tt>'[VanillaSwap.xls]Vanilla Swap'!C33</tt>
@@ -140,8 +140,8 @@ INFO - SWAP PV = 36106.6
 INFO - End example program.
 \endverbatim
 
-The program should generate the XML export files <tt>qlxl_demo_market.xml</tt>
-and <tt>qlxl_demo_swap.xml</tt> in the current directory.
+The program should generate the XML export files <tt>qlxl_swap_market.xml</tt>
+and <tt>qlxl_swap_trade.xml</tt> in the current directory.
 
 \subsubsection serialization_win_cpp_import 1.2.3 Import
 
@@ -152,7 +152,7 @@ is
 QuantLibAddin\Clients\CppSwapIn\bin\SwapIn-vc80-mt.exe
 \endverbatim
 
-Copy <tt>qlxl_demo_market.xml</tt> and <tt>qlxl_demo_swap.xml</tt> from
+Copy <tt>qlxl_swap_market.xml</tt> and <tt>qlxl_swap_trade.xml</tt> from
 directory <tt>QuantLibAddin\\Clients\\CppSwapIn</tt> to directory
 <tt>QuantLibAddin\\Clients\\CppSwapIn\\bin</tt>.
 
@@ -270,14 +270,14 @@ INFO - SWAP PV = 36106.6
 INFO - End example program.
 \endverbatim
 
-The program should generate the XML export files <tt>qlxl_demo_market.xml</tt>
-and <tt>qlxl_demo_swap.xml</tt> in the current directory.
+The program should generate the XML export files <tt>qlxl_swap_market.xml</tt>
+and <tt>qlxl_swap_trade.xml</tt> in the current directory.
 
 \subsubsection serialization_linux_cpp_import 2.1.3 Import
 
 \c cd to directory  <tt>QuantLibAddin/Clients/CppSwapIn</tt> and execute
-program <tt>swap_in</tt>.  The program loads <tt>qlxl_demo_market.xml</tt> and
-<tt>qlxl_demo_swap.xml</tt> from the current directory.  The output from the
+program <tt>swap_in</tt>.  The program loads <tt>qlxl_swap_market.xml</tt> and
+<tt>qlxl_swap_trade.xml</tt> from the current directory.  The output from the
 program should appear similar to the following:
 \verbatim
 INFO - Begin example program.

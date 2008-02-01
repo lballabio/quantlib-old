@@ -52,8 +52,8 @@ int main() {
 
         // Deserialize the objects
 
-        ohObjectLoad(".", "qlxl_demo_market.xml", false, OH_NULL, OH_NULL);
-        ohObjectLoad(".", "qlxl_demo_swap.xml", false, OH_NULL, OH_NULL);
+        ohObjectLoad(".", "qlxl_swap_market.xml", false, OH_NULL, OH_NULL);
+        ohObjectLoad(".", "qlxl_swap_trade.xml", false, OH_NULL, OH_NULL);
 
         // Enable extrapolation for the yield curve
 
