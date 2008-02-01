@@ -29,6 +29,7 @@
 
 %{
 using QuantLib::Currency;
+using QuantLib::Money;
 %}
 
 class Currency {
@@ -62,14 +63,23 @@ class Currency {
         bool __eq__(const Currency& other) {
             return (*self) == other;
         }
+        #endif
         #if defined(SWIGPYTHON) || defined(SWIGJAVA)
         bool __ne__(const Currency& other) {
             return (*self) != other;
         }
         #endif
+        #if defined(SWIGPYTHON)
+        Money operator*(Decimal x) {
+            return *self*x;
+        }
+        Money __rmul__(Decimal x) {
+            return *self*x;
+        }
         #endif
     }
 };
+
 
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename("Currency=?") Currency_equal;
