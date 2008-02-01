@@ -189,22 +189,5 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSwaptionAtmRate' type='QuantLib::Swaption'>
-      <description>returns the at-the-money rate for the given Swaption object</description>
-      <libraryFunction>atmRate</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters />
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
   </Functions>
 </Category>
