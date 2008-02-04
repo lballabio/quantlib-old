@@ -90,6 +90,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Spread>& strikeSpreads,
             const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volSpreads,
             const boost::shared_ptr<QuantLib::SwapIndex>& swapIndexBase,
+            const boost::shared_ptr<QuantLib::SwapIndex>& shortSwapIndexBase,
             bool vegaWeightedSmileFit,
             bool permanent);
     };
@@ -109,6 +110,7 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Spread>& strikeSpreads,
             const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& volSpreads,
             const boost::shared_ptr<QuantLib::SwapIndex>& swapIndexBase,
+            const boost::shared_ptr<QuantLib::SwapIndex>& shortSwapIndexBase,
             bool vegaWeightedSmileFit,
             const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& parametersGuess,
             const std::vector<bool>& isParameterFixed,

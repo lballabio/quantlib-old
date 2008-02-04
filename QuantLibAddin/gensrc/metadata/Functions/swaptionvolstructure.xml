@@ -509,7 +509,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='AtmVolStructure' >
+          <Parameter name='AtmVolStructure'>
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -541,7 +541,12 @@
             <tensorRank>scalar</tensorRank>
             <description>Base SwapIndex object ID</description>
           </Parameter>
-          <Parameter name='VegaWeightedSmileFit' exampleValue ='TRUE'>
+          <Parameter name='ShortSwapIndexBase'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Short base SwapIndex object ID</description>
+          </Parameter>
+          <Parameter name='VegaWeightedSmileFit' default='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>if TRUE the smile fit is weighted using options' vega.</description>
@@ -618,7 +623,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='AtmVolStructure' >
+          <Parameter name='AtmVolStructure'>
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -650,12 +655,17 @@
             <tensorRank>scalar</tensorRank>
             <description>Base SwapIndex object ID</description>
           </Parameter>
-          <Parameter name='VegaWeightedSmileFit' exampleValue ='TRUE'>
+          <Parameter name='ShortSwapIndexBase'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Short base SwapIndex object ID</description>
+          </Parameter>
+          <Parameter name='VegaWeightedSmileFit' default='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>if TRUE the smile fit is weighted using options' vega.</description>
           </Parameter>
-          <Parameter name='Guess' >
+          <Parameter name='Guess'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
