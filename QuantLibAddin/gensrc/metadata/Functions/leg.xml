@@ -369,7 +369,7 @@
             <tensorRank>scalar</tensorRank>
             <description>InterestRate object ID</description>
           </Parameter>
-          <Parameter name='DurationType' default='Modified'>
+          <Parameter name='DurationType' default='"Modified"'>
             <type>QuantLib::Duration::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>Duration type</description>
