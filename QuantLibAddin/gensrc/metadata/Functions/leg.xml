@@ -367,7 +367,7 @@
             <type>QuantLib::InterestRate</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>interest rate object ID</description>
+            <description>InterestRate object ID</description>
           </Parameter>
           <Parameter name='DurationType'>
             <type>QuantLib::Duration::Type</type>

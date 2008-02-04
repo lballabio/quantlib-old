@@ -79,7 +79,7 @@ namespace QuantLibAddin {
                                 QuantLib::Duration::Type type,
                                 QuantLib::Date settlementDate) const;
         QuantLib::Real convexity(const QuantLib::InterestRate& y,
-                                QuantLib::Date settlementDate) const;
+                                 QuantLib::Date settlementDate) const;
 
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& p);
 
