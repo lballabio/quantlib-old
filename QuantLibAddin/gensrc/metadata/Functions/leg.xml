@@ -305,7 +305,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='MarketPrice'>
+          <Parameter name='MarketPrice' exampleValue='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>market Price</description>
@@ -315,12 +315,12 @@
             <tensorRank>scalar</tensorRank>
             <description>Irr DayCounter ID</description>
           </Parameter>
-          <Parameter name='Compounding' exampleValue='Compounded'>
+          <Parameter name='Compounding' default='"Continuous"'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
           </Parameter>
-          <Parameter name='Frequency' default='"NoFrequency"' const='False'>
+          <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
@@ -330,20 +330,20 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement date</description>
           </Parameter>
-          <Parameter name='Tolerance' default='1.0e10'>
+          <Parameter name='Accuracy' default='1.0e-10'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>tolerance. If omitted, default = 1.0e12 is used.</description>
+            <description>tolerance. If omitted, default = 1.0e-10 is used.</description>
           </Parameter>
-          <Parameter name='MaxIterations' default='10000'>
+          <Parameter name='MaxIterations' default='100'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>max number of iterations.</description>
+            <description>max number of iterations. If omitted, default = 100 is used.</description>
           </Parameter>
           <Parameter name='Guess' default='0.05'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>guess</description>
+            <description>guess. If omitted, default = 0.05 is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -369,7 +369,7 @@
             <tensorRank>scalar</tensorRank>
             <description>InterestRate object ID</description>
           </Parameter>
-          <Parameter name='DurationType'>
+          <Parameter name='DurationType' default='Modified'>
             <type>QuantLib::Duration::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>Duration type</description>
