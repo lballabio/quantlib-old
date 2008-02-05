@@ -45,19 +45,19 @@ namespace QuantLibAddin {
     ConstantOptionletVolatility::ConstantOptionletVolatility(
                                     const shared_ptr<ValueObject>& properties,
                                     QuantLib::Natural settlementDays,
-                                    const Handle<Quote>& volatility,
-                                    const QuantLib::DayCounter& dayCounter,
                                     const QuantLib::Calendar& cal,
                                     BusinessDayConvention bdc,
+                                    const Handle<Quote>& volatility,
+                                    const QuantLib::DayCounter& dayCounter,
                                     bool permanent)
     : OptionletVolatilityStructure(properties, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::ConstantOptionletVolatility(settlementDays,
-                                                  volatility,
-                                                  dayCounter,
                                                   cal,
-                                                  bdc));
+                                                  bdc,
+                                                  volatility,
+                                                  dayCounter));
     }
 
     SpreadedOptionletVolatility::SpreadedOptionletVolatility(
@@ -86,9 +86,9 @@ namespace QuantLibAddin {
                                 const shared_ptr<ValueObject>& properties,
                                 QuantLib::Natural settlementDays,
                                 const QuantLib::Calendar& calendar,
+                                BusinessDayConvention bdc,
                                 const vector<QuantLib::Period>& optionTenors,
                                 const vector<Handle<Quote> >& vols,
-                                BusinessDayConvention bdc,
                                 const QuantLib::DayCounter& dc,
                                 bool permanent)
     : CapFloorTermVolatilityStructure(properties, permanent)
@@ -96,9 +96,9 @@ namespace QuantLibAddin {
        libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapFloorTermVolCurve(settlementDays,
                                            calendar,
+                                           bdc,
                                            optionTenors,
                                            vols,
-                                           bdc,
                                            dc));
     }
 
@@ -106,10 +106,10 @@ namespace QuantLibAddin {
                                 const shared_ptr<ValueObject>& properties,
                                 QuantLib::Natural settlementDays,
                                 const QuantLib::Calendar& calendar,
+                                BusinessDayConvention bdc,
                                 const vector<QuantLib::Period>& optionLengths,
                                 const vector<QuantLib::Rate>& strikes,
                                 const vector<vector<Handle<Quote> > >& vols,
-                                BusinessDayConvention bdc,
                                 const QuantLib::DayCounter& dc,
                                 bool permanent)
     : CapFloorTermVolatilityStructure(properties, permanent)
@@ -117,17 +117,17 @@ namespace QuantLibAddin {
         libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CapFloorTermVolSurface(settlementDays,
                                              calendar,
+                                             bdc,
                                              optionLengths,
                                              strikes,
                                              vols,
-                                             bdc,
                                              dc));
     }
 
     StrippedOptionlet::StrippedOptionlet(
                                 const shared_ptr<ValueObject>& properties,
-                                const QuantLib::Calendar& calendar,
                                 QuantLib::Natural settlementDays,
+                                const QuantLib::Calendar& calendar,
                                 BusinessDayConvention businessDayConvention,
                                 const shared_ptr<QuantLib::IborIndex>& index,
                                 const vector<QuantLib::Period>& optionletTenors,
@@ -139,12 +139,12 @@ namespace QuantLibAddin {
     {
         libraryObject_ = shared_ptr<QuantLib::StrippedOptionlet>(new
             QuantLib::StrippedOptionlet(settlementDays,
+                                        calendar,
+                                        businessDayConvention,
                                         index,
                                         optionletTenors,
                                         strikes,
                                         vols,
-                                        calendar,
-                                        businessDayConvention,
                                         dc));
     }
 

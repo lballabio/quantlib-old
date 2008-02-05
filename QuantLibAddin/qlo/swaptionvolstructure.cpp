@@ -39,19 +39,19 @@ namespace QuantLibAddin {
     ConstantSwaptionVolatility::ConstantSwaptionVolatility(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         QuantLib::Natural settlementDays,
-        const QuantLib::Handle<QuantLib::Quote>& vol,
-        const QuantLib::DayCounter& dayCounter,
         const QuantLib::Calendar& cal,
         QuantLib::BusinessDayConvention bdc,
+        const QuantLib::Handle<QuantLib::Quote>& vol,
+        const QuantLib::DayCounter& dayCounter,
         bool permanent)
     : SwaptionVolatilityStructure(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::ConstantSwaptionVolatility(settlementDays,
-                                                 vol,
-                                                 dayCounter,
                                                  cal,
-                                                 bdc));
+                                                 bdc,
+                                                 vol,
+                                                 dayCounter));
     }
 
     SpreadedSwaptionVolatility::SpreadedSwaptionVolatility(
@@ -63,27 +63,27 @@ namespace QuantLibAddin {
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SpreadedSwaptionVolatility(underlyingVolStructure,
-                                                  spread));
+                                                 spread));
     }
 
     SwaptionVolatilityMatrix::SwaptionVolatilityMatrix(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Calendar& calendar,
+            const QuantLib::BusinessDayConvention bdc,
             const std::vector<QuantLib::Period>& optionTenors,
             const std::vector<QuantLib::Period>& swapTenors,
             const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& vols,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::BusinessDayConvention bdc,
             bool permanent)
     : SwaptionVolatilityDiscrete(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SwaptionVolatilityMatrix(calendar,
+                                               bdc,
                                                optionTenors,
                                                swapTenors,
                                                vols,
-                                               dayCounter,
-                                               bdc));
+                                               dayCounter));
     }
 
     std::vector<long> SwaptionVolatilityMatrix::locate(
@@ -210,11 +210,9 @@ namespace QuantLibAddin {
 
         sparseSabrParameters.push_back(headings);
 
-        for(QuantLib::Size i=0; i<sabrParameters.rows(); ++i)
-        {
+        for(QuantLib::Size i=0; i<sabrParameters.rows(); ++i) {
             std::vector<boost::any> par(numberOfColumn, std::string("N/A"));
-            for(QuantLib::Size j=0; j<sabrParameters.columns()-1; ++j)
-            {
+            for(QuantLib::Size j=0; j<sabrParameters.columns()-1; ++j) {
                par[j] = sabrParameters[i][j];
             }
             std::ostringstream endCriteria;

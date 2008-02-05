@@ -48,10 +48,10 @@ namespace QuantLibAddin {
         ConstantOptionletVolatility(
                         const boost::shared_ptr<ObjectHandler::ValueObject>&,
                         QuantLib::Natural settlementDays,
-                        const QuantLib::Handle<QuantLib::Quote>& volatility,
-                        const QuantLib::DayCounter& dayCounter,
                         const QuantLib::Calendar& cal,
                         QuantLib::BusinessDayConvention bdc,
+                        const QuantLib::Handle<QuantLib::Quote>& volatility,
+                        const QuantLib::DayCounter& dayCounter,
                         bool permanent);
     };
       
@@ -81,9 +81,9 @@ namespace QuantLibAddin {
                       const boost::shared_ptr<ObjectHandler::ValueObject>&,
                       QuantLib::Natural settlementDays,
                       const QuantLib::Calendar& calendar,
+                      QuantLib::BusinessDayConvention bdc,
                       const std::vector<QuantLib::Period>& optionTenors,
                       const std::vector<QuantLib::Handle<QuantLib::Quote> >&,
-                      QuantLib::BusinessDayConvention bdc,
                       const QuantLib::DayCounter& dayCounter,
                       bool permanent);
     };
@@ -94,10 +94,10 @@ namespace QuantLibAddin {
           const boost::shared_ptr<ObjectHandler::ValueObject>&,
           QuantLib::Natural settlementDays,
           const QuantLib::Calendar& calendar,
+          QuantLib::BusinessDayConvention bdc,
           const std::vector<QuantLib::Period>& optionTenors,
           const std::vector<QuantLib::Rate>& strikes,
           const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >&,
-          QuantLib::BusinessDayConvention bdc,
           const QuantLib::DayCounter& dc,
           bool permanent);
     };
@@ -114,8 +114,8 @@ namespace QuantLibAddin {
       public:
         StrippedOptionlet(
         const boost::shared_ptr<ObjectHandler::ValueObject>&,
-        const QuantLib::Calendar& calendar,
         QuantLib::Natural settlementDays,
+        const QuantLib::Calendar& calendar,
         QuantLib::BusinessDayConvention businessDayConvention,
         const boost::shared_ptr<QuantLib::IborIndex>& index,
         const std::vector<QuantLib::Period>& optionletTenors,

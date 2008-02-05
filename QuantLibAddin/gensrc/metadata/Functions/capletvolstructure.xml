@@ -201,6 +201,16 @@
             <tensorRank>scalar</tensorRank>
             <description>number of days to advance from EvaluationDate: it fixes the date at which the variance = 0.0. If omitted, default = 0 is used.</description>
           </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
+          </Parameter>
+          <Parameter name='BusinessDayConvention' exampleValue='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Business day convention used for calculating the exercise dates from the expiries</description>
+          </Parameter>
           <Parameter name='Volatility' examplevalue='0.20'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
@@ -211,16 +221,6 @@
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID</description>
-          </Parameter>
-          <Parameter name='Calendar' exampleValue='TARGET'>
-            <type>QuantLib::Calendar</type>
-            <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
-          </Parameter>
-          <Parameter name='BusinessDayConvention' default='"Following"'>
-            <type>QuantLib::BusinessDayConvention</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Business day convention used for calculating the exercise dates from the expiries</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -281,20 +281,20 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Calendar' exampleValue='TARGET'>
-            <type>QuantLib::Calendar</type>
-            <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
-          </Parameter>
           <Parameter name='SettlementDays' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>number of settlement days</description>
           </Parameter>
-          <Parameter name='PaymentBDC' default='"Following"'>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
+          </Parameter>
+          <Parameter name='BusinessDayConvention' exampleValue='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention. If omitted, default = Following.</description>
+            <description>Business day convention used for calculating the exercise dates from the expiries</description>
           </Parameter>
           <Parameter name='IborIndex' exampleValue ='Euribor6M'>
             <type>QuantLib::IborIndex</type>
@@ -812,6 +812,11 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar used for calculating the exercise dates from the expiries tenor</description>
           </Parameter>
+          <Parameter name='BusinessDayConvention' exampleValue='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Business day convention used for calculating the exercise dates from the expiries</description>
+          </Parameter>
           <Parameter name='OptionTenors' exampleValue ='3Y, 5Y, 7Y, 10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
@@ -822,11 +827,6 @@
             <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
             <description>vol quotes vector</description>
-          </Parameter>
-          <Parameter name='BusinessDayConvention' default='"Following"'>
-            <type>QuantLib::BusinessDayConvention</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Business day convention used for calculating the exercise dates from the expiries</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
@@ -901,6 +901,11 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar used for calculating the exercise dates from the expiries tenor</description>
           </Parameter>
+          <Parameter name='BusinessDayConvention' exampleValue='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Business day convention used for calculating the exercise dates from the expiries</description>
+          </Parameter>
           <Parameter name='OptionTenors' exampleValue ='5Y, 10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
@@ -916,11 +921,6 @@
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
             <description>vol quotes matrix</description>
-          </Parameter>
-          <Parameter name='BusinessDayConvention' default='"Following"'>
-            <type>QuantLib::BusinessDayConvention</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Business day convention used for calculating the exercise dates from the expiries</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>

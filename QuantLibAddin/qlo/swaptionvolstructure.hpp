@@ -46,10 +46,10 @@ namespace QuantLibAddin {
         ConstantSwaptionVolatility(
                         const boost::shared_ptr<ObjectHandler::ValueObject>&,
                         QuantLib::Natural settlementDays,
-                        const QuantLib::Handle<QuantLib::Quote>& vol,
-                        const QuantLib::DayCounter& dayCounter,
                         const QuantLib::Calendar& cal,
                         QuantLib::BusinessDayConvention bdc,
+                        const QuantLib::Handle<QuantLib::Quote>& vol,
+                        const QuantLib::DayCounter& dayCounter,
                         bool permanent);
     };
 
@@ -68,11 +68,11 @@ namespace QuantLibAddin {
       public:
         SwaptionVolatilityMatrix(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                                  const QuantLib::Calendar& calendar,
+                                 const QuantLib::BusinessDayConvention bdc,
                                  const std::vector<QuantLib::Period>& optionTenors,
                                  const std::vector<QuantLib::Period>& tenors,
                                  const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >& vols,
                                  const QuantLib::DayCounter& dayCounter,
-                                 const QuantLib::BusinessDayConvention bdc,
                                  bool permanent);
         std::vector<long> locate(const QuantLib::Date& d,
                                  const QuantLib::Period& p);
