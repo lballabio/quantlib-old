@@ -230,7 +230,7 @@
             <tensorRank>scalar</tensorRank>
             <description>floating leg IborIndex object ID</description>
           </Parameter>
-          <Parameter name='Spread' exampleValue='0D'>
+          <Parameter name='Spread' exampleValue='0.0'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -598,4 +598,3 @@
 
   </Functions>
 </Category>
-
