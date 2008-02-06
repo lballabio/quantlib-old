@@ -38,9 +38,10 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& qlrhs,
             const QuantLib::DayCounter& dayCounter,
-            const std::string& traitsID, 
-            const std::string& interpolatorID,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
             QuantLib::Real accuracy,
+            const std::string& traitsID,
+            const std::string& interpolatorID,
             bool permanent) : YieldTermStructure(properties, permanent)
     {
         //QuantLib::CubicSpline naturalCubic(
@@ -65,6 +66,7 @@ namespace QuantLibAddin {
                                               calendar,
                                               qlrhs,
                                               dayCounter,
+                                              turnOfYearEffect,
                                               accuracy);
 
         //libraryObject_ = boost::shared_ptr<QuantLib::YieldTermStructure>(new
