@@ -14,36 +14,6 @@
 				<item class_id="203" tracking_level="0" version="0">
 					<variant_ class_id="204" tracking_level="0" version="0">
 						<which>1</which>
-						<value>39097</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>39098</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>39099</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>39100</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>39101</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
 						<value>39104</value>
 					</variant_>
 				</item>
@@ -1547,40 +1517,40 @@
 						<value>39461</value>
 					</variant_>
 				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39462</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39463</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39464</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39465</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39468</value>
+					</variant_>
+				</item>
 			</Dates>
 			<Values>
 				<count>256</count>
 				<item_version>0</item_version>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.0406088</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.040614999999999998</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.040591299999999997</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.040768800000000001</value>
-					</variant_>
-				</item>
-				<item>
-					<variant_>
-						<which>1</which>
-						<value>0.040715000000000001</value>
-					</variant_>
-				</item>
 				<item>
 					<variant_>
 						<which>1</which>
@@ -3085,6 +3055,36 @@
 					<variant_>
 						<which>1</which>
 						<value>0.045937499999999999</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.045762499999999998</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.045118799999999994</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.044462500000000002</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.044156300000000002</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>0.043775000000000001</value>
 					</variant_>
 				</item>
 			</Values>
