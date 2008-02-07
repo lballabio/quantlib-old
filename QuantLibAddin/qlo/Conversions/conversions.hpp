@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -41,6 +41,7 @@ namespace QuantLibAddin {
 
     std::vector<long> libraryToVector(const std::vector<QuantLib::Date>&);
     std::vector<std::string> libraryToVector(const std::vector<QuantLib::Period>&);
+    std::vector<double> libraryToVector(const std::vector<QuantLib::Real>&);
 
     void cppToLibrary(const std::string &in, QuantLib::Period &ret);
     void cppToLibrary(const long &in, QuantLib::Size &ret);

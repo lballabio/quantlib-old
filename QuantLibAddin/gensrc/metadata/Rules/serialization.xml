@@ -6,13 +6,14 @@
     <RuleGroup name='cppConversions' checkParameterIgnore='true' checkSkipFirst='true' delimiter='&#10;'>
       <Wrap codeID='wrap1'/>
       <Rules>
-        <Rule tensorRank='scalar' type='QuantLib::Real' codeID='code110'/>
+        <!--Rule tensorRank='scalar' type='QuantLib::Real' codeID='code110'/-->
+        <Rule tensorRank='scalar' type='QuantLib::Real' default='true' codeID='code110'/>
         <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code110'/>
         <Rule tensorRank='scalar' nativeType='string' default='true' codeID='code111'/>
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code110'/>
         <Rule tensorRank='scalar' nativeType='string' codeID='code111'/>
         <Rule tensorRank='scalar' codeID='code112'/>
-        <Rule tensorRank='vector' type='QuantLib::Real' codeID='code114'/>
+        <!--Rule tensorRank='vector' type='QuantLib::Real' codeID='code114'/-->
         <Rule tensorRank='vector' type='QuantLib::Period' codeID='code114'/>
         <Rule tensorRank='vector' type='QuantLib::Date' codeID='code114'/>
         <Rule tensorRank='vector' type='QuantLib::Quote' codeID='code114'/>
@@ -33,7 +34,7 @@
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Period' default='false' codeID='code22'/>
         <Rule tensorRank='scalar' superType='libraryType' default='false' codeID='code121'/>
         <Rule tensorRank='scalar' superType='libraryType' default='true' codeID='code122'/>
-        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Real' codeID='code131'/>
+        <!--Rule tensorRank='vector' superType='libraryType' type='QuantLib::Real' codeID='code131'/-->
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Period' codeID='code131'/>
         <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Date' codeID='code131'/>
         <Rule tensorRank='vector' superType='libraryType' codeID='code132'/>

@@ -47,6 +47,14 @@ namespace QuantLibAddin {
         return s.str();
     }
 
+    std::vector<long> libraryToVector(const std::vector<QuantLib::Date> &v) {
+        std::vector<long> ret;
+        ret.reserve(v.size());
+        for (std::vector<QuantLib::Date>::const_iterator i = v.begin(); i != v.end(); ++i)
+            ret.push_back(i->serialNumber());
+        return ret;
+    }
+
     std::vector<std::string> libraryToVector(const std::vector<QuantLib::Period> &v) {
         std::vector<std::string> ret;
         ret.reserve(v.size());
@@ -55,11 +63,11 @@ namespace QuantLibAddin {
         return ret;
     }
 
-    std::vector<long> libraryToVector(const std::vector<QuantLib::Date> &v) {
-        std::vector<long> ret;
+    std::vector<double> libraryToVector(const std::vector<QuantLib::Real> &v) {
+        std::vector<double> ret;
         ret.reserve(v.size());
-        for (std::vector<QuantLib::Date>::const_iterator i = v.begin(); i != v.end(); ++i)
-            ret.push_back(i->serialNumber());
+        for (std::vector<QuantLib::Real>::const_iterator i = v.begin(); i != v.end(); ++i)
+            ret.push_back(*i);
         return ret;
     }
 
