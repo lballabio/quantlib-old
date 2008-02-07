@@ -130,7 +130,7 @@ namespace QuantLibAddin {
                                 const QuantLib::Calendar& calendar,
                                 BusinessDayConvention businessDayConvention,
                                 const shared_ptr<QuantLib::IborIndex>& index,
-                                const vector<QuantLib::Period>& optionletTenors,
+                                const vector<QuantLib::Date>& optionletDates,
                                 const vector<QuantLib::Rate>& strikes,
                                 const vector<vector<Handle<Quote> > >& vols,
                                 const QuantLib::DayCounter& dc,
@@ -142,7 +142,7 @@ namespace QuantLibAddin {
                                         calendar,
                                         businessDayConvention,
                                         index,
-                                        optionletTenors,
+                                        optionletDates,
                                         strikes,
                                         vols,
                                         dc));

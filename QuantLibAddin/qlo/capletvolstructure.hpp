@@ -118,7 +118,7 @@ namespace QuantLibAddin {
         const QuantLib::Calendar& calendar,
         QuantLib::BusinessDayConvention businessDayConvention,
         const boost::shared_ptr<QuantLib::IborIndex>& index,
-        const std::vector<QuantLib::Period>& optionletTenors,
+        const std::vector<QuantLib::Date>& optionletDates,
         const std::vector<QuantLib::Rate>& strikes,
         const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >&,
         const QuantLib::DayCounter& dc,
