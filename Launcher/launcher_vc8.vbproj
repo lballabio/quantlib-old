@@ -170,37 +170,37 @@
   <ItemGroup>
     <Content Include="Environments\config.xml" />
     <Content Include="images\down.bmp" />
-    <Content Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_0.xll">
+    <Content Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
+    <Content Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\03 Testing\saohxll-vc80-mt-0_1_9.xll">
+    <Content Include="Addins\03 Testing\saohxll-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Addins\03 Testing\PDGLib_candidate.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_0.xll">
+    <Content Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
+    <Content Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\02 Pre-Production\saohxll-vc80-mt-0_1_9.xll">
+    <Content Include="Addins\02 Pre-Production\saohxll-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Addins\02 Pre-Production\PDGLib_candidate.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\01 Production\ObjectHandler-xll-vc80-mt-0_9_0.xll">
+    <Content Include="Addins\01 Production\ObjectHandler-xll-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\01 Production\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
+    <Content Include="Addins\01 Production\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\01 Production\saohxll-vc80-mt-0_1_9.xll">
+    <Content Include="Addins\01 Production\saohxll-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Addins\01 Production\PDGLib_candidate.xll">
@@ -229,7 +229,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="Addins\01 Production\ObjectHandler-xll-vc80-mt-0_9_0.xll">
+    <PublishFile Include="Addins\01 Production\ObjectHandler-xll-vc80-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -247,7 +247,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\01 Production\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
+    <PublishFile Include="Addins\01 Production\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -256,7 +256,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\01 Production\saohxll-vc80-mt-0_1_9.xll">
+    <PublishFile Include="Addins\01 Production\saohxll-vc80-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -265,7 +265,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_0.xll">
+    <PublishFile Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -283,7 +283,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
+    <PublishFile Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -292,7 +292,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\02 Pre-Production\saohxll-vc80-mt-0_1_9.xll">
+    <PublishFile Include="Addins\02 Pre-Production\saohxll-vc80-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -301,7 +301,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_0.xll">
+    <PublishFile Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -319,7 +319,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
+    <PublishFile Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -328,7 +328,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\03 Testing\saohxll-vc80-mt-0_1_9.xll">
+    <PublishFile Include="Addins\03 Testing\saohxll-vc80-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>

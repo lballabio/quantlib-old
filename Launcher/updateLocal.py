@@ -13,17 +13,20 @@ cwd = update.getcwd()
 trunkPath = cwd[0:len(cwd)-len(RELATIVE_PATH)]
 
 SOURCE_TARGET_LIST = (
-    ( trunkPath + "QuantLibXL/xll",                  "Addins/01 Production", "QuantLibXLDynamic-vc80-mt-0_9_0.xll" ),
-    ( trunkPath + "ObjectHandler/xll",               "Addins/01 Production", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
-    ( trunkPath + "SensitivityAnalysis/saohxll/xll", "Addins/01 Production", "saohxll-vc80-mt-0_1_9.xll" ),
+    ( trunkPath + "QuantLibXL/xll",                  "Addins/01 Production", "QuantLibXLDynamic-vc80-mt-0_9_5.xll" ),
+    ( trunkPath + "ObjectHandler/xll",               "Addins/01 Production", "ObjectHandler-xll-vc80-mt-0_9_5.xll" ),
+    ( trunkPath + "SensitivityAnalysis/xll", "Addins/01 Production", "saohxll-vc80-mt-0_9_5.xll" ),
+    ( trunkPath + "SensitivityAnalysis/xll", "Addins/01 Production", "PDGLib_candidate.xll" ),
 
-    ( trunkPath + "QuantLibXL/xll",                  "Addins/02 Pre-Production", "QuantLibXLDynamic-vc80-mt-0_9_0.xll" ),
-    ( trunkPath + "ObjectHandler/xll",               "Addins/02 Pre-Production", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
-    ( trunkPath + "SensitivityAnalysis/saohxll/xll", "Addins/02 Pre-Production", "saohxll-vc80-mt-0_1_9.xll" ),
+    ( trunkPath + "QuantLibXL/xll",                  "Addins/02 Pre-Production", "QuantLibXLDynamic-vc80-mt-0_9_5.xll" ),
+    ( trunkPath + "ObjectHandler/xll",               "Addins/02 Pre-Production", "ObjectHandler-xll-vc80-mt-0_9_5.xll" ),
+    ( trunkPath + "SensitivityAnalysis/xll", "Addins/02 Pre-Production", "saohxll-vc80-mt-0_9_5.xll" ),
+    ( trunkPath + "SensitivityAnalysis/xll", "Addins/02 Pre-Production", "PDGLib_candidate.xll" ),
 
-    ( trunkPath + "QuantLibXL/xll",                  "Addins/03 Testing", "QuantLibXLDynamic-vc80-mt-0_9_0.xll" ),
-    ( trunkPath + "ObjectHandler/xll",               "Addins/03 Testing", "ObjectHandler-xll-vc80-mt-0_9_0.xll" ),
-    ( trunkPath + "SensitivityAnalysis/saohxll/xll", "Addins/03 Testing", "saohxll-vc80-mt-0_1_9.xll" ),
+    ( trunkPath + "QuantLibXL/xll",                  "Addins/03 Testing", "QuantLibXLDynamic-vc80-mt-0_9_5.xll" ),
+    ( trunkPath + "ObjectHandler/xll",               "Addins/03 Testing", "ObjectHandler-xll-vc80-mt-0_9_5.xll" ),
+    ( trunkPath + "SensitivityAnalysis/xll", "Addins/03 Testing", "saohxll-vc80-mt-0_9_5.xll" ),
+    ( trunkPath + "SensitivityAnalysis/xll", "Addins/03 Testing", "PDGLib_candidate.xll" ),
 )
 
 update.update(SOURCE_TARGET_LIST)
