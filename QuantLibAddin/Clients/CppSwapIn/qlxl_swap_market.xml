@@ -189,12 +189,7 @@
 					<value>0.0055895659999999998</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -208,12 +203,7 @@
 					<value>0.029999999999999999</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -227,12 +217,7 @@
 					<value>0.0373</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -246,12 +231,7 @@
 					<value>0.0373</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -265,12 +245,7 @@
 					<value>0.0373</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -284,12 +259,7 @@
 					<value>0.037900000000000003</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -303,12 +273,7 @@
 					<value>0.039399999999999998</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -322,12 +287,7 @@
 					<value>0.040099999999999997</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -341,12 +301,7 @@
 					<value>0.040500000000000001</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -360,12 +315,7 @@
 					<value>0.040899999999999999</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -379,12 +329,7 @@
 					<value>0.041100000000000005</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -398,12 +343,7 @@
 					<value>95.837500000000006</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -417,12 +357,7 @@
 					<value>95.775000000000006</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -436,12 +371,7 @@
 					<value>95.760000000000005</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -455,12 +385,7 @@
 					<value>95.632499999999993</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -474,12 +399,7 @@
 					<value>95.442499999999995</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -493,12 +413,7 @@
 					<value>95.352500000000006</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -512,12 +427,7 @@
 					<value>95.327500000000001</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -531,12 +441,7 @@
 					<value>95.342500000000001</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -550,12 +455,7 @@
 					<value>95.372500000000002</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -569,12 +469,7 @@
 					<value>95.412499999999994</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -588,12 +483,7 @@
 					<value>0.046869999999999995</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -607,12 +497,7 @@
 					<value>0.046899999999999997</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -626,12 +511,7 @@
 					<value>0.046959999999999995</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -645,12 +525,7 @@
 					<value>0.047019999999999999</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -664,12 +539,7 @@
 					<value>0.047100000000000003</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -683,12 +553,7 @@
 					<value>0.047219999999999998</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -702,12 +567,7 @@
 					<value>0.047379999999999999</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -721,12 +581,7 @@
 					<value>0.047550000000000002</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -740,12 +595,7 @@
 					<value>0.047710000000000009</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -759,12 +609,7 @@
 					<value>0.047860000000000007</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -778,12 +623,7 @@
 					<value>0.048010000000000004</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -797,12 +637,7 @@
 					<value>0.048140000000000002</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -816,12 +651,7 @@
 					<value>0.048260000000000004</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -835,12 +665,7 @@
 					<value>0.048349999999999997</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -854,12 +679,7 @@
 					<value>0.048419999999999991</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -873,12 +693,7 @@
 					<value>0.048460000000000003</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -892,12 +707,7 @@
 					<value>0.048489999999999991</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -911,12 +721,7 @@
 					<value>0.048509999999999998</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -930,12 +735,7 @@
 					<value>0.048519999999999994</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -949,12 +749,7 @@
 					<value>0.048519999999999994</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -968,12 +763,7 @@
 					<value>0.048509999999999998</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -987,12 +777,7 @@
 					<value>0.048489999999999991</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -1006,12 +791,7 @@
 					<value>0.048460000000000003</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -1025,12 +805,7 @@
 					<value>0.048430000000000001</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -1044,12 +819,7 @@
 					<value>0.048389999999999989</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -1063,12 +833,7 @@
 					<value>0.048339999999999994</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -1082,12 +847,7 @@
 					<value>0.048300000000000003</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -1101,12 +861,7 @@
 					<value>0.048249999999999994</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -1120,12 +875,7 @@
 					<value>0.048039999999999999</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -1139,12 +889,7 @@
 					<value>0.047829999999999998</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -1158,12 +903,7 @@
 					<value>0.04741999999999999</value>
 				</variant_>
 			</Value>
-			<TickValue>
-				<variant_>
-					<which>1</which>
-					<value>0</value>
-				</variant_>
-			</TickValue>
+			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
 		</px>
 	</item>
@@ -2775,14 +2515,20 @@
 				<item>EURAB6E50YS</item>
 			</RateHelpers>
 			<DayCounter>Actual/365 (Fixed)</DayCounter>
-			<TraitsID>ZeroYield</TraitsID>
-			<InterpolatorID>Linear</InterpolatorID>
+			<TurnOfYearEffect>
+				<variant_>
+					<which>1</which>
+					<value>1</value>
+				</variant_>
+			</TurnOfYearEffect>
 			<Accuracy>
 				<variant_>
 					<which>1</which>
-					<value>9.9999999999999998e-13</value>
+					<value>9.9999999999999998e-013</value>
 				</variant_>
 			</Accuracy>
+			<TraitsID>ZeroYield</TraitsID>
+			<InterpolatorID>Linear</InterpolatorID>
 			<Permanent>0</Permanent>
 		</px>
 	</item>

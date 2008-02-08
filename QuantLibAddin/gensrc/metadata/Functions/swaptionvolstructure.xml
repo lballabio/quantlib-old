@@ -546,7 +546,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Short base SwapIndex object ID</description>
           </Parameter>
-          <Parameter name='VegaWeightedSmileFit' default='TRUE'>
+          <Parameter name='VegaWeightedSmileFit' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>if TRUE the smile fit is weighted using options' vega.</description>
@@ -660,7 +660,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Short base SwapIndex object ID</description>
           </Parameter>
-          <Parameter name='VegaWeightedSmileFit' default='TRUE'>
+          <Parameter name='VegaWeightedSmileFit' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>if TRUE the smile fit is weighted using options' vega.</description>

@@ -283,14 +283,30 @@ int main() {
             rateHelpers.push_back(swapId);
         }
 
+
+    std::string qlPiecewiseYieldCurve(
+            const std::string &ObjectId,
+            const ObjectHandler::Variant &NDays,
+            const std::string &Calendar,
+            const std::vector<std::string>& RateHelpers,
+            const ObjectHandler::Variant &DayCounter,
+            const ObjectHandler::Variant &TurnOfYearEffect,
+            const ObjectHandler::Variant &Accuracy,
+            const ObjectHandler::Variant &TraitsID,
+            const ObjectHandler::Variant &InterpolatorID,
+            const ObjectHandler::Variant &Permanent,
+            const ObjectHandler::Variant &Trigger,
+            const bool &Overwrite);
+
         std::string EUR_YC = qlPiecewiseYieldCurve("EUR_YC",
             0L,
             "Target",
             rateHelpers,
             "Actual/365 (Fixed)",
+            1.0,
+            1.0e-12,
             "ZeroYield",
             "Linear",
-            1.0e-12,
             false, OH_NULL, false);
         marketObjects.push_back(EUR_YC);
 
