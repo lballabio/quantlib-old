@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -46,9 +46,9 @@ class Serialization(addin.Addin):
         // class ID %(classID)d in the boost serialization framework
         ar.register_type<%(namespaceObjects)s::ValueObjects::%(functionName)s>();\n'''
     INCLUDE_CREATOR = '''\
-#include <%(libRootDirectory)s/Serialization/create_%(categoryName)s.hpp>\n'''
+#include <%(libRootDirectory)s/Serialization/Create/create_%(categoryName)s.hpp>\n'''
     REGISTER_INCLUDE = '''\
-#include <%(addinDirectory)s/Serialization/serialization_%(categoryName)s.hpp>\n'''
+#include <%(addinDirectory)s/Serialization/Register/serialization_%(categoryName)s.hpp>\n'''
 
     #############################################
     # public interface
@@ -63,6 +63,7 @@ class Serialization(addin.Addin):
         log.Log.instance().logMessage(' begin generating %s...' % self.name_)
         self.generateCreators()
         self.generateFactory()
+        self.generateRegister()
         log.Log.instance().logMessage(' done generating %s.' % self.name_)
 
     def generateFactory(self):
@@ -85,7 +86,7 @@ class Serialization(addin.Addin):
             'bufferCreators' : bufferCreators,
             'libRootDirectory' : environment.config().libRootDirectory(),
             'namespaceObjects' : environment.config().namespaceObjects() }
-        factoryFile = self.rootPath_ + 'serializationfactory.cpp'
+        factoryFile = self.rootPath_ + 'register_creators.cpp'
         outputfile.OutputFile(self, factoryFile, self.copyright_, factoryBuffer)
 
     def generateCreators(self):
@@ -123,21 +124,91 @@ class Serialization(addin.Addin):
                 'bufferDeclarations' : bufferDeclarations,
                 'libRootDirectory' : environment.config().libRootDirectory(),
                 'namespaceObjects' : environment.config().namespaceObjects() }
-            createHeaderFile = self.rootPath_ + 'create_' + cat.name() + '.hpp'
+            createHeaderFile = self.rootPath_ + 'Create/create_' + cat.name() + '.hpp'
             outputfile.OutputFile(self, createHeaderFile, self.copyright_, createHeaderBuffer)
 
             createBodyBuffer = self.bufferIncludes_.text() % {
                 'bufferCreators' : bufferCreators,
                 'serializationIncludes' : cat.serializationIncludes(),
                 'categoryName' : cat.name() }
-            createBodyFile = self.rootPath_ + 'create_' + cat.name() + '.cpp'
+            createBodyFile = self.rootPath_ + 'Create/create_' + cat.name() + '.cpp'
             outputfile.OutputFile(self, createBodyFile, self.copyright_, createBodyBuffer)
 
         createAllBuffer = self.bufferAll_.text() % {
             'bufferAll' : bufferAll,
             'libRootDirectory' : environment.config().libRootDirectory() }
-        createAllFile = self.rootPath_ + 'create_all.hpp'
+        createAllFile = self.rootPath_ + 'Create/create_all.hpp'
         outputfile.OutputFile(self, createAllFile, self.copyright_, createAllBuffer)
+
+    def generateRegister(self):
+        """Generate source code for serialization factory."""
+
+        allIncludes = ''
+        bufferRegister = ''
+
+        # Keep track of the ID assigned to each Addin class by
+        # the boost serialization framework.  This number is initialized to 4
+        # because 0-3 are reserved for ObjectHandler as explained in file
+        # QuantLibAddin/Serialization/Register/serialization_oh.cpp
+        classID = 4
+        # Initialize the global map with the values reserved for ObjectHandler.
+        # 0 and 1 refer respectively to ValueObject and vector of ValueObject,
+        # but these are omitted because they never occur in app XML data.
+        idMap = { 'ohRange' : 2, 'ohGroup' : 3 }
+
+        for cat in self.categoryList_.categories('*', self.coreCategories_, self.addinCategories_):
+            if not cat.generateVOs(): continue
+
+            bufferCpp = ''
+            allIncludes += Serialization.REGISTER_INCLUDE % {
+                'categoryName' : cat.name(),
+                'addinDirectory' : environment.config().libRootDirectory() }
+
+            bufferRegister += Serialization.REGISTER_TYPE % {
+                'categoryDisplayName' : cat.displayName(),
+                'categoryName' : cat.name() }
+
+            bufferHpp = self.bufferSerializeDeclaration_.text() % {
+                'addinDirectory' : environment.config().libRootDirectory(),
+                'categoryName' : cat.name(),
+                'namespaceAddin' : environment.config().namespaceObjects() }
+            headerFile = '%sRegister/serialization_%s.hpp' % (
+                    self.rootPath_, cat.name() )
+            outputfile.OutputFile(self, headerFile, self.copyright_, bufferHpp)
+
+            for func in cat.functions('*'):
+                if not func.generateVOs(): continue
+
+                bufferCpp += Serialization.REGISTER_CALL % {
+                    'classID' : classID,
+                    'functionName' : func.name(),
+                    'namespaceObjects' : environment.config().namespaceObjects() }
+
+                idMap[func.name()] = classID
+                classID += 1
+
+            bufferBody = self.bufferSerializeBody_.text() % {
+                'addinDirectory' : environment.config().libRootDirectory(),
+                'bufferCpp' : bufferCpp,
+                'categoryName' : cat.name(),
+                'libRootDirectory' : environment.config().libRootDirectory(),
+                'namespaceAddin' : environment.config().namespaceObjects() }
+            cppFile = '%sRegister/serialization_%s.cpp' % ( self.rootPath_, cat.name() )
+            outputfile.OutputFile(self, cppFile, self.copyright_, bufferBody)
+
+        allBuffer = self.bufferSerializeAll_.text() % {
+            'includeGuard' : environment.config().libRootDirectory(),
+            'allIncludes' : allIncludes,
+            'addinDirectory' : environment.config().libRootDirectory() }
+        allFilename = self.rootPath_ + 'Register/serialization_all.hpp'
+        outputfile.OutputFile(self, allFilename, self.copyright_, allBuffer)
+
+        bufferFactory = self.bufferSerializeRegister_.text() % {
+            'addinDirectory' : environment.config().libRootDirectory(),
+            'bufferRegister' : bufferRegister,
+            'namespaceAddin' : environment.config().namespaceObjects() }
+        factoryFile = self.rootPath_ + 'Register/serialization_register.hpp'
+        outputfile.OutputFile(self, factoryFile, self.copyright_, bufferFactory)
 
     #############################################
     # serializer interface
@@ -146,156 +217,4 @@ class Serialization(addin.Addin):
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         super(Serialization, self).serialize(serializer)
-
-#############################################
-# utility functions
-#############################################
-
-def generateSerialization(addin):
-    """Generate source code for serialization factory.
-
-    This is a utility function, not part of the Serialization addin class.
-    This function generates the source code required for the serialization
-    factory.  The code is platform independent.  However, the generated source
-    code must be compiled as part of the final Addin binary (not in a static
-    library) because of issues related to linking and to template
-    metaprogramming performed by the boost::serialization library.
-    Each Addin that supports serialization must call in to this function."""
-    #global idMap
-
-    allIncludes = ''
-    bufferRegister = ''
-    includeGuard = environment.config().prefix() + '_addin_' + addin.name().lower()
-    addinDirectory = addin.relativePath()
-
-    # Keep track of the ID assigned to each Addin class by
-    # the boost serialization framework.  This number is initialized to 4
-    # because 0-3 are reserved for ObjectHandler as explained in file
-    # QuantLibAddin/Addins/Cpp/Serialization/serialization_oh.cpp
-    classID = 4
-    # Initialize the global map with the values reserved for ObjectHandler.
-    # 0 and 1 refer respectively to ValueObject and vector of ValueObject,
-    # but these are omitted because they never occur in app XML data.
-    #idMap = { 'ohRange' : 2 }
-    idMap = { 'ohRange' : 2, 'ohGroup' : 3 }
-
-    for cat in addin.categoryList_.categories('*', addin.coreCategories_, addin.addinCategories_):
-
-        if not cat.generateVOs(): continue
-
-        bufferCpp = ''
-        allIncludes += Serialization.REGISTER_INCLUDE % {
-            'categoryName' : cat.name(),
-            'addinDirectory' : addinDirectory }
-
-        bufferRegister += Serialization.REGISTER_TYPE % {
-            'categoryDisplayName' : cat.displayName(),
-            'categoryName' : cat.name() }
-
-        bufferHpp = addin.bufferSerializeDeclaration_.text() % {
-            'addinDirectory' : includeGuard,
-            'categoryName' : cat.name(),
-            'namespaceAddin' : addin.namespaceAddin_ }
-        headerFile = '%sSerialization/serialization_%s.hpp' % ( addin.rootPath_, cat.name() )
-        outputfile.OutputFile(addin, headerFile, addin.copyright_, bufferHpp)
-
-        for func in cat.functions('*'):
-            if not func.generateVOs(): continue
-
-            bufferCpp += Serialization.REGISTER_CALL % {
-                'classID' : classID,
-                'functionName' : func.name(),
-                'namespaceObjects' : environment.config().namespaceObjects() }
-
-            idMap[func.name()] = classID
-            classID += 1
-
-        bufferBody = addin.bufferSerializeBody_.text() % {
-            'addinDirectory' : addinDirectory,
-            'bufferCpp' : bufferCpp,
-            'categoryName' : cat.name(),
-            'libRootDirectory' : environment.config().libRootDirectory(),
-            'namespaceAddin' : addin.namespaceAddin_ }
-        cppFile = '%sSerialization/serialization_%s.cpp' % ( addin.rootPath_, cat.name() )
-        outputfile.OutputFile(addin, cppFile, addin.copyright_, bufferBody)
-    allBuffer =  addin.bufferSerializeAll_.text() % {
-        'includeGuard' : includeGuard,
-        'allIncludes' : allIncludes,
-        'addinDirectory' : addinDirectory }
-    allFilename = addin.rootPath_ + 'Serialization/serialization_all.hpp'
-    outputfile.OutputFile(addin, allFilename, addin.copyright_, allBuffer)
-
-    bufferFactory = addin.bufferSerializeRegister_.text() % {
-        'addinDirectory' : addinDirectory,
-        'bufferRegister' : bufferRegister,
-        'namespaceAddin' : addin.namespaceAddin_ }
-    factoryFile = addin.rootPath_ + 'Serialization/serialization_register.hpp'
-    outputfile.OutputFile(addin, factoryFile, addin.copyright_, bufferFactory)
-
-    #if addin.dataDirectory():
-    #    updateData(addin)
-
-##
-## After adding/deleting classes in the QuantLibAddin interface you can use
-## the code below to synchronize the class IDs in the Application XML Data
-## with those in the Boost Serialization Framework.  This code is not used
-## at the moment because it's easier to update the XML files from the
-## corresponding spreadsheets.
-##
-### Map class names to the ID numbers from the boost serialization framework.
-### Global because it's shared by generateSerialization() and findReplace().
-##idMap = {}
-##
-##def findReplace(m):
-##    """This function is called with a match object containing the 5 groups
-##    documented in the regex below.  Group 2 is the old class ID and group 4
-##    is the class name.  Use the class name to look up the new class ID in
-##    the map, and return the original text with new ID replacing old."""
-##    global idMap
-##
-##    className = m.group(4)
-##    if className in idMap:
-##        return m.group(1) + str(idMap[className]) + m.group(3) + className + m.group(5)
-##    else:
-##        raise serializationexceptions.InvalidClassException(className)
-##
-##def updateData(addin):
-##    """Bring application XML data up to date with any changes that may have occurred
-##    to the ID numbers that the boost serialization framework assigns to Addin classes."""
-##
-###   The pattern we are searching for looks like this:
-###       <px class_id_reference="114" object_id="_2">
-###           <objectId>EURSwaptionMeanReversion10Y_QuoteHandle</objectId>
-###           <className>qlRelinkableHandleQuote</className>
-###           <CurrentLink>EURSwaptionMeanReversion10Y_Quote</CurrentLink>
-###       </px>
-##
-###   We chop it into 5 groups:
-##    pattern = r'''
-##(<px\ (?:(?:class_id)|(?:class_id_reference))=")    # 1) Match either of the following:
-##                                                    #       <px class_id="
-##                                                    #       <px class_id_reference="
-##(\d*)                                               # 2) the class ID number
-##(".*?<className>)                                   # 3) everything from endquote " to tag <className>
-##(\w*)                                               # 4) the class name
-##(</className>.*?</px>)                              # 5) everything else
-##'''
-##
-##    # Compile the regex
-##    regex = re.compile(pattern, re.M | re.S | re.X)
-##
-##    # Loop through the application data files
-##    for root, dirs, files in os.walk(addin.dataDirectory()):
-##        for fileName in files:
-##            if re.match('^.*?\.xml$', fileName):
-##                # Perform the find and replace on each file
-##                fullName = root + '/' + fileName
-##                fileBuffer = open(fullName)
-##                bufferIn = fileBuffer.read()
-##                fileBuffer.close()
-##                bufferOut = regex.sub(findReplace, bufferIn)
-##                outputfile.OutputFile(addin, fullName, None, bufferOut, False)
-##        # Skip folders owned by subversion
-##        if '.svn' in dirs:
-##            dirs.remove('.svn')
 

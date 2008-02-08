@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -23,7 +23,6 @@
 from gensrc.Configuration import environment
 from gensrc.Addins import addin
 from gensrc.Addins import excelexceptions
-from gensrc.Addins import serialization
 from gensrc.Functions import supportedplatform
 from gensrc.Categories import category
 from gensrc.Serialization import serializable
@@ -98,8 +97,6 @@ class ExcelAddin(addin.Addin):
         self.generateAddin()
         self.generateFunctions()
         self.generateFunctionCount()
-        if environment.config().usingSerialization():
-            serialization.generateSerialization(self)
         if self.exportSymbols_: self.generateExportSymbols()
         log.Log.instance().logMessage(' done generating %s.' % self.name_)
 

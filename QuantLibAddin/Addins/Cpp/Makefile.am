@@ -4,6 +4,7 @@ AM_LDFLAGS = -release $(PACKAGE_VERSION)
 includedir = $(prefix)/include/qlo/Addins/Cpp
 
 EXTRA_DIST = \
+	AddinCpp_vc7.vcproj \
     AddinCpp_vc8.vcproj
 
 if BUILD_CPP
@@ -14,10 +15,10 @@ endif
 
 if BUILD_CPP
 include_HEADERS = \
-    addincpp.hpp \
-    addincppdefines.hpp \
     abcd.hpp \
     accountingengines.hpp \
+    addincppdefines.hpp \
+    addincpp.hpp \
     alphaform.hpp \
     assetswap.hpp \
     bonds.hpp \
@@ -130,6 +131,5 @@ libQuantLibAddinCpp_la_SOURCES = \
 endif
 
 libQuantLibAddinCpp_la_LIBADD = \
-    Serialization/libSerialization.la \
     ../../qlo/libQuantLibAddin.la
 

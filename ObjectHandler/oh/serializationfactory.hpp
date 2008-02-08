@@ -75,7 +75,6 @@ namespace ObjectHandler {
         //@}
 
     protected:
-
          //! A pointer to the SerializationFactory instance, used to support the Singleton pattern.
         static SerializationFactory *instance_;
         //! Define the type for a factory creator function.

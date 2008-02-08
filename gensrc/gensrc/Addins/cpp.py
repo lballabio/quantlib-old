@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,7 +20,6 @@
 
 from gensrc.Addins import addin
 from gensrc.Addins import cppexceptions
-from gensrc.Addins import serialization
 from gensrc.Configuration import environment
 from gensrc.Categories import category
 from gensrc.Utilities import outputfile
@@ -57,8 +56,6 @@ class CppAddin(addin.Addin):
 
         log.Log.instance().logMessage(' begin generating %s...' % self.name_)
         self.generateFunctions()
-        if environment.config().usingSerialization():
-            serialization.generateSerialization(self)
         log.Log.instance().logMessage(' done generating %s.' % self.name_)
 
     def generateFunctions(self):
@@ -123,5 +120,4 @@ class CppAddin(addin.Addin):
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         super(CppAddin, self).serialize(serializer)
-        #serializer.serializeProperty(self, 'serializationBase')
 

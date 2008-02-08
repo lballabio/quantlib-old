@@ -1,6 +1,7 @@
 
-/*
- Copyright (C) 2007 Eric Ehlers
+/*  
+ Copyright (C) 2007, 2008 Eric Ehlers
+ Copyright (C) 2006 Plamen Neykov
  
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,6 +17,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include <qlo/Serialization/serializationfactory.hpp>
+#include <qlo/Serialization/Create/create_all.hpp>
+
 #include <oh/ohdefines.hpp>
 #include <fstream>
 #include <set>
@@ -23,20 +27,17 @@
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 #include <boost/serialization/vector.hpp>
-#include <qlxl/Serialization/serializationfactory.hpp>
-#include <qlxl/Serialization/serialization_register.hpp>
+#include <qlo/Serialization/Register/serialization_register.hpp>
 #include <oh/repository.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
 
-namespace QuantLibXL {
+namespace QuantLibAddin {
 
-    SerializationFactory &SerializationFactory::instance() {
-        if (instance_) {
-            SerializationFactory *ret = dynamic_cast<SerializationFactory*>(instance_);
-            if (ret) return *ret;
-        }
-        OH_FAIL("Attempt to reference uninitialized SerializationFactory object");
+    SerializationFactory::SerializationFactory() {    
+
+        registerCreators();
+
     }
 
     int SerializationFactory::saveObject(
@@ -83,7 +84,7 @@ namespace QuantLibXL {
 
         std::ofstream ofs(path.c_str());
         boost::archive::xml_oarchive oa(ofs);
-        register_out(oa);
+        tpl_register_classes(oa);
         oa << boost::serialization::make_nvp("object_list", valueObjects);
         return valueObjects.size();
     }
@@ -113,7 +114,7 @@ namespace QuantLibXL {
 
             std::ifstream ifs(path.c_str());
             boost::archive::xml_iarchive ia(ifs);
-            register_in(ia);
+            tpl_register_classes(ia);
 
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
             ia >> boost::serialization::make_nvp("object_list", valueObjects);
@@ -201,9 +202,11 @@ namespace QuantLibXL {
         }
 
         std::ostringstream os;
-        boost::archive::xml_oarchive oa(os);
-        register_out(oa);
-        oa << boost::serialization::make_nvp("object_list", valueObjects);
+        {
+            boost::archive::xml_oarchive oa(os);
+            tpl_register_classes(oa);
+            oa << boost::serialization::make_nvp("object_list", valueObjects);
+        }
         return os.str();
     }
 
@@ -216,7 +219,7 @@ namespace QuantLibXL {
         try {
             std::istringstream xmlStream(xml);
             boost::archive::xml_iarchive ia(xmlStream);
-            register_in(ia);
+            tpl_register_classes(ia);
 
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
             ia >> boost::serialization::make_nvp("object_list", valueObjects);
@@ -240,14 +243,6 @@ namespace QuantLibXL {
         OH_REQUIRE(!returnValue.empty(), "No objects loaded from xml");
 
         return returnValue;
-    }
-
-    void register_in(boost::archive::xml_iarchive& ia) {
-        tpl_register_classes(ia);
-    }
-
-    void register_out(boost::archive::xml_oarchive& oa) {
-        tpl_register_classes(oa);
     }
 
 }

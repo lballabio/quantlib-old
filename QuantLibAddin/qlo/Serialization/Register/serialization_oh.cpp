@@ -1,6 +1,6 @@
 
 /*  
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
  
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,7 +21,7 @@
 #pragma warning(disable : 4267)
 #endif
 
-#include <Addins/Cpp/Serialization/serialization_oh.hpp>
+#include <qlo/Serialization/Register/serialization_oh.hpp>
 #include <oh/valueobject.hpp>
 //#include <oh/ValueObjects/vo_group.hpp>
 //#include <oh/ValueObjects/vo_range.hpp>
@@ -32,14 +32,7 @@
 /*
 Register ObjectHandler classes with boost serialization framework ("BSF" below).
 
-- This source file appears twice in the project:
-    QuantLibXL/qlxl/Serialization/serialization_oh.cpp
-    QuantLibAddin/Addins/Cpp/Serialization/serialization_oh.cpp
-  The reason that this source code is duplicated within each Addin rather than
-  being centralized within ObjectHandler is that certain BSF functionality
-  cannot be split across dynamically linked binaries.
-
-- At present three classes are registered, this value 3 is hard-coded
+- At present four classes are registered, this value 4 is hard-coded
   into gensrc script gensrc/Addins/serialization.py so if you add new classes
   here you also need to change the script.  gensrc uses the value to keep
   track of the IDs which the BSF assigns to each addin class.
@@ -53,7 +46,7 @@ Register ObjectHandler classes with boost serialization framework ("BSF" below).
   over all ID numbers assigned by the BSF to our classes.
 */
 
-namespace QuantLibAddinCpp {
+namespace QuantLibAddin {
 
     void register_oh(boost::archive::xml_oarchive &ar) {
     

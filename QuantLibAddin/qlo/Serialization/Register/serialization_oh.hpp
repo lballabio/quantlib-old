@@ -1,6 +1,6 @@
 
 /*  
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
  
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,13 +16,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef addin_excel_serialization_oh_hpp
-#define addin_excel_serialization_oh_hpp
+#ifndef qlo_serialization_oh_hpp
+#define qlo_serialization_oh_hpp
 
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 
-namespace QuantLibXL {
+namespace QuantLibAddin {
 
     void register_oh(boost::archive::xml_oarchive &ar);
     void register_oh(boost::archive::xml_iarchive &ar);

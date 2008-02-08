@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,10 +25,45 @@
 namespace QuantLibAddin {
 
     class SerializationFactory : public virtual ObjectHandler::SerializationFactory {
+
     public:
+
         SerializationFactory();
+
+    private:
+
+        void registerCreators();
+
+        virtual int saveObject(
+            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&objectList,
+            const std::string &path,
+            bool forceOverwrite) const;
+
+        virtual std::vector<std::string> loadObject(
+            const std::string &directory,
+            const std::string &pattern,
+            bool recurse,
+            bool overwriteExisting) const;
+
+        void processPath(
+            const std::string &path,
+            bool overwriteExisting,
+            std::vector<std::string> &processedIDs) const;
+
+        std::string processObject(
+            const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
+            bool overwriteExisting) const;
+
+        virtual std::string saveObjectString(
+            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&,
+            bool forceOverwrite);
+
+        virtual std::vector<std::string> loadObjectString(
+            const std::string &xml,
+            bool overwriteExisting);
     };
 
 }
 
 #endif
+

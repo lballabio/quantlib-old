@@ -100,7 +100,6 @@ AM_CONDITIONAL(BUILD_EXCEL, [test "$qla_build_excel" = "omitted" \
 
 # done, output the configured files
 AC_CONFIG_FILES([
-    Addins/Cpp/Serialization/Makefile
     Addins/Cpp/Makefile
     Addins/Calc/Makefile
     Clients/Cpp/Makefile
@@ -115,6 +114,8 @@ AC_CONFIG_FILES([
     qlo/Enumerations/Factories/Makefile
     qlo/Enumerations/Register/Makefile
     qlo/Loop/Makefile
+    qlo/Serialization/Create/Makefile
+    qlo/Serialization/Register/Makefile
     qlo/Serialization/Makefile
     qlo/ValueObjects/Makefile
     qlo/Makefile])

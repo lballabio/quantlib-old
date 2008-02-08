@@ -1,6 +1,6 @@
 
 /* 
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,8 +19,8 @@
 #include <ohxl/objecthandlerxl.hpp>
 #include <qlo/qladdindefines.hpp>
 #include <qlo/Enumerations/Register/register_all.hpp>
+#include <qlo/Serialization/serializationfactory.hpp>
 #include <qlxl/Register/register_all.hpp>
-#include <qlxl/Serialization/serializationfactory.hpp>
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors
    (Metrowerks, for example) also #define _MSC_VER
@@ -57,7 +57,7 @@ ObjectHandler::EnumClassRegistry enumClassRegistry;
 ObjectHandler::EnumPairRegistry enumPairRegistry;
 #endif
 // Instantiate the Serialization Factory
-QuantLibXL::SerializationFactory factory;
+QuantLibAddin::SerializationFactory factory;
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {
 

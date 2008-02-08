@@ -1,14 +1,9 @@
 
 AM_CPPFLAGS = -I${top_srcdir}
-#includedir = $(prefix)/include/qlo/Serialization
+#includedir = $(prefix)/include/qlo/Serialization/Register
 
-if BUILD_CPP
-noinst_LTLIBRARIES = libSerialization.la
-else
-EXTRA_LTLIBRARIES = libSerialization.la
-endif
+noinst_LTLIBRARIES = libRegister.la
 
-if BUILD_CPP
 noinst_HEADERS = \
     serialization_abcd.hpp \
     serialization_accountingengines.hpp \
@@ -28,9 +23,7 @@ noinst_HEADERS = \
     serialization_driftcalculators.hpp \
     serialization_evolutiondescription.hpp \
     serialization_exercise.hpp \
-    serializationfactory.hpp \
     serialization_forwardrateagreement.hpp \
-    serialization_group.hpp \
     serialization_index.hpp \
     serialization_interpolation.hpp \
     serialization_leg.hpp \
@@ -48,7 +41,6 @@ noinst_HEADERS = \
     serialization_quotes.hpp \
     serialization_randomsequencegenerator.hpp \
     serialization_rangeaccrual.hpp \
-    serialization_range.hpp \
     serialization_ratehelpers.hpp \
     serialization_register.hpp \
     serialization_schedule.hpp \
@@ -65,10 +57,8 @@ noinst_HEADERS = \
     serialization_vanillaswap.hpp \
     serialization_volatilities.hpp \
     serialization_volatility.hpp
-endif
 
-if BUILD_CPP
-libSerialization_la_SOURCES = \
+libRegister_la_SOURCES = \
     serialization_abcd.cpp \
     serialization_accountingengines.cpp \
     serialization_alphaform.cpp \
@@ -86,9 +76,7 @@ libSerialization_la_SOURCES = \
     serialization_driftcalculators.cpp \
     serialization_evolutiondescription.cpp \
     serialization_exercise.cpp \
-    serializationfactory.cpp \
     serialization_forwardrateagreement.cpp \
-    serialization_group.cpp \
     serialization_index.cpp \
     serialization_interpolation.cpp \
     serialization_leg.cpp \
@@ -106,7 +94,6 @@ libSerialization_la_SOURCES = \
     serialization_quotes.cpp \
     serialization_randomsequencegenerator.cpp \
     serialization_rangeaccrual.cpp \
-    serialization_range.cpp \
     serialization_ratehelpers.cpp \
     serialization_schedule.cpp \
     serialization_sequencestatistics.cpp \
@@ -122,5 +109,4 @@ libSerialization_la_SOURCES = \
     serialization_vanillaswap.cpp \
     serialization_volatilities.cpp \
     serialization_volatility.cpp
-endif
 

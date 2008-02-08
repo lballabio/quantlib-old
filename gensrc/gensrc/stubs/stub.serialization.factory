@@ -1,9 +1,9 @@
 #include <%(libRootDirectory)s/Serialization/serializationfactory.hpp>
-#include <%(libRootDirectory)s/Serialization/create_all.hpp>
+#include <%(libRootDirectory)s/Serialization/Create/create_all.hpp>
 
 namespace %(namespaceObjects)s {
 
-    SerializationFactory::SerializationFactory() {    
+    void SerializationFactory::registerCreators() {
 %(bufferCreators)s
     }
 

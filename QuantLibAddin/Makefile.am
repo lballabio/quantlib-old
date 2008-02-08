@@ -6,10 +6,11 @@ SUBDIRS = \
     qlo/Enumerations/Factories \
     qlo/Enumerations/Register \
     qlo/Loop \
+    qlo/Serialization/Create \
+    qlo/Serialization/Register \
     qlo/Serialization \
     qlo/ValueObjects \
     qlo \
-    Addins/Cpp/Serialization \
     Addins/Cpp \
     Addins/Calc \
     Clients/Cpp \

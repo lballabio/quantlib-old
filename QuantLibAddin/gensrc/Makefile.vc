@@ -15,10 +15,7 @@ METADATA=metadata\Addins\*.xml \
          metadata\Rules\*.xml \
          metadata\Types\*.xml
 STUBS=stubs\stub.*
-#APP_XML_DATA=..\..\QuantLibXL\Data\XML\070_TimeSeries\History\Euribor\*.xml \
-#		..\..\QuantLibXL\Data\XML\070_TimeSeries\History\Euribor365\*.xml
 
-#INPUTS = $(MAKEFILE) $(CORE_DEPENDENCIES) $(CODE) $(CONFIG) $(METADATA) $(STUBS) $(APP_XML_DATA)
 INPUTS = $(MAKEFILE) $(CORE_DEPENDENCIES) $(CODE) $(CONFIG) $(METADATA) $(STUBS)
 
 ALL : $(BUILDFLAG)
@@ -28,6 +25,7 @@ $(BUILD_DIR) :
 
 $(BUILDFLAG) : $(INPUTS) $(BUILD_DIR)
     $(GENSRC_DIR)\gensrc.py -a
+#    $(GENSRC_DIR)\gensrc.py -s
 #    $(GENSRC_DIR)\gensrc.py -xvelsd
 	echo flagged > $@
 

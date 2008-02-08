@@ -10,3 +10,4 @@ namespace %(namespaceObjects)s {
 %(bufferDeclarations)s}
 
 #endif
+
