@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -161,6 +161,8 @@ class XmlReader(serializer.Serializer):
             objectInstance.serialize(self)
             objectInstance.postSerialize()
             self.node_ = self.node_.parentNode.parentNode
+            if dict.has_key(objectInstance.name()):
+                raise exceptions.DuplicateKeyException(objectInstance.name())
             dict[objectInstance.name()] = objectInstance
             keys.append(objectInstance.name())
         keys.sort()

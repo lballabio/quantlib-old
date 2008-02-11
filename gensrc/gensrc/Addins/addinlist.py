@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -33,7 +33,9 @@ from gensrc.Utilities import utilities
 from gensrc.Utilities import log
 from gensrc.Configuration import configuration
 from gensrc.Configuration import environment
+from gensrc.Types import datatype
 from gensrc.Types import supertype
+from gensrc.Types import typelist
 
 class AddinList(object):
     """class to encapsulate data and behavior 
@@ -121,8 +123,10 @@ addin           unchanged   updated     created     total'''
         config = utilities.serializeObject(configuration.Configuration, 'config/config')
         environment.Environment.instance().setConfiguration(config)
 
-        superTypeList = utilities.serializeObject(supertype.SuperTypeList, 'metadata/Types/types')
-        environment.Environment.instance().setTypes(superTypeList)
+        typeDict = utilities.serializeObject(datatype.DataTypeDict, 'metadata/Types/types')
+        superTypeDict = utilities.serializeObject(supertype.SuperTypeDict, 'metadata/Types/supertypes')
+        typeList = typelist.TypeList(typeDict, superTypeDict)
+        environment.Environment.instance().setTypes(typeList)
 
         self.categoryList_ = categorylist.CategoryList()
         if config.usingEnumerations():

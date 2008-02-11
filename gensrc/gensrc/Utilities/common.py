@@ -1,8 +1,8 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
- Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2005 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -34,6 +34,7 @@ CONSTRUCTOR = 'constructor'
 CONVERSION_SUFFIX = 'conversionSuffix'
 COPYRIGHT = 'copyright'
 DEFAULT = 'default'
+DEFAULT_SUPER_TYPE = 'defaultSuperType'
 DEFAULT_VALUE = 'defaultValue'
 DELIM = 'delimiter'
 DESC_LEN = 'descLen'

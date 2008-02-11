@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,7 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""global configuration state for srcgen application."""
+"""global configuration state for gensrc application."""
 
 import gensrc
 from gensrc.Patterns import singleton
@@ -25,7 +25,7 @@ def config():
     return Environment.instance().configuration()
 
 def getType(typeName, superTypeName = None):
-    return Environment.instance().superTypeList().getType(typeName, superTypeName)
+    return Environment.instance().typeList().getType(typeName, superTypeName)
 
 class Environment(singleton.Singleton):
     """global configuration state for gensrc application."""
@@ -40,12 +40,12 @@ class Environment(singleton.Singleton):
     def setConfiguration(self, configuration):
         self.configuration_ = configuration
 
-    def setTypes(self, superTypeList):
-        self.superTypeList_ = superTypeList
+    def setTypes(self, typeList):
+        self.typeList_ = typeList
+
+    def typeList(self):
+        return self.typeList_
 
     def configuration(self):
         return self.configuration_
-
-    def superTypeList(self):
-        return self.superTypeList_
 

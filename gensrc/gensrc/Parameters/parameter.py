@@ -1,8 +1,8 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
- Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2005 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -49,9 +49,6 @@ class Value(serializable.Serializable):
 
     def tensorRank(self):
         return self.tensorRank_
-
-    def type(self):
-        return self.type_
 
     def loop(self):
         return self.loop_
@@ -168,23 +165,20 @@ class ConstructorReturnValue(Value):
 
     name_ = 'returnValue'
     tensorRank_ = common.SCALAR
-    type_ = common.STRING
-    superType_ = 'native'
 
     def __init__(self):
-        self.dataType_ = environment.getType(self.type_, self.superType_)
+        self.dataType_ = environment.getType(common.STRING)
 
 class PermanentFlag(Value):
     """All ctors have a final optional boolean parameter 'permanent'"""
 
     name_ = 'Permanent'
     tensorRank_ = common.SCALAR
-    type_ = common.BOOL
     description_ = 'object permanent/nonpermanent'
     default_ = 'false'
 
     def __init__(self):
-        self.dataType_ = environment.getType(self.type_)
+        self.dataType_ = environment.getType(common.BOOL)
 
 class ConstructorObjectId(Parameter):
     """ID of an object.
@@ -194,19 +188,16 @@ class ConstructorObjectId(Parameter):
 
     name_ = 'ObjectId'
     tensorRank_ = common.SCALAR
-    type_ = common.STRING
-    superType_ = 'native'
     ignore_ = False
     description_ = 'id of object to be created'
 
     def __init__(self):
-        self.dataType_ = environment.getType(self.type_, self.superType_)
+        self.dataType_ = environment.getType(common.STRING)
 
 class MemberObjectId(Parameter):
     """ID of an object.
 
     Implicitly used as the first input parameter for all 
-    Constructors (where the ID is assigned to the new object) and
     Members (where the ID indicates the object to be retrieved)."""
 
     name_ = 'ObjectId'
@@ -216,8 +207,6 @@ class MemberObjectId(Parameter):
     def __init__(self, typeName, superTypeName):
         #self.failIfEmpty = True # Member function can't be invoked on null object
 
-        self.type_ = typeName
-        self.superType_ = superTypeName
         self.dataType_ = environment.getType(typeName, superTypeName)
         self.description_ = 'id of existing %s object' % self.dataType_.value()
 
@@ -230,8 +219,6 @@ class EnumerationId(Parameter):
     ignore_ = False
 
     def __init__(self, typeName, superTypeName):
-        self.type_ = typeName
-        self.superType_ = superTypeName
         self.dataType_ = environment.getType(typeName, superTypeName)
         self.description_ = 'ID of Enumeration of class %s' % self.dataType_.value()
         self.name_ = re.match(r"\w*::(\w*)", self.dataType_.value()).group(1).lower()
@@ -243,14 +230,12 @@ class DependencyTrigger(Parameter):
     in a worksheet."""
 
     name_ = 'Trigger'
-    type_ = common.ANY
-    superType_ = 'native'
     tensorRank_ = common.SCALAR
     ignore_ = True
     description_ = 'dependency tracking trigger'
 
     def __init__(self):
-        self.dataType_ = environment.getType(self.type_, self.superType_)
+        self.dataType_ = environment.getType(common.ANY)
 
 class OverwriteFlag(Parameter):
     """dependency tracking trigger.
@@ -259,12 +244,10 @@ class OverwriteFlag(Parameter):
     in a worksheet."""
 
     name_ = 'Overwrite'
-    type_ = common.BOOL
-    superType_ = 'native'
     tensorRank_ = common.SCALAR
     ignore_ = True
     description_ = 'overwrite flag'
 
     def __init__(self):
-        self.dataType_ = environment.getType(self.type_, self.superType_)
+        self.dataType_ = environment.getType(common.BOOL)
 

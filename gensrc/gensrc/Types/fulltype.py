@@ -16,23 +16,31 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from gensrc.Utilities import common
-from gensrc.Serialization import serializable
+import re
+from gensrc.Types import exceptions
 
-class SuperType(serializable.Serializable):
+class FullType(object):
 
     #############################################
     # class variables
     #############################################
 
-    groupName_ = 'SuperTypes'
+    namespace_ = None
+    classname_ = None
+    RE_NAMESPACE = re.compile('(.*)::(.*)')
 
     #############################################
     # public interface
     #############################################
 
+    def value(self):
+        return self.value_
+
     def nativeType(self):
         return self.nativeType_
+
+    def superType(self):
+        return self.superType_
 
     def conversionSuffix(self):
         return self.conversionSuffix_
@@ -40,31 +48,28 @@ class SuperType(serializable.Serializable):
     def memberAccess(self):
         return self.memberAccess_
 
-    #############################################
-    # serializer interface
-    #############################################
+    def namespace(self):
+        return self.namespace_
 
-    def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
-        serializer.serializeAttribute(self, common.NAME)
-        serializer.serializeAttribute(self, common.NATIVE_TYPE)
-        serializer.serializeAttribute(self, common.CONVERSION_SUFFIX)
-        serializer.serializeAttribute(self, common.MEMBER_ACCESS, '->')
+    def classname(self):
+        return self.classname_
 
-class SuperTypeDict(serializable.Serializable):
+    def __init__(self, subType, superType):
 
-    #############################################
-    # public interface
-    #############################################
+        self.value_ = subType.value()
+        if subType.nativeType():
+            self.nativeType_ = subType.nativeType()
+        elif superType.nativeType():
+            self.nativeType_ = superType.nativeType()
+        else:
+            raise exceptions.InvalidNativeTypeException(subType.name(), superType.name())
 
-    def superTypes(self):
-        return self.superTypes_
+        self.superType_ = superType.name()
+        self.conversionSuffix_ = superType.conversionSuffix()
+        self.memberAccess_ = superType.memberAccess()
 
-    #############################################
-    # serializer interface
-    #############################################
-
-    def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
-        serializer.serializeObjectDict(self, SuperType)
+        m = FullType.RE_NAMESPACE.match(self.value_)
+        if m:
+            self.namespace_ = m.group(1)
+            self.classname_ = m.group(2)
 

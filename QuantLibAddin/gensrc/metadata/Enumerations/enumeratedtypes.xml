@@ -625,10 +625,6 @@
           <value>QuantLib::Apr</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>May</string>
-          <value>QuantLib::May</value>
-        </EnumeratedType>
-        <EnumeratedType>
           <string>Jun</string>
           <value>QuantLib::Jun</value>
         </EnumeratedType>

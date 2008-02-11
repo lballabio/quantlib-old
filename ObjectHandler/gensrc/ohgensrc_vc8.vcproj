@@ -121,6 +121,10 @@
 				RelativePath="metadata\Types\types.xml"
 				>
 			</File>
+			<File
+				RelativePath="metadata\Types\supertypes.xml"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="code"

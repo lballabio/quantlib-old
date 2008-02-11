@@ -81,6 +81,7 @@ GENSRC_METADATA :=  metadata/Addins/calc.xml \
                     metadata/Rules/loop.xml \
                     metadata/Rules/serialization.xml \
                     metadata/Rules/valueobjects.xml \
+                    metadata/Types/supertypes.xml \
                     metadata/Types/types.xml
 
 GENSRC_STUBS :=     stubs/stub.copyright \

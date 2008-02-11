@@ -5,9 +5,14 @@
 # b gensrc/Dir/filename.py:##
 # c
 
+import sys
+import os
+
+sys.path.append(os.getcwd() + '/code')
+
 from gensrc.Addins import addinlist
 
 def debug1():
-    addinList = addinlist.AddinList(['e'])
+    addinList = addinlist.AddinList(['x'])
     addinList.generate()
 

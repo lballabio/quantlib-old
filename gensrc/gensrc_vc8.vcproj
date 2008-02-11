@@ -378,6 +378,14 @@
 				RelativePath="gensrc\Types\supertype.py"
 				>
 			</File>
+			<File
+				RelativePath="gensrc\Types\typelist.py"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\Types\fulltype.py"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Utilities"

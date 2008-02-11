@@ -1,0 +1,12 @@
+
+<root>
+
+  <SuperTypes>
+
+    <SuperType name='native'/>
+    <SuperType name='objectClass' nativeType='string' conversionSuffix='Obj'/>
+
+  </SuperTypes>
+
+</root>
+

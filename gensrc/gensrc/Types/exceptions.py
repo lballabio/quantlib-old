@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,46 +21,31 @@ from gensrc.Exceptions import exceptions
 class TypeException(exceptions.GensrcException):
     """Exceptions encountered when processing datatypes."""
 
-class TypeNameUndefinedException(TypeException):
+class InvalidTypeNameException(TypeException):
 
-    INVALID_NAME_ERROR = """
+    INVALID_TYPE_NAME_ERROR = """
 The type name "%(typeName)s" is not defined in the "types.xml" datatype metadata file."""
 
     def __init__(self, typeName):
-        self.value_ = TypeNameUndefinedException.INVALID_NAME_ERROR % {
+        self.value_ = InvalidTypeNameException.INVALID_TYPE_NAME_ERROR % {
             'typeName' : typeName }
 
-class TypeSuperUndefinedException(TypeException):
+class InvalidSuperTypeNameException(TypeException):
 
-    SUPERTYPE_UNDEFINED_ERROR = """
-Datatype "%(typeName)s" doesn't appear in the definition
-of supertype "%(superTypeName)s" in the "types.xml" datatype metadata file."""
-
-    def __init__(self, typeName, superTypeName):
-        self.value_ = TypeSuperUndefinedException.SUPERTYPE_UNDEFINED_ERROR % {
-            'typeName' : typeName,
-            'superTypeName' : superTypeName }
-
-class SupertypeNameUndefinedException(TypeException):
-
-    INVALID_SUPERTYPE_NAME_ERROR = """
-The supertype name "%(superTypeName)s" is not defined in the "types.xml" datatype metadata file."""
+    INVALID_SUPER_TYPE_NAME_ERROR = """
+The supertype name "%(superTypeName)s" is not defined in the "supertypes.xml" datatype metadata file."""
 
     def __init__(self, superTypeName):
-        self.value_ = SupertypeNameUndefinedException.INVALID_SUPERTYPE_NAME_ERROR % {
+        self.value_ = InvalidSuperTypeNameException.INVALID_SUPER_TYPE_NAME_ERROR % {
             'superTypeName' : superTypeName }
 
-class TypeNameAmbiguousException(TypeException):
+class InvalidNativeTypeException(TypeException):
 
-    AMBIGUOUS_NAME_ERROR = """
-The datatype name "%(typeName)s" is ambiguous.
-This type is defined in the "types.xml" datatype metadata file
-under the following supertypes:
-    %(superTypeNames)s
-Please specify which of these supertypes is required."""
+    INVALID_NATIVE_TYPE_ERROR = """
+Error processing type/supertype combination '%(typeName)s/%(superTypeName)s - neither specifies a native datatype."""
 
-    def __init__(self, typeName, superTypeNames):
-        self.value_ = TypeNameAmbiguousException.AMBIGUOUS_NAME_ERROR % {
-            'typeName' : typeName,
-            'superTypeNames' : ', '.join(superTypeNames) }
+    def __init__(self, typeName, superTypeName):
+        self.value_ = InvalidNativeTypeException.INVALID_NATIVE_TYPE_ERROR % {
+            'superTypeName' : superTypeName,
+            'typeName' : typeName }
 

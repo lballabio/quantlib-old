@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -104,6 +104,7 @@ class EnumerationList(object):
         ret = []
         for p in parameterList:
             if p.dataType().superType() == common.ENUM \
-            and self.typeDict_.has_key(p.type()):
-                ret.append(self.typeDict_[p.type()])
+            and self.typeDict_.has_key(p.dataType().value()):
+                ret.append(self.typeDict_[p.dataType().value()])
         return ret
+

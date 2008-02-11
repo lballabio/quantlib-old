@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,6 +29,7 @@ from gensrc.Functions import procedure
 from gensrc.Functions import enumerationmember
 from gensrc.Functions import supportedplatform
 from gensrc.Rules import rule
+from gensrc.Types import datatype
 from gensrc.Types import supertype
 
 class Factory(singleton.Singleton):
@@ -36,6 +37,7 @@ class Factory(singleton.Singleton):
 
     creators_ = {
         'Constructor' : constructor.Constructor,
+        'DataType' : datatype.DataType,
         'EnumeratedClass' : enumeratedclasses.EnumeratedClass,
         'EnumeratedClassGroup' : enumeratedclasses.EnumeratedClassGroup,
         'EnumeratedPair' : enumeratedpairs.EnumeratedPair,

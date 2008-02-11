@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -85,4 +85,13 @@ no creator function found for class "%(className)s"'''
     def __init__(self, className):
         self.value_ = SerializationCreatorException.UNDEFINED_CREATOR_ERROR % {
             'className' : className }
+
+class DuplicateKeyException(SerializationException):
+
+    DUPLICATE_KEY_ERROR = '''
+Error deserializing element with name "%(keyName)s" - duplicate key'''
+
+    def __init__(self, keyName):
+        self.value_ = DuplicateKeyException.DUPLICATE_KEY_ERROR % {
+            'keyName' : keyName }
 
