@@ -48,96 +48,96 @@ code21b = '''\
             ObjectHandler::operToMatrix<ObjectHandler::Variant>(*%(name)s, "%(name)s");\n'''
 
 code22 = '''\
-        %(type)s %(name)sLib;
-        QuantLibAddin::cppToLibrary(%(name)s, %(name)sLib);\n'''
+        %(type)s %(nameConverted)s;
+        QuantLibAddin::cppToLibrary(%(name)s, %(nameConverted)s);\n'''
 
 code23 = '''\
-        %(type)s %(name)sLib;
-        QuantLibAddin::cppToLibrary(*%(name)s, %(name)sLib);\n'''
+        %(type)s %(nameConverted)s;
+        QuantLibAddin::cppToLibrary(*%(name)s, %(nameConverted)s);\n'''
 
 code24 = '''\
-        %(type)s %(name)sLib = ObjectHandler::operToScalar<%(type)s>(
+        %(type)s %(nameConverted)s = ObjectHandler::operToScalar<%(type)s>(
             *%(name)s, "%(name)s");\n'''
 
 code25 = '''\
-        %(type)s %(name)sLib = ObjectHandler::operToScalar<%(type)s>(
+        %(type)s %(nameConverted)s = ObjectHandler::operToScalar<%(type)s>(
             %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
 code26 = '''\
-        %(type)s %(name)sLib = ObjectHandler::operToScalar<%(type)s>(
+        %(type)s %(nameConverted)s = ObjectHandler::operToScalar<%(type)s>(
             *%(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
 code28 = '''\
-        %(type)s %(name)sLib =
+        %(type)s %(nameConverted)s =
             QuantLibXL::operToQlArray(*%(name)s, "%(name)s");\n'''
 
 code29 = '''\
-        %(type)s %(name)sLib =
+        %(type)s %(nameConverted)s =
             QuantLibXL::operToQlMatrix(*%(name)s);\n'''
 
 code31 = '''\
-        std::vector<%(type)s> %(name)sLib =
+        std::vector<%(type)s> %(nameConverted)s =
             ObjectHandler::operToVector<%(type)s>(*%(name)s, "%(name)s");\n'''
 
 code33 = '''\
-        %(type)s %(name)sEnum =
+        %(type)s %(nameConverted)s =
             ObjectHandler::Create<%(type)s>()(%(name)sCpp);\n'''
 
 code34 = '''\
-        %(type)s %(name)sEnum =
+        %(type)s %(nameConverted)s =
             ObjectHandler::Create<%(type)s>()(%(name)s);\n'''
 
 code35 = '''\
-        std::vector<%(type)s> %(name)sEnum =
+        std::vector<%(type)s> %(nameConverted)s =
             ObjectHandler::vectorStringToEnum<%(type)s>(%(name)sCpp, "%(name)s");\n'''
 
 code36 = '''\
-        OH_GET_OBJECT(%(name)sObj, %(name)s, %(type)s)\n'''
+        OH_GET_OBJECT(%(nameConverted)s, %(name)s, %(type)s)\n'''
 
 code36b = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
-        boost::shared_ptr<%(type)s> %(name)sObj =
+        boost::shared_ptr<%(type)s> %(nameConverted)s =
             %(namespaceObjects)s::CoerceQuoteObject<%(type)s>()(
                 %(name)sTemp);\n'''
 
 code36c = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
-        boost::shared_ptr<%(type)s> %(name)sObj =
+        boost::shared_ptr<%(type)s> %(nameConverted)s =
             %(namespaceObjects)s::CoerceTermStructureObject<%(type)s>()(
                 %(name)sTemp);\n'''
 
 code37 = '''\
-        std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(name)sObj =
+        std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(nameConverted)s =
             ObjectHandler::getObjectVector<%(namespaceObjects)s::%(classname)s>(%(name)sCpp);\n'''
 
 code37b = '''\
-        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
+        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(nameConverted)s =
             ObjectHandler::getLibraryObjectVector<%(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s>(%(name)sCpp);\n'''
 
 code37c = '''\
-        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
+        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(nameConverted)s =
             ObjectHandler::getLibraryObjectVector<%(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s>(%(name)s);\n'''
 
 code38 = '''\
-        OH_GET_REFERENCE(%(name)sLibObj, %(name)s,
+        OH_GET_REFERENCE(%(nameConverted)s, %(name)s,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code39 = '''\
-        OH_GET_REFERENCE_DEFAULT(%(name)sLibObj, %(name)sCpp,
+        OH_GET_REFERENCE_DEFAULT(%(nameConverted)s, %(name)sCpp,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code42 = '''\
-        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
+        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(nameConverted)s =
             ObjectHandler::operToObjectVector<%(namespaceLibrary)s::%(classname)s, %(namespaceObjects)s::%(classname)s>(
             *%(name)s, "%(name)s");\n'''
 
 code43 = '''\
-        std::vector<QuantLib::Handle<QuantLib::Quote> > %(name)sLibObj =
+        std::vector<QuantLib::Handle<QuantLib::Quote> > %(nameConverted)s =
             ObjectHandler::operToVector<QuantLib::Handle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
 
 code44a = '''\
         OH_GET_OBJECT_DEFAULT(%(name)sCoerce, %(name)sCpp, ObjectHandler::Object)
-        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
@@ -145,20 +145,20 @@ code44a = '''\
 
 code44b = '''\
         OH_GET_OBJECT(%(name)sCoerce, %(name)s, ObjectHandler::Object)
-        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sCoerce);\n'''
 
 code45a = '''\
-        QuantLib::Handle<QuantLib::Quote> %(name)sLibObj = 
+        QuantLib::Handle<QuantLib::Quote> %(nameConverted)s = 
             ObjectHandler::operToScalar<QuantLib::Handle<QuantLib::Quote> >(
                 *%(name)s, "%(name)s");\n'''
 
 code45b = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
-        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
             %(namespaceObjects)s::CoerceLibrarySame<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
@@ -166,7 +166,7 @@ code45b = '''\
 
 code45c = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
-        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
             %(namespaceObjects)s::CoerceQuote<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
@@ -174,19 +174,19 @@ code45c = '''\
 
 code46 = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
-        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
             %(namespaceObjects)s::CoerceTermStructure<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sTemp);\n'''
 
 code47 = '''\
-        boost::shared_ptr<QuantLib::Quote> %(name)sLibObj =
+        boost::shared_ptr<QuantLib::Quote> %(nameConverted)s =
             ObjectHandler::operToScalar<boost::shared_ptr<QuantLib::Quote> >(
                 *%(name)s, "%(name)s");\n'''
 
 code48 = '''\
-        OH_GET_UNDERLYING(%(name)sLibObj, %(name)s,
+        OH_GET_UNDERLYING(%(nameConverted)s, %(name)s,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code48b = '''\
@@ -196,15 +196,15 @@ code48b = '''\
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sTemp);
-        const %(namespaceLibrary)s::%(classname)s &%(name)sLibObj =
+        const %(namespaceLibrary)s::%(classname)s &%(nameConverted)s =
             *(%(name)sTemp2.get());\n'''
 
 code49 = '''\
-        OH_GET_UNDERLYING_NONCONST(%(name)sLibObj, %(name)s,
+        OH_GET_UNDERLYING_NONCONST(%(nameConverted)s, %(name)s,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code50 = '''\
-        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > %(name)sLibObj =
+        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > %(nameConverted)s =
             ObjectHandler::operToMatrix<QuantLib::Handle<QuantLib::Quote> >(*%(name)s, "%(name)s");\n'''
 
 code51 = '''\
@@ -217,8 +217,8 @@ code53 = '''\
 std::vector<std::vector<boost::any> > returnValue = '''
 
 code54 = '''\
-            %(name)sLib.begin(),
-            %(name)sLib.end()'''
+            %(nameConverted)s.begin(),
+            %(nameConverted)s.end()'''
 
 code55 = '''\
             %(name)sCpp.begin(),
@@ -300,27 +300,27 @@ code65b = '''\
 ##########################################################################
 
 code200 = '''\
-        %(type)s %(name)sLib = ObjectHandler::ohVariantToScalar<%(type)s>(
+        %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
             %(name)s, "%(name)s");\n'''
 
 code201 = '''\
-        %(type)s %(name)sLib = ObjectHandler::ohVariantToScalar<%(type)s>(
+        %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
             %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
 code203 = '''\
-        /*%(type)s %(name)sLib =
+        /*%(type)s %(nameConverted)s =
             QuantLibXL::operToQlArray(%(name)s, "%(name)s");*/\n'''
 
 code204 = '''\
-        std::vector<QuantLib::Date> %(name)sLib = 
+        std::vector<QuantLib::Date> %(nameConverted)s = 
             ObjectHandler::ohVariantToVector<QuantLib::Date>(%(name)s, "%(name)s");\n'''
 
 code205 = '''\
-        std::vector<%(type)s> %(name)sLib =
+        std::vector<%(type)s> %(nameConverted)s =
             ObjectHandler::ohVariantToVector<%(type)s>(%(name)s, "%(name)s");\n'''
 
 code206 = '''\
-        %(type)s %(name)sLib =
+        %(type)s %(nameConverted)s =
             QuantLibAddin::vvToQlMatrix(%(name)s);\n'''
 
 code207 = '''\
@@ -350,20 +350,20 @@ code211 = '''\
         return os.str();'''
 
 code213 = '''\
-        %(type)s %(name)sLib = ObjectHandler::ohVariantToScalar<%(type)s>(
+        %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
             %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
 
 code214 = '''\
-        QuantLib::Handle<QuantLib::Quote> %(name)sLibObj = 
+        QuantLib::Handle<QuantLib::Quote> %(nameConverted)s = 
             ObjectHandler::ohVariantToScalar<QuantLib::Handle<QuantLib::Quote> >(
                 %(name)s, "%(name)s");\n'''
 
 code215 = '''\
-        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > %(name)sLibObj =
+        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > %(nameConverted)s =
             ObjectHandler::ohVariantToMatrix<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 code218 = '''\
-        std::vector<QuantLib::Handle<QuantLib::Quote> > %(name)sLibObj =
+        std::vector<QuantLib::Handle<QuantLib::Quote> > %(nameConverted)s =
             ObjectHandler::ohVariantToVector<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 ##########################################################################
@@ -402,31 +402,31 @@ code75 = '''\
         calcToMatrix(%(name)sCpp, %(name)s);\n'''
 
 code76 = '''\
-        std::vector<%(type)s> %(name)sLib;
-        calcToVector(%(name)sLib, %(name)s);\n'''
+        std::vector<%(type)s> %(nameConverted)s;
+        calcToVector(%(nameConverted)s, %(name)s);\n'''
 
 code77 = '''\
-        %(type)s %(name)sLib;
-        calcToVector(%(name)sLib, %(name)s);\n'''
+        %(type)s %(nameConverted)s;
+        calcToVector(%(nameConverted)s, %(name)s);\n'''
 
 code78 = '''\
-        std::vector<std::string> %(name)sLib;
-        calcToVector(%(name)sLib, %(name)s);\n'''
+        std::vector<std::string> %(nameConverted)s;
+        calcToVector(%(nameConverted)s, %(name)s);\n'''
 
 code79 = '''\
-        std::vector<%(type)s> %(name)sLib;
-        calcToVector(%(name)sLib, %(name)s);\n'''
+        std::vector<%(type)s> %(nameConverted)s;
+        calcToVector(%(nameConverted)s, %(name)s);\n'''
 
 code80 = '''\
-        OH_GET_REFERENCE(%(name)sLibObj, %(name)sCpp,
+        OH_GET_REFERENCE(%(nameConverted)s, %(name)sCpp,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code81 = '''\
-        OH_GET_REFERENCE(%(name)sLibObj, %(name)sCpp,
+        OH_GET_REFERENCE(%(nameConverted)s, %(name)sCpp,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code82 = '''\
-        %(type)s %(name)sEnum =
+        %(type)s %(nameConverted)s =
             ObjectHandler::Create<%(type)s>()(%(name)sCpp);\n'''
 
 code83 = '''\
@@ -481,21 +481,21 @@ code92 = '''\
 
 code93 = '''\
         OH_GET_OBJECT(%(name)sCoerce, %(name)sTemp, ObjectHandler::Object)
-        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sCoerce);\n'''
 
 code94 = '''\
-        %(type)s %(name)sLib = calcToQlMatrix(%(name)s);\n'''
+        %(type)s %(nameConverted)s = calcToQlMatrix(%(name)s);\n'''
 
 code95 = '''\
-        OH_GET_OBJECT(%(name)sObj, %(name)sCpp, %(namespaceObjects)s::%(object)s)\n'''
+        OH_GET_OBJECT(%(nameConverted)s, %(name)sCpp, %(namespaceObjects)s::%(object)s)\n'''
 
 code96 = '''\
-        %(type)s %(name)sLib;
-        calcToScalar(%(name)sLib, %(name)s);\n'''
+        %(type)s %(nameConverted)s;
+        calcToScalar(%(nameConverted)s, %(name)s);\n'''
 
 ##########################################################################
 # code for ValueObjects
@@ -582,11 +582,11 @@ code118 = '''\
             boost::any_cast<std::vector<std::vector<ObjectHandler::Variant> > >(valueObject->getProperty("%(name)s"));\n'''
 
 code121 = '''\
-        %(type)s %(name)sLib = ObjectHandler::ohVariantToScalar<%(type)s>(
+        %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
             %(name)s, "%(name)s");\n'''
 
 code122 = '''\
-        %(type)s %(name)sLib = ObjectHandler::ohVariantToScalar<%(type)s>(
+        %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
             %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code123 = '''\
@@ -598,63 +598,63 @@ code124 = '''\
             %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code131 = '''\
-        std::vector<%(type)s> %(name)sLib =
+        std::vector<%(type)s> %(nameConverted)s =
             ObjectHandler::ohVariantToVector<%(type)s>(%(name)s, "%(name)s");\n'''
 
 code132 = '''\
-        std::vector<%(type)s> %(name)sLib = 
+        std::vector<%(type)s> %(nameConverted)s = 
             QuantLibAddin::convertVector<%(nativeType)s, %(type)s>(%(name)s);\n'''
 
 code133 = '''\
-        std::vector<%(type)s> %(name)sLib = 
+        std::vector<%(type)s> %(nameConverted)s = 
             QuantLibAddin::convertVector<%(nativeType)s, %(type)s>(%(name)sCpp);\n'''
 
 code135 = '''\
-        QuantLib::Matrix %(name)sLib =
+        QuantLib::Matrix %(nameConverted)s =
             QuantLibAddin::vvToQlMatrix(%(name)s);\n'''
 
 code140 = '''\
-        QuantLib::Handle<QuantLib::Quote> %(name)sLibObj = 
+        QuantLib::Handle<QuantLib::Quote> %(nameConverted)s = 
             ObjectHandler::ohVariantToScalar<QuantLib::Handle<QuantLib::Quote> >(
                 %(name)s, "%(name)s");\n'''
 
 code150 = '''\
-        std::vector<QuantLib::Handle<QuantLib::Quote> > %(name)sLibObj =
+        std::vector<QuantLib::Handle<QuantLib::Quote> > %(nameConverted)s =
             ObjectHandler::ohVariantToVector<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 code151 = '''\
-        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > %(name)sLibObj =
+        std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > %(nameConverted)s =
             ObjectHandler::ohVariantToMatrix<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 code152 = '''\
-        boost::shared_ptr<QuantLib::Quote> %(name)sLibObj =
+        boost::shared_ptr<QuantLib::Quote> %(nameConverted)s =
             ObjectHandler::ohVariantToScalar<boost::shared_ptr<QuantLib::Quote> >(
                 %(name)s, "%(name)s");\n'''
 
 code153 = '''\
-        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(name)sLibObj =
+        std::vector<boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> > %(nameConverted)s =
             ObjectHandler::ohVariantToObjectVector<%(namespaceLibrary)s::%(classname)s, %(namespaceObjects)s::%(classname)s>(
             %(name)s, "%(name)s");\n'''
 
 code159 = '''\
-        std::vector<boost::shared_ptr<ObjectHandler::Object> > %(name)sObj =
+        std::vector<boost::shared_ptr<ObjectHandler::Object> > %(nameConverted)s =
             ObjectHandler::getObjectVector<ObjectHandler::Object>(%(name)s);\n'''
 
 code160 = '''\
-        std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(name)sObj =
+        std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(nameConverted)s =
             ObjectHandler::getObjectVector<%(namespaceObjects)s::%(classname)s>(%(name)s);\n'''
 
 code161 = '''\
-        OH_GET_REFERENCE_DEFAULT(%(name)sLibObj, %(name)s,
+        OH_GET_REFERENCE_DEFAULT(%(nameConverted)s, %(name)s,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code162 = '''\
-        std::vector<%(type)s> %(name)sEnum =
+        std::vector<%(type)s> %(nameConverted)s =
             ObjectHandler::vectorStringToEnum<%(type)s>(%(name)s, "%(name)s");\n'''
 
 code163 = '''\
         OH_GET_OBJECT_DEFAULT(%(name)sCoerce, %(name)s, ObjectHandler::Object)
-        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(name)sLibObj =
+        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
@@ -665,15 +665,15 @@ code163 = '''\
 ##########################################################################
 
 code101 = '''\
-        %(type)s %(name)sLib;
-        cToLib(%(name)sLib, %(name)s);\n'''
+        %(type)s %(nameConverted)s;
+        cToLib(%(nameConverted)s, %(name)s);\n'''
 
 code102 = '''\
-        OH_GET_REFERENCE(%(name)sLibObj, %(name)s,
+        OH_GET_REFERENCE(%(nameConverted)s, %(name)s,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
 code103 = '''\
-        %(type)s %(name)sEnum =
+        %(type)s %(nameConverted)s =
             ObjectHandler::Create<%(type)s>()(%(name)s);\n'''
 
 ##########################################################################

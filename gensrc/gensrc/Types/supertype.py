@@ -49,7 +49,7 @@ class SuperType(serializable.Serializable):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeAttribute(self, common.NATIVE_TYPE)
-        serializer.serializeAttribute(self, common.CONVERSION_SUFFIX)
+        serializer.serializeAttribute(self, common.CONVERSION_SUFFIX, '')
         serializer.serializeAttribute(self, common.MEMBER_ACCESS, '->')
 
 class SuperTypeDict(serializable.Serializable):

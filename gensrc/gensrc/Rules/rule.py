@@ -184,6 +184,7 @@ class RuleGroup(serializable.Serializable):
             common.INDENT2 : self.indent_ + '    ',
             common.INDENT : self.indent_,
             common.NAME : self.param_.name(),
+            common.NAME_CONVERTED : self.param_.nameConverted(),
             common.NAME_UPPER : self.param_.name().upper(),
             common.NAMESPACE_LIB : environment.config().namespaceLibrary(),
             common.NAMESPACE_OBJ : environment.config().namespaceObjects(),

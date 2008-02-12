@@ -10,7 +10,7 @@
     <SuperType name='implicitConversion' nativeType='double'/>
 
     <!-- values stored in the form QuantLib::xxx -->
-    <SuperType name='libraryType'/>
+    <SuperType name='libraryType' conversionSuffix='Lib'/>
 
     <!-- strings identifying enumerated types or classes -->
     <SuperType name='enumeration' nativeType='string' conversionSuffix='Enum' memberAccess='.'/>
@@ -18,32 +18,25 @@
     <!-- downcasting and/or extraction of objects -->
 
     <!-- to shared_ptr<QuantLibAddin::xx> -->
-    <!--<SuperType name='objectClass' nativeType='string' conversionSuffix='ObjPtr'/>-->
-    <SuperType name='objectClass' nativeType='string' conversionSuffix='Obj'/>
+    <SuperType name='objectClass' nativeType='string' conversionSuffix='ObjPtr'/>
 
     <!-- to shared_ptr<QuantLibAddin::T> including from Handle<Quote> -->
-    <!--<SuperType name='objectClass' nativeType='string' conversionSuffix='ObjPtr'/>-->
-    <SuperType name='objectQuote' nativeType='string' conversionSuffix='Obj'/>
+    <SuperType name='objectQuote' nativeType='string' conversionSuffix='ObjPtr'/>
 
     <!-- to shared_ptr<QuantLibAddin::T> including from Handle<SwaptionVolatilityStructure> -->
-    <!--<SuperType name='objectTermStructure' nativeType='string' conversionSuffix='ObjPtr'/>-->
-    <SuperType name='objectTermStructure' nativeType='string' conversionSuffix='Obj'/>
+    <SuperType name='objectTermStructure' nativeType='string' conversionSuffix='ObjPtr'/>
 
     <!-- to shared_ptr<QuantLib::xx> -->
-    <!--<SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObjPtr'/>-->
-    <SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObj'/>
+    <SuperType name='libraryClass' nativeType='string' conversionSuffix='LibObjPtr'/>
 
     <!-- to shared_ptr<QuantLib::T> including generic coercion from Handle<T> to T -->
-    <!--<SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObjPtr'/>-->
-    <SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObj'/>
+    <SuperType name='handleToLib' nativeType='string' conversionSuffix='LibObjPtr'/>
 
     <!-- to shared_ptr<QuantLib::T> including from Handle<Quote> -->
-    <!--<SuperType name='libraryQuote' nativeType='string' conversionSuffix='LibObjPtr'/>-->
-    <SuperType name='libraryQuote' nativeType='string' conversionSuffix='LibObj'/>
+    <SuperType name='libraryQuote' nativeType='string' conversionSuffix='LibObjPtr'/>
 
     <!-- to shared_ptr<QuantLib::T> including from Handle<YieldTermStructure> / Handle<SwaptionVolatilityStructure> -->
-    <!--<SuperType name='libraryTermStructure' nativeType='string' conversionSuffix='LibObjPtr'/>-->
-    <SuperType name='libraryTermStructure' nativeType='string' conversionSuffix='LibObj'/>
+    <SuperType name='libraryTermStructure' nativeType='string' conversionSuffix='LibObjPtr'/>
 
     <!-- from ObjectHandler::Object to const QuantLib::xx & -->
     <SuperType name='underlyingClass' nativeType='string' conversionSuffix='LibObj' memberAccess='.'/>
@@ -51,7 +44,7 @@
     <!-- creation of objects (Handle) wrappers-->
 
     <!-- upgrade shared_ptr<QuantLib::xx> to QuantLib::Handle<QuantLib::xx> -->
-    <SuperType name='libToHandle' nativeType='string'/>
+    <SuperType name='libToHandle' nativeType='string' conversionSuffix='LibObj'/>
 
   </SuperTypes>
 
