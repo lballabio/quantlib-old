@@ -59,9 +59,7 @@ class XmlReader(serializer.Serializer):
         else:
             setattr(caller, identifierName, defaultValue)
 
-    # FIXME for class Rule it would be better if defaultValue = None,
-    # would that break anything else?
-    def serializeAttributeBoolean(self, caller, attributeName, defaultValue = False):
+    def serializeAttributeBoolean(self, caller, attributeName, defaultValue = None):
         """Read a named boolean attribute."""
         attributeValue = self.node_.getAttribute(attributeName)
         identifierName = self.formatIdentifier(attributeName)
