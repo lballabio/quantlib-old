@@ -25,7 +25,6 @@ from gensrc.Parameters import exceptions
 from gensrc.Utilities import common
 from gensrc.Serialization import serializable
 from gensrc.Configuration import environment
-import re
 
 class Value(serializable.Serializable):
     """Represent any value which may be passed to or received from a Function."""
@@ -221,7 +220,7 @@ class EnumerationId(Parameter):
     def __init__(self, typeName, superTypeName):
         self.fullType_ = environment.getType(typeName, superTypeName)
         self.description_ = 'ID of Enumeration of class %s' % self.fullType_.value()
-        self.name_ = re.match(r"\w*::(\w*)", self.fullType_.value()).group(1).lower()
+        self.name_ = self.fullType_.classname().lower()
 
 class DependencyTrigger(Parameter):
     """dependency tracking trigger.
