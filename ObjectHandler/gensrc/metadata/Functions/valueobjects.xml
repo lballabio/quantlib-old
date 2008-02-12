@@ -29,7 +29,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='ohPropertyValue' type='ObjectHandler::Object' dependencyTrigger='true' loopParameter='PropertyName'>
+    <Member name='ohPropertyValue' type='ObjectHandler::Object' loopParameter='PropertyName'>
       <description>retrieve the value(s) of one or more named properties</description>
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>

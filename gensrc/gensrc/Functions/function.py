@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -44,8 +44,6 @@ class Function(serializable.Serializable):
     enumeration_ = None
     generateVOs_ = False
     validatePermanent_ = ''
-    VALIDATE_TRIGGER = '''
-        ObjectHandler::validateRange(Trigger, "Trigger");'''
 
     #############################################
     # public interface
@@ -96,8 +94,8 @@ class Function(serializable.Serializable):
     def longDescription(self):
         return self.longDescription_
 
-    def xlTrigger(self):
-        return self.xlTrigger_
+    def dependencyTrigger(self):
+        return self.dependencyTrigger_
 
     def validatePermanent(self):
         return self.validatePermanent_
@@ -127,13 +125,5 @@ class Function(serializable.Serializable):
         serializer.serializeProperty(self, common.ALIAS, environment.config().namespaceObjects() + '::' + self.name_)
         serializer.serializeObject(self, parameterlist.ParameterList)
         serializer.serializeBoolean(self, common.DOCUMENTATION_ONLY)
-        serializer.serializeAttributeBoolean(self, common.TRIGGER, True)
+        serializer.serializeAttributeBoolean(self, common.DEPENDENCY_TRIGGER, True)
         serializer.serializeAttributeBoolean(self, 'visible', True)
-
-    def postSerialize(self):
-        # some fields required for the Excel addin
-        if self.dependencyTrigger_:
-            self.xlTrigger_ = Function.VALIDATE_TRIGGER
-        else:
-            self.xlTrigger_ = ''
-

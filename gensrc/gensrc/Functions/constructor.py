@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -77,13 +77,12 @@ class Constructor(function.Function):
         # implicit in the definition of a Constructor is that the first parameter
         # is a string to be used as the objectID of the new object
         self.parameterList_.prepend(parameter.ConstructorObjectId())
-        # All ctors have a final optional boolean parameter 'Permanent'
+        
+        # All ctors have 3 final parameters Permanent, Trigger, Overwrite
         self.parameterList_.append(parameter.PermanentFlag())
-        # dependency tracking trigger
-        if self.dependencyTrigger_:
-            self.parameterList_.append(parameter.DependencyTrigger())
-        # All ctors have a final optional boolean parameter 'Overwrite'
+        self.parameterList_.append(parameter.DependencyTrigger())
         self.parameterList_.append(parameter.OverwriteFlag())
+        
         self.description_ = Constructor.DESCRIPTION % self.libraryFunction_
         if not self.longDescription_:
             self.longDescription_ = self.description_

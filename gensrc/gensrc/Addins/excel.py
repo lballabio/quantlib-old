@@ -78,6 +78,9 @@ class ExcelAddin(addin.Addin):
         // Strip the Excel cell update counter suffix from Object IDs
         
         std::string ObjectIdStrip = ObjectHandler::ObjectXL::getStub(ObjectId);%s\n'''
+        
+    VALIDATE_TRIGGER = '''
+        ObjectHandler::validateRange(Trigger, "Trigger");'''
 
     objectIdSuffix_ = 'Strip'
     repositoryClass_ = 'RepositoryXL'
@@ -137,6 +140,11 @@ class ExcelAddin(addin.Addin):
             raise excelexceptions.ExcelCellNameException(
                 func.name(), CELL_MAX_COL_ID, CELL_MAX_ROW_NUM)
 
+        if func.dependencyTrigger():
+            xlTrigger = ExcelAddin.VALIDATE_TRIGGER
+        else:
+            xlTrigger = ''
+
         return self.bufferFunction_.text() % {
             'cppConversions' : func.parameterList().generate(self.cppConversions_),
             'enumConversions' : func.parameterList().generate(self.enumConversions_),
@@ -149,7 +157,7 @@ class ExcelAddin(addin.Addin):
             'refConversions' : func.parameterList().generate(self.referenceConversions_),
             'returnConversion' : self.returnConversion_.apply(func.returnValue()),
             'validatePermanent' : func.validatePermanent(),
-            'xlTrigger' : func.xlTrigger(),
+            'xlTrigger' : xlTrigger,
             'xlWizardCheck' : self.xlWizardCheck(func) }
 
     def checkLen(self, str):
