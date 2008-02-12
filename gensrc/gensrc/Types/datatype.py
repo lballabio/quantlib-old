@@ -20,6 +20,8 @@ from gensrc.Utilities import common
 from gensrc.Serialization import serializable
 
 class DataType(serializable.Serializable):
+    """A class to contain all of the information that gensrc requires
+    for a type such as a native C++ type or a user defined class."""
 
     #############################################
     # class variables
@@ -55,6 +57,7 @@ class DataType(serializable.Serializable):
         self.name_ = self.value_
 
 class DataTypeDict(serializable.Serializable):
+    """Wrapper for a dictionary of DataType objects."""
 
     #############################################
     # public interface

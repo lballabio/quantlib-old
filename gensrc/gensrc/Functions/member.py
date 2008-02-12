@@ -43,7 +43,7 @@ class Member(function.Function):
         return self.behavior_.generateBody(addin)
 
     def memberAccess(self):
-        return self.parameterObjectId_.dataType().memberAccess()
+        return self.parameterObjectId_.fullType().memberAccess()
 
     #############################################
     # serializer interface

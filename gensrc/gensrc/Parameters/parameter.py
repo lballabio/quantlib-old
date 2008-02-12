@@ -65,11 +65,11 @@ class Value(serializable.Serializable):
     def const(self):
         return self.const_
 
-    def dataType(self):
-        return self.dataType_
+    def fullType(self):
+        return self.fullType_
 
     def nameConverted(self):
-        return self.name_ + self.dataType_.conversionSuffix()
+        return self.name_ + self.fullType_.conversionSuffix()
 
     def description(self):
         return self.description_
@@ -79,7 +79,7 @@ class Value(serializable.Serializable):
 
     def errorValue(self):
         if self.errorValue_:
-            return ", static_cast<%s>(%s)" % (self.dataType_.nativeType(), self.errorValue_)
+            return ", static_cast<%s>(%s)" % (self.fullType_.nativeType(), self.errorValue_)
         else:
             return ''
 
@@ -115,7 +115,7 @@ class Parameter(Value):
 
     groupName_ = 'Parameters'
 
-    # strings which are not valid as parameter names.
+    # Strings which are not valid as parameter names.
     # TODO add C++ keywords etc.
     ILLEGAL_NAMES = ( 'TYPE', 'NONE' )
 
@@ -141,7 +141,7 @@ class Parameter(Value):
         if self.name_.upper() in Parameter.ILLEGAL_NAMES:
             raise exceptions.ParameterIllegalNameException(
                 self.name_, Parameter.ILLEGAL_NAMES)
-        self.dataType_ = environment.getType(self.type_, self.superType_)
+        self.fullType_ = environment.getType(self.type_, self.superType_)
 
 class ReturnValue(Value):
     """Encapsulate state necessary to generate source code 
@@ -157,17 +157,17 @@ class ReturnValue(Value):
 
     def postSerialize(self):
         """Perform post serialization initialization."""
-        self.dataType_ = environment.getType(self.type_, self.superType_)
+        self.fullType_ = environment.getType(self.type_, self.superType_)
 
 class ConstructorReturnValue(Value):
     """Class to represent state shared by the return values
-    of all constructors in QuantLibAddin."""
+    of all constructors."""
 
     name_ = 'returnValue'
     tensorRank_ = common.SCALAR
 
     def __init__(self):
-        self.dataType_ = environment.getType(common.STRING)
+        self.fullType_ = environment.getType(common.STRING)
 
 class PermanentFlag(Value):
     """All ctors have a final optional boolean parameter 'permanent'"""
@@ -178,7 +178,7 @@ class PermanentFlag(Value):
     default_ = 'false'
 
     def __init__(self):
-        self.dataType_ = environment.getType(common.BOOL)
+        self.fullType_ = environment.getType(common.BOOL)
 
 class ConstructorObjectId(Parameter):
     """ID of an object.
@@ -192,7 +192,7 @@ class ConstructorObjectId(Parameter):
     description_ = 'id of object to be created'
 
     def __init__(self):
-        self.dataType_ = environment.getType(common.STRING)
+        self.fullType_ = environment.getType(common.STRING)
 
 class MemberObjectId(Parameter):
     """ID of an object.
@@ -207,21 +207,21 @@ class MemberObjectId(Parameter):
     def __init__(self, typeName, superTypeName):
         #self.failIfEmpty = True # Member function can't be invoked on null object
 
-        self.dataType_ = environment.getType(typeName, superTypeName)
-        self.description_ = 'id of existing %s object' % self.dataType_.value()
+        self.fullType_ = environment.getType(typeName, superTypeName)
+        self.description_ = 'id of existing %s object' % self.fullType_.value()
 
 class EnumerationId(Parameter):
     """ID of an enumeration.
 
-    the ID of an Enumeration to be retrieved from the Registry."""
+    The ID of an Enumeration to be retrieved from the Registry."""
 
     tensorRank_ = common.SCALAR
     ignore_ = False
 
     def __init__(self, typeName, superTypeName):
-        self.dataType_ = environment.getType(typeName, superTypeName)
-        self.description_ = 'ID of Enumeration of class %s' % self.dataType_.value()
-        self.name_ = re.match(r"\w*::(\w*)", self.dataType_.value()).group(1).lower()
+        self.fullType_ = environment.getType(typeName, superTypeName)
+        self.description_ = 'ID of Enumeration of class %s' % self.fullType_.value()
+        self.name_ = re.match(r"\w*::(\w*)", self.fullType_.value()).group(1).lower()
 
 class DependencyTrigger(Parameter):
     """dependency tracking trigger.
@@ -235,13 +235,10 @@ class DependencyTrigger(Parameter):
     description_ = 'dependency tracking trigger'
 
     def __init__(self):
-        self.dataType_ = environment.getType(common.ANY)
+        self.fullType_ = environment.getType(common.ANY)
 
 class OverwriteFlag(Parameter):
-    """dependency tracking trigger.
-
-    A dummy parameter used to force dependencies between cells
-    in a worksheet."""
+    """A flag to indicate whether new object should overwrite old."""
 
     name_ = 'Overwrite'
     tensorRank_ = common.SCALAR
@@ -249,5 +246,5 @@ class OverwriteFlag(Parameter):
     description_ = 'overwrite flag'
 
     def __init__(self):
-        self.dataType_ = environment.getType(common.BOOL)
+        self.fullType_ = environment.getType(common.BOOL)
 

@@ -58,9 +58,9 @@ class Rule(serializable.Serializable):
 
     def match(self, param):
         return (self.tensorRank_ == None or self.tensorRank_ == param.tensorRank()) \
-            and (self.superType_ == None or self.superType_ == param.dataType().superType()) \
-            and (self.nativeType_ == None or self.nativeType_ == param.dataType().nativeType()) \
-            and (self.type_ == None or self.type_ == param.dataType().value()) \
+            and (self.superType_ == None or self.superType_ == param.fullType().superType()) \
+            and (self.nativeType_ == None or self.nativeType_ == param.fullType().nativeType()) \
+            and (self.type_ == None or self.type_ == param.fullType().value()) \
             and (self.vectorIterator_ == None or self.vectorIterator_ == param.vectorIterator()) \
             and (self.default_ == None or self.default_ == bool(param.default())) \
             and (self.loop_ == None or self.loop_ == bool(param.loop())) \
@@ -176,7 +176,7 @@ class RuleGroup(serializable.Serializable):
     def invokeRule(self):
 
         return self.ruleResult_ % {
-            'classname' : self.param_.dataType().classname(),
+            'classname' : self.param_.fullType().classname(),
             common.DEFAULT_VALUE : self.param_.default(),
             common.DESC_LEN : len(self.paramDesc_),
             common.DESCRIPTION : self.paramDesc_,
@@ -187,10 +187,10 @@ class RuleGroup(serializable.Serializable):
             common.NAME_UPPER : self.param_.name().upper(),
             common.NAMESPACE_LIB : environment.config().namespaceLibrary(),
             common.NAMESPACE_OBJ : environment.config().namespaceObjects(),
-            common.NATIVE_TYPE : self.param_.dataType().nativeType(),
-            common.SUPER_TYPE : self.param_.dataType().superType(),
+            common.NATIVE_TYPE : self.param_.fullType().nativeType(),
+            common.SUPER_TYPE : self.param_.fullType().superType(),
             common.TENSOR_RANK : self.param_.tensorRank(),
-            common.TYPE : self.param_.dataType().value() }
+            common.TYPE : self.param_.fullType().value() }
 
     def checkSkipFirst(self):
         return self.checkSkipFirst_

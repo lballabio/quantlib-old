@@ -20,6 +20,11 @@ import re
 from gensrc.Types import exceptions
 
 class FullType(object):
+    """A class to merge the properties of DataType and SuperType.
+
+    Where the same property is implemented in both DataType and SuperType,
+    the value in the SuperType object is taken as a default and the
+    corresponding value (if defined) in the DataType object as an override."""
 
     #############################################
     # class variables
@@ -54,15 +59,15 @@ class FullType(object):
     def classname(self):
         return self.classname_
 
-    def __init__(self, subType, superType):
+    def __init__(self, dataType, superType):
 
-        self.value_ = subType.value()
-        if subType.nativeType():
-            self.nativeType_ = subType.nativeType()
+        self.value_ = dataType.value()
+        if dataType.nativeType():
+            self.nativeType_ = dataType.nativeType()
         elif superType.nativeType():
             self.nativeType_ = superType.nativeType()
         else:
-            raise exceptions.InvalidNativeTypeException(subType.name(), superType.name())
+            raise exceptions.InvalidNativeTypeException(dataType.name(), superType.name())
 
         self.superType_ = superType.name()
         self.conversionSuffix_ = superType.conversionSuffix()

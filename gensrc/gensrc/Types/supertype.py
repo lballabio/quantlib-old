@@ -20,6 +20,7 @@ from gensrc.Utilities import common
 from gensrc.Serialization import serializable
 
 class SuperType(serializable.Serializable):
+    """Properties that may be shared by multiple DataType objects."""
 
     #############################################
     # class variables
@@ -52,6 +53,7 @@ class SuperType(serializable.Serializable):
         serializer.serializeAttribute(self, common.MEMBER_ACCESS, '->')
 
 class SuperTypeDict(serializable.Serializable):
+    """Wrapper for a dictionary of SuperType objects."""
 
     #############################################
     # public interface

@@ -20,37 +20,44 @@ from gensrc.Types import fulltype
 from gensrc.Types import exceptions
 
 class TypeList(object):
+    """A collection of all the FullType objects that are defined
+    for this running instance of gensrc."""
 
     #############################################
     # public interface
     #############################################
 
-    def __init__(self, typeDict, superTypeDict):
-        self.typeDict_ = typeDict
-        self.superTypeDict_ = superTypeDict
-        self.fullTypeDict_ = {}
+    def __init__(self, dataTypeDict, superTypeDict):
+        self.dataTypeDict_ = dataTypeDict       # deserialized from type metadata
+        self.superTypeDict_ = superTypeDict     # deserialized from type metadata
+        self.fullTypeDict_ = {}                 # derived from types and supertypes
 
-    def getType(self, typeName, superTypeName = None):
+    def getType(self, dataTypeName, superTypeName = None):
+        """Return the FullType that corresponds to the requested DataType/SuperType
+        combination.
 
-        if self.fullTypeDict_.has_key((typeName, superTypeName)):
-            return self.fullTypeDict_[typeName, superTypeName]
+        If the FullType has already been derived then return it.  If not then
+        construct it, add it to the dict of known FullTypes, and return it."""
 
-        if self.typeDict_.dataTypes().has_key(typeName):
-            type = self.typeDict_.dataTypes()[typeName]
+        if self.fullTypeDict_.has_key((dataTypeName, superTypeName)):
+            return self.fullTypeDict_[dataTypeName, superTypeName]
+
+        if self.dataTypeDict_.dataTypes().has_key(dataTypeName):
+            dataType = self.dataTypeDict_.dataTypes()[dataTypeName]
         else:
-            raise exceptions.InvalidTypeNameException(typeName)
+            raise exceptions.InvalidTypeNameException(dataTypeName)
 
         if superTypeName:
             superTypeNameEffective = superTypeName
         else:
-            superTypeNameEffective = type.defaultSuperType()
+            superTypeNameEffective = dataType.defaultSuperType()
 
         if self.superTypeDict_.superTypes().has_key(superTypeNameEffective):
             superType = self.superTypeDict_.superTypes()[superTypeNameEffective]
         else:
             raise exceptions.InvalidSuperTypeNameException(superTypeNameEffective)
 
-        fullType = fulltype.FullType(type, superType)
-        self.fullTypeDict_[typeName, superTypeName] = fullType
+        fullType = fulltype.FullType(dataType, superType)
+        self.fullTypeDict_[dataTypeName, superTypeName] = fullType
         return fullType
 

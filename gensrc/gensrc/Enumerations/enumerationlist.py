@@ -103,8 +103,8 @@ class EnumerationList(object):
         for any enumerations which may appear in the given parameter list."""
         ret = []
         for p in parameterList:
-            if p.dataType().superType() == common.ENUM \
-            and self.typeDict_.has_key(p.dataType().value()):
-                ret.append(self.typeDict_[p.dataType().value()])
+            if p.fullType().superType() == common.ENUM \
+            and self.typeDict_.has_key(p.fullType().value()):
+                ret.append(self.typeDict_[p.fullType().value()])
         return ret
 

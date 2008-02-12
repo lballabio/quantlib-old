@@ -23,6 +23,10 @@
 
 /*! \page history Version History
 
+<strong>Release 0.9.5 - ??? 2008</strong>
+
+- More flexible validation of type/supertype combinations in function metadata
+
 <strong>Release 0.9.0 - January 2008</strong>
 
 - Autogenerate source code for Addins supporting serialization
