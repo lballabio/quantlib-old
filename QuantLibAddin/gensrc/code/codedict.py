@@ -5,11 +5,11 @@
 
 code11 = '''\
         std::string %(name)sCpp = ObjectHandler::operToScalar<std::string>(
-            *%(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
+            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code12 = '''\
         %(nativeType)s %(name)sCpp = ObjectHandler::operToScalar<%(nativeType)s>(
-            *%(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
+            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code12b = '''\
         ObjectHandler::Variant %(name)sCpp = ObjectHandler::operToScalar<ObjectHandler::Variant>(
@@ -61,11 +61,15 @@ code24 = '''\
 
 code25 = '''\
         %(type)s %(nameConverted)s = ObjectHandler::operToScalar<%(type)s>(
-            %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
+            %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code26 = '''\
         %(type)s %(nameConverted)s = ObjectHandler::operToScalar<%(type)s>(
-            *%(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
+            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
+
+code27 = '''\
+        %(type)s %(nameConverted)s = ObjectHandler::operToScalar<%(type)s>(
+            *%(name)s, "%(name)s", %(defaultValue)s, %(errorValue)s);\n'''
 
 code28 = '''\
         %(type)s %(nameConverted)s =
@@ -305,7 +309,7 @@ code200 = '''\
 
 code201 = '''\
         %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
-            %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
+            %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code203 = '''\
         /*%(type)s %(nameConverted)s =
@@ -325,11 +329,11 @@ code206 = '''\
 
 code207 = '''\
         std::string %(name)sCpp = ObjectHandler::ohVariantToScalar<std::string>(
-            %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
+            %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code208 = '''\
         %(nativeType)s %(name)sCpp = ObjectHandler::ohVariantToScalar<%(nativeType)s>(
-            %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
+            %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code209 = '''\
         std::vector<%(nativeType)s> returnValueLib = %(namespaceObjects)s::libraryToVector(returnValue);
@@ -351,7 +355,7 @@ code211 = '''\
 
 code213 = '''\
         %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
-            %(name)s, "%(name)s", %(defaultValue)s%(errorValue)s);\n'''
+            %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code214 = '''\
         QuantLib::Handle<QuantLib::Quote> %(nameConverted)s = 

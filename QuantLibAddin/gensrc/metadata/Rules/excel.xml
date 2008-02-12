@@ -122,6 +122,7 @@
         <!--Rule tensorRank='scalar' type='QuantLib::Real' default='false' codeID='code24'/-->
         <!--Rule tensorRank='scalar' type='QuantLib::Real' default='true' codeID='code26'/-->
         <Rule tensorRank='scalar' type='QuantLib::Real' default='false'/>
+        <Rule tensorRank='scalar' type='QuantLib::Real' superType='libraryType' default='true' error='true' codeID='code27'/>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Date' default='false' codeID='code24'/>
         <Rule tensorRank='scalar' superType='libraryType' nativeType='string' default='true' codeID='code25'/>
         <Rule tensorRank='scalar' superType='libraryType' nativeType='string' default='false' codeID='code22'/>

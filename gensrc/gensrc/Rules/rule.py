@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -47,6 +47,7 @@ class Rule(serializable.Serializable):
     nativeType_ = None
     type_ = None
     default_ = None
+    error_ = None
     loop_ = None
     codeID_ = None
     vectorIterator_ = None
@@ -63,6 +64,7 @@ class Rule(serializable.Serializable):
             and (self.type_ == None or self.type_ == param.fullType().value()) \
             and (self.vectorIterator_ == None or self.vectorIterator_ == param.vectorIterator()) \
             and (self.default_ == None or self.default_ == bool(param.default())) \
+            and (self.error_ == None or self.error_ == bool(param.errorValue())) \
             and (self.loop_ == None or self.loop_ == bool(param.loop())) \
             and (self.const_ == None or self.const_ == bool(param.const()))
 
@@ -86,6 +88,7 @@ class Rule(serializable.Serializable):
         serializer.serializeAttribute(self, common.VECTOR_ITERATOR)
         # FIXME change serializeAttributeBoolean() to have default value = None
         serializer.serializeAttributeBoolean(self, common.DEFAULT, None)
+        serializer.serializeAttributeBoolean(self, common.ERROR, None)
         serializer.serializeAttributeBoolean(self, common.LOOP, None)
         serializer.serializeAttributeBoolean(self, common.CONST, None)
         serializer.serializeAttribute(self, 'codeID')

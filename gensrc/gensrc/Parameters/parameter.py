@@ -40,7 +40,7 @@ class Value(serializable.Serializable):
     lastParameter_ = False
     ignore_ = False
     default_ = ''
-    errorValue_ = None
+    errorValue_ = ''
 
     #############################################
     # public interface
@@ -77,10 +77,7 @@ class Value(serializable.Serializable):
         return self.lastParameter_
 
     def errorValue(self):
-        if self.errorValue_:
-            return ", static_cast<%s>(%s)" % (self.fullType_.nativeType(), self.errorValue_)
-        else:
-            return ''
+        return self.errorValue_
 
     def setLastParameter(self, val):
         self.lastParameter_ = val
@@ -122,13 +119,13 @@ class Parameter(Value):
         """Load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeProperty(self, common.TYPE)
-        serializer.serializeProperty(self, 'superType')
+        serializer.serializeProperty(self, common.SUPER_TYPE)
         serializer.serializeProperty(self, common.TENSOR_RANK)
         serializer.serializeProperty(self, common.DESCRIPTION)
         serializer.serializeAttributeBoolean(self, common.IGNORE)
         serializer.serializeAttributeBoolean(self, common.CONST, True)
         serializer.serializeAttribute(self, common.DEFAULT)
-        serializer.serializeAttribute(self, 'errorValue')
+        serializer.serializeAttribute(self, common.ERROR_VALUE)
         serializer.serializeAttribute(self, common.VECTOR_ITERATOR)
 
     def postSerialize(self):
@@ -151,7 +148,7 @@ class ReturnValue(Value):
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         serializer.serializeProperty(self, common.TYPE)
-        serializer.serializeProperty(self, 'superType')
+        serializer.serializeProperty(self, common.SUPER_TYPE)
         serializer.serializeProperty(self, common.TENSOR_RANK)
 
     def postSerialize(self):
@@ -219,8 +216,8 @@ class EnumerationId(Parameter):
 
     def __init__(self, typeName, superTypeName):
         self.fullType_ = environment.getType(typeName, superTypeName)
-        self.description_ = 'ID of Enumeration of class %s' % self.fullType_.value()
         self.name_ = self.fullType_.classname().lower()
+        self.description_ = 'ID of Enumeration of class %s' % self.fullType_.value()
 
 class DependencyTrigger(Parameter):
     """dependency tracking trigger.
