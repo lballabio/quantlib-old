@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -135,7 +135,7 @@ class BehaviorMemberLoop(BehaviorLoop):
         BehaviorLoop.__init__(self)
         self.functionCodeName_ = self.func_.type() + '::' + self.func_.libraryFunction()
         self.functionSignature_ = self.func_.name() + 'Signature'
-        self.objectName_ = '\n' + 16 * ' ' + self.func_.parameterObjectId().nameConverted() + ','
+        self.objectName_ = '\n' + 16 * ' ' + self.func_.objectId() + ','
 
     def functionReference(self):
         return 'boost::shared_ptr<%s>' % self.func_.type()

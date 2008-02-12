@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -50,7 +50,7 @@ class BehaviorMember(object):
             'memberAccess' : self.func_.memberAccess(),
             'libraryFunction' : self.func_.libraryFunction(),
             'libraryReturnType' : addin.libraryReturnType().apply(self.func_.returnValue()),
-            'objectId' : self.func_.parameterObjectId().nameConverted(),
+            'objectId' : self.func_.objectId(),
             'parameterList' : self.func_.parameterList().generate(addin.libraryCall()) }
 
     #############################################

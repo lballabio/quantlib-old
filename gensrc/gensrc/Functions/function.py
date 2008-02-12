@@ -73,9 +73,6 @@ class Function(serializable.Serializable):
     def returnValue(self):
         return self.returnValue_
 
-    def parameterObjectId(self):
-        return self.parameterObjectId_
-
     def alias(self):
         return self.alias_
 
