@@ -398,6 +398,10 @@
 				>
 			</File>
 			<File
+				RelativePath="gensrc\Utilities\exceptions.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\Utilities\log.py"
 				>
 			</File>

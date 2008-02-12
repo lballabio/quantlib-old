@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,23 +20,32 @@
 
 from gensrc.Serialization import xmlreader
 from gensrc.Configuration import environment
+from gensrc.Utilities import exceptions
 
-def serializeObject(objectClass, fileName = None):
-    """instantiate an xml reader and load requested object."""
-    if not fileName: 
-        fileName = environment.Environment.instance().rootDirectory() + '/metadata/' + objectClass.__name__.lower()
+def serializeObjectImpl(objectClass, fileName):
     objectInstance = objectClass()
     serializer = xmlreader.XmlReader(fileName)
     objectInstance.serialize(serializer)
     objectInstance.postSerialize()
     return objectInstance
 
+def serializeObject(objectClass, fileName = None):
+    """instantiate an xml reader and load requested object."""
+    if not fileName: 
+        fileName = environment.Environment.instance().rootDirectory() + '/metadata/' + objectClass.__name__.lower()
+    try:
+        return serializeObjectImpl(objectClass, fileName)
+    except:
+        raise exceptions.UtilitiesSerializationException(fileName)
+
 def serializeList(path, caller, listName, itemName):
     """instantiate an xml reader and load requested list."""
     if not path: 
         setattr(caller, listName+'_', [])
         return
-    serializer = xmlreader.XmlReader(path)
-    serializer.serializeList(caller, listName, itemName)
-
+    try:
+        serializer = xmlreader.XmlReader(path)
+        serializer.serializeList(caller, listName, itemName)
+    except:
+        raise exceptions.UtilitiesSerializationListException(path, listName, itemName)
 
