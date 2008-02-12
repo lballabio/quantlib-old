@@ -18,6 +18,9 @@
 
 from gensrc.Types import fulltype
 from gensrc.Types import exceptions
+from gensrc.Types import datatype
+from gensrc.Types import supertype
+from gensrc.Utilities import utilities
 
 class TypeList(object):
     """A collection of all the FullType objects that are defined
@@ -27,10 +30,13 @@ class TypeList(object):
     # public interface
     #############################################
 
-    def __init__(self, dataTypeDict, superTypeDict):
-        self.dataTypeDict_ = dataTypeDict       # deserialized from type metadata
-        self.superTypeDict_ = superTypeDict     # deserialized from type metadata
-        self.fullTypeDict_ = {}                 # derived from types and supertypes
+    def __init__(self):
+        self.dataTypeDict_ = utilities.serializeObject(datatype.DataTypeDict, 'metadata/Types/types')
+        self.superTypeDict_ = utilities.serializeObject(supertype.SuperTypeDict, 'metadata/Types/supertypes')
+        # A dictionary of all FullType objects required for this running instance of gensrc.
+        # Each FullType object is created on the fly as required and is derived
+        # from a pair of DataType/SuperType objects (deserialized above).
+        self.fullTypeDict_ = {}
 
     def getType(self, dataTypeName, superTypeName = None):
         """Return the FullType that corresponds to the requested DataType/SuperType

@@ -31,11 +31,7 @@ from gensrc.Categories import categorylist
 from gensrc.Enumerations import enumerationlist
 from gensrc.Utilities import utilities
 from gensrc.Utilities import log
-from gensrc.Configuration import configuration
 from gensrc.Configuration import environment
-from gensrc.Types import datatype
-from gensrc.Types import supertype
-from gensrc.Types import typelist
 
 class AddinList(object):
     """class to encapsulate data and behavior 
@@ -120,16 +116,8 @@ addin           unchanged   updated     created     total'''
     def __init__(self, addinIds):
         """initialize"""
 
-        config = utilities.serializeObject(configuration.Configuration, 'config/config')
-        environment.Environment.instance().setConfiguration(config)
-
-        typeDict = utilities.serializeObject(datatype.DataTypeDict, 'metadata/Types/types')
-        superTypeDict = utilities.serializeObject(supertype.SuperTypeDict, 'metadata/Types/supertypes')
-        typeList = typelist.TypeList(typeDict, superTypeDict)
-        environment.Environment.instance().setTypes(typeList)
-
         self.categoryList_ = categorylist.CategoryList()
-        if config.usingEnumerations():
+        if environment.config().usingEnumerations():
             self.enumerationList_ = enumerationlist.EnumerationList()
         else:
             self.enumerationList_ = None
