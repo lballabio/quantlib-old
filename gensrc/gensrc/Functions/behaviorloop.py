@@ -70,6 +70,8 @@ class BehaviorLoop(object):
                 break
         if not self.loopParamRef_:
             raise exceptions.BehaviorLoopParameterException(self.func_.name(), self.func_.loopParameter())
+        if self.loopParamRef_.default():
+            raise exceptions.BehaviorLoopDefaultException(self.func_.name(), self.func_.loopParameter())
 
         # Try to trap a few of the common problems that would prevent
         # the generated source code of the loop function from compiling.
@@ -83,10 +85,6 @@ class BehaviorLoop(object):
         self.func_.returnValue().setLoop(True)
         self.functionName_ = environment.config().namespaceObjects() + '::' + self.func_.name()
         self.functionSignature_ = ''
-        # Set the default value of the loop parameter to None, overwriting any default value that
-        # may have been configured.  FIXME should raise an exception instead.
-        #self.loopParamRef_.setDefault(None)
-        self.loopParamRef_.setDefault('')
 
 class BehaviorMemberLoop(BehaviorLoop):
     """Customize the BehaviorLoop class with some strings specific to Member functions."""
