@@ -41,6 +41,9 @@ class SuperType(serializable.Serializable):
     def memberAccess(self):
         return self.memberAccess_
 
+    def objectReference(self):
+        return self.objectReference_
+
     #############################################
     # serializer interface
     #############################################
@@ -51,6 +54,7 @@ class SuperType(serializable.Serializable):
         serializer.serializeAttribute(self, common.NATIVE_TYPE)
         serializer.serializeAttribute(self, common.CONVERSION_SUFFIX, '')
         serializer.serializeAttribute(self, common.MEMBER_ACCESS, '->')
+        serializer.serializeAttributeBoolean(self, common.OBJECT_REFERENCE, True)
 
 class SuperTypeDict(serializable.Serializable):
     """Wrapper for a dictionary of SuperType objects."""

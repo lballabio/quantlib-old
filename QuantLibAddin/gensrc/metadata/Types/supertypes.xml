@@ -4,13 +4,13 @@
   <SuperTypes>
 
     <!-- C++ datatypes and other datatypes directly recognized by the compiler -->
-    <SuperType name='native'/>
+    <SuperType name='native' objectReference='false'/>
 
     <!-- values which can be used synonymously with native C++ datatypes -->
-    <SuperType name='implicitConversion' nativeType='double'/>
+    <SuperType name='implicitConversion' nativeType='double' objectReference='false'/>
 
     <!-- values stored in the form QuantLib::xxx -->
-    <SuperType name='libraryType' conversionSuffix='Lib'/>
+    <SuperType name='libraryType' conversionSuffix='Lib' objectReference='false'/>
 
     <!-- strings identifying enumerated types or classes -->
     <SuperType name='enumeration' nativeType='string' conversionSuffix='Enum' memberAccess='.'/>

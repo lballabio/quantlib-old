@@ -86,29 +86,14 @@
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Natural'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Size'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='libraryQuote'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='libraryTermStructure'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='underlyingClass'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='objectQuote'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='objectTermStructure'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' objectReference='true'>%(indent)s%(nameConverted)s</Rule>
         <Rule tensorRank='scalar' nativeType='any'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
         <Rule superType='libraryType' vectorIterator='begin'>%(indent)s%(nameConverted)s.begin()</Rule>
         <Rule superType='libraryType' vectorIterator='end'>%(indent)s%(nameConverted)s.end()</Rule>
         <Rule superType='libraryType' vectorIterator='beginAndEnd' codeID='code54'/>
         <Rule superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='libToHandle'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='libraryClass'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='libraryQuote'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='libraryTermStructure'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='objectClass'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='objectQuote'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='objectTermStructure'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='enumeration'>%(indent)s%(nameConverted)s</Rule>
+        <Rule objectReference='true'>%(indent)s%(nameConverted)s</Rule>
         <Rule vectorIterator='begin'>%(indent)s%(name)sCpp.begin()</Rule>
         <Rule vectorIterator='end'>%(indent)s%(name)sCpp.end()</Rule>
         <Rule vectorIterator='beginAndEnd' codeID='code55'/>

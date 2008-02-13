@@ -206,16 +206,7 @@
       <Rules>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Real' default='false'>%(indent)s*%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='handleToLib'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='libraryQuote'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='libraryTermStructure'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='underlyingClass'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='objectQuote'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='objectTermStructure'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' objectReference='true'>%(indent)s%(nameConverted)s</Rule>
         <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='long'>%(indent)s*%(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='double'>%(indent)s*%(name)s</Rule>
@@ -226,14 +217,7 @@
         <Rule superType='libraryType' vectorIterator='end'>%(indent)s%(nameConverted)s.end()</Rule>
         <Rule superType='libraryType' vectorIterator='beginAndEnd' codeID='code54'/>
         <Rule superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='libToHandle'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='libraryClass'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='handleToLib'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='libraryQuote'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='libraryTermStructure'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='objectClass'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='objectQuote'>%(indent)s%(nameConverted)s</Rule>
-        <Rule superType='objectTermStructure'>%(indent)s%(nameConverted)s</Rule>
+        <Rule objectReference='true'>%(indent)s%(nameConverted)s</Rule>
         <Rule superType='enumeration'>%(indent)s%(nameConverted)s</Rule>
         <Rule vectorIterator='begin'>%(indent)s%(name)sCpp.begin()</Rule>
         <Rule vectorIterator='end'>%(indent)s%(name)sCpp.end()</Rule>
@@ -250,15 +234,8 @@
         <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' type='QuantLib::Period'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote'>%(indent)s%(name)sCpp</Rule>
-        <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(name)sStrip</Rule>
-        <Rule tensorRank='scalar' superType='handleToLib'>%(indent)s%(name)sStrip</Rule>
-        <Rule tensorRank='scalar' superType='libraryQuote'>%(indent)s%(name)sStrip</Rule>
-        <Rule tensorRank='scalar' superType='libraryTermStructure'>%(indent)s%(name)sStrip</Rule>
-        <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(name)sStrip</Rule>
-        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sStrip</Rule>
-        <Rule tensorRank='scalar' superType='objectQuote'>%(indent)s%(name)sStrip</Rule>
-        <Rule tensorRank='scalar' superType='objectTermStructure'>%(indent)s%(name)sStrip</Rule>
-        <Rule tensorRank='scalar' superType='underlyingClass'>%(indent)s%(name)sStrip</Rule>
+        <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='scalar' objectReference='true'>%(indent)s%(name)sStrip</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar'>%(indent)s*%(name)s</Rule>
         <Rule>%(indent)s%(name)sCpp</Rule>
@@ -269,19 +246,9 @@
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote'/>
-        <Rule tensorRank='scalar' superType='libraryClass' default='true' codeID='code65b'/>
-        <Rule tensorRank='scalar' superType='libraryClass' codeID='code65'/>
-        <Rule tensorRank='scalar' superType='handleToLib' default='true' codeID='code65b'/>
-        <Rule tensorRank='scalar' superType='handleToLib' codeID='code65'/>
-        <Rule tensorRank='scalar' superType='libraryQuote' default='true' codeID='code65b'/>
-        <Rule tensorRank='scalar' superType='libraryQuote' codeID='code65'/>
-        <Rule tensorRank='scalar' superType='libraryTermStructure' default='true' codeID='code65b'/>
-        <Rule tensorRank='scalar' superType='libraryTermStructure' codeID='code65'/>
-        <Rule tensorRank='scalar' superType='libToHandle' default='true' codeID='code65b'/>
-        <Rule tensorRank='scalar' superType='libToHandle' codeID='code65'/>
-        <Rule tensorRank='scalar' superType='objectClass' codeID='code65'/>
-        <Rule tensorRank='scalar' superType='objectQuote' codeID='code65'/>
-        <Rule tensorRank='scalar' superType='underlyingClass' codeID='code65'/>
+        <Rule tensorRank='scalar' superType='enumeration'/>
+        <Rule tensorRank='scalar' objectReference='true' default='true' codeID='code65b'/>
+        <Rule tensorRank='scalar' objectReference='true' codeID='code65'/>
       </Rules>
     </RuleGroup>
 
@@ -313,11 +280,7 @@
       <Rules>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Real' default='false'>%(indent)s*%(name)s</Rule>
         <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='libraryTermStructure'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='handleToLib'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(nameConverted)s</Rule>
-        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' objectReference='true'>%(indent)s%(nameConverted)s</Rule>
         <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)s*%(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='double'>%(indent)s*%(name)s</Rule>
@@ -331,8 +294,7 @@
       <Wrap/>
       <Rules>
         <Rule superType='libraryType'>%(type)s</Rule>
-        <Rule superType='enumeration'>%(type)s</Rule>
-        <Rule superType='underlyingClass'>%(type)s</Rule>
+        <Rule objectReference='true'>%(type)s</Rule>
         <Rule nativeType='string'>std::string</Rule>
         <Rule nativeType='any'>boost::any</Rule>
         <Rule>%(nativeType)s</Rule>

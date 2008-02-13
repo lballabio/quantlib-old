@@ -52,6 +52,7 @@ class Rule(serializable.Serializable):
     codeID_ = None
     vectorIterator_ = None
     const_ = None
+    objectReference_ = None
 
     #############################################
     # public interface
@@ -62,6 +63,7 @@ class Rule(serializable.Serializable):
             and (self.superType_ == None or self.superType_ == param.fullType().superType()) \
             and (self.nativeType_ == None or self.nativeType_ == param.fullType().nativeType()) \
             and (self.type_ == None or self.type_ == param.fullType().value()) \
+            and (self.objectReference_ == None or self.objectReference_ == param.fullType().objectReference()) \
             and (self.vectorIterator_ == None or self.vectorIterator_ == param.vectorIterator()) \
             and (self.default_ == None or self.default_ == bool(param.default())) \
             and (self.error_ == None or self.error_ == bool(param.errorValue())) \
@@ -90,7 +92,8 @@ class Rule(serializable.Serializable):
         serializer.serializeAttributeBoolean(self, common.ERROR)
         serializer.serializeAttributeBoolean(self, common.LOOP)
         serializer.serializeAttributeBoolean(self, common.CONST)
-        serializer.serializeAttribute(self, 'codeID')
+        serializer.serializeAttributeBoolean(self, common.OBJECT_REFERENCE)
+        serializer.serializeAttribute(self, common.CODE_ID)
         serializer.serializeValue(self)
 
     def postSerialize(self):
@@ -131,7 +134,7 @@ class Wrap(serializable.Serializable):
     def serialize(self, serializer):
         """load/unload class state to/from serializer object."""
         serializer.serializeValue(self)
-        serializer.serializeAttribute(self, 'codeID')
+        serializer.serializeAttribute(self, common.CODE_ID)
 
     def postSerialize(self):
         if self.codeID_:
@@ -191,6 +194,7 @@ class RuleGroup(serializable.Serializable):
             common.NAMESPACE_LIB : environment.config().namespaceLibrary(),
             common.NAMESPACE_OBJ : environment.config().namespaceObjects(),
             common.NATIVE_TYPE : self.param_.fullType().nativeType(),
+            common.OBJECT_REFERENCE : self.param_.fullType().objectReference(),
             common.SUPER_TYPE : self.param_.fullType().superType(),
             common.TENSOR_RANK : self.param_.tensorRank(),
             common.TYPE : self.param_.fullType().value() }
@@ -223,6 +227,7 @@ class RuleGroup(serializable.Serializable):
         serializer.serializeAttributeBoolean(self, common.CHECK_PARAM_IGNORE)
         serializer.serializeAttributeBoolean(self, common.CHECK_SKIP_FIRST)
         serializer.serializeAttributeBoolean(self, common.PAD_LAST_PARAM)
+        serializer.serializeAttributeBoolean(self, common.OBJECT_REFERENCE)
         serializer.serializeAttributeInteger(self, common.INDENT, 0)
         serializer.serializeObject(self, Wrap)
         serializer.serializeObjectList(self, Rule)

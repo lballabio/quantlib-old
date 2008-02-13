@@ -59,6 +59,9 @@ class FullType(object):
     def classname(self):
         return self.classname_
 
+    def objectReference(self):
+        return self.objectReference_
+
     def __init__(self, dataType, superType):
 
         self.value_ = dataType.value()
@@ -72,6 +75,7 @@ class FullType(object):
         self.superType_ = superType.name()
         self.conversionSuffix_ = superType.conversionSuffix()
         self.memberAccess_ = superType.memberAccess()
+        self.objectReference_ = superType.objectReference()
 
         m = FullType.RE_NAMESPACE.match(self.value_)
         if m:
