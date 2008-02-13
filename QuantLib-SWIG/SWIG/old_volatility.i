@@ -71,25 +71,26 @@ class CapFloorTermVolCurvePtr
     %extend {
        CapFloorTermVolCurvePtr(const Date& referenceDate,
                                 const Calendar& calendar,
+                                BusinessDayConvention bdc,
                                 const std::vector<Period>& lengths,
                                 const std::vector<Volatility>& vols,
-                                BusinessDayConvention bdc = Following,
+                                
                                 const DayCounter& dc =
                                            QuantLib::Actual365Fixed()) {
             return new CapFloorTermVolCurvePtr(
-                new CapFloorTermVolCurve(referenceDate,calendar,
-                                          lengths,vols,bdc,dc));
+                new CapFloorTermVolCurve(referenceDate,calendar,bdc,
+                                          lengths,vols,dc));
         }
         CapFloorTermVolCurvePtr(Natural settlementDays,
                                  const Calendar& calendar,
+                                 BusinessDayConvention bdc,
                                  const std::vector<Period>& lengths,
                                  const std::vector<Volatility>& vols,
-                                 BusinessDayConvention bdc = Following,
                                  const DayCounter& dc =
                                             QuantLib::Actual365Fixed()) {
             return new CapFloorTermVolCurvePtr(
-                new CapFloorTermVolCurve(settlementDays,calendar,
-                                          lengths,vols,bdc,dc));
+                new CapFloorTermVolCurve(settlementDays,calendar,bdc,
+                                          lengths,vols,dc));
         }
     }
 };

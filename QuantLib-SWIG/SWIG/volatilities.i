@@ -364,40 +364,45 @@ class ConstantOptionletVolatilityPtr
   public:
     %extend {
         ConstantOptionletVolatilityPtr(const Date& referenceDate,
-                                       Volatility volatility,
-                                       const DayCounter& dayCounter,
                                        const Calendar &cal,
-                                       BusinessDayConvention bdc = Following) {
+                                       BusinessDayConvention bdc,
+                                       Volatility volatility,
+                                       const DayCounter& dayCounter) {
             return new ConstantOptionletVolatilityPtr(
-                new ConstantOptionletVolatility(referenceDate, volatility,
-                                                dayCounter, cal, bdc));
+                new ConstantOptionletVolatility(referenceDate, 
+		    cal, bdc, volatility,
+                                                dayCounter));
         }
         ConstantOptionletVolatilityPtr(const Date& referenceDate,
-                                       const Handle<Quote>& volatility,
-                                       const DayCounter& dayCounter,
                                        const Calendar &cal,
-                                       BusinessDayConvention bdc = Following) {
+                                       BusinessDayConvention bdc,
+                                       const Handle<Quote>& volatility,
+                                       const DayCounter& dayCounter) {
             return new ConstantOptionletVolatilityPtr(
-                new ConstantOptionletVolatility(referenceDate, volatility,
-                                                dayCounter, cal, bdc));
+                new ConstantOptionletVolatility(referenceDate, 
+		cal, bdc, volatility,
+                                                dayCounter));
         }
         ConstantOptionletVolatilityPtr(Natural settlementDays,
+                                       const Calendar &cal,
+                                       BusinessDayConvention bdc,
                                        Volatility volatility,
-                                       const DayCounter& dayCounter,
-                                       const Calendar &cal,
-                                       BusinessDayConvention bdc = Following) {
+                                       const DayCounter& dayCounter) {
             return new ConstantOptionletVolatilityPtr(
-                new ConstantOptionletVolatility(settlementDays, volatility,
-                                                dayCounter, cal, bdc));
+                new ConstantOptionletVolatility(settlementDays, 
+					cal, bdc, volatility,
+                                                dayCounter));
         }
         ConstantOptionletVolatilityPtr(Natural settlementDays,
-                                       const Handle<Quote>& volatility,
-                                       const DayCounter& dayCounter,
                                        const Calendar &cal,
-                                       BusinessDayConvention bdc = Following) {
+                                       BusinessDayConvention bdc,
+                                       const Handle<Quote>& volatility,
+                                       const DayCounter& dayCounter) {
             return new ConstantOptionletVolatilityPtr(
-                new ConstantOptionletVolatility(settlementDays, volatility,
-                                                dayCounter, cal, bdc));
+                new ConstantOptionletVolatility(settlementDays, 
+		cal, bdc, 
+		    		volatility,
+                                                dayCounter));
         }
     }
 };
