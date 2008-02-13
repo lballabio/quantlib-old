@@ -190,10 +190,11 @@
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='loopInputs' indent='4' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
+    <RuleGroup name='loopInputs' indent='4' delimiter=',&#10;' checkParameterIgnore='true'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(nameConverted)s</Rule>
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)s*%(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='double'>%(indent)s*%(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sstd::string(%(name)s)</Rule>

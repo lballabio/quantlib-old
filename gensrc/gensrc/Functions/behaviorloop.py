@@ -52,7 +52,6 @@ class BehaviorLoop(object):
             'functionName' : self.functionName_,
             'functionSignature' : functionSignature,
             'inputType' : addin.loopReturnType().apply(self.loopParamRef_),
-            'objectName' : self.objectName_,
             'returnType' : addin.loopReturnType().apply(self.func_.returnValue()) }
 
     #############################################
@@ -133,7 +132,6 @@ class BehaviorMemberLoop(BehaviorLoop):
         BehaviorLoop.__init__(self)
         self.functionCodeName_ = self.func_.type() + '::' + self.func_.libraryFunction()
         self.functionSignature_ = self.func_.name() + 'Signature'
-        self.objectName_ = '\n' + 16 * ' ' + self.func_.objectId() + ','
 
     def functionReference(self):
         return 'boost::shared_ptr<%s>' % self.func_.type()
@@ -158,7 +156,6 @@ class BehaviorProcedureLoop(BehaviorLoop):
 
     BIND_POINTER = '%(returnType)s (__cdecl*)(%(inputTypes)s)'
     BIND_LIST = 'boost::_bi::list%(listCount)d<%(inputTypes)s > >'
-    objectName_ = ''
 
     #############################################
     # public interface
