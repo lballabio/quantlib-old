@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -174,8 +174,8 @@ Several users have reported that their %QuantLibAddin or QuantLibXL build fails
 with an error message such as:
 \verbatim
 Creating library
-.\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_9_0.lib and object
-.\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_9_0.exp
+.\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_9_5.lib and object
+.\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_9_5.exp
 log4cxxs-vc80-mt-s.lib(msxml.obj) : error LNK2019: unresolved external symbol
 "wchar_t * __stdcall _com_util::ConvertStringToBSTR(char const *)"
 (?ConvertStringToBSTR@_com_util@@ YGPA_WPBD@Z) referenced in function "public:
@@ -216,9 +216,10 @@ fix it would be much appreciated.
 \subsection faq_item_start How do I start QuantLibXL?
 
 \li Start Excel
-\li Load the Addin: \b QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_0.xll
-\li Load a client worksheet e.g. \b QuantLibXL\\Workbooks\\StandaloneExamples\\YC_SwapDemo.xls
-\li Hit \b Ctrl-Alt-F9 to force a recalculation of the workbook
+\li Load the addin - QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_5.xll
+\li Load an example workbook e.g. QuantLibXL\\Workbooks\\StandaloneExamples\\Option.xls
+\li Hit Ctrl-Alt-F9 to refresh the workbook
+\li For more info see the file README.txt in the folder StandaloneExamples
 
 \subsection faq_item_vba How do I call QuantLibXL functions from Excel VBA?
 
