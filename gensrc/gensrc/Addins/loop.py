@@ -47,7 +47,7 @@ namespace %(namespace)s {
 
     FUNC_SIG = '''\
     typedef     %(returnType)s 
-                (%(functionType)s::* %(functionSignature)s)(%(inputTypes3)s)%(const)s;'''
+                (%(functionType)s::* %(functionSignature)s)(%(signatureArguments)s)%(const)s;'''
 
     BUF_LOOP = '''
     // %(functionName)s
@@ -74,8 +74,8 @@ namespace %(namespace)s {
         """Generate loop typedefs for given function."""
         returnType = self.loopDatatype_.apply(func.returnValue())
         functionBind = Loop.FUNC_BIND % {
-            'bindList' : func.behavior().bindList(self.inputTypes2_),
-            'bindPointer' : func.behavior().bindPointer(self.inputTypes1_, returnType),
+            'bindList' : func.behavior().bindList(self.bindList_),
+            'bindPointer' : func.behavior().bindPointer(self.bindPointer_, returnType),
             'functionName' : func.name(),
             'returnType' : returnType }
         if func.behavior().functionSignature_:
@@ -87,7 +87,7 @@ namespace %(namespace)s {
                 'const' : const,
                 'functionSignature' : func.behavior().functionSignature_,
                 'functionType' : func.type(),
-                'inputTypes3' : func.parameterList().generate(self.inputTypes3_),
+                'signatureArguments' : func.parameterList().generate(self.signatureArguments_),
                 'returnType' : returnType }
         else:
             functionSignature = ''

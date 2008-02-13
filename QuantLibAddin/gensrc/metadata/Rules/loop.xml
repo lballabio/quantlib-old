@@ -1,8 +1,9 @@
+
 <root>
 
   <RuleGroups>
 
-    <RuleGroup name='inputTypes1' indent='5' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
+    <RuleGroup name='bindPointer' indent='5' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' superType='libraryType' const='true'>%(indent)sconst %(type)s&amp;</Rule>
@@ -29,7 +30,7 @@
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='inputTypes2' indent='5' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
+    <RuleGroup name='bindList' indent='5' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' superType='libraryType'>%(indent)sboost::_bi::value&lt;%(type)s&gt;</Rule>
@@ -46,7 +47,7 @@
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='inputTypes3' indent='5' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
+    <RuleGroup name='signatureArguments' indent='5' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' superType='libraryType' const='true'>%(indent)sconst %(type)s&amp;</Rule>
@@ -87,3 +88,4 @@
   </RuleGroups>
 
 </root>
+
