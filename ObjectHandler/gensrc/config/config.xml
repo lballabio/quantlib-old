@@ -1,10 +1,12 @@
+
 <Config>
 
+  <relativePath>ObjectHandler/gensrc</relativePath>
   <prefix>oh</prefix>
   <namespaceObjects>ObjectHandler</namespaceObjects>
   <namespaceLibrary>ObjectHandler</namespaceLibrary>
   <libRootDirectory>oh</libRootDirectory>
-  <coreCategoryPath>config/categories</coreCategoryPath>
-  <coreFunctions>metadata/Functions/</coreFunctions>
+  <coreConfigPath>ObjectHandler/gensrc</coreConfigPath>
 
 </Config>
+

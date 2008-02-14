@@ -1,7 +1,7 @@
 
 <Addin name='Serialization'>
   
-  <rootDirectory>qlo/Serialization</rootDirectory>
+  <rootDirectory>QuantLibAddin/qlo/Serialization</rootDirectory>
   <coreCategories>false</coreCategories>
   <addinCategories>true</addinCategories>
 

@@ -1,5 +1,7 @@
+
 <Addin name='Enumerations'>
 
+  <rootDirectory>QuantLibAddin/qlo/Enumerations/Register</rootDirectory>
   <loadRules>false</loadRules>
   <coreCategories>false</coreCategories>
   <addinCategories>true</addinCategories>
@@ -11,3 +13,4 @@
   </Buffers>
 
 </Addin>
+

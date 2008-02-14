@@ -18,6 +18,7 @@
 
 """global configuration state for gensrc application."""
 
+import os
 import gensrc
 from gensrc.Patterns import singleton
 
@@ -34,18 +35,30 @@ class Environment(singleton.Singleton):
     # public interface
     #############################################
 
-    def rootDirectory(self):
-        return gensrc.__path__[0]
+    def gensrcRootPath(self):
+        return gensrc.__path__[0] + '/'
 
-    def setConfiguration(self, configuration):
-        self.configuration_ = configuration
+    def addinRootPath(self):
+        return self.addinRootPath_
 
-    def setTypes(self, typeList):
-        self.typeList_ = typeList
+    def addinConfigPath(self):
+        return self.addinConfigPath_
 
     def typeList(self):
         return self.typeList_
 
     def configuration(self):
         return self.configuration_
+
+    def coreConfigPath(self):
+        return self.coreConfigPath_
+
+    def setConfiguration(self, configuration):
+        self.configuration_ = configuration
+        self.addinConfigPath_ = os.getcwd().replace('\\', '/') + '/'
+        self.addinRootPath_ = self.addinConfigPath_[0:len(self.addinConfigPath_) - len(self.configuration_.relativePath()) - 1]
+        self.coreConfigPath_ = self.addinRootPath_ + self.configuration_.coreConfigPath() + '/'
+
+    def setTypes(self, typeList):
+        self.typeList_ = typeList
 

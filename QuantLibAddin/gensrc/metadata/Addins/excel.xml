@@ -1,8 +1,8 @@
+
 <Addin name='Excel'>
   
   <relativePath>qlxl</relativePath>
-  <rootDirectory>../QuantLibXL/qlxl</rootDirectory>
-  <dataDirectory>../../QuantLibXL/Data</dataDirectory>
+  <rootDirectory>QuantLibXL/qlxl</rootDirectory>
   <exportSymbols>false</exportSymbols>
   <namespaceAddin>QuantLibXL</namespaceAddin>
   <coreCategories>false</coreCategories>

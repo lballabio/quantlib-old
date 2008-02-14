@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,23 +28,8 @@ class Configuration(serializable.Serializable):
     # public interface
     #############################################
 
-    def coreCategoryNames(self):
-        return self.coreCategoryNames_
-
-    def addinCategoryNames(self):
-        return self.addinCategoryNames_
-
-    def voRootDirectory(self):
-        return self.voRootDirectory_
-
     def libRootDirectory(self):
         return self.libRootDirectory_
-
-    def loopRootDirectory(self):
-        return self.loopRootDirectory_
-
-    def libFullPath(self):
-        return self.libFullPath_
 
     def namespaceObjects(self):
         return self.namespaceObjects_
@@ -64,17 +49,14 @@ class Configuration(serializable.Serializable):
     def prefixExcel(self):
         return self.prefixExcel_
 
-    def coreCategoryPath(self):
-        return self.coreCategoryPath_
+    def coreConfigPath(self):
+        return self.coreConfigPath_
 
-    def coreFunctions(self):
-        return self.coreFunctions_
+    def relativePath(self):
+        return self.relativePath_
 
-    def addinCategoryPath(self):
-        return self.addinCategoryPath_
-
-    def addinFunctions(self):
-        return self.addinFunctions_
+    def copyrightBuffer(self):
+        return self.copyrightBuffer_
 
     #############################################
     # serializer interface
@@ -90,20 +72,8 @@ class Configuration(serializable.Serializable):
         serializer.serializeProperty(self, 'prefixExcel')
         serializer.serializeBoolean(self, 'usingEnumerations')
         serializer.serializeBoolean(self, 'usingSerialization')
-        serializer.serializeProperty(self, 'coreCategoryPath')
-        serializer.serializeProperty(self, 'coreFunctions')
-        serializer.serializeProperty(self, 'addinCategoryPath')
-        serializer.serializeProperty(self, 'addinFunctions')
-
-    def postSerialize(self):
-        """Perform post serialization initialization."""
-        self.voRootDirectory_ = self.libRootDirectory_ + '/ValueObjects'
-        self.loopRootDirectory_ = self.libRootDirectory_ + '/Loop'
-        self.libFullPath_ = '../' + self.libRootDirectory_ + '/'
-        
-        utilities.serializeList(self.coreCategoryPath_, self, 'coreCategoryNames', 'categoryName')
-        utilities.serializeList(self.addinCategoryPath_, self, 'addinCategoryNames', 'categoryName')
-        
+        serializer.serializeProperty(self, 'coreConfigPath')
+        serializer.serializeProperty(self, 'relativePath')
 
     #############################################
     # private member functions
@@ -114,6 +84,6 @@ class Configuration(serializable.Serializable):
 
         # load copyright buffer
         fileBuffer = open('stubs/stub.copyright')
-        self.copyrightBuffer = fileBuffer.read()
+        self.copyrightBuffer_ = fileBuffer.read()
         fileBuffer.close()
 

@@ -36,7 +36,7 @@ MAPLINE = """    %s[ STRFROMANSI( "%s" ) ]
         =  STRFROMANSI( "%s" );\n"""
 PARMLINE = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
 LOOP_INCLUDES = '''\
-#include <%s/loop_%s.hpp>
+#include <%s/Loop/loop_%s.hpp>
 #include <Addins/Calc/loop.hpp>'''
 
 class CalcAddin(addin.Addin):

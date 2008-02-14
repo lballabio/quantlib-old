@@ -62,7 +62,7 @@ class CppAddin(addin.Addin):
         """Generate source code for all functions in all categories."""
         bufferAll = CppAddin.BUFFER_ALL % { 'path' : self.relativePath_ }
         loopIncludes = '''\
-#include <%s/loop_%s.hpp>
+#include <%s/Loop/loop_%s.hpp>
 #include <''' + self.relativePath_ + '''/loop.hpp>\n'''
         for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_):
             categoryIncludes = cat.includeList(loopIncludes)

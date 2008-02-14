@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -51,22 +51,23 @@ class CategoryList(object):
     # private member functions
     #############################################
 
-    def loadCategories(self, catList, catDir):
-        if not catDir: return
+    def loadCategories(self, catList, configPath):
+        if not configPath: return
         for categoryName in catList:
-            cat = utilities.serializeObject(category.Category, catDir + categoryName)
+            cat = utilities.serializeObject(category.Category, configPath + 'metadata/Functions/' + categoryName)
             if self.categoryDict_.has_key(cat.name()):
                 raise exceptions.DuplicateNameException(cat.name())
             self.categoryDict_[cat.name()] = cat
     
     def __init__(self):
 
-        self.coreCategoryNames_ = environment.config().coreCategoryNames()
-        self.coreCategoryNames_.sort()
+        utilities.serializeList(environment.Environment.instance().coreConfigPath() + 'config/categories', self, 'coreCategoryNames', 'categoryName')
+        utilities.serializeList(environment.Environment.instance().addinConfigPath() + 'config/categories', self, 'addinCategoryNames', 'categoryName')
 
-        self.addinCategoryNames_ = environment.config().addinCategoryNames()
+        self.coreCategoryNames_.sort()
         self.addinCategoryNames_.sort()
 
         self.categoryDict_ = {}
-        self.loadCategories(self.coreCategoryNames_, environment.config().coreFunctions())
-        self.loadCategories(self.addinCategoryNames_, environment.config().addinFunctions())
+        self.loadCategories(self.coreCategoryNames_, environment.Environment.instance().coreConfigPath())
+        self.loadCategories(self.addinCategoryNames_, environment.Environment.instance().addinConfigPath())
+

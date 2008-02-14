@@ -1,6 +1,7 @@
+
 <Addin name='Loop'>
   
-  <rootDirectory>qlo/Loop</rootDirectory>
+  <rootDirectory>QuantLibAddin/qlo/Loop</rootDirectory>
   <coreCategories>false</coreCategories>
   <addinCategories>true</addinCategories>
 

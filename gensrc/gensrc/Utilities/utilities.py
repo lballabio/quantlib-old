@@ -32,7 +32,7 @@ def serializeObjectImpl(objectClass, fileName):
 def serializeObject(objectClass, fileName = None):
     """instantiate an xml reader and load requested object."""
     if not fileName: 
-        fileName = environment.Environment.instance().rootDirectory() + '/metadata/' + objectClass.__name__.lower()
+        fileName = environment.Environment.instance().gensrcRootPath() + '/metadata/' + objectClass.__name__.lower()
     try:
         return serializeObjectImpl(objectClass, fileName)
     except:

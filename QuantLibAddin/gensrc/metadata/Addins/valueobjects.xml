@@ -1,6 +1,7 @@
+
 <Addin name='ValueObjects'>
   
-  <rootDirectory>qlo/ValueObjects</rootDirectory>
+  <rootDirectory>QuantLibAddin/qlo/ValueObjects</rootDirectory>
   <coreCategories>false</coreCategories>
   <addinCategories>true</addinCategories>
 
@@ -18,3 +19,4 @@
   </Buffers>
 
 </Addin>
+

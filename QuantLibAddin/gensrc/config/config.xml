@@ -1,4 +1,7 @@
+
 <Config>
+
+  <relativePath>QuantLibAddin/gensrc</relativePath>
 
   <prefix>ql</prefix>
   <prefixExcel>qlxl</prefixExcel>
@@ -7,9 +10,7 @@
   <usingSerialization>true</usingSerialization>
   <namespaceLibrary>QuantLib</namespaceLibrary>
   <namespaceObjects>QuantLibAddin</namespaceObjects>
-  <coreCategoryPath>../../ObjectHandler/gensrc/config/categories</coreCategoryPath>
-  <coreFunctions>../../ObjectHandler/gensrc/metadata/Functions/</coreFunctions>
-  <addinCategoryPath>config/categories</addinCategoryPath>
-  <addinFunctions>metadata/Functions/</addinFunctions>
+  <coreConfigPath>ObjectHandler/gensrc</coreConfigPath>
 
 </Config>
+

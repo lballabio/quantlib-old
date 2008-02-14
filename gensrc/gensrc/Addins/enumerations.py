@@ -58,7 +58,6 @@ class Enumerations(addin.Addin):
         """generate source code for enumerations."""
 
         self.enumerationList_ = enumerationList
-        self.rootPath_ = environment.config().libFullPath() + 'Enumerations/Register/'
 
         log.Log.instance().logMessage(' begin generating Enumerations ...')
         self.generateEnumeratedTypes()

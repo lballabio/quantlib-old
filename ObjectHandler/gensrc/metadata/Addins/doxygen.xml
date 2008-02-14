@@ -1,6 +1,7 @@
+
 <Addin name='Doxygen'>
 
-  <rootDirectory>Docs/auto.pages</rootDirectory>
+  <rootDirectory>ObjectHandler/Docs/auto.pages</rootDirectory>
   <coreCategories>true</coreCategories>
   <addinCategories>false</addinCategories>
 
@@ -16,3 +17,4 @@
   </Buffers>
 
 </Addin>
+

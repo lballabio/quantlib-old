@@ -58,7 +58,7 @@ class Category(serializable.Serializable):
         ret = self.addinIncludeList_
         if loopBuffer and self.containsLoopFunction_:
             ret += loopBuffer % (
-                environment.config().loopRootDirectory(),
+                environment.config().libRootDirectory(),
                 self.name_)
         return ret
 
@@ -147,8 +147,8 @@ class Category(serializable.Serializable):
                 self.addinIncludeList_ += '#include <%s>\n' % includeFile
 
         if self.generateVOs_:
-            self.addinIncludeList_ += '#include <%s/vo_%s.hpp>\n' % (
-                environment.config().voRootDirectory(),
+            self.addinIncludeList_ += '#include <%s/ValueObjects/vo_%s.hpp>\n' % (
+                environment.config().libRootDirectory(),
                 self.name_)
 
         self.serializationIncludeList_ = self.enumIncludes(enumerationList, True)

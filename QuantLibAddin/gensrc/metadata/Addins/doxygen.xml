@@ -1,6 +1,7 @@
+
 <Addin name='Doxygen'>
 
-  <rootDirectory>Docs/auto.pages</rootDirectory>
+  <rootDirectory>QuantLibAddin/Docs/auto.pages</rootDirectory>
   <coreCategories>true</coreCategories>
   <addinCategories>true</addinCategories>
 
@@ -17,3 +18,4 @@
   </Buffers>
 
 </Addin>
+

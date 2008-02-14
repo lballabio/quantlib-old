@@ -26,6 +26,7 @@ from gensrc.Rules import rule
 from gensrc.Serialization import serializable
 from gensrc.Serialization import xmlreader
 from gensrc.Utilities import buffer
+from gensrc.Configuration import environment
 import os
 
 class Addin(serializable.Serializable):
@@ -88,9 +89,6 @@ class Addin(serializable.Serializable):
     def relativePath(self):
         return self.relativePath_
 
-    def dataDirectory(self):
-        return self.dataDirectory_
-
     def idStrip(self, parameterList):
         return ""
 
@@ -108,7 +106,6 @@ class Addin(serializable.Serializable):
         """load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeProperty(self, common.ROOT_DIRECTORY)
-        serializer.serializeProperty(self, 'dataDirectory')
         serializer.serializeObjectPropertyDict(self, buffer.Buffer)
         serializer.serializeProperty(self, common.COPYRIGHT)
         serializer.serializeBoolean(self, 'loadRules', True)
@@ -124,10 +121,9 @@ class Addin(serializable.Serializable):
             serializer = xmlreader.XmlReader('metadata/Rules/' + self.name_.lower())
             serializer.serializeObjectPropertyDict(self, rule.RuleGroup)
 
-        if self.rootDirectory_:
-            self.rootPath_ = "../%s/" % self.rootDirectory_
-            if not os.path.exists(self.rootPath_): 
-                os.makedirs(self.rootPath_)
+        self.rootPath_ = environment.Environment.instance().addinRootPath() + self.rootDirectory_ + '/'
+        if not os.path.exists(self.rootPath_): 
+            os.makedirs(self.rootPath_)
 
     #############################################
     # private member functions

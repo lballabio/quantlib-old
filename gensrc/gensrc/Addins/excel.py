@@ -52,7 +52,7 @@ UNREGISTER = '''
 MAX_LEN_PARAMLIST = 232
 
 LOOP_INCLUDES = '''\
-#include <%s/loop_%s.hpp>
+#include <%s/Loop/loop_%s.hpp>
 #include <ohxl/loop.hpp>\n'''
 
 # some constant values for processing cell range names

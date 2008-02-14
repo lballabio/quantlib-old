@@ -25,13 +25,6 @@ import sys
 import filecmp
 import re
 
-# constants
-
-HEADER = """\
-// This file was generated automatically by %s.
-// Editing this file manually is not recommended.\n\n"""
-UPDATE_MSG = '  file %-65s - %10s'
-
 class OutputFile(object):
     """represent a file which gets overwritten only when its contents change."""
 
@@ -39,19 +32,23 @@ class OutputFile(object):
     # class variables
     #############################################
     
-    trimWhitespace_ = re.compile(r'^ *', re.M)
+    TRIM_WHITESPACE = re.compile(r'^ *', re.M)
+    HEADER = """\
+// This file was generated automatically by %s.
+// Editing this file manually is not recommended.\n\n"""
+    UPDATE_MSG = '%-100s %10s'
 
     #############################################
     # public interface
     #############################################
 
     def printCopyright(self, copyright):
-        copyrightTrim = OutputFile.trimWhitespace_.sub(' ', copyright)
-        self.outFile_.write(environment.config().copyrightBuffer % 
+        copyrightTrim = OutputFile.TRIM_WHITESPACE.sub(' ', copyright)
+        self.outFile_.write(environment.config().copyrightBuffer() % 
             { 'copyright' : copyrightTrim } )
 
     def printHeader(self):
-        self.outFile_.write(HEADER % os.path.basename(sys.argv[0]))
+        self.outFile_.write(OutputFile.HEADER % os.path.basename(sys.argv[0]))
 
     def close(self):
         """close temp file and overwrite original if they are different."""
@@ -59,16 +56,16 @@ class OutputFile(object):
         if os.path.exists(self.fileName_):
             if filecmp.cmp(self.fileName_, self.fileNameTemp_):
                 os.unlink(self.fileNameTemp_)
-                log.Log.instance().logMessage(UPDATE_MSG % (self.fileName_, 'unchanged'))
+                log.Log.instance().logMessage(OutputFile.UPDATE_MSG % (self.fileName_ + ':', 'unchanged'))
                 self.addin_.incrementUnchanged()
             else:
                 os.unlink(self.fileName_)
                 os.rename(self.fileNameTemp_, self.fileName_)
-                log.Log.instance().logMessage(UPDATE_MSG % (self.fileName_, 'updated'))
+                log.Log.instance().logMessage(OutputFile.UPDATE_MSG % (self.fileName_ + ':', 'updated'))
                 self.addin_.incrementUpdated()
         else:
             os.rename(self.fileNameTemp_, self.fileName_)
-            log.Log.instance().logMessage(UPDATE_MSG % (self.fileName_, 'created'))
+            log.Log.instance().logMessage(OutputFile.UPDATE_MSG % (self.fileName_ + ':', 'created'))
             self.addin_.incrementCreated()
 
     #############################################

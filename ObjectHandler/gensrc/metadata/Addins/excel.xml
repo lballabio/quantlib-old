@@ -1,6 +1,7 @@
+
 <Addin name='Excel'>
 
-  <rootDirectory>ohxl</rootDirectory>
+  <rootDirectory>ObjectHandler/ohxl</rootDirectory>
   <exportSymbols>true</exportSymbols>
   <coreCategories>true</coreCategories>
   <addinCategories>false</addinCategories>

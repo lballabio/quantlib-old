@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,7 +23,7 @@ from gensrc.Configuration import environment
 from gensrc.Serialization import serializable
 
 def loadBuffer(bufferName):
-    fileName = environment.Environment.instance().rootDirectory() + '/stubs/' + bufferName
+    fileName = environment.Environment.instance().gensrcRootPath() + '/stubs/' + bufferName
     fileBuffer = open(fileName)
     ret = fileBuffer.read()
     fileBuffer.close()
@@ -58,9 +58,9 @@ class Buffer(serializable.Serializable):
     def postSerialize(self):
         """load the named buffer."""
         if self.local_:
-            fileBuffer = open('stubs/' + self.fileName_)
+            fileBuffer = open(environment.Environment.instance().addinConfigPath() + 'stubs/' + self.fileName_)
         else:
-            fileBuffer = open(environment.Environment.instance().rootDirectory() + '/stubs/' + self.fileName_)
+            fileBuffer = open(environment.Environment.instance().gensrcRootPath() + 'stubs/' + self.fileName_)
         self.text_ = fileBuffer.read()
         fileBuffer.close()
 

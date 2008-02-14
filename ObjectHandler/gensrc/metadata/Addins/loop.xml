@@ -1,6 +1,7 @@
+
 <Addin name='Loop'>
 
-  <rootDirectory>oh/Loop</rootDirectory>
+  <rootDirectory>ObjectHandler/oh/Loop</rootDirectory>
   <coreCategories>true</coreCategories>
   <addinCategories>false</addinCategories>
 

@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,12 +19,13 @@
 """global log class - presently outputs all messages to stdout."""
 
 from gensrc.Patterns import singleton
-import time
+#import time
 
 class Log(singleton.Singleton):
     """global log class - presently outputs all messages to stdout."""
 
     def logMessage(self, message = ''):
         """print a message to stdout."""
-        print time.strftime('%d-%b-%Y %H:%M:%S ') + message
+        #print time.strftime('%d-%b-%Y %H:%M:%S ') + message
+        print message
 

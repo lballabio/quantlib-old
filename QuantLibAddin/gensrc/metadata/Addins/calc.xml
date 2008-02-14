@@ -1,7 +1,8 @@
+
 <Addin name='Calc'>
   
   <addinClassName>QLAddin::QLAddin</addinClassName>
-  <rootDirectory>Addins/Calc</rootDirectory>
+  <rootDirectory>QuantLibAddin/Addins/Calc</rootDirectory>
   <coreCategories>true</coreCategories>
   <addinCategories>true</addinCategories>
 
