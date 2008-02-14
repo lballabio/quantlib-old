@@ -201,7 +201,7 @@
           <Parameter name='FirstImmDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>First (IMM) date. If omitted, default is firt IMM date</description>
+            <description>First (IMM) date. If omitted, default is first IMM date</description>
           </Parameter>
           <Parameter name='FixedLegDayCounter' default='"30/360 (Bond Basis)"'>
             <type>QuantLib::DayCounter</type>
