@@ -36,7 +36,7 @@ def serializeObject(objectClass, fileName = None):
     try:
         return serializeObjectImpl(objectClass, fileName)
     except:
-        raise exceptions.UtilitiesSerializationException(fileName)
+        raise exceptions.UtilitiesSerializationException(fileName, objectClass.__name__)
 
 def serializeList(path, caller, listName, itemName):
     """instantiate an xml reader and load requested list."""

@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,6 +18,7 @@
 
 import sys
 import traceback
+import re
 
 ERROR_HEADER='''
 > 
@@ -37,5 +38,8 @@ ERROR_FOOTER='''
 def gensrc_excepthook(type, value, tb):
     sys.stderr.write(ERROR_HEADER)
     traceback.print_tb(tb, None, sys.stderr)
-    sys.stderr.write(ERROR_FOOTER % value)
+    # This application runs in a makefile project under visual studio, which
+    # truncates empty lines, we prevent this by prefixing a > to each line.
+    valueFormatted = re.sub('(?m)^', '> ', str(value))
+    sys.stderr.write(ERROR_FOOTER % valueFormatted)
 

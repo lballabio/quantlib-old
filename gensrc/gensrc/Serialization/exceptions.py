@@ -35,7 +35,7 @@ Method %(method)s must be overridden in classes derived from %(parent)s."""
 class SerializationParseException(SerializationException):
 
     PARSE_ERROR = """
-Error loading XML document %(xmlDocumentName)s :
+Error loading XML document '%(xmlDocumentName)s' :
 %(parseError)s"""
 
     def __init__(self, xmlDocumentName):
@@ -47,7 +47,7 @@ Error loading XML document %(xmlDocumentName)s :
 class SerializationDictException(SerializationException):
 
     EMPTY_DICT_ERROR = """
-Error loading XML document %(xmlDocumentName)s :
+Error loading XML document '%(xmlDocumentName)s' :
 dict element "%(dictElementName)s" is empty."""
 
     def __init__(self, xmlDocumentName, dictElementName):
@@ -58,7 +58,7 @@ dict element "%(dictElementName)s" is empty."""
 class SerializationElementMissingException(SerializationException):
 
     ELEMENT_MISSING_ERROR = '''
-Error loading XML document %(xmlDocumentName)s :
+Error loading XML document '%(xmlDocumentName)s' :
 No element with name "%(elementName)s"'''
 
     def __init__(self, xmlDocumentName, elementName):
@@ -69,7 +69,7 @@ No element with name "%(elementName)s"'''
 class SerializationConvertBooleanException(SerializationException):
 
     CONVERT_BOOLEAN_ERROR = '''
-Error loading XML document %(xmlDocumentName)s :
+Error loading XML document '%(xmlDocumentName)s' :
 Unable to convert string "%(stringValue)s" to boolean.'''
 
     def __init__(self, xmlDocumentName, stringValue):
@@ -86,12 +86,14 @@ no creator function found for class "%(className)s"'''
         self.value_ = SerializationCreatorException.UNDEFINED_CREATOR_ERROR % {
             'className' : className }
 
-class DuplicateKeyException(SerializationException):
+class SerializationDuplicateKeyException(SerializationException):
 
     DUPLICATE_KEY_ERROR = '''
+Error loading XML document '%(xmlDocumentName)s' :
 Error deserializing element with name "%(keyName)s" - duplicate key'''
 
-    def __init__(self, keyName):
+    def __init__(self, xmlDocumentName, keyName):
         self.value_ = DuplicateKeyException.DUPLICATE_KEY_ERROR % {
+            'xmlDocumentName' : xmlDocumentName,
             'keyName' : keyName }
 

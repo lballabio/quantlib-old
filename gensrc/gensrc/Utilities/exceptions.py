@@ -25,12 +25,13 @@ class UtilitiesException(exceptions.GensrcException):
 class UtilitiesSerializationException(UtilitiesException):
 
     SERIALIZATION_ERROR = """
-Error loading XML document '%(fileName)s.xml' :
+Error loading object of class '%(className)s' from XML document '%(fileName)s.xml' :
 %(parseError)s"""
 
-    def __init__(self, fileName):
+    def __init__(self, fileName, className):
         errorClass, errorObject, traceBack = sys.exc_info()
         self.value_ = UtilitiesSerializationException.SERIALIZATION_ERROR % {
+            'className' : className,
             'fileName' : fileName,
             'parseError' : str(errorObject) }
 

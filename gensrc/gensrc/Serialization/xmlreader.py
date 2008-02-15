@@ -160,7 +160,7 @@ class XmlReader(serializer.Serializer):
             objectInstance.postSerialize()
             self.node_ = self.node_.parentNode.parentNode
             if dict.has_key(objectInstance.name()):
-                raise exceptions.DuplicateKeyException(objectInstance.name())
+                raise exceptions.SerializationDuplicateKeyException(self.documentName_, objectInstance.name())
             dict[objectInstance.name()] = objectInstance
             keys.append(objectInstance.name())
         keys.sort()

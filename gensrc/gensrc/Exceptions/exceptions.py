@@ -1,6 +1,6 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,13 +17,10 @@
 """
 
 import sys
-import re
 
 class GensrcException(Exception):
 
     def __str__(self):
-        """Stringify this exception.  This application runs in a makefile
-        project under visual studio, which truncates empty lines, we prevent
-        this by prefixing a > to each line."""
-        return re.sub('(?m)^', '> ', self.value_)
+        """Stringify this exception."""
+        return self.value_
 
