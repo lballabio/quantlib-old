@@ -21,6 +21,7 @@
 import os
 import gensrc
 from gensrc.Patterns import singleton
+from gensrc.Configuration import exceptions
 
 def config():
     return Environment.instance().configuration()
@@ -55,9 +56,15 @@ class Environment(singleton.Singleton):
 
     def setConfiguration(self, configuration):
         self.configuration_ = configuration
-        self.addinConfigPath_ = os.getcwd().replace('\\', '/') + '/'
-        self.addinRootPath_ = self.addinConfigPath_[0:len(self.addinConfigPath_) - len(self.configuration_.relativePath()) - 1]
+        cwd = os.getcwd().replace('\\', '/')
+        self.addinConfigPath_ = cwd + '/'
+        relativePath = self.configuration_.relativePath() + '/'
+        if not self.addinConfigPath_.endswith(relativePath):
+            raise exceptions.InvalidRelativePathException(cwd, self.configuration_.relativePath())
+        self.addinRootPath_ = self.addinConfigPath_[0:len(self.addinConfigPath_) - len(relativePath)]
         self.coreConfigPath_ = self.addinRootPath_ + self.configuration_.coreConfigPath() + '/'
+        if not os.path.exists(self.coreConfigPath_):
+            raise exceptions.InvalidCorePathException(self.addinRootPath_, self.configuration_.coreConfigPath())
 
     def setTypes(self, typeList):
         self.typeList_ = typeList
