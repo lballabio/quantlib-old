@@ -18,16 +18,22 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Algorithms required to generate the source code for a given function 
+parameter in a given context."""
+
 from gensrc.Rules import exceptions
 from gensrc.Configuration import environment
 from gensrc.Serialization import serializable
 from gensrc.Utilities import common
+import sys
+import os
+# The following allows the client application to place file codedict.py
+# in subdirectory 'code' of current directory.
+sys.path.append(os.getcwd() + '/code')
 import codedict
 
-"""Algorithms required to generate the source code for a given function 
-parameter in a given context."""
-
 def getCode(codeID):
+    """Retrieve the requested item from module codedict.py"""
     if codedict.__dict__.has_key(codeID):
         return codedict.__dict__[codeID]
     else:
@@ -172,7 +178,7 @@ class RuleGroup(serializable.Serializable):
             return self.invokeRule()
 
     def applyRule(self):
-        '''Apply the Rule, if any, which matches the given parameter'''
+        """Apply the Rule, if any, which matches the given parameter"""
         for ruleItem in self.rules_:
             if ruleItem.match(self.param_):
                 self.ruleResult_ = ruleItem.code()
