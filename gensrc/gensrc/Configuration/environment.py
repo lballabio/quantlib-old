@@ -54,7 +54,8 @@ class Environment(singleton.Singleton):
     def coreConfigPath(self):
         return self.coreConfigPath_
 
-    def setConfiguration(self, configuration):
+    def init(self, configuration, typeList):
+        self.typeList_ = typeList
         self.configuration_ = configuration
         cwd = os.getcwd().replace('\\', '/')
         self.addinConfigPath_ = cwd + '/'
@@ -65,7 +66,4 @@ class Environment(singleton.Singleton):
         self.coreConfigPath_ = self.addinRootPath_ + self.configuration_.coreConfigPath() + '/'
         if not os.path.exists(self.coreConfigPath_):
             raise exceptions.InvalidCorePathException(self.addinRootPath_, self.configuration_.coreConfigPath())
-
-    def setTypes(self, typeList):
-        self.typeList_ = typeList
 

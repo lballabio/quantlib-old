@@ -28,9 +28,7 @@ sys.path.append(os.getcwd() + '/code')
 import getopt
 from gensrc.Addins import addinlist
 from gensrc.Exceptions import excepthook
-from gensrc.Utilities import utilities
-from gensrc.Types import typelist
-from gensrc.Configuration import configuration
+from gensrc.Configuration import initialization
 from gensrc.Configuration import environment
 
 USAGE_ERROR = """
@@ -101,13 +99,9 @@ for o, a in opts:
 if not len(addinIds):
     usage()
 
-# Initialize the environment.  Logically this functionality belongs in the
-# constructor of the Environment class but that isn't possible because of
-# problems with circular imports.
+# Initialize the environment.
 
-config = utilities.serializeObject(configuration.Configuration, 'config/config')
-environment.Environment.instance().setConfiguration(config)
-environment.Environment.instance().setTypes(typelist.TypeList())
+initialization.init()
 
 # Generate source code for chosen target projects.
 

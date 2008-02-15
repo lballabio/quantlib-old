@@ -123,6 +123,9 @@
 				RelativePath="gensrc\Configuration\environment.py">
 			</File>
 			<File
+				RelativePath="gensrc\Configuration\initialization.py">
+			</File>
+			<File
 				RelativePath="gensrc\Configuration\exceptions.py">
 			</File>
 		</Filter>
