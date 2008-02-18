@@ -49,6 +49,10 @@ namespace QuantLibAddin {
             const QuantLib::Date& firstDate,
             const QuantLib::Date& nextToLastDate,
             bool permanent);
+        Schedule(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Date>& dates,
+            bool permanent);
     };
 
 }

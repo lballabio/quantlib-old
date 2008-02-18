@@ -327,5 +327,23 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlSchedule2'>
+      <libraryFunction>Schedule</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dates' exampleValue='2M, 5M, 11M, 17M, 23M'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>dates</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
   </Functions>
 </Category>
