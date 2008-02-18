@@ -44,6 +44,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             QuantLib::Spread floatingLegSpread,
             const QuantLib::DayCounter& floatDayCounter,
+            QuantLib::BusinessDayConvention paymentConvention,
             bool permanent);
         // MakeVanillaSwap
         VanillaSwap(

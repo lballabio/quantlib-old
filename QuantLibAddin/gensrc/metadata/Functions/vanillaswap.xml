@@ -86,6 +86,11 @@
             <tensorRank>scalar</tensorRank>
             <description>floating day counter (e.g. Actual/360)</description>
           </Parameter>
+          <Parameter name='PaymentConvention' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment dates' business day convention</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -319,26 +324,10 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlVanillaSwapFixedRate' type='QuantLib::VanillaSwap'>
-      <description>returns the fixed rate for the given VanillaSwap object</description>
-      <libraryFunction>fixedRate</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters />
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
 
-    <Member name='qlVanillaSwapSpread' type='QuantLib::VanillaSwap'>
-      <description>returns the spread over floating rate for the given VanillaSwap object</description>
-      <libraryFunction>spread</libraryFunction>
+    <Member name='qlVanillaSwapType' type='QuantLib::VanillaSwap'>
+      <description>returns the swap type (Payer or Receiver) of the given VanillaSwap object</description>
+      <libraryFunction>type</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -348,7 +337,7 @@
         <Parameters />
       </ParameterList>
       <ReturnValue>
-        <type>QuantLib::Spread</type>
+        <type>QuantLib::VanillaSwap::Type</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -370,9 +359,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlVanillaSwapType' type='QuantLib::VanillaSwap'>
-      <description>returns the swap type (Payer or Receiver) of the given VanillaSwap object</description>
-      <libraryFunction>type</libraryFunction>
+    <Member name='qlVanillaSwapFixedRate' type='QuantLib::VanillaSwap'>
+      <description>returns the fixed rate for the given VanillaSwap object</description>
+      <libraryFunction>fixedRate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -382,7 +371,75 @@
         <Parameters />
       </ParameterList>
       <ReturnValue>
-        <type>QuantLib::VanillaSwap::Type</type>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVanillaSwapFixedDayCount' type='QuantLib::VanillaSwap'>
+      <description>returns the fixed rate day count convention for the given VanillaSwap object</description>
+      <libraryFunction>fixedDayCount</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::DayCounter</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVanillaSwapSpread' type='QuantLib::VanillaSwap'>
+      <description>returns the spread over floating rate for the given VanillaSwap object</description>
+      <libraryFunction>spread</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Spread</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVanillaSwapFloatingDayCount' type='QuantLib::VanillaSwap'>
+      <description>returns the floating leg day count convention for the given VanillaSwap object</description>
+      <libraryFunction>floatingDayCount</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::DayCounter</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVanillaSwapPaymentConvention' type='QuantLib::VanillaSwap'>
+      <description>returns the payment business day convention for the given VanillaSwap object</description>
+      <libraryFunction>paymentConvention</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::BusinessDayConvention</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>

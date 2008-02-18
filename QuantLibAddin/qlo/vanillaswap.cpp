@@ -44,6 +44,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::IborIndex>& index,
             QuantLib::Spread spread,
             const QuantLib::DayCounter& floatDayCounter,
+            QuantLib::BusinessDayConvention paymentConvention,
             bool permanent)
     : Swap(properties, permanent)
     {
@@ -56,7 +57,8 @@ namespace QuantLibAddin {
                                   *floatSchedule,
                                   index,
                                   spread,
-                                  floatDayCounter));
+                                  floatDayCounter,
+                                  paymentConvention));
     }
 
     VanillaSwap::VanillaSwap(
