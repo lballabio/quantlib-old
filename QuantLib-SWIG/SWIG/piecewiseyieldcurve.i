@@ -57,29 +57,27 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
                 const Date& referenceDate,
                 const std::vector<boost::shared_ptr<RateHelper> >& instruments,
                 const DayCounter& dayCounter,
+                const Handle<Quote>& turnOfYearEffect = Handle<Quote>(),
                 Real accuracy = 1.0e-12,
-               const Handle<Quote>& turnOfYearEffect = Handle<Quote>(),
                 const Interpolator& i = Interpolator()) {
             return new Name##Ptr(
                 new PiecewiseYieldCurve<Base,Interpolator>(
-                                                    referenceDate,instruments,
-                                                    dayCounter,
-						    turnOfYearEffect,
-						    accuracy,i));
+                                                 referenceDate,instruments,
+                                                 dayCounter, turnOfYearEffect,
+                                                 accuracy,i));
         }
         Name##Ptr(
                 Integer settlementDays, const Calendar& calendar,
                 const std::vector<boost::shared_ptr<RateHelper> >& instruments,
                 const DayCounter& dayCounter,
+                const Handle<Quote>& turnOfYearEffect = Handle<Quote>(),
                 Real accuracy = 1.0e-12,
-               const Handle<Quote>& turnOfYearEffect = Handle<Quote>(),
                 const Interpolator& i = Interpolator()) {
             return new Name##Ptr(
                 new PiecewiseYieldCurve<Base,Interpolator>(
                                         settlementDays, calendar, instruments,
-                                        dayCounter,
-					turnOfYearEffect, 
-					accuracy, i));
+                                        dayCounter, turnOfYearEffect,
+                                        accuracy, i));
         }
         const std::vector<Date>& dates() {
             typedef PiecewiseYieldCurve<Base,Interpolator> Name;
