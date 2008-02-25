@@ -33,13 +33,15 @@
 #include <ql/indexes/swap/eurliborswapfixb.hpp>
 #include <ql/indexes/swap/eurliborswapfixifr.hpp>
 #include <ql/indexes/swap/euriborswapfixifr.hpp>
+
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
 #include <ql/math/interpolations/linearinterpolation.hpp>
+#include <ql/math/interpolations/loginterpolation.hpp>
+#include <ql/math/interpolations/abcdinterpolation.hpp>
+
 #include <ql/math/interpolations/bilinearinterpolation.hpp>
 #include <ql/math/interpolations/bicubicsplineinterpolation.hpp>
-#include <ql/math/interpolations/sabrinterpolation.hpp>
-#include <ql/math/interpolations/loginterpolation.hpp>
 #include <ql/processes/blackscholesprocess.hpp>
 #include <ql/instruments/vanillaoption.hpp>
 
@@ -254,30 +256,70 @@ namespace QuantLibAddin {
     }
 
     /* *** Linear 1D Interpolation *** */
-    boost::shared_ptr<QuantLib::Interpolation> LINEAR_Interpolation(
-            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin) {
-        return boost::shared_ptr<QuantLib::Interpolation>(
-            new QuantLib::LinearInterpolation(
-                xBegin, xEnd, yBegin));
-    }
     boost::shared_ptr<QuantLib::Interpolation> BACKWARDFLAT_Interpolation(
-            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin) {
-        return boost::shared_ptr<QuantLib::Interpolation>(
-            new QuantLib::BackwardFlatInterpolation(
-                xBegin, xEnd, yBegin));
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::BackwardFlatInterpolation(xBegin, xEnd, yBegin));
     }
     boost::shared_ptr<QuantLib::Interpolation> FORWARDFLAT_Interpolation(
-            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin) {
-        return boost::shared_ptr<QuantLib::Interpolation>(
-            new QuantLib::ForwardFlatInterpolation(
-                xBegin, xEnd, yBegin));
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::ForwardFlatInterpolation(xBegin, xEnd, yBegin));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> LINEAR_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::LinearInterpolation(xBegin, xEnd, yBegin));
     }
     boost::shared_ptr<QuantLib::Interpolation> LOGLINEAR_Interpolation(
-            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin) {
-        return boost::shared_ptr<QuantLib::Interpolation>(
-            new QuantLib::LogLinearInterpolation(
-                xBegin, xEnd, yBegin));
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::LogLinearInterpolation(xBegin, xEnd, yBegin));
     }
+    boost::shared_ptr<QuantLib::Interpolation> NATURALCUBICSPLINE_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::NaturalCubicSpline(xBegin, xEnd, yBegin));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> MONOTONICNATURALCUBICSPLINE_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::MonotonicNaturalCubicSpline(xBegin, xEnd, yBegin));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> NATURALLOGCUBIC_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::NaturalLogCubic(xBegin, xEnd, yBegin));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> MONOTONICNATURALLOGCUBIC_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::MonotonicNaturalLogCubic(xBegin, xEnd, yBegin));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> ABCD_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::AbcdInterpolation(xBegin, xEnd, yBegin));
+    }
+
 
     /* *** Interpolation2D *** */
     boost::shared_ptr<QuantLib::Interpolation2D> BILINEAR_Interpolation(

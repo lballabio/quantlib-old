@@ -32,25 +32,31 @@
 
 using std::pair;
 using std::vector;
+using boost::shared_ptr;
+using boost::dynamic_pointer_cast;
+using ObjectHandler::ValueObject;
+using ObjectHandler::Create;
 using QuantLib::Real;
 using QuantLib::Size;
+using QuantLib::EndCriteria;
+using QuantLib::OptimizationMethod;
 
 namespace QuantLibAddin {
 
-    Interpolation::Interpolation(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const vector<Real>& x,
-        const vector<Real>& y,
-        bool permanent)
-    : Extrapolator(properties, permanent) {
+    Interpolation::Interpolation(const shared_ptr<ValueObject>& prop,
+                                 const vector<Real>& x,
+                                 const vector<Real>& y,
+                                 bool permanent)
+    : Extrapolator(prop, permanent)
+    {
         QL_REQUIRE(!x.empty(), "empty x vector");
         Size n = x.size();
         QL_REQUIRE(n==y.size(),
-                  "unmatched size between x (" << n <<
-                  ") and y(" << y.size() << ")");
+                   "unmatched size between x (" << n << ") and y(" <<
+                   y.size() << ")");
         vector<pair<Real, Real> > pairs(n);
         for (Size i=0; i<n; ++i)
-            pairs[i]=std::make_pair<Real, Real>(x[i], y[i]);
+            pairs[i] = std::make_pair<Real, Real>(x[i], y[i]);
         std::sort(pairs.begin(), pairs.end());
         vector<pair<Real, Real> >::iterator end = std::unique(pairs.begin(),
                                                               pairs.end());
@@ -58,120 +64,108 @@ namespace QuantLibAddin {
         y_.push_back(pairs[0].second);
         vector<pair<Real, Real> >::iterator j;
         for (j=pairs.begin()+1; j<end; ++j) {
-            QL_REQUIRE(x_.back()!=j->first,
-                       "duplicated x value: " << j->first);
+            if (x_.back() == j->first) {
+                if (y_.back() == j->second) continue;
+                QL_FAIL("duplicated x value: " << j->first <<
+                        " with different y values: " << y_.back() <<
+                        ", " << j->second);
+            }
             x_.push_back(j->first);
             y_.push_back(j->second);
         }
     }
 
-    LinearInterpolation::LinearInterpolation(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const std::string &linearInterpolationType, 
-        const std::vector<QuantLib::Real>& x,
-        const std::vector<QuantLib::Real>& y,
-        bool permanent)
-    : Interpolation(properties, x, y, permanent)
+    GenericInterp::GenericInterp(const shared_ptr<ValueObject>& p,
+                                 const std::string& type,
+                                 const vector<Real>& x,
+                                 const vector<Real>& y,
+                                 bool permanent)
+    : Interpolation(p, x, y, permanent)
     {
-        //const std::vector<QuantLib::Real>& x_ =
-        //    boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("XARRAY"));
-        //const std::vector<QuantLib::Real>& y_ =
-        //    boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("YARRAY"));
-        libraryObject_ = ObjectHandler::Create<boost::shared_ptr<QuantLib::Interpolation> >()
-            (linearInterpolationType, x_.begin(), x_.end(), y_.begin());
-        boost::dynamic_pointer_cast<QuantLib::Interpolation>(
+        libraryObject_ = Create<shared_ptr<QuantLib::Interpolation> >()
+            (type, x_.begin(), x_.end(), y_.begin());
+        dynamic_pointer_cast<QuantLib::Interpolation>(
             libraryObject_)->update();
     }
 
     CubicSplineInterpolation::CubicSplineInterpolation(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const std::vector<QuantLib::Real>& x,
-        const std::vector<QuantLib::Real>& y,
+        const shared_ptr<ValueObject>& properties,
+        const vector<Real>& x,
+        const vector<Real>& y,
         QuantLib::CubicSplineInterpolation::BoundaryCondition leftCondition,
-        QuantLib::Real leftConditionValue,
+        Real leftValue,
         QuantLib::CubicSplineInterpolation::BoundaryCondition rightCondition,
-        QuantLib::Real rightConditionValue,
+        Real rightValue,
         bool monotonicityConstraint,
         bool permanent)
     : Interpolation(properties, x, y, permanent)
     {
-        //const std::vector<QuantLib::Real>& x_ =
-        //    boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("XARRAY"));
-        //const std::vector<QuantLib::Real>& y_ =
-        //    boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("YARRAY"));
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CubicSplineInterpolation(x_.begin(), x_.end(), y_.begin(),
-                                  leftCondition, leftConditionValue,
-                                  rightCondition, rightConditionValue,
-                                  monotonicityConstraint));
-        boost::dynamic_pointer_cast<QuantLib::Interpolation>(
+        libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::CubicSplineInterpolation(x_.begin(), x_.end(),
+                                               y_.begin(),
+                                               leftCondition, leftValue,
+                                               rightCondition, rightValue,
+                                               monotonicityConstraint));
+        dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_)->update();
+    }
+
+    AbcdInterpolation::AbcdInterpolation(
+            const shared_ptr<ValueObject>& properties,
+            const vector<Real>& x,
+            const vector<Real>& y,
+            Real a,
+            Real b,
+            Real c,
+            Real d,
+            bool aIsFixed,
+            bool bIsFixed,
+            bool cIsFixed,
+            bool dIsFixed,
+            bool vegaWeighted,
+            const shared_ptr<QuantLib::EndCriteria>& ec,
+            const shared_ptr<QuantLib::OptimizationMethod>& om,
+            bool permanent)
+    : Interpolation(properties, x, y, permanent)
+    {
+        libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::AbcdInterpolation(x_.begin(), x_.end(), y_.begin(),
+                                        a, b, c, d,
+                                        aIsFixed, bIsFixed, cIsFixed, dIsFixed,
+                                        vegaWeighted,
+                                        ec, om));
+        dynamic_pointer_cast<QuantLib::Interpolation>(
             libraryObject_)->update();
     }
 
     SABRInterpolation::SABRInterpolation(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const std::vector<QuantLib::Real>& x,
-        const std::vector<QuantLib::Real>& y,
-        QuantLib::Time t,
-        QuantLib::Rate forward,
-        QuantLib::Real alpha,
-        QuantLib::Real beta,
-        QuantLib::Real nu,
-        QuantLib::Real rho,
-        bool isAlphaFixed,
-        bool isBetaFixed,
-        bool isNuFixed,
-        bool isRhoFixed,
-        bool vegaWeighted,
-        const boost::shared_ptr<QuantLib::EndCriteria>& ec,
-        const boost::shared_ptr<QuantLib::OptimizationMethod>& om,
-        bool permanent)
-    : Interpolation(properties, x, y, permanent), forward_(forward)
+                                    const shared_ptr<ValueObject>& p,
+                                    const vector<Real>& x,
+                                    const vector<Real>& y,
+                                    QuantLib::Time t,
+                                    QuantLib::Rate forward,
+                                    Real alpha,
+                                    Real beta,
+                                    Real nu,
+                                    Real rho,
+                                    bool isAlphaFixed,
+                                    bool isBetaFixed,
+                                    bool isNuFixed,
+                                    bool isRhoFixed,
+                                    bool vegaWeighted,
+                                    const shared_ptr<EndCriteria>& ec,
+                                    const shared_ptr<OptimizationMethod>& om,
+                                    bool permanent)
+    : Interpolation(p, x, y, permanent), forward_(forward)
     {
-        //const std::vector<QuantLib::Real>& x_ =
-        //    boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("XARRAY"));
-        //const std::vector<QuantLib::Real>& y_ =
-        //    boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("YARRAY"));
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
+        libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SABRInterpolation(x_.begin(), x_.end(), y_.begin(),
                                         t, forward_, alpha, beta, nu, rho,
                                         isAlphaFixed, isBetaFixed,
                                         isNuFixed, isRhoFixed,
                                         vegaWeighted,
                                         ec, om));
-        boost::dynamic_pointer_cast<QuantLib::Interpolation>(
-            libraryObject_)->update();
-    }
-
-    AbcdInterpolation::AbcdInterpolation(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const std::vector<QuantLib::Real>& x,
-            const std::vector<QuantLib::Real>& y,
-            QuantLib::Real a,
-            QuantLib::Real b,
-            QuantLib::Real c,
-            QuantLib::Real d,
-            bool aIsFixed,
-            bool bIsFixed,
-            bool cIsFixed,
-            bool dIsFixed,
-            bool vegaWeighted,
-            const boost::shared_ptr<QuantLib::EndCriteria>& ec,
-            const boost::shared_ptr<QuantLib::OptimizationMethod>& om,
-            bool permanent)
-    : Interpolation(properties, x, y, permanent)
-    {
-        //const std::vector<QuantLib::Real>& x_ =
-        //    boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("XARRAY"));
-        //const std::vector<QuantLib::Real>& y_ =
-        //    boost::any_cast<std::vector<QuantLib::Real> >(propertyValue("YARRAY"));
-        libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::AbcdInterpolation(x_.begin(), x_.end(), y_.begin(),
-                                        a, b, c, d,
-                                        aIsFixed, bIsFixed, cIsFixed, dIsFixed,
-                                        vegaWeighted,
-                                        ec, om));
-        boost::dynamic_pointer_cast<QuantLib::Interpolation>(
+        dynamic_pointer_cast<QuantLib::Interpolation>(
             libraryObject_)->update();
     }
 

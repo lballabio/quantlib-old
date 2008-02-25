@@ -2,7 +2,7 @@
 
   <enumeratedClassCopyright>
     Copyright (C) 2007 Cristina Duminuco
-    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
     Copyright (C) 2005, 2006, 2007 Eric Ehlers
     Copyright (C) 2006 Giorgio Facchinetti
     Copyright (C) 2006 Chiara Fornarola
@@ -16,11 +16,6 @@
       <includeFile>qlo/Enumerations/Factories/interpolationsfactory.hpp</includeFile>
       <EnumeratedClasses>
         <EnumeratedClass>
-          <string>Linear</string>
-          <value>LINEAR_Interpolation</value>
-          <libraryClass>QuantLib::LinearInterpolation</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
           <string>BackwardFlat</string>
           <value>BACKWARDFLAT_Interpolation</value>
           <libraryClass>QuantLib::BackwardFlatInterpolation</libraryClass>
@@ -31,9 +26,34 @@
           <libraryClass>QuantLib::ForwardFlatInterpolation</libraryClass>
         </EnumeratedClass>
         <EnumeratedClass>
+          <string>Linear</string>
+          <value>LINEAR_Interpolation</value>
+          <libraryClass>QuantLib::LinearInterpolation</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
           <string>LogLinear</string>
           <value>LOGLINEAR_Interpolation</value>
           <libraryClass>QuantLib::LogLinearInterpolation</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>NaturalCubicSpline</string>
+          <value>NATURALCUBICSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::NaturalCubicSpline</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>MonotonicNaturalCubicSpline</string>
+          <value>MONOTONICNATURALCUBICSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::MonotonicNaturalCubicSpline</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>NaturalLogCubic</string>
+          <value>NATURALLOGCUBIC_Interpolation</value>
+          <libraryClass>QuantLib::NaturalLogCubic</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>MonotonicNaturalLogCubic</string>
+          <value>MONOTONICNATURALLOGCUBIC_Interpolation</value>
+          <libraryClass>QuantLib::MonotonicNaturalLogCubic</libraryClass>
         </EnumeratedClass>
       </EnumeratedClasses>
     </EnumeratedClassGroup>

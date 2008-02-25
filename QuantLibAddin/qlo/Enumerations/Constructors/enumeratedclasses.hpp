@@ -130,13 +130,23 @@ namespace QuantLibAddin {
         const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
 
     /* *** Linear 1D Interpolation *** */
-    boost::shared_ptr<QuantLib::Interpolation> LINEAR_Interpolation(
-            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
     boost::shared_ptr<QuantLib::Interpolation> BACKWARDFLAT_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
     boost::shared_ptr<QuantLib::Interpolation> FORWARDFLAT_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
+    boost::shared_ptr<QuantLib::Interpolation> LINEAR_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
     boost::shared_ptr<QuantLib::Interpolation> LOGLINEAR_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
+    boost::shared_ptr<QuantLib::Interpolation> NATURALCUBICSPLINE_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
+    boost::shared_ptr<QuantLib::Interpolation> MONOTONICNATURALCUBICSPLINE_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
+    boost::shared_ptr<QuantLib::Interpolation> NATURALLOGCUBIC_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
+    boost::shared_ptr<QuantLib::Interpolation> MONOTONICNATURALLOGCUBIC_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
+    boost::shared_ptr<QuantLib::Interpolation> ABCD_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
 
     /* *** Interpolation2D *** */

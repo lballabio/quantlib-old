@@ -223,8 +223,8 @@
 
     <!-- Interpolation constructors -->
 
-    <Constructor name='qlLinearInterpolation'>
-      <libraryFunction>LinearInterpolation</libraryFunction>
+    <Constructor name='qlInterpolation'>
+      <libraryFunction>GenericInterp</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -232,10 +232,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='LinearInterpolationType' default ='"Linear"'>
+          <Parameter name='InterpolationType' default ='"MonotonicNaturalCubicSpline"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>linear interpolation type (e.g Linear, BackwardFlat, ForwardFlat)</description>
+            <description>interpolation type (e.g BackwardFlat, ForwardFlat, Linear, LogLinear, NaturalCubicSpline, MonotonicNaturalCubicSpline, NaturalLogCubic, MonotonicNaturalLogCubic)</description>
           </Parameter>
           <Parameter name='XArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
             <type>QuantLib::Real</type>
