@@ -1,4 +1,6 @@
+
 # Process this file with autoconf to produce a configure script.
+
 AC_INIT([QuantLibAddin], [0.9.5],
         [quantlib-dev@lists.sourceforge.net],
         [QuantLibAddin])
@@ -54,10 +56,12 @@ AC_PROG_LIBTOOL
 AC_LANG([C++])
 
 # Check for tools needed for building documentation
+
 AC_PATH_PROG([DOXYGEN], [doxygen])
 AC_PATH_PROG([SED], [sed])
 
-# possibly enable features
+# Possibly enable features
+
 AC_ARG_ENABLE([addin-cpp],
               AC_HELP_STRING([--enable-addin-cpp],
                              [build C++ addin and clients [[default=no]]]),
@@ -98,7 +102,20 @@ AM_CONDITIONAL(BUILD_CALC, [test "$qla_build_calc" = "omitted" \
 AM_CONDITIONAL(BUILD_EXCEL, [test "$qla_build_excel" = "omitted" \
     && test "$qla_build_all" = "yes" || test "$qla_build_excel" = "yes"])
 
-# done, output the configured files
+# Configure and validate the path to gensrc
+
+AC_ARG_WITH([gensrc],
+            AC_HELP_STRING([--with-gensrc=/path/to/gensrc],
+                           [Specify the path to gensrc]),
+            [gensrc_path=${withval}],
+            [AC_MSG_ERROR([You must specify the location of gensrc: "./configure --with-gensrc=path/to/gensrc"])])
+AC_CHECK_FILE([${gensrc_path}/gensrc.py], [],
+            [AC_MSG_ERROR([Unable to locate script gensrc.py in specified gensrc directory])])
+AC_ARG_VAR(gensrc_dir, path to gensrc)
+AC_SUBST(gensrc_dir, [${gensrc_path}])
+
+# Done, output the configured files
+
 AC_CONFIG_FILES([
     Addins/Cpp/Makefile
     Addins/Calc/Makefile

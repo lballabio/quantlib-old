@@ -272,12 +272,12 @@ variable GENSRC_DIR equal to the top level gensrc directory.
 
 \subsection inst_auto_installation Installation
 
-%ObjectHandler is built in the standard way:
+Below are the commands to configure and build %ObjectHandler:
 
 \verbatim
 tar zxfv ObjectHandler-0.9.0.tar.gz
 cd ObjectHandler-0.9.0
-./configure
+./configure --with-gensrc=/path/to/gensrc
 make
 make install
 \endverbatim
@@ -287,7 +287,7 @@ command installs libs to \c /usr/local/lib and header files to
 \c /usr/local/include, to override this behavior specify a different
 installation prefix using \c --prefix e.g.
 \verbatim
-./configure --prefix=$HOME/ObjectHandler
+./configure --with-gensrc=/path/to/gensrc --prefix=$HOME/ObjectHandler
 \endverbatim
 
 \subsection inst_auto_usage Usage

@@ -244,7 +244,7 @@ make install
 \li build and install ObjectHandler
 \verbatim
 cd ObjectHandler
-./configure --prefix=/home/erik/install CPPFLAGS=-I/home/erik/install/include
+./configure --with-gensrc=/home/erik/build/gensrc --prefix=/home/erik/install CPPFLAGS=-I/home/erik/install/include
     LDFLAGS=-L/home/erik/install/lib
 make
 make install
@@ -252,7 +252,7 @@ make install
 \li build QuantLibAddin
 \verbatim
 cd QuantLibAddin
-./configure --prefix=/home/erik/install CPPFLAGS=-I/home/erik/install/include
+./configure --with-gensrc=/home/erik/build/gensrc --prefix=/home/erik/install CPPFLAGS=-I/home/erik/install/include
     LDFLAGS=-L/home/erik/install/lib --enable-addin-cpp
 make
 \endverbatim

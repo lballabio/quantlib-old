@@ -1,4 +1,6 @@
+
 # Process this file with autoconf to produce a configure script.
+
 AC_INIT([ObjectHandler], [0.9.5],
         [quantlib-dev@lists.sourceforge.net],
         [ObjectHandler])
@@ -42,16 +44,30 @@ AC_PROG_CPP
 AC_PROG_LIBTOOL
 AC_LANG([C++])
 
-# confirm existence of dependencies
+# Confirm existence of dependencies
 
-AC_CHECK_HEADER([log4cxx/logger.h],[],
+AC_CHECK_HEADER([log4cxx/logger.h], [],
     [AC_MSG_ERROR([ObjectHandler depends on log4cxx which cannot be found])])
 
 # Check for tools needed for building documentation
+
 AC_PATH_PROG([DOXYGEN], [doxygen])
 AC_PATH_PROG([SED], [sed])
 
-# done, output the configured files
+# Configure and validate the path to gensrc
+
+AC_ARG_WITH([gensrc],
+            AC_HELP_STRING([--with-gensrc=/path/to/gensrc],
+                           [Specify the path to gensrc]),
+            [gensrc_path=${withval}],
+            [AC_MSG_ERROR([You must specify the location of gensrc: "./configure --with-gensrc=path/to/gensrc"])])
+AC_CHECK_FILE([${gensrc_path}/gensrc.py], [],
+            [AC_MSG_ERROR([Unable to locate script gensrc.py in specified gensrc directory])])
+AC_ARG_VAR(gensrc_dir, path to gensrc)
+AC_SUBST(gensrc_dir, [${gensrc_path}])
+
+# Done, output the configured files
+
 AC_CONFIG_FILES([
     Docs/Makefile
     Examples/ExampleObjects/Enumerations/Makefile

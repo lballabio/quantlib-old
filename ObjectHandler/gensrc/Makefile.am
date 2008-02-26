@@ -1,4 +1,5 @@
-GENSRC_DIR = ../../gensrc
+
+GENSRC_DIR = @gensrc_dir@
 
 # gensrc.py probably needs to be re-executed if any of these change
 
@@ -27,7 +28,8 @@ GENSRC_CONF :=      config/config.xml
 
 GENSRC_INPUTS = $(GENSRC_METADATA) $(GENSRC_STUBS) $(GENSRC_CODE) $(GENSRC_CONF)
 
-# this should prevent running from a distributed tarball
+# This should prevent running from a distributed tarball
+
 EXTRA_DIST = .time-stamp \
              ohgensrc_vc8.vcproj \
              ohgensrc_vc7.vcproj \
