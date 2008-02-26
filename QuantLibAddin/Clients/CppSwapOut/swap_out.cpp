@@ -283,21 +283,6 @@ int main() {
             rateHelpers.push_back(swapId);
         }
 
-
-    std::string qlPiecewiseYieldCurve(
-            const std::string &ObjectId,
-            const ObjectHandler::Variant &NDays,
-            const std::string &Calendar,
-            const std::vector<std::string>& RateHelpers,
-            const ObjectHandler::Variant &DayCounter,
-            const ObjectHandler::Variant &TurnOfYearEffect,
-            const ObjectHandler::Variant &Accuracy,
-            const ObjectHandler::Variant &TraitsID,
-            const ObjectHandler::Variant &InterpolatorID,
-            const ObjectHandler::Variant &Permanent,
-            const ObjectHandler::Variant &Trigger,
-            const bool &Overwrite);
-
         std::string EUR_YC = qlPiecewiseYieldCurve("EUR_YC",
             0L,
             "Target",
@@ -359,6 +344,7 @@ int main() {
                 "EURIBOR6M",
                 0.,
                 "Actual/360",
+                "Following",
                 false, OH_NULL, false);
         tradeObjects.push_back(swap);
 
