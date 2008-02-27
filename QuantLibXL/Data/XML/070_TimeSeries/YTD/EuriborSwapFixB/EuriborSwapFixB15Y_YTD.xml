@@ -9,7 +9,7 @@
 			<ObjectId>TS_EuriborSwapFixB15Y_YTD</ObjectId>
 			<ClassName>qlTimeSeries</ClassName>
 			<Dates class_id="201" tracking_level="0" version="0">
-				<count>262</count>
+				<count>264</count>
 				<item_version>0</item_version>
 				<item class_id="202" tracking_level="0" version="0">
 					<variant_ class_id="203" tracking_level="0" version="0">
@@ -1583,9 +1583,21 @@
 						<value>39503</value>
 					</variant_>
 				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39504</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39505</value>
+					</variant_>
+				</item>
 			</Dates>
 			<Values>
-				<count>262</count>
+				<count>264</count>
 				<item_version>0</item_version>
 				<item>0.044249999999999998</item>
 				<item>0.044170000000000001</item>
@@ -1849,6 +1861,8 @@
 				<item>0.046649999999999997</item>
 				<item>0.046349999999999995</item>
 				<item>0.046689999999999995</item>
+				<item>0.046940000000000003</item>
+				<item>0.046769999999999999</item>
 			</Values>
 			<Permanent>1</Permanent>
 		</px>

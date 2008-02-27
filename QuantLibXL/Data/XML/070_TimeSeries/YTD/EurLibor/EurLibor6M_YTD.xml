@@ -9,7 +9,7 @@
 			<ObjectId>TS_EurLibor6M_YTD</ObjectId>
 			<ClassName>qlTimeSeries</ClassName>
 			<Dates class_id="201" tracking_level="0" version="0">
-				<count>266</count>
+				<count>268</count>
 				<item_version>0</item_version>
 				<item class_id="202" tracking_level="0" version="0">
 					<variant_ class_id="203" tracking_level="0" version="0">
@@ -1607,9 +1607,21 @@
 						<value>39503</value>
 					</variant_>
 				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39504</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39505</value>
+					</variant_>
+				</item>
 			</Dates>
 			<Values>
-				<count>266</count>
+				<count>268</count>
 				<item_version>0</item_version>
 				<item>0.039390000000000001</item>
 				<item>0.039462499999999998</item>
@@ -1877,6 +1889,8 @@
 				<item>0.043793800000000001</item>
 				<item>0.043743800000000006</item>
 				<item>0.043843800000000002</item>
+				<item>0.0439125</item>
+				<item>0.043924999999999999</item>
 			</Values>
 			<Permanent>1</Permanent>
 		</px>

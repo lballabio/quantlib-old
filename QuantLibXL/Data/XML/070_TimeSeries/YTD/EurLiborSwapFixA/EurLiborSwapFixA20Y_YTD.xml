@@ -9,7 +9,7 @@
 			<ObjectId>TS_EurLiborSwapFixA20Y_YTD</ObjectId>
 			<ClassName>qlTimeSeries</ClassName>
 			<Dates class_id="201" tracking_level="0" version="0">
-				<count>260</count>
+				<count>262</count>
 				<item_version>0</item_version>
 				<item class_id="202" tracking_level="0" version="0">
 					<variant_ class_id="203" tracking_level="0" version="0">
@@ -1571,9 +1571,21 @@
 						<value>39503</value>
 					</variant_>
 				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39504</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39505</value>
+					</variant_>
+				</item>
 			</Dates>
 			<Values>
-				<count>260</count>
+				<count>262</count>
 				<item_version>0</item_version>
 				<item>0.044560000000000002</item>
 				<item>0.044679999999999997</item>
@@ -1835,6 +1847,8 @@
 				<item>0.047480000000000001</item>
 				<item>0.047199999999999999</item>
 				<item>0.047550000000000002</item>
+				<item>0.047670000000000004</item>
+				<item>0.047649999999999998</item>
 			</Values>
 			<Permanent>1</Permanent>
 		</px>

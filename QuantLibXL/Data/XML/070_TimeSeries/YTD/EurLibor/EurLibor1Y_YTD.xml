@@ -9,7 +9,7 @@
 			<ObjectId>TS_EurLibor1Y_YTD</ObjectId>
 			<ClassName>qlTimeSeries</ClassName>
 			<Dates class_id="201" tracking_level="0" version="0">
-				<count>256</count>
+				<count>268</count>
 				<item_version>0</item_version>
 				<item class_id="202" tracking_level="0" version="0">
 					<variant_ class_id="203" tracking_level="0" version="0">
@@ -1547,9 +1547,81 @@
 						<value>39489</value>
 					</variant_>
 				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39490</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39491</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39492</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39493</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39496</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39497</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39498</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39499</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39500</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39503</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39504</value>
+					</variant_>
+				</item>
+				<item>
+					<variant_>
+						<which>1</which>
+						<value>39505</value>
+					</variant_>
+				</item>
 			</Dates>
 			<Values>
-				<count>256</count>
+				<count>268</count>
 				<item_version>0</item_version>
 				<item>0.040934999999999999</item>
 				<item>0.040986300000000003</item>
@@ -1807,6 +1879,18 @@
 				<item>0.043324999999999995</item>
 				<item>0.042887500000000002</item>
 				<item>0.042987499999999998</item>
+				<item>0.042987499999999998</item>
+				<item>0.043250000000000004</item>
+				<item>0.043274999999999994</item>
+				<item>0.043493799999999999</item>
+				<item>0.0435375</item>
+				<item>0.043556299999999999</item>
+				<item>0.043712500000000001</item>
+				<item>0.043799999999999999</item>
+				<item>0.043687500000000004</item>
+				<item>0.043825000000000003</item>
+				<item>0.043949999999999996</item>
+				<item>0.0439313</item>
 			</Values>
 			<Permanent>1</Permanent>
 		</px>
