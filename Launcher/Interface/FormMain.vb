@@ -316,7 +316,7 @@ Public Class FormMain
 
     Private Function deriveConfigPath() As String
 
-        deriveConfigPath = configPath() & "\Environments\config.xml"
+        deriveConfigPath = configPath() & "\site\data\config.xml"
 
         If Not fileExists(deriveConfigPath) Then
             Throw New Exception("Error: this application loads configuration information " & _
