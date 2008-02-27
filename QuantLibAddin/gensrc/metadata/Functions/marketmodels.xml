@@ -661,7 +661,7 @@
             <tensorRank>scalar</tensorRank>
             <description>end index</description>
           </Parameter>
-          <Parameter name='NumeraireIndex' default='0.0'>
+          <Parameter name='NumeraireIndex' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>numeraire index</description>
@@ -701,7 +701,7 @@
             <tensorRank>scalar</tensorRank>
             <description>end index</description>
           </Parameter>
-          <Parameter name='FwdRateIndex' default='0.0'>
+          <Parameter name='FwdRateIndex' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>forward rate index</description>
