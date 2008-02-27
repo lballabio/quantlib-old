@@ -50,7 +50,7 @@
 #define QLADDIN_LIB_VERSION "0_9_5"
 
 #if defined BOOST_MSVC
-#pragma warning(disable : 4996)
+#pragma warning(disable : 4996)     // Using a deprecated function
 #endif
 
 #endif

@@ -16,10 +16,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <boost/config.hpp>
-#if defined BOOST_MSVC
-#pragma warning(disable : 4267)
-#endif
+//This suppression seems no longer to be necessary?...
+//#include <boost/config.hpp>
+//#if defined BOOST_MSVC
+//#pragma warning(disable : 4267)
+//#endif
 
 #include <qlo/Serialization/Register/serialization_oh.hpp>
 #include <oh/valueobject.hpp>

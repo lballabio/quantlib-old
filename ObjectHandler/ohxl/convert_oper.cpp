@@ -37,7 +37,7 @@ namespace ObjectHandler {
 
     ConvertOper::operator long() const {
         if (oper_->xltype == xltypeNum)
-            return oper_->val.num;
+            return static_cast<long>(oper_->val.num);
         else {
             OPER xLong;
             Excel(xlCoerce, &xLong, 2, oper_, TempInt(xltypeInt));

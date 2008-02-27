@@ -65,9 +65,10 @@
 #endif
 
 #if defined BOOST_MSVC
-#pragma warning(disable : 4996)
-#pragma warning(disable : 4244)
-#pragma warning(disable : 4267)
+#pragma warning(disable : 4996)     // Using a deprecated function
+//#pragma warning(disable : 4244)     // An integer type is converted to a smaller integer type
+#pragma warning(disable : 4267)     // Sending a size_t to an output stream
+#pragma warning(disable: 4819)      // Non-ASCII characters
 #endif
 
 #if defined BOOST_MSVC
