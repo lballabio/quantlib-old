@@ -238,6 +238,11 @@ code56b = '''\
         static %(nativeType)s returnValueXL;
         returnValueXL = %(namespaceObjects)s::libraryToScalar(returnValue);
         return &returnValueXL;'''
+ 
+code56c = '''\
+        static long returnValueXL;
+        returnValueXL = static_cast<long>(%(namespaceObjects)s::libraryToScalar(returnValue));
+        return &returnValueXL;'''
 
 code57 = '''\
         std::ostringstream os;

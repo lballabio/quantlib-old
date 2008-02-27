@@ -259,6 +259,7 @@
         <Rule tensorRank='scalar' type='QuantLib::Matrix' codeID='code60b'/>
         <Rule tensorRank='scalar' type='QuantLib::Real' codeID='code60'/>
         <Rule tensorRank='scalar' superType='libraryType' nativeType='string' codeID='code56a'/>
+        <Rule tensorRank='scalar' superType='libraryType' nativeType='long' codeID='code56c'/>
         <Rule tensorRank='scalar' superType='libraryType' codeID='code56b'/>
         <Rule tensorRank='scalar' superType='enumeration' codeID='code57'/>
         <Rule tensorRank='scalar' nativeType='string' codeID='code58'/>
