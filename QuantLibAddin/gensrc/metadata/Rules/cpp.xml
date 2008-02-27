@@ -173,6 +173,7 @@
     <RuleGroup name='returnConversion' indent='2'>
       <Wrap codeID='wrap6'/>
       <Rules>
+        <Rule tensorRank='scalar' superType='libraryType' nativeType='long' codeID='code210b'/>
         <Rule tensorRank='scalar' superType='libraryType' codeID='code210'/>
         <Rule tensorRank='scalar' superType='enumeration' codeID='code211'/>
         <Rule tensorRank='vector' type='QuantLib::Real' codeID='code209b'/>

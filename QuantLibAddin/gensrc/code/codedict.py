@@ -353,6 +353,10 @@ code210 = '''\
         %(nativeType)s returnValueLib = %(namespaceObjects)s::libraryToScalar(returnValue);
         return returnValueLib;'''
 
+code210b = '''\
+        long returnValueLib = static_cast<long>(%(namespaceObjects)s::libraryToScalar(returnValue));
+        return returnValueLib;'''
+
 code211 = '''\
         std::ostringstream os;
         os << returnValue;
