@@ -1,0 +1,42 @@
+
+<!-- template users.xml file -->
+
+<Configuration>
+
+  <Domains>
+
+    <Domain name ="domain1">
+      <Users>
+        <User name="user1">
+          <serialNumbers>
+            <serialNumber>12345678</serialNumber>
+          </serialNumbers>
+        </User>
+        <User name="user2">
+          <serialNumbers>
+            <serialNumber>12345678</serialNumber>
+            <serialNumber>12345678</serialNumber>
+          </serialNumbers>
+        </User>
+      </Users>
+    </Domain>
+
+    <Domain name ="domain2">
+      <Users>
+        <User name="user1">
+          <serialNumbers>
+            <serialNumber>12345678</serialNumber>
+          </serialNumbers>
+        </User>
+        <User name="user2">
+          <serialNumbers>
+            <serialNumber>12345678</serialNumber>
+            <serialNumber>12345678</serialNumber>
+          </serialNumbers>
+        </User>
+      </Users>
+    </Domain>
+
+  </Domains>
+
+</Configuration>

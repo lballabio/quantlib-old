@@ -168,7 +168,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Environments\config.xml" />
     <Content Include="images\down.bmp" />
     <Content Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -209,7 +208,11 @@
     <None Include="images\excel.ico" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\up.bmp" />
-    <Content Include="Users\users.xml" />
+    <Content Include="site\config.template.xml" />
+    <Content Include="site\data\config.xml" />
+    <Content Include="site\README.TXT" />
+    <Content Include="site\users.template.xml" />
+    <Content Include="site\data\users.xml" />
     <None Include="images\rename.bmp" />
     <None Include="images\clear.bmp" />
     <None Include="images\create.bmp" />
@@ -337,7 +340,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Users\users.xml">
+    <PublishFile Include="site\data\users.xml">
       <Visible>False</Visible>
       <Group>
       </Group>
