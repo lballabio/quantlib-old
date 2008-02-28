@@ -4,14 +4,14 @@ Launcher\site\README.TXT
 
 Before using the Launcher you need to configure the data specific to your site.
 
-Create directory Launcher\site\data.
-
-Copy these files:
+Copy this file:
     Launcher\site\config.template.xml
-    Launcher\site\users.template.xml
 To:
-    Launcher\site\data\config.xml
-    Launcher\site\data\users.xml
+    Launcher\site\config.xml
 
-And edit the files to reflect the parameters for your site.
+And edit the file to reflect the parameters for your site.
 
+In config.xml you must have an element such as:
+<UserConfigurationFile>users.xml</UserConfigurationFile>
+
+see Launcher\site\users.template.xml as example of UserConfigurationFile.
