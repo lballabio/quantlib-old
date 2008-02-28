@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>launcher.My.MyApplication</StartupObject>
     <RootNamespace>launcher</RootNamespace>
-    <AssemblyName>QuantLibXL Launcher 2008</AssemblyName>
+    <AssemblyName>QuantLibXL_Launcher_2008</AssemblyName>
     <MyType>WindowsForms</MyType>
     <ManifestCertificateThumbprint>243E2808A778A1904D7646254BED49122A425F83</ManifestCertificateThumbprint>
     <ManifestKeyFile>launcher_vc8_TemporaryKey.pfx</ManifestKeyFile>

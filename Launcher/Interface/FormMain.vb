@@ -336,7 +336,7 @@ Public Class FormMain
 
         Dim configPath As String
         If (ApplicationDeployment.IsNetworkDeployed) Then
-            configPath = ApplicationDeployment.CurrentDeployment.DataDirectory & "\Environments\config.xml"
+            configPath = ApplicationDeployment.CurrentDeployment.DataDirectory & "\site\data\config.xml"
         Else
             configPath = deriveConfigPath()
         End If
