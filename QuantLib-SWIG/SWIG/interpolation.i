@@ -83,7 +83,7 @@ make_safe_interpolation(LogLinearInterpolation,LogLinearInterpolation);
 make_safe_interpolation(BackwardFlatInterpolation,BackwardFlatInterpolation);
 make_safe_interpolation(ForwardFlatInterpolation,ForwardFlatInterpolation);
 make_safe_interpolation(NaturalCubicSpline,CubicSplineInterpolation);
-make_safe_interpolation(NaturalMonotonicCubicSpline,MonotonicCubicSpline);
+make_safe_interpolation(MonotonicNaturalCubicSpline,MonotonicCubicSpline);
 
 %define extend_spline(T)
 %extend Safe##T {
@@ -97,7 +97,7 @@ make_safe_interpolation(NaturalMonotonicCubicSpline,MonotonicCubicSpline);
 %enddef
 
 extend_spline(NaturalCubicSpline);
-extend_spline(NaturalMonotonicCubicSpline);
+extend_spline(MonotonicNaturalCubicSpline);
 
 %{
 // safe versions which copy their arguments
