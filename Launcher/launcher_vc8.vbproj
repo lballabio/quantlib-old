@@ -9,16 +9,17 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>launcher.My.MyApplication</StartupObject>
     <RootNamespace>launcher</RootNamespace>
-    <AssemblyName>QuantLibXL Launcher 2008</AssemblyName>
+    <AssemblyName>QuantLibXL_Launcher_2008</AssemblyName>
     <MyType>WindowsForms</MyType>
-    <ManifestCertificateThumbprint>243E2808A778A1904D7646254BED49122A425F83</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>11A19EFEE036D9118AD2110A70DBB98522740F18</ManifestCertificateThumbprint>
     <ManifestKeyFile>launcher_vc8_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>images\favicon.ico</ApplicationIcon>
     <TargetZone>LocalIntranet</TargetZone>
-    <PublishUrl>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Launcher2008\</PublishUrl>
+    <SignAssembly>false</SignAssembly>
+    <PublishUrl>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Launcher\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -32,7 +33,7 @@
     <ProductName>QuantLibXL Launcher 2008</ProductName>
     <PublisherName>QuantLib Developer Team</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>2.2.2.2</ApplicationVersion>
+    <ApplicationVersion>2.3.4.5</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -178,16 +179,13 @@
     <Content Include="Addins\03 Testing\PDGLib.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_0.xll">
+    <Content Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
+    <Content Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Addins\02 Pre-Production\saohxll-vc80-mt-0_1_9.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Addins\02 Pre-Production\PDGLib_candidate.xll">
+    <Content Include="Addins\02 Pre-Production\PDGLib.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Addins\01 Production\ObjectHandler-xll-vc80-mt-0_9_0.xll">
@@ -205,10 +203,10 @@
     <None Include="images\excel.ico" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\up.bmp" />
-    <Content Include="site\config.xml" />
-    <None Include="site\config.template.xml" />
-    <None Include="site\README.TXT" />
-    <None Include="site\users.template.xml" />
+    <Content Include="site\config.template.xml" />
+    <Content Include="site\data\config.xml" />
+    <Content Include="site\README.TXT" />
+    <Content Include="site\users.template.xml" />
     <None Include="images\rename.bmp" />
     <None Include="images\clear.bmp" />
     <None Include="images\create.bmp" />
@@ -264,7 +262,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_0.xll">
+    <PublishFile Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -273,7 +271,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\02 Pre-Production\PDGLib_candidate.xll">
+    <PublishFile Include="Addins\02 Pre-Production\PDGLib.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -282,16 +280,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_0.xll">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Addins\02 Pre-Production\saohxll-vc80-mt-0_1_9.xll">
+    <PublishFile Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -325,6 +314,42 @@
       <TargetPath>
       </TargetPath>
       <PublishState>DataFile</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="QuantLibXL_Launcher_2008.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="site\config.template.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="site\README.TXT">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="site\users.template.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

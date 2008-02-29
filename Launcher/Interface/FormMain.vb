@@ -316,7 +316,7 @@ Public Class FormMain
 
     Private Function deriveConfigPath() As String
 
-        deriveConfigPath = configPath() & "\site\config.xml"
+        deriveConfigPath = configPath() & "\site\data\config.xml"
 
         If Not fileExists(deriveConfigPath) Then
             Throw New Exception("Error: this application loads configuration information " & _
@@ -336,7 +336,7 @@ Public Class FormMain
 
         Dim configPath As String
         If (ApplicationDeployment.IsNetworkDeployed) Then
-            configPath = ApplicationDeployment.CurrentDeployment.DataDirectory & "\site\config.xml"
+            configPath = ApplicationDeployment.CurrentDeployment.DataDirectory & "\site\data\config.xml"
         Else
             configPath = deriveConfigPath()
         End If

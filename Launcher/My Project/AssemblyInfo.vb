@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("launcher")> 
+<Assembly: AssemblyTitle("QuantLibXL Launcher")> 
 <Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Banca Caboto")> 
-<Assembly: AssemblyProduct("launcher")> 
-<Assembly: AssemblyCopyright("Copyright © Banca Caboto 2006")> 
+<Assembly: AssemblyCompany("QuantLib -- http://quantlib.org")> 
+<Assembly: AssemblyProduct("QuantLibXL Launcher")> 
+<Assembly: AssemblyCopyright("Copyright © 2007, 2008 Eric Ehlers, Ferdinando Ametrano")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
