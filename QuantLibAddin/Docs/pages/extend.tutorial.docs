@@ -23,14 +23,16 @@
 
 /*! \page extend_tutorial Expose Additional QuantLib Functionality to QuantLibXL
 
-<div align="center"><small>\ref extend_revisions "last updated 8-Feb-2008"</small></div> 
+<div align="center"><small>\ref extend_revisions "last updated 22-Feb-2008"</small></div> 
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
 
 This document explains how to expose additional QuantLib functionality to
 Excel.  As a prerequisite it is assumed that you have already compiled
 QuantLibXL from source code as explained in the document \ref build_tutorial.
 
-In this example, the QuantLib class Stock is exposed to Excel.
+In this example, the QuantLib class Stock is exposed to Excel.  This tutorial
+assumes you are working with VC8 solution
+<tt>QuantLibXL\\QuantLibAllStatic_vc8.sln</tt>.
 
 \ref extend_wrap \n
 \ref extend_category \n
@@ -41,7 +43,14 @@ In this example, the QuantLib class Stock is exposed to Excel.
 
 \section extend_wrap 1 Wrap the QuantLib Class in a QuantLibAddin Class
 
-In order to store a reference to a QuantLib::Stock in the ObjectHandler repository, we implement class QuantLibAddin::Stock which derives from ObjectHandler::Object and holds a pointer to QuantLib::Stock.  In fact, rather than inherit directly from ObjectHandler::Object, we derive our QuantLibAddin::Stock class from QuantLibAddin::Instrument.  This allows us to invoke the Instrument interface on objects of class Stock.
+In order to store a reference to a \c QuantLib::Stock in the ObjectHandler
+repository, we implement class \c QuantLibAddin::Stock which derives from
+\c ObjectHandler::Object and holds a pointer to \c QuantLib::Stock.  In fact, rather
+than inherit directly from \c ObjectHandler::Object, we derive our
+\c QuantLibAddin::Stock class from \c QuantLibAddin::Instrument.  This allows us to
+invoke the \c Instrument interface on objects of class \c Stock.
+
+<img src="images/stock.jpg">
 
 Create the following two new files:
 \verbatim
@@ -49,7 +58,8 @@ QuantLibAddin\qlo\stock.hpp
 QuantLibAddin\qlo\stock.cpp
 \endverbatim
 
-Add the files to project QuantLibObjects, under folder Instruments.  Here is the code for the files:
+Add the files to project QuantLibObjects, under folder Instruments.  Here is
+the code for the files:
 
 stock.hpp:
 \verbatim
@@ -105,16 +115,19 @@ namespace QuantLibAddin {
 
 \section extend_category 2 Create a New Function Category
 
-QuantLibAddin functions are grouped into Categories.  Here we create a new category called Stock.
+QuantLibAddin functions are grouped into Categories.  Here we create a new
+category called Stock.
 
-Edit file QuantLibAddin\\gensrc\\config\\categories.xml and add the new category stock.
+Edit file QuantLibAddin\\gensrc\\config\\categories.xml and add the new
+category stock.
 
 Create the following new file:
 \verbatim
 QuantLibAddin\gensrc\metadata\Functions\stock.xml
 \endverbatim
 
-Add the file to project qlgensrc, under folder Functions.  Here are the contents of the file:
+Add the file to project qlgensrc, under folder Functions.  Here are the
+contents of the file:
 
 stock.xml:
 \verbatim
@@ -155,11 +168,18 @@ stock.xml:
 
 \endverbatim
 
-Above we have configured a single constructor.  There is also support for member and utility functions, refer to the other XML files for examples.  The tag superType determines the type of reference which is passed to the underlying QuantLib code, in this case libToHandle reflects the fact that Handle<Quote> is expected.  For a summary of supported supertypes refer to the comments in file QuantLibAddin\\gensrc\\metadata\\Types\\types.xml.
+Above we have configured a single constructor.  There is also support for
+member and utility functions, refer to the other XML files for examples.  The
+tag \c superType determines the type of reference which is passed to the
+underlying QuantLib code, in this case \c libToHandle reflects the fact that
+<tt>Handle<Quote></tt> is expected.  For a summary of supported supertypes refer to the
+comments in file <tt>QuantLibAddin\\gensrc\\metadata\\Types\\types.xml</tt>.
 
 \section extend_autogenerate 3 Autogenerate New Source Code Files
 
-Now we run gensrc to autogenerate the new source code corresponding to the contents of stock.xml.  Build project qlgensrc.  In the gensrc output, notice that 11 new files are created (irrelevant output omitted):
+Now we run gensrc to autogenerate the new source code corresponding to the
+contents of stock.xml.  Build project qlgensrc.  In the gensrc output, notice
+that 11 new files are created (irrelevant output omitted):
 
 \verbatim
 1>08-Feb-2008 10:58:36   file ../../QuantLibXL/qlxl/Register/register_stock.cpp                 -    created
@@ -188,19 +208,23 @@ Now we run gensrc to autogenerate the new source code corresponding to the conte
 1>08-Feb-2008 10:58:41 total                   702          27          11         740
 \endverbatim
 
-For purposes of this tutorial we ignore the new files for Doxygen and C++.  The other 8 files need to be added to the relevant Visual Studio workspaces:
+For purposes of this tutorial we ignore the new files for Doxygen and C++.  The
+other 8 files need to be added to the relevant projects as shown below:
 
-\li Add file QuantLibXL/qlxl/Register/register_stock.cpp to project QuantLibXLStatic, folder Register
-\li Add file QuantLibXL/qlxl/Functions/stock.cpp to project QuantLibXLStatic, folder Functions
-\li Add files QuantLibXL/qlxl/Serialization/serialization_stock.*pp to project QuantLibXLStatic, folder Serialization
-\li Add files QuantLibAddin/qlo/ValueObjects/vo_stock.*pp to project QuantLibObjects, folder ValueObjects
-\li Add files QuantLibAddin/qlo/Serialization/create_stock.*pp to project QuantLibObjects, folder Serialization
+<table>
+<tr><td><b>Add file(s) ...</b></td><td><b>To project ...</b></td><td><b>In folder ...</b></td></tr>
+<tr><td>QuantLibXL/qlxl/Register/register_stock.cpp</td><td>QuantLibXLStatic</td><td>Register</td></tr>
+<tr><td>QuantLibXL/qlxl/Functions/stock.cpp</td><td>QuantLibXLStatic</td><td>Functions</td></tr>
+<tr><td>QuantLibXL/qlxl/Serialization/serialization_stock.*pp</td><td>QuantLibXLStatic</td><td>Serialization</td></tr>
+<tr><td>QuantLibAddin/qlo/ValueObjects/vo_stock.*pp</td><td>QuantLibObjects</td><td>ValueObjects</td></tr>
+<tr><td>QuantLibAddin/qlo/Serialization/create_stock.*pp</td><td>QuantLibObjects</td><td>Serialization</td></tr>
+</table>
 
 \section extend_build 4 Build QuantLibXL
 
-Open the VC8 solution <tt>QuantLibXL\\QuantLibAllStatic_vc8.sln</tt>.  Choose
-configuration <tt>Release</tt>, project <tt>QuantLibXLStatic</tt>, and do
-<tt>Build/Build QuantLibXLStatic</tt>.  The new source code files in QuantLibAddin and QuantLibXL are compiled and the binaries are linked.
+Build project <tt>QuantLibXLStatic</tt>, configuration <tt>Release</tt>.  The
+new source code files in QuantLibAddin and QuantLibXL are compiled and the
+binaries are linked.
 
 The build process creates the QuantLibAddin XLL file
 <tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_5.xll</tt>.
@@ -213,7 +237,8 @@ Start Excel and load the XLL.  Enter the new constructor into cell A1:
 =qlStock("my_stock",1.23)
 \endverbatim
 
-This should return the ID of the newly created object.  Try invoking a member function on the object.  In cell A2, enter:
+This should return the ID of the newly created object.  Try invoking a member
+function on the object.  In cell A2, enter:
 
 \verbatim
 =qlInstrumentNPV(A1)

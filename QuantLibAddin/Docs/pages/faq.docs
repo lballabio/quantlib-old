@@ -223,38 +223,44 @@ fix it would be much appreciated.
 
 \subsection faq_item_vba How do I call QuantLibXL functions from Excel VBA?
 
-QuantLibXL can be invoked from VBA, for example here is a subroutine to price
-an option:
+QuantLibXL can be invoked from VBA using Application.Run().  For example, below
+is a subroutine which calculates the price of an option.  This code mimics the
+behavior of example spreadsheet
+QuantLibXL\\Workbooks\\StandaloneExamples\\Options.xls.
 
 \verbatim
 Sub priceEuropeanOption()
 
 On Error GoTo Catch
 
-    Dim blackVolHandle As String
-    Dim blackScholesHandle As String
-    Dim exerciseHandle As String
-    Dim payoffHandle As String
-    Dim engineHandle As String
-    Dim optionHandle As String
+    Dim blackVolId As String
+    Dim blackScholesId As String
+    Dim exerciseId As String
+    Dim payoffId As String
+    Dim engineId As String
+    Dim optionId As String
     Dim npv As Double
+
     Call Application.Run("qlSettingsSetEvaluationDate", 35930)
-    blackVolHandle = Application.Run("qlBlackConstantVol", _
-        "volatility", 35932, 0.2, "Actual/365 (Fixed)")
-    blackScholesHandle = Application.Run( _
-        "qlGeneralizedBlackScholesProcess", "process", _
-        blackVolHandle, 36, "Actual/365 (Fixed)", 35932, _
-        0.06, 0)
-    exerciseHandle = Application.Run("qlEuropeanExercise", _
-        "exercise", 36297)
-    payoffHandle = Application.Run("qlStrikedTypePayoff", _
-        "payoff", "Vanilla", "Put", 40)
-    engineHandle = Application.Run("qlPricingEngine", _
-        "engine", "AE")
-    optionHandle = Application.Run("qlVanillaOption", _
-        "option", blackScholesHandle, payoffHandle, _
-        exerciseHandle, engineHandle)
-    npv = Application.Run("qlInstrumentNPV", optionHandle)
+
+    blackVolId = Application.Run("qlBlackConstantVol", _
+        "blackConstantVol", 35932, "Target", 0.2, "Actual/365 (Fixed)")
+    blackScholesId = Application.Run( _
+        "qlGeneralizedBlackScholesProcess", "blackScholes", _
+        blackVolId, 36, "Actual/365 (Fixed)", 35932, 0.06, 0)
+    exerciseId = Application.Run("qlEuropeanExercise", _
+        "europeanExercise", 36297)
+    payoffId = Application.Run("qlStrikedTypePayoff", _
+        "strikedTypePayoff", "Vanilla", "Put", 40)
+    engineId = Application.Run("qlPricingEngine", _
+        "pricingEngine", "AE", blackScholesId)
+    optionId = Application.Run("qlVanillaOption", _
+        "vanillaOption", payoffId, exerciseId)
+
+    Call Application.Run("qlInstrumentSetPricingEngine", _
+        optionId, engineId)
+    npv = Application.Run("qlInstrumentNPV", optionId)
+
     Debug.Print "NPV = " & npv
 
     Exit Sub
