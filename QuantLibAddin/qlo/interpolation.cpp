@@ -21,7 +21,7 @@
     #include <qlo/config.hpp>
 #endif
 #include <qlo/interpolation.hpp>
-#include <qlo/Enumerations/Factories/interpolationsfactory.hpp>
+#include <qlo/enumerations/factories/interpolationsfactory.hpp>
 
 #include <ql/math/interpolations/linearinterpolation.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>

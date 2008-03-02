@@ -291,31 +291,31 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Conversions"
+				Name="conversions"
 				>
 				<File
-					RelativePath="..\..\oh\Conversions\anytostream.hpp"
+					RelativePath="..\..\oh\conversions\anytostream.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\Conversions\coerce.hpp"
+					RelativePath="..\..\oh\conversions\coerce.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\Conversions\getobjectvector.hpp"
+					RelativePath="..\..\oh\conversions\getobjectvector.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\Conversions\ohconvertvariant.hpp"
+					RelativePath="..\..\oh\conversions\ohconvertvariant.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\Conversions\varianttoscalar.hpp"
+					RelativePath="..\..\oh\conversions\varianttoscalar.hpp"
 					>
 				</File>
 			</Filter>
 			<Filter
-				Name="Utilities"
+				Name="utilities"
 				>
 				<File
 					RelativePath="..\..\oh\auto_link.hpp"
@@ -339,42 +339,42 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Enumerations"
+				Name="enumerations"
 				>
 				<File
-					RelativePath="..\..\oh\Enumerations\enumregistry.cpp"
+					RelativePath="..\..\oh\enumerations\enumregistry.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\Enumerations\enumregistry.hpp"
+					RelativePath="..\..\oh\enumerations\enumregistry.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\Enumerations\registry.hpp"
+					RelativePath="..\..\oh\enumerations\registry.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\Enumerations\typefactory.hpp"
+					RelativePath="..\..\oh\enumerations\typefactory.hpp"
 					>
 				</File>
 			</Filter>
 			<Filter
-				Name="Loop"
+				Name="loop"
 				>
 				<File
-					RelativePath="..\..\oh\Loop\loop_valueobjects.hpp"
+					RelativePath="..\..\oh\loop\loop_valueobjects.hpp"
 					>
 				</File>
 			</Filter>
 			<Filter
-				Name="ValueObjects"
+				Name="valueobjects"
 				>
 				<File
-					RelativePath="..\..\oh\ValueObjects\vo_group.hpp"
+					RelativePath="..\..\oh\valueobjects\vo_group.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\ValueObjects\vo_range.hpp"
+					RelativePath="..\..\oh\valueobjects\vo_range.hpp"
 					>
 				</File>
 			</Filter>
@@ -455,99 +455,99 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Conversions"
+				Name="conversions"
 				>
 				<File
-					RelativePath="..\Conversions\all.hpp"
+					RelativePath="..\conversions\all.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Conversions\matrixtooper.hpp"
+					RelativePath="..\conversions\matrixtooper.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Conversions\opertomatrix.hpp"
+					RelativePath="..\conversions\opertomatrix.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Conversions\opertoscalar.hpp"
+					RelativePath="..\conversions\opertoscalar.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Conversions\opertovector.hpp"
+					RelativePath="..\conversions\opertovector.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Conversions\scalartooper.cpp"
+					RelativePath="..\conversions\scalartooper.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Conversions\scalartooper.hpp"
+					RelativePath="..\conversions\scalartooper.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Conversions\validations.cpp"
+					RelativePath="..\conversions\validations.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Conversions\validations.hpp"
+					RelativePath="..\conversions\validations.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Conversions\vectortooper.hpp"
+					RelativePath="..\conversions\vectortooper.hpp"
 					>
 				</File>
 			</Filter>
 			<Filter
-				Name="Functions"
+				Name="functions"
 				>
 				<File
-					RelativePath="..\Functions\enumerations.cpp"
+					RelativePath="..\functions\enumerations.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Functions\export.hpp"
+					RelativePath="..\functions\export.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Functions\functioncount.hpp"
+					RelativePath="..\functions\functioncount.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Functions\garbagecollection.cpp"
+					RelativePath="..\functions\garbagecollection.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Functions\group.cpp"
+					RelativePath="..\functions\group.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Functions\logging.cpp"
+					RelativePath="..\functions\logging.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Functions\manual.cpp"
+					RelativePath="..\functions\manual.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Functions\ohutils.cpp"
+					RelativePath="..\functions\ohutils.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Functions\range.cpp"
+					RelativePath="..\functions\range.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Functions\serialization.cpp"
+					RelativePath="..\functions\serialization.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Functions\valueobjects.cpp"
+					RelativePath="..\functions\valueobjects.cpp"
 					>
 				</File>
 			</Filter>
 			<Filter
-				Name="Loop"
+				Name="loop"
 				>
 				<File
 					RelativePath="..\loop.hpp"
@@ -555,58 +555,58 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Register"
+				Name="register"
 				>
 				<File
-					RelativePath="..\Register\register_all.cpp"
+					RelativePath="..\register\register_all.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Register\register_all.hpp"
+					RelativePath="..\register\register_all.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Register\register_enumerations.cpp"
+					RelativePath="..\register\register_enumerations.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Register\register_garbagecollection.cpp"
+					RelativePath="..\register\register_garbagecollection.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Register\register_group.cpp"
+					RelativePath="..\register\register_group.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Register\register_logging.cpp"
+					RelativePath="..\register\register_logging.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Register\register_ohutils.cpp"
+					RelativePath="..\register\register_ohutils.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Register\register_range.cpp"
+					RelativePath="..\register\register_range.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Register\register_serialization.cpp"
+					RelativePath="..\register\register_serialization.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Register\register_valueobjects.cpp"
+					RelativePath="..\register\register_valueobjects.cpp"
 					>
 				</File>
 			</Filter>
 			<Filter
-				Name="Utilities"
+				Name="utilities"
 				>
 				<File
-					RelativePath="..\Utilities\xlutilities.cpp"
+					RelativePath="..\utilities\xlutilities.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\Utilities\xlutilities.hpp"
+					RelativePath="..\utilities\xlutilities.hpp"
 					>
 				</File>
 			</Filter>
@@ -615,7 +615,7 @@
 			Name="xll"
 			>
 			<File
-				RelativePath="..\Register\addin.cpp"
+				RelativePath="..\register\addin.cpp"
 				>
 			</File>
 		</Filter>

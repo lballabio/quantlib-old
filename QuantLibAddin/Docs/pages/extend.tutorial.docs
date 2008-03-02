@@ -182,10 +182,10 @@ contents of stock.xml.  Build project qlgensrc.  In the gensrc output, notice
 that 11 new files are created (irrelevant output omitted):
 
 \verbatim
-1>08-Feb-2008 10:58:36   file ../../QuantLibXL/qlxl/Register/register_stock.cpp                 -    created
-1>08-Feb-2008 10:58:38   file ../../QuantLibXL/qlxl/Functions/stock.cpp                         -    created
-1>08-Feb-2008 10:58:38   file ../../QuantLibXL/qlxl/Serialization/serialization_stock.hpp       -    created
-1>08-Feb-2008 10:58:38   file ../../QuantLibXL/qlxl/Serialization/serialization_stock.cpp       -    created
+1>08-Feb-2008 10:58:36   file ../../QuantLibXL/qlxl/register/register_stock.cpp                 -    created
+1>08-Feb-2008 10:58:38   file ../../QuantLibXL/qlxl/functions/stock.cpp                         -    created
+1>08-Feb-2008 10:58:38   file ../../QuantLibXL/qlxl/serialization/serialization_stock.hpp       -    created
+1>08-Feb-2008 10:58:38   file ../../QuantLibXL/qlxl/serialization/serialization_stock.cpp       -    created
 1>08-Feb-2008 10:58:39   file ../Addins/Cpp/Serialization/serialization_stock.hpp               -    created
 1>08-Feb-2008 10:58:39   file ../Addins/Cpp/Serialization/serialization_stock.cpp               -    created
 1>08-Feb-2008 10:58:40   file ../qlo/ValueObjects/vo_stock.hpp                                  -    created

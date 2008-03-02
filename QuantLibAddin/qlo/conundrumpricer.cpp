@@ -26,7 +26,7 @@
 #endif
 
 #include <qlo/qladdindefines.hpp>
-#include <qlo/Enumerations/Factories/conundrumpricerfactory.hpp>
+#include <qlo/enumerations/factories/conundrumpricerfactory.hpp>
 #include <qlo/conundrumpricer.hpp>
 
 using boost::shared_ptr;

@@ -1,15 +1,15 @@
 
 SUBDIRS = \
     gensrc \
-    qlo/Conversions \
-    qlo/Enumerations/Constructors \
-    qlo/Enumerations/Factories \
-    qlo/Enumerations/Register \
-    qlo/Loop \
-    qlo/Serialization/Create \
-    qlo/Serialization/Register \
-    qlo/Serialization \
-    qlo/ValueObjects \
+    qlo/conversions \
+    qlo/enumerations/constructors \
+    qlo/enumerations/factories \
+    qlo/enumerations/register \
+    qlo/loop \
+    qlo/serialization/create \
+    qlo/serialization/register \
+    qlo/serialization \
+    qlo/valueobjects \
     qlo \
     Addins/Cpp \
     Addins/Calc \

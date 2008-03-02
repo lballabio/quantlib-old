@@ -29,7 +29,7 @@
 #include <ExampleObjects/ValueObjects/accountvalueobject.hpp>
 #include <ExampleObjects/ValueObjects/customervalueobject.hpp>
 #include <oh/repository.hpp>
-#include <oh/ValueObjects/vo_range.hpp>
+#include <oh/valueobjects/vo_range.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
 

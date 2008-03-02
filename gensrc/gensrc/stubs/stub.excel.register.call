@@ -2,12 +2,12 @@
 
 %(registerDeclarations)s
 %(unregisterDeclarations)s
-void register%(prefix)sFunctions(const XLOPER &xDll) {
+void register%(prefix)sfunctions(const XLOPER &xDll) {
 
 %(registerCalls)s
 }
 
-void unregister%(prefix)sFunctions(const XLOPER &xDll) {
+void unregister%(prefix)sfunctions(const XLOPER &xDll) {
 
 %(unregisterCalls)s
 }

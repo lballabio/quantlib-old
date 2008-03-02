@@ -19,33 +19,33 @@ EXTRA_DIST = \
  
 dist-hook:
 	mkdir -p $(distdir)/gensrc
-	mkdir -p $(distdir)/gensrc/Addins
-	mkdir -p $(distdir)/gensrc/Categories
-	mkdir -p $(distdir)/gensrc/Configuration
-	mkdir -p $(distdir)/gensrc/Enumerations
-	mkdir -p $(distdir)/gensrc/Exceptions
-	mkdir -p $(distdir)/gensrc/Functions
-	mkdir -p $(distdir)/gensrc/Parameters
-	mkdir -p $(distdir)/gensrc/Patterns
-	mkdir -p $(distdir)/gensrc/Rules
-	mkdir -p $(distdir)/gensrc/Serialization
+	mkdir -p $(distdir)/gensrc/addins
+	mkdir -p $(distdir)/gensrc/categories
+	mkdir -p $(distdir)/gensrc/configuration
+	mkdir -p $(distdir)/gensrc/enumerations
+	mkdir -p $(distdir)/gensrc/exceptions
+	mkdir -p $(distdir)/gensrc/functions
+	mkdir -p $(distdir)/gensrc/parameters
+	mkdir -p $(distdir)/gensrc/patterns
+	mkdir -p $(distdir)/gensrc/rules
+	mkdir -p $(distdir)/gensrc/serialization
 	mkdir -p $(distdir)/gensrc/stubs
-	mkdir -p $(distdir)/gensrc/Types
-	mkdir -p $(distdir)/gensrc/Utilities
+	mkdir -p $(distdir)/gensrc/types
+	mkdir -p $(distdir)/gensrc/utilities
 	cp -p $(srcdir)/gensrc/*.py $(distdir)/gensrc
-	cp -p $(srcdir)/gensrc/Addins/*.py $(distdir)/gensrc/Addins
-	cp -p $(srcdir)/gensrc/Categories/*.py $(distdir)/gensrc/Categories
-	cp -p $(srcdir)/gensrc/Configuration/*.py $(distdir)/gensrc/Configuration
-	cp -p $(srcdir)/gensrc/Enumerations/*.py $(distdir)/gensrc/Enumerations
-	cp -p $(srcdir)/gensrc/Exceptions/*.py $(distdir)/gensrc/Exceptions
-	cp -p $(srcdir)/gensrc/Functions/*.py $(distdir)/gensrc/Functions
-	cp -p $(srcdir)/gensrc/Parameters/*.py $(distdir)/gensrc/Parameters
-	cp -p $(srcdir)/gensrc/Patterns/*.py $(distdir)/gensrc/Patterns
-	cp -p $(srcdir)/gensrc/Rules/*.py $(distdir)/gensrc/Rules
-	cp -p $(srcdir)/gensrc/Serialization/*.py $(distdir)/gensrc/Serialization
+	cp -p $(srcdir)/gensrc/addins/*.py $(distdir)/gensrc/addins
+	cp -p $(srcdir)/gensrc/categories/*.py $(distdir)/gensrc/categories
+	cp -p $(srcdir)/gensrc/configuration/*.py $(distdir)/gensrc/configuration
+	cp -p $(srcdir)/gensrc/enumerations/*.py $(distdir)/gensrc/enumerations
+	cp -p $(srcdir)/gensrc/exceptions/*.py $(distdir)/gensrc/exceptions
+	cp -p $(srcdir)/gensrc/functions/*.py $(distdir)/gensrc/functions
+	cp -p $(srcdir)/gensrc/parameters/*.py $(distdir)/gensrc/parameters
+	cp -p $(srcdir)/gensrc/patterns/*.py $(distdir)/gensrc/patterns
+	cp -p $(srcdir)/gensrc/rules/*.py $(distdir)/gensrc/rules
+	cp -p $(srcdir)/gensrc/serialization/*.py $(distdir)/gensrc/serialization
 	cp -p $(srcdir)/gensrc/stubs/stub.* $(distdir)/gensrc/stubs
-	cp -p $(srcdir)/gensrc/Types/*.py $(distdir)/gensrc/Types
-	cp -p $(srcdir)/gensrc/Utilities/*.py $(distdir)/gensrc/Utilities
+	cp -p $(srcdir)/gensrc/types/*.py $(distdir)/gensrc/types
+	cp -p $(srcdir)/gensrc/utilities/*.py $(distdir)/gensrc/utilities
 
 .PHONY: docs docs-online docs-dist docs-clean
 BASEPATH = @abs_top_srcdir@

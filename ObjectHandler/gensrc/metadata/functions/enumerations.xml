@@ -1,0 +1,127 @@
+
+<Category name='enumerations'>
+  <description>enumerations</description>
+  <displayName>enumerations</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>oh/enumerations/enumregistry.hpp</include>
+  </addinIncludes>
+
+  <copyright>
+    Copyright (C) 2007, 2008 Eric Ehlers
+  </copyright>
+
+  <Functions>
+
+    <Procedure name='ohListEnumeratedTypes'>
+      <description>list supported enumerated types</description>
+      <alias>ObjectHandler::EnumTypeRegistry::instance().getAllRegisteredTypes</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohEnumeratedType'>
+      <description>return the members of a given enumerated type</description>
+      <alias>ObjectHandler::EnumTypeRegistry::instance().getTypeElements</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EnumId'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>name of enumerated type</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohListEnumeratedClasses'>
+      <description>list supported enumerated classes</description>
+      <alias>ObjectHandler::EnumClassRegistry::instance().getAllRegisteredTypes</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohEnumeratedClass'>
+      <description>return the members of a given enumerated class</description>
+      <alias>ObjectHandler::EnumClassRegistry::instance().getTypeElements</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EnumId'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>name of enumerated type</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohListEnumeratedPairs'>
+      <description>list supported enumerated pairs</description>
+      <alias>ObjectHandler::EnumPairRegistry::instance().getAllRegisteredTypes</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohEnumeratedPair'>
+      <description>return the members of a given enumerated pair</description>
+      <alias>ObjectHandler::EnumPairRegistry::instance().getTypeElements</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EnumId'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>name of enumerated type</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+
+</Category>
+

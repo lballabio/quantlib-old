@@ -23,7 +23,7 @@
 #endif
 
 #include <qlo/payoffs.hpp>
-#include <qlo/Enumerations/Factories/payoffsfactory.hpp>
+#include <qlo/enumerations/factories/payoffsfactory.hpp>
 
 namespace QuantLibAddin {
 

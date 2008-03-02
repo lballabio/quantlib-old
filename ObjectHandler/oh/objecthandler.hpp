@@ -30,6 +30,6 @@
 #include <oh/group.hpp>
 #include <oh/range.hpp>
 #include <oh/serializationfactory.hpp>
-#include <oh/Enumerations/typefactory.hpp>
+#include <oh/enumerations/typefactory.hpp>
 
 #endif

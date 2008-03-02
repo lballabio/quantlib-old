@@ -35,5 +35,5 @@ libObjectHandler_la_SOURCES = \
     utilities.cpp
 
 libObjectHandler_la_LIBADD = \
-    Enumerations/libEnumerations.la
+    enumerations/libEnumerations.la
 

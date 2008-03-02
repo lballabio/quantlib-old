@@ -20,7 +20,7 @@
 
 #include <qlo/pricingengines.hpp>
 #include <qlo/swaption.hpp>
-#include <qlo/Enumerations/Factories/pricingenginesfactory.hpp>
+#include <qlo/enumerations/factories/pricingenginesfactory.hpp>
 
 #include <ql/pricingengines/blackscholescalculator.hpp>
 #include <ql/pricingengines/capfloor/analyticcapfloorengine.hpp>

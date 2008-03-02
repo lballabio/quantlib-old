@@ -1,6 +1,6 @@
 #include <oh/ohdefines.hpp>
-#include <%(addinDirectory)s/Serialization/Register/serialization_%(categoryName)s.hpp>
-#include <%(libRootDirectory)s/ValueObjects/vo_%(categoryName)s.hpp>
+#include <%(addinDirectory)s/serialization/register/serialization_%(categoryName)s.hpp>
+#include <%(libRootDirectory)s/valueobjects/vo_%(categoryName)s.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 #include <boost/serialization/variant.hpp>
 #include <boost/serialization/vector.hpp>

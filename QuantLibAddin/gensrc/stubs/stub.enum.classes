@@ -2,12 +2,12 @@
     #include <qlo/config.hpp>
 #endif
 
-#include <qlo/Enumerations/Constructors/enumeratedclasses.hpp>
-#include <qlo/Enumerations/Factories/conundrumpricerfactory.hpp>
-#include <qlo/Enumerations/Factories/iborcouponpricersfactory.hpp>
-#include <qlo/Enumerations/Factories/interpolationsfactory.hpp>
-#include <qlo/Enumerations/Factories/payoffsfactory.hpp>
-#include <qlo/Enumerations/Factories/pricingenginesfactory.hpp>
+#include <qlo/enumerations/constructors/enumeratedclasses.hpp>
+#include <qlo/enumerations/factories/conundrumpricerfactory.hpp>
+#include <qlo/enumerations/factories/iborcouponpricersfactory.hpp>
+#include <qlo/enumerations/factories/interpolationsfactory.hpp>
+#include <qlo/enumerations/factories/payoffsfactory.hpp>
+#include <qlo/enumerations/factories/pricingenginesfactory.hpp>
 
 namespace QuantLibAddin {
 

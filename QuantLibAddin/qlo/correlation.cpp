@@ -33,7 +33,7 @@
 #include <ql/models/marketmodels/correlations/expcorrelations.hpp>
 #include <ql/models/marketmodels/historicalforwardratesanalysis.hpp>
 #include <ql/models/marketmodels/historicalratesanalysis.hpp>
-#include <qlo/Enumerations/Factories/historicalforwardratesanalysisfactory.hpp>
+#include <qlo/enumerations/factories/historicalforwardratesanalysisfactory.hpp>
 
 namespace QuantLibAddin {
       

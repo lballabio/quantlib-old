@@ -26,266 +26,266 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Addins"
+			Name="addins"
 			Filter="">
 			<File
-				RelativePath="metadata\Addins\c.xml">
+				RelativePath="metadata\addins\c.xml">
 			</File>
 			<File
-				RelativePath="metadata\Addins\calc.xml">
+				RelativePath="metadata\addins\calc.xml">
 			</File>
 			<File
-				RelativePath="metadata\Addins\cpp.xml">
+				RelativePath="metadata\addins\cpp.xml">
 			</File>
 			<File
-				RelativePath="metadata\Addins\doxygen.xml">
+				RelativePath="metadata\addins\doxygen.xml">
 			</File>
 			<File
-				RelativePath="metadata\Addins\enumerations.xml">
+				RelativePath="metadata\addins\enumerations.xml">
 			</File>
 			<File
-				RelativePath="metadata\Addins\excel.xml">
+				RelativePath="metadata\addins\excel.xml">
 			</File>
 			<File
-				RelativePath="metadata\Addins\guile.xml">
+				RelativePath="metadata\addins\guile.xml">
 			</File>
 			<File
-				RelativePath="metadata\Addins\loop.xml">
+				RelativePath="metadata\addins\loop.xml">
 			</File>
 			<File
-				RelativePath="metadata\Addins\serialization.xml">
+				RelativePath="metadata\addins\serialization.xml">
 			</File>
 			<File
-				RelativePath="metadata\Addins\valueobjects.xml">
+				RelativePath="metadata\addins\valueobjects.xml">
 			</File>
 		</Filter>
 		<Filter
-			Name="Enumerations"
+			Name="enumerations"
 			Filter="">
 			<File
-				RelativePath="metadata\Enumerations\enumeratedclasses.xml">
+				RelativePath="metadata\enumerations\enumeratedclasses.xml">
 			</File>
 			<File
-				RelativePath="metadata\Enumerations\enumeratedpairs.xml">
+				RelativePath="metadata\enumerations\enumeratedpairs.xml">
 			</File>
 			<File
-				RelativePath="metadata\Enumerations\enumeratedtypes.xml">
+				RelativePath="metadata\enumerations\enumeratedtypes.xml">
 			</File>
 		</Filter>
 		<Filter
-			Name="Functions"
+			Name="functions"
 			Filter="">
 			<File
-				RelativePath="metadata\Functions\abcd.xml">
+				RelativePath="metadata\functions\abcd.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\accountingengines.xml">
+				RelativePath="metadata\functions\accountingengines.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\alphaform.xml">
+				RelativePath="metadata\functions\alphaform.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\assetswap.xml">
+				RelativePath="metadata\functions\assetswap.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\bonds.xml">
+				RelativePath="metadata\functions\bonds.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\browniangenerators.xml">
+				RelativePath="metadata\functions\browniangenerators.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\calendar.xml">
+				RelativePath="metadata\functions\calendar.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\capfloor.xml">
+				RelativePath="metadata\functions\capfloor.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\capletvolstructure.xml">
+				RelativePath="metadata\functions\capletvolstructure.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\cmsmarket.xml">
+				RelativePath="metadata\functions\cmsmarket.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\cmsmarketcalibration.xml">
+				RelativePath="metadata\functions\cmsmarketcalibration.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\correlation.xml">
+				RelativePath="metadata\functions\correlation.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\couponvectors.xml">
+				RelativePath="metadata\functions\couponvectors.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\ctsmmcapletcalibration.xml">
+				RelativePath="metadata\functions\ctsmmcapletcalibration.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\curvestate.xml">
+				RelativePath="metadata\functions\curvestate.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\date.xml">
+				RelativePath="metadata\functions\date.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\daycounter.xml">
+				RelativePath="metadata\functions\daycounter.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\driftcalculators.xml">
+				RelativePath="metadata\functions\driftcalculators.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\evolutiondescription.xml">
+				RelativePath="metadata\functions\evolutiondescription.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\exercise.xml">
+				RelativePath="metadata\functions\exercise.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\forwardrateagreement.xml">
+				RelativePath="metadata\functions\forwardrateagreement.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\handles.xml">
+				RelativePath="metadata\functions\handles.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\index.xml">
+				RelativePath="metadata\functions\index.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\instruments.xml">
+				RelativePath="metadata\functions\instruments.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\interpolation.xml">
+				RelativePath="metadata\functions\interpolation.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\leg.xml">
+				RelativePath="metadata\functions\leg.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\marketmodelevolvers.xml">
+				RelativePath="metadata\functions\marketmodelevolvers.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\marketmodels.xml">
+				RelativePath="metadata\functions\marketmodels.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\mathf.xml">
+				RelativePath="metadata\functions\mathf.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\ohfunctions.xml">
+				RelativePath="metadata\functions\ohfunctions.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\optimization.xml">
+				RelativePath="metadata\functions\optimization.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\options.xml">
+				RelativePath="metadata\functions\options.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\payoffs.xml">
+				RelativePath="metadata\functions\payoffs.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\piecewiseyieldcurve.xml">
+				RelativePath=".\metadata\functions\piecewiseyieldcurve.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\prices.xml">
+				RelativePath="metadata\functions\prices.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\pricingengines.xml">
+				RelativePath="metadata\functions\pricingengines.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\processes.xml">
+				RelativePath="metadata\functions\processes.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\products.xml">
+				RelativePath="metadata\functions\products.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\quotes.xml">
+				RelativePath="metadata\functions\quotes.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\randomsequencegenerator.xml">
+				RelativePath="metadata\functions\randomsequencegenerator.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\rangeaccrual.xml">
+				RelativePath="metadata\functions\rangeaccrual.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\ratehelpers.xml">
+				RelativePath="metadata\functions\ratehelpers.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\schedule.xml">
+				RelativePath="metadata\functions\schedule.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\sequencestatistics.xml">
+				RelativePath="metadata\functions\sequencestatistics.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\settings.xml">
+				RelativePath="metadata\functions\settings.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\shortratemodels.xml">
+				RelativePath="metadata\functions\shortratemodels.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\simplecashflow.xml">
+				RelativePath="metadata\functions\simplecashflow.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\smilesection.xml">
+				RelativePath="metadata\functions\smilesection.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\statistics.xml">
+				RelativePath="metadata\functions\statistics.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\swap.xml">
+				RelativePath="metadata\functions\swap.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\swaption.xml">
+				RelativePath="metadata\functions\swaption.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\swaptionvolstructure.xml">
+				RelativePath="metadata\functions\swaptionvolstructure.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\termstructures.xml">
+				RelativePath="metadata\functions\termstructures.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\timeseries.xml">
+				RelativePath=".\metadata\functions\timeseries.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\utilities.xml">
+				RelativePath="metadata\functions\utilities.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\vanillaswap.xml">
+				RelativePath="metadata\functions\vanillaswap.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\volatilities.xml">
+				RelativePath="metadata\functions\volatilities.xml">
 			</File>
 			<File
-				RelativePath="metadata\Functions\volatility.xml">
+				RelativePath="metadata\functions\volatility.xml">
 			</File>
 		</Filter>
 		<Filter
-			Name="Rules"
+			Name="rules"
 			Filter="">
 			<File
-				RelativePath="metadata\Rules\c.xml">
+				RelativePath="metadata\rules\c.xml">
 			</File>
 			<File
-				RelativePath="metadata\Rules\calc.xml">
+				RelativePath="metadata\rules\calc.xml">
 			</File>
 			<File
-				RelativePath="metadata\Rules\doxygen.xml">
+				RelativePath="metadata\rules\doxygen.xml">
 			</File>
 			<File
-				RelativePath="metadata\Rules\excel.xml">
+				RelativePath="metadata\rules\excel.xml">
 			</File>
 			<File
-				RelativePath="metadata\Rules\guile.xml">
+				RelativePath="metadata\rules\guile.xml">
 			</File>
 			<File
-				RelativePath="metadata\Rules\loop.xml">
+				RelativePath="metadata\rules\loop.xml">
 			</File>
 			<File
-				RelativePath="metadata\Rules\serialization.xml">
+				RelativePath="metadata\rules\serialization.xml">
 			</File>
 			<File
-				RelativePath="metadata\Rules\valueobjects.xml">
+				RelativePath="metadata\rules\valueobjects.xml">
 			</File>
 		</Filter>
 		<Filter
-			Name="Types"
+			Name="types"
 			Filter="">
 			<File
-				RelativePath="metadata\Types\types.xml">
+				RelativePath="metadata\types\types.xml">
 			</File>
 			<File
-				RelativePath="metadata\Types\supertypes.xml">
+				RelativePath="metadata\types\supertypes.xml">
 			</File>
 		</Filter>
 		<Filter

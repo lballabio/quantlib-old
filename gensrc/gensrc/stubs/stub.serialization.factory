@@ -1,5 +1,5 @@
-#include <%(libRootDirectory)s/Serialization/serializationfactory.hpp>
-#include <%(libRootDirectory)s/Serialization/Create/create_all.hpp>
+#include <%(libRootDirectory)s/serialization/serializationfactory.hpp>
+#include <%(libRootDirectory)s/serialization/create/create_all.hpp>
 
 namespace %(namespaceObjects)s {
 

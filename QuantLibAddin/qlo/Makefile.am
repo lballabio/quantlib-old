@@ -153,10 +153,10 @@ libQuantLibAddin_la_SOURCES = \
     yieldtermstructures.cpp
 
 libQuantLibAddin_la_LIBADD = \
-    Conversions/libConversions.la \
-    Enumerations/Constructors/libConstructors.la \
-    Enumerations/Factories/libFactories.la \
-    Enumerations/Register/libRegister.la \
-    Serialization/libSerialization.la \
-    ValueObjects/libValueObjects.la
+    conversions/libConversions.la \
+    enumerations/constructors/libConstructors.la \
+    enumerations/factories/libFactories.la \
+    enumerations/register/libRegister.la \
+    serialization/libSerialization.la \
+    valueobjects/libValueObjects.la
 

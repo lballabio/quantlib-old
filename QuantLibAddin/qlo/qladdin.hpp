@@ -80,8 +80,8 @@
 #include <qlo/vcconfig.hpp>
 #include <qlo/volatilities.hpp>
 
-#include <qlo/ValueObjects/vo_all.hpp>
-#include <qlo/Enumerations/Register/register_all.hpp>
+#include <qlo/valueobjects/vo_all.hpp>
+#include <qlo/enumerations/register/register_all.hpp>
 
 #endif
 

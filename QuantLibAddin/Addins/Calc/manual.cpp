@@ -17,8 +17,8 @@
 */
 
 #include <qlo/qladdindefines.hpp>
-#include <qlo/Enumerations/Factories/all.hpp>
-#include <qlo/Conversions/all.hpp>
+#include <qlo/enumerations/factories/all.hpp>
+#include <qlo/conversions/all.hpp>
 #include <oh/objecthandler.hpp>
 
 #include <Addins/Calc/qladdin.hpp>

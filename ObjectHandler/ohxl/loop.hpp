@@ -25,7 +25,7 @@
 #define ohxl_loop_hpp
 
 #include <ohxl/objecthandlerxl.hpp>
-#include <ohxl/Utilities/xlutilities.hpp>
+#include <ohxl/utilities/xlutilities.hpp>
 
 // The max number of failed loop iterations to be logged.  This is for
 // a 0-based array and will be displayed to user as ERROR_LIMIT+1

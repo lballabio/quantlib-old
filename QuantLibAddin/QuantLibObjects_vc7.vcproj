@@ -331,383 +331,383 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Enumerations"
+			Name="enumerations"
 			Filter="">
 			<Filter
-				Name="Constructors"
+				Name="constructors"
 				Filter="">
 				<File
-					RelativePath="qlo\Enumerations\Constructors\enumeratedclasses.cpp">
+					RelativePath="qlo\enumerations\constructors\enumeratedclasses.cpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Constructors\enumeratedclasses.hpp">
+					RelativePath="qlo\enumerations\constructors\enumeratedclasses.hpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Constructors\enumeratedpairs.cpp">
+					RelativePath="qlo\enumerations\constructors\enumeratedpairs.cpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Constructors\enumeratedpairs.hpp">
+					RelativePath="qlo\enumerations\constructors\enumeratedpairs.hpp">
 				</File>
 			</Filter>
 			<Filter
-				Name="Factories"
+				Name="factories"
 				Filter="">
 				<File
-					RelativePath="qlo\Enumerations\Factories\calendarfactory.cpp">
+					RelativePath="qlo\enumerations\factories\calendarfactory.cpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Factories\calendarfactory.hpp">
+					RelativePath="qlo\enumerations\factories\calendarfactory.hpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Factories\conundrumpricerfactory.hpp">
+					RelativePath="qlo\enumerations\factories\conundrumpricerfactory.hpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Factories\historicalforwardratesanalysisfactory.hpp">
+					RelativePath="qlo\enumerations\factories\historicalforwardratesanalysisfactory.hpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Factories\iborcouponpricersfactory.hpp">
+					RelativePath="qlo\enumerations\factories\iborcouponpricersfactory.hpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Factories\indexfactory.hpp">
+					RelativePath="qlo\enumerations\factories\indexfactory.hpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Factories\interpolationsfactory.hpp">
+					RelativePath="qlo\enumerations\factories\interpolationsfactory.hpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Factories\payoffsfactory.hpp">
+					RelativePath="qlo\enumerations\factories\payoffsfactory.hpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Factories\pricingenginesfactory.hpp">
+					RelativePath="qlo\enumerations\factories\pricingenginesfactory.hpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Factories\termstructuresfactory.hpp">
+					RelativePath="qlo\enumerations\factories\termstructuresfactory.hpp">
 				</File>
 			</Filter>
 			<Filter
-				Name="Register"
+				Name="register"
 				Filter="">
 				<File
-					RelativePath="qlo\Enumerations\Register\register_all.cpp">
+					RelativePath="qlo\enumerations\register\register_all.cpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Register\register_all.hpp">
+					RelativePath="qlo\enumerations\register\register_all.hpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Register\register_classes.cpp">
+					RelativePath="qlo\enumerations\register\register_classes.cpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Register\register_pairs.cpp">
+					RelativePath="qlo\enumerations\register\register_pairs.cpp">
 				</File>
 				<File
-					RelativePath="qlo\Enumerations\Register\register_types.cpp">
+					RelativePath="qlo\enumerations\register\register_types.cpp">
 				</File>
 			</Filter>
 		</Filter>
 		<Filter
-			Name="ValueObjects"
+			Name="valueobjects"
 			Filter="">
 			<File
-				RelativePath="qlo\ValueObjects\vo_abcd.cpp">
+				RelativePath="qlo\valueobjects\vo_abcd.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_abcd.hpp">
+				RelativePath="qlo\valueobjects\vo_abcd.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_accountingengines.cpp">
+				RelativePath="qlo\valueobjects\vo_accountingengines.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_accountingengines.hpp">
+				RelativePath="qlo\valueobjects\vo_accountingengines.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_all.hpp">
+				RelativePath="qlo\valueobjects\vo_all.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_alphaform.cpp">
+				RelativePath="qlo\valueobjects\vo_alphaform.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_alphaform.hpp">
+				RelativePath="qlo\valueobjects\vo_alphaform.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_assetswap.cpp">
+				RelativePath="qlo\valueobjects\vo_assetswap.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_assetswap.hpp">
+				RelativePath="qlo\valueobjects\vo_assetswap.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_bonds.cpp">
+				RelativePath="qlo\valueobjects\vo_bonds.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_bonds.hpp">
+				RelativePath="qlo\valueobjects\vo_bonds.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_browniangenerators.cpp">
+				RelativePath="qlo\valueobjects\vo_browniangenerators.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_browniangenerators.hpp">
+				RelativePath="qlo\valueobjects\vo_browniangenerators.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_capfloor.cpp">
+				RelativePath="qlo\valueobjects\vo_capfloor.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_capfloor.hpp">
+				RelativePath="qlo\valueobjects\vo_capfloor.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_capletvolstructure.cpp">
+				RelativePath="qlo\valueobjects\vo_capletvolstructure.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_capletvolstructure.hpp">
+				RelativePath="qlo\valueobjects\vo_capletvolstructure.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_cmsmarket.cpp">
+				RelativePath="qlo\valueobjects\vo_cmsmarket.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_cmsmarket.hpp">
+				RelativePath="qlo\valueobjects\vo_cmsmarket.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_cmsmarketcalibration.cpp">
+				RelativePath="qlo\valueobjects\vo_cmsmarketcalibration.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_cmsmarketcalibration.hpp">
+				RelativePath="qlo\valueobjects\vo_cmsmarketcalibration.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_correlation.cpp">
+				RelativePath="qlo\valueobjects\vo_correlation.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_correlation.hpp">
+				RelativePath="qlo\valueobjects\vo_correlation.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_couponvectors.cpp">
+				RelativePath="qlo\valueobjects\vo_couponvectors.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_couponvectors.hpp">
+				RelativePath="qlo\valueobjects\vo_couponvectors.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_ctsmmcapletcalibration.cpp">
+				RelativePath="qlo\valueobjects\vo_ctsmmcapletcalibration.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_ctsmmcapletcalibration.hpp">
+				RelativePath="qlo\valueobjects\vo_ctsmmcapletcalibration.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_curvestate.cpp">
+				RelativePath="qlo\valueobjects\vo_curvestate.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_curvestate.hpp">
+				RelativePath="qlo\valueobjects\vo_curvestate.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_driftcalculators.cpp">
+				RelativePath="qlo\valueobjects\vo_driftcalculators.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_driftcalculators.hpp">
+				RelativePath="qlo\valueobjects\vo_driftcalculators.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_evolutiondescription.cpp">
+				RelativePath="qlo\valueobjects\vo_evolutiondescription.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_evolutiondescription.hpp">
+				RelativePath="qlo\valueobjects\vo_evolutiondescription.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_exercise.cpp">
+				RelativePath="qlo\valueobjects\vo_exercise.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_exercise.hpp">
+				RelativePath="qlo\valueobjects\vo_exercise.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_forwardrateagreement.cpp">
+				RelativePath="qlo\valueobjects\vo_forwardrateagreement.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_forwardrateagreement.hpp">
+				RelativePath="qlo\valueobjects\vo_forwardrateagreement.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_group.hpp">
+				RelativePath="qlo\valueobjects\vo_group.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_index.cpp">
+				RelativePath="qlo\valueobjects\vo_index.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_index.hpp">
+				RelativePath="qlo\valueobjects\vo_index.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_interpolation.cpp">
+				RelativePath="qlo\valueobjects\vo_interpolation.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_interpolation.hpp">
+				RelativePath="qlo\valueobjects\vo_interpolation.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_leg.cpp">
+				RelativePath="qlo\valueobjects\vo_leg.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_leg.hpp">
+				RelativePath="qlo\valueobjects\vo_leg.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_marketmodelevolvers.cpp">
+				RelativePath="qlo\valueobjects\vo_marketmodelevolvers.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_marketmodelevolvers.hpp">
+				RelativePath="qlo\valueobjects\vo_marketmodelevolvers.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_marketmodels.cpp">
+				RelativePath="qlo\valueobjects\vo_marketmodels.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_marketmodels.hpp">
+				RelativePath="qlo\valueobjects\vo_marketmodels.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_mathf.cpp">
+				RelativePath="qlo\valueobjects\vo_mathf.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_mathf.hpp">
+				RelativePath="qlo\valueobjects\vo_mathf.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_optimization.cpp">
+				RelativePath="qlo\valueobjects\vo_optimization.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_optimization.hpp">
+				RelativePath="qlo\valueobjects\vo_optimization.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_options.cpp">
+				RelativePath="qlo\valueobjects\vo_options.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_options.hpp">
+				RelativePath="qlo\valueobjects\vo_options.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_payoffs.cpp">
+				RelativePath="qlo\valueobjects\vo_payoffs.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_payoffs.hpp">
+				RelativePath="qlo\valueobjects\vo_payoffs.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_piecewiseyieldcurve.cpp">
+				RelativePath="qlo\valueobjects\vo_piecewiseyieldcurve.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_piecewiseyieldcurve.hpp">
+				RelativePath="qlo\valueobjects\vo_piecewiseyieldcurve.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_pricingengines.cpp">
+				RelativePath="qlo\valueobjects\vo_pricingengines.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_pricingengines.hpp">
+				RelativePath="qlo\valueobjects\vo_pricingengines.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_processes.cpp">
+				RelativePath="qlo\valueobjects\vo_processes.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_processes.hpp">
+				RelativePath="qlo\valueobjects\vo_processes.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_products.cpp">
+				RelativePath="qlo\valueobjects\vo_products.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_products.hpp">
+				RelativePath="qlo\valueobjects\vo_products.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_quotes.cpp">
+				RelativePath="qlo\valueobjects\vo_quotes.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_quotes.hpp">
+				RelativePath="qlo\valueobjects\vo_quotes.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_randomsequencegenerator.cpp">
+				RelativePath="qlo\valueobjects\vo_randomsequencegenerator.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_randomsequencegenerator.hpp">
+				RelativePath="qlo\valueobjects\vo_randomsequencegenerator.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_range.hpp">
+				RelativePath="qlo\valueobjects\vo_range.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_rangeaccrual.cpp">
+				RelativePath="qlo\valueobjects\vo_rangeaccrual.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_rangeaccrual.hpp">
+				RelativePath="qlo\valueobjects\vo_rangeaccrual.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_ratehelpers.cpp">
+				RelativePath="qlo\valueobjects\vo_ratehelpers.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_ratehelpers.hpp">
+				RelativePath="qlo\valueobjects\vo_ratehelpers.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_schedule.cpp">
+				RelativePath="qlo\valueobjects\vo_schedule.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_schedule.hpp">
+				RelativePath="qlo\valueobjects\vo_schedule.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_sequencestatistics.cpp">
+				RelativePath="qlo\valueobjects\vo_sequencestatistics.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_sequencestatistics.hpp">
+				RelativePath="qlo\valueobjects\vo_sequencestatistics.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_shortratemodels.cpp">
+				RelativePath="qlo\valueobjects\vo_shortratemodels.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_shortratemodels.hpp">
+				RelativePath="qlo\valueobjects\vo_shortratemodels.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_simplecashflow.cpp">
+				RelativePath="qlo\valueobjects\vo_simplecashflow.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_simplecashflow.hpp">
+				RelativePath="qlo\valueobjects\vo_simplecashflow.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_smilesection.cpp">
+				RelativePath="qlo\valueobjects\vo_smilesection.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_smilesection.hpp">
+				RelativePath="qlo\valueobjects\vo_smilesection.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_statistics.cpp">
+				RelativePath="qlo\valueobjects\vo_statistics.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_statistics.hpp">
+				RelativePath="qlo\valueobjects\vo_statistics.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_swap.cpp">
+				RelativePath="qlo\valueobjects\vo_swap.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_swap.hpp">
+				RelativePath="qlo\valueobjects\vo_swap.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_swaption.cpp">
+				RelativePath="qlo\valueobjects\vo_swaption.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_swaption.hpp">
+				RelativePath="qlo\valueobjects\vo_swaption.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_swaptionvolstructure.cpp">
+				RelativePath="qlo\valueobjects\vo_swaptionvolstructure.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_swaptionvolstructure.hpp">
+				RelativePath="qlo\valueobjects\vo_swaptionvolstructure.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_termstructures.cpp">
+				RelativePath="qlo\valueobjects\vo_termstructures.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_termstructures.hpp">
+				RelativePath="qlo\valueobjects\vo_termstructures.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_timeseries.cpp">
+				RelativePath="qlo\valueobjects\vo_timeseries.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_timeseries.hpp">
+				RelativePath="qlo\valueobjects\vo_timeseries.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_vanillaswap.cpp">
+				RelativePath="qlo\valueobjects\vo_vanillaswap.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_vanillaswap.hpp">
+				RelativePath="qlo\valueobjects\vo_vanillaswap.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_volatilities.cpp">
+				RelativePath="qlo\valueobjects\vo_volatilities.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_volatilities.hpp">
+				RelativePath="qlo\valueobjects\vo_volatilities.hpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_volatility.cpp">
+				RelativePath="qlo\valueobjects\vo_volatility.cpp">
 			</File>
 			<File
-				RelativePath="qlo\ValueObjects\vo_volatility.hpp">
+				RelativePath="qlo\valueobjects\vo_volatility.hpp">
 			</File>
 		</Filter>
 		<Filter
@@ -1086,89 +1086,89 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Loop"
+			Name="loop"
 			Filter="">
 			<File
-				RelativePath="qlo\Loop\loop_bonds.hpp">
+				RelativePath="qlo\loop\loop_bonds.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Loop\loop_calendar.hpp">
+				RelativePath="qlo\loop\loop_calendar.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Loop\loop_capletvolstructure.hpp">
+				RelativePath="qlo\loop\loop_capletvolstructure.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Loop\loop_date.hpp">
+				RelativePath="qlo\loop\loop_date.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Loop\loop_daycounter.hpp">
+				RelativePath="qlo\loop\loop_daycounter.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Loop\loop_index.hpp">
+				RelativePath="qlo\loop\loop_index.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Loop\loop_interpolation.hpp">
+				RelativePath="qlo\loop\loop_interpolation.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Loop\loop_marketmodels.hpp">
+				RelativePath="qlo\loop\loop_marketmodels.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Loop\loop_swaptionvolstructure.hpp">
+				RelativePath="qlo\loop\loop_swaptionvolstructure.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Loop\loop_termstructures.hpp">
+				RelativePath="qlo\loop\loop_termstructures.hpp">
 			</File>
 			<File
-				RelativePath=".\qlo\Loop\loop_timeseries.hpp">
+				RelativePath=".\qlo\loop\loop_timeseries.hpp">
 			</File>
 		</Filter>
 		<Filter
-			Name="Conversions"
+			Name="conversions"
 			Filter="">
 			<File
-				RelativePath="qlo\Conversions\all.hpp">
+				RelativePath="qlo\conversions\all.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\coercehandle.hpp">
+				RelativePath="qlo\conversions\coercehandle.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\coercelibrarydifferent.hpp">
+				RelativePath="qlo\conversions\coercelibrarydifferent.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\coercelibrarysame.hpp">
+				RelativePath="qlo\conversions\coercelibrarysame.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\coerceobject.hpp">
+				RelativePath="qlo\conversions\coerceobject.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\coercequote.hpp">
+				RelativePath="qlo\conversions\coercequote.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\coercetermstructure.hpp">
+				RelativePath="qlo\conversions\coercetermstructure.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\conversions.cpp">
+				RelativePath="qlo\conversions\conversions.cpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\conversions.hpp">
+				RelativePath="qlo\conversions\conversions.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\varianttodate.hpp">
+				RelativePath="qlo\conversions\varianttodate.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\varianttoperiod.hpp">
+				RelativePath="qlo\conversions\varianttoperiod.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\varianttoquote.hpp">
+				RelativePath="qlo\conversions\varianttoquote.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\varianttoquotehandle.hpp">
+				RelativePath="qlo\conversions\varianttoquotehandle.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\varianttosize.hpp">
+				RelativePath="qlo\conversions\varianttosize.hpp">
 			</File>
 			<File
-				RelativePath="qlo\Conversions\varianttotimeseries.hpp">
+				RelativePath="qlo\conversions\varianttotimeseries.hpp">
 			</File>
 		</Filter>
 		<Filter
@@ -1182,626 +1182,626 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Serialization"
+			Name="serialization"
 			Filter="">
 			<File
-				RelativePath=".\qlo\Serialization\register_creators.cpp">
+				RelativePath=".\qlo\serialization\register_creators.cpp">
 			</File>
 			<File
-				RelativePath=".\qlo\Serialization\serializationfactory.cpp">
+				RelativePath=".\qlo\serialization\serializationfactory.cpp">
 			</File>
 			<File
-				RelativePath=".\qlo\Serialization\serializationfactory.hpp">
+				RelativePath=".\qlo\serialization\serializationfactory.hpp">
 			</File>
 			<Filter
-				Name="Create"
+				Name="create"
 				Filter="">
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_abcd.cpp">
+					RelativePath=".\qlo\serialization\create\create_abcd.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_abcd.hpp">
+					RelativePath=".\qlo\serialization\create\create_abcd.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_accountingengines.cpp">
+					RelativePath=".\qlo\serialization\create\create_accountingengines.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_accountingengines.hpp">
+					RelativePath=".\qlo\serialization\create\create_accountingengines.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_all.hpp">
+					RelativePath=".\qlo\serialization\create\create_all.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_alphaform.cpp">
+					RelativePath=".\qlo\serialization\create\create_alphaform.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_alphaform.hpp">
+					RelativePath=".\qlo\serialization\create\create_alphaform.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_assetswap.cpp">
+					RelativePath=".\qlo\serialization\create\create_assetswap.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_assetswap.hpp">
+					RelativePath=".\qlo\serialization\create\create_assetswap.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_bonds.cpp">
+					RelativePath=".\qlo\serialization\create\create_bonds.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_bonds.hpp">
+					RelativePath=".\qlo\serialization\create\create_bonds.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_browniangenerators.cpp">
+					RelativePath=".\qlo\serialization\create\create_browniangenerators.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_browniangenerators.hpp">
+					RelativePath=".\qlo\serialization\create\create_browniangenerators.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_capfloor.cpp">
+					RelativePath=".\qlo\serialization\create\create_capfloor.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_capfloor.hpp">
+					RelativePath=".\qlo\serialization\create\create_capfloor.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_capletvolstructure.cpp">
+					RelativePath=".\qlo\serialization\create\create_capletvolstructure.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_capletvolstructure.hpp">
+					RelativePath=".\qlo\serialization\create\create_capletvolstructure.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_cmsmarket.cpp">
+					RelativePath=".\qlo\serialization\create\create_cmsmarket.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_cmsmarket.hpp">
+					RelativePath=".\qlo\serialization\create\create_cmsmarket.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_cmsmarketcalibration.cpp">
+					RelativePath=".\qlo\serialization\create\create_cmsmarketcalibration.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_cmsmarketcalibration.hpp">
+					RelativePath=".\qlo\serialization\create\create_cmsmarketcalibration.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_correlation.cpp">
+					RelativePath=".\qlo\serialization\create\create_correlation.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_correlation.hpp">
+					RelativePath=".\qlo\serialization\create\create_correlation.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_couponvectors.cpp">
+					RelativePath=".\qlo\serialization\create\create_couponvectors.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_couponvectors.hpp">
+					RelativePath=".\qlo\serialization\create\create_couponvectors.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_ctsmmcapletcalibration.cpp">
+					RelativePath=".\qlo\serialization\create\create_ctsmmcapletcalibration.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_ctsmmcapletcalibration.hpp">
+					RelativePath=".\qlo\serialization\create\create_ctsmmcapletcalibration.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_curvestate.cpp">
+					RelativePath=".\qlo\serialization\create\create_curvestate.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_curvestate.hpp">
+					RelativePath=".\qlo\serialization\create\create_curvestate.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_driftcalculators.cpp">
+					RelativePath=".\qlo\serialization\create\create_driftcalculators.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_driftcalculators.hpp">
+					RelativePath=".\qlo\serialization\create\create_driftcalculators.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_evolutiondescription.cpp">
+					RelativePath=".\qlo\serialization\create\create_evolutiondescription.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_evolutiondescription.hpp">
+					RelativePath=".\qlo\serialization\create\create_evolutiondescription.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_exercise.cpp">
+					RelativePath=".\qlo\serialization\create\create_exercise.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_exercise.hpp">
+					RelativePath=".\qlo\serialization\create\create_exercise.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_forwardrateagreement.cpp">
+					RelativePath=".\qlo\serialization\create\create_forwardrateagreement.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_forwardrateagreement.hpp">
+					RelativePath=".\qlo\serialization\create\create_forwardrateagreement.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_index.cpp">
+					RelativePath=".\qlo\serialization\create\create_index.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_index.hpp">
+					RelativePath=".\qlo\serialization\create\create_index.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_interpolation.cpp">
+					RelativePath=".\qlo\serialization\create\create_interpolation.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_interpolation.hpp">
+					RelativePath=".\qlo\serialization\create\create_interpolation.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_leg.cpp">
+					RelativePath=".\qlo\serialization\create\create_leg.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_leg.hpp">
+					RelativePath=".\qlo\serialization\create\create_leg.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_marketmodelevolvers.cpp">
+					RelativePath=".\qlo\serialization\create\create_marketmodelevolvers.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_marketmodelevolvers.hpp">
+					RelativePath=".\qlo\serialization\create\create_marketmodelevolvers.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_marketmodels.cpp">
+					RelativePath=".\qlo\serialization\create\create_marketmodels.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_marketmodels.hpp">
+					RelativePath=".\qlo\serialization\create\create_marketmodels.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_mathf.cpp">
+					RelativePath=".\qlo\serialization\create\create_mathf.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_mathf.hpp">
+					RelativePath=".\qlo\serialization\create\create_mathf.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_optimization.cpp">
+					RelativePath=".\qlo\serialization\create\create_optimization.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_optimization.hpp">
+					RelativePath=".\qlo\serialization\create\create_optimization.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_options.cpp">
+					RelativePath=".\qlo\serialization\create\create_options.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_options.hpp">
+					RelativePath=".\qlo\serialization\create\create_options.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_payoffs.cpp">
+					RelativePath=".\qlo\serialization\create\create_payoffs.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_payoffs.hpp">
+					RelativePath=".\qlo\serialization\create\create_payoffs.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_piecewiseyieldcurve.cpp">
+					RelativePath=".\qlo\serialization\create\create_piecewiseyieldcurve.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_piecewiseyieldcurve.hpp">
+					RelativePath=".\qlo\serialization\create\create_piecewiseyieldcurve.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_pricingengines.cpp">
+					RelativePath=".\qlo\serialization\create\create_pricingengines.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_pricingengines.hpp">
+					RelativePath=".\qlo\serialization\create\create_pricingengines.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_processes.cpp">
+					RelativePath=".\qlo\serialization\create\create_processes.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_processes.hpp">
+					RelativePath=".\qlo\serialization\create\create_processes.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_products.cpp">
+					RelativePath=".\qlo\serialization\create\create_products.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_products.hpp">
+					RelativePath=".\qlo\serialization\create\create_products.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_quotes.cpp">
+					RelativePath=".\qlo\serialization\create\create_quotes.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_quotes.hpp">
+					RelativePath=".\qlo\serialization\create\create_quotes.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_randomsequencegenerator.cpp">
+					RelativePath=".\qlo\serialization\create\create_randomsequencegenerator.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_randomsequencegenerator.hpp">
+					RelativePath=".\qlo\serialization\create\create_randomsequencegenerator.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_rangeaccrual.cpp">
+					RelativePath=".\qlo\serialization\create\create_rangeaccrual.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_rangeaccrual.hpp">
+					RelativePath=".\qlo\serialization\create\create_rangeaccrual.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_ratehelpers.cpp">
+					RelativePath=".\qlo\serialization\create\create_ratehelpers.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_ratehelpers.hpp">
+					RelativePath=".\qlo\serialization\create\create_ratehelpers.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_schedule.cpp">
+					RelativePath=".\qlo\serialization\create\create_schedule.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_schedule.hpp">
+					RelativePath=".\qlo\serialization\create\create_schedule.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_sequencestatistics.cpp">
+					RelativePath=".\qlo\serialization\create\create_sequencestatistics.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_sequencestatistics.hpp">
+					RelativePath=".\qlo\serialization\create\create_sequencestatistics.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_shortratemodels.cpp">
+					RelativePath=".\qlo\serialization\create\create_shortratemodels.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_shortratemodels.hpp">
+					RelativePath=".\qlo\serialization\create\create_shortratemodels.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_simplecashflow.cpp">
+					RelativePath=".\qlo\serialization\create\create_simplecashflow.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_simplecashflow.hpp">
+					RelativePath=".\qlo\serialization\create\create_simplecashflow.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_smilesection.cpp">
+					RelativePath=".\qlo\serialization\create\create_smilesection.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_smilesection.hpp">
+					RelativePath=".\qlo\serialization\create\create_smilesection.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_statistics.cpp">
+					RelativePath=".\qlo\serialization\create\create_statistics.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_statistics.hpp">
+					RelativePath=".\qlo\serialization\create\create_statistics.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_swap.cpp">
+					RelativePath=".\qlo\serialization\create\create_swap.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_swap.hpp">
+					RelativePath=".\qlo\serialization\create\create_swap.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_swaption.cpp">
+					RelativePath=".\qlo\serialization\create\create_swaption.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_swaption.hpp">
+					RelativePath=".\qlo\serialization\create\create_swaption.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_swaptionvolstructure.cpp">
+					RelativePath=".\qlo\serialization\create\create_swaptionvolstructure.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_swaptionvolstructure.hpp">
+					RelativePath=".\qlo\serialization\create\create_swaptionvolstructure.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_termstructures.cpp">
+					RelativePath=".\qlo\serialization\create\create_termstructures.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_termstructures.hpp">
+					RelativePath=".\qlo\serialization\create\create_termstructures.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_timeseries.cpp">
+					RelativePath=".\qlo\serialization\create\create_timeseries.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_timeseries.hpp">
+					RelativePath=".\qlo\serialization\create\create_timeseries.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_vanillaswap.cpp">
+					RelativePath=".\qlo\serialization\create\create_vanillaswap.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_vanillaswap.hpp">
+					RelativePath=".\qlo\serialization\create\create_vanillaswap.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_volatilities.cpp">
+					RelativePath=".\qlo\serialization\create\create_volatilities.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_volatilities.hpp">
+					RelativePath=".\qlo\serialization\create\create_volatilities.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_volatility.cpp">
+					RelativePath=".\qlo\serialization\create\create_volatility.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Create\create_volatility.hpp">
+					RelativePath=".\qlo\serialization\create\create_volatility.hpp">
 				</File>
 			</Filter>
 			<Filter
-				Name="Register"
+				Name="register"
 				Filter="">
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_abcd.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_abcd.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_abcd.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_abcd.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_accountingengines.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_accountingengines.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_accountingengines.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_accountingengines.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_all.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_all.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_alphaform.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_alphaform.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_alphaform.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_alphaform.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_assetswap.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_assetswap.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_assetswap.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_assetswap.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_bonds.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_bonds.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_bonds.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_bonds.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_browniangenerators.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_browniangenerators.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_browniangenerators.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_browniangenerators.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_capfloor.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_capfloor.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_capfloor.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_capfloor.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_capletvolstructure.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_capletvolstructure.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_capletvolstructure.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_capletvolstructure.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_cmsmarket.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_cmsmarket.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_cmsmarket.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_cmsmarket.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_cmsmarketcalibration.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_cmsmarketcalibration.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_cmsmarketcalibration.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_cmsmarketcalibration.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_correlation.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_correlation.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_correlation.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_correlation.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_couponvectors.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_couponvectors.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_couponvectors.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_couponvectors.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_ctsmmcapletcalibration.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_ctsmmcapletcalibration.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_ctsmmcapletcalibration.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_ctsmmcapletcalibration.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_curvestate.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_curvestate.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_curvestate.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_curvestate.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_driftcalculators.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_driftcalculators.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_driftcalculators.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_driftcalculators.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_evolutiondescription.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_evolutiondescription.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_evolutiondescription.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_evolutiondescription.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_exercise.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_exercise.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_exercise.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_exercise.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_forwardrateagreement.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_forwardrateagreement.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_forwardrateagreement.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_forwardrateagreement.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_index.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_index.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_index.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_index.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_interpolation.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_interpolation.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_interpolation.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_interpolation.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_leg.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_leg.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_leg.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_leg.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_marketmodelevolvers.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_marketmodelevolvers.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_marketmodelevolvers.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_marketmodelevolvers.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_marketmodels.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_marketmodels.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_marketmodels.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_marketmodels.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_mathf.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_mathf.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_mathf.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_mathf.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_oh.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_oh.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_oh.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_oh.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_optimization.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_optimization.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_optimization.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_optimization.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_options.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_options.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_options.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_options.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_payoffs.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_payoffs.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_payoffs.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_payoffs.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_piecewiseyieldcurve.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_piecewiseyieldcurve.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_piecewiseyieldcurve.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_piecewiseyieldcurve.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_pricingengines.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_pricingengines.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_pricingengines.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_pricingengines.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_processes.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_processes.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_processes.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_processes.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_products.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_products.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_products.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_products.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_quotes.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_quotes.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_quotes.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_quotes.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_randomsequencegenerator.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_randomsequencegenerator.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_randomsequencegenerator.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_randomsequencegenerator.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_rangeaccrual.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_rangeaccrual.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_rangeaccrual.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_rangeaccrual.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_ratehelpers.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_ratehelpers.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_ratehelpers.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_ratehelpers.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_register.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_register.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_schedule.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_schedule.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_schedule.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_schedule.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_sequencestatistics.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_sequencestatistics.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_sequencestatistics.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_sequencestatistics.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_shortratemodels.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_shortratemodels.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_shortratemodels.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_shortratemodels.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_simplecashflow.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_simplecashflow.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_simplecashflow.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_simplecashflow.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_smilesection.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_smilesection.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_smilesection.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_smilesection.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_statistics.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_statistics.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_statistics.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_statistics.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_swap.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_swap.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_swap.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_swap.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_swaption.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_swaption.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_swaption.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_swaption.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_swaptionvolstructure.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_swaptionvolstructure.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_swaptionvolstructure.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_swaptionvolstructure.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_termstructures.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_termstructures.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_termstructures.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_termstructures.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_timeseries.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_timeseries.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_timeseries.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_timeseries.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_vanillaswap.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_vanillaswap.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_vanillaswap.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_vanillaswap.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_volatilities.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_volatilities.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_volatilities.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_volatilities.hpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_volatility.cpp">
+					RelativePath=".\qlo\serialization\register\serialization_volatility.cpp">
 				</File>
 				<File
-					RelativePath=".\qlo\Serialization\Register\serialization_volatility.hpp">
+					RelativePath=".\qlo\serialization\register\serialization_volatility.hpp">
 				</File>
 			</Filter>
 		</Filter>

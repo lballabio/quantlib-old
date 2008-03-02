@@ -135,290 +135,290 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Addins"
+			Name="addins"
 			>
 			<File
-				RelativePath="gensrc\Addins\addin.py"
+				RelativePath="gensrc\addins\addin.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\addinlist.py"
+				RelativePath="gensrc\addins\addinlist.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\c.py"
+				RelativePath="gensrc\addins\c.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\calc.py"
+				RelativePath="gensrc\addins\calc.py"
 				>
 			</File>
 			<File
-				RelativePath=".\gensrc\Addins\cpp.py"
+				RelativePath=".\gensrc\addins\cpp.py"
 				>
 			</File>
 			<File
-				RelativePath=".\gensrc\Addins\cppexceptions.py"
+				RelativePath=".\gensrc\addins\cppexceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\doxygen.py"
+				RelativePath="gensrc\addins\doxygen.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\enumerations.py"
+				RelativePath="gensrc\addins\enumerations.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\excel.py"
+				RelativePath="gensrc\addins\excel.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\excelexceptions.py"
+				RelativePath="gensrc\addins\excelexceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\guile.py"
+				RelativePath="gensrc\addins\guile.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\loop.py"
+				RelativePath="gensrc\addins\loop.py"
 				>
 			</File>
 			<File
-				RelativePath=".\gensrc\Addins\serialization.py"
+				RelativePath=".\gensrc\addins\serialization.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\serializationexceptions.py"
+				RelativePath="gensrc\addins\serializationexceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Addins\valueobjects.py"
+				RelativePath="gensrc\addins\valueobjects.py"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Categories"
+			Name="categories"
 			>
 			<File
-				RelativePath="gensrc\Categories\category.py"
+				RelativePath="gensrc\categories\category.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Categories\categorylist.py"
+				RelativePath="gensrc\categories\categorylist.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Categories\exceptions.py"
+				RelativePath="gensrc\categories\exceptions.py"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Configuration"
+			Name="configuration"
 			>
 			<File
-				RelativePath="gensrc\Configuration\configuration.py"
+				RelativePath="gensrc\configuration\configuration.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Configuration\environment.py"
+				RelativePath="gensrc\configuration\environment.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Configuration\initialization.py"
+				RelativePath="gensrc\configuration\initialization.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Configuration\exceptions.py"
+				RelativePath="gensrc\configuration\exceptions.py"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Enumerations"
+			Name="enumerations"
 			>
 			<File
-				RelativePath="gensrc\Enumerations\enumeratedclasses.py"
+				RelativePath="gensrc\enumerations\enumeratedclasses.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Enumerations\enumeratedpairs.py"
+				RelativePath="gensrc\enumerations\enumeratedpairs.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Enumerations\enumeratedtypes.py"
+				RelativePath="gensrc\enumerations\enumeratedtypes.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Enumerations\enumerationlist.py"
+				RelativePath="gensrc\enumerations\enumerationlist.py"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Exceptions"
+			Name="exceptions"
 			>
 			<File
-				RelativePath="gensrc\Exceptions\excepthook.py"
+				RelativePath="gensrc\exceptions\excepthook.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Exceptions\exceptions.py"
+				RelativePath="gensrc\exceptions\exceptions.py"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Functions"
+			Name="functions"
 			>
 			<File
-				RelativePath="gensrc\Functions\behavior.py"
+				RelativePath="gensrc\functions\behavior.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Functions\behaviorloop.py"
+				RelativePath="gensrc\functions\behaviorloop.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Functions\constructor.py"
+				RelativePath="gensrc\functions\constructor.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Functions\enumerationmember.py"
+				RelativePath="gensrc\functions\enumerationmember.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Functions\exceptions.py"
+				RelativePath="gensrc\functions\exceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Functions\function.py"
+				RelativePath="gensrc\functions\function.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Functions\member.py"
+				RelativePath="gensrc\functions\member.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Functions\procedure.py"
+				RelativePath="gensrc\functions\procedure.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Functions\supportedplatform.py"
+				RelativePath="gensrc\functions\supportedplatform.py"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Parameters"
+			Name="parameters"
 			>
 			<File
-				RelativePath="gensrc\Parameters\exceptions.py"
+				RelativePath="gensrc\parameters\exceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Parameters\parameter.py"
+				RelativePath="gensrc\parameters\parameter.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Parameters\parameterlist.py"
+				RelativePath="gensrc\parameters\parameterlist.py"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Patterns"
+			Name="patterns"
 			>
 			<File
-				RelativePath="gensrc\Patterns\exceptions.py"
+				RelativePath="gensrc\patterns\exceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Patterns\singleton.py"
+				RelativePath="gensrc\patterns\singleton.py"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Rules"
+			Name="rules"
 			>
 			<File
-				RelativePath="gensrc\Rules\exceptions.py"
+				RelativePath="gensrc\rules\exceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Rules\rule.py"
+				RelativePath="gensrc\rules\rule.py"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Serialization"
+			Name="serialization"
 			>
 			<File
-				RelativePath="gensrc\Serialization\exceptions.py"
+				RelativePath="gensrc\serialization\exceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Serialization\factory.py"
+				RelativePath="gensrc\serialization\factory.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Serialization\serializable.py"
+				RelativePath="gensrc\serialization\serializable.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Serialization\serializer.py"
+				RelativePath="gensrc\serialization\serializer.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Serialization\xmlreader.py"
+				RelativePath="gensrc\serialization\xmlreader.py"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Types"
+			Name="types"
 			>
 			<File
-				RelativePath="gensrc\Types\datatype.py"
+				RelativePath="gensrc\types\datatype.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Types\exceptions.py"
+				RelativePath="gensrc\types\exceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Types\supertype.py"
+				RelativePath="gensrc\types\supertype.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Types\typelist.py"
+				RelativePath="gensrc\types\typelist.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Types\fulltype.py"
+				RelativePath="gensrc\types\fulltype.py"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Utilities"
+			Name="utilities"
 			>
 			<File
-				RelativePath="gensrc\Utilities\buffer.py"
+				RelativePath="gensrc\utilities\buffer.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Utilities\common.py"
+				RelativePath="gensrc\utilities\common.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Utilities\exceptions.py"
+				RelativePath="gensrc\utilities\exceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Utilities\log.py"
+				RelativePath="gensrc\utilities\log.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Utilities\outputfile.py"
+				RelativePath="gensrc\utilities\outputfile.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\Utilities\utilities.py"
+				RelativePath="gensrc\utilities\utilities.py"
 				>
 			</File>
 		</Filter>

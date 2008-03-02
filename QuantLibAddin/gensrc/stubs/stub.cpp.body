@@ -1,8 +1,8 @@
 #include <qlo/qladdindefines.hpp>
 #include <qlo/handle.hpp>
 %(categoryIncludes)s
-#include <qlo/Conversions/all.hpp>
-#include <oh/Conversions/ohconvertvariant.hpp>
+#include <qlo/conversions/all.hpp>
+#include <oh/conversions/ohconvertvariant.hpp>
 
 namespace QuantLibAddinCpp {
 %(bufferCpp)s}

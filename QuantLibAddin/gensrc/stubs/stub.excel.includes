@@ -2,7 +2,7 @@
 %(categoryIncludes)s
 #include <ohxl/objecthandlerxl.hpp>
 #include <qlxl/session.hpp>
-#include <qlxl/Conversions/all.hpp>
+#include <qlxl/conversions/all.hpp>
 
 #define XLL_DEC DLLEXPORT
 

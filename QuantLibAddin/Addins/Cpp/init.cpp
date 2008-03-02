@@ -18,9 +18,9 @@
 
 #include <Addins/Cpp/init.hpp>
 #include <oh/repository.hpp>
-#include <oh/Enumerations/enumregistry.hpp>
-#include <qlo/Enumerations/Register/register_all.hpp>
-#include <qlo/Serialization/serializationfactory.hpp>
+#include <oh/enumerations/enumregistry.hpp>
+#include <qlo/enumerations/register/register_all.hpp>
+#include <qlo/serialization/serializationfactory.hpp>
 
 void QuantLibAddinCpp::initializeAddin() {
 

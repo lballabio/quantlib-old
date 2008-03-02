@@ -18,8 +18,8 @@
 
 #include <Addins/Calc/init.hpp>
 #include <oh/repository.hpp>
-#include <oh/Enumerations/enumregistry.hpp>
-#include <qlo/Enumerations/Register/register_all.hpp>
+#include <oh/enumerations/enumregistry.hpp>
+#include <qlo/enumerations/register/register_all.hpp>
 //#include <Addins/Cpp/Serialization/serializationfactory.hpp>
 
 void QuantLibAddin::initializeAddin() {

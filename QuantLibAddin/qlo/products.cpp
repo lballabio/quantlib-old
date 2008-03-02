@@ -27,7 +27,7 @@
 
 #include <qlo/products.hpp>
 #include <qlo/evolutiondescription.hpp>
-#include <qlo/ValueObjects/vo_evolutiondescription.hpp>
+#include <qlo/valueobjects/vo_evolutiondescription.hpp>
 
 #include <ql/models/marketmodels/products/onestep/onestepforwards.hpp>
 #include <ql/models/marketmodels/products/onestep/onestepoptionlets.hpp>

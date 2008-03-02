@@ -3,87 +3,87 @@ GENSRC_DIR = @gensrc_dir@
 
 # gensrc.py probably needs to be re-executed if any of these change
 
-GENSRC_METADATA :=  metadata/Addins/calc.xml \
-                    metadata/Addins/cpp.xml \
-                    metadata/Addins/c.xml \
-                    metadata/Addins/doxygen.xml \
-                    metadata/Addins/enumerations.xml \
-                    metadata/Addins/excel.xml \
-                    metadata/Addins/guile.xml \
-                    metadata/Addins/loop.xml \
-                    metadata/Addins/serialization.xml \
-                    metadata/Addins/valueobjects.xml \
-                    metadata/Enumerations/enumeratedclasses.xml \
-                    metadata/Enumerations/enumeratedpairs.xml \
-                    metadata/Enumerations/enumeratedtypes.xml \
-                    metadata/Functions/abcd.xml \
-                    metadata/Functions/accountingengines.xml \
-                    metadata/Functions/alphaform.xml \
-                    metadata/Functions/assetswap.xml \
-                    metadata/Functions/bonds.xml \
-                    metadata/Functions/browniangenerators.xml \
-                    metadata/Functions/calendar.xml \
-                    metadata/Functions/capfloor.xml \
-                    metadata/Functions/capletvolstructure.xml \
-                    metadata/Functions/cmsmarketcalibration.xml \
-                    metadata/Functions/cmsmarket.xml \
-                    metadata/Functions/correlation.xml \
-                    metadata/Functions/couponvectors.xml \
-                    metadata/Functions/ctsmmcapletcalibration.xml \
-                    metadata/Functions/curvestate.xml \
-                    metadata/Functions/date.xml \
-                    metadata/Functions/daycounter.xml \
-                    metadata/Functions/driftcalculators.xml \
-                    metadata/Functions/evolutiondescription.xml \
-                    metadata/Functions/exercise.xml \
-                    metadata/Functions/forwardrateagreement.xml \
-                    metadata/Functions/handles.xml \
-                    metadata/Functions/index.xml \
-                    metadata/Functions/instruments.xml \
-                    metadata/Functions/interpolation.xml \
-                    metadata/Functions/leg.xml \
-                    metadata/Functions/marketmodelevolvers.xml \
-                    metadata/Functions/marketmodels.xml \
-                    metadata/Functions/mathf.xml \
-                    metadata/Functions/optimization.xml \
-                    metadata/Functions/options.xml \
-                    metadata/Functions/payoffs.xml \
-                    metadata/Functions/piecewiseyieldcurve.xml \
-                    metadata/Functions/prices.xml \
-                    metadata/Functions/pricingengines.xml \
-                    metadata/Functions/processes.xml \
-                    metadata/Functions/products.xml \
-                    metadata/Functions/quotes.xml \
-                    metadata/Functions/randomsequencegenerator.xml \
-                    metadata/Functions/rangeaccrual.xml \
-                    metadata/Functions/ratehelpers.xml \
-                    metadata/Functions/schedule.xml \
-                    metadata/Functions/sequencestatistics.xml \
-                    metadata/Functions/settings.xml \
-                    metadata/Functions/shortratemodels.xml \
-                    metadata/Functions/simplecashflow.xml \
-                    metadata/Functions/smilesection.xml \
-                    metadata/Functions/statistics.xml \
-                    metadata/Functions/swaptionvolstructure.xml \
-                    metadata/Functions/swaption.xml \
-                    metadata/Functions/swap.xml \
-                    metadata/Functions/termstructures.xml \
-                    metadata/Functions/timeseries.xml \
-                    metadata/Functions/utilities.xml \
-                    metadata/Functions/vanillaswap.xml \
-                    metadata/Functions/volatilities.xml \
-                    metadata/Functions/volatility.xml \
-                    metadata/Rules/calc.xml \
-                    metadata/Rules/cpp.xml \
-                    metadata/Rules/c.xml \
-                    metadata/Rules/doxygen.xml \
-                    metadata/Rules/excel.xml \
-                    metadata/Rules/guile.xml \
-                    metadata/Rules/loop.xml \
-                    metadata/Rules/serialization.xml \
-                    metadata/Rules/valueobjects.xml \
-                    metadata/Types/supertypes.xml \
-                    metadata/Types/types.xml
+GENSRC_METADATA :=  metadata/addins/calc.xml \
+                    metadata/addins/cpp.xml \
+                    metadata/addins/c.xml \
+                    metadata/addins/doxygen.xml \
+                    metadata/addins/enumerations.xml \
+                    metadata/addins/excel.xml \
+                    metadata/addins/guile.xml \
+                    metadata/addins/loop.xml \
+                    metadata/addins/serialization.xml \
+                    metadata/addins/valueobjects.xml \
+                    metadata/enumerations/enumeratedclasses.xml \
+                    metadata/enumerations/enumeratedpairs.xml \
+                    metadata/enumerations/enumeratedtypes.xml \
+                    metadata/functions/abcd.xml \
+                    metadata/functions/accountingengines.xml \
+                    metadata/functions/alphaform.xml \
+                    metadata/functions/assetswap.xml \
+                    metadata/functions/bonds.xml \
+                    metadata/functions/browniangenerators.xml \
+                    metadata/functions/calendar.xml \
+                    metadata/functions/capfloor.xml \
+                    metadata/functions/capletvolstructure.xml \
+                    metadata/functions/cmsmarketcalibration.xml \
+                    metadata/functions/cmsmarket.xml \
+                    metadata/functions/correlation.xml \
+                    metadata/functions/couponvectors.xml \
+                    metadata/functions/ctsmmcapletcalibration.xml \
+                    metadata/functions/curvestate.xml \
+                    metadata/functions/date.xml \
+                    metadata/functions/daycounter.xml \
+                    metadata/functions/driftcalculators.xml \
+                    metadata/functions/evolutiondescription.xml \
+                    metadata/functions/exercise.xml \
+                    metadata/functions/forwardrateagreement.xml \
+                    metadata/functions/handles.xml \
+                    metadata/functions/index.xml \
+                    metadata/functions/instruments.xml \
+                    metadata/functions/interpolation.xml \
+                    metadata/functions/leg.xml \
+                    metadata/functions/marketmodelevolvers.xml \
+                    metadata/functions/marketmodels.xml \
+                    metadata/functions/mathf.xml \
+                    metadata/functions/optimization.xml \
+                    metadata/functions/options.xml \
+                    metadata/functions/payoffs.xml \
+                    metadata/functions/piecewiseyieldcurve.xml \
+                    metadata/functions/prices.xml \
+                    metadata/functions/pricingengines.xml \
+                    metadata/functions/processes.xml \
+                    metadata/functions/products.xml \
+                    metadata/functions/quotes.xml \
+                    metadata/functions/randomsequencegenerator.xml \
+                    metadata/functions/rangeaccrual.xml \
+                    metadata/functions/ratehelpers.xml \
+                    metadata/functions/schedule.xml \
+                    metadata/functions/sequencestatistics.xml \
+                    metadata/functions/settings.xml \
+                    metadata/functions/shortratemodels.xml \
+                    metadata/functions/simplecashflow.xml \
+                    metadata/functions/smilesection.xml \
+                    metadata/functions/statistics.xml \
+                    metadata/functions/swaptionvolstructure.xml \
+                    metadata/functions/swaption.xml \
+                    metadata/functions/swap.xml \
+                    metadata/functions/termstructures.xml \
+                    metadata/functions/timeseries.xml \
+                    metadata/functions/utilities.xml \
+                    metadata/functions/vanillaswap.xml \
+                    metadata/functions/volatilities.xml \
+                    metadata/functions/volatility.xml \
+                    metadata/rules/calc.xml \
+                    metadata/rules/cpp.xml \
+                    metadata/rules/c.xml \
+                    metadata/rules/doxygen.xml \
+                    metadata/rules/excel.xml \
+                    metadata/rules/guile.xml \
+                    metadata/rules/loop.xml \
+                    metadata/rules/serialization.xml \
+                    metadata/rules/valueobjects.xml \
+                    metadata/types/supertypes.xml \
+                    metadata/types/types.xml
 
 GENSRC_STUBS :=     stubs/stub.copyright \
                     stubs/stub.cpp.body \
@@ -113,7 +113,7 @@ EXTRA_DIST = .time-stamp \
 # v - Value Objects
 # s - Serialization
 # l - Loop functions
-# e - Enumerations
+# e - enumerations
 # d - Doxygen documentation files
 # Depending on the arguments that were passed to configure,
 # we may also specify:
@@ -150,19 +150,19 @@ dist-hook:
 	mkdir -p $(distdir)/code
 	mkdir -p $(distdir)/config
 	mkdir -p $(distdir)/metadata
-	mkdir -p $(distdir)/metadata/Addins
-	mkdir -p $(distdir)/metadata/Enumerations
-	mkdir -p $(distdir)/metadata/Functions
-	mkdir -p $(distdir)/metadata/Rules
-	mkdir -p $(distdir)/metadata/Types
+	mkdir -p $(distdir)/metadata/addins
+	mkdir -p $(distdir)/metadata/enumerations
+	mkdir -p $(distdir)/metadata/functions
+	mkdir -p $(distdir)/metadata/rules
+	mkdir -p $(distdir)/metadata/types
 	mkdir -p $(distdir)/stubs
 	cp -p $(srcdir)/code/*.py $(distdir)/code
 	cp -p $(srcdir)/config/*.xml $(distdir)/config
-	cp -p $(srcdir)/metadata/Addins/*.xml $(distdir)/metadata/Addins
-	cp -p $(srcdir)/metadata/Enumerations/*.xml $(distdir)/metadata/Enumerations
-	cp -p $(srcdir)/metadata/Functions/*.xml $(distdir)/metadata/Functions
-	cp -p $(srcdir)/metadata/Rules/*.xml $(distdir)/metadata/Rules
-	cp -p $(srcdir)/metadata/Types/*.xml $(distdir)/metadata/Types
+	cp -p $(srcdir)/metadata/addins/*.xml $(distdir)/metadata/addins
+	cp -p $(srcdir)/metadata/enumerations/*.xml $(distdir)/metadata/enumerations
+	cp -p $(srcdir)/metadata/functions/*.xml $(distdir)/metadata/functions
+	cp -p $(srcdir)/metadata/rules/*.xml $(distdir)/metadata/rules
+	cp -p $(srcdir)/metadata/types/*.xml $(distdir)/metadata/types
 	cp -p $(srcdir)/stubs/stub.* $(distdir)/stubs
 	touch .time-stamp
 

@@ -20,10 +20,10 @@
 
 import sys
 import getopt
-from gensrc.Addins import addinlist
-from gensrc.Exceptions import excepthook
-from gensrc.Configuration import initialization
-from gensrc.Configuration import environment
+from gensrc.addins import addinlist
+from gensrc.exceptions import excepthook
+from gensrc.configuration import initialization
+from gensrc.configuration import environment
 
 USAGE_ERROR = """
 usage: %(scriptName)s -[flags]

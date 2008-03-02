@@ -17,7 +17,7 @@
 */
 
 #include <ohxl/objecthandlerxl.hpp>
-#include <ohxl/Utilities/xlutilities.hpp>
+#include <ohxl/utilities/xlutilities.hpp>
 #include <ExampleObjects/accountexample.hpp>
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,

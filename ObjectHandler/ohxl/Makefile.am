@@ -20,11 +20,11 @@ EXTRA_DIST = \
     xloper.hpp
  
 dist-hook:
-	mkdir -p $(distdir)/Conversions  $(distdir)/Functions $(distdir)/ohxll $(distdir)/ohxllib $(distdir)/Register $(distdir)/Utilities
-	cp -p $(srcdir)/Conversions/*.?pp $(distdir)/Conversions
-	cp -p $(srcdir)/Functions/*.?pp $(distdir)/Functions
+	mkdir -p $(distdir)/conversions  $(distdir)/functions $(distdir)/ohxll $(distdir)/ohxllib $(distdir)/register $(distdir)/utilities
+	cp -p $(srcdir)/conversions/*.?pp $(distdir)/conversions
+	cp -p $(srcdir)/functions/*.?pp $(distdir)/functions
 	cp -p $(srcdir)/ohxll/*.vcproj $(distdir)/ohxll
 	cp -p $(srcdir)/ohxllib/*.vcproj $(distdir)/ohxllib
-	cp -p $(srcdir)/Register/*.?pp $(distdir)/Register
-	cp -p $(srcdir)/Utilities/*.?pp $(distdir)/Utilities
+	cp -p $(srcdir)/register/*.?pp $(distdir)/register
+	cp -p $(srcdir)/utilities/*.?pp $(distdir)/utilities
 

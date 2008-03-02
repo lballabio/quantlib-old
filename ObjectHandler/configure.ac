@@ -81,9 +81,9 @@ AC_CONFIG_FILES([
     Examples/xl/Makefile
     gensrc/Makefile
     Makefile
-    oh/Conversions/Makefile
-    oh/Enumerations/Makefile
-    oh/ValueObjects/Makefile
+    oh/conversions/Makefile
+    oh/enumerations/Makefile
+    oh/valueobjects/Makefile
     oh/Makefile
     ohxl/Makefile
     xlsdk/Makefile ])

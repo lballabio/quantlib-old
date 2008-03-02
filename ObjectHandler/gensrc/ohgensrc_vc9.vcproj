@@ -40,90 +40,90 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Addins"
+			Name="addins"
 			>
 			<File
-				RelativePath="metadata\Addins\doxygen.xml"
+				RelativePath="metadata\addins\doxygen.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Addins\excel.xml"
+				RelativePath="metadata\addins\excel.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Addins\loop.xml"
+				RelativePath="metadata\addins\loop.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Addins\valueobjects.xml"
+				RelativePath="metadata\addins\valueobjects.xml"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Functions"
+			Name="functions"
 			>
 			<File
-				RelativePath=".\metadata\Functions\enumerations.xml"
+				RelativePath=".\metadata\functions\enumerations.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Functions\garbagecollection.xml"
+				RelativePath="metadata\functions\garbagecollection.xml"
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\group.xml"
+				RelativePath=".\metadata\functions\group.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Functions\logging.xml"
+				RelativePath="metadata\functions\logging.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Functions\ohutils.xml"
+				RelativePath="metadata\functions\ohutils.xml"
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\range.xml"
+				RelativePath=".\metadata\functions\range.xml"
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\Functions\serialization.xml"
+				RelativePath=".\metadata\functions\serialization.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Functions\valueobjects.xml"
+				RelativePath="metadata\functions\valueobjects.xml"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Rules"
+			Name="rules"
 			>
 			<File
-				RelativePath="metadata\Rules\doxygen.xml"
+				RelativePath="metadata\rules\doxygen.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Rules\excel.xml"
+				RelativePath="metadata\rules\excel.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Rules\loop.xml"
+				RelativePath="metadata\rules\loop.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Rules\valueobjects.xml"
+				RelativePath="metadata\rules\valueobjects.xml"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Types"
+			Name="types"
 			>
 			<File
-				RelativePath="metadata\Types\types.xml"
+				RelativePath="metadata\types\types.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\Types\supertypes.xml"
+				RelativePath="metadata\types\supertypes.xml"
 				>
 			</File>
 		</Filter>

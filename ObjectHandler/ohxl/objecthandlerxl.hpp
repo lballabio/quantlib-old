@@ -28,7 +28,7 @@
 #include <ohxl/configuration.hpp>
 #include <ohxl/objectxl.hpp>
 #include <ohxl/repositoryxl.hpp>
-#include <ohxl/Conversions/all.hpp>
+#include <ohxl/conversions/all.hpp>
 #include <ohxl/functioncall.hpp>
 
 #endif

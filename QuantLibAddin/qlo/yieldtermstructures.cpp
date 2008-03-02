@@ -26,7 +26,7 @@
 
 #include <qlo/yieldtermstructures.hpp>
 #include <qlo/ratehelpers.hpp>
-#include <qlo/Enumerations/Factories/termstructuresfactory.hpp>
+#include <qlo/enumerations/factories/termstructuresfactory.hpp>
 
 #include <ql/time/date.hpp>
 #include <ql/math/interpolations/cubicspline.hpp>

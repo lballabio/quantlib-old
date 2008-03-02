@@ -389,42 +389,42 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Conversions"
+			Name="conversions"
 			Filter="">
 			<File
-				RelativePath="oh\Conversions\anytostream.hpp">
+				RelativePath="oh\conversions\anytostream.hpp">
 			</File>
 			<File
-				RelativePath="oh\Conversions\coerce.hpp">
+				RelativePath="oh\conversions\coerce.hpp">
 			</File>
 			<File
-				RelativePath="oh\Conversions\getobjectvector.hpp">
+				RelativePath="oh\conversions\getobjectvector.hpp">
 			</File>
 			<File
-				RelativePath="oh\Conversions\ohconvertvariant.hpp">
+				RelativePath="oh\conversions\ohconvertvariant.hpp">
 			</File>
 			<File
-				RelativePath="oh\Conversions\varianttoscalar.hpp">
+				RelativePath="oh\conversions\varianttoscalar.hpp">
 			</File>
 		</Filter>
 		<Filter
-			Name="Enumerations"
+			Name="enumerations"
 			Filter="">
 			<File
-				RelativePath="oh\Enumerations\enumregistry.cpp">
+				RelativePath="oh\enumerations\enumregistry.cpp">
 			</File>
 			<File
-				RelativePath="oh\Enumerations\enumregistry.hpp">
+				RelativePath="oh\enumerations\enumregistry.hpp">
 			</File>
 			<File
-				RelativePath="oh\Enumerations\registry.hpp">
+				RelativePath="oh\enumerations\registry.hpp">
 			</File>
 			<File
-				RelativePath="oh\Enumerations\typefactory.hpp">
+				RelativePath="oh\enumerations\typefactory.hpp">
 			</File>
 		</Filter>
 		<Filter
-			Name="Utilities"
+			Name="utilities"
 			Filter="">
 			<File
 				RelativePath="oh\auto_link.hpp">
@@ -443,17 +443,17 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Loop"
+			Name="loop"
 			Filter="">
 			<File
-				RelativePath="oh\Loop\loop_valueobjects.hpp">
+				RelativePath="oh\loop\loop_valueobjects.hpp">
 			</File>
 		</Filter>
 		<Filter
-			Name="ValueObjects"
+			Name="valueobjects"
 			Filter="">
 			<File
-				RelativePath="oh\ValueObjects\vo_range.hpp">
+				RelativePath="oh\valueobjects\vo_range.hpp">
 			</File>
 		</Filter>
 	</Files>

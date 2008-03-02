@@ -30,7 +30,7 @@
 #include <iostream>
 #include <exception>
 #include <oh/objecthandler.hpp>
-#include <oh/Conversions/varianttoscalar.hpp>
+#include <oh/conversions/varianttoscalar.hpp>
 #include <ExampleObjects/accountexample.hpp>
 #include <Examples/examplefactory.hpp>
 

@@ -1,0 +1,16 @@
+
+<Addin name='enumerations'>
+
+  <rootDirectory>QuantLibAddin/qlo/enumerations/register</rootDirectory>
+  <loadRules>false</loadRules>
+  <coreCategories>false</coreCategories>
+  <addinCategories>true</addinCategories>
+
+  <Buffers>
+    <Buffer name='bufferEnumTypes' fileName='stub.enum.types' local='true'/>
+    <Buffer name='bufferEnumClasses' fileName='stub.enum.classes' local='true'/>
+    <Buffer name='bufferEnumPairs' fileName='stub.enum.pairs' local='true'/>
+  </Buffers>
+
+</Addin>
+

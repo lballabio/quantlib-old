@@ -15,7 +15,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <oh/Enumerations/typefactory.hpp>
+#include <oh/enumerations/typefactory.hpp>
 #include <ExampleObjects/Enumerations/accountenumerations.hpp>
 #include <ExampleObjects/Library/account.hpp>
 

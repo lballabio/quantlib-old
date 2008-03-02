@@ -1,7 +1,7 @@
 #include <oh/utilities.hpp>
 #include <oh/exception.hpp>
 #include <ohxl/repositoryxl.hpp>
-#include <ohxl/Conversions/all.hpp>
+#include <ohxl/conversions/all.hpp>
 #include <ohxl/functioncall.hpp>
 %(categoryIncludes)s
 #include <sstream>

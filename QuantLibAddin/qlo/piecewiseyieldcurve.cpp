@@ -23,7 +23,7 @@
 #endif
 
 #include <qlo/piecewiseyieldcurve.hpp>
-#include <qlo/Enumerations/Factories/termstructuresfactory.hpp>
+#include <qlo/enumerations/factories/termstructuresfactory.hpp>
 #include <ql/termstructures/yield/piecewiseyieldcurve.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>

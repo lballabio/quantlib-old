@@ -16,11 +16,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <oh/Enumerations/typefactory.hpp>
+#include <oh/enumerations/typefactory.hpp>
 #include <ohxl/objecthandlerxl.hpp>
-#include <ohxl/Register/register_all.hpp>
-#include <ohxl/Functions/export.hpp>
-#include <ohxl/Utilities/xlutilities.hpp>
+#include <ohxl/register/register_all.hpp>
+#include <ohxl/functions/export.hpp>
+#include <ohxl/utilities/xlutilities.hpp>
 #include <ExampleObjects/accountexample.hpp>
 #include <Examples/examplefactory.hpp>
 

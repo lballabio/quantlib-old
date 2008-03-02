@@ -3,20 +3,20 @@ GENSRC_DIR = @gensrc_dir@
 
 # gensrc.py probably needs to be re-executed if any of these change
 
-GENSRC_METADATA :=  metadata/Addins/doxygen.xml \
-                    metadata/Addins/excel.xml \
-                    metadata/Addins/loop.xml \
-                    metadata/Addins/valueobjects.xml \
-                    metadata/Functions/enumerations.xml \
-                    metadata/Functions/garbagecollection.xml \
-                    metadata/Functions/logging.xml \
-                    metadata/Functions/ohutils.xml \
-                    metadata/Functions/valueobjects.xml \
-                    metadata/Rules/doxygen.xml \
-                    metadata/Rules/excel.xml \
-                    metadata/Rules/loop.xml \
-                    metadata/Rules/valueobjects.xml \
-                    metadata/Types/types.xml
+GENSRC_METADATA :=  metadata/addins/doxygen.xml \
+                    metadata/addins/excel.xml \
+                    metadata/addins/loop.xml \
+                    metadata/addins/valueobjects.xml \
+                    metadata/functions/enumerations.xml \
+                    metadata/functions/garbagecollection.xml \
+                    metadata/functions/logging.xml \
+                    metadata/functions/ohutils.xml \
+                    metadata/functions/valueobjects.xml \
+                    metadata/rules/doxygen.xml \
+                    metadata/rules/excel.xml \
+                    metadata/rules/loop.xml \
+                    metadata/rules/valueobjects.xml \
+                    metadata/types/types.xml
 
 GENSRC_STUBS :=     stubs/stub.copyright \
                     stubs/stub.excel.exports \
@@ -46,16 +46,16 @@ dist-hook:
 	mkdir -p $(distdir)/code
 	mkdir -p $(distdir)/config
 	mkdir -p $(distdir)/metadata
-	mkdir -p $(distdir)/metadata/Addins
-	mkdir -p $(distdir)/metadata/Functions
-	mkdir -p $(distdir)/metadata/Rules
-	mkdir -p $(distdir)/metadata/Types
+	mkdir -p $(distdir)/metadata/addins
+	mkdir -p $(distdir)/metadata/functions
+	mkdir -p $(distdir)/metadata/rules
+	mkdir -p $(distdir)/metadata/types
 	mkdir -p $(distdir)/stubs
 	cp -pf $(srcdir)/config/*.xml $(distdir)/config
-	cp -pf $(srcdir)/metadata/Addins/*.xml $(distdir)/metadata/Addins
-	cp -pf $(srcdir)/metadata/Functions/*.xml $(distdir)/metadata/Functions
-	cp -pf $(srcdir)/metadata/Rules/*.xml $(distdir)/metadata/Rules
-	cp -pf $(srcdir)/metadata/Types/*.xml $(distdir)/metadata/Types
+	cp -pf $(srcdir)/metadata/addins/*.xml $(distdir)/metadata/addins
+	cp -pf $(srcdir)/metadata/functions/*.xml $(distdir)/metadata/functions
+	cp -pf $(srcdir)/metadata/rules/*.xml $(distdir)/metadata/rules
+	cp -pf $(srcdir)/metadata/types/*.xml $(distdir)/metadata/types
 	cp -pf $(srcdir)/stubs/stub.* $(distdir)/stubs
 	touch .time-stamp
 

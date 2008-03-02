@@ -20,7 +20,7 @@
 #include <Addins/Calc/conversions.hpp>
 #include <Addins/Calc/calcutils.hpp>
 //#include <qlo/calendar.hpp>
-#include <qlo/Enumerations/Factories/all.hpp>
+#include <qlo/enumerations/factories/all.hpp>
 #include <oh/objecthandler.hpp>
 
 void calcToScalar(QuantLib::Date &ret, const sal_Int32 &date) {

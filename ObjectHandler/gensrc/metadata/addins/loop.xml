@@ -1,0 +1,15 @@
+
+<Addin name='Loop'>
+
+  <rootDirectory>ObjectHandler/oh/loop</rootDirectory>
+  <coreCategories>true</coreCategories>
+  <addinCategories>false</addinCategories>
+
+  <copyright>
+    Copyright (C) 2006 Eric Ehlers
+  </copyright>
+
+  <Buffers/>
+
+</Addin>
+

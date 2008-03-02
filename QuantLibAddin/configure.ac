@@ -126,15 +126,15 @@ AC_CONFIG_FILES([
     Docs/Makefile
     gensrc/Makefile
     Makefile
-    qlo/Conversions/Makefile
-    qlo/Enumerations/Constructors/Makefile
-    qlo/Enumerations/Factories/Makefile
-    qlo/Enumerations/Register/Makefile
-    qlo/Loop/Makefile
-    qlo/Serialization/Create/Makefile
-    qlo/Serialization/Register/Makefile
-    qlo/Serialization/Makefile
-    qlo/ValueObjects/Makefile
+    qlo/conversions/Makefile
+    qlo/enumerations/constructors/Makefile
+    qlo/enumerations/factories/Makefile
+    qlo/enumerations/register/Makefile
+    qlo/loop/Makefile
+    qlo/serialization/create/Makefile
+    qlo/serialization/register/Makefile
+    qlo/serialization/Makefile
+    qlo/valueobjects/Makefile
     qlo/Makefile])
 
 AC_OUTPUT

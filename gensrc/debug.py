@@ -10,7 +10,7 @@ import os
 
 sys.path.append(os.getcwd() + '/code')
 
-from gensrc.Addins import addinlist
+from gensrc.addins import addinlist
 
 def debug1():
     addinList = addinlist.AddinList(['x'])

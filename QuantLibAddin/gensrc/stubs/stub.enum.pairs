@@ -2,8 +2,8 @@
     #include <qlo/config.hpp>
 #endif
 
-#include <oh/Enumerations/registry.hpp>
-#include <qlo/Enumerations/Constructors/enumeratedpairs.hpp>
+#include <oh/enumerations/registry.hpp>
+#include <qlo/enumerations/constructors/enumeratedpairs.hpp>
 
 namespace QuantLibAddin {
 

@@ -21,7 +21,7 @@
 #endif
 
 #include <oh/variant.hpp>
-#include <oh/Conversions/varianttoscalar.hpp>
+#include <oh/conversions/varianttoscalar.hpp>
 #include <ExampleObjects/Serialization/creators.hpp>
 #include <ExampleObjects/Objects/accountobject.hpp>
 #include <ExampleObjects/Objects/customerobject.hpp>

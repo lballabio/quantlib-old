@@ -1,4 +1,4 @@
-#include <%(addinDirectory)s/Serialization/Register/serialization_all.hpp>
+#include <%(addinDirectory)s/serialization/register/serialization_all.hpp>
 
 namespace %(namespaceAddin)s {
 
