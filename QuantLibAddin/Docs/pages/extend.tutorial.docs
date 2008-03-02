@@ -63,7 +63,6 @@ the code for the files:
 
 stock.hpp:
 \verbatim
-
 #ifndef qla_stock_hpp
 #define qla_stock_hpp
 
@@ -88,12 +87,10 @@ namespace QuantLibAddin {
 }
 
 #endif
-
 \endverbatim
 
 stock.cpp:
 \verbatim
-
 #include <qlo/qladdindefines.hpp>
 #include <qlo/stock.hpp>
 #include <ql/instruments/stock.hpp>
@@ -110,7 +107,6 @@ namespace QuantLibAddin {
     }
 
 }
-
 \endverbatim
 
 \section extend_category 2 Create a New Function Category
@@ -129,9 +125,7 @@ QuantLibAddin\gensrc\metadata\Functions\stock.xml
 Add the file to project qlgensrc, under folder Functions.  Here are the
 contents of the file:
 
-stock.xml:
 \verbatim
-
 <Category name='stock'>
   <description>functions to construct and use Stock objects</description>
   <displayName>Stock</displayName>
@@ -165,7 +159,6 @@ stock.xml:
   </Functions>
   
 </Category>
-
 \endverbatim
 
 Above we have configured a single constructor.  There is also support for
@@ -173,7 +166,7 @@ member and utility functions, refer to the other XML files for examples.  The
 tag \c superType determines the type of reference which is passed to the
 underlying QuantLib code, in this case \c libToHandle reflects the fact that
 <tt>Handle<Quote></tt> is expected.  For a summary of supported supertypes refer to the
-comments in file <tt>QuantLibAddin\\gensrc\\metadata\\Types\\types.xml</tt>.
+comments in file <tt>QuantLibAddin\\gensrc\\metadata\\types\\supertypes.xml</tt>.
 
 \section extend_autogenerate 3 Autogenerate New Source Code Files
 

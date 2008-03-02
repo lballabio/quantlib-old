@@ -28,11 +28,11 @@
 This document provides general instructions for building and installing
 %QuantLibAddin 0.9.0 under Windows, and on platforms which use Autoconf 
 e.g. Linux.
-\li For a precompiled binary installation of the Excel addin, please
-    visit <a href="http://www.quantlibxl.org">http://www.quantlibxl.org</a>.
+\li For a precompiled binary installation of the Excel addin, visit
+    <a href="http://www.quantlibxl.org">http://www.quantlibxl.org</a>.
 \li For a walk through of all steps required to build the Excel addin
-    and dependent projects, please refer instead to the \ref build_tutorial.
-\li For additional notes regarding the installation of the Calc addin please
+    and dependent projects, refer instead to the \ref build_tutorial.
+\li For additional notes regarding the installation of the Calc addin,
     refer to the document \ref calc.
 
 %QuantLibAddin is available for download from the
@@ -64,11 +64,11 @@ e.g. if compiled under VC8 release the Addin is called
 \li hit Ctrl-Alt-F9 to force a recalculation of all formulas
 
 Project QuantLibXLDynamic is a build which links dynamically to the
-ObjectHandler XLL, allowing multiple XLLs to share a global repository,
-as described in the ObjectHandler documentation.
+ObjectHandler XLL, allowing multiple XLLs to share a global repository, as
+described in the ObjectHandler documentation.
 
-For other platforms please build the appropriate project,
-e.g. workspace ClientCDemo creates standalone C client executable
+For other platforms, build the appropriate project, e.g. workspace ClientCDemo
+creates standalone C client executable
 <strong>Clients\\C\\bin\\QLADemo-vc8-mt-sgd.exe</strong>.
 
 \section install_autoconf Installing with Autoconf
@@ -80,7 +80,7 @@ tar zxfv QuantLibAddin-0.9.0.tar.gz
 cd QuantLibAddin-0.9.0
 ./configure --with-gensrc=/path/to/gensrc
 make
-Clients/C++/QLADemo
+Clients/Cpp/QLADemo
 make install
 \endverbatim
 
@@ -143,7 +143,7 @@ There is no <tt>make test</tt> at the moment but you can try launching
 the standalone C++ client program:
 
 \verbatim
-Clients/C++/QLADemo
+Clients/Cpp/QLADemo
 \endverbatim
 
 \par make install

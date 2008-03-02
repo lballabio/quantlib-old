@@ -60,7 +60,7 @@ The table below summarizes the automatic coercions supported by QuantLibXL:
 <td>
 \li ID of a TermStructure object as returned by a function such as qlPiecewiseYieldCurve ()
 \li ID of a TermStructure handle object as returned by qlRelinkableHandleYieldTermStructure()
-\li this logic is applied to the following Quote classes: SwaptionVolatilityCube, SwaptionVolatilityDiscrete, SwaptionVolatilityMatrix, SwaptionVolatilityStructure, SwaptionVolCube1, TermStructure, YieldTermStructure</td></tr>
+\li this logic is applied to the following TermStructure classes: SwaptionVolatilityCube, SwaptionVolatilityDiscrete, SwaptionVolatilityMatrix, SwaptionVolatilityStructure, SwaptionVolCube1, TermStructure, YieldTermStructure</td></tr>
 </table>
 
 \section coercion_lists Lists
