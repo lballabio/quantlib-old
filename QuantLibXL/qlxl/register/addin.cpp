@@ -99,7 +99,7 @@ DLLEXPORT int xlAutoOpen() {
         ObjectHandler::Configuration::instance().init();
 
         // Initialize ObjectHandler functions
-        registerOhFunctions(xDll);
+        registerOhfunctions(xDll);
 #endif
         // Initialize QuantLib functions
         registerQlfunctions(xDll);
@@ -137,7 +137,7 @@ DLLEXPORT int xlAutoClose() {
 
 #ifdef XLL_STATIC
         // Unregister ObjectHandler functions
-        unregisterOhFunctions(xDll);
+        unregisterOhfunctions(xDll);
 #endif
 
         // Unregister QuantLib functions
