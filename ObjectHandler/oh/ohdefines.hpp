@@ -68,7 +68,9 @@
 #pragma warning(disable : 4996)     // Using a deprecated function
 //#pragma warning(disable : 4244)     // An integer type is converted to a smaller integer type
 #pragma warning(disable : 4267)     // Sending a size_t to an output stream
-#pragma warning(disable: 4819)      // Non-ASCII characters
+// non-ASCII characters - Disabling this warning here is ineffective
+// and the change has been made instead under project properties
+//#pragma warning(disable: 4819)
 #endif
 
 #if defined BOOST_MSVC
