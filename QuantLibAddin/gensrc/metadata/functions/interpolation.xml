@@ -16,7 +16,7 @@
     <include>ql/math/interpolations/interpolation2d.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
     Copyright (C) 2007 Eric Ehlers
   </copyright>
   <Functions>
@@ -235,7 +235,7 @@
           <Parameter name='InterpolationType' default ='"MonotonicNaturalCubicSpline"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>interpolation type (e.g BackwardFlat, ForwardFlat, Linear, LogLinear, NaturalCubicSpline, MonotonicNaturalCubicSpline, NaturalLogCubic, MonotonicNaturalLogCubic)</description>
+            <description>interpolation type (e.g BackwardFlat, ForwardFlat, Linear, LogLinear, NaturalCubicSpline, NaturalLogCubic, MonotonicNaturalCubicSpline, MonotonicNaturalLogCubic, ConstrainedCubicSpline, ConstrainedLogCubic)</description>
           </Parameter>
           <Parameter name='XArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
             <type>QuantLib::Real</type>

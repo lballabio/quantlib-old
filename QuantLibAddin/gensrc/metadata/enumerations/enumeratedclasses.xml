@@ -25,6 +25,7 @@
           <value>FORWARDFLAT_Interpolation</value>
           <libraryClass>QuantLib::ForwardFlatInterpolation</libraryClass>
         </EnumeratedClass>
+
         <EnumeratedClass>
           <string>Linear</string>
           <value>LINEAR_Interpolation</value>
@@ -35,26 +36,40 @@
           <value>LOGLINEAR_Interpolation</value>
           <libraryClass>QuantLib::LogLinearInterpolation</libraryClass>
         </EnumeratedClass>
+
         <EnumeratedClass>
           <string>NaturalCubicSpline</string>
           <value>NATURALCUBICSPLINE_Interpolation</value>
           <libraryClass>QuantLib::NaturalCubicSpline</libraryClass>
         </EnumeratedClass>
         <EnumeratedClass>
-          <string>MonotonicNaturalCubicSpline</string>
-          <value>MONOTONICNATURALCUBICSPLINE_Interpolation</value>
-          <libraryClass>QuantLib::MonotonicNaturalCubicSpline</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
           <string>NaturalLogCubic</string>
           <value>NATURALLOGCUBIC_Interpolation</value>
           <libraryClass>QuantLib::NaturalLogCubic</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>MonotonicNaturalCubicSpline</string>
+          <value>MONOTONICNATURALCUBICSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::MonotonicNaturalCubicSpline</libraryClass>
         </EnumeratedClass>
         <EnumeratedClass>
           <string>MonotonicNaturalLogCubic</string>
           <value>MONOTONICNATURALLOGCUBIC_Interpolation</value>
           <libraryClass>QuantLib::MonotonicNaturalLogCubic</libraryClass>
         </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>ConstainedCubicSpline</string>
+          <value>CONSTRAINEDCUBICSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::ConstainedCubicSpline</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>ConstainedLogCubic</string>
+          <value>CONSTRAINEDLOGCUBIC_Interpolation</value>
+          <libraryClass>QuantLib::ConstainedLogCubic</libraryClass>
+        </EnumeratedClass>
+
       </EnumeratedClasses>
     </EnumeratedClassGroup>
 

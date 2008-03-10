@@ -1,7 +1,7 @@
 <root>
 
   <enumeratedTypeCopyright>
-    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
     Copyright (C) 2007 Marco Bianchetti
     Copyright (C) 2005, 2006, 2007 Eric Ehlers
     Copyright (C) 2006 Giorgio Facchinetti
@@ -1272,16 +1272,8 @@
       <constructor>true</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
-          <string>LogCubic</string>
-          <value>QuantLibAddin::Token::LogCubic</value>
-        </EnumeratedType>
-        <EnumeratedType>
           <string>BackwardFlat</string>
           <value>QuantLibAddin::Token::BackwardFlat</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>CubicSpline</string>
-          <value>QuantLibAddin::Token::CubicSpline</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>ForwardFlat</string>
@@ -1294,6 +1286,30 @@
         <EnumeratedType>
           <string>LogLinear</string>
           <value>QuantLibAddin::Token::LogLinear</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>NaturalCubicSpline</string>
+          <value>QuantLibAddin::Token::NaturalCubicSpline</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>NaturalLogCubic</string>
+          <value>QuantLibAddin::Token::NaturalLogCubic</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>MonotonicNaturalCubicSpline</string>
+          <value>QuantLibAddin::Token::MonotonicNaturalCubicSpline</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>MonotonicNaturalLogCubic</string>
+          <value>QuantLibAddin::Token::MonotonicNaturalLogCubic</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ConstrainedCubicSpline</string>
+          <value>QuantLibAddin::Token::ConstrainedCubicSpline</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ConstrainedLogCubic</string>
+          <value>QuantLibAddin::Token::ConstrainedLogCubic</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>

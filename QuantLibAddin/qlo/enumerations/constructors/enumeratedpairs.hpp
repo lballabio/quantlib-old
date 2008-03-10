@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007 Ferdinando Ametrano
+ Copyright (C) 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2006 Marco Bianchetti
  Copyright (C) 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Giorgio Facchinetti
@@ -63,14 +63,42 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
             QuantLib::Real accuracy);
-    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_LOGCUBIC_PiecewiseYieldCurve(
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_NATURALCUBICSPLINE_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
             QuantLib::Real accuracy);
-    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_CUBIC_PiecewiseYieldCurve(
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_NATURALLOGCUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_MONOTONICNATURALCUBICSPLINE_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_MONOTONICNATURALLOGCUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_CONSTRAINEDCUBICSPLINE_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_CONSTRAINEDLOGCUBIC_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
@@ -107,14 +135,42 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
             QuantLib::Real accuracy);
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LOGCUBIC_PiecewiseYieldCurve(
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_NATURALCUBICSPLINE_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
             QuantLib::Real accuracy);
-    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_CUBIC_PiecewiseYieldCurve(
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_NATURALLOGCUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_MONOTONICNATURALCUBICSPLINE_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_MONOTONICNATURALLOGCUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_CONSTRAINEDCUBICSPLINE_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_CONSTRAINEDLOGCUBIC_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
@@ -151,14 +207,42 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
             QuantLib::Real accuracy);
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LOGCUBIC_PiecewiseYieldCurve(
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_NATURALCUBICSPLINE_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
             QuantLib::Real accuracy);
-    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_CUBIC_PiecewiseYieldCurve(
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_NATURALLOGCUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_MONOTONICNATURALCUBICSPLINE_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_MONOTONICNATURALLOGCUBIC_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_CONSTRAINEDCUBICSPLINE_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            QuantLib::Real accuracy);
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_CONSTRAINEDLOGCUBIC_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
@@ -218,7 +302,7 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& yieldCurveDayCounter,
             QuantLib::Real yieldCurveAccuracy);
 
-    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> DISCOUNT_CUBIC_HistoricalForwardRatesAnalysis (
+    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> DISCOUNT_CUBICSPLINE_HistoricalForwardRatesAnalysis (
             const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
             const QuantLib::Date& startDate,
             const QuantLib::Date& endDate,
@@ -283,7 +367,7 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& yieldCurveDayCounter,
             QuantLib::Real yieldCurveAccuracy);
 
-    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> ZEROYIELD_CUBIC_HistoricalForwardRatesAnalysis (
+    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> ZEROYIELD_CUBICSPLINE_HistoricalForwardRatesAnalysis (
             const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
             const QuantLib::Date& startDate,
             const QuantLib::Date& endDate,
@@ -348,7 +432,7 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& yieldCurveDayCounter,
             QuantLib::Real yieldCurveAccuracy);
 
-    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> FORWARDRATE_CUBIC_HistoricalForwardRatesAnalysis (
+    boost::shared_ptr<QuantLib::HistoricalForwardRatesAnalysis> FORWARDRATE_CUBICSPLINE_HistoricalForwardRatesAnalysis (
             const boost::shared_ptr<QuantLib::SequenceStatistics>& stats,
             const QuantLib::Date& startDate,
             const QuantLib::Date& endDate,

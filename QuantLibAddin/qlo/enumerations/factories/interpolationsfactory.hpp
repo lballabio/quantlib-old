@@ -27,7 +27,7 @@
 
 namespace ObjectHandler {
 
-    /* *** Linear 1D Interpolation *** */
+    /* *** 1D Interpolation *** */
     typedef const std::vector<double>::const_iterator dbl_itr;
     typedef boost::shared_ptr<QuantLib::Interpolation>(*InterpolationConstructor)(
         dbl_itr&, dbl_itr&, dbl_itr&);

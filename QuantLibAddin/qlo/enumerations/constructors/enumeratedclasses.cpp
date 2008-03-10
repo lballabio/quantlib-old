@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007 Ferdinando Ametrano
+ Copyright (C) 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2006 Marco Bianchetti
  Copyright (C) 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Giorgio Facchinetti
@@ -36,7 +36,6 @@
 
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
-#include <ql/math/interpolations/linearinterpolation.hpp>
 #include <ql/math/interpolations/loginterpolation.hpp>
 #include <ql/math/interpolations/abcdinterpolation.hpp>
 
@@ -255,7 +254,7 @@ namespace QuantLibAddin {
             new QuantLib::BinomialVanillaEngine<QuantLib::Trigeorgis>(process, timeSteps));
     }
 
-    /* *** Linear 1D Interpolation *** */
+    /* *** 1D Interpolation *** */
     boost::shared_ptr<QuantLib::Interpolation> BACKWARDFLAT_Interpolation(
                                             ObjectHandler::dbl_itr& xBegin,
                                             ObjectHandler::dbl_itr& xEnd,
@@ -311,6 +310,20 @@ namespace QuantLibAddin {
                                             ObjectHandler::dbl_itr& yBegin) {
         return boost::shared_ptr<QuantLib::Interpolation>(new
             QuantLib::MonotonicNaturalLogCubic(xBegin, xEnd, yBegin));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> CONSTRAINEDCUBICSPLINE_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::ConstrainedCubicSplineInterpolation(xBegin, xEnd, yBegin));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> CONSTRAINEDLOGCUBIC_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::ConstrainedLogCubicInterpolation(xBegin, xEnd, yBegin));
     }
     boost::shared_ptr<QuantLib::Interpolation> ABCD_Interpolation(
                                             ObjectHandler::dbl_itr& xBegin,

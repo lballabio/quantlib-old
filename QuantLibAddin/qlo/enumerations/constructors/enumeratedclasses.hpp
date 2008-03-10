@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007 Ferdinando Ametrano
+ Copyright (C) 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2006 Marco Bianchetti
  Copyright (C) 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Giorgio Facchinetti
@@ -129,7 +129,7 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::PricingEngine> TRI_Engine(
         const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps);
 
-    /* *** Linear 1D Interpolation *** */
+    /* *** 1D Interpolation *** */
     boost::shared_ptr<QuantLib::Interpolation> BACKWARDFLAT_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
     boost::shared_ptr<QuantLib::Interpolation> FORWARDFLAT_Interpolation(
@@ -145,6 +145,10 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::Interpolation> NATURALLOGCUBIC_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
     boost::shared_ptr<QuantLib::Interpolation> MONOTONICNATURALLOGCUBIC_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
+    boost::shared_ptr<QuantLib::Interpolation> CONSTRAINEDCUBICSPLINE_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
+    boost::shared_ptr<QuantLib::Interpolation> CONSTRAINEDLOGCUBIC_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
     boost::shared_ptr<QuantLib::Interpolation> ABCD_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);

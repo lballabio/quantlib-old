@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
- Copyright (C) 2007 Ferdinando Ametrano
+ Copyright (C) 2007, 2008 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,8 +28,21 @@ namespace QuantLibAddin {
     // The struct 'Token' provides values which act as placeholders for
     // QuantLib types of the same name.
     struct Token {
-        enum Traits { Discount, ForwardRate, ZeroYield };
-        enum Interpolator { BackwardFlat, CubicSpline, ForwardFlat, Linear, LogCubic, LogLinear };
+        enum Traits { Discount,
+                      ForwardRate,
+                      ZeroYield
+        };
+        enum Interpolator { BackwardFlat,
+                            ForwardFlat,
+                            Linear,
+                            LogLinear,
+                            NaturalCubicSpline,
+                            NaturalLogCubic,
+                            MonotonicNaturalCubicSpline,
+                            MonotonicNaturalLogCubic,
+                            ConstrainedCubicSpline,
+                            ConstrainedLogCubic
+        };
     };
 
     // A wrapper for QuantLib template class PiecewiseYieldCurve<Traits, Interpolator>.
