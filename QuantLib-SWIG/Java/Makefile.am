@@ -22,8 +22,12 @@ install-exec-local:
 	cp -p libQuantLibJNI.@JNILIB_EXTENSION@ $(DESTDIR)/$(libdir)/libQuantLibJNI.@JNILIB_EXTENSION@
 	cp -p QuantLib.jar $(DESTDIR)/$(libdir)/QuantLib.jar
 
-check-local: examples/EquityOptions.class
+check-local: examples/EquityOptions.class examples/DiscreteHedging.class
+	LD_LIBRARY_PATH=. $(JAVA) -cp ".:QuantLib.jar" examples.DiscreteHedging
 	LD_LIBRARY_PATH=. $(JAVA) -cp ".:QuantLib.jar" examples.EquityOptions
+
+examples/DiscreteHedging.class: examples/DiscreteHedging.java QuantLib.jar
+	$(JAVAC) -source 1.5 -cp QuantLib.jar examples/DiscreteHedging.java
 
 examples/EquityOptions.class: examples/EquityOptions.java QuantLib.jar
 	$(JAVAC) -source 1.5 -cp QuantLib.jar examples/EquityOptions.java

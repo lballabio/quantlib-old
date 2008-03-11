@@ -2,6 +2,7 @@
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005 StatPro Italia srl
+ Copyright (C) 2008 Tito Ingargiola
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -52,6 +53,8 @@ class Path {
   public:
     Size length() const;
     Real value(Size i) const;
+    Real front() const;
+    Real back() const;
     Time time(Size i) const;
     %extend {
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
@@ -116,6 +119,29 @@ class GaussianPathGenerator {
         }
     }
     Sample<Path> next() const;
+    Sample<Path> antithetic() const;
+};
+
+%{
+typedef QuantLib::PathGenerator<GaussianLowDiscrepancySequenceGenerator>
+    GaussianSobolPathGenerator;
+%}
+class GaussianSobolPathGenerator {
+  public:
+    %extend {
+        GaussianSobolPathGenerator(
+                           const StochasticProcess1DPtr& process,
+                           Time length, Size steps,
+                           const GaussianLowDiscrepancySequenceGenerator& rsg,
+                           bool brownianBridge) {
+            boost::shared_ptr<StochasticProcess1D> process1d =
+                boost::dynamic_pointer_cast<StochasticProcess1D>(process);
+            return new GaussianSobolPathGenerator(process1d,length,steps,
+                                                  rsg,brownianBridge);
+        }
+    }
+    Sample<Path> next() const;
+    Sample<Path> antithetic() const;
 };
 
 

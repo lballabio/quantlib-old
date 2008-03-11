@@ -3,6 +3,7 @@
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
+ Copyright (C) 2008 Tito Ingargiola
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -1001,6 +1002,46 @@ public:
                                                        correlation));
         }
     }
+};
+
+%{
+using QuantLib::BlackCalculator;
+%}
+
+class BlackCalculator {
+  public:
+    %extend {
+        BlackCalculator (
+                   const boost::shared_ptr<Payoff>& payoff,
+                   Real forward,
+                   Real stdDev,
+                   Real discount = 1.0) {
+
+            boost::shared_ptr<StrikedTypePayoff> stPayoff =
+                boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
+
+            QL_REQUIRE(stPayoff, "wrong payoff given");
+
+            return new BlackCalculator(stPayoff,forward,stdDev,discount);
+        }
+    }
+    Real value() const;
+    Real deltaForward() const;
+    Real delta(Real spot) const;
+    Real elasticityForward() const;
+    Real elasticity(Real spot) const;
+    Real gammaForward() const;
+    Real gamma(Real spot) const;
+    Real theta(Real spot, Time maturity) const;
+    Real thetaPerDay(Real spot, Time maturity) const;
+    Real vega(Time maturity) const;
+    Real rho(Time maturity) const;
+    Real dividendRho(Time maturity) const;
+    Real itmCashProbability() const;
+    Real itmAssetProbability() const;
+    Real strikeSensitivity() const;
+    Real alpha() const;
+    Real beta() const;
 };
 
 
