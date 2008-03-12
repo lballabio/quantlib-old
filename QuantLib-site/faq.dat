@@ -86,7 +86,8 @@
 
    <br>
    The preferred format is a diff file as created by the 'patch'
-   utility.  If possible, send differences against the CVS repository;
+   utility.  If possible, send differences against the current (HEAD)
+   code base available in the SVN repository;
    diff files based on the latest release might not apply to the
    latest sources.
 
@@ -164,7 +165,7 @@
    <pre>
 >> Assertion:   (../lnk/init.cc, line 1032)
     while processing ../../ql/history.hpp at line 135.
-*** Error code 1 
+*** Error code 1
    </pre>
    you need to patch your compiler. Sun makes the needed patches
    available <a
