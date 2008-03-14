@@ -206,6 +206,10 @@ class ExcelAddin(addin.Addin):
             functionType = 0
             unregister = UNREGISTER % (len(func.name()), func.name())
 
+        # Confirm that parameter descriptions don't exceed max Excel string length.
+        for param in func.parameterList().parameters():
+            self.checkLen(param.description())
+
         return self.bufferRegisterFunction_.text() % {
             'category' : categoryName,
             'categoryLen' : self.checkLen(categoryName),

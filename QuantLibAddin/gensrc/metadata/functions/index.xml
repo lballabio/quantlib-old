@@ -97,7 +97,7 @@
           <Parameter name='ForecastToday' default='0' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>If set to TRUE it forces the forecasting of today's fixing even if the actual fixing is already available in the time series. The default value is FALSE.</description>
+            <description>If set to TRUE it forces the forecasting of today's fixing even if the actual fixing is already available in the time series</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -130,7 +130,7 @@
           <Parameter name='ForceOverwrite' default='0' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Set to TRUE to force overwriting of existing fixings, if any. The default value is FALSE.</description>
+            <description>Set to TRUE to force overwriting of existing fixings, if any</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -158,7 +158,7 @@
           <Parameter name='ForceOverwrite' default='0' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Set to TRUE to force overwriting of existing fixings, if any. The default value is FALSE.</description>
+            <description>Set to TRUE to force overwriting of existing fixings, if any</description>
           </Parameter>
         </Parameters>
       </ParameterList>

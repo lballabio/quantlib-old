@@ -64,6 +64,9 @@ class Function(serializable.Serializable):
         return self.supportedPlatforms_.has_key('Excel') \
             and self.supportedPlatforms_['Excel'].calcInWizard()
 
+    def supportedPlatforms(self):
+        return ', '.join(self.supportedPlatforms_.keys()).replace('Cpp', 'C++')
+
     def parameterList(self):
         return self.parameterList_
 

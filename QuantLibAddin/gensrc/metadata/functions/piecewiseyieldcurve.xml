@@ -34,7 +34,7 @@
           <Parameter name='NDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. If omitted, default = 0 is used.</description>
+            <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0</description>
           </Parameter>
           <Parameter name='Calendar'>
             <type>QuantLib::Calendar</type>
@@ -60,17 +60,17 @@
           <Parameter name='Accuracy' default='1.0e-12'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Bootstrapping accuracy. If missing default = 1.0e-7.</description>
+            <description>Bootstrapping accuracy</description>
           </Parameter>
           <Parameter name='TraitsID' default='"Discount"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Discount, ZeroRate, or ForwardRate. If omitted, default = Discount is used.</description>
+            <description>Discount, ZeroRate, or ForwardRate</description>
           </Parameter>
           <Parameter name='InterpolatorID' default='"LogLinear"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>BackwardFlat, ForwardFlat, Linear, LogLinear, CubicSpline, or LogCubic. If omitted, default = LogLinear is used.</description>
+            <description>BackwardFlat, ForwardFlat, Linear, LogLinear, CubicSpline, or LogCubic</description>
           </Parameter>
         </Parameters>
       </ParameterList>

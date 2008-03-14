@@ -551,7 +551,7 @@
           <Parameter name='Description' default='"no description available"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>bond description string. If omitted, default = 'no description available'</description>
+            <description>bond description string</description>
           </Parameter>
           <Parameter name='Currency'>
             <type>QuantLib::Currency</type>
@@ -571,7 +571,7 @@
           <Parameter name='FaceAmount' default='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Face nominal amount. If omitted, default = 100.0</description>
+            <description>Face nominal amount</description>
           </Parameter>
           <Parameter name='Maturity' exampleValue='45348'>
             <type>QuantLib::Date</type>
@@ -581,17 +581,17 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention. If omitted, default = Following.</description>
+            <description>payment business day convention</description>
           </Parameter>
           <Parameter name='Redemption' default='100'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Redemption value. If omitted, default = 100.0</description>
+            <description>Redemption value</description>
           </Parameter>
           <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
+            <description>issue date: the bond can't be traded until then</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -609,7 +609,7 @@
           <Parameter name='Description' default='"no description available"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>bond description string. If omitted, default = 'no description available'</description>
+            <description>bond description string</description>
           </Parameter>
           <Parameter name='Currency' examplevalue='EUR'>
             <type>QuantLib::Currency</type>
@@ -624,7 +624,7 @@
           <Parameter name='FaceAmount' default='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Face nominal amount. If omitted, default = 100.0</description>
+            <description>Face nominal amount</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
@@ -645,17 +645,17 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention. If omitted, default = Following.</description>
+            <description>payment business day convention</description>
           </Parameter>
           <Parameter name='Redemption' default='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Redemption value. If omitted, default = 100.0</description>
+            <description>Redemption value</description>
           </Parameter>
           <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
+            <description>issue date: the bond can't be traded until then</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -673,7 +673,7 @@
           <Parameter name='Description' default='"no description available"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>bond description string. If omitted, default = 'no description available'</description>
+            <description>bond description string</description>
           </Parameter>
           <Parameter name='Currency'>
             <type>QuantLib::Currency</type>
@@ -688,12 +688,12 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention. If omitted, default = Following.</description>
+            <description>payment business day convention</description>
           </Parameter>
           <Parameter name='FaceAmount' default='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Face nominal amount. If omitted, default = 100.0</description>
+            <description>Face nominal amount</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
@@ -704,12 +704,12 @@
           <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
+            <description>fixing days (e.g. 2)</description>
           </Parameter>
           <Parameter name='IsInArrears' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
+            <description>TRUE if the fixing is in arrears</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
@@ -719,12 +719,12 @@
           <Parameter name='Floors' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>floor strikes. If omitted, default = no floor</description>
+            <description>floor strikes</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings. If omitted, default = 1.0</description>
+            <description>floating rate gearings</description>
           </Parameter>
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
@@ -734,22 +734,22 @@
           <Parameter name='Spreads' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads. If omitted, default = 0%</description>
+            <description>floating rate spreads</description>
           </Parameter>
           <Parameter name='Caps' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>cap strikes. If omitted, default = no cap</description>
+            <description>cap strikes</description>
           </Parameter>
           <Parameter name='Redemption' default='100'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Redemption value. If omitted, default = 100.0</description>
+            <description>Redemption value</description>
           </Parameter>
           <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
+            <description>issue date: the bond can't be traded until then</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -767,7 +767,7 @@
           <Parameter name='Description' default='"no description available"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>bond description string. If omitted, default = 'no description available'</description>
+            <description>bond description string</description>
           </Parameter>
           <Parameter name='Currency'>
             <type>QuantLib::Currency</type>
@@ -782,12 +782,12 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention. If omitted, default = Following.</description>
+            <description>payment business day convention</description>
           </Parameter>
           <Parameter name='FaceAmount' default='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Face nominal amount. If omitted, default = 100.0</description>
+            <description>Face nominal amount</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
@@ -798,12 +798,12 @@
           <Parameter name='FixingDays' default='QuantLib::Null&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing days (e.g. 2). If omitted, default = index natural fixing days</description>
+            <description>fixing days (e.g. 2)</description>
           </Parameter>
           <Parameter name='IsInArrears' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the fixing is in arrears. If omitted, default = FALSE</description>
+            <description>TRUE if the fixing is in arrears</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
@@ -813,12 +813,12 @@
           <Parameter name='Floors' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>floor strikes. If omitted, default = no floor</description>
+            <description>floor strikes</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings. If omitted, default = 1.0</description>
+            <description>floating rate gearings</description>
           </Parameter>
           <Parameter name='SwapIndex'>
             <type>QuantLib::SwapIndex</type>
@@ -828,22 +828,22 @@
           <Parameter name='Spreads' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads. If omitted, default = 0%</description>
+            <description>floating rate spreads</description>
           </Parameter>
           <Parameter name='Caps' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>cap strikes. If omitted, default = no cap</description>
+            <description>cap strikes</description>
           </Parameter>
           <Parameter name='Redemption' default='100'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Redemption value. If omitted, default = 100.0</description>
+            <description>Redemption value</description>
           </Parameter>
           <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
+            <description>issue date: the bond can't be traded until then</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -861,7 +861,7 @@
           <Parameter name='Description' default='"no description available"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>bond description string. If omitted, default = 'no description available'</description>
+            <description>bond description string</description>
           </Parameter>
           <Parameter name='Currency'>
             <type>QuantLib::Currency</type>
@@ -881,7 +881,7 @@
           <Parameter name='FaceAmount' default='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Face nominal amount. If omitted, default = 100.0</description>
+            <description>Face nominal amount</description>
           </Parameter>
           <Parameter name='MaturityDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -891,7 +891,7 @@
           <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
+            <description>issue date: the bond can't be traded until then</description>
           </Parameter>
           <Parameter name='LegID'>
             <type>QuantLibAddin::Leg</type>

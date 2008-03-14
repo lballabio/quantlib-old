@@ -173,22 +173,22 @@
           <Parameter name='A' default='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>coefficient in abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = -0.06 is used. </description>
+            <description>coefficient in abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
           <Parameter name='B' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
+            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
           <Parameter name='C' default='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.54 is used.</description>
+            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
           <Parameter name='D' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
+            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
           <Parameter name='ResetIndex' exampleValue='0'>
             <type>long</type>

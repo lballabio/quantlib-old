@@ -150,14 +150,15 @@ IGNORE_DIRS = (
     re.compile(r'^dev_tools$'),
     re.compile(r'^framework$'),
     re.compile(r'^html$'),
-    re.compile(r'^lib$'),
-    re.compile(r'^Workbooks$'),
     re.compile(r'^Launcher$'),
+    re.compile(r'^lib$'),
     re.compile(r'^log4cxx$'),
     re.compile(r'^QuantLib-FpML$'),
     re.compile(r'^QuantLib-site$'),
-#    re.compile(r'^QuantLib-SWIG$'),
+    re.compile(r'^QuantLib-SWIG$'),
     re.compile(r'^SensitivityAnalysis$'),
+    re.compile(r'^\.svn$'),
+    re.compile(r'^Workbooks$'),
 )
 
 def prompt_exit(msg='', status=0):

@@ -35,22 +35,22 @@
           <Parameter name='A' default='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.  If omitted, default = -0.06 is used.</description>
+            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
           </Parameter>
           <Parameter name='B' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
+            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
           </Parameter>
           <Parameter name='C' default='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.54 is used.</description>
+            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
           </Parameter>
           <Parameter name='D' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
+            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -440,47 +440,47 @@
           <Parameter name='A' default='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.  If omitted, default = -0.06 is used.</description>
+            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
           </Parameter>
           <Parameter name='B' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
+            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
           </Parameter>
           <Parameter name='C' default='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.54 is used.</description>
+            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
           </Parameter>
           <Parameter name='D' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated. If omitted, default = 0.17 is used.</description>
+            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
           </Parameter>
           <Parameter name='AIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
           </Parameter>
           <Parameter name='BIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
           </Parameter>
           <Parameter name='CIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
           </Parameter>
           <Parameter name='DIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations. If omitted, default = FALSE is used.</description>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
           </Parameter>
           <Parameter name='VegaWeighted' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
+            <description>TRUE if the interpolation is weighted using options Vega</description>
           </Parameter>
           <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>

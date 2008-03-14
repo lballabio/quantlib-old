@@ -438,7 +438,7 @@
           <Parameter name='AlphaForm' exampleValue ='AlphaFormID' default='""'>
             <type>QuantLib::AlphaForm</type>
             <tensorRank>scalar</tensorRank>
-            <description>alpha form ID. If omitted, default alpha form is used.</description>
+            <description>alpha form ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

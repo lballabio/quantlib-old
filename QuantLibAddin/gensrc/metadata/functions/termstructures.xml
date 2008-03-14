@@ -145,7 +145,7 @@
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
+            <description>TRUE allows extrapolation</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -188,12 +188,12 @@
           <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
+            <description>TRUE allows extrapolation</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -237,12 +237,12 @@
           <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE allows extrapolation. If omitted, default = Annual is used.</description>
+            <description>TRUE allows extrapolation</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -281,12 +281,12 @@
           <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
+            <description>TRUE allows extrapolation</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -320,12 +320,12 @@
           <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE allows extrapolation. If omitted, default = FALSE is used.</description>
+            <description>TRUE allows extrapolation</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -450,7 +450,7 @@
           <Parameter name='NDays' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0. If omitted, default = 0 is used.</description>
+            <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0</description>
           </Parameter>
           <Parameter name='Calendar' exampleValue ='NullCalendar'>
             <type>QuantLib::Calendar</type>
@@ -475,7 +475,7 @@
           <Parameter name='Frequency' default='"Annual"' exampleValue ='Annual'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly). If omitted, default = Annual is used.</description>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
           </Parameter>
         </Parameters>
       </ParameterList>

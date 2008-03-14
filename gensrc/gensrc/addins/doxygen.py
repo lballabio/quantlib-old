@@ -110,11 +110,13 @@ class Doxygen(addin.Addin):
         bufParam = ''
         for param in func.parameterList().parameters():
             bufParam += '\\param %s %s\n' % (param.name(), param.description())
+
         return self.bufferFunction_.text() % {
             'functionName' : func.name(),
             'retCode' : self.functionReturn_.apply(func.returnValue()),
             'functionDoc' : func.parameterList().generate(self.functionDocs_),
             'functionLongDesc' : func.longDescription(),
+            'supportedPlatforms' : func.supportedPlatforms(),
             'paramDoc' : bufParam }
 
     def generateCategoryDoc(self):

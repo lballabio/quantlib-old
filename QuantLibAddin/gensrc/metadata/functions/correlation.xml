@@ -216,12 +216,12 @@
           <Parameter name='TraitsID' default='"Discount"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Discount, ZeroRate, or ForwardRate. If omitted, default = Discount is used.</description>
+            <description>Discount, ZeroRate, or ForwardRate</description>
           </Parameter>
           <Parameter name='InterpolatorID' default='"CubicSpline"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Linear, LogLinear, or CubicSpline. If omitted, default = LogLinear is used.</description>
+            <description>Linear, LogLinear, or CubicSpline</description>
           </Parameter>
           <Parameter name='BootstrapAccuracy' default='1.0e-12'>
             <type>QuantLib::Real</type>

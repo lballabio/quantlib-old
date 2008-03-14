@@ -156,12 +156,12 @@
           <Parameter name='Accuracy' default='1.0e-6'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>solver accuracy. If missing default = 1e-6</description>
+            <description>solver accuracy</description>
           </Parameter>
           <Parameter name='MaxIter' default='100'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>solver max iterations. If missing default = 100</description>
+            <description>solver max iterations</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -243,13 +243,13 @@
           <Parameter name='Strike' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>strike. If omitted, default is ATM rate.</description>
+            <description>strike</description>
           </Parameter>
           <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
           <Parameter name='ForwardStart' exampleValue='0D'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>as period (if zero days the first caplet is removed). The default is '0D'.</description>
+            <description>as period (if zero days the first caplet is removed)</description>
           </Parameter>
           <!--<Parameter name='PricingEngineID' default='boost::shared_ptr&lt;QuantLib::PricingEngine&gt;()'>-->
           <Parameter name='PricingEngineID' exampleValue='CapFloorEngineID'>

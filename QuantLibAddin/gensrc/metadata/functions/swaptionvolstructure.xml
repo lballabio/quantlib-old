@@ -321,7 +321,7 @@
           <Parameter name='NDays' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of days to advance from EvaluationDate: it fixes the date at which the variance = 0.0. If omitted, default = 0 is used.</description>
+            <description>number of days to advance from EvaluationDate: it fixes the date at which the variance = 0.0</description>
           </Parameter>
           <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
@@ -684,7 +684,7 @@
           <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
             <tensorRank>scalar</tensorRank>
-            <description>EndCriteria object ID (if omitted default = EndCriteria(60000, 100, 1e-8, 1e-8, 1e-8) is used)</description>
+            <description>EndCriteria object ID</description>
           </Parameter>
           <Parameter name='MaxErrorTol' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>double</type>
@@ -694,7 +694,7 @@
           <Parameter name='OptMethod' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
-            <description>Optmization method object ID (if omitted default = Simplex(0.01) is used)</description>
+            <description>Optmization method object ID</description>
           </Parameter>
         </Parameters>
       </ParameterList>

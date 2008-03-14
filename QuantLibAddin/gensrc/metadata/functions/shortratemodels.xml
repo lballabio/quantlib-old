@@ -118,7 +118,7 @@
           <Parameter name='A' default='0.03'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>Hull-White mean reversion. If omitted, default = 0.03 is used.</description>
+            <description>Hull-White mean reversion</description>
           </Parameter>
         </Parameters>
       </ParameterList>

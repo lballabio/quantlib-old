@@ -685,12 +685,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the mean of the gaussian distribution. If omitted, default = 0 is used.</description>
+            <description>the mean of the gaussian distribution</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
+            <description>standard deviation of the gaussian distribution</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -713,12 +713,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
+            <description>mean of the gaussian distribution</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
+            <description>standard deviation of the gaussian distribution</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -746,12 +746,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
+            <description>mean of the gaussian distribution</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
+            <description>standard deviation of the gaussian distribution</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -779,12 +779,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean of the gaussian distribution. If omitted, default = 0 is used.</description>
+            <description>mean of the gaussian distribution</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
+            <description>standard deviation of the gaussian distribution</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -812,12 +812,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
+            <description>The mean of the gaussian distribution</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
+            <description>The standard deviation of the gaussian distribution</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -845,12 +845,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
+            <description>The mean of the gaussian distribution</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
+            <description>The standard deviation of the gaussian distribution</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -878,12 +878,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
+            <description>The mean of the gaussian distribution</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
+            <description>The standard deviation of the gaussian distribution</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -911,12 +911,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
+            <description>The mean of the gaussian distribution</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
+            <description>The standard deviation of the gaussian distribution</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -944,12 +944,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
+            <description>The mean of the gaussian distribution</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
+            <description>The standard deviation of the gaussian distribution</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -977,12 +977,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution. If omitted, default = 0 is used.</description>
+            <description>The mean of the gaussian distribution</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution. If omitted, default = 1 is used.</description>
+            <description>The standard deviation of the gaussian distribution</description>
           </Parameter>
         </Parameters>
       </ParameterList>

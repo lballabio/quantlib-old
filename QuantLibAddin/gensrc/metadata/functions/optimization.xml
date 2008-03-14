@@ -230,17 +230,17 @@
           <Parameter name='Epsfcn' libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>epsfcn. If omitted, default = 1.0e-8 is used.</description>
+            <description>epsfcn</description>
           </Parameter>
           <Parameter name='Xtol' libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>xtol. If omitted, default = 1.0e-8 is used.</description>
+            <description>xtol</description>
           </Parameter>
           <Parameter name='Gtol' libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>gtol. If omitted, default = 1.0e-8 is used.</description>
+            <description>gtol</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -296,17 +296,17 @@
           <Parameter name='Epsilon' default="1e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>epsilon. If omitted, default = 1e-8 is used.</description>
+            <description>epsilon</description>
           </Parameter>
           <Parameter name='Alpha' default="0.05">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>alpha. If omitted, default = 0.05 is used.</description>
+            <description>alpha</description>
           </Parameter>
           <Parameter name='Beta' default="0.65">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>beta. If omitted, default = 0.65 is used.</description>
+            <description>beta</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -224,7 +224,7 @@
           <Parameter name='BusinessDayConvention' const='False' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>rolling convention (default is 'Following')</description>
+            <description>rolling convention</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -257,12 +257,12 @@
           <Parameter name='BusinessDayConvention' const='False' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>rolling convention (default is 'Following')</description>
+            <description>rolling convention</description>
           </Parameter>
           <Parameter name='EndOfMonth' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>flag to enforce end of month convention (default is FALSE)</description>
+            <description>flag to enforce end of month convention</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -295,12 +295,12 @@
           <Parameter name='IncludeFirst' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>include the first date when counting business days (default is FALSE)</description>
+            <description>include the first date when counting business days</description>
           </Parameter>
           <Parameter name='IncludeLast' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>include the last date when counting business days (default is FALSE)</description>
+            <description>include the last date when counting business days</description>
           </Parameter>
         </Parameters>
       </ParameterList>

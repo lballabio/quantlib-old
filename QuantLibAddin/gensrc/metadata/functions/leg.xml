@@ -124,7 +124,7 @@
           <Parameter name='ExDividendDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days (default is zero)</description>
+            <description>ex-dividend days</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -163,7 +163,7 @@
           <Parameter name='ExDividendDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days (default is zero)</description>
+            <description>ex-dividend days</description>
           </Parameter>-->
         </Parameters>
       </ParameterList>
@@ -202,7 +202,7 @@
           <Parameter name='ExDividendDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days (default is zero)</description>
+            <description>ex-dividend days</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -241,7 +241,7 @@
           <Parameter name='ExDividendDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days (default is zero)</description>
+            <description>ex-dividend days</description>
           </Parameter>-->
         </Parameters>
       </ParameterList>
@@ -280,7 +280,7 @@
           <Parameter name='ExDividendDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days (default is zero)</description>
+            <description>ex-dividend days</description>
           </Parameter>
           <Parameter name='NPV' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
@@ -333,17 +333,17 @@
           <Parameter name='Accuracy' default='1.0e-10'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>tolerance. If omitted, default = 1.0e-10 is used.</description>
+            <description>tolerance</description>
           </Parameter>
           <Parameter name='MaxIterations' default='100'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>max number of iterations. If omitted, default = 100 is used.</description>
+            <description>max number of iterations</description>
           </Parameter>
           <Parameter name='Guess' default='0.05'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>guess. If omitted, default = 0.05 is used.</description>
+            <description>guess</description>
           </Parameter>
         </Parameters>
       </ParameterList>

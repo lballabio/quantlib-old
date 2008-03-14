@@ -158,22 +158,22 @@
           <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate. If omitted, default is ATM rate</description>
+            <description>the fixed rate</description>
           </Parameter>
           <Parameter name='ForwardStart' exampleValue='0D'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>forward start period. If omitted, default is spot starting</description>
+            <description>forward start period</description>
           </Parameter>
           <Parameter name='FixedLegDayCounter' default='"30/360 (Bond Basis)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixed leg day counter (default is 30/360 Bond Basis)</description>
+            <description>fixed leg day counter</description>
           </Parameter>
           <Parameter name='FloatingLegSpread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>the spread in the floating leg rate. If omitted, default = null</description>
+            <description>the spread in the floating leg rate</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -201,22 +201,22 @@
           <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate. If omitted, default is ATM rate</description>
+            <description>the fixed rate</description>
           </Parameter>
           <Parameter name='FirstImmDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>First (IMM) date. If omitted, default is first IMM date</description>
+            <description>First (IMM) date</description>
           </Parameter>
           <Parameter name='FixedLegDayCounter' default='"30/360 (Bond Basis)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixed leg day counter (default is 30/360 Bond Basis)</description>
+            <description>fixed leg day counter</description>
           </Parameter>
           <Parameter name='FloatingLegSpread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>the spread in the floating leg rate. If omitted, default = null</description>
+            <description>the spread in the floating leg rate</description>
           </Parameter>
         </Parameters>
       </ParameterList>

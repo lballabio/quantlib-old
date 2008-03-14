@@ -407,7 +407,7 @@
           <Parameter name='FaceAmount' default='100.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>Face nominal amount. If omitted, default = 100.0</description>
+            <description>Face nominal amount</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
@@ -428,17 +428,17 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention. If omitted, default = Following.</description>
+            <description>payment business day convention</description>
           </Parameter>
           <Parameter name='Redemption' default='100.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>redemption value. If omitted, default = 100</description>
+            <description>redemption value</description>
           </Parameter>
           <Parameter name='IssueDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>issue date: the bond can't be traded until then. If omitted, default = bond schedule first date.</description>
+            <description>issue date: the bond can't be traded until then</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -586,7 +586,7 @@
           <Parameter name='DepoFuturesPriority' default='"AllDepos"'>
             <type>QuantLibAddin::RateHelper::DepoInclusionCriteria</type>
             <tensorRank>scalar</tensorRank>
-            <description>Depo inclusion criteria. If missing, default=AllDepos is used</description>
+            <description>Depo inclusion criteria</description>
           </Parameter>
         </Parameters>
       </ParameterList>

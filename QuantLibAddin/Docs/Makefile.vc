@@ -16,6 +16,7 @@ MAKEFILE=Makefile.vc
 ALL : $(BUILDFLAG)
 
 DEPENDENCIES = \
+	auto.pages\*.docs \
 	pages\*.docs \
 	images\*.jpg \
 	images\*.png \

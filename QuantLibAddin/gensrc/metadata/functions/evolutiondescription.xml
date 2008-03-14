@@ -249,7 +249,7 @@
           <Parameter name='Offset' default='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>offset applied to the MoneyMarket measure. If omitted, default = 1 is used.</description>
+            <description>offset applied to the MoneyMarket measure</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -341,7 +341,7 @@
           <Parameter name='Offset' default='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>offset applied to the MoneyMarket measure If omitted, default = 1 is used.</description>
+            <description>offset applied to the MoneyMarket measure</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -67,7 +67,7 @@
           <Parameter name='PayoffAtExpiry' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>payoff at expiry. If omitted, default = FALSE is used.</description>
+            <description>payoff at expiry</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -111,7 +111,7 @@
           <Parameter name='PayoffAtExpiry' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>payoff at expiry. If omitted, default = FALSE is used.</description>
+            <description>payoff at expiry</description>
           </Parameter>
         </Parameters>
       </ParameterList>

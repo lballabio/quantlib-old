@@ -37,7 +37,7 @@
           <Parameter name='PayBondCoupon' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE to pay the bond's coupons and receive floating. FALSE by default.</description>
+            <description>TRUE to pay the bond's coupons and receive floating</description>
           </Parameter>
           <Parameter name='UnderlyingBond' exampleValue='DE0003088704'>
             <type>QuantLib::Bond</type>

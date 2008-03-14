@@ -23,7 +23,7 @@
           <Parameter name='Verbose' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE to get the verbose version string. If omitted, default = FALSE</description>
+            <description>TRUE to get the verbose version string</description>
           </Parameter>
         </Parameters>
       </ParameterList>

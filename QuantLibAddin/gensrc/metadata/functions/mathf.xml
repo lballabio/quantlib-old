@@ -65,17 +65,17 @@
           <Parameter name='Mean' default="0.0">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>is the arithmetic mean of the distribution. If omitted, default = 0.0 is used.</description>
+            <description>is the arithmetic mean of the distribution</description>
           </Parameter>
           <Parameter name='Standard_dev' default="1.0">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>is the standard deviation of the distribution, a positive number. If omitted, default = 1.0 is used.</description>
+            <description>is the standard deviation of the distribution, a positive number</description>
           </Parameter>
           <Parameter name='Cumulative' default="TRUE">
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>is a logical value: for the cumulative distribution function, use TRUE; for the probability mass function, use FALSE. If omitted, default = TRUE is used.</description>
+            <description>is a logical value: for the cumulative distribution function, use TRUE; for the probability mass function, use FALSE</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -126,12 +126,12 @@
           <Parameter name='Mean' default="0.0">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>is the arithmetic mean of the distribution. If omitted, default = 0.0 is used.</description>
+            <description>is the arithmetic mean of the distribution</description>
           </Parameter>
           <Parameter name='Standard_dev' default="1.0">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>is the standard deviation of the distribution, a positive number. If omitted, default = 1.0 is used.</description>
+            <description>is the standard deviation of the distribution, a positive number</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -238,7 +238,7 @@
           <Parameter name='Flexible' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>If TRUE it returns a result also for positive semi-definite matrix. If omitted, default = FALSE is used.</description>
+            <description>If TRUE it returns a result also for positive semi-definite matrix</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -337,7 +337,7 @@
           <Parameter name='Tolerance' default='1.0e12'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>numerical tolerance for non symmetric matrix. If omitted, default = 1.0e12 is used.</description>
+            <description>numerical tolerance for non symmetric matrix</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -417,7 +417,7 @@
           <Parameter name='Tolerance' default='1.0e12'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>numerical tolerance for non symmetric matrix. If omitted, default = 1.0e12 is used.</description>
+            <description>numerical tolerance for non symmetric matrix</description>
           </Parameter>
           <Parameter name='SalvagingAlgorithm'>
             <type>QuantLib::SalvagingAlgorithm::Type</type>

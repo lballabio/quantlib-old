@@ -138,6 +138,8 @@ class Parameter(Value):
             raise exceptions.ParameterIllegalNameException(
                 self.name_, Parameter.ILLEGAL_NAMES)
         self.fullType_ = environment.getType(self.type_, self.superType_)
+        if self.default_:
+            self.description_ += '. Default value = ' + self.default_
 
 class ReturnValue(Value):
     """Encapsulate state necessary to generate source code 

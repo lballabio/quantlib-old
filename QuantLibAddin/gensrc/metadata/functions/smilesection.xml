@@ -42,7 +42,7 @@
           <Parameter name='Strike' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>strike. If omitted, default = at-the-money is used.</description>
+            <description>strike</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -65,7 +65,7 @@
           <Parameter name='Strike' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>strike. If omitted, default = at-the-money is used.</description>
+            <description>strike</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -248,7 +248,7 @@
           <Parameter name='VegaWeighted' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
+            <description>TRUE if the interpolation is weighted using options Vega</description>
           </Parameter>
           <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
@@ -355,7 +355,7 @@
           <Parameter name='VegaWeighted' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
+            <description>TRUE if the interpolation is weighted using options Vega</description>
           </Parameter>
           <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
@@ -563,7 +563,7 @@
           <Parameter name='VegaWeighted' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the interpolation is weighted using options Vega. FALSE by default.</description>
+            <description>TRUE if the interpolation is weighted using options Vega</description>
           </Parameter>
           <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
