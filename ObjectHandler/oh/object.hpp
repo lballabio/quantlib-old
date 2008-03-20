@@ -68,7 +68,7 @@ namespace ObjectHandler {
         //! \name Value Objects
         //@{
         //! Retrieve the ValueObject associated with this Object.
-        const boost::shared_ptr<ValueObject>& properties() {
+        const boost::shared_ptr<ValueObject>& properties() const {
             return mProps;
         }
 
