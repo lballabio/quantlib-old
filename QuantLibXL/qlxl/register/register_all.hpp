@@ -16,5 +16,5 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-void registerQlfunctions(const XLOPER&);
-void unregisterQlfunctions(const XLOPER&);
+void registerQlFunctions(const XLOPER&);
+void unregisterQlFunctions(const XLOPER&);

@@ -43,7 +43,7 @@ DLLEXPORT int xlAutoOpen() {
         Excel(xlGetName, &xDll, 0);
 
         ObjectHandler::Configuration::instance().init();
-        registerOhfunctions(xDll);
+        registerOhFunctions(xDll);
 
         Excel(xlFree, 0, 1, &xDll);
         return 1;
@@ -75,7 +75,7 @@ DLLEXPORT int xlAutoClose() {
 
         // unregister the addin functions
         Excel(xlGetName, &xDll, 0);
-        unregisterOhfunctions(xDll);
+        unregisterOhFunctions(xDll);
         Excel(xlFree, 0, 1, &xDll);
 
         return 1;

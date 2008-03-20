@@ -22,6 +22,6 @@
     \brief register/Unregister the Addin functions with Excel
 */
 
-void registerOhfunctions(const XLOPER&);
-void unregisterOhfunctions(const XLOPER&);
+void registerOhFunctions(const XLOPER&);
+void unregisterOhFunctions(const XLOPER&);
 

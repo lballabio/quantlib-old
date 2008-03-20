@@ -99,10 +99,10 @@ DLLEXPORT int xlAutoOpen() {
         ObjectHandler::Configuration::instance().init();
 
         // Initialize ObjectHandler functions
-        registerOhfunctions(xDll);
+        registerOhFunctions(xDll);
 #endif
         // Initialize QuantLib functions
-        registerQlfunctions(xDll);
+        registerQlFunctions(xDll);
 
         // Initialize the Enumeration Registry
         QuantLibAddin::registerEnumerations();
@@ -137,11 +137,11 @@ DLLEXPORT int xlAutoClose() {
 
 #ifdef XLL_STATIC
         // Unregister ObjectHandler functions
-        unregisterOhfunctions(xDll);
+        unregisterOhFunctions(xDll);
 #endif
 
         // Unregister QuantLib functions
-        unregisterQlfunctions(xDll);
+        unregisterQlFunctions(xDll);
 
         // Deallocate the Enumeration Registry
         QuantLibAddin::unregisterEnumerations();
