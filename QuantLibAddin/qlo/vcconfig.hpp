@@ -31,6 +31,8 @@ for runtime version info.
 #  define VC_VERSION "7.1"
 #elif (_MSC_VER == 1400)
 #  define VC_VERSION "8.0"
+#elif (_MSC_VER == 1500)
+#  define VC_VERSION "9.0"
 #else
 #  define VC_VERSION "(version unknown)"
 #endif

@@ -31,7 +31,7 @@
 // version of log4cxx, or that your log4cxx installation (if any) cannot
 // be found at all.
 #include <log4cxx/log4cxxdefines.h>
-#if LOG4CXX_VERSION != 0x030907f5
+#if LOG4CXX_VERSION != 0x001000f0
     #error using an incorrect version of log4cxx, please update.
 #endif
 
@@ -97,12 +97,15 @@ namespace ObjectHandler {
         void logMessage(const std::string &message,
                 const int &level = 4);
         //@}
+		
+		virtual ~Logger(){}
     private:
         Logger();
- 		log4cxx::LoggerPtr _logger;
-        log4cxx::LayoutPtr _layout;
-        log4cxx::AppenderPtr _fileAppender;
-        log4cxx::AppenderPtr _consoleAppender;
+ 		//log4cxx::LoggerPtr _logger;
+        //log4cxx::LayoutPtr _layout;
+        //log4cxx::AppenderPtr _fileAppender;
+        //log4cxx::AppenderPtr _consoleAppender;
+		log4cxx::LayoutPtr getLayout();
     };
 
 }

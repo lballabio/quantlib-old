@@ -1,0 +1,3 @@
+As of apr-util version 1.2.11, MySQL DBD driver is shipped as part of the
+distribution. However, unless you specify --with-mysql option to configure,
+MySQL DBD driver will NOT be built to avoid ABI breakage.

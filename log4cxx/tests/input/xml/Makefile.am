@@ -1,1 +1,0 @@
-EXTRA_DIST = log4j.dtd *.xml

@@ -1,5 +1,15 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "log4cxx", "static\log4cxx_vc7.vcproj", "{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "log4cxx", "log4cxx_vc7.vcproj", "{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A} = {D0809B1F-8C0A-4940-9464-4F94CECDD12A}
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE} = {CBE5793C-6136-4922-84EB-F99EC50CB5FE}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "apr", "apr_vc7.vcproj", "{D0809B1F-8C0A-4940-9464-4F94CECDD12A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aprutil", "aprutil_vc7.vcproj", "{CBE5793C-6136-4922-84EB-F99EC50CB5FE}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -12,21 +22,43 @@ Global
 		Release CRTDLL = Release CRTDLL
 		Release SingleThread = Release SingleThread
 	EndGlobalSection
-	GlobalSection(ProjectDependencies) = postSolution
-	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug.ActiveCfg = Debug|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug.Build.0 = Debug|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug CRTDLL.ActiveCfg = Debug CRTDLL|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug CRTDLL.Build.0 = Debug CRTDLL|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug SingleThread.ActiveCfg = Debug SingleThread|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Debug SingleThread.Build.0 = Debug SingleThread|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release.ActiveCfg = Release|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release.Build.0 = Release|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release SingleThread.ActiveCfg = Release SingleThread|Win32
-		{7BC0D5CE-5FCE-4713-A16D-6CDDAF03ADDA}.Release SingleThread.Build.0 = Release SingleThread|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug.ActiveCfg = Debug|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug.Build.0 = Debug|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug CRTDLL.ActiveCfg = Debug CRTDLL|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug CRTDLL.Build.0 = Debug CRTDLL|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug SingleThread.ActiveCfg = Debug SingleThread|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug SingleThread.Build.0 = Debug SingleThread|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release.ActiveCfg = Release|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release.Build.0 = Release|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release SingleThread.ActiveCfg = Release SingleThread|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release SingleThread.Build.0 = Release SingleThread|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug.ActiveCfg = Debug|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug.Build.0 = Debug|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug CRTDLL.ActiveCfg = Debug CRTDLL|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug CRTDLL.Build.0 = Debug CRTDLL|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug SingleThread.ActiveCfg = Debug SingleThread|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug SingleThread.Build.0 = Debug SingleThread|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release.ActiveCfg = Release|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release.Build.0 = Release|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release SingleThread.ActiveCfg = Release SingleThread|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release SingleThread.Build.0 = Release SingleThread|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug.ActiveCfg = Debug|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug.Build.0 = Debug|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug CRTDLL.ActiveCfg = Debug CRTDLL|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug CRTDLL.Build.0 = Debug CRTDLL|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug SingleThread.ActiveCfg = Debug SingleThread|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug SingleThread.Build.0 = Debug SingleThread|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release.ActiveCfg = Release|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release.Build.0 = Release|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release SingleThread.ActiveCfg = Release SingleThread|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release SingleThread.Build.0 = Release SingleThread|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

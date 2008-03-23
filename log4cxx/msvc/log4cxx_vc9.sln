@@ -1,6 +1,15 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C++ Express 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "log4cxx", "static\log4cxx_vc9.vcproj", "{495708AC-96C6-41E5-AD66-4AFD16C27A21}"
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "log4cxx", "log4cxx_vc9.vcproj", "{CEEDBBD3-151E-408D-8FE5-6098D7FDFE3D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F2496005-1D0C-4532-B9D5-6E046A61542D} = {F2496005-1D0C-4532-B9D5-6E046A61542D}
+		{C6BDF04F-EEAB-4F99-99C0-E102A409BF79} = {C6BDF04F-EEAB-4F99-99C0-E102A409BF79}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "apr", "apr_vc9.vcproj", "{C6BDF04F-EEAB-4F99-99C0-E102A409BF79}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aprutil", "aprutil_vc9.vcproj", "{F2496005-1D0C-4532-B9D5-6E046A61542D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,22 +17,32 @@ Global
 		Debug|Win32 = Debug|Win32
 		Release CRTDLL|Win32 = Release CRTDLL|Win32
 		Release|Win32 = Release|Win32
-		Unicode Debug|Win32 = Unicode Debug|Win32
-		Unicode Release|Win32 = Unicode Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Debug CRTDLL|Win32.ActiveCfg = Debug CRTDLL|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Debug CRTDLL|Win32.Build.0 = Debug CRTDLL|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Debug|Win32.ActiveCfg = Debug|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Debug|Win32.Build.0 = Debug|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Release CRTDLL|Win32.ActiveCfg = Release CRTDLL|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Release CRTDLL|Win32.Build.0 = Release CRTDLL|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Release|Win32.ActiveCfg = Release|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Release|Win32.Build.0 = Release|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Unicode Release|Win32.ActiveCfg = Unicode Release|Win32
-		{495708AC-96C6-41E5-AD66-4AFD16C27A21}.Unicode Release|Win32.Build.0 = Unicode Release|Win32
+		{CEEDBBD3-151E-408D-8FE5-6098D7FDFE3D}.Debug CRTDLL|Win32.ActiveCfg = Debug CRTDLL|Win32
+		{CEEDBBD3-151E-408D-8FE5-6098D7FDFE3D}.Debug CRTDLL|Win32.Build.0 = Debug CRTDLL|Win32
+		{CEEDBBD3-151E-408D-8FE5-6098D7FDFE3D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CEEDBBD3-151E-408D-8FE5-6098D7FDFE3D}.Debug|Win32.Build.0 = Debug|Win32
+		{CEEDBBD3-151E-408D-8FE5-6098D7FDFE3D}.Release CRTDLL|Win32.ActiveCfg = Release CRTDLL|Win32
+		{CEEDBBD3-151E-408D-8FE5-6098D7FDFE3D}.Release CRTDLL|Win32.Build.0 = Release CRTDLL|Win32
+		{CEEDBBD3-151E-408D-8FE5-6098D7FDFE3D}.Release|Win32.ActiveCfg = Release|Win32
+		{CEEDBBD3-151E-408D-8FE5-6098D7FDFE3D}.Release|Win32.Build.0 = Release|Win32
+		{C6BDF04F-EEAB-4F99-99C0-E102A409BF79}.Debug CRTDLL|Win32.ActiveCfg = Debug CRTDLL|Win32
+		{C6BDF04F-EEAB-4F99-99C0-E102A409BF79}.Debug CRTDLL|Win32.Build.0 = Debug CRTDLL|Win32
+		{C6BDF04F-EEAB-4F99-99C0-E102A409BF79}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C6BDF04F-EEAB-4F99-99C0-E102A409BF79}.Debug|Win32.Build.0 = Debug|Win32
+		{C6BDF04F-EEAB-4F99-99C0-E102A409BF79}.Release CRTDLL|Win32.ActiveCfg = Release CRTDLL|Win32
+		{C6BDF04F-EEAB-4F99-99C0-E102A409BF79}.Release CRTDLL|Win32.Build.0 = Release CRTDLL|Win32
+		{C6BDF04F-EEAB-4F99-99C0-E102A409BF79}.Release|Win32.ActiveCfg = Release|Win32
+		{C6BDF04F-EEAB-4F99-99C0-E102A409BF79}.Release|Win32.Build.0 = Release|Win32
+		{F2496005-1D0C-4532-B9D5-6E046A61542D}.Debug CRTDLL|Win32.ActiveCfg = Debug CRTDLL|Win32
+		{F2496005-1D0C-4532-B9D5-6E046A61542D}.Debug CRTDLL|Win32.Build.0 = Debug CRTDLL|Win32
+		{F2496005-1D0C-4532-B9D5-6E046A61542D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F2496005-1D0C-4532-B9D5-6E046A61542D}.Debug|Win32.Build.0 = Debug|Win32
+		{F2496005-1D0C-4532-B9D5-6E046A61542D}.Release CRTDLL|Win32.ActiveCfg = Release CRTDLL|Win32
+		{F2496005-1D0C-4532-B9D5-6E046A61542D}.Release CRTDLL|Win32.Build.0 = Release CRTDLL|Win32
+		{F2496005-1D0C-4532-B9D5-6E046A61542D}.Release|Win32.ActiveCfg = Release|Win32
+		{F2496005-1D0C-4532-B9D5-6E046A61542D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,1 +1,0 @@
-SUBDIRS = log4cxx

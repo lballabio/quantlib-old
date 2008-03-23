@@ -1,0 +1,166 @@
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+-->
+<project name="log4cxx-performance" default="usage" basedir="." >
+
+  <property name="runlen"  value="100000"/>
+  <property name="loop" value="char"/>
+  <property name="debug" value="true"/>
+  <property name="log4cxx.lib.type" value="shared"/>
+
+  <target name="usage">
+    <echo>
+      These are the targets supported by this ANT build scpript:
+
+      all - run all performance tests
+      null         - run performance tests using NullAppender
+      file         - run performance tests using FileAppender
+      file-noflush - run performance tests using FileAppender without immediate flush
+      file-bufferedio - run performance tests using FileAppender without buffered IO
+      telnet - run performace tests with TelnetAppender
+
+      -Dloop=[char wide stream wide-stream bad-stream bad-wide-stream]
+      -Drunlen=100000
+    </echo>
+  </target>
+
+  <target name="clean">
+   <delete>
+      <fileset dir="./output/" includes="**"/>
+    </delete>
+   </target>
+
+  <target name="all" depends="off, null, file, file-noflush, file-bufferedio"/>
+
+
+  <target name="off">
+    <echo message="*** logging with hierarchy threshold = off ***"/>
+    <antcall target="loop-group">
+      <param name="configFile" value="input/performance/off.xml"/>
+    </antcall>
+  </target>
+
+  <target name="null">
+    <echo message="*** logging with NullAppender ***"/>
+    <antcall target="loop-group">
+      <param name="configFile" value="input/performance/null-appender.xml"/>
+    </antcall>
+  </target>
+
+  <target name="file" depends="clean">
+    <echo message="*** logging with FileAppender ***"/>
+    <antcall target="loop-group">
+      <param name="configFile" value="input/performance/file.xml"/>
+    </antcall>
+  </target>
+
+  <target name="file-noflush" depends="clean">
+    <echo message="*** logging with FileAppender, ImmediateFlush=false ***"/>
+    <antcall target="loop-group">
+      <param name="configFile" value="input/performance/file-noflush.xml"/>
+    </antcall>
+  </target>
+
+  <target name="file-bufferedio" depends="clean">
+    <echo message="*** logging with FileAppender, BufferedIO=true ***"/>
+    <antcall target="loop-group">
+      <param name="configFile" value="input/performance/file-bufferedio.xml"/>
+    </antcall>
+  </target>
+
+  <target name="telnet" depends="clean">
+    <echo message="*** logging with TelnetAppender ***"/>
+    <antcall target="loop-group">
+      <param name="configFile" value="input/performance/telnet.xml"/>
+    </antcall>
+  </target>
+
+
+
+  <target name="loop">
+    <condition property="lib-suffix" value="d">
+        <istrue value="${debug}"/>
+    </condition>
+    <property name="lib-suffix" value=""/>
+    <condition property="log4cxx.lib.dir" value="../build/debug/${log4cxx.lib.type}">
+        <istrue value="${debug}"/>
+    </condition>
+    <property name="log4cxx.lib.dir"  value="../build/release/${log4cxx.lib.type}"/>
+    <property name="apr.lib.dir" value="${log4cxx.lib.dir}"/>
+    <property name="aprutil.lib.dir" value="${apr.lib.dir}"/>
+    <property name="apriconv.lib.dir" value="${aprutil.lib.dir}"/>
+
+    <echo message="Pattern is ${pattern}"/>
+
+    <exec executable="${log4cxx.lib.dir}/performance">
+        <arg value="${runlen}"/>
+        <arg value="${configFile}"/>
+        <arg value="${loop}"/>
+        <env key="pattern" value="${pattern}"/>
+        <env key="LD_LIBRARY_PATH"
+               value="${log4cxx.lib.dir}:${apr.lib.dir}:${aprutil.lib.dir}:${apriconv.lib.dir}:${env.LD_LIBRARY_PATH}"/>
+        <env key="DYLD_LIBRARY_PATH"
+               value="${log4cxx.lib.dir}:${apr.lib.dir}:${aprutil.lib.dir}:${apriconv.lib.dir}:${env.DYLD_LIBRARY_PATH}"/>
+    </exec>
+  </target>
+
+  <target name="loop-group">
+    <mkdir dir="output"/>
+    <antcall target="loop">
+      <param name="configFile" value="${configFile}"/>
+      <param name="pattern" value="%p - %m%n"/>
+    </antcall>
+    <antcall target="loop">
+      <param name="configFile" value="${configFile}"/>
+      <param name="pattern" value="%-5p - %m%n"/>
+    </antcall>
+    <antcall target="loop">
+      <param name="configFile" value="${configFile}"/>
+      <param name="pattern" value="%r [%t] %-5p %c{2} %x - %m%n"/>
+    </antcall>
+    <antcall target="loop">
+      <param name="configFile" value="${configFile}"/>
+      <param name="pattern" value="%r [%t] %-5p %.10c %x - %m%n"/>
+    </antcall>
+    <antcall target="loop">
+      <param name="configFile" value="${configFile}"/>
+      <param name="pattern" value="%r [%t] %-5p %.20c %x - %m%n"/>
+    </antcall>
+    <antcall target="loop">
+      <param name="configFile" value="${configFile}"/>
+      <param name="pattern" value="%r [%t] %-5p %c - %m%n"/>
+    </antcall>
+    <antcall target="loop">
+      <param name="configFile" value="${configFile}"/>
+      <param name="pattern" value="%d{ISO8601} [%t] %-5p %c %x - %m%n"/>
+    </antcall>
+    <antcall target="loop">
+      <param name="configFile" value="${configFile}"/>
+      <param name="pattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5p %c %x - %m%n"/>
+    </antcall>
+    <antcall target="loop">
+      <param name="configFile" value="${configFile}"/>
+      <param name="pattern" value="%l - %m%n"/>
+    </antcall>
+    <!-- antcall target="loop">
+      <param name="configFile" value="${configFile}"/>
+      <param name="pattern" value="%C.%M.%L - %m%n"/>
+    </antcall -->
+  </target>
+
+
+</project>

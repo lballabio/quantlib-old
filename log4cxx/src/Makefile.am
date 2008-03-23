@@ -1,97 +1,16 @@
-lib_LTLIBRARIES = liblog4cxx.la
-
-INCLUDES = -I$(top_srcdir)/include
-
-liblog4cxx_la_SOURCES = \
-	appenderattachableimpl.cpp \
-	appenderskeleton.cpp \
-	asyncappender.cpp \
-	basicconfigurator.cpp \
-	boundedfifo.cpp \
-	class.cpp \
-	condition.cpp \
-	configurator.cpp \
-	consoleappender.cpp \
-	criticalsection.cpp \
-	cyclicbuffer.cpp \
-	dailyrollingfileappender.cpp \
-	datagrampacket.cpp \
-	datagramsocket.cpp \
-	datelayout.cpp \
-	dateformat.cpp \
-	defaultcategoryfactory.cpp \
-	domconfigurator.cpp \
-	event.cpp \
-	fallbackerrorhandler.cpp \
-	fileappender.cpp \
-	filewatchdog.cpp \
-	formattinginfo.cpp \
-	gnomexml.cpp \
-	hierarchy.cpp \
-	htmllayout.cpp \
-	inetaddress.cpp \
-	layout.cpp\
-	level.cpp \
-	levelmatchfilter.cpp \
-	levelrangefilter.cpp \
-	loader.cpp\
-	locale.cpp\
-	logger.cpp \
-	loggingevent.cpp \
-	loglog.cpp \
-	logmanager.cpp \
-	msxml.cpp \
-	mutex.cpp \
-	ndc.cpp \
-	mdc.cpp \
-	nteventlogappender.cpp \
-	objectimpl.cpp \
-	odbcappender.cpp \
-	onlyonceerrorhandler.cpp \
-	optionconverter.cpp \
-	patternconverter.cpp \
-	patternlayout.cpp \
-	patternparser.cpp \
-	properties.cpp \
-	propertyconfigurator.cpp \
-	propertyresourcebundle.cpp \
-	propertysetter.cpp \
-	resourcebundle.cpp \
-	rollingfileappender.cpp \
-	rootcategory.cpp \
-	serversocket.cpp \
-	semaphore.cpp \
-	simplelayout.cpp \
-	smtpappender.cpp \
-	socket.cpp \
-	socketappender.cpp \
-	sockethubappender.cpp \
-	socketimpl.cpp \
-	socketinputstream.cpp \
-	socketnode.cpp \
-	socketoutputstream.cpp \
-	stringhelper.cpp \
-	stringmatchfilter.cpp \
-	stringtokenizer.cpp \
-	syslogappender.cpp \
-	syslogwriter.cpp \
-	system.cpp \
-	telnetappender.cpp \
-	timezone.cpp \
-	transform.cpp \
-	thread.cpp \
-	threadspecificdata.cpp \
-	ttcclayout.cpp \
-	writerappender.cpp \
-	xmllayout.cpp\
-	xmlsocketappender.cpp
-
-AM_CPPFLAGS = @CPPFLAGS_XML@ @CPPFLAGS_ODBC@
-liblog4cxx_la_LDFLAGS = -version-info @LT_VERSION@ @LIBS_XML@ @LIBS_ODBC@
-
-bin_PROGRAMS = simplesocketserver
-simplesocketserver_SOURCES = simplesocketserver.cpp
-simplesocketserver_LDADD = $(top_builddir)/src/liblog4cxx.la
-
-
-
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+SUBDIRS = main examples site test
