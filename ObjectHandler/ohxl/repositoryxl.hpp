@@ -47,9 +47,10 @@ namespace ObjectHandler {
             Perform a test to ensure that an object from one cell cannot overwrite
             an object in another cell with the same ID.
         */
-        virtual std::string storeObject(const std::string &objectID,
-                                        const boost::shared_ptr<Object> &object,
-                                        bool overwrite = false);
+        virtual std::string storeObject(
+            const std::string &objectID,
+            const boost::shared_ptr<Object> &object,
+            bool overwrite = false);
         //! Implementation of the retrieveObject function.
         /*! Convert Excel-format Object IDs into the format recognized by the base
             Repository class.  Recast references from Object to ObjectXL.
@@ -122,9 +123,9 @@ namespace ObjectHandler {
 
         //! \name Calling Ranges
         //@{
-        //! Retrieve the address of the cell in which the given object resides.
+        //! Retrieve list of cell addresses corresponding to object list.
         std::vector<std::string> callerAddress(const std::vector<std::string> &objectList);
-        //! Retrieve key of CallingRange object associated with the given object.
+        //! Retrieve keys of CallingRange objects associated with the given object list.
         std::vector<std::string> callerKey(const std::vector<std::string> &objectList);
         //@}
 
