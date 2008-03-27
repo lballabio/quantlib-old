@@ -41,7 +41,7 @@ namespace ObjectHandler {
     DLL_API void scalarToOper(const bool &value, OPER &xBoolean, bool dllToFree = true, bool expandVector = true);
     DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree = true, bool expandVector = true);
     DLL_API void scalarToOper(const boost::any &value, OPER &xAny, bool dllToFree = true, bool expandVector = true);
-    DLL_API void scalarToOper(const ObjectHandler::Variant &value, OPER &xAny, bool dllToFree = true, bool expandVector = true);
+    DLL_API void scalarToOper(const Variant &value, OPER &xAny, bool dllToFree = true, bool expandVector = true);
     //@}
 
 }

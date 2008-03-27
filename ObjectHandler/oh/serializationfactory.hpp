@@ -66,7 +66,7 @@ namespace ObjectHandler {
 
         //! Write the object(s) to the given string.
         virtual std::string saveObjectString(
-            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&,
+            const std::vector<boost::shared_ptr<Object> >&,
             bool forceOverwrite) = 0;
         //! Load object(s) from the given string.
         virtual std::vector<std::string> loadObjectString(

@@ -40,7 +40,7 @@ namespace ObjectHandler {
         void operator()(const double &d) { l_ = static_cast<long>(d); }
         void operator()(const bool &b) { l_ = b; }
         void operator()(const std::string&) { OH_FAIL("invalid conversion"); }
-        void operator()(const ObjectHandler::Other&) { OH_FAIL("invalid conversion"); }
+        void operator()(const Other&) { OH_FAIL("invalid conversion"); }
     private:
         long &l_;
     };
@@ -53,7 +53,7 @@ namespace ObjectHandler {
         void operator()(const double &d) { l_= d; }
         void operator()(const bool &b) { l_ = b; }
         void operator()(const std::string&) { OH_FAIL("invalid conversion"); }
-        void operator()(const ObjectHandler::Other&) { OH_FAIL("invalid conversion"); }
+        void operator()(const Other&) { OH_FAIL("invalid conversion"); }
     private:
         double &l_;
     };
@@ -66,7 +66,7 @@ namespace ObjectHandler {
         void operator()(const double &d) { OH_FAIL("invalid conversion"); }
         void operator()(const bool &l) { l_= l; }
         void operator()(const std::string&) { OH_FAIL("invalid conversion"); }
-        void operator()(const ObjectHandler::Other&) { OH_FAIL("invalid conversion"); }
+        void operator()(const Other&) { OH_FAIL("invalid conversion"); }
     private:
         bool &l_;
     };
@@ -79,7 +79,7 @@ namespace ObjectHandler {
         void operator()(const double &d) { OH_FAIL("invalid conversion"); }
         void operator()(const bool &l) { OH_FAIL("invalid conversion"); }
         void operator()(const std::string &l) { l_= l; }
-        void operator()(const ObjectHandler::Other&) { OH_FAIL("invalid conversion"); }
+        void operator()(const Other&) { OH_FAIL("invalid conversion"); }
     private:
         std::string &l_;
     };
@@ -105,7 +105,7 @@ namespace ObjectHandler {
         void operator()(const double &d) { l_ = false; }
         void operator()(const bool &l) { l_ = false; }
         void operator()(const std::string &l) { l_ = false; }
-        void operator()(const ObjectHandler::Other &l) { l_ = l.type()==Error; }
+        void operator()(const Other &l) { l_ = l.type()==Error; }
     private:
         bool &l_;
     };
@@ -118,7 +118,7 @@ namespace ObjectHandler {
         void operator()(const double &d) { type_ = Double; }
         void operator()(const bool &type) { type_ = Boolean; }
         void operator()(const std::string &type) { type_ = String; }
-        void operator()(const ObjectHandler::Other &other) { type_ = other.type(); }
+        void operator()(const Other &other) { type_ = other.type(); }
     private:
         Type &type_;
     };

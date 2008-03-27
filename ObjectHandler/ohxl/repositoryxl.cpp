@@ -68,8 +68,8 @@ namespace ObjectHandler {
         const boost::shared_ptr<Object> &object,
         bool overwrite) {
 
-        boost::shared_ptr<ObjectHandler::ObjectXL> objectXL(
-            new ObjectHandler::ObjectXL(objectID, object));
+        boost::shared_ptr<ObjectXL> objectXL(
+            new ObjectXL(objectID, object));
 
         boost::shared_ptr<CallingRange> callingRange;
         if (FunctionCall::instance().callerType() == CallerType::Cell) {
@@ -128,7 +128,7 @@ namespace ObjectHandler {
 
     void RepositoryXL::setError(
             const std::string &message,
-            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall) {
+            const boost::shared_ptr<FunctionCall> &functionCall) {
 
         std::ostringstream logMessage, cellMessage;
         cellMessage << functionCall->functionName() << " - " << message;
@@ -147,7 +147,7 @@ namespace ObjectHandler {
 
     void RepositoryXL::logError(
             const std::string &message,
-            const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall) {
+            const boost::shared_ptr<FunctionCall> &functionCall) {
 
         // This function is called during error handling and must not throw.
 

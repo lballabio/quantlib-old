@@ -29,7 +29,7 @@
 
 namespace ObjectHandler { namespace ValueObjects {
 
-    class ohRange : public ObjectHandler::ValueObject {
+    class ohRange : public ValueObject {
         friend class boost::serialization::access;
     public:
         ohRange() {}
@@ -37,7 +37,7 @@ namespace ObjectHandler { namespace ValueObjects {
             const std::string& ObjectId,
             const std::vector<std::vector <double> >& Values,
             bool Permanent) :
-        ObjectHandler::ValueObject(ObjectId, "ohRange", Permanent),
+        ValueObject(ObjectId, "ohRange", Permanent),
         Values_(Values),
         Permanent_(Permanent) {}
 
@@ -85,7 +85,7 @@ namespace ObjectHandler { namespace ValueObjects {
         
         template<class Archive>
         void serialize(Archive& ar, const unsigned int) {
-        boost::serialization::void_cast_register<ohRange, ObjectHandler::ValueObject>(this, this);
+        boost::serialization::void_cast_register<ohRange, ValueObject>(this, this);
             ar  & boost::serialization::make_nvp("ObjectId", objectId_)
                 & boost::serialization::make_nvp("ClassName", className_)
                 & boost::serialization::make_nvp("Values", Values_)

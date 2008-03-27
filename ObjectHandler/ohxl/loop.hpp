@@ -41,7 +41,7 @@ namespace ObjectHandler {
                 XLOPER &xIn, 
                 XLOPER &xOut,
                 bool expandVector) {
-            InputType inputItem = ObjectHandler::operToScalar<InputType>(xIn);
+            InputType inputItem = operToScalar<InputType>(xIn);
             OutputType returnItem = loopFunction(inputItem);
             scalarToOper(returnItem, xOut, true, expandVector);
         }
@@ -55,7 +55,7 @@ namespace ObjectHandler {
                 XLOPER &xIn, 
                 XLOPER &xOut,
                 bool expandVector) {
-            InputType inputItem = ObjectHandler::operToScalar<InputType>(xIn);
+            InputType inputItem = operToScalar<InputType>(xIn);
             loopFunction(inputItem);
             scalarToOper(true, xOut, true, expandVector);
         }
@@ -63,7 +63,7 @@ namespace ObjectHandler {
 
     template<class LoopFunction, class InputType, class OutputType>
     void loop(
-              const boost::shared_ptr<ObjectHandler::FunctionCall> &functionCall,
+              const boost::shared_ptr<FunctionCall> &functionCall,
               LoopFunction &loopFunction, 
               OPER *xIn, 
               XLOPER &xOut) {

@@ -67,7 +67,7 @@ namespace ObjectHandler {
                 continue;
 
             boost::shared_ptr<Object> object;
-            ObjectHandler::Repository::instance().retrieveObject(object, objectId);
+            Repository::instance().retrieveObject(object, objectId);
 
             boost::shared_ptr<Group> group =
                 boost::dynamic_pointer_cast<Group>(object);
@@ -126,7 +126,7 @@ namespace ObjectHandler {
                 continue;
 
             boost::shared_ptr<Object> object;
-            ObjectHandler::Repository::instance().retrieveObject(object, objectId);
+            Repository::instance().retrieveObject(object, objectId);
 
             boost::shared_ptr<Group> group =
                 boost::dynamic_pointer_cast<Group>(object);

@@ -64,12 +64,12 @@ namespace ObjectHandler {
         void operator()(const bool &val) { scalarToOper(val, oper_); }
         void operator()(const std::string &val) { scalarToOper(val, oper_); }
         // FIXME cater for error etc.
-        void operator()(const ObjectHandler::Other&) { setError(oper_, xlerrNA); }
+        void operator()(const Other&) { setError(oper_, xlerrNA); }
     private:
         OPER &oper_;
     };
 
-    DLL_API void scalarToOper(const ObjectHandler::Variant &value, OPER &xVariant, bool dllToFree, bool expandVector) {
+    DLL_API void scalarToOper(const Variant &value, OPER &xVariant, bool dllToFree, bool expandVector) {
         VariantToOper variantToOper(xVariant);
         boost::apply_visitor(variantToOper, value.variant());
     }
@@ -121,8 +121,8 @@ namespace ObjectHandler {
             wrapScalarToOper<bool>(value, xAny);
         } else if (value.type() == typeid(std::string)) {
             wrapScalarToOper<std::string>(value, xAny);
-        } else if (value.type() == typeid(ObjectHandler::Variant)) {
-            wrapScalarToOper<ObjectHandler::Variant>(value, xAny);
+        } else if (value.type() == typeid(Variant)) {
+            wrapScalarToOper<Variant>(value, xAny);
         } else if (value.type() == typeid(std::vector<long>)) {
             if (expandVector)
                 wrapVectorToOper<long>(value, xAny);
@@ -148,9 +148,9 @@ namespace ObjectHandler {
                 wrapVectorToOper<boost::any>(value, xAny);
             else
                 setVectorString(xAny);
-        } else if (value.type() == typeid(std::vector<ObjectHandler::Variant>)) {
+        } else if (value.type() == typeid(std::vector<Variant>)) {
             if (expandVector)
-                wrapVectorToOper<ObjectHandler::Variant>(value, xAny);
+                wrapVectorToOper<Variant>(value, xAny);
             else
                 setVectorString(xAny);
         } else if (value.type() == typeid(std::vector<std::vector<long> >)) {
@@ -178,9 +178,9 @@ namespace ObjectHandler {
                 wrapMatrixToOper<boost::any>(value, xAny);            
             else
                 setMatrixString(xAny);
-        } else if (value.type() == typeid(std::vector<std::vector<ObjectHandler::Variant> >)) {
+        } else if (value.type() == typeid(std::vector<std::vector<Variant> >)) {
             if (expandVector)
-                wrapMatrixToOper<ObjectHandler::Variant>(value, xAny);            
+                wrapMatrixToOper<Variant>(value, xAny);            
             else
                 setMatrixString(xAny);
         } else {

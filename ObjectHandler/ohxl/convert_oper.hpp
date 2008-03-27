@@ -72,7 +72,7 @@ namespace ObjectHandler {
         //! Convert the OPER to a std::string.
         operator std::string() const;
         //! Convert the OPER to a Variant.
-        operator ObjectHandler::Variant() const;
+        operator Variant() const;
         //@}
 
         //! Return a const pointer to the underlying OPER.

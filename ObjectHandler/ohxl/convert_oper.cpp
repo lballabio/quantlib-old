@@ -78,12 +78,12 @@ namespace ObjectHandler {
         return strConv(xString);
     }
 
-    ConvertOper::operator ObjectHandler::Variant() const {
+    ConvertOper::operator Variant() const {
 
         if (missing()) {
-            return ObjectHandler::Other(ObjectHandler::Null);
+            return Other(Null);
         } else if (error()) {
-            return ObjectHandler::Other(ObjectHandler::Error);
+            return Other(Error);
         } else if (oper_->xltype == xltypeNum) {
             return oper_->val.num;
         } else if (oper_->xltype == xltypeBool) {
