@@ -71,10 +71,10 @@ namespace ObjectHandler {
             The normal ObjectXL constructor cannot be invoked across DLL boundaries
             and this function provides a workaround for the problem.
         */
-#ifdef COMPILING_XLL_DYNAMIC
-        static DLL_API boost::shared_ptr<ObjectXL> create(
-            const std::string &id, const boost::shared_ptr<Object> &object);
-#endif
+//#ifdef COMPILING_XLL_DYNAMIC
+//        static DLL_API boost::shared_ptr<ObjectXL> create(
+//            const std::string &id, const boost::shared_ptr<Object> &object);
+//#endif
         //@}
 
         //! \name Inspectors
