@@ -30,14 +30,23 @@ namespace ObjectHandler {
         const char counterDelimiter = '#';
     }
 
-    ObjectXL::ObjectXL(const std::string &id,
-                       const boost::shared_ptr<Object> &object)
-    : id_(id), idFull_(id), object_(object) {
+    ObjectXL::ObjectXL(
+        const std::string &id,
+        const boost::shared_ptr<Object> &object,
+        const boost::shared_ptr<CallingRange> &callingRange)
+            : id_(id), idFull_(id), object_(object), callingRange_(callingRange) {
+
+        OH_REQUIRE(id.find(counterDelimiter, 0) == std::string::npos,
+                   id << " is an invalid ID: cannot contain " << counterDelimiter);
         std::string ID = boost::algorithm::to_upper_copy(id);
-        OH_REQUIRE(ID.rfind(ANONPREFIX, ANONPREFIX.size()-1)==std::string::npos,
-                   id<<" is an invalid ID: cannot start with " << anonPrefix);
-        OH_REQUIRE(id.find(counterDelimiter, 0)==std::string::npos,
-                   id<<" is an invalid ID: cannot contain "<<counterDelimiter);
+        OH_REQUIRE(ID.rfind(ANONPREFIX, ANONPREFIX.size() - 1) == std::string::npos,
+                   id << " is an invalid ID: cannot start with " << anonPrefix);
+
+        if (callingRange) {     // skip this part if called from Excel VBA
+            if (id_.empty())
+                id_ = anonPrefix + callingRange->key();
+            idFull_ = id_ + counterDelimiter + callingRange_->updateCount();
+        }
     };
 
     ObjectXL::~ObjectXL() {
@@ -58,15 +67,6 @@ namespace ObjectHandler {
             return objectID.substr(0, counterOffset);
         else
             return objectID;
-    }
-
-    void ObjectXL::setCallingRange(const boost::shared_ptr<CallingRange> &callingRange) {
-        callingRange_ = callingRange;
-
-        if (id_.empty())
-            id_ = anonPrefix + callingRange->key();
-
-        idFull_ = id_ + counterDelimiter + callingRange_->updateCount();
     }
 
     void ObjectXL::dump(std::ostream &out) {

@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -50,8 +50,14 @@ namespace ObjectHandler {
         //! Constructor - accepts ID and reference to contained Object.
         /*! Unlike Object, ObjectXL knows its own ID as additional functionality
             is built around this value.
+
+            The callingRange parameter is a reference to the calling cell.  A null
+            value indicates that this constructor was invoked from Excel VBA code.
         */
-        ObjectXL(const std::string &id, const boost::shared_ptr<Object> &object);
+        ObjectXL(
+            const std::string &id,
+            const boost::shared_ptr<Object> &object,
+            const boost::shared_ptr<CallingRange> &callingRange);
 
         //! Destructor - de-register this object with its CallingRange object.
         virtual ~ObjectXL();
@@ -85,23 +91,11 @@ namespace ObjectHandler {
         const std::string &idFull() const { return idFull_; }
         //! Return a copy of the reference to the Object contained by ObjectXL.
         boost::shared_ptr<Object> object() const { return object_; }
-        //@}
-
-        //! \name CallingRange Management
-        //@{
-        //! Set a reference to the calling cell.
-        /*! If this object is constructed with a call from Excel VBA (rather than a cell
-            formula) then this function is not called and the CallingRange reference
-            remains empty.
-        */
-        void setCallingRange(const boost::shared_ptr<CallingRange> &callingRange);
         //! Get the key identifying the CallingRange object.
-        /*! Returns the string "VBA" if this object was constructed by VBA code.
-        */
+        /*! Returns the string "VBA" if this object was constructed by VBA code. */
         std::string callerKey() const;
         //! Get the address of the calling cell.
-        /*! Returns the string "VBA" if this object was constructed by VBA code.
-        */
+        /*! Returns the string "VBA" if this object was constructed by VBA code. */
         std::string callerAddress() const;
         //@}
 

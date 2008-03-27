@@ -1,8 +1,8 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
  Copyright (C) 2007 Ferdinando Ametrano
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -68,14 +68,12 @@ namespace ObjectHandler {
         const boost::shared_ptr<Object> &object,
         bool overwrite) {
 
-        boost::shared_ptr<ObjectXL> objectXL(
-            new ObjectXL(objectID, object));
-
         boost::shared_ptr<CallingRange> callingRange;
-        if (FunctionCall::instance().callerType() == CallerType::Cell) {
+        if (FunctionCall::instance().callerType() == CallerType::Cell)
             callingRange = getCallingRange();
-            objectXL->setCallingRange(callingRange);
-        }
+
+        boost::shared_ptr<ObjectXL> objectXL(
+            new ObjectXL(objectID, object, callingRange));
 
         if (!overwrite) {
             ObjectMap::const_iterator result = objectMap_.find(objectXL->id());
