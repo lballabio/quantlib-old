@@ -253,11 +253,12 @@ namespace QuantLibAddin {
 
     std::vector<std::string> rateHelperSelection(
         const std::vector<boost::shared_ptr<QuantLibAddin::RateHelper> >& qlarhs,
-        const std::vector<QuantLib::Size>& priority,
+        const std::vector<QuantLib::Natural>& priority,
         QuantLib::Natural nImmFutures,
         QuantLib::Natural nSerialFutures,
         QuantLib::Natural frontFuturesRollingDays,
-        RateHelper::DepoInclusionCriteria depoInclusionCriteria)
+        RateHelper::DepoInclusionCriteria depoInclusionCriteria,
+        QuantLib::Natural minDistanceInDays)
     {
         // Checks
         QL_REQUIRE(!qlarhs.empty(), "no instrument given");
@@ -377,6 +378,7 @@ namespace QuantLibAddin {
                 }
             }
         }
+
         std::vector<std::string> result;
 
         // Zero or one rate helper left
@@ -391,13 +393,28 @@ namespace QuantLibAddin {
         std::sort(rhs.begin(), rhs.end(), detail::RateHelperPrioritySorter());
 
         // remove RateHelpers with duplicate latestDate
-        for (QuantLib::Size i=0; i<rhs.size()-1; ++i) {
-            if (rhs[i].latestDate < rhs[i+1].latestDate)
-                result.push_back(rhs[i].objectID);
+        std::vector<detail::RateHelperItem>::iterator i=rhs.begin();
+        while (i != rhs.end()-1) {
+            if (i->latestDate == (i+1)->latestDate)
+                i = rhs.erase(i);
+            else ++i;
         }
-        // Add the last one in any case
-        result.push_back(rhs[rhs.size()-1].objectID);
 
+        // remove RateHelpers with near latestDate
+        i=rhs.begin();
+        while (i != rhs.end()-1) {
+            if (i->latestDate + minDistanceInDays > (i+1)->latestDate) {
+                if (i->priority < (i+1)->priority)
+                    i = rhs.erase(i);
+                else {
+                    i = rhs.erase(i+1);
+                    --i;
+                }
+            } else ++i;
+        }
+
+        for (i = rhs.begin(); i != rhs.end(); ++i)
+            result.push_back(i->objectID);
         return result;
     }
 

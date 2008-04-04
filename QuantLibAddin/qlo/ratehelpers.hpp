@@ -175,11 +175,12 @@ namespace QuantLibAddin {
     // and selects a subset according to the given rules and parameters
     std::vector<std::string> rateHelperSelection(
         const std::vector<boost::shared_ptr<QuantLibAddin::RateHelper> >& qlarhs,
-        const std::vector<QuantLib::Size>& priority,
+        const std::vector<QuantLib::Natural>& priority,
         QuantLib::Natural nImmFutures,
         QuantLib::Natural nSerialFutures,
         QuantLib::Natural frontFuturesRollingDays,
-        RateHelper::DepoInclusionCriteria depoInclusionCriteria);
+        RateHelper::DepoInclusionCriteria depoInclusionCriteria,
+        QuantLib::Natural minDistanceInDays);
 }
 
 #endif

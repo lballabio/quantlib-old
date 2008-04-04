@@ -564,29 +564,34 @@
             <description>vector of RateHelper IDs</description>
           </Parameter>
           <Parameter name='Priority'>
-            <type>QuantLib::Size</type>
+            <type>QuantLib::Natural</type>
             <tensorRank>vector</tensorRank>
             <description>vector of priority integers (higher number for higher priority)</description>
           </Parameter>
           <Parameter name='NImmFutures'>
-            <type>QuantLib::Size</type>
+            <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>max number of IMM (March, June, September, December) Futures to be included</description>
           </Parameter>
           <Parameter name='NSerialFutures'>
-            <type>QuantLib::Size</type>
+            <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>max number of Serial (January, February, April, May, July, August, October, November) Futures to be included</description>
           </Parameter>
           <Parameter name='FrontFuturesRollingDays' default='2'>
-            <type>QuantLib::Size</type>
+            <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>discard the front Futures the given number of days before its expiry (e.g zero implies the use of the front Futures during its expiry day)</description>
+            <description>discard the front Futures the given number of (positive) days before its expiry (e.g zero implies the use of the front Futures during its expiry day)</description>
           </Parameter>
           <Parameter name='DepoFuturesPriority' default='"AllDepos"'>
             <type>QuantLibAddin::RateHelper::DepoInclusionCriteria</type>
             <tensorRank>scalar</tensorRank>
             <description>Depo inclusion criteria</description>
+          </Parameter>
+          <Parameter name='MinDistanceInDays' default='0'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>minimum distance in (positive) days between two adjacent intruments</description>
           </Parameter>
         </Parameters>
       </ParameterList>
