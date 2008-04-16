@@ -22,7 +22,7 @@
 
 #include <qlo/extrapolator.hpp>
 // needed for the enumerative types
-#include <ql/math/interpolations/cubicspline.hpp>
+#include <ql/math/interpolations/cubicinterpolation.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {
@@ -36,9 +36,9 @@ namespace QuantLibAddin {
     class Interpolation : public Extrapolator {
       public:
         Interpolation(const boost::shared_ptr<ObjectHandler::ValueObject>&,
-                          const std::vector<QuantLib::Real>& x,
-                          const std::vector<QuantLib::Real>& y,
-                          bool permanent);
+                      const std::vector<QuantLib::Real>& x,
+                      const std::vector<QuantLib::Real>& y,
+                      bool permanent);
       protected:
         std::vector<QuantLib::Real> x_, y_;
     };
@@ -52,17 +52,18 @@ namespace QuantLibAddin {
                       bool permanent);
     };
     
-    class CubicSplineInterpolation : public Interpolation {
+    class CubicInterpolation : public Interpolation {
       public:
-        CubicSplineInterpolation(
+        CubicInterpolation(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Real>& x,
             const std::vector<QuantLib::Real>& y,
-            QuantLib::CubicSplineInterpolation::BoundaryCondition leftCondition,
+            QuantLib::CubicInterpolation::DerivativeApprox da,
+            bool monotonic,
+            QuantLib::CubicInterpolation::BoundaryCondition leftCondition,
             QuantLib::Real leftConditionValue,
-            QuantLib::CubicSplineInterpolation::BoundaryCondition rightCondition,
+            QuantLib::CubicInterpolation::BoundaryCondition rightCondition,
             QuantLib::Real rightConditionValue,
-            bool monotonicityConstraint,
             bool permanent);
     };
     

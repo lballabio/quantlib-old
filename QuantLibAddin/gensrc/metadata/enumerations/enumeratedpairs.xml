@@ -38,34 +38,47 @@
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>Discount</id1>
-          <id2>NaturalCubicSpline</id2>
-          <value>DISCOUNT_NATURALCUBICSPLINE_PiecewiseYieldCurve</value>
+          <id2>CubicNaturalSpline</id2>
+          <value>DISCOUNT_CUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>Discount</id1>
-          <id2>NaturalLogCubic</id2>
-          <value>DISCOUNT_NATURALLOGCUBIC_PiecewiseYieldCurve</value>
+          <id2>LogCubicNaturalSpline</id2>
+          <value>DISCOUNT_LOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>Discount</id1>
-          <id2>MonotonicNaturalCubicSpline</id2>
-          <value>DISCOUNT_MONOTONICNATURALCUBICSPLINE_PiecewiseYieldCurve</value>
+          <id2>MonotonicCubicNaturalSpline</id2>
+          <value>DISCOUNT_MONOTONICCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>Discount</id1>
-          <id2>MonotonicNaturalLogCubic</id2>
-          <value>DISCOUNT_MONOTONICNATURALLOGCUBIC_PiecewiseYieldCurve</value>
+          <id2>MonotonicLogCubicNaturalSpline</id2>
+          <value>DISCOUNT_MONOTONICLOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>Discount</id1>
-          <id2>ConstrainedCubicSpline</id2>
-          <value>DISCOUNT_CONSTRAINEDCUBICSPLINE_PiecewiseYieldCurve</value>
+          <id2>KrugerCubic</id2>
+          <value>DISCOUNT_KrugerCubic_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>Discount</id1>
-          <id2>ConstrainedLogCubic</id2>
-          <value>DISCOUNT_CONSTRAINEDLOGCUBIC_PiecewiseYieldCurve</value>
+          <id2>KrugerLogCubic</id2>
+          <value>DISCOUNT_KrugerLogCubic_PiecewiseYieldCurve</value>
         </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>FritschButlandCubic</id2>
+          <value>DISCOUNT_FritschButlandCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>FritschButlandLogCubic</id2>
+          <value>DISCOUNT_FritschButlandLogCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+
         <!-- ZeroYield based yield term structures -->
         <EnumeratedPair>
           <id1>ZeroYield</id1>
@@ -89,34 +102,46 @@
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ZeroYield</id1>
-          <id2>NaturalCubicSpline</id2>
-          <value>ZEROYIELD_NATURALCUBICSPLINE_PiecewiseYieldCurve</value>
+          <id2>CubicNaturalSpline</id2>
+          <value>ZEROYIELD_CUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ZeroYield</id1>
-          <id2>NaturalLogCubic</id2>
-          <value>ZEROYIELD_NATURALLOGCUBIC_PiecewiseYieldCurve</value>
+          <id2>LogCubicNaturalSpline</id2>
+          <value>ZEROYIELD_LOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ZeroYield</id1>
-          <id2>MonotonicNaturalCubicSpline</id2>
-          <value>ZEROYIELD_MONOTONICNATURALCUBICSPLINE_PiecewiseYieldCurve</value>
+          <id2>MonotonicCubicNaturalSpline</id2>
+          <value>ZEROYIELD_MONOTONICCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ZeroYield</id1>
-          <id2>MonotonicNaturalLogCubic</id2>
-          <value>ZEROYIELD_MONOTONICNATURALLOGCUBIC_PiecewiseYieldCurve</value>
+          <id2>MonotonicLogCubicNaturalSpline</id2>
+          <value>ZEROYIELD_MONOTONICLOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ZeroYield</id1>
-          <id2>ConstrainedCubicSpline</id2>
-          <value>ZEROYIELD_CONSTRAINEDCUBICSPLINE_PiecewiseYieldCurve</value>
+          <id2>KrugerCubic</id2>
+          <value>ZEROYIELD_KrugerCubic_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ZeroYield</id1>
-          <id2>ConstrainedLogCubic</id2>
-          <value>ZEROYIELD_CONSTRAINEDLOGCUBIC_PiecewiseYieldCurve</value>
+          <id2>KrugerLogCubic</id2>
+          <value>ZEROYIELD_KrugerLogCubic_PiecewiseYieldCurve</value>
         </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>FritschButlandCubic</id2>
+          <value>ZEROYIELD_FritschButlandCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>FritschButlandLogCubic</id2>
+          <value>ZEROYIELD_FritschButlandLogCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
         <!--ForwardRate based yield term structures-->
         <EnumeratedPair>
           <id1>ForwardRate</id1>
@@ -140,34 +165,46 @@
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ForwardRate</id1>
-          <id2>NaturalCubicSpline</id2>
-          <value>FORWARDRATE_NATURALCUBICSPLINE_PiecewiseYieldCurve</value>
+          <id2>CubicNaturalSpline</id2>
+          <value>FORWARDRATE_CUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ForwardRate</id1>
-          <id2>NaturalLogCubic</id2>
-          <value>FORWARDRATE_NATURALLOGCUBIC_PiecewiseYieldCurve</value>
+          <id2>LogCubicNaturalSpline</id2>
+          <value>FORWARDRATE_LOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ForwardRate</id1>
-          <id2>MonotonicNaturalCubicSpline</id2>
-          <value>FORWARDRATE_MONOTONICNATURALCUBICSPLINE_PiecewiseYieldCurve</value>
+          <id2>MonotonicCubicNaturalSpline</id2>
+          <value>FORWARDRATE_MONOTONICCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ForwardRate</id1>
-          <id2>MonotonicNaturalLogCubic</id2>
-          <value>FORWARDRATE_MONOTONICNATURALLOGCUBIC_PiecewiseYieldCurve</value>
+          <id2>MonotonicLogCubicNaturalSpline</id2>
+          <value>FORWARDRATE_MONOTONICLOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ForwardRate</id1>
-          <id2>ConstrainedCubicSpline</id2>
-          <value>FORWARDRATE_CONSTRAINEDCUBICSPLINE_PiecewiseYieldCurve</value>
+          <id2>KrugerCubic</id2>
+          <value>FORWARDRATE_KrugerCubic_PiecewiseYieldCurve</value>
         </EnumeratedPair>
         <EnumeratedPair>
           <id1>ForwardRate</id1>
-          <id2>ConstrainedLogCubic</id2>
-          <value>FORWARDRATE_CONSTRAINEDLOGCUBIC_PiecewiseYieldCurve</value>
+          <id2>KrugerLogCubic</id2>
+          <value>FORWARDRATE_KrugerLogCubic_PiecewiseYieldCurve</value>
         </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>FritschButlandCubic</id2>
+          <value>FORWARDRATE_FritschButlandCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>FritschButlandLogCubic</id2>
+          <value>FORWARDRATE_FritschButlandLogCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
       </EnumeratedPairs>
     </EnumeratedPairGroup>
 
@@ -195,11 +232,6 @@
           <id2>LogLinear</id2>
           <value>DISCOUNT_LOGLINEAR_HistoricalForwardRatesAnalysis</value>
         </EnumeratedPair>
-        <EnumeratedPair>
-          <id1>Discount</id1>
-          <id2>CubicSpline</id2>
-          <value>DISCOUNT_CUBICSPLINE_HistoricalForwardRatesAnalysis</value>
-        </EnumeratedPair>
         <!-- ZeroYield based yield term structures -->
         <EnumeratedPair>
           <id1>ZeroYield</id1>
@@ -221,11 +253,6 @@
           <id2>LogLinear</id2>
           <value>ZEROYIELD_LOGLINEAR_HistoricalForwardRatesAnalysis</value>
         </EnumeratedPair>
-        <EnumeratedPair>
-          <id1>ZeroYield</id1>
-          <id2>CubicSpline</id2>
-          <value>ZEROYIELD_CUBICSPLINE_HistoricalForwardRatesAnalysis</value>
-        </EnumeratedPair>
         <!--ForwardRate based yield term structures-->
         <EnumeratedPair>
           <id1>ForwardRate</id1>
@@ -246,11 +273,6 @@
           <id1>ForwardRate</id1>
           <id2>LogLinear</id2>
           <value>FORWARDRATE_LOGLINEAR_HistoricalForwardRatesAnalysis</value>
-        </EnumeratedPair>
-        <EnumeratedPair>
-          <id1>ForwardRate</id1>
-          <id2>CubicSpline</id2>
-          <value>FORWARDRATE_CUBICSPLINE_HistoricalForwardRatesAnalysis</value>
         </EnumeratedPair>
       </EnumeratedPairs>
     </EnumeratedPairGroup>

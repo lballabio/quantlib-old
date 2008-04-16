@@ -36,12 +36,14 @@ namespace QuantLibAddin {
                             ForwardFlat,
                             Linear,
                             LogLinear,
-                            NaturalCubicSpline,
-                            NaturalLogCubic,
-                            MonotonicNaturalCubicSpline,
-                            MonotonicNaturalLogCubic,
-                            ConstrainedCubicSpline,
-                            ConstrainedLogCubic
+                            CubicNaturalSpline,
+                            LogCubicNaturalSpline,
+                            MonotonicCubicNaturalSpline,
+                            MonotonicLogCubicNaturalSpline,
+                            KrugerCubic,
+                            KrugerLogCubic,
+                            FritschButlandCubic,
+                            FritschButlandLogCubic
         };
     };
 

@@ -283,47 +283,85 @@ namespace QuantLibAddin {
         return boost::shared_ptr<QuantLib::Interpolation>(new
             QuantLib::LogLinearInterpolation(xBegin, xEnd, yBegin));
     }
-    boost::shared_ptr<QuantLib::Interpolation> NATURALCUBICSPLINE_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> CUBICNATURALSPLINE_Interpolation(
                                             ObjectHandler::dbl_itr& xBegin,
                                             ObjectHandler::dbl_itr& xEnd,
                                             ObjectHandler::dbl_itr& yBegin) {
         return boost::shared_ptr<QuantLib::Interpolation>(new
-            QuantLib::NaturalCubicSpline(xBegin, xEnd, yBegin));
+            QuantLib::CubicInterpolation(xBegin, xEnd, yBegin,
+                                         QuantLib::CubicInterpolation::Spline, false,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0));
     }
-    boost::shared_ptr<QuantLib::Interpolation> MONOTONICNATURALCUBICSPLINE_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> MONOTONICCUBICNATURALSPLINE_Interpolation(
                                             ObjectHandler::dbl_itr& xBegin,
                                             ObjectHandler::dbl_itr& xEnd,
                                             ObjectHandler::dbl_itr& yBegin) {
         return boost::shared_ptr<QuantLib::Interpolation>(new
-            QuantLib::MonotonicNaturalCubicSpline(xBegin, xEnd, yBegin));
+            QuantLib::CubicInterpolation(xBegin, xEnd, yBegin,
+                                         QuantLib::CubicInterpolation::Spline, true,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0));
     }
-    boost::shared_ptr<QuantLib::Interpolation> NATURALLOGCUBIC_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> LOGCUBICNATURALSPLINE_Interpolation(
                                             ObjectHandler::dbl_itr& xBegin,
                                             ObjectHandler::dbl_itr& xEnd,
                                             ObjectHandler::dbl_itr& yBegin) {
         return boost::shared_ptr<QuantLib::Interpolation>(new
-            QuantLib::NaturalLogCubic(xBegin, xEnd, yBegin));
+            QuantLib::LogCubicInterpolation(xBegin, xEnd, yBegin,
+                                            QuantLib::CubicInterpolation::Spline, false,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0));
     }
-    boost::shared_ptr<QuantLib::Interpolation> MONOTONICNATURALLOGCUBIC_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> MONOTONICLOGCUBICNATURALSPLINE_Interpolation(
                                             ObjectHandler::dbl_itr& xBegin,
                                             ObjectHandler::dbl_itr& xEnd,
                                             ObjectHandler::dbl_itr& yBegin) {
         return boost::shared_ptr<QuantLib::Interpolation>(new
-            QuantLib::MonotonicNaturalLogCubic(xBegin, xEnd, yBegin));
+            QuantLib::LogCubicInterpolation(xBegin, xEnd, yBegin,
+                                            QuantLib::CubicInterpolation::Spline, true,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0));
     }
-    boost::shared_ptr<QuantLib::Interpolation> CONSTRAINEDCUBICSPLINE_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> KrugerCubic_Interpolation(
                                             ObjectHandler::dbl_itr& xBegin,
                                             ObjectHandler::dbl_itr& xEnd,
                                             ObjectHandler::dbl_itr& yBegin) {
         return boost::shared_ptr<QuantLib::Interpolation>(new
-            QuantLib::ConstrainedCubicSplineInterpolation(xBegin, xEnd, yBegin));
+            QuantLib::CubicInterpolation(xBegin, xEnd, yBegin,
+                                         QuantLib::CubicInterpolation::Kruger, true,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0));
     }
-    boost::shared_ptr<QuantLib::Interpolation> CONSTRAINEDLOGCUBIC_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> KrugerLogCubic_Interpolation(
                                             ObjectHandler::dbl_itr& xBegin,
                                             ObjectHandler::dbl_itr& xEnd,
                                             ObjectHandler::dbl_itr& yBegin) {
         return boost::shared_ptr<QuantLib::Interpolation>(new
-            QuantLib::ConstrainedLogCubicInterpolation(xBegin, xEnd, yBegin));
+            QuantLib::LogCubicInterpolation(xBegin, xEnd, yBegin,
+                                            QuantLib::CubicInterpolation::Kruger, true,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> FritschButlandCubic_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::CubicInterpolation(xBegin, xEnd, yBegin,
+                                         QuantLib::CubicInterpolation::FritschButland, true,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> FritschButlandLogCubic_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::LogCubicInterpolation(xBegin, xEnd, yBegin,
+                                            QuantLib::CubicInterpolation::FritschButland, true,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0));
     }
     boost::shared_ptr<QuantLib::Interpolation> ABCD_Interpolation(
                                             ObjectHandler::dbl_itr& xBegin,

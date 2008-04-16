@@ -138,17 +138,21 @@ namespace QuantLibAddin {
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
     boost::shared_ptr<QuantLib::Interpolation> LOGLINEAR_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
-    boost::shared_ptr<QuantLib::Interpolation> NATURALCUBICSPLINE_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> CUBICNATURALSPLINE_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
-    boost::shared_ptr<QuantLib::Interpolation> MONOTONICNATURALCUBICSPLINE_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> MONOTONICCUBICNATURALSPLINE_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
-    boost::shared_ptr<QuantLib::Interpolation> NATURALLOGCUBIC_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> LOGCUBICNATURALSPLINE_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
-    boost::shared_ptr<QuantLib::Interpolation> MONOTONICNATURALLOGCUBIC_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> MONOTONICLOGCUBICNATURALSPLINE_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
-    boost::shared_ptr<QuantLib::Interpolation> CONSTRAINEDCUBICSPLINE_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> KrugerCubic_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
-    boost::shared_ptr<QuantLib::Interpolation> CONSTRAINEDLOGCUBIC_Interpolation(
+    boost::shared_ptr<QuantLib::Interpolation> KrugerLogCubic_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
+    boost::shared_ptr<QuantLib::Interpolation> FritschButlandCubic_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
+    boost::shared_ptr<QuantLib::Interpolation> FritschButlandLogCubic_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
     boost::shared_ptr<QuantLib::Interpolation> ABCD_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);

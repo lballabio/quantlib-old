@@ -38,36 +38,47 @@
         </EnumeratedClass>
 
         <EnumeratedClass>
-          <string>NaturalCubicSpline</string>
-          <value>NATURALCUBICSPLINE_Interpolation</value>
-          <libraryClass>QuantLib::NaturalCubicSpline</libraryClass>
+          <string>CubicNaturalSpline</string>
+          <value>CUBICNATURALSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::CubicNaturalSpline</libraryClass>
         </EnumeratedClass>
         <EnumeratedClass>
-          <string>NaturalLogCubic</string>
-          <value>NATURALLOGCUBIC_Interpolation</value>
-          <libraryClass>QuantLib::NaturalLogCubic</libraryClass>
-        </EnumeratedClass>
-
-        <EnumeratedClass>
-          <string>MonotonicNaturalCubicSpline</string>
-          <value>MONOTONICNATURALCUBICSPLINE_Interpolation</value>
-          <libraryClass>QuantLib::MonotonicNaturalCubicSpline</libraryClass>
-        </EnumeratedClass>
-        <EnumeratedClass>
-          <string>MonotonicNaturalLogCubic</string>
-          <value>MONOTONICNATURALLOGCUBIC_Interpolation</value>
-          <libraryClass>QuantLib::MonotonicNaturalLogCubic</libraryClass>
+          <string>LogCubicNaturalSpline</string>
+          <value>LOGCUBICNATURALSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::LogCubicNaturalSpline</libraryClass>
         </EnumeratedClass>
 
         <EnumeratedClass>
-          <string>ConstainedCubicSpline</string>
-          <value>CONSTRAINEDCUBICSPLINE_Interpolation</value>
-          <libraryClass>QuantLib::ConstainedCubicSpline</libraryClass>
+          <string>MonotonicCubicNaturalSpline</string>
+          <value>MONOTONICCUBICNATURALSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::MonotonicCubicNaturalSpline</libraryClass>
         </EnumeratedClass>
         <EnumeratedClass>
-          <string>ConstainedLogCubic</string>
-          <value>CONSTRAINEDLOGCUBIC_Interpolation</value>
-          <libraryClass>QuantLib::ConstainedLogCubic</libraryClass>
+          <string>MonotonicLogCubicNaturalSpline</string>
+          <value>MONOTONICLOGCUBICNATURALSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::MonotonicLogCubicNaturalSpline</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>KrugerCubic</string>
+          <value>KrugerCubic_Interpolation</value>
+          <libraryClass>QuantLib::KrugerCubic</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>KrugerLogCubic</string>
+          <value>KrugerLogCubic_Interpolation</value>
+          <libraryClass>QuantLib::KrugerLogCubic</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>FritschButlandCubic</string>
+          <value>FritschButlandCubic_Interpolation</value>
+          <libraryClass>QuantLib::FritschButlandCubic</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>FritschButlandLogCubic</string>
+          <value>FritschButlandLogCubic_Interpolation</value>
+          <libraryClass>QuantLib::FritschButlandLogCubic</libraryClass>
         </EnumeratedClass>
 
       </EnumeratedClasses>

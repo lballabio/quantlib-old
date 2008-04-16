@@ -26,7 +26,6 @@
 #include <ql/math/interpolations/linearinterpolation.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
-#include <ql/math/interpolations/cubicspline.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/math/interpolations/abcdinterpolation.hpp>
 
@@ -88,24 +87,25 @@ namespace QuantLibAddin {
             libraryObject_)->update();
     }
 
-    CubicSplineInterpolation::CubicSplineInterpolation(
+    CubicInterpolation::CubicInterpolation(
         const shared_ptr<ValueObject>& properties,
         const vector<Real>& x,
         const vector<Real>& y,
-        QuantLib::CubicSplineInterpolation::BoundaryCondition leftCondition,
+        QuantLib::CubicInterpolation::DerivativeApprox da,
+        bool monotonic,
+        QuantLib::CubicInterpolation::BoundaryCondition leftCondition,
         Real leftValue,
-        QuantLib::CubicSplineInterpolation::BoundaryCondition rightCondition,
+        QuantLib::CubicInterpolation::BoundaryCondition rightCondition,
         Real rightValue,
-        bool monotonicityConstraint,
         bool permanent)
     : Interpolation(properties, x, y, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
-            QuantLib::CubicSplineInterpolation(x_.begin(), x_.end(),
-                                               y_.begin(),
-                                               leftCondition, leftValue,
-                                               rightCondition, rightValue,
-                                               monotonicityConstraint));
+            QuantLib::CubicInterpolation(x_.begin(), x_.end(),
+                                         y_.begin(),
+                                         da, monotonic,
+                                         leftCondition, leftValue,
+                                         rightCondition, rightValue));
         dynamic_pointer_cast<QuantLib::Interpolation>(
             libraryObject_)->update();
     }

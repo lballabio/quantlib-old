@@ -235,7 +235,7 @@
           <Parameter name='InterpolationType' default ='"MonotonicNaturalCubicSpline"'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>interpolation type (e.g BackwardFlat, ForwardFlat, Linear, LogLinear, NaturalCubicSpline, NaturalLogCubic, MonotonicNaturalCubicSpline, MonotonicNaturalLogCubic, ConstrainedCubicSpline, ConstrainedLogCubic)</description>
+            <description>interpolation type (e.g BackwardFlat, ForwardFlat, Linear, LogLinear, NaturalCubicSpline, NaturalLogCubic, MonotonicNaturalCubicSpline, MonotonicNaturalLogCubic, KrugerCubic, KrugerLogCubic)</description>
           </Parameter>
           <Parameter name='XArray' exampleValue ='1.0,2.0,3.0,4.0,5.0,6.0'>
             <type>QuantLib::Real</type>
@@ -253,8 +253,8 @@
 
     <!-- CubicSplineInterpolation constructor and interface -->
 
-    <Constructor name='qlCubicSplineInterpolation'>
-      <libraryFunction>CubicSplineInterpolation</libraryFunction>
+    <Constructor name='qlCubicInterpolation'>
+      <libraryFunction>CubicInterpolation</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -272,8 +272,18 @@
             <tensorRank>vector</tensorRank>
             <description>y array</description>
           </Parameter>
+          <Parameter name='DerApprox' default='"Kruger"'>
+            <type>QuantLib::CubicInterpolation::DerivativeApprox</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Derivative Approximation ()</description>
+          </Parameter>
+          <Parameter name='Monotonic' defaul='TRUE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>monotonicity constraint flag</description>
+          </Parameter>
           <Parameter name='LeftConditionType' default='"SecondDerivative"'>
-            <type>QuantLib::CubicSplineInterpolation::BoundaryCondition</type>
+            <type>QuantLib::CubicInterpolation::BoundaryCondition</type>
             <tensorRank>scalar</tensorRank>
             <description>left boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
           </Parameter>
@@ -283,7 +293,7 @@
             <description>left condition value.</description>
           </Parameter>
           <Parameter name='RightConditionType' default='"SecondDerivative"'>
-            <type>QuantLib::CubicSplineInterpolation::BoundaryCondition</type>
+            <type>QuantLib::CubicInterpolation::BoundaryCondition</type>
             <tensorRank>scalar</tensorRank>
             <description>right boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange)</description>
           </Parameter>
@@ -292,16 +302,11 @@
             <tensorRank>scalar</tensorRank>
             <description>right condition value.</description>
           </Parameter>
-          <Parameter name='MonotonicityConstraint' defaul='TRUE'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>monotonicity constraint flag</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
-    <Member name='qlCubicSplineInterpolationPrimitiveConstants' type='QuantLib::CubicSplineInterpolation'>
+    <Member name='qlCubicInterpolationPrimitiveConstants' type='QuantLib::CubicInterpolation'>
       <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object</description>
       <libraryFunction>primitiveConstants</libraryFunction>
       <SupportedPlatforms>
@@ -317,7 +322,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCubicSplineInterpolationACoefficients' type='QuantLib::CubicSplineInterpolation'>
+    <Member name='qlCubicInterpolationACoefficients' type='QuantLib::CubicInterpolation'>
       <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object</description>
       <libraryFunction>aCoefficients</libraryFunction>
       <SupportedPlatforms>
@@ -333,7 +338,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCubicSplineInterpolationBCoefficients' type='QuantLib::CubicSplineInterpolation'>
+    <Member name='qlCubicInterpolationBCoefficients' type='QuantLib::CubicInterpolation'>
       <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object</description>
       <libraryFunction>bCoefficients</libraryFunction>
       <SupportedPlatforms>
@@ -349,7 +354,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCubicSplineInterpolationCCoefficients' type='QuantLib::CubicSplineInterpolation'>
+    <Member name='qlCubicInterpolationCCoefficients' type='QuantLib::CubicInterpolation'>
       <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object</description>
       <libraryFunction>cCoefficients</libraryFunction>
       <SupportedPlatforms>
@@ -365,7 +370,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCubicSplineInterpolationMonotonicityAdjustments' type='QuantLib::CubicSplineInterpolation'>
+    <Member name='qlCubicInterpolationMonotonicityAdjustments' type='QuantLib::CubicInterpolation'>
       <description>Returns a vector of bool (one per cubic) indicating if there has been a monotonicity adjustment</description>
       <libraryFunction>monotonicityAdjustments</libraryFunction>
       <SupportedPlatforms>

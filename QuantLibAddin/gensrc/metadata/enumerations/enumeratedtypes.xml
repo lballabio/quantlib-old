@@ -1288,28 +1288,36 @@
           <value>QuantLibAddin::Token::LogLinear</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>NaturalCubicSpline</string>
-          <value>QuantLibAddin::Token::NaturalCubicSpline</value>
+          <string>CubicNaturalSpline</string>
+          <value>QuantLibAddin::Token::CubicNaturalSpline</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>NaturalLogCubic</string>
-          <value>QuantLibAddin::Token::NaturalLogCubic</value>
+          <string>LogCubicNaturalSpline</string>
+          <value>QuantLibAddin::Token::LogCubicNaturalSpline</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>MonotonicNaturalCubicSpline</string>
-          <value>QuantLibAddin::Token::MonotonicNaturalCubicSpline</value>
+          <string>MonotonicCubicNaturalSpline</string>
+          <value>QuantLibAddin::Token::MonotonicCubicNaturalSpline</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>MonotonicNaturalLogCubic</string>
-          <value>QuantLibAddin::Token::MonotonicNaturalLogCubic</value>
+          <string>MonotonicLogCubicNaturalSpline</string>
+          <value>QuantLibAddin::Token::MonotonicLogCubicNaturalSpline</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>ConstrainedCubicSpline</string>
-          <value>QuantLibAddin::Token::ConstrainedCubicSpline</value>
+          <string>KrugerCubic</string>
+          <value>QuantLibAddin::Token::KrugerCubic</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>ConstrainedLogCubic</string>
-          <value>QuantLibAddin::Token::ConstrainedLogCubic</value>
+          <string>KrugerLogCubic</string>
+          <value>QuantLibAddin::Token::KrugerLogCubic</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>FritschButlandCubic</string>
+          <value>QuantLibAddin::Token::FritschButlandCubic</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>FritschButlandLogCubic</string>
+          <value>QuantLibAddin::Token::FritschButlandLogCubic</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
@@ -1376,29 +1384,64 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLib::CubicSplineInterpolation::BoundaryCondition'>
+    <EnumeratedTypeGroup type='QuantLib::CubicInterpolation::BoundaryCondition'>
       <includeFile>oh/enumerations/typefactory.hpp</includeFile>
       <constructor>false</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
           <string>SecondDerivative</string>
-          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::SecondDerivative)</value>
+          <value>QuantLib::CubicInterpolation::BoundaryCondition(QuantLib::CubicInterpolation::SecondDerivative)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>NotAKnot</string>
-          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::NotAKnot)</value>
+          <value>QuantLib::CubicInterpolation::BoundaryCondition(QuantLib::CubicInterpolation::NotAKnot)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>FirstDerivative</string>
-          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::FirstDerivative)</value>
+          <value>QuantLib::CubicInterpolation::BoundaryCondition(QuantLib::CubicInterpolation::FirstDerivative)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Periodic</string>
-          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::Periodic)</value>
+          <value>QuantLib::CubicInterpolation::BoundaryCondition(QuantLib::CubicInterpolation::Periodic)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Lagrange</string>
-          <value>QuantLib::CubicSplineInterpolation::BoundaryCondition(QuantLib::CubicSplineInterpolation::Lagrange)</value>
+          <value>QuantLib::CubicInterpolation::BoundaryCondition(QuantLib::CubicInterpolation::Lagrange)</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::CubicInterpolation::DerivativeApprox'>
+      <includeFile>oh/enumerations/typefactory.hpp</includeFile>
+      <constructor>false</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Spline</string>
+          <value>QuantLib::CubicInterpolation::DerivativeApprox(QuantLib::CubicInterpolation::Spline)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>FourthOrder</string>
+          <value>QuantLib::CubicInterpolation::DerivativeApprox(QuantLib::CubicInterpolation::FourthOrder)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Parabolic</string>
+          <value>QuantLib::CubicInterpolation::DerivativeApprox(QuantLib::CubicInterpolation::Parabolic)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ModifiedParabolic</string>
+          <value>QuantLib::CubicInterpolation::DerivativeApprox(QuantLib::CubicInterpolation::ModifiedParabolic)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>FritschButland</string>
+          <value>QuantLib::CubicInterpolation::DerivativeApprox(QuantLib::CubicInterpolation::FritschButland)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Akima</string>
+          <value>QuantLib::CubicInterpolation::DerivativeApprox(QuantLib::CubicInterpolation::Akima)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Kruger</string>
+          <value>QuantLib::CubicInterpolation::DerivativeApprox(QuantLib::CubicInterpolation::Kruger)</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>

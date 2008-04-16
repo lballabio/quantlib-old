@@ -10,7 +10,8 @@
     <DataType defaultSuperType='enumeration'>QuantLib::CapFloor::Type</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::CmsMarketCalibration::CalibrationType</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Compounding</DataType>
-    <DataType defaultSuperType='enumeration'>QuantLib::CubicSplineInterpolation::BoundaryCondition</DataType>
+    <DataType defaultSuperType='enumeration'>QuantLib::CubicInterpolation::BoundaryCondition</DataType>
+    <DataType defaultSuperType='enumeration'>QuantLib::CubicInterpolation::DerivativeApprox</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Currency</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::DateGeneration::Rule</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::DayCounter</DataType>
@@ -30,12 +31,15 @@
     <DataType defaultSuperType='enumeration'>QuantLibAddin::RateHelper::DepoInclusionCriteria</DataType>
     <DataType defaultSuperType='enumeration'>QuantLibAddin::Token::Interpolator</DataType>
     <DataType defaultSuperType='enumeration'>QuantLibAddin::Token::Traits</DataType>
+    
     <DataType defaultSuperType='handleToLib'>QuantLib::OptionletVolatilityStructure</DataType>
+    
     <DataType defaultSuperType='implicitConversion'>QuantLib::DiscountFactor</DataType>
     <DataType defaultSuperType='implicitConversion'>QuantLib::Rate</DataType>
     <DataType defaultSuperType='implicitConversion'>QuantLib::Spread</DataType>
     <DataType defaultSuperType='implicitConversion'>QuantLib::Time</DataType>
     <DataType defaultSuperType='implicitConversion'>QuantLib::Volatility</DataType>
+    
     <DataType defaultSuperType='libraryClass'>QuantLib::AbcdAtmVolCurve</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::AbcdCalibration</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::AbcdFunction</DataType>
@@ -65,7 +69,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::CmsMarketCalibration</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CoterminalSwapCurveState</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CovarianceDecomposition</DataType>
-    <DataType defaultSuperType='libraryClass'>QuantLib::CubicSplineInterpolation</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::CubicInterpolation</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CurveState</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::DigitalReplication</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::EndCriteria</DataType>
@@ -135,11 +139,13 @@
     <DataType defaultSuperType='libraryQuote'>QuantLib::FuturesConvAdjustmentQuote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::Quote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::SimpleQuote</DataType>
+
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityCube</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityDiscrete</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityStructure</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::TermStructure</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::YieldTermStructure</DataType>
+
     <DataType defaultSuperType='libraryType' nativeType='string'>QuantLib::InterestRate</DataType>
     <DataType defaultSuperType='libraryType' nativeType='double'>QuantLib::Array</DataType>
     <DataType defaultSuperType='libraryType' nativeType='double'>QuantLib::Matrix</DataType>
@@ -149,6 +155,7 @@
     <DataType defaultSuperType='libraryType' nativeType='long'>QuantLib::Natural</DataType>
     <DataType defaultSuperType='libraryType' nativeType='long'>QuantLib::Size</DataType>
     <DataType defaultSuperType='libraryType' nativeType='string'>QuantLib::Period</DataType>
+
     <DataType defaultSuperType='native' nativeType='any'>any</DataType>
     <DataType defaultSuperType='native' nativeType='bool'>bool</DataType>
     <DataType defaultSuperType='native' nativeType='double'>double</DataType>
@@ -156,6 +163,7 @@
     <DataType defaultSuperType='native' nativeType='reference'>reference</DataType>
     <DataType defaultSuperType='native' nativeType='string'>string</DataType>
     <DataType defaultSuperType='native' nativeType='void'>void</DataType>
+
     <DataType defaultSuperType='objectClass'>ObjectHandler::Group</DataType>
     <DataType defaultSuperType='objectClass'>ObjectHandler::Object</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::AssetSwap</DataType>
@@ -182,13 +190,13 @@
     <DataType defaultSuperType='objectClass'>QuantLibAddin::TimeSeriesDef</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::VanillaSwap</DataType>
     <DataType defaultSuperType='objectQuote'>QuantLibAddin::SimpleQuote</DataType>
+
     <DataType defaultSuperType='objectTermStructure'>QuantLibAddin::SwaptionVolCube1</DataType>
     <DataType defaultSuperType='objectTermStructure'>QuantLibAddin::SwaptionVolatilityMatrix</DataType>
+
     <DataType defaultSuperType='underlyingClass'>QuantLib::BrownianGeneratorFactory</DataType>
     <DataType defaultSuperType='underlyingClass'>QuantLib::Leg</DataType>
 
   </DataTypes>
 
 </root>
-
-

@@ -177,23 +177,29 @@ namespace QuantLibAddin {
             case Token::LogLinear:
                 out << "LogLinear>";
                 break;
-            case Token::NaturalCubicSpline:
-                out << "NaturalCubicSpline>";
+            case Token::CubicNaturalSpline:
+                out << "CubicNaturalSpline>";
                 break;
-            case Token::NaturalLogCubic:
-                out << "NaturalLogCubic>";
+            case Token::LogCubicNaturalSpline:
+                out << "LogCubicNaturalSpline>";
                 break;
-            case Token::MonotonicNaturalCubicSpline:
-                out << "MonotonicNaturalCubicSpline>";
+            case Token::MonotonicCubicNaturalSpline:
+                out << "MonotonicCubicNaturalSpline>";
                 break;
-            case Token::MonotonicNaturalLogCubic:
-                out << "MonotonicNaturalLogCubic>";
+            case Token::MonotonicLogCubicNaturalSpline:
+                out << "MonotonicLogCubicNaturalSpline>";
                 break;
-            case Token::ConstrainedCubicSpline:
-                out << "ConstrainedCubicSpline>";
+            case Token::KrugerCubic:
+                out << "KrugerCubic>";
                 break;
-            case Token::ConstrainedLogCubic:
-                out << "ConstrainedLogCubic>";
+            case Token::KrugerLogCubic:
+                out << "KrugerLogCubic>";
+                break;
+            case Token::FritschButlandCubic:
+                out << "FritschButlandCubic>";
+                break;
+            case Token::FritschButlandLogCubic:
+                out << "FritschButlandLogCubic>";
                 break;
             default:
                 OH_FAIL("Unknown value for enumeration QuantLibAddin::Token::Interpolator");
@@ -222,40 +228,46 @@ namespace QuantLibAddin {
         CallerFactory() {
 
             // Discount
-            init<QuantLib::Discount, QuantLib::BackwardFlat>(          TokenPair(Token::Discount, Token::BackwardFlat));
-            init<QuantLib::Discount, QuantLib::ForwardFlat>(           TokenPair(Token::Discount, Token::ForwardFlat));
-            init<QuantLib::Discount, QuantLib::Linear>(                TokenPair(Token::Discount, Token::Linear));
-            init<QuantLib::Discount, QuantLib::LogLinear>(             TokenPair(Token::Discount, Token::LogLinear));
-            init<QuantLib::Discount, QuantLib::CubicSpline>(           TokenPair(Token::Discount, Token::NaturalCubicSpline));
-            init<QuantLib::Discount, QuantLib::LogCubic>(              TokenPair(Token::Discount, Token::NaturalLogCubic));
-            init<QuantLib::Discount, QuantLib::CubicSpline>(           TokenPair(Token::Discount, Token::MonotonicNaturalCubicSpline));
-            init<QuantLib::Discount, QuantLib::LogCubic>(              TokenPair(Token::Discount, Token::MonotonicNaturalLogCubic));
-            init<QuantLib::Discount, QuantLib::ConstrainedCubicSpline>(TokenPair(Token::Discount, Token::ConstrainedCubicSpline));
-            init<QuantLib::Discount, QuantLib::ConstrainedLogCubic>(   TokenPair(Token::Discount, Token::ConstrainedLogCubic));
+            init<QuantLib::Discount, QuantLib::BackwardFlat>(   TokenPair(Token::Discount, Token::BackwardFlat));
+            init<QuantLib::Discount, QuantLib::ForwardFlat>(    TokenPair(Token::Discount, Token::ForwardFlat));
+            init<QuantLib::Discount, QuantLib::Linear>(         TokenPair(Token::Discount, Token::Linear));
+            init<QuantLib::Discount, QuantLib::LogLinear>(      TokenPair(Token::Discount, Token::LogLinear));
+            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::CubicNaturalSpline));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::LogCubicNaturalSpline));
+            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::MonotonicCubicNaturalSpline));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::MonotonicLogCubicNaturalSpline));
+            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::KrugerCubic));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::KrugerLogCubic));
+            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::FritschButlandCubic));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::FritschButlandLogCubic));
 
             // ForwardRate
-            init<QuantLib::ForwardRate, QuantLib::BackwardFlat>(          TokenPair(Token::ForwardRate, Token::BackwardFlat));
-            init<QuantLib::ForwardRate, QuantLib::ForwardFlat>(           TokenPair(Token::ForwardRate, Token::ForwardFlat));
-            init<QuantLib::ForwardRate, QuantLib::Linear>(                TokenPair(Token::ForwardRate, Token::Linear));
-            init<QuantLib::ForwardRate, QuantLib::LogLinear>(             TokenPair(Token::ForwardRate, Token::LogLinear));
-            init<QuantLib::ForwardRate, QuantLib::CubicSpline>(           TokenPair(Token::ForwardRate, Token::NaturalCubicSpline));
-            init<QuantLib::ForwardRate, QuantLib::LogCubic>(              TokenPair(Token::ForwardRate, Token::NaturalLogCubic));
-            init<QuantLib::ForwardRate, QuantLib::CubicSpline>(           TokenPair(Token::ForwardRate, Token::MonotonicNaturalCubicSpline));
-            init<QuantLib::ForwardRate, QuantLib::LogCubic>(              TokenPair(Token::ForwardRate, Token::MonotonicNaturalLogCubic));
-            init<QuantLib::ForwardRate, QuantLib::ConstrainedCubicSpline>(TokenPair(Token::ForwardRate, Token::ConstrainedCubicSpline));
-            init<QuantLib::ForwardRate, QuantLib::ConstrainedLogCubic>(   TokenPair(Token::ForwardRate, Token::ConstrainedLogCubic));
+            init<QuantLib::ForwardRate, QuantLib::BackwardFlat>(TokenPair(Token::ForwardRate, Token::BackwardFlat));
+            init<QuantLib::ForwardRate, QuantLib::ForwardFlat>( TokenPair(Token::ForwardRate, Token::ForwardFlat));
+            init<QuantLib::ForwardRate, QuantLib::Linear>(      TokenPair(Token::ForwardRate, Token::Linear));
+            init<QuantLib::ForwardRate, QuantLib::LogLinear>(   TokenPair(Token::ForwardRate, Token::LogLinear));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::CubicNaturalSpline));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::LogCubicNaturalSpline));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::MonotonicCubicNaturalSpline));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::MonotonicLogCubicNaturalSpline));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::KrugerCubic));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::KrugerLogCubic));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::FritschButlandCubic));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::FritschButlandLogCubic));
 
             // ZeroYield
-            init<QuantLib::ZeroYield, QuantLib::BackwardFlat>(          TokenPair(Token::ZeroYield, Token::BackwardFlat));
-            init<QuantLib::ZeroYield, QuantLib::ForwardFlat>(           TokenPair(Token::ZeroYield, Token::ForwardFlat));
-            init<QuantLib::ZeroYield, QuantLib::Linear>(                TokenPair(Token::ZeroYield, Token::Linear));
-            init<QuantLib::ZeroYield, QuantLib::LogLinear>(             TokenPair(Token::ZeroYield, Token::LogLinear));
-            init<QuantLib::ZeroYield, QuantLib::CubicSpline>(           TokenPair(Token::ZeroYield, Token::NaturalCubicSpline));
-            init<QuantLib::ZeroYield, QuantLib::LogCubic>(              TokenPair(Token::ZeroYield, Token::NaturalLogCubic));
-            init<QuantLib::ZeroYield, QuantLib::CubicSpline>(           TokenPair(Token::ZeroYield, Token::MonotonicNaturalCubicSpline));
-            init<QuantLib::ZeroYield, QuantLib::LogCubic>(              TokenPair(Token::ZeroYield, Token::MonotonicNaturalLogCubic));
-            init<QuantLib::ZeroYield, QuantLib::ConstrainedCubicSpline>(TokenPair(Token::ZeroYield, Token::ConstrainedCubicSpline));
-            init<QuantLib::ZeroYield, QuantLib::ConstrainedLogCubic>(   TokenPair(Token::ZeroYield, Token::ConstrainedLogCubic));
+            init<QuantLib::ZeroYield, QuantLib::BackwardFlat>(  TokenPair(Token::ZeroYield, Token::BackwardFlat));
+            init<QuantLib::ZeroYield, QuantLib::ForwardFlat>(   TokenPair(Token::ZeroYield, Token::ForwardFlat));
+            init<QuantLib::ZeroYield, QuantLib::Linear>(        TokenPair(Token::ZeroYield, Token::Linear));
+            init<QuantLib::ZeroYield, QuantLib::LogLinear>(     TokenPair(Token::ZeroYield, Token::LogLinear));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::CubicNaturalSpline));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::LogCubicNaturalSpline));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::MonotonicCubicNaturalSpline));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::MonotonicLogCubicNaturalSpline));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::KrugerCubic));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::KrugerLogCubic));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::FritschButlandCubic));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::FritschButlandLogCubic));
 
         }
 
