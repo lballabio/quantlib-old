@@ -1,8 +1,8 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004 StatPro Italia srl
  Copyright (C) 2002, 2003 Ferdinando Ametrano
+ Copyright (C) 2003, 2004, 2008 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -82,8 +82,9 @@ make_safe_interpolation(LinearInterpolation,LinearInterpolation);
 make_safe_interpolation(LogLinearInterpolation,LogLinearInterpolation);
 make_safe_interpolation(BackwardFlatInterpolation,BackwardFlatInterpolation);
 make_safe_interpolation(ForwardFlatInterpolation,ForwardFlatInterpolation);
-make_safe_interpolation(NaturalCubicSpline,CubicSplineInterpolation);
-make_safe_interpolation(MonotonicNaturalCubicSpline,MonotonicCubicSpline);
+make_safe_interpolation(NaturalCubicInterpolation,CubicSplineInterpolation);
+make_safe_interpolation(MonotonicNaturalCubicInterpolation,
+                        MonotonicCubicSplineInterpolation);
 
 %define extend_spline(T)
 %extend Safe##T {
@@ -96,8 +97,8 @@ make_safe_interpolation(MonotonicNaturalCubicSpline,MonotonicCubicSpline);
 }
 %enddef
 
-extend_spline(NaturalCubicSpline);
-extend_spline(MonotonicNaturalCubicSpline);
+extend_spline(NaturalCubicInterpolation);
+extend_spline(MonotonicNaturalCubicInterpolation);
 
 %{
 // safe versions which copy their arguments
@@ -143,14 +144,14 @@ using QuantLib::BackwardFlat;
 using QuantLib::ForwardFlat;
 using QuantLib::Linear;
 using QuantLib::LogLinear;
-using QuantLib::CubicSpline;
+using QuantLib::Cubic;
 %}
 
 struct BackwardFlat {};
 struct ForwardFlat {};
 struct Linear {};
 struct LogLinear {};
-struct CubicSpline {};
+struct Cubic {};
 
 
 #endif
