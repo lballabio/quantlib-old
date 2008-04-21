@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -327,6 +327,16 @@ class CashFlows {
                                             settlementDate, npvDate,
                                             exDividendDays);
         }
+        static Real npv(
+                   const Leg& leg,
+                   const Handle<YieldTermStructure>& discountCurve,
+                   const Date& settlementDate = Date(),
+                   const Date& npvDate = Date(),
+                   Integer exDividendDays = 0) {
+            return QuantLib::CashFlows::npv(leg, **discountCurve,
+                                            settlementDate, npvDate,
+                                            exDividendDays);
+        }
     }
     static Real npv(const Leg&,
                     const InterestRate&,
@@ -339,6 +349,16 @@ class CashFlows {
                    const Date& npvDate = Date(),
                    Integer exDividendDays = 0) {
             return QuantLib::CashFlows::bps(leg, *discountCurve,
+                                            settlementDate, npvDate,
+                                            exDividendDays);
+        }
+        static Real bps(
+                   const Leg& leg,
+                   const Handle<YieldTermStructure>& discountCurve,
+                   const Date& settlementDate = Date(),
+                   const Date& npvDate = Date(),
+                   Integer exDividendDays = 0) {
+            return QuantLib::CashFlows::bps(leg, **discountCurve,
                                             settlementDate, npvDate,
                                             exDividendDays);
         }
@@ -355,6 +375,17 @@ class CashFlows {
                    Integer exDividendDays = 0,
                    Real npv = Null<Real>()) {
             return QuantLib::CashFlows::atmRate(leg, *discountCurve,
+                                                settlementDate, npvDate,
+                                                exDividendDays, npv);
+        }
+        static Rate atmRate(
+                   const Leg& leg,
+                   const Handle<YieldTermStructure>& discountCurve,
+                   const Date& settlementDate = Date(),
+                   const Date& npvDate = Date(),
+                   Integer exDividendDays = 0,
+                   Real npv = Null<Real>()) {
+            return QuantLib::CashFlows::atmRate(leg, **discountCurve,
                                                 settlementDate, npvDate,
                                                 exDividendDays, npv);
         }
