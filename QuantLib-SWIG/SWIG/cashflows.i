@@ -316,28 +316,49 @@ class CashFlows {
   public:
     static Date startDate(const Leg &);
     static Date maturityDate(const Leg &);
-    static Real npv(const Leg&,
-                    const YieldTermStructure & discountCurve,
-            const Date& settlementDate = Date(),
-                    const Date& npvDate = Date(),
-            Integer exDividendDays = 0);
+    %extend {
+        static Real npv(
+                   const Leg& leg,
+                   const boost::shared_ptr<YieldTermStructure>& discountCurve,
+                   const Date& settlementDate = Date(),
+                   const Date& npvDate = Date(),
+                   Integer exDividendDays = 0) {
+            return QuantLib::CashFlows::npv(leg, *discountCurve,
+                                            settlementDate, npvDate,
+                                            exDividendDays);
+        }
+    }
     static Real npv(const Leg&,
                     const InterestRate&,
                     Date settlementDate = Date());
-    static Real bps(const Leg&,
-                    const YieldTermStructure & discountCurve,
-            const Date& settlementDate = Date(),
-                    const Date& npvDate = Date(),
-            Integer exDividendDays = 0);
+    %extend {
+        static Real bps(
+                   const Leg& leg,
+                   const boost::shared_ptr<YieldTermStructure>& discountCurve,
+                   const Date& settlementDate = Date(),
+                   const Date& npvDate = Date(),
+                   Integer exDividendDays = 0) {
+            return QuantLib::CashFlows::bps(leg, *discountCurve,
+                                            settlementDate, npvDate,
+                                            exDividendDays);
+        }
+    }
     static Real bps(const Leg&,
                     const InterestRate &,
                     Date settlementDate = Date());
-    static Rate atmRate(const Leg&,
-                        const YieldTermStructure &,
-                        const Date& settlementDate = Date(),
-                        const Date& npvDate = Date(),
-                        Integer exDividendDays = 0,
-                        Real npv = Null<Real>());
+    %extend {
+        static Rate atmRate(
+                   const Leg& leg,
+                   const boost::shared_ptr<YieldTermStructure>& discountCurve,
+                   const Date& settlementDate = Date(),
+                   const Date& npvDate = Date(),
+                   Integer exDividendDays = 0,
+                   Real npv = Null<Real>()) {
+            return QuantLib::CashFlows::atmRate(leg, *discountCurve,
+                                                settlementDate, npvDate,
+                                                exDividendDays, npv);
+        }
+    }
     static Rate irr(const Leg&,
                     Real marketPrice,
                     const DayCounter& dayCounter,
