@@ -33,20 +33,28 @@ namespace ObjectHandler {
     int CallingRange::keyCount_ = 0;
     const int CallingRange::KEY_WIDTH = 5;
 
-    CallingRange::CallingRange() : key_(getKeyCount()), updateCount_(0) {
+    namespace {
+        const char counterDelimiter = '#';
+    }
 
-        // name the calling range
+    CallingRange::CallingRange() 
+        : updateCount_(0), callerType_(FunctionCall::instance().callerType()) {
 
-        XLOPER xRet;
-        Excel(xlfSetName, &xRet, 2, TempStrStl(key_), FunctionCall::instance().callerReference());
-        OH_REQUIRE(xRet.xltype == xltypeBool && xRet.val.boolean, "Error on call to xlfSetName");
+        if (callerType_ == CallerType::Cell) {
+            // name the calling range
+            key_ = getKeyCount();
+            XLOPER xRet;
+            Excel(xlfSetName, &xRet, 2, TempStrStl(key_), FunctionCall::instance().callerReference());
+            OH_REQUIRE(xRet.xltype == xltypeBool && xRet.val.boolean, "Error on call to xlfSetName");
+        } else {
+            key_ = "VBA";
+        }
     }
 
     CallingRange::~CallingRange() {
-
         // unname the calling range
-
-        //Excel(xlfSetName, 0, 1, TempStrStl(key_));
+        if (callerType_ == CallerType::Cell)
+            Excel(xlfSetName, 0, 1, TempStrStl(key_));
     }
 
     std::string CallingRange::getKeyCount() {
@@ -75,7 +83,7 @@ namespace ObjectHandler {
         } else {
             ObjectXLMap::iterator i = residentObjects_.begin();
             while (i != residentObjects_.end()) {
-                boost::shared_ptr<ObjectXL> objectXL = i->second.lock();
+                boost::shared_ptr<ObjectWrapperXL> objectXL = i->second.lock();
                 if (objectXL && objectXL->permanent()) {
                     ++i;
                 } else {
@@ -86,8 +94,8 @@ namespace ObjectHandler {
         }
     }
 
-    void CallingRange::registerObject(const std::string &objectID, boost::weak_ptr<ObjectXL> objectXL) {
-        residentObjects_[objectID] = objectXL;
+    void CallingRange::registerObject(const std::string &objectID, boost::weak_ptr<ObjectWrapperXL> objectWrapperXL) {
+        residentObjects_[objectID] = objectWrapperXL;
     }
 
     void CallingRange::unregisterObject(const std::string &objectID) {
@@ -95,27 +103,33 @@ namespace ObjectHandler {
     }
 
     bool CallingRange::valid() const {
+        if (callerType_ == CallerType::Cell) {
+            Xloper xDef, xRef;
+            
+            Excel(xlfGetName, &xDef, 1, TempStrStl(key_));
 
-        Xloper xDef, xRef;
-        
-        Excel(xlfGetName, &xDef, 1, TempStrStl(key_));
+            std::string address = ConvertOper(xDef());
+            Excel(xlfTextref, &xRef, 1, TempStrStl(address.substr(1)));
 
-        std::string address = ConvertOper(xDef());
-        Excel(xlfTextref, &xRef, 1, TempStrStl(address.substr(1)));
-
-        bool ret = (xRef->xltype & (xltypeRef | xltypeSRef)) != 0;
-        return ret;
-
+            bool ret = (xRef->xltype & (xltypeRef | xltypeSRef)) != 0;
+            return ret;
+        } else {
+            return true;
+        }
     }
 
     std::string CallingRange::addressString() const {
-        Xloper xDef;
-        Excel(xlfGetName, &xDef, 1, TempStrStl(key_));
-        std::string address = ConvertOper(xDef());
-        // Strip off the '=' sign which xlfGetName prepends to the address
-        if (address.length() > 1 && address[0] == '=')
-            address = address.substr(1);
-        return address;
+        if (callerType_ == CallerType::Cell) {
+            Xloper xDef;
+            Excel(xlfGetName, &xDef, 1, TempStrStl(key_));
+            std::string address = ConvertOper(xDef());
+            // Strip off the '=' sign which xlfGetName prepends to the address
+            if (address.length() > 1 && address[0] == '=')
+                address = address.substr(1);
+            return address;
+        } else {
+            return "VBA";
+        }
     }
 
     std::string CallingRange::updateCount() {
@@ -146,5 +160,41 @@ namespace ObjectHandler {
         return out;
     }
 
-}
+    std::string CallingRange::initializeID(const std::string &objectID) {
 
+        static const std::string anonPrefix("obj");
+        static const std::string ANONPREFIX("OBJ");
+
+        if (objectID.empty()) {
+            if (callerType_ == CallerType::Cell) {
+                return anonPrefix + key_;
+            } else {
+                OH_FAIL("Null string specified for object ID");
+            }
+        }
+
+        OH_REQUIRE(objectID.find(counterDelimiter, 0) == std::string::npos,
+            objectID << " is an invalid ID: cannot contain " << counterDelimiter);
+        std::string ID = boost::algorithm::to_upper_copy(objectID);
+        OH_REQUIRE(ID.rfind(ANONPREFIX, ANONPREFIX.size() - 1) == std::string::npos,
+            objectID << " is an invalid ID: cannot start with " << anonPrefix);
+
+        return objectID;
+    }
+
+    std::string CallingRange::updateID(const std::string &objectID) {
+        if (callerType_ == CallerType::Cell)
+            return objectID + counterDelimiter + updateCount();
+        else
+            return objectID;
+    }
+
+	std::string CallingRange::getStub(const std::string &objectID) {
+        int counterOffset = objectID.length() - keyWidth();
+        if (counterOffset >= 0 && objectID[counterOffset] == counterDelimiter)
+            return objectID.substr(0, counterOffset);
+        else
+            return objectID;
+    }
+
+}

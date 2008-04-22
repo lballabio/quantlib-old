@@ -10,8 +10,8 @@ EXTRA_DIST = \
     functioncall.hpp \
     loop.hpp \
     objecthandlerxl.hpp \
-    objectxl.cpp \
-    objectxl.hpp \
+    objectwrapperxl.hpp \
+    objectwrapperxl.cpp \
     ohxldefines.hpp \
     rangereference.cpp \
     rangereference.hpp \

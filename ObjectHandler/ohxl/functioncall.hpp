@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,7 +26,6 @@
 
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ohxl/ohxldefines.hpp>
-#include <ohxl/callingrange.hpp>
 #include <ohxl/xloper.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -88,6 +87,8 @@ namespace ObjectHandler {
         /*! This test is expensive.
         */
         bool calledByFunctionWizard();
+        //! Name if any associated with calling range.
+        std::string callerName() const;
         //@}
 
         //! \name Conversions

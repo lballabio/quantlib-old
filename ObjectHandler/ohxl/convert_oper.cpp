@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,7 +18,7 @@
 */
 
 #include <ohxl/convert_oper.hpp>
-#include <ohxl/objectxl.hpp>
+#include <ohxl/callingrange.hpp>
 
 namespace ObjectHandler {
 
@@ -138,7 +138,7 @@ namespace ObjectHandler {
         // so we call getStub().  This conversion should be done only when
         // it's definitely required.
         //return ret;
-        return ObjectXL::getStub(ret);
+        return CallingRange::getStub(ret);
     }
 
 }

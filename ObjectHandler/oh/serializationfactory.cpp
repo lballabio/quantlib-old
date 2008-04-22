@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,6 +25,7 @@
 #include <oh/serializationfactory.hpp>
 #include <oh/range.hpp>
 #include <oh/group.hpp>
+#include <oh/repository.hpp>
 
 namespace ObjectHandler {
 
@@ -77,5 +79,13 @@ namespace ObjectHandler {
         creatorMap_()[className] = creator;
     }
 
+	boost:: shared_ptr<Object> SerializationFactory::recreateObject( 
+		boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const {
+        CreatorMap::const_iterator i = creatorMap_().find(valueObject->className());
+        OH_REQUIRE(i != creatorMap_().end(), "No creator for class " << valueObject->className());
+        Creator creator = i->second;
+        boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
+        return object;
+	}
 }
 

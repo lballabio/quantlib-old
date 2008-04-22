@@ -127,31 +127,6 @@ int main() {
 
         LOG_MESSAGE("End example program.");
 
-        /********************************************************************
-        Temporary test of datatype conversions for ObjectHandler enhancements
-        ********************************************************************/
-
-        qlFlatForward("ff", OH_NULL, "NullCalendar", 0.044, OH_NULL, 
-            "Continuous", "Annual", OH_NULL, OH_NULL, false);
-        qlEuribor("e", "ON", "ff", OH_NULL, OH_NULL, false);
-        qlSimpleQuote("sq1", 1.23, 0., OH_NULL, OH_NULL, false);
-        qlSimpleQuote("sq2", 2.34, 0., OH_NULL, OH_NULL, false);
-        qlRelinkableHandleQuote("rhq", "sq2", OH_NULL, OH_NULL, false);
-        qlDepositRateHelper("drh1", "sq1", "e", OH_NULL, OH_NULL, false);
-        qlDepositRateHelper("drh2", "rhq", "e", OH_NULL, OH_NULL, false);
-        qlDepositRateHelper("drh3", 3.45, "e", OH_NULL, OH_NULL, false);
-
-        std::vector<std::string> idList2;
-        idList2.push_back("drh1");
-        idList2.push_back("drh2");
-        idList2.push_back("drh3");
-        std::string xml = ohObjectSaveString(idList2, OH_NULL, OH_NULL);
-        ohObjectLoadString(xml, true, OH_NULL);
-
-        std::cout << "drh1 - " << qlRateHelperQuoteValue("drh1", OH_NULL) << std::endl;
-        std::cout << "drh2 - " << qlRateHelperQuoteValue("drh2", OH_NULL) << std::endl;
-        std::cout << "drh3 - " << qlRateHelperQuoteValue("drh3", OH_NULL) << std::endl;
-
         return 0;
     } catch (const std::exception &e) {
         LOG_ERROR("Error: " << e.what());

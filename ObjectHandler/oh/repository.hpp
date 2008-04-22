@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,7 +25,7 @@
 #ifndef oh_repository_hpp
 #define oh_repository_hpp
 
-#include <oh/object.hpp>
+#include <oh/objectwrapper.hpp>
 #include <oh/ohdefines.hpp>
 #include <oh/iless.hpp>
 #include <map>
@@ -103,9 +104,9 @@ namespace ObjectHandler {
             This member function may be overridden in base classes which customize
             the Repository class for platform-specific functionality.
         */
-        virtual boost::shared_ptr<Object> retrieveObjectImpl(const std::string &objectID) const;
-
-        //! Delete the object with the given ID.
+		virtual boost::shared_ptr<Object> retrieveObjectImpl(const std::string &objectID);
+        
+		//! Delete the object with the given ID.
         /*! Delete the object regardless of whether or not it is permanent.
             Take no action if no object exists with that ID.
         */
@@ -157,11 +158,21 @@ namespace ObjectHandler {
             on the Windows platform.  Instead the map is declared as a static
             variable in the cpp file.
         */
-        typedef std::map<std::string, boost::shared_ptr<Object>, my_iless> ObjectMap;
-
-    protected:
+        typedef std::map<std::string, boost::shared_ptr<ObjectWrapper>, my_iless> ObjectMap;
+	protected:
         //! A pointer to the Repository instance, used to support the Singleton pattern.
         static Repository *instance_;
+		//!get the object ObjectWrapper from ObjectMap
+		virtual const boost::shared_ptr<ObjectWrapper>& getObjectWrapper(const std::string &objectID) const;
+
+		//! register a observer object into observable.
+        /*! get the Objects Observable and Observer with the given ID ObservableId and ObserverId;
+			and then regiest the object Observer into the object Observable
+        */
+		virtual void registerObserver( 
+			boost::shared_ptr<ObjectWrapper> objWrapper);
+
+
     };
 
 }

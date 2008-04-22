@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,7 +26,7 @@
 
 #include <oh/objecthandler.hpp>
 #include <ohxl/configuration.hpp>
-#include <ohxl/objectxl.hpp>
+#include <ohxl/objectwrapperxl.hpp>
 #include <ohxl/repositoryxl.hpp>
 #include <ohxl/conversions/all.hpp>
 #include <ohxl/functioncall.hpp>

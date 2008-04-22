@@ -2,6 +2,7 @@
 /*!
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,6 +30,7 @@ namespace AccountExample {
         "ObjectId",
         "ClassName",
         "Permanent",
+        "Customer",
         "Number",
         "Type",
         "Balance"};
@@ -46,6 +48,8 @@ namespace AccountExample {
             return className_;
         else if (strcmp(nameUpper.c_str(), "PERMANENT")==0)
             return permanent_;
+        else if (strcmp(nameUpper.c_str(), "CUSTOMER")==0)
+            return customer_;
         else if (strcmp(nameUpper.c_str(), "NUMBER")==0)
             return number_;
         else if (strcmp(nameUpper.c_str(), "TYPE")==0)
@@ -64,6 +68,8 @@ namespace AccountExample {
             className_ = boost::any_cast<std::string>(value);
         else if (strcmp(nameUpper.c_str(), "PERMANENT")==0)
             permanent_ = boost::any_cast<bool>(value);
+        else if (strcmp(nameUpper.c_str(), "CUSTOMER")==0)
+            customer_ = boost::any_cast<std::string>(value);
         else if (strcmp(nameUpper.c_str(), "NUMBER")==0)
             number_ = boost::any_cast<long>(value);
         else if (strcmp(nameUpper.c_str(), "TYPE")==0)

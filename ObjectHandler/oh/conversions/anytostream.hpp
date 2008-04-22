@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -50,6 +50,11 @@ namespace ObjectHandler {
             return anytostream<std::string>(out, any);
         else if (any.type() == typeid(Variant))
             return anytostream<Variant>(out, any);
+        // FIXME Function ohLogAllObjects() crashes below in a stack overflow.
+        // Below is a quick fix pending replacement of boost::any with boost::variant.
+        else
+            return out << any.type().name();
+/*
         else if (any.type() == typeid(std::vector<long>))
             return anytostream<std::vector<long> >(out, any);
         else if (any.type() == typeid(std::vector<double>))
@@ -76,6 +81,7 @@ namespace ObjectHandler {
             return anytostream<std::vector<std::vector<Variant> > >(out, any);
         else
             return out << "unrecognized type";
+*/
     }
 
 }

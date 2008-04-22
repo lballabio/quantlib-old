@@ -3,6 +3,7 @@
 #include <ohxl/repositoryxl.hpp>
 #include <ohxl/conversions/all.hpp>
 #include <ohxl/functioncall.hpp>
+#include <ohxl/callingrange.hpp>
 %(categoryIncludes)s
 #include <sstream>
 

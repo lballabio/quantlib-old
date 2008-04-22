@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -46,10 +47,18 @@ DLLEXPORT int xlAutoOpen() {
         Excel(xlGetName, &xDll, 0);
 
         Excel(xlfRegister, 0, 7, &xDll,
+            TempStrNoSize("\x14""addin1CreateCustomer"),// function code name
+            TempStrNoSize("\x06""CCCNL#"),              // parameter codes
+            TempStrNoSize("\x14""addin1CreateCustomer"),// function display name
+            TempStrNoSize("\x1B""ObjectID,Name,Age,Permanent"), // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));            // function category
+
+        Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x13""addin1CreateAccount"), // function code name
-            TempStrNoSize("\x07""CCCNPL#"),             // parameter codes
+            TempStrNoSize("\x08""CCCCNPL#"),            // parameter codes
             TempStrNoSize("\x13""addin1CreateAccount"), // function display name
-            TempStrNoSize("\x26""ObjectID,Type,Number,Balance,Permanent"), // comma-delimited list of parameters
+            TempStrNoSize("\x2F""ObjectID,Customer,Type,Number,Balance,Permanent"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 
@@ -116,8 +125,43 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 
 }
 
+DLLEXPORT char *addin1CreateCustomer(
+        char *objectID,
+        char *name,
+        long *age,
+        bool *permanent) {
+
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+
+    try {
+
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("addin1CreateCustomer"));
+
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
+            new AccountExample::CustomerValueObject(objectID, name, *age, *permanent));
+
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new AccountExample::CustomerObject(valueObject, name, *age, *permanent));
+
+        std::string returnValue = 
+            ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);
+
+        static char ret[XL_MAX_STR_LEN];
+        ObjectHandler::stringToChar(returnValue, ret);
+        return ret;
+
+    } catch (const std::exception &e) {
+
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
+        return 0;
+
+    }
+}
+
 DLLEXPORT char *addin1CreateAccount(
         char *objectID,
+        char *customer,
         char *type,
         long *number,
         OPER *balance,
@@ -130,20 +174,24 @@ DLLEXPORT char *addin1CreateAccount(
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
             (new ObjectHandler::FunctionCall("addin1CreateAccount"));
 
+        OH_GET_REFERENCE(customerRef, customer,
+            AccountExample::CustomerObject, AccountExample::Customer)
+
         long balanceLong = ObjectHandler::operToScalar<long>(
             *balance, "balance", 100);
 
-        ObjectHandler::Variant balanceVariant = ObjectHandler::operToScalar<ObjectHandler::Variant>(
-            *balance, "balance");
+        ObjectHandler::Variant balanceVariant =
+            ObjectHandler::operToScalar<ObjectHandler::Variant>(
+                *balance, "balance");
 
         AccountExample::Account::Type typeEnum =
             ObjectHandler::Create<AccountExample::Account::Type>()(type);
 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new AccountExample::AccountValueObject(objectID, type, *number, balanceVariant, *permanent));
+            new AccountExample::AccountValueObject(objectID, customer, type, *number, balanceVariant, *permanent));
 
         boost::shared_ptr<ObjectHandler::Object> object(
-            new AccountExample::AccountObject(valueObject, typeEnum, *number, balanceLong, *permanent));
+            new AccountExample::AccountObject(valueObject, customerRef, typeEnum, *number, balanceLong, *permanent));
 
         std::string returnValue = 
             ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);

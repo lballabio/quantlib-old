@@ -1,7 +1,8 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,7 +26,8 @@
 #define ohxl_callingrange_hpp
 
 #include <oh/iless.hpp>
-#include <ohxl/objectxl.hpp>
+#include <ohxl/objectwrapperxl.hpp>
+#include <ohxl/functioncall.hpp>
 #include <string>
 #include <map>
 #include <boost/weak_ptr.hpp>
@@ -34,7 +36,7 @@ namespace ObjectHandler {
 
     //! Processing for the host cell of an Object.
     /*! The CallingRange constructor assigns a hidden Excel name to the cell which
-        issued the command to construct the object.  The ObjectXL class retains a reference
+        issued the command to construct the object.  The ObjectWrapperXL class retains a reference
         to this CallingRange object and the hidden name can be used to link back to the
         calling range even after events such as rename of the book or sheet, cut and paste, etc.
 
@@ -58,7 +60,7 @@ namespace ObjectHandler {
         //! \name Object Management
         //@{
         //! Indicate that the given object is resident in this range.
-        void registerObject(const std::string &objectID, boost::weak_ptr<ObjectXL> objectXL);
+        void registerObject(const std::string &objectID, boost::weak_ptr<ObjectWrapperXL> objectWrapperXL);
         //! Remove the given object from the list of resident objects.
         void unregisterObject(const std::string &objectID);
         //! Delete all objects associated with this range, e.g. if the range has been deleted.
@@ -84,14 +86,27 @@ namespace ObjectHandler {
         std::string updateCount();
         //@}
 
+        //! Convert a full ID to a normal one.
+        /*! Instances of class Object are identified by their ID.
+            ObjectWrapperXL recognizes this "normal" ID and also a "full" ID which has
+            been suffixed with the cell's update count e.g. my_object#00123.
+            This function accepts a string which may be either a normal or full ID,
+            if full the suffix is removed, if normal the value is returned unmodified.
+        */
+		static DLL_API std::string getStub(const std::string &objectID);
+
+        std::string initializeID(const std::string &objectID);
+        std::string updateID(const std::string &objectID);
+
     private:
         static int keyCount_;
         static std::string getKeyCount();
         static const int KEY_WIDTH;
         std::string key_;
         int updateCount_;
-        typedef std::map<std::string, boost::weak_ptr<ObjectXL>, my_iless > ObjectXLMap;
+        typedef std::map<std::string, boost::weak_ptr<ObjectWrapperXL>, my_iless > ObjectXLMap;
         ObjectXLMap residentObjects_;
+        CallerType::Type callerType_;
     };
 
     std::ostream &operator<<(std::ostream&, const boost::shared_ptr<CallingRange>&);

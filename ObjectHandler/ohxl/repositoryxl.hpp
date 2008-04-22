@@ -1,7 +1,8 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -27,13 +28,13 @@
 #include <oh/repository.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 #include <ohxl/ohxldefines.hpp>
-#include <ohxl/objectxl.hpp>
+#include <ohxl/objectwrapperxl.hpp>
 #include <ohxl/functioncall.hpp>
 
 namespace ObjectHandler {
 
     //! Excel-specific enhancements to the Repository class.
-    /*! Extends the base Repository class to work with ObjectXL instead of
+    /*! Extends the base Repository class to work with ObjectWrapperXL instead of
         Object, and to provide other functionality specific to the Excel platform.
     */
     class DLL_API RepositoryXL : public Repository {
@@ -43,7 +44,7 @@ namespace ObjectHandler {
         //! \name Object Management
         //@{
         //! Wrapper for the storeObject function in the base class.
-        /*! Initialize the CallingRange object associated with the new ObjectXL object.
+        /*! Initialize the CallingRange object associated with the new ObjectWrapperXL object.
             Perform a test to ensure that an object from one cell cannot overwrite
             an object in another cell with the same ID.
         */
@@ -53,10 +54,10 @@ namespace ObjectHandler {
             bool overwrite = false);
         //! Implementation of the retrieveObject function.
         /*! Convert Excel-format Object IDs into the format recognized by the base
-            Repository class.  Recast references from Object to ObjectXL.
+            Repository class.  Recast references from Object to ObjectWrapperXL.
         */
         virtual boost::shared_ptr<Object> retrieveObjectImpl(
-            const std::string &objectID) const;
+            const std::string &objectID);
 
         //! Wrapper for the deleteObject function in the base class.
         /*! Convert Excel-format Object IDs into the format recognized by the base
@@ -128,7 +129,13 @@ namespace ObjectHandler {
         //! Retrieve keys of CallingRange objects associated with the given object list.
         std::vector<std::string> callerKey(const std::vector<std::string> &objectList);
         //@}
-
+	protected:
+		//! register a observer object into observable.
+        /*! get the Objects Observable and Observer with the given ID ObservableId and ObserverId;
+			and then regiest the object Observer into the object Observable
+        */
+		virtual void registerObserver( 
+			boost::shared_ptr<ObjectWrapper> objWrapper);
     private:
         // Associate the given error message to the active cell.
         void setError(

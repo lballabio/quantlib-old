@@ -299,10 +299,10 @@ code64 = '''\
         return &xRet;'''
 
 code65 = '''\
-        std::string %(name)sStrip = ObjectHandler::ObjectXL::getStub(%(name)s);'''
+        std::string %(name)sStrip = ObjectHandler::CallingRange::getStub(%(name)s);'''
 
 code65b = '''\
-        std::string %(name)sStrip = ObjectHandler::ObjectXL::getStub(%(name)sCpp);'''
+        std::string %(name)sStrip = ObjectHandler::CallingRange::getStub(%(name)sCpp);'''
 
 ##########################################################################
 # code for C++
@@ -553,6 +553,17 @@ code67h = '''\
 code67i = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
             %(name)s_ = boost::any_cast<std::vector<std::vector<%(nativeType)s> > >(value);\n'''
+
+code68 = '''\
+            processVariant(%(name)s);'''
+
+code69 = '''\
+            processRelatedID(%(name)s);'''
+
+code70 = '''\
+            for (std::vector<std::string>::const_iterator i = %(name)s.begin();
+                    i != %(name)s.end(); ++i)
+                processRelatedID(*i);'''
 
 ##########################################################################
 # code for Serialization

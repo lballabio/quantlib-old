@@ -2,6 +2,7 @@
 /*!
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -41,14 +42,32 @@ ObjectHandler::EnumTypeRegistry enumTypeRegistry;
 // Instantiate the Serialization Factory
 ExampleAddin::ExampleFactory factory;
 
+void makeCustomer(
+    const std::string &objectID,
+    const std::string &name,
+    const long &age) {
+
+    boost::shared_ptr <ObjectHandler::ValueObject> valueObject(
+        new AccountExample::CustomerValueObject(objectID, name, age, false));
+
+    boost::shared_ptr<ObjectHandler::Object> object(
+        new AccountExample::CustomerObject(valueObject, name, age, false));
+
+    ObjectHandler::Repository::instance().storeObject(objectID, object, true);
+}
+
 void makeAccount(
     const std::string &objectID,
+    const std::string &customer,
     const std::string &type,
     const long &number,
     ObjectHandler::Variant balance = ObjectHandler::Variant()) {
 
+    OH_GET_REFERENCE(customerRef, customer,
+        AccountExample::CustomerObject, AccountExample::Customer)
+
     boost::shared_ptr <ObjectHandler::ValueObject> valueObject(
-        new AccountExample::AccountValueObject(objectID, type, number, balance, false));
+        new AccountExample::AccountValueObject(objectID, customer, type, number, balance, false));
 
     AccountExample::Account::Type typeEnum =
         ObjectHandler::Create<AccountExample::Account::Type>()(type);
@@ -56,11 +75,12 @@ void makeAccount(
     long accountBalance = ObjectHandler::variantToScalar<ObjectHandler::Variant, long>(
         balance, "balance", 100);
 
-    boost::shared_ptr<ObjectHandler::Object> accountObject1(
+    boost::shared_ptr<ObjectHandler::Object> object(
         new AccountExample::AccountObject(
-            valueObject, typeEnum, number, accountBalance, false));
+            valueObject, customerRef, typeEnum, number, accountBalance, false));
 
-    ObjectHandler::Repository::instance().storeObject(objectID, accountObject1);
+    ObjectHandler::Repository::instance().storeObject(objectID, object);
+
 }
 
 int main() {
@@ -89,8 +109,9 @@ int main() {
         AccountExample::registerEnumeratedTypes();
 
         // Construct some objects and store them in the object handler
-        makeAccount("account1", "Savings", 123456789);
-        makeAccount("account2", "Current", 987654321, 100L);
+        makeCustomer("customer1", "Joe", 40);
+        makeAccount("account1", "customer1", "Savings", 123456789);
+        makeAccount("account2", "customer1", "Current", 987654321, 100L);
 
         // High level interrogation
         OH_LOG_MESSAGE("High level interrogation - after constructor");
@@ -121,9 +142,6 @@ int main() {
         ObjectHandler::SerializationFactory::instance().saveObject(
             objectList, "./account.xml", true);
 
-        // Delete all objects
-        ObjectHandler::Repository::instance().deleteAllObjects();
-
         // Deserialize an object
         ObjectHandler::SerializationFactory::instance().loadObject(
             ".", "account.xml", false, true);
@@ -134,6 +152,9 @@ int main() {
         accountObject1_load->setBalance(200);
         OH_LOG_MESSAGE("Balance of account account2 = "
             << accountObject1_load->balance());
+
+        // Delete all objects
+        ObjectHandler::Repository::instance().deleteAllObjects();
 
         OH_LOG_MESSAGE("End example program");
 

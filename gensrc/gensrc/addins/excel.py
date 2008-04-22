@@ -1,8 +1,8 @@
 
 """
- Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
- Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -77,7 +77,7 @@ class ExcelAddin(addin.Addin):
     ID_STRIP = '''
         // Strip the Excel cell update counter suffix from Object IDs
         
-        std::string ObjectIdStrip = ObjectHandler::ObjectXL::getStub(ObjectId);%s\n'''
+        std::string ObjectIdStrip = ObjectHandler::CallingRange::getStub(ObjectId);%s\n'''
         
     VALIDATE_TRIGGER = '''
         ObjectHandler::validateRange(Trigger, "Trigger");'''

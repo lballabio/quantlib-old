@@ -22,6 +22,7 @@
 #include <string>
 #include <sstream>
 #include <exception>
+#include <ExampleObjects/Library/customer.hpp>
 
 namespace AccountExample {
 
@@ -31,11 +32,13 @@ namespace AccountExample {
         enum Type { Savings, Current };
 
         Account(
+            const boost::shared_ptr<Customer>& customer,
             const Type &type,
             const long &number,
             const long &balance)
-            : type_(type), number_(number), balance_(balance) {}
+            : customer_(customer), type_(type), number_(number), balance_(balance) {}
 
+        const std::string& customerName() { return customer_->name(); }
         void setBalance(const int &balance) { balance_ = balance; }
         const long &balance() { return balance_; }
         std::string type() {
@@ -45,6 +48,7 @@ namespace AccountExample {
         }
 
     private:
+        boost::shared_ptr<Customer> customer_;
         Type type_;
         long number_;
         long balance_;

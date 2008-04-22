@@ -2,6 +2,7 @@
 /*!
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -35,12 +36,15 @@ namespace AccountExample {
         AccountValueObject() {}
         AccountValueObject(
             const std::string &objectID,
+            const std::string &customer,
             const std::string &type,
             const long &number,
             const ObjectHandler::Variant &balance,
             bool permanent)
             : ObjectHandler::ValueObject(objectID, "Account", permanent),
-            type_(type), number_(number), balance_(balance) {}
+            customer_(customer), type_(type), number_(number), balance_(balance) {
+			relatedIDs_.insert(customer);
+		}
 
         std::vector<std::string> getPropertyNames() const;
         boost::any getProperty(const std::string &name) const;
@@ -49,6 +53,7 @@ namespace AccountExample {
     private:
 
         static const char* mPropertyNames[];
+        std::string customer_;
         std::string type_;
         long number_;
         ObjectHandler::Variant balance_;
@@ -58,6 +63,7 @@ namespace AccountExample {
             boost::serialization::void_cast_register<AccountValueObject, ValueObject>(this, this);
             ar & boost::serialization::make_nvp("ObjectId", objectId_)
                & boost::serialization::make_nvp("ClassName", className_)
+               & boost::serialization::make_nvp("Customer", customer_)
                & boost::serialization::make_nvp("Type", type_)
                & boost::serialization::make_nvp("Number", number_)
                & boost::serialization::make_nvp("Balance", balance_)

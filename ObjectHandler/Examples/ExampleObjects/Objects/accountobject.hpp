@@ -30,6 +30,7 @@ namespace AccountExample {
 
         AccountObject(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<Customer>& customer,
             const Account::Type &type,
             const long &number,
             const long &balance,
@@ -37,7 +38,8 @@ namespace AccountExample {
             : ObjectHandler::LibraryObject<Account>(properties, permanent) {
 
             libraryObject_ = boost::shared_ptr<Account>(
-                new Account(type, number, balance));
+                new Account(customer, type, number, balance));
+			
         }
 
         void setBalance(const long &balance)  {

@@ -352,6 +352,12 @@
 				RelativePath="oh\objecthandler.hpp">
 			</File>
 			<File
+				RelativePath="oh\objectwrapper.hpp">
+			</File>
+			<File
+				RelativePath="oh\observable.hpp">
+			</File>
+			<File
 				RelativePath="oh\ohdefines.hpp">
 			</File>
 			<File

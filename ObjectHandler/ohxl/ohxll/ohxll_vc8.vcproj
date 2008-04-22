@@ -245,6 +245,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\oh\objectwrapper.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\observable.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\oh\ohdefines.hpp"
 					>
 				</File>
@@ -425,11 +433,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\objectxl.cpp"
+					RelativePath="..\objectwrapperxl.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\objectxl.hpp"
+					RelativePath="..\objectwrapperxl.hpp"
 					>
 				</File>
 				<File

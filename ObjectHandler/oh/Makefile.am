@@ -10,6 +10,8 @@ include_HEADERS = \
     logger.hpp \
     objecthandler.hpp \
     object.hpp \
+    objectwrapper.hpp \
+    observable.hpp \
     ohdefines.hpp \
     other.hpp \
     range.hpp \

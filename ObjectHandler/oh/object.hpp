@@ -1,8 +1,9 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -106,9 +107,9 @@ namespace ObjectHandler {
         virtual void dump(std::ostream &out);
         //@}
 
-    protected:
         // The width of a column of data written to the log file.
-        static const int logColumnWidth_ = 20;
+        static const int logColumnWidth = 20;
+
     private:
         // The ValueObject associated with this Object.
         boost::shared_ptr<ValueObject> mProps;
@@ -142,10 +143,10 @@ namespace ObjectHandler {
                 i != propertyNames.end(); ++i) {
 	        std::string propertyName = *i;
 	        boost::any propertyValue = this->propertyValue(propertyName);
-            out << "property = " << std::left << std::setw(logColumnWidth_) << propertyName;
-            out << " value = " << std::left << std::setw(logColumnWidth_) << propertyValue << std::endl;
+            out << "property = " << std::left << std::setw(logColumnWidth) << propertyName;
+            out << " value = " << std::left << std::setw(logColumnWidth) << propertyValue << std::endl;
         }
-        out << "Permanent = " << std::left << std::setw(logColumnWidth_) 
+        out << "Permanent = " << std::left << std::setw(logColumnWidth) 
             << std::boolalpha << permanent_ << std::endl;
         out << std::endl;
     }

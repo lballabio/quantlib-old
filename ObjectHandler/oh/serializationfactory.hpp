@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -73,6 +74,10 @@ namespace ObjectHandler {
             const std::string &xml,
             bool overwriteExisting) = 0;
         //@}
+
+        //! Recreate an Object from its ValueObject
+		boost:: shared_ptr<Object> recreateObject( 
+			boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const; 
 
     protected:
          //! A pointer to the SerializationFactory instance, used to support the Singleton pattern.

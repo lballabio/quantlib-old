@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -172,6 +172,18 @@ namespace ObjectHandler {
         EnumWindows((WNDENUMPROC)EnumProc, (LPARAM)&enm);
 
         return enm.bFuncWiz;
+    }
+
+    std::string FunctionCall::callerName() const {
+        if (callerType_ == CallerType::Cell) {
+		    Xloper xName;
+		    Excel(xlfGetDef, &xName, 1, FunctionCall::instance().callerAddress());
+		    if (xName->xltype == xltypeStr)
+                return ConvertOper(xName());
+            return "";
+        } else {
+            return "VBA";
+        }
     }
 
 }

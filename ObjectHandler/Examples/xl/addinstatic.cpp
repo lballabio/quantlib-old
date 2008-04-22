@@ -1,6 +1,7 @@
 
 /*
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,6 +24,7 @@
 #include <ohxl/utilities/xlutilities.hpp>
 #include <ExampleObjects/accountexample.hpp>
 #include <Examples/examplefactory.hpp>
+#include <ohxl/objectwrapperxl.hpp>
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
@@ -59,10 +61,18 @@ DLLEXPORT int xlAutoOpen() {
         AccountExample::registerEnumeratedTypes();
 
         Excel(xlfRegister, 0, 7, &xDll,
+            TempStrNoSize("\x0A""ohCustomer"),          // function code name
+            TempStrNoSize("\x06""CCCNL#"),              // parameter codes
+            TempStrNoSize("\x0A""ohCustomer"),          // function display name
+            TempStrNoSize("\x1B""ObjectID,Name,Age,Permanent"), // comma-delimited list of parameters
+            TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
+            TempStrNoSize("\x07""Example"));            // function category
+
+        Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x09""ohAccount"),           // function code name
-            TempStrNoSize("\x07""CCCNPL#"),              // parameter codes
+            TempStrNoSize("\x08""CCCCNPL#"),            // parameter codes
             TempStrNoSize("\x09""ohAccount"),           // function display name
-            TempStrNoSize("\x26""ObjectID,Type,Number,Balance,Permanent"), // comma-delimited list of parameters
+            TempStrNoSize("\x2F""ObjectID,Customer,Type,Number,Balance,Permanent"), // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
 
@@ -91,9 +101,9 @@ DLLEXPORT int xlAutoOpen() {
             TempStrNoSize("\x07""Example"));            // function category
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x05""func1"),               // function code name
+            TempStrNoSize("\x15""ohAccountCustomerName"),// function code name
             TempStrNoSize("\x04""CCP#"),                // parameter codes
-            TempStrNoSize("\x05""func1"),               // function code name
+            TempStrNoSize("\x15""ohAccountCustomerName"),// function display name
             TempStrNoSize("\x10""ObjectID,Trigger"),    // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));            // function category
@@ -154,8 +164,43 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 
 }
 
+DLLEXPORT char *ohCustomer(
+        char *objectID,
+        char *name,
+        long *age,
+        bool *permanent) {
+
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+
+    try {
+
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("ohCustomer"));
+
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
+            new AccountExample::CustomerValueObject(objectID, name, *age, *permanent));
+
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new AccountExample::CustomerObject(valueObject, name, *age, *permanent));
+
+        std::string returnValue = 
+            ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);
+
+        static char ret[XL_MAX_STR_LEN];
+        ObjectHandler::stringToChar(returnValue, ret);
+        return ret;
+
+    } catch (const std::exception &e) {
+
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
+        return 0;
+
+    }
+}
+
 DLLEXPORT char *ohAccount(
         char *objectID,
+        char *customer,
         char *type,
         long *number,
         OPER *balance,
@@ -168,6 +213,9 @@ DLLEXPORT char *ohAccount(
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
             (new ObjectHandler::FunctionCall("ohAccount"));
 
+        OH_GET_REFERENCE(customerRef, customer,
+            AccountExample::CustomerObject, AccountExample::Customer)
+
         long balanceLong = ObjectHandler::operToScalar<long>(
             *balance, "balance", 100);
 
@@ -179,11 +227,12 @@ DLLEXPORT char *ohAccount(
             ObjectHandler::Create<AccountExample::Account::Type>()(type);
 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new AccountExample::AccountValueObject(objectID, type, *number, balanceVariant, *permanent));
+            new AccountExample::AccountValueObject(objectID, customer, type, *number, balanceVariant, *permanent));
 
         boost::shared_ptr<ObjectHandler::Object> object(
-            new AccountExample::AccountObject(valueObject, typeEnum, *number, balanceLong, *permanent));
+            new AccountExample::AccountObject(valueObject, customerRef, typeEnum, *number, balanceLong, *permanent));
 
+	
         std::string returnValue = 
             ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);
 
@@ -245,6 +294,30 @@ DLLEXPORT long *ohAccountBalance(char *objectID, OPER *trigger) {
     }
 }
 
+DLLEXPORT char *ohAccountCustomerName(char *objectID, OPER *trigger) {
+
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+
+    try {
+
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("ohAccountCustomerName"));
+
+        OH_GET_REFERENCE(accountRef, objectID,
+            AccountExample::AccountObject, AccountExample::Account)
+
+        static char ret[XL_MAX_STR_LEN];
+        ObjectHandler::stringToChar(accountRef->customerName(), ret);
+        return ret;
+
+    } catch (const std::exception &e) {
+
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
+        return 0;
+
+    }
+}
+
 DLLEXPORT char *ohAccountType(char *objectID, OPER *trigger) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
@@ -267,31 +340,3 @@ DLLEXPORT char *ohAccountType(char *objectID, OPER *trigger) {
 
     }
 }
-
-DLLEXPORT char *func1(char *objectID, OPER *trigger) {
-
-    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
-
-    try {
-
-        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
-            (new ObjectHandler::FunctionCall("func1"));
-
-        AccountExample::Account::Type typeEnum =
-            ObjectHandler::Create<AccountExample::Account::Type>()(objectID);
-
-        std::ostringstream s;
-        s << typeEnum;
-        static char ret[XL_MAX_STR_LEN];
-        ObjectHandler::stringToChar(s.str(), ret);
-        return ret;
-
-    } catch (const std::exception &e) {
-
-        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
-        return 0;
-
-    }
-}
-
-

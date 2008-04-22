@@ -29,5 +29,9 @@
     }
 
     %(functionName)s::%(functionName)s(%(constructorParList)s) :
-        ObjectHandler::ValueObject(ObjectId, "%(functionName)s", Permanent)%(constructorInit)s {}
+        ObjectHandler::ValueObject(ObjectId, "%(functionName)s", Permanent)%(constructorInit)s {
+                  
+%(populateObjectIDs)s
+            
+    }
 

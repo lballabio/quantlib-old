@@ -30,6 +30,7 @@ namespace AccountExample {
             const long &age)
             : name_(name), age_(age) {}
 
+        const std::string &name() { return name_; }
     private:
         std::string name_;
         long age_;

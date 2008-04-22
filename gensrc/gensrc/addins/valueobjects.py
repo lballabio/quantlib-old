@@ -1,7 +1,7 @@
 
 """
- Copyright (C) 2007 Eric Ehlers
  Copyright (C) 2005, 2006 Plamen Neykov
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -95,7 +95,8 @@ class ValueObjects(addin.Addin):
                 'functionName' : func.name(),
                 'propertyDeclaration' : func.parameterList().generate(self.propertyDeclaration_),
                 'propertyGet' : func.parameterList().generate(self.propertyGet_),
-                'propertySet' : func.parameterList().generate(self.propertySet_) }
+                'propertySet' : func.parameterList().generate(self.propertySet_),
+                'populateObjectIDs' : func.parameterList().generate(self.populateObjectIDs_) }
         else:
             return ''
 

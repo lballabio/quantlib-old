@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,30 +23,11 @@
 #include <oh/variant.hpp>
 #include <oh/conversions/varianttoscalar.hpp>
 #include <ExampleObjects/Serialization/creators.hpp>
-#include <ExampleObjects/Objects/accountobject.hpp>
 #include <ExampleObjects/Objects/customerobject.hpp>
+#include <ExampleObjects/Objects/accountobject.hpp>
 #include <ExampleObjects/Enumerations/accountenumerations.hpp>
 
 namespace AccountExample {
-
-    boost::shared_ptr<ObjectHandler::Object> createAccount(
-        const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject) {
-
-        bool permanent = boost::any_cast<bool>(valueObject->getProperty("Permanent"));
-        std::string type = boost::any_cast<std::string>(valueObject->getProperty("Type"));
-        long number = boost::any_cast<long>(valueObject->getProperty("Number"));
-        ObjectHandler::Variant balance = boost::any_cast<ObjectHandler::Variant>(valueObject->getProperty("Balance"));
-
-        Account::Type typeEnum =
-            ObjectHandler::Create<Account::Type>()(type);
-
-        long accountBalance = ObjectHandler::variantToScalar<ObjectHandler::Variant, long>(
-            balance, "Balance", 100);
-
-        boost::shared_ptr<ObjectHandler::Object> object(
-            new AccountObject(valueObject, typeEnum, number, accountBalance, permanent));
-        return object;
-    }
 
     boost::shared_ptr<ObjectHandler::Object> createCustomer(
         const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject) {
@@ -60,6 +41,27 @@ namespace AccountExample {
         return object;
     }
 
+    boost::shared_ptr<ObjectHandler::Object> createAccount(
+        const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject) {
+
+        std::string customer = boost::any_cast<std::string>(valueObject->getProperty("Customer"));
+        bool permanent = boost::any_cast<bool>(valueObject->getProperty("Permanent"));
+        std::string type = boost::any_cast<std::string>(valueObject->getProperty("Type"));
+        long number = boost::any_cast<long>(valueObject->getProperty("Number"));
+        ObjectHandler::Variant balance = boost::any_cast<ObjectHandler::Variant>(valueObject->getProperty("Balance"));
+
+        OH_GET_REFERENCE(customerRef, customer,
+            AccountExample::CustomerObject, AccountExample::Customer)
+
+        Account::Type typeEnum =
+            ObjectHandler::Create<Account::Type>()(type);
+
+        long accountBalance = ObjectHandler::variantToScalar<ObjectHandler::Variant, long>(
+            balance, "Balance", 100);
+
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new AccountObject(valueObject, customerRef, typeEnum, number, accountBalance, permanent));
+        return object;
+    }
 
 }
-

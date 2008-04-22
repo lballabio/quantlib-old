@@ -2,7 +2,8 @@
 
 /*
  Copyright (C) 2006 Plamen Neykov
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -27,6 +28,8 @@
 
 #include <string>
 #include <vector>
+#include <set>
+#include <oh/types.hpp>
 #include <oh/variant.hpp>
 #include <boost/any.hpp>
 #include <boost/serialization/access.hpp>
@@ -77,12 +80,49 @@ namespace ObjectHandler {
         //! Name of this ValueObject's class, used by class SerializationFactory.
         const std::string &className() const { return className_; }
         //@}
+
+		//! \name getRelationObs
+        //@{
+		//! Retrieve the list relatedIDs_.
+		const std::set<std::string>& getRelationObs() { return relatedIDs_;}
+        //@}
     protected:
         std::string objectId_;
         std::string className_;
         bool permanent_;
+		//relation the observable objects
+		std::set<std::string> relatedIDs_;
+
+		void processVariant(const ObjectHandler::Variant& variantID);
+		void processVariant(const std::vector<ObjectHandler::Variant>& vecVariantID);
+		void processVariant(const std::vector<std::vector<ObjectHandler::Variant> >& vecVariantIDs);
+        void processRelatedID(const std::string& relatedID);
     };
 
+    inline void ValueObject::processRelatedID(const std::string& relatedID) {
+        if (!relatedID.empty())
+            relatedIDs_.insert(relatedID);
+    }
+
+	inline void ValueObject::processVariant(const ObjectHandler::Variant& variantID){
+
+		if(variantID.type() == ObjectHandler::String)
+            processRelatedID(variantID);
+	}
+
+	inline void ValueObject::processVariant(const std::vector<ObjectHandler::Variant>& vecVariantID){
+		std::vector<ObjectHandler::Variant>::const_iterator iterator = vecVariantID.begin();
+		for(; iterator != vecVariantID.end(); ++iterator)
+			processVariant(*iterator);
+	}
+
+	inline void ValueObject::processVariant(const std::vector<std::vector<ObjectHandler::Variant> >& vecVariantIDs){
+		std::vector<std::vector<ObjectHandler::Variant> >::const_iterator iterator = vecVariantIDs.begin();
+		for(; iterator != vecVariantIDs.end(); ++iterator){
+			processVariant(*iterator);
+		}
+
+	}
 }
 
 #endif

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,9 +29,9 @@
 
 namespace AccountExample {
 
-    boost::shared_ptr<ObjectHandler::Object> createAccount(
-        const boost::shared_ptr<ObjectHandler::ValueObject>&);
     boost::shared_ptr<ObjectHandler::Object> createCustomer(
+        const boost::shared_ptr<ObjectHandler::ValueObject>&);
+    boost::shared_ptr<ObjectHandler::Object> createAccount(
         const boost::shared_ptr<ObjectHandler::ValueObject>&);
 
 }
