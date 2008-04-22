@@ -227,7 +227,7 @@ namespace QuantLib {
 
     class SouthKorea : public Calendar {
       public:
-        enum Market { KRX };
+        enum Market { Settlement, KRX };
         SouthKorea(Market m = KRX);
     };
 
