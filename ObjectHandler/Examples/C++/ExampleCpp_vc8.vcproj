@@ -400,14 +400,6 @@
 			RelativePath="example.cpp"
 			>
 		</File>
-		<File
-			RelativePath="..\examplefactory.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\examplefactory.hpp"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

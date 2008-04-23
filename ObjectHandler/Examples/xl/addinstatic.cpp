@@ -23,7 +23,6 @@
 #include <ohxl/functions/export.hpp>
 #include <ohxl/utilities/xlutilities.hpp>
 #include <ExampleObjects/accountexample.hpp>
-#include <Examples/examplefactory.hpp>
 #include <ohxl/objectwrapperxl.hpp>
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
@@ -45,7 +44,8 @@ ObjectHandler::EnumClassRegistry enumClassRegistry;
 // Instantiate the Enumerated Pair Registry
 ObjectHandler::EnumPairRegistry enumPairRegistry;
 // Instantiate the Serialization Factory
-ExampleAddin::ExampleFactory factory;
+//ExampleAddin::SerializationFactory factory;
+AccountExample::SerializationFactory factory;
 
 DLLEXPORT int xlAutoOpen() {
 

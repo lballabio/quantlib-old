@@ -31,10 +31,10 @@
 #  undef BOOST_LIB_DIAGNOSTIC
 #endif
 #include <sstream>
-#include <Examples/examplefactory.hpp>
 
 // Instantiate the Serialization Factory
-ExampleAddin::ExampleFactory factory;
+//ExampleAddin::ExampleFactory factory;
+AccountExample::SerializationFactory factory;
 
 DLLEXPORT int xlAutoOpen() {
 

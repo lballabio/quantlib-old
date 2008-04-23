@@ -33,14 +33,14 @@
 #include <oh/objecthandler.hpp>
 #include <oh/conversions/varianttoscalar.hpp>
 #include <ExampleObjects/accountexample.hpp>
-#include <Examples/examplefactory.hpp>
 
 // Instantiate the ObjectHandler Repository
 ObjectHandler::Repository repository;
 // Instantiate the Enumerated Type Registry
 ObjectHandler::EnumTypeRegistry enumTypeRegistry;
 // Instantiate the Serialization Factory
-ExampleAddin::ExampleFactory factory;
+//ExampleAddin::ExampleFactory factory;
+AccountExample::SerializationFactory factory;
 
 void makeCustomer(
     const std::string &objectID,

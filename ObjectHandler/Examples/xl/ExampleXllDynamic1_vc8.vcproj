@@ -192,11 +192,11 @@
 			>
 		</File>
 		<File
-			RelativePath="..\examplefactory.cpp"
+			RelativePath="..\ExampleObjects\Serialization\examplefactory.cpp"
 			>
 		</File>
 		<File
-			RelativePath="..\examplefactory.hpp"
+			RelativePath="..\ExampleObjects\Serialization\examplefactory.hpp"
 			>
 		</File>
 	</Files>
