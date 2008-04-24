@@ -34,6 +34,7 @@ using QuantLib::Rate;
 using QuantLib::Spread;
 using QuantLib::DiscountFactor;
 using QuantLib::Volatility;
+using QuantLib::Probability;
 using QuantLib::Size;
 %}
 
@@ -49,6 +50,7 @@ typedef Real Rate;
 typedef Real Spread;
 typedef Real DiscountFactor;
 typedef Real Volatility;
+typedef Real Probability;
 
 #if defined(SWIGPYTHON)
 // needed for those using SWIG 1.3.21 in order to compile with VC++6

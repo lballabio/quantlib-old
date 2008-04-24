@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -107,9 +107,12 @@
 %include cashflows.i
 %include compoundforward.i
 %include convertiblebonds.i
+%include credit.i
+%include creditdefaultswap.i
 %include currencies.i
 %include date.i
 %include daycounters.i
+%include defaultprobability.i
 %include discountcurve.i
 %include distributions.i
 %include dividends.i
