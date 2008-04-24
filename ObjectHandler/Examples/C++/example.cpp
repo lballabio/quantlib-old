@@ -33,6 +33,7 @@
 #include <oh/objecthandler.hpp>
 #include <oh/conversions/varianttoscalar.hpp>
 #include <ExampleObjects/accountexample.hpp>
+#include <Examples/ExampleObjects/Serialization/examplefactory.hpp>
 
 // Instantiate the ObjectHandler Repository
 ObjectHandler::Repository repository;

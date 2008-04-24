@@ -9,7 +9,7 @@ EXTRA_DIST = \
     ExampleCpp_vc7.vcproj \
     ExampleCpp_vc8.vcproj
 
-ExampleCpp_SOURCES = example.cpp ../examplefactory.cpp
+ExampleCpp_SOURCES = example.cpp
 
 noinst_PROGRAMS = ExampleCpp
 
