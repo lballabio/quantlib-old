@@ -36,8 +36,8 @@ namespace ObjectHandler {
         callingRange_->unregisterObject(id_);
     }
 
-    void ObjectWrapperXL::dump(std::ostream &out) {
-        object_->dump(out);
+	void  ObjectWrapperXL::dump(std::ostream& out) {
+		ObjectWrapper::dump(out);
         out << "Excel info:" << std::endl << std::endl;
 		out << "full object ID = " << std::left << std::setw(Object::logColumnWidth) 
             << idFull_ << std::endl;

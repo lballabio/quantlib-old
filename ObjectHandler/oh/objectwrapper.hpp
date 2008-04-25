@@ -25,8 +25,9 @@ FOR A PARTICULAR PURPOSE.  See the license for more details.
 #ifndef oh_objectwrapper_hpp
 #define oh_objectwrapper_hpp
 
-#include <oh/observable.hpp>
+#include <ostream>
 #include <oh/object.hpp>
+#include <oh/observable.hpp>
 #include <oh/serializationfactory.hpp>
 
 namespace ObjectHandler {
@@ -86,14 +87,23 @@ namespace ObjectHandler {
 
 		//! \name get a object
 		//@{
-        //! Return a copy of the reference to the Object contained by ObjectWrapperXL.
-        boost::shared_ptr<Object> object() const { return object_; }
+		//! Return a copy of the reference to the Object contained by ObjectWrapperXL.
+		boost::shared_ptr<Object> object() const { return object_; }
 		//@}
 
 		//! \name reset a object
 		//@{
-        //! save this object and replace the member object.
+		//! save this object and replace the member object.
 		void reset(boost::shared_ptr<Object> object);
+		//@}
+
+		//! \name Logging
+		//@{
+		//! Write this object to the given output stream.
+		/*! Called by the logging framework.  Enhanced from the base class function
+		to provide additional information specific to the Excel platform.
+		*/
+		virtual void dump(std::ostream& out){ object_->dump(out);}
 		//@}
 
 	protected:
@@ -130,7 +140,11 @@ namespace ObjectHandler {
 		notifyObservers();
 	}
 
-}
+	inline std::ostream& operator<<(std::ostream& out,const boost::shared_ptr<ObjectWrapper> &ow) {
+		ow->dump(out);
+		return out;
+	}
 
+}
 #endif
 

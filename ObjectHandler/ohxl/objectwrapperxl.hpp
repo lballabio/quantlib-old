@@ -83,7 +83,7 @@ namespace ObjectHandler {
         /*! Called by the logging framework.  Enhanced from the base class function
             to provide additional information specific to the Excel platform.
         */
-        virtual void dump(std::ostream &out);
+		virtual void dump(std::ostream& out);
         //@}
 
         //! \name Permanent Objects
