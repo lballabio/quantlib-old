@@ -208,4 +208,135 @@ export_default_density_curve(DefaultDensityCurve,Linear);
 // export_default_density_curve(CubicDefaultDensityCurve,Cubic);
 
 
+
+%{
+using QuantLib::DefaultProbabilityHelper;
+using QuantLib::CdsHelper;
+typedef boost::shared_ptr<DefaultProbabilityHelper> CdsHelperPtr;
+%}
+
+// rate helpers for curve bootstrapping
+%template(DefaultProbabilityHelper) boost::shared_ptr<DefaultProbabilityHelper>;
+
+%rename(CdsHelper) CdsHelperPtr;
+class CdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
+  public:
+    %extend {
+        CdsHelperPtr(
+                const Handle<Quote>& spread,
+                const Period& tenor,
+                Integer settlementDays,
+                const Calendar& calendar,
+                Frequency frequency,
+                BusinessDayConvention convention,
+                const DayCounter& dayCounter,
+                Real recoveryRate,
+                const Handle<YieldTermStructure>& discountCurve,
+                bool settlesAccrual = true,
+                bool paysAtDefaultTime = true) {
+            return new CdsHelperPtr(
+                new CdsHelper(spread,tenor,settlementDays,calendar,
+                              frequency,convention,dayCounter,
+                              recoveryRate,discountCurve,
+                              settlesAccrual,paysAtDefaultTime));
+        }
+        CdsHelperPtr(
+                Rate spread,
+                const Period& tenor,
+                Integer settlementDays,
+                const Calendar& calendar,
+                Frequency frequency,
+                BusinessDayConvention convention,
+                const DayCounter& dayCounter,
+                Real recoveryRate,
+                const Handle<YieldTermStructure>& discountCurve,
+                bool settlesAccrual = true,
+                bool paysAtDefaultTime = true) {
+            return new CdsHelperPtr(
+                new CdsHelper(spread,tenor,settlementDays,calendar,
+                              frequency,convention,dayCounter,
+                              recoveryRate,discountCurve,
+                              settlesAccrual,paysAtDefaultTime));
+        }
+    }
+};
+
+
+
+// bootstrap traits
+
+%{
+using QuantLib::HazardRate;
+using QuantLib::DefaultDensity;
+%}
+
+struct HazardRate {};
+struct DefaultDensity {};
+
+// curve
+
+%{
+using QuantLib::PiecewiseDefaultCurve;
+%}
+
+%define export_piecewise_default_curve(Name,Base,Interpolator)
+
+%{
+typedef boost::shared_ptr<DefaultProbabilityTermStructure> Name##Ptr;
+%}
+
+%rename(Name) Name##Ptr;
+class Name##Ptr : public boost::shared_ptr<DefaultProbabilityTermStructure> {
+  public:
+    %extend {
+        Name##Ptr(
+              const Date& referenceDate,
+              const std::vector<boost::shared_ptr<DefaultProbabilityHelper> >&
+                                                                  instruments,
+              const DayCounter& dayCounter,
+              Real accuracy = 1.0e-12,
+              const Interpolator& i = Interpolator()) {
+            return new Name##Ptr(
+                new PiecewiseDefaultCurve<Base,Interpolator>(
+                                                 referenceDate,instruments,
+                                                 dayCounter, accuracy, i));
+        }
+        Name##Ptr(
+              Integer settlementDays, const Calendar& calendar,
+              const std::vector<boost::shared_ptr<DefaultProbabilityHelper> >&
+                                                                  instruments,
+              const DayCounter& dayCounter,
+              Real accuracy = 1.0e-12,
+              const Interpolator& i = Interpolator()) {
+            return new Name##Ptr(
+                new PiecewiseDefaultCurve<Base,Interpolator>(
+                                        settlementDays, calendar, instruments,
+                                        dayCounter, accuracy, i));
+        }
+        const std::vector<Date>& dates() {
+            typedef PiecewiseDefaultCurve<Base,Interpolator> Name;
+            return boost::dynamic_pointer_cast<Name>(*self)->dates();
+        }
+        const std::vector<Time>& times() {
+            typedef PiecewiseDefaultCurve<Base,Interpolator> Name;
+            return boost::dynamic_pointer_cast<Name>(*self)->times();
+        }
+        #if !defined(SWIGR) && !defined(SWIGGUILE) && !defined(SWIGMZSCHEME)
+        std::vector<std::pair<Date,Real> > nodes() {
+            typedef PiecewiseDefaultCurve<Base,Interpolator> Name;
+            return boost::dynamic_pointer_cast<Name>(*self)->nodes();
+        }
+        #endif
+    }
+};
+
+%enddef
+
+
+export_piecewise_defaultcurve(PiecewiseFlatHazardRate,HazardRate,BackwardFlat);
+
+// combine traits as you wish, e.g.,
+// export_piecewise_curve(PiecewiseLinearDensity,DefaultDensity,Linear);
+
+
 #endif
