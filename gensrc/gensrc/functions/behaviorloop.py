@@ -148,7 +148,8 @@ class BehaviorEnumerationLoop(BehaviorMemberLoop):
         return self.func_.type()
 
 class BehaviorProcedureLoop(BehaviorLoop):
-    """Customize the BehaviorLoop class with some strings specific to Procedure functions."""
+    """Customize the BehaviorLoop class with some strings specific to Procedure
+    functions."""
 
     #############################################
     # class variables

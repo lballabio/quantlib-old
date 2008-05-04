@@ -79,10 +79,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\pages\force_links.docs"
-				>
-			</File>
-			<File
 				RelativePath="pages\functional.docs"
 				>
 			</File>
@@ -332,15 +328,7 @@
 			>
 		</File>
 		<File
-			RelativePath="qla_footer.subdir.html"
-			>
-		</File>
-		<File
 			RelativePath="qla_header.html"
-			>
-		</File>
-		<File
-			RelativePath="qla_header.subdir.html"
 			>
 		</File>
 		<File
@@ -348,19 +336,7 @@
 			>
 		</File>
 		<File
-			RelativePath="qla_headeronline.subdir.html"
-			>
-		</File>
-		<File
-			RelativePath="qladdin.auto.doxy"
-			>
-		</File>
-		<File
-			RelativePath="qladdin.qlo.doxy"
-			>
-		</File>
-		<File
-			RelativePath="qladdin.root.doxy"
+			RelativePath="quantlibaddin.doxy"
 			>
 		</File>
 		<File

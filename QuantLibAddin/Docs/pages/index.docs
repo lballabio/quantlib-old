@@ -21,7 +21,7 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page index QuantLibAddin
+/*! \mainpage QuantLibAddin
 
 %QuantLibAddin exports the functionality of the
 <a href="http://quantlib.org">QuantLib</a> C++ analytics library to a variety

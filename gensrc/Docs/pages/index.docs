@@ -21,7 +21,7 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page index gensrc
+/*! \mainpage gensrc
 
 \section overview Overview
 gensrc is a Python application which takes XML descriptions of functions

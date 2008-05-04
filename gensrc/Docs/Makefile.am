@@ -1,20 +1,28 @@
 
 EXTRA_DIST = \
-	docs_vc7.vcproj \
-	docs_vc8.vcproj \
+    docs_vc7.vcproj \
+    docs_vc8.vcproj \
+    doxygen.css \
     gensrc.doxy \
     gs_footer.html \
     gs_header.html \
     gs_headeronline.html \
     Makefile.vc \
-    doxygen.css \
-    tabs.css \
-    ql.css
+    ql.css \
+    tabs.css
 
-DOXYGEN_CONFIG := gensrc.doxy
-DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css gs_header.html gs_headeronline.html gs_footer.html
+FILENAME := gensrc-$(VERSION)-docs-html
+PROJECTNAME := gensrc
+PROJECTINITIALS := gs
 DOXYGEN_INPUT := $(shell find ${top_srcdir} -name *.py) \
                  $(wildcard pages/*.docs)
+
+# From here on this file is identical for ObjectHandler, gensrc, QuantLibAddin, QuantLibXL
+
+DOXYGEN_CONFIG := $(PROJECTNAME).doxy
+DOXYGEN_CONFIG_TEMP := .$(DOXYGEN_CONFIG)
+DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css $(PROJECTINITIALS)_footer.html $(PROJECTINITIALS)_header.html $(PROJECTINITIALS)_headeronline.html 
+SCRIPT := ../../ObjectHandler/dev_tools/preprocess_doxyfile.py
 
 %.gz: %
 	rm -f $@
@@ -27,50 +35,45 @@ DOXYGEN_INPUT := $(shell find ${top_srcdir} -name *.py) \
 .PHONY: docs-dist docs-html-dist 
 
 dist-hook:
-	mkdir -p $(distdir)/pages $(distdir)/images
+	mkdir -p $(distdir)/auto.pages $(distdir)/pages $(distdir)/images
+	cp -p $(srcdir)/auto.pages/*.docs $(distdir)/auto.pages
 	cp -p $(srcdir)/pages/*.docs $(distdir)/pages
-	cp -p $(srcdir)/images/*.ico \
-	      $(srcdir)/images/*.jpg $(srcdir)/images/*.php \
-	      $(distdir)/images
+	cp -p $(srcdir)/images/*.ico $(srcdir)/images/*.jpg $(srcdir)/images/*.png $(distdir)/images
 
 docs-all: docs-html
 docs-dist: docs-html-dist
 
 docs-html: .time-stamp-html
 .time-stamp-html: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py gensrc.doxy .gensrc.doxy
-	$(DOXYGEN) .gensrc.doxy
-	rm .gensrc.doxy
+	python $(SCRIPT) $(DOXYGEN_CONFIG) $(DOXYGEN_CONFIG_TEMP)
+	$(DOXYGEN) $(DOXYGEN_CONFIG_TEMP)
+	rm $(DOXYGEN_CONFIG_TEMP)
 	cp tabs.css html
 	cp ql.css html
 	mkdir -p html/images
-	cp -f images/*.ico html/images
-	cp -f images/*.jpg html/images
-	cp -f images/*.php html/images
+	cp -f images/*.ico images/*.jpg images/*.png html/images
 	touch .time-stamp-html
 
 docs-html-dist: docs-html
-	ln -s html gensrc-docs-$(VERSION)-html
-	tar czfvh gensrc-docs-$(VERSION)-html.tar.gz gensrc-docs-$(VERSION)-html
-	rm gensrc-docs-$(VERSION)-html
+	ln -s html $(FILENAME)
+	tar czfvh $(FILENAME).tar.gz $(FILENAME)
+	rm $(FILENAME)
 
 docs-online: .time-stamp-online
 .time-stamp-online: $(DOXYGEN_CONFIG) $(DOXYGEN_CUSTOM) $(DOXYGEN_INPUT)
-	python ../../ObjectHandler/dev_tools/preprocess_doxyfile.py -o gensrc.doxy .gensrc.doxy
-	$(DOXYGEN) .gensrc.doxy
-	rm .gensrc.doxy
+	python $(SCRIPT) -o $(DOXYGEN_CONFIG) $(DOXYGEN_CONFIG_TEMP)
+	$(DOXYGEN) $(DOXYGEN_CONFIG_TEMP)
+	rm $(DOXYGEN_CONFIG_TEMP)
 	cp tabs.css html-online
 	cp ql.css html-online
 	mkdir -p html-online/images
-	cp -f images/*.ico html-online/images
-	cp -f images/*.jpg html-online/images
-	cp -f images/*.php html-online/images
+	cp -f images/*.ico images/*.jpg images/*.png html/images
 	touch .time-stamp-online
 
 docs-online-dist: docs-online
-	ln -s html-online gensrc
-	tar czfvh gensrc-docs-online-$(VERSION)-html.tar.gz gensrc
-	rm gensrc
+	ln -s html-online $(PROJECTNAME)
+	tar czfvh $(FILENAME)-online.tar.gz $(PROJECTNAME)
+	rm $(PROJECTNAME)
 
 docs-clean:
 	rm -Rf html-online html

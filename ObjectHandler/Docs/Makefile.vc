@@ -1,12 +1,30 @@
-# ObjectHandler\Docs\Makefile.vc
+
+PROJECTNAME=objecthandler
+
+INPUTS = \
+	auto.pages\*.docs \
+	pages\*.docs
+
+# From here on this file is the same for ObjectHandler, gensrc, QuantLibAddin, QuantLibXL
 
 BUILD_DIR=build\vc
 HTML_DIR=html
 IMG_DIR=html\images
 BUILDFLAG=$(BUILD_DIR)\buildflag
 DOXYGEN=doxygen.exe
-DOXY_CONFIG=objecthandler.doxy
-DOXY_CONFIG_TEMP=.objecthandler.doxy
+DOXY_CONFIG=$(PROJECTNAME).doxy
+DOXY_CONFIG_TEMP=.$(DOXY_CONFIG)
+SCRIPT=..\..\ObjectHandler\dev_tools\preprocess_doxyfile.py
+
+DEPENDENCIES = \
+	$(INPUTS) \
+	*.html \
+	*.css \
+	images\*.jpg \
+	images\*.png \
+	images\*.ico \
+	$(DOXY_CONFIG) \
+	Makefile.vc
 
 ALL : $(BUILDFLAG)
 
@@ -21,7 +39,7 @@ $(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR) $(DOXY_CONFIG)
     copy /Y tabs.css $(HTML_DIR)
     copy /Y ql.css $(HTML_DIR)
     copy /Y images\* $(IMG_DIR)
-    ..\dev_tools\preprocess_doxyfile.py $(DOXY_CONFIG) $(DOXY_CONFIG_TEMP)
+    $(SCRIPT) $(DOXY_CONFIG) $(DOXY_CONFIG_TEMP)
 	$(DOXYGEN) $(DOXY_CONFIG_TEMP)
     del $(DOXY_CONFIG_TEMP)
 	echo flagged > $@

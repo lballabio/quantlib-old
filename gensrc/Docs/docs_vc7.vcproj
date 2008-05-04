@@ -29,9 +29,6 @@
 			Name="pages"
 			Filter="">
 			<File
-				RelativePath=".\pages\force_links.docs">
-			</File>
-			<File
 				RelativePath=".\pages\history.docs">
 			</File>
 			<File

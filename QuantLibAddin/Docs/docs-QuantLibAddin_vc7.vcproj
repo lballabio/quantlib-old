@@ -264,9 +264,6 @@
 				RelativePath="pages\faq.docs">
 			</File>
 			<File
-				RelativePath=".\pages\force_links.docs">
-			</File>
-			<File
 				RelativePath="pages\functional.docs">
 			</File>
 			<File
@@ -328,43 +325,16 @@
 			RelativePath=".\qla_header.html">
 		</File>
 		<File
-			RelativePath=".\qla_header.subdir.html">
-		</File>
-		<File
 			RelativePath="qla_headeronline.html">
 		</File>
 		<File
-			RelativePath="qla_headeronline.subdir.html">
-		</File>
-		<File
-			RelativePath=".\qladdin.auto.doxy">
-		</File>
-		<File
-			RelativePath=".\qladdin.qlo.doxy">
-		</File>
-		<File
-			RelativePath=".\qladdin.root.doxy">
+			RelativePath=".\quantlibaddin.doxy">
 		</File>
 		<File
 			RelativePath="..\..\QuantLibXL\Docs\qlxl_footer.html">
 		</File>
 		<File
-			RelativePath="..\..\QuantLibXL\Docs\qlxl_footer.subdir.html">
-		</File>
-		<File
 			RelativePath="..\..\QuantLibXL\Docs\qlxl_header.html">
-		</File>
-		<File
-			RelativePath="..\..\QuantLibXL\Docs\qlxl_header.subdir.html">
-		</File>
-		<File
-			RelativePath="..\..\QuantLibXL\Docs\quantlibxl.auto.doxy">
-		</File>
-		<File
-			RelativePath="..\..\QuantLibXL\Docs\quantlibxl.qlo.doxy">
-		</File>
-		<File
-			RelativePath="..\..\QuantLibXL\Docs\quantlibxl.root.doxy">
 		</File>
 		<File
 			RelativePath=".\tabs.css">

@@ -130,7 +130,7 @@ class Doxygen(addin.Addin):
         displayNames.sort()
         bufCat = ''
         for displayKey in displayNames:
-            bufCat += '    \\ref %s\\n\n' % dispNmToCatNm[displayKey]
+            bufCat += '    \\ref func_%s\\n\n' % dispNmToCatNm[displayKey]
         buf = self.bufferCategories_.text() % {
             'application' : environment.config().namespaceObjects(),
             'categories' : bufCat }

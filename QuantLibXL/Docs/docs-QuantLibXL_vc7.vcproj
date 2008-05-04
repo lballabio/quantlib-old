@@ -237,9 +237,6 @@
 			Name="pages"
 			Filter="">
 			<File
-				RelativePath=".\pages\force_links.docs">
-			</File>
-			<File
 				RelativePath="pages\framework.docs">
 			</File>
 			<File
@@ -277,25 +274,13 @@
 			RelativePath="qlxl_footer.html">
 		</File>
 		<File
-			RelativePath="qlxl_footer.subdir.html">
-		</File>
-		<File
 			RelativePath="qlxl_header.html">
-		</File>
-		<File
-			RelativePath="qlxl_header.subdir.html">
 		</File>
 		<File
 			RelativePath="qlxl_headeronline.html">
 		</File>
 		<File
-			RelativePath="qlxl_headeronline.subdir.html">
-		</File>
-		<File
-			RelativePath="quantlibxl.auto.doxy">
-		</File>
-		<File
-			RelativePath="quantlibxl.root.doxy">
+			RelativePath="quantlibxl.doxy">
 		</File>
 		<File
 			RelativePath=".\tabs.css">

@@ -1,4 +1,4 @@
-/*! \page enums enumerations
+/*! \page enums Enumerations
 
     \section enum_overview Overview
     %%QuantLibAddin uses a registration manager to translate text strings

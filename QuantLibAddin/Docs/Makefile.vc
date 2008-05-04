@@ -1,60 +1,47 @@
-# QuantLibAddin\Docs\Makefile.vc
+
+PROJECTNAME=quantlibaddin
+
+INPUTS = \
+	auto.pages\*.docs \
+	pages\*.docs
+
+# From here on this file is the same for ObjectHandler, gensrc, QuantLibAddin, QuantLibXL
 
 BUILD_DIR=build\vc
 HTML_DIR=html
 IMG_DIR=html\images
 BUILDFLAG=$(BUILD_DIR)\buildflag
 DOXYGEN=doxygen.exe
-DOXY_CONFIG_ROOT=qladdin.root.doxy
-DOXY_CONFIG_QLO=qladdin.qlo.doxy
-DOXY_CONFIG_AUTO=qladdin.auto.doxy
-DOXY_CONFIG_ROOT_TEMP=.qladdin.root.doxy
-DOXY_CONFIG_QLO_TEMP=.qladdin.qlo.doxy
-DOXY_CONFIG_AUTO_TEMP=.qladdin.auto.doxy
-MAKEFILE=Makefile.vc
-
-ALL : $(BUILDFLAG)
+DOXY_CONFIG=$(PROJECTNAME).doxy
+DOXY_CONFIG_TEMP=.$(DOXY_CONFIG)
+SCRIPT=..\..\ObjectHandler\dev_tools\preprocess_doxyfile.py
 
 DEPENDENCIES = \
-	auto.pages\*.docs \
-	pages\*.docs \
+	$(INPUTS) \
+	*.html \
+	*.css \
 	images\*.jpg \
 	images\*.png \
 	images\*.ico \
-	$(DOXY_CONFIG_ROOT) \
-	$(DOXY_CONFIG_QLO) \
-	$(DOXY_CONFIG_AUTO)
+	$(DOXY_CONFIG) \
+	Makefile.vc
+
+ALL : $(BUILDFLAG)
 	
 $(BUILD_DIR) :
     if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
 
 $(IMG_DIR) :
     if not exist $(HTML_DIR) mkdir $(HTML_DIR)
-    if not exist $(HTML_DIR)\qlo mkdir $(HTML_DIR)\qlo
-    if not exist $(HTML_DIR)\qlo\images mkdir $(HTML_DIR)\qlo\images
-    if not exist $(HTML_DIR)\auto mkdir $(HTML_DIR)\auto
-    if not exist $(HTML_DIR)\auto\images mkdir $(HTML_DIR)\auto\images
     if not exist $(IMG_DIR) mkdir $(IMG_DIR)
 
-$(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR) $(MAKEFILE)
+$(BUILDFLAG) : $(DEPENDENCIES) $(BUILD_DIR) $(IMG_DIR) $(DOXY_CONFIG)
     copy /Y tabs.css $(HTML_DIR)
     copy /Y ql.css $(HTML_DIR)
     copy /Y images\* $(IMG_DIR)
-    copy /Y tabs.css $(HTML_DIR)\qlo
-    copy /Y ql.css $(HTML_DIR)\qlo
-    copy /Y images\* $(HTML_DIR)\qlo\images
-    copy /Y tabs.css $(HTML_DIR)\auto
-    copy /Y ql.css $(HTML_DIR)\auto
-    copy /Y images\* $(HTML_DIR)\auto\images
-    ..\..\ObjectHandler\dev_tools\preprocess_doxyfile.py $(DOXY_CONFIG_ROOT) $(DOXY_CONFIG_ROOT_TEMP)
-    ..\..\ObjectHandler\dev_tools\preprocess_doxyfile.py $(DOXY_CONFIG_QLO) $(DOXY_CONFIG_QLO_TEMP)
-    ..\..\ObjectHandler\dev_tools\preprocess_doxyfile.py $(DOXY_CONFIG_AUTO) $(DOXY_CONFIG_AUTO_TEMP)
-	$(DOXYGEN) $(DOXY_CONFIG_ROOT_TEMP)
-	$(DOXYGEN) $(DOXY_CONFIG_QLO_TEMP)
-	$(DOXYGEN) $(DOXY_CONFIG_AUTO_TEMP)
-    del $(DOXY_CONFIG_ROOT_TEMP)
-    del $(DOXY_CONFIG_QLO_TEMP)
-    del $(DOXY_CONFIG_AUTO_TEMP)
+    $(SCRIPT) $(DOXY_CONFIG) $(DOXY_CONFIG_TEMP)
+	$(DOXYGEN) $(DOXY_CONFIG_TEMP)
+    del $(DOXY_CONFIG_TEMP)
 	echo flagged > $@
 
 CLEAN :

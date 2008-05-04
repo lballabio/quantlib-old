@@ -1,4 +1,4 @@
-/*! \page %(categoryName)s %(categoryDisplayName)s
+/*! \page func_%(categoryName)s %(categoryDisplayName)s
 \section overview Overview
 %(categoryDescription)s
 \section functionlist Function List

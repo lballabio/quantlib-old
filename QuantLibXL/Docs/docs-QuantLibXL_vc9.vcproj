@@ -252,15 +252,7 @@
 			>
 		</File>
 		<File
-			RelativePath="qlxl_footer.subdir.html"
-			>
-		</File>
-		<File
 			RelativePath="qlxl_header.html"
-			>
-		</File>
-		<File
-			RelativePath="qlxl_header.subdir.html"
 			>
 		</File>
 		<File
@@ -268,15 +260,7 @@
 			>
 		</File>
 		<File
-			RelativePath="qlxl_headeronline.subdir.html"
-			>
-		</File>
-		<File
-			RelativePath="quantlibxl.auto.doxy"
-			>
-		</File>
-		<File
-			RelativePath="quantlibxl.root.doxy"
+			RelativePath="quantlibxl.doxy"
 			>
 		</File>
 		<File
