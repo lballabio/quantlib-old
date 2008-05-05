@@ -128,7 +128,7 @@ void TelnetAppender::write(ByteBuffer& buf) {
              if (*iter != 0) {
                 try {
                     (*iter)->write(buf.current(), buf.remaining());
-                } catch(Exception& ex) {
+                } catch(Exception&) {
                     // The client has closed the connection, remove it from our list:
                     *iter = 0;
                     activeConnections--;

@@ -143,7 +143,7 @@ void AsyncAppender::append(const spi::LoggingEventPtr& event, Pool& p) {
                     try {
                         bufferNotFull.await(bufferMutex);
                         discard = false;
-                    } catch (InterruptedException& e) {
+                    } catch (InterruptedException&) {
                         //
                         //  reset interrupt status so
                         //    calling code can see interrupt on
@@ -355,7 +355,7 @@ void* LOG4CXX_THREAD_FUNC AsyncAppender::dispatch(log4cxx_thread_t* thread, void
                  pThis->appenders->appendLoopOnAppenders(*iter, p);
             }
         }
-    } catch(InterruptedException& ex) {
+    } catch(InterruptedException&) {
             Thread::currentThreadInterrupt();
     } catch(...) {
     }

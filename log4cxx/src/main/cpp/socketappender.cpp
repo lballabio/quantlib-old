@@ -84,7 +84,7 @@ void SocketAppender::cleanUp(Pool& p) {
         try {
             oos->close(p);
             oos = 0;
-        } catch(std::exception& e) {
+        } catch(std::exception&) {
         }
     }
 }
