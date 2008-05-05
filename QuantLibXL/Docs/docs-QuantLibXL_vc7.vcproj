@@ -259,16 +259,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\doxygen.css">
-		</File>
-		<File
-			RelativePath=".\doxywarnings.txt">
-		</File>
-		<File
 			RelativePath="Makefile.vc">
-		</File>
-		<File
-			RelativePath=".\ql.css">
 		</File>
 		<File
 			RelativePath="qlxl_footer.html">
@@ -281,9 +272,6 @@
 		</File>
 		<File
 			RelativePath="quantlibxl.doxy">
-		</File>
-		<File
-			RelativePath=".\tabs.css">
 		</File>
 	</Files>
 	<Globals>

@@ -313,9 +313,6 @@
 			RelativePath=".\Makefile.vc">
 		</File>
 		<File
-			RelativePath="..\..\QuantLibXL\Docs\Makefile.vc">
-		</File>
-		<File
 			RelativePath=".\ql.css">
 		</File>
 		<File
@@ -329,12 +326,6 @@
 		</File>
 		<File
 			RelativePath=".\quantlibaddin.doxy">
-		</File>
-		<File
-			RelativePath="..\..\QuantLibXL\Docs\qlxl_footer.html">
-		</File>
-		<File
-			RelativePath="..\..\QuantLibXL\Docs\qlxl_header.html">
 		</File>
 		<File
 			RelativePath=".\tabs.css">
