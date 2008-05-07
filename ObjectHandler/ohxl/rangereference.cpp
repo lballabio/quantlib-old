@@ -41,7 +41,7 @@ namespace ObjectHandler {
     void RangeReference::initializeRegexes() {
 
         std::ostringstream strStandard, strSpecial;
-        strStandard << "=?'?.*\\[([\\w\\s-]+)(?:\\.XLS)?\\]([\\w\\s]+)'?!" 
+        strStandard << "=?'?.*\\[([\\.\\w\\s-]+)(?:\\.XLS)?\\]([\\w\\s]+)'?!" 
             << Configuration::instance().rowCharacter() << "(\\d*)" 
             << Configuration::instance().colCharacter() << "(\\d*)(?::" 
             << Configuration::instance().rowCharacter() << "(\\d*)" 
