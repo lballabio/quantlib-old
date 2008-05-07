@@ -61,6 +61,7 @@
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4819"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -79,7 +80,7 @@
 				OutputFile="..\..\xll\ObjectHandler-xll-vc90-mt-gd-0_9_5.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
+				AdditionalLibraryDirectories="..\..\lib;..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc90-mt-gd-0_9_5.pdb"
 				RandomizedBaseAddress="1"
@@ -158,6 +159,7 @@
 				ProgramDataBaseFileName="..\..\build\vc90\ohxll\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
+				DisableSpecificWarnings="4819"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"

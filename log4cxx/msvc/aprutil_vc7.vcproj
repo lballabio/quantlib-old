@@ -245,7 +245,7 @@
 			OutputDirectory=".\build\vc71\$(ConfigurationName)\aprutil\"
 			IntermediateDirectory=".\build\vc71\$(ConfigurationName)\aprutil\aprutil_obj"
 			ConfigurationType="4"
-			CharacterSet="0">
+			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"

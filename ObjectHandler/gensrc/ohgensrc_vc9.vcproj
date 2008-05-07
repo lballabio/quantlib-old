@@ -119,11 +119,11 @@
 			Name="types"
 			>
 			<File
-				RelativePath="metadata\types\types.xml"
+				RelativePath="metadata\types\supertypes.xml"
 				>
 			</File>
 			<File
-				RelativePath="metadata\types\supertypes.xml"
+				RelativePath="metadata\types\types.xml"
 				>
 			</File>
 		</Filter>

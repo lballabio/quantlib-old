@@ -55,6 +55,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\pages\force_links.docs"
+				>
+			</File>
+			<File
 				RelativePath="pages\garbage_collection.docs"
 				>
 			</File>
@@ -120,6 +124,10 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath=".\doxygen.css"
+			>
+		</File>
+		<File
 			RelativePath="Makefile.vc"
 			>
 		</File>
@@ -140,7 +148,11 @@
 			>
 		</File>
 		<File
-			RelativePath="style.css"
+			RelativePath=".\ql.css"
+			>
+		</File>
+		<File
+			RelativePath=".\tabs.css"
 			>
 		</File>
 	</Files>

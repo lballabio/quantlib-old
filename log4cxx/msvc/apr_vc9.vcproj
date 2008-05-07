@@ -3,8 +3,8 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="apr"
-	ProjectGUID="{C6BDF04F-EEAB-4F99-99C0-E102A409BF79}"
-	TargetFrameworkVersion="0"
+	ProjectGUID="{A5EEE6C6-C626-4F88-B0BD-551BE9C577C5}"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -107,8 +107,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
+				Optimization="0"
 				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr\include\arch;..\src\apr\include\arch\win32;..\src\apr\include\arch\unix"
 				PreprocessorDefinitions="NDEBUG;APR_DECLARE_STATIC;WIN32=1"
 				StringPooling="true"
@@ -118,7 +117,6 @@
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)\apr\apr.pch"
-				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)\apr\apr_obj\"
 				ObjectFile=".\build\vc90\$(ConfigurationName)\apr\apr_obj\"
 				ProgramDataBaseFileName=".\build\vc90\$(ConfigurationName)\apr\apr_obj\vc90.pdb"
 				WarningLevel="3"
@@ -251,12 +249,13 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr\include\arch;..\src\apr\include\arch\win32;..\src\apr\include\arch\unix"
 				PreprocessorDefinitions="NDEBUG;APR_DECLARE_STATIC;WIN32=1"
+				StringPooling="false"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)\apr\apr.pch"
-				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)\apr\apr_obj\"
 				ObjectFile=".\build\vc90\$(ConfigurationName)\apr\apr_obj\"
 				ProgramDataBaseFileName=".\build\vc90\$(ConfigurationName)\apr\apr_obj\vc90.pdb"
 				WarningLevel="3"

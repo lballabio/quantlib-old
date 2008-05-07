@@ -3,8 +3,8 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="log4cxx"
-	ProjectGUID="{CEEDBBD3-151E-408D-8FE5-6098D7FDFE3D}"
-	TargetFrameworkVersion="0"
+	ProjectGUID="{FA6EB34E-6BE0-46F5-AA4C-704B49BE63D2}"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -17,7 +17,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\"
-			IntermediateDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj"
+			IntermediateDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\"
 			ConfigurationType="4"
 			CharacterSet="2"
 			>
@@ -85,7 +85,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\"
-			IntermediateDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj"
+			IntermediateDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj\"
 			ConfigurationType="4"
 			CharacterSet="2"
 			>
@@ -106,8 +106,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
+				Optimization="0"
 				AdditionalIncludeDirectories="..\src\main\include;..\src\apr\include;..\src\apr-util\include"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
 				StringPooling="true"
@@ -117,12 +116,10 @@
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx.pch"
-				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj\"
 				ObjectFile=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj\"
 				ProgramDataBaseFileName=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj\vc90.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -156,7 +153,7 @@
 		<Configuration
 			Name="Debug CRTDLL|Win32"
 			OutputDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\"
-			IntermediateDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj"
+			IntermediateDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj\"
 			ConfigurationType="4"
 			CharacterSet="2"
 			>
@@ -224,7 +221,7 @@
 		<Configuration
 			Name="Release CRTDLL|Win32"
 			OutputDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\"
-			IntermediateDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj"
+			IntermediateDirectory=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj\"
 			ConfigurationType="4"
 			CharacterSet="2"
 			>
@@ -248,17 +245,19 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\main\include;..\src\apr\include;..\src\apr-util\include"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
-				MinimalRebuild="false"
+				StringPooling="false"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="false"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx.pch"
 				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj\"
 				ObjectFile=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj\"
 				ProgramDataBaseFileName=".\build\vc90\$(ConfigurationName)\log4cxx\log4cxx_obj\vc90.pdb"
+				GenerateXMLDocumentationFiles="false"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"

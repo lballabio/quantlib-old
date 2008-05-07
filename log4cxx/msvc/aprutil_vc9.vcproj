@@ -3,8 +3,8 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="aprutil"
-	ProjectGUID="{F2496005-1D0C-4532-B9D5-6E046A61542D}"
-	TargetFrameworkVersion="0"
+	ProjectGUID="{0082D6A9-8051-4946-888B-4E52C17BF98E}"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -17,7 +17,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\build\vc90\$(ConfigurationName)\aprutil\"
-			IntermediateDirectory=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj\"
+			IntermediateDirectory=".\build\vc90\$(ConfigurationName)\aprutil\"
 			ConfigurationType="4"
 			CharacterSet="2"
 			>
@@ -46,8 +46,8 @@
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)\aprutil\aprutil.pch"
-				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj"
-				ObjectFile=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj"
+				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj\"
+				ObjectFile=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj\"
 				ProgramDataBaseFileName=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj\vc90.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
@@ -106,8 +106,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
+				Optimization="0"
 				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr-util\include;..\src\apr-util\include\private;..\src\apr-util\xml\expat\lib;..\src\apr-util\xml\expat"
 				PreprocessorDefinitions="NDEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32"
 				StringPooling="true"
@@ -117,12 +116,10 @@
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)\aprutil\aprutil.pch"
-				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj"
-				ObjectFile=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj"
+				ObjectFile=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj\"
 				ProgramDataBaseFileName=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj\vc90.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -180,7 +177,7 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr-util\include;..\src\apr-util\include\private;..\src\apr-util\xml\expat\lib;..\src\apr-util\xml\expat"
 				PreprocessorDefinitions="_DEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32"
-				MinimalRebuild="false"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
@@ -190,7 +187,6 @@
 				ProgramDataBaseFileName=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj\vc90.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -248,17 +244,17 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr-util\include;..\src\apr-util\include\private;..\src\apr-util\xml\expat\lib;..\src\apr-util\xml\expat"
 				PreprocessorDefinitions="NDEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32"
-				MinimalRebuild="false"
+				StringPooling="false"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)\aprutil\aprutil.pch"
-				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj"
-				ObjectFile=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj"
+				ObjectFile=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj\"
 				ProgramDataBaseFileName=".\build\vc90\$(ConfigurationName)\aprutil\aprutil_obj\vc90.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"

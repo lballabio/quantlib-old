@@ -194,7 +194,7 @@ DLLEXPORT char *addin1CreateAccount(
             new AccountExample::AccountObject(valueObject, customerRef, typeEnum, *number, balanceLong, *permanent));
 
         std::string returnValue = 
-            ObjectHandler::RepositoryXL::instance().storeObject(objectID, object);
+            ObjectHandler::RepositoryXL::instance().storeObject(objectID, object, true);
 
         static char ret[XL_MAX_STR_LEN];
         ObjectHandler::stringToChar(returnValue, ret);

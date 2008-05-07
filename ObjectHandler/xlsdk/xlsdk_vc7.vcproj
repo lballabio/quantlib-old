@@ -239,7 +239,7 @@
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile="..\build\vc71\xlsdk\ReleaseST/xlsdk.pch"
 				AssemblerListingLocation="..\build\vc71\xlsdk\ReleaseST/"
 				ObjectFile="..\build\vc71\xlsdk\ReleaseST/"

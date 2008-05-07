@@ -133,7 +133,7 @@
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc71\$(ConfigurationName)/ohlib.pch"
 				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)/"
 				ObjectFile=".\build\vc71\$(ConfigurationName)/"
