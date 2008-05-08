@@ -114,6 +114,7 @@ enable-auto-props = yes
 *.dsw = svn:eol-style=CRLF
 *.dtd = svn:eol-style=native
 *.el = svn:eol-style=native
+*.exe = svn:mime-type=application/octet-stream
 *.gif = svn:mime-type=image/gif
 *.h = svn:eol-style=native
 *.hpp = svn:eol-style=native
@@ -149,6 +150,7 @@ enable-auto-props = yes
 *.xla = svn:mime-type=application/vnd.ms-excel;svn:needs-lock
 *.xll = svn:mime-type=application/vnd.ms-excel;svn:needs-lock
 *.xls = svn:mime-type=application/vnd.ms-excel;svn:needs-lock
+*.xlsx = svn:mime-type=application/vnd.ms-excel;svn:needs-lock
 *.xml = svn:eol-style=native
 Makefile = svn:eol-style=native
 README = svn:eol-style=native
