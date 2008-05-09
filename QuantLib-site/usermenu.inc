@@ -25,7 +25,7 @@
 <li class="navlink"><a href=
 "http://sourceforge.net/export/rss2_project.php?group_id=12740">RSS feeds</a></li>
 
-<li class="navlink"><a href="/extensions.shtml">Other languages</a></li>
+<li class="navlink"><a href="/extensions.shtml">Other languages / platforms</a></li>
 
 <!--li class="navlink"><a href="/reference/examples.html">Examples</a></li-->
 

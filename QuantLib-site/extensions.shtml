@@ -19,7 +19,7 @@
 </div>
 <div id="content">
 
-<h1 class="center">Other languages</h1>
+<h1 class="center">Other languages and platforms</h1>
 <p>QuantLib is <a href="download.shtml">available</a> as a C#, Guile,
 Java, MzScheme, Perl, Python, and Ruby module by means of <a
 href="http://swig.sourceforge.net">SWIG</a>. Experimental bindings to
@@ -45,6 +45,10 @@ for developers.</p>
 <p>Niels Elken S&oslash;nderby has a page for the tentative
 Mathematica project <a href=
 "http://www.nielses.dk/quantlib/mma/">QuantLibMma</a>.</p>
+
+<p>A few QuantLib functions have been ported to the Symphony
+grid-computing platform. Details are
+available <a href="http://www.ceri.uniroma1.it/ceri/zirilli/w2/">here</a>.</p>
 
 <p>There is a strong interest in having QuantLib available as
 extension for different platforms. Interested developers can post on
