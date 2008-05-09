@@ -122,8 +122,8 @@
 <c>Building QuantLib
 <q>I'm having trouble building QuantLib with MinGW.
 <a>Terry August was kind enough to put together detailed instructions
-   for MinGW users. They can be found <a
-   href="http://www.stanford.edu/~taugust/quantlib.html">here</a>.
+   for MinGW users. Although a bit outdated, they can be found <a
+   href="http://www.nativact.com/taugust/quantlib.html">here</a>.
 
 <c>Building QuantLib
 <q>When building QuantLib, I get a compile error about a missing
