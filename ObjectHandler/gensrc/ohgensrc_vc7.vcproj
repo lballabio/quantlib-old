@@ -57,6 +57,9 @@
 				RelativePath="metadata\functions\logging.xml">
 			</File>
 			<File
+				RelativePath=".\metadata\functions\objects.xml">
+			</File>
+			<File
 				RelativePath="metadata\functions\ohutils.xml">
 			</File>
 			<File
@@ -89,10 +92,10 @@
 			Name="types"
 			Filter="">
 			<File
-				RelativePath="metadata\types\types.xml">
+				RelativePath="metadata\types\supertypes.xml">
 			</File>
 			<File
-				RelativePath="metadata\types\supertypes.xml">
+				RelativePath="metadata\types\types.xml">
 			</File>
 		</Filter>
 		<Filter

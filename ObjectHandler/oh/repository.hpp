@@ -159,6 +159,17 @@ namespace ObjectHandler {
             variable in the cpp file.
         */
         typedef std::map<std::string, boost::shared_ptr<ObjectWrapper>, my_iless> ObjectMap;
+
+		//! \name the getting time and relation object list
+		//@{
+		//! get the initially time of creating object
+		double creationTime(const std::string &objectID) const ;
+		//! get the last time of creating object
+		double updateTime(const std::string &objectID) const;
+		//! get relation object list
+		const std::vector<std::string> getRelationObs(const std::string &objectID);
+		//@}
+
 	protected:
         //! A pointer to the Repository instance, used to support the Singleton pattern.
         static Repository *instance_;

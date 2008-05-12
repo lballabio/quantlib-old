@@ -580,6 +580,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\functions\objects.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\functions\ohutils.cpp"
 					>
 				</File>
@@ -621,6 +625,10 @@
 				</File>
 				<File
 					RelativePath="..\register\register_logging.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\register\register_objects.cpp"
 					>
 				</File>
 				<File

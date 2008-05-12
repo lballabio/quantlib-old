@@ -578,19 +578,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr\include\arch\unix\apr_arch_dso.h"
-				>
-			</File>
-			<File
 				RelativePath="..\src\apr\include\arch\win32\apr_arch_dso.h"
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr\include\arch\unix\apr_arch_file_io.h"
+				RelativePath="..\src\apr\include\arch\unix\apr_arch_dso.h"
 				>
 			</File>
 			<File
 				RelativePath="..\src\apr\include\arch\win32\apr_arch_file_io.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\apr\include\arch\unix\apr_arch_file_io.h"
 				>
 			</File>
 			<File
@@ -610,19 +610,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr\include\arch\unix\apr_arch_misc.h"
-				>
-			</File>
-			<File
 				RelativePath="..\src\apr\include\arch\win32\apr_arch_misc.h"
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr\include\arch\unix\apr_arch_networkio.h"
+				RelativePath="..\src\apr\include\arch\unix\apr_arch_misc.h"
 				>
 			</File>
 			<File
 				RelativePath="..\src\apr\include\arch\win32\apr_arch_networkio.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\apr\include\arch\unix\apr_arch_networkio.h"
 				>
 			</File>
 			<File
@@ -642,15 +642,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr\include\arch\unix\apr_arch_thread_cond.h"
-				>
-			</File>
-			<File
 				RelativePath="..\src\apr\include\arch\win32\apr_arch_thread_cond.h"
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr\include\arch\unix\apr_arch_thread_mutex.h"
+				RelativePath="..\src\apr\include\arch\unix\apr_arch_thread_cond.h"
 				>
 			</File>
 			<File
@@ -658,11 +654,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr\include\arch\unix\apr_arch_thread_rwlock.h"
+				RelativePath="..\src\apr\include\arch\unix\apr_arch_thread_mutex.h"
 				>
 			</File>
 			<File
 				RelativePath="..\src\apr\include\arch\win32\apr_arch_thread_rwlock.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\apr\include\arch\unix\apr_arch_thread_rwlock.h"
 				>
 			</File>
 			<File

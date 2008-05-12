@@ -194,4 +194,48 @@ namespace ObjectHandler {
 	bool Repository::objectExists(const std::string &objectID) const {
 		return objectMap_.find(objectID) != objectMap_.end();
 	}
+
+	double Repository::creationTime(const std::string &objectID) const {
+
+		if(objectExists(objectID)){
+			ObjectMap::const_iterator result = objectMap_.find(objectID);
+
+			return result->second->creationTime();
+
+		}
+		else{
+			OH_REQUIRE(false, " the object does not exist");
+		}
+
+	}
+
+	double Repository::updateTime(const std::string &objectID) const{
+
+		if(objectExists(objectID)){
+			ObjectMap::const_iterator result = objectMap_.find(objectID);
+
+			return result->second->updateTime();
+
+		}
+		else{
+			OH_REQUIRE(false, " the object does not exist");
+		}
+
+	}
+
+	const std::vector<std::string> Repository::getRelationObs(const std::string &objectID){
+		if(objectExists(objectID)){
+			ObjectMap::const_iterator result = objectMap_.find(objectID);
+			const std::set<std::string>& realtionObs = result->second->object()->properties()->getRelationObs();
+			std::vector<std::string> vecRealtionObs(realtionObs.size());
+			std::copy(realtionObs.begin(), realtionObs.end(), vecRealtionObs.begin());
+			return vecRealtionObs;
+
+		}
+		else{
+			OH_REQUIRE(false, " the object does not exist");
+		}
+	}
+
 }
+

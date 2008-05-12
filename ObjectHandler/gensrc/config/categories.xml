@@ -12,6 +12,7 @@
     <categoryName>range</categoryName>
     <categoryName>serialization</categoryName>
     <categoryName>valueobjects</categoryName>
+    <categoryName>objects</categoryName>
   </coreCategoryNames>
 
 </root>

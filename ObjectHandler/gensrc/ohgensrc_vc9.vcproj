@@ -79,6 +79,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\functions\objects.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\functions\ohutils.xml"
 				>
 			</File>

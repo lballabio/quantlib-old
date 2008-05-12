@@ -31,6 +31,7 @@
 #include <iostream>
 #include <exception>
 #include <oh/objecthandler.hpp>
+#include <oh/utilities.hpp>
 #include <oh/conversions/varianttoscalar.hpp>
 #include <ExampleObjects/accountexample.hpp>
 #include <Examples/ExampleObjects/Serialization/examplefactory.hpp>
@@ -62,7 +63,8 @@ void makeAccount(
     const std::string &customer,
     const std::string &type,
     const long &number,
-    ObjectHandler::Variant balance = ObjectHandler::Variant()) {
+    ObjectHandler::Variant balance = ObjectHandler::Variant(),
+	bool overwrite = false) {
 
     OH_GET_REFERENCE(customerRef, customer,
         AccountExample::CustomerObject, AccountExample::Customer)
@@ -80,9 +82,10 @@ void makeAccount(
         new AccountExample::AccountObject(
             valueObject, customerRef, typeEnum, number, accountBalance, false));
 
-    ObjectHandler::Repository::instance().storeObject(objectID, object);
+    ObjectHandler::Repository::instance().storeObject(objectID, object, overwrite);
 
 }
+
 
 int main() {
 
@@ -113,6 +116,7 @@ int main() {
         makeCustomer("customer1", "Joe", 40);
         makeAccount("account1", "customer1", "Savings", 123456789);
         makeAccount("account2", "customer1", "Current", 987654321, 100L);
+
 
         // High level interrogation
         OH_LOG_MESSAGE("High level interrogation - after constructor");
@@ -153,6 +157,24 @@ int main() {
         accountObject1_load->setBalance(200);
         OH_LOG_MESSAGE("Balance of account account2 = "
             << accountObject1_load->balance());
+	
+        // initially time
+        OH_LOG_MESSAGE("The initially time of creating account2 is ");
+        OH_LOG_MESSAGE(ObjectHandler::formatTime(ObjectHandler::Repository::instance().creationTime("account2")));
+		//sleep(1);
+		makeAccount("account2", "customer1", "Current", 987654321, 100L, true);
+       // last time
+        OH_LOG_MESSAGE("The last time of creating account2 is ");
+        OH_LOG_MESSAGE(ObjectHandler::formatTime(ObjectHandler::Repository::instance().updateTime("account2")));
+		// relation the  objects list
+        OH_LOG_MESSAGE("relation the objects list is ");
+		std::vector<std::string> relationIDs = ObjectHandler::Repository::instance().getRelationObs("account2");
+		std::string show;
+		for(unsigned int i = 0; i < relationIDs.size(); ++i)
+			show += relationIDs[i];
+        OH_LOG_MESSAGE(show);
+
+
 
         // Delete all objects
         ObjectHandler::Repository::instance().deleteAllObjects();
