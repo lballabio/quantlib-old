@@ -174,7 +174,7 @@
     </Procedure>
 
     <Procedure name='ohPack'>
-      <description>trim error values from bottom/right of matrix/vector</description>
+      <description>trim error/null/empty values from bottom/right of matrix/vector</description>
       <alias>ObjectHandler::RepositoryXL::instance().packMatrix</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
