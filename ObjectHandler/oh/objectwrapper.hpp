@@ -31,8 +31,6 @@ FOR A PARTICULAR PURPOSE.  See the license for more details.
 #include <oh/serializationfactory.hpp>
 #include <oh/utilities.hpp>
 
-#define SECS_PER_DAY	86400//(60*60*24)
-
 namespace ObjectHandler {
 
 	//! ObjectWrapper holds a reference to Object.  ObjectWrapper inherits from Observer and Observable.

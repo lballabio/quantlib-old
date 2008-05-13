@@ -1,9 +1,10 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
+ Copyright (C) 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,7 +29,6 @@
 
 #include <oh/ohdefines.hpp>
 #include <oh/exception.hpp>
-//#include <boost/any.hpp>
 #include <string>
 #include <vector>
 
