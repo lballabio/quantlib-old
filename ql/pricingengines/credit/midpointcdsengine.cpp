@@ -20,6 +20,7 @@
 */
 
 #include <ql/pricingengines/credit/midpointcdsengine.hpp>
+#include <ql/instruments/claim.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 #include <ql/cashflows/fixedratecoupon.hpp>
 
@@ -35,9 +36,9 @@ namespace QuantLib {
 
     void MidPointCdsEngine::calculate() const {
         QL_REQUIRE(!discountCurve_.empty(),
-                   "CreditDefaultSwap: no discount term structure set");
+                   "no discount term structure set");
         QL_REQUIRE(!issuer_.defaultProbability().empty(),
-                   "CreditDefaultSwap: no probability term structure set");
+                   "no probability term structure set");
 
         const Handle<DefaultProbabilityTermStructure>& probabilityCurve =
             issuer_.defaultProbability();
@@ -91,14 +92,15 @@ namespace QuantLib {
             }
 
             // on the other side, we add the payment in case of default.
+            Real claim = arguments_.claim->amount(defaultDate,
+                                                  arguments_.notional,
+                                                  issuer_.recoveryRate());
             if (arguments_.paysAtDefaultTime) {
                 results_.defaultLegNPV +=
-                    P * arguments_.notional * (1.0-issuer_.recoveryRate()) *
-                    discountCurve_->discount(defaultDate);
+                    P * claim * discountCurve_->discount(defaultDate);
             } else {
                 results_.defaultLegNPV +=
-                    P * arguments_.notional * (1.0-issuer_.recoveryRate()) *
-                    discountCurve_->discount(paymentDate);
+                    P * claim * discountCurve_->discount(paymentDate);
             }
         }
 

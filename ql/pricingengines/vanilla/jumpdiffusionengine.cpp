@@ -48,9 +48,15 @@ namespace QuantLib {
         Real k = std::exp(muPlusHalfSquareVol) - 1.0;
         Real lambda = (k+1.0) * process_->jumpIntensity()->value();
 
-        // dummy strike
-        Real variance = process_->blackVolatility()->blackVariance(
-                                        arguments_.exercise->lastDate(), 1.0);
+        boost::shared_ptr<StrikedTypePayoff> payoff =
+            boost::dynamic_pointer_cast<StrikedTypePayoff>(arguments_.payoff);
+        QL_REQUIRE(payoff, "non-striked payoff given");
+
+        Real variance =
+            process_->blackVolatility()->blackVariance(
+                                              arguments_.exercise->lastDate(),
+                                              payoff->strike());
+
         DayCounter voldc = process_->blackVolatility()->dayCounter();
         Calendar volcal = process_->blackVolatility()->calendar();
         Date volRefDate = process_->blackVolatility()->referenceDate();
@@ -100,9 +106,8 @@ namespace QuantLib {
         Real theta_correction;
         // Haug arbitrary criterium is:
         //for (i=0; i<11; i++) {
-        for (i=0;
-             lastContribution>relativeAccuracy_ && i<maxIterations_;
-             i++) {
+        for (i=0;  (lastContribution>relativeAccuracy_ && i<maxIterations_) 
+        		 || i < Size(lambda*t); i++) {
 
             // constant vol/rate assumption. It should be relaxed
             v = std::sqrt((variance + i*jumpSquareVol)/t);

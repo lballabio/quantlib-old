@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2005, 2006, 2007 StatPro Italia srl
+ Copyright (C) 2005, 2006, 2007, 2008 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,6 +24,7 @@
 #include <ql/termstructures/yield/bondhelpers.hpp>
 #include <ql/termstructures/yield/flatforward.hpp>
 #include <ql/time/calendars/target.hpp>
+#include <ql/time/calendars/jointcalendar.hpp>
 #include <ql/time/daycounters/actual360.hpp>
 #include <ql/time/daycounters/actualactual.hpp>
 #include <ql/time/daycounters/thirty360.hpp>
@@ -392,6 +393,16 @@ namespace {
     void testBMACurveConsistency(const T&, const I& interpolator,
                                  CommonVars& vars) {
 
+        // readjust settlement
+        vars.calendar = JointCalendar(BMAIndex().fixingCalendar(),
+                                      USDLibor(6*Months).fixingCalendar(),
+                                      JoinHolidays);
+        vars.today = vars.calendar.adjust(Date::todaysDate());
+        Settings::instance().evaluationDate() = vars.today;
+        vars.settlement =
+            vars.calendar.advance(vars.today,vars.settlementDays,Days);
+
+
         Handle<YieldTermStructure> riskFreeCurve(
             boost::shared_ptr<YieldTermStructure>(
                         new FlatForward(vars.settlement, 0.04, Actual360())));
@@ -725,30 +736,30 @@ void PiecewiseYieldCurveTest::testLiborFixing() {
 test_suite* PiecewiseYieldCurveTest::suite() {
 
     test_suite* suite = BOOST_TEST_SUITE("Piecewise yield curve tests");
-    suite->add(BOOST_TEST_CASE(
-                 &PiecewiseYieldCurveTest::testLogCubicDiscountConsistency));
-    suite->add(BOOST_TEST_CASE(
+    //suite->add(QUANTLIB_TEST_CASE(
+    //             &PiecewiseYieldCurveTest::testLogCubicDiscountConsistency));
+    suite->add(QUANTLIB_TEST_CASE(
                  &PiecewiseYieldCurveTest::testLogLinearDiscountConsistency));
-    suite->add(BOOST_TEST_CASE(
+    suite->add(QUANTLIB_TEST_CASE(
                  &PiecewiseYieldCurveTest::testLinearDiscountConsistency));
 
     #if !defined(QL_USE_INDEXED_COUPON)
-    suite->add(BOOST_TEST_CASE(
+    suite->add(QUANTLIB_TEST_CASE(
                  &PiecewiseYieldCurveTest::testLogLinearZeroConsistency));
     #endif
-    suite->add(BOOST_TEST_CASE(
+    suite->add(QUANTLIB_TEST_CASE(
                  &PiecewiseYieldCurveTest::testLinearZeroConsistency));
-    suite->add(BOOST_TEST_CASE(
+    suite->add(QUANTLIB_TEST_CASE(
                  &PiecewiseYieldCurveTest::testSplineZeroConsistency));
 
-    suite->add(BOOST_TEST_CASE(
+    suite->add(QUANTLIB_TEST_CASE(
                  &PiecewiseYieldCurveTest::testLinearForwardConsistency));
-    suite->add(BOOST_TEST_CASE(
+    suite->add(QUANTLIB_TEST_CASE(
                  &PiecewiseYieldCurveTest::testFlatForwardConsistency));
-    //suite->add(BOOST_TEST_CASE(
+    //suite->add(QUANTLIB_TEST_CASE(
     //             &PiecewiseYieldCurveTest::testSplineForwardConsistency));
 
-    suite->add(BOOST_TEST_CASE(&PiecewiseYieldCurveTest::testObservability));
-    suite->add(BOOST_TEST_CASE(&PiecewiseYieldCurveTest::testLiborFixing));
+    suite->add(QUANTLIB_TEST_CASE(&PiecewiseYieldCurveTest::testObservability));
+    suite->add(QUANTLIB_TEST_CASE(&PiecewiseYieldCurveTest::testLiborFixing));
     return suite;
 }

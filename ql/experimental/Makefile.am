@@ -1,25 +1,17 @@
 
+SUBDIRS = callablebonds volatility
+
 AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 
 this_includedir=${includedir}/${subdir}
 this_include_HEADERS = \
-    all.hpp \
-    abcdatmvolcurve.hpp \
-    blackatmvolcurve.hpp \
-    blackvolsurface.hpp \
-    equityfxvolsurface.hpp \
-    interestratevolsurface.hpp \
-    sabrvolsurface.hpp \
-    volcube.hpp
+    all.hpp
 
-libExperimental_la_SOURCES = \
-    abcdatmvolcurve.cpp \
-    blackatmvolcurve.cpp \
-    blackvolsurface.cpp \
-    equityfxvolsurface.cpp \
-    interestratevolsurface.cpp \
-    sabrvolsurface.cpp \
-    volcube.cpp
+libExperimental_la_SOURCES =
+
+libExperimental_la_LIBADD = \
+    callablebonds/libCallableBonds.la \
+    volatility/libVolatility.la
 
 noinst_LTLIBRARIES = libExperimental.la
 

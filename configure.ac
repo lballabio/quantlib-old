@@ -329,6 +329,8 @@ AC_CONFIG_FILES([
     ql/cashflows/Makefile
     ql/currencies/Makefile
     ql/experimental/Makefile
+    ql/experimental/callablebonds/Makefile
+    ql/experimental/volatility/Makefile
     ql/indexes/Makefile
     ql/indexes/ibor/Makefile
     ql/indexes/inflation/Makefile
@@ -340,6 +342,7 @@ AC_CONFIG_FILES([
     ql/legacy/libormarketmodels/Makefile
     ql/legacy/termstructures/Makefile
     ql/math/Makefile
+    ql/math/copulas/Makefile
     ql/math/distributions/Makefile
     ql/math/matrixutilities/Makefile
     ql/math/integrals/Makefile
@@ -405,6 +408,8 @@ AC_CONFIG_FILES([
     Docs/Makefile
     Examples/Makefile
     Examples/BermudanSwaption/Makefile
+    Examples/CallableBonds/Makefile
+    Examples/CDS/Makefile
     Examples/ConvertibleBonds/Makefile
     Examples/DiscreteHedging/Makefile
     Examples/EquityOption/Makefile

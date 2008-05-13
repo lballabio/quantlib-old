@@ -194,10 +194,10 @@ namespace {
                              "\noption time : " << optionTime <<
                              "\n  swap tenor: " << atm.tenors.swaps[j] <<
                              "\n swap length: " << swapLength <<
-                             "\n   exp. vol: " << io::volatility(expVol) <<
-                             "\n actual vol: " << io::volatility(actVol) <<
-                             "\n      error: " << io::volatility(error) <<
-                             "\n  tolerance: " << tolerance);
+                             "\n    exp. vol: " << io::volatility(expVol) <<
+                             "\n  actual vol: " << io::volatility(actVol) <<
+                             "\n       error: " << io::volatility(error) <<
+                             "\n   tolerance: " << tolerance);
 
                     // ATM swaption
                     Swaption swaption =
@@ -209,9 +209,9 @@ namespace {
                         BOOST_FAIL(
                              "optionDateFromTenor mismatch for " <<
                              description << ":"
-                             "\n       option tenor: " << atm.tenors.options[i] <<
-                             "\nactual option date : " << exerciseDate <<
-                             "\n  exp. option date : " << vol->optionDates()[i]);
+                             "\n      option tenor: " << atm.tenors.options[i] <<
+                             "\nactual option date: " << exerciseDate <<
+                             "\n  exp. option date: " << vol->optionDates()[i]);
 
                     Date start = swaption.underlyingSwap()->startDate();
                     Date end = swaption.underlyingSwap()->maturityDate();
@@ -372,9 +372,11 @@ void SwaptionVolatilityMatrixTest::testSwaptionVolMatrixCoherence() {
 test_suite* SwaptionVolatilityMatrixTest::suite() {
     test_suite* suite = BOOST_TEST_SUITE("Swaption Volatility Matrix tests");
 
-    suite->add(BOOST_TEST_CASE(&SwaptionVolatilityMatrixTest::testSwaptionVolMatrixCoherence));
+    suite->add(QUANTLIB_TEST_CASE(
+              &SwaptionVolatilityMatrixTest::testSwaptionVolMatrixCoherence));
 
-    suite->add(BOOST_TEST_CASE(&SwaptionVolatilityMatrixTest::testSwaptionVolMatrixObservability));
+    suite->add(QUANTLIB_TEST_CASE(
+          &SwaptionVolatilityMatrixTest::testSwaptionVolMatrixObservability));
 
     return suite;
 }

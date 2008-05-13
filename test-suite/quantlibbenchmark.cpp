@@ -30,26 +30,27 @@
  and PAPI, http://icl.cs.utk.edu/papi
 
  Example results: 1. Core2 Quad@2.4Ghz   :1186.3 mflops
-                  2. Pentium4 Dual@2.8Ghz: 423.8 mflops
-                  3. Pentium4@3.0Ghz     : 266.3 mflops
-                  4. PentiumIII@1.1Ghz   : 146.2 mflops
-                  5. Alpha 2xEV68@833Mhz : 184.6 mflops
-                  6. Strong ARM@206Mhz   :   1.4 mflops
+ 				  2. Core2 Dual@2.0Ghz   : 670.4 mflops
+                  3. Pentium4 Dual@2.8Ghz: 423.8 mflops
+                  4. Pentium4@3.0Ghz     : 266.3 mflops
+                  5. PentiumIII@1.1Ghz   : 146.2 mflops
+                  6. Alpha 2xEV68@833Mhz : 184.6 mflops
+                  7. Strong ARM@206Mhz   :   1.4 mflops
 
  Remarks: OS: Linux, static libs
-  1. gcc-4.2.1, -O3 -ffast-math
-                -mfpmath=sse,387 -msse2 -funroll-all-loops
-                slightly modified QL version to enable multi threading.
-  2. gcc-4.0.1, -O3 -march=pentium4 -ffast-math
+  1 & 2. gcc-4.2.1, -O3 -ffast-math
                 -mfpmath=sse,387 -msse2 -funroll-all-loops
                 slightly modified QL version to enable multi threading.
   3. gcc-4.0.1, -O3 -march=pentium4 -ffast-math
                 -mfpmath=sse,387 -msse2 -funroll-all-loops
-  4. gcc-4.1.1, -O3 -march=pentium3 -ffast-math
-                -mfpmath=sse,387 -msse -funroll-all-loops
-  5. gcc-3.3.5, -O3 -mcpu=e67 -funroll-all-loops
                 slightly modified QL version to enable multi threading.
-  6. gcc-3.4.3, -O2 -g on a Zaurus PDA
+  4. gcc-4.0.1, -O3 -march=pentium4 -ffast-math
+                -mfpmath=sse,387 -msse2 -funroll-all-loops
+  5. gcc-4.1.1, -O3 -march=pentium3 -ffast-math
+                -mfpmath=sse,387 -msse -funroll-all-loops
+  6. gcc-3.3.5, -O3 -mcpu=e67 -funroll-all-loops
+                slightly modified QL version to enable multi threading.
+  7. gcc-3.4.3, -O2 -g on a Zaurus PDA
 
   This benchmark is derived from quantlibtestsuite.cpp. Please see the
   copyrights therein.
@@ -75,6 +76,8 @@
 #  include <boost/config/auto_link.hpp>
 #  undef BOOST_LIB_NAME
 #endif
+
+#include "utilities.hpp"
 
 #include "americanoption.hpp"
 #include "asianoptions.hpp"
@@ -109,7 +112,7 @@ namespace {
         }
 
         test_case* getTestCase() const {
-            return BOOST_TEST_CASE(f_);
+            return QUANTLIB_TEST_CASE(f_);
         }
         double getMflops() const {
             return mflops_;
@@ -146,7 +149,7 @@ namespace {
 
         /* PAPI code
         PAPI_flips(&real_time, &proc_time, &flpins, &mflops);
-        printf("Real_time: %f Proc_time: %f Total mflpins: %f MFLOPS %f\n", 
+        printf("Real_time: %f Proc_time: %f Total mflpins: %f MFLOPS %f\n",
                real_time, proc_time, flpins/1e6, mflops);
         */
     }
@@ -260,12 +263,12 @@ test_suite* init_unit_test_suite(int, char*[]) {
 
     for (std::list<Benchmark>::const_iterator iter = bm.begin();
          iter != bm.end(); ++iter) {
-        test->add(BOOST_TEST_CASE(startTimer));
+        test->add(QUANTLIB_TEST_CASE(startTimer));
         test->add(iter->getTestCase());
-        test->add(BOOST_TEST_CASE(stopTimer));
+        test->add(QUANTLIB_TEST_CASE(stopTimer));
     }
 
-    test->add(BOOST_TEST_CASE(printResults));
+    test->add(QUANTLIB_TEST_CASE(printResults));
 
     return test;
 }
