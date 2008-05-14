@@ -21,7 +21,9 @@
 Below is a list of tutorials relating to compilation of QuantLibAddin/QuantLibXL
 from source code.
 
-\ref build_tutorial\n
+\ref build_qlxl\n
+\ref build_cpp\n
+\ref build_calc\n
 \ref extend_tutorial\n
 \ref serialization\n
 

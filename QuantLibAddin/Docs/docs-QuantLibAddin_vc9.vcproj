@@ -48,6 +48,18 @@
 				>
 			</File>
 			<File
+				RelativePath="pages\build_calc.docs"
+				>
+			</File>
+			<File
+				RelativePath="pages\build_cpp.docs"
+				>
+			</File>
+			<File
+				RelativePath="pages\build_qlxl.docs"
+				>
+			</File>
+			<File
 				RelativePath="pages\calc.docs"
 				>
 			</File>

@@ -26,22 +26,22 @@
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
 
 This document explains how to build an environment supporting export/import
-from/to Excel/C++ on Windows/Linux.  As a prerequisite it is assumed that you
-have already compiled QuantLibXL from source code as explained in the document
-\ref build_tutorial.
+from/to Excel/C++ on Windows/Linux.
+
+As a prerequisite you must complete the following tutorials:<br>
+\ref build_cpp<br>
+\ref build_qlxl
 
 <dl>
 <dt>\ref serialization_windows</dt>
 <dd><dl>
 <dt>\ref serialization_win_excel</dt>
 <dd><dl>
-<dt>\ref serialization_win_excel_build</dt>
 <dt>\ref serialization_win_excel_export</dt>
 <dt>\ref serialization_win_excel_import</dt>
 </dl></dd>
 <dt>\ref serialization_win_cpp</dt>
 <dd><dl>
-<dt>\ref serialization_win_cpp_build</dt>
 <dt>\ref serialization_win_cpp_export</dt>
 <dt>\ref serialization_win_cpp_import</dt>
 </dl></dd>
@@ -50,7 +50,6 @@ have already compiled QuantLibXL from source code as explained in the document
 <dd><dl>
 <dt>\ref serialization_linux_cpp</dt>
 <dd><dl>
-<dt>\ref serialization_linux_cpp_build</dt>
 <dt>\ref serialization_linux_cpp_export</dt>
 <dt>\ref serialization_linux_cpp_import</dt>
 </dl></dd>
@@ -61,15 +60,7 @@ have already compiled QuantLibXL from source code as explained in the document
 
 \subsection serialization_win_excel 1.1 Excel
 
-\subsubsection serialization_win_excel_build 1.1.1 Build
-
-Open <tt>QuantLibXL\\QuantLibAllStatic_vc8.sln</tt>, select configuration
-<tt>Release</tt> and build project <tt>QuantLibXLStatic</tt>.  The
-output file is
-
-\li <tt>QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_0.xll</tt>
-
-\subsubsection serialization_win_excel_export 1.1.2 Export
+\subsubsection serialization_win_excel_export 1.1.1 Export
 
 \li Start Excel
 \li Load VBA addin
@@ -90,7 +81,7 @@ C:\qlxl_swap_market.xml
 C:\qlxl_swap_trade.xml
 \endverbatim
 
-\subsubsection serialization_win_excel_import 1.1.3 Import
+\subsubsection serialization_win_excel_import 1.1.2 Import
 
 \li Start Excel
 \li Load VBA addin
@@ -119,23 +110,16 @@ ensuring that function \c ohObjectCount() returns zero.
 
 \subsection serialization_win_cpp 1.2 C++
 
-\subsubsection serialization_win_cpp_build 1.2.1 Build
+\subsubsection serialization_win_cpp_export 1.2.1 Export
 
-\subsubsection serialization_win_cpp_export 1.2.2 Export
-
-Open <tt>QuantLibAddin\\QLA_serialization_vc8.sln</tt>, select configuration
-<tt>Release</tt> and build project <tt>ClientCppSwapOut</tt>.  The output file
-is
+Open a DOS prompt in directory <tt>%QuantLibAddin\\Clients\\CppSwapOut\\bin</tt>.
+Invoke the executable. The output from the program should appear similar to the
+following:
 \verbatim
-QuantLibAddin\Clients\CppSwapOut\bin\SwapOut-vc80-mt.exe
-\endverbatim
-
-In directory bin, execute program <tt>SwapOut-vc80-mt.exe</tt>. The output from
-the program should appear similar to the following:
-\verbatim
+C:\build_ql_0_9_5\QuantLibAddin\Clients\CppSwapOut\bin\SwapOut-vc??-mt.exe
 INFO - Begin example program.
-INFO - QuantLibAddin version = 0.9.0
-INFO - ObjectHandler version = 0.9.0
+INFO - QuantLibAddin version = 0.9.5
+INFO - ObjectHandler version = 0.9.5
 INFO - SWAP PV = 36106.6
 INFO - End example program.
 \endverbatim
@@ -143,26 +127,20 @@ INFO - End example program.
 The program should generate the XML export files <tt>qlxl_swap_market.xml</tt>
 and <tt>qlxl_swap_trade.xml</tt> in the current directory.
 
-\subsubsection serialization_win_cpp_import 1.2.3 Import
-
-Open <tt>QuantLibAddin\\QLA_serialization_vc8.sln</tt>, select configuration
-<tt>Release</tt> and build project <tt>ClientCppSwapIn</tt>.  The output file
-is
-\verbatim
-QuantLibAddin\Clients\CppSwapIn\bin\SwapIn-vc80-mt.exe
-\endverbatim
+\subsubsection serialization_win_cpp_import 1.2.2 Import
 
 Copy <tt>qlxl_swap_market.xml</tt> and <tt>qlxl_swap_trade.xml</tt> from
-directory <tt>QuantLibAddin\\Clients\\CppSwapIn</tt> to directory
-<tt>QuantLibAddin\\Clients\\CppSwapIn\\bin</tt>.
+directory <tt>%QuantLibAddin\\Clients\\CppSwapIn</tt> to directory
+<tt>%QuantLibAddin\\Clients\\CppSwapIn\\bin</tt>.
 
-In directory bin, execute program <tt>SwapIn-vc80-mt.exe</tt>.  The program
-loads the XML files from the current directory.  The output from the program
-should appear similar to the following:
+Open a DOS prompt in directory <tt>QuantLibAddin\Clients\CppSwapIn\bin</tt>.
+Invoke the executable.  The program loads the XML files from the current
+directory.  The output from the program should appear similar to the following:
 \verbatim
+C:\build_ql_0_9_5\QuantLibAddin\Clients\CppSwapIn\bin\SwapIn-vc??-mt.exe
 INFO - Begin example program.
-INFO - QuantLibAddin version = 0.9.0
-INFO - ObjectHandler version = 0.9.0
+INFO - QuantLibAddin version = 0.9.5
+INFO - ObjectHandler version = 0.9.5
 INFO - SWAP PV = 36106.6
 INFO - Example of serializing to/from a buffer:
 INFO - XML = 
@@ -206,66 +184,15 @@ INFO - End example program.
 
 \subsection serialization_linux_cpp 2.1 C++
 
-\subsubsection serialization_linux_cpp_build 2.1.1 Build
-
-Below is a brief summary of the steps required for the Linux build.  For additional detail,
-refer to the documentation specific to each project.
-
-This example assumes that you do not have root access to your machine, so that the entire
-build and installation environment resides under your home directory.
-
-Download the tarballs from the
-<a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
-Untar the tarballs, creating a directory tree for the build environment such as:
-\verbatim
-/home/erik/build/gensrc
-/home/erik/build/log4cxx
-/home/erik/build/ObjectHandler
-/home/erik/build/QuantLib
-/home/erik/build/QuantLibAddin
-\endverbatim
-
-\li Boost version 1.34.1 is required
-\li build and install QuantLib
-\verbatim
-cd QuantLib
-./configure --prefix=/home/erik/install
-make
-make install
-\endverbatim
-\li build and install log4cxx
-\verbatim
-cd log4cxx
-./autogen.sh
-./configure --prefix=/home/erik/install
-make
-make install
-\endverbatim
-\li build and install ObjectHandler
-\verbatim
-cd ObjectHandler
-./configure --with-gensrc=/home/erik/build/gensrc --prefix=/home/erik/install CPPFLAGS=-I/home/erik/install/include
-    LDFLAGS=-L/home/erik/install/lib
-make
-make install
-\endverbatim
-\li build QuantLibAddin
-\verbatim
-cd QuantLibAddin
-./configure --with-gensrc=/home/erik/build/gensrc --prefix=/home/erik/install CPPFLAGS=-I/home/erik/install/include
-    LDFLAGS=-L/home/erik/install/lib --enable-addin-cpp
-make
-\endverbatim
-
-\subsubsection serialization_linux_cpp_export 2.1.2 Export
+\subsubsection serialization_linux_cpp_export 2.1.1 Export
 
 \c cd to directory  <tt>QuantLibAddin/Clients/CppSwapOut</tt> and execute
 program <tt>swap_out</tt>.  The output from the program should appear similar
 to the following:
 \verbatim
 INFO - Begin example program.
-INFO - QuantLibAddin version = 0.9.0
-INFO - ObjectHandler version = 0.9.0
+INFO - QuantLibAddin version = 0.9.5
+INFO - ObjectHandler version = 0.9.5
 INFO - SWAP PV = 36106.6
 INFO - End example program.
 \endverbatim
@@ -273,7 +200,7 @@ INFO - End example program.
 The program should generate the XML export files <tt>qlxl_swap_market.xml</tt>
 and <tt>qlxl_swap_trade.xml</tt> in the current directory.
 
-\subsubsection serialization_linux_cpp_import 2.1.3 Import
+\subsubsection serialization_linux_cpp_import 2.1.2 Import
 
 \c cd to directory  <tt>QuantLibAddin/Clients/CppSwapIn</tt> and execute
 program <tt>swap_in</tt>.  The program loads <tt>qlxl_swap_market.xml</tt> and
@@ -281,8 +208,8 @@ program <tt>swap_in</tt>.  The program loads <tt>qlxl_swap_market.xml</tt> and
 program should appear similar to the following:
 \verbatim
 INFO - Begin example program.
-INFO - QuantLibAddin version = 0.9.0
-INFO - ObjectHandler version = 0.9.0
+INFO - QuantLibAddin version = 0.9.5
+INFO - ObjectHandler version = 0.9.5
 INFO - SWAP PV = 36106.6
 INFO - Example of serializing to/from a buffer:
 INFO - XML = 

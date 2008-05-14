@@ -23,7 +23,6 @@
 
 /*! \page extend_tutorial Expose Additional QuantLib Functionality to QuantLibXL
 
-<div align="center"><small>\ref extend_revisions "last updated 22-Feb-2008"</small></div> 
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
 
 This document explains how to expose additional QuantLib functionality to
