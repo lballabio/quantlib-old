@@ -130,7 +130,7 @@ namespace ObjectHandler {
 
 	inline ObjectWrapper::ObjectWrapper(const boost::shared_ptr<Object>& object)
 		: object_(object), dirty_(false) {
-			creationTime_ = getTime();
+			creationTime_ = updateTime_ = getTime();
 	}
 
 
