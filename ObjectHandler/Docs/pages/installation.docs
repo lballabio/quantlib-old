@@ -106,7 +106,7 @@ Download <tt>gensrc-0.9.5.exe</tt> and uncompress the package to
 <tt>C:\\build_ql_0_9_5\\gensrc</tt>.
 
 Download <tt>ObjectHandler-0.9.5.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_9_5\\ObjectHandler</tt>.
+<tt>C:\\build_ql_0_9_5\\%ObjectHandler</tt>.
 
 \subsection inst_win_build 2.3 Build
 
@@ -143,7 +143,55 @@ C:\build_ql_0_9_5\ObjectHandler\Examples\C++\bin
 Execute the example program.  The output should appear similar
 to the following:
 \verbatim
-xxx
+C:\build_ql_0_9_5\ObjectHandler\Examples\C++\bin>ExampleCpp-vc80-mt-0_9_5.exe
+INFO - begin example program
+INFO - High level interrogation - after constructor
+INFO - log dump of object with ID = account2
+
+property = ObjectId             value = account2
+property = ClassName            value = Account
+property = Permanent            value = 0
+property = Customer             value = customer1
+property = Number               value = 987654321
+property = Type                 value = Current
+property = Balance              value = 100
+Permanent = false
+
+
+INFO - Low-level interrogation - after update
+INFO - Result of getBalance on underlying = 100
+INFO - Log all objects after deleting account2:
+INFO - dump of all objects in ObjectHandler:
+
+Object with ID = account1:
+
+property = ObjectId             value = account1
+property = ClassName            value = Account
+property = Permanent            value = 0
+property = Customer             value = customer1
+property = Number               value = 123456789
+property = Type                 value = Savings
+property = Balance              value = Null
+Permanent = false
+
+Object with ID = customer1:
+
+property = ObjectId             value = customer1
+property = ClassName            value = Customer
+property = Permanent            value = false
+property = Name                 value = Joe
+property = Age                  value = 40
+Permanent = false
+
+
+INFO - Balance of account account2 = 200
+INFO - The initially time of creating account2 is
+INFO - 05/14/2008 10:47:58
+INFO - The last time of creating account2 is
+INFO - 05/14/2008 10:47:58
+INFO - relation the objects list is
+INFO - customer1
+INFO - End example program
 \endverbatim
 
 \subsubsection inst_win_test_static 2.4.2 XLL - Static Link
@@ -161,7 +209,7 @@ ObjectHandler\Examples\xl\exampleStatic.xls
 \li Start Excel
 \li Load the following files:
 \verbatim
-ObjectHandler\xll\xxx
+ObjectHandler\xll\ObjectHandler-xll-vc??-mt-0_9_5.xll
 ObjectHandler\Examples\xl\xll\ExampleXLLDynamic1-vc??-mt-0_9_5.xll
 ObjectHandler\Examples\xl\xll\ExampleXLLDynamic2-vc??-mt-0_9_5.xll
 ObjectHandler\Examples\xl\exampleDynamic.xls
