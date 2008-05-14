@@ -288,30 +288,27 @@ namespace ObjectHandler {
 		};
 
 		unsigned long* pMonth = YearIsLeap[yearOffset - 1] ? MonthLeapOffset : MonthOffset;
-		if(YearIsLeap[yearOffset - 1]){
+		if(YearIsLeap[yearOffset - 1])
 			pMonth = MonthLeapOffset;
-			size = 13;
-		}
-		else{
+		else
 			pMonth = MonthOffset;
-			size = 12;
-
-		}
-
-		unsigned int monthoffset = 0;
+		unsigned int monthoffset = days/30;
+		size = 13;
 		b = false;
+		OH_REQUIRE(days != 0, "day outside valid range");
 		for(; monthoffset < size; ++monthoffset){
 
-			if(days < pMonth[monthoffset]){
+			if(days <= pMonth[monthoffset]){
 				monthes = monthoffset;
 				b = true;
 				break;
 			}
 		}
-		OH_REQUIRE(b, "days outside valid range");
-
+		OH_REQUIRE(b, "month outside valid range");
 		totalSecond -= days * SECS_PER_DAY;
+
 		days -=  pMonth[monthoffset - 1];
+
 		hours = totalSecond / 3600;
 		totalSecond -= hours * 3600;
 		minutes =  totalSecond / 60;
