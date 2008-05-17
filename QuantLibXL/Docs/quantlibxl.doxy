@@ -513,12 +513,12 @@ WARN_LOGFILE           = doxywarnings.txt
 # directories like "/usr/src/myproject". Separate the files or directories 
 # with spaces.
 
-INPUT                  = ../../QuantLibAddin/Docs/auto.pages \
-                         ./pages \
-                         ../../ObjectHandler/Docs/pages/references.docs \
+INPUT                  = ./pages \
                          ../../ObjectHandler/Docs/pages/excelbinding.docs \
                          ../../ObjectHandler/Docs/pages/garbage_collection.docs \
                          ../../ObjectHandler/Docs/pages/log_messages.docs \
+                         ../../ObjectHandler/Docs/pages/references.docs \
+                         ../../QuantLibAddin/Docs/auto.pages \
                          ../../QuantLibAddin/Docs/pages/coercion.docs \
                          ../../QuantLibAddin/Docs/pages/evaluationdate.docs \
                          ../../QuantLibAddin/Docs/pages/faq.docs \

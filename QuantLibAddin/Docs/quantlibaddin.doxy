@@ -514,6 +514,8 @@ WARN_LOGFILE           = doxywarnings.txt
 # with spaces.
 
 INPUT                  = ./auto.pages ../qlo ./pages \
+                         ../../ObjectHandler/Docs/pages/conventions.docs \
+                         ../../ObjectHandler/Docs/pages/boost.docs \
                          ../../ObjectHandler/Docs/pages/excelbinding.docs \
                          ../../ObjectHandler/Docs/pages/garbage_collection.docs \
                          ../../ObjectHandler/Docs/pages/log_messages.docs \

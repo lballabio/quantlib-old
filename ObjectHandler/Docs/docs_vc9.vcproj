@@ -43,6 +43,14 @@
 			Name="pages"
 			>
 			<File
+				RelativePath="pages\conventions.docs"
+				>
+			</File>
+			<File
+				RelativePath="pages\boost.docs"
+				>
+			</File>
+			<File
 				RelativePath="pages\design.docs"
 				>
 			</File>
