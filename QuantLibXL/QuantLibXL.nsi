@@ -5,6 +5,7 @@
 
 !define VER_NUMBER "0.9.5"
 !define VER_NUMBER_UNDERSCORE "0_9_5"
+!define COMPILER "vc90"
 !define /date NOW "%Y%m%d-%H_%M"
 
 # HEADER CONFIGURATION COMMANDS
@@ -70,8 +71,8 @@ SectionIn 1 2 3
     File "QuantLibXL-src.nsi"
 
     SetOutPath "$INSTDIR\xll"
-    File "xll\QuantLibXLDynamic-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    File "..\ObjectHandler\xll\ObjectHandler-xll-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "xll\QuantLibXLDynamic-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "..\ObjectHandler\xll\ObjectHandler-xll-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-${VER_NUMBER}" \

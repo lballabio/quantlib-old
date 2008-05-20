@@ -13,6 +13,7 @@
 
 !define VER_NUMBER "0.9.5"
 !define VER_NUMBER_UNDERSCORE "0_9_5"
+!define COMPILER "vc90"
 
 ; General Attributes
 
@@ -124,10 +125,6 @@ Section
 
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\favicon.bmp"
-    ;eric 28-mar-2007 - i doubt whether these files are required?
-    ;nando 29-mar-2007 - favicon.bmp is needed. not sure about the following 2
-    ;File "Docs\images\favicon.ico"
-    ;File "Docs\images\logo_ql.jpg"
 
     SetOutPath "$INSTDIR"
     File "QuantLibXL.nsi"
@@ -136,9 +133,9 @@ Section
     File "QuantLibXL-src.nsi"
 
     SetOutPath "$INSTDIR\xll"
-    File "xll\QuantLibXLDynamic-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    File "..\ObjectHandler\xll\ObjectHandler-xll-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    File "..\SensitivityAnalysis\saohxll\xll\saohxll-vc80-mt-0_1_9.xll"
+    File "xll\QuantLibXLDynamic-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "..\ObjectHandler\xll\ObjectHandler-xll-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "..\SensitivityAnalysis\saohxll\xll\saohxll-${COMPILER}-mt-0_1_9.xll"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r /x Drafts "Workbooks\*.xls"

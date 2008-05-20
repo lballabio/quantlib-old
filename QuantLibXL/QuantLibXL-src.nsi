@@ -4,6 +4,7 @@
 !define APP "QuantLibXL"
 !define VER_NUMBER "0.9.5"
 !define VER_NUMBER_UNDERSCORE "0_9_5"
+!define COMPILER "vc90"
 !define DEFAULT_PATH "c:\build_ql_0_9_5\${APP}"
 
 # Compiler Flags
@@ -128,9 +129,9 @@ SectionEnd
 Section /o Framework
 
     SetOutPath "$INSTDIR\xll"
-    #File "xll\QuantLibXLDynamic-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    #File "..\ObjectHandler\xll\ObjectHandler-xll-vc80-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    File "xll\QuantLibXL-vc80-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+    #File "xll\QuantLibXLDynamic-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    #File "..\ObjectHandler\xll\ObjectHandler-xll-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "xll\QuantLibXL-${COMPILER}-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 
     SetOutPath "$INSTDIR\framework"
     File "framework\QuantLibXL.xla"
