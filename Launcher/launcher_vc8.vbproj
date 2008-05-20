@@ -33,7 +33,7 @@
     <ProductName>QuantLibXL Launcher 2008</ProductName>
     <PublisherName>QuantLib Developer Team</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>2.3.4.5</ApplicationVersion>
+    <ApplicationVersion>2.3.5.5</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -170,12 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\down.bmp" />
-    <Content Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_5.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Addins\03 Testing\PDGLib.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -198,6 +192,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Addins\01 Production\PDGLib_candidate.xll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Addins\03 Testing\ObjectHandler-xll-vc90-mt-0_9_5.xll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Addins\03 Testing\QuantLibXLDynamic-vc90-mt-0_9_5.xll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="images\excel.ico" />
@@ -289,7 +289,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_5.xll">
+    <PublishFile Include="Addins\03 Testing\ObjectHandler-xll-vc90-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -307,7 +307,7 @@
       <PublishState>DataFile</PublishState>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
+    <PublishFile Include="Addins\03 Testing\QuantLibXLDynamic-vc90-mt-0_9_5.xll">
       <Visible>False</Visible>
       <Group>
       </Group>
