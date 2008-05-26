@@ -20,6 +20,7 @@
 #include <log4cxx/helpers/stringhelper.h>
 #include <log4cxx/helpers/transcoder.h>
 #include <log4cxx/patternlayout.h>
+#include <apr_strings.h>
 
 #if !defined(LOG4CXX)
 #define LOG4CXX 1
@@ -37,6 +38,49 @@ using namespace log4cxx;
 using namespace log4cxx::helpers;
 using namespace log4cxx::db;
 using namespace log4cxx::spi;
+
+SQLException::SQLException(short fHandleType, 
+                           void* hInput, const char* prolog,
+                           log4cxx::helpers::Pool& p) 
+                           : Exception(formatMessage(fHandleType, hInput, prolog, p)) {
+}
+
+
+SQLException::SQLException(const char* msg) 
+   : Exception(msg) {
+}
+
+SQLException::SQLException(const SQLException& src) 
+   : Exception(src) {
+}
+
+const char* SQLException::formatMessage(short fHandleType,
+                          void* hInput, const char* prolog, log4cxx::helpers::Pool& p) {
+   std::string strReturn(prolog);
+   strReturn.append(" - ");
+#if LOG4CXX_HAVE_ODBC
+   SQLCHAR       SqlState[6];
+   SQLCHAR       Msg[SQL_MAX_MESSAGE_LENGTH];
+   SQLINTEGER    NativeError;
+   SQLSMALLINT   i;
+   SQLSMALLINT   MsgLen;
+   SQLRETURN     rc2;
+
+   // Get the status records.
+   i = 1;
+   while ((rc2 = SQLGetDiagRecA(fHandleType, hInput, i, SqlState, &NativeError,
+                        Msg, sizeof(Msg), &MsgLen)) != SQL_NO_DATA) 
+   {
+      strReturn.append((char*) Msg);
+      i++;
+   }
+#else
+   strReturn.append("log4cxx built without ODBC support");
+#endif
+
+   return apr_pstrdup((apr_pool_t*) p.getAPRPool(), strReturn.c_str());
+}
+
 
 IMPLEMENT_LOG4CXX_OBJECT(ODBCAppender)
 
@@ -89,13 +133,13 @@ void ODBCAppender::activateOptions(log4cxx::helpers::Pool&) {
 }
 
 
-void ODBCAppender::append(const spi::LoggingEventPtr& event, log4cxx::helpers::Pool& /* p */)
+void ODBCAppender::append(const spi::LoggingEventPtr& event, log4cxx::helpers::Pool& p)
 {
 #if LOG4CXX_HAVE_ODBC
    buffer.push_back(event);
 
    if (buffer.size() >= bufferSize)
-      flushBuffer();
+      flushBuffer(p);
 #endif      
 }
 
@@ -106,7 +150,7 @@ LogString ODBCAppender::getLogStatement(const spi::LoggingEventPtr& event, log4c
    return sbuf;
 }
 
-void ODBCAppender::execute(const LogString& sql)
+void ODBCAppender::execute(const LogString& sql, log4cxx::helpers::Pool& p)
 {
 #if LOG4CXX_HAVE_ODBC
    SQLRETURN ret;
@@ -115,22 +159,20 @@ void ODBCAppender::execute(const LogString& sql)
 
    try
    {
-      con = getConnection();
+      con = getConnection(p);
 
       ret = SQLAllocHandle( SQL_HANDLE_STMT, con, &stmt);
       if (ret < 0)
       {
-       LOG4CXX_DECODE_CHAR(msg, GetErrorMessage( SQL_HANDLE_DBC, con, "Failed to allocate sql handle."));
-         throw SQLException( msg );
+         throw SQLException( SQL_HANDLE_DBC, con, "Failed to allocate sql handle.", p);
       }
 
-      LOG4CXX_ENCODE_CHAR( strEncodedSql, sql );
-      ret = SQLExecDirect(stmt, (SQLCHAR *)strEncodedSql.c_str(), SQL_NTS);
+      SQLWCHAR* wsql = Transcoder::wencode(sql, p); 
+      ret = SQLExecDirectW(stmt, wsql, SQL_NTS);
 
      if (ret < 0)
       {
-       LOG4CXX_DECODE_CHAR(msg, GetErrorMessage( SQL_HANDLE_STMT, stmt, "Failed to execute sql statement."));
-         throw SQLException( msg );
+         throw SQLException(SQL_HANDLE_STMT, stmt, "Failed to execute sql statement.", p);
       }
    }
    catch (SQLException& e)
@@ -145,7 +187,7 @@ void ODBCAppender::execute(const LogString& sql)
    SQLFreeHandle(SQL_HANDLE_STMT, stmt);
    closeConnection(con);
 #else
-    throw SQLException(LOG4CXX_STR("log4cxx build without ODBC support"));
+    throw SQLException("log4cxx build without ODBC support");
 #endif
 }
 
@@ -155,39 +197,11 @@ void ODBCAppender::closeConnection(ODBCAppender::SQLHDBC /* con */)
 {
 }
 
-std::string ODBCAppender::GetErrorMessage(ODBCAppender::SQLSMALLINT fHandleType, 
-    ODBCAppender::SQLHANDLE hInput, const char* szMsg )
-{
-#if LOG4CXX_HAVE_ODBC
-   SQLCHAR       SqlState[6];
-   SQLCHAR       Msg[SQL_MAX_MESSAGE_LENGTH];
-   SQLINTEGER    NativeError;
-   SQLSMALLINT   i;
-   SQLSMALLINT   MsgLen;
-   SQLRETURN     rc2;
-
-   std::string   strReturn(szMsg);
-   strReturn += " - ";
-
-   // Get the status records.
-   i = 1;
-   while ((rc2 = SQLGetDiagRec(fHandleType, hInput, i, SqlState, &NativeError,
-                        Msg, sizeof(Msg), &MsgLen)) != SQL_NO_DATA) 
-   {
-      strReturn += (const char*) Msg;
-      i++;
-   }
-
-   return strReturn;
-#else
-   return "log4cxx built without ODBC support";
-#endif   
-}
 
 
 
 
-ODBCAppender::SQLHDBC ODBCAppender::getConnection()
+ODBCAppender::SQLHDBC ODBCAppender::getConnection(log4cxx::helpers::Pool& p)
 {
 #if LOG4CXX_HAVE_ODBC
    SQLRETURN ret;
@@ -197,18 +211,18 @@ ODBCAppender::SQLHDBC ODBCAppender::getConnection()
       ret = SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &env);
       if (ret < 0)
       {
-         LOG4CXX_DECODE_CHAR(strErr, GetErrorMessage(SQL_HANDLE_ENV, env, "Failed to allocate SQL handle."));
+         SQLException ex(SQL_HANDLE_ENV, env, "Failed to allocate SQL handle.", p);
          env = SQL_NULL_HENV;
-         throw SQLException( strErr );
+         throw ex;
       }
 
       ret = SQLSetEnvAttr(env, SQL_ATTR_ODBC_VERSION, (SQLPOINTER) SQL_OV_ODBC3, SQL_IS_INTEGER);
       if (ret < 0)
       {
-         LOG4CXX_DECODE_CHAR(strErr, GetErrorMessage(SQL_HANDLE_ENV, env, "Failed to set odbc version."));
+         SQLException ex(SQL_HANDLE_ENV, env, "Failed to set odbc version.", p);
          SQLFreeHandle(SQL_HANDLE_ENV, env);
          env = SQL_NULL_HENV;
-         throw SQLException( strErr );
+         throw ex;
       }
    }
 
@@ -217,31 +231,29 @@ ODBCAppender::SQLHDBC ODBCAppender::getConnection()
       ret = SQLAllocHandle(SQL_HANDLE_DBC, env, &connection);
       if (ret < 0)
       {
-         LOG4CXX_DECODE_CHAR(strErr, GetErrorMessage(SQL_HANDLE_DBC, connection, "Failed to allocate sql handle."));
+         SQLException ex(SQL_HANDLE_DBC, connection, "Failed to allocate sql handle.", p);
          connection = SQL_NULL_HDBC;
-         throw SQLException( strErr );
+         throw ex;
       }
 
 
-     LOG4CXX_ENCODE_CHAR( URL, databaseURL );
-     LOG4CXX_ENCODE_CHAR( user, databaseUser );
-     LOG4CXX_ENCODE_CHAR( password, databasePassword );
+     SQLWCHAR* wURL = Transcoder::wencode(databaseURL, p);
 
-     SQLCHAR szOutConnectionString[1024];
+     wchar_t szOutConnectionString[1024];
      SQLSMALLINT nOutConnctionLength = 0;
 
-     ret = SQLDriverConnect( connection, NULL, 
-            (SQLCHAR *)URL.c_str(), SQL_NTS, 
+     ret = SQLDriverConnectW( connection, NULL, 
+            wURL, SQL_NTS, 
             szOutConnectionString, sizeof( szOutConnectionString ),
             &nOutConnctionLength, SQL_DRIVER_NOPROMPT );
 
 
      if (ret < 0)
       {
-         LOG4CXX_DECODE_CHAR(strErr, GetErrorMessage( SQL_HANDLE_DBC, connection, "Failed to connect to database."));
+         SQLException ex(SQL_HANDLE_DBC, connection, "Failed to connect to database.", p);
          SQLFreeHandle(SQL_HANDLE_DBC, connection);
          connection = SQL_NULL_HDBC;
-         throw SQLException( strErr );
+         throw ex;
       }
    }
 
@@ -256,9 +268,10 @@ void ODBCAppender::close()
    if (closed) {
        return;
    }
+   Pool p;
    try
    {
-      flushBuffer();
+      flushBuffer(p);
    }
    catch (SQLException& e)
    {
@@ -280,13 +293,8 @@ void ODBCAppender::close()
    this->closed = true;
 }
 
-void ODBCAppender::flushBuffer()
+void ODBCAppender::flushBuffer(Pool& p)
 {
-   //Do the actual logging
-   //removes.ensureCapacity(buffer.size());
-
-   Pool p;
-
    std::list<spi::LoggingEventPtr>::iterator i;
    for (i = buffer.begin(); i != buffer.end(); i++)
    {
@@ -294,7 +302,7 @@ void ODBCAppender::flushBuffer()
       {
          const LoggingEventPtr& logEvent = *i;
          LogString sql = getLogStatement(logEvent, p);
-         execute(sql);
+         execute(sql, p);
       }
       catch (SQLException& e)
       {

@@ -117,6 +117,7 @@
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)\apr\apr.pch"
+				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)\apr\apr_obj\"
 				ObjectFile=".\build\vc90\$(ConfigurationName)\apr\apr_obj\"
 				ProgramDataBaseFileName=".\build\vc90\$(ConfigurationName)\apr\apr_obj\vc90.pdb"
 				WarningLevel="3"
@@ -256,6 +257,7 @@
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)\apr\apr.pch"
+				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)\apr\apr_obj\"
 				ObjectFile=".\build\vc90\$(ConfigurationName)\apr\apr_obj\"
 				ProgramDataBaseFileName=".\build\vc90\$(ConfigurationName)\apr\apr_obj\vc90.pdb"
 				WarningLevel="3"
@@ -566,7 +568,7 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			>
 			<File
-				RelativePath="..\src\apr\include\apr.h"
+				RelativePath="..\src\apr\include\arch\win32\apr.h"
 				>
 			</File>
 			<File

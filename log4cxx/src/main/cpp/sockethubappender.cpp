@@ -30,6 +30,7 @@
 #include <apr_thread_proc.h>
 #include <log4cxx/helpers/objectoutputstream.h>
 #include <log4cxx/helpers/socketoutputstream.h>
+#include <log4cxx/helpers/exception.h>
 
 using namespace log4cxx;
 using namespace log4cxx::helpers;
@@ -148,6 +149,7 @@ void SocketHubAppender::append(const spi::LoggingEventPtr& event, Pool& p)
                 try
                 {
                         event->write(**it, p);
+                        (*it)->flush(p);
                         it++;
                 }
                 catch(std::exception& e)
@@ -164,7 +166,7 @@ void SocketHubAppender::startServer()
         thread.run(monitor, this);
 }
 
-void* APR_THREAD_FUNC SocketHubAppender::monitor(log4cxx_thread_t* /* thread */, void* data) {
+void* APR_THREAD_FUNC SocketHubAppender::monitor(apr_thread_t* /* thread */, void* data) {
         SocketHubAppender* pThis = (SocketHubAppender*) data;
 
         ServerSocket* serverSocket = 0;
@@ -177,6 +179,7 @@ void* APR_THREAD_FUNC SocketHubAppender::monitor(log4cxx_thread_t* /* thread */,
         catch (SocketException& e)
         {
                 LogLog::error(LOG4CXX_STR("exception setting timeout, shutting down server socket."), e);
+                delete serverSocket;
                 return NULL;
         }
 
@@ -226,6 +229,7 @@ void* APR_THREAD_FUNC SocketHubAppender::monitor(log4cxx_thread_t* /* thread */,
                                 LogLog::error(LOG4CXX_STR("exception creating output stream on socket."), e);
                         }
                 }
+                stopRunning = (stopRunning || pThis->closed);
         }
         delete serverSocket;
         return NULL;

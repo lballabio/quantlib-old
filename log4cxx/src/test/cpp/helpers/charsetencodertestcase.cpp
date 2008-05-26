@@ -225,7 +225,7 @@ public:
             int repetitions;
         };
         
-        static void* LOG4CXX_THREAD_FUNC thread1Action(log4cxx_thread_t* thread, void* data) {
+        static void* LOG4CXX_THREAD_FUNC thread1Action(apr_thread_t* /* thread */, void* data) {
             ThreadPackage* package = (ThreadPackage*) data;
 #if LOG4CXX_LOGCHAR_IS_UTF8
             const logchar greet[] = { 'H', 'e', 'l', 'l', 'o', ' ',

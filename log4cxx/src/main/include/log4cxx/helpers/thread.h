@@ -29,6 +29,10 @@
 #endif
 #endif
 
+extern "C" {
+    typedef struct apr_thread_t apr_thread_t;
+}
+
 
 namespace log4cxx
 {
@@ -36,9 +40,8 @@ namespace log4cxx
         {
                 class Pool;
                 class ThreadLocal;
-                typedef void log4cxx_thread_t;
 
-            typedef void* (LOG4CXX_THREAD_FUNC *Runnable)(log4cxx_thread_t* thread, void* data);
+            typedef void* (LOG4CXX_THREAD_FUNC *Runnable)(apr_thread_t* thread, void* data);
                 /**
                  *  This class implements an approximation of java.util.Thread.
                  */
@@ -58,7 +61,6 @@ namespace log4cxx
                          *  Runs the specified method on a newly created thread.
                          */
                         void run(Runnable start, void* data);
-                        void stop();
                         void join();
 
                         inline bool isActive() { return thread != 0; }
@@ -91,7 +93,7 @@ namespace log4cxx
 
                 private:
                         Pool p;
-                        log4cxx_thread_t* thread;
+                        apr_thread_t* thread;
                         volatile unsigned int alive;
                         volatile unsigned int interruptedStatus;
                         Thread(const Thread&);
@@ -169,7 +171,7 @@ namespace log4cxx
                          *  used to keep the reference to the corresponding Thread object and
                          *  is responsible for maintaining Thread.alive.
                          */
-                        static void* LOG4CXX_THREAD_FUNC launcher(log4cxx_thread_t* thread, void* data);
+                        static void* LOG4CXX_THREAD_FUNC launcher(apr_thread_t* thread, void* data);
                         /**
                          *   Get a key to the thread local storage used to hold the reference to
                          *   the corresponding Thread object.

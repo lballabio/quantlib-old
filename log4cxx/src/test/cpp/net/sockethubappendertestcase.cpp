@@ -17,8 +17,11 @@
 
 #include <log4cxx/net/sockethubappender.h>
 #include "../appenderskeletontestcase.h"
+#include <log4cxx/helpers/thread.h>
+#include <apr.h>
 
 using namespace log4cxx;
+using namespace log4cxx::net;
 using namespace log4cxx::helpers;
 
 #if APR_HAS_THREADS
@@ -33,7 +36,9 @@ class SocketHubAppenderTestCase : public AppenderSkeletonTestCase
                 //
                 LOGUNIT_TEST(testDefaultThreshold);
                 LOGUNIT_TEST(testSetOptionThreshold);
-
+                LOGUNIT_TEST(testActivateClose);
+                LOGUNIT_TEST(testActivateSleepClose);
+                LOGUNIT_TEST(testActivateWriteClose);
    LOGUNIT_TEST_SUITE_END();
 
 
@@ -41,6 +46,34 @@ public:
 
         AppenderSkeleton* createAppenderSkeleton() const {
           return new log4cxx::net::SocketHubAppender();
+        }
+
+        void testActivateClose() {
+            SocketHubAppenderPtr hubAppender(new SocketHubAppender());
+            Pool p;
+            hubAppender->activateOptions(p);
+            hubAppender->close();
+        }
+
+        void testActivateSleepClose() {
+            SocketHubAppenderPtr hubAppender(new SocketHubAppender());
+            Pool p;
+            hubAppender->activateOptions(p);
+            Thread::sleep(1000);
+            hubAppender->close();
+        }
+
+        
+        void testActivateWriteClose() {
+            SocketHubAppenderPtr hubAppender(new SocketHubAppender());
+            Pool p;
+            hubAppender->activateOptions(p);
+            LoggerPtr root(Logger::getRootLogger());
+            root->addAppender(hubAppender);
+            for(int i = 0; i < 50; i++) {
+                LOG4CXX_INFO(root, "Hello, World " << i);
+            }
+            hubAppender->close();
         }
 };
 

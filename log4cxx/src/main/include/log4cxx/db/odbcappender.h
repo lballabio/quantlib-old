@@ -35,19 +35,18 @@ namespace log4cxx
 {
         namespace db
         {
-            class LOG4CXX_EXPORT SQLException : public log4cxx::helpers::Exception
-                {
-                public:
-                SQLException(const LogString& msg) : log4cxx::helpers::Exception(msg) {
-                }
-                SQLException(const SQLException& src) : log4cxx::helpers::Exception(src) {
-                }
-
-                private:
-                SQLException& operator=(const SQLException&);
-                };
-
-                class ODBCAppender;
+            class LOG4CXX_EXPORT SQLException : public log4cxx::helpers::Exception {
+            public:
+                SQLException(short fHandleType, 
+                            void* hInput, const char* prolog,
+                            log4cxx::helpers::Pool& p);
+                SQLException(const char* msg);
+                SQLException(const SQLException& src);
+            private:
+                const char* formatMessage(short fHandleType,
+                    void* hInput, const char* prolog,
+                    log4cxx::helpers::Pool& p);
+            };
 
                 /**
                 <p><b>WARNING: This version of ODBCAppender
@@ -195,7 +194,8 @@ namespace log4cxx
                         * end.  I use a connection pool outside of ODBCAppender which is
                         * accessed in an override of this method.
                         * */
-                        virtual void execute(const LogString& sql) /*throw(SQLException)*/;
+                        virtual void execute(const LogString& sql,
+                            log4cxx::helpers::Pool& p) /*throw(SQLException)*/;
 
                         /**
                         * Override this to return the connection to a pool, or to clean up the
@@ -206,15 +206,13 @@ namespace log4cxx
                         */
                         virtual void closeConnection(SQLHDBC con);
 
-                  virtual std::string GetErrorMessage( SQLSMALLINT fHandleType, SQLHANDLE hInput, const char* szMsg );
-
                         /**
                         * Override this to link with your connection pooling system.
                         *
                         * By default this creates a single connection which is held open
                         * until the object is garbage collected.
                         */
-                        virtual SQLHDBC getConnection() /*throw(SQLException)*/;
+                        virtual SQLHDBC getConnection(log4cxx::helpers::Pool& p) /*throw(SQLException)*/;
 
                         /**
                         * Closes the appender, flushing the buffer first then closing the default
@@ -230,7 +228,7 @@ namespace log4cxx
                         *
                         * If a statement fails the LoggingEvent stays in the buffer!
                         */
-                        virtual void flushBuffer();
+                        virtual void flushBuffer(log4cxx::helpers::Pool& p);
 
                         /**
                         * ODBCAppender requires a layout.

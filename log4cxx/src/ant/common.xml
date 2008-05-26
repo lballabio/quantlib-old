@@ -21,6 +21,7 @@
 <property name="rtti" value="false"/>
 <property name="optimize" value="none"/>
 <property name="lib.type" value="shared"/>
+<property name="runtime" value="dynamic"/>
 
 <taskdef resource="cpptasks.tasks"/>
 <typedef resource="cpptasks.types"/>
@@ -79,7 +80,7 @@
 
 <target name="unix-init" depends="mac-init" if="is-unix">
 
-    <property name="compiler" value="g++"/>
+    <property name="compiler" value="gcc"/>
 
     <condition property="has-expat" value="true">
          <not><isset property="is-mac"/></not>

@@ -185,8 +185,12 @@ public:
          _USEFAC(locale, std::time_put<logchar>)
              .put(buffer, buffer, &date, fmt.c_str(), fmt.c_str() + fmt.length());
 #else
-         std::use_facet<std::time_put<logchar> >(locale)
-             .put(buffer, buffer, buffer.fill(), &date, fmt.c_str(), fmt.c_str() + fmt.length());
+#if defined(_RWSTD_NO_TEMPLATE_ON_RETURN_TYPE)
+         const std::time_put<logchar>& facet = std::use_facet(locale, (std::time_put<logchar>*) 0);
+#else
+         const std::time_put<logchar>& facet = std::use_facet<std::time_put<logchar> >(locale);
+#endif
+         facet.put(buffer, buffer, buffer.fill(), &date, fmt.c_str(), fmt.c_str() + fmt.length());
 #endif
         return buffer.str();
   }

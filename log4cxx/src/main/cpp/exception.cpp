@@ -41,6 +41,16 @@ Exception::Exception(const LogString& msg1) {
   msg[len] = 0;
 }
 
+Exception::Exception(const char* m) {
+#if defined(__STDC_LIB_EXT1__) || defined(__STDC_SECURE_LIB__)
+  strncpy_s(msg, sizeof msg, m, MSG_SIZE);
+#else
+  strncpy(msg, m, MSG_SIZE);
+#endif
+  msg[MSG_SIZE] = 0;
+}
+
+
 Exception::Exception(const Exception& src) : std::exception() {
 #if defined(__STDC_LIB_EXT1__) || defined(__STDC_SECURE_LIB__)
       strcpy_s(msg, sizeof msg, src.msg);
@@ -337,5 +347,81 @@ IllegalStateException::IllegalStateException(const IllegalStateException& src)
 
 IllegalStateException& IllegalStateException::operator=(const IllegalStateException& src) {
       Exception::operator=(src);
+      return *this;
+}
+
+SocketException::SocketException(const LogString& msg) : IOException(msg) {
+}
+
+SocketException::SocketException(log4cxx_status_t status) : IOException(status) { 
+}
+
+SocketException::SocketException(const SocketException& src)
+     : IOException(src) {
+}
+
+SocketException& SocketException::operator=(const SocketException& src) {
+      IOException::operator=(src);
+      return *this;
+}
+
+ConnectException::ConnectException(log4cxx_status_t status) : SocketException(status) { 
+}
+
+ConnectException::ConnectException(const ConnectException& src)
+     : SocketException(src) {
+}
+
+ConnectException& ConnectException::operator=(const ConnectException& src) {
+      SocketException::operator=(src);
+      return *this;
+}
+
+ClosedChannelException::ClosedChannelException() : SocketException(LOG4CXX_STR("Attempt to write to closed socket")) { 
+}
+
+ClosedChannelException::ClosedChannelException(const ClosedChannelException& src)
+     : SocketException(src) {
+}
+
+ClosedChannelException& ClosedChannelException::operator=(const ClosedChannelException& src) {
+      SocketException::operator=(src);
+      return *this;
+}
+
+BindException::BindException(log4cxx_status_t status) : SocketException(status) { 
+}
+
+BindException::BindException(const BindException& src)
+     : SocketException(src) {
+}
+
+BindException& BindException::operator=(const BindException& src) {
+      SocketException::operator=(src);
+      return *this;
+}
+
+InterruptedIOException::InterruptedIOException(const LogString& msg) : IOException(msg) { 
+}
+
+InterruptedIOException::InterruptedIOException(const InterruptedIOException& src)
+     : IOException(src) {
+}
+
+InterruptedIOException& InterruptedIOException::operator=(const InterruptedIOException& src) {
+      IOException::operator=(src);
+      return *this;
+}
+
+SocketTimeoutException::SocketTimeoutException() 
+    : InterruptedIOException(LOG4CXX_STR("SocketTimeoutException")) { 
+}
+
+SocketTimeoutException::SocketTimeoutException(const SocketTimeoutException& src)
+     : InterruptedIOException(src) {
+}
+
+SocketTimeoutException& SocketTimeoutException::operator=(const SocketTimeoutException& src) {
+      InterruptedIOException::operator=(src);
       return *this;
 }

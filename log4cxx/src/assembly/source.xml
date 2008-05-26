@@ -30,6 +30,11 @@
                <include>autogen.sh</include>
                <include>configure.bat</include>
                <include>configure-aprutil.bat</include>
+               <include>configure</include>
+	       <include>install-sh</include>
+               <include>missing</include>
+               <include>ltmain.sh</include>
+	       <include>depcomp</include>
            </includes>
             <fileMode>0755</fileMode>
         </fileSet>
@@ -46,6 +51,10 @@
                <include>find_apu.m4</include>
                <include>liblog4cxx.pc.in</include>
 				<include>pom.xml</include>
+				<include>Makefile.in</include>
+                                <include>config.sub</include>
+                                <include>config.guess</include>
+                                <include>aclocal.m4</include>
                 <include>src/**</include>
             </includes>
             <excludes>
@@ -57,7 +66,6 @@
                 <exclude>src/examples/cpp/stream</exclude>
                 <exclude>src/examples/cpp/trivial</exclude>
                 <exclude>**/Makefile</exclude>
-                <exclude>**/Makefile.in</exclude>
                 <exclude>**/*.o</exclude>
                 <exclude>**/*.Po</exclude>
                 <exclude>**/*.lo</exclude>

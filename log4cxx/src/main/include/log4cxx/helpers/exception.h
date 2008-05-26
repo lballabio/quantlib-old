@@ -32,6 +32,7 @@ namespace log4cxx
                 class LOG4CXX_EXPORT Exception : public ::std::exception
                 {
                 public:
+                        Exception(const char* msg);
                         Exception(const LogString& msg);
                         Exception(const Exception& src);
                         Exception& operator=(const Exception& src);
@@ -206,6 +207,79 @@ namespace log4cxx
                       IllegalStateException& operator=(const IllegalStateException&);
                 };
 
+                /** Thrown to indicate that there is an error in the underlying
+                protocol, such as a TCP error.
+                */
+                class LOG4CXX_EXPORT SocketException : public IOException
+                {
+                public:
+                        SocketException(const LogString& msg);
+                        SocketException(log4cxx_status_t status);
+                        SocketException(const SocketException&);
+                        SocketException& operator=(const SocketException&);
+                };
+
+                /** Signals that an error occurred while attempting to connect a socket
+                to a remote address and port. Typically, the connection was refused
+                remotely (e.g., no process is listening on the remote address/port).
+                */
+                class LOG4CXX_EXPORT ConnectException : public SocketException
+                {
+                public:
+                    ConnectException(log4cxx_status_t status);
+                    ConnectException(const ConnectException& src);
+                   ConnectException& operator=(const ConnectException&);
+                };
+
+                class LOG4CXX_EXPORT ClosedChannelException : public SocketException
+                {
+                public:
+                    ClosedChannelException();
+                    ClosedChannelException(const ClosedChannelException& src);
+                    ClosedChannelException& operator=(const ClosedChannelException&);
+                };
+
+                /** Signals that an error occurred while attempting to bind a socket to
+                a local address and port. Typically, the port is in use, or the
+                requested local address could not be assigned.
+                */
+                class LOG4CXX_EXPORT BindException : public SocketException
+                {
+                public:
+                      BindException(log4cxx_status_t status);
+                      BindException(const BindException&);
+                      BindException& operator=(const BindException&);
+                };
+               
+                /** Signals that an I/O operation has been interrupted. An
+                InterruptedIOException is thrown to indicate that an input or output
+                transfer has been terminated because the thread performing it was
+                interrupted. The field bytesTransferred  indicates how many bytes were
+                successfully transferred before the interruption occurred.
+                */
+                class LOG4CXX_EXPORT InterruptedIOException : public IOException
+                {
+                public:
+                     InterruptedIOException(const LogString& msg);
+                     InterruptedIOException(const InterruptedIOException&);
+                     InterruptedIOException& operator=(const InterruptedIOException&);
+                };
+
+               
+                /** Signals that an I/O operation has been interrupted. An
+                InterruptedIOException is thrown to indicate that an input or output
+                transfer has been terminated because the thread performing it was
+                interrupted. The field bytesTransferred  indicates how many bytes were
+                successfully transferred before the interruption occurred.
+                */
+                class LOG4CXX_EXPORT SocketTimeoutException : public InterruptedIOException
+                {
+                public:
+                     SocketTimeoutException();
+                     SocketTimeoutException(const SocketTimeoutException&);
+                     SocketTimeoutException& operator=(const SocketTimeoutException&);
+                };
+                 
 
         }  // namespace helpers
 } // namespace log4cxx

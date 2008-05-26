@@ -39,44 +39,41 @@ Building Apache log4cxx with Apache Ant
   sibling to the log4cxx directory.
   
   *Install gzip and zip (used for compression by RollingFileAppender) and 
-   sed (used to normalize output files for comparison in unit tests). 
+   sed (used to normalize output files for comparison in unit tests).
+
+  * Install log4j 1.2.  Used in testing of SocketAppender. 
         
    Building and testing log4cxx on a Unix platform with packaged APR and APR-Util.  
 
 +----+
- sudo apt-get install libapr1.0-dev libaprutil1.0-dev \
-      ant ant-optional liblog4j1.2-java
- export CLASSPATH=~/cpptasks/cpptasks-1.0b5.jar: \
-      ~/ant-contrib/ant-contrib-1.0b3.jar
- cd apache-log4cxx-0.10.0
- ant
+$ export CLASSPATH=~/cpptasks/cpptasks-1.0b5.jar
+$ cd apache-log4cxx-0.10.0
+$ ant
 +----+  
 
    Building and testing log4cxx on a Unix platform with APR and APR-Util built from source.  
 
 +----+
- sudo apt-get install ant ant-optional liblog4j1.2-java
- export CLASSPATH=~/cpptasks/cpptasks-1.0b5.jar: \
-     ~/ant-contrib/ant-contrib-1.0b3.jar
- tar -xvzf apr-1.2.12.tar.gz
- mv apr-1.2.12 apr
- tar -xvzf apr-util-1.2.12.tar.gz
- mv apr-util-1.2.12 apr-util
- cd apache-log4cxx-0.10.0
- ant
+$ export CLASSPATH=~/cpptasks/cpptasks-1.0b5.jar
+$ tar -xvzf apr-1.2.12.tar.gz
+$ mv apr-1.2.12 apr
+$ tar -xvzf apr-util-1.2.12.tar.gz
+$ mv apr-util-1.2.12 apr-util
+$ cd apache-log4cxx-0.10.0
+$ ant
 +----+  
 
    Building and testing log4cxx on a Microsoft Windows with APR and APR-Util built from source.  
 
 +----+
- set PATH=\apache-ant-1.7.0\bin;%PATH%
- set CLASSPATH=\cpptasks\cpptasks-1.0b5.jar;\ant-contrib\ant-contrib-1.0b3.jar
- tar -xvzf apr-1.2.12.tar.gz
- rename apr-1.2.12 apr
- tar -xvzf apr-util-1.2.12.tar.gz
- rename apr-util-1.2.12 apr-util
- cd apache-log4cxx-0.10.0
- ant -Dfind=false
+set PATH=\apache-ant-1.7.0\bin;%PATH%
+set CLASSPATH=\cpptasks\cpptasks-1.0b5.jar
+tar -xvzf apr-1.2.12.tar.gz
+rename apr-1.2.12 apr
+tar -xvzf apr-util-1.2.12.tar.gz
+rename apr-util-1.2.12 apr-util
+cd apache-log4cxx-0.10.0
+ant -Dfind=false
 +----+  
 
 
@@ -147,6 +144,12 @@ Building Apache log4cxx with Apache Ant
 *-------------------+---------------------------------------------------------------------------------------------+
 | -Dprojects.dir    | Location for generated IDE projects.                                                        |
 *-------------------+---------------------------------------------------------------------------------------------+
+| -Dlib.type        | Library type to create, choice of shared (default), static.                                 |
+*-------------------+---------------------------------------------------------------------------------------------+
+| -Druntime         | Type of C runtime library to use, choice of dynamic (default), static.                      |
+*-------------------+---------------------------------------------------------------------------------------------+
+| -Doptimization    | Optimization: none (default), size, minimal, speed, full, aggressive, extreme, unsafe.      |
+*-------------------+---------------------------------------------------------------------------------------------+
 | -p                | Display available targets and quit.                                                         |
 *-------------------+---------------------------------------------------------------------------------------------+
 
@@ -154,6 +157,8 @@ Building Apache log4cxx with Apache Ant
    that have different licenses.
    You should review the corresponding licenses and understand
    the implications before redistribution.
+
+   Combining -Dlib.type=shared and -Druntime=static is unsafe.
    
    Properties may also be placed in a build.properties file in the log4cxx directory.
 
@@ -180,8 +185,10 @@ Building Apache log4cxx with Apache Ant
   The Win32 path to the APR libraries need to be provided (CYGWIN_HOME/lib) if compiling against an installed APR and APR-Util.
   
 +-----+
-cd apache-log4cxx-0.10.0
-ant -Dos.family=cygwin -Dwith-apr=/cygwin/lib -Dwith-apr-util=/cygwin/lib \
+$ cd apache-log4cxx-0.10.0
+$ ant -Dos.family=cygwin \
+   -Dwith-apr=/cygwin/lib \
+   -Dwith-apr-util=/cygwin/lib \
    -Denable-wchar_t=0
 +-----+  
     
@@ -189,21 +196,30 @@ ant -Dos.family=cygwin -Dwith-apr=/cygwin/lib -Dwith-apr-util=/cygwin/lib \
   *** MinGW:
 
 +----+
-cd apache-log4cxx-0.10.0
-path c:\mingw\bin;%PATH%
-ant -Dcompiler=gcc -Dfind=false build-all
-cd src\test\resources
-set TOTO=wonderful
-set key1=value1
-set key2=value2
-..\..\..\target\debug\shared\testsuite -v 
-..\..\..\target\debug\shared\trivial
-..\..\..\target\debug\shared\stream 
+$ cd apache-log4cxx-0.10.0
+$ path c:\mingw\bin;%PATH%
+$ ant -Dcompiler=gcc -Dfind=false build-all
+$ cd src\test\resources
+$ set TOTO=wonderful
+$ set key1=value1
+$ set key2=value2
+$ ..\..\..\target\debug\shared\testsuite -v 
+$ ..\..\..\target\debug\shared\trivial
+$ ..\..\..\target\debug\shared\stream 
 +----+
 
    Running "ant check" was observed to fail with unexpected exceptions
    in streamtestcase and datetimedateformattestcase.
    See {{{http://issues.apache.org/jira/browse/LOGCXX-244}LOGCXX-244}}.
+
+  ** Debian:
+  
+  Apache APR, APR-Util, Ant and log4j and zip may be installed using:
+
++----+
+$ sudo apt-get install libapr1.0-dev libaprutil1.0-dev \
+      ant ant-optional liblog4j1.2-java zip
++----+
 
 
   ** Mac OS/X:
@@ -214,6 +230,6 @@ set key2=value2
   by installing Doxygen.app and then setting the path like:
   
 +---+
-setenv PATH /Applications/Doxygen.app/Contents/Resources:$PATH
+$ setenv PATH /Applications/Doxygen.app/Contents/Resources:$PATH
 +---+
   

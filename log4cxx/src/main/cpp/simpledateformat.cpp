@@ -43,8 +43,13 @@ using namespace std;
 #define USE_FACET(locale, type) _USE(locale, type)
 #define PUT_FACET(facet, os, time, spec) facet.put(os, os, time, spec)
 #else
+#if defined(_RWSTD_NO_TEMPLATE_ON_RETURN_TYPE)
+#define HAS_FACET(locale, type) std::has_facet(locale, (type*) 0)
+#define USE_FACET(locale, type) std::use_facet(locale, (type*) 0)
+#else
 #define HAS_FACET(locale, type) std::has_facet < type >(locale)
 #define USE_FACET(locale, type) std::use_facet < type >(locale)
+#endif
 #define PUT_FACET(facet, os, time, spec) facet.put(os, os, os.fill(), time, spec)
 #endif
 

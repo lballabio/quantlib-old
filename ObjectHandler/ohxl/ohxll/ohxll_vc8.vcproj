@@ -47,7 +47,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..;..\..\..\log4cxx\src\main\include"
+				AdditionalIncludeDirectories="..\..;..\..\..\log4cxx\src\main\include\log4cxx\win32;..\..\..\log4cxx\src\main\include"
 				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;LOG4CXX_STATIC"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -147,7 +147,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..;..\..\..\log4cxx\src\main\include"
+				AdditionalIncludeDirectories="..\..;..\..\..\log4cxx\src\main\include\log4cxx\win32;..\..\..\log4cxx\src\main\include"
 				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_EXPORTS;WIN32;LOG4CXX_STATIC"
 				StringPooling="true"
 				RuntimeLibrary="2"

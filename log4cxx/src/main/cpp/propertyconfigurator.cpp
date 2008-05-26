@@ -99,7 +99,7 @@ void PropertyConfigurator::doConfigure(const File& configFileName,
        try {
           InputStreamPtr inputStream = new FileInputStream(configFileName);
           props.load(inputStream);
-       } catch(const IOException&) {
+       } catch(const IOException& ie) {
           LogLog::error(((LogString) LOG4CXX_STR("Could not read configuration file ["))
                         + configFileName.getPath() + LOG4CXX_STR("]."));
           return;

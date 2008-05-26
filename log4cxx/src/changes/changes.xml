@@ -22,7 +22,7 @@
 <title>Apache log4cxx</title>
 </properties>
 <body>
-<release version="0.10.0" date="2008-02-29" description="First Apache release">
+<release version="0.10.0" date="2008-04-03" description="First Apache release">
 <action issue="LOGCXX-2">logger.h includes config.h</action>
 <action issue="LOGCXX-3">Missing #else</action>
 <action issue="LOGCXX-4">initialization not working on many OS's</action>
@@ -77,7 +77,7 @@
 <action issue="LOGCXX-58">ImmediateFlush'd FileAppenders extremely slow on Windows</action>
 <action issue="LOGCXX-59">Implement encoding support for Writer appender</action>
 <action issue="LOGCXX-60">XML layout can be mismatched with document encoding</action>
-<action issue="LOGCXX-62">log4cxx 0.9.8 release</action>
+<action issue="LOGCXX-62">log4cxx 0.10.0 release</action>
 <action issue="LOGCXX-63">Platform appropriate line-feed convention</action>
 <action issue="LOGCXX-64">Migrate to APR network IO</action>
 <action issue="LOGCXX-66">SyslogAppender append method currently stubbed out</action>
@@ -216,7 +216,17 @@
 <action issue="LOGCXX-241">Non-ascii named files have names mangled</action>
 <action issue="LOGCXX-242">Eliminate log4cxx proxies for APR types</action>
 <action issue="LOGCXX-243">Problem Compile in Doxy</action>
+<action issue="LOGCXX-246">Config refresh hangs a client application that uses TelnetAppender</action>
 <action issue="LOGCXX-247">MSVC project has wrong additional include directories</action>
+<action issue="LOGCXX-248">ODBCAppender has unicode issues</action>
+<action issue="LOGCXX-251">NDC::cloneStack and NDC::inherit missing in 0.10.0 RC2</action>
+<action issue="LOGCXX-252">Add documentation for use of operator&lt;&lt; in logging requests</action>
+<action issue="LOGCXX-253">Transcoder compilation error with utf-8 charset</action>
+<action issue="LOGCXX-254">Add build option for static C RTL</action>
+<action issue="LOGCXX-256">SocketHubAppender fails after accepting connection</action>
+<action issue="LOGCXX-257">ServerSocket::accept hangs on Unix</action>
+<action issue="LOGCXX-258">unable to build from make dist package due to missing doxygen file</action>
+<action issue="LOGCXX-259">Several appenders fail to compile in Visual Studio 2008</action>
 </release>
 <release version="0.9.7" date="2004-05-10">
 <action type="fix">Fixed examples source code in the "Short introduction to log4cxx".</action>

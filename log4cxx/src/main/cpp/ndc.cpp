@@ -58,6 +58,26 @@ void NDC::clear()
     }
 }
 
+NDC::Stack* NDC::cloneStack()
+{
+    ThreadSpecificData* data = ThreadSpecificData::getCurrentData();
+    if (data != 0) {
+        Stack& stack = data->getStack();
+        if (!stack.empty()) {
+            return new Stack(stack);
+        }
+    }
+    return new Stack();
+}
+
+void NDC::inherit(NDC::Stack * stack) {
+    if (stack != NULL) {
+        ThreadSpecificData::inherit(*stack);
+        delete stack;
+    }
+}
+
+
 bool NDC::get(LogString& dest)
 {
     ThreadSpecificData* data = ThreadSpecificData::getCurrentData();

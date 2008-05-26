@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-EXTRA_DIST = Doxyfile mainpage.dox
+EXTRA_DIST = Doxyfile mainpage.dox license_notice_footer.txt
 
 # DOC is defined if installer requests doc generation.
 

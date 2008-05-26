@@ -147,6 +147,7 @@ and the C++ compilation tasks from http://ant-contrib.sourceforge.net.
         outfile="${executable.dir}/expat"
         subsystem="console"
         multithreaded="true"
+        runtime="${runtime}"        
         outtype="static"
         objdir="${executable.dir}/apr-util-ofiles"
         warnings="none"
@@ -181,13 +182,14 @@ and the C++ compilation tasks from http://ant-contrib.sourceforge.net.
         outfile="${executable.dir}/aprutil-1${lib-suffix}"
         subsystem="console"
         multithreaded="true"
+        runtime="${runtime}"
         outtype="${lib.type}"
         objdir="${executable.dir}/apr-util-ofiles"
         warnings="none"
         debug="${debug}"
         projectsOnly="${projectsOnly}">
         <fileset dir="${src.dir}" includes="**/*.c"
-            excludes="test/*.c ldap/*.c xml/expat/lib/*"/>
+            excludes="test/*.c *.c ldap/*.c xml/expat/lib/*"/>
         <fileset dir="${src.dir}/xml/expat/lib"
             includes="xmlparse.c xmlrole.c xmltok.c"/>
         <fileset dir="${src.dir}/xml/expat/lib" includes="*.h"/>
@@ -233,6 +235,7 @@ and the C++ compilation tasks from http://ant-contrib.sourceforge.net.
         outfile="${executable.dir}/${test}"
         subsystem="console"
         multithreaded="true"
+        runtime="${runtime}"
         outtype="executable"
         objdir="${executable.dir}/apr-util-test-ofiles"
         debug="${debug}"

@@ -22,14 +22,14 @@ Building Apache log4cxx with autotools
 
 * Quick start:
 
+  Install or build apr 1.x, apr-util 1.x, gzip and zip.
+
 +------------+
- sudo apt-get install libapr1.0-dev libaprutil1.0-dev
- cd apache-log4cxx-0.10.0
- ./autogen.sh
- ./configure
- make
- make check
- sudo make install
+$ cd apache-log4cxx-0.10.0
+$ ./configure
+$ make
+$ make check
+$ sudo make install
 +------------+
 
 
@@ -68,6 +68,27 @@ Building Apache log4cxx with autotools
 ** Mac OS/X:
   
   APR and APR-Util are provided by the platform in Mac OS/X 10.5 and iODBC in 10.4.
+
+** Debian:
+
+  APR, APR-Util and zip may be installed by:
+
++----+
+$ sudo apt-get install libapr1.0-dev libaprutil1.0-dev zip
++----+
+
+** FreeBSD:
+
+  APR, APR-Util and zip may be installed from the ports collection by:
+
++----+
+# cd /usr/ports/archivers/zip
+# make
+# make install
+# cd /usr/ports/devel/apr
+# make
+# make install
++----+
   
 ** Cygwin:
   
@@ -87,26 +108,27 @@ Building Apache log4cxx with autotools
    sequence worked with MSYS (with Python on Path):
 
 +----+
-cd expat-2.0.1
-./configure
-make install
-cd ..
-svn co https://svn.apache.org/repos/asf/apr/apr/trunk apr
-cd apr
-./buildconf.sh
-./configure 
-make install
-cd ..
-svn co https://svn.apache.org/repos/asf/apr/apr-util/trunk apr-util
-cd apr-util
-./buildconf.sh
-./configure --with-apr=/usr/local --with-expat=/usr/local
-make install
-cd ../apache-log4cxx-0.10.0
-./autogen.sh
-./configure --with-apr=/usr/local \
+$ cd expat-2.0.1
+$ ./configure
+$ make install
+$ cd ..
+$ svn co https://svn.apache.org/repos/asf/apr/apr/trunk apr
+$ cd apr
+$ ./buildconf.sh
+$ ./configure 
+$ make install
+$ cd ..
+$ svn co \
+   https://svn.apache.org/repos/asf/apr/apr-util/trunk \
+   apr-util
+$ cd apr-util
+$ ./buildconf.sh
+$ ./configure --with-apr=/usr/local --with-expat=/usr/local
+$ make install
+$ cd ../apache-log4cxx-0.10.0
+$ ./configure --with-apr=/usr/local \
    --with-apr-util=/usr/local --with-logchar=wchar_t
-make install
+$ make install
 +----+
 
    Running "make check" was observed to fail with unexpected exceptions

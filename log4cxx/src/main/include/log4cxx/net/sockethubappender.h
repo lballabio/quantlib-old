@@ -182,7 +182,7 @@ namespace log4cxx
                         void startServer();
 
                         helpers::Thread thread;
-                        static void* LOG4CXX_THREAD_FUNC monitor(helpers::log4cxx_thread_t* thread, void* data);
+                        static void* LOG4CXX_THREAD_FUNC monitor(apr_thread_t* thread, void* data);
 
                 }; // class SocketHubAppender
                 LOG4CXX_PTR_DEF(SocketHubAppender);

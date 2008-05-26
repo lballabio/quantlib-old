@@ -16,7 +16,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\build\vc80\$(ConfigurationName)\aprutil\"
-			IntermediateDirectory=".\build\vc80\$(ConfigurationName)\aprutil\"
+			IntermediateDirectory=".\build\vc80\$(ConfigurationName)\aprutil\aprutil_obj\"
 			ConfigurationType="4"
 			CharacterSet="2"
 			>
@@ -38,7 +38,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr-util\include;..\src\apr-util\include\private;..\src\apr-util\xml\expat\lib;..\src\apr-util\xml\expat"
+				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include\private\win32&quot;;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private&quot;;&quot;..\src\apr-util\xml\expat\lib&quot;;&quot;..\src\apr-util\xml\expat&quot;"
 				PreprocessorDefinitions="_DEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
@@ -106,7 +106,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr-util\include;..\src\apr-util\include\private;..\src\apr-util\xml\expat\lib;..\src\apr-util\xml\expat"
+				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include\private\win32&quot;;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private&quot;;&quot;..\src\apr-util\xml\expat\lib&quot;;&quot;..\src\apr-util\xml\expat&quot;"
 				PreprocessorDefinitions="NDEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32"
 				StringPooling="true"
 				MinimalRebuild="false"
@@ -115,6 +115,7 @@
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc80\$(ConfigurationName)\aprutil\aprutil.pch"
+				AssemblerListingLocation=".\build\vc80\$(ConfigurationName)\aprutil\aprutil_obj\"
 				ObjectFile=".\build\vc80\$(ConfigurationName)\aprutil\aprutil_obj\"
 				ProgramDataBaseFileName=".\build\vc80\$(ConfigurationName)\aprutil\aprutil_obj\vc80.pdb"
 				WarningLevel="3"
@@ -174,7 +175,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr-util\include;..\src\apr-util\include\private;..\src\apr-util\xml\expat\lib;..\src\apr-util\xml\expat"
+				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include\private\win32&quot;;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private&quot;;&quot;..\src\apr-util\xml\expat\lib&quot;;&quot;..\src\apr-util\xml\expat&quot;"
 				PreprocessorDefinitions="_DEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -241,7 +242,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr-util\include;..\src\apr-util\include\private;..\src\apr-util\xml\expat\lib;..\src\apr-util\xml\expat"
+				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include\private\win32&quot;;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private&quot;;&quot;..\src\apr-util\xml\expat\lib&quot;;&quot;..\src\apr-util\xml\expat&quot;"
 				PreprocessorDefinitions="NDEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32"
 				StringPooling="false"
 				MinimalRebuild="true"
@@ -250,6 +251,7 @@
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc80\$(ConfigurationName)\aprutil\aprutil.pch"
+				AssemblerListingLocation=".\build\vc80\$(ConfigurationName)\aprutil\aprutil_obj\"
 				ObjectFile=".\build\vc80\$(ConfigurationName)\aprutil\aprutil_obj\"
 				ProgramDataBaseFileName=".\build\vc80\$(ConfigurationName)\aprutil\aprutil_obj\vc80.pdb"
 				WarningLevel="3"
@@ -465,7 +467,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr-util\xml\expat\lib\xmlparse.c"
+				RelativePath="..\src\apr-util\include\private\win32\xmlparse.c"
 				>
 			</File>
 			<File
@@ -522,7 +524,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr-util\include\apr_ldap.h"
+				RelativePath="..\src\apr-util\include\private\win32\apr_ldap.h"
 				>
 			</File>
 			<File
@@ -594,15 +596,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr-util\include\apu.h"
+				RelativePath="..\src\apr-util\include\private\win32\apu.h"
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr-util\include\private\apu_config.h"
+				RelativePath="..\src\apr-util\include\private\win32\apu_config.h"
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr-util\include\private\apu_select_dbm.h"
+				RelativePath="..\src\apr-util\include\private\win32\apu_select_dbm.h"
 				>
 			</File>
 			<File
@@ -610,7 +612,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr-util\include\apu_want.h"
+				RelativePath="..\src\apr-util\include\private\win32\apu_want.h"
 				>
 			</File>
 			<File
@@ -626,7 +628,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\apr-util\xml\expat\lib\expat.h"
+				RelativePath="..\src\apr-util\include\private\win32\expat.h"
 				>
 			</File>
 			<File

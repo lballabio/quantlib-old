@@ -18,12 +18,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\src\main\include;..\src\apr\include;..\src\apr-util\include"
+				AdditionalIncludeDirectories="..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private\win32&quot;"
 				PreprocessorDefinitions="_DEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
 				MinimalRebuild="FALSE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx.pch"
 				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ObjectFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj\vc70.pdb"
@@ -62,7 +63,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				AdditionalIncludeDirectories="..\src\main\include;..\src\apr\include;..\src\apr-util\include"
+				AdditionalIncludeDirectories="..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private\win32&quot;"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
 				StringPooling="TRUE"
 				MinimalRebuild="FALSE"
@@ -70,6 +71,7 @@
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx.pch"
 				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ObjectFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj\vc70.pdb"
@@ -108,12 +110,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\src\main\include;..\src\apr\include;..\src\apr-util\include"
+				AdditionalIncludeDirectories="..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private\win32&quot;"
 				PreprocessorDefinitions="_DEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
 				MinimalRebuild="FALSE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx.pch"
 				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ObjectFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj\vc70.pdb"
@@ -152,7 +155,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				AdditionalIncludeDirectories="..\src\main\include;..\src\apr\include;..\src\apr-util\include"
+				AdditionalIncludeDirectories="..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private\win32&quot;"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
 				StringPooling="TRUE"
 				MinimalRebuild="FALSE"
@@ -160,6 +163,7 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx.pch"
 				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ObjectFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj\vc70.pdb"
@@ -198,12 +202,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\src\main\include;..\src\apr\include;..\src\apr-util\include"
+				AdditionalIncludeDirectories="..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private\win32&quot;"
 				PreprocessorDefinitions="_DEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
 				MinimalRebuild="FALSE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx.pch"
 				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ObjectFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj\vc70.pdb"
@@ -242,7 +247,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				AdditionalIncludeDirectories="..\src\main\include;..\src\apr\include;..\src\apr-util\include"
+				AdditionalIncludeDirectories="..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private\win32&quot;"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
 				StringPooling="TRUE"
 				MinimalRebuild="FALSE"
@@ -250,6 +255,7 @@
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx.pch"
 				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ObjectFile=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj/"
 				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj\vc70.pdb"
@@ -647,9 +653,6 @@
 				RelativePath="..\src\main\cpp\sockethubappender.cpp">
 			</File>
 			<File
-				RelativePath="..\src\main\cpp\socketimpl.cpp">
-			</File>
-			<File
 				RelativePath="..\src\main\cpp\socketoutputstream.cpp">
 			</File>
 			<File
@@ -969,10 +972,10 @@
 				RelativePath="..\src\main\include\log4cxx\filter\locationinfofilter.h">
 			</File>
 			<File
-				RelativePath="..\src\main\include\log4cxx\log4cxx.h">
+				RelativePath="..\src\main\include\log4cxx\win32\log4cxx\log4cxx.h">
 			</File>
 			<File
-				RelativePath="..\src\main\include\log4cxx\private\log4cxx_private.h">
+				RelativePath="..\src\main\include\log4cxx\win32\log4cxx\private\log4cxx_private.h">
 			</File>
 			<File
 				RelativePath="..\src\main\include\log4cxx\logger.h">
@@ -1168,9 +1171,6 @@
 			</File>
 			<File
 				RelativePath="..\src\main\include\log4cxx\net\sockethubappender.h">
-			</File>
-			<File
-				RelativePath="..\src\main\include\log4cxx\helpers\socketimpl.h">
 			</File>
 			<File
 				RelativePath="..\src\main\include\log4cxx\helpers\socketoutputstream.h">

@@ -50,7 +50,6 @@ and the C++ compilation tasks from http://ant-contrib.sourceforge.net.
 <property name="include.dir" location="${src.dir}/include"/>
 <property name="test.dir" location="${src.dir}/test"/>
 <property name="target.dir" location="${basedir}/target"/>
-<property name="lib.type" value="shared"/>
 <property name="lib.name" value="apr-1"/>
 <property name="lib.prefix" value=""/>
 
@@ -110,6 +109,7 @@ and the C++ compilation tasks from http://ant-contrib.sourceforge.net.
         outfile="${executable.dir}/${lib.prefix}${lib.name}${lib.suffix}"
         subsystem="console"
         multithreaded="true"
+        runtime="${runtime}"
         outtype="${lib.type}"
         objdir="${executable.dir}/apr-ofiles"
         outputfileproperty="apr-1.dll"
@@ -166,6 +166,7 @@ and the C++ compilation tasks from http://ant-contrib.sourceforge.net.
         outfile="${executable.dir}/${test}"
         subsystem="console"
         multithreaded="true"
+        runtime="${runtime}"
         outtype="executable"
         objdir="${executable.dir}/apr-test-ofiles"
         debug="${debug}"
@@ -305,6 +306,7 @@ and the C++ compilation tasks from http://ant-contrib.sourceforge.net.
         outfile="${executable.dir}/.libs/mod_test"
         subsystem="console"
         multithreaded="true"
+        runtime="${runtime}"
         outtype="shared"
         objdir="${executable.dir}/test-ofiles"
         outputfileproperty="libmod_test.so"
@@ -340,6 +342,7 @@ and the C++ compilation tasks from http://ant-contrib.sourceforge.net.
         outfile="${executable.dir}/testall"
         subsystem="console"
         multithreaded="true"
+        runtime="${runtime}"        
         outtype="executable"
         objdir="${executable.dir}/test-ofiles"
         debug="${debug}"

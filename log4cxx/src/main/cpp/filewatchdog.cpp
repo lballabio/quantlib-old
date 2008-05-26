@@ -38,7 +38,8 @@ warnedAlready(false), interrupted(0), thread()
 }
 
 FileWatchdog::~FileWatchdog() {
-   thread.stop();
+   apr_atomic_set32(&interrupted, 0xFFFF);
+   thread.join();
 }
 
 void FileWatchdog::checkAndConfigure()
@@ -66,15 +67,18 @@ void FileWatchdog::checkAndConfigure()
    }
 }
 
-void* APR_THREAD_FUNC FileWatchdog::run(log4cxx_thread_t* /* thread */, void* data) {
+void* APR_THREAD_FUNC FileWatchdog::run(apr_thread_t* /* thread */, void* data) {
    FileWatchdog* pThis = (FileWatchdog*) data;
 
    unsigned int interrupted = apr_atomic_read32(&pThis->interrupted);
     while(!interrupted)
    {
       apr_sleep(APR_INT64_C(1000) * pThis->delay);
-      pThis->checkAndConfigure();
       interrupted = apr_atomic_read32(&pThis->interrupted);
+      if (!interrupted) {
+        pThis->checkAndConfigure();
+        interrupted = apr_atomic_read32(&pThis->interrupted);
+      }
     }
    return NULL;
 }

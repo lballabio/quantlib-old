@@ -132,14 +132,16 @@ below.</p>
    }
 //
 //   Use these macros instead of calling Logger methods directly.
-//   Macros will accept char and wchar_t pointers and strings.
+//   Macros will handle char or wchar_t pointers or strings
+//   or most right-hand side expressions of an 
+//   std::basic_string::operator&lt;&lt;.
 //   
-#define LOG4CXX_TRACE(logger, msg) ...   
-#define LOG4CXX_DEBUG(logger, msg) ...   
-#define LOG4CXX_INFO(logger, msg) ...   
-#define LOG4CXX_WARN(logger, msg) ...   
-#define LOG4CXX_ERROR(logger, msg) ...   
-#define LOG4CXX_FATAL(logger, msg) ...   
+#define LOG4CXX_TRACE(logger, expression) ...   
+#define LOG4CXX_DEBUG(logger, expression) ...   
+#define LOG4CXX_INFO(logger, expression) ...   
+#define LOG4CXX_WARN(logger, expression) ...   
+#define LOG4CXX_ERROR(logger, expression) ...   
+#define LOG4CXX_FATAL(logger, expression) ...   
 </pre>
 </td>
 </tr>
@@ -239,12 +241,26 @@ is no need for level inheritence.</p>
 and are assigned the levels <code>Proot</code> and <code>Px</code>
 respectively. The loggers <code>X.Y</code> and <code>X.Y.Z</code>
 inherits their level value from their nearest parent <code>X</code>
-having an assigned level..</p>
+having an assigned level.</p>
 
 
 <p>Logging requests are made by invoking a method of
 a logger instance, preferrably through the use of LOG4CXX_INFO or similar
-macros.  Each request specifies the level of the logging request.</p>
+macros which support short-circuiting if the threshold is not satisfied
+and use of the insertion operator (&lt;&lt;) in the message parameter.</p>
+
+<p><table bgcolor="CCCCCC"><tr><td><pre>
+   log4cxx::LoggerPtr logger(log4cxx::Logger::getLogger(<strong>"com.foo"</strong>));
+   const char* region = "World";
+   LOG4CXX_INFO(logger, "Simple message text.");
+   LOG4CXX_INFO(logger, "Hello, " &lt;&lt; region);
+   LOG4CXX_DEBUG(logger, L"Iteration " &lt;&lt; i);
+   LOG4CXX_DEBUG(logger, "e^10 = " &lt;&lt; std::scientific &lt;&lt; exp(10.0));
+   //
+   //  Use a wchar_t first operand to force use of wchar_t based stream.    
+   //
+   LOG4CXX_WARN(logger, L"" &lt;&lt; i &lt;&lt; L" is the number of the iteration.");
+</pre></td></tr></table></p>
 
 <p>A logging request is said to be <em>enabled</em> if its level is
 higher than or equal to the level of its logger. Otherwise, the

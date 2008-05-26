@@ -366,6 +366,7 @@ Command line options:
         <property name="lib.prefix" value="${apr.lib.prefix}"/>
         <property name="lib.suffix" value="${apr.lib.suffix}"/>
         <property name="compiler" value="${compiler}"/>
+        <property name="runtime" value="${runtime}"/>
         <property name="lib.type" value="${apr.lib.type}"/>
         <property name="project.type" value="${project.type}"/>
         <property name="projects.dir" value="${projects.dir}"/>
@@ -397,6 +398,7 @@ Command line options:
         <property name="lib.prefix" value="${apr-util.lib.prefix}"/>
         <property name="lib.suffix" value="${apr-util.lib.suffix}"/>
         <property name="compiler" value="${compiler}"/>
+        <property name="runtime" value="${runtime}"/>
         <property name="apr.include.dir" value="${apr.include.dir}"/>
         <property name="apr.lib.dir" value="${apr.lib.dir}"/>
         <property name="apr.lib.type" value="${apr.lib.type}"/>
@@ -433,6 +435,7 @@ Command line options:
         <property name="lib.prefix" value="${esmtp.lib.prefix}"/>
         <property name="lib.suffix" value="${esmtp.lib.suffix}"/>
         <property name="compiler" value="${esmtp.compiler}"/>
+        <property name="runtime" value="${runtime}"/>
         <property name="lib.type" value="${esmtp.lib.type}"/>
         <property name="project.type" value="${project.type}"/>
         <property name="projects.dir" value="${projects.dir}"/>
@@ -538,6 +541,7 @@ Command line options:
                 outputfileproperty="log4cxx.lib.file"
                 subsystem="console"
                 multithreaded="true"
+                runtime="${runtime}"
                 outtype="${lib.type}"
                 objdir="${log4cxx.lib.dir}/log4cxx_obj"
                 debug="${debug}"
@@ -595,6 +599,7 @@ Command line options:
                 outfile="${log4cxx.lib.dir}/${example.name}"
                 subsystem="console"
                 multithreaded="true"
+                runtime="${runtime}"
                 outtype="executable"
                 objdir="${log4cxx.lib.dir}/${example.name}_obj"
                 debug="${debug}"
@@ -691,6 +696,7 @@ Command line options:
                 outfile="${log4cxx.lib.dir}/testsuite"
                 subsystem="console"
                 multithreaded="true"
+                runtime="${runtime}"
                 outputfileproperty="testsuite.exe"
                 outtype="executable"
                 objdir="${log4cxx.lib.dir}/testsuite_obj"
@@ -739,6 +745,7 @@ Command line options:
                 outfile="${executable.dir}/static/testsuite-standalone"
                 subsystem="console"
                 multithreaded="true"
+                runtime="${runtime}"
                 outputfileproperty="testsuite-standalone.exe"
                 outtype="executable"
                 objdir="${executable.dir}/static/testsuite-standalone_obj"
@@ -1234,7 +1241,11 @@ body {</replacevalue>
       </exec>
    </target>
 
-
+   <target name="autogen" depends="init" if="is-unix">
+	<exec executable="sh">
+		<arg value="autogen.sh"/>
+	</exec>
+   </target>
 
 
 </project>

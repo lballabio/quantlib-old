@@ -23,6 +23,7 @@
 #include <apr_general.h>
 #include <algorithm>
 #include <stdlib.h>
+#include <locale.h>
 
 void initialize() {
     setlocale(LC_CTYPE, "");

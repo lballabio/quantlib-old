@@ -167,7 +167,7 @@ namespace log4cxx
                         */
 
                    helpers::Thread thread;
-                   static void* LOG4CXX_THREAD_FUNC monitor(helpers::log4cxx_thread_t* thread, void* data);
+                   static void* LOG4CXX_THREAD_FUNC monitor(apr_thread_t* thread, void* data);
                         SocketAppenderSkeleton(const SocketAppenderSkeleton&);
                         SocketAppenderSkeleton& operator=(const SocketAppenderSkeleton&);
 

@@ -72,9 +72,8 @@ void Thread::run(Runnable start, void* data) {
         
         //   create LaunchPackage on the thread's memory pool
         LaunchPackage* package = new(p) LaunchPackage(this, start, data);
-        apr_thread_t** pthread = (apr_thread_t**) &thread;
-        stat = apr_thread_create(pthread, attrs,
-            (apr_thread_start_t) launcher, package, p.getAPRPool());
+        stat = apr_thread_create(&thread, attrs,
+            launcher, package, p.getAPRPool());
         if (stat != APR_SUCCESS) {
                 throw ThreadException(stat);
         }
@@ -93,34 +92,23 @@ Thread::LaunchStatus::~LaunchStatus() {
 }
     
 #if APR_HAS_THREADS
-void* LOG4CXX_THREAD_FUNC Thread::launcher(log4cxx_thread_t* thread, void* data) {
+void* LOG4CXX_THREAD_FUNC Thread::launcher(apr_thread_t* thread, void* data) {
     LaunchPackage* package = (LaunchPackage*) data;
     ThreadLocal& tls = getThreadLocal();
     tls.set(package->getThread());
     LaunchStatus alive(&package->getThread()->alive);
     void* retval = (package->getRunnable())(thread, package->getData());
-   apr_thread_exit((apr_thread_t*) thread, 0);
-   return retval;
+    apr_thread_exit(thread, 0);
+    return retval;
 }
 #endif
 
-void Thread::stop() {
-#if APR_HAS_THREADS
-    if (thread != NULL) {
-                apr_status_t stat = apr_thread_exit((apr_thread_t*) thread, 0);
-                thread = NULL;
-                if (stat != APR_SUCCESS) {
-                        throw ThreadException(stat);
-                }
-        }
-#endif
-}
 
 void Thread::join() {
 #if APR_HAS_THREADS
         if (thread != NULL) {
                 apr_status_t startStat;
-                apr_status_t stat = apr_thread_join(&startStat, (apr_thread_t*) thread);
+                apr_status_t stat = apr_thread_join(&startStat, thread);
                 thread = NULL;
                 if (stat != APR_SUCCESS) {
                         throw ThreadException(stat);

@@ -135,7 +135,7 @@ void SocketAppenderSkeleton::fireConnector()
         }
 }
 
-void* LOG4CXX_THREAD_FUNC SocketAppenderSkeleton::monitor(log4cxx_thread_t* /* thread */, void* data) {
+void* LOG4CXX_THREAD_FUNC SocketAppenderSkeleton::monitor(apr_thread_t* /* thread */, void* data) {
         SocketAppenderSkeleton* socketAppender = (SocketAppenderSkeleton*) data;
         SocketPtr socket;
         bool isClosed = socketAppender->closed;

@@ -60,6 +60,7 @@ void TelnetAppender::activateOptions(Pool& /* p */)
 {
         if (serverSocket == NULL) {
                 serverSocket = new ServerSocket(port);
+                serverSocket->setSoTimeout(1000);                
         }
         sh.run(acceptConnections, this);
 }
@@ -98,7 +99,6 @@ void TelnetAppender::close()
         synchronized sync(mutex);
         if (closed) return;
         closed = true;
-        sh.stop();
 
         SocketPtr nullSocket;
         for(ConnectionList::iterator iter = connections.begin();
@@ -116,6 +116,11 @@ void TelnetAppender::close()
                 } catch(Exception&) {
                 }
         }
+        
+        try {
+            sh.join();
+        } catch(Exception& ) {
+        }
 
         activeConnections = 0;
 }
@@ -127,8 +132,9 @@ void TelnetAppender::write(ByteBuffer& buf) {
              iter++) {
              if (*iter != 0) {
                 try {
-                    (*iter)->write(buf.current(), buf.remaining());
-                } catch(Exception&) {
+                    ByteBuffer b(buf.current(), buf.remaining());
+                    (*iter)->write(b);
+                } catch(Exception& ) {
                     // The client has closed the connection, remove it from our list:
                     *iter = 0;
                     activeConnections--;
@@ -147,7 +153,7 @@ void TelnetAppender::writeStatus(const SocketPtr& socket, const LogString& msg, 
         while(msgIter != msg.end()) {
             encoder->encode(msg, msgIter, buf);
             buf.flip();
-            socket->write(buf.current(), buf.remaining());
+            socket->write(buf);
             buf.clear();
         }
 }
@@ -184,7 +190,7 @@ void TelnetAppender::append(const spi::LoggingEventPtr& event, Pool& p)
         }
 }
 
-void* APR_THREAD_FUNC TelnetAppender::acceptConnections(log4cxx_thread_t* /* thread */, void* data) {
+void* APR_THREAD_FUNC TelnetAppender::acceptConnections(apr_thread_t* /* thread */, void* data) {
     TelnetAppender* pThis = (TelnetAppender*) data;
 
     // main loop; is left when This->closed is != 0 after an accept()
@@ -227,8 +233,16 @@ void* APR_THREAD_FUNC TelnetAppender::acceptConnections(log4cxx_thread_t* /* thr
                         oss += LOG4CXX_STR(" active connections)\r\n\r\n");
                         pThis->writeStatus(newClient, oss, p);
                 }
+        } catch(InterruptedIOException &) {
+                if (pThis->closed) {
+                    return NULL;
+                }
         } catch(Exception& e) {
-                LogLog::error(LOG4CXX_STR("Encountered error while in SocketHandler loop."), e);
+                if (!pThis->closed) {
+                    LogLog::error(LOG4CXX_STR("Encountered error while in SocketHandler loop."), e);
+                } else {
+                    return NULL;
+                }
         }
     }
 

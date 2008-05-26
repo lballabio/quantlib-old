@@ -24,7 +24,6 @@
 #include <log4cxx/helpers/inetaddress.h>
 #include <log4cxx/helpers/datagramsocket.h>
 #include <log4cxx/helpers/datagrampacket.h>
-#include <log4cxx/helpers/socketimpl.h>
 #include <log4cxx/helpers/transcoder.h>
 
 #define SYSLOG_PORT 514

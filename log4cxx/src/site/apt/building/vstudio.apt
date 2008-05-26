@@ -56,8 +56,8 @@ configure-aprutil
    
 *Running unit tests
 
-   To pass the unit tests, sed must be on the path to
-   normalize the generated output files.  Also three
+   To pass the unit tests, gzip, zip and sed must be on the path.  
+   Also three
    environment variables need to be defined: TOTO=wonderful,
    key1=value1 and key2=value2.  These must be done outside
    of Microsoft Visual Studio, either in the Control Panel or

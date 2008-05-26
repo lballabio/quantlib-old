@@ -36,6 +36,7 @@ LOGUNIT_CLASS(NDCTestCase)
         LOGUNIT_TEST_SUITE(NDCTestCase);
                 LOGUNIT_TEST(testPushPop);
                 LOGUNIT_TEST(test1);
+                LOGUNIT_TEST(testInherit);
         LOGUNIT_TEST_SUITE_END();
 
 public:
@@ -83,6 +84,21 @@ public:
             LOG4CXX_WARN(logger, "m3");
             LOG4CXX_ERROR(logger, "m4");
             LOG4CXX_FATAL(logger, "m5");
+        }
+        
+        void testInherit() {
+           NDC::push("hello");
+           NDC::push("world");
+           NDC::Stack* clone = NDC::cloneStack();
+           NDC::clear();
+           NDC::push("discard");
+           NDC::inherit(clone);
+           LogString expected1(LOG4CXX_STR("world"));
+           LOGUNIT_ASSERT_EQUAL(expected1, NDC::pop());
+           LogString expected2(LOG4CXX_STR("hello"));
+           LOGUNIT_ASSERT_EQUAL(expected2, NDC::pop());
+           LogString expected3;
+           LOGUNIT_ASSERT_EQUAL(expected3, NDC::pop());
         }
 
 };

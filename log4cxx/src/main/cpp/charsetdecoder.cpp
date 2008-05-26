@@ -387,7 +387,7 @@ private:
                                        LogString e;
                                        Transcoder::decode(encoding, e);
                                        decoder = getDecoder(e);
-                                    } catch (IllegalArgumentException&) {
+                                    } catch (IllegalArgumentException& ) {
                                        decoder = new USASCIICharsetDecoder();
                                     }
                                 }

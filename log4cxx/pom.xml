@@ -3,7 +3,7 @@
   <groupId>log4cxx</groupId>
   <artifactId>apache-log4cxx</artifactId>
   <packaging>pom</packaging>
-  <version>0.10.1-SNAPSHOT</version>
+  <version>0.10.0</version>
   <name>Apache log4cxx</name>
   <description>Logging framework for C++.</description>
   <url>http://logging.apache.org:80/log4cxx</url>
@@ -45,9 +45,9 @@
         </license>
 </licenses>
 <scm>
-        <connection>scm:svn:http://svn.apache.org/repos/asf/logging/log4cxx/trunk</connection>
-        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/logging/log4cxx/trunk</developerConnection>
-        <url>http://svn.apache.org/viewcvs.cgi/logging/log4cxx/trunk</url>
+        <connection>scm:svn:http://svn.apache.org/repos/asf/logging/log4cxx/tags/v0_10_0-rc8</connection>
+        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/logging/log4cxx/tags/v0_10_0-rc8</developerConnection>
+        <url>http://svn.apache.org/viewcvs.cgi/logging/log4cxx/tags/v0_10_0-rc8</url>
 </scm>
 <organization>
     <name>Apache Software Foundation</name>
@@ -88,6 +88,18 @@
             <configuration>
                 <tasks>
                     <ant target="check" />
+                </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+          <execution>
+            <phase>package</phase>
+            <id>autogen</id>
+            <configuration>
+                <tasks>
+                   <ant target="autogen" />
                 </tasks>
             </configuration>
             <goals>
@@ -223,6 +235,10 @@
     </plugins>
   </reporting>
  <distributionManagement>
+    <repository>
+	<id>tmp.repo</id>
+	<url>file:///tmp</url>
+    </repository>
     <site>
       <id>logging.site</id>
       <url>file:///${user.dir}/target/site-deploy</url>

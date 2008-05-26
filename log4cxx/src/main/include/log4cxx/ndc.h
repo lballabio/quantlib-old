@@ -128,6 +128,32 @@ namespace log4cxx
                 */
                 static void clear();
 
+                /**
+                    Clone the diagnostic context for the current thread.
+                    <p>Internally a diagnostic context is represented as a stack.  A
+                    given thread can supply the stack (i.e. diagnostic context) to a
+                    child thread so that the child can inherit the parent thread's
+                    diagnostic context.
+                    <p>The child thread uses the #inherit method to
+                    inherit the parent's diagnostic context.
+                    <p>If not passed to #inherit, returned stack should be deleted by caller.
+                    @return Stack A clone of the current thread's diagnostic context, will not be null.
+                */
+                static Stack * cloneStack();
+
+                /**
+                Inherit the diagnostic context of another thread.
+                <p>The parent thread can obtain a reference to its diagnostic
+                context using the #cloneStack method.  It should
+                communicate this information to its child so that it may inherit
+                the parent's diagnostic context.
+                <p>The parent's diagnostic context is cloned before being
+                inherited. In other words, once inherited, the two diagnostic
+                contexts can be managed independently.
+                @param stack The diagnostic context of the parent thread,
+                    will be deleted during call.  If NULL, NDC will not be modified.
+                */
+                static void inherit(Stack * stack);
 
                 /**
                  *   Get the current value of the NDC of the

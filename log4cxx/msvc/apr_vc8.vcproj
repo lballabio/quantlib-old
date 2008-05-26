@@ -116,6 +116,7 @@
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc80\$(ConfigurationName)\apr\apr.pch"
+				AssemblerListingLocation=".\build\vc80\$(ConfigurationName)\apr\apr_obj\"
 				ObjectFile=".\build\vc80\$(ConfigurationName)\apr\apr_obj\"
 				ProgramDataBaseFileName=".\build\vc80\$(ConfigurationName)\apr\apr_obj\vc80.pdb"
 				WarningLevel="3"
@@ -255,6 +256,7 @@
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\build\vc80\$(ConfigurationName)\apr\apr.pch"
+				AssemblerListingLocation=".\build\vc80\$(ConfigurationName)\apr\apr_obj\"
 				ObjectFile=".\build\vc80\$(ConfigurationName)\apr\apr_obj\"
 				ProgramDataBaseFileName=".\build\vc80\$(ConfigurationName)\apr\apr_obj\vc80.pdb"
 				WarningLevel="3"
@@ -565,7 +567,7 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			>
 			<File
-				RelativePath="..\src\apr\include\apr.h"
+				RelativePath="..\src\apr\include\arch\win32\apr.h"
 				>
 			</File>
 			<File

@@ -271,12 +271,12 @@ void Transcoder::decode(const std::string& src, LogString& dst) {
 
 char* Transcoder::encode(const LogString& src, Pool& p) {
 #if LOG4CXX_CHARSET_UTF8 && LOG4CXX_LOGCHAR_IS_UTF8
-   std::string& tmp = src;
+   return p.pstrdup(src);
 #else
    std::string tmp;
    encode(src, tmp);
-#endif
    return p.pstrdup(tmp);
+#endif
 }
 
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 #if defined(_MSC_VER)
-#pragma warning ( disable: 4231 4251 4275 4786 )
+#pragma warning ( disable: 4231 4251 4275 4786 4309)
 #endif
 
 #include <log4cxx/logstring.h>

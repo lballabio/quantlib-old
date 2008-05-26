@@ -104,6 +104,16 @@ void ThreadSpecificData::push(const LogString& val) {
     }
 }
 
+void ThreadSpecificData::inherit(const NDC::Stack& src) {
+    ThreadSpecificData* data = getCurrentData();
+    if (data == 0) {
+        data = createCurrentData();
+    }
+    if (data != 0) {
+        data->getStack() = src;
+    }
+}
+
 
 
 ThreadSpecificData* ThreadSpecificData::createCurrentData() {

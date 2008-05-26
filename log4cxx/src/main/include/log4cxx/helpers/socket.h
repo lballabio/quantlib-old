@@ -18,16 +18,20 @@
 #ifndef _LOG4CXX_HELPERS_SOCKET_H
 #define _LOG4CXX_HELPERS_SOCKET_H
 
-#include <log4cxx/logstring.h>
-#include <log4cxx/helpers/socketimpl.h>
+extern "C" {
+   struct apr_socket_t;
+}
+
+
+#include <log4cxx/helpers/inetaddress.h>
+#include <log4cxx/helpers/pool.h>
+
 
 namespace log4cxx
 {
         namespace helpers
         {
-                class ServerSocker;
-
-
+                class ByteBuffer;                
                 /**
                 <p>This class implements client sockets (also called just "sockets"). A socket
                 is an endpoint for communication between two machines.
@@ -38,12 +42,6 @@ namespace log4cxx
                 */
                 class LOG4CXX_EXPORT Socket : public helpers::ObjectImpl
                 {
-                friend class ServerSocket;
-                protected:
-                        /** Creates an unconnected socket.
-                        */
-                        Socket();
-
                 public:
                         DECLARE_ABSTRACT_LOG4CXX_OBJECT(Socket)
                         BEGIN_LOG4CXX_CAST_MAP()
@@ -53,58 +51,35 @@ namespace log4cxx
                         /** Creates a stream socket and connects it to the specified port
                         number at the specified IP address.
                         */
-                        Socket(InetAddressPtr address, int port);
+                        Socket(InetAddressPtr& address, int port);
+                        Socket(apr_socket_t* socket, apr_pool_t* pool);
+                        ~Socket();
 
-                        /** Creates a socket and connects it to the specified remote
-                        address on the specified remote port.
-                        */
-                        Socket(InetAddressPtr address, int port,
-                                InetAddressPtr localAddr, int localPort);
-
-                protected:
-                        /** Creates an unconnected Socket
-                        with a user-specified SocketImpl.
-                        */
-                        Socket(SocketImplPtr impl);
-
-                public:
-                        /** Creates a stream socket and connects it to the specified
-                        port number on the named host.
-                        */
-                        Socket(const LogString& host, int port);
-
-                        /**  Creates a socket and connects it to the specified remote
-                        host on the specified remote port.
-                        */
-                        Socket(const LogString& host, int port,
-                                InetAddressPtr localAddr, int localPort);
-
-                        size_t read(void * buf, size_t len) const
-                                { return socketImpl->read(buf, len); }
-
-                        size_t write(const void * buf, size_t len)
-                                { return socketImpl->write(buf, len); }
+                        size_t write(ByteBuffer&);
 
                         /** Closes this socket. */
-                        void close()
-                                { socketImpl->close(); }
-
+                        void close();
+                                
                         /** Returns the value of this socket's address field. */
-                        inline InetAddressPtr getInetAddress() const
-                                { return socketImpl->getInetAddress(); }
-
-                        /** Returns the value of this socket's localport field. */
-                        inline int getLocalPort() const
-                                { return socketImpl->getLocalPort(); }
+                        InetAddressPtr getInetAddress() const;
 
                         /** Returns the value of this socket's port field. */
-                        inline int getPort() const
-                                { return socketImpl->getPort(); }
-
+                        int getPort() const;
                 private:
                         Socket(const Socket&);
                         Socket& operator=(const Socket&);
-                        SocketImplPtr socketImpl;
+                        
+                        Pool pool;
+                        
+                        apr_socket_t* socket;
+
+
+                       /** The IP address of the remote end of this socket. */
+                        InetAddressPtr address;
+
+                        /** The port number on the remote host to which
+                        this socket is connected. */
+                        int port;
                 };
                 
                 LOG4CXX_PTR_DEF(Socket);

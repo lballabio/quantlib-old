@@ -49,12 +49,10 @@ namespace log4cxx
                         virtual void flush(Pool& p);
                         virtual void write(ByteBuffer& buf, Pool& p);
 
-                protected:
+                private:
                         LOG4CXX_LIST_DEF(ByteList, unsigned char);
                         ByteList array;
                         SocketPtr socket;
-
-                private:
                        //
                        //   prevent copy and assignment statements
                        SocketOutputStream(const SocketOutputStream&);

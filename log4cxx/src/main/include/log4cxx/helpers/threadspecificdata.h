@@ -48,6 +48,7 @@ namespace log4cxx
                         
                         static void put(const LogString& key, const LogString& val);
                         static void push(const LogString& val);
+                        static void inherit(const log4cxx::NDC::Stack& stack);
                         
                         log4cxx::NDC::Stack& getStack();
                         log4cxx::MDC::Map& getMap();

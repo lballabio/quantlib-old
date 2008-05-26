@@ -5,17 +5,20 @@ Instructions for building under Autoconf e.g. Linux.
 rootdir is the dir containing this INSTALL file.
 installdir is the path to which you want to install everything.
 
-- from rootdir:
-./autogen.sh
-
 - from rootdir/scr/apr:
-./configure --prefix=installdir;make install
+./buildconf
+./configure --prefix=installdir
+make install
 
 from rootdir/src/apr-util:
-./configure --prefix=installdir --with-apr=installdir/bin/apr-1-config;make install
+./buildconf
+./configure --prefix=installdir --with-apr=installdir
+make install
 
 from rootdir:
-./configure --prefix=installdir --with-apr=installdir/bin/apr-1-config --with-apr-util=installdir/bin/apu-1-config;make install
+./autogen.sh
+./configure --prefix=installdir --with-apr=installdir --with-apr-util=installdir
+make install
 
 ===END Comments added for ObjectHandler project===
 

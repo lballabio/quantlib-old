@@ -19,7 +19,6 @@
 #include <log4cxx/helpers/datagrampacket.h>
 #include <log4cxx/helpers/loglog.h>
 #include <log4cxx/helpers/transcoder.h>
-#include <log4cxx/helpers/socketimpl.h>
 
 #include "apr_network_io.h"
 #include "apr_lib.h"
@@ -121,7 +120,7 @@ void DatagramSocket::connect(InetAddressPtr address1, int port1)
    // connect the socket
    status = apr_socket_connect(socket, client_addr);
    if (status != APR_SUCCESS) {
-     throw ConnectException();
+     throw ConnectException(status);
    }
 }
 

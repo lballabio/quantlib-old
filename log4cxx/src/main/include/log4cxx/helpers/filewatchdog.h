@@ -71,7 +71,7 @@ namespace log4cxx
                         void start();
 
                 private:
-                    static void* LOG4CXX_THREAD_FUNC run(log4cxx_thread_t* thread, void* data);
+                    static void* LOG4CXX_THREAD_FUNC run(apr_thread_t* thread, void* data);
                         Pool pool;
                         Thread thread;
 

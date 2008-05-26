@@ -27,7 +27,6 @@ Building Apache log4cxx with Apple Xcode
    
 +----+
 cd apache-log4cxx-0.10.0
-./autogen.sh
 ./configure
 open projects/log4cxx.xcodeproj
 +----+   
@@ -35,12 +34,12 @@ open projects/log4cxx.xcodeproj
 
 *Running unit tests
 
-   Generate include files are previously described, open projects/testsuite.xcodeproj 
+   Run configure then open projects/testsuite.xcodeproj 
    or projects/testsuite-standalone.xcodeproj
-   (test suite and implementation in one project) in Xcode and address issues
-   described below.  
+   (test suite and implementation in one project) in Xcode.
    
-   Select the executable in Groups & Files and press Info and:
+   The unit tests require the working directory and several environment variables
+   to be set.  To set these, elect the executable in Groups & Files and press Info and:
    
    * In the General pane, set Working Directory to Custom with path "../src/test/resources".
 
@@ -53,13 +52,14 @@ open projects/log4cxx.xcodeproj
     
    The project file generation does does not 
    properly create an entry in the "Link Binary with Libraries"
-   build phase for projects that depend on log4cxx.  To
-   work around the problem, open the project in Xcode and
+   build phase for projects (such as the examples and unit tests) that depend 
+   on log4cxx.  To work around the problem, open the project in Xcode and
    in the Groups & Files pane, drag log4cxx.dylib
    and drop on the "Link Binary with Libraries" folder
    under Targets.
 
    See issue {{{http://issues.apache.org/jira/browse/LOGCXX-245}LOGCXX-245}} for further information.
    
-   Thw generated projects us the Mac OS/X 10.5 SDK which provides APR and APR-Util.  To generated
-   XCode projects that do not use Mac OS/X, set up the ant build and then "ant build-projects-xcode".
+   The projects provided in the release target Mac OS/X 10.5 which provides 
+   preinstalled APR and APR-Util libraries.  To generate XCode projects to target Mac OS/X 10.4, 
+   set up the ant build and then "ant build-projects-xcode -Dfind=false".
