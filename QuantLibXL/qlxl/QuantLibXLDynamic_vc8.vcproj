@@ -750,6 +750,14 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath="..\..\QuantLibAddin\qlo\serialization\serializationfactory.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\..\QuantLibAddin\qlo\serialization\serializationfactory.hpp"
+			>
+		</File>
+		<File
 			RelativePath="session.cpp"
 			>
 		</File>

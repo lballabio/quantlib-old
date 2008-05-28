@@ -24,44 +24,22 @@
 
 namespace QuantLibAddin {
 
-    class SerializationFactory : public virtual ObjectHandler::SerializationFactory {
+	class SerializationFactory : public  ObjectHandler::SerializationFactory {
 
-    public:
+	public:
 
-        SerializationFactory();
+		SerializationFactory();
 
-    private:
+	private:
 
-        void registerCreators();
+		void registerCreators();
 
-        virtual int saveObject(
-            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&objectList,
-            const std::string &path,
-            bool forceOverwrite) const;
+		virtual void register_out(boost::archive::xml_oarchive &ar,
+			std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
+		virtual void register_in(boost::archive::xml_iarchive &ar,
+			std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
 
-        virtual std::vector<std::string> loadObject(
-            const std::string &directory,
-            const std::string &pattern,
-            bool recurse,
-            bool overwriteExisting) const;
-
-        void processPath(
-            const std::string &path,
-            bool overwriteExisting,
-            std::vector<std::string> &processedIDs) const;
-
-        std::string processObject(
-            const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
-            bool overwriteExisting) const;
-
-        virtual std::string saveObjectString(
-            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&,
-            bool forceOverwrite);
-
-        virtual std::vector<std::string> loadObjectString(
-            const std::string &xml,
-            bool overwriteExisting);
-    };
+	};
 
 }
 

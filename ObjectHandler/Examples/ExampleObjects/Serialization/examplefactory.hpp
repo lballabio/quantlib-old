@@ -26,46 +26,22 @@ FOR A PARTICULAR PURPOSE.  See the license for more details.
 #include <oh/ohdefines.hpp>
 #include <oh/serializationfactory.hpp>
 
-#include <boost/archive/xml_iarchive.hpp>
-#include <boost/archive/xml_oarchive.hpp>
-
 namespace AccountExample {
 
 	class SerializationFactory : public ObjectHandler::SerializationFactory {
 	public:
 		SerializationFactory();
 
-		static SerializationFactory &instance();
+		//static SerializationFactory &instance();
 
    private:
-        virtual int saveObject(
-            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&,
-            const std::string &path,
-            bool forceOverwrite) const;
-        virtual std::vector<std::string> loadObject(
-            const std::string &directory,
-            const std::string &pattern,
-            bool recurse,
-            bool overwriteExisting) const;
-        void processPath(
-            const std::string &path,
-            bool overwriteExisting,
-            std::vector<std::string> &processedIDs) const;
-        std::string processObject(
-            const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
-            bool overwriteExisting) const;
-        virtual std::string saveObjectString(
-            const std::vector<boost::shared_ptr<ObjectHandler::Object> >&,
-            bool forceOverwrite);
-        virtual std::vector<std::string> loadObjectString(
-            const std::string &xml,
-            bool overwriteExisting);
-	protected:
-		// Wrappers for template tpl_register_classes.
-	};
+ 	protected:
+		virtual void register_out(boost::archive::xml_oarchive &ar,
+			std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
+		virtual void register_in(boost::archive::xml_iarchive &ar,
+			std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
 
-	void register_in(boost::archive::xml_iarchive& ia);
-	void register_out(boost::archive::xml_oarchive& oa);
+	};
 
 }
 
