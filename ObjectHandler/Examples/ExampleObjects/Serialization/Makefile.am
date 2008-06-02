@@ -5,9 +5,9 @@ noinst_LTLIBRARIES = libSerialization.la
 
 noinst_HEADERS = \
     creators.hpp \
-    examplefactory.hpp
+    serializationfactory.hpp
 
 libSerialization_la_SOURCES = \
     creators.cpp \
-    examplefactory.cpp
+    serializationfactory.cpp
 

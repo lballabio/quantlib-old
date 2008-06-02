@@ -21,7 +21,7 @@ FOR A PARTICULAR PURPOSE.  See the license for more details.
 #include <oh/config.hpp>
 #endif
 
-#include <ExampleObjects/Serialization/examplefactory.hpp>
+#include <ExampleObjects/Serialization/serializationfactory.hpp>
 #include <ExampleObjects/Serialization/creators.hpp>
 #include <ExampleObjects/ValueObjects/accountvalueobject.hpp>
 #include <ExampleObjects/ValueObjects/customervalueobject.hpp>

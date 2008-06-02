@@ -301,10 +301,10 @@
 				RelativePath=".\Serialization\creators.hpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\examplefactory.cpp">
+				RelativePath=".\Serialization\serializationfactory.cpp">
 			</File>
 			<File
-				RelativePath=".\Serialization\examplefactory.hpp">
+				RelativePath=".\Serialization\serializationfactory.hpp">
 			</File>
 		</Filter>
 		<Filter

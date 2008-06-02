@@ -1,5 +1,5 @@
 
-/*!
+/*
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
  Copyright (C) 2008 Nazcatech sprl Belgium

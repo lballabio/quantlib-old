@@ -34,14 +34,13 @@
 #include <oh/utilities.hpp>
 #include <oh/conversions/varianttoscalar.hpp>
 #include <ExampleObjects/accountexample.hpp>
-#include <Examples/ExampleObjects/Serialization/examplefactory.hpp>
+#include <Examples/ExampleObjects/Serialization/serializationfactory.hpp>
 
 // Instantiate the ObjectHandler Repository
 ObjectHandler::Repository repository;
 // Instantiate the Enumerated Type Registry
 ObjectHandler::EnumTypeRegistry enumTypeRegistry;
 // Instantiate the Serialization Factory
-//ExampleAddin::ExampleFactory factory;
 AccountExample::SerializationFactory factory;
 
 void makeCustomer(
@@ -173,8 +172,6 @@ int main() {
 		for(unsigned int i = 0; i < relationIDs.size(); ++i)
 			show += relationIDs[i];
         OH_LOG_MESSAGE(show);
-
-
 
         // Delete all objects
         ObjectHandler::Repository::instance().deleteAllObjects();

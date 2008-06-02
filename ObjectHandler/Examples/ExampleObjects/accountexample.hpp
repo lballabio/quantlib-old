@@ -25,7 +25,7 @@
 #include <ExampleObjects/Objects/accountobject.hpp>
 #include <ExampleObjects/ValueObjects/customervalueobject.hpp>
 #include <ExampleObjects/ValueObjects/accountvalueobject.hpp>
-#include <ExampleObjects/Serialization/examplefactory.hpp>
+#include <ExampleObjects/Serialization/serializationfactory.hpp>
 #include <ExampleObjects/Enumerations/accountenumerations.hpp>
 
 #endif
