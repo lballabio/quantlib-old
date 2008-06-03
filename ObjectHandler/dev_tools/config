@@ -1,4 +1,15 @@
-# subversion config file
+# Template subversion config file for use on the ObjectHandler project.
+#
+# Below are instructions for installing this file.  Replace "erik" with
+# your user name.
+#
+# On Windows, copy this file to
+#   C:\Documents and Settings\erik\Application Data\Subversion\config
+# Or cut and paste the text into the configuration dialog of the
+# TortoiseSvn user interface.
+#
+# On Linux, copy this file to
+#   /home/erik/.subversion/config
 
 ### This file configures various client-side behaviors.
 ###
