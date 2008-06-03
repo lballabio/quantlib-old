@@ -150,10 +150,10 @@
 			RelativePath="addindynamic1.cpp">
 		</File>
 		<File
-			RelativePath="..\ExampleObjects\Serialization\examplefactory.cpp">
+			RelativePath="..\ExampleObjects\Serialization\serializationfactory.cpp">
 		</File>
 		<File
-			RelativePath="..\ExampleObjects\Serialization\examplefactory.hpp">
+			RelativePath="..\ExampleObjects\Serialization\serializationfactory.hpp">
 		</File>
 	</Files>
 	<Globals>
