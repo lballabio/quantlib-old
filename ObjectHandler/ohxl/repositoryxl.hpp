@@ -75,6 +75,10 @@ namespace ObjectHandler {
             Repository class.
         */
         virtual bool objectExists(const std::string &objectID) const;
+		virtual double creationTime(const std::string &objectID) const ;
+		virtual double updateTime(const std::string &objectID) const;
+		virtual const std::vector<std::string> getRelationObs(const std::string &objectID);
+		//@}
         //@}
 
         //! \name Error Messages
@@ -129,6 +133,7 @@ namespace ObjectHandler {
         //! Retrieve keys of CallingRange objects associated with the given object list.
         std::vector<std::string> callerKey(const std::vector<std::string> &objectList);
         //@}
+
 	protected:
 		//! register a observer object into observable.
         /*! get the Objects Observable and Observer with the given ID ObservableId and ObserverId;

@@ -1,22 +1,22 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
- Copyright (C) 2007 Ferdinando Ametrano
- Copyright (C) 2008 Nazcatech sprl Belgium
+Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
+Copyright (C) 2007 Ferdinando Ametrano
+Copyright (C) 2008 Nazcatech sprl Belgium
 
- This file is part of QuantLib, a free-software/open-source library
- for financial quantitative analysts and developers - http://quantlib.org/
+This file is part of QuantLib, a free-software/open-source library
+for financial quantitative analysts and developers - http://quantlib.org/
 
- QuantLib is free software: you can redistribute it and/or modify it
- under the terms of the QuantLib license.  You should have received a
- copy of the license along with this program; if not, please email
- <quantlib-dev@lists.sf.net>. The license is also available online at
- <http://quantlib.org/license.shtml>.
+QuantLib is free software: you can redistribute it and/or modify it
+under the terms of the QuantLib license.  You should have received a
+copy of the license along with this program; if not, please email
+<quantlib-dev@lists.sf.net>. The license is also available online at
+<http://quantlib.org/license.shtml>.
 
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE.  See the license for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
 #include <oh/exception.hpp>
@@ -69,31 +69,31 @@ namespace ObjectHandler {
 		const boost::shared_ptr<Object> &object,
 		bool overwrite) {
 
-		boost::shared_ptr<CallingRange> callingRange = getCallingRange();
-        std::string objectID = callingRange->initializeID(objectIDRaw);
+			boost::shared_ptr<CallingRange> callingRange = getCallingRange();
+			std::string objectID = callingRange->initializeID(objectIDRaw);
 
-		boost::shared_ptr<ObjectWrapperXL> objectWrapperXL;
-		ObjectMap::const_iterator result = objectMap_.find(objectID);
-		if (result == objectMap_.end()) {
-		    objectWrapperXL = boost::shared_ptr<ObjectWrapperXL> (
-    			new ObjectWrapperXL(objectID, object, callingRange));
-			objectMap_[objectID] = objectWrapperXL;
-            callingRange->registerObject(objectID, objectWrapperXL);
-        } else {
-		    objectWrapperXL = boost::static_pointer_cast<ObjectWrapperXL>(result->second);
-            if (objectWrapperXL->callerKey() != callingRange->key()) {
-		        OH_REQUIRE(overwrite, "Cannot create object with ID '" << objectID <<
-			        "' in cell " << callingRange->addressString() <<
-			        " because an object with that ID already resides in cell " <<
-			        objectWrapperXL->callerAddress());
-			    objectWrapperXL->resetCaller(callingRange);
-                callingRange->registerObject(objectID, objectWrapperXL);
-            }
-			objectWrapperXL->reset(object);
-        }
+			boost::shared_ptr<ObjectWrapperXL> objectWrapperXL;
+			ObjectMap::const_iterator result = objectMap_.find(objectID);
+			if (result == objectMap_.end()) {
+				objectWrapperXL = boost::shared_ptr<ObjectWrapperXL> (
+					new ObjectWrapperXL(objectID, object, callingRange));
+				objectMap_[objectID] = objectWrapperXL;
+				callingRange->registerObject(objectID, objectWrapperXL);
+			} else {
+				objectWrapperXL = boost::static_pointer_cast<ObjectWrapperXL>(result->second);
+				if (objectWrapperXL->callerKey() != callingRange->key()) {
+					OH_REQUIRE(overwrite, "Cannot create object with ID '" << objectID <<
+						"' in cell " << callingRange->addressString() <<
+						" because an object with that ID already resides in cell " <<
+						objectWrapperXL->callerAddress());
+					objectWrapperXL->resetCaller(callingRange);
+					callingRange->registerObject(objectID, objectWrapperXL);
+				}
+				objectWrapperXL->reset(object);
+			}
 
-		registerObserver(objectWrapperXL);
-		return objectWrapperXL->idFull();
+			registerObserver(objectWrapperXL);
+			return objectWrapperXL->idFull();
 	}
 
 	void RepositoryXL::registerObserver( 
@@ -109,7 +109,7 @@ namespace ObjectHandler {
 
 	boost::shared_ptr<Object> RepositoryXL::retrieveObjectImpl(
 		const std::string &objectID)  {
-        return Repository::retrieveObjectImpl(CallingRange::getStub(objectID));
+			return Repository::retrieveObjectImpl(CallingRange::getStub(objectID));
 	}
 
 	void RepositoryXL::deleteObject(const std::string &objectID) {
@@ -125,6 +125,18 @@ namespace ObjectHandler {
 
 	bool RepositoryXL::objectExists(const std::string &objectID) const {
 		return Repository::objectExists(CallingRange::getStub(objectID));
+	}
+
+	double RepositoryXL::creationTime(const std::string &objectID) const {
+		return Repository::creationTime(CallingRange::getStub(objectID));
+	}
+
+	double RepositoryXL::updateTime(const std::string &objectID) const{
+		return Repository::updateTime(CallingRange::getStub(objectID));
+	}
+
+	const std::vector<std::string> RepositoryXL::getRelationObs(const std::string &objectID){
+		return Repository::getRelationObs(CallingRange::getStub(objectID));
 	}
 
 	void RepositoryXL::setError(
@@ -230,30 +242,30 @@ namespace ObjectHandler {
 	}
 
 	boost::shared_ptr<CallingRange> RepositoryXL::getCallingRange() {
-        std::string callerName = FunctionCall::instance().callerName();
-        if (callerName == "VBA") {
-            // Called from VBA - check whether the corresponding calling range
-            // object exists and create it if not.
+		std::string callerName = FunctionCall::instance().callerName();
+		if (callerName == "VBA") {
+			// Called from VBA - check whether the corresponding calling range
+			// object exists and create it if not.
 			RangeMap::const_iterator i = callingRanges_.find(callerName);
-            if (i == callingRanges_.end()) {
-			    boost::shared_ptr<CallingRange> callingRange(new CallingRange);
-			    callingRanges_[callingRange->key()] = callingRange;
-			    return callingRange;
-            } else {
-			    return i->second;
-            }
-        // Called from a worksheet formula
-        } else if (callerName.empty()) {
+			if (i == callingRanges_.end()) {
+				boost::shared_ptr<CallingRange> callingRange(new CallingRange);
+				callingRanges_[callingRange->key()] = callingRange;
+				return callingRange;
+			} else {
+				return i->second;
+			}
+			// Called from a worksheet formula
+		} else if (callerName.empty()) {
 			// Calling range not yet named - create a new CallingRange object
 			boost::shared_ptr<CallingRange> callingRange(new CallingRange);
 			callingRanges_[callingRange->key()] = callingRange;
 			return callingRange;
-        } else {
+		} else {
 			// Calling range already named - return associated CallingRange object
 			RangeMap::const_iterator i = callingRanges_.find(callerName);
 			OH_REQUIRE(i != callingRanges_.end(), "No calling range named " << callerName);
 			return i->second;
-        }
+		}
 	}
 
 	void RepositoryXL::dump(std::ostream& out) {

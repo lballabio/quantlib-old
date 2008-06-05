@@ -163,11 +163,11 @@ namespace ObjectHandler {
 		//! \name the getting time and relation object list
 		//@{
 		//! get the initially time of creating object
-		double creationTime(const std::string &objectID) const ;
+		virtual double creationTime(const std::string &objectID) const ;
 		//! get the last time of creating object
-		double updateTime(const std::string &objectID) const;
+		virtual double updateTime(const std::string &objectID) const;
 		//! get relation object list
-		const std::vector<std::string> getRelationObs(const std::string &objectID);
+		virtual const std::vector<std::string> getRelationObs(const std::string &objectID);
 		//@}
 
 	protected:
