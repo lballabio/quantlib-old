@@ -44,7 +44,8 @@ namespace ObjectHandler {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rh,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             const QuantLib::Real accuracy);
 
     template<>
@@ -59,13 +60,16 @@ namespace ObjectHandler {
                 const QuantLib::Calendar& calendar,
                 const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rh,
                 const QuantLib::DayCounter& dayCounter,
-                const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+                const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+                const std::vector<QuantLib::Date>& jumpDates,
                 const QuantLib::Real accuracy) {
             KeyPair key(traitsID, interpolatorID);
             YieldTermStructureConstructor yieldTermStructureConstructor =
                 reinterpret_cast<YieldTermStructureConstructor>(getType(key));
             return yieldTermStructureConstructor(nDays, calendar,
-                                                 rh, dayCounter, turnOfYearEffect, accuracy);
+                                                 rh, dayCounter,
+                                                 jumps, jumpDates,
+                                                 accuracy);
         }
         using RegistryManager<QuantLib::YieldTermStructure,
                               EnumPairRegistry>::registerType;

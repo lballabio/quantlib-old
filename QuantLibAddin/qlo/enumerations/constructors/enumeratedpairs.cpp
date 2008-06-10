@@ -40,7 +40,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -48,7 +49,7 @@ namespace QuantLibAddin {
                                                                   calendar,
                                                                   rateHelpers,
                                                                   dayCounter,
-                                                                  turnOfYearEffect,
+                                                                  jumps, jumpDates,
                                                                   accuracy));
     }
 
@@ -86,7 +87,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -94,7 +96,7 @@ namespace QuantLibAddin {
                                                                  calendar,
                                                                  rateHelpers,
                                                                  dayCounter,
-                                                                 turnOfYearEffect,
+                                                                 jumps, jumpDates,
                                                                  accuracy));
     }
 
@@ -132,7 +134,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -140,7 +143,7 @@ namespace QuantLibAddin {
                                                             calendar,
                                                             rateHelpers,
                                                             dayCounter,
-                                                            turnOfYearEffect,
+                                                            jumps, jumpDates,
                                                             accuracy));
     }
 
@@ -178,7 +181,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -186,7 +190,7 @@ namespace QuantLibAddin {
                                                                calendar,
                                                                rateHelpers,
                                                                dayCounter,
-                                                               turnOfYearEffect,
+                                                               jumps, jumpDates,
                                                                accuracy));
     }
 
@@ -224,7 +228,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -232,7 +237,7 @@ namespace QuantLibAddin {
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
-                                                           turnOfYearEffect,
+                                                           jumps, jumpDates,
                                                            accuracy,
                                                            QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, false,
                                                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -244,7 +249,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -252,7 +258,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, false,
                                                                                  QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -264,7 +270,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -272,7 +279,7 @@ namespace QuantLibAddin {
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
-                                                           turnOfYearEffect,
+                                                           jumps, jumpDates,
                                                            accuracy,
                                                            QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, true,
                                                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -284,7 +291,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -292,7 +300,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, true,
                                                                                  QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -304,7 +312,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -312,7 +321,7 @@ namespace QuantLibAddin {
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
-                                                           turnOfYearEffect,
+                                                           jumps, jumpDates,
                                                            accuracy,
                                                            QuantLib::Cubic(QuantLib::CubicInterpolation::Kruger)));
     }
@@ -322,7 +331,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -330,7 +340,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::Kruger)));
     }
@@ -340,7 +350,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -348,7 +359,7 @@ namespace QuantLibAddin {
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
-                                                           turnOfYearEffect,
+                                                           jumps, jumpDates,
                                                            accuracy,
                                                            QuantLib::Cubic(QuantLib::CubicInterpolation::FritschButland)));
     }
@@ -358,7 +369,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
@@ -366,7 +378,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::FritschButland)));
     }
@@ -377,7 +389,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -385,7 +398,7 @@ namespace QuantLibAddin {
                                                                   calendar,
                                                                   rateHelpers,
                                                                   dayCounter,
-                                                                  turnOfYearEffect,
+                                                                  jumps, jumpDates,
                                                                   accuracy));
     }
 
@@ -423,7 +436,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -431,7 +445,7 @@ namespace QuantLibAddin {
                                                                  calendar,
                                                                  rateHelpers,
                                                                  dayCounter,
-                                                                 turnOfYearEffect,
+                                                                 jumps, jumpDates,
                                                                  accuracy));
     }
 
@@ -469,7 +483,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -477,7 +492,7 @@ namespace QuantLibAddin {
                                                             calendar,
                                                             rateHelpers,
                                                             dayCounter,
-                                                            turnOfYearEffect,
+                                                            jumps, jumpDates,
                                                             accuracy));
     }
 
@@ -515,7 +530,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -523,7 +539,7 @@ namespace QuantLibAddin {
                                                                calendar,
                                                                rateHelpers,
                                                                dayCounter,
-                                                               turnOfYearEffect,
+                                                               jumps, jumpDates,
                                                                accuracy));
     }
 
@@ -561,7 +577,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -569,7 +586,7 @@ namespace QuantLibAddin {
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
-                                                           turnOfYearEffect,
+                                                           jumps, jumpDates,
                                                            accuracy,
                                                            QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, false,
                                                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -581,7 +598,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -589,7 +607,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, false,
                                                                                  QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -601,7 +619,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -609,7 +628,7 @@ namespace QuantLibAddin {
                                                                  calendar,
                                                                  rateHelpers,
                                                                  dayCounter,
-                                                                 turnOfYearEffect,
+                                                                 jumps, jumpDates,
                                                                  accuracy,
                                                                  QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, true,
                                                                                  QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -621,7 +640,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -629,7 +649,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, true,
                                                                                  QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -641,7 +661,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -649,7 +670,7 @@ namespace QuantLibAddin {
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
-                                                           turnOfYearEffect,
+                                                           jumps, jumpDates,
                                                            accuracy,
                                                            QuantLib::Cubic(QuantLib::CubicInterpolation::Kruger)));
     }
@@ -659,7 +680,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -667,7 +689,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::Kruger)));
     }
@@ -677,7 +699,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -685,7 +708,7 @@ namespace QuantLibAddin {
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
-                                                           turnOfYearEffect,
+                                                           jumps, jumpDates,
                                                            accuracy,
                                                            QuantLib::Cubic(QuantLib::CubicInterpolation::FritschButland)));
     }
@@ -695,7 +718,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
@@ -703,7 +727,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::FritschButland)));
     }
@@ -714,7 +738,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -722,7 +747,7 @@ namespace QuantLibAddin {
                                                                   calendar,
                                                                   rateHelpers,
                                                                   dayCounter,
-                                                                  turnOfYearEffect,
+                                                                  jumps, jumpDates,
                                                                   accuracy));
     }
 
@@ -760,7 +785,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -768,7 +794,7 @@ namespace QuantLibAddin {
                                                                  calendar,
                                                                  rateHelpers,
                                                                  dayCounter,
-                                                                 turnOfYearEffect,
+                                                                 jumps, jumpDates,
                                                                  accuracy));
     }
 
@@ -806,7 +832,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -814,7 +841,7 @@ namespace QuantLibAddin {
                                                             calendar,
                                                             rateHelpers,
                                                             dayCounter,
-                                                            turnOfYearEffect,
+                                                            jumps, jumpDates,
                                                             accuracy));
     }
 
@@ -852,7 +879,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -860,7 +888,7 @@ namespace QuantLibAddin {
                                                                calendar,
                                                                rateHelpers,
                                                                dayCounter,
-                                                               turnOfYearEffect,
+                                                               jumps, jumpDates,
                                                                accuracy));
     }
 
@@ -898,7 +926,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -906,7 +935,7 @@ namespace QuantLibAddin {
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
-                                                           turnOfYearEffect,
+                                                           jumps, jumpDates,
                                                            accuracy,
                                                            QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, false,
                                                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -918,7 +947,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -926,7 +956,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, false,
                                                                                  QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -938,7 +968,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -946,7 +977,7 @@ namespace QuantLibAddin {
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
-                                                           turnOfYearEffect,
+                                                           jumps, jumpDates,
                                                            accuracy,
                                                            QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, true,
                                                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -958,7 +989,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -966,7 +998,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, true,
                                                                                  QuantLib::CubicInterpolation::SecondDerivative, 0.0,
@@ -978,7 +1010,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -986,7 +1019,7 @@ namespace QuantLibAddin {
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
-                                                           turnOfYearEffect,
+                                                           jumps, jumpDates,
                                                            accuracy,
                                                            QuantLib::Cubic(QuantLib::CubicInterpolation::Kruger)));
     }
@@ -996,7 +1029,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -1004,7 +1038,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::Kruger)));
     }
@@ -1014,7 +1048,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -1022,7 +1057,7 @@ namespace QuantLibAddin {
                                                            calendar,
                                                            rateHelpers,
                                                            dayCounter,
-                                                           turnOfYearEffect,
+                                                           jumps, jumpDates,
                                                            accuracy,
                                                            QuantLib::Cubic(QuantLib::CubicInterpolation::FritschButland)));
     }
@@ -1032,7 +1067,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy) {
         return boost::shared_ptr<QuantLib::YieldTermStructure>(new
             QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
@@ -1040,7 +1076,7 @@ namespace QuantLibAddin {
                                                               calendar,
                                                               rateHelpers,
                                                               dayCounter,
-                                                              turnOfYearEffect,
+                                                              jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::FritschButland)));
     }

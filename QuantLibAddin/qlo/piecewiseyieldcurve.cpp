@@ -38,7 +38,8 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& calendar,
             const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& qlrhs,
             const QuantLib::DayCounter& dayCounter,
-            const QuantLib::Handle<QuantLib::Quote>& turnOfYearEffect,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
             QuantLib::Real accuracy,
             const std::string& traitsID,
             const std::string& interpolatorID,
@@ -66,7 +67,8 @@ namespace QuantLibAddin {
                                               calendar,
                                               qlrhs,
                                               dayCounter,
-                                              turnOfYearEffect,
+                                              jumps,
+                                              jumpDates,
                                               accuracy);
 
         //libraryObject_ = boost::shared_ptr<QuantLib::YieldTermStructure>(new
