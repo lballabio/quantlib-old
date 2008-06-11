@@ -1,0 +1,33 @@
+
+    inline std::vector<std::string> %(functionName)s::getPropertyNames() const {
+        std::vector<std::string> ret;
+%(propertyPush)s        return ret;
+    }
+
+    inline boost::any %(functionName)s::getProperty(const std::string& name) const {
+        std::string nameUpper = boost::algorithm::to_upper_copy(name);
+        if(strcmp(nameUpper.c_str(), "OBJECTID")==0)
+            return objectId_;
+        else if(strcmp(nameUpper.c_str(), "CLASSNAME")==0)
+            return className_;
+%(propertyGet)s        else
+            OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
+    }
+
+    inline void %(functionName)s::setProperty(const std::string& name, const boost::any& value) {
+        std::string nameUpper = boost::algorithm::to_upper_copy(name);
+        if(strcmp(nameUpper.c_str(), "OBJECTID")==0)
+            objectId_ = boost::any_cast<std::string>(value);
+        else if(strcmp(nameUpper.c_str(), "CLASSNAME")==0)
+            className_ = boost::any_cast<std::string>(value);
+%(propertySet)s        else
+            OH_FAIL("Error: attempt to set non-existent Property: '" + name + "'");
+    }
+
+    inline %(functionName)s::%(functionName)s(%(constructorParList)s) :
+        ObjectHandler::ValueObject(ObjectId, "%(functionName)s", Permanent)%(constructorInit)s {
+                  
+%(populateObjectIDs)s
+            
+    }
+

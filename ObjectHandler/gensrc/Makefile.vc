@@ -23,7 +23,7 @@ $(BUILD_DIR) :
     if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
 
 $(BUILDFLAG) : $(INPUTS) $(BUILD_DIR)
-	$(GENSRC_DIR)\gensrc.py -xdl
+	$(GENSRC_DIR)\gensrc.py -xdlv
 	echo flagged > $@
 
 CLEAN :

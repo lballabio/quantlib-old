@@ -52,8 +52,11 @@ class ValueObjects(addin.Addin):
                 allIncludes += ValueObjects.VO_INCLUDE % {
                     'categoryName' : cat.name(),
                     'libRootDirectory' : environment.config().libRootDirectory() }
-                self.generateHeaders(cat)
-                self.generateFunctions(cat)
+                if self.headersInline_:
+                    self.generateHeadersInline(cat)
+                else:
+                    self.generateHeaders(cat)
+                    self.generateFunctions(cat)
                
         allBuffer =  self.bufferAll_.text() % {
             'allIncludes' : allIncludes,
@@ -63,9 +66,46 @@ class ValueObjects(addin.Addin):
                 
         log.Log.instance().logMessage(' done generating ValueObjects.')
 
+    def generateHeaderInline(self, func):
+        """Generate class definition source for prototype of given constructor function."""
+        return self.bufferClassDeclInline_.text() % {
+            'constructorDeclaration' : func.parameterList().generate(self.constructorDeclaration_),
+            'functionName' : func.name(),
+            'serializeMembers' : func.parameterList().generate(self.serializeMembers_),
+            'memberDeclaration' : func.parameterList().generate(self.memberDeclaration_) }
+
+    def generateFunctionInline(self, func):
+        """Generate source code for function."""
+        return self.bufferClassBodyInline_.text() % {
+            'constructorInit' : func.parameterList().generate(self.constructorInit_),
+            'constructorParList' : func.parameterList().generate(self.constructorDeclaration_),
+            'functionName' : func.name(),
+            'propertyDeclaration' : func.parameterList().generate(self.propertyDeclaration_),
+            'propertyGet' : func.parameterList().generate(self.propertyGet_),
+            'propertySet' : func.parameterList().generate(self.propertySet_),
+            'propertyPush' : func.parameterList().generate(self.propertyPush_),
+            'populateObjectIDs' : func.parameterList().generate(self.populateObjectIDs_) }
+
+    def generateHeadersInline(self, cat):
+        """Generate class source for constructor function prototypes."""
+        bufHeader = ''
+        bufFunc = ''
+        for func in cat.functions('*'):
+            if func.generateVOs():
+                bufHeader += self.generateHeaderInline(func)
+                bufFunc += self.generateFunctionInline(func)
+
+        bufHeaderAll = self.bufferIncludesInline_.text() % {
+            'categoryName' : cat.name(),
+            'functions' : bufFunc,
+            'headers' : bufHeader,
+            'libRoot' : environment.config().libRootDirectory(),
+            'namespaceObjects' : environment.config().namespaceObjects() }
+        fileName = self.rootPath_ + 'vo_' + cat.name() + '.hpp'
+        outputfile.OutputFile(self, fileName, self.copyright_, bufHeaderAll)
+
     def generateHeader(self, func):
         """Generate class definition source for prototype of given constructor function."""
-        if not func.generateVOs(): return ''
         return self.bufferClassDecl_.text() % {
             'constructorDeclaration' : func.parameterList().generate(self.constructorDeclaration_),
             'functionName' : func.name(),
@@ -76,40 +116,48 @@ class ValueObjects(addin.Addin):
         """Generate class source for constructor function prototypes."""
         bufHeader = ''
         for func in cat.functions('*'):
-            bufHeader += self.generateHeader(func)
-        buf = self.bufferIncludesDecl_.text() % {
+            if func.generateVOs():
+                bufHeader += self.generateHeader(func)
+
+        bufHeaderAll = self.bufferIncludesDecl_.text() % {
             'categoryName' : cat.name(),
             'headers' : bufHeader,
             'libRoot' : environment.config().libRootDirectory(),
             'namespaceObjects' : environment.config().namespaceObjects() }
-            
         fileName = self.rootPath_ + 'vo_' + cat.name() + '.hpp'
-        outputfile.OutputFile(self, fileName, self.copyright_, buf)
+        outputfile.OutputFile(self, fileName, self.copyright_, bufHeaderAll)
 
     def generateFunction(self, func):
         """Generate source code for function."""
-        if func.generateVOs():
-            return self.bufferClassBody_.text() % {
-                'constructorInit' : func.parameterList().generate(self.constructorInit_),
-                'constructorParList' : func.parameterList().generate(self.constructorDeclaration_),
-                'functionName' : func.name(),
-                'propertyDeclaration' : func.parameterList().generate(self.propertyDeclaration_),
-                'propertyGet' : func.parameterList().generate(self.propertyGet_),
-                'propertySet' : func.parameterList().generate(self.propertySet_),
-                'populateObjectIDs' : func.parameterList().generate(self.populateObjectIDs_) }
-        else:
-            return ''
+        return self.bufferClassBody_.text() % {
+            'constructorInit' : func.parameterList().generate(self.constructorInit_),
+            'constructorParList' : func.parameterList().generate(self.constructorDeclaration_),
+            'functionName' : func.name(),
+            'propertyDeclaration' : func.parameterList().generate(self.propertyDeclaration_),
+            'propertyGet' : func.parameterList().generate(self.propertyGet_),
+            'propertySet' : func.parameterList().generate(self.propertySet_),
+            'populateObjectIDs' : func.parameterList().generate(self.populateObjectIDs_) }
 
     def generateFunctions(self, cat):
         """Generate source for function implementations."""
         bufFunc = ''
         for func in cat.functions('*'): 
-            bufFunc += self.generateFunction(func)
-        buf = self.bufferIncludes_.text() % {
+            if func.generateVOs():
+                bufFunc += self.generateFunction(func)
+
+        bufFuncAll = self.bufferIncludes_.text() % {
             'categoryName' : cat.name(),
             'functions' : bufFunc,
             'libRoot' : environment.config().libRootDirectory(),
             'namespaceObjects' : environment.config().namespaceObjects() }
         fileName = self.rootPath_ + 'vo_' + cat.name() + '.cpp'
-        outputfile.OutputFile(self, fileName, self.copyright_, buf)
+        outputfile.OutputFile(self, fileName, self.copyright_, bufFuncAll)
 
+    #############################################
+    # serializer interface
+    #############################################
+
+    def serialize(self, serializer):
+        """load/unload class state to/from serializer object."""
+        super(ValueObjects, self).serialize(serializer)
+        serializer.serializeBoolean(self, common.HEADERS_INLINE, False)

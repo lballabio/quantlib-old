@@ -214,6 +214,14 @@ code67i = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
             %(name)s_ = boost::any_cast<std::vector<std::vector<%(nativeType)s> > >(value);\n'''
 
+code69 = '''\
+            processRelatedID(%(name)s);'''
+
+code70 = '''\
+            for (std::vector<std::string>::const_iterator i = %(name)s.begin();
+                    i != %(name)s.end(); ++i)
+                processRelatedID(*i);'''
+
 ##########################################################################
 # code common to mutiple addins
 ##########################################################################

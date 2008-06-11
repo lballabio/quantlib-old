@@ -7,14 +7,14 @@
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst std::string&amp; %(name)s</Rule>
-        <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst boost::any&amp; %(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;boost::any&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector'>%(indent)sconst std::vector&lt;%(nativeType)s&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='matrix' nativeType='string'>%(indent)sconst std::vector&lt;std::vector&lt;std::string&gt; &gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector &lt;boost::any&gt; &gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector &lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector&lt;ObjectHandler::Variant&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector&lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
       </Rules>
     </RuleGroup>
 
@@ -22,13 +22,13 @@
       <Wrap>&#10;%s</Wrap>
       <Rules>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sstd::string %(name)s_</Rule>
-        <Rule tensorRank='scalar' nativeType='any'>%(indent)sboost::any %(name)s_</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s_</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
-        <Rule tensorRank='vector' nativeType='any'>%(indent)sstd::vector&lt;boost::any&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
         <Rule tensorRank='vector'>%(indent)sstd::vector&lt;%(nativeType)s&gt; %(name)s_</Rule>
         <Rule tensorRank='matrix' nativeType='string'>%(indent)sstd::vector&lt;std::vector&lt;std::string&gt; &gt; %(name)s_</Rule>
-        <Rule tensorRank='matrix' nativeType='any'>%(indent)sstd::vector&lt;std::vector &lt;boost::any&gt; &gt; %(name)s_</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sstd::vector&lt;std::vector &lt;ObjectHandler::Variant&gt; &gt; %(name)s_</Rule>
         <Rule tensorRank='matrix'>%(indent)sstd::vector&lt;std::vector &lt;%(nativeType)s&gt; &gt; %(name)s_</Rule>
       </Rules>
     </RuleGroup>
@@ -76,6 +76,38 @@
       </Rules>
     </RuleGroup>
 
+    <RuleGroup name='populateObjectIDs' indent='0' delimiter='&#10;'>
+      <Wrap/>
+      <Rules>
+        <Rule tensorRank='scalar' superType='objectClass' codeID='code69'/>
+        <Rule tensorRank='scalar' superType='objectQuote' codeID='code69'/>
+        <Rule tensorRank='scalar' superType='objectTermStructure' codeID='code69'/>
+        <Rule tensorRank='scalar' superType='libraryClass' codeID='code69'/>
+        <Rule tensorRank='scalar' superType='handleToLib' codeID='code69'/>
+        <Rule tensorRank='scalar' superType='libraryQuote' codeID='code69'/>
+        <Rule tensorRank='scalar' superType='libraryTermStructure' codeID='code69'/>
+        <Rule tensorRank='scalar' superType='underlyingClass' codeID='code69'/>
+        <Rule tensorRank='scalar' superType='libToHandle' codeID='code69'/>
+        <Rule tensorRank='vector' superType='objectClass' codeID='code70'/>
+        <Rule tensorRank='vector' superType='objectQuote' codeID='code70'/>
+        <Rule tensorRank='vector' superType='objectTermStructure' codeID='code70'/>
+        <Rule tensorRank='vector' superType='libraryClass' codeID='code70'/>
+        <Rule tensorRank='vector' superType='handleToLib' codeID='code70'/>
+        <Rule tensorRank='vector' superType='libraryQuote' codeID='code70'/>
+        <Rule tensorRank='vector' superType='libraryTermStructure' codeID='code70'/>
+        <Rule tensorRank='vector' superType='underlyingClass' codeID='code70'/>
+        <Rule tensorRank='vector' superType='libToHandle' codeID='code70'/>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='propertyPush' indent='2' checkParameterIgnore='true' checkSkipFirst='true'>
+      <Wrap/>
+      <Rules>
+        <Rule>%(indent)sret.push_back("%(name)s");&#10;</Rule>
+      </Rules>
+    </RuleGroup>
+
   </RuleGroups>
 
 </root>
+

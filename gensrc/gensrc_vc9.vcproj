@@ -598,11 +598,23 @@
 				>
 			</File>
 			<File
+				RelativePath="gensrc\stubs\stub.vo.class.body.inline"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.vo.class.decl.inline"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\stubs\stub.vo.includes.body"
 				>
 			</File>
 			<File
 				RelativePath="gensrc\stubs\stub.vo.includes.decl"
+				>
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.vo.includes.inline"
 				>
 			</File>
 		</Filter>
