@@ -369,6 +369,12 @@ shell script wrapper for the underlying executable
 created the first time the wrapper is invoked.  So run the wrapper
 once to create the executable, then cd into the .libs directory.
 
+(Or maybe you can do
+\code
+libtool --mode=execute gdb QLADemo
+\endcode
+?)
+
 <h3>Debugging</h3>
 
 Now you can debug the program in the usual way e.g.
