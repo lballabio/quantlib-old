@@ -492,6 +492,10 @@
 				Name="valueobjects"
 				>
 				<File
+					RelativePath="..\..\oh\valueobjects\vo_all.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\oh\valueobjects\vo_group.hpp"
 					>
 				</File>

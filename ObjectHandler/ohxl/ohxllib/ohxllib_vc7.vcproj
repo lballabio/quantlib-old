@@ -452,6 +452,19 @@
 					RelativePath="..\..\oh\utilities.hpp">
 				</File>
 			</Filter>
+			<Filter
+				Name="valueobjects"
+				Filter="">
+				<File
+					RelativePath="..\..\oh\valueobjects\vo_all.hpp">
+				</File>
+				<File
+					RelativePath="..\..\oh\valueobjects\vo_group.hpp">
+				</File>
+				<File
+					RelativePath="..\..\oh\valueobjects\vo_range.hpp">
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="xl"
