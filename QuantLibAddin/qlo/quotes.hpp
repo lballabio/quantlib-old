@@ -23,7 +23,7 @@
 #ifndef qla_quotes_hpp
 #define qla_quotes_hpp
 
-#include <oh/libraryobject.hpp>
+#include <qlo/quote.hpp>
 
 #include <ql/option.hpp>
 #include <ql/types.hpp>
@@ -43,8 +43,6 @@ namespace QuantLib {
 }
 
 namespace QuantLibAddin {
-
-    OH_LIB_CLASS(Quote, QuantLib::Quote);
 
     class SimpleQuote : public Quote {
       public:
@@ -112,6 +110,16 @@ namespace QuantLibAddin {
                     const QuantLib::Handle<QuantLib::Quote>& futuresQuote,
                     const QuantLib::Handle<QuantLib::Quote>& volatility,
                     const QuantLib::Handle<QuantLib::Quote>& meanReversion,
+                    bool permanent);
+    };
+
+     class CompositeQuote : public Quote {
+      public:
+        CompositeQuote(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                    const QuantLib::Handle<QuantLib::Quote>& element1,
+                    const QuantLib::Handle<QuantLib::Quote>& element2,
+                    const std::string& op,
                     bool permanent);
     };
 

@@ -22,7 +22,7 @@
 
 #include <qlo/conversions/coerceobject.hpp>
 #include <qlo/conversions/coercelibrarydifferent.hpp>
-#include <qlo/quotes.hpp>
+#include <qlo/quote.hpp>
 
 namespace QuantLibAddin {
 

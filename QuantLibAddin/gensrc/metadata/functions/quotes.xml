@@ -363,6 +363,36 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlCompositeQuote'>
+      <libraryFunction>CompositeQuote</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Element1' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>the first, i.e. x, value in the f(x,y) expression</description>
+          </Parameter>
+          <Parameter name='Element2' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>the second, i.e. y, value in the f(x,y) expression</description>
+          </Parameter>
+          <Parameter name='Operator' >
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the operator to be applied, e.g. ""+"" or ""-""</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <!-- FuturesConvAdjustmentQuote interface and constructor -->
     <Constructor name='qlFuturesConvAdjustmentQuote'>
       <libraryFunction>FuturesConvAdjustmentQuote</libraryFunction>

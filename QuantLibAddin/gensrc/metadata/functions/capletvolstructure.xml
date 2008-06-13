@@ -5,7 +5,7 @@
   <serializationIncludes>
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/index.hpp</include>
-    <include>qlo/quotes.hpp</include>
+    <include>qlo/quote.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
     <include>ql/termstructures/volatility/optionlet/constantoptionletvol.hpp</include>
@@ -18,7 +18,7 @@
   <addinIncludes>
     <include>qlo/index.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
-    <include>qlo/quotes.hpp</include>
+    <include>qlo/quote.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/handleimpl.hpp</include>
     <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>

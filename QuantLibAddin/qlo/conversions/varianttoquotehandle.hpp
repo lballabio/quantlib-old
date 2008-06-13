@@ -20,7 +20,7 @@
 #ifndef qla_convert_quotehandle_hpp
 #define qla_convert_quotehandle_hpp
 
-#include <qlo/quotes.hpp>
+#include <qlo/quote.hpp>
 #include <oh/types.hpp>
 #include <ql/quotes/simplequote.hpp>
 

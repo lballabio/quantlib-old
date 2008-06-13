@@ -3,7 +3,7 @@
   <displayName>Cms Market</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
-    <include>qlo/quotes.hpp</include>
+    <include>qlo/quote.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/index.hpp</include>
@@ -12,7 +12,7 @@
     <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
   <addinIncludes>
-    <include>qlo/quotes.hpp</include>
+    <include>qlo/quote.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/index.hpp</include>

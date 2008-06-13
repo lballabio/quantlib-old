@@ -58,7 +58,7 @@
 #include <qlo/qladdindefines.hpp>
 #include <qlo/quantoforwardvanillaoption.hpp>
 #include <qlo/quantovanillaoption.hpp>
-#include <qlo/quotes.hpp>
+#include <qlo/quote.hpp>
 #include <qlo/randomsequencegenerator.hpp>
 #include <qlo/rangeaccrual.hpp>
 #include <qlo/ratehelpers.hpp>

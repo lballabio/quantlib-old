@@ -5,7 +5,7 @@
   <serializationIncludes>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>ql/termstructures/volatility/swaption/swaptionvolcube2.hpp</include>
-    <include>qlo/quotes.hpp</include>
+    <include>qlo/quote.hpp</include>
     <include>qlo/optimization.hpp</include>
     <include>qlo/index.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
@@ -13,7 +13,7 @@
   </serializationIncludes>
   <addinIncludes>
     <include>ql/termstructures/volatility/swaption/swaptionvolcube2.hpp</include>
-    <include>qlo/quotes.hpp</include>
+    <include>qlo/quote.hpp</include>
     <include>qlo/optimization.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/index.hpp</include>
