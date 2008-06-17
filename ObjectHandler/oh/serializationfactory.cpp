@@ -33,6 +33,7 @@
 #include <boost/serialization/variant.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/shared_ptr.hpp>
+#include <fstream>
 
 namespace ObjectHandler {
 
