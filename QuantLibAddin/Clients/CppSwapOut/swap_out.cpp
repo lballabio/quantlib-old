@@ -283,12 +283,16 @@ int main() {
             rateHelpers.push_back(swapId);
         }
 
+        std::vector<ObjectHandler::Variant> Jumps;
+        std::vector<ObjectHandler::Variant> JumpDates;
+
         std::string EUR_YC = qlPiecewiseYieldCurve("EUR_YC",
             0L,
             "Target",
             rateHelpers,
             "Actual/365 (Fixed)",
-            1.0,
+            Jumps,
+            JumpDates,
             1.0e-12,
             "ZeroYield",
             "Linear",

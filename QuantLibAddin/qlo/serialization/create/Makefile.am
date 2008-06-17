@@ -1,6 +1,6 @@
 
 AM_CPPFLAGS = -I${top_srcdir}
-#includedir = $(prefix)/include/qlo/serialization/create
+includedir = $(prefix)/include/qlo/serialization/create
 
 noinst_LTLIBRARIES = libCreate.la
 
