@@ -98,7 +98,7 @@ SUBSTITUTIONS = (
 # Regexes to indicate names of files to be processed by the find/replace.
 
 INCLUDE_FILES = (
-#    re.compile(r'^.*\.?pp$'),
+#    re.compile(r'^.+\.[ch]pp$'),
 )
 
 # IGNORE_FILES
@@ -106,21 +106,21 @@ INCLUDE_FILES = (
 
 IGNORE_FILES = (
     re.compile(r'^\.'),
-    re.compile(r'^.*\.bmp$'),
-    re.compile(r'^.*\.exe$'),
-    re.compile(r'^.*\.exp$'),
-    re.compile(r'^.*\.ico$'),
-    re.compile(r'^.*\.jpg$'),
-    re.compile(r'^.*\.lib$'),
-    re.compile(r'^.*\.log$'),
-    re.compile(r'^.*\.la$'),
-    re.compile(r'^.*\.ncb$'),
-    re.compile(r'^.*\.o$'),
-    re.compile(r'^.*\.pdf$'),
-    re.compile(r'^.*\.plg$'),
-    re.compile(r'^.*\.png$'),
-    re.compile(r'^.*\.pyc$'),
-    re.compile(r'^.*\.xls$'),
+    re.compile(r'^.+\.bmp$'),
+    re.compile(r'^.+\.exe$'),
+    re.compile(r'^.+\.exp$'),
+    re.compile(r'^.+\.ico$'),
+    re.compile(r'^.+\.jpg$'),
+    re.compile(r'^.+\.lib$'),
+    re.compile(r'^.+\.log$'),
+    re.compile(r'^.+\.la$'),
+    re.compile(r'^.+\.ncb$'),
+    re.compile(r'^.+\.o$'),
+    re.compile(r'^.+\.pdf$'),
+    re.compile(r'^.+\.plg$'),
+    re.compile(r'^.+\.png$'),
+    re.compile(r'^.+\.pyc$'),
+    re.compile(r'^.+\.xls$'),
     re.compile(r'^configure$'),
     re.compile(r'^libtool$'),
     re.compile(r'^todonando\.txt$'),
@@ -143,10 +143,9 @@ IGNORE_FILES = (
 IGNORE_DIRS = (
     re.compile(r'^\.'),
     re.compile(r'^autom4te\.cache$'),
-    re.compile(r'^bak.*$'),
+    #re.compile(r'^bak.*$'),
     re.compile(r'^build$'),
     re.compile(r'^configure$'),
-    re.compile(r'^CVS$'),
     re.compile(r'^dev_tools$'),
     re.compile(r'^framework$'),
     re.compile(r'^html$'),
