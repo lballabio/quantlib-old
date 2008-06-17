@@ -12,7 +12,7 @@ void register%(categoryName)s(const XLOPER &xDll) {
 
 void unregister%(categoryName)s(const XLOPER &xDll) {
 
-	XLOPER xlRegID;
+    XLOPER xlRegID;
 
     // Unregister each function.  Due to a bug in Excel's C API this is a
     // two-step process.  Thanks to Laurent Longre for discovering the

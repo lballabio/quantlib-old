@@ -115,7 +115,7 @@ namespace QuantLibAddin {
                    QuantLib::Compounding comp,
                    QuantLib::Frequency freq,
                    bool permanent);
-	};
+    };
 }
 
 #endif

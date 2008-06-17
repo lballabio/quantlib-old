@@ -104,9 +104,9 @@ namespace ObjectHandler {
             This member function may be overridden in base classes which customize
             the Repository class for platform-specific functionality.
         */
-		virtual boost::shared_ptr<Object> retrieveObjectImpl(const std::string &objectID);
+        virtual boost::shared_ptr<Object> retrieveObjectImpl(const std::string &objectID);
         
-		//! Delete the object with the given ID.
+        //! Delete the object with the given ID.
         /*! Delete the object regardless of whether or not it is permanent.
             Take no action if no object exists with that ID.
         */
@@ -160,28 +160,28 @@ namespace ObjectHandler {
         */
         typedef std::map<std::string, boost::shared_ptr<ObjectWrapper>, my_iless> ObjectMap;
 
-		//! \name the getting time and relation object list
-		//@{
-		//! get the initially time of creating object
-		virtual double creationTime(const std::string &objectID) const ;
-		//! get the last time of creating object
-		virtual double updateTime(const std::string &objectID) const;
-		//! get relation object list
-		virtual const std::vector<std::string> getRelationObs(const std::string &objectID);
-		//@}
+        //! \name the getting time and relation object list
+        //@{
+        //! get the initially time of creating object
+        virtual double creationTime(const std::string &objectID) const ;
+        //! get the last time of creating object
+        virtual double updateTime(const std::string &objectID) const;
+        //! get relation object list
+        virtual const std::vector<std::string> getRelationObs(const std::string &objectID);
+        //@}
 
-	protected:
+    protected:
         //! A pointer to the Repository instance, used to support the Singleton pattern.
         static Repository *instance_;
-		//!get the object ObjectWrapper from ObjectMap
-		virtual const boost::shared_ptr<ObjectWrapper>& getObjectWrapper(const std::string &objectID) const;
+        //!get the object ObjectWrapper from ObjectMap
+        virtual const boost::shared_ptr<ObjectWrapper>& getObjectWrapper(const std::string &objectID) const;
 
-		//! register a observer object into observable.
+        //! register a observer object into observable.
         /*! get the Objects Observable and Observer with the given ID ObservableId and ObserverId;
-			and then regiest the object Observer into the object Observable
+            and then regiest the object Observer into the object Observable
         */
-		virtual void registerObserver( 
-			boost::shared_ptr<ObjectWrapper> objWrapper);
+        virtual void registerObserver( 
+            boost::shared_ptr<ObjectWrapper> objWrapper);
 
 
     };

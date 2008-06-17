@@ -43,8 +43,8 @@ namespace AccountExample {
             bool permanent)
             : ObjectHandler::ValueObject(objectID, "Account", permanent),
             customer_(customer), type_(type), number_(number), balance_(balance) {
-			relatedIDs_.insert(customer);
-		}
+            relatedIDs_.insert(customer);
+        }
 
         std::vector<std::string> getPropertyNames() const;
         boost::any getProperty(const std::string &name) const;

@@ -42,34 +42,34 @@ FOR A PARTICULAR PURPOSE.  See the license for more details.
 
 namespace AccountExample {
 
-	SerializationFactory::SerializationFactory() {
-		registerCreator("Account", createAccount);
-		registerCreator("Customer", createCustomer);
-	}
+    SerializationFactory::SerializationFactory() {
+        registerCreator("Account", createAccount);
+        registerCreator("Customer", createCustomer);
+    }
 /*
-	SerializationFactory &SerializationFactory::instance() {
-		if (instance_) {
-			SerializationFactory *ret = dynamic_cast<SerializationFactory*>(instance_);
-			if (ret) return *ret;
-		}
-		OH_FAIL("Attempt to reference uninitialized SerializationFactory object");
-	}
+    SerializationFactory &SerializationFactory::instance() {
+        if (instance_) {
+            SerializationFactory *ret = dynamic_cast<SerializationFactory*>(instance_);
+            if (ret) return *ret;
+        }
+        OH_FAIL("Attempt to reference uninitialized SerializationFactory object");
+    }
 */
 
-	void SerializationFactory::register_out(boost::archive::xml_oarchive &ar,
-		std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) {
-		ar.register_type<ObjectHandler::ValueObjects::ohRange>();
-		ar.register_type<AccountExample::AccountValueObject>();
-		ar.register_type<AccountExample::CustomerValueObject>();
-		ar << boost::serialization::make_nvp("object_list", valueObjects);
-	}
+    void SerializationFactory::register_out(boost::archive::xml_oarchive &ar,
+        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) {
+        ar.register_type<ObjectHandler::ValueObjects::ohRange>();
+        ar.register_type<AccountExample::AccountValueObject>();
+        ar.register_type<AccountExample::CustomerValueObject>();
+        ar << boost::serialization::make_nvp("object_list", valueObjects);
+    }
 
-	void SerializationFactory::register_in(boost::archive::xml_iarchive &ar,
-		std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) {
-		ar.register_type<ObjectHandler::ValueObjects::ohRange>();
-		ar.register_type<AccountExample::AccountValueObject>();
-		ar.register_type<AccountExample::CustomerValueObject>();
-		ar >> boost::serialization::make_nvp("object_list", valueObjects);
-	}
+    void SerializationFactory::register_in(boost::archive::xml_iarchive &ar,
+        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) {
+        ar.register_type<ObjectHandler::ValueObjects::ohRange>();
+        ar.register_type<AccountExample::AccountValueObject>();
+        ar.register_type<AccountExample::CustomerValueObject>();
+        ar >> boost::serialization::make_nvp("object_list", valueObjects);
+    }
 
 }

@@ -42,18 +42,18 @@ namespace QuantLibAddin {
         OH_OBJ_CTOR(CmsCouponPricer, FloatingRateCouponPricer);
     };
 
-	class NumericHaganPricer: public CmsCouponPricer{
-	public:
-	  NumericHaganPricer(
+    class NumericHaganPricer: public CmsCouponPricer{
+    public:
+      NumericHaganPricer(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
+            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
             QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve,
-			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
+            const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             QuantLib::Rate lowerLimit,
             QuantLib::Rate upperLimit,
-			QuantLib::Real precision,
+            QuantLib::Real precision,
             bool permanent);
-	};
+    };
 }
 
 #endif

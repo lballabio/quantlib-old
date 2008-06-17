@@ -49,25 +49,25 @@ namespace QuantLibAddin {
                                                              meanReversion);
     }
 
-	NumericHaganPricer::NumericHaganPricer(
+    NumericHaganPricer::NumericHaganPricer(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
-			const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
+            const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& swaptionVol,
             QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve,
-			const QuantLib::Handle<QuantLib::Quote>& meanReversion,
+            const QuantLib::Handle<QuantLib::Quote>& meanReversion,
             QuantLib::Rate lowerLimit,
             QuantLib::Rate upperLimit,
-			QuantLib::Real precision,
+            QuantLib::Real precision,
             bool permanent)
     : CmsCouponPricer(properties, permanent) {
         //QuantLib::GFunctionFactory::YieldCurveModel modelOfYieldCurve =
         //    QuantLib::GFunctionFactory::YieldCurveModel(2);
         libraryObject_ = 
-	        shared_ptr<QuantLib::NumericHaganPricer>(new
-    	        QuantLib::NumericHaganPricer(swaptionVol,
+            shared_ptr<QuantLib::NumericHaganPricer>(new
+                QuantLib::NumericHaganPricer(swaptionVol,
                                                                 modelOfYieldCurve,
-													            meanReversion,
-													            lowerLimit,
-													            upperLimit,
-													            precision));
-	};
+                                                                meanReversion,
+                                                                lowerLimit,
+                                                                upperLimit,
+                                                                precision));
+    };
 }

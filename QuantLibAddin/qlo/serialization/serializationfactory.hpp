@@ -24,22 +24,22 @@
 
 namespace QuantLibAddin {
 
-	class SerializationFactory : public  ObjectHandler::SerializationFactory {
+    class SerializationFactory : public  ObjectHandler::SerializationFactory {
 
-	public:
+    public:
 
-		SerializationFactory();
+        SerializationFactory();
 
-	private:
+    private:
 
-		void registerCreators();
+        void registerCreators();
 
-		virtual void register_out(boost::archive::xml_oarchive &ar,
-			std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
-		virtual void register_in(boost::archive::xml_iarchive &ar,
-			std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
+        virtual void register_out(boost::archive::xml_oarchive &ar,
+            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
+        virtual void register_in(boost::archive::xml_iarchive &ar,
+            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
 
-	};
+    };
 
 }
 

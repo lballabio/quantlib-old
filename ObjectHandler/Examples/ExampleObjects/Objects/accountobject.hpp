@@ -39,7 +39,7 @@ namespace AccountExample {
 
             libraryObject_ = boost::shared_ptr<Account>(
                 new Account(customer, type, number, balance));
-			
+            
         }
 
         void setBalance(const long &balance)  {

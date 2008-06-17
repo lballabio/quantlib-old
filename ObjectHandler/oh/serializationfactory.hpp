@@ -36,81 +36,81 @@
 
 namespace ObjectHandler {
 
-	//! A Singleton wrapping the boost::serialization interface
-	/*! The pure virtual functions in this class must be implemented as appropriate
-	for client applications.
-	*/
-	class DLL_API SerializationFactory {
+    //! A Singleton wrapping the boost::serialization interface
+    /*! The pure virtual functions in this class must be implemented as appropriate
+    for client applications.
+    */
+    class DLL_API SerializationFactory {
 
-	public:
+    public:
 
-		//! \name Structors and static members
-		//@{
-		//! Constructor - initialize the singleton.
-		SerializationFactory();
-		//! Destructor - de-initialize the singleton.
-		virtual ~SerializationFactory();
-		//! Client applications access the global object via a call to SerializationFactory::instance().
-		static SerializationFactory &instance();
-		//@}
+        //! \name Structors and static members
+        //@{
+        //! Constructor - initialize the singleton.
+        SerializationFactory();
+        //! Destructor - de-initialize the singleton.
+        virtual ~SerializationFactory();
+        //! Client applications access the global object via a call to SerializationFactory::instance().
+        static SerializationFactory &instance();
+        //@}
 
-		//! \name Serialization - public interface
-		//@{
-		//! Serialize the given Object list to the path indicated.
-		virtual int saveObject(
-			const std::vector<boost::shared_ptr<Object> >&,
-			const std::string &path,
-			bool forceOverwrite) ;
-		//! Deserialize an Object list from the path indicated.
-		virtual std::vector<std::string> loadObject(
-			const std::string &directory,
-			const std::string &pattern,
-			bool recurse,
-			bool overwriteExisting)  ;
+        //! \name Serialization - public interface
+        //@{
+        //! Serialize the given Object list to the path indicated.
+        virtual int saveObject(
+            const std::vector<boost::shared_ptr<Object> >&,
+            const std::string &path,
+            bool forceOverwrite) ;
+        //! Deserialize an Object list from the path indicated.
+        virtual std::vector<std::string> loadObject(
+            const std::string &directory,
+            const std::string &pattern,
+            bool recurse,
+            bool overwriteExisting)  ;
 
-		//! Write the object(s) to the given string.
-		virtual std::string saveObjectString(
-			const std::vector<boost::shared_ptr<Object> >&,
-			bool forceOverwrite) ;
-		//! Load object(s) from the given string.
-		virtual std::vector<std::string> loadObjectString(
-			const std::string &xml,
-			bool overwriteExisting);
-		//@}
+        //! Write the object(s) to the given string.
+        virtual std::string saveObjectString(
+            const std::vector<boost::shared_ptr<Object> >&,
+            bool forceOverwrite) ;
+        //! Load object(s) from the given string.
+        virtual std::vector<std::string> loadObjectString(
+            const std::string &xml,
+            bool overwriteExisting);
+        //@}
 
-		//! Recreate an Object from its ValueObject
-		boost:: shared_ptr<Object> recreateObject( 
-			boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const; 
+        //! Recreate an Object from its ValueObject
+        boost:: shared_ptr<Object> recreateObject( 
+            boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const; 
 
-	protected:
+    protected:
 
-		virtual void processPath(
-			const std::string &path,
-			bool overwriteExisting,
-			std::vector<std::string> &processedIDs) ;
-		virtual std::string processObject(
-			const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
-			bool overwriteExisting) ;
-		virtual void register_out(boost::archive::xml_oarchive &ar,
-			std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) = 0;
-		virtual void register_in(boost::archive::xml_iarchive &ar,
-			std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects)= 0;
+        virtual void processPath(
+            const std::string &path,
+            bool overwriteExisting,
+            std::vector<std::string> &processedIDs) ;
+        virtual std::string processObject(
+            const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
+            bool overwriteExisting) ;
+        virtual void register_out(boost::archive::xml_oarchive &ar,
+            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) = 0;
+        virtual void register_in(boost::archive::xml_iarchive &ar,
+            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects)= 0;
 
 
-		//! A pointer to the SerializationFactory instance, used to support the Singleton pattern.
-		static SerializationFactory *instance_;
-		//! Define the type for a factory creator function.
-		typedef boost::shared_ptr<Object> (*Creator)(const boost::shared_ptr<ValueObject>&);
-		//! Register a Creator with the Factory.
-		void registerCreator(const std::string &className, const Creator &creator);
-		// A map of Creators for each supported class.
-		typedef std::map<std::string, Creator> CreatorMap;
-		// Cannot export std::map across DLL boundaries, so instead of a data member
-		// use a private member function that wraps a reference to a static variable.
-		CreatorMap &creatorMap_() const;
-	};
+        //! A pointer to the SerializationFactory instance, used to support the Singleton pattern.
+        static SerializationFactory *instance_;
+        //! Define the type for a factory creator function.
+        typedef boost::shared_ptr<Object> (*Creator)(const boost::shared_ptr<ValueObject>&);
+        //! Register a Creator with the Factory.
+        void registerCreator(const std::string &className, const Creator &creator);
+        // A map of Creators for each supported class.
+        typedef std::map<std::string, Creator> CreatorMap;
+        // Cannot export std::map across DLL boundaries, so instead of a data member
+        // use a private member function that wraps a reference to a static variable.
+        CreatorMap &creatorMap_() const;
+    };
 
-	boost::shared_ptr<Object> createRange(const boost::shared_ptr<ValueObject>&);
+    boost::shared_ptr<Object> createRange(const boost::shared_ptr<ValueObject>&);
 
 }
 

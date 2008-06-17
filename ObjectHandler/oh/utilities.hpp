@@ -105,15 +105,15 @@ namespace ObjectHandler {
                             const std::string& delim);
     //@}
 
-	/** \name getTime and formatTime
-	*  utility functions.
-	*/
-	//@{
-	//! get current time .
-	double getTime();
-	//! format string is hh:mm:ss.
-	std::string formatTime(double tm);
-	//@}
+    /** \name getTime and formatTime
+    *  utility functions.
+    */
+    //@{
+    //! get current time .
+    double getTime();
+    //! format string is hh:mm:ss.
+    std::string formatTime(double tm);
+    //@}
 
 }
 

@@ -75,10 +75,10 @@ namespace ObjectHandler {
             Repository class.
         */
         virtual bool objectExists(const std::string &objectID) const;
-		virtual double creationTime(const std::string &objectID) const ;
-		virtual double updateTime(const std::string &objectID) const;
-		virtual const std::vector<std::string> getRelationObs(const std::string &objectID);
-		//@}
+        virtual double creationTime(const std::string &objectID) const ;
+        virtual double updateTime(const std::string &objectID) const;
+        virtual const std::vector<std::string> getRelationObs(const std::string &objectID);
+        //@}
         //@}
 
         //! \name Error Messages
@@ -134,13 +134,13 @@ namespace ObjectHandler {
         std::vector<std::string> callerKey(const std::vector<std::string> &objectList);
         //@}
 
-	protected:
-		//! register a observer object into observable.
+    protected:
+        //! register a observer object into observable.
         /*! get the Objects Observable and Observer with the given ID ObservableId and ObserverId;
-			and then regiest the object Observer into the object Observable
+            and then regiest the object Observer into the object Observable
         */
-		virtual void registerObserver( 
-			boost::shared_ptr<ObjectWrapper> objWrapper);
+        virtual void registerObserver( 
+            boost::shared_ptr<ObjectWrapper> objWrapper);
     private:
         // Associate the given error message to the active cell.
         void setError(

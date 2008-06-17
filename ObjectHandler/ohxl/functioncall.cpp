@@ -176,9 +176,9 @@ namespace ObjectHandler {
 
     std::string FunctionCall::callerName() const {
         if (callerType_ == CallerType::Cell) {
-		    Xloper xName;
-		    Excel(xlfGetDef, &xName, 1, FunctionCall::instance().callerAddress());
-		    if (xName->xltype == xltypeStr)
+            Xloper xName;
+            Excel(xlfGetDef, &xName, 1, FunctionCall::instance().callerAddress());
+            if (xName->xltype == xltypeStr)
                 return ConvertOper(xName());
             return "";
         } else {

@@ -97,15 +97,15 @@ namespace ObjectHandler {
         void logMessage(const std::string &message,
                 const int &level = 4);
         //@}
-		
-		virtual ~Logger(){}
+        
+        virtual ~Logger(){}
     private:
         Logger();
- 		//log4cxx::LoggerPtr _logger;
+         //log4cxx::LoggerPtr _logger;
         //log4cxx::LayoutPtr _layout;
         //log4cxx::AppenderPtr _fileAppender;
         //log4cxx::AppenderPtr _consoleAppender;
-		log4cxx::LayoutPtr getLayout();
+        log4cxx::LayoutPtr getLayout();
     };
 
 }

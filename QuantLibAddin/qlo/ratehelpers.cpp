@@ -275,12 +275,12 @@ namespace QuantLibAddin {
             qlarh = qlarhs[i];
             qlarh->getLibraryObject(qlrh);
             std::string qlarh_id = boost::any_cast<std::string>(qlarh->propertyValue("OBJECTID"));
-			bool isFutures = boost::dynamic_pointer_cast<FuturesRateHelper>(qlarh);
-			bool isImmFutures = false, isSerialFutures = false;
-			if (isFutures) {
-				isImmFutures = QuantLib::IMM::isIMMdate(qlrh->earliestDate());
-	            isSerialFutures = !isImmFutures;
-			}
+            bool isFutures = boost::dynamic_pointer_cast<FuturesRateHelper>(qlarh);
+            bool isImmFutures = false, isSerialFutures = false;
+            if (isFutures) {
+                isImmFutures = QuantLib::IMM::isIMMdate(qlrh->earliestDate());
+                isSerialFutures = !isImmFutures;
+            }
             bool isDepo = boost::dynamic_pointer_cast<DepositRateHelper>(qlarh);
             rhsAll.push_back(detail::RateHelperItem(isImmFutures, isSerialFutures,
                                                     isDepo,
@@ -298,14 +298,14 @@ namespace QuantLibAddin {
         // Select input rate helpers according to:
         // expiration, maximum number of allowed Imm and Serial Futures, Depo/Futures priorities
         QuantLib::Natural immFuturesCounter = 0;
-		QuantLib::Natural serialFuturesCounter = 0;
+        QuantLib::Natural serialFuturesCounter = 0;
         QuantLib::Date evalDate = QuantLib::Settings::instance().evaluationDate();
         std::vector<detail::RateHelperItem> rhs, rhsDepo;
 
-		// FIXME: the number 2 must not be hard coded, but asked to the index
+        // FIXME: the number 2 must not be hard coded, but asked to the index
         long actualFrontFuturesRollingDays = 2+frontFuturesRollingDays;
 
-		// Look for the front Futures, if any
+        // Look for the front Futures, if any
         QuantLib::Date frontFuturesEarliestDate, frontFuturesLatestDate;
         bool thereAreFutures = false;
         QuantLib::Size j=0;
@@ -320,7 +320,7 @@ namespace QuantLibAddin {
             ++j;
         }
 
-		// If there are NOT Futures, include all Depos
+        // If there are NOT Futures, include all Depos
         if (!thereAreFutures)
             depoInclusionCriteria = RateHelper::AllDepos;
 
@@ -336,13 +336,13 @@ namespace QuantLibAddin {
                             break;
                         case RateHelper::DeposBeforeFirstFuturesStartDate:
                         // Include only depos with maturity date before 
-						// the front Futures start date
+                        // the front Futures start date
                             if (rhsAll[i].latestDate < frontFuturesEarliestDate)
                                 rhs.push_back(rhsAll[i]);
                             break;
                         case RateHelper::DeposBeforeFirstFuturesStartDatePlusOne:
                         // Include only depos with maturity date before  
-						// the front Futures start date + 1 more Futures
+                        // the front Futures start date + 1 more Futures
                             if (rhsAll[i].latestDate < frontFuturesEarliestDate) {
                                 rhs.push_back(rhsAll[i]);
                             } else {
@@ -354,7 +354,7 @@ namespace QuantLibAddin {
                             break;
                         case RateHelper::DeposBeforeFirstFuturesExpiryDate:
                         // Include only depos with maturity date before 
-						// the front Futures expiry date
+                        // the front Futures expiry date
                             if (rhsAll[i].latestDate < frontFuturesLatestDate)
                                 rhs.push_back(rhsAll[i]);
                             break;

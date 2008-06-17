@@ -32,7 +32,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
     class RangeAccrualFloatersCoupon: public ObjectHandler::LibraryObject<QuantLib::RangeAccrualFloatersCoupon>{
-	 public:
+     public:
         RangeAccrualFloatersCoupon(
                 const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                 QuantLib::Real nominal,
@@ -60,7 +60,7 @@ namespace QuantLibAddin {
     OH_OBJ_CLASS(RangeAccrualPricer, FloatingRateCouponPricer);
 
     class RangeAccrualPricerByBgm: public RangeAccrualPricer{
-	 public:
+     public:
         RangeAccrualPricerByBgm(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Real correlation,

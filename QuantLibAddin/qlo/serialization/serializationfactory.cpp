@@ -29,26 +29,26 @@
 
 namespace QuantLibAddin {
 
-	SerializationFactory::SerializationFactory() {    
+    SerializationFactory::SerializationFactory() {    
 
-		registerCreators();
+        registerCreators();
 
-	}
+    }
 
-	void SerializationFactory::register_out(boost::archive::xml_oarchive &ar,
-		std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects){
+    void SerializationFactory::register_out(boost::archive::xml_oarchive &ar,
+        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects){
 
-			tpl_register_classes(ar);
-			ar << boost::serialization::make_nvp("object_list", valueObjects);
-	}
+            tpl_register_classes(ar);
+            ar << boost::serialization::make_nvp("object_list", valueObjects);
+    }
 
 
-	void SerializationFactory::register_in(boost::archive::xml_iarchive &ar,
-		std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects){
+    void SerializationFactory::register_in(boost::archive::xml_iarchive &ar,
+        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects){
 
-			tpl_register_classes(ar);
-			ar >> boost::serialization::make_nvp("object_list", valueObjects);
-	}
+            tpl_register_classes(ar);
+            ar >> boost::serialization::make_nvp("object_list", valueObjects);
+    }
 
 
 }

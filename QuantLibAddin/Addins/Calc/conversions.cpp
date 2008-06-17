@@ -24,13 +24,13 @@
 #include <oh/objecthandler.hpp>
 
 void calcToScalar(QuantLib::Date &ret, const sal_Int32 &date) {
-	ret = QuantLib::Date(date);
+    ret = QuantLib::Date(date);
 }
 
 void calcToScalar(QuantLib::Date &ret, const ANY &date) {
-	long dateLong;
-	calcToScalar(dateLong, date);
-	ret = QuantLib::Date(dateLong);
+    long dateLong;
+    calcToScalar(dateLong, date);
+    ret = QuantLib::Date(dateLong);
 }
 
 void calcToScalar(ObjectHandler::Variant &ret, const ANY &value) {
@@ -84,13 +84,13 @@ void calcToVector(QuantLib::Array &ret, const SEQSEQ(double) &in) {
 }
 
 void calcToVector(std::vector<std::string> &ret, const SEQSEQ(ANY) &in) {
-	for (int i=0; i<in.getLength(); ++i) {
-		for (int j=0; j<in[i].getLength(); ++j) {
-			std::string s;
-			calcToScalar(s, in[i][j]);
+    for (int i=0; i<in.getLength(); ++i) {
+        for (int j=0; j<in[i].getLength(); ++j) {
+            std::string s;
+            calcToScalar(s, in[i][j]);
             ret.push_back(s);
-		}
-	}
+        }
+    }
 }
 
 void calcToVector(std::vector<long> &ret, const SEQSEQ(sal_Int32) &in) {

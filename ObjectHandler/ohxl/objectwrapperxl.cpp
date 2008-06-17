@@ -36,19 +36,19 @@ namespace ObjectHandler {
         callingRange_->unregisterObject(id_);
     }
 
-	void  ObjectWrapperXL::dump(std::ostream& out) {
-		ObjectWrapper::dump(out);
+    void  ObjectWrapperXL::dump(std::ostream& out) {
+        ObjectWrapper::dump(out);
         out << "Excel info:" << std::endl << std::endl;
-		out << "full object ID = " << std::left << std::setw(Object::logColumnWidth) 
+        out << "full object ID = " << std::left << std::setw(Object::logColumnWidth) 
             << idFull_ << std::endl;
-		out << "calling range  = " << std::left << std::setw(Object::logColumnWidth) 
+        out << "calling range  = " << std::left << std::setw(Object::logColumnWidth) 
             << callerAddress() << std::endl << std::endl;
     }
 
-	void ObjectWrapperXL::reset(boost::shared_ptr<Object> object) {
+    void ObjectWrapperXL::reset(boost::shared_ptr<Object> object) {
         ObjectWrapper::reset(object);
         idFull_ = callingRange_->updateID(id_);
-	}
+    }
 
     std::string ObjectWrapperXL::callerKey() const {
         return callingRange_->key();

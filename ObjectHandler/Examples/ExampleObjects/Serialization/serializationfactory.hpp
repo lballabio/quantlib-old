@@ -28,20 +28,20 @@ FOR A PARTICULAR PURPOSE.  See the license for more details.
 
 namespace AccountExample {
 
-	class SerializationFactory : public ObjectHandler::SerializationFactory {
-	public:
-		SerializationFactory();
+    class SerializationFactory : public ObjectHandler::SerializationFactory {
+    public:
+        SerializationFactory();
 
-		//static SerializationFactory &instance();
+        //static SerializationFactory &instance();
 
    private:
- 	protected:
-		virtual void register_out(boost::archive::xml_oarchive &ar,
-			std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
-		virtual void register_in(boost::archive::xml_iarchive &ar,
-			std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
+     protected:
+        virtual void register_out(boost::archive::xml_oarchive &ar,
+            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
+        virtual void register_in(boost::archive::xml_iarchive &ar,
+            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects);
 
-	};
+    };
 
 }
 

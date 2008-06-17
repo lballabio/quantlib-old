@@ -123,15 +123,15 @@ namespace ObjectHandler {
 
     inline std::vector<std::string> Object::propertyNames() const {
         std::vector<std::string> ret;
-		if (mProps)
-			ret = mProps->getPropertyNames();
-			
+        if (mProps)
+            ret = mProps->getPropertyNames();
+            
         return ret;
     }
 
     inline boost::any Object::propertyValue(const std::string &propertyName) const {
-		if (mProps)
-			return mProps->getProperty(propertyName);
+        if (mProps)
+            return mProps->getProperty(propertyName);
         OH_FAIL("ObjectHandler error: attempt to retrieve property "
             << "with unknown name '" << propertyName << "'");
     }
@@ -141,8 +141,8 @@ namespace ObjectHandler {
         std::vector<std::string> propertyNames = this->propertyNames();
         for (std::vector<std::string>::const_iterator i = propertyNames.begin(); 
                 i != propertyNames.end(); ++i) {
-	        std::string propertyName = *i;
-	        boost::any propertyValue = this->propertyValue(propertyName);
+            std::string propertyName = *i;
+            boost::any propertyValue = this->propertyValue(propertyName);
             out << "property = " << std::left << std::setw(logColumnWidth) << propertyName;
             out << " value = " << std::left << std::setw(logColumnWidth) << propertyValue << std::endl;
         }

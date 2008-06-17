@@ -52,7 +52,7 @@ namespace ObjectHandler {
             "'[Bo ok1.xls]Sheet1'!R1C1"
         \endcode
 
-		If book name contains dots then Excel encloses the text
+        If book name contains dots then Excel encloses the text
         in single quotes:
         \code
             "'[Bo.ok1.xls]Sheet1'!R1C1"

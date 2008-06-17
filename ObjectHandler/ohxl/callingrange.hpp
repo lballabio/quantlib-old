@@ -93,7 +93,7 @@ namespace ObjectHandler {
             This function accepts a string which may be either a normal or full ID,
             if full the suffix is removed, if normal the value is returned unmodified.
         */
-		static DLL_API std::string getStub(const std::string &objectID);
+        static DLL_API std::string getStub(const std::string &objectID);
 
         std::string initializeID(const std::string &objectID);
         std::string updateID(const std::string &objectID);

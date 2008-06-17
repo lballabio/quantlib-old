@@ -232,7 +232,7 @@ DLLEXPORT char *ohAccount(
         boost::shared_ptr<ObjectHandler::Object> object(
             new AccountExample::AccountObject(valueObject, customerRef, typeEnum, *number, balanceLong, *permanent));
 
-	
+    
         std::string returnValue = 
             ObjectHandler::RepositoryXL::instance().storeObject(objectID, object, true);
 

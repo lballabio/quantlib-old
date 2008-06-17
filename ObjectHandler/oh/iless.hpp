@@ -72,7 +72,7 @@ namespace ObjectHandler {
         }
       private:
         std::locale loc_;
-	};
+    };
 
 }
 

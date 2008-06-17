@@ -63,7 +63,7 @@ void makeAccount(
     const std::string &type,
     const long &number,
     ObjectHandler::Variant balance = ObjectHandler::Variant(),
-	bool overwrite = false) {
+    bool overwrite = false) {
 
     OH_GET_REFERENCE(customerRef, customer,
         AccountExample::CustomerObject, AccountExample::Customer)
@@ -156,21 +156,21 @@ int main() {
         accountObject1_load->setBalance(200);
         OH_LOG_MESSAGE("Balance of account account2 = "
             << accountObject1_load->balance());
-	
+    
         // initially time
         OH_LOG_MESSAGE("The initially time of creating account2 is ");
         OH_LOG_MESSAGE(ObjectHandler::formatTime(ObjectHandler::Repository::instance().creationTime("account2")));
-		//sleep(1);
-		makeAccount("account2", "customer1", "Current", 987654321, 100L, true);
+        //sleep(1);
+        makeAccount("account2", "customer1", "Current", 987654321, 100L, true);
        // last time
         OH_LOG_MESSAGE("The last time of creating account2 is ");
         OH_LOG_MESSAGE(ObjectHandler::formatTime(ObjectHandler::Repository::instance().updateTime("account2")));
-		// relation the  objects list
+        // relation the  objects list
         OH_LOG_MESSAGE("relation the objects list is ");
-		std::vector<std::string> relationIDs = ObjectHandler::Repository::instance().getRelationObs("account2");
-		std::string show;
-		for(unsigned int i = 0; i < relationIDs.size(); ++i)
-			show += relationIDs[i];
+        std::vector<std::string> relationIDs = ObjectHandler::Repository::instance().getRelationObs("account2");
+        std::string show;
+        for(unsigned int i = 0; i < relationIDs.size(); ++i)
+            show += relationIDs[i];
         OH_LOG_MESSAGE(show);
 
         // Delete all objects

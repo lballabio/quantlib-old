@@ -42,7 +42,7 @@ namespace QuantLibAddin {
             QuantLib::Spread displacement,
             const std::vector<QuantLib::Real>& alpha,
             bool lowestRoot,
-			bool useFullApprox,
+            bool useFullApprox,
             bool permanent) : CTSMMCapletCalibration(properties, permanent)
     {
         libraryObject_ =

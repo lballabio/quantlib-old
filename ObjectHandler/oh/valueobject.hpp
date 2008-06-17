@@ -81,21 +81,21 @@ namespace ObjectHandler {
         const std::string &className() const { return className_; }
         //@}
 
-		//! \name getRelationObs
+        //! \name getRelationObs
         //@{
-		//! Retrieve the list relatedIDs_.
-		const std::set<std::string>& getRelationObs() { return relatedIDs_;}
+        //! Retrieve the list relatedIDs_.
+        const std::set<std::string>& getRelationObs() { return relatedIDs_;}
         //@}
     protected:
         std::string objectId_;
         std::string className_;
         bool permanent_;
-		//relation the observable objects
-		std::set<std::string> relatedIDs_;
+        //relation the observable objects
+        std::set<std::string> relatedIDs_;
 
-		void processVariant(const ObjectHandler::Variant& variantID);
-		void processVariant(const std::vector<ObjectHandler::Variant>& vecVariantID);
-		void processVariant(const std::vector<std::vector<ObjectHandler::Variant> >& vecVariantIDs);
+        void processVariant(const ObjectHandler::Variant& variantID);
+        void processVariant(const std::vector<ObjectHandler::Variant>& vecVariantID);
+        void processVariant(const std::vector<std::vector<ObjectHandler::Variant> >& vecVariantIDs);
         void processRelatedID(const std::string& relatedID);
     };
 
@@ -104,25 +104,25 @@ namespace ObjectHandler {
             relatedIDs_.insert(relatedID);
     }
 
-	inline void ValueObject::processVariant(const ObjectHandler::Variant& variantID){
+    inline void ValueObject::processVariant(const ObjectHandler::Variant& variantID){
 
-		if(variantID.type() == ObjectHandler::String)
+        if(variantID.type() == ObjectHandler::String)
             processRelatedID(variantID);
-	}
+    }
 
-	inline void ValueObject::processVariant(const std::vector<ObjectHandler::Variant>& vecVariantID){
-		std::vector<ObjectHandler::Variant>::const_iterator iterator = vecVariantID.begin();
-		for(; iterator != vecVariantID.end(); ++iterator)
-			processVariant(*iterator);
-	}
+    inline void ValueObject::processVariant(const std::vector<ObjectHandler::Variant>& vecVariantID){
+        std::vector<ObjectHandler::Variant>::const_iterator iterator = vecVariantID.begin();
+        for(; iterator != vecVariantID.end(); ++iterator)
+            processVariant(*iterator);
+    }
 
-	inline void ValueObject::processVariant(const std::vector<std::vector<ObjectHandler::Variant> >& vecVariantIDs){
-		std::vector<std::vector<ObjectHandler::Variant> >::const_iterator iterator = vecVariantIDs.begin();
-		for(; iterator != vecVariantIDs.end(); ++iterator){
-			processVariant(*iterator);
-		}
+    inline void ValueObject::processVariant(const std::vector<std::vector<ObjectHandler::Variant> >& vecVariantIDs){
+        std::vector<std::vector<ObjectHandler::Variant> >::const_iterator iterator = vecVariantIDs.begin();
+        for(; iterator != vecVariantIDs.end(); ++iterator){
+            processVariant(*iterator);
+        }
 
-	}
+    }
 }
 
 #endif

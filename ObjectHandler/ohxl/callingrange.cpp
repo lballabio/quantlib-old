@@ -189,7 +189,7 @@ namespace ObjectHandler {
             return objectID;
     }
 
-	std::string CallingRange::getStub(const std::string &objectID) {
+    std::string CallingRange::getStub(const std::string &objectID) {
         int counterOffset = objectID.length() - keyWidth();
         if (counterOffset >= 0 && objectID[counterOffset] == counterDelimiter)
             return objectID.substr(0, counterOffset);
