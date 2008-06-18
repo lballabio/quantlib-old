@@ -412,10 +412,6 @@
 					RelativePath="..\..\oh\variant.hpp"
 					>
 				</File>
-				<File
-					RelativePath="..\..\oh\variantvisitors.hpp"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="utilities"

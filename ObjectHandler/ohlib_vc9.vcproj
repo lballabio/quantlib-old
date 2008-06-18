@@ -409,10 +409,6 @@
 				RelativePath="oh\valueobject.hpp"
 				>
 			</File>
-			<File
-				RelativePath=".\oh\variantvisitors.hpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="conversions"
