@@ -28,7 +28,12 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(Extrapolator, QuantLib::Extrapolator);
+    class Extrapolator : public ObjectHandler::LibraryObject<QuantLib::Extrapolator> {
+        public:
+            void enableExtrapolation(bool b);
+        protected:
+            OH_LIB_CTOR(Extrapolator, QuantLib::Extrapolator)
+    };
 
 }
 

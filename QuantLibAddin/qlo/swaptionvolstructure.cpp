@@ -157,7 +157,7 @@ namespace QuantLibAddin {
                                        optMethod ));
     }
 
-    std::vector<std::vector<boost::any> >
+    std::vector<std::vector<ObjectHandler::property_t> >
     SwaptionVolCube1::getSparseSabrParameters() {
         const boost::shared_ptr<QuantLib::SwaptionVolCube1>&
             volCube = boost::dynamic_pointer_cast<
@@ -165,7 +165,7 @@ namespace QuantLibAddin {
         return getSabrParameters(volCube->sparseSabrParameters());
     }
 
-    std::vector<std::vector<boost::any> >
+    std::vector<std::vector<ObjectHandler::property_t> >
     SwaptionVolCube1::getDenseSabrParameters() {
         const boost::shared_ptr<QuantLib::SwaptionVolCube1>&
             volCube = boost::dynamic_pointer_cast<
@@ -173,7 +173,7 @@ namespace QuantLibAddin {
         return getSabrParameters(volCube->denseSabrParameters());
     }
 
-    std::vector<std::vector<boost::any> >
+    std::vector<std::vector<ObjectHandler::property_t> >
     SwaptionVolCube1::getMarketVolCube() {
         const boost::shared_ptr<QuantLib::SwaptionVolCube1>&
             volCube = boost::dynamic_pointer_cast<
@@ -181,7 +181,7 @@ namespace QuantLibAddin {
         return getVolCube(volCube->marketVolCube());
     }
 
-    std::vector<std::vector<boost::any> >
+    std::vector<std::vector<ObjectHandler::property_t> >
     SwaptionVolCube1::getVolCubeAtmCalibrated() {
         const boost::shared_ptr<QuantLib::SwaptionVolCube1>&
             volCube = boost::dynamic_pointer_cast<
@@ -189,12 +189,12 @@ namespace QuantLibAddin {
         return getVolCube(volCube->volCubeAtmCalibrated());
     }
 
-    std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix sabrParameters)
+    std::vector<std::vector<ObjectHandler::property_t> > getSabrParameters(QuantLib::Matrix sabrParameters)
     {
-        std::vector<std::vector<boost::any> > sparseSabrParameters;
+        std::vector<std::vector<ObjectHandler::property_t> > sparseSabrParameters;
         QuantLib::Size numberOfColumn = 10;
 
-        std::vector<boost::any> headings(numberOfColumn);
+        std::vector<ObjectHandler::property_t> headings(numberOfColumn);
         headings[0]=std::string("Swap Length");
         headings[1]=std::string("Expiry");
 
@@ -211,7 +211,7 @@ namespace QuantLibAddin {
         sparseSabrParameters.push_back(headings);
 
         for(QuantLib::Size i=0; i<sabrParameters.rows(); ++i) {
-            std::vector<boost::any> par(numberOfColumn, std::string("N/A"));
+            std::vector<ObjectHandler::property_t> par(numberOfColumn, std::string("N/A"));
             for(QuantLib::Size j=0; j<sabrParameters.columns()-1; ++j) {
                par[j] = sabrParameters[i][j];
             }
@@ -224,12 +224,12 @@ namespace QuantLibAddin {
         return sparseSabrParameters;
     }
 
-    std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix volCube)
+    std::vector<std::vector<ObjectHandler::property_t> > getVolCube(QuantLib::Matrix volCube)
     {
-        std::vector<std::vector<boost::any> > volatilityCube;
+        std::vector<std::vector<ObjectHandler::property_t> > volatilityCube;
         QuantLib::Size numberOfColumn = 11;
 
-        std::vector<boost::any> headings(numberOfColumn);
+        std::vector<ObjectHandler::property_t> headings(numberOfColumn);
         headings[0]=std::string("Swap Length");
         headings[1]=std::string("Expiry");
 
@@ -247,7 +247,7 @@ namespace QuantLibAddin {
 
         for(QuantLib::Size i=0; i<volCube.rows(); ++i)
         {
-            std::vector<boost::any> vol(numberOfColumn, std::string("N/A"));
+            std::vector<ObjectHandler::property_t> vol(numberOfColumn, std::string("N/A"));
             for(QuantLib::Size j=0; j<volCube.columns(); ++j)
             {
                vol[j] = volCube[i][j];

@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
- Copyright (C) 2006 Plamen Neykov
+ Copyright (C) 2006, 2008 Plamen Neykov
  Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
@@ -29,7 +29,7 @@
 #include <oh/ohdefines.hpp>
 #include <oh/valueobject.hpp>
 #include <oh/exception.hpp>
-#include <oh/conversions/anytostream.hpp>
+//#include <oh/conversions/anytostream.hpp>
 #include <boost/shared_ptr.hpp>
 #include <vector>
 #include <string>
@@ -77,13 +77,14 @@ namespace ObjectHandler {
         /*! Retrieve property names from associated ValueObject.
             Return an empty vector if the Object has no properties.
         */
-        std::vector<std::string> propertyNames() const;
+        std::set<std::string> propertyNames() const;
+        std::vector<std::string> propertyNamesVector() const;
 
         //! Retrieve the value of a given property.
         /*! Forward the request to the associated ValueObject.
             Throw an exception if the Object has no property by that name.
         */
-        boost::any propertyValue(const std::string &propertyName) const;
+        property_t propertyValue(const std::string &propertyName) const;
         //@}
 
         //! \name Permanent Objects
@@ -121,15 +122,21 @@ namespace ObjectHandler {
         Object(const Object&);
     };
 
-    inline std::vector<std::string> Object::propertyNames() const {
-        std::vector<std::string> ret;
-        if (mProps)
-            ret = mProps->getPropertyNames();
-            
-        return ret;
+    inline std::set<std::string> Object::propertyNames() const {
+        if(mProps)
+            return mProps->getPropertyNames();
+        else
+            return std::set<std::string>();
     }
 
-    inline boost::any Object::propertyValue(const std::string &propertyName) const {
+    inline std::vector<std::string> Object::propertyNamesVector() const {
+        if(mProps)
+            return mProps->getPropertyNamesVector();
+        else
+            return std::vector<std::string>();
+    }
+
+    inline property_t Object::propertyValue(const std::string &propertyName) const {
         if (mProps)
             return mProps->getProperty(propertyName);
         OH_FAIL("ObjectHandler error: attempt to retrieve property "
@@ -137,9 +144,9 @@ namespace ObjectHandler {
     }
 
     inline void Object::dump(std::ostream &out) {
-        out << std::endl;
-        std::vector<std::string> propertyNames = this->propertyNames();
-        for (std::vector<std::string>::const_iterator i = propertyNames.begin(); 
+        /*out << std::endl;
+        std::set<std::string> propertyNames = this->propertyNames();
+        for (std::set<std::string>::const_iterator i = propertyNames.begin(); 
                 i != propertyNames.end(); ++i) {
             std::string propertyName = *i;
             boost::any propertyValue = this->propertyValue(propertyName);
@@ -148,7 +155,7 @@ namespace ObjectHandler {
         }
         out << "Permanent = " << std::left << std::setw(logColumnWidth) 
             << std::boolalpha << permanent_ << std::endl;
-        out << std::endl;
+        out << std::endl;*/
     }
 
     inline std::ostream &operator<<(std::ostream &out, const boost::shared_ptr<Object> &object) {

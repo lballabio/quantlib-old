@@ -28,6 +28,7 @@
 #include <qlo/leg.hpp>
 #include <qlo/flowanalysis.hpp>
 #include <qlo/enumerations/factories/iborcouponpricersfactory.hpp>
+#include <qlo/couponvectors.hpp>
 
 #include <ql/cashflow.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
@@ -130,13 +131,25 @@ namespace QuantLibAddin {
                                 QuantLib::Date settlementDate) const { 
         return QuantLib::CashFlows::convexity(leg_, y, settlementDate);
     }
-    std::vector<std::vector<boost::any> > Leg::analysis() const {
+    std::vector<std::vector<ObjectHandler::property_t> > Leg::analysis() const {
         return flowAnalysis(leg_);
     }
 
     void Leg::setCouponPricers(
-                const vector<shared_ptr<FloatingRateCouponPricer> >& pricers) {
-        return QuantLib::setCouponPricers(leg_, pricers);
+                const vector<shared_ptr<QuantLibAddin::FloatingRateCouponPricer> >& pricers) {
+        std::vector<std::string> ids;
+        std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> > ql_pricers;
+        std::vector<boost::shared_ptr<QuantLibAddin::FloatingRateCouponPricer> >::const_iterator i;
+        for (i = pricers.begin(); i != pricers.end(); ++i) {
+            ids.push_back((*i)->properties()->objectId());
+            boost::shared_ptr<QuantLib::FloatingRateCouponPricer> p;
+            (*i)->getLibraryObject(p);
+            ql_pricers.push_back(p);
+        }
+        QuantLib::setCouponPricers(leg_, ql_pricers);
+
+        boost::shared_ptr<ObjectHandler::ValueObject> inst_properties = properties();
+        inst_properties->setProperty("UserLegIDs", ids);
     }
 
     const QuantLib::Leg& Leg::getQuantLibLeg() {

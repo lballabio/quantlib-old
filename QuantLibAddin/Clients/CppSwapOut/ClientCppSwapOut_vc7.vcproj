@@ -389,10 +389,10 @@
 	</References>
 	<Files>
 		<File
-			RelativePath="qlxl_swap_market.xml">
+			RelativePath="YieldCurves.xml">
 		</File>
 		<File
-			RelativePath="qlxl_swap_trade.xml">
+			RelativePath="VanillaSwap.xml">
 		</File>
 		<File
 			RelativePath="swap_out.cpp">

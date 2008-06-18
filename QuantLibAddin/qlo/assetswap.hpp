@@ -42,11 +42,11 @@ namespace QuantLibAddin {
                   bool parSwap,
                   bool permanent);
                                       
-        std::vector<std::vector<boost::any> > bondLeg() {
+        std::vector<std::vector<ObjectHandler::property_t> > bondLeg() {
             return Swap::legAnalysis(0);
         }
 
-        std::vector<std::vector<boost::any> > floatingLeg() {
+        std::vector<std::vector<ObjectHandler::property_t> > floatingLeg() {
             return Swap::legAnalysis(1);
         }
 

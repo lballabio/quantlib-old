@@ -35,6 +35,10 @@ namespace QuantLib {
 }
 
 namespace QuantLibAddin {
+    class FloatingRateCouponPricer;
+}
+
+namespace QuantLibAddin {
 
     class Leg : public ObjectHandler::Object {
       public:
@@ -81,9 +85,9 @@ namespace QuantLibAddin {
         QuantLib::Real convexity(const QuantLib::InterestRate& y,
                                  QuantLib::Date settlementDate) const;
 
-        void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& p);
+        void setCouponPricers(const std::vector<boost::shared_ptr<QuantLibAddin::FloatingRateCouponPricer> >& p);
 
-        std::vector<std::vector<boost::any> > analysis() const;
+        std::vector<std::vector<ObjectHandler::property_t> > analysis() const;
         const QuantLib::Leg& getQuantLibLeg();
       protected:
         OH_OBJ_CTOR(Leg, ObjectHandler::Object);

@@ -365,7 +365,10 @@
 					RelativePath="..\..\oh\ohdefines.hpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\other.hpp">
+					RelativePath="..\..\oh\processor.hpp">
+				</File>
+				<File
+					RelativePath="..\..\oh\property.hpp">
 				</File>
 				<File
 					RelativePath="..\..\oh\range.hpp">
@@ -402,19 +405,13 @@
 				Name="conversions"
 				Filter="">
 				<File
-					RelativePath="..\..\oh\conversions\anytostream.hpp">
-				</File>
-				<File
 					RelativePath="..\..\oh\conversions\coerce.hpp">
 				</File>
 				<File
+					RelativePath="..\..\oh\conversions\convert2.hpp">
+				</File>
+				<File
 					RelativePath="..\..\oh\conversions\getobjectvector.hpp">
-				</File>
-				<File
-					RelativePath="..\..\oh\conversions\ohvarianttoscalar.hpp">
-				</File>
-				<File
-					RelativePath="..\..\oh\conversions\varianttoscalar.hpp">
 				</File>
 			</Filter>
 			<Filter

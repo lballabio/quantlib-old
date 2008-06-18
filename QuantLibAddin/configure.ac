@@ -114,13 +114,25 @@ AC_CHECK_FILE([${gensrc_path}/gensrc.py], [],
 AC_ARG_VAR(gensrc_dir, path to gensrc)
 AC_SUBST(gensrc_dir, [${gensrc_path}])
 
+# Configure and validate the path to ObjectHandler
+
+AC_ARG_WITH([oh],
+            AC_HELP_STRING([--with-oh=/path/to/ObjectHandler],
+                           [Specify the root directory of the ObjectHandler source tree]),
+            [oh_path=${withval}],
+            [AC_MSG_ERROR([You must specify the location of ObjectHandler: "./configure --with-oh=path/to/ObjectHandler"])])
+AC_CHECK_FILE([${oh_path}/oh/objecthandler.hpp], [],
+            [AC_MSG_ERROR([Unable to locate file oh/objecthandler.hpp in specified ObjectHandler directory])])
+AC_ARG_VAR(oh_dir, path to ObjectHandler)
+AC_SUBST(oh_dir, [${oh_path}])
+
 # Done, output the configured files
 
 AC_CONFIG_FILES([
     Addins/Cpp/Makefile
     Addins/Calc/Makefile
     Clients/Cpp/Makefile
-    Clients/CppSwapIn/Makefile
+    Clients/CppInstrumentIn/Makefile
     Clients/CppSwapOut/Makefile
     Clients/Calc/Makefile
     Docs/Makefile

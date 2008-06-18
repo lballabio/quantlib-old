@@ -130,11 +130,11 @@ namespace QuantLibAddin {
     }
 
 
-    std::vector<std::vector<boost::any> > VanillaSwap::fixedLegAnalysis() {
+    std::vector<std::vector<ObjectHandler::property_t> > VanillaSwap::fixedLegAnalysis() {
         return Swap::legAnalysis(0);
     }
 
-    std::vector<std::vector<boost::any> > VanillaSwap::floatingLegAnalysis() {
+    std::vector<std::vector<ObjectHandler::property_t> > VanillaSwap::floatingLegAnalysis() {
         return Swap::legAnalysis(1);
     }
 

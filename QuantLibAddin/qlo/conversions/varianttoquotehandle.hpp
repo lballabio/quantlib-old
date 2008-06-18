@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2008 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,25 +24,17 @@
 #include <qlo/quote.hpp>
 #include <oh/types.hpp>
 #include <ql/quotes/simplequote.hpp>
+#include <oh/conversions/convert2.hpp>
 
 namespace ObjectHandler {
 
-    template <class V>
-    struct VariantToScalar<V, QuantLib::Handle<QuantLib::Quote> > {
-        QuantLib::Handle<QuantLib::Quote> operator()(const V &variant) {
+    class ConvertOper;
 
-            if (variant.type() == ObjectHandler::Double || variant.type() == ObjectHandler::Long) {
-                QuantLib::Handle<QuantLib::Quote> ret(
-                    boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(variant)));
-                return ret;
-            } else if (variant.type() == ObjectHandler::String) {
-                OH_GET_OBJECT(object, variant, ObjectHandler::Object)
-                return QuantLibAddin::CoerceHandle<QuantLibAddin::Quote, QuantLib::Quote>()(object);
-            } else {
-                OH_FAIL("unable to convert input value to QuantLib::RelinkableHandle<QuantLib::Quote>");
-            }
-        }
-    };
+    template<>
+    QuantLib::Handle<QuantLib::Quote> convert2<QuantLib::Handle<QuantLib::Quote>, property_t>(const property_t& c);
+
+    template<>
+    QuantLib::Handle<QuantLib::Quote> convert2<QuantLib::Handle<QuantLib::Quote>, ConvertOper>(const ConvertOper& c);
 
 }
 

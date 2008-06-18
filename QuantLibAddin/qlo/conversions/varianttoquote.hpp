@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2008 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,21 +27,14 @@
 #include <ql/quotes/simplequote.hpp>
 
 namespace ObjectHandler {
+    
+    class ConvertOper;
 
-    template <class V>
-    struct VariantToScalar<V, boost::shared_ptr<QuantLib::Quote> > {
-        boost::shared_ptr<QuantLib::Quote> operator()(const V &variant) {
+    template<>
+    boost::shared_ptr<QuantLib::Quote> convert2<boost::shared_ptr<QuantLib::Quote>, property_t>(const property_t& c);
 
-            if (variant.type() == ObjectHandler::Double) {
-                return boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(variant));
-            } else if (variant.type() == ObjectHandler::String) {
-                OH_GET_OBJECT(temp, variant, ObjectHandler::Object)
-                return QuantLibAddin::CoerceObject<QuantLibAddin::Quote, QuantLib::Quote, QuantLib::Quote>()(temp);
-            } else {
-                OH_FAIL("unable to convert input value to QuantLib::Quote");
-            }
-        }
-    };
+    template<>
+    boost::shared_ptr<QuantLib::Quote> convert2<boost::shared_ptr<QuantLib::Quote>, ConvertOper>(const ConvertOper& c);
 
 }
 

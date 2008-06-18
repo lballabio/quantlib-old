@@ -21,10 +21,21 @@
 #if defined BOOST_MSVC
 #include <oh/auto_link.hpp>
 #endif
-
-#define OH_NULL ObjectHandler::Variant()
+#include <iostream>
 
 using namespace QuantLibAddinCpp;
+
+#define OH_NULL ObjectHandler::property_t()
+
+#ifdef LOG_MESSAGE
+#undef LOG_MESSAGE
+#endif
+#ifdef LOG_ERROR
+#undef LOG_ERROR
+#endif
+
+#define LOG_MESSAGE(msg) std::cerr << msg << std::endl
+#define LOG_ERROR(msg) std::cerr << msg << std::endl
 
 int main() {
 
@@ -32,8 +43,8 @@ int main() {
 
         initializeAddin();
 
-        ohSetLogFile("qlademo.log", 4L, OH_NULL);
-        ohSetConsole(1, 4L, OH_NULL);
+        //ohSetLogFile("qlademo.log", 4L, OH_NULL);
+        //ohSetConsole(1, 4L, OH_NULL);
         LOG_MESSAGE("Begin example program.");
         LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion(OH_NULL));
         LOG_MESSAGE("ObjectHandler version = " << ohVersion(OH_NULL));

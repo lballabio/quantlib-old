@@ -395,6 +395,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='FamilyName' exampleValue='Euribor6M Actual/360'>
@@ -454,6 +455,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='Tenor' exampleValue='6M'>
@@ -478,6 +480,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='Tenor' exampleValue='6M'>
@@ -502,6 +505,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='Tenor' exampleValue='6M'>
@@ -582,6 +586,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='FamilyName' exampleValue='EuriborSwapFixA10Y 30/360 (BondBasis)'>
@@ -640,6 +645,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='Tenor' exampleValue='10Y'>
@@ -664,6 +670,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='Tenor' exampleValue='10Y'>
@@ -688,6 +695,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='Tenor' exampleValue='10Y'>
@@ -712,6 +720,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='Tenor' exampleValue='10Y'>
@@ -736,6 +745,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='Tenor' exampleValue='10Y'>
@@ -760,6 +770,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='Tenor' exampleValue='10Y'>
@@ -786,6 +797,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='YieldCurve' exampleValue='USDYC' default='""'>

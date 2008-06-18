@@ -25,12 +25,21 @@
 #endif
 #include <iostream>
 
-#define OH_NULL ObjectHandler::Variant()
+#define OH_NULL ObjectHandler::property_t()
 
 using namespace QuantLibAddinCpp;
 
 #define LENGTH(a) (sizeof(a)/sizeof(a[0]))
 
+#ifdef LOG_MESSAGE
+#undef LOG_MESSAGE
+#endif
+#ifdef LOG_ERROR
+#undef LOG_ERROR
+#endif
+
+#define LOG_MESSAGE(msg) std::cerr << msg << std::endl
+#define LOG_ERROR(msg) std::cerr << msg << std::endl
 struct Datum {
     const char* tenor;
     double rate;
@@ -47,8 +56,8 @@ int main() {
 
         initializeAddin();
 
-        ohSetLogFile("qlademo.log", 4L, OH_NULL);
-        ohSetConsole(1, 4L, OH_NULL);
+        //ohSetLogFile("qlademo.log", 4L, OH_NULL);
+        //ohSetConsole(1, 4L, OH_NULL);
         LOG_MESSAGE("Begin example program.");
         LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion(OH_NULL));
         LOG_MESSAGE("ObjectHandler version = " << ohVersion(OH_NULL));
@@ -70,7 +79,7 @@ int main() {
             qlRelinkableHandleYieldTermStructure("EuriborYC6M", "", false, OH_NULL, false);
         marketObjects.push_back(EuriborYC6M);
 
-        char *tenors[] = {
+        const char *tenors[] = {
             "1W",
             "2W",
             "3W",
@@ -283,8 +292,8 @@ int main() {
             rateHelpers.push_back(swapId);
         }
 
-        std::vector<ObjectHandler::Variant> Jumps;
-        std::vector<ObjectHandler::Variant> JumpDates;
+        std::vector<ObjectHandler::property_t> Jumps;
+        std::vector<ObjectHandler::property_t> JumpDates;
 
         std::string EUR_YC = qlPiecewiseYieldCurve("EUR_YC",
             0L,
@@ -352,27 +361,37 @@ int main() {
                 false, OH_NULL, false);
         tradeObjects.push_back(swap);
 
-        // Serialize the objects
+        // Attach relinkable handles to term structures
+        qlRelinkableHandleLinkTo(EuriborYC3M, EUR_YC, OH_NULL);
+        qlRelinkableHandleLinkTo(EuriborYC6M, EUR_YC, OH_NULL);
 
-        ohObjectSave(marketObjects, "qlxl_swap_market.xml", true, OH_NULL);
-        ohObjectSave(tradeObjects, "qlxl_swap_trade.xml", true, OH_NULL);
+        // Set the pricing engine
+        qlInstrumentSetPricingEngine(swap, engine, OH_NULL);
+
+        // Serialize the objects
+        ohObjectSave(marketObjects, "YieldCurves.xml", true, OH_NULL);
+        ohObjectSave(tradeObjects, "VanillaSwap.xml", true, OH_NULL);
 
         // Enable extrapolation for the yield curve
 
         qlExtrapolatorEnableExtrapolation(EUR_YC, true, OH_NULL);
 
-        // Attach relinkable handles to term structures
-
-        qlRelinkableHandleLinkTo(EuriborYC3M, EUR_YC, OH_NULL);
-        qlRelinkableHandleLinkTo(EuriborYC6M, EUR_YC, OH_NULL);
-
-        // Set the pricing engine
-
-        qlInstrumentSetPricingEngine(swap, engine, OH_NULL);
-
         // Output the PV of the deal
 
         LOG_MESSAGE("SWAP PV = " << qlInstrumentNPV(swap, OH_NULL));
+
+        // Example of serializing to/from a buffer
+
+        LOG_MESSAGE("Example of serializing to/from a buffer:");
+
+        qlSimpleQuote("quote1", 1.23, 0, false, OH_NULL, false);
+        std::vector<std::string> idList;
+        idList.push_back("quote1");
+        std::string xml = ohObjectSaveString(idList, OH_NULL, OH_NULL);
+        LOG_MESSAGE("XML = " << std::endl << xml);
+
+        std::vector<std::string> idList2 = ohObjectLoadString(xml, true, OH_NULL);
+        //ohLogObject(idList2[0], OH_NULL);
 
         LOG_MESSAGE("End example program.");
 

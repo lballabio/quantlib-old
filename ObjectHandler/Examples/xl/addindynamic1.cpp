@@ -177,18 +177,18 @@ DLLEXPORT char *addin1CreateAccount(
         OH_GET_REFERENCE(customerRef, customer,
             AccountExample::CustomerObject, AccountExample::Customer)
 
-        long balanceLong = ObjectHandler::operToScalar<long>(
-            *balance, "balance", 100);
+        long balanceLong = ObjectHandler::convert2<long>(
+            ObjectHandler::ConvertOper(*balance), "balance", 100);
 
-        ObjectHandler::Variant balanceVariant =
-            ObjectHandler::operToScalar<ObjectHandler::Variant>(
-                *balance, "balance");
+        ObjectHandler::property_t balanceProperty =
+            ObjectHandler::convert2<ObjectHandler::property_t>(
+            ObjectHandler::ConvertOper(*balance), "balance");
 
         AccountExample::Account::Type typeEnum =
             ObjectHandler::Create<AccountExample::Account::Type>()(type);
 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new AccountExample::AccountValueObject(objectID, customer, type, *number, balanceVariant, *permanent));
+            new AccountExample::AccountValueObject(objectID, customer, type, *number, balanceProperty, *permanent));
 
         boost::shared_ptr<ObjectHandler::Object> object(
             new AccountExample::AccountObject(valueObject, customerRef, typeEnum, *number, balanceLong, *permanent));

@@ -3,7 +3,7 @@
  Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
- Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2005, 2008 Plamen Neykov
  Copyright (C) 2006 Katiuscia Manzoni
 
  This file is part of QuantLib, a free-software/open-source library
@@ -48,7 +48,7 @@ namespace QuantLibAddin {
              const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
              bool permanent);
 
-        std::vector<std::vector<boost::any> > legAnalysis(QuantLib::Size i);
+        std::vector<std::vector<ObjectHandler::property_t> > legAnalysis(QuantLib::Size i);
 
       protected:
         OH_OBJ_CTOR(Swap, Instrument);

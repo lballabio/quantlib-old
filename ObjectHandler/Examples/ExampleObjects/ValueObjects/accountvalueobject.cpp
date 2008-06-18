@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
- Copyright (C) 2006 Plamen Neykov
+ Copyright (C) 2006, 2008 Plamen Neykov
  Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
@@ -35,12 +35,15 @@ namespace AccountExample {
         "Type",
         "Balance"};
 
-    std::vector<std::string> AccountValueObject::getPropertyNames() const {
-        return std::vector<std::string>(mPropertyNames,
-            mPropertyNames + sizeof(mPropertyNames)/sizeof(const char*));
+    const std::set<std::string>& AccountValueObject::getSystemPropertyNames() const {
+        static std::set<std::string> ret;
+        if(ret.empty())
+            ret = std::set<std::string>(mPropertyNames,
+                mPropertyNames + sizeof(mPropertyNames)/sizeof(const char*));
+        return ret;
     }
 
-    boost::any AccountValueObject::getProperty(const std::string& name) const {
+    ObjectHandler::property_t AccountValueObject::getSystemProperty(const std::string& name) const {
         std::string nameUpper = boost::algorithm::to_upper_copy(name);
         if (strcmp(nameUpper.c_str(), "OBJECTID")==0)
             return objectId_;
@@ -60,22 +63,22 @@ namespace AccountExample {
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }
 
-    void AccountValueObject::setProperty(const std::string& name, const boost::any& value) {
+    void AccountValueObject::setSystemProperty(const std::string& name, const ObjectHandler::property_t& value) {
         std::string nameUpper = boost::algorithm::to_upper_copy(name);
         if (strcmp(nameUpper.c_str(), "OBJECTID")==0)
-            objectId_= boost::any_cast<std::string>(value);
+            objectId_= boost::get<std::string>(value);
         else if (strcmp(nameUpper.c_str(), "CLASSNAME")==0)
-            className_ = boost::any_cast<std::string>(value);
+            className_ = boost::get<std::string>(value);
         else if (strcmp(nameUpper.c_str(), "PERMANENT")==0)
-            permanent_ = boost::any_cast<bool>(value);
+            permanent_ = boost::get<bool>(value);
         else if (strcmp(nameUpper.c_str(), "CUSTOMER")==0)
-            customer_ = boost::any_cast<std::string>(value);
+            customer_ = boost::get<std::string>(value);
         else if (strcmp(nameUpper.c_str(), "NUMBER")==0)
-            number_ = boost::any_cast<long>(value);
+            number_ = boost::get<long>(value);
         else if (strcmp(nameUpper.c_str(), "TYPE")==0)
-            type_ = boost::any_cast<std::string>(value);
+            type_ = boost::get<std::string>(value);
         else if (strcmp(nameUpper.c_str(), "BALANCE")==0)
-            balance_ = boost::any_cast<ObjectHandler::Variant>(value);
+            balance_ = value;
         else 
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }

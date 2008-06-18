@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>10</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="124" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>EngineP</ObjectId>
+			<ClassName>qlDiscountingSwapEngine</ClassName>
+			<YieldCurve>EuriborYC6M</YieldCurve>
+			<Permanent>0</Permanent>
+			<UserProperties class_id="200" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="124" object_id="_2">
+			<ObjectId>EngineR</ObjectId>
+			<ClassName>qlDiscountingSwapEngine</ClassName>
+			<YieldCurve>EuriborYC6M</YieldCurve>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="121" tracking_level="1" version="0" object_id="_3">
+			<ObjectId>SwaptionEP</ObjectId>
+			<ClassName>qlBlackSwaptionEngine</ClassName>
+			<YieldCurve>EuriborYC6M</YieldCurve>
+			<VolTS>SpreadsVol</VolTS>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="121" object_id="_4">
+			<ObjectId>SwaptionER</ObjectId>
+			<ClassName>qlBlackSwaptionEngine</ClassName>
+			<YieldCurve>EuriborYC6M</YieldCurve>
+			<VolTS>SpreadsVol</VolTS>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="155" tracking_level="1" version="0" object_id="_5">
+			<ObjectId>sched_fix</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate class_id="201" tracking_level="0" version="0">
+				<which>4</which>
+				<value>40303</value>
+			</EffectiveDate>
+			<TerminationDate>
+				<which>4</which>
+				<value>42129</value>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Modified Following</Convention>
+			<TermDateConv>Modified Following</TermDateConv>
+			<GenRule>Backward</GenRule>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<which>0</which>
+				<value class_id="202" tracking_level="0" version="0"></value>
+			</FirstDate>
+			<NextToLastDate>
+				<which>0</which>
+				<value></value>
+			</NextToLastDate>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="155" object_id="_6">
+			<ObjectId>sched_flt</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<which>4</which>
+				<value>40303</value>
+			</EffectiveDate>
+			<TerminationDate>
+				<which>4</which>
+				<value>42129</value>
+			</TerminationDate>
+			<Tenor>6M</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Modified Following</Convention>
+			<TermDateConv>Modified Following</TermDateConv>
+			<GenRule>Backward</GenRule>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<which>0</which>
+				<value></value>
+			</FirstDate>
+			<NextToLastDate>
+				<which>0</which>
+				<value></value>
+			</NextToLastDate>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="191" tracking_level="1" version="0" object_id="_7">
+			<ObjectId>SwapP</ObjectId>
+			<ClassName>qlVanillaSwap</ClassName>
+			<PayerReceiver>Payer</PayerReceiver>
+			<Nominal>1000000</Nominal>
+			<FixedLegSchedule>sched_fix</FixedLegSchedule>
+			<FixedRate>0.051768232928501801</FixedRate>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<FloatingLegSchedule>sched_flt</FloatingLegSchedule>
+			<IborIndex>Euribor6M</IborIndex>
+			<FloatingLegSpread>0</FloatingLegSpread>
+			<FloatingLegDayCounter>Actual/360</FloatingLegDayCounter>
+			<PaymentConvention>Following</PaymentConvention>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item class_id="203" tracking_level="0" version="0">
+					<first>EngineID</first>
+					<second>
+						<which>2</which>
+						<value>EngineP</value>
+					</second>
+				</item>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_8">
+			<ObjectId>SwapR</ObjectId>
+			<ClassName>qlVanillaSwap</ClassName>
+			<PayerReceiver>Receiver</PayerReceiver>
+			<Nominal>1000000</Nominal>
+			<FixedLegSchedule>sched_fix</FixedLegSchedule>
+			<FixedRate>0.051768232928501801</FixedRate>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<FloatingLegSchedule>sched_flt</FloatingLegSchedule>
+			<IborIndex>Euribor6M</IborIndex>
+			<FloatingLegSpread>0</FloatingLegSpread>
+			<FloatingLegDayCounter>Actual/360</FloatingLegDayCounter>
+			<PaymentConvention>Following</PaymentConvention>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<first>EngineID</first>
+					<second>
+						<which>2</which>
+						<value>EngineR</value>
+					</second>
+				</item>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="171" tracking_level="1" version="0" object_id="_9">
+			<ObjectId>Swaption1</ObjectId>
+			<ClassName>qlSwaption</ClassName>
+			<VanillaSwap>SwapP</VanillaSwap>
+			<Exercise>obj_002fa</Exercise>
+			<SettlementType>Physical</SettlementType>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<first>EngineID</first>
+					<second>
+						<which>2</which>
+						<value>SwaptionEP</value>
+					</second>
+				</item>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="171" object_id="_10">
+			<ObjectId>Swaption2</ObjectId>
+			<ClassName>qlSwaption</ClassName>
+			<VanillaSwap>SwapR</VanillaSwap>
+			<Exercise>obj_002fa</Exercise>
+			<SettlementType>Physical</SettlementType>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<first>EngineID</first>
+					<second>
+						<which>2</which>
+						<value>SwaptionER</value>
+					</second>
+				</item>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>

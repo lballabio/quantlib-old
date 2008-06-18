@@ -12,6 +12,7 @@ include_HEADERS = \
     coerceobject.hpp \
     coercequote.hpp \
     coercetermstructure.hpp \
+    conversion_tmpl.hpp \
     conversions.hpp \
     varianttodate.hpp \
     varianttoperiod.hpp \

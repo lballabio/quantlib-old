@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2008 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,24 +22,17 @@
 #define qla_convert_timeseries_hpp
 
 #include <oh/types.hpp>
-#include <oh/conversions/varianttoscalar.hpp>
+#include <oh/property.hpp>
 #include <ql/timeseries.hpp>
 #include <qlo/timeseries.hpp>
 
 namespace ObjectHandler {
 
-    template <class V>
-    struct VariantToScalar<V, QuantLib::TimeSeriesDef> {
-        QuantLib::TimeSeriesDef operator()(const V &variant) {
+    class ConvertOper;
 
-            if (variant.type() == ObjectHandler::String) {
-                OH_GET_UNDERLYING(temp, variant, QuantLibAddin::TimeSeriesDef, QuantLib::TimeSeriesDef)
-                return temp;
-            } else {
-                OH_FAIL("unable to convert input value to QuantLib::TimeSeriesDef");
-            }
-        }
-    };
+    template<> QuantLib::TimeSeriesDef convert2<QuantLib::TimeSeriesDef, property_t>(const property_t& c);
+
+    template<> QuantLib::TimeSeriesDef convert2<QuantLib::TimeSeriesDef, ConvertOper>(const ConvertOper& c);
 
 }
 

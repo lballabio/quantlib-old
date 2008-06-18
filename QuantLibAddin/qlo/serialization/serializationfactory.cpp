@@ -2,7 +2,7 @@
 /*  
  Copyright (C) 2007, 2008 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
- 
+
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
@@ -19,19 +19,33 @@
 
 #include <qlo/serialization/serializationfactory.hpp>
 #include <qlo/serialization/create/create_all.hpp>
+#include <qlo/serialization/processor.hpp>
 
-#include <oh/ohdefines.hpp>
-#include <fstream>
-#include <set>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/vector.hpp>
 #include <qlo/serialization/register/serialization_register.hpp>
+
+//#include <boost/serialization/variant.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/shared_ptr.hpp>
 
 namespace QuantLibAddin {
 
     SerializationFactory::SerializationFactory() {    
 
         registerCreators();
+
+        ObjectHandler::ProcessorFactory::processorMap_["RelinkableHandleProcessor"] =
+            ObjectHandler::ProcessorPtr(new RelinkableHandleProcessor());
+        ObjectHandler::ProcessorFactory::processorMap_["InstrumentProcessor"] =
+            ObjectHandler::ProcessorPtr(new InstrumentProcessor());
+        ObjectHandler::ProcessorFactory::processorMap_["InstrumentProcessor"] =
+            ObjectHandler::ProcessorPtr(new InstrumentProcessor());
+        ObjectHandler::ProcessorFactory::processorMap_["LegProcessor"] =
+            ObjectHandler::ProcessorPtr(new LegProcessor());
+        ObjectHandler::ProcessorFactory::processorMap_["IndexProcessor"] =
+            ObjectHandler::ProcessorPtr(new IndexProcessor());
+        ObjectHandler::ProcessorFactory::processorMap_["ExtrapolatorProcessor"] =
+            ObjectHandler::ProcessorPtr(new ExtrapolatorProcessor());
+        
 
     }
 

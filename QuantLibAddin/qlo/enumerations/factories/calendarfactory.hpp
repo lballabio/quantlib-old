@@ -32,6 +32,8 @@ namespace ObjectHandler {
         QuantLib::Calendar operator()(const std::string& id);
         using RegistryManager<QuantLib::Calendar, EnumTypeRegistry>::checkType;
         using RegistryManager<QuantLib::Calendar, EnumTypeRegistry>::registerType;
+        Create();
+
     private:
         std::vector<std::string> calendarIDs;
         QuantLib::JointCalendarRule jointCalendarRule;

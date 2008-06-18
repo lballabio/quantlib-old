@@ -24,6 +24,11 @@
 
 namespace ObjectHandler {
 
+    Create<QuantLib::Calendar>::Create() {
+        idOriginal = "";
+        idUpper = "";
+        idFull = "";
+    }
     /*
     Calendar factory - accept a string, and return either a
     QuantLib::Calendar or a QuantLib::JointCalendar as appropriate

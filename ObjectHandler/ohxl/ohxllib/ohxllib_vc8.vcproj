@@ -368,7 +368,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\other.hpp"
+					RelativePath="..\..\oh\processor.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\property.hpp"
 					>
 				</File>
 				<File
@@ -403,14 +407,6 @@
 					RelativePath="..\..\oh\valueobject.hpp"
 					>
 				</File>
-				<File
-					RelativePath="..\..\oh\variant.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\oh\variantvisitors.hpp"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="utilities"
@@ -440,23 +436,15 @@
 				Name="conversions"
 				>
 				<File
-					RelativePath="..\..\oh\conversions\anytostream.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\..\oh\conversions\coerce.hpp"
 					>
 				</File>
 				<File
+					RelativePath="..\..\oh\conversions\convert2.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\oh\conversions\getobjectvector.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\oh\conversions\ohconvertvariant.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\oh\conversions\varianttoscalar.hpp"
 					>
 				</File>
 			</Filter>

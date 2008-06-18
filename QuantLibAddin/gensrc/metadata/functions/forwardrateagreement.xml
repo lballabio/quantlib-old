@@ -28,6 +28,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>InstrumentProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='ValueDate' exampleValue='3M'>

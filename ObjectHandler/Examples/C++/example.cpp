@@ -31,8 +31,6 @@
 #include <iostream>
 #include <exception>
 #include <oh/objecthandler.hpp>
-#include <oh/utilities.hpp>
-#include <oh/conversions/varianttoscalar.hpp>
 #include <ExampleObjects/accountexample.hpp>
 #include <Examples/ExampleObjects/Serialization/serializationfactory.hpp>
 
@@ -42,6 +40,16 @@ ObjectHandler::Repository repository;
 ObjectHandler::EnumTypeRegistry enumTypeRegistry;
 // Instantiate the Serialization Factory
 AccountExample::SerializationFactory factory;
+
+#ifdef OH_LOG_MESSAGE
+#undef OH_LOG_MESSAGE
+#endif
+#ifdef OH_LOG_ERROR
+#undef OH_LOG_ERROR
+#endif
+
+#define OH_LOG_MESSAGE(msg) std::cerr << msg << std::endl
+#define OH_LOG_ERROR(msg) std::cerr << msg << std::endl
 
 void makeCustomer(
     const std::string &objectID,
@@ -62,7 +70,7 @@ void makeAccount(
     const std::string &customer,
     const std::string &type,
     const long &number,
-    ObjectHandler::Variant balance = ObjectHandler::Variant(),
+    ObjectHandler::property_t balance = ObjectHandler::property_t(),
     bool overwrite = false) {
 
     OH_GET_REFERENCE(customerRef, customer,
@@ -74,8 +82,7 @@ void makeAccount(
     AccountExample::Account::Type typeEnum =
         ObjectHandler::Create<AccountExample::Account::Type>()(type);
 
-    long accountBalance = ObjectHandler::variantToScalar<ObjectHandler::Variant, long>(
-        balance, "balance", 100);
+    long accountBalance = ObjectHandler::convert2<long>(balance, "balance", 100);
 
     boost::shared_ptr<ObjectHandler::Object> object(
         new AccountExample::AccountObject(
@@ -91,9 +98,9 @@ int main() {
     try {
 
         // Specify log file
-        ObjectHandler::setLogFile("./example.log");
+        //ObjectHandler::setLogFile("./example.log");
         // Also direct log messages to stdout
-        ObjectHandler::setConsole(1);
+        //ObjectHandler::setConsole(1);
         OH_LOG_MESSAGE("begin example program");
 
     } catch (const std::exception &e) {
@@ -119,7 +126,7 @@ int main() {
 
         // High level interrogation
         OH_LOG_MESSAGE("High level interrogation - after constructor");
-        ObjectHandler::logObject("account2");
+        //ObjectHandler::logObject("account2");
 
         // Retrieve an object and update it
         OH_GET_OBJECT(accountObject2_retrieve,
@@ -138,7 +145,7 @@ int main() {
 
         // Log all objects
         OH_LOG_MESSAGE("Log all objects after deleting account2:");
-        ObjectHandler::logAllObjects();
+        //ObjectHandler::logAllObjects();
 
         // Serialize an object
         std::vector<boost::shared_ptr<ObjectHandler::Object> > objectList;
@@ -192,3 +199,4 @@ int main() {
 
     }
 }
+

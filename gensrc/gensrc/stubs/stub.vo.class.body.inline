@@ -1,10 +1,12 @@
 
-    inline std::vector<std::string> %(functionName)s::getPropertyNames() const {
-        std::vector<std::string> ret;
-%(propertyPush)s        return ret;
+    inline const std::set<std::string> &%(functionName)s::getSystemPropertyNames() const {
+        static std::set<std::string> ret;
+        if (ret.empty()) {
+%(propertyPush)s        }
+        return ret;
     }
 
-    inline boost::any %(functionName)s::getProperty(const std::string& name) const {
+    inline ObjectHandler::property_t %(functionName)s::getSystemProperty(const std::string& name) const {
         std::string nameUpper = boost::algorithm::to_upper_copy(name);
         if(strcmp(nameUpper.c_str(), "OBJECTID")==0)
             return objectId_;
@@ -14,12 +16,12 @@
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }
 
-    inline void %(functionName)s::setProperty(const std::string& name, const boost::any& value) {
+    inline void %(functionName)s::setSystemProperty(const std::string& name, const ObjectHandler::property_t& value) {
         std::string nameUpper = boost::algorithm::to_upper_copy(name);
         if(strcmp(nameUpper.c_str(), "OBJECTID")==0)
-            objectId_ = boost::any_cast<std::string>(value);
+            objectId_ = boost::get<std::string>(value);
         else if(strcmp(nameUpper.c_str(), "CLASSNAME")==0)
-            className_ = boost::any_cast<std::string>(value);
+            className_ = boost::get<std::string>(value);
 %(propertySet)s        else
             OH_FAIL("Error: attempt to set non-existent Property: '" + name + "'");
     }

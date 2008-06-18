@@ -47,7 +47,7 @@ namespace QuantLibAddin {
                  const QuantLib::Period& forwardStart,
                  const boost::shared_ptr<QuantLib::PricingEngine>& engine,
                  bool permanent);
-        std::vector<std::vector<boost::any> > legAnalysis();
+        std::vector<std::vector<ObjectHandler::property_t> > legAnalysis();
     };
 
 }

@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006 Plamen Neykov
+ Copyright (C) 2006, 2008 Plamen Neykov
  Copyright (C) 2007, 2008 Eric Ehlers
  Copyright (C) 2008 Nazcatech sprl Belgium
 
@@ -28,10 +28,9 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include <set>
-#include <oh/types.hpp>
-#include <oh/variant.hpp>
-#include <boost/any.hpp>
+#include <oh/property.hpp>
 #include <boost/serialization/access.hpp>
 
 namespace ObjectHandler {
@@ -68,17 +67,38 @@ namespace ObjectHandler {
         //! \name Inspectors
         //@{
         //! Retrieve the names of the properties stored in the ValueObject.
-        virtual std::vector<std::string> getPropertyNames() const = 0;
+        std::set<std::string> getPropertyNames() const;
+        std::vector<std::string> getPropertyNamesVector() const;
+        virtual const std::set<std::string>& getSystemPropertyNames() const = 0;
+
         //! Retrieve the value of a property given its name.
-        virtual boost::any getProperty(const std::string& name) const = 0;
+        property_t getProperty(const std::string& name) const;
+        virtual property_t getSystemProperty(const std::string& name) const = 0;
+        // for now only checks for user properties not system properties
+        bool hasProperty(const std::string& name) const;
+
         //! Set the value of a named property.
-        virtual void setProperty(const std::string& name, const boost::any& value) = 0;
+        void setProperty(const std::string& name, const property_t& value);
+        virtual void setSystemProperty(const std::string& name, const property_t& value) = 0;
+
+        //! Retrieve the object id of the underlying object in the object repository
+        const std::string& objectId() const { return objectId_; }
         //@}
 
-        //! \name Serialization
+        //! \name className
         //@{
         //! Name of this ValueObject's class, used by class SerializationFactory.
         const std::string &className() const { return className_; }
+        //@}
+
+        //! \name processorName
+        //@{
+        //! the name of the processor that is required for that ValueObject;
+        /*
+            For ValueObject classes which do not require special processing, 
+            processorName() returns ¡°DefaultProcessor¡±
+        */
+        virtual std::string processorName()  { return "DefaultProcessor"; }
         //@}
 
         //! \name getRelationObs
@@ -86,16 +106,20 @@ namespace ObjectHandler {
         //! Retrieve the list relatedIDs_.
         const std::set<std::string>& getRelationObs() { return relatedIDs_;}
         //@}
+
     protected:
         std::string objectId_;
         std::string className_;
         bool permanent_;
+        //! Name Value pair map representing the user defined properties.
+        std::map<std::string, property_t> userProperties;
         //relation the observable objects
         std::set<std::string> relatedIDs_;
 
-        void processVariant(const ObjectHandler::Variant& variantID);
-        void processVariant(const std::vector<ObjectHandler::Variant>& vecVariantID);
-        void processVariant(const std::vector<std::vector<ObjectHandler::Variant> >& vecVariantIDs);
+        //void processVariant(const property_t& variantID);
+        void processVariant(property_t variantID);
+        void processVariant(const std::vector<property_t>& vecVariantID);
+        void processVariant(const std::vector<std::vector<property_t> >& vecVariantIDs);
         void processRelatedID(const std::string& relatedID);
     };
 
@@ -104,24 +128,57 @@ namespace ObjectHandler {
             relatedIDs_.insert(relatedID);
     }
 
-    inline void ValueObject::processVariant(const ObjectHandler::Variant& variantID){
-
-        if(variantID.type() == ObjectHandler::String)
-            processRelatedID(variantID);
+    //inline void ValueObject::processVariant(const property_t& variantID){
+    inline void ValueObject::processVariant(property_t variantID){
+        if (std::string *objectID = boost::get<std::string>(&variantID))
+            processRelatedID(*objectID);
     }
 
-    inline void ValueObject::processVariant(const std::vector<ObjectHandler::Variant>& vecVariantID){
-        std::vector<ObjectHandler::Variant>::const_iterator iterator = vecVariantID.begin();
+    inline void ValueObject::processVariant(const std::vector<property_t>& vecVariantID){
+        std::vector<property_t>::const_iterator iterator = vecVariantID.begin();
         for(; iterator != vecVariantID.end(); ++iterator)
             processVariant(*iterator);
     }
 
-    inline void ValueObject::processVariant(const std::vector<std::vector<ObjectHandler::Variant> >& vecVariantIDs){
-        std::vector<std::vector<ObjectHandler::Variant> >::const_iterator iterator = vecVariantIDs.begin();
+    inline void ValueObject::processVariant(const std::vector<std::vector<property_t> >& vecVariantIDs){
+        std::vector<std::vector<property_t> >::const_iterator iterator = vecVariantIDs.begin();
         for(; iterator != vecVariantIDs.end(); ++iterator){
             processVariant(*iterator);
         }
 
+    }
+
+    inline std::set<std::string> ValueObject::getPropertyNames() const {
+        std::set<std::string> ret(getSystemPropertyNames());
+        for(std::map<std::string, property_t>::const_iterator i
+            = userProperties.begin(); i != userProperties.end(); ++i)
+            ret.insert(i->first);
+        return ret;
+    }
+
+    inline std::vector<std::string> ValueObject::getPropertyNamesVector() const {
+        std::set<std::string> names(getPropertyNames());
+        std::vector<std::string> ret(names.begin(), names.end());
+        return ret;
+    }
+
+    inline property_t ValueObject::getProperty(const std::string& name) const {
+        if(userProperties.find(name) != userProperties.end())
+            return userProperties.find(name)->second;
+        else
+            return getSystemProperty(name);
+     }
+
+    inline bool ValueObject::hasProperty(const std::string& name) const {
+        return userProperties.find(name) != userProperties.end();
+     }
+
+    inline void ValueObject::setProperty(const std::string& name, const property_t& value) {
+        const std::set<std::string>& sysNames = getSystemPropertyNames();
+        if(sysNames.find(name) != sysNames.end())
+            setSystemProperty(name, value);
+        else
+            userProperties[name] = value;
     }
 }
 

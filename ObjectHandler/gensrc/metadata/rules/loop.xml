@@ -20,10 +20,10 @@
         <Rule tensorRank='vector' loop='true' const='true'>%(indent)sconst %(nativeType)s&amp;</Rule>
         <Rule tensorRank='vector' loop='true'>%(indent)s%(nativeType)s</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;boost::any&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector'>%(indent)sconst std::vector&lt;%(nativeType)s&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='matrix' nativeType='string'>%(indent)sconst std::vector&lt;std::vector&lt;std::string&gt; &gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector &lt;boost::any&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector &lt;ObjectHandler::property_t&gt; &gt;&amp; %(name)s</Rule>
         <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector &lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
       </Rules>
     </RuleGroup>
@@ -37,10 +37,10 @@
         <Rule tensorRank='scalar'>%(indent)sboost::_bi::value&lt;%(nativeType)s&gt;</Rule>
         <Rule tensorRank='vector' loop='true'>%(indent)sboost::arg&lt;1&gt;</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;boost::any&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector'>%(indent)sconst std::vector&lt;%(nativeType)s&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='matrix' nativeType='string'>%(indent)sconst std::vector&lt;std::vector&lt;std::string&gt; &gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector &lt;boost::any&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector &lt;ObjectHandler::property_t&gt; &gt;&amp; %(name)s</Rule>
         <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector &lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
       </Rules>
     </RuleGroup>
@@ -62,10 +62,10 @@
         <Rule tensorRank='vector' loop='true' const='true'>%(indent)sconst %(nativeType)s&amp;</Rule>
         <Rule tensorRank='vector' loop='true'>%(indent)s%(nativeType)s</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;boost::any&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector'>%(indent)sconst std::vector&lt;%(nativeType)s&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='matrix' nativeType='string'>%(indent)sconst std::vector&lt;std::vector&lt;std::string&gt; &gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector &lt;boost::any&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector &lt;ObjectHandler::property_t&gt; &gt;&amp; %(name)s</Rule>
         <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector &lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
       </Rules>
     </RuleGroup>
@@ -76,7 +76,7 @@
         <Rule superType='libraryType'>%(type)s</Rule>
         <Rule superType='enumeration'>%(type)s</Rule>
         <Rule nativeType='string'>std::string</Rule>
-        <Rule nativeType='any'>boost::any</Rule>
+        <Rule nativeType='any'>ObjectHandler::property_t</Rule>
         <Rule>%(nativeType)s</Rule>
       </Rules>
     </RuleGroup>

@@ -26,7 +26,7 @@
 #include <oh/repository.hpp>
 #include <oh/utilities.hpp>
 #include <oh/exception.hpp>
-#include <oh/variant.hpp>
+#include <oh/property.hpp>
 #include <oh/group.hpp>
 #include <oh/range.hpp>
 #include <oh/serializationfactory.hpp>

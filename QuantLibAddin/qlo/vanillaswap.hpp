@@ -77,8 +77,8 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::SwapRateHelper>& swapRH,
             bool permanent);
-        std::vector<std::vector<boost::any> > fixedLegAnalysis();
-        std::vector<std::vector<boost::any> > floatingLegAnalysis();
+        std::vector<std::vector<ObjectHandler::property_t> > fixedLegAnalysis();
+        std::vector<std::vector<ObjectHandler::property_t> > floatingLegAnalysis();
     };
 
 }

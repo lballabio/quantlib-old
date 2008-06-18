@@ -2,7 +2,6 @@
 #include <%(libRoot)s/%(categoryName)s.hpp>
 #include <%(libRoot)s/valueobjects/vo_%(categoryName)s.hpp>
 #include <string>
-#include <boost/algorithm/string/case_conv.hpp>
 
 namespace %(namespaceObjects)s { namespace ValueObjects {
 

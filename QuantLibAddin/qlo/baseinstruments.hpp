@@ -27,8 +27,17 @@ namespace QuantLib {
 }
 
 namespace QuantLibAddin {
+    
+    class PricingEngine;
+    
+    //OH_LIB_CLASS(Instrument, QuantLib::Instrument);
+    class Instrument : public ObjectHandler::LibraryObject<QuantLib::Instrument> {
+    protected:
+        OH_LIB_CTOR(Instrument, QuantLib::Instrument)
 
-    OH_LIB_CLASS(Instrument, QuantLib::Instrument);
+    public:
+        void setPricingEngine(boost::shared_ptr<PricingEngine>& e) const;
+    };
 
     OH_OBJ_CLASS(OneAssetOption, Instrument);
 

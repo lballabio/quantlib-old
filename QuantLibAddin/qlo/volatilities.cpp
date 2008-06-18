@@ -109,7 +109,7 @@ namespace QuantLibAddin {
     }
 
     std::string SabrVolSurface::atmCurve() {
-        return boost::any_cast<std::string>(propertyValue("BLACKATMVOLCURVE"));
+        return ObjectHandler::convert2<std::string>(propertyValue("BLACKATMVOLCURVE"));
     }
 
     SabrSmileSectionImpl::SabrSmileSectionImpl(

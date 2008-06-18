@@ -69,7 +69,7 @@ namespace ObjectHandler {
                 std::vector<T> row;
                 row.reserve(xMulti->val.array.columns);
                 for (int j=0; j<xMulti->val.array.columns; ++j) {
-                    row.push_back(operToScalar<T>(xMulti->val.array.lparray[i * xMulti->val.array.columns + j]));                
+                    row.push_back(convert2<T>(ConvertOper(xMulti->val.array.lparray[i * xMulti->val.array.columns + j])));                
                 }
                 ret.push_back(row);
             }

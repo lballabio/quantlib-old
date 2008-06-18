@@ -97,8 +97,8 @@ namespace QuantLibAddin {
     
     // The 2 functions below must declare their input parameters as pass by value rather
     // than pass by reference to allow clients of these functions to pass temporary objects.
-    std::vector<std::vector<boost::any> > getSabrParameters(QuantLib::Matrix sabrParameters);
-    std::vector<std::vector<boost::any> > getVolCube(QuantLib::Matrix volCube);
+    std::vector<std::vector<ObjectHandler::property_t> > getSabrParameters(QuantLib::Matrix sabrParameters);
+    std::vector<std::vector<ObjectHandler::property_t> > getVolCube(QuantLib::Matrix volCube);
     
     class SwaptionVolCube1 : public SwaptionVolatilityCube {
       public:
@@ -119,10 +119,10 @@ namespace QuantLibAddin {
             QuantLib::Real maxErrorTolerance,
             const boost::shared_ptr<QuantLib::OptimizationMethod>& optMethod,
             bool permanent);
-        std::vector<std::vector<boost::any> > getSparseSabrParameters();
-        std::vector<std::vector<boost::any> > getDenseSabrParameters();
-        std::vector<std::vector<boost::any> > getMarketVolCube();
-        std::vector<std::vector<boost::any> > getVolCubeAtmCalibrated();
+        std::vector<std::vector<ObjectHandler::property_t> > getSparseSabrParameters();
+        std::vector<std::vector<ObjectHandler::property_t> > getDenseSabrParameters();
+        std::vector<std::vector<ObjectHandler::property_t> > getMarketVolCube();
+        std::vector<std::vector<ObjectHandler::property_t> > getVolCubeAtmCalibrated();
     };
 
     class SmileSectionByCube : public SmileSection {

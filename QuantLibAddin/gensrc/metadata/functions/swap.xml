@@ -39,6 +39,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>InstrumentProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='LegIDs'>

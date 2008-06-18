@@ -13,16 +13,15 @@ include_HEADERS = \
     objectwrapper.hpp \
     observable.hpp \
     ohdefines.hpp \
-    other.hpp \
+    processor.hpp \
+    property.hpp \
     range.hpp \
     repository.hpp \
     serializationfactory.hpp \
     singleton.hpp \
     types.hpp \
     utilities.hpp \
-    valueobject.hpp \
-    variant.hpp \
-    variantvisitors.hpp
+    valueobject.hpp
 
 EXTRA_DIST = \
     auto_link.hpp

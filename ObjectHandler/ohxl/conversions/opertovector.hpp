@@ -37,12 +37,8 @@ namespace ObjectHandler {
         This simplifies syntax in client applications.
     */
     template <class T>
-    std::vector<T> operToVector(
-        const OPER &xVector, 
-        const std::string &paramName) {
-
-        return operToVectorImpl<T, VariantToScalar<ConvertOper, T> >
-            (ConvertOper(xVector, false), paramName);
+    std::vector<T> operToVector(const OPER &xVector, const std::string &paramName) {
+        return operToVectorImpl<T>(ConvertOper(xVector, false), paramName);
     }
 
     //! Helper template wrapper for operToVectorImpl
@@ -72,7 +68,7 @@ namespace ObjectHandler {
     //}
 
     //! Convert a value of type ConvertOper to a vector.
-    template <class T, class F>
+    template <class T>
     std::vector<T> operToVectorImpl(
         const ConvertOper &xVector, 
         const std::string &paramName) {
@@ -102,7 +98,7 @@ namespace ObjectHandler {
             std::vector<T> ret;
             ret.reserve(xMulti->val.array.rows * xMulti->val.array.columns);
             for (int i=0; i<xMulti->val.array.rows * xMulti->val.array.columns; ++i) {
-                ret.push_back(F()(ConvertOper(xMulti->val.array.lparray[i])));
+                ret.push_back(convert2<T>(ConvertOper(xMulti->val.array.lparray[i])));
             }
 
             if (xllToFree) freeOper(&xSplit);

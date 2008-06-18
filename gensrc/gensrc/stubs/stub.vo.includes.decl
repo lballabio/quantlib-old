@@ -4,7 +4,9 @@
 #include <oh/valueobject.hpp>
 #include <string>
 #include <vector>
-#include <boost/any.hpp>
+#include <set>
+#include <boost/serialization/map.hpp>
+#include <boost/algorithm/string/case_conv.hpp>
 
 namespace %(namespaceObjects)s { namespace ValueObjects {
 

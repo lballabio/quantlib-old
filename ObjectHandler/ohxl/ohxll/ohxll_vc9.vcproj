@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="ohxll"
 	ProjectGUID="{04D7369F-47BC-46B0-A374-41635A9656D8}"
 	TargetFrameworkVersion="131072"
@@ -260,6 +260,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\oh\processor.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\oh\property.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\oh\range.hpp"
 					>
 				</File>
@@ -292,10 +300,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\variant.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\..\oh\variantvisitors.hpp"
 					>
 				</File>
@@ -304,23 +308,15 @@
 				Name="conversions"
 				>
 				<File
-					RelativePath="..\..\oh\conversions\anytostream.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\..\oh\conversions\coerce.hpp"
 					>
 				</File>
 				<File
+					RelativePath="..\..\oh\conversions\convert2.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\oh\conversions\getobjectvector.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\oh\conversions\ohconvertvariant.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\oh\conversions\varianttoscalar.hpp"
 					>
 				</File>
 			</Filter>

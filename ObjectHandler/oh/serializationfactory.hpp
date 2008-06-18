@@ -30,11 +30,16 @@
 #include <oh/valueobject.hpp>
 #include <map>
 #include <string>
+#include <list>
 
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 
 namespace ObjectHandler {
+
+    typedef std::pair<std::string, boost::shared_ptr<ObjectHandler::Object> > StrObjectPair;
+    typedef std::set<std::string> Category;
+    typedef std::list<StrObjectPair> HandlesList;
 
     //! A Singleton wrapping the boost::serialization interface
     /*! The pure virtual functions in this class must be implemented as appropriate
@@ -60,24 +65,27 @@ namespace ObjectHandler {
         virtual int saveObject(
             const std::vector<boost::shared_ptr<Object> >&,
             const std::string &path,
-            bool forceOverwrite) ;
+            bool forceOverwrite);
         //! Deserialize an Object list from the path indicated.
         virtual std::vector<std::string> loadObject(
             const std::string &directory,
             const std::string &pattern,
             bool recurse,
-            bool overwriteExisting)  ;
+            bool overwriteExisting);
 
         //! Write the object(s) to the given string.
         virtual std::string saveObjectString(
             const std::vector<boost::shared_ptr<Object> >&,
-            bool forceOverwrite) ;
+            bool forceOverwrite);
         //! Load object(s) from the given string.
         virtual std::vector<std::string> loadObjectString(
             const std::string &xml,
             bool overwriteExisting);
         //@}
 
+        StrObjectPair createObject(
+            const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
+            bool overwriteExisting) const;
         //! Recreate an Object from its ValueObject
         boost:: shared_ptr<Object> recreateObject( 
             boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const; 
@@ -87,14 +95,14 @@ namespace ObjectHandler {
         virtual void processPath(
             const std::string &path,
             bool overwriteExisting,
-            std::vector<std::string> &processedIDs) ;
-        virtual std::string processObject(
+            std::vector<std::string> &processedIDs);
+        /*virtual std::string processObject(
             const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
-            bool overwriteExisting) ;
+            bool overwriteExisting);*/
         virtual void register_out(boost::archive::xml_oarchive &ar,
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) = 0;
         virtual void register_in(boost::archive::xml_iarchive &ar,
-            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects)= 0;
+            std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) = 0;
 
 
         //! A pointer to the SerializationFactory instance, used to support the Singleton pattern.
@@ -109,8 +117,6 @@ namespace ObjectHandler {
         // use a private member function that wraps a reference to a static variable.
         CreatorMap &creatorMap_() const;
     };
-
-    boost::shared_ptr<Object> createRange(const boost::shared_ptr<ValueObject>&);
 
 }
 

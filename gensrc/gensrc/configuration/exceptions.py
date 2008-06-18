@@ -43,20 +43,15 @@ but this is not the case."""
 class InvalidCorePathException(ConfigurationException):
 
     INVALID_CORE_PATH_ERROR = """
-Error initializing paths.  gensrc has been configured with the following root path:
-
-%(rootPath)s
-
-gensrc has been configured with this relative path to the core application:
+Error initializing paths.  gensrc has been configured with the following path
+to the gensrc directory in the ObjectHandler source code tree:
 
 %(corePath)s
 
-The concatenation of these two values is not a valid path:
+This path is not valid.  The value is derived by appending "/gensrc/" to the
+value that was supplied to the oh_dir argument on the gensrc.py command line."""
 
-%(rootPath)s%(corePath)s"""
-
-    def __init__(self, rootPath, corePath):
+    def __init__(self, corePath):
         self.value_ = InvalidCorePathException.INVALID_CORE_PATH_ERROR % {
-            'rootPath' : rootPath,
             'corePath' : corePath }
 

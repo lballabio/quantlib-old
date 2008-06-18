@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2008 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,17 +26,11 @@
 
 namespace ObjectHandler {
 
-    template <class V>
-    struct VariantToScalar<V, QuantLib::Size> {
-        QuantLib::Size operator()(const V &variant) {
+    class ConvertOper;
 
-            //if (v_.type() == ObjectHandler::Long) {
-                return QuantLib::Size(static_cast<long>(variant));
-            //} else {
-            //    OH_FAIL("invalid conversion");
-            //}
-        }
-    };
+    template<> QuantLib::Size convert2<QuantLib::Size, property_t>(const property_t& p);
+
+    template<> QuantLib::Size convert2<QuantLib::Size, ConvertOper>(const ConvertOper& p);
 
 }
 

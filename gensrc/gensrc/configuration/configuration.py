@@ -49,9 +49,6 @@ class Configuration(serializable.Serializable):
     def prefixExcel(self):
         return self.prefixExcel_
 
-    def coreConfigPath(self):
-        return self.coreConfigPath_
-
     def relativePath(self):
         return self.relativePath_
 
@@ -72,7 +69,6 @@ class Configuration(serializable.Serializable):
         serializer.serializeProperty(self, 'prefixExcel')
         serializer.serializeBoolean(self, 'usingEnumerations')
         serializer.serializeBoolean(self, 'usingSerialization')
-        serializer.serializeProperty(self, 'coreConfigPath')
         serializer.serializeProperty(self, 'relativePath')
 
     #############################################

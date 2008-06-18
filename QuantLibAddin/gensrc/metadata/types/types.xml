@@ -76,7 +76,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::EuropeanExercise</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::EvolutionDescription</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Exercise</DataType>
-    <DataType defaultSuperType='libraryClass'>QuantLib::Extrapolator</DataType>
+    <!--DataType defaultSuperType='libraryClass'>QuantLib::Extrapolator</DataType-->
     <DataType defaultSuperType='libraryClass'>QuantLib::FixedRateBond</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::FloatingRateCouponPricer</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::ForwardRateAgreement</DataType>
@@ -172,9 +172,11 @@
     <DataType defaultSuperType='objectClass'>QuantLibAddin::CapFloor</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::CmsMarket</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::CmsMarketCalibration</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::Extrapolator</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Handle</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::HistoricalForwardRatesAnalysis</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Index</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::Instrument</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::LMMDriftCalculator</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::LMMNormalDriftCalculator</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Leg</DataType>
@@ -189,6 +191,9 @@
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Swap</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::TimeSeriesDef</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::VanillaSwap</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::PricingEngine</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::FloatingRateCouponPricer</DataType>
+
     <DataType defaultSuperType='objectQuote'>QuantLibAddin::SimpleQuote</DataType>
 
     <DataType defaultSuperType='objectTermStructure'>QuantLibAddin::SwaptionVolCube1</DataType>

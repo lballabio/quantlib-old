@@ -65,7 +65,7 @@ namespace QuantLibAddin {
                          .operator boost::shared_ptr<QuantLib::Swap>();
     }
 
-    std::vector<std::vector<boost::any> > Swap::legAnalysis(QuantLib::Size i)
+    std::vector<std::vector<ObjectHandler::property_t> > Swap::legAnalysis(QuantLib::Size i)
     {
         boost::shared_ptr<QuantLib::Swap> temp;
         getLibraryObject(temp);

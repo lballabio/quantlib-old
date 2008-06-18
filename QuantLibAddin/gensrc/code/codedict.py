@@ -4,24 +4,24 @@
 ##########################################################################
 
 code11 = '''\
-        std::string %(name)sCpp = ObjectHandler::operToScalar<std::string>(
-            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
+        std::string %(name)sCpp = ObjectHandler::convert2<std::string>(
+            ObjectHandler::ConvertOper(*%(name)s), "%(name)s", %(defaultValue)s);\n'''
 
 code12 = '''\
-        %(nativeType)s %(name)sCpp = ObjectHandler::operToScalar<%(nativeType)s>(
-            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
+        %(nativeType)s %(name)sCpp = ObjectHandler::convert2<%(nativeType)s>(
+            ObjectHandler::ConvertOper(*%(name)s), "%(name)s", %(defaultValue)s);\n'''
 
 code12b = '''\
-        ObjectHandler::Variant %(name)sCpp = ObjectHandler::operToScalar<ObjectHandler::Variant>(
-            *%(name)s, "%(name)s");\n'''
+        ObjectHandler::property_t %(name)sCpp = ObjectHandler::convert2<ObjectHandler::property_t>(
+            ObjectHandler::ConvertOper(*%(name)s));\n'''
 
 code13 = '''\
         std::vector<%(nativeType)s> %(name)sCpp =
             ObjectHandler::operToVector<%(nativeType)s>(*%(name)s, "%(name)s");\n'''
 
 code14 = '''\
-        std::vector<ObjectHandler::Variant> %(name)sCpp =
-            ObjectHandler::operToVector<ObjectHandler::Variant>(*%(name)s, "%(name)s");\n'''
+        std::vector<ObjectHandler::property_t> %(name)sCpp =
+            ObjectHandler::operToVector<ObjectHandler::property_t>(*%(name)s, "%(name)s");\n'''
 
 code15 = '''\
         std::vector<std::string> %(name)sCpp =
@@ -44,8 +44,8 @@ code21a = '''\
             ObjectHandler::operToMatrix<std::string>(*%(name)s, "%(name)s");\n'''
 
 code21b = '''\
-        std::vector<std::vector<ObjectHandler::Variant> > %(name)sCpp =
-            ObjectHandler::operToMatrix<ObjectHandler::Variant>(*%(name)s, "%(name)s");\n'''
+        std::vector<std::vector<ObjectHandler::property_t> > %(name)sCpp =
+            ObjectHandler::operToMatrix<ObjectHandler::property_t>(*%(name)s, "%(name)s");\n'''
 
 code22 = '''\
         %(type)s %(nameConverted)s;
@@ -56,20 +56,25 @@ code23 = '''\
         QuantLibAddin::cppToLibrary(*%(name)s, %(nameConverted)s);\n'''
 
 code24 = '''\
-        %(type)s %(nameConverted)s = ObjectHandler::operToScalar<%(type)s>(
-            *%(name)s, "%(name)s");\n'''
+        %(type)s %(nameConverted)s = ObjectHandler::convert2<%(type)s>(
+            ObjectHandler::ConvertOper(*%(name)s), "%(name)s");\n'''
 
 code25 = '''\
-        %(type)s %(nameConverted)s = ObjectHandler::operToScalar<%(type)s>(
-            %(name)s, "%(name)s", %(defaultValue)s);\n'''
+        %(type)s %(nameConverted)s = ObjectHandler::convert2<%(type)s>(
+            ObjectHandler::ConvertOper(*%(name)s), "%(name)s", %(defaultValue)s);\n'''
 
 code26 = '''\
-        %(type)s %(nameConverted)s = ObjectHandler::operToScalar<%(type)s>(
-            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
+        %(type)s %(nameConverted)s = ObjectHandler::convert2<%(type)s>(
+            ObjectHandler::ConvertOper(*%(name)s), "%(name)s", %(defaultValue)s);\n'''
 
 code27 = '''\
-        %(type)s %(nameConverted)s = ObjectHandler::operToScalar<%(type)s>(
-            *%(name)s, "%(name)s", %(defaultValue)s, %(errorValue)s);\n'''
+        %(type)s %(nameConverted)s = ObjectHandler::convert2<%(type)s>(
+            ObjectHandler::ConvertOper(*%(name)s), "%(name)s", %(defaultValue)s, %(errorValue)s);\n'''
+
+code27a = '''\
+        %(type)s %(nameConverted)s = ObjectHandler::convert2<long>(
+            ObjectHandler::ConvertOper(*%(name)s), "%(name)s", %(defaultValue)s);\n'''
+
 
 code28 = '''\
         %(type)s %(nameConverted)s =
@@ -157,8 +162,8 @@ code44b = '''\
 
 code45a = '''\
         QuantLib::Handle<QuantLib::Quote> %(nameConverted)s = 
-            ObjectHandler::operToScalar<QuantLib::Handle<QuantLib::Quote> >(
-                *%(name)s, "%(name)s");\n'''
+            ObjectHandler::convert2<QuantLib::Handle<QuantLib::Quote> >(
+                ObjectHandler::ConvertOper(*%(name)s), "%(name)s");\n'''
 
 code45b = '''\
         OH_GET_OBJECT(%(name)sTemp, %(name)s, ObjectHandler::Object)
@@ -186,8 +191,8 @@ code46 = '''\
 
 code47 = '''\
         boost::shared_ptr<QuantLib::Quote> %(nameConverted)s =
-            ObjectHandler::operToScalar<boost::shared_ptr<QuantLib::Quote> >(
-                *%(name)s, "%(name)s");\n'''
+            ObjectHandler::convert2<boost::shared_ptr<QuantLib::Quote> >(
+                ObjectHandler::ConvertOper(*%(name)s), "%(name)s");\n'''
 
 code48 = '''\
         OH_GET_UNDERLYING(%(nameConverted)s, %(name)s,
@@ -218,7 +223,7 @@ code52 = '''\
 std::vector<std::vector<%(type)s> > returnValue = '''
 
 code53 = '''\
-std::vector<std::vector<boost::any> > returnValue = '''
+std::vector<std::vector<ObjectHandler::property_t> > returnValue = '''
 
 code54 = '''\
             %(nameConverted)s.begin(),
@@ -309,11 +314,15 @@ code65b = '''\
 ##########################################################################
 
 code200 = '''\
-        %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
+        %(type)s %(nameConverted)s = ObjectHandler::convert2<%(type)s>(
             %(name)s, "%(name)s");\n'''
 
 code201 = '''\
-        %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
+        %(type)s %(nameConverted)s = ObjectHandler::convert2<%(type)s>(
+            %(name)s, "%(name)s", %(defaultValue)s);\n'''
+
+code201a = '''\
+        %(type)s %(nameConverted)s = ObjectHandler::convert2<long>(
             %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code203 = '''\
@@ -322,22 +331,22 @@ code203 = '''\
 
 code204 = '''\
         std::vector<QuantLib::Date> %(nameConverted)s = 
-            ObjectHandler::ohVariantToVector<QuantLib::Date>(%(name)s, "%(name)s");\n'''
+            ObjectHandler::vector::convert2<QuantLib::Date>(%(name)s, "%(name)s");\n'''
 
 code205 = '''\
         std::vector<%(type)s> %(nameConverted)s =
-            ObjectHandler::ohVariantToVector<%(type)s>(%(name)s, "%(name)s");\n'''
+            ObjectHandler::vector::convert2<%(type)s>(%(name)s, "%(name)s");\n'''
 
 code206 = '''\
         %(type)s %(nameConverted)s =
             QuantLibAddin::vvToQlMatrix(%(name)s);\n'''
 
 code207 = '''\
-        std::string %(name)sCpp = ObjectHandler::ohVariantToScalar<std::string>(
+        std::string %(name)sCpp = ObjectHandler::convert2<std::string>(
             %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code208 = '''\
-        %(nativeType)s %(name)sCpp = ObjectHandler::ohVariantToScalar<%(nativeType)s>(
+        %(nativeType)s %(name)sCpp = ObjectHandler::convert2<%(nativeType)s>(
             %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code209 = '''\
@@ -363,21 +372,21 @@ code211 = '''\
         return os.str();'''
 
 code213 = '''\
-        %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
+        %(type)s %(nameConverted)s = ObjectHandler::convert2<%(type)s>(
             %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code214 = '''\
         QuantLib::Handle<QuantLib::Quote> %(nameConverted)s = 
-            ObjectHandler::ohVariantToScalar<QuantLib::Handle<QuantLib::Quote> >(
+            ObjectHandler::convert2<QuantLib::Handle<QuantLib::Quote> >(
                 %(name)s, "%(name)s");\n'''
 
 code215 = '''\
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > %(nameConverted)s =
-            ObjectHandler::ohVariantToMatrix<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
+            ObjectHandler::matrix::convert2<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 code218 = '''\
         std::vector<QuantLib::Handle<QuantLib::Quote> > %(nameConverted)s =
-            ObjectHandler::ohVariantToVector<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
+            ObjectHandler::vector::convert2<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 ##########################################################################
 # code for Calc
@@ -391,7 +400,7 @@ code71 = '''\
         calcToScalar(%(name)sCpp, %(name)s);\n'''
 
 code71b = '''\
-        ObjectHandler::Variant %(name)sCpp;
+        ObjectHandler::property_t %(name)sCpp;
         calcToScalar(%(name)sCpp, %(name)s);\n'''
 
 code72 = '''\
@@ -403,7 +412,7 @@ code73 = '''\
         calcToVector(%(name)sCpp, %(name)s);\n'''
 
 code73b = '''\
-        std::vector<boost::any> %(name)sCpp;
+        std::vector<ObjectHandler::property_t> %(name)sCpp;
         calcToVector(%(name)sCpp, %(name)s);\n'''
 
 code74 = '''\
@@ -503,8 +512,11 @@ code93 = '''\
 code94 = '''\
         %(type)s %(nameConverted)s = calcToQlMatrix(%(name)s);\n'''
 
+#code95 = '''\
+#        OH_GET_OBJECT(%(nameConverted)s, %(name)sCpp, %(namespaceObjects)s::%(object)s)\n'''
+
 code95 = '''\
-        OH_GET_OBJECT(%(nameConverted)s, %(name)sCpp, %(namespaceObjects)s::%(object)s)\n'''
+        OH_GET_OBJECT(%(nameConverted)s, %(name)sCpp, %(type)s)\n'''
 
 code96 = '''\
         %(type)s %(nameConverted)s;
@@ -518,41 +530,45 @@ code66 = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
             return %(name)s_;\n'''
 
+code66a = '''\
+        else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
+            return %(name)s_;\n'''
+
 code67a = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<ObjectHandler::Variant>(value);\n'''
+            %(name)s_ = value;\n'''
 
 code67b = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::string>(value);\n'''
+            %(name)s_ = ObjectHandler::convert2<std::string>(value);\n'''
 
 code67c = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<%(nativeType)s>(value);\n'''
+            %(name)s_ = ObjectHandler::convert2<%(nativeType)s>(value);\n'''
 
 code67d = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<ObjectHandler::Variant> >(value);\n'''
+            %(name)s_ = ObjectHandler::vector::convert2<ObjectHandler::property_t>(value, nameUpper);\n'''
 
 code67e = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<std::string> >(value);\n'''
+            %(name)s_ = ObjectHandler::vector::convert2<std::string>(value, nameUpper);\n'''
 
 code67f = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<%(nativeType)s> >(value);\n'''
+            %(name)s_ = ObjectHandler::vector::convert2<%(nativeType)s>(value, nameUpper);\n'''
 
 code67g = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<std::vector<ObjectHandler::Variant> > >(value);\n'''
+            %(name)s_ = ObjectHandler::matrix::convert2<ObjectHandler::property_t>(value, nameUpper);\n'''
 
 code67h = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<std::vector<std::string> > >(value);\n'''
+            %(name)s_ = ObjectHandler::matrix::convert2<std::string>(value, nameUpper);\n'''
 
 code67i = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<std::vector<%(nativeType)s> > >(value);\n'''
+            %(name)s_ = ObjectHandler::matrix::convert2<%(nativeType)s>(value, nameUpper);\n'''
 
 code68 = '''\
             processVariant(%(name)s);'''
@@ -570,60 +586,66 @@ code70 = '''\
 ##########################################################################
 
 code110 = '''\
-        ObjectHandler::Variant %(name)s =
-            boost::any_cast<ObjectHandler::Variant>(valueObject->getProperty("%(name)s"));\n'''
+        ObjectHandler::property_t %(name)s =
+            valueObject->getProperty("%(name)s");\n'''
 
 code111 = '''\
         std::string %(name)s =
-            boost::any_cast<std::string>(valueObject->getProperty("%(name)s"));\n'''
+            ObjectHandler::convert2<std::string>(valueObject->getProperty("%(name)s"));\n'''
 
 code112 = '''\
         %(nativeType)s %(name)s =
-            boost::any_cast<%(nativeType)s>(valueObject->getProperty("%(name)s"));\n'''
+            ObjectHandler::convert2<%(nativeType)s>(valueObject->getProperty("%(name)s"));\n'''
 
 code113 = '''\
         std::vector<%(nativeType)s> %(name)s =
-            boost::any_cast<std::vector<%(nativeType)s> >(valueObject->getProperty("%(name)s"));\n'''
+            ObjectHandler::vector::convert2<%(nativeType)s>(valueObject->getProperty("%(name)s"), "%(name)s");\n'''
 
+#code114 = '''\
+#        std::vector<ObjectHandler::property_t> %(name)s =
+#            ObjectHandler::convert2<std::vector<ObjectHandler::property_t> >(valueObject->getProperty("%(name)s"), "%(name)s");\n'''
 code114 = '''\
-        std::vector<ObjectHandler::Variant> %(name)s =
-            boost::any_cast<std::vector<ObjectHandler::Variant> >(valueObject->getProperty("%(name)s"));\n'''
+        std::vector<ObjectHandler::property_t> %(name)s =
+            ObjectHandler::vector::convert2<ObjectHandler::property_t>(valueObject->getProperty("%(name)s"), "%(name)s");\n'''
 
 code115 = '''\
         std::vector<std::string> %(name)s =
-            boost::any_cast<std::vector<std::string> >(valueObject->getProperty("%(name)s"));\n'''
+            ObjectHandler::vector::convert2<std::string>(valueObject->getProperty("%(name)s"), "%(name)s");\n'''
 
 code116 = '''\
         std::vector<std::vector<std::string> > %(name)s =
-            boost::any_cast<std::vector<std::vector<std::string> > >(valueObject->getProperty("%(name)s"));\n'''
+            ObjectHandler::matrix::convert2<std::string>(valueObject->getProperty("%(name)s"), "%(name)s");\n'''
 
 code117 = '''\
         std::vector<std::vector<%(nativeType)s> > %(name)s =
-            boost::any_cast<std::vector<std::vector<%(nativeType)s> > >(valueObject->getProperty("%(name)s"));\n'''
+            ObjectHandler::matrix::convert2<%(nativeType)s>(valueObject->getProperty("%(name)s"), "%(name)s");\n'''
 
 code118 = '''\
-        std::vector<std::vector<ObjectHandler::Variant> > %(name)s =
-            boost::any_cast<std::vector<std::vector<ObjectHandler::Variant> > >(valueObject->getProperty("%(name)s"));\n'''
+        std::vector<std::vector<ObjectHandler::property_t> > %(name)s =
+            ObjectHandler::matrix::convert2<ObjectHandler::property_t>(valueObject->getProperty("%(name)s"), "%(name)s");\n'''
+
+code121a = '''\
+        %(type)s %(nameConverted)s = %(name)s;\n'''
 
 code121 = '''\
-        %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
-            %(name)s, "%(name)s");\n'''
+        %(type)s %(nameConverted)s = ObjectHandler::convert2<%(type)s>(
+            valueObject->getProperty("%(name)s"), "%(name)s");\n'''
 
 code122 = '''\
-        %(type)s %(nameConverted)s = ObjectHandler::ohVariantToScalar<%(type)s>(
-            %(name)s, "%(name)s", %(defaultValue)s);\n'''
+        %(type)s %(nameConverted)s = ObjectHandler::convert2<%(type)s>(
+            valueObject->getProperty("%(name)s"), "%(name)s", %(defaultValue)s);\n'''
 
 code123 = '''\
-        std::string %(name)sCpp = ObjectHandler::ohVariantToScalar<std::string>(
+        std::string %(name)sCpp = ObjectHandler::convert2<std::string>(
             %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code124 = '''\
-        %(nativeType)s %(name)sCpp = ObjectHandler::ohVariantToScalar<%(nativeType)s>(
+        %(nativeType)s %(name)sCpp = ObjectHandler::convert2<%(nativeType)s>(
             %(name)s, "%(name)s", %(defaultValue)s);\n'''
 
 code131 = '''\
         std::vector<%(type)s> %(nameConverted)s =
-            ObjectHandler::ohVariantToVector<%(type)s>(%(name)s, "%(name)s");\n'''
+            ObjectHandler::vector::convert2<%(type)s>(%(name)s, "%(name)s");\n'''
 
 code132 = '''\
         std::vector<%(type)s> %(nameConverted)s = 
@@ -639,20 +661,20 @@ code135 = '''\
 
 code140 = '''\
         QuantLib::Handle<QuantLib::Quote> %(nameConverted)s = 
-            ObjectHandler::ohVariantToScalar<QuantLib::Handle<QuantLib::Quote> >(
+            ObjectHandler::convert2<QuantLib::Handle<QuantLib::Quote> >(
                 %(name)s, "%(name)s");\n'''
 
 code150 = '''\
         std::vector<QuantLib::Handle<QuantLib::Quote> > %(nameConverted)s =
-            ObjectHandler::ohVariantToVector<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
+            ObjectHandler::vector::convert2<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 code151 = '''\
         std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > > %(nameConverted)s =
-            ObjectHandler::ohVariantToMatrix<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
+            ObjectHandler::matrix::convert2<QuantLib::Handle<QuantLib::Quote> >(%(name)s, "%(name)s");\n'''
 
 code152 = '''\
         boost::shared_ptr<QuantLib::Quote> %(nameConverted)s =
-            ObjectHandler::ohVariantToScalar<boost::shared_ptr<QuantLib::Quote> >(
+            ObjectHandler::convert2<boost::shared_ptr<QuantLib::Quote> >(
                 %(name)s, "%(name)s");\n'''
 
 code153 = '''\

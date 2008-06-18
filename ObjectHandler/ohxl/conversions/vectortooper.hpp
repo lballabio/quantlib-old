@@ -37,7 +37,7 @@ namespace ObjectHandler {
     /*! If dllToFree is true then the function sets the xlbitDLLFree bit if necessary.
     */
     template <class T>
-    void vectorToOper(/*const*/ std::vector<T> &v, OPER &xVector, bool dllToFree = true) {
+    void vectorToOper(const std::vector<T> &v, OPER &xVector, bool dllToFree = true) {
         vectorToOper<std::vector<T>::const_iterator>(v.begin(), v.end(), xVector, dllToFree);
     }
 

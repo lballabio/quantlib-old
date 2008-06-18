@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2008 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,7 +27,7 @@
 
 #include <oh/ohdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
-#include <oh/conversions/varianttoscalar.hpp>
+#include <oh/property.hpp>
 #include <ohxl/convert_oper.hpp>
 #include <string>
 
@@ -36,10 +37,11 @@ namespace ObjectHandler {
     /*! This template supplies ConvertOper as the V template argument
         for VariantToScalar, simplifying syntax in client applications.
     */
-    template <class T>
+    /*template <class T>
     T operToScalar(const OPER &oper) {
 
-        return VariantToScalar<ConvertOper, T>()(ConvertOper(oper));
+        //return convert2<T>()(ConvertOper(oper));
+        return (T)ConvertOper(oper);
     }
 
     //! Helper wrapper for variantToScalar template.
@@ -48,8 +50,7 @@ namespace ObjectHandler {
         const OPER &oper,
         const std::string &parameterName) {
 
-        return variantToScalar<ConvertOper, T>(
-            ConvertOper(oper), parameterName);
+        return convert2<T>()((T)ConvertOper(oper), parameterName);
     }
 
     //! Helper wrapper for variantToScalar template.
@@ -59,8 +60,7 @@ namespace ObjectHandler {
         const std::string &parameterName,
         const T &defaultValue) {
 
-        return variantToScalar<ConvertOper, T>(
-            ConvertOper(oper), parameterName, defaultValue);
+        return convert2<T>()((T)ConvertOper(oper), parameterName, defaultValue);
     }
 
     //! Helper wrapper for variantToScalar template.
@@ -70,10 +70,8 @@ namespace ObjectHandler {
         const std::string &parameterName,
         const T &defaultValue,
         const T &errorValue) {
-
-        return variantToScalar<ConvertOper, T>(
-            ConvertOper(oper), parameterName, defaultValue, errorValue);
-    }
+        return convert2<T>()((T)ConvertOper(oper), parameterName, defaultValue, errorValue);
+    }*/
 
 }
 

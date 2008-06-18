@@ -58,7 +58,7 @@ namespace QuantLibAddin {
                          .operator boost::shared_ptr<QuantLib::CapFloor>();
     }
 
-    std::vector<std::vector<boost::any> > CapFloor::legAnalysis()
+    std::vector<std::vector<ObjectHandler::property_t> > CapFloor::legAnalysis()
     {
         boost::shared_ptr<QuantLib::CapFloor> temp;
         getLibraryObject(temp);

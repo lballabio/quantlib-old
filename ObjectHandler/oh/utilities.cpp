@@ -315,9 +315,10 @@ namespace ObjectHandler {
         seconds = totalSecond - minutes * 60;
 
         char buffer[80];
-        sprintf(buffer, "%02d/%02d/%04d %02d:%02d:%02d",  monthes, days, years,hours, minutes, seconds);
+        sprintf(buffer, "%02lu/%02lu/%04lu %02lu:%02lu:%02lu",  monthes, days, years,hours, minutes, seconds);
 
         return buffer;
     }
 
 }
+

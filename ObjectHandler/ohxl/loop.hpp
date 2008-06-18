@@ -41,7 +41,7 @@ namespace ObjectHandler {
                 XLOPER &xIn, 
                 XLOPER &xOut,
                 bool expandVector) {
-            InputType inputItem = operToScalar<InputType>(xIn);
+            InputType inputItem = ObjectHandler::convert2<InputType>(ConvertOper(xIn));
             OutputType returnItem = loopFunction(inputItem);
             scalarToOper(returnItem, xOut, true, expandVector);
         }
@@ -55,7 +55,7 @@ namespace ObjectHandler {
                 XLOPER &xIn, 
                 XLOPER &xOut,
                 bool expandVector) {
-            InputType inputItem = operToScalar<InputType>(xIn);
+            InputType inputItem = ObjectHandler::convert2<InputType>(ConvertOper(xIn));
             loopFunction(inputItem);
             scalarToOper(true, xOut, true, expandVector);
         }

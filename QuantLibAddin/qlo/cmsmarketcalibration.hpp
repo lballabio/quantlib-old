@@ -56,9 +56,9 @@ namespace QuantLibAddin {
             QuantLib::CmsMarketCalibration::CalibrationType calibrationType,
             bool permanent);
         
-        std::vector<std::vector<boost::any> > getSparseSabrParameters();
-        std::vector<std::vector<boost::any> > getDenseSabrParameters();
-        std::vector<std::vector<boost::any> > getCmsMarket();
+        std::vector<std::vector<ObjectHandler::property_t> > getSparseSabrParameters();
+        std::vector<std::vector<ObjectHandler::property_t> > getDenseSabrParameters();
+        std::vector<std::vector<ObjectHandler::property_t> > getCmsMarket();
         QuantLib::Real elapsed() {return elapsed_ ; }
         QuantLib::Array compute(const boost::shared_ptr<QuantLib::EndCriteria>& endCriteria,
                                 const boost::shared_ptr<QuantLib::OptimizationMethod>& method,

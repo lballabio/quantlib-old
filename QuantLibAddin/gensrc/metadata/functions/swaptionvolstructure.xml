@@ -297,6 +297,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>RelinkableHandleProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='CurrentLink' default='""'>
@@ -621,6 +622,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>ExtrapolatorProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='AtmVolStructure'>

@@ -71,6 +71,13 @@
 // non-ASCII characters - Disabling this warning here is ineffective
 // and the change has been made instead under project properties
 //#pragma warning(disable: 4819)
+
+// behavior change: an object of POD type constructed with
+// an initializer of the form () will be default-initialized
+#pragma warning(disable:4345)
+
+//#pragma warning(disable:4503)
+
 #endif
 
 #if defined BOOST_MSVC

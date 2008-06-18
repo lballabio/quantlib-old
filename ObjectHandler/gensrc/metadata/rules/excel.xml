@@ -207,7 +207,7 @@
       <Wrap/>
       <Rules>
         <Rule nativeType='string'>std::string</Rule>
-        <Rule nativeType='any'>boost::any</Rule>
+        <Rule nativeType='any'>ObjectHandler::property_t</Rule>
         <Rule>%(nativeType)s</Rule>
       </Rules>
     </RuleGroup>

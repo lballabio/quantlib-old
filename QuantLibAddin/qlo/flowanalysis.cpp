@@ -36,7 +36,7 @@ namespace QuantLibAddin {
                               public QuantLib::Visitor<QuantLib::CappedFlooredCoupon>,
                               public QuantLib::Visitor<QuantLib::DigitalCoupon> {
       private:
-        std::vector<std::vector<boost::any> > flowAnalysis_;
+        std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis_;
         static const QuantLib::Size numberOfColumns_ = 20;
       public:
         AnalysisGenerator();
@@ -46,7 +46,7 @@ namespace QuantLibAddin {
         void visit(QuantLib::FloatingRateCoupon& c);
         void visit(QuantLib::CappedFlooredCoupon& c);
         void visit(QuantLib::DigitalCoupon& c);
-        const std::vector<std::vector<boost::any> >& analysis() const;
+        const std::vector<std::vector<ObjectHandler::property_t> >& analysis() const;
     };
 
 #define PAYMENT_DATE 0
@@ -75,7 +75,7 @@ namespace QuantLibAddin {
     void AnalysisGenerator::reset() {
         flowAnalysis_.clear();
 
-        std::vector<boost::any> headings(numberOfColumns_);
+        std::vector<ObjectHandler::property_t> headings(numberOfColumns_);
         headings[PAYMENT_DATE]=std::string("Payment Date");
         headings[AMOUNT]=std::string("Amount");
 
@@ -103,7 +103,7 @@ namespace QuantLibAddin {
     }
 
     void AnalysisGenerator::visit(QuantLib::CashFlow& c) {
-        std::vector<boost::any> cf(numberOfColumns_, std::string("#N/A"));
+        std::vector<ObjectHandler::property_t> cf(numberOfColumns_, std::string("#N/A"));
         cf[PAYMENT_DATE]=c.date().serialNumber();
         try {
             cf[AMOUNT]=c.amount();
@@ -116,7 +116,7 @@ namespace QuantLibAddin {
         flowAnalysis_.back()[NOMINAL]=c.nominal();
         flowAnalysis_.back()[ACCRUAL_START_DATE]=c.accrualStartDate().serialNumber();
         flowAnalysis_.back()[ACCRUAL_END_DATE]=c.accrualEndDate().serialNumber();
-        flowAnalysis_.back()[ACCRUAL_DAYS]=c.accrualDays();
+        flowAnalysis_.back()[ACCRUAL_DAYS]=(long)c.accrualDays();
         flowAnalysis_.back()[DAY_COUNTER]=c.dayCounter().name();
         flowAnalysis_.back()[ACCRUAL_PERIOD]=c.accrualPeriod();
         try {
@@ -126,7 +126,7 @@ namespace QuantLibAddin {
 
     void AnalysisGenerator::visit(QuantLib::FloatingRateCoupon& c) {
         visit(static_cast<QuantLib::Coupon&>(c));
-        flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
+        flowAnalysis_.back()[FIXING_DAYS]=(long)c.fixingDays();
         flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
         flowAnalysis_.back()[INDEX]=c.index()->name();
         flowAnalysis_.back()[FLOOR]=std::string("#N/A");
@@ -143,7 +143,7 @@ namespace QuantLibAddin {
 
     void AnalysisGenerator::visit(QuantLib::CappedFlooredCoupon& c) {
         visit(static_cast<QuantLib::Coupon&>(c));
-        flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
+        flowAnalysis_.back()[FIXING_DAYS]=(long)c.fixingDays();
         flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
         flowAnalysis_.back()[INDEX]=c.index()->name();
         if (c.floor() != QuantLib::Null<QuantLib::Rate>())
@@ -166,7 +166,7 @@ namespace QuantLibAddin {
 
     void AnalysisGenerator::visit(QuantLib::DigitalCoupon& c) {
         visit(static_cast<QuantLib::Coupon&>(c));
-        flowAnalysis_.back()[FIXING_DAYS]=c.fixingDays();
+        flowAnalysis_.back()[FIXING_DAYS]=(long)c.fixingDays();
         flowAnalysis_.back()[FIXING_DATES]=c.fixingDate().serialNumber();
         flowAnalysis_.back()[INDEX]=c.index()->name();
         if (c.hasPut())
@@ -195,11 +195,11 @@ namespace QuantLibAddin {
             flowAnalysis_.back()[CALLDIGITALRATE]=std::string("#N/A");
     }
 
-    const std::vector<std::vector<boost::any> >& AnalysisGenerator::analysis() const {
+    const std::vector<std::vector<ObjectHandler::property_t> >& AnalysisGenerator::analysis() const {
         return flowAnalysis_;
     }
 
-    std::vector<std::vector<boost::any> > flowAnalysis(const QuantLib::Leg& leg) {
+    std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis(const QuantLib::Leg& leg) {
         AnalysisGenerator generator;
         for (QuantLib::Size i=0; i<leg.size(); ++i)
             leg[i]->accept(generator);

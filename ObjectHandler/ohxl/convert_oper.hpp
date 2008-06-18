@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2008 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,9 +27,10 @@
 
 #include <oh/ohdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
-#include <oh/variant.hpp>
+#include <oh/property.hpp>
 #include <ohxl/xloper.hpp>
 #include <string>
+#include <typeinfo> // for typeid, std::type_info
 
 namespace ObjectHandler {
 
@@ -54,7 +56,7 @@ namespace ObjectHandler {
         //! \name Inspectors
         //@{
         //! Return the datatype of the underlying value.
-        Type type() const;
+        //Type type() const;
         //! Indicate whether the OPER value is missing.
         bool missing() const;
         //! Indicate whether the OPER contains an error value.
@@ -63,6 +65,7 @@ namespace ObjectHandler {
 
         //! \name Conversion Operators
         //@{
+
         //! Convert the OPER to a long.
         operator long() const;
         //! Convert the OPER to a double.
@@ -72,8 +75,11 @@ namespace ObjectHandler {
         //! Convert the OPER to a std::string.
         operator std::string() const;
         //! Convert the OPER to a Variant.
-        operator Variant() const;
+        operator property_t() const;
         //@}
+
+        //! deduced C++ typeid - used in the convert2 templates
+        const std::type_info& type() const;
 
         //! Return a const pointer to the underlying OPER.
         const OPER *operator->() const { return oper_; }

@@ -1,7 +1,7 @@
 
 <Config>
 
-  <relativePath>QuantLibAddin/gensrc</relativePath>
+  <relativePath>gensrc</relativePath>
 
   <prefix>ql</prefix>
   <prefixExcel>qlxl</prefixExcel>
@@ -10,7 +10,7 @@
   <usingSerialization>true</usingSerialization>
   <namespaceLibrary>QuantLib</namespaceLibrary>
   <namespaceObjects>QuantLibAddin</namespaceObjects>
-  <coreConfigPath>ObjectHandler/gensrc</coreConfigPath>
+  <coreConfigPath>gensrc</coreConfigPath>
 
 </Config>
 

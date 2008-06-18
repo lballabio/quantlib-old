@@ -31,6 +31,7 @@
       <Rules>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Natural'/>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Size'/>
+        <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Real' codeID='code121a'/>
         <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Period' default='false' codeID='code22'/>
         <Rule tensorRank='scalar' superType='libraryType' default='false' codeID='code121'/>
         <Rule tensorRank='scalar' superType='libraryType' default='true' codeID='code122'/>

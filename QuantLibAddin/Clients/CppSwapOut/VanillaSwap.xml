@@ -5,20 +5,16 @@
 	<count>4</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="156" tracking_level="1" version="0" object_id="_1">
+		<px class_id="157" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>sched_fix</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate class_id="202" tracking_level="0" version="0">
-				<variant_ class_id="203" tracking_level="0" version="0">
-					<which>0</which>
-					<value>39423</value>
-				</variant_>
+				<which>3</which>
+				<value>39423</value>
 			</EffectiveDate>
 			<TerminationDate>
-				<variant_>
-					<which>0</which>
-					<value>42793</value>
-				</variant_>
+				<which>3</which>
+				<value>42793</value>
 			</TerminationDate>
 			<Tenor>1Y</Tenor>
 			<Calendar>Target</Calendar>
@@ -27,39 +23,31 @@
 			<GenRule>Backward</GenRule>
 			<EndOfMonth>0</EndOfMonth>
 			<FirstDate>
-				<variant_>
-					<which>4</which>
-					<value class_id="204" tracking_level="0" version="0">
-						<type_>5</type_>
-					</value>
-				</variant_>
+				<which>0</which>
+				<value class_id="203" tracking_level="0" version="0"></value>
 			</FirstDate>
 			<NextToLastDate>
-				<variant_>
-					<which>4</which>
-					<value>
-						<type_>5</type_>
-					</value>
-				</variant_>
+				<which>0</which>
+				<value></value>
 			</NextToLastDate>
 			<Permanent>0</Permanent>
+			<UserProperties class_id="204" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="156" object_id="_2">
+		<px class_id_reference="157" object_id="_2">
 			<ObjectId>sched_flt</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
-				<variant_>
-					<which>0</which>
-					<value>39423</value>
-				</variant_>
+				<which>3</which>
+				<value>39423</value>
 			</EffectiveDate>
 			<TerminationDate>
-				<variant_>
-					<which>0</which>
-					<value>42793</value>
-				</variant_>
+				<which>3</which>
+				<value>42793</value>
 			</TerminationDate>
 			<Tenor>6M</Tenor>
 			<Calendar>Target</Calendar>
@@ -68,30 +56,30 @@
 			<GenRule>Backward</GenRule>
 			<EndOfMonth>0</EndOfMonth>
 			<FirstDate>
-				<variant_>
-					<which>4</which>
-					<value>
-						<type_>5</type_>
-					</value>
-				</variant_>
+				<which>0</which>
+				<value></value>
 			</FirstDate>
 			<NextToLastDate>
-				<variant_>
-					<which>4</which>
-					<value>
-						<type_>5</type_>
-					</value>
-				</variant_>
+				<which>0</which>
+				<value></value>
 			</NextToLastDate>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id="124" tracking_level="1" version="0" object_id="_3">
+		<px class_id="126" tracking_level="1" version="0" object_id="_3">
 			<ObjectId>engine</ObjectId>
 			<ClassName>qlDiscountingSwapEngine</ClassName>
 			<YieldCurve>EUR_YC</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
@@ -109,6 +97,17 @@
 			<FloatingLegDayCounter>Actual/360</FloatingLegDayCounter>
 			<PaymentConvention>Following</PaymentConvention>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item class_id="205" tracking_level="0" version="0">
+					<first>EngineID</first>
+					<second>
+						<which>2</which>
+						<value>engine</value>
+					</second>
+				</item>
+			</UserProperties>
 		</px>
 	</item>
 </object_list>

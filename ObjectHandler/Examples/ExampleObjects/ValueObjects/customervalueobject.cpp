@@ -32,19 +32,23 @@ namespace AccountExample {
         "Name",
         "Age"};
 
-    std::vector<std::string> CustomerValueObject::getPropertyNames() const {
-        return std::vector<std::string>(mPropertyNames,
-            mPropertyNames + sizeof(mPropertyNames)/sizeof(const char*));
+    const std::set<std::string>& CustomerValueObject::getSystemPropertyNames() const {
+        static std::set<std::string> ret;
+        if(ret.empty())
+            ret = std::set<std::string>(mPropertyNames,
+                mPropertyNames + sizeof(mPropertyNames)/sizeof(const char*));
+        return ret;
     }
 
-    boost::any CustomerValueObject::getProperty(const std::string& name) const {
+    ObjectHandler::property_t CustomerValueObject::getSystemProperty(const std::string& name) const {
         std::string nameUpper = boost::algorithm::to_upper_copy(name);
         if (strcmp(nameUpper.c_str(), "OBJECTID")==0)
             return objectId_;
         else if (strcmp(nameUpper.c_str(), "CLASSNAME")==0)
             return className_;
         else if (strcmp(nameUpper.c_str(), "PERMANENT")==0)
-            return permanent_;
+            //return (long)permanent_;
+            return (bool)permanent_;
         else if (strcmp(nameUpper.c_str(), "NAME")==0)
             return name_;
         else if (strcmp(nameUpper.c_str(), "AGE")==0)
@@ -53,18 +57,18 @@ namespace AccountExample {
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }
 
-    void CustomerValueObject::setProperty(const std::string& name, const boost::any& value) {
+    void CustomerValueObject::setSystemProperty(const std::string& name, const ObjectHandler::property_t& value) {
         std::string nameUpper = boost::algorithm::to_upper_copy(name);
         if (strcmp(nameUpper.c_str(), "OBJECTID")==0)
-            objectId_ = boost::any_cast<std::string>(value);
+            objectId_ = boost::get<std::string>(value);
         else if (strcmp(nameUpper.c_str(), "CLASSNAME")==0)
-            className_ = boost::any_cast<std::string>(value);
+            className_ = boost::get<std::string>(value);
         else if (strcmp(nameUpper.c_str(), "PERMANENT")==0)
-            permanent_ = boost::any_cast<bool>(value);
+            permanent_ = boost::get<bool>(value);
         else if (strcmp(nameUpper.c_str(), "NAME")==0)
-            name_ = boost::any_cast<std::string>(value);
+            name_ = boost::get<std::string>(value);
         else if (strcmp(nameUpper.c_str(), "AGE")==0)
-            age_ = boost::any_cast<long>(value);
+            age_ = boost::get<long>(value);
         else 
             OH_FAIL("Error: attempt to retrieve non-existent Property: '" + name + "'");
     }

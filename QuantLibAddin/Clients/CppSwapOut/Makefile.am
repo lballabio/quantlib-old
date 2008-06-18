@@ -4,9 +4,11 @@ LDADD = ../../qlo/libQuantLibAddin.la ../../Addins/Cpp/libQuantLibAddinCpp.la
 LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem
 
 EXTRA_DIST = \
+    ClientCppSwapOut_vc7.vcproj \
     ClientCppSwapOut_vc8.vcproj \
-    qlxl_swap_market.xml \
-    qlxl_swap_trade.xml
+    ClientCppSwapOut_vc9.vcproj \
+    YieldCurves.xml \
+    VanillaSwap.xml
 
 swap_out_SOURCES = swap_out.cpp
 

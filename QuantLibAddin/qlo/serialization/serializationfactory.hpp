@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2007, 2008 Eric Ehlers
+ Copyright (C) 2008 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,7 +25,7 @@
 
 namespace QuantLibAddin {
 
-    class SerializationFactory : public  ObjectHandler::SerializationFactory {
+    class SerializationFactory : public ObjectHandler::SerializationFactory {
 
     public:
 

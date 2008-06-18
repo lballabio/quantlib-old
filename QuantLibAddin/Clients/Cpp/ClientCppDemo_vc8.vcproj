@@ -396,7 +396,23 @@
 	</References>
 	<Files>
 		<File
+			RelativePath="..\CppCmsIn\AtmVolatilities.xml"
+			>
+		</File>
+		<File
+			RelativePath="..\CppCmsIn\ConstantMaturitySwap.xml"
+			>
+		</File>
+		<File
 			RelativePath="qlademo.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\CppCmsIn\SwaptionVolatilities.xml"
+			>
+		</File>
+		<File
+			RelativePath="..\CppCmsIn\YieldCurves.xml"
 			>
 		</File>
 	</Files>

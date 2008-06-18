@@ -38,7 +38,7 @@
 
 namespace QuantLibAddin {
 
-    std::vector<std::vector<boost::any> > Bond::flowAnalysis()
+    std::vector<std::vector<ObjectHandler::property_t> > Bond::flowAnalysis()
     {
         boost::shared_ptr<QuantLib::Bond> temp;
         getLibraryObject(temp);
@@ -48,15 +48,15 @@ namespace QuantLibAddin {
     }
 
     std::string Bond::description() {
-        return boost::any_cast<std::string>(propertyValue("DESCRIPTION"));
+        return boost::get<std::string>(propertyValue("DESCRIPTION"));
     }
 
     //QuantLib::Currency Bond::currency() {
-    //    return boost::any_cast<QuantLib::Currency>(propertyValue("CURRENCY"));
+    //    return boost::get<QuantLib::Currency>(propertyValue("CURRENCY"));
     //}
 
     std::string Bond::currency() {
-        return boost::any_cast<std::string>(propertyValue("CURRENCY"));
+        return boost::get<std::string>(propertyValue("CURRENCY"));
     }
 
     void Bond::setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer){

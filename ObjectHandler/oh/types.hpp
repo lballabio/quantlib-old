@@ -34,7 +34,7 @@ namespace ObjectHandler {
     /*! These are the types that must be supported by any class which is
         specified as the Variant template argument to a conversion algorithm.
     */
-    enum Type { Long, Double, Boolean, String, Array, Null, Error };
+    /*enum Type { Long, Double, Boolean, String, Array, Null, Error };
 
     inline std::ostream &operator<<(std::ostream &out, const Type &type) {
         switch (type) {
@@ -53,7 +53,7 @@ namespace ObjectHandler {
             default:
                 OH_FAIL("Unexpected type enumeration: '" << type << "'");
         }
-    }
+    }*/
 
 }
 

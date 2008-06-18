@@ -49,7 +49,7 @@ namespace QuantLibAddin {
 
     void Index::addFixings(const std::vector<QuantLib::Date>& dates,
                            const std::vector<QuantLib::Real>& values,
-                           bool forceOverwrite) {
+                           bool forceOverwrite, bool updateValuObject) {
         QL_REQUIRE(dates.size()==values.size(),
                    "size mismatch between dates (" << dates.size() <<
                    ") and values (" << values.size() << ")");
@@ -67,6 +67,19 @@ namespace QuantLibAddin {
         }
         libraryObject_->addFixings(d.begin(), d.end(),
                                    v.begin(), forceOverwrite);
+
+        if(updateValuObject) {
+            std::vector<long> fixingDates;
+            std::vector<QuantLib::Real> fixingRates;
+            const QuantLib::TimeSeries<QuantLib::Real>& history = libraryObject_->timeSeries();
+            for(QuantLib::TimeSeries<QuantLib::Real>::const_iterator hi = history.begin(); hi != history.end(); ++hi) {
+                fixingDates.push_back(hi->first.serialNumber());
+                fixingRates.push_back(hi->second);
+            }
+            boost::shared_ptr<ObjectHandler::ValueObject> inst_properties = properties();
+            inst_properties->setProperty("IndexFixingDates", fixingDates);
+            inst_properties->setProperty("IndexFixingRates", fixingRates);
+        }
     }
 
     IborIndex::IborIndex(

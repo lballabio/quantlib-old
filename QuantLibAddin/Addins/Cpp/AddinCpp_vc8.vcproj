@@ -424,6 +424,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\garbagecollection.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\garbagecollection.hpp"
+			>
+		</File>
+		<File
 			RelativePath="handles.cpp"
 			>
 		</File>
@@ -688,11 +696,27 @@
 			>
 		</File>
 		<File
+			RelativePath=".\timeseries.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\timeseries.hpp"
+			>
+		</File>
+		<File
 			RelativePath="utilities.cpp"
 			>
 		</File>
 		<File
 			RelativePath="utilities.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\valueobjects.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\valueobjects.hpp"
 			>
 		</File>
 		<File

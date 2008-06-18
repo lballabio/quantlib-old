@@ -32,7 +32,10 @@ class ValueObjects(addin.Addin):
 
     VO_INCLUDE = '''\
 #include <%(libRootDirectory)s/valueobjects/vo_%(categoryName)s.hpp>\n'''
-    
+
+    PROCESSOR_NAME = '''\
+        virtual std::string processorName() { return "%(processorName)s"; }'''
+
     #############################################
     # public interface
     #############################################
@@ -42,11 +45,11 @@ class ValueObjects(addin.Addin):
 
         self.categoryList_ = categoryList
         self.enumerationList_ = enumerationList
-        
+
         allIncludes = ''
 
         log.Log.instance().logMessage(' begin generating ValueObjects ...')
-        
+
         for cat in self.categoryList_.categories('*', self.coreCategories_, self.addinCategories_):
             if cat.generateVOs():
                 allIncludes += ValueObjects.VO_INCLUDE % {
@@ -57,20 +60,26 @@ class ValueObjects(addin.Addin):
                 else:
                     self.generateHeaders(cat)
                     self.generateFunctions(cat)
-               
+
         allBuffer =  self.bufferAll_.text() % {
             'allIncludes' : allIncludes,
             'libRootDirectory' : environment.config().libRootDirectory() }
         allFilename = self.rootPath_ + 'vo_all.hpp'
         outputfile.OutputFile(self, allFilename, self.copyright_, allBuffer)
-                
+
         log.Log.instance().logMessage(' done generating ValueObjects.')
 
     def generateHeaderInline(self, func):
         """Generate class definition source for prototype of given constructor function."""
+        if func.processorName():
+            processorName = ValueObjects.PROCESSOR_NAME % {
+                common.PROCESSOR_NAME : func.processorName() }
+        else:
+            processorName = ""
         return self.bufferClassDeclInline_.text() % {
             'constructorDeclaration' : func.parameterList().generate(self.constructorDeclaration_),
             'functionName' : func.name(),
+            'processorName' : processorName,
             'serializeMembers' : func.parameterList().generate(self.serializeMembers_),
             'memberDeclaration' : func.parameterList().generate(self.memberDeclaration_) }
 
@@ -106,9 +115,15 @@ class ValueObjects(addin.Addin):
 
     def generateHeader(self, func):
         """Generate class definition source for prototype of given constructor function."""
+        if func.processorName():
+            processorName = ValueObjects.PROCESSOR_NAME % {
+                common.PROCESSOR_NAME : func.processorName() }
+        else:
+            processorName = ""
         return self.bufferClassDecl_.text() % {
             'constructorDeclaration' : func.parameterList().generate(self.constructorDeclaration_),
             'functionName' : func.name(),
+            'processorName' : processorName,
             'serializeMembers' : func.parameterList().generate(self.serializeMembers_),
             'memberDeclaration' : func.parameterList().generate(self.memberDeclaration_) }
 
@@ -161,3 +176,4 @@ class ValueObjects(addin.Addin):
         """load/unload class state to/from serializer object."""
         super(ValueObjects, self).serialize(serializer)
         serializer.serializeBoolean(self, common.HEADERS_INLINE, False)
+

@@ -44,7 +44,7 @@ namespace ObjectHandler {
         static EnumTypeRegistry &instance();
         //@}
 
-        //! \name Management of enumerations
+        //! \name Management of Enumerations
         //@{
         //! Return a non-const reference to the type map for use by the base class.
         virtual EnumTypeRegistry::AllTypeMap& getAllTypesMap() const;
@@ -67,7 +67,7 @@ namespace ObjectHandler {
         static EnumClassRegistry &instance();
         //@}
 
-        //! \name Management of enumerations
+        //! \name Management of Enumerations
         //@{
         //! Return a non-const reference to the type map for use by the base class.
         virtual EnumClassRegistry::AllTypeMap& getAllTypesMap() const;
@@ -94,7 +94,7 @@ namespace ObjectHandler {
         static EnumPairRegistry &instance();
         //@}
 
-        //! \name Management of enumerations
+        //! \name Management of Enumerations
         //@{
         //! Return a non-const reference to the type map for use by the base class.
         virtual EnumPairRegistry::AllTypeMap& getAllTypesMap() const;

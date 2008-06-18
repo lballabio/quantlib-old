@@ -48,7 +48,7 @@ namespace QuantLibAddin {
       public:
         void addFixings(const std::vector<QuantLib::Date>& dates,
                         const std::vector<QuantLib::Real>& values,
-                        bool forceOverwrite);
+                        bool forceOverwrite, bool updateValuObject = true);
       public:
         OH_LIB_CTOR(Index, QuantLib::Index);
     };

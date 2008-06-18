@@ -2,7 +2,7 @@
 <Addin name='Cpp'>
 
   <relativePath>Addins/Cpp</relativePath>
-  <rootDirectory>QuantLibAddin/Addins/Cpp</rootDirectory>
+  <rootDirectory>Addins/Cpp</rootDirectory>
   <namespaceAddin>QuantLibAddinCpp</namespaceAddin>
   <coreCategories>true</coreCategories>
   <addinCategories>true</addinCategories>

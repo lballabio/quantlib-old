@@ -121,7 +121,8 @@ class Addin(serializable.Serializable):
             serializer = xmlreader.XmlReader('metadata/rules/' + self.name_.lower())
             serializer.serializeObjectPropertyDict(self, rule.RuleGroup)
 
-        self.rootPath_ = environment.Environment.instance().addinRootPath() + self.rootDirectory_ + '/'
+        self.rootPath_ = environment.Environment.instance().addinRootPath() + self.rootDirectory_
+        self.rootPath_ = os.path.abspath(self.rootPath_) + '/'
         if not os.path.exists(self.rootPath_): 
             os.makedirs(self.rootPath_)
 

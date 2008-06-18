@@ -1,7 +1,7 @@
 
 /*!
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
- Copyright (C) 2006 Plamen Neykov
+ Copyright (C) 2006, 2008 Plamen Neykov
  Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
@@ -22,7 +22,6 @@
 #define example_account_valueobject_hpp
 
 #include <oh/valueobject.hpp>
-#include <oh/variant.hpp>
 #include <vector>
 #include <string>
 
@@ -39,16 +38,16 @@ namespace AccountExample {
             const std::string &customer,
             const std::string &type,
             const long &number,
-            const ObjectHandler::Variant &balance,
+            const ObjectHandler::property_t& balance,
             bool permanent)
             : ObjectHandler::ValueObject(objectID, "Account", permanent),
             customer_(customer), type_(type), number_(number), balance_(balance) {
             relatedIDs_.insert(customer);
         }
 
-        std::vector<std::string> getPropertyNames() const;
-        boost::any getProperty(const std::string &name) const;
-        void setProperty(const std::string& name, const boost::any& value);
+        const std::set<std::string>& getSystemPropertyNames() const;
+        ObjectHandler::property_t getSystemProperty(const std::string &name) const;
+        void setSystemProperty(const std::string& name, const ObjectHandler::property_t& value);
 
     private:
 
@@ -56,7 +55,7 @@ namespace AccountExample {
         std::string customer_;
         std::string type_;
         long number_;
-        ObjectHandler::Variant balance_;
+        ObjectHandler::property_t balance_;
 
         template<class Archive>
         void serialize(Archive& ar, const unsigned int) {

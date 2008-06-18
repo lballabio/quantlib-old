@@ -5,9 +5,11 @@ includedir = $(prefix)/include/qlo/serialization
 noinst_LTLIBRARIES = libSerialization.la
 
 include_HEADERS = \
+    processor.hpp \
     serializationfactory.hpp
 
 libSerialization_la_SOURCES = \
+    processor.cpp \
     register_creators.cpp \
     serializationfactory.cpp
 

@@ -19,7 +19,7 @@
 */
 
 /*! \file
-    \brief register/Unregister the Addin functions with Excel
+    \brief Register/Unregister the Addin functions with Excel
 */
 
 void registerOhFunctions(const XLOPER&);

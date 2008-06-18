@@ -21,11 +21,12 @@
 #define qla_cmsmarket_hpp
 
 #include <oh/libraryobject.hpp>
+#include <oh/property.hpp>
 #include <ql/termstructures/volatility/swaption/cmsmarket.hpp>
 
 namespace QuantLibAddin {
     
-    std::vector<std::vector<boost::any> > browseCmsMarket(
+    std::vector<std::vector<ObjectHandler::property_t> > browseCmsMarket(
         const QuantLib::Matrix& cmsMarket);
     
     class CmsMarket: public ObjectHandler::LibraryObject<QuantLib::CmsMarket>{
@@ -40,7 +41,7 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discountingTS,
             bool permanent);
         
-        std::vector<std::vector<boost::any> > getCmsMarket();
+        std::vector<std::vector<ObjectHandler::property_t> > getCmsMarket();
 
     };  
 

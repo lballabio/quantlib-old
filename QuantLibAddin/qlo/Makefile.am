@@ -93,6 +93,7 @@ libQuantLibAddin_la_SOURCES = \
     asianoption.cpp \
     assetswap.cpp \
     barrieroption.cpp \
+    baseinstruments.cpp \
     bonds.cpp \
     browniangenerators.cpp \
     capfloor.cpp \
@@ -111,6 +112,7 @@ libQuantLibAddin_la_SOURCES = \
     europeanoption.cpp \
     evolutiondescription.cpp \
     exercise.cpp \
+    extrapolator.cpp \
     flowanalysis.cpp \
     forwardrateagreement.cpp \
     forwardvanillaoption.cpp \

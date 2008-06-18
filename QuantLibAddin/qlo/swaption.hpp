@@ -47,7 +47,7 @@ namespace QuantLibAddin {
                  bool permanent);
 
         std::string underlyingSwap() {
-            return boost::any_cast<std::string>(propertyValue("VANILLASWAP"));
+            return ObjectHandler::convert2<std::string>(propertyValue("VANILLASWAP"));
         }
 
     };

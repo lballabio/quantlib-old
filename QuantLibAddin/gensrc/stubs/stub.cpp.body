@@ -2,7 +2,7 @@
 #include <qlo/handle.hpp>
 %(categoryIncludes)s
 #include <qlo/conversions/all.hpp>
-#include <oh/conversions/ohconvertvariant.hpp>
+#include <oh/property.hpp>
 
 namespace QuantLibAddinCpp {
 %(bufferCpp)s}

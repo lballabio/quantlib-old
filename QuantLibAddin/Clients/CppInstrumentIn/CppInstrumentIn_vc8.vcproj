@@ -2,8 +2,10 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="ClientCppSwapIn"
-	ProjectGUID="{0F2F26E5-0088-40CA-A739-40B15781178F}"
+	Name="ClientCppInstrumentIn"
+	ProjectGUID="{BB964C8C-1B16-420D-8F7D-49865B545183}"
+	RootNamespace="CppInstrumentIn"
+	Keyword="Win32Proj"
 	>
 	<Platforms>
 		<Platform
@@ -14,13 +16,11 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory="build\vc80\$(ConfigurationName)"
 			IntermediateDirectory="build\vc80\$(ConfigurationName)"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
 			>
 			<Tool
@@ -37,8 +37,6 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapIn.tlb"
-				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
@@ -47,24 +45,17 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.pch"
-				AssemblerListingLocation="build\vc80\$(ConfigurationName)/"
-				ObjectFile="build\vc80\$(ConfigurationName)/"
-				ProgramDataBaseFileName="build\vc80\$(ConfigurationName)/"
+				RuntimeLibrary="1"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
+				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
-				DisableSpecificWarnings="4819"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="2057"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -72,12 +63,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\SwapIn-vc80-mt-gd.exe"
+				OutputFile="InstrumentIn-vc80-mt-sgd.exe"
 				LinkIncremental="2"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\..\ObjectHandler\lib;..\..\..\QuantLib\lib;..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapIn-vc80-mt-gd.pdb"
+				ProgramDatabaseFile="$(OutDir)/CppInstrumentIn.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -92,8 +81,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -113,9 +100,7 @@
 			OutputDirectory="build\vc80\$(ConfigurationName)"
 			IntermediateDirectory="build\vc80\$(ConfigurationName)"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
 			>
 			<Tool
@@ -132,34 +117,22 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapIn.tlb"
-				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="true"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.pch"
-				AssemblerListingLocation="build\vc80\$(ConfigurationName)/"
-				ObjectFile="build\vc80\$(ConfigurationName)/"
-				ProgramDataBaseFileName="build\vc80\$(ConfigurationName)/"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DisableSpecificWarnings="4819"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="2057"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -167,11 +140,91 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\SwapIn-vc80-mt-s.exe"
+				OutputFile="InstrumentIn-vc80-mt-s.exe"
 				LinkIncremental="1"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\..\ObjectHandler\lib;..\..\..\QuantLib\lib;..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapIn-vc80-mt-s.pdb"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug CRTDLL|Win32"
+			OutputDirectory="build\vc80\$(ConfigurationName)"
+			IntermediateDirectory="build\vc80\$(ConfigurationName)"
+			ConfigurationType="1"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
+				OutputFile="InstrumentIn-vc80-mt-gd.exe"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(OutDir)/CppInstrumentIn.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -186,8 +239,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -207,9 +258,7 @@
 			OutputDirectory="build\vc80\$(ConfigurationName)"
 			IntermediateDirectory="build\vc80\$(ConfigurationName)"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
 			>
 			<Tool
@@ -226,34 +275,25 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapIn.tlb"
-				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				StringPooling="true"
 				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.pch"
-				AssemblerListingLocation="build\vc80\$(ConfigurationName)/"
-				ObjectFile="build\vc80\$(ConfigurationName)/"
-				ProgramDataBaseFileName="build\vc80\$(ConfigurationName)/"
+				UsePrecompiledHeader="0"
+				ObjectFile="build\vc80\$(IntDir)\"
+				ProgramDataBaseFileName="build\vc80\$(IntDir)\vc80.pdb"
+				XMLDocumentationFileName="build\vc80\$(IntDir)\"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DisableSpecificWarnings="4819"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="2057"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -261,107 +301,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\SwapIn-vc80-mt.exe"
+				OutputFile="InstrumentIn-vc80-mt.exe"
 				LinkIncremental="1"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\..\ObjectHandler\lib;..\..\..\QuantLib\lib;..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapIn-vc80-mt.pdb"
-				SubSystem="1"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.bsc"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory="build\vc80\$(ConfigurationName)"
-			IntermediateDirectory="build\vc80\$(ConfigurationName)"
-			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				TypeLibraryName="build\vc80\$(ConfigurationName)/ClientCppSwapIn.tlb"
-				HeaderFileName=""
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.pch"
-				AssemblerListingLocation="build\vc80\$(ConfigurationName)/"
-				ObjectFile="build\vc80\$(ConfigurationName)/"
-				ProgramDataBaseFileName="build\vc80\$(ConfigurationName)/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
-				DisableSpecificWarnings="4819"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="2057"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\SwapIn-vc80-mt-sgd.exe"
-				LinkIncremental="2"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="..\..\..\ObjectHandler\lib;..\..\..\QuantLib\lib;..\..\..\log4cxx\msvc\lib"
+				ManifestFile="build\vc80\$(IntDir)\$(TargetFileName).intermediate.manifest"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="build\vc80\$(ConfigurationName)/SwapIn-vc80-mt-sgd.pdb"
 				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -375,8 +321,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile="build\vc80\$(ConfigurationName)/ClientCppSwapIn.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -396,15 +340,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath=".\qlxl_swap_market.xml"
-			>
-		</File>
-		<File
-			RelativePath=".\qlxl_swap_trade.xml"
-			>
-		</File>
-		<File
-			RelativePath="swap_in.cpp"
+			RelativePath=".\instrument_in.cpp"
 			>
 		</File>
 	</Files>

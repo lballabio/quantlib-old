@@ -1,11 +1,9 @@
 #ifndef qlcpp_%(categoryName)s_hpp
 #define qlcpp_%(categoryName)s_hpp
 
-#include <oh/variant.hpp>
+#include <oh/property.hpp>
 #include <string>
 #include <vector>
-// FIXME:  the line below is required only for ohutils
-#include <boost/any.hpp>
 
 namespace QuantLibAddinCpp {
 %(bufferHpp)s}

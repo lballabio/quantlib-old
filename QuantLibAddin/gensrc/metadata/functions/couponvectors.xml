@@ -243,6 +243,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>LegProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='PaymentBDC' default='"Following"'>

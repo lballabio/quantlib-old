@@ -25,7 +25,6 @@
 
 using std::vector;
 using boost::shared_ptr;
-using boost::any;
 using QuantLib::Size;
 using QuantLib::CmsCouponPricer;
 using QuantLib::HaganPricer;
@@ -62,17 +61,17 @@ namespace QuantLibAddin {
                                 discountingTS));
     }
 
-    vector<vector<any> > CmsMarket::getCmsMarket()
+    vector<vector<ObjectHandler::property_t> > CmsMarket::getCmsMarket()
     {
         Matrix cmsMarket = libraryObject_->browse();
         return browseCmsMarket(cmsMarket);
     }
 
 
-    vector<vector<any> > browseCmsMarket(const Matrix& cmsMarket) {
+    vector<vector<ObjectHandler::property_t> > browseCmsMarket(const Matrix& cmsMarket) {
         Size numberOfColumn = 14;
         Size numberOfRows = cmsMarket.rows()+1;
-        vector<vector<any> > result(numberOfRows, vector<any>(numberOfColumn));
+        vector<vector<ObjectHandler::property_t> > result(numberOfRows, vector<ObjectHandler::property_t>(numberOfColumn));
 
         result[0][ 0] = std::string("SwapIndex");
         result[0][ 1] = std::string("Maturity");

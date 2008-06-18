@@ -1,6 +1,7 @@
 # QuantLibAddin\gensrc\Makefile.vc
 
 GENSRC_DIR=..\..\gensrc
+OH_DIR=..\..\ObjectHandler
 BUILD_DIR=build\vc
 BUILDFLAG=$(BUILD_DIR)\buildflag
 MAKEFILE=Makefile.vc
@@ -24,9 +25,7 @@ $(BUILD_DIR) :
     if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
 
 $(BUILDFLAG) : $(INPUTS) $(BUILD_DIR)
-    $(GENSRC_DIR)\gensrc.py -a
-#    $(GENSRC_DIR)\gensrc.py -s
-#    $(GENSRC_DIR)\gensrc.py -xvelsd
+    $(GENSRC_DIR)\gensrc.py -a --oh_dir=$(OH_DIR)
 	echo flagged > $@
 
 CLEAN :

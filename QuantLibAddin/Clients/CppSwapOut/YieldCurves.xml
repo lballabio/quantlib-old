@@ -8,151 +8,219 @@
 		<px class_id="187" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EuriborYC3M</ObjectId>
 			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
-			<CurrentLink></CurrentLink>
+			<CurrentLink>EUR_YC</CurrentLink>
 			<Permanent>0</Permanent>
+			<UserProperties class_id="202" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
 		<px class_id_reference="187" object_id="_2">
 			<ObjectId>EuriborYC6M</ObjectId>
 			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
-			<CurrentLink></CurrentLink>
+			<CurrentLink>EUR_YC</CurrentLink>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id="65" tracking_level="1" version="0" object_id="_3">
+		<px class_id="67" tracking_level="1" version="0" object_id="_3">
 			<ObjectId>Euribor1W</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>1W</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_4">
+		<px class_id_reference="67" object_id="_4">
 			<ObjectId>Euribor2W</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>2W</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_5">
+		<px class_id_reference="67" object_id="_5">
 			<ObjectId>Euribor3W</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>3W</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_6">
+		<px class_id_reference="67" object_id="_6">
 			<ObjectId>Euribor1M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>1M</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_7">
+		<px class_id_reference="67" object_id="_7">
 			<ObjectId>Euribor2M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>2M</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_8">
+		<px class_id_reference="67" object_id="_8">
 			<ObjectId>Euribor3M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>3M</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_9">
+		<px class_id_reference="67" object_id="_9">
 			<ObjectId>Euribor4M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>4M</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_10">
+		<px class_id_reference="67" object_id="_10">
 			<ObjectId>Euribor5M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>5M</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_11">
+		<px class_id_reference="67" object_id="_11">
 			<ObjectId>Euribor6M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>6M</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_12">
+		<px class_id_reference="67" object_id="_12">
 			<ObjectId>Euribor7M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>7M</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_13">
+		<px class_id_reference="67" object_id="_13">
 			<ObjectId>Euribor8M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>8M</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_14">
+		<px class_id_reference="67" object_id="_14">
 			<ObjectId>Euribor9M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>9M</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_15">
+		<px class_id_reference="67" object_id="_15">
 			<ObjectId>Euribor10M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>10M</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_16">
+		<px class_id_reference="67" object_id="_16">
 			<ObjectId>Euribor11M</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>11M</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="65" object_id="_17">
+		<px class_id_reference="67" object_id="_17">
 			<ObjectId>Euribor1Y</ObjectId>
 			<ClassName>qlEuribor</ClassName>
 			<Tenor>1Y</Tenor>
 			<YieldCurve>EuriborYC3M</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
@@ -161,10 +229,14 @@
 			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
 			<CurrentLink></CurrentLink>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id="70" tracking_level="1" version="0" object_id="_19">
+		<px class_id="72" tracking_level="1" version="0" object_id="_19">
 			<ObjectId>RH_EURIBOR6M</ObjectId>
 			<ClassName>qlIborIndex</ClassName>
 			<FamilyName>EURIBOR</FamilyName>
@@ -177,1015 +249,945 @@
 			<DayCounter>Actual/360</DayCounter>
 			<YieldCurve>ts_handle</YieldCurve>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id="138" tracking_level="1" version="0" object_id="_20">
+		<px class_id="139" tracking_level="1" version="0" object_id="_20">
 			<ObjectId>HW_volatilityQuote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value class_id="202" tracking_level="0" version="0">
-				<variant_ class_id="203" tracking_level="0" version="0">
-					<which>1</which>
-					<value>0.0055895659999999998</value>
-				</variant_>
-			</Value>
+			<Value>0.0055895659999999998</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_21">
+		<px class_id_reference="139" object_id="_21">
 			<ObjectId>HW_meanReversionQuote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.029999999999999999</value>
-				</variant_>
-			</Value>
+			<Value>0.029999999999999999</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_22">
+		<px class_id_reference="139" object_id="_22">
 			<ObjectId>EUROND_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.0373</value>
-				</variant_>
-			</Value>
+			<Value>0.0373</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_23">
+		<px class_id_reference="139" object_id="_23">
 			<ObjectId>EURTND_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.0373</value>
-				</variant_>
-			</Value>
+			<Value>0.0373</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_24">
+		<px class_id_reference="139" object_id="_24">
 			<ObjectId>EURSND_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.0373</value>
-				</variant_>
-			</Value>
+			<Value>0.0373</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_25">
+		<px class_id_reference="139" object_id="_25">
 			<ObjectId>EURSWD_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.037900000000000003</value>
-				</variant_>
-			</Value>
+			<Value>0.037900000000000003</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_26">
+		<px class_id_reference="139" object_id="_26">
 			<ObjectId>EUR2WD_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.039399999999999998</value>
-				</variant_>
-			</Value>
+			<Value>0.039399999999999998</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_27">
+		<px class_id_reference="139" object_id="_27">
 			<ObjectId>EUR3WD_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.040099999999999997</value>
-				</variant_>
-			</Value>
+			<Value>0.040099999999999997</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_28">
+		<px class_id_reference="139" object_id="_28">
 			<ObjectId>EUR1MD_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.040500000000000001</value>
-				</variant_>
-			</Value>
+			<Value>0.040500000000000001</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_29">
+		<px class_id_reference="139" object_id="_29">
 			<ObjectId>EUR2MD_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.040899999999999999</value>
-				</variant_>
-			</Value>
+			<Value>0.040899999999999999</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_30">
+		<px class_id_reference="139" object_id="_30">
 			<ObjectId>EUR3MD_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.041100000000000005</value>
-				</variant_>
-			</Value>
+			<Value>0.041100000000000005</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_31">
+		<px class_id_reference="139" object_id="_31">
 			<ObjectId>EURFUTU7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>95.837500000000006</value>
-				</variant_>
-			</Value>
+			<Value>95.837500000000006</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_32">
+		<px class_id_reference="139" object_id="_32">
 			<ObjectId>EURFUTV7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>95.775000000000006</value>
-				</variant_>
-			</Value>
+			<Value>95.775000000000006</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_33">
+		<px class_id_reference="139" object_id="_33">
 			<ObjectId>EURFUTX7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>95.760000000000005</value>
-				</variant_>
-			</Value>
+			<Value>95.760000000000005</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_34">
+		<px class_id_reference="139" object_id="_34">
 			<ObjectId>EURFUTZ7_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>95.632499999999993</value>
-				</variant_>
-			</Value>
+			<Value>95.632499999999993</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_35">
+		<px class_id_reference="139" object_id="_35">
 			<ObjectId>EURFUTH8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>95.442499999999995</value>
-				</variant_>
-			</Value>
+			<Value>95.442499999999995</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_36">
+		<px class_id_reference="139" object_id="_36">
 			<ObjectId>EURFUTM8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>95.352500000000006</value>
-				</variant_>
-			</Value>
+			<Value>95.352500000000006</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_37">
+		<px class_id_reference="139" object_id="_37">
 			<ObjectId>EURFUTU8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>95.327500000000001</value>
-				</variant_>
-			</Value>
+			<Value>95.327500000000001</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_38">
+		<px class_id_reference="139" object_id="_38">
 			<ObjectId>EURFUTZ8_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>95.342500000000001</value>
-				</variant_>
-			</Value>
+			<Value>95.342500000000001</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_39">
+		<px class_id_reference="139" object_id="_39">
 			<ObjectId>EURFUTH9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>95.372500000000002</value>
-				</variant_>
-			</Value>
+			<Value>95.372500000000002</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_40">
+		<px class_id_reference="139" object_id="_40">
 			<ObjectId>EURFUTM9_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>95.412499999999994</value>
-				</variant_>
-			</Value>
+			<Value>95.412499999999994</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_41">
+		<px class_id_reference="139" object_id="_41">
 			<ObjectId>EURAB6E3YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.046869999999999995</value>
-				</variant_>
-			</Value>
+			<Value>0.046869999999999995</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_42">
+		<px class_id_reference="139" object_id="_42">
 			<ObjectId>EURAB6E4YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.046899999999999997</value>
-				</variant_>
-			</Value>
+			<Value>0.046899999999999997</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_43">
+		<px class_id_reference="139" object_id="_43">
 			<ObjectId>EURAB6E5YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.046959999999999995</value>
-				</variant_>
-			</Value>
+			<Value>0.046959999999999995</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_44">
+		<px class_id_reference="139" object_id="_44">
 			<ObjectId>EURAB6E6YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.047019999999999999</value>
-				</variant_>
-			</Value>
+			<Value>0.047019999999999999</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_45">
+		<px class_id_reference="139" object_id="_45">
 			<ObjectId>EURAB6E7YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.047100000000000003</value>
-				</variant_>
-			</Value>
+			<Value>0.047100000000000003</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_46">
+		<px class_id_reference="139" object_id="_46">
 			<ObjectId>EURAB6E8YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.047219999999999998</value>
-				</variant_>
-			</Value>
+			<Value>0.047219999999999998</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_47">
+		<px class_id_reference="139" object_id="_47">
 			<ObjectId>EURAB6E9YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.047379999999999999</value>
-				</variant_>
-			</Value>
+			<Value>0.047379999999999999</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_48">
+		<px class_id_reference="139" object_id="_48">
 			<ObjectId>EURAB6E10YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.047550000000000002</value>
-				</variant_>
-			</Value>
+			<Value>0.047550000000000002</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_49">
+		<px class_id_reference="139" object_id="_49">
 			<ObjectId>EURAB6E11YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.047710000000000009</value>
-				</variant_>
-			</Value>
+			<Value>0.047710000000000009</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_50">
+		<px class_id_reference="139" object_id="_50">
 			<ObjectId>EURAB6E12YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.047860000000000007</value>
-				</variant_>
-			</Value>
+			<Value>0.047860000000000007</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_51">
+		<px class_id_reference="139" object_id="_51">
 			<ObjectId>EURAB6E13YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048010000000000004</value>
-				</variant_>
-			</Value>
+			<Value>0.048010000000000004</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_52">
+		<px class_id_reference="139" object_id="_52">
 			<ObjectId>EURAB6E14YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048140000000000002</value>
-				</variant_>
-			</Value>
+			<Value>0.048140000000000002</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_53">
+		<px class_id_reference="139" object_id="_53">
 			<ObjectId>EURAB6E15YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048260000000000004</value>
-				</variant_>
-			</Value>
+			<Value>0.048260000000000004</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_54">
+		<px class_id_reference="139" object_id="_54">
 			<ObjectId>EURAB6E16YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048349999999999997</value>
-				</variant_>
-			</Value>
+			<Value>0.048349999999999997</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_55">
+		<px class_id_reference="139" object_id="_55">
 			<ObjectId>EURAB6E17YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048419999999999991</value>
-				</variant_>
-			</Value>
+			<Value>0.048419999999999991</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_56">
+		<px class_id_reference="139" object_id="_56">
 			<ObjectId>EURAB6E18YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048460000000000003</value>
-				</variant_>
-			</Value>
+			<Value>0.048460000000000003</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_57">
+		<px class_id_reference="139" object_id="_57">
 			<ObjectId>EURAB6E19YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048489999999999991</value>
-				</variant_>
-			</Value>
+			<Value>0.048489999999999991</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_58">
+		<px class_id_reference="139" object_id="_58">
 			<ObjectId>EURAB6E20YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048509999999999998</value>
-				</variant_>
-			</Value>
+			<Value>0.048509999999999998</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_59">
+		<px class_id_reference="139" object_id="_59">
 			<ObjectId>EURAB6E21YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048519999999999994</value>
-				</variant_>
-			</Value>
+			<Value>0.048519999999999994</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_60">
+		<px class_id_reference="139" object_id="_60">
 			<ObjectId>EURAB6E22YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048519999999999994</value>
-				</variant_>
-			</Value>
+			<Value>0.048519999999999994</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_61">
+		<px class_id_reference="139" object_id="_61">
 			<ObjectId>EURAB6E23YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048509999999999998</value>
-				</variant_>
-			</Value>
+			<Value>0.048509999999999998</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_62">
+		<px class_id_reference="139" object_id="_62">
 			<ObjectId>EURAB6E24YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048489999999999991</value>
-				</variant_>
-			</Value>
+			<Value>0.048489999999999991</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_63">
+		<px class_id_reference="139" object_id="_63">
 			<ObjectId>EURAB6E25YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048460000000000003</value>
-				</variant_>
-			</Value>
+			<Value>0.048460000000000003</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_64">
+		<px class_id_reference="139" object_id="_64">
 			<ObjectId>EURAB6E26YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048430000000000001</value>
-				</variant_>
-			</Value>
+			<Value>0.048430000000000001</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_65">
+		<px class_id_reference="139" object_id="_65">
 			<ObjectId>EURAB6E27YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048389999999999989</value>
-				</variant_>
-			</Value>
+			<Value>0.048389999999999989</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_66">
+		<px class_id_reference="139" object_id="_66">
 			<ObjectId>EURAB6E28YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048339999999999994</value>
-				</variant_>
-			</Value>
+			<Value>0.048339999999999994</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_67">
+		<px class_id_reference="139" object_id="_67">
 			<ObjectId>EURAB6E29YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048300000000000003</value>
-				</variant_>
-			</Value>
+			<Value>0.048300000000000003</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_68">
+		<px class_id_reference="139" object_id="_68">
 			<ObjectId>EURAB6E30YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048249999999999994</value>
-				</variant_>
-			</Value>
+			<Value>0.048249999999999994</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_69">
+		<px class_id_reference="139" object_id="_69">
 			<ObjectId>EURAB6E35YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.048039999999999999</value>
-				</variant_>
-			</Value>
+			<Value>0.048039999999999999</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_70">
+		<px class_id_reference="139" object_id="_70">
 			<ObjectId>EURAB6E40YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.047829999999999998</value>
-				</variant_>
-			</Value>
+			<Value>0.047829999999999998</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="138" object_id="_71">
+		<px class_id_reference="139" object_id="_71">
 			<ObjectId>EURAB6E50YS_Quote</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
-			<Value>
-				<variant_>
-					<which>1</which>
-					<value>0.04741999999999999</value>
-				</variant_>
-			</Value>
+			<Value>0.04741999999999999</Value>
 			<TickValue>0</TickValue>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id="135" tracking_level="1" version="0" object_id="_72">
+		<px class_id="136" tracking_level="1" version="0" object_id="_72">
 			<ObjectId>EURFUTU7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<IborIndex>Euribor3M</IborIndex>
 			<ImmCode>U7</ImmCode>
-			<FuturesQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTU7_Quote</value>
-				</variant_>
+			<FuturesQuote class_id="203" tracking_level="0" version="0">
+				<which>2</which>
+				<value>EURFUTU7_Quote</value>
 			</FuturesQuote>
 			<Volatility>
-				<variant_>
-					<which>3</which>
-					<value>HW_volatilityQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_volatilityQuote</value>
 			</Volatility>
 			<MeanReversion>
-				<variant_>
-					<which>3</which>
-					<value>HW_meanReversionQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_meanReversionQuote</value>
 			</MeanReversion>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_73">
+		<px class_id_reference="136" object_id="_73">
 			<ObjectId>EURFUTV7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<IborIndex>Euribor3M</IborIndex>
 			<ImmCode>V7</ImmCode>
 			<FuturesQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTV7_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTV7_Quote</value>
 			</FuturesQuote>
 			<Volatility>
-				<variant_>
-					<which>3</which>
-					<value>HW_volatilityQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_volatilityQuote</value>
 			</Volatility>
 			<MeanReversion>
-				<variant_>
-					<which>3</which>
-					<value>HW_meanReversionQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_meanReversionQuote</value>
 			</MeanReversion>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_74">
+		<px class_id_reference="136" object_id="_74">
 			<ObjectId>EURFUTX7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<IborIndex>Euribor3M</IborIndex>
 			<ImmCode>X7</ImmCode>
 			<FuturesQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTX7_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTX7_Quote</value>
 			</FuturesQuote>
 			<Volatility>
-				<variant_>
-					<which>3</which>
-					<value>HW_volatilityQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_volatilityQuote</value>
 			</Volatility>
 			<MeanReversion>
-				<variant_>
-					<which>3</which>
-					<value>HW_meanReversionQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_meanReversionQuote</value>
 			</MeanReversion>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_75">
+		<px class_id_reference="136" object_id="_75">
 			<ObjectId>EURFUTZ7ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<IborIndex>Euribor3M</IborIndex>
 			<ImmCode>Z7</ImmCode>
 			<FuturesQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTZ7_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTZ7_Quote</value>
 			</FuturesQuote>
 			<Volatility>
-				<variant_>
-					<which>3</which>
-					<value>HW_volatilityQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_volatilityQuote</value>
 			</Volatility>
 			<MeanReversion>
-				<variant_>
-					<which>3</which>
-					<value>HW_meanReversionQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_meanReversionQuote</value>
 			</MeanReversion>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_76">
+		<px class_id_reference="136" object_id="_76">
 			<ObjectId>EURFUTH8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<IborIndex>Euribor3M</IborIndex>
 			<ImmCode>H8</ImmCode>
 			<FuturesQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTH8_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTH8_Quote</value>
 			</FuturesQuote>
 			<Volatility>
-				<variant_>
-					<which>3</which>
-					<value>HW_volatilityQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_volatilityQuote</value>
 			</Volatility>
 			<MeanReversion>
-				<variant_>
-					<which>3</which>
-					<value>HW_meanReversionQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_meanReversionQuote</value>
 			</MeanReversion>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_77">
+		<px class_id_reference="136" object_id="_77">
 			<ObjectId>EURFUTM8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<IborIndex>Euribor3M</IborIndex>
 			<ImmCode>M8</ImmCode>
 			<FuturesQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTM8_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTM8_Quote</value>
 			</FuturesQuote>
 			<Volatility>
-				<variant_>
-					<which>3</which>
-					<value>HW_volatilityQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_volatilityQuote</value>
 			</Volatility>
 			<MeanReversion>
-				<variant_>
-					<which>3</which>
-					<value>HW_meanReversionQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_meanReversionQuote</value>
 			</MeanReversion>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_78">
+		<px class_id_reference="136" object_id="_78">
 			<ObjectId>EURFUTU8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<IborIndex>Euribor3M</IborIndex>
 			<ImmCode>U8</ImmCode>
 			<FuturesQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTU8_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTU8_Quote</value>
 			</FuturesQuote>
 			<Volatility>
-				<variant_>
-					<which>3</which>
-					<value>HW_volatilityQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_volatilityQuote</value>
 			</Volatility>
 			<MeanReversion>
-				<variant_>
-					<which>3</which>
-					<value>HW_meanReversionQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_meanReversionQuote</value>
 			</MeanReversion>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_79">
+		<px class_id_reference="136" object_id="_79">
 			<ObjectId>EURFUTZ8ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<IborIndex>Euribor3M</IborIndex>
 			<ImmCode>Z8</ImmCode>
 			<FuturesQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTZ8_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTZ8_Quote</value>
 			</FuturesQuote>
 			<Volatility>
-				<variant_>
-					<which>3</which>
-					<value>HW_volatilityQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_volatilityQuote</value>
 			</Volatility>
 			<MeanReversion>
-				<variant_>
-					<which>3</which>
-					<value>HW_meanReversionQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_meanReversionQuote</value>
 			</MeanReversion>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_80">
+		<px class_id_reference="136" object_id="_80">
 			<ObjectId>EURFUTH9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<IborIndex>Euribor3M</IborIndex>
 			<ImmCode>H9</ImmCode>
 			<FuturesQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTH9_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTH9_Quote</value>
 			</FuturesQuote>
 			<Volatility>
-				<variant_>
-					<which>3</which>
-					<value>HW_volatilityQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_volatilityQuote</value>
 			</Volatility>
 			<MeanReversion>
-				<variant_>
-					<which>3</which>
-					<value>HW_meanReversionQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_meanReversionQuote</value>
 			</MeanReversion>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="135" object_id="_81">
+		<px class_id_reference="136" object_id="_81">
 			<ObjectId>EURFUTM9ConvAdj_Quote</ObjectId>
 			<ClassName>qlFuturesConvAdjustmentQuote</ClassName>
 			<IborIndex>Euribor3M</IborIndex>
 			<ImmCode>M9</ImmCode>
 			<FuturesQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTM9_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTM9_Quote</value>
 			</FuturesQuote>
 			<Volatility>
-				<variant_>
-					<which>3</which>
-					<value>HW_volatilityQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_volatilityQuote</value>
 			</Volatility>
 			<MeanReversion>
-				<variant_>
-					<which>3</which>
-					<value>HW_meanReversionQuote</value>
-				</variant_>
+				<which>2</which>
+				<value>HW_meanReversionQuote</value>
 			</MeanReversion>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id="147" tracking_level="1" version="0" object_id="_82">
+		<px class_id="148" tracking_level="1" version="0" object_id="_82">
 			<ObjectId>EUROND</ObjectId>
 			<ClassName>qlDepositRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EUROND_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EUROND_Quote</value>
 			</Rate>
 			<Period>1D</Period>
 			<FixingDays>0</FixingDays>
@@ -1194,17 +1196,19 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_83">
+		<px class_id_reference="148" object_id="_83">
 			<ObjectId>EURTND</ObjectId>
 			<ClassName>qlDepositRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURTND_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURTND_Quote</value>
 			</Rate>
 			<Period>1D</Period>
 			<FixingDays>1</FixingDays>
@@ -1213,17 +1217,19 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_84">
+		<px class_id_reference="148" object_id="_84">
 			<ObjectId>EURSND</ObjectId>
 			<ClassName>qlDepositRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURSND_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURSND_Quote</value>
 			</Rate>
 			<Period>1D</Period>
 			<FixingDays>2</FixingDays>
@@ -1232,17 +1238,19 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_85">
+		<px class_id_reference="148" object_id="_85">
 			<ObjectId>EURSWD</ObjectId>
 			<ClassName>qlDepositRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURSWD_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURSWD_Quote</value>
 			</Rate>
 			<Period>1W</Period>
 			<FixingDays>2</FixingDays>
@@ -1251,17 +1259,19 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_86">
+		<px class_id_reference="148" object_id="_86">
 			<ObjectId>EUR2WD</ObjectId>
 			<ClassName>qlDepositRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EUR2WD_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EUR2WD_Quote</value>
 			</Rate>
 			<Period>2W</Period>
 			<FixingDays>2</FixingDays>
@@ -1270,17 +1280,19 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_87">
+		<px class_id_reference="148" object_id="_87">
 			<ObjectId>EUR3WD</ObjectId>
 			<ClassName>qlDepositRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EUR3WD_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EUR3WD_Quote</value>
 			</Rate>
 			<Period>3W</Period>
 			<FixingDays>2</FixingDays>
@@ -1289,17 +1301,19 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_88">
+		<px class_id_reference="148" object_id="_88">
 			<ObjectId>EUR1MD</ObjectId>
 			<ClassName>qlDepositRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EUR1MD_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EUR1MD_Quote</value>
 			</Rate>
 			<Period>1M</Period>
 			<FixingDays>2</FixingDays>
@@ -1308,17 +1322,19 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_89">
+		<px class_id_reference="148" object_id="_89">
 			<ObjectId>EUR2MD</ObjectId>
 			<ClassName>qlDepositRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EUR2MD_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EUR2MD_Quote</value>
 			</Rate>
 			<Period>2M</Period>
 			<FixingDays>2</FixingDays>
@@ -1327,17 +1343,19 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="147" object_id="_90">
+		<px class_id_reference="148" object_id="_90">
 			<ObjectId>EUR3MD</ObjectId>
 			<ClassName>qlDepositRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EUR3MD_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EUR3MD_Quote</value>
 			</Rate>
 			<Period>3M</Period>
 			<FixingDays>2</FixingDays>
@@ -1346,23 +1364,23 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id="153" tracking_level="1" version="0" object_id="_91">
+		<px class_id="154" tracking_level="1" version="0" object_id="_91">
 			<ObjectId>EURFUTU7</ObjectId>
 			<ClassName>qlFuturesRateHelper2</ClassName>
 			<Price>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTU7_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTU7_Quote</value>
 			</Price>
 			<IMM>
-				<variant_>
-					<which>3</which>
-					<value>U7</value>
-				</variant_>
+				<which>2</which>
+				<value>U7</value>
 			</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
@@ -1370,29 +1388,27 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<ConvexityAdjQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTU7ConvAdj_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTU7ConvAdj_Quote</value>
 			</ConvexityAdjQuote>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_92">
+		<px class_id_reference="154" object_id="_92">
 			<ObjectId>EURFUTV7</ObjectId>
 			<ClassName>qlFuturesRateHelper2</ClassName>
 			<Price>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTV7_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTV7_Quote</value>
 			</Price>
 			<IMM>
-				<variant_>
-					<which>3</which>
-					<value>V7</value>
-				</variant_>
+				<which>2</which>
+				<value>V7</value>
 			</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
@@ -1400,29 +1416,27 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<ConvexityAdjQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTV7ConvAdj_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTV7ConvAdj_Quote</value>
 			</ConvexityAdjQuote>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_93">
+		<px class_id_reference="154" object_id="_93">
 			<ObjectId>EURFUTX7</ObjectId>
 			<ClassName>qlFuturesRateHelper2</ClassName>
 			<Price>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTX7_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTX7_Quote</value>
 			</Price>
 			<IMM>
-				<variant_>
-					<which>3</which>
-					<value>X7</value>
-				</variant_>
+				<which>2</which>
+				<value>X7</value>
 			</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
@@ -1430,29 +1444,27 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<ConvexityAdjQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTX7ConvAdj_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTX7ConvAdj_Quote</value>
 			</ConvexityAdjQuote>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_94">
+		<px class_id_reference="154" object_id="_94">
 			<ObjectId>EURFUTZ7</ObjectId>
 			<ClassName>qlFuturesRateHelper2</ClassName>
 			<Price>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTZ7_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTZ7_Quote</value>
 			</Price>
 			<IMM>
-				<variant_>
-					<which>3</which>
-					<value>Z7</value>
-				</variant_>
+				<which>2</which>
+				<value>Z7</value>
 			</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
@@ -1460,29 +1472,27 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<ConvexityAdjQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTZ7ConvAdj_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTZ7ConvAdj_Quote</value>
 			</ConvexityAdjQuote>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_95">
+		<px class_id_reference="154" object_id="_95">
 			<ObjectId>EURFUTH8</ObjectId>
 			<ClassName>qlFuturesRateHelper2</ClassName>
 			<Price>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTH8_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTH8_Quote</value>
 			</Price>
 			<IMM>
-				<variant_>
-					<which>3</which>
-					<value>H8</value>
-				</variant_>
+				<which>2</which>
+				<value>H8</value>
 			</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
@@ -1490,29 +1500,27 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<ConvexityAdjQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTH8ConvAdj_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTH8ConvAdj_Quote</value>
 			</ConvexityAdjQuote>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_96">
+		<px class_id_reference="154" object_id="_96">
 			<ObjectId>EURFUTM8</ObjectId>
 			<ClassName>qlFuturesRateHelper2</ClassName>
 			<Price>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTM8_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTM8_Quote</value>
 			</Price>
 			<IMM>
-				<variant_>
-					<which>3</which>
-					<value>M8</value>
-				</variant_>
+				<which>2</which>
+				<value>M8</value>
 			</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
@@ -1520,29 +1528,27 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<ConvexityAdjQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTM8ConvAdj_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTM8ConvAdj_Quote</value>
 			</ConvexityAdjQuote>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_97">
+		<px class_id_reference="154" object_id="_97">
 			<ObjectId>EURFUTU8</ObjectId>
 			<ClassName>qlFuturesRateHelper2</ClassName>
 			<Price>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTU8_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTU8_Quote</value>
 			</Price>
 			<IMM>
-				<variant_>
-					<which>3</which>
-					<value>U8</value>
-				</variant_>
+				<which>2</which>
+				<value>U8</value>
 			</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
@@ -1550,29 +1556,27 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<ConvexityAdjQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTU8ConvAdj_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTU8ConvAdj_Quote</value>
 			</ConvexityAdjQuote>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_98">
+		<px class_id_reference="154" object_id="_98">
 			<ObjectId>EURFUTZ8</ObjectId>
 			<ClassName>qlFuturesRateHelper2</ClassName>
 			<Price>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTZ8_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTZ8_Quote</value>
 			</Price>
 			<IMM>
-				<variant_>
-					<which>3</which>
-					<value>Z8</value>
-				</variant_>
+				<which>2</which>
+				<value>Z8</value>
 			</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
@@ -1580,29 +1584,27 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<ConvexityAdjQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTZ8ConvAdj_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTZ8ConvAdj_Quote</value>
 			</ConvexityAdjQuote>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_99">
+		<px class_id_reference="154" object_id="_99">
 			<ObjectId>EURFUTH9</ObjectId>
 			<ClassName>qlFuturesRateHelper2</ClassName>
 			<Price>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTH9_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTH9_Quote</value>
 			</Price>
 			<IMM>
-				<variant_>
-					<which>3</which>
-					<value>H9</value>
-				</variant_>
+				<which>2</which>
+				<value>H9</value>
 			</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
@@ -1610,29 +1612,27 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<ConvexityAdjQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTH9ConvAdj_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTH9ConvAdj_Quote</value>
 			</ConvexityAdjQuote>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="153" object_id="_100">
+		<px class_id_reference="154" object_id="_100">
 			<ObjectId>EURFUTM9</ObjectId>
 			<ClassName>qlFuturesRateHelper2</ClassName>
 			<Price>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTM9_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTM9_Quote</value>
 			</Price>
 			<IMM>
-				<variant_>
-					<which>3</which>
-					<value>M9</value>
-				</variant_>
+				<which>2</which>
+				<value>M9</value>
 			</IMM>
 			<Months>3</Months>
 			<Calendar>Target</Calendar>
@@ -1640,23 +1640,23 @@
 			<EndOfMonth>0</EndOfMonth>
 			<DayCounter>Actual/360</DayCounter>
 			<ConvexityAdjQuote>
-				<variant_>
-					<which>3</which>
-					<value>EURFUTM9ConvAdj_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURFUTM9ConvAdj_Quote</value>
 			</ConvexityAdjQuote>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id="155" tracking_level="1" version="0" object_id="_101">
+		<px class_id="156" tracking_level="1" version="0" object_id="_101">
 			<ObjectId>EURAB6E3YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E3YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E3YS_Quote</value>
 			</Rate>
 			<Period>3Y</Period>
 			<Calendar>Target</Calendar>
@@ -1665,24 +1665,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_102">
+		<px class_id_reference="156" object_id="_102">
 			<ObjectId>EURAB6E4YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E4YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E4YS_Quote</value>
 			</Rate>
 			<Period>4Y</Period>
 			<Calendar>Target</Calendar>
@@ -1691,24 +1691,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_103">
+		<px class_id_reference="156" object_id="_103">
 			<ObjectId>EURAB6E5YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E5YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E5YS_Quote</value>
 			</Rate>
 			<Period>5Y</Period>
 			<Calendar>Target</Calendar>
@@ -1717,24 +1717,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_104">
+		<px class_id_reference="156" object_id="_104">
 			<ObjectId>EURAB6E6YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E6YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E6YS_Quote</value>
 			</Rate>
 			<Period>6Y</Period>
 			<Calendar>Target</Calendar>
@@ -1743,24 +1743,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_105">
+		<px class_id_reference="156" object_id="_105">
 			<ObjectId>EURAB6E7YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E7YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E7YS_Quote</value>
 			</Rate>
 			<Period>7Y</Period>
 			<Calendar>Target</Calendar>
@@ -1769,24 +1769,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_106">
+		<px class_id_reference="156" object_id="_106">
 			<ObjectId>EURAB6E8YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E8YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E8YS_Quote</value>
 			</Rate>
 			<Period>8Y</Period>
 			<Calendar>Target</Calendar>
@@ -1795,24 +1795,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_107">
+		<px class_id_reference="156" object_id="_107">
 			<ObjectId>EURAB6E9YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E9YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E9YS_Quote</value>
 			</Rate>
 			<Period>9Y</Period>
 			<Calendar>Target</Calendar>
@@ -1821,24 +1821,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_108">
+		<px class_id_reference="156" object_id="_108">
 			<ObjectId>EURAB6E10YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E10YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E10YS_Quote</value>
 			</Rate>
 			<Period>10Y</Period>
 			<Calendar>Target</Calendar>
@@ -1847,24 +1847,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_109">
+		<px class_id_reference="156" object_id="_109">
 			<ObjectId>EURAB6E11YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E11YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E11YS_Quote</value>
 			</Rate>
 			<Period>11Y</Period>
 			<Calendar>Target</Calendar>
@@ -1873,24 +1873,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_110">
+		<px class_id_reference="156" object_id="_110">
 			<ObjectId>EURAB6E12YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E12YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E12YS_Quote</value>
 			</Rate>
 			<Period>12Y</Period>
 			<Calendar>Target</Calendar>
@@ -1899,24 +1899,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_111">
+		<px class_id_reference="156" object_id="_111">
 			<ObjectId>EURAB6E13YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E13YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E13YS_Quote</value>
 			</Rate>
 			<Period>13Y</Period>
 			<Calendar>Target</Calendar>
@@ -1925,24 +1925,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_112">
+		<px class_id_reference="156" object_id="_112">
 			<ObjectId>EURAB6E14YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E14YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E14YS_Quote</value>
 			</Rate>
 			<Period>14Y</Period>
 			<Calendar>Target</Calendar>
@@ -1951,24 +1951,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_113">
+		<px class_id_reference="156" object_id="_113">
 			<ObjectId>EURAB6E15YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E15YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E15YS_Quote</value>
 			</Rate>
 			<Period>15Y</Period>
 			<Calendar>Target</Calendar>
@@ -1977,24 +1977,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_114">
+		<px class_id_reference="156" object_id="_114">
 			<ObjectId>EURAB6E16YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E16YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E16YS_Quote</value>
 			</Rate>
 			<Period>16Y</Period>
 			<Calendar>Target</Calendar>
@@ -2003,24 +2003,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_115">
+		<px class_id_reference="156" object_id="_115">
 			<ObjectId>EURAB6E17YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E17YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E17YS_Quote</value>
 			</Rate>
 			<Period>17Y</Period>
 			<Calendar>Target</Calendar>
@@ -2029,24 +2029,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_116">
+		<px class_id_reference="156" object_id="_116">
 			<ObjectId>EURAB6E18YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E18YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E18YS_Quote</value>
 			</Rate>
 			<Period>18Y</Period>
 			<Calendar>Target</Calendar>
@@ -2055,24 +2055,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_117">
+		<px class_id_reference="156" object_id="_117">
 			<ObjectId>EURAB6E19YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E19YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E19YS_Quote</value>
 			</Rate>
 			<Period>19Y</Period>
 			<Calendar>Target</Calendar>
@@ -2081,24 +2081,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_118">
+		<px class_id_reference="156" object_id="_118">
 			<ObjectId>EURAB6E20YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E20YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E20YS_Quote</value>
 			</Rate>
 			<Period>20Y</Period>
 			<Calendar>Target</Calendar>
@@ -2107,24 +2107,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_119">
+		<px class_id_reference="156" object_id="_119">
 			<ObjectId>EURAB6E21YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E21YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E21YS_Quote</value>
 			</Rate>
 			<Period>21Y</Period>
 			<Calendar>Target</Calendar>
@@ -2133,24 +2133,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_120">
+		<px class_id_reference="156" object_id="_120">
 			<ObjectId>EURAB6E22YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E22YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E22YS_Quote</value>
 			</Rate>
 			<Period>22Y</Period>
 			<Calendar>Target</Calendar>
@@ -2159,24 +2159,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_121">
+		<px class_id_reference="156" object_id="_121">
 			<ObjectId>EURAB6E23YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E23YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E23YS_Quote</value>
 			</Rate>
 			<Period>23Y</Period>
 			<Calendar>Target</Calendar>
@@ -2185,24 +2185,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_122">
+		<px class_id_reference="156" object_id="_122">
 			<ObjectId>EURAB6E24YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E24YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E24YS_Quote</value>
 			</Rate>
 			<Period>24Y</Period>
 			<Calendar>Target</Calendar>
@@ -2211,24 +2211,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_123">
+		<px class_id_reference="156" object_id="_123">
 			<ObjectId>EURAB6E25YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E25YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E25YS_Quote</value>
 			</Rate>
 			<Period>25Y</Period>
 			<Calendar>Target</Calendar>
@@ -2237,24 +2237,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_124">
+		<px class_id_reference="156" object_id="_124">
 			<ObjectId>EURAB6E26YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E26YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E26YS_Quote</value>
 			</Rate>
 			<Period>26Y</Period>
 			<Calendar>Target</Calendar>
@@ -2263,24 +2263,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_125">
+		<px class_id_reference="156" object_id="_125">
 			<ObjectId>EURAB6E27YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E27YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E27YS_Quote</value>
 			</Rate>
 			<Period>27Y</Period>
 			<Calendar>Target</Calendar>
@@ -2289,24 +2289,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_126">
+		<px class_id_reference="156" object_id="_126">
 			<ObjectId>EURAB6E28YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E28YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E28YS_Quote</value>
 			</Rate>
 			<Period>28Y</Period>
 			<Calendar>Target</Calendar>
@@ -2315,24 +2315,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_127">
+		<px class_id_reference="156" object_id="_127">
 			<ObjectId>EURAB6E29YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E29YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E29YS_Quote</value>
 			</Rate>
 			<Period>29Y</Period>
 			<Calendar>Target</Calendar>
@@ -2341,24 +2341,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_128">
+		<px class_id_reference="156" object_id="_128">
 			<ObjectId>EURAB6E30YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E30YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E30YS_Quote</value>
 			</Rate>
 			<Period>30Y</Period>
 			<Calendar>Target</Calendar>
@@ -2367,24 +2367,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_129">
+		<px class_id_reference="156" object_id="_129">
 			<ObjectId>EURAB6E35YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E35YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E35YS_Quote</value>
 			</Rate>
 			<Period>35Y</Period>
 			<Calendar>Target</Calendar>
@@ -2393,24 +2393,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_130">
+		<px class_id_reference="156" object_id="_130">
 			<ObjectId>EURAB6E40YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E40YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E40YS_Quote</value>
 			</Rate>
 			<Period>40Y</Period>
 			<Calendar>Target</Calendar>
@@ -2419,24 +2419,24 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_131">
+		<px class_id_reference="156" object_id="_131">
 			<ObjectId>EURAB6E50YS</ObjectId>
 			<ClassName>qlSwapRateHelper2</ClassName>
 			<Rate>
-				<variant_>
-					<which>3</which>
-					<value>EURAB6E50YS_Quote</value>
-				</variant_>
+				<which>2</which>
+				<value>EURAB6E50YS_Quote</value>
 			</Rate>
 			<Period>50Y</Period>
 			<Calendar>Target</Calendar>
@@ -2445,17 +2445,19 @@
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
 			<IborIndex>RH_EURIBOR6M</IborIndex>
 			<Spread>
-				<variant_>
-					<which>0</which>
-					<value>0</value>
-				</variant_>
+				<which>3</which>
+				<value>0</value>
 			</Spread>
 			<ForwardStart>0D</ForwardStart>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id="114" tracking_level="1" version="0" object_id="_132">
+		<px class_id="116" tracking_level="1" version="0" object_id="_132">
 			<ObjectId>EUR_YC</ObjectId>
 			<ClassName>qlPiecewiseYieldCurve</ClassName>
 			<NDays>0</NDays>
@@ -2515,23 +2517,25 @@
 				<item>EURAB6E50YS</item>
 			</RateHelpers>
 			<DayCounter>Actual/365 (Fixed)</DayCounter>
-			<Jumps class_id="205" tracking_level="0" version="0">
-				<count>0</count>
-				<item_version>0</item_version>
-			</Jumps>
-			<JumpDates>
-				<count>0</count>
-				<item_version>0</item_version>
-			</JumpDates>
-			<Accuracy>
-				<variant_>
-					<which>1</which>
-					<value>9.9999999999999998e-13</value>
-				</variant_>
-			</Accuracy>
+			<TurnOfYearEffect>
+				<which>4</which>
+				<value>1</value>
+			</TurnOfYearEffect>
+			<Accuracy>9.9999999999999998e-013</Accuracy>
 			<TraitsID>ZeroYield</TraitsID>
 			<InterpolatorID>Linear</InterpolatorID>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item class_id="205" tracking_level="0" version="0">
+					<first>UserExtrapolation</first>
+					<second>
+						<which>1</which>
+						<value>1</value>
+					</second>
+				</item>
+			</UserProperties>
 		</px>
 	</item>
 	<item>
@@ -2540,6 +2544,10 @@
 			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
 			<CurrentLink>EUR_YC</CurrentLink>
 			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
 		</px>
 	</item>
 </object_list>

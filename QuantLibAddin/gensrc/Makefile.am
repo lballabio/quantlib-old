@@ -1,5 +1,6 @@
 
 GENSRC_DIR = @gensrc_dir@
+OH_DIR = @oh_dir@
 
 # gensrc.py probably needs to be re-executed if any of these change
 
@@ -143,7 +144,7 @@ endif
 all-local: .time-stamp
 
 .time-stamp: $(GENSRC_INPUTS)
-	python $(GENSRC_DIR)/gensrc.py $(GENSRC_ARGS)
+	python $(GENSRC_DIR)/gensrc.py $(GENSRC_ARGS) --oh_dir=$(OH_DIR)
 	touch .time-stamp
 
 dist-hook:

@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2007, 2008 Eric Ehlers
+ Copyright (C) 2008 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -78,12 +79,24 @@ namespace ObjectHandler {
         return strConv(xString);
     }
 
-    ConvertOper::operator Variant() const {
+    const std::type_info& ConvertOper::type() const {
+        if(oper_->xltype == xltypeNum)
+            return typeid(double);
+        else if(oper_->xltype == xltypeBool)
+            return typeid(bool);
+        else if(oper_->xltype == xltypeStr)
+            return typeid(std::string);
+        else if(missing() || error())
+            return typeid(empty_property_tag);
+        else
+            OH_FAIL("ConvertOper: unexpected datatype: " << oper_->xltype);
+    }
 
+    ConvertOper::operator property_t() const {
         if (missing()) {
-            return Other(Null);
+            return empty_property_tag();
         } else if (error()) {
-            return Other(Error);
+            return empty_property_tag();
         } else if (oper_->xltype == xltypeNum) {
             return oper_->val.num;
         } else if (oper_->xltype == xltypeBool) {
@@ -105,7 +118,7 @@ namespace ObjectHandler {
         return (oper_->xltype & xltypeErr && oper_->val.err != xlerrNA);
     }
 
-    Type ConvertOper::type() const {
+    /*Type ConvertOper::type() const {
         if (missing()) {
             return Null;
         } else if (error()) {
@@ -121,7 +134,7 @@ namespace ObjectHandler {
         } else {
             OH_FAIL("unknown type");
         }
-    }
+    }*/
 
     std::string ConvertOper::strConv(const OPER *xString) {
         std::string ret;

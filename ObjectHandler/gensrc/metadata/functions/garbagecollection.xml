@@ -37,9 +37,10 @@
 
     <Procedure name='ohDeleteAllObjects'>
       <description>delete all objects from repository</description>
-      <alias>ObjectHandler::RepositoryXL::instance().deleteAllObjects</alias>
+      <alias>ObjectHandler::Repository::instance().deleteAllObjects</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' />
+        <SupportedPlatform name='Cpp' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

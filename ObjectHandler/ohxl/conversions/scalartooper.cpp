@@ -1,8 +1,8 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2008 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,6 +21,9 @@
 #include <ohxl/conversions/scalartooper.hpp>
 #include <ohxl/conversions/vectortooper.hpp>
 #include <ohxl/conversions/matrixtooper.hpp>
+#include <vector>
+#include <string>
+#include <oh/property.hpp>
 
 namespace ObjectHandler {
 
@@ -58,23 +61,41 @@ namespace ObjectHandler {
 
     class VariantToOper : public boost::static_visitor<> {
     public:
-        VariantToOper(OPER &oper) : oper_(oper) {}
-        void operator()(const long &val) { scalarToOper(val, oper_); }
-        void operator()(const double &val) { scalarToOper(val, oper_); }
-        void operator()(const bool &val) { scalarToOper(val, oper_); }
-        void operator()(const std::string &val) { scalarToOper(val, oper_); }
-        // FIXME cater for error etc.
-        void operator()(const Other&) { setError(oper_, xlerrNA); }
+        VariantToOper(OPER &oper, bool expand) : oper_(oper), m_expand(expand) {}
+        VariantToOper(const VariantToOper& op) : oper_(op.oper_), m_expand(op.m_expand) {}
+
+        void operator()(const empty_property_tag&) { setError(oper_, xlerrNA); }
+
+        template <typename T>
+        void operator() (const T& t) { scalarToOper(t, oper_); }
+
+        template <typename T>
+        void operator()(const std::vector<T>& v) {
+            if(m_expand)
+                vectorToOper(v, oper_);
+            else
+                scalarToOper("<VECTOR>", oper_);
+        }
+        
+        template<typename T>
+        void operator()(const std::vector<std::vector<T> >& v) {
+            if(m_expand)
+                matrixToOper(v, oper_);
+            else
+                scalarToOper("<MATRIX>", oper_);
+        }
+
     private:
         OPER &oper_;
+        bool m_expand;
     };
 
-    DLL_API void scalarToOper(const Variant &value, OPER &xVariant, bool dllToFree, bool expandVector) {
-        VariantToOper variantToOper(xVariant);
-        boost::apply_visitor(variantToOper, value.variant());
+    DLL_API void scalarToOper(const ObjectHandler::property_t &value, OPER &xVariant, bool dllToFree, bool expandVector) {
+        VariantToOper variantToOper(xVariant, expandVector);
+        boost::apply_visitor(variantToOper, value);
     }
 
-    template <class T>
+    /*template <class T>
     void wrapScalarToOper(const boost::any &value, OPER &xAny) {
         scalarToOper(boost::any_cast<T>(value), xAny);
     }
@@ -186,7 +207,7 @@ namespace ObjectHandler {
         } else {
             setError(xAny, xlerrValue);
         }
-    }
+    }*/
 
 }
 

@@ -61,6 +61,9 @@ class Constructor(function.Function):
     def libraryFunction(self):
         return self.libraryFunction_
 
+    def processorName(self):
+        return self.processorName_
+        
     #############################################
     # serializer interface
     #############################################
@@ -70,6 +73,7 @@ class Constructor(function.Function):
         super(Constructor, self).serialize(serializer)
         serializer.serializeProperty(self, common.LIBRARY_FUNCTION)
         serializer.serializeAttributeBoolean(self, common.CONST)
+        serializer.serializeProperty(self, common.PROCESSOR_NAME, "")
 
     def postSerialize(self):
         """Perform post serialization initialization."""

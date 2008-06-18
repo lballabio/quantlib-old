@@ -49,7 +49,7 @@ namespace QuantLibAddin {
 
     class Bond : public Instrument {
       public:
-        std::vector<std::vector<boost::any> > flowAnalysis();
+        std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis();
         std::string description();
         //QuantLib::Currency currency();
         std::string currency();

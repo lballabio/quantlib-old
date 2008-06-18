@@ -33,6 +33,7 @@ include_HEADERS = \
     evolutiondescription.hpp \
     exercise.hpp \
     forwardrateagreement.hpp \
+    garbagecollection.hpp \
     handles.hpp \
     index.hpp \
     init.hpp \
@@ -67,7 +68,9 @@ include_HEADERS = \
     swaption.hpp \
     swaptionvolstructure.hpp \
     termstructures.hpp \
+    timeseries.hpp \
     utilities.hpp \
+    valueobjects.hpp \
     vanillaswap.hpp \
     volatilities.hpp \
     volatility.hpp
@@ -91,6 +94,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     evolutiondescription.cpp \
     exercise.cpp \
     forwardrateagreement.cpp \
+    garbagecollection.cpp \
     handles.cpp \
     index.cpp \
     init.cpp \
@@ -124,7 +128,9 @@ libQuantLibAddinCpp_la_SOURCES = \
     swaption.cpp \
     swaptionvolstructure.cpp \
     termstructures.cpp \
+    timeseries.cpp \
     utilities.cpp \
+    valueobjects.cpp \
     vanillaswap.cpp \
     volatilities.cpp \
     volatility.cpp

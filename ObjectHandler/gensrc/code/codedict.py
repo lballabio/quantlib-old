@@ -4,12 +4,12 @@
 ##########################################################################
 
 code11 = '''\
-        std::string %(name)sCpp = ObjectHandler::operToScalar<std::string>(
-            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
+        std::string %(name)sCpp = ObjectHandler::convert2<std::string>(
+            ObjectHandler::ConvertOper(*%(name)s), "%(name)s", %(defaultValue)s);\n'''
 
 code12 = '''\
-        %(nativeType)s %(name)sCpp = ObjectHandler::operToScalar<%(nativeType)s>(
-            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
+        %(nativeType)s %(name)sCpp = ObjectHandler::convert2<%(nativeType)s>(
+            ObjectHandler::ConvertOper(*%(name)s), "%(name)s", %(defaultValue)s);\n'''
 
 code13 = '''\
         std::vector<%(nativeType)s> %(name)sCpp =
@@ -57,12 +57,12 @@ code21b = '''\
             ObjectHandler::operToMatrix<boost::any>(*%(name)s);\n'''
 
 code25 = '''\
-        %(type)s %(name)sLib = ObjectHandler::operToScalar<%(type)s>(
-            %(name)s, "%(name)s", %(defaultValue)s);\n'''
+        %(type)s %(name)sLib = ObjectHandler::convert2<%(type)s>(
+            ObjectHandler::ConvertOper(%(name)s), "%(name)s", %(defaultValue)s);\n'''
 
 code26 = '''\
-        %(type)s %(name)sLib = ObjectHandler::operToScalar<%(type)s>(
-            *%(name)s, "%(name)s", %(defaultValue)s);\n'''
+        %(type)s %(name)sLib = ObjectHandler::convert2<%(type)s>(
+            ObjectHandler::ConvertOper(*%(name)s), "%(name)s", %(defaultValue)s);\n'''
 
 code31 = '''\
         std::vector<%(type)s> %(name)sLib =
@@ -178,41 +178,45 @@ code66 = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
             return %(name)s_;\n'''
 
+code66a = '''\
+        else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
+            return %(name)s_;\n'''
+
 code67a = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<ObjectHandler::Variant>(value);\n'''
+            %(name)s_ = value;\n'''
 
 code67b = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::string>(value);\n'''
+            %(name)s_ = ObjectHandler::convert2<std::string>(value);\n'''
 
 code67c = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<%(nativeType)s>(value);\n'''
+            %(name)s_ = ObjectHandler::convert2<%(nativeType)s>(value);\n'''
 
 code67d = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<ObjectHandler::Variant> >(value);\n'''
+            %(name)s_ = ObjectHandler::vector::convert2<ObjectHandler::property_t>(value, nameUpper);\n'''
 
 code67e = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<std::string> >(value);\n'''
+            %(name)s_ = ObjectHandler::vector::convert2<std::string>(value, nameUpper);\n'''
 
 code67f = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<%(nativeType)s> >(value);\n'''
+            %(name)s_ = ObjectHandler::vector::convert2<%(nativeType)s>(value, nameUpper);\n'''
 
 code67g = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<std::vector<ObjectHandler::Variant> > >(value);\n'''
+            %(name)s_ = ObjectHandler::matrix::convert2<ObjectHandler::property_t>(value, nameUpper);\n'''
 
 code67h = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<std::vector<std::string> > >(value);\n'''
+            %(name)s_ = ObjectHandler::matrix::convert2<std::string>(value, nameUpper);\n'''
 
 code67i = '''\
         else if(strcmp(nameUpper.c_str(), "%(nameUpper)s")==0)
-            %(name)s_ = boost::any_cast<std::vector<std::vector<%(nativeType)s> > >(value);\n'''
+            %(name)s_ = ObjectHandler::matrix::convert2<%(nativeType)s>(value, nameUpper);\n'''
 
 code69 = '''\
             processRelatedID(%(name)s);'''

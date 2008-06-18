@@ -6,25 +6,25 @@
     <RuleGroup name='constructorDeclaration' indent='3' delimiter=',&#10;' checkParameterIgnore='true'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
-        <!--Rule tensorRank='scalar' type='QuantLib::Real'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule-->
-        <Rule tensorRank='scalar' type='QuantLib::Real' default='true'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
-        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
+        <!--Rule tensorRank='scalar' type='QuantLib::Real'>%(indent)sconst ObjectHandler::property_t&amp; %(name)s</Rule-->
+        <Rule tensorRank='scalar' type='QuantLib::Real' default='true'>%(indent)sdouble %(name)s</Rule>
+        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sconst ObjectHandler::property_t&amp; %(name)s</Rule>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true'>%(indent)sconst std::string&amp; %(name)s</Rule>
-        <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
+        <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sconst ObjectHandler::property_t&amp; %(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst std::string&amp; %(name)s</Rule>
-        <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst ObjectHandler::Variant&amp; %(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst ObjectHandler::property_t&amp; %(name)s</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s</Rule>
-        <!--Rule tensorRank='vector' type='QuantLib::Real'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule-->
-        <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
+        <!--Rule tensorRank='vector' type='QuantLib::Real'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule-->
+        <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;ObjectHandler::Variant&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule>
         <Rule tensorRank='vector'>%(indent)sconst std::vector&lt;%(nativeType)s&gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix' type='QuantLib::Date'>%(indent)sconst std::vector&lt;std::vector&lt;ObjectHandler::Variant&gt; &gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;std::vector&lt;ObjectHandler::Variant&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Date'>%(indent)sconst std::vector&lt;std::vector&lt;ObjectHandler::property_t&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;std::vector&lt;ObjectHandler::property_t&gt; &gt;&amp; %(name)s</Rule>
         <Rule tensorRank='matrix' nativeType='string'>%(indent)sconst std::vector&lt;std::vector&lt;std::string&gt; &gt;&amp; %(name)s</Rule>
-        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector&lt;ObjectHandler::Variant&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector&lt;ObjectHandler::property_t&gt; &gt;&amp; %(name)s</Rule>
         <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector&lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
       </Rules>
     </RuleGroup>
@@ -32,25 +32,25 @@
     <RuleGroup name='memberDeclaration' indent='2' delimiter=';&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap>&#10;%s</Wrap>
       <Rules>
-        <!--Rule tensorRank='scalar' type='QuantLib::Real'>%(indent)sObjectHandler::Variant %(name)s_</Rule-->
-        <Rule tensorRank='scalar' type='QuantLib::Real' default='true'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
-        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
+        <!--Rule tensorRank='scalar' type='QuantLib::Real'>%(indent)sObjectHandler::property_t %(name)s_</Rule-->
+        <Rule tensorRank='scalar' type='QuantLib::Real' default='true'>%(indent)sdouble %(name)s_</Rule>
+        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sObjectHandler::property_t %(name)s_</Rule>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true'>%(indent)sstd::string %(name)s_</Rule>
-        <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
+        <Rule tensorRank='scalar' type='QuantLib::Quote'>%(indent)sObjectHandler::property_t %(name)s_</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sstd::string %(name)s_</Rule>
-        <Rule tensorRank='scalar' nativeType='any'>%(indent)sObjectHandler::Variant %(name)s_</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)sObjectHandler::property_t %(name)s_</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s_</Rule>
-        <!--Rule tensorRank='vector' type='QuantLib::Real'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule-->
-        <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
-        <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
-        <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
+        <!--Rule tensorRank='vector' type='QuantLib::Real'>%(indent)sstd::vector&lt;ObjectHandler::property_t&gt; %(name)s_</Rule-->
+        <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sstd::vector&lt;ObjectHandler::property_t&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sstd::vector&lt;ObjectHandler::property_t&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sstd::vector&lt;ObjectHandler::property_t&gt; %(name)s_</Rule>
         <Rule tensorRank='vector' nativeType='string'>%(indent)sstd::vector&lt;std::string&gt; %(name)s_</Rule>
-        <Rule tensorRank='vector' nativeType='any'>%(indent)sstd::vector&lt;ObjectHandler::Variant&gt; %(name)s_</Rule>
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sstd::vector&lt;ObjectHandler::property_t&gt; %(name)s_</Rule>
         <Rule tensorRank='vector'>%(indent)sstd::vector&lt;%(nativeType)s&gt; %(name)s_</Rule>
-        <Rule tensorRank='matrix' type='QuantLib::Date'>%(indent)sstd::vector&lt;std::vector&lt;ObjectHandler::Variant&gt; &gt; %(name)s_</Rule>
-        <Rule tensorRank='matrix' type='QuantLib::Quote'>%(indent)sstd::vector&lt;std::vector&lt;ObjectHandler::Variant&gt; &gt; %(name)s_</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Date'>%(indent)sstd::vector&lt;std::vector&lt;ObjectHandler::property_t&gt; &gt; %(name)s_</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Quote'>%(indent)sstd::vector&lt;std::vector&lt;ObjectHandler::property_t&gt; &gt; %(name)s_</Rule>
         <Rule tensorRank='matrix' nativeType='string'>%(indent)sstd::vector&lt;std::vector&lt;std::string&gt; &gt; %(name)s_</Rule>
-        <Rule tensorRank='matrix' nativeType='any'>%(indent)sstd::vector&lt;std::vector &lt;ObjectHandler::Variant&gt; &gt; %(name)s_</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sstd::vector&lt;std::vector &lt;ObjectHandler::property_t&gt; &gt; %(name)s_</Rule>
         <Rule tensorRank='matrix'>%(indent)sstd::vector&lt;std::vector &lt;%(nativeType)s&gt; &gt; %(name)s_</Rule>
       </Rules>
     </RuleGroup>
@@ -65,6 +65,7 @@
     <RuleGroup name='propertyGet' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap/>
       <Rules>
+        <Rule tensorRank='scalar' nativeType='bool' codeID='code66a'/>
         <Rule codeID='code66'/>
       </Rules>
     </RuleGroup>
@@ -73,7 +74,7 @@
       <Wrap/>
       <Rules>
         <!--Rule tensorRank='scalar' type='QuantLib::Real' codeID='code67a'/-->
-        <Rule tensorRank='scalar' type='QuantLib::Real' default='true' codeID='code67a'/>
+        <Rule tensorRank='scalar' type='QuantLib::Real' default='true' codeID='code67c'/>
         <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code67a'/>
         <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote' default='true' codeID='code67b'/>
         <Rule tensorRank='scalar' type='QuantLib::Quote' codeID='code67a'/>

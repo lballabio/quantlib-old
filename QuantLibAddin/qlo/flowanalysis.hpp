@@ -21,9 +21,9 @@
 #ifndef qla_analysis_hpp
 #define qla_analysis_hpp
 
-#include <boost/any.hpp>
 #include <boost/shared_ptr.hpp>
 #include <vector>
+#include <oh/property.hpp>
 
 namespace QuantLib {
     class CashFlow;
@@ -32,7 +32,7 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    std::vector<std::vector<boost::any> > flowAnalysis(const QuantLib::Leg& );
+    std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis(const QuantLib::Leg& );
 
 }
 

@@ -43,6 +43,7 @@
     <RuleGroup name='propertyGet' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap/>
       <Rules>
+        <Rule tensorRank='scalar' nativeType='bool' codeID='code66a'/>
         <Rule codeID='code66'/>
       </Rules>
     </RuleGroup>
@@ -103,7 +104,7 @@
     <RuleGroup name='propertyPush' indent='2' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap/>
       <Rules>
-        <Rule>%(indent)sret.push_back("%(name)s");&#10;</Rule>
+        <Rule>%(indent)sret.insert("%(name)s");&#10;</Rule>
       </Rules>
     </RuleGroup>
 

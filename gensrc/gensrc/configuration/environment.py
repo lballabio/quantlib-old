@@ -54,7 +54,7 @@ class Environment(singleton.Singleton):
     def coreConfigPath(self):
         return self.coreConfigPath_
 
-    def init(self, configuration, typeList):
+    def init(self, configuration, typeList, ohDir):
         self.typeList_ = typeList
         self.configuration_ = configuration
         cwd = os.getcwd().replace('\\', '/')
@@ -63,7 +63,7 @@ class Environment(singleton.Singleton):
         if not self.addinConfigPath_.endswith(relativePath):
             raise exceptions.InvalidRelativePathException(cwd, self.configuration_.relativePath())
         self.addinRootPath_ = self.addinConfigPath_[0:len(self.addinConfigPath_) - len(relativePath)]
-        self.coreConfigPath_ = self.addinRootPath_ + self.configuration_.coreConfigPath() + '/'
+        self.coreConfigPath_ = ohDir + '/gensrc/'
         if not os.path.exists(self.coreConfigPath_):
-            raise exceptions.InvalidCorePathException(self.addinRootPath_, self.configuration_.coreConfigPath())
+            raise exceptions.InvalidCorePathException(self.coreConfigPath_)
 

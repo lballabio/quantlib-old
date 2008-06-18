@@ -23,7 +23,7 @@
 
     <!-- Extrapolator interface -->
 
-    <Member name='qlExtrapolatorEnableExtrapolation' type='QuantLib::Extrapolator'>
+    <Member name='qlExtrapolatorEnableExtrapolation' type='QuantLibAddin::Extrapolator'>
       <description>Sets the enable extrapolation flag to the given Extrapolator object</description>
       <libraryFunction>enableExtrapolation</libraryFunction>
       <SupportedPlatforms>

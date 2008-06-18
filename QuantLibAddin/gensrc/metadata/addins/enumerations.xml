@@ -1,7 +1,7 @@
 
-<Addin name='enumerations'>
+<Addin name='Enumerations'>
 
-  <rootDirectory>QuantLibAddin/qlo/enumerations/register</rootDirectory>
+  <rootDirectory>qlo/enumerations/register</rootDirectory>
   <loadRules>false</loadRules>
   <coreCategories>false</coreCategories>
   <addinCategories>true</addinCategories>

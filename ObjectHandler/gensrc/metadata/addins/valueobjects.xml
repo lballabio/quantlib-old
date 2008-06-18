@@ -1,7 +1,7 @@
 
 <Addin name='ValueObjects'>
 
-  <rootDirectory>ObjectHandler/oh/valueobjects</rootDirectory>
+  <rootDirectory>oh/valueobjects</rootDirectory>
   <coreCategories>true</coreCategories>
   <addinCategories>false</addinCategories>
   <headersInline>true</headersInline>

@@ -506,6 +506,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>RelinkableHandleProcessor</processorName>
       <ParameterList>
         <Parameters>
           <Parameter name='CurrentLink' default='""'>

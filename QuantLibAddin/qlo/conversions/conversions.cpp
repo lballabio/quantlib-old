@@ -1,8 +1,8 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2008 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,6 +26,8 @@
 #include <ql/time/date.hpp>
 #include <ql/time/period.hpp>
 #include <ql/interestrate.hpp>
+#include <ql/timeseries.hpp>
+#include <qlo/timeseries.hpp>
 
 namespace QuantLibAddin {
 
@@ -95,5 +97,70 @@ namespace QuantLibAddin {
                 m[i][j] = vv[i][j];
         return m;
     }
+
+}
+#include <oh/objecthandler.hpp>
+#include <qlo/conversions/coercehandle.hpp>
+#include <qlo/conversions/coerceobject.hpp>
+#include <qlo/conversions/varianttoquotehandle.hpp>
+#include <qlo/conversions/varianttodate.hpp>
+#include <qlo/conversions/varianttoquote.hpp>
+#include <qlo/conversions/varianttoperiod.hpp>
+#include <qlo/conversions/varianttosize.hpp>
+#include <qlo/conversions/conversion_tmpl.hpp>
+
+namespace ObjectHandler {
+
+    template<> 
+    QuantLib::Date convert2<QuantLib::Date, property_t>(const property_t& c) {
+        return convertDate(c);
+    }
+
+    template<> 
+    QuantLib::Period convert2<QuantLib::Period, property_t>(const property_t& c) {
+        return convertPeriod(c);
+    }
+
+    template<> 
+    QuantLib::Size convert2<QuantLib::Size, property_t>(const property_t& p) { 
+        return convertSize(p); 
+    }
+
+    template<>
+    boost::shared_ptr<QuantLib::Quote> convert2<boost::shared_ptr<QuantLib::Quote>, property_t>(const property_t& c) {
+        return convertQuote(c);
+    }
+
+    template<>
+    QuantLib::Handle<QuantLib::Quote> convert2<QuantLib::Handle<QuantLib::Quote>, property_t>(const property_t& c) {
+        return convertQH(c);
+    }
+
+    template<> 
+    QuantLib::TimeSeriesDef convert2<QuantLib::TimeSeriesDef, property_t>(const property_t& c) {
+        return convertTimeSeriesDef(c);
+    }
+
+    /*
+    template<> 
+    QuantLib::Date convert2<QuantLib::Date, ConvertOper>(const ConvertOper& c) {
+        return convertDate(c);
+    }
+
+    template<> 
+    QuantLib::Period convert2<QuantLib::Period, ConvertOper>(const ConvertOper& c) {
+        return convertPeriod(c);
+    }
+    
+    template<> 
+    QuantLib::Size convert2<QuantLib::Size, ConvertOper>(const ConvertOper& p) {
+        return convertSize(p); 
+    }
+
+    template<>
+    QuantLib::Handle<QuantLib::Quote> convert2<QuantLib::Handle<QuantLib::Quote>, ConvertOper>(const ConvertOper& c) {
+        return convertQH(c);
+    }
+    */
 
 }

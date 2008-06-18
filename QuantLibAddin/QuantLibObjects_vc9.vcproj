@@ -859,6 +859,10 @@
 			Name="Math"
 			>
 			<File
+				RelativePath=".\qlo\extrapolator.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\extrapolator.hpp"
 				>
 			</File>
@@ -1355,7 +1359,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\qlo\loop\loop_timeseries.hpp"
+				RelativePath="qlo\loop\loop_timeseries.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qlo\loop\loop_valueobject.hpp"
 				>
 			</File>
 		</Filter>
@@ -1388,6 +1396,10 @@
 			</File>
 			<File
 				RelativePath="qlo\conversions\coercetermstructure.hpp"
+				>
+			</File>
+			<File
+				RelativePath="qlo\conversions\conversion_tmpl.hpp"
 				>
 			</File>
 			<File
@@ -1438,6 +1450,14 @@
 		<Filter
 			Name="serialization"
 			>
+			<File
+				RelativePath=".\qlo\serialization\processor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\serialization\processor.hpp"
+				>
+			</File>
 			<File
 				RelativePath=".\qlo\serialization\register_creators.cpp"
 				>

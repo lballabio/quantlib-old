@@ -274,7 +274,7 @@ namespace QuantLibAddin {
         for (QuantLib::Size i=0; i<nInstruments; ++i) {
             qlarh = qlarhs[i];
             qlarh->getLibraryObject(qlrh);
-            std::string qlarh_id = boost::any_cast<std::string>(qlarh->propertyValue("OBJECTID"));
+            std::string qlarh_id = ObjectHandler::convert2<std::string>(qlarh->propertyValue("OBJECTID"));
             bool isFutures = boost::dynamic_pointer_cast<FuturesRateHelper>(qlarh);
             bool isImmFutures = false, isSerialFutures = false;
             if (isFutures) {

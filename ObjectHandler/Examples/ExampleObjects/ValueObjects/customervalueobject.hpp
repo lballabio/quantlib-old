@@ -41,9 +41,9 @@ namespace AccountExample {
             bool permanent)
             : ObjectHandler::ValueObject(objectID, "Customer", permanent), name_(name), age_(age) {}
 
-        std::vector<std::string> getPropertyNames() const;
-        boost::any getProperty(const std::string& name) const;
-        void setProperty(const std::string& name, const boost::any& value);
+        const std::set<std::string>& getSystemPropertyNames() const;
+        ObjectHandler::property_t getSystemProperty(const std::string& name) const;
+        void setSystemProperty(const std::string& name, const ObjectHandler::property_t& value);
 
     private:
 
