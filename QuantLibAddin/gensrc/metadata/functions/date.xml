@@ -292,7 +292,7 @@
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. Default is TRUE.</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -320,7 +320,7 @@
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. Default is TRUE.</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -366,12 +366,12 @@
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed. Default is the current EvaluationDate.</description>
+            <description>date with respect to which the calculations are performed</description>
           </Parameter>
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. Default is TRUE.</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -393,7 +393,7 @@
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed. Default is the current EvaluationDate.</description>
+            <description>date with respect to which the calculations are performed</description>
           </Parameter>
           <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
             <type>bool</type>
@@ -426,7 +426,7 @@
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed. Default is the current EvaluationDate.</description>
+            <description>date with respect to which the calculations are performed</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -449,12 +449,12 @@
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed. Default is the current EvaluationDate.</description>
+            <description>date with respect to which the calculations are performed</description>
           </Parameter>
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. Default is TRUE.</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -476,7 +476,7 @@
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed. Default is the current EvaluationDate.</description>
+            <description>date with respect to which the calculations are performed</description>
           </Parameter>
           <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
             <type>bool</type>

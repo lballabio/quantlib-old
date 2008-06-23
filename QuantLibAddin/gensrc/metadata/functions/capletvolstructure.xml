@@ -610,7 +610,7 @@
           <Parameter name='SwitchStrike' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>switch strike. If omitted, internal default is used</description>
+            <description>switch strike</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-6'>
             <type>QuantLib::Real</type>

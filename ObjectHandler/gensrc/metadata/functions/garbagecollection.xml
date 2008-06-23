@@ -25,7 +25,7 @@
           <Parameter name='DeletePermanent' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>also delete permanent objects (default FALSE)</description>
+            <description>also delete permanent objects</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -47,7 +47,7 @@
           <Parameter name='DeletePermanent' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>also delete permanent objects (default FALSE)</description>
+            <description>also delete permanent objects</description>
           </Parameter>
         </Parameters>
       </ParameterList>

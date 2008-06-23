@@ -646,7 +646,7 @@
     <!-- constructor -->
 
     <Constructor name='qlStatistics'>
-      <description>Default risk measures tool</description>
+      <description>Statistics and risk measures tool</description>
       <libraryFunction>Statistics</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->

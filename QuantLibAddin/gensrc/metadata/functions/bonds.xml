@@ -143,7 +143,7 @@
     </Member>
 
     <Member name='qlBondCleanPrice' type='QuantLib::Bond'>
-      <description>Returns the clean price for the given bond. The default bond settlement date is used for calculation.</description>
+      <description>Returns the clean price for the given bond. The bond settlement date is used for calculation.</description>
       <libraryFunction>cleanPrice</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -159,7 +159,7 @@
     </Member>
 
     <Member name='qlBondDirtyPrice' type='QuantLib::Bond'>
-      <description>Returns the dirty price for the given bond. The default bond settlement date is used for calculation.</description>
+      <description>Returns the dirty price for the given bond. The bond settlement date is used for calculation.</description>
       <libraryFunction>dirtyPrice</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -175,7 +175,7 @@
     </Member>
 
     <Member name='qlBondYield' type='QuantLib::Bond'>
-      <description>Returns the yield for the given bond. The default bond settlement date is used for calculation.</description>
+      <description>Returns the yield for the given bond. The bond settlement date is used for calculation.</description>
       <libraryFunction>yield</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -255,7 +255,7 @@
 
     <!--<Member name='qlBondCleanPrice2' type='QuantLib::Bond' loopParameter='Yield'>-->
     <Member name='qlBondCleanPrice2' type='QuantLib::Bond'>
-      <description>Returns the clean price for the given bond corresponding to the given yield and settlement date. The default bond settlement is used if no date is given.</description>
+      <description>Returns the clean price for the given bond corresponding to the given yield and settlement date. The bond settlement is used if no date is given.</description>
       <libraryFunction>cleanPrice</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -298,7 +298,7 @@
     </Member>
 
     <Member name='qlBondDirtyPrice2' type='QuantLib::Bond' loopParameter='Yield'>
-      <description>Returns the dirty price for the given bond corresponding to the given yield and settlement date. The default bond settlement is used if no date is given.</description>
+      <description>Returns the dirty price for the given bond corresponding to the given yield and settlement date. The bond settlement is used if no date is given.</description>
       <libraryFunction>dirtyPrice</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -342,7 +342,7 @@
 
     <!--<Member name='qlBondYield2' type='QuantLib::Bond' loopParameter='CleanPrice'>-->
     <Member name='qlBondYield2' type='QuantLib::Bond'>
-      <description>Returns the yield for the given bond corresponding to the given clean price and settlement date. The default bond settlement is used if no date is given.</description>
+      <description>Returns the yield for the given bond corresponding to the given clean price and settlement date. The bond settlement is used if no date is given.</description>
       <libraryFunction>yield</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -385,7 +385,7 @@
     </Member>-->
 
     <Member name='qlBondCleanPriceFromZSpread' type='QuantLib::Bond'>
-      <description>Returns the clean price for the bond given Z-Spread and settlement date. The default bond settlement is used if no date is given.</description>
+      <description>Returns the clean price for the bond given Z-Spread and settlement date. The bond settlement is used if no date is given.</description>
       <libraryFunction>cleanPriceFromZSpread</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -428,7 +428,7 @@
     </Member>
 
     <Member name='qlBondDirtyPriceFromZSpread' type='QuantLib::Bond'>
-      <description>Returns the dirty price for the bond given Z-Spread and settlement date. The default bond settlement is used if no date is given.</description>
+      <description>Returns the dirty price for the bond given Z-Spread and settlement date. The bond settlement is used if no date is given.</description>
       <libraryFunction>dirtyPriceFromZSpread</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -471,7 +471,7 @@
     </Member>
 
     <Member name='qlBondAccruedAmount' type='QuantLib::Bond' >
-      <description>Returns the accrued amount for the given bond. The default bond settlement is used if no date is given.</description>
+      <description>Returns the accrued amount for the given bond. The bond settlement is used if no date is given.</description>
       <libraryFunction>accruedAmount</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->

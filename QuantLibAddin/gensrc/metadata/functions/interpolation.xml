@@ -430,27 +430,27 @@
           <Parameter name='AIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the A value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
+            <description>TRUE if the A value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
           <Parameter name='BIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the B value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
+            <description>TRUE if the B value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
           <Parameter name='CIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the C value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
+            <description>TRUE if the C value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
           <Parameter name='DIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the D value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
+            <description>TRUE if the D value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
           <Parameter name='VegaWeighted' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the interpolation is weighted using options Vega. Default is TRUE</description>
+            <description>TRUE if the interpolation is weighted using options Vega</description>
           </Parameter>
           <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
@@ -632,27 +632,27 @@
           <Parameter name='AlphaIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
+            <description>TRUE if the alpha value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
           <Parameter name='BetaIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
+            <description>TRUE if the beta value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
           <Parameter name='NuIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
+            <description>TRUE if the nu value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
           <Parameter name='RhoIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess. Default is FALSE</description>
+            <description>TRUE if the rho value provided is to be kept fixed, FALSE if it is just a guess</description>
           </Parameter>
           <Parameter name='VegaWeighted' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the interpolation is weighted using options Vega. Default is TRUE</description>
+            <description>TRUE if the interpolation is weighted using options Vega</description>
           </Parameter>
           <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>

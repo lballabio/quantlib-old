@@ -79,7 +79,7 @@
           <Parameter name='ParAssetSwap' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE for par asset swap, FALSE for market asset swap. Default is par.</description>
+            <description>TRUE for par asset swap, FALSE for market asset swap</description>
           </Parameter>
         </Parameters>
       </ParameterList>

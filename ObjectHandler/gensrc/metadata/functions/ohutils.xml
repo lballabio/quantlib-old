@@ -215,7 +215,7 @@
           <Parameter name='ConcatenateDelim' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>specifies if multiple adjacent delimiters are to be considered as one (TRUE) or not (FALSE). Default value is FALSE.</description>
+            <description>specifies if multiple adjacent delimiters are to be considered as one (TRUE) or not (FALSE)</description>
           </Parameter>
         </Parameters>
       </ParameterList>
