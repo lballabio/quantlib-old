@@ -32,7 +32,7 @@ namespace ObjectHandler {
         if(c.type() == typeid(long))
             return QuantLib::Date(c.operator long());
         else if(c.type() == typeid(double))
-            return QuantLib::Date(c.operator double());
+            return QuantLib::Date(static_cast<QuantLib::BigInteger>(c.operator double()));
         else if(c.type() == typeid(std::string)) {
             std::string str = c.operator std::string();
             if (QuantLib::IMM::isIMMcode(str, false))
