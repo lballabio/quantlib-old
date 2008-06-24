@@ -959,6 +959,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\baseinstruments.cpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\baseinstruments.hpp"
 				>
 			</File>
@@ -2333,6 +2337,10 @@
 		</File>
 		<File
 			RelativePath="qlo\qladdindefines.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\quote.hpp"
 			>
 		</File>
 		<File

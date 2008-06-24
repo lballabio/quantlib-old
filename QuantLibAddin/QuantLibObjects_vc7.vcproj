@@ -791,6 +791,9 @@
 				RelativePath="qlo\barrieroption.hpp">
 			</File>
 			<File
+				RelativePath=".\qlo\baseinstruments.cpp">
+			</File>
+			<File
 				RelativePath="qlo\baseinstruments.hpp">
 			</File>
 			<File
