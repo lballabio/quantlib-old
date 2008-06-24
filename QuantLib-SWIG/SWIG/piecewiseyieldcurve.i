@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006, 2007 StatPro Italia srl
+ Copyright (C) 2005, 2006, 2007, 2008 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -57,26 +57,30 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
                 const Date& referenceDate,
                 const std::vector<boost::shared_ptr<RateHelper> >& instruments,
                 const DayCounter& dayCounter,
-                const Handle<Quote>& turnOfYearEffect = Handle<Quote>(),
+                const std::vector<Handle<Quote> >& jumps =
+                                                std::vector<Handle<Quote> >(),
+                const std::vector<Date>& jumpDates = std::vector<Date>(),
                 Real accuracy = 1.0e-12,
                 const Interpolator& i = Interpolator()) {
             return new Name##Ptr(
                 new PiecewiseYieldCurve<Base,Interpolator>(
                                                  referenceDate,instruments,
-                                                 dayCounter, turnOfYearEffect,
+                                                 dayCounter, jumps, jumpDates,
                                                  accuracy,i));
         }
         Name##Ptr(
                 Integer settlementDays, const Calendar& calendar,
                 const std::vector<boost::shared_ptr<RateHelper> >& instruments,
                 const DayCounter& dayCounter,
-                const Handle<Quote>& turnOfYearEffect = Handle<Quote>(),
+                const std::vector<Handle<Quote> >& jumps =
+                                                std::vector<Handle<Quote> >(),
+                const std::vector<Date>& jumpDates = std::vector<Date>(),
                 Real accuracy = 1.0e-12,
                 const Interpolator& i = Interpolator()) {
             return new Name##Ptr(
                 new PiecewiseYieldCurve<Base,Interpolator>(
                                         settlementDays, calendar, instruments,
-                                        dayCounter, turnOfYearEffect,
+                                        dayCounter, jumps, jumpDates,
                                         accuracy, i));
         }
         const std::vector<Date>& dates() {

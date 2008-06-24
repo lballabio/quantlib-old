@@ -51,8 +51,6 @@ class DiscreteGeometricASO {
 using QuantLib::McDiscreteArithmeticASO;
 
 // multi asset
-using QuantLib::McEverest;
-using QuantLib::McHimalaya;
 using QuantLib::McPagoda;
 %}
 
@@ -85,44 +83,6 @@ class McDiscreteArithmeticASO {
                             const Handle<BlackVolTermStructure>& volatility,
                             const std::vector<Time>& timeDelays,
                             bool controlVariate, BigInteger seed = 0);
-    Real value(Real tolerance,
-               Size maxSample = QL_MAX_INTEGER) const;
-    Real valueWithSamples(Size samples) const;
-    Real errorEstimate() const;
-};
-
-class McHimalaya {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("value-with-samples") valueWithSamples;
-    %rename("error-estimate")     errorEstimate;
-    #endif
-  public:
-    McHimalaya(const std::vector<Real>& underlying,
-               const std::vector<Handle<YieldTermStructure> >& dividendYields,
-               const Handle<YieldTermStructure>& riskFreeRate,
-               const std::vector<Handle<BlackVolTermStructure> >& volatilities,
-               const Matrix& correlation,
-               Real strike,
-               const std::vector<Time>& timeDelays,
-               BigInteger seed = 0);
-    Real value(Real tolerance,
-               Size maxSample = QL_MAX_INTEGER) const;
-    Real valueWithSamples(Size samples) const;
-    Real errorEstimate() const;
-};
-
-class McEverest {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("value-with-samples") valueWithSamples;
-    %rename("error-estimate")     errorEstimate;
-    #endif
-  public:
-    McEverest(const std::vector<Handle<YieldTermStructure> >& dividendYield,
-              const Handle<YieldTermStructure>& riskFreeRate,
-              const std::vector<Handle<BlackVolTermStructure> >& volatilities,
-              const Matrix& correlation,
-              Time residualTime,
-              BigInteger seed = 0);
     Real value(Real tolerance,
                Size maxSample = QL_MAX_INTEGER) const;
     Real valueWithSamples(Size samples) const;

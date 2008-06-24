@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
  Copyright (C) 2007 Joseph Wang
 
@@ -229,5 +229,136 @@ class StulzEnginePtr
     }
 };
 
+
+%{
+using QuantLib::EverestOption;
+typedef boost::shared_ptr<Instrument> EverestOptionPtr;
+using QuantLib::MCEverestEngine;
+typedef boost::shared_ptr<PricingEngine> MCEverestEnginePtr;
+%}
+
+%rename(EverestOption) EverestOptionPtr;
+class EverestOptionPtr : public MultiAssetOptionPtr {
+  public:
+    %extend {
+        EverestOptionPtr(Real notional,
+                         Rate guarantee,
+                         const boost::shared_ptr<Exercise>& exercise) {
+            return new EverestOptionPtr(new EverestOption(notional,guarantee,
+                                                          exercise));
+        }
+    }
+};
+
+%rename(MCEverestEngine) MCEverestEnginePtr;
+class MCEverestEnginePtr : public boost::shared_ptr<PricingEngine> {
+    %feature("kwargs") MCEverestEnginePtr;
+  public:
+    %extend {
+        MCEverestEnginePtr(const StochasticProcessArrayPtr& process,
+                           const std::string& traits,
+                           Size timeStepsPerYear = Null<Size>(),
+                           bool brownianBridge = false,
+                           bool antitheticVariate = false,
+                           bool controlVariate = false,
+                           intOrNull requiredSamples = Null<Size>(),
+                           doubleOrNull requiredTolerance = Null<Real>(),
+                           intOrNull maxSamples = Null<Size>(),
+                           BigInteger seed = 0) {
+            boost::shared_ptr<StochasticProcessArray> processes =
+                 boost::dynamic_pointer_cast<StochasticProcessArray>(process);
+            QL_REQUIRE(processes, "stochastic-process array required");
+            std::string s = boost::algorithm::to_lower_copy(traits);
+            if (s == "pseudorandom" || s == "pr")
+                return new MCEverestEnginePtr(
+                        new MCEverestEngine<PseudoRandom>(processes,
+                                                          timeStepsPerYear,
+                                                          brownianBridge,
+                                                          antitheticVariate,
+                                                          controlVariate,
+                                                          requiredSamples,
+                                                          requiredTolerance,
+                                                          maxSamples,
+                                                          seed));
+            else if (s == "lowdiscrepancy" || s == "ld")
+                return new MCEverestEnginePtr(
+                      new MCEverestEngine<LowDiscrepancy>(processes,
+                                                          timeStepsPerYear,
+                                                          brownianBridge,
+                                                          antitheticVariate,
+                                                          controlVariate,
+                                                          requiredSamples,
+                                                          requiredTolerance,
+                                                          maxSamples,
+                                                          seed));
+            else
+                QL_FAIL("unknown Monte Carlo engine type: "+s);
+        }
+    }
+};
+
+
+%{
+using QuantLib::HimalayaOption;
+typedef boost::shared_ptr<Instrument> HimalayaOptionPtr;
+using QuantLib::MCHimalayaEngine;
+typedef boost::shared_ptr<PricingEngine> MCHimalayaEnginePtr;
+%}
+
+%rename(HimalayaOption) HimalayaOptionPtr;
+class HimalayaOptionPtr : public MultiAssetOptionPtr {
+  public:
+    %extend {
+        HimalayaOptionPtr(const std::vector<Date>& fixingDates,
+                          Real strike) {
+            return new HimalayaOptionPtr(new HimalayaOption(fixingDates,
+                                                            strike));
+        }
+    }
+};
+
+%rename(MCHimalayaEngine) MCHimalayaEnginePtr;
+class MCHimalayaEnginePtr : public boost::shared_ptr<PricingEngine> {
+    %feature("kwargs") MCHimalayaEnginePtr;
+  public:
+    %extend {
+        MCHimalayaEnginePtr(const StochasticProcessArrayPtr& process,
+                            const std::string& traits,
+                            bool brownianBridge = false,
+                            bool antitheticVariate = false,
+                            bool controlVariate = false,
+                            intOrNull requiredSamples = Null<Size>(),
+                            doubleOrNull requiredTolerance = Null<Real>(),
+                            intOrNull maxSamples = Null<Size>(),
+                            BigInteger seed = 0) {
+            boost::shared_ptr<StochasticProcessArray> processes =
+                 boost::dynamic_pointer_cast<StochasticProcessArray>(process);
+            QL_REQUIRE(processes, "stochastic-process array required");
+            std::string s = boost::algorithm::to_lower_copy(traits);
+            if (s == "pseudorandom" || s == "pr")
+                return new MCHimalayaEnginePtr(
+                       new MCHimalayaEngine<PseudoRandom>(processes,
+                                                          brownianBridge,
+                                                          antitheticVariate,
+                                                          controlVariate,
+                                                          requiredSamples,
+                                                          requiredTolerance,
+                                                          maxSamples,
+                                                          seed));
+            else if (s == "lowdiscrepancy" || s == "ld")
+                return new MCHimalayaEnginePtr(
+                     new MCHimalayaEngine<LowDiscrepancy>(processes,
+                                                          brownianBridge,
+                                                          antitheticVariate,
+                                                          controlVariate,
+                                                          requiredSamples,
+                                                          requiredTolerance,
+                                                          maxSamples,
+                                                          seed));
+            else
+                QL_FAIL("unknown Monte Carlo engine type: "+s);
+        }
+    }
+};
 
 #endif
