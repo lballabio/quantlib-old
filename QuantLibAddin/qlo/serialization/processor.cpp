@@ -76,7 +76,7 @@ namespace QuantLibAddin {
         
         ObjectHandler::StrObjectPair object = factory.createObject(valueObject, overwriteExisting);
         boost::shared_ptr<Leg> inst = boost::dynamic_pointer_cast<Leg>(object.second);
-        if (inst) {
+        if (inst && valueObject->hasProperty("UserLegIDs")) {
             std::vector<boost::shared_ptr<QuantLibAddin::FloatingRateCouponPricer> > legs2;
             std::vector<std::string> legs =
                 ObjectHandler::vector::convert2<std::string>(valueObject->getProperty("UserLegIDs"), "UserLegIDs");
