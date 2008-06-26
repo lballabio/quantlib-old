@@ -1,5 +1,5 @@
 <Category name='volatility'>
-  <description>functions to construct and use Market Model Volatility objects</description>
+  <description>functions to construct and use Market Model Volatility objects.</description>
   <displayName>Market Model Volatility</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
@@ -198,7 +198,7 @@
           <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
+            <description>rate fixing times.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -218,27 +218,27 @@
           <Parameter name='FixingTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
+            <description>rate fixing times.</description>
           </Parameter>
           <Parameter name='A' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>a parameter</description>
+            <description>a parameter.</description>
           </Parameter>
           <Parameter name='B' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>b parameter</description>
+            <description>b parameter.</description>
           </Parameter>
           <Parameter name='C' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>c parameter</description>
+            <description>c parameter.</description>
           </Parameter>
           <Parameter name='D' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>d parameter</description>
+            <description>d parameter.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

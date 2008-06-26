@@ -1,5 +1,5 @@
 <Category name='daycounter'>
-  <description>Daycounter related functions</description>
+  <description>Daycounter related functions.</description>
   <displayName>Daycounter</displayName>
   <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
   <addinIncludes>
@@ -12,7 +12,7 @@
   <Functions>
 
     <EnumerationMember name='qlDayCounterName' type='QuantLib::DayCounter'>
-      <description>returns the name of the given DayCounter</description>
+      <description>returns the name of the given DayCounter.</description>
       <libraryFunction>name</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -28,7 +28,7 @@
     </EnumerationMember>
 
     <EnumerationMember name='qlDayCounterDayCount' type='QuantLib::DayCounter' loopParameter='EndDate'>
-      <description>calculate the number of days in a period according to a given day count convention</description>
+      <description>calculate the number of days in a period according to a given day count convention.</description>
       <libraryFunction>dayCount</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -40,12 +40,12 @@
           <Parameter name='StartDate'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>start date</description>
+            <description>start date.</description>
           </Parameter>
           <Parameter name='EndDate'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>end date</description>
+            <description>end date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -56,7 +56,7 @@
     </EnumerationMember>
 
     <EnumerationMember name='qlDayCounterYearFraction' type='QuantLib::DayCounter' loopParameter='EndDate'>
-      <description>calculate a year fraction</description>
+      <description>calculate a year fraction.</description>
       <libraryFunction>yearFraction</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -68,22 +68,22 @@
           <Parameter name='StartDate'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>start date</description>
+            <description>start date.</description>
           </Parameter>
           <Parameter name='EndDate'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>end date</description>
+            <description>end date.</description>
           </Parameter>
           <Parameter name='RefPeriodStart' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>start date for reference period</description>
+            <description>start date for reference period.</description>
           </Parameter>
           <Parameter name='RefPeriodEnd' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>end date for reference period</description>
+            <description>end date for reference period.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

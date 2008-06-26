@@ -1,5 +1,5 @@
 <Category name='driftcalculators'>
-  <description>functions to construct and use Driftcalculators objects</description>
+  <description>functions to construct and use Driftcalculators objects.</description>
   <displayName>Driftcalculators</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
@@ -32,27 +32,27 @@
           <Parameter name='Pseudo_square_root'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
-            <description>Pseudo square root of the covariance matrix</description>
+            <description>Pseudo square root of the covariance matrix.</description>
           </Parameter>
           <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>displacements</description>
+            <description>displacements.</description>
           </Parameter>
           <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>taus</description>
+            <description>taus.</description>
           </Parameter>
           <Parameter name='Numeraire' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>numeraire</description>
+            <description>numeraire.</description>
           </Parameter>
           <Parameter name='Alive' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>index of the first rates still alive</description>
+            <description>index of the first rates still alive.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -60,7 +60,7 @@
 
     <!-- LMMDriftCalculator class interfaces -->
     <Member name='qlLMMDriftCalculatorComputePlain' type='QuantLibAddin::LMMDriftCalculator'>
-      <description>Full factor drift computation using the LMMDriftCalculator object</description>
+      <description>Full factor drift computation using the LMMDriftCalculator object.</description>
       <libraryFunction>computePlain</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -73,7 +73,7 @@
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>LMMCurveState object ID</description>
+            <description>LMMCurveState object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -84,7 +84,7 @@
     </Member>
 
     <Member name='qlLMMDriftCalculatorComputeReduced' type='QuantLibAddin::LMMDriftCalculator'>
-      <description>Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object</description>
+      <description>Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object.</description>
       <libraryFunction>computeReduced</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -97,7 +97,7 @@
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>LMMCurveState object ID</description>
+            <description>LMMCurveState object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -108,7 +108,7 @@
     </Member>
 
     <Member name='qlLMMDriftCalculatorCompute' type='QuantLibAddin::LMMDriftCalculator'>
-      <description>Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object</description>
+      <description>Reduced factor (Joshi algorithm) drift computation using the LMMDriftCalculator object.</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -121,7 +121,7 @@
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>LMMCurveState object ID</description>
+            <description>LMMCurveState object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -144,22 +144,22 @@
           <Parameter name='Pseudo_square_root'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
-            <description>Pseudo square root of the covariance matrix</description>
+            <description>Pseudo square root of the covariance matrix.</description>
           </Parameter>
           <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>taus</description>
+            <description>taus.</description>
           </Parameter>
           <Parameter name='Numeraire' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>numeraire</description>
+            <description>numeraire.</description>
           </Parameter>
           <Parameter name='Alive' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>index of the first rates still alive</description>
+            <description>index of the first rates still alive.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -167,7 +167,7 @@
 
     <!-- LMMNormalDriftCalculator class interfaces -->
     <Member name='qlLMMNormalDriftCalculatorComputePlain' type='QuantLibAddin::LMMNormalDriftCalculator'>
-      <description>Full factor drift computation using the LMMNormalDriftCalculator object</description>
+      <description>Full factor drift computation using the LMMNormalDriftCalculator object.</description>
       <libraryFunction>computePlain</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -180,7 +180,7 @@
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>LMMCurveState object ID</description>
+            <description>LMMCurveState object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -191,7 +191,7 @@
     </Member>
 
     <Member name='qlLMMNormalDriftCalculatorComputeReduced' type='QuantLibAddin::LMMNormalDriftCalculator'>
-      <description>Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object</description>
+      <description>Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object.</description>
       <libraryFunction>computeReduced</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -204,7 +204,7 @@
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>LMMCurveState object ID</description>
+            <description>LMMCurveState object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -215,7 +215,7 @@
     </Member>
 
     <Member name='qlLMMNormalDriftCalculatorCompute' type='QuantLibAddin::LMMNormalDriftCalculator'>
-      <description>Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object</description>
+      <description>Reduced factor (Joshi algorithm) drift computation using the LMMNormalDriftCalculator object.</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -228,7 +228,7 @@
             <type>QuantLib::LMMCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>LMMCurveState object ID</description>
+            <description>LMMCurveState object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -251,32 +251,32 @@
           <Parameter name='Pseudo_square_root'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
-            <description>Pseudo square root of the covariance matrix</description>
+            <description>Pseudo square root of the covariance matrix.</description>
           </Parameter>
           <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>displacements</description>
+            <description>displacements.</description>
           </Parameter>
           <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>taus</description>
+            <description>taus.</description>
           </Parameter>
           <Parameter name='Numeraire' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>numeraire</description>
+            <description>numeraire.</description>
           </Parameter>
           <Parameter name='Alive' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>index of the first rates still alive</description>
+            <description>index of the first rates still alive.</description>
           </Parameter>
           <Parameter name='SpanningFwds' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of forwards to be spanned</description>
+            <description>number of forwards to be spanned.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -284,7 +284,7 @@
 
     <!-- CMSMMDriftCalculator class interfaces -->
     <Member name='qlCMSMMDriftCalculatorCompute' type='QuantLibAddin::CMSMMDriftCalculator'>
-      <description>Full factor drift computation using the CMSMMDriftCalculator object</description>
+      <description>Full factor drift computation using the CMSMMDriftCalculator object.</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -297,7 +297,7 @@
             <type>QuantLib::CMSwapCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CMSwapCurveState object ID</description>
+            <description>CMSwapCurveState object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -320,27 +320,27 @@
           <Parameter name='Pseudo_square_root'>
             <type>QuantLib::Matrix</type>
             <tensorRank>matrix</tensorRank>
-            <description>Pseudo square root of the covariance matrix</description>
+            <description>Pseudo square root of the covariance matrix.</description>
           </Parameter>
           <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>displacements</description>
+            <description>displacements.</description>
           </Parameter>
           <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>taus</description>
+            <description>taus.</description>
           </Parameter>
           <Parameter name='Numeraire' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>numeraire</description>
+            <description>numeraire.</description>
           </Parameter>
           <Parameter name='Alive' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>index of the first rates still alive</description>
+            <description>index of the first rates still alive.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -348,7 +348,7 @@
 
     <!-- SMMDriftCalculator class interfaces -->
     <Member name='qlSMMDriftCalculatorCompute' type='QuantLibAddin::SMMDriftCalculator'>
-      <description>Full factor drift computation using the SMMDriftCalculator object</description>
+      <description>Full factor drift computation using the SMMDriftCalculator object.</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -361,7 +361,7 @@
             <type>QuantLib::CoterminalSwapCurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CoterminalSwapCurveState object ID</description>
+            <description>CoterminalSwapCurveState object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

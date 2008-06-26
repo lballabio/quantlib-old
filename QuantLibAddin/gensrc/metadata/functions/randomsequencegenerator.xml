@@ -1,5 +1,5 @@
 <Category name='randomsequencegenerator'>
-  <description>functions to construct and use random sequences generators</description>
+  <description>functions to construct and use random sequences generators.</description>
   <displayName>Random Sequence Generator</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
   <copyright>
@@ -38,7 +38,7 @@
           <Parameter name='Seed' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>the seed used to initialize the random number generator</description>
+            <description>the seed used to initialize the random number generator.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -49,7 +49,7 @@
     </Procedure>
 
     <Member name='qlVariates' type='QuantLibAddin::RandomSequenceGenerator'>
-      <description>generate variates</description>
+      <description>generate variates.</description>
       <libraryFunction>variates</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -61,7 +61,7 @@
           <Parameter name='Samples' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of samples</description>
+            <description>number of samples.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -83,12 +83,12 @@
           <Parameter name='Dimension' exampleValue ='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>dimension</description>
+            <description>dimension.</description>
           </Parameter>
           <Parameter name='Seed' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>seed</description>
+            <description>seed.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -106,7 +106,7 @@
           <Parameter name='Dimension' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>dimension</description>
+            <description>dimension.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -124,12 +124,12 @@
           <Parameter name='Dimension' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>dimension</description>
+            <description>dimension.</description>
           </Parameter>
           <Parameter name='Seed' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>seed</description>
+            <description>seed.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -147,12 +147,12 @@
           <Parameter name='Dimension' exampleValue ='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>dimension</description>
+            <description>dimension.</description>
           </Parameter>
           <Parameter name='Seed' exampleValue ='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>seed</description>
+            <description>seed.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

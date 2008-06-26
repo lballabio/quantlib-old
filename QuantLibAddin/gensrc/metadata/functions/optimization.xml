@@ -1,5 +1,5 @@
 <Category name='optimization'>
-  <description>functions to construct and use Optimization objects</description>
+  <description>functions to construct and use Optimization objects.</description>
   <displayName>Optimization</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
   <addinIncludes>
@@ -14,7 +14,7 @@
   <Functions>
 
     <Procedure name='qlSphereCylinderOptimizerClosest' >
-      <description>Sphere Cylinder Optimizer Closest</description>
+      <description>Sphere Cylinder Optimizer Closest.</description>
       <alias>QuantLib::sphereCylinderOptimizerClosest</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -26,42 +26,42 @@
           <Parameter name='R'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>r</description>
+            <description>r.</description>
           </Parameter>
           <Parameter name='S'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>s</description>
+            <description>s.</description>
           </Parameter>
           <Parameter name='Alpha'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>alpha</description>
+            <description>alpha.</description>
           </Parameter>
           <Parameter name='Z1'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>z1</description>
+            <description>z1.</description>
           </Parameter>
           <Parameter name='Z2'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>z2</description>
+            <description>z2.</description>
           </Parameter>
           <Parameter name='Z3'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>z3</description>
+            <description>z3.</description>
           </Parameter>
           <Parameter name='MaxIter'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>maxIter</description>
+            <description>maxIter.</description>
           </Parameter>
           <Parameter name='Tol'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>tolerance</description>
+            <description>tolerance.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -86,7 +86,7 @@
           <Parameter name='Seconds' exampleValue='3661'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of seconds</description>
+            <description>number of seconds.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -97,7 +97,7 @@
     </Procedure>
 
     <Member name='qlEndCriteriaMaxIterations' type='QuantLib::EndCriteria'>
-      <description>Returns the number of max interation for the given EndCriteria object</description>
+      <description>Returns the number of max interation for the given EndCriteria object.</description>
       <libraryFunction>maxIterations</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -113,7 +113,7 @@
     </Member>
 
     <Member name='qlEndCriteriaMaxStationaryStateIterations' type='QuantLib::EndCriteria'>
-      <description>Returns the number of max interation in a stationary state for the given EndCriteria object</description>
+      <description>Returns the number of max interation in a stationary state for the given EndCriteria object.</description>
       <libraryFunction>maxStationaryStateIterations</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -129,7 +129,7 @@
     </Member>
 
     <Member name='qlEndCriteriaFunctionEpsilon' type='QuantLib::EndCriteria'>
-      <description>Returns the function epsilon for the given EndCriteria object</description>
+      <description>Returns the function epsilon for the given EndCriteria object.</description>
       <libraryFunction>functionEpsilon</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -145,7 +145,7 @@
     </Member>
 
     <Member name='qlEndCriteriaGradientNormEpsilon' type='QuantLib::EndCriteria'>
-      <description>Returns the gradient norm epsilon for the given EndCriteria object</description>
+      <description>Returns the gradient norm epsilon for the given EndCriteria object.</description>
       <libraryFunction>gradientNormEpsilon</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -212,7 +212,7 @@
           <Parameter name='Lambda' exampleValue="0.01">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>lambda (typical scale length of the problem)</description>
+            <description>lambda (typical scale length of the problem).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -230,17 +230,17 @@
           <Parameter name='Epsfcn' libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>epsfcn</description>
+            <description>epsfcn.</description>
           </Parameter>
           <Parameter name='Xtol' libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>xtol</description>
+            <description>xtol.</description>
           </Parameter>
           <Parameter name='Gtol' libraryType="QuantLib::Real" default="1.0e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>gtol</description>
+            <description>gtol.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -258,7 +258,7 @@
           <Parameter name='LineSearch' default='""'>
             <type>QuantLib::LineSearch</type>
             <tensorRank>scalar</tensorRank>
-            <description>LineSearch object ID</description>
+            <description>LineSearch object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -276,7 +276,7 @@
           <Parameter name='LineSearch' default='""'>
             <type>QuantLib::LineSearch</type>
             <tensorRank>scalar</tensorRank>
-            <description>LineSearch object ID</description>
+            <description>LineSearch object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -296,17 +296,17 @@
           <Parameter name='Epsilon' default="1e-8">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>epsilon</description>
+            <description>epsilon.</description>
           </Parameter>
           <Parameter name='Alpha' default="0.05">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>alpha</description>
+            <description>alpha.</description>
           </Parameter>
           <Parameter name='Beta' default="0.65">
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>beta</description>
+            <description>beta.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

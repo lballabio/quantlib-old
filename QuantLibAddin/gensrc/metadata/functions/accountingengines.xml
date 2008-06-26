@@ -1,5 +1,5 @@
 <Category name='accountingengines'>
-  <description>functions to construct and use Accounting Engines objects</description>
+  <description>functions to construct and use Accounting Engines objects.</description>
   <displayName>Accounting Engines</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -39,18 +39,18 @@
           <Parameter name='MarketModelEvolver'>
             <type>QuantLib::MarketModelEvolver</type>
             <tensorRank>scalar</tensorRank>
-            <description>MarketModelEvolver object ID</description>
+            <description>MarketModelEvolver object ID.</description>
           </Parameter>
           <Parameter name='Product' >
             <type>QuantLib::MarketModelMultiProduct</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>MarketModelMultiProduct object ID</description>
+            <description>MarketModelMultiProduct object ID.</description>
           </Parameter>
           <Parameter name='InitialNumeraireValue'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>initial numeraire value</description>
+            <description>initial numeraire value.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -58,7 +58,7 @@
 
     <!-- AccountingEngine class interfaces -->
     <Member name='qlAccountingEngineMultiplePathValues' type='QuantLib::AccountingEngine'>
-      <description>return multiple path values</description>
+      <description>return multiple path values.</description>
       <libraryFunction>multiplePathValues</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -72,12 +72,12 @@
             <type>QuantLib::SequenceStatistics</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Sequence Statistics object ID</description>
+            <description>Sequence Statistics object ID.</description>
           </Parameter>
           <Parameter name='Paths' exampleValue ='8191'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of paths</description>
+            <description>number of paths.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

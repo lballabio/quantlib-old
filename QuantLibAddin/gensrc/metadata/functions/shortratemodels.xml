@@ -1,5 +1,5 @@
 <Category name='shortratemodels'>
-  <description>functions to construct and use short-rate model objects</description>
+  <description>functions to construct and use short-rate model objects.</description>
   <displayName>Short Rate Models</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -36,17 +36,17 @@
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>yield term structure</description>
+            <description>yield term structure.</description>
           </Parameter>
           <Parameter name='A' exampleValue ='0.03'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>a</description>
+            <description>a.</description>
           </Parameter>
           <Parameter name='Sigma' exampleValue ='0.15'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>volatility</description>
+            <description>volatility.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -64,29 +64,29 @@
           <Parameter name='A' exampleValue ='0.03'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean reverting speed</description>
+            <description>mean reverting speed.</description>
           </Parameter>
           <Parameter name='B' exampleValue ='0.03'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>short-rate limit value</description>
+            <description>short-rate limit value.</description>
           </Parameter>
           <Parameter name='Lambda' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>risk premium</description>
+            <description>risk premium.</description>
           </Parameter>
           <Parameter name='Sigma' exampleValue ='0.15'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>volatility</description>
+            <description>volatility.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
     <Procedure name='qlFuturesConvexityBias'>
-      <description>Returns Futures convexity bias (ForwardRate = FuturesImpliedRate - ConvexityBias) calculated as in G. Kirikos, D. Novak, 'Convexity Conundrums', Risk Magazine, March 1997</description>
+      <description>Returns Futures convexity bias (ForwardRate = FuturesImpliedRate - ConvexityBias) calculated as in G. Kirikos, D. Novak, 'Convexity Conundrums', Risk Magazine, March 1997.</description>
       <alias>QuantLib::HullWhite::convexityBias</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -98,27 +98,27 @@
           <Parameter name='FuturesPrice' exampleValue ='94.56'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>Futures price (e.g. 94.56)</description>
+            <description>Futures price (e.g. 94.56).</description>
           </Parameter>
           <Parameter name='T1' exampleValue ='5.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>Maturity date of the futures contract in years(e.g. 5.0)</description>
+            <description>Maturity date of the futures contract in years(e.g. 5.0).</description>
           </Parameter>
           <Parameter name='T2' exampleValue ='5.25'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>Maturity of the underlying Libor deposit in years (e.g. 5.25)</description>
+            <description>Maturity of the underlying Libor deposit in years (e.g. 5.25).</description>
           </Parameter>
           <Parameter name='Sigma' exampleValue ='0.015'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>Hull-White volatility (e.g. 0.015)</description>
+            <description>Hull-White volatility (e.g. 0.015).</description>
           </Parameter>
           <Parameter name='A' default='0.03'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>Hull-White mean reversion</description>
+            <description>Hull-White mean reversion.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

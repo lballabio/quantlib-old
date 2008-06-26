@@ -1,5 +1,5 @@
 <Category name='quotes'>
-  <description>quotes objects</description>
+  <description>quotes objects.</description>
   <displayName>Quotes</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -41,7 +41,7 @@
 
     <!-- Quote base class interface -->
     <Member name='qlQuoteValue' type='QuantLib::Quote' superType='libraryQuote'>
-      <description>Returns the current value of the given Quote object</description>
+      <description>Returns the current value of the given Quote object.</description>
       <libraryFunction>value</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -57,7 +57,7 @@
     </Member>
 
     <Member name='qlQuoteIsValid' type='QuantLib::Quote' superType='libraryQuote'>
-      <description>Returns TRUE if the given Quote object has a valid value</description>
+      <description>Returns TRUE if the given Quote object has a valid value.</description>
       <libraryFunction>isValid</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -74,7 +74,7 @@
 
     <!-- SimpleQuote interface and constructor -->
     <Member name='qlSimpleQuoteReset' type='QuantLib::SimpleQuote' superType='libraryQuote'>
-      <description>resets the given SimpleQuote object to the uninitialized state</description>
+      <description>resets the given SimpleQuote object to the uninitialized state.</description>
       <libraryFunction>reset</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -93,7 +93,7 @@
          Note that if necessary the required reference is extracted automatically
          from a Handle<Quote>.-->
     <Member name='qlSimpleQuoteSetValue' type='QuantLibAddin::SimpleQuote' superType='objectQuote'>
-      <description>sets a new value to the given SimpleQuote object and returns the difference with the previous value</description>
+      <description>sets a new value to the given SimpleQuote object and returns the difference with the previous value.</description>
       <libraryFunction>setValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -104,7 +104,7 @@
           <Parameter name='Value' default='QuantLib::Null&lt;QuantLib::Real&gt;()' errorValue='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the new value</description>
+            <description>the new value.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -115,7 +115,7 @@
     </Member>
 
     <Member name='qlSimpleQuoteSetTickValue' type='QuantLibAddin::SimpleQuote' superType='objectQuote'>
-      <description>sets the tick value of the given SimpleQuote object</description>
+      <description>sets the tick value of the given SimpleQuote object.</description>
       <libraryFunction>setTickValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -126,7 +126,7 @@
           <Parameter name='Value' exampleValue='0.0001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the new tick value</description>
+            <description>the new tick value.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -137,7 +137,7 @@
     </Member>
 
     <Member name='qlSimpleQuoteTickValue' type='QuantLibAddin::SimpleQuote' superType='objectQuote'>
-      <description>returns the tick value of the given SimpleQuote object</description>
+      <description>returns the tick value of the given SimpleQuote object.</description>
       <libraryFunction>tickValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -153,7 +153,7 @@
     </Member>
 
     <Procedure name='qlBucketAnalysis'>
-      <description>bucket sensitivity analysis for a (single/vector/matrix) SimpleQuote</description>
+      <description>bucket sensitivity analysis for a (single/vector/matrix) SimpleQuote.</description>
       <alias>QuantLibAddin::bucketAnalysis</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -165,27 +165,27 @@
             <!--<type>QuantLib::SimpleQuote</type>-->
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
-            <description>simple quotes</description>
+            <description>simple quotes.</description>
           </Parameter>
           <Parameter name='Instruments'>
             <type>QuantLib::Instrument</type>
             <tensorRank>vector</tensorRank>
-            <description>instruments</description>
+            <description>instruments.</description>
           </Parameter>
           <Parameter name='Quantities'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
-            <description>quantities</description>
+            <description>quantities.</description>
           </Parameter>
           <Parameter name='Shift' default ='0.0001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>shift</description>
+            <description>shift.</description>
           </Parameter>
           <Parameter name='SensitivityAnalysis' default='"Centered"'>
             <type>QuantLib::SensitivityAnalysis</type>
             <tensorRank>scalar</tensorRank>
-            <description>SensitivityAnalysis type</description>
+            <description>SensitivityAnalysis type.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -207,12 +207,12 @@
           <Parameter name='Value' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>quote</description>
+            <description>quote.</description>
           </Parameter>
           <Parameter name='TickValue' exampleValue='0.0001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>tick value used for sensitivity analysis</description>
+            <description>tick value used for sensitivity analysis.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -232,12 +232,12 @@
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating IborIndex object ID</description>
+            <description>floating IborIndex object ID.</description>
           </Parameter>
           <Parameter name='FixingDate'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>Fixing Date</description>
+            <description>Fixing Date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -255,18 +255,18 @@
           <Parameter name='SwapIndex'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating SwapIndex object ID</description>
+            <description>floating SwapIndex object ID.</description>
           </Parameter>
           <Parameter name='Spread' exampleValue='0.0'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>floating leg spread</description>
+            <description>floating leg spread.</description>
           </Parameter>
           <Parameter name='ForwardStart' exampleValue='0D'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>forward start period</description>
+            <description>forward start period.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -284,34 +284,34 @@
           <Parameter name='OptionType'>
             <type>QuantLib::Option::Type</type>
             <tensorRank>scalar</tensorRank>
-            <description>option type (i.e. Call or Put)</description>
+            <description>option type (i.e. Call or Put).</description>
           </Parameter>
           <Parameter name='AtmForwardValue' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>underlying asset at-the-money forward value</description>
+            <description>underlying asset at-the-money forward value.</description>
           </Parameter>
           <Parameter name='OptionPrice' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>option price</description>
+            <description>option price.</description>
           </Parameter>
           <Parameter name='Strike'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>option strike</description>
+            <description>option strike.</description>
           </Parameter>
           <Parameter name='Guess' default="QuantLib::Null&lt;QuantLib::Real&gt;()">
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>implied volatility guess</description>
+            <description>implied volatility guess.</description>
           </Parameter>
           <Parameter name='Accuracy' default="1e-6">
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>iv accuracy</description>
+            <description>iv accuracy.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -330,34 +330,34 @@
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>underlying asset at-the-money forward value</description>
+            <description>underlying asset at-the-money forward value.</description>
           </Parameter>
           <Parameter name='CallPrice' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>call option price</description>
+            <description>call option price.</description>
           </Parameter>
           <Parameter name='PutPrice' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>put option price</description>
+            <description>put option price.</description>
           </Parameter>
           <Parameter name='Strike'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>option strike</description>
+            <description>option strike.</description>
           </Parameter>
           <Parameter name='Guess' default="QuantLib::Null&lt;QuantLib::Real&gt;()">
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>implied volatility guess</description>
+            <description>implied volatility guess.</description>
           </Parameter>
           <Parameter name='Accuracy' default="1e-6">
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation accuracy</description>
+            <description>standard deviation accuracy.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -376,18 +376,18 @@
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>the first, i.e. x, value in the f(x,y) expression</description>
+            <description>the first, i.e. x, value in the f(x,y) expression.</description>
           </Parameter>
           <Parameter name='Element2' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>the second, i.e. y, value in the f(x,y) expression</description>
+            <description>the second, i.e. y, value in the f(x,y) expression.</description>
           </Parameter>
           <Parameter name='Operator' >
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>the operator to be applied, e.g. ""+"" or ""-""</description>
+            <description>the operator to be applied, e.g. ""+"" or ""-"".</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -406,37 +406,37 @@
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating IborIndex object ID</description>
+            <description>floating IborIndex object ID.</description>
           </Parameter>
           <Parameter name='ImmCode'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>futures IMM code (e.g. H9)</description>
+            <description>futures IMM code (e.g. H9).</description>
           </Parameter>
           <Parameter name='FuturesQuote' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>futures quote</description>
+            <description>futures quote.</description>
           </Parameter>
           <Parameter name='Volatility' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>HullWhite volatility</description>
+            <description>HullWhite volatility.</description>
           </Parameter>
           <Parameter name='MeanReversion' >
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>HullWhite mean reversion</description>
+            <description>HullWhite mean reversion.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
     <Member name='qlFuturesConvAdjustmentQuoteVolatility' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
-      <description>Return the value of HW volatility</description>
+      <description>Return the value of HW volatility.</description>
       <libraryFunction>volatility</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -452,7 +452,7 @@
     </Member>
 
     <Member name='qlFuturesConvAdjustmentQuoteMeanReversion' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
-      <description>Return the value of HW mean reversion</description>
+      <description>Return the value of HW mean reversion.</description>
       <libraryFunction>meanReversion</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -468,7 +468,7 @@
     </Member>
 
     <Member name='qlFuturesConvAdjustmentQuoteImmDate' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
-      <description>Return the IMM date of futures</description>
+      <description>Return the IMM date of futures.</description>
       <libraryFunction>immDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -484,7 +484,7 @@
     </Member>
 
     <Member name='qlFuturesConvAdjustmentQuoteFuturesValue' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
-      <description>Return the value of futures underlying</description>
+      <description>Return the value of futures underlying.</description>
       <libraryFunction>futuresValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>

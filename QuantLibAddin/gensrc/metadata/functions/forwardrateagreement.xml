@@ -1,5 +1,5 @@
 <Category name='forwardrateagreement'>
-  <description>Functions to construct and use ForwardRateAgreement objects</description>
+  <description>Functions to construct and use ForwardRateAgreement objects.</description>
   <displayName>Forward Rate Agreement</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -34,38 +34,38 @@
           <Parameter name='ValueDate' exampleValue='3M'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>Value date</description>
+            <description>Value date.</description>
           </Parameter>
           <Parameter name='MaturityDate' exampleValue='6M'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>Maturity date</description>
+            <description>Maturity date.</description>
           </Parameter>
           <Parameter name='Position' exampleValue='Long'>
             <type>QuantLib::Position::Type</type>
             <tensorRank>scalar</tensorRank>
-            <description>Instrument position (Long = purchase, Short = sale)</description>
+            <description>Instrument position (Long = purchase, Short = sale).</description>
           </Parameter>
           <Parameter name='Strike' exampleValue='0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>Strike rate</description>
+            <description>Strike rate.</description>
           </Parameter>
           <Parameter name='Notional' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>Notional amount</description>
+            <description>Notional amount.</description>
           </Parameter>
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>Underlying index object ID</description>
+            <description>Underlying index object ID.</description>
           </Parameter>
           <Parameter name='YieldCurve'  exampleValue='EURYC'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Discounting yield term structure object ID</description>
+            <description>Discounting yield term structure object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

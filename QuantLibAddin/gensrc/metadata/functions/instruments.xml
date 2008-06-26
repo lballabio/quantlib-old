@@ -1,5 +1,5 @@
 <Category name='instruments'>
-  <description>functions to construct and use Instrument objects</description>
+  <description>functions to construct and use Instrument objects.</description>
   <displayName>Instruments</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
@@ -15,7 +15,7 @@
   <Functions>
 
     <Member name='qlInstrumentNPV' type='QuantLib::Instrument'>
-      <description>Returns the NPV for the given Instrument object</description>
+      <description>Returns the NPV for the given Instrument object.</description>
       <libraryFunction>NPV</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -35,7 +35,7 @@
     </Member>
 
     <Member name='qlInstrumentResults' type='QuantLib::Instrument'>
-      <description>Returns the required result (if available) for the given Instrument object</description>
+      <description>Returns the required result (if available) for the given Instrument object.</description>
       <libraryFunction>result&lt;QuantLib::Real&gt;</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -47,7 +47,7 @@
           <Parameter name='ResultType' exampleValue='vega'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>result type (e.g. 'vega')</description>
+            <description>result type (e.g. 'vega').</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -58,7 +58,7 @@
     </Member>
 
     <Member name='qlInstrumentErrorEstimate' type='QuantLib::Instrument'>
-      <description>Returns the NPV error estimation (for e.g. Monte Carlo simulation) for the given Instrument object</description>
+      <description>Returns the NPV error estimation (for e.g. Monte Carlo simulation) for the given Instrument object.</description>
       <libraryFunction>errorEstimate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -75,7 +75,7 @@
     </Member>
 
     <Member name='qlInstrumentIsExpired' type='QuantLib::Instrument'>
-      <description>Returns TRUE if the given Instrument object is expired</description>
+      <description>Returns TRUE if the given Instrument object is expired.</description>
       <libraryFunction>isExpired</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -91,7 +91,7 @@
     </Member>
 
     <Member name='qlInstrumentSetPricingEngine' type='QuantLibAddin::Instrument'>
-      <description>Sets a new pricing engine to the given Instrument pbject</description>
+      <description>Sets a new pricing engine to the given Instrument pbject.</description>
       <libraryFunction>setPricingEngine</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -103,7 +103,7 @@
           <Parameter name='PricingEngine' exampleValue='PricingEngineID'>
             <type>QuantLibAddin::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
-            <description>PricingEngine object ID</description>
+            <description>PricingEngine object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -1,6 +1,6 @@
 
 <Category name='garbagecollection'>
-  <description>garbage collection</description>
+  <description>garbage collection.</description>
   <displayName>Garbage Collection</displayName>
   <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
   <addinIncludes/>
@@ -15,7 +15,7 @@
   <Functions>
 
     <Procedure name='ohCollectGarbage'>
-      <description>delete orphaned objects from repository</description>
+      <description>delete orphaned objects from repository.</description>
       <alias>ObjectHandler::RepositoryXL::instance().collectGarbage</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' />
@@ -25,7 +25,7 @@
           <Parameter name='DeletePermanent' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>also delete permanent objects</description>
+            <description>also delete permanent objects.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -36,7 +36,7 @@
     </Procedure>
 
     <Procedure name='ohDeleteAllObjects'>
-      <description>delete all objects from repository</description>
+      <description>delete all objects from repository.</description>
       <alias>ObjectHandler::Repository::instance().deleteAllObjects</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' />
@@ -47,7 +47,7 @@
           <Parameter name='DeletePermanent' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>also delete permanent objects</description>
+            <description>also delete permanent objects.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -58,7 +58,7 @@
     </Procedure>
 
     <Procedure name='ohDeleteObject'>
-      <description>delete object from repository</description>
+      <description>delete object from repository.</description>
       <alias>ObjectHandler::RepositoryXL::instance().deleteObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' />
@@ -68,7 +68,7 @@
           <Parameter name='ObjectId'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>ID of object to be deleted</description>
+            <description>ID of object to be deleted.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

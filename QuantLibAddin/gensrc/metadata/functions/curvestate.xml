@@ -1,5 +1,5 @@
 <Category name='curvestate'>
-  <description>functions to construct and use CurveState objects</description>
+  <description>functions to construct and use CurveState objects.</description>
   <displayName>CurveState</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
@@ -21,7 +21,7 @@
 
     <!-- CurveState base class interfaces -->
     <Member name='qlCurveStateRateTimes' type='QuantLib::CurveState' superType='libraryClass'>
-      <description>return the rate times of the CurveState object</description>
+      <description>return the rate times of the CurveState object.</description>
       <libraryFunction>rateTimes</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -38,7 +38,7 @@
     </Member>
 
     <Member name='qlCurveStateRateTaus' type='QuantLib::CurveState' superType='libraryClass'>
-      <description>return the rate taus of the CurveState object</description>
+      <description>return the rate taus of the CurveState object.</description>
       <libraryFunction>rateTaus</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -55,7 +55,7 @@
     </Member>
 
     <Member name='qlCurveStateForwardRates' type='QuantLib::CurveState' superType='libraryClass'>
-      <description>Returns the current forward rates of the CurveState object</description>
+      <description>Returns the current forward rates of the CurveState object.</description>
       <libraryFunction>forwardRates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -71,7 +71,7 @@
     </Member>
 
     <Member name='qlCurveStateCoterminalSwapRates' type='QuantLib::CurveState' superType='libraryClass'>
-      <description>Returns the current swap rates of the CurveState object</description>
+      <description>Returns the current swap rates of the CurveState object.</description>
       <libraryFunction>coterminalSwapRates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -87,7 +87,7 @@
     </Member>
 
     <Member name='qlCurveStateCMSwapRates' type='QuantLib::CurveState' superType='libraryClass'>
-      <description>Returns the current swap rates of the CurveState object</description>
+      <description>Returns the current swap rates of the CurveState object.</description>
       <libraryFunction>cmSwapRates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -98,7 +98,7 @@
           <Parameter name='SpanningForwards' exampleValue ='4'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of forwards underlying the CMS</description>
+            <description>number of forwards underlying the CMS.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -121,12 +121,12 @@
           <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
+            <description>rate fixing times.</description>
           </Parameter>
           <Parameter name='SpanningForwards' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of forwards underlying the CMS</description>
+            <description>number of forwards underlying the CMS.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -134,7 +134,7 @@
 
     <!-- CMSwapCurveState class interfaces -->
     <Member name='qlCMSwapCurveStateSetOnCMSwapRates' type='QuantLib::CMSwapCurveState' superType='libraryClass'>
-      <description>set the CurveState object on given vector of coterminal swaps</description>
+      <description>set the CurveState object on given vector of coterminal swaps.</description>
       <libraryFunction>setOnCMSwapRates</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -146,7 +146,7 @@
           <Parameter name='CMSwapRates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>Coterminal swap rates</description>
+            <description>Coterminal swap rates.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -169,7 +169,7 @@
           <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
+            <description>rate fixing times.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -177,7 +177,7 @@
 
     <!-- CoterminalSwapCurveState class interfaces -->
     <Member name='qlCoterminalSwapCurveStateSetOnCoterminalSwapRates' type='QuantLib::CoterminalSwapCurveState' superType='libraryClass'>
-      <description>set the CurveState object on given vector of coterminal swaps</description>
+      <description>set the CurveState object on given vector of coterminal swaps.</description>
       <libraryFunction>setOnCoterminalSwapRates</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -189,7 +189,7 @@
           <Parameter name='CoterminalSwaps' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>Coterminal swap rates</description>
+            <description>Coterminal swap rates.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -212,7 +212,7 @@
           <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
+            <description>rate fixing times.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -220,7 +220,7 @@
 
     <!-- LMMCurveState class interfaces -->
     <Member name='qlLMMCurveStateSetOnForwardRates' type='QuantLib::LMMCurveState' superType='libraryClass'>
-      <description>set the CurveState object on given vector of forward rates</description>
+      <description>set the CurveState object on given vector of forward rates.</description>
       <libraryFunction>setOnForwardRates</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -232,7 +232,7 @@
           <Parameter name='Rates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>forward rates</description>
+            <description>forward rates.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -243,7 +243,7 @@
     </Member>
 
     <Member name='qlLMMCurveStateSetOnDiscountRatios' type='QuantLib::LMMCurveState' superType='libraryClass'>
-      <description>set the CurveState object on given vector of discount ratios</description>
+      <description>set the CurveState object on given vector of discount ratios.</description>
       <libraryFunction>setOnDiscountRatios</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -255,7 +255,7 @@
           <Parameter name='DiscountRatios' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>discount ratios</description>
+            <description>discount ratios.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -267,7 +267,7 @@
 
     <!-- Discount bond ratios procedures -->
     <Procedure name='qlForwardsFromDiscountRatios'>
-      <description>Returns the forward rates implied from discount bond ratios</description>
+      <description>Returns the forward rates implied from discount bond ratios.</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -279,17 +279,17 @@
           <Parameter name='FirstValidIndex' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>marks the first non expired discount bond</description>
+            <description>marks the first non expired discount bond.</description>
           </Parameter>
           <Parameter name='DiscountRatios' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>QuantLib::DiscountFactor</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of discount bond ratios</description>
+            <description>vector of discount bond ratios.</description>
           </Parameter>
           <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate time intervals</description>
+            <description>rate time intervals.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -300,7 +300,7 @@
     </Procedure>
 
     <Procedure name='qlCoterminalSwapRatesFromDiscountRatios'>
-      <description>Returns the coterminal swap rates implied from discount bond ratios</description>
+      <description>Returns the coterminal swap rates implied from discount bond ratios.</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -312,17 +312,17 @@
           <Parameter name='FirstValidIndex' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>marks the first non expired discount bond</description>
+            <description>marks the first non expired discount bond.</description>
           </Parameter>
           <Parameter name='DiscountRatios' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>QuantLib::DiscountFactor</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of discount bond ratios</description>
+            <description>vector of discount bond ratios.</description>
           </Parameter>
           <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate time intervals</description>
+            <description>rate time intervals.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -333,7 +333,7 @@
     </Procedure>
 
     <Procedure name='qlCoterminalSwapAnnuitiesFromDiscountRatios'>
-      <description>Returns the coterminal swap annuities implied from discount bond ratios</description>
+      <description>Returns the coterminal swap annuities implied from discount bond ratios.</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -345,17 +345,17 @@
           <Parameter name='FirstValidIndex' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>marks the first non expired discount bond</description>
+            <description>marks the first non expired discount bond.</description>
           </Parameter>
           <Parameter name='DiscountRatios' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>QuantLib::DiscountFactor</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of discount bond ratios</description>
+            <description>vector of discount bond ratios.</description>
           </Parameter>
           <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate time intervals</description>
+            <description>rate time intervals.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -366,7 +366,7 @@
     </Procedure>
 
     <Procedure name='qlConstantMaturitySwapRatesFromDiscountRatios'>
-      <description>Returns constant maturity swap rates from discount ratios</description>
+      <description>Returns constant maturity swap rates from discount ratios.</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -378,22 +378,22 @@
           <Parameter name='SpanningForwards' exampleValue ='10'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of forward rates spanned by the constant maturity swap</description>
+            <description>number of forward rates spanned by the constant maturity swap.</description>
           </Parameter>
           <Parameter name='FirstValidIndex' exampleValue ='0.001'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>marks the first non expired discount bond</description>
+            <description>marks the first non expired discount bond.</description>
           </Parameter>
           <Parameter name='DiscountRatios' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>QuantLib::DiscountFactor</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of discount bond ratios</description>
+            <description>vector of discount bond ratios.</description>
           </Parameter>
           <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate time intervals</description>
+            <description>rate time intervals.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -404,7 +404,7 @@
     </Procedure>
 
     <Procedure name='qlConstantMaturitySwapAnnuitiesFromDiscountRatios'>
-      <description>Returns constant maturity swap annuities from discount ratios</description>
+      <description>Returns constant maturity swap annuities from discount ratios.</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -416,22 +416,22 @@
           <Parameter name='SpanningForwards' exampleValue ='5'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of forward rates spanned by the constant maturity swap</description>
+            <description>number of forward rates spanned by the constant maturity swap.</description>
           </Parameter>
           <Parameter name='FirstValidIndex' exampleValue ='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>marks the first non expired discount bond</description>
+            <description>marks the first non expired discount bond.</description>
           </Parameter>
           <Parameter name='DiscountRatios' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>QuantLib::DiscountFactor</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of discount bond ratios</description>
+            <description>vector of discount bond ratios.</description>
           </Parameter>
           <Parameter name='Taus' exampleValue ='0.5,0.5,0.5,0.5,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate time intervals</description>
+            <description>rate time intervals.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -1,5 +1,5 @@
 <Category name='assetswap'>
-  <description>functions to construct and use AssetSwap objects</description>
+  <description>functions to construct and use AssetSwap objects.</description>
   <displayName>Asset Swap</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -37,56 +37,56 @@
           <Parameter name='PayBondCoupon' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE to pay the bond's coupons and receive floating</description>
+            <description>TRUE to pay the bond's coupons and receive floating.</description>
           </Parameter>
           <Parameter name='UnderlyingBond' exampleValue='DE0003088704'>
             <type>QuantLib::Bond</type>
             <tensorRank>scalar</tensorRank>
-            <description>underlying bond object ID</description>
+            <description>underlying bond object ID.</description>
           </Parameter>
           <Parameter name='BondCleanPrice' exampleValue='99.16'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>market price of the underlying bond</description>
+            <description>market price of the underlying bond.</description>
           </Parameter>
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating leg Index object ID</description>
+            <description>floating leg Index object ID.</description>
           </Parameter>
           <Parameter name='FloatingLegSpread'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>Index Spread</description>
+            <description>Index Spread.</description>
           </Parameter>
           <Parameter name='YieldCurve'  exampleValue='EURYC'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>discounting YieldTermStructure object ID</description>
+            <description>discounting YieldTermStructure object ID.</description>
           </Parameter>
           <Parameter name='FloatingLegSchedule' default='""'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>floating leg schedule object ID</description>
+            <description>floating leg schedule object ID.</description>
           </Parameter>
           <Parameter name='FloatingLegDayCounter' exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating day counter (e.g. Actual/360)</description>
+            <description>floating day counter (e.g. Actual/360).</description>
           </Parameter>
           <Parameter name='ParAssetSwap' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE for par asset swap, FALSE for market asset swap</description>
+            <description>TRUE for par asset swap, FALSE for market asset swap.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
     <Member name='qlAssetSwapBondLegAnalysis' type='QuantLibAddin::AssetSwap'>
-      <description>The bond leg cash flow analysis</description>
+      <description>The bond leg cash flow analysis.</description>
       <libraryFunction>bondLeg</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -104,7 +104,7 @@
     </Member>
 
     <Member name='qlAssetSwapFloatingLegAnalysis' type='QuantLibAddin::AssetSwap'>
-      <description>The floating leg cash flow analysis</description>
+      <description>The floating leg cash flow analysis.</description>
       <libraryFunction>floatingLeg</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -121,7 +121,7 @@
     </Member>
 
     <Member name='qlAssetSwapFairSpread' type='QuantLib::AssetSwap'>
-      <description>the fair rate of the asset swap, i.e. the asset swap spread</description>
+      <description>the fair rate of the asset swap, i.e. the asset swap spread.</description>
       <libraryFunction>fairSpread</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -137,7 +137,7 @@
     </Member>
 
     <Member name='qlAssetSwapFloatingLegBPS' type='QuantLib::AssetSwap'>
-      <description>the BPS of the floating leg</description>
+      <description>the BPS of the floating leg.</description>
       <libraryFunction>floatingLegBPS</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -153,7 +153,7 @@
     </Member>
 
     <Member name='qlAssetSwapFairPrice' type='QuantLib::AssetSwap'>
-      <description>the fair price of the bond in the asset swap</description>
+      <description>the fair price of the bond in the asset swap.</description>
       <libraryFunction>fairPrice</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>

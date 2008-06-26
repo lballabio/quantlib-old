@@ -1,5 +1,5 @@
 <Category name='marketmodelevolvers'>
-  <description>functions to construct and use Market Model Evolvers objects</description>
+  <description>functions to construct and use Market Model Evolvers objects.</description>
   <displayName>Market Model Evolvers</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -38,17 +38,17 @@
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>MarketModel object ID</description>
+            <description>MarketModel object ID.</description>
           </Parameter>
           <Parameter name='BrownianGeneratorFactory'>
             <type>QuantLib::BrownianGeneratorFactory</type>
             <tensorRank>scalar</tensorRank>
-            <description>Brownian generator factory</description>
+            <description>Brownian generator factory.</description>
           </Parameter>
           <Parameter name='Numeraires' exampleValue ='5,5,5,5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
-            <description>numeraire vector</description>
+            <description>numeraire vector.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -68,17 +68,17 @@
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>MarketModel object ID</description>
+            <description>MarketModel object ID.</description>
           </Parameter>
           <Parameter name='BrownianGeneratorFactory'>
             <type>QuantLib::BrownianGeneratorFactory</type>
             <tensorRank>scalar</tensorRank>
-            <description>Brownian generator factory</description>
+            <description>Brownian generator factory.</description>
           </Parameter>
           <Parameter name='Numeraires' exampleValue ='5,5,5,5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
-            <description>numeraire vector</description>
+            <description>numeraire vector.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -98,17 +98,17 @@
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>MarketModel object ID</description>
+            <description>MarketModel object ID.</description>
           </Parameter>
           <Parameter name='BrownianGeneratorFactory'>
             <type>QuantLib::BrownianGeneratorFactory</type>
             <tensorRank>scalar</tensorRank>
-            <description>Brownian generator factory</description>
+            <description>Brownian generator factory.</description>
           </Parameter>
           <Parameter name='Numeraires' exampleValue ='5,5,5,5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
-            <description>numeraire vector</description>
+            <description>numeraire vector.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -116,7 +116,7 @@
 
     <!-- MarketModelEvolver base class interfaces  -->
     <Member name='qlMarketModelEvolverStartNewPath' type='QuantLib::MarketModelEvolver'>
-      <description>start a new path for the MarketModelEvolver object</description>
+      <description>start a new path for the MarketModelEvolver object.</description>
       <libraryFunction>startNewPath</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -133,7 +133,7 @@
     </Member>
 
     <Member name='qlMarketModelEvolverAdvanceStep' type='QuantLib::MarketModelEvolver'>
-      <description>advance a single step in the current path for the MarketModelEvolver object</description>
+      <description>advance a single step in the current path for the MarketModelEvolver object.</description>
       <libraryFunction>advanceStep</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -150,7 +150,7 @@
     </Member>
 
     <Member name='qlMarketModelEvolverCurrentStep' type='QuantLib::MarketModelEvolver'>
-      <description>returns the current step index in the current path for the MarketModelEvolver object</description>
+      <description>returns the current step index in the current path for the MarketModelEvolver object.</description>
       <libraryFunction>currentStep</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -167,7 +167,7 @@
     </Member>
 
     <Member name='qlMarketModelEvolverNumeraires' type='QuantLib::MarketModelEvolver'>
-      <description>returns the current step index in the current path for the MarketModelEvolver object</description>
+      <description>returns the current step index in the current path for the MarketModelEvolver object.</description>
       <libraryFunction>numeraires</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>

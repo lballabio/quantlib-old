@@ -1,5 +1,5 @@
 <Category name='marketmodels'>
-  <description>functions to construct and use Market Models related objects</description>
+  <description>functions to construct and use Market Models related objects.</description>
   <displayName>MarketModels</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -39,7 +39,7 @@
 
     <!-- MarketModel base class interfaces -->
     <Member name='qlMarketModelInitialRates' type='QuantLib::MarketModel' superType='libraryClass'>
-      <description>initial rates for the MarketModel object</description>
+      <description>initial rates for the MarketModel object.</description>
       <libraryFunction>initialRates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -55,7 +55,7 @@
     </Member>
 
     <Member name='qlMarketModelDisplacements' type='QuantLib::MarketModel' superType='libraryClass'>
-      <description>rates' displacemets for the MarketModel object</description>
+      <description>rates' displacemets for the MarketModel object.</description>
       <libraryFunction>displacements</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -71,7 +71,7 @@
     </Member>
 
     <Member name='qlMarketModelNumberOfRates' type='QuantLib::MarketModel' superType='libraryClass'>
-      <description>number of rates for the MarketModel object</description>
+      <description>number of rates for the MarketModel object.</description>
       <libraryFunction>numberOfRates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -87,7 +87,7 @@
     </Member>
 
     <Member name='qlMarketModelNumberOfFactors' type='QuantLib::MarketModel' superType='libraryClass'>
-      <description>number of factors for the MarketModel object</description>
+      <description>number of factors for the MarketModel object.</description>
       <libraryFunction>numberOfFactors</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -103,7 +103,7 @@
     </Member>
 
     <Member name='qlMarketModelNumberOfSteps' type='QuantLib::MarketModel' superType='libraryClass'>
-      <description>number of steps for the MarketModel object</description>
+      <description>number of steps for the MarketModel object.</description>
       <libraryFunction>numberOfSteps</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -131,7 +131,7 @@
           <Parameter name='Index' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>evolution step index</description>
+            <description>evolution step index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -154,7 +154,7 @@
           <Parameter name='Index' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>evolution step index</description>
+            <description>evolution step index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -177,7 +177,7 @@
           <Parameter name='Index' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>evolution step index</description>
+            <description>evolution step index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -200,7 +200,7 @@
           <Parameter name='Index' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>rate index</description>
+            <description>rate index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -223,34 +223,34 @@
           <Parameter name='Volatilities' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
-            <description>volatilities</description>
+            <description>volatilities.</description>
           </Parameter>
           <Parameter name='Correlations'>
             <type>QuantLib::PiecewiseConstantCorrelation</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>PiecewiseConstantCorrelation object ID</description>
+            <description>PiecewiseConstantCorrelation object ID.</description>
           </Parameter>
           <Parameter name='EvolutionDescription' >
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>EvolutionDescription object</description>
+            <description>EvolutionDescription object.</description>
           </Parameter>
           <Parameter name='Factors' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of factors to be retained in the simulation</description>
+            <description>number of factors to be retained in the simulation.</description>
           </Parameter>
           <Parameter name='InitialRates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>initial rates</description>
+            <description>initial rates.</description>
           </Parameter>
           <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>displacements</description>
+            <description>displacements.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -268,54 +268,54 @@
           <Parameter name='A' exampleValue ='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the a coefficient in the abcd vol parametrization</description>
+            <description>the a coefficient in the abcd vol parametrization.</description>
           </Parameter>
           <Parameter name='B' exampleValue ='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the b coefficient in the abcd vol parametrization</description>
+            <description>the b coefficient in the abcd vol parametrization.</description>
           </Parameter>
           <Parameter name='C' exampleValue ='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the c coefficient in the abcd vol parametrization</description>
+            <description>the c coefficient in the abcd vol parametrization.</description>
           </Parameter>
           <Parameter name='D' exampleValue ='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the d coefficient in the abcd vol parametrization</description>
+            <description>the d coefficient in the abcd vol parametrization.</description>
           </Parameter>
           <Parameter name='Ks' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>K_i adjustment factors in the abcd vol parametrization</description>
+            <description>K_i adjustment factors in the abcd vol parametrization.</description>
           </Parameter>
           <Parameter name='Correlations'>
             <type>QuantLib::PiecewiseConstantCorrelation</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>PiecewiseConstantCorrelation object ID</description>
+            <description>PiecewiseConstantCorrelation object ID.</description>
           </Parameter>
           <Parameter name='EvolutionDescription' >
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>EvolutionDescription object</description>
+            <description>EvolutionDescription object.</description>
           </Parameter>
           <Parameter name='Factors' exampleValue ='5'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of factors to be retained in the simulation</description>
+            <description>number of factors to be retained in the simulation.</description>
           </Parameter>
           <Parameter name='InitialRates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>initial rates</description>
+            <description>initial rates.</description>
           </Parameter>
           <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>displacements</description>
+            <description>displacements.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -334,7 +334,7 @@
             <type>QuantLib::CTSMMCapletCalibration</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CTSMMCapletCalibration ID</description>
+            <description>CTSMMCapletCalibration ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -353,7 +353,7 @@
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CoTerminal Swap Market Model ID</description>
+            <description>CoTerminal Swap Market Model ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -372,22 +372,22 @@
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>large MarketModel ID</description>
+            <description>large MarketModel ID.</description>
           </Parameter>
           <Parameter name='Period' exampleValue ='2'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>target period (e.g. 2 if going from semiannual LMM to annual LMM)</description>
+            <description>target period (e.g. 2 if going from semiannual LMM to annual LMM).</description>
           </Parameter>
           <Parameter name='Offset' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>rate index offset, in order to pin down swaption coterminal to the last rate time</description>
+            <description>rate index offset, in order to pin down swaption coterminal to the last rate time.</description>
           </Parameter>
           <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>displacements</description>
+            <description>displacements.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -406,7 +406,7 @@
             <type>QuantLib::MarketModel</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Forward Rate Market Model ID</description>
+            <description>Forward Rate Market Model ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -425,33 +425,33 @@
           <Parameter name='LongTermCorr' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
+            <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj)).</description>
           </Parameter>
           <Parameter name='Beta' exampleValue ='0.2'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj))</description>
+            <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj)).</description>
           </Parameter>
           <Parameter name='Times' exampleValue ='0.1,0.2,0.3,0.4,0.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>times</description>
+            <description>times.</description>
           </Parameter>
           <Parameter name='Volatilities' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
-            <description>volatilities</description>
+            <description>volatilities.</description>
           </Parameter>
           <Parameter name='YieldCurve' >
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>discounting yield term structure object ID</description>
+            <description>discounting yield term structure object ID.</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -460,7 +460,7 @@
     <!-- Forward Libor Market Model <-> Coterminal Swap Market Model -->
 
     <Procedure name='qlCoterminalSwapForwardJacobian'>
-      <description>Returns the jacobian between coterminal swap rates and forward rates</description>
+      <description>Returns the jacobian between coterminal swap rates and forward rates.</description>
       <alias>QuantLib::SwapForwardMappings::coterminalSwapForwardJacobian</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -474,7 +474,7 @@
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
+            <description>CurveState object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -485,7 +485,7 @@
     </Procedure>
 
     <Procedure name='qlCoterminalSwapZedMatrix'>
-      <description>Returns the Z matrix to switch base from forward to coterminal swap rates</description>
+      <description>Returns the Z matrix to switch base from forward to coterminal swap rates.</description>
       <alias>QuantLib::SwapForwardMappings::coterminalSwapZedMatrix</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -499,12 +499,12 @@
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
+            <description>CurveState object ID.</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -515,7 +515,7 @@
     </Procedure>
 
     <Procedure name='qlCoinitialSwapForwardJacobian'>
-      <description>Returns the jacobian between coinitial swap rates and forward rates</description>
+      <description>Returns the jacobian between coinitial swap rates and forward rates.</description>
       <alias>QuantLib::SwapForwardMappings::coinitialSwapForwardJacobian</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -529,7 +529,7 @@
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
+            <description>CurveState object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -540,7 +540,7 @@
     </Procedure>
 
     <Procedure name='qlCoinitialSwapZedMatrix'>
-      <description>Returns the Z matrix to switch base from forward to coinitial swap rates</description>
+      <description>Returns the Z matrix to switch base from forward to coinitial swap rates.</description>
       <alias>QuantLib::SwapForwardMappings::coinitialSwapZedMatrix</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -554,12 +554,12 @@
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
+            <description>CurveState object ID.</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -570,7 +570,7 @@
     </Procedure>
 
     <Procedure name='qlCmSwapForwardJacobian'>
-      <description>Returns the jacobian between constant maturity swap rates and forward rates</description>
+      <description>Returns the jacobian between constant maturity swap rates and forward rates.</description>
       <alias>QuantLib::SwapForwardMappings::cmSwapForwardJacobian</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -584,12 +584,12 @@
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
+            <description>CurveState object ID.</description>
           </Parameter>
           <Parameter name='SpanningForwards' exampleValue ='4'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of forwards underlying the CMS</description>
+            <description>number of forwards underlying the CMS.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -600,7 +600,7 @@
     </Procedure>
 
     <Procedure name='qlCmSwapZedMatrix'>
-      <description>Returns the Z matrix to switch base from forward to constant maturity swap rates</description>
+      <description>Returns the Z matrix to switch base from forward to constant maturity swap rates.</description>
       <alias>QuantLib::SwapForwardMappings::cmSwapZedMatrix</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -614,17 +614,17 @@
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
+            <description>CurveState object ID.</description>
           </Parameter>
           <Parameter name='SpanningForwards' exampleValue ='4'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of forwards underlying the CMS</description>
+            <description>number of forwards underlying the CMS.</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -635,7 +635,7 @@
     </Procedure>
 
     <Procedure name='qlAnnuity'>
-      <description>returns annuity of arbitrary swap-rate</description>
+      <description>returns annuity of arbitrary swap-rate.</description>
       <alias>QuantLib::SwapForwardMappings::annuity</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -649,22 +649,22 @@
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
+            <description>CurveState object ID.</description>
           </Parameter>
           <Parameter name='StartIndex' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>start index</description>
+            <description>start index.</description>
           </Parameter>
           <Parameter name='EndIndex' exampleValue ='4'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>end index</description>
+            <description>end index.</description>
           </Parameter>
           <Parameter name='NumeraireIndex' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>numeraire index</description>
+            <description>numeraire index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -675,7 +675,7 @@
     </Procedure>
 
     <Procedure name='qlSwapDerivative'>
-      <description>returns derivative of swap-rate to underlying forward rate</description>
+      <description>returns derivative of swap-rate to underlying forward rate.</description>
       <alias>QuantLib::SwapForwardMappings::swapDerivative</alias>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -689,22 +689,22 @@
             <type>QuantLib::CurveState</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
+            <description>CurveState object ID.</description>
           </Parameter>
           <Parameter name='StartIndex' exampleValue ='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>start index</description>
+            <description>start index.</description>
           </Parameter>
           <Parameter name='EndIndex' exampleValue ='4'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>end index</description>
+            <description>end index.</description>
           </Parameter>
           <Parameter name='FwdRateIndex' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>forward rate index</description>
+            <description>forward rate index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -715,7 +715,7 @@
     </Procedure>
 
     <Procedure name='qlRateVolDifferences'>
-      <description>Compute the differences between all implied forwards volatilities</description>
+      <description>Compute the differences between all implied forwards volatilities.</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -728,13 +728,13 @@
             <type>QuantLib::MarketModel</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>First Market Model</description>
+            <description>First Market Model.</description>
           </Parameter>
           <Parameter name='MarketModel2'>
             <type>QuantLib::MarketModel</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Second Market Model</description>
+            <description>Second Market Model.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -745,7 +745,7 @@
     </Procedure>
 
     <Procedure name='qlRateInstVolDifferences'>
-      <description>Compute the differences between volatilities at each evolution step</description>
+      <description>Compute the differences between volatilities at each evolution step.</description>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -758,18 +758,18 @@
             <type>QuantLib::MarketModel</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>First Market Model</description>
+            <description>First Market Model.</description>
           </Parameter>
           <Parameter name='MarketModel2'>
             <type>QuantLib::MarketModel</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Second Market Model</description>
+            <description>Second Market Model.</description>
           </Parameter>
           <Parameter name='Index' exampleValue='2'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>Forward Rate index</description>
+            <description>Forward Rate index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

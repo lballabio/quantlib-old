@@ -1,5 +1,5 @@
 <Category name='settings'>
-  <description>global settings functions</description>
+  <description>global settings functions.</description>
   <displayName>Settings</displayName>
   <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
   <copyright>
@@ -8,7 +8,7 @@
   <Functions>
 
     <Procedure name='qlSettingsEvaluationDate'>
-      <description>returns the current value of the Evaluation Date</description>
+      <description>returns the current value of the Evaluation Date.</description>
       <alias>QuantLib::Settings::instance().evaluationDate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -27,7 +27,7 @@
     </Procedure>
 
     <Procedure name='qlSettingsSetEvaluationDate'>
-      <description>sets the value of the Evaluation Date</description>
+      <description>sets the value of the Evaluation Date.</description>
       <alias>QuantLibAddin::qlSettingsSetEvaluationDate</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -42,7 +42,7 @@
           <Parameter name='EvalDate' exampleValue='13-Feb-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>new value for the evaluation date</description>
+            <description>new value for the evaluation date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -53,7 +53,7 @@
     </Procedure>
 
     <Procedure name='qlSettingsEnforceTodaysHistoricFixings'>
-      <description>returns the current value of the boolean which enforce the usage of historic fixings for today's date</description>
+      <description>returns the current value of the boolean which enforce the usage of historic fixings for today's date.</description>
       <alias>QuantLib::Settings::instance().enforcesTodaysHistoricFixings</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -70,7 +70,7 @@
     </Procedure>
 
     <Procedure name='qlSettingsSetEnforceTodaysHistoricFixings'>
-      <description>sets the value of the boolean which enforce the usage of historic fixings for today's date</description>
+      <description>sets the value of the boolean which enforce the usage of historic fixings for today's date.</description>
       <alias>QuantLibAddin::qlSettingsSetEnforceTodaysHistoricFixings</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -82,7 +82,7 @@
           <Parameter name='Boolean' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>new value for the boolean which enforce the usage of historic fixings for today's date</description>
+            <description>new value for the boolean which enforce the usage of historic fixings for today's date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

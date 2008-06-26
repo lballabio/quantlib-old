@@ -1,5 +1,5 @@
 <Category name='exercise'>
-  <description>functions to construct and use Exercise objects</description>
+  <description>functions to construct and use Exercise objects.</description>
   <displayName>Exercise</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
@@ -14,7 +14,7 @@
   <Functions>
 
     <Member name='qlExerciseDates' type='QuantLib::Exercise'>
-      <description>Returns all exercise dates</description>
+      <description>Returns all exercise dates.</description>
       <libraryFunction>dates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -30,7 +30,7 @@
     </Member>
 
     <Member name='qlExerciseLastDate' type='QuantLib::Exercise'>
-      <description>Returns last exercise date</description>
+      <description>Returns last exercise date.</description>
       <libraryFunction>lastDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -57,17 +57,17 @@
           <Parameter name='EarliestDate' exampleValue ='1Y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>earliest exercise date</description>
+            <description>earliest exercise date.</description>
           </Parameter>
           <Parameter name='LatestDate' exampleValue ='2Y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>latest exercise date</description>
+            <description>latest exercise date.</description>
           </Parameter>
           <Parameter name='PayoffAtExpiry' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>payoff at expiry</description>
+            <description>payoff at expiry.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -88,7 +88,7 @@
           <Parameter name='ExpiryDate' exampleValue ='1Y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>expiry date</description>
+            <description>expiry date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -106,12 +106,12 @@
           <Parameter name='Dates' exampleValue ="'1Y,2Y">
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>dates</description>
+            <description>dates.</description>
           </Parameter>
           <Parameter name='PayoffAtExpiry' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>payoff at expiry</description>
+            <description>payoff at expiry.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -1,5 +1,5 @@
 <Category name='statistics'>
-  <description>functions to construct and use Statistics objects</description>
+  <description>functions to construct and use Statistics objects.</description>
   <displayName>Statistics</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
   <addinIncludes>
@@ -16,7 +16,7 @@
     <!-- GeneralStatistics methods -->
 
     <Member name='qlStatisticsSamples' type='QuantLib::Statistics'>
-      <description>Returns the number of samples collected for the given Statistics object</description>
+      <description>Returns the number of samples collected for the given Statistics object.</description>
       <libraryFunction>samples</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -32,7 +32,7 @@
     </Member>
 
     <Member name='qlStatisticsWeightSum' type='QuantLib::Statistics'>
-      <description>Returns the sum of data weights for the given Statistics object</description>
+      <description>Returns the sum of data weights for the given Statistics object.</description>
       <libraryFunction>weightSum</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -48,7 +48,7 @@
     </Member>
 
     <Member name='qlStatisticsMean' type='QuantLib::Statistics'>
-      <description>Returns the mean for the given Statistics object</description>
+      <description>Returns the mean for the given Statistics object.</description>
       <libraryFunction>mean</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -64,7 +64,7 @@
     </Member>
 
     <Member name='qlStatisticsVariance' type='QuantLib::Statistics'>
-      <description>Returns the variance for the given Statistics object</description>
+      <description>Returns the variance for the given Statistics object.</description>
       <libraryFunction>variance</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -80,7 +80,7 @@
     </Member>
 
     <Member name='qlStatisticsStandardDeviation' type='QuantLib::Statistics'>
-      <description>Returns the the standard deviation for the given Statistics object</description>
+      <description>Returns the the standard deviation for the given Statistics object.</description>
       <libraryFunction>standardDeviation</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -96,7 +96,7 @@
     </Member>
 
     <Member name='qlStatisticsErrorEstimate' type='QuantLib::Statistics'>
-      <description>Returns the error estimate on the mean value for the given Statistics object</description>
+      <description>Returns the error estimate on the mean value for the given Statistics object.</description>
       <libraryFunction>errorEstimate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -112,7 +112,7 @@
     </Member>
 
     <Member name='qlStatisticsSkewness' type='QuantLib::Statistics'>
-      <description>Returns the skewness for the given Statistics object</description>
+      <description>Returns the skewness for the given Statistics object.</description>
       <libraryFunction>skewness</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -128,7 +128,7 @@
     </Member>
 
     <Member name='qlStatisticsKurtosis' type='QuantLib::Statistics'>
-      <description>Returns the excess kurtosis for the given Statistics object</description>
+      <description>Returns the excess kurtosis for the given Statistics object.</description>
       <libraryFunction>kurtosis</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -144,7 +144,7 @@
     </Member>
 
     <Member name='qlStatisticsMin' type='QuantLib::Statistics'>
-      <description>Returns the minimum sample value for the given Statistics object</description>
+      <description>Returns the minimum sample value for the given Statistics object.</description>
       <libraryFunction>min</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -160,7 +160,7 @@
     </Member>
 
     <Member name='qlStatisticsMax' type='QuantLib::Statistics'>
-      <description>Returns the maximum sample value for the given Statistics object</description>
+      <description>Returns the maximum sample value for the given Statistics object.</description>
       <libraryFunction>max</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -176,7 +176,7 @@
     </Member>
 
     <Member name='qlStatisticsPercentile' type='QuantLib::Statistics'>
-      <description>Returns the x-th percentile for the given Statistics object</description>
+      <description>Returns the x-th percentile for the given Statistics object.</description>
       <libraryFunction>percentile</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -188,7 +188,7 @@
           <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Must be in the range (0,1]</description>
+            <description>Must be in the range (0,1].</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -211,7 +211,7 @@
           <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Must be in the range (0,1]</description>
+            <description>Must be in the range (0,1].</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -268,7 +268,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -291,7 +291,7 @@
           <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Must be in the range (0,1]</description>
+            <description>Must be in the range (0,1].</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -337,7 +337,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -360,7 +360,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -383,7 +383,7 @@
           <Parameter name='Target'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -406,7 +406,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -429,7 +429,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -518,7 +518,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -541,7 +541,7 @@
           <Parameter name='Centile' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the centile</description>
+            <description>the centile.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -564,7 +564,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -587,7 +587,7 @@
           <Parameter name='Centile' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the centile</description>
+            <description>the centile.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -610,7 +610,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -633,7 +633,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -646,7 +646,7 @@
     <!-- constructor -->
 
     <Constructor name='qlStatistics'>
-      <description>Statistics and risk measures tool</description>
+      <description>Statistics and risk measures tool.</description>
       <libraryFunction>Statistics</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -685,12 +685,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the mean of the gaussian distribution</description>
+            <description>the mean of the gaussian distribution.</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution</description>
+            <description>standard deviation of the gaussian distribution.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -713,12 +713,12 @@
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean of the gaussian distribution</description>
+            <description>mean of the gaussian distribution.</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution</description>
+            <description>standard deviation of the gaussian distribution.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -729,7 +729,7 @@
     </Procedure>
 
     <Procedure name='qlGaussianRegret'>
-      <description>Returns the variance of observations below target</description>
+      <description>Returns the variance of observations below target.</description>
       <alias>QuantLibAddin::gaussianRegret</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -741,17 +741,17 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean of the gaussian distribution</description>
+            <description>mean of the gaussian distribution.</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution</description>
+            <description>standard deviation of the gaussian distribution.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -762,7 +762,7 @@
     </Procedure>
 
     <Procedure name='qlGaussianPercentile'>
-      <description>Returns the x-th percentile</description>
+      <description>Returns the x-th percentile.</description>
       <alias>QuantLibAddin::gaussianPercentile</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -774,17 +774,17 @@
           <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>mean of the gaussian distribution</description>
+            <description>mean of the gaussian distribution.</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>standard deviation of the gaussian distribution</description>
+            <description>standard deviation of the gaussian distribution.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -795,7 +795,7 @@
     </Procedure>
 
     <Procedure name='qlGaussianTopPercentile'>
-      <description>Returns the x-th top percentile</description>
+      <description>Returns the x-th top percentile.</description>
       <alias>QuantLibAddin::gaussianTopPercentile</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -807,17 +807,17 @@
           <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution</description>
+            <description>The mean of the gaussian distribution.</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution</description>
+            <description>The standard deviation of the gaussian distribution.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -840,17 +840,17 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution</description>
+            <description>The mean of the gaussian distribution.</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution</description>
+            <description>The standard deviation of the gaussian distribution.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -873,17 +873,17 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution</description>
+            <description>The mean of the gaussian distribution.</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution</description>
+            <description>The standard deviation of the gaussian distribution.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -906,17 +906,17 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution</description>
+            <description>The mean of the gaussian distribution.</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution</description>
+            <description>The standard deviation of the gaussian distribution.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -939,17 +939,17 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution</description>
+            <description>The mean of the gaussian distribution.</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution</description>
+            <description>The standard deviation of the gaussian distribution.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -972,17 +972,17 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
           <Parameter name='Mean' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The mean of the gaussian distribution</description>
+            <description>The mean of the gaussian distribution.</description>
           </Parameter>
           <Parameter name='StdDev' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>The standard deviation of the gaussian distribution</description>
+            <description>The standard deviation of the gaussian distribution.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

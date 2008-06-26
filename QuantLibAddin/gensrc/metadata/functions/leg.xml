@@ -1,5 +1,5 @@
 <Category name='leg'>
-  <description>functions to construct and use Leg objects</description>
+  <description>functions to construct and use Leg objects.</description>
   <displayName>Leg</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
@@ -31,7 +31,7 @@
           <Parameter name='SettlementDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>settlement date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -53,7 +53,7 @@
           <Parameter name='SettlementDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>settlement date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -64,7 +64,7 @@
     </Member>
 
     <Member name='qlLegStartDate' type='QuantLibAddin::Leg'>
-      <description>Returns the start (i.e. first accrual) date for the given Leg object</description>
+      <description>Returns the start (i.e. first accrual) date for the given Leg object.</description>
       <libraryFunction>startDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -80,7 +80,7 @@
     </Member>
 
     <Member name='qlLegMaturityDate' type='QuantLibAddin::Leg'>
-      <description>Returns the maturity (i.e. last payment) date for the given Leg object</description>
+      <description>Returns the maturity (i.e. last payment) date for the given Leg object.</description>
       <libraryFunction>startDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -96,7 +96,7 @@
     </Member>
 
     <Member name='qlLegNPV' type='QuantLibAddin::Leg'>
-      <description>Returns the net present value for the given Leg object</description>
+      <description>Returns the net present value for the given Leg object.</description>
       <libraryFunction>npv</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -109,22 +109,22 @@
             <type>QuantLib::YieldTermStructure</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>discounting YieldTermStructure object ID</description>
+            <description>discounting YieldTermStructure object ID.</description>
           </Parameter>
           <Parameter name='SettlementDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>settlement date.</description>
           </Parameter>
           <Parameter name='NpvDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>npv date</description>
+            <description>npv date.</description>
           </Parameter>
           <Parameter name='ExDividendDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days</description>
+            <description>ex-dividend days.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -135,7 +135,7 @@
     </Member>
 
     <Member name='qlLegNPV2' type='QuantLibAddin::Leg'>
-      <description>Returns the net present value for the given Leg object</description>
+      <description>Returns the net present value for the given Leg object.</description>
       <libraryFunction>npv</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -148,22 +148,22 @@
             <type>QuantLib::InterestRate</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>interest rate object ID</description>
+            <description>interest rate object ID.</description>
           </Parameter>
           <Parameter name='SettlementDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>settlement date.</description>
           </Parameter>
           <!--<Parameter name='NpvDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>npv date</description>
+            <description>npv date.</description>
           </Parameter>
           <Parameter name='ExDividendDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days</description>
+            <description>ex-dividend days.</description>
           </Parameter>-->
         </Parameters>
       </ParameterList>
@@ -174,7 +174,7 @@
     </Member>
 
     <Member name='qlLegBPS' type='QuantLibAddin::Leg'>
-      <description>Returns the basis point sensitivity for the given Leg object</description>
+      <description>Returns the basis point sensitivity for the given Leg object.</description>
       <libraryFunction>bps</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -187,22 +187,22 @@
             <type>QuantLib::YieldTermStructure</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>discounting YieldTermStructure object ID</description>
+            <description>discounting YieldTermStructure object ID.</description>
           </Parameter>
           <Parameter name='SettlementDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>settlement date.</description>
           </Parameter>
           <Parameter name='NpvDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>npv date</description>
+            <description>npv date.</description>
           </Parameter>
           <Parameter name='ExDividendDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days</description>
+            <description>ex-dividend days.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -213,7 +213,7 @@
     </Member>
 
     <Member name='qlLegBPS2' type='QuantLibAddin::Leg'>
-      <description>Returns the basis point sensitivity for the given Leg object</description>
+      <description>Returns the basis point sensitivity for the given Leg object.</description>
       <libraryFunction>bps</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -226,22 +226,22 @@
             <type>QuantLib::InterestRate</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>interest rate object ID</description>
+            <description>interest rate object ID.</description>
           </Parameter>
           <Parameter name='SettlementDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>settlement date.</description>
           </Parameter>
           <!--<Parameter name='NpvDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>npv date</description>
+            <description>npv date.</description>
           </Parameter>
           <Parameter name='ExDividendDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days</description>
+            <description>ex-dividend days.</description>
           </Parameter>-->
         </Parameters>
       </ParameterList>
@@ -265,27 +265,27 @@
             <type>QuantLib::YieldTermStructure</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>discounting YieldTermStructure object ID</description>
+            <description>discounting YieldTermStructure object ID.</description>
           </Parameter>
           <Parameter name='SettlementDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>settlement date.</description>
           </Parameter>
           <Parameter name='NpvDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>npv date</description>
+            <description>npv date.</description>
           </Parameter>
           <Parameter name='ExDividendDays' default='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days</description>
+            <description>ex-dividend days.</description>
           </Parameter>
           <Parameter name='NPV' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>market Price</description>
+            <description>market Price.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -296,7 +296,7 @@
     </Member>
 
     <Member name='qlLegIrr' type='QuantLibAddin::Leg'>
-      <description>Returns the Internal rate of return for the given Leg object</description>
+      <description>Returns the Internal rate of return for the given Leg object.</description>
       <libraryFunction>irr</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -308,17 +308,17 @@
           <Parameter name='MarketPrice' exampleValue='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>market Price</description>
+            <description>market Price.</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Irr DayCounter ID</description>
+            <description>Irr DayCounter ID.</description>
           </Parameter>
           <Parameter name='Compounding' default='"Continuous"'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
-            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
           </Parameter>
           <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>
@@ -328,22 +328,22 @@
           <Parameter name='SettlementDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>settlement date.</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-10'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>tolerance</description>
+            <description>tolerance.</description>
           </Parameter>
           <Parameter name='MaxIterations' default='100'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>max number of iterations</description>
+            <description>max number of iterations.</description>
           </Parameter>
           <Parameter name='Guess' default='0.05'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>guess</description>
+            <description>guess.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -354,7 +354,7 @@
     </Member>
 
     <Member name='qlLegDuration' type='QuantLibAddin::Leg'>
-      <description>Returns the Cash-flow duration for the given Leg object</description>
+      <description>Returns the Cash-flow duration for the given Leg object.</description>
       <libraryFunction>duration</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -367,17 +367,17 @@
             <type>QuantLib::InterestRate</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>InterestRate object ID</description>
+            <description>InterestRate object ID.</description>
           </Parameter>
           <Parameter name='DurationType' default='"Modified"'>
             <type>QuantLib::Duration::Type</type>
             <tensorRank>scalar</tensorRank>
-            <description>Duration type</description>
+            <description>Duration type.</description>
           </Parameter>
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>settlement date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -388,7 +388,7 @@
     </Member>
 
     <Member name='qlLegConvexity' type='QuantLibAddin::Leg'>
-      <description>Returns the Cash-flow convexity for the given Leg object</description>
+      <description>Returns the Cash-flow convexity for the given Leg object.</description>
       <libraryFunction>convexity</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -401,12 +401,12 @@
             <type>QuantLib::InterestRate</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>interest rate object ID</description>
+            <description>interest rate object ID.</description>
           </Parameter>
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date</description>
+            <description>settlement date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -417,7 +417,7 @@
     </Member>
 
     <Member name='qlLegAnalysis' type='QuantLibAddin::Leg'>
-      <description>Returns the flow analysis for the given Leg object</description>
+      <description>Returns the flow analysis for the given Leg object.</description>
       <libraryFunction>analysis</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -434,7 +434,7 @@
     </Member>
 
     <Member name='qlLegSetCouponPricers' type='QuantLibAddin::Leg'>
-      <description>Set the coupon pricer at the given Leg object</description>
+      <description>Set the coupon pricer at the given Leg object.</description>
       <libraryFunction>setCouponPricers</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -445,7 +445,7 @@
           <Parameter name='FloatingRateCouponPricer'>
             <type>QuantLibAddin::FloatingRateCouponPricer</type>
             <tensorRank>vector</tensorRank>
-            <description>FloatingRate coupon pricer object ID</description>
+            <description>FloatingRate coupon pricer object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -467,19 +467,19 @@
           <Parameter name='LegIDs'>
             <type>QuantLibAddin::Leg</type>
             <tensorRank>vector</tensorRank>
-            <description>leg object IDs, one for each phase</description>
+            <description>leg object IDs, one for each phase.</description>
           </Parameter>
           <Parameter name='ToBeSorted' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the CashFlows in the merged Leg must be sorted according to date/amount</description>
+            <description>TRUE if the CashFlows in the merged Leg must be sorted according to date/amount.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
     <Member name='qlInterestRateRate' type='QuantLib::InterestRate' superType='libraryClass'>
-      <description>Returns the rate in the given InterestRate object</description>
+      <description>Returns the rate in the given InterestRate object.</description>
       <libraryFunction>rate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -496,7 +496,7 @@
     </Member>
 
     <Member name='qlInterestRateDayCounter' type='QuantLib::InterestRate' superType='libraryClass'>
-      <description>Returns the DayCounter in the given InterestRate object</description>
+      <description>Returns the DayCounter in the given InterestRate object.</description>
       <libraryFunction>dayCounter</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -513,7 +513,7 @@
     </Member>
 
     <Member name='qlInterestRateCompounding' type='QuantLib::InterestRate' superType='libraryClass'>
-      <description>Returns the Compounding in the given InterestRate object</description>
+      <description>Returns the Compounding in the given InterestRate object.</description>
       <libraryFunction>compounding</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -530,7 +530,7 @@
     </Member>
 
     <Member name='qlInterestRateFrequency' type='QuantLib::InterestRate' superType='libraryClass'>
-      <description>Returns the Frequency in the given InterestRate object</description>
+      <description>Returns the Frequency in the given InterestRate object.</description>
       <libraryFunction>frequency</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -558,17 +558,17 @@
           <Parameter name='Rate' exampleValue='0.04'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>rate</description>
+            <description>rate.</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Irr DayCounter ID</description>
+            <description>Irr DayCounter ID.</description>
           </Parameter>
-          <Parameter name='Compounding' defaul='Continuous' const='False'>
+          <Parameter name='Compounding' default='"Continuous"' const='False'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
-            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt})</description>
+            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
           </Parameter>
           <Parameter name='Frequency' default='"Annual"' const='False'>
             <type>QuantLib::Frequency</type>

@@ -1,6 +1,6 @@
 
 <Category name='logging'>
-  <description>logging functions</description>
+  <description>logging functions.</description>
   <displayName>Logging Functions</displayName>
   <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
   <addinIncludes>
@@ -17,7 +17,7 @@
   <Functions>
 
     <Procedure name='ohLogAllObjects'>
-      <description>write all object descriptions to log file</description>
+      <description>write all object descriptions to log file.</description>
       <alias>ObjectHandler::logAllObjects</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -32,7 +32,7 @@
     </Procedure>
 
     <Procedure name='ohLogMessage'>
-      <description>log a message</description>
+      <description>log a message.</description>
       <alias>ObjectHandler::logMessage</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -43,12 +43,12 @@
           <Parameter name='LogMessage'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>message to be logged</description>
+            <description>message to be logged.</description>
           </Parameter>
           <Parameter name='LogLevel' default='4'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>threshold for log messages</description>
+            <description>threshold for log messages.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -59,7 +59,7 @@
     </Procedure>
 
     <Procedure name='ohLogObject'>
-      <description>write object description to log file</description>
+      <description>write object description to log file.</description>
       <alias>ObjectHandler::logObject</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -70,7 +70,7 @@
           <Parameter name='ObjectId'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>ID of object to be logged</description>
+            <description>ID of object to be logged.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -81,7 +81,7 @@
     </Procedure>
 
     <Procedure name='ohSetLogFile'>
-      <description>begin logging to named file</description>
+      <description>begin logging to named file.</description>
       <alias>ObjectHandler::setLogFile</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
@@ -93,12 +93,12 @@
           <Parameter name='LogFileName'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>path and name of log file</description>
+            <description>path and name of log file.</description>
           </Parameter>
           <Parameter name='LogLevel' default='4'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>threshold for log messages</description>
+            <description>threshold for log messages.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -109,7 +109,7 @@
     </Procedure>
 
     <Procedure name='ohSetLogLevel'>
-      <description>set threshold for log messages</description>
+      <description>set threshold for log messages.</description>
       <alias>ObjectHandler::setLogLevel</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -119,19 +119,19 @@
           <Parameter name='LogLevel'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>threshold for log messages</description>
+            <description>threshold for log messages.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>void</type>
         <tensorRank>scalar</tensorRank>
-        <description>returns new logging threshold</description>
+        <description>returns new logging threshold.</description>
       </ReturnValue>
     </Procedure>
 
     <Procedure name='ohSetConsole'>
-      <description>fork output to stdout</description>
+      <description>fork output to stdout.</description>
       <alias>ObjectHandler::setConsole</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Cpp'/>
@@ -141,12 +141,12 @@
           <Parameter name='Console'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>1 (enable) / 0 (disable)</description>
+            <description>1 (enable) / 0 (disable).</description>
           </Parameter>
           <Parameter name='LogLevel' default='4'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>threshold for log messages</description>
+            <description>threshold for log messages.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

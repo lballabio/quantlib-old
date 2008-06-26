@@ -1,5 +1,5 @@
 <Category name='cmsmarketcalibration'>
-  <description>functions to construct and use CmsMarketCalibration objects</description>
+  <description>functions to construct and use CmsMarketCalibration objects.</description>
   <displayName>Cms Market Calibration</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -37,12 +37,12 @@
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Volatility Cube by Sabr</description>
+            <description>Volatility Cube by Sabr.</description>
           </Parameter>
           <Parameter name='CmsMarket'>
             <type>QuantLib::CmsMarket</type>
             <tensorRank>scalar</tensorRank>
-            <description>CmsMarket object ID</description>
+            <description>CmsMarket object ID.</description>
           </Parameter>
           <Parameter name='Weights'>
             <type>QuantLib::Matrix</type>
@@ -52,14 +52,14 @@
           <Parameter name='CalibrationType'>
             <type>QuantLib::CmsMarketCalibration::CalibrationType</type>
             <tensorRank>scalar</tensorRank>
-            <description>calibration type (e.g. OnSpread, OnPrice, OnForwardPrice)</description>
+            <description>calibration type (e.g. OnSpread, OnPrice, OnForwardPrice).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
     <Member name='qlCmsMarketCalibrationCompute' type='QuantLibAddin::CmsMarketCalibration'>
-      <description>Return the best beta and mean reversion</description>
+      <description>Return the best beta and mean reversion.</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -71,17 +71,17 @@
           <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
             <tensorRank>scalar</tensorRank>
-            <description>EndCriteria object ID</description>
+            <description>EndCriteria object ID.</description>
           </Parameter>
           <Parameter name='OptimizationMethod' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
-            <description>OptimizationMethod object ID</description>
+            <description>OptimizationMethod object ID.</description>
           </Parameter>
           <Parameter name='Guess'>
             <type>QuantLib::Array</type>
             <tensorRank>vector</tensorRank>
-            <description>guess</description>
+            <description>guess.</description>
           </Parameter>
           <Parameter name='IsMeanRevFixed' exampleValue = 'FALSE'>
             <type>bool</type>
@@ -97,7 +97,7 @@
     </Member>
 
     <Member name='qlCmsMarketCalibrationError' type='QuantLib::CmsMarketCalibration'>
-      <description>Returns the error of the simultaneous calibration</description>
+      <description>Returns the error of the simultaneous calibration.</description>
       <libraryFunction>error</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -113,7 +113,7 @@
     </Member>
 
     <Member name='qlCmsMarketCalibrationEndCriteria' type='QuantLib::CmsMarketCalibration'>
-      <description>Returns the optimization end criteria of the simultaneous calibration</description>
+      <description>Returns the optimization end criteria of the simultaneous calibration.</description>
       <libraryFunction>endCriteria</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -129,7 +129,7 @@
     </Member>
 
     <Member name='qlCmsMarketCalibrationElapsed' type='QuantLibAddin::CmsMarketCalibration'>
-      <description>Returns the elapsed time of the simultaneous calibration</description>
+      <description>Returns the elapsed time of the simultaneous calibration.</description>
       <libraryFunction>elapsed</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -145,7 +145,7 @@
     </Member>
 
     <Member name='qlCmsMarketCalibrationSparseSabrParameters' type='QuantLibAddin::CmsMarketCalibration'>
-      <description>returns results of Sabr calibration</description>
+      <description>returns results of Sabr calibration.</description>
       <libraryFunction>getSparseSabrParameters</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -161,7 +161,7 @@
     </Member>
 
     <Member name='qlCmsMarketCalibrationDenseSabrParameters' type='QuantLibAddin::CmsMarketCalibration'>
-      <description>returns results of Sabr calibration</description>
+      <description>returns results of Sabr calibration.</description>
       <libraryFunction>getDenseSabrParameters</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -177,7 +177,7 @@
     </Member>
 
     <Member name='qlSimultaneousCalibrationBrowseCmsMarket' type='QuantLibAddin::CmsMarketCalibration'>
-      <description>return the market and implied spreads matrix</description>
+      <description>return the market and implied spreads matrix.</description>
       <libraryFunction>getCmsMarket</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->

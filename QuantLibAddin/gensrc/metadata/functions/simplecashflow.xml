@@ -1,5 +1,5 @@
 <Category name='simplecashflow'>
-  <description>functions to construct and use CashFlow objects</description>
+  <description>functions to construct and use CashFlow objects.</description>
   <displayName>SimpleCashFlow</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -26,12 +26,12 @@
           <Parameter name='Amounts' exampleValue='1000000.0,500000.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>list of cash to be received/paid</description>
+            <description>list of cash to be received/paid.</description>
           </Parameter>
           <Parameter name='Dates' exampleValue='40238,40330'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>payment dates corresponding to amounts</description>
+            <description>payment dates corresponding to amounts.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

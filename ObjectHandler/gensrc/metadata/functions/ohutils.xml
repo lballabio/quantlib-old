@@ -1,5 +1,5 @@
 <Category name='ohutils'>
-  <description>objecthandler utilities</description>
+  <description>objecthandler utilities.</description>
   <displayName>ObjectHandler Utilities</displayName>
   <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
   <addinIncludes>
@@ -16,7 +16,7 @@
   <Functions>
 
     <Procedure name='ohTrigger' dependencyTrigger='false'>
-      <description>forces a dependency between multiple ranges and returns the update counter</description>
+      <description>forces a dependency between multiple ranges and returns the update counter.</description>
       <alias>ObjectHandler::dependsOn</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
@@ -26,72 +26,72 @@
           <Parameter name='Dummy0' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy1' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy2' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy3' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy4' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy5' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy6' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy7' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy8' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy9' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy10' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy11' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy12' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
           <Parameter name='Dummy13' ignore='true'>
             <type>any</type>
             <tensorRank>scalar</tensorRank>
-            <description>dummy range reference (ignored)</description>
+            <description>dummy range reference (ignored).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -102,7 +102,7 @@
     </Procedure>
 
     <Procedure name='ohFunctionCount'>
-      <description>returns the number of functions in this addin</description>
+      <description>returns the number of functions in this addin.</description>
       <alias>ObjectHandler::version</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
@@ -117,7 +117,7 @@
     </Procedure>
 
     <Procedure name='ohListObjectIDs'>
-      <description>list the IDs of objects in repository matching regex</description>
+      <description>list the IDs of objects in repository matching regex.</description>
       <alias>ObjectHandler::RepositoryXL::instance().listObjectIDs</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -127,7 +127,7 @@
           <Parameter name='Regex'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>optional matching pattern in UNIX format (wildcard is .*)</description>
+            <description>optional matching pattern in UNIX format (wildcard is .*).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -138,7 +138,7 @@
     </Procedure>
 
     <Procedure name='ohObjectExists'>
-      <description>list the IDs of objects in repository matching regex</description>
+      <description>list the IDs of objects in repository matching regex.</description>
       <alias>ObjectHandler::RepositoryXL::instance().objectExists</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -148,7 +148,7 @@
           <Parameter name='ObjectID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Object ID name</description>
+            <description>Object ID name.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -159,7 +159,7 @@
     </Procedure>
 
     <Procedure name='ohObjectCount'>
-      <description>#/objects in repository</description>
+      <description>#/objects in repository.</description>
       <alias>ObjectHandler::RepositoryXL::instance().objectCount</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -174,7 +174,7 @@
     </Procedure>
 
     <Procedure name='ohPack'>
-      <description>trim error/null/empty values from bottom/right of matrix/vector</description>
+      <description>trim error/null/empty values from bottom/right of matrix/vector.</description>
       <alias>ObjectHandler::RepositoryXL::instance().packMatrix</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
@@ -184,7 +184,7 @@
           <Parameter name='InputRange'>
             <type>any</type>
             <tensorRank>matrix</tensorRank>
-            <description>scalar/vector/matrix of values to be packed</description>
+            <description>scalar/vector/matrix of values to be packed.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -195,7 +195,7 @@
     </Procedure>
 
     <Procedure name='ohSplit' dependencyTrigger='False'>
-      <description>Split a string into substrings using the given delimiter</description>
+      <description>Split a string into substrings using the given delimiter.</description>
       <alias>ObjectHandler::split</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -205,17 +205,17 @@
           <Parameter name='String'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>string to be parsed</description>
+            <description>string to be parsed.</description>
           </Parameter>
           <Parameter name='Delimiters'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>delimiter characters</description>
+            <description>delimiter characters.</description>
           </Parameter>
           <Parameter name='ConcatenateDelim' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>specifies if multiple adjacent delimiters are to be considered as one (TRUE) or not (FALSE)</description>
+            <description>specifies if multiple adjacent delimiters are to be considered as one (TRUE) or not (FALSE).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -226,7 +226,7 @@
     </Procedure>
 
     <Procedure name='ohConcatenate' dependencyTrigger='False'>
-      <description>Concatenate substrings into a single string using the given delimiter</description>
+      <description>Concatenate substrings into a single string using the given delimiter.</description>
       <alias>ObjectHandler::concatenate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -236,12 +236,12 @@
           <Parameter name='Substrings'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>string to be parsed</description>
+            <description>string to be parsed.</description>
           </Parameter>
           <Parameter name='Delimiter'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>delimiter string</description>
+            <description>delimiter string.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -252,7 +252,7 @@
     </Procedure>
 
     <Procedure name='ohFilter' dependencyTrigger='False'>
-      <description>Filters the first vector using the second one as boolean inclusion flags</description>
+      <description>Filters the first vector using the second one as boolean inclusion flags.</description>
       <alias>ObjectHandler::filter</alias>
       <xlWizardRecalc>true</xlWizardRecalc>
       <SupportedPlatforms>
@@ -263,12 +263,12 @@
           <Parameter name='Input'>
             <type>any</type>
             <tensorRank>vector</tensorRank>
-            <description>vector to be filtered</description>
+            <description>vector to be filtered.</description>
           </Parameter>
           <Parameter name='Flags'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
-            <description>vector to inclusion flags</description>
+            <description>vector to inclusion flags.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -279,7 +279,7 @@
     </Procedure>
 
     <Procedure name='ohRetrieveError' dependencyTrigger='false'>
-      <description>Retrieve the error message if any that is associated with the given range</description>
+      <description>Retrieve the error message if any that is associated with the given range.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual' xlMacro='false'/>
       </SupportedPlatforms>
@@ -288,7 +288,7 @@
           <Parameter name='Range'>
             <type>reference</type>
             <tensorRank>scalar</tensorRank>
-            <description>range to query</description>
+            <description>range to query.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -308,7 +308,7 @@
           <Parameter name='Range'>
             <type>reference</type>
             <tensorRank>scalar</tensorRank>
-            <description>range to query</description>
+            <description>range to query.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -319,7 +319,7 @@
     </Procedure>
 
     <Procedure name='ohVbaError'>
-      <description>Retrieve error message associated with VBA code</description>
+      <description>Retrieve error message associated with VBA code.</description>
       <alias>ObjectHandler::RepositoryXL::instance().vbaError</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -334,7 +334,7 @@
     </Procedure>
 
     <Procedure name='ohBoostVersion'>
-      <description>returns the version number of Boost</description>
+      <description>returns the version number of Boost.</description>
       <alias>ObjectHandler::boostVersion</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -349,7 +349,7 @@
     </Procedure>
 
     <Procedure name='ohVersion'>
-      <description>returns the version number of ObjectHandler</description>
+      <description>returns the version number of ObjectHandler.</description>
       <alias>ObjectHandler::version</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -365,7 +365,7 @@
     </Procedure>
 
     <Procedure name='ohObjectCallerAddress'>
-      <description>retrieve address of cell in which object resides</description>
+      <description>retrieve address of cell in which object resides.</description>
       <alias>ObjectHandler::RepositoryXL::instance().callerAddress</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -375,7 +375,7 @@
           <Parameter name='ObjectId'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>ID of object to be queried</description>
+            <description>ID of object to be queried.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -386,7 +386,7 @@
     </Procedure>
 
     <Procedure name='ohObjectCallerKey'>
-      <description>retrieve unique ID of the CallingRange object associated with the cell in which object resides</description>
+      <description>retrieve unique ID of the CallingRange object associated with the cell in which object resides.</description>
       <alias>ObjectHandler::RepositoryXL::instance().callerKey</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -396,7 +396,7 @@
           <Parameter name='ObjectId'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>ID of object to be queried</description>
+            <description>ID of object to be queried.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

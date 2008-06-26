@@ -1,5 +1,5 @@
 <Category name='prices'>
-  <description>Price utility functions</description>
+  <description>Price utility functions.</description>
   <displayName>Prices</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
@@ -11,7 +11,7 @@
   <Functions>
 
     <Procedure name='qlMidEquivalent' >
-      <description>returns the mid price if available, or a suitable substitute otherwise</description>
+      <description>returns the mid price if available, or a suitable substitute otherwise.</description>
       <alias>QuantLib::midEquivalent</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -22,22 +22,22 @@
           <Parameter name='Bid' default='0' exampleValue='90'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>bid price</description>
+            <description>bid price.</description>
           </Parameter>
           <Parameter name='Ask' default='0' exampleValue='110'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>ask price</description>
+            <description>ask price.</description>
           </Parameter>
           <Parameter name='Last' default='0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>last price</description>
+            <description>last price.</description>
           </Parameter>
           <Parameter name='Close' default='0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>close price</description>
+            <description>close price.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -59,12 +59,12 @@
           <Parameter name='Bid' default='0' exampleValue='90'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>bid price</description>
+            <description>bid price.</description>
           </Parameter>
           <Parameter name='Ask' default='0' exampleValue='110'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>ask price</description>
+            <description>ask price.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

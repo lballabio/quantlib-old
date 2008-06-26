@@ -1,6 +1,6 @@
 
 <Category name='enumerations'>
-  <description>enumerations</description>
+  <description>enumerations.</description>
   <displayName>enumerations</displayName>
   <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
   <addinIncludes>
@@ -14,7 +14,7 @@
   <Functions>
 
     <Procedure name='ohListEnumeratedTypes'>
-      <description>list supported enumerated types</description>
+      <description>list supported enumerated types.</description>
       <alias>ObjectHandler::EnumTypeRegistry::instance().getAllRegisteredTypes</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -29,7 +29,7 @@
     </Procedure>
 
     <Procedure name='ohEnumeratedType'>
-      <description>return the members of a given enumerated type</description>
+      <description>return the members of a given enumerated type.</description>
       <alias>ObjectHandler::EnumTypeRegistry::instance().getTypeElements</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -39,7 +39,7 @@
           <Parameter name='EnumId'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>name of enumerated type</description>
+            <description>name of enumerated type.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -50,7 +50,7 @@
     </Procedure>
 
     <Procedure name='ohListEnumeratedClasses'>
-      <description>list supported enumerated classes</description>
+      <description>list supported enumerated classes.</description>
       <alias>ObjectHandler::EnumClassRegistry::instance().getAllRegisteredTypes</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -65,7 +65,7 @@
     </Procedure>
 
     <Procedure name='ohEnumeratedClass'>
-      <description>return the members of a given enumerated class</description>
+      <description>return the members of a given enumerated class.</description>
       <alias>ObjectHandler::EnumClassRegistry::instance().getTypeElements</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -75,7 +75,7 @@
           <Parameter name='EnumId'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>name of enumerated type</description>
+            <description>name of enumerated type.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -86,7 +86,7 @@
     </Procedure>
 
     <Procedure name='ohListEnumeratedPairs'>
-      <description>list supported enumerated pairs</description>
+      <description>list supported enumerated pairs.</description>
       <alias>ObjectHandler::EnumPairRegistry::instance().getAllRegisteredTypes</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -101,7 +101,7 @@
     </Procedure>
 
     <Procedure name='ohEnumeratedPair'>
-      <description>return the members of a given enumerated pair</description>
+      <description>return the members of a given enumerated pair.</description>
       <alias>ObjectHandler::EnumPairRegistry::instance().getTypeElements</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -111,7 +111,7 @@
           <Parameter name='EnumId'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>name of enumerated type</description>
+            <description>name of enumerated type.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

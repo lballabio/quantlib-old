@@ -1,5 +1,5 @@
 <Category name='products'>
-  <description>functions to construct and use Market Models Products objects</description>
+  <description>functions to construct and use Market Models Products objects.</description>
   <displayName>Products</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -45,7 +45,7 @@
     </Constructor>
 
     <Member name='qlMarketModelMultiProductCompositeAdd' type='QuantLib::MultiProductComposite' superType='libraryClass'>
-      <description>Add new product to MarketModelComposite object</description>
+      <description>Add new product to MarketModelComposite object.</description>
       <libraryFunction>MarketModelComposite::add</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -58,7 +58,7 @@
             <type>QuantLib::MarketModelMultiProduct</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>ID of product object</description>
+            <description>ID of product object.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -69,7 +69,7 @@
     </Member>
 
     <Member name='qlMarketModelMultiProductCompositeFinalize' type='QuantLib::MultiProductComposite' superType='libraryClass'>
-      <description>finalize the MarketModelComposite object</description>
+      <description>finalize the MarketModelComposite object.</description>
       <libraryFunction>finalize</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -88,7 +88,7 @@
     <!-- MarketModelMultiProduct base class interface  -->
 
     <Member name='qlMarketModelMultiProductSuggestedNumeraires' type='QuantLib::MarketModelMultiProduct' superType='libraryClass'>
-      <description>suggested Numeraires for the MarketModelMultiProduct object</description>
+      <description>suggested Numeraires for the MarketModelMultiProduct object.</description>
       <libraryFunction>suggestedNumeraires</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -105,7 +105,7 @@
     </Member>
 
     <Member name='qlMarketModelMultiProductPossibleCashFlowTimes' type='QuantLib::MarketModelMultiProduct' superType='libraryClass'>
-      <description>possible cash flow times for the MarketModelMultiProduct object</description>
+      <description>possible cash flow times for the MarketModelMultiProduct object.</description>
       <libraryFunction>possibleCashFlowTimes</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -122,7 +122,7 @@
     </Member>
 
     <Member name='qlMarketModelMultiProductNumberOfProducts' type='QuantLib::MarketModelMultiProduct' superType='libraryClass'>
-      <description>number of products in the MarketModelMultiProduct object</description>
+      <description>number of products in the MarketModelMultiProduct object.</description>
       <libraryFunction>numberOfProducts</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -139,7 +139,7 @@
     </Member>
 
     <Member name='qlMarketModelMultiProductMaxNumberOfCashFlowsPerProductPerStep' type='QuantLib::MarketModelMultiProduct' superType='libraryClass'>
-      <description>Max number of cashflows per product per step for the MarketModelMultiProduct object</description>
+      <description>Max number of cashflows per product per step for the MarketModelMultiProduct object.</description>
       <libraryFunction>maxNumberOfCashFlowsPerProductPerStep</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -170,22 +170,22 @@
           <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
+            <description>rate fixing times.</description>
           </Parameter>
           <Parameter name='Accruals' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>accrual factors</description>
+            <description>accrual factors.</description>
           </Parameter>
           <Parameter name='PaymentTimes' exampleValue ='1.0,2.0,3.0,4.0,5.0'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>payment times of the product</description>
+            <description>payment times of the product.</description>
           </Parameter>
           <Parameter name='Strikes' exampleValue ='0.01,0.01,0.01,0.01,0.01'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>forward strikes</description>
+            <description>forward strikes.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -204,47 +204,47 @@
           <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
+            <description>rate fixing times.</description>
           </Parameter>
           <Parameter name='Accruals' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>accrual factors between rate fixing times</description>
+            <description>accrual factors between rate fixing times.</description>
           </Parameter>
           <Parameter name='PaymentTimes' exampleValue ='1.0,2.0,3.0,4.0,5.0'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>payment times of the product</description>
+            <description>payment times of the product.</description>
           </Parameter>
           <Parameter name='GearingOfFloor' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>gearing of floor</description>
+            <description>gearing of floor.</description>
           </Parameter>
           <Parameter name='GearingOfFixing' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>gearing of fixing</description>
+            <description>gearing of fixing.</description>
           </Parameter>
           <Parameter name='SpreadOfFloor' exampleValue ='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>spread of floor</description>
+            <description>spread of floor.</description>
           </Parameter>
           <Parameter name='SpreadOfFixing' exampleValue ='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>spread of fixing</description>
+            <description>spread of fixing.</description>
           </Parameter>
           <Parameter name='InitialFloor' exampleValue ='0.01'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>initial floor</description>
+            <description>initial floor.</description>
           </Parameter>
           <Parameter name='Payer' exampleValue ='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>payer if true</description>
+            <description>payer if true.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -263,22 +263,22 @@
           <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
+            <description>rate fixing times.</description>
           </Parameter>
           <Parameter name='Accruals'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>accrual factors</description>
+            <description>accrual factors.</description>
           </Parameter>
           <Parameter name='PaymentTimes'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>payment times of the product</description>
+            <description>payment times of the product.</description>
           </Parameter>
           <Parameter name='Payoffs'>
             <type>QuantLib::Payoff</type>
             <tensorRank>vector</tensorRank>
-            <description>striked type payoff object IDs</description>
+            <description>striked type payoff object IDs.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

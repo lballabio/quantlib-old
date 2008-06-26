@@ -1,5 +1,5 @@
 <Category name='evolutiondescription'>
-  <description>functions to construct and use evolution description related objects</description>
+  <description>functions to construct and use evolution description related objects.</description>
   <displayName>Evolution Description</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -37,12 +37,12 @@
           <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>rate fixing times</description>
+            <description>rate fixing times.</description>
           </Parameter>
           <Parameter name='EvolutionTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>evolution times in the simulation</description>
+            <description>evolution times in the simulation.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -61,7 +61,7 @@
             <type>QuantLib::MarketModelMultiProduct</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>ID of product object</description>
+            <description>ID of product object.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -69,7 +69,7 @@
 
     <!-- EvolutionDescription class interfaces -->
     <Member name='qlEvolutionDescriptionRateTimes' type='QuantLib::EvolutionDescription' superType='libraryClass'>
-      <description>rates fixing times for the EvolutionDescription object</description>
+      <description>rates fixing times for the EvolutionDescription object.</description>
       <libraryFunction>rateTimes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -85,7 +85,7 @@
     </Member>
 
     <Member name='qlEvolutionDescriptionRateTaus' type='QuantLib::EvolutionDescription' superType='libraryClass'>
-      <description>rate taus for the EvolutionDescription object</description>
+      <description>rate taus for the EvolutionDescription object.</description>
       <libraryFunction>rateTaus</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -101,7 +101,7 @@
     </Member>
 
     <Member name='qlEvolutionDescriptionEvolutionTimes' type='QuantLib::EvolutionDescription' superType='libraryClass'>
-      <description>evolution times for the EvolutionDescription object</description>
+      <description>evolution times for the EvolutionDescription object.</description>
       <libraryFunction>evolutionTimes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -117,7 +117,7 @@
     </Member>
 
     <!--<Member name='qlEvolutionDescriptionEffectiveStopTimes' type='QuantLib::EvolutionDescription' superType='libraryClass'>
-      <description>for each step returns a row with the effective evolution stopping time for each rate</description>
+      <description>for each step returns a row with the effective evolution stopping time for each rate.</description>
       <libraryFunction>effectiveStopTimes</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -133,7 +133,7 @@
     </Member>-->
 
     <Member name='qlEvolutionDescriptionFirstAliveRate' type='QuantLib::EvolutionDescription' superType='libraryClass'>
-      <description>first alive rate at each evolution time for the EvolutionDescription object</description>
+      <description>first alive rate at each evolution time for the EvolutionDescription object.</description>
       <libraryFunction>firstAliveRate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -149,7 +149,7 @@
     </Member>
 
     <Member name='qlEvolutionDescriptionNumberOfRates' type='QuantLib::EvolutionDescription' superType='libraryClass'>
-      <description>number of rates for the EvolutionDescription object</description>
+      <description>number of rates for the EvolutionDescription object.</description>
       <libraryFunction>numberOfRates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -165,7 +165,7 @@
     </Member>
 
     <Member name='qlEvolutionDescriptionNumberOfSteps' type='QuantLib::EvolutionDescription' superType='libraryClass'>
-      <description>number of steps for the EvolutionDescription object</description>
+      <description>number of steps for the EvolutionDescription object.</description>
       <libraryFunction>numberOfSteps</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -183,7 +183,7 @@
     <!-- EvolutionDescription object procedures -->
 
     <Procedure name='qlTerminalMeasure'>
-      <description>Returns the terminal measure for the given EvolutionDescription object</description>
+      <description>Returns the terminal measure for the given EvolutionDescription object.</description>
       <alias>QuantLib::terminalMeasure</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -196,7 +196,7 @@
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>ID of EvolutionDescription object</description>
+            <description>ID of EvolutionDescription object.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -207,7 +207,7 @@
     </Procedure>
 
     <Procedure name='qlMoneyMarketMeasure'>
-      <description>Returns the discretely compounded money market measure for the given EvolutionDescription object</description>
+      <description>Returns the discretely compounded money market measure for the given EvolutionDescription object.</description>
       <alias>QuantLib::moneyMarketMeasure</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -220,7 +220,7 @@
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>ID of EvolutionDescription object</description>
+            <description>ID of EvolutionDescription object.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -231,7 +231,7 @@
     </Procedure>
 
     <Procedure name='qlMoneyMarketPlusMeasure'>
-      <description>Returns the discretely compounded money market measure for the given EvolutionDescription object</description>
+      <description>Returns the discretely compounded money market measure for the given EvolutionDescription object.</description>
       <alias>QuantLib::moneyMarketPlusMeasure</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -244,12 +244,12 @@
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>ID of EvolutionDescription object</description>
+            <description>ID of EvolutionDescription object.</description>
           </Parameter>
           <Parameter name='Offset' default='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>offset applied to the MoneyMarket measure</description>
+            <description>offset applied to the MoneyMarket measure.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -260,7 +260,7 @@
     </Procedure>
 
     <Procedure name='qlIsInTerminalMeasure'>
-      <description>Returns TRUE if the numeraire vector is Terminal measure for the given EvolutionDescription object</description>
+      <description>Returns TRUE if the numeraire vector is Terminal measure for the given EvolutionDescription object.</description>
       <alias>QuantLib::isInTerminalMeasure</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -273,12 +273,12 @@
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>ID of EvolutionDescription object</description>
+            <description>ID of EvolutionDescription object.</description>
           </Parameter>
           <Parameter name='Numeraires' exampleValue ='5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of numeraires</description>
+            <description>vector of numeraires.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -289,7 +289,7 @@
     </Procedure>
 
     <Procedure name='qlIsInMoneyMarketMeasure'>
-      <description>Returns TRUE if the numeraire vector is money market measure for the given EvolutionDescription object</description>
+      <description>Returns TRUE if the numeraire vector is money market measure for the given EvolutionDescription object.</description>
       <alias>QuantLib::isInMoneyMarketMeasure</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -302,12 +302,12 @@
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>ID of EvolutionDescription object</description>
+            <description>ID of EvolutionDescription object.</description>
           </Parameter>
           <Parameter name='Numeraires' exampleValue ='5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of numeraires</description>
+            <description>vector of numeraires.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -318,7 +318,7 @@
     </Procedure>
 
     <Procedure name='qlIsInMoneyMarketPlusMeasure'>
-      <description>Returns TRUE if the numeraire vector is money market measure plus for the given EvolutionDescription object</description>
+      <description>Returns TRUE if the numeraire vector is money market measure plus for the given EvolutionDescription object.</description>
       <alias>QuantLib::isInMoneyMarketPlusMeasure</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -331,17 +331,17 @@
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>ID of EvolutionDescription object</description>
+            <description>ID of EvolutionDescription object.</description>
           </Parameter>
           <Parameter name='Numeraires' exampleValue ='5,5'>
             <type>QuantLib::Size</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of numeraires</description>
+            <description>vector of numeraires.</description>
           </Parameter>
           <Parameter name='Offset' default='1'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>offset applied to the MoneyMarket measure</description>
+            <description>offset applied to the MoneyMarket measure.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

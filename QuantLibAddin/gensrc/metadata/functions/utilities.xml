@@ -1,5 +1,5 @@
 <Category name='utilities'>
-  <description>diagnostic and utility functions</description>
+  <description>diagnostic and utility functions.</description>
   <displayName>utilities</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
@@ -14,7 +14,7 @@
   <Functions>
 
     <Procedure name='qlxlVersion'>
-      <description>returns the version number of QuantLibXL</description>
+      <description>returns the version number of QuantLibXL.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
@@ -23,7 +23,7 @@
           <Parameter name='Verbose' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE to get the verbose version string</description>
+            <description>TRUE to get the verbose version string.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -34,7 +34,7 @@
     </Procedure>
 
     <Procedure name='qlAddinVersion'>
-      <description>returns the version number of QuantLibAddin (a.k.a QuantLibObject)</description>
+      <description>returns the version number of QuantLibAddin (a.k.a QuantLibObject).</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Calc'/>
@@ -50,7 +50,7 @@
     </Procedure>
 
     <Procedure name='qlVersion'>
-      <description>returns the version number of QuantLib</description>
+      <description>returns the version number of QuantLib.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Calc'/>
@@ -66,7 +66,7 @@
     </Procedure>
 
     <Procedure name='qlFunctionCount'>
-      <description>returns the number of functions in this Addin</description>
+      <description>returns the number of functions in this Addin.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -81,7 +81,7 @@
     </Procedure>
 
     <!--<Procedure name='qlInfoHighestRevisionNumber'>
-      <description>returns the highest commit revision in the source code working copy used to build the addin</description>
+      <description>returns the highest commit revision in the source code working copy used to build the addin.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
         -->
@@ -115,7 +115,7 @@
     </Procedure>
 
     <Procedure name='qlInfoRevisionRange'>
-      <description>returns the update revision range in the source code used to build the addin</description>
+      <description>returns the update revision range in the source code used to build the addin.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
         -->
@@ -132,7 +132,7 @@
     </Procedure>
 
     <Procedure name='qlInfoLocalModifications'>
-      <description>returns TRUE if there were local modifications in the source code used to build the addin</description>
+      <description>returns TRUE if there were local modifications in the source code used to build the addin.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
         -->
@@ -161,12 +161,12 @@
           <Parameter name='Set' exampleValue='0,1,2,3,4,5,6,7,8,9'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>set</description>
+            <description>set.</description>
           </Parameter>
           <Parameter name='Subset' exampleValue='1,3,5,7,9'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>subset</description>
+            <description>subset.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

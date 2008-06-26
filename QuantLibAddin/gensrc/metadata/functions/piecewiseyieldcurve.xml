@@ -1,5 +1,5 @@
 <Category name='piecewiseyieldcurve'>
-    <description>functions to construct and use PiecewiseYieldCurve objects</description>
+    <description>functions to construct and use PiecewiseYieldCurve objects.</description>
     <displayName>Piecewise Yield Curves</displayName>
     <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
     <serializationIncludes>
@@ -34,48 +34,48 @@
                     <Parameter name='NDays' default='0'>
                         <type>QuantLib::Natural</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0</description>
+                        <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0.</description>
                     </Parameter>
                     <Parameter name='Calendar'>
                         <type>QuantLib::Calendar</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate</description>
+                        <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate.</description>
                     </Parameter>
                     <Parameter name='RateHelpers' exampleValue ='EUROND,EURTND,EURSND,EURSWD,EUR2WD'>
                         <type>QuantLib::RateHelper</type>
                         <tensorRank>vector</tensorRank>
-                        <description>vector of rate-helpers</description>
+                        <description>vector of rate-helpers.</description>
                     </Parameter>
                     <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
                         <type>QuantLib::DayCounter</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>DayCounter ID</description>
+                        <description>DayCounter ID.</description>
                     </Parameter>
                     <Parameter name='Jumps' exampleValue ='1.0'>
                         <type>QuantLib::Quote</type>
                         <superType>libToHandle</superType>
                         <tensorRank>vector</tensorRank>
-                        <description>Jump quotes vector</description>
+                        <description>Jump quotes vector.</description>
                     </Parameter>
                     <Parameter name='JumpDates' exampleValue ='1Y'>
                         <type>QuantLib::Date</type>
                         <tensorRank>vector</tensorRank>
-                        <description>Jump dates vector</description>
+                        <description>Jump dates vector.</description>
                     </Parameter>
                     <Parameter name='Accuracy' default='1.0e-12'>
                         <type>QuantLib::Real</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>Bootstrapping accuracy</description>
+                        <description>Bootstrapping accuracy.</description>
                     </Parameter>
                     <Parameter name='TraitsID' default='"Discount"'>
                         <type>string</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>Discount, ZeroRate, or ForwardRate</description>
+                        <description>Discount, ZeroRate, or ForwardRate.</description>
                     </Parameter>
                     <Parameter name='InterpolatorID' default='"LogLinear"'>
                         <type>string</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>BackwardFlat, ForwardFlat, Linear, LogLinear, CubicSpline, or LogCubic</description>
+                        <description>BackwardFlat, ForwardFlat, Linear, LogLinear, CubicSpline, or LogCubic.</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
@@ -84,7 +84,7 @@
         <!-- PiecewiseYieldCurve interface -->
 
         <Member name='qlPiecewiseYieldCurveTimes' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
-            <description>Retrieve list of Times for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;</description>
+            <description>Retrieve list of Times for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;.</description>
             <libraryFunction>times</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel'/>
@@ -94,12 +94,12 @@
                     <Parameter name='Traits'>
                         <type>QuantLibAddin::Token::Traits</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>traits</description>
+                        <description>traits.</description>
                     </Parameter>
                     <Parameter name='Interpolator'>
                         <type>QuantLibAddin::Token::Interpolator</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>interpolator</description>
+                        <description>interpolator.</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
@@ -110,7 +110,7 @@
         </Member>
 
         <Member name='qlPiecewiseYieldCurveDates' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
-            <description>Retrieve list of Dates for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;</description>
+            <description>Retrieve list of Dates for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;.</description>
             <libraryFunction>dates</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel'/>
@@ -120,12 +120,12 @@
                     <Parameter name='Traits'>
                         <type>QuantLibAddin::Token::Traits</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>traits</description>
+                        <description>traits.</description>
                     </Parameter>
                     <Parameter name='Interpolator'>
                         <type>QuantLibAddin::Token::Interpolator</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>interpolator</description>
+                        <description>interpolator.</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
@@ -136,7 +136,7 @@
         </Member>
 
         <Member name='qlPiecewiseYieldCurveData' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
-            <description>Retrieve Data for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;</description>
+            <description>Retrieve Data for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;.</description>
             <libraryFunction>data</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel'/>
@@ -146,12 +146,12 @@
                     <Parameter name='Traits'>
                         <type>QuantLibAddin::Token::Traits</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>traits</description>
+                        <description>traits.</description>
                     </Parameter>
                     <Parameter name='Interpolator'>
                         <type>QuantLibAddin::Token::Interpolator</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>interpolator</description>
+                        <description>interpolator.</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
@@ -162,7 +162,7 @@
         </Member>
 
         <!--<Member name='qlPiecewiseYieldCurveImprovements' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
-            <description>Retrieve improvements for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;</description>
+            <description>Retrieve improvements for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;.</description>
             <libraryFunction>improvements</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel'/>
@@ -172,12 +172,12 @@
                     <Parameter name='Traits'>
                         <type>QuantLibAddin::Token::Traits</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>traits</description>
+                        <description>traits.</description>
                     </Parameter>
                     <Parameter name='Interpolator'>
                         <type>QuantLibAddin::Token::Interpolator</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>interpolator</description>
+                        <description>interpolator.</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>
@@ -188,7 +188,7 @@
         </Member>-->
 
         <!--<Member name='qlPiecewiseYieldCurveIterations' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
-            <description>Retrieve Iterations for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;</description>
+            <description>Retrieve Iterations for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;.</description>
             <libraryFunction>iterations</libraryFunction>
             <SupportedPlatforms>
                 <SupportedPlatform name='Excel'/>
@@ -198,12 +198,12 @@
                     <Parameter name='Traits'>
                         <type>QuantLibAddin::Token::Traits</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>traits</description>
+                        <description>traits.</description>
                     </Parameter>
                     <Parameter name='Interpolator'>
                         <type>QuantLibAddin::Token::Interpolator</type>
                         <tensorRank>scalar</tensorRank>
-                        <description>interpolator</description>
+                        <description>interpolator.</description>
                     </Parameter>
                 </Parameters>
             </ParameterList>

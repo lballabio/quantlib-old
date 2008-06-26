@@ -1,5 +1,5 @@
 <Category name='ctsmmcapletcalibration'>
-  <description>functions to construct and use ctsmmcapletcalibration objects</description>
+  <description>functions to construct and use ctsmmcapletcalibration objects.</description>
   <displayName>Ctsmmcapletcalibration</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -31,7 +31,7 @@
     <!-- Caplet calibration of a Coterminal Swap Market Model -->
 
     <Member name='qlCTSMMCapletCalibrationCalibrate' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>calibrate</description>
+      <description>calibrate.</description>
       <libraryFunction>calibrate</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -43,27 +43,27 @@
           <Parameter name='NumberOfFactors' exampleValue='3'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of factors</description>
+            <description>number of factors.</description>
           </Parameter>
           <Parameter name='MaxIter' default='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>maximum number of iterations</description>
+            <description>maximum number of iterations.</description>
           </Parameter>
           <Parameter name='Tol' default='0.0001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>caplet vol tolerance</description>
+            <description>caplet vol tolerance.</description>
           </Parameter>
           <Parameter name='InnerMaxIter' default='100'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>innerMaxIter</description>
+            <description>innerMaxIter.</description>
           </Parameter>
           <Parameter name='InnerTol' default='1e-8'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>caplet vol tolerance</description>
+            <description>caplet vol tolerance.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -74,7 +74,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationFailures' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>failures</description>
+      <description>failures.</description>
       <libraryFunction>failures</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -91,7 +91,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationDeformationSize' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>deformationSize</description>
+      <description>deformationSize.</description>
       <libraryFunction>deformationSize</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -108,7 +108,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationMarketCapletVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>market caplet volalitilies</description>
+      <description>market caplet volalitilies.</description>
       <libraryFunction>mktCapletVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -125,7 +125,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationModelCapletVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>model caplet volalitilies</description>
+      <description>model caplet volalitilies.</description>
       <libraryFunction>mdlCapletVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -142,7 +142,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationCapletRmsError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>capletRmsError</description>
+      <description>capletRmsError.</description>
       <libraryFunction>capletRmsError</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -159,7 +159,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationCapletMaxError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>capletMaxError</description>
+      <description>capletMaxError.</description>
       <libraryFunction>capletMaxError</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -176,7 +176,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationMarketSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>market swaption volalitilies</description>
+      <description>market swaption volalitilies.</description>
       <libraryFunction>mktSwaptionVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -193,7 +193,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationModelSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>model swaption volalitilies</description>
+      <description>model swaption volalitilies.</description>
       <libraryFunction>mdlSwaptionVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -210,7 +210,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationSwaptionRmsError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>swaptionRmsError</description>
+      <description>swaptionRmsError.</description>
       <libraryFunction>swaptionRmsError</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -227,7 +227,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationSwaptionMaxError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>swaptionMaxError</description>
+      <description>swaptionMaxError.</description>
       <libraryFunction>swaptionMaxError</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -244,7 +244,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationSwapPseudoRoot' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>swapPseudoRoot</description>
+      <description>swapPseudoRoot.</description>
       <libraryFunction>swapPseudoRoot</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -256,7 +256,7 @@
           <Parameter name='Index' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>index</description>
+            <description>index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -267,7 +267,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationTimeDependentCalibratedSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>timeDependentCalibratedSwaptionVols</description>
+      <description>timeDependentCalibratedSwaptionVols.</description>
       <libraryFunction>timeDependentCalibratedSwaptionVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -279,7 +279,7 @@
           <Parameter name='Index' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>index</description>
+            <description>index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -290,7 +290,7 @@
     </Member>
 
     <Member name='qlCTSMMCapletCalibrationTimeDependentUnCalibratedSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
-      <description>timeDependentUnCalibratedSwaptionVols</description>
+      <description>timeDependentUnCalibratedSwaptionVols.</description>
       <libraryFunction>timeDependentUnCalibratedSwaptionVols</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -302,7 +302,7 @@
           <Parameter name='Index' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>index</description>
+            <description>index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -325,49 +325,49 @@
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Evolution Description</description>
+            <description>Evolution Description.</description>
           </Parameter>
           <Parameter name='Correlations'>
             <type>QuantLib::PiecewiseConstantCorrelation</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>PiecewiseConstantCorrelation object ID</description>
+            <description>PiecewiseConstantCorrelation object ID.</description>
           </Parameter>
           <Parameter name='SwapPiecewiseConstantVariances'>
             <type>QuantLib::PiecewiseConstantVariance</type>
             <tensorRank>vector</tensorRank>
-            <description>PiecewiseConstantVariance IDs</description>
+            <description>PiecewiseConstantVariance IDs.</description>
           </Parameter>
           <Parameter name='CapletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
-            <description>caplet volatilities</description>
+            <description>caplet volatilities.</description>
           </Parameter>
           <Parameter name='CurveState' exampleValue ='CurveStateID'>
             <type>QuantLib::CurveState</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
+            <description>CurveState object ID.</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement.</description>
           </Parameter>
           <Parameter name='Alphas' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
-            <description>alphas</description>
+            <description>alphas.</description>
           </Parameter>
           <Parameter name='LowestRoot' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE for lowest root, FALSE for the root nearest to 1.0</description>
+            <description>TRUE for lowest root, FALSE for the root nearest to 1.0.</description>
           </Parameter>
           <Parameter name='UseFullApprox' exampleValue='TRUE'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE for using Full Approximation</description>
+            <description>TRUE for using Full Approximation.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -386,66 +386,66 @@
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Evolution Description</description>
+            <description>Evolution Description.</description>
           </Parameter>
           <Parameter name='Correlations'>
             <type>QuantLib::PiecewiseConstantCorrelation</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>PiecewiseConstantCorrelation object ID</description>
+            <description>PiecewiseConstantCorrelation object ID.</description>
           </Parameter>
           <Parameter name='SwapPiecewiseConstantVariances'>
             <type>QuantLib::PiecewiseConstantVariance</type>
             <tensorRank>vector</tensorRank>
-            <description>PiecewiseConstantVariance IDs</description>
+            <description>PiecewiseConstantVariance IDs.</description>
           </Parameter>
           <Parameter name='CapletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
-            <description>caplet volatilities</description>
+            <description>caplet volatilities.</description>
           </Parameter>
           <Parameter name='CurveState' exampleValue ='CurveStateID'>
             <type>QuantLib::CurveState</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
+            <description>CurveState object ID.</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement.</description>
           </Parameter>
           <Parameter name='AlphaInitial' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
-            <description>alphaInitial</description>
+            <description>alphaInitial.</description>
           </Parameter>
           <Parameter name='AlphaMax' default ='1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
-            <description>alphaMax</description>
+            <description>alphaMax.</description>
           </Parameter>
           <Parameter name='AlphaMin' default ='-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
-            <description>alphaMin</description>
+            <description>alphaMin.</description>
           </Parameter>
           <Parameter name='MaximizeHomogeneity' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE for maximizing homogeneity</description>
+            <description>TRUE for maximizing homogeneity.</description>
           </Parameter>
           <Parameter name='AlphaForm' exampleValue ='AlphaFormID' default='""'>
             <type>QuantLib::AlphaForm</type>
             <tensorRank>scalar</tensorRank>
-            <description>alpha form ID</description>
+            <description>alpha form ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
     <Member name='qlCTSMMCapletAlphaFormCalibrationAlpha' type='QuantLib::CTSMMCapletAlphaFormCalibration' superType='libraryClass'>
-      <description>alpha</description>
+      <description>alpha.</description>
       <libraryFunction>alpha</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
@@ -474,39 +474,39 @@
             <type>QuantLib::EvolutionDescription</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Evolution Description</description>
+            <description>Evolution Description.</description>
           </Parameter>
           <Parameter name='Correlations'>
             <type>QuantLib::PiecewiseConstantCorrelation</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>PiecewiseConstantCorrelation object ID</description>
+            <description>PiecewiseConstantCorrelation object ID.</description>
           </Parameter>
           <Parameter name='SwapPiecewiseConstantVariances'>
             <type>QuantLib::PiecewiseConstantVariance</type>
             <tensorRank>vector</tensorRank>
-            <description>PiecewiseConstantVariance IDs</description>
+            <description>PiecewiseConstantVariance IDs.</description>
           </Parameter>
           <Parameter name='CapletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
-            <description>caplet volatilities</description>
+            <description>caplet volatilities.</description>
           </Parameter>
           <Parameter name='CurveState' exampleValue ='CurveStateID'>
             <type>QuantLib::CurveState</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CurveState object ID</description>
+            <description>CurveState object ID.</description>
           </Parameter>
           <Parameter name='Displacement' default='0.0'>
             <type>QuantLib::Volatility</type>
             <tensorRank>scalar</tensorRank>
-            <description>displacement</description>
+            <description>displacement.</description>
           </Parameter>
           <Parameter name='Caplet0Swaption1Priority' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>caplet0Swaption1Priority</description>
+            <description>caplet0Swaption1Priority.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

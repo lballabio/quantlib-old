@@ -1,5 +1,5 @@
 <Category name='handles'>
-  <description>handles</description>
+  <description>handles.</description>
   <displayName>Handles</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes/>
@@ -10,7 +10,7 @@
   <Functions>
 
     <Member name='qlHandleCurrentLink' type='QuantLibAddin::Handle'>
-      <description>ID of object to which this handle is linked - empty string if none</description>
+      <description>ID of object to which this handle is linked - empty string if none.</description>
       <libraryFunction>currentLink</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -26,7 +26,7 @@
     </Member>
 
     <Member name='qlHandleEmpty' type='QuantLibAddin::Handle'>
-      <description>True if handle is empty, False if not</description>
+      <description>True if handle is empty, False if not.</description>
       <libraryFunction>empty</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -42,7 +42,7 @@
     </Member>
 
     <Member name='qlRelinkableHandleLinkTo' type='QuantLibAddin::RelinkableHandle'>
-      <description>Relink the RelinkableHandle to the given object</description>
+      <description>Relink the RelinkableHandle to the given object.</description>
       <libraryFunction>linkTo</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>

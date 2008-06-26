@@ -1,5 +1,5 @@
 <Category name='objects'>
-  <description>objects</description>
+  <description>objects.</description>
   <displayName>Objects</displayName>
   <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
   <addinIncludes>
@@ -14,7 +14,7 @@
   <Functions>
 
     <Procedure name='ohObjectCreationTime'>
-      <description>The time at which the Object was initially created, return the time of initing object</description>
+      <description>The time at which the Object was initially created, return the time of initing object.</description>
       <alias>ObjectHandler::Repository::instance().creationTime</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -24,19 +24,19 @@
           <Parameter name='ObjectID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>object ID</description>
+            <description>object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
-        <description>the time at which the Object was initially created,</description>
+        <description>the time at which the Object was initially created,.</description>
       </ReturnValue>
     </Procedure>
 
     <Procedure name='ohObjectUpdateTime'>
-      <description>The time at which the Object was last recreated, return the last udate time</description>
+      <description>The time at which the Object was last recreated, return the last udate time.</description>
       <alias>ObjectHandler::Repository::instance().updateTime</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' />
@@ -46,20 +46,20 @@
           <Parameter name='ObjectID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>object ID</description>
+            <description>object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>double</type>
         <tensorRank>scalar</tensorRank>
-        <description>The time at which the Object was last recreated</description>
+        <description>The time at which the Object was last recreated.</description>
       </ReturnValue>
     </Procedure>
 
 
     <Procedure name='ohObjectPrecedentIDs'>
-      <description>A list of the Object's precedent Objects, return the object's list</description>
+      <description>A list of the Object's precedent Objects, return the object's list.</description>
       <alias>ObjectHandler::Repository::instance().getRelationObs</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' />
@@ -69,14 +69,14 @@
           <Parameter name='ObjectID'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>object ID</description>
+            <description>object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>string</type>
         <tensorRank>vector</tensorRank>
-        <description>A list of the Object's precedent Objects</description>
+        <description>A list of the Object's precedent Objects.</description>
       </ReturnValue>
     </Procedure>
 

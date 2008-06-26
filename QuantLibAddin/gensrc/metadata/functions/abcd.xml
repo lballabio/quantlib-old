@@ -1,5 +1,5 @@
 <Category name='abcd'>
-  <description>functions to construct and use Abcd objects</description>
+  <description>functions to construct and use Abcd objects.</description>
   <displayName>Abcd</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -35,22 +35,22 @@
           <Parameter name='A' default='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
+            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
           <Parameter name='B' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
+            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
           <Parameter name='C' default='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
+            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
           <Parameter name='D' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
+            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -58,7 +58,7 @@
 
     <!-- Abcd (volatility) class interfaces -->
     <Member name='qlAbcdFunctionInstantaneousValue' type='QuantLib::AbcdFunction' loopParameter='U'>
-      <description>Returns the instantaneous volatility as function of residual time to maturity u=T-t: [a + b*u] * e^{-c*u} + d</description>
+      <description>Returns the instantaneous volatility as function of residual time to maturity u=T-t: [a + b*u] * e^{-c*u} + d.</description>
       <libraryFunction>operator()</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -70,7 +70,7 @@
           <Parameter name='U' const='False' exampleValue ='5.0,4.0,3.0,2.0,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>residual time(s) to maturity</description>
+            <description>residual time(s) to maturity.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -93,17 +93,17 @@
           <Parameter name='U' const='False' exampleValue ='0.0,0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>calendar time(s)</description>
+            <description>calendar time(s).</description>
           </Parameter>
           <Parameter name='T' const='False'  exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing time of first rate</description>
+            <description>fixing time of first rate.</description>
           </Parameter>
           <Parameter name='S' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing time of second rate</description>
+            <description>fixing time of second rate.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -126,12 +126,12 @@
           <Parameter name='U' const='False' exampleValue ='0.0,0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>calendar time(s)</description>
+            <description>calendar time(s).</description>
           </Parameter>
           <Parameter name='T' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing time of the rate</description>
+            <description>fixing time of the rate.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -154,12 +154,12 @@
           <Parameter name='U' const='False' exampleValue ='0.0,0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>calendar time(s)</description>
+            <description>calendar time(s).</description>
           </Parameter>
           <Parameter name='T' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing calendar time of the rate</description>
+            <description>fixing calendar time of the rate.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -182,22 +182,22 @@
           <Parameter name='TMin' const='False' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>lower bound of the covariance integral</description>
+            <description>lower bound of the covariance integral.</description>
           </Parameter>
           <Parameter name='TMax' const='False' exampleValue ='0.25,0.5'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>upper bound(s) of the covariance integral(s)</description>
+            <description>upper bound(s) of the covariance integral(s).</description>
           </Parameter>
           <Parameter name='T' const='False' exampleValue ='0.5'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing calendar time of first rate</description>
+            <description>fixing calendar time of first rate.</description>
           </Parameter>
           <Parameter name='S' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing calendar time of second rate</description>
+            <description>fixing calendar time of second rate.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -220,17 +220,17 @@
           <Parameter name='TMin' const='False' exampleValue ='0.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>lower bound of the covariance integral</description>
+            <description>lower bound of the covariance integral.</description>
           </Parameter>
           <Parameter name='TMax' const='False' exampleValue ='0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>upper bound of the covariance integral</description>
+            <description>upper bound of the covariance integral.</description>
           </Parameter>
           <Parameter name='T' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing calendar time of the rate</description>
+            <description>fixing calendar time of the rate.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -253,17 +253,17 @@
           <Parameter name='TMin' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>lower bound of the covariance integral</description>
+            <description>lower bound of the covariance integral.</description>
           </Parameter>
           <Parameter name='TMax' const='False' exampleValue ='0.5,1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>upper bound(s) of the covariance integral(s)</description>
+            <description>upper bound(s) of the covariance integral(s).</description>
           </Parameter>
           <Parameter name='T' const='False' exampleValue ='1.0'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing calendar time of the rate</description>
+            <description>fixing calendar time of the rate.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -338,7 +338,7 @@
     </Member>
 
     <Member name='qlAbcdFunctionA' type='QuantLib::AbcdFunction'>
-      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <description>Returns the a coefficient in the abcd vol parametrization.</description>
       <libraryFunction>a</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -354,7 +354,7 @@
     </Member>
 
     <Member name='qlAbcdFunctionB' type='QuantLib::AbcdFunction'>
-      <description>Returns the b coefficient in the abcd vol parametrization</description>
+      <description>Returns the b coefficient in the abcd vol parametrization.</description>
       <libraryFunction>b</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -370,7 +370,7 @@
     </Member>
 
     <Member name='qlAbcdFunctionC' type='QuantLib::AbcdFunction'>
-      <description>Returns the c coefficient in the abcd vol parametrization</description>
+      <description>Returns the c coefficient in the abcd vol parametrization.</description>
       <libraryFunction>c</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -386,7 +386,7 @@
     </Member>
 
     <Member name='qlAbcdFunctionD' type='QuantLib::AbcdFunction'>
-      <description>Returns the d coefficient in the abcd vol parametrization</description>
+      <description>Returns the d coefficient in the abcd vol parametrization.</description>
       <libraryFunction>d</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -402,7 +402,7 @@
     </Member>
 
     <Member name='qlAbcdDFunction' type='QuantLib::AbcdFunction'>
-      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <description>Returns the a coefficient in the abcd vol parametrization.</description>
       <libraryFunction>d</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -430,67 +430,67 @@
           <Parameter name='Times' exampleValue ='0.01, 0.02, 0.03, 0.04 '>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>times</description>
+            <description>times.</description>
           </Parameter>
           <Parameter name='BlackVols' >
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
-            <description>Black Volatilities</description>
+            <description>Black Volatilities.</description>
           </Parameter>
           <Parameter name='A' default='-0.06'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
+            <description>the a coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
           <Parameter name='B' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
+            <description>the b coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
           <Parameter name='C' default='0.54'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
+            <description>the c coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
           <Parameter name='D' default='0.17'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
-            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated</description>
+            <description>the d coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
           </Parameter>
           <Parameter name='AIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations.</description>
           </Parameter>
           <Parameter name='BIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations.</description>
           </Parameter>
           <Parameter name='CIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations.</description>
           </Parameter>
           <Parameter name='DIsFixed' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the a coefficient must be kept fixed in later calibrations</description>
+            <description>TRUE if the a coefficient must be kept fixed in later calibrations.</description>
           </Parameter>
           <Parameter name='VegaWeighted' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the interpolation is weighted using options Vega</description>
+            <description>TRUE if the interpolation is weighted using options Vega.</description>
           </Parameter>
           <Parameter name='EndCriteria' default='""'>
             <type>QuantLib::EndCriteria</type>
             <tensorRank>scalar</tensorRank>
-            <description>EndCriteria object ID</description>
+            <description>EndCriteria object ID.</description>
           </Parameter>
           <Parameter name='Method' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
-            <description>OptimizationMethod object ID</description>
+            <description>OptimizationMethod object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -498,7 +498,7 @@
 
     <!-- AbcdCalibration  class interfaces -->
     <Member name='qlAbcdCalibrationCompute' type='QuantLib::AbcdCalibration'>
-      <description>compute calibration</description>
+      <description>compute calibration.</description>
       <libraryFunction>compute</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -516,7 +516,7 @@
     </Member>
 
     <Member name='qlAbcdCalibrationK' type='QuantLib::AbcdCalibration'>
-      <description>Returns the 'k' adjustment factors needed to match Black vols</description>
+      <description>Returns the 'k' adjustment factors needed to match Black vols.</description>
       <libraryFunction>k</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -528,12 +528,12 @@
           <Parameter name='Times'>
             <type>QuantLib::Time</type>
             <tensorRank>vector</tensorRank>
-            <description>times</description>
+            <description>times.</description>
           </Parameter>
           <Parameter name='BlackVols'>
             <type>QuantLib::Volatility</type>
             <tensorRank>vector</tensorRank>
-            <description>Black Volatilities</description>
+            <description>Black Volatilities.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -544,7 +544,7 @@
     </Member>
 
     <Member name='qlAbcdCalibrationError' type='QuantLib::AbcdCalibration'>
-      <description>Returns the root mean squared error between the abdc implied Black vols and a given Black vol vector</description>
+      <description>Returns the root mean squared error between the abdc implied Black vols and a given Black vol vector.</description>
       <libraryFunction>error</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -562,7 +562,7 @@
     </Member>
 
     <Member name='qlAbcdCalibrationMaxError' type='QuantLib::AbcdCalibration'>
-      <description>Returs the max error between the abdc implied Black vols and a given Black vol vector</description>
+      <description>Returs the max error between the abdc implied Black vols and a given Black vol vector.</description>
       <libraryFunction>maxError</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -580,7 +580,7 @@
     </Member>
 
     <Member name='qlAbcdCalibrationEndCriteria' type='QuantLib::AbcdCalibration'>
-      <description>Calibrates the a, b, c, d parameters of the vol parametrization</description>
+      <description>Calibrates the a, b, c, d parameters of the vol parametrization.</description>
       <libraryFunction>endCriteria</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -598,7 +598,7 @@
     </Member>
 
     <Member name='qlAbcdCalibrationA' type='QuantLib::AbcdCalibration'>
-      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <description>Returns the a coefficient in the abcd vol parametrization.</description>
       <libraryFunction>a</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -614,7 +614,7 @@
     </Member>
 
     <Member name='qlAbcdCalibrationB' type='QuantLib::AbcdCalibration'>
-      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <description>Returns the a coefficient in the abcd vol parametrization.</description>
       <libraryFunction>b</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -630,7 +630,7 @@
     </Member>
 
     <Member name='qlAbcdCalibrationC' type='QuantLib::AbcdCalibration'>
-      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <description>Returns the a coefficient in the abcd vol parametrization.</description>
       <libraryFunction>c</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -646,7 +646,7 @@
     </Member>
 
     <Member name='qlAbcdCalibrationD' type='QuantLib::AbcdCalibration'>
-      <description>Returns the a coefficient in the abcd vol parametrization</description>
+      <description>Returns the a coefficient in the abcd vol parametrization.</description>
       <libraryFunction>d</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>

@@ -1,6 +1,6 @@
 
 <Category name='valueobjects'>
-  <description>value objects</description>
+  <description>value objects.</description>
   <displayName>Value Objects</displayName>
   <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
   <addinIncludes/>
@@ -15,7 +15,7 @@
   <Functions>
 
     <Member name='ohPropertyNames' type='ObjectHandler::Object'>
-      <description>retrieve the property names of a given object</description>
+      <description>retrieve the property names of a given object.</description>
       <libraryFunction>propertyNamesVector</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -30,7 +30,7 @@
     </Member>
 
     <Member name='ohPropertyValue' type='ObjectHandler::Object' loopParameter='PropertyName'>
-      <description>retrieve the value(s) of one or more named properties</description>
+      <description>retrieve the value(s) of one or more named properties.</description>
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -40,7 +40,7 @@
           <Parameter name='PropertyName'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>property name(s) to be queried</description>
+            <description>property name(s) to be queried.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -51,7 +51,7 @@
     </Member>
 
     <Member name='ohPropertyValue2' type='ObjectHandler::Object'>
-      <description>retrieve the value(s) of one or more named properties</description>
+      <description>retrieve the value(s) of one or more named properties.</description>
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Cpp'/>
@@ -61,7 +61,7 @@
           <Parameter name='PropertyName'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>property name to be queried</description>
+            <description>property name to be queried.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

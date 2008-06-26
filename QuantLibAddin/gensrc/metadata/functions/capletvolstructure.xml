@@ -1,5 +1,5 @@
 <Category name='capletvolstructure'>
-  <description>functions to construct and use OptionletVolatilityStructure objects</description>
+  <description>functions to construct and use OptionletVolatilityStructure objects.</description>
   <displayName>Caplet Volatility Term Structures</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -48,17 +48,17 @@
           <Parameter name='OptionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>caplet/floorlet expiry date</description>
+            <description>caplet/floorlet expiry date.</description>
           </Parameter>
           <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>caplet/floorlet strike</description>
+            <description>caplet/floorlet strike.</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -81,17 +81,17 @@
           <Parameter name='OptionTenor' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>caplet/floorlet option tenor</description>
+            <description>caplet/floorlet option tenor.</description>
           </Parameter>
           <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>caplet/floorlet strike</description>
+            <description>caplet/floorlet strike.</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -114,17 +114,17 @@
           <Parameter name='OptionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>cap/floor expiry date</description>
+            <description>cap/floor expiry date.</description>
           </Parameter>
           <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>cap/floor strike vector</description>
+            <description>cap/floor strike vector.</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -147,17 +147,17 @@
           <Parameter name='OptionTenor' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
-            <description>cap/floor expiry date</description>
+            <description>cap/floor expiry date.</description>
           </Parameter>
           <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>cap/floor strike vector</description>
+            <description>cap/floor strike vector.</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -200,28 +200,28 @@
           <Parameter name='NDays' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of days to advance from EvaluationDate: it fixes the date at which the variance = 0.0</description>
+            <description>number of days to advance from EvaluationDate: it fixes the date at which the variance = 0.0.</description>
           </Parameter>
           <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
+            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries.</description>
           </Parameter>
           <Parameter name='BusinessDayConvention' exampleValue='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>Business day convention used for calculating the exercise dates from the expiries</description>
+            <description>Business day convention used for calculating the exercise dates from the expiries.</description>
           </Parameter>
           <Parameter name='Volatility' examplevalue='0.20'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>cap/floor constant volatility Quote</description>
+            <description>cap/floor constant volatility Quote.</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>DayCounter ID</description>
+            <description>DayCounter ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -241,13 +241,13 @@
             <type>QuantLib::OptionletVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Base OptionletVolatilityStructure object ID</description>
+            <description>Base OptionletVolatilityStructure object ID.</description>
           </Parameter>
           <Parameter name='Spread' exampleValue='0.01'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>spread</description>
+            <description>spread.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -266,7 +266,7 @@
             <type>QuantLib::StrippedOptionletBase</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Stripped Optionlet object id</description>
+            <description>Stripped Optionlet object id.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -285,43 +285,43 @@
           <Parameter name='SettlementDays' default='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of settlement days</description>
+            <description>number of settlement days.</description>
           </Parameter>
           <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries</description>
+            <description>holiday calendar (e.g. TARGET) used for calculating the exercise dates from the expiries.</description>
           </Parameter>
           <Parameter name='BusinessDayConvention' exampleValue='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>Business day convention used for calculating the exercise dates from the expiries</description>
+            <description>Business day convention used for calculating the exercise dates from the expiries.</description>
           </Parameter>
           <Parameter name='IborIndex' exampleValue ='Euribor6M'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>IborIndex object ID</description>
+            <description>IborIndex object ID.</description>
           </Parameter>
           <Parameter name='OptionletDates' exampleValue ='5Y, 10Y'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>optionlet dates</description>
+            <description>optionlet dates.</description>
           </Parameter>
           <Parameter name='Strikes' exampleValue ='0.03, 0.04, 0.05'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>strikes</description>
+            <description>strikes.</description>
           </Parameter>
           <Parameter name='Volatilities'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
-            <description>vol quotes</description>
+            <description>vol quotes.</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>DayCounter ID</description>
+            <description>DayCounter ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -340,7 +340,7 @@
           <Parameter name='Index' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>optionlet index</description>
+            <description>optionlet index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -361,7 +361,7 @@
           <Parameter name='Index' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>optionlet index</description>
+            <description>optionlet index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -417,7 +417,7 @@
     </Member>
 
     <Member name='qlStrippedOptionletBaseDayCounter' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
-      <description>Returns the DayCounter used by the given StrippedOptionletBase object</description>
+      <description>Returns the DayCounter used by the given StrippedOptionletBase object.</description>
       <libraryFunction>dayCounter</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -433,7 +433,7 @@
     </Member>
 
     <Member name='qlStrippedOptionletBaseCalendar' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
-      <description>Returns the calendar used by the given StrippedOptionletBase object</description>
+      <description>Returns the calendar used by the given StrippedOptionletBase object.</description>
       <libraryFunction>calendar</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -449,7 +449,7 @@
     </Member>
 
     <Member name='qlStrippedOptionletBaseSettlementDays' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
-      <description>Returns the number of settlement days for the given StrippedOptionletBase object</description>
+      <description>Returns the number of settlement days for the given StrippedOptionletBase object.</description>
       <libraryFunction>settlementDays</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -465,7 +465,7 @@
     </Member>
 
     <Member name='qlStrippedOptionletBaseBusinessDayConvention' type='QuantLib::StrippedOptionletBase' superType='libraryClass'>
-      <description>Returns the business day convention used in tenor to date conversion</description>
+      <description>Returns the business day convention used in tenor to date conversion.</description>
       <libraryFunction>businessDayConvention</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -600,27 +600,27 @@
             <type>QuantLib::CapFloorTermVolSurface</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CapFloorTermVolSurface object ID</description>
+            <description>CapFloorTermVolSurface object ID.</description>
           </Parameter>
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>cap index object ID</description>
+            <description>cap index object ID.</description>
           </Parameter>
           <Parameter name='SwitchStrike' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>switch strike</description>
+            <description>switch strike.</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-6'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>solver accuracy</description>
+            <description>solver accuracy.</description>
           </Parameter>
           <Parameter name='MaxIter' default='100'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>solver max iterations</description>
+            <description>solver max iterations.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -685,13 +685,13 @@
             <type>QuantLib::OptionletStripper1</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>OptionletStripper1 object id</description>
+            <description>OptionletStripper1 object id.</description>
           </Parameter>
           <Parameter name='TermVolCurve'>
             <type>QuantLib::CapFloorTermVolCurve</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>CapFloorTermVolCurve object id</description>
+            <description>CapFloorTermVolCurve object id.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -711,17 +711,17 @@
           <Parameter name='OptionDate' exampleValue ='5y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>caplet/floorlet expiry date</description>
+            <description>caplet/floorlet expiry date.</description>
           </Parameter>
           <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>caplet/floorlet strike</description>
+            <description>caplet/floorlet strike.</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -744,17 +744,17 @@
           <Parameter name='OptionTenor' exampleValue ='5y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>caplet/floorlet option tenor</description>
+            <description>caplet/floorlet option tenor.</description>
           </Parameter>
           <Parameter name='Strike' exampleValue ='0.04' const='False'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>caplet/floorlet strike</description>
+            <description>caplet/floorlet strike.</description>
           </Parameter>
           <Parameter name='AllowExtrapolation' const='False' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>Extrapolation Flag (TRUE allows extrapolation)</description>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -781,7 +781,7 @@
     </Member>
 
     <Member name='qlCapFloorTermVolCurveOptionDates' type='QuantLib::CapFloorTermVolCurve' superType='libraryClass'>
-      <description>Returns the option dates from the given CapFloorTermVolCurve object. </description>
+      <description>Returns the option dates from the given CapFloorTermVolCurve object. .</description>
       <libraryFunction>optionDates</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false' />
@@ -806,33 +806,33 @@
           <Parameter name='SettlementDays' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of settlement days</description>
+            <description>number of settlement days.</description>
           </Parameter>
           <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
-            <description>holiday calendar used for calculating the exercise dates from the expiries tenor</description>
+            <description>holiday calendar used for calculating the exercise dates from the expiries tenor.</description>
           </Parameter>
           <Parameter name='BusinessDayConvention' exampleValue='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>Business day convention used for calculating the exercise dates from the expiries</description>
+            <description>Business day convention used for calculating the exercise dates from the expiries.</description>
           </Parameter>
           <Parameter name='OptionTenors' exampleValue ='3Y, 5Y, 7Y, 10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
-            <description>option tenors</description>
+            <description>option tenors.</description>
           </Parameter>
           <Parameter name='Volatilities' exampleValue ='0.30, 0.27, 0.25, 0.21'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
-            <description>vol quotes vector</description>
+            <description>vol quotes vector.</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>DayCounter ID</description>
+            <description>DayCounter ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -895,38 +895,38 @@
           <Parameter name='SettlementDays' exampleValue='0'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>number of settlement days</description>
+            <description>number of settlement days.</description>
           </Parameter>
           <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
-            <description>holiday calendar used for calculating the exercise dates from the expiries tenor</description>
+            <description>holiday calendar used for calculating the exercise dates from the expiries tenor.</description>
           </Parameter>
           <Parameter name='BusinessDayConvention' exampleValue='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>Business day convention used for calculating the exercise dates from the expiries</description>
+            <description>Business day convention used for calculating the exercise dates from the expiries.</description>
           </Parameter>
           <Parameter name='OptionTenors' exampleValue ='5Y, 10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
-            <description>option tenors</description>
+            <description>option tenors.</description>
           </Parameter>
           <Parameter name='Strikes'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>cap strikes</description>
+            <description>cap strikes.</description>
           </Parameter>
           <Parameter name='Volatilities'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>matrix</tensorRank>
-            <description>vol quotes matrix</description>
+            <description>vol quotes matrix.</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>DayCounter ID</description>
+            <description>DayCounter ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -1,5 +1,5 @@
 <Category name='schedule'>
-  <description>functions to construct and use Schedule objects</description>
+  <description>functions to construct and use Schedule objects.</description>
   <displayName>Schedules</displayName>
   <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
   <addinIncludes>
@@ -13,7 +13,7 @@
   <Functions>
 
     <Member name='qlScheduleSize' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns the number of dates in the given Schedule object</description>
+      <description>returns the number of dates in the given Schedule object.</description>
       <libraryFunction>size</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -31,7 +31,7 @@
     </Member>
 
     <Member name='qlSchedulePreviousDate' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns the highest date in the given Schedule object preceding the input reference date</description>
+      <description>returns the highest date in the given Schedule object preceding the input reference date.</description>
       <libraryFunction>previousDate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -43,7 +43,7 @@
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>reference date</description>
+            <description>reference date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -54,7 +54,7 @@
     </Member>
 
     <Member name='qlScheduleNextDate' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns the lowest date in the given Schedule object following the input reference date</description>
+      <description>returns the lowest date in the given Schedule object following the input reference date.</description>
       <libraryFunction>nextDate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -66,7 +66,7 @@
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>reference date</description>
+            <description>reference date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -77,7 +77,7 @@
     </Member>
 
     <Member name='qlScheduleDates' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns the dates for the given Schedule object</description>
+      <description>returns the dates for the given Schedule object.</description>
       <libraryFunction>dates</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -94,7 +94,7 @@
     </Member>
 
     <Member name='qlScheduleIsRegular' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns TRUE if the selected period in the given Schedule object is regular</description>
+      <description>returns TRUE if the selected period in the given Schedule object is regular.</description>
       <libraryFunction>isRegular</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -106,7 +106,7 @@
           <Parameter name='Index' default='1' exampleValue='1'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>one based period index</description>
+            <description>one based period index.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -117,7 +117,7 @@
     </Member>
 
     <Member name='qlScheduleEmpty' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns TRUE if the given Schedule object is empty</description>
+      <description>returns TRUE if the given Schedule object is empty.</description>
       <libraryFunction>empty</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -134,7 +134,7 @@
     </Member>
 
     <Member name='qlScheduleCalendar' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns the Calendar used to calculate the given Schedule object</description>
+      <description>returns the Calendar used to calculate the given Schedule object.</description>
       <libraryFunction>calendar</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -151,7 +151,7 @@
     </Member>
 
     <Member name='qlScheduleStartDate' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns the start date of the given Schedule object</description>
+      <description>returns the start date of the given Schedule object.</description>
       <libraryFunction>startDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -167,7 +167,7 @@
     </Member>
 
     <Member name='qlScheduleEndDate' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns the end date of the given Schedule object</description>
+      <description>returns the end date of the given Schedule object.</description>
       <libraryFunction>endDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -183,7 +183,7 @@
     </Member>
 
     <Member name='qlScheduleTenor' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns the tenor used to calculate the given Schedule object</description>
+      <description>returns the tenor used to calculate the given Schedule object.</description>
       <libraryFunction>tenor</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -199,7 +199,7 @@
     </Member>
 
     <Member name='qlScheduleBDC' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns the business day convention used to calculate the given Schedule object</description>
+      <description>returns the business day convention used to calculate the given Schedule object.</description>
       <libraryFunction>businessDayConvention</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -215,7 +215,7 @@
     </Member>
 
     <Member name='qlScheduleTerminationDateBDC' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns the business day convention used to calculate the termination date of the given Schedule object</description>
+      <description>returns the business day convention used to calculate the termination date of the given Schedule object.</description>
       <libraryFunction>businessDayConvention</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -231,7 +231,7 @@
     </Member>
 
     <Member name='qlScheduleRule' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns the DateGeneration::Rule of the given Schedule object</description>
+      <description>returns the DateGeneration::Rule of the given Schedule object.</description>
       <libraryFunction>rule</libraryFunction>
       <SupportedPlatforms>
         SupportedPlatform name='Excel' calcInWizard='false'/
@@ -248,7 +248,7 @@
     </Member>
 
     <Member name='qlScheduleEndOfMonth' type='QuantLib::Schedule' superType='libraryClass'>
-      <description>returns TRUE if end-of-month convention has been used to calculate the given Schedule object</description>
+      <description>returns TRUE if end-of-month convention has been used to calculate the given Schedule object.</description>
       <libraryFunction>endOfMonth</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -276,52 +276,52 @@
           <Parameter name='EffectiveDate' exampleValue='2M'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>effective date</description>
+            <description>effective date.</description>
           </Parameter>
           <Parameter name='TerminationDate' exampleValue='122M'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>termination date</description>
+            <description>termination date.</description>
           </Parameter>
           <Parameter name='Tenor' exampleValue='1Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
+            <description>tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).</description>
           </Parameter>
           <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET)</description>
+            <description>holiday calendar (e.g. TARGET).</description>
           </Parameter>
           <Parameter name='Convention' exampleValue='Following'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>accrual dates business day convention</description>
+            <description>accrual dates business day convention.</description>
           </Parameter>
           <Parameter name='TermDateConv' exampleValue='Following'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>termination date business day convention</description>
+            <description>termination date business day convention.</description>
           </Parameter>
           <Parameter name='GenRule' exampleValue='Backward'>
             <type>QuantLib::DateGeneration::Rule</type>
             <tensorRank>scalar</tensorRank>
-            <description>Date generation rule (Backward, Forward, ThirdWednesday, Zero)</description>
+            <description>Date generation rule (Backward, Forward, ThirdWednesday, Zero).</description>
           </Parameter>
           <Parameter name='EndOfMonth' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>end of month convention</description>
+            <description>end of month convention.</description>
           </Parameter>
           <Parameter name='FirstDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>stub date, if there is an irregular starting period</description>
+            <description>stub date, if there is an irregular starting period.</description>
           </Parameter>
           <Parameter name='NextToLastDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>stub date, if there an irregular final period</description>
+            <description>stub date, if there an irregular final period.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -338,7 +338,7 @@
           <Parameter name='Dates' exampleValue='2M, 5M, 11M, 17M, 23M'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>dates</description>
+            <description>dates.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

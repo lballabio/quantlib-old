@@ -1,5 +1,5 @@
 <Category name='date'>
-  <description>Date- and Period-related QuantLib functions</description>
+  <description>Date- and Period-related QuantLib functions.</description>
   <displayName>Date</displayName>
   <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
   <addinIncludes>
@@ -25,7 +25,7 @@
           <Parameter name='Frequency' exampleValue='Annual'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly)</description>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -48,7 +48,7 @@
           <Parameter name='Period' exampleValue='1Y'>
             <type>QuantLib::Period</type>
             <tensorRank>vector</tensorRank>
-            <description>period(s) to advance (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year)</description>
+            <description>period(s) to advance (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -70,12 +70,12 @@
           <Parameter name='Period1' exampleValue='1Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>left hand side</description>
+            <description>left hand side.</description>
           </Parameter>
           <Parameter name='Period2' exampleValue='2Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>right hand side</description>
+            <description>right hand side.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -97,7 +97,7 @@
           <Parameter name='Period' exampleValue='1Y-1M'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>input period (e.g. 1Y-1M)</description>
+            <description>input period (e.g. 1Y-1M).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -152,7 +152,7 @@
           <Parameter name='Year' exampleValue='2007'>
             <type>long</type>
             <tensorRank>vector</tensorRank>
-            <description>year (e.g. 2006)</description>
+            <description>year (e.g. 2006).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -175,7 +175,7 @@
           <Parameter name='Date' exampleValue='15-Feb-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>date</description>
+            <description>date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -198,7 +198,7 @@
           <Parameter name='Date' exampleValue='28-Feb-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>date</description>
+            <description>date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -221,7 +221,7 @@
           <Parameter name='Date' exampleValue='09-Feb-2007'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>date</description>
+            <description>date.</description>
           </Parameter>
           <Parameter name='Weekday' exampleValue='Monday' const='False'>
             <type>QuantLib::Weekday</type>
@@ -249,7 +249,7 @@
           <Parameter name='Nth' exampleValue='2'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>ordinal number (greater than zero, less than 6)</description>
+            <description>ordinal number (greater than zero, less than 6).</description>
           </Parameter>
           <Parameter name='Weekday' exampleValue='Monday'>
             <type>QuantLib::Weekday</type>
@@ -264,7 +264,7 @@
           <Parameter name='Year' exampleValue='2007'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
-            <description>year (e.g. 2006)</description>
+            <description>year (e.g. 2006).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -287,12 +287,12 @@
           <Parameter name='Date' exampleValue='38791'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>date</description>
+            <description>date.</description>
           </Parameter>
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -315,12 +315,12 @@
           <Parameter name='Code' exampleValue='H6'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>2 letter string (e.g. H6)</description>
+            <description>2 letter string (e.g. H6).</description>
           </Parameter>
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -343,7 +343,7 @@
           <Parameter name='IMMdate' exampleValue='38791'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>IMM date</description>
+            <description>IMM date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -366,12 +366,12 @@
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed</description>
+            <description>date with respect to which the calculations are performed.</description>
           </Parameter>
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -393,12 +393,12 @@
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed</description>
+            <description>date with respect to which the calculations are performed.</description>
           </Parameter>
           <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. If omitted returns the first 40 H, M, U, Z futures</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. If omitted returns the first 40 H, M, U, Z futures.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -421,12 +421,12 @@
           <Parameter name='IMMcode' exampleValue='H6'>
             <type>string</type>
             <tensorRank>vector</tensorRank>
-            <description>2 letter IMM code (e.g. H6)</description>
+            <description>2 letter IMM code (e.g. H6).</description>
           </Parameter>
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed</description>
+            <description>date with respect to which the calculations are performed.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -449,12 +449,12 @@
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed</description>
+            <description>date with respect to which the calculations are performed.</description>
           </Parameter>
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -476,12 +476,12 @@
           <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed</description>
+            <description>date with respect to which the calculations are performed.</description>
           </Parameter>
           <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. If omitted returns the first 40 H, M, U, Z futures</description>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. If omitted returns the first 40 H, M, U, Z futures.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

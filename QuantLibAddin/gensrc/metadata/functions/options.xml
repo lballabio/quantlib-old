@@ -1,5 +1,5 @@
 <Category name='options'>
-  <description>functions to construct and use Option objects</description>
+  <description>functions to construct and use Option objects.</description>
   <displayName>Options</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -31,27 +31,27 @@
           <Parameter name='BarrierType'>
             <type>QuantLib::Barrier::Type</type>
             <tensorRank>scalar</tensorRank>
-            <description>barrier type</description>
+            <description>barrier type.</description>
           </Parameter>
           <Parameter name='Barrier' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>barrier</description>
+            <description>barrier.</description>
           </Parameter>
           <Parameter name='Rebate' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>rebate</description>
+            <description>rebate.</description>
           </Parameter>
           <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>StrikedTypePayoff object ID</description>
+            <description>StrikedTypePayoff object ID.</description>
           </Parameter>
           <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
-            <description>Exercise object ID</description>
+            <description>Exercise object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -69,17 +69,17 @@
           <Parameter name='AverageType'>
             <type>QuantLib::Average::Type</type>
             <tensorRank>scalar</tensorRank>
-            <description>average type</description>
+            <description>average type.</description>
           </Parameter>
           <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>StrikedTypePayoff object ID</description>
+            <description>StrikedTypePayoff object ID.</description>
           </Parameter>
           <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
-            <description>Exercise object ID</description>
+            <description>Exercise object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -95,17 +95,17 @@
           <Parameter name='PercentageStrikePayoff'>
             <type>QuantLib::PercentageStrikePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>PercentageStrikePayoff object ID</description>
+            <description>PercentageStrikePayoff object ID.</description>
           </Parameter>
           <Parameter name='EuropeanExercise'>
             <type>QuantLib::EuropeanExercise</type>
             <tensorRank>scalar</tensorRank>
-            <description>EuropeanExercise object ID</description>
+            <description>EuropeanExercise object ID.</description>
           </Parameter>
           <Parameter name='ResetDates'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of reset dates</description>
+            <description>vector of reset dates.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -123,32 +123,32 @@
           <Parameter name='AverageType'>
             <type>QuantLib::Average::Type</type>
             <tensorRank>scalar</tensorRank>
-            <description>average type</description>
+            <description>average type.</description>
           </Parameter>
           <Parameter name='RunningAccumulator' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>running accumulator</description>
+            <description>running accumulator.</description>
           </Parameter>
           <Parameter name='PastFixings' exampleValue ='3'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
-            <description>past fixings</description>
+            <description>past fixings.</description>
           </Parameter>
           <Parameter name='FixingDates' exampleValue ='1Y,2Y'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>fixing dates</description>
+            <description>fixing dates.</description>
           </Parameter>
           <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>StrikedTypePayoff object ID</description>
+            <description>StrikedTypePayoff object ID.</description>
           </Parameter>
           <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
-            <description>Exercise object ID</description>
+            <description>Exercise object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -166,22 +166,22 @@
           <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>StrikedTypePayoff object ID</description>
+            <description>StrikedTypePayoff object ID.</description>
           </Parameter>
           <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
-            <description>Exercise object ID</description>
+            <description>Exercise object ID.</description>
           </Parameter>
           <Parameter name='DividendDates' exampleValue ='1Y,2Y'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of dividend dates</description>
+            <description>vector of dividend dates.</description>
           </Parameter>
           <Parameter name='Dividends' exampleValue ='0.01,0.01'>
             <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
-            <description>vector of dividends</description>
+            <description>vector of dividends.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -199,22 +199,22 @@
           <Parameter name='Moneyness' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>moneyness</description>
+            <description>moneyness.</description>
           </Parameter>
           <Parameter name='ResetDate' exampleValue ='1Y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>reset date</description>
+            <description>reset date.</description>
           </Parameter>
           <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>StrikedTypePayoff object ID</description>
+            <description>StrikedTypePayoff object ID.</description>
           </Parameter>
           <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
-            <description>Exercise object ID</description>
+            <description>Exercise object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -235,12 +235,12 @@
           <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>StrikedTypePayoff object ID</description>
+            <description>StrikedTypePayoff object ID.</description>
           </Parameter>
           <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
-            <description>Exercise object ID</description>
+            <description>Exercise object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -258,12 +258,12 @@
           <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>StrikedTypePayoff object ID</description>
+            <description>StrikedTypePayoff object ID.</description>
           </Parameter>
           <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
-            <description>Exercise object ID</description>
+            <description>Exercise object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -281,12 +281,12 @@
           <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>StrikedTypePayoff object ID</description>
+            <description>StrikedTypePayoff object ID.</description>
           </Parameter>
           <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
-            <description>Exercise object ID</description>
+            <description>Exercise object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -304,29 +304,29 @@
           <Parameter name='Moneyness' exampleValue ='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>moneyness</description>
+            <description>moneyness.</description>
           </Parameter>
           <Parameter name='ResetDate' exampleValue ='1Y'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>reset date</description>
+            <description>reset date.</description>
           </Parameter>
           <Parameter name='Payoff'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>StrikedTypePayoff object ID</description>
+            <description>StrikedTypePayoff object ID.</description>
           </Parameter>
           <Parameter name='Exercise'>
             <type>QuantLib::Exercise</type>
             <tensorRank>scalar</tensorRank>
-            <description>Exercise object ID</description>
+            <description>Exercise object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
     <Member name='qlDelta' type='QuantLib::OneAssetOption'>
-      <description>delta of an option</description>
+      <description>delta of an option.</description>
       <libraryFunction>delta</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -342,7 +342,7 @@
     </Member>
 
     <Member name='qlDeltaForward' type='QuantLib::OneAssetOption'>
-      <description>delta forward of an option</description>
+      <description>delta forward of an option.</description>
       <libraryFunction>deltaForward</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -357,7 +357,7 @@
     </Member>
 
     <Member name='qlElasticity' type='QuantLib::OneAssetOption'>
-      <description>elasticity of an option</description>
+      <description>elasticity of an option.</description>
       <libraryFunction>elasticity</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -372,7 +372,7 @@
     </Member>
 
     <Member name='qlGamma' type='QuantLib::OneAssetOption'>
-      <description>gamma of an option</description>
+      <description>gamma of an option.</description>
       <libraryFunction>gamma</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -387,7 +387,7 @@
     </Member>
 
     <Member name='qlTheta' type='QuantLib::OneAssetOption'>
-      <description>theta of an option</description>
+      <description>theta of an option.</description>
       <libraryFunction>theta</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -402,7 +402,7 @@
     </Member>
 
     <Member name='qlThetaPerDay' type='QuantLib::OneAssetOption'>
-      <description>theta per day of an option</description>
+      <description>theta per day of an option.</description>
       <libraryFunction>thetaPerDay</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -417,7 +417,7 @@
     </Member>
 
     <Member name='qlVega' type='QuantLib::OneAssetOption'>
-      <description>vega of an option</description>
+      <description>vega of an option.</description>
       <libraryFunction>vega</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -432,7 +432,7 @@
     </Member>
 
     <Member name='qlRho' type='QuantLib::OneAssetOption'>
-      <description>rho of an option</description>
+      <description>rho of an option.</description>
       <libraryFunction>rho</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -447,7 +447,7 @@
     </Member>
 
     <Member name='qlDividendRho' type='QuantLib::OneAssetOption'>
-      <description>dividend rho of an option</description>
+      <description>dividend rho of an option.</description>
       <libraryFunction>dividendRho</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -462,7 +462,7 @@
     </Member>
 
     <Member name='qlItmCashProbability' type='QuantLib::OneAssetOption'>
-      <description>itm cash probability of an option</description>
+      <description>itm cash probability of an option.</description>
       <libraryFunction>itmCashProbability</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>

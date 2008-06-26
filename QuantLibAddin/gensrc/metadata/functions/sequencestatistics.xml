@@ -1,5 +1,5 @@
 <Category name='sequencestatistics'>
-  <description>QuantLib statistics analysis of N-dimensional (sequence) data</description>
+  <description>QuantLib statistics analysis of N-dimensional (sequence) data.</description>
   <displayName>SequenceStatistics</displayName>
   <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
   <addinIncludes>
@@ -16,7 +16,7 @@
     <!-- SequenceStatistics methods:  1-D inspectors lifted from underlying statistics class -->
 
     <Member name='qlSequenceStatisticsSamples' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the number of samples collected for the given SequenceStatistics object</description>
+      <description>Returns the number of samples collected for the given SequenceStatistics object.</description>
       <libraryFunction>samples</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -32,7 +32,7 @@
     </Member>
 
     <Member name='qlSequenceStatisticsWeightSum' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the sum of data weights for the given SequenceStatistics object</description>
+      <description>Returns the sum of data weights for the given SequenceStatistics object.</description>
       <libraryFunction>weightSum</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -50,7 +50,7 @@
     <!-- SequenceStatistics methods:  N-D inspectors lifted from underlying statistics class -->
 
     <Member name='qlSequenceStatisticsMean' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the mean for the given SequenceStatistics object</description>
+      <description>Returns the mean for the given SequenceStatistics object.</description>
       <libraryFunction>mean</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -66,7 +66,7 @@
     </Member>
 
     <Member name='qlSequenceStatisticsVariance' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the variance for the given SequenceStatistics object</description>
+      <description>Returns the variance for the given SequenceStatistics object.</description>
       <libraryFunction>variance</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -82,7 +82,7 @@
     </Member>
 
     <Member name='qlSequenceStatisticsStandardDeviation' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the the standard deviation for the given SequenceStatistics object</description>
+      <description>Returns the the standard deviation for the given SequenceStatistics object.</description>
       <libraryFunction>standardDeviation</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -162,7 +162,7 @@
     </Member>
 
     <Member name='qlSequenceStatisticsErrorEstimate' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the error estimate on the mean value for the given SequenceStatistics object</description>
+      <description>Returns the error estimate on the mean value for the given SequenceStatistics object.</description>
       <libraryFunction>errorEstimate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -178,7 +178,7 @@
     </Member>
 
     <Member name='qlSequenceStatisticsSkewness' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the skewness for the given SequenceStatistics object</description>
+      <description>Returns the skewness for the given SequenceStatistics object.</description>
       <libraryFunction>skewness</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -194,7 +194,7 @@
     </Member>
 
     <Member name='qlSequenceStatisticsKurtosis' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the excess kurtosis for the given SequenceStatistics object</description>
+      <description>Returns the excess kurtosis for the given SequenceStatistics object.</description>
       <libraryFunction>kurtosis</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -210,7 +210,7 @@
     </Member>
 
     <Member name='qlSequenceStatisticsMin' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the minimum sample value for the given SequenceStatistics object</description>
+      <description>Returns the minimum sample value for the given SequenceStatistics object.</description>
       <libraryFunction>min</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -226,7 +226,7 @@
     </Member>
 
     <Member name='qlSequenceStatisticsMax' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the maximum sample value for the given SequenceStatistics object</description>
+      <description>Returns the maximum sample value for the given SequenceStatistics object.</description>
       <libraryFunction>max</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -254,7 +254,7 @@
           <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Must be in the range (0,1]</description>
+            <description>Must be in the range (0,1].</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -265,7 +265,7 @@
     </Member>
 
     <Member name='qlSequenceStatisticsPercentile' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the x-th percentile for the given SequenceStatistics object</description>
+      <description>Returns the x-th percentile for the given SequenceStatistics object.</description>
       <libraryFunction>percentile</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -277,7 +277,7 @@
           <Parameter name='X' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>Must be in the range (0,1]</description>
+            <description>Must be in the range (0,1].</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -300,7 +300,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -323,7 +323,7 @@
           <Parameter name='Centile' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the centile</description>
+            <description>the centile.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -346,7 +346,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -369,7 +369,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the percentile</description>
+            <description>the percentile.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -392,7 +392,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -415,7 +415,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -438,7 +438,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -461,7 +461,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -484,7 +484,7 @@
           <Parameter name='Target' exampleValue='0.5'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>the target</description>
+            <description>the target.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -497,7 +497,7 @@
     <!-- SequenceStatistics methods:  N-D inspectors -->
 
     <Member name='qlSequenceStatisticsSize' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the size (sample dimensionality) for the given SequenceStatistics object</description>
+      <description>Returns the size (sample dimensionality) for the given SequenceStatistics object.</description>
       <libraryFunction>size</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -513,7 +513,7 @@
     </Member>
 
     <Member name='qlSequenceStatisticsCovariance' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the covariance Matrix for the given SequenceStatistics object</description>
+      <description>Returns the covariance Matrix for the given SequenceStatistics object.</description>
       <libraryFunction>covariance</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -529,7 +529,7 @@
     </Member>
 
     <Member name='qlSequenceStatisticsCorrelation' type='QuantLib::SequenceStatistics' superType='libraryClass'>
-      <description>Returns the correlation Matrix for the given SequenceStatistics object</description>
+      <description>Returns the correlation Matrix for the given SequenceStatistics object.</description>
       <libraryFunction>correlation</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>

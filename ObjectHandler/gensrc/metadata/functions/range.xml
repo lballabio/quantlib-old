@@ -1,6 +1,6 @@
 
 <Category name='range'>
-  <description>range</description>
+  <description>range.</description>
   <displayName>Range</displayName>
   <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
   <addinIncludes>
@@ -24,7 +24,7 @@
           <Parameter name='Values'>
             <type>double</type>
             <tensorRank>matrix</tensorRank>
-            <description>a range of values</description>
+            <description>a range of values.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

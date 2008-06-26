@@ -1,5 +1,5 @@
 <Category name='couponvectors'>
-  <description>functions to construct and use Leg objects</description>
+  <description>functions to construct and use Leg objects.</description>
   <displayName>Coupon Vectors</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
@@ -46,28 +46,28 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention</description>
+            <description>payment business day convention.</description>
           </Parameter>
           <Parameter name='Nominals' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Nominal amount vector</description>
+            <description>Nominal amount vector.</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Schedule object ID</description>
+            <description>Schedule object ID.</description>
           </Parameter>
           <Parameter name='Coupons' exampleValue='0.04'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>coupon fixed rates</description>
+            <description>coupon fixed rates.</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment DayCounter ID</description>
+            <description>Payment DayCounter ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -85,58 +85,58 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention</description>
+            <description>payment business day convention.</description>
           </Parameter>
           <Parameter name='Nominals' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Nominal amount vector</description>
+            <description>Nominal amount vector.</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Schedule object ID</description>
+            <description>Schedule object ID.</description>
           </Parameter>
           <Parameter name='FixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
             <tensorRank>vector</tensorRank>
-            <description>fixing days (e.g. 2)</description>
+            <description>fixing days (e.g. 2).</description>
           </Parameter>
           <Parameter name='IsInArrears' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the fixing is in arrears</description>
+            <description>TRUE if the fixing is in arrears.</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment DayCounter ID</description>
+            <description>Payment DayCounter ID.</description>
           </Parameter>
           <Parameter name='Floors' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>floor strikes</description>
+            <description>floor strikes.</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings</description>
+            <description>floating rate gearings.</description>
           </Parameter>
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating rate index</description>
+            <description>floating rate index.</description>
           </Parameter>
           <Parameter name='Spreads' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads</description>
+            <description>floating rate spreads.</description>
           </Parameter>
           <Parameter name='Caps' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>cap strikes</description>
+            <description>cap strikes.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -153,73 +153,73 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention</description>
+            <description>payment business day convention.</description>
           </Parameter>
           <Parameter name='Nominals' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>nominal amount vector</description>
+            <description>nominal amount vector.</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>schedule object ID</description>
+            <description>schedule object ID.</description>
           </Parameter>
           <Parameter name='FixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
             <tensorRank>vector</tensorRank>
-            <description>fixing days</description>
+            <description>fixing days.</description>
           </Parameter>
           <Parameter name='IsInArrears' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the fixing is in arrears</description>
+            <description>TRUE if the fixing is in arrears.</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment DayCounter ID</description>
+            <description>Payment DayCounter ID.</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings</description>
+            <description>floating rate gearings.</description>
           </Parameter>
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating rate index</description>
+            <description>floating rate index.</description>
           </Parameter>
           <Parameter name='Spreads' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads</description>
+            <description>floating rate spreads.</description>
           </Parameter>
           <Parameter name='CallStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>option strikes. If omitted, no call is assumed</description>
+            <description>option strikes. If omitted, no call is assumed.</description>
           </Parameter>
           <Parameter name='CallSpecs'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>call position (Short, Long) and ATM inclusion</description>
+            <description>call position (Short, Long) and ATM inclusion.</description>
           </Parameter>
           <Parameter name='CallPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>payoff if the call ends ITM. If omitted, asset-or-nothing option is assumed</description>
+            <description>payoff if the call ends ITM. If omitted, asset-or-nothing option is assumed.</description>
           </Parameter>
           <Parameter name='PutStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>option strikes. If omitted, no put is assumed</description>
+            <description>option strikes. If omitted, no put is assumed.</description>
           </Parameter>
           <Parameter name='PutSpecs'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>put position (Short, Long) and ATM inclusion</description>
+            <description>put position (Short, Long) and ATM inclusion.</description>
           </Parameter>
           <Parameter name='PutPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
@@ -230,7 +230,7 @@
             <type>QuantLib::DigitalReplication</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>replication object ID</description>
+            <description>replication object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -249,58 +249,58 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention</description>
+            <description>payment business day convention.</description>
           </Parameter>
           <Parameter name='Nominals' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Nominal amount vector</description>
+            <description>Nominal amount vector.</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Schedule object ID</description>
+            <description>Schedule object ID.</description>
           </Parameter>
           <Parameter name='FixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
             <tensorRank>vector</tensorRank>
-            <description>fixing days (e.g. 2)</description>
+            <description>fixing days (e.g. 2).</description>
           </Parameter>
           <Parameter name='IsInArrears' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the fixing is in arrears</description>
+            <description>TRUE if the fixing is in arrears.</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment DayCounter ID</description>
+            <description>Payment DayCounter ID.</description>
           </Parameter>
           <Parameter name='Floors' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>floor strikes</description>
+            <description>floor strikes.</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings</description>
+            <description>floating rate gearings.</description>
           </Parameter>
           <Parameter name='SwapIndex'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>underlying SwapIndex object ID</description>
+            <description>underlying SwapIndex object ID.</description>
           </Parameter>
           <Parameter name='Spreads' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads</description>
+            <description>floating rate spreads.</description>
           </Parameter>
           <Parameter name='Caps' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>cap strikes</description>
+            <description>cap strikes.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -317,73 +317,73 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention</description>
+            <description>payment business day convention.</description>
           </Parameter>
           <Parameter name='Nominals' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>nominal amount vector</description>
+            <description>nominal amount vector.</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>schedule object ID</description>
+            <description>schedule object ID.</description>
           </Parameter>
           <Parameter name='FixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
             <tensorRank>vector</tensorRank>
-            <description>fixing days</description>
+            <description>fixing days.</description>
           </Parameter>
           <Parameter name='IsInArrears' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the fixing is in arrears</description>
+            <description>TRUE if the fixing is in arrears.</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment DayCounter ID</description>
+            <description>Payment DayCounter ID.</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings</description>
+            <description>floating rate gearings.</description>
           </Parameter>
           <Parameter name='SwapIndex'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>swap rate index</description>
+            <description>swap rate index.</description>
           </Parameter>
           <Parameter name='Spreads' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads</description>
+            <description>floating rate spreads.</description>
           </Parameter>
           <Parameter name='CallStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>option strikes. If omitted, no call is assumed</description>
+            <description>option strikes. If omitted, no call is assumed.</description>
           </Parameter>
           <Parameter name='CallSpecs'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>call position (Short, Long) and ATM inclusion</description>
+            <description>call position (Short, Long) and ATM inclusion.</description>
           </Parameter>
           <Parameter name='CallPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>payoff if the call ends ITM. If omitted, asset-or-nothing option is assumed</description>
+            <description>payoff if the call ends ITM. If omitted, asset-or-nothing option is assumed.</description>
           </Parameter>
           <Parameter name='PutStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>option strikes. If omitted, no put is assumed</description>
+            <description>option strikes. If omitted, no put is assumed.</description>
           </Parameter>
           <Parameter name='PutSpecs'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>put position (Short, Long) and ATM inclusion</description>
+            <description>put position (Short, Long) and ATM inclusion.</description>
           </Parameter>
           <Parameter name='PutPayoff' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
@@ -394,7 +394,7 @@
             <type>QuantLib::DigitalReplication</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>replication object ID</description>
+            <description>replication object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -412,63 +412,63 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention</description>
+            <description>payment business day convention.</description>
           </Parameter>
           <Parameter name='Nominals' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Nominal amount vector</description>
+            <description>Nominal amount vector.</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Schedule object ID</description>
+            <description>Schedule object ID.</description>
           </Parameter>
           <Parameter name='FixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
             <tensorRank>vector</tensorRank>
-            <description>fixing days (e.g. 2)</description>
+            <description>fixing days (e.g. 2).</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment DayCounter ID</description>
+            <description>Payment DayCounter ID.</description>
           </Parameter>
           <Parameter name='LowerStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>lower strikes</description>
+            <description>lower strikes.</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings</description>
+            <description>floating rate gearings.</description>
           </Parameter>
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>underlying IborIndex object ID</description>
+            <description>underlying IborIndex object ID.</description>
           </Parameter>
           <Parameter name='Spreads' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads</description>
+            <description>floating rate spreads.</description>
           </Parameter>
           <Parameter name='UpperStrikes' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>upper strikes</description>
+            <description>upper strikes.</description>
           </Parameter>
           <Parameter name='ObservationsTenor' exampleValue='1d'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>observations tenor period</description>
+            <description>observations tenor period.</description>
           </Parameter>
           <Parameter name='ObservationsBDC' default='"Modified Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>observations business day convention</description>
+            <description>observations business day convention.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -486,58 +486,58 @@
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
-            <description>payment business day convention</description>
+            <description>payment business day convention.</description>
           </Parameter>
           <Parameter name='Nominals' exampleValue='1000000'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>Nominal amount vector</description>
+            <description>Nominal amount vector.</description>
           </Parameter>
           <Parameter name='ScheduleID'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Schedule object ID</description>
+            <description>Schedule object ID.</description>
           </Parameter>
           <Parameter name='FixingDays' default='std::vector&lt;QuantLib::Natural&gt;()'>
             <type>QuantLib::Natural</type>
             <tensorRank>vector</tensorRank>
-            <description>fixing days (e.g. 2)</description>
+            <description>fixing days (e.g. 2).</description>
           </Parameter>
           <Parameter name='IsInArrears' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the fixing is in arrears</description>
+            <description>TRUE if the fixing is in arrears.</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Payment DayCounter ID</description>
+            <description>Payment DayCounter ID.</description>
           </Parameter>
           <Parameter name='Floors' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>floor strikes</description>
+            <description>floor strikes.</description>
           </Parameter>
           <Parameter name='Gearings' default='1.0'>
             <type>double</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate gearings</description>
+            <description>floating rate gearings.</description>
           </Parameter>
           <Parameter name='SwapIndex'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>underlying SwapIndex object ID</description>
+            <description>underlying SwapIndex object ID.</description>
           </Parameter>
           <Parameter name='Spreads' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>vector</tensorRank>
-            <description>floating rate spreads</description>
+            <description>floating rate spreads.</description>
           </Parameter>
           <Parameter name='Caps' default='std::vector&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>cap strikes</description>
+            <description>cap strikes.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -557,12 +557,12 @@
             <type>QuantLib::OptionletVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Caplet Volatility Structure object ID</description>
+            <description>Caplet Volatility Structure object ID.</description>
           </Parameter>
           <Parameter name='IborCouponPricerType' exampleValue='IborByBlack'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Ibor Coupon Pricer Type (e.g IborByBlack, ..)</description>
+            <description>Ibor Coupon Pricer Type (e.g IborByBlack, ..).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -581,17 +581,17 @@
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Swaption Volatility Structure object ID</description>
+            <description>Swaption Volatility Structure object ID.</description>
           </Parameter>
           <Parameter name='CmsCouponPricerType' exampleValue='ConundrumByNumericalIntegration'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>Cms Coupon Pricer Type (e.g ConundrumByBlack, ConundrumByNumericalIntegration, ClassicalAnaliticalFormula)</description>
+            <description>Cms Coupon Pricer Type (e.g ConundrumByBlack, ConundrumByNumericalIntegration, ClassicalAnaliticalFormula).</description>
           </Parameter>
           <Parameter name='YieldCurveModel'>
             <type>QuantLib::GFunctionFactory::YieldCurveModel</type>
             <tensorRank>scalar</tensorRank>
-            <description>model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts)</description>
+            <description>model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts).</description>
           </Parameter>
           <Parameter name='MeanReversion'  exampleValue='0.1'>
             <type>QuantLib::Quote</type>
@@ -617,40 +617,40 @@
             <type>QuantLib::SwaptionVolatilityStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>Volatility Cube by Sabr</description>
+            <description>Volatility Cube by Sabr.</description>
           </Parameter>
           <Parameter name='YieldCurveModel'>
             <type>QuantLib::GFunctionFactory::YieldCurveModel</type>
             <tensorRank>scalar</tensorRank>
-            <description>model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts)</description>
+            <description>model of the yield curve (e.g Standard, ExactYield, ParallelShifts, NonParallelShifts).</description>
           </Parameter>
           <Parameter name='MeanReversion'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>mean reversion</description>
+            <description>mean reversion.</description>
           </Parameter>
           <Parameter name='LowerLimit' default='0.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>lower limit</description>
+            <description>lower limit.</description>
           </Parameter>
           <Parameter name='UpperLimit' default='1.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>upper limit</description>
+            <description>upper limit.</description>
           </Parameter>
           <Parameter name='Precision' default='1.0e-6'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>precision</description>
+            <description>precision.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
     <Member name='qlConundrumPricerByNumericalIntegrationUpperLimit' type='QuantLib::NumericHaganPricer'>
-      <description>Returns the upper limit of the integral</description>
+      <description>Returns the upper limit of the integral.</description>
       <libraryFunction>upperLimit</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -681,7 +681,7 @@
           <Parameter name='Gap' default='0.0001'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>spread in strikes used in call/put replication</description>
+            <description>spread in strikes used in call/put replication.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
