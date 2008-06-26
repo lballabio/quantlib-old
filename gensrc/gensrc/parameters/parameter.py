@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""encapsulate state necessary to generate source code 
+"""encapsulate state necessary to generate source code
 relating to a function parameter."""
 
 from gensrc.parameters import exceptions
@@ -106,7 +106,7 @@ class Value(serializable.Serializable):
         print "const=" + self.printValue(self.const_)
 
 class Parameter(Value):
-    """Encapsulate state necessary to generate source code 
+    """Encapsulate state necessary to generate source code
     relating to a function parameter."""
 
     groupName_ = 'Parameters'
@@ -139,10 +139,10 @@ class Parameter(Value):
                 self.name_, Parameter.ILLEGAL_NAMES)
         self.fullType_ = environment.getType(self.type_, self.superType_)
         if self.default_:
-            self.description_ += '. Default value = ' + self.default_.replace('"', '')
+            self.description_ += ' Default value = ' + self.default_.replace('"', '') + '.'
 
 class ReturnValue(Value):
-    """Encapsulate state necessary to generate source code 
+    """Encapsulate state necessary to generate source code
     relating to a function return value."""
 
     name_ = 'returnValue'
@@ -181,7 +181,7 @@ class PermanentFlag(Value):
 class ConstructorObjectId(Parameter):
     """ID of an object.
 
-    Implicitly used as the first input parameter for all 
+    Implicitly used as the first input parameter for all
     Constructors (where the ID is assigned to the new object)."""
 
     name_ = 'ObjectId'
@@ -195,7 +195,7 @@ class ConstructorObjectId(Parameter):
 class MemberObjectId(Parameter):
     """ID of an object.
 
-    Implicitly used as the first input parameter for all 
+    Implicitly used as the first input parameter for all
     Members (where the ID indicates the object to be retrieved)."""
 
     name_ = 'ObjectId'
