@@ -23,6 +23,7 @@
 %include date.i
 %include calendars.i
 %include daycounters.i
+%include scheduler.i
 %include observer.i
 %include marketelements.i
 %include interpolation.i
@@ -229,6 +230,7 @@ class CdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
                 const Calendar& calendar,
                 Frequency frequency,
                 BusinessDayConvention convention,
+                DateGeneration::Rule rule,
                 const DayCounter& dayCounter,
                 Real recoveryRate,
                 const Handle<YieldTermStructure>& discountCurve,
@@ -236,7 +238,7 @@ class CdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
                 bool paysAtDefaultTime = true) {
             return new CdsHelperPtr(
                 new CdsHelper(spread,tenor,settlementDays,calendar,
-                              frequency,convention,dayCounter,
+                              frequency,convention,rule,dayCounter,
                               recoveryRate,discountCurve,
                               settlesAccrual,paysAtDefaultTime));
         }
@@ -247,6 +249,7 @@ class CdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
                 const Calendar& calendar,
                 Frequency frequency,
                 BusinessDayConvention convention,
+                DateGeneration::Rule rule,
                 const DayCounter& dayCounter,
                 Real recoveryRate,
                 const Handle<YieldTermStructure>& discountCurve,
@@ -254,7 +257,7 @@ class CdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
                 bool paysAtDefaultTime = true) {
             return new CdsHelperPtr(
                 new CdsHelper(spread,tenor,settlementDays,calendar,
-                              frequency,convention,dayCounter,
+                              frequency,convention,rule,dayCounter,
                               recoveryRate,discountCurve,
                               settlesAccrual,paysAtDefaultTime));
         }
