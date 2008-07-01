@@ -6,7 +6,7 @@ AC_PREREQ(2.50)
 AC_CONFIG_AUX_DIR([config])
 AM_INIT_AUTOMAKE([foreign])
 
-AC_COPYRIGHT([Copyright (C) 2005, 2006, 2007 StatPro Italia srl
+AC_COPYRIGHT([Copyright (C) 2005, 2006, 2007, 2008 StatPro Italia srl
 
 This file is part of QuantLib, a free-software/open-source library
 for financial quantitative analysts and developers - http://quantlib.org/
@@ -109,7 +109,5 @@ AC_CONFIG_FILES([
     Python/Makefile
     R/Makefile
     Ruby/Makefile])
-AC_CONFIG_FILES([Python/QuantLib-Python.spec])
-AC_CONFIG_FILES([Ruby/QuantLib-Ruby.spec])
 AC_OUTPUT
 
