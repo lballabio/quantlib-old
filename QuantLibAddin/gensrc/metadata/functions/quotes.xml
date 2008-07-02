@@ -26,7 +26,7 @@
     <include>ql/quotes/forwardvaluequote.hpp</include>
     <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
     <include>ql/quotes/impliedstddevquote.hpp</include>
-    <include>ql/quotes/sensitivityanalysis.hpp</include>
+    <include>ql/experimental/risk/sensitivityanalysis.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
     <include>qlo/baseinstruments.hpp</include>

@@ -28,7 +28,7 @@
 #include <ql/quotes/forwardswapquote.hpp>
 #include <ql/quotes/futuresconvadjustmentquote.hpp>
 #include <ql/quotes/impliedstddevquote.hpp>
-#include <ql/quotes/sensitivityanalysis.hpp>
+#include <ql/experimental/risk/sensitivityanalysis.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
 
 using std::vector;
@@ -77,9 +77,9 @@ namespace QuantLibAddin {
 
         try {
             result = simpleQuote_->setValue(value);
-        } catch (...) { 
+        } catch (...) {
             // In the event of an exception, ensure that the ValueObject remains in synch with
-            // the simpleQuote_ before rethrowing.  
+            // the simpleQuote_ before rethrowing.
             // If QuantLib::SimpleQuote::isValid() is false then QuantLib::SimpleQuote::value() throws,
             // which here in the catch clause would cause the app to crash, so test for that case.
             if (simpleQuote_->isValid())
@@ -104,7 +104,7 @@ namespace QuantLibAddin {
         libraryObject_ = shared_ptr<QuantLib::Quote>(new
             QuantLib::ForwardValueQuote(index, fixingDate));
     }
-    
+
     ForwardSwapQuote::ForwardSwapQuote(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
             const shared_ptr<QuantLib::SwapIndex>& swapIndex,
@@ -149,7 +149,7 @@ namespace QuantLibAddin {
     FuturesConvAdjustmentQuote::FuturesConvAdjustmentQuote(
                                const shared_ptr<ObjectHandler::ValueObject>& properties,
                                const shared_ptr<QuantLib::IborIndex>& index,
-                               const std::string& immCode, 
+                               const std::string& immCode,
                                const QuantLib::Handle<QuantLib::Quote>& futuresQuote,
                                const QuantLib::Handle<QuantLib::Quote>& volatility,
                                const QuantLib::Handle<QuantLib::Quote>& meanReversion,
@@ -195,7 +195,7 @@ namespace QuantLibAddin {
             sq[i] = vector<QuantLib::Handle<QuantLib::SimpleQuote> >(q[i].size());
             for (QuantLib::Size j=0; j<q[i].size(); ++j) {
                 boost::shared_ptr<QuantLib::Quote> t(q[i][j].currentLink());
-                boost::shared_ptr<QuantLib::SimpleQuote> tt = 
+                boost::shared_ptr<QuantLib::SimpleQuote> tt =
                     boost::dynamic_pointer_cast<QuantLib::SimpleQuote>(t);
                 sq[i][j] = QuantLib::Handle<QuantLib::SimpleQuote>(tt);
             }

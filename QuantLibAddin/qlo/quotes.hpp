@@ -27,7 +27,7 @@
 
 #include <ql/option.hpp>
 #include <ql/types.hpp>
-#include <ql/quotes/sensitivityanalysis.hpp>
+#include <ql/experimental/risk/sensitivityanalysis.hpp>
 
 namespace QuantLib {
     class IborIndex;
