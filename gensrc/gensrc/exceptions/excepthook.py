@@ -20,26 +20,30 @@ import sys
 import traceback
 import re
 
-ERROR_HEADER='''
+ERROR_WRAPPER='''
 > 
 > gensrc has encountered a fatal error.
 >
 > >>>>>>>>>> BEGIN STACK TRACE >>>>>>>>>>
-'''
-
-ERROR_FOOTER='''
+%(stack)s
 > <<<<<<<<<<  END STACK TRACE  <<<<<<<<<< 
 >
 > gensrc error:
-%s
+%(message)s
 >
 '''
 
 def gensrc_excepthook(type, value, tb):
-    sys.stderr.write(ERROR_HEADER)
-    traceback.print_tb(tb, None, sys.stderr)
-    # This application runs in a makefile project under visual studio, which
+
+    # This application runs in a makefile project under Visual Studio, which
     # truncates empty lines, we prevent this by prefixing a > to each line.
-    valueFormatted = re.sub('(?m)^', '> ', str(value))
-    sys.stderr.write(ERROR_FOOTER % valueFormatted)
+    message = re.sub('(?m)^', '> ', str(value))
+
+    # Format the stack trace
+    stack = '>'.join(traceback.format_tb(tb))
+
+    sys.stderr.write(ERROR_WRAPPER % {
+        'stack' : stack,
+        'message' : message })
+
 
