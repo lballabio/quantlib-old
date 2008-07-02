@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "2.0"
         ProjectGuid = "{928F98EE-7D50-457F-9304-A6818DCF1079}"
     >
@@ -284,6 +284,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "BlackCalculator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "BlackCapFloorEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -489,6 +494,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "CdsHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "CeilingTruncation.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -569,7 +579,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ConstantOptionletVol.cs"
+                    RelPath = "ConstantOptionletVolatility.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -599,7 +609,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "CubicSpline.cs"
+                    RelPath = "CreditDefaultSwap.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Cubic.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -655,6 +670,41 @@
                 />
                 <File
                     RelPath = "DayCounter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DefaultDensity.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DefaultDensityCurve.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DefaultEvent.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DefaultEventVector.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DefaultProbabilityHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DefaultProbabilityTermStructure.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DefaultProbabilityTermStructureHandle.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -1429,6 +1479,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "EverestOption.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ExchangeRate.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -1510,6 +1565,11 @@
                 />
                 <File
                     RelPath = "FlatForward.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FlatHazardRate.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -1664,6 +1724,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "GaussianSobolPathGenerator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "GaussKronrodAdaptive.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -1700,6 +1765,21 @@
                 />
                 <File
                     RelPath = "HaltonRsg.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "HazardRate.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "HazardRateCurve.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "HimalayaOption.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -1884,6 +1964,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Issuer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Italy.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2054,12 +2139,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "McEverest.cs"
+                    RelPath = "MCEverestEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "McHimalaya.cs"
+                    RelPath = "MCHimalayaEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2089,6 +2174,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "MidPointCdsEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "MinBasketPayoff.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2099,7 +2189,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "MonotonicCubicSpline.cs"
+                    RelPath = "MonotonicCubicSplineInterpolation.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2299,6 +2389,21 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "PEHCurrency.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PEICurrency.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PENCurrency.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "PercentageStrikePayoff.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2350,6 +2455,11 @@
                 />
                 <File
                     RelPath = "PricingEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Protection.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2429,6 +2539,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "RelinkableDefaultProbabilityTermStructureHandle.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "RelinkableLocalVolTermStructureHandle.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2460,6 +2575,11 @@
                 />
                 <File
                     RelPath = "RelinkableYieldTermStructureHandle.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Restructuring.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2550,6 +2670,11 @@
                 />
                 <File
                     RelPath = "SEKCurrency.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Seniority.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2759,7 +2884,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "SWIGTYPE_p_boost__shared_ptrTDomain_t.cs"
+                    RelPath = "SWIGTYPE_p_boost__shared_ptrT_Domain_t.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2775,6 +2900,21 @@
                 />
                 <File
                     RelPath = "SWIGTYPE_p_CashFlow.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SWIGTYPE_p_DefaultEvent.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SWIGTYPE_p_DefaultProbabilityHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SWIGTYPE_p_DefaultProbabilityTermStructure.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2844,7 +2984,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "SWIGTYPE_p_std__vectorTunsigned_int_t.cs"
+                    RelPath = "SWIGTYPE_p_std__vectorT_unsigned_int_t.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
