@@ -8,7 +8,7 @@ if HAVE_PYTHON
 all-local: .build-stamp
 
 .build-stamp: QuantLib/quantlib_wrap.cpp QuantLib/QuantLib.py
-	CXXFLAGS="$(CXXFLAGS)" $(PYTHON) setup.py build
+	PATH="${bindir}:${PATH}" CXXFLAGS="$(CXXFLAGS)" $(PYTHON) setup.py build
 	touch .build-stamp
 
 check-local: .build-stamp
