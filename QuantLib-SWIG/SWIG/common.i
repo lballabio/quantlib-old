@@ -23,7 +23,15 @@
 %include exception.i
 
 %{
-#define NDEBUG 1 // This is necessary for GCC4 and boost
+// This is necessary to avoid compile failures on 
+// GCC 4
+// see http://svn.boost.org/trac/boost/ticket/1793
+
+#if defined(NDEBUG)
+#define BOOST_DISABLE_ASSERTS 1
+#endif
+
+
 #include <boost/algorithm/string/case_conv.hpp>
 %}
 
