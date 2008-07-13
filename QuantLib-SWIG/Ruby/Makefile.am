@@ -8,7 +8,7 @@ if HAVE_RUBY
 all-local: .build-stamp
 
 .build-stamp: quantlib_wrap.cpp
-	CXXFLAGS="$(CXXFLAGS)" $(RUBY) setup.rb build
+	PATH=${bindir}":"${PATH} CXXFLAGS="$(CXXFLAGS)" $(RUBY) setup.rb build
 	touch .build-stamp
 
 check-local: .build-stamp
