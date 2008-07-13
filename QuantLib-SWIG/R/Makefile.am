@@ -18,7 +18,7 @@ $(QUANTLIB_R_ROOT).RData: $(QUANTLIB_R_ROOT).R
 	R CMD BATCH makeRData.R
 
 $(QUANTLIB_R_ROOT).so: $(BUILT_SOURCES)
-	MAKEFLAGS="CXXFLAGS=$(CXXFLAGS)" PKG_LIBS=`quantlib-config --libs` R CMD SHLIB $(QUANTLIB_R_ROOT).cpp
+	MAKEFLAGS="CPPFLAGS="`$(bindir)/quantlib-config --cflags` PKG_LIBS=`$(bindir)/quantlib-config --libs` R CMD SHLIB $(QUANTLIB_R_ROOT).cpp
 
 debug-object: $(BUILT_SOURCES)
 	g++ -I/usr/lib/R/include  -I/usr/local/include   -fPIC  -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -march=i586 -mtune=pentiumpro -fasynchronous-unwind-tables -c $(QUANTLIB_R_ROOT).cpp -o $(QUANTLIB_R_ROOT).o
