@@ -24,7 +24,7 @@ clean-local: $(PERL_MAKEFILE)
 	rm -rf build
 
 $(PERL_MAKEFILE): Makefile.PL
-	$(PERL) Makefile.PL OPTIMIZE="$(CXXFLAGS)" PREFIX=$(prefix)
+	$(PERL) Makefile.PL OPTIMIZE="$(CXXFLAGS) $(CXXWARNINGFLAGS)" PREFIX=$(prefix)
 
 endif
 

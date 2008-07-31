@@ -26,6 +26,11 @@ AC_MSG_CHECKING([system])
 target=`uname`
 AC_MSG_RESULT([$target])
 
+# check compiler
+AC_LANG([C++])
+
+QL_CHECK_CXXFLAGS
+
 # check for QuantLib
 AC_MSG_CHECKING([for QuantLib])
 ql_version=`quantlib-config --version`
