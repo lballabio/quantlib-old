@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
  Copyright (C) 2005 Johan Witters
 
  This file is part of QuantLib, a free-software/open-source library
@@ -112,6 +112,7 @@ using QuantLib::EveryFourthMonth;
 using QuantLib::Quarterly;
 using QuantLib::Bimonthly;
 using QuantLib::Monthly;
+using QuantLib::EveryFourthWeek;
 using QuantLib::Biweekly;
 using QuantLib::Weekly;
 using QuantLib::Daily;
@@ -126,6 +127,7 @@ enum Frequency {
     Quarterly = 4,
     Bimonthly = 6,
     Monthly = 12,
+    EveryFourthWeek = 13,
     Biweekly = 26,
     Weekly = 52,
     Daily = 365
