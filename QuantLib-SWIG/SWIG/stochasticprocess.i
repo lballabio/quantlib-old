@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005, 2007 StatPro Italia srl
+ Copyright (C) 2004, 2005, 2007, 2008 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -63,6 +63,22 @@ class GeneralizedBlackScholesProcessPtr : public StochasticProcess1DPtr {
           return new GeneralizedBlackScholesProcessPtr(
                        new GeneralizedBlackScholesProcess(s0, dividendTS,
                                                           riskFreeTS, volTS));
+      }
+      Handle<Quote> stateVariable() {
+          return boost::dynamic_pointer_cast<
+                      GeneralizedBlackScholesProcess>(*self)->stateVariable();
+      }
+      Handle<YieldTermStructure> dividendYield() {
+          return boost::dynamic_pointer_cast<
+                      GeneralizedBlackScholesProcess>(*self)->dividendYield();
+      }
+      Handle<YieldTermStructure> riskFreeRate() {
+          return boost::dynamic_pointer_cast<
+                      GeneralizedBlackScholesProcess>(*self)->riskFreeRate();
+      }
+      Handle<BlackVolTermStructure> blackVolatility() const {
+          return boost::dynamic_pointer_cast<
+                      GeneralizedBlackScholesProcess>(*self)->blackVolatility();
       }
     }
 };
