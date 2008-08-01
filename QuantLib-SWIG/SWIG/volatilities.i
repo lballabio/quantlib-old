@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2008 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -254,6 +255,33 @@ class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
         }
     }
 };
+
+// Black ATM curve
+
+%{
+using QuantLib::BlackVarianceCurve;
+typedef boost::shared_ptr<BlackVolTermStructure> BlackVarianceCurvePtr;
+%}
+
+%rename(BlackVarianceCurve) BlackVarianceCurvePtr;
+class BlackVarianceCurvePtr : public boost::shared_ptr<BlackVolTermStructure> {
+  public:
+    %extend {
+        BlackVarianceCurvePtr(
+                const Date& referenceDate,
+                const std::vector<Date>& dates,
+                const std::vector<Real>& volatilities,
+                const DayCounter& dayCounter,
+                bool forceMonotoneVariance = true) {
+            return new BlackVarianceCurvePtr(
+                new BlackVarianceCurve(referenceDate,
+                                       dates, volatilities,
+                                       dayCounter, forceMonotoneVariance));
+        }
+    }
+};
+
+
 
 // Black smiled surface
 %{
