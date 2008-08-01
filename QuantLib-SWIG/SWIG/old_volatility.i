@@ -41,11 +41,11 @@ using QuantLib::CapFloorTermVolatilityStructure;
 class CapFloorTermVolatilityStructure : public Extrapolator {
   public:
     Volatility volatility(const Period& length, Rate strike,
-    	       		bool extrapolate = false);
+                          bool extrapolate = false);
     Volatility volatility(const Date& end, Rate strike,
-    	       		bool extrapolate = false);
+                          bool extrapolate = false);
     Volatility volatility(Time end, Rate strike,
-                        bool extrapolate = false);
+                          bool extrapolate = false);
 };
 
 %template(CapFloorTermVolatilityStructure)
@@ -70,27 +70,26 @@ class CapFloorTermVolCurvePtr
   public:
     %extend {
        CapFloorTermVolCurvePtr(const Date& referenceDate,
+                               const Calendar& calendar,
+                               BusinessDayConvention bdc,
+                               const std::vector<Period>& lengths,
+                               const std::vector<Volatility>& vols,
+                               const DayCounter& dc =
+                                           QuantLib::Actual365Fixed()) {
+            return new CapFloorTermVolCurvePtr(
+                new CapFloorTermVolCurve(referenceDate,calendar,bdc,
+                                         lengths,vols,dc));
+        }
+        CapFloorTermVolCurvePtr(Natural settlementDays,
                                 const Calendar& calendar,
                                 BusinessDayConvention bdc,
                                 const std::vector<Period>& lengths,
                                 const std::vector<Volatility>& vols,
-                                
                                 const DayCounter& dc =
-                                           QuantLib::Actual365Fixed()) {
-            return new CapFloorTermVolCurvePtr(
-                new CapFloorTermVolCurve(referenceDate,calendar,bdc,
-                                          lengths,vols,dc));
-        }
-        CapFloorTermVolCurvePtr(Natural settlementDays,
-                                 const Calendar& calendar,
-                                 BusinessDayConvention bdc,
-                                 const std::vector<Period>& lengths,
-                                 const std::vector<Volatility>& vols,
-                                 const DayCounter& dc =
                                             QuantLib::Actual365Fixed()) {
             return new CapFloorTermVolCurvePtr(
                 new CapFloorTermVolCurve(settlementDays,calendar,bdc,
-                                          lengths,vols,dc));
+                                         lengths,vols,dc));
         }
     }
 };

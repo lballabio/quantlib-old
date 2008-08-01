@@ -139,9 +139,9 @@ class OptionletVolatilityStructure : public Extrapolator {
     Real minStrike() const;
     Real maxStrike() const;
     Volatility volatility(const Date&, Real strike,
-                        bool extrapolate = false) const;
+                          bool extrapolate = false) const;
     Volatility volatility(Time, Real strike,
-                        bool extrapolate = false) const;
+                          bool extrapolate = false) const;
     Real blackVariance(const Date&, Rate strike,
                        bool extrapolate = false) const ;
     Real blackVariance(Time, Rate strike,
@@ -219,36 +219,32 @@ typedef boost::shared_ptr<BlackVolTermStructure> BlackConstantVolPtr;
 class BlackConstantVolPtr : public boost::shared_ptr<BlackVolTermStructure> {
   public:
     %extend {
-        BlackConstantVolPtr(
-                const Date& referenceDate,
-        const Calendar & c,
-        Volatility volatility,
-                const DayCounter& dayCounter) {
+        BlackConstantVolPtr(const Date& referenceDate,
+                            const Calendar & c,
+                            Volatility volatility,
+                            const DayCounter& dayCounter) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, c,
-        volatility, dayCounter));
+                                     volatility, dayCounter));
         }
-        BlackConstantVolPtr(
-                const Date& referenceDate,
-        const Calendar &c,
-                const Handle<Quote>& volatility,
-                const DayCounter& dayCounter) {
+        BlackConstantVolPtr(const Date& referenceDate,
+                            const Calendar &c,
+                            const Handle<Quote>& volatility,
+                            const DayCounter& dayCounter) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(referenceDate, c,
-        volatility, dayCounter));
+                                     volatility, dayCounter));
         }
-        BlackConstantVolPtr(
-                Natural settlementDays, const Calendar& calendar,
-                Volatility volatility,
-                const DayCounter& dayCounter) {
+        BlackConstantVolPtr(Natural settlementDays, const Calendar& calendar,
+                            Volatility volatility,
+                            const DayCounter& dayCounter) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(settlementDays, calendar,
                                      volatility, dayCounter));
         }
-        BlackConstantVolPtr(
-                Natural settlementDays, const Calendar& calendar,
-                const Handle<Quote>& volatility,
-                const DayCounter& dayCounter) {
+        BlackConstantVolPtr(Natural settlementDays, const Calendar& calendar,
+                            const Handle<Quote>& volatility,
+                            const DayCounter& dayCounter) {
             return new BlackConstantVolPtr(
                 new BlackConstantVol(settlementDays, calendar,
                                      volatility, dayCounter));
@@ -267,12 +263,11 @@ typedef boost::shared_ptr<BlackVolTermStructure> BlackVarianceCurvePtr;
 class BlackVarianceCurvePtr : public boost::shared_ptr<BlackVolTermStructure> {
   public:
     %extend {
-        BlackVarianceCurvePtr(
-                const Date& referenceDate,
-                const std::vector<Date>& dates,
-                const std::vector<Real>& volatilities,
-                const DayCounter& dayCounter,
-                bool forceMonotoneVariance = true) {
+        BlackVarianceCurvePtr(const Date& referenceDate,
+                              const std::vector<Date>& dates,
+                              const std::vector<Real>& volatilities,
+                              const DayCounter& dayCounter,
+                              bool forceMonotoneVariance = true) {
             return new BlackVarianceCurvePtr(
                 new BlackVarianceCurve(referenceDate,
                                        dates, volatilities,
@@ -311,7 +306,7 @@ class BlackVarianceSurfacePtr
     %extend {
         BlackVarianceSurfacePtr(
                 const Date& referenceDate,
-        const Calendar & cal,
+                const Calendar & cal,
                 const std::vector<Date>& dates,
                 const std::vector<Real>& strikes,
                 const Matrix& blackVols,
@@ -322,8 +317,8 @@ class BlackVarianceSurfacePtr
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation) {
             return new BlackVarianceSurfacePtr(
                 new BlackVarianceSurface(referenceDate,cal,
-                    dates,strikes,
-                blackVols,dayCounter,lower,upper));
+                                         dates,strikes,
+                                         blackVols,dayCounter,lower,upper));
         }
         static const BlackVarianceSurface::Extrapolation
             ConstantExtrapolation =
@@ -397,8 +392,8 @@ class ConstantOptionletVolatilityPtr
                                        Volatility volatility,
                                        const DayCounter& dayCounter) {
             return new ConstantOptionletVolatilityPtr(
-                new ConstantOptionletVolatility(referenceDate, 
-		    cal, bdc, volatility,
+                new ConstantOptionletVolatility(referenceDate,
+                                                cal, bdc, volatility,
                                                 dayCounter));
         }
         ConstantOptionletVolatilityPtr(const Date& referenceDate,
@@ -407,8 +402,8 @@ class ConstantOptionletVolatilityPtr
                                        const Handle<Quote>& volatility,
                                        const DayCounter& dayCounter) {
             return new ConstantOptionletVolatilityPtr(
-                new ConstantOptionletVolatility(referenceDate, 
-		cal, bdc, volatility,
+                new ConstantOptionletVolatility(referenceDate,
+                                                cal, bdc, volatility,
                                                 dayCounter));
         }
         ConstantOptionletVolatilityPtr(Natural settlementDays,
@@ -417,8 +412,8 @@ class ConstantOptionletVolatilityPtr
                                        Volatility volatility,
                                        const DayCounter& dayCounter) {
             return new ConstantOptionletVolatilityPtr(
-                new ConstantOptionletVolatility(settlementDays, 
-					cal, bdc, volatility,
+                new ConstantOptionletVolatility(settlementDays,
+                                                cal, bdc, volatility,
                                                 dayCounter));
         }
         ConstantOptionletVolatilityPtr(Natural settlementDays,
@@ -427,9 +422,8 @@ class ConstantOptionletVolatilityPtr
                                        const Handle<Quote>& volatility,
                                        const DayCounter& dayCounter) {
             return new ConstantOptionletVolatilityPtr(
-                new ConstantOptionletVolatility(settlementDays, 
-		cal, bdc, 
-		    		volatility,
+                new ConstantOptionletVolatility(settlementDays,
+                                                cal, bdc, volatility,
                                                 dayCounter));
         }
     }
