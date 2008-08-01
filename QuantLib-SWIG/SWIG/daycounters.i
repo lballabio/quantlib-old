@@ -85,7 +85,7 @@ namespace QuantLib {
     };
     class OneDayCounter : public DayCounter {};
     class SimpleDayCounter : public DayCounter {};
-
+    class Business252 : public DayCounter {};
 }
 
 
