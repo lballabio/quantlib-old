@@ -57,14 +57,12 @@
     </Constructor>
 
     <!-- AccountingEngine class interfaces -->
-    <Member name='qlAccountingEngineMultiplePathValues' type='QuantLib::AccountingEngine'>
+    <!--Member name='qlAccountingEngineMultiplePathValues' type='QuantLib::AccountingEngine'>
       <description>return multiple path values.</description>
       <libraryFunction>multiplePathValues</libraryFunction>
       <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -85,7 +83,7 @@
         <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Member-->
 
   </Functions>
 </Category>
