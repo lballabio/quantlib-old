@@ -46,14 +46,6 @@ class DiscreteGeometricASO {
 
 // MonteCarlo pricers
 
-%{
-// single asset
-using QuantLib::McDiscreteArithmeticASO;
-
-// multi asset
-using QuantLib::McPagoda;
-%}
-
 // Define so that the vectors get created
 %include stl.i
 
@@ -70,45 +62,6 @@ SWIG_STD_VECTOR_SPECIALIZE( BlackVolTermStructureHandle,
 #endif
 %template(BlackVolTermStructureVector)
     std::vector<Handle<BlackVolTermStructure> >;
-
-class McDiscreteArithmeticASO {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("value-with-samples") valueWithSamples;
-    %rename("error-estimate")     errorEstimate;
-    #endif
-  public:
-    McDiscreteArithmeticASO(Option::Type type, Real underlying,
-                            const Handle<YieldTermStructure>& dividendYield,
-                            const Handle<YieldTermStructure>& riskFreeRate,
-                            const Handle<BlackVolTermStructure>& volatility,
-                            const std::vector<Time>& timeDelays,
-                            bool controlVariate, BigInteger seed = 0);
-    Real value(Real tolerance,
-               Size maxSample = QL_MAX_INTEGER) const;
-    Real valueWithSamples(Size samples) const;
-    Real errorEstimate() const;
-};
-
-class McPagoda {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("value-with-samples") valueWithSamples;
-    %rename("error-estimate")     errorEstimate;
-    #endif
-  public:
-    McPagoda(const std::vector<Real>& portfolio,
-             Real fraction,
-             Real roof,
-             const std::vector<Handle<YieldTermStructure> >& dividendYields,
-             const Handle<YieldTermStructure>& riskFreeRate,
-             const std::vector<Handle<BlackVolTermStructure> >& volatilities,
-             const Matrix& correlation,
-             const std::vector<Time>& timeDelays,
-             BigInteger seed = 0);
-    Real value(Real tolerance,
-               Size maxSample = QL_MAX_INTEGER) const;
-    Real valueWithSamples(Size samples) const;
-    Real errorEstimate() const;
-};
 
 
 #endif
