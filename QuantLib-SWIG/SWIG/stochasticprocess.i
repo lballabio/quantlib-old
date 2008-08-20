@@ -210,6 +210,25 @@ class StochasticProcessArrayPtr : public boost::shared_ptr<StochasticProcess> {
 };
 
 
+%{
+using QuantLib::GeometricBrownianMotionProcess;
+typedef boost::shared_ptr<StochasticProcess> GeometricBrownianMotionProcessPtr;
+%}
+
+%rename(GeometricBrownianMotionProcess) GeometricBrownianMotionProcessPtr;
+class GeometricBrownianMotionProcessPtr : public StochasticProcess1DPtr {
+  public:
+    %extend {
+      GeometricBrownianMotionProcessPtr(Real initialValue,
+                                        Real mu,
+                                        Real sigma) {
+          return new GeometricBrownianMotionProcessPtr(
+                 new GeometricBrownianMotionProcess(initialValue, mu, sigma));
+      }
+    }
+};
+
+
 // allow use of diffusion process vectors
 #if defined(SWIGCSHARP)
 SWIG_STD_VECTOR_SPECIALIZE( StochasticProcess, boost::shared_ptr<StochasticProcess> )
