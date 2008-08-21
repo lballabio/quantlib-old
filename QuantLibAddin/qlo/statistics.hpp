@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2006 Cristina Duminuco
 
  This file is part of QuantLib, a free-software/open-source library
@@ -38,8 +38,8 @@ namespace QuantLib {
     typedef GenericRiskStatistics<GaussianStatistics> RiskStatistics;
 
     typedef RiskStatistics Statistics;
+    class IncrementalStatistics;
 
-    class StatsHolder;
 }
 
 namespace QuantLibAddin {
@@ -48,6 +48,16 @@ namespace QuantLibAddin {
                 public ObjectHandler::LibraryObject<QuantLib::Statistics> {
       public:
         Statistics(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                   const std::vector<QuantLib::Real>& values, 
+                   const std::vector<QuantLib::Real>& weights,
+                   bool permanent);
+    };
+
+    class IncrementalStatistics : 
+                public ObjectHandler::LibraryObject<QuantLib::IncrementalStatistics> {
+      public:
+        IncrementalStatistics(
+                   const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                    const std::vector<QuantLib::Real>& values, 
                    const std::vector<QuantLib::Real>& weights,
                    bool permanent);
@@ -77,4 +87,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

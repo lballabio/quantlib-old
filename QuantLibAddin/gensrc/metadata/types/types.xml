@@ -121,8 +121,10 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::SabrVolSurface</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Schedule</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::SequenceStatistics</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::SequenceStatisticsInc</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::SmileSection</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Statistics</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::IncrementalStatistics</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::StrikedTypePayoff</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::StrippedOptionletBase</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Swap</DataType>

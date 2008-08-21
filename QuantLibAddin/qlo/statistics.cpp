@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,16 +22,45 @@
 #endif
 #include <qlo/statistics.hpp>
 #include <ql/math/statistics/statistics.hpp>
+#include <ql/math/statistics/incrementalstatistics.hpp>
 
 namespace QuantLibAddin {
 
-    Statistics::Statistics(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                           const std::vector<QuantLib::Real>& values, 
-                           const std::vector<QuantLib::Real>& w,
-                           bool permanent) : ObjectHandler::LibraryObject<QuantLib::Statistics>(properties, permanent)
+    Statistics::Statistics(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        const std::vector<QuantLib::Real>& values, 
+        const std::vector<QuantLib::Real>& w,
+        bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::Statistics>(properties, permanent)
     {               
         libraryObject_ = boost::shared_ptr<QuantLib::Statistics>(new
             QuantLib::Statistics());
+
+        QL_REQUIRE(w.empty() || values.size()==w.size(),
+                   "Mismatch between number of samples (" <<
+                   values.size() << ") and number of weights (" <<
+                   w.size() << ")");
+
+        if (!values.empty()) {
+            if (!w.empty())
+                libraryObject_->addSequence(values.begin(),
+                                            values.end(),
+                                            w.begin());
+            else
+                libraryObject_->addSequence(values.begin(),
+                                            values.end());
+        }
+    }
+
+    IncrementalStatistics::IncrementalStatistics(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        const std::vector<QuantLib::Real>& values, 
+        const std::vector<QuantLib::Real>& w,
+        bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::IncrementalStatistics>(properties, permanent)
+    {               
+        libraryObject_ = boost::shared_ptr<QuantLib::IncrementalStatistics>(new
+            QuantLib::IncrementalStatistics());
 
         QL_REQUIRE(w.empty() || values.size()==w.size(),
                    "Mismatch between number of samples (" <<
@@ -78,4 +107,3 @@ namespace QuantLibAddin {
     TYPICAL_GAUSSIAN_3DOUBLE_STAT_FUNCTION(gaussianAverageShortfall)
 
 }
-

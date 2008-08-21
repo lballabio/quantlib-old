@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2006 Cristina Duminuco
 
  This file is part of QuantLib, a free-software/open-source library
@@ -40,11 +40,13 @@ namespace QuantLib {
     typedef GenericRiskStatistics<GaussianStatistics> RiskStatistics;
 
     typedef RiskStatistics Statistics;
+    class IncrementalStatistics;
 
     template <class StatisticsType>
     class GenericSequenceStatistics;
 
     typedef GenericSequenceStatistics<Statistics> SequenceStatistics;
+    typedef GenericSequenceStatistics<IncrementalStatistics> SequenceStatisticsInc;
 }
 
 namespace QuantLibAddin {
@@ -64,7 +66,21 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
+    class SequenceStatisticsInc : 
+        public ObjectHandler::LibraryObject<QuantLib::SequenceStatisticsInc> {
+    public:
+        SequenceStatisticsInc(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Size dimension,
+            bool permanent);
+        SequenceStatisticsInc(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Size dimension,
+            const QuantLib::Matrix& values, 
+            const std::vector<QuantLib::Real>& weights,
+            bool permanent);
+    };
+
 }
 
 #endif
-
