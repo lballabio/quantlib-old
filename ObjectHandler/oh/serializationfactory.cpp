@@ -131,10 +131,12 @@ namespace ObjectHandler {
         boost::filesystem::path boostPath(path);
 
         // If a parent directory has been specified then ensure it exists.
-        if (boostPath.has_branch_path()) {
+        if ( !boostPath.branch_path().empty() ) {
             OH_REQUIRE(boost::filesystem::exists(boostPath.branch_path()),
-                "Invalid path : " << path);
+                       "Invalid parent path : " << path);
         }
+        // deprecated branch_path() observer has been used above for boost 1.35
+        // backward compatibility. It should be replaced by parent_path()
 
         // If the file itself exists then ensure we can overwrite it.
         if (boost::filesystem::exists(boostPath)) {

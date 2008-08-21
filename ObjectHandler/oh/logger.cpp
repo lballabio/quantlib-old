@@ -79,10 +79,12 @@ namespace ObjectHandler {
             boost::filesystem::path path(logFileName);
 
             // If a parent directory has been specified then ensure it exists.
-            if (path.has_branch_path()) {
+            if ( !path.branch_path().empty() ) {
                 OH_REQUIRE(boost::filesystem::exists(path.branch_path()),
-                    "Invalid path : " << logFileName);
+                           "Invalid parent path : " << logFileName);
             }
+            // deprecated branch_path() observer has been used above for boost 1.35
+            // backward compatibility. It should be replaced by parent_path()
 
             try {
 
