@@ -31,5 +31,7 @@
 #include <oh/range.hpp>
 #include <oh/serializationfactory.hpp>
 #include <oh/enumerations/typefactory.hpp>
+#include <oh/processor.hpp>
 
 #endif
+

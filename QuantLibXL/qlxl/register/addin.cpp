@@ -46,18 +46,24 @@
 #   pragma message("COMPILING_XLL_DYNAMIC is NOT defined")
 #endif
 
-#ifdef XLL_STATIC
-// Instantiate the ObjectHandler Repository
-ObjectHandler::RepositoryXL repositoryXL;
-// Instantiate the Enumerated Type Registry
-ObjectHandler::EnumTypeRegistry enumTypeRegistry;
-// Instantiate the Enumerated Class Registry
-ObjectHandler::EnumClassRegistry enumClassRegistry;
-// Instantiate the Enumerated Pair Registry
-ObjectHandler::EnumPairRegistry enumPairRegistry;
-#endif
-// Instantiate the serialization Factory
-QuantLibAddin::SerializationFactory factory;
+void init() {
+
+	#ifdef XLL_STATIC
+	// Instantiate the ObjectHandler Repository
+	static ObjectHandler::RepositoryXL repositoryXL;
+	// Instantiate the Enumerated Type Registry
+	static ObjectHandler::EnumTypeRegistry enumTypeRegistry;
+	// Instantiate the Enumerated Class Registry
+	static ObjectHandler::EnumClassRegistry enumClassRegistry;
+	// Instantiate the Enumerated Pair Registry
+	static ObjectHandler::EnumPairRegistry enumPairRegistry;
+	#endif
+    // Instantiate the Processor Factory
+    static ObjectHandler::ProcessorFactory processorFactory;
+	// Instantiate the Serialization Factory
+	static QuantLibAddin::SerializationFactory factory;
+
+}
 
 DLLEXPORT void xlAutoFree(XLOPER *px) {
 
@@ -66,6 +72,8 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 }
 
 DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
+
+	init();
 
     XLOPER xlReturn;
     static XLOPER xlLongName;
@@ -87,6 +95,8 @@ DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
 }
 
 DLLEXPORT int xlAutoOpen() {
+
+	init();
 
     XLOPER xDll;
 
