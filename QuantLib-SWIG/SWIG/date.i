@@ -116,6 +116,7 @@ using QuantLib::EveryFourthWeek;
 using QuantLib::Biweekly;
 using QuantLib::Weekly;
 using QuantLib::Daily;
+using QuantLib::OtherFrequency;
 %}
 
 enum Frequency {
@@ -130,7 +131,8 @@ enum Frequency {
     EveryFourthWeek = 13,
     Biweekly = 26,
     Weekly = 52,
-    Daily = 365
+    Daily = 365,
+    OtherFrequency = 999
 };
 
 #if defined(SWIGJAVA)
