@@ -139,6 +139,16 @@ namespace ObjectHandler {
         return s.str();
     }
 
+    std::string CallingRange::getUpdateCount(){
+        int count = updateCount_;
+        if(count != 0)
+            count -= 1;
+        if (count > 9999) count = 0;
+        std::ostringstream s;
+        s << std::setw(4) << std::setfill('0') << count;
+        return s.str();
+    }
+
     std::ostream &operator<<(std::ostream &out, const boost::shared_ptr<CallingRange> &callingRange) {
         static const int COL_WIDTH = 20;
         out << "name: " << std::left << std::setw(COL_WIDTH)

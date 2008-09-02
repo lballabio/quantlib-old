@@ -115,6 +115,16 @@ namespace ObjectHandler {
     std::string formatTime(double tm);
     //@}
 
+
+    /** \name logFile and logLevel
+    *  Miscellaneous utility functions.
+    */
+    //@{
+    //! Wraps function Logger::instance().LogFile()
+    const std::string logFile();
+    //£¡Wraps function Logger::instance().logLevel()
+    const int logLevel();
+    //@}
 }
 
 #endif

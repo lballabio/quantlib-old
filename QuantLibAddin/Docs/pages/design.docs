@@ -412,7 +412,7 @@ Vanilla Option constructor.  qlVanillaOption() returns the decorated <tt>Handle<
 of the new Vanilla Option object, which is passed to formula qlNPV() to display
 the NPV of the option.</li>
 <li><b>interrogate an existing object
-with no prior knowledge of its structure:</b> ohPropertyNames() is called on the
+with no prior knowledge of its structure:</b> ohObjectPropertyNames() is called on the
 <tt>Handle</tt> returned from qlVanillaOption() to get the Object's Property
 vector.</li> 
 <li><b>Invoke a method of an existing object:</b> The

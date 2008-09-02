@@ -35,7 +35,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohDeleteAllObjects'>
+    <Procedure name='ohAllObjectDelete'>
       <description>delete all objects from repository.</description>
       <alias>ObjectHandler::Repository::instance().deleteAllObjects</alias>
       <SupportedPlatforms>
@@ -57,7 +57,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohDeleteObject'>
+    <Procedure name='ohObjectDelete'>
       <description>delete object from repository.</description>
       <alias>ObjectHandler::RepositoryXL::instance().deleteObject</alias>
       <SupportedPlatforms>

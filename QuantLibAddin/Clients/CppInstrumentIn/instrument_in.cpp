@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
 
         initializeAddin();
 
-        ohSetLogFile("qla_demo.log", 4L, OH_NULL);
+        ohLogFileSet("qla_demo.log", 4L, OH_NULL);
         ohSetConsole(1, 4L, OH_NULL);
         LOG_MESSAGE("Begin example program.");
         LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion(OH_NULL));

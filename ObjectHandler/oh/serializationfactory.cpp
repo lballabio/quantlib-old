@@ -39,6 +39,7 @@
 
 namespace ObjectHandler {
 
+    //std::map<std::string, ProcessorPtr> DTest;
     std::map<std::string, ProcessorPtr> ProcessorFactory::processorMap_;
 
     boost::shared_ptr<Object> createRange(
@@ -109,16 +110,6 @@ namespace ObjectHandler {
         object.first = boost::get<std::string>(valueObject->getProperty("OBJECTID"));
         ObjectHandler::Repository::instance().storeObject(object.first, object.second, overwriteExisting);
 
-        return object;
-    }
-
-    boost:: shared_ptr<Object> SerializationFactory::recreateObject( 
-        boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const {
-
-        CreatorMap::const_iterator i = creatorMap_().find(valueObject->className());
-        OH_REQUIRE(i != creatorMap_().end(), "No creator for class " << valueObject->className());
-        Creator creator = i->second;
-        boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
         return object;
     }
 

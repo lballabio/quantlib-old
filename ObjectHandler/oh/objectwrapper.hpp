@@ -136,10 +136,10 @@ namespace ObjectHandler {
 
     inline void ObjectWrapper::reCreate(){
         try {
-            object_ = SerializationFactory::instance(). recreateObject( 
-                object_->properties());
+            SerializationFactory::instance().createObject( 
+                object_->properties(), true);
             dirty_ = false;
-            updateTime_ = getTime();
+            //updateTime_ = getTime();
 
         } catch (const std::exception &e) {
             OH_FAIL("Error in function ObjectWrapper::reCreate : " << e.what());

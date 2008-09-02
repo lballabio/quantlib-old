@@ -34,23 +34,6 @@
 #include <ExampleObjects/accountexample.hpp>
 #include <Examples/ExampleObjects/Serialization/serializationfactory.hpp>
 
-// Instantiate the ObjectHandler Repository
-ObjectHandler::Repository repository;
-// Instantiate the Enumerated Type Registry
-ObjectHandler::EnumTypeRegistry enumTypeRegistry;
-// Instantiate the Serialization Factory
-AccountExample::SerializationFactory factory;
-
-#ifdef OH_LOG_MESSAGE
-#undef OH_LOG_MESSAGE
-#endif
-#ifdef OH_LOG_ERROR
-#undef OH_LOG_ERROR
-#endif
-
-#define OH_LOG_MESSAGE(msg) std::cerr << msg << std::endl
-#define OH_LOG_ERROR(msg) std::cerr << msg << std::endl
-
 void makeCustomer(
     const std::string &objectID,
     const std::string &name,
@@ -82,7 +65,7 @@ void makeAccount(
     AccountExample::Account::Type typeEnum =
         ObjectHandler::Create<AccountExample::Account::Type>()(type);
 
-    long accountBalance = ObjectHandler::convert2<long>(balance, "balance", 100);
+    double accountBalance = ObjectHandler::convert2<double>(balance, "balance", 100.00);
 
     boost::shared_ptr<ObjectHandler::Object> object(
         new AccountExample::AccountObject(
@@ -95,12 +78,19 @@ void makeAccount(
 
 int main() {
 
+    // Instantiate the ObjectHandler Repository
+    ObjectHandler::Repository repository;
+    // Instantiate the Enumerated Type Registry
+    ObjectHandler::EnumTypeRegistry enumTypeRegistry;
+    // Instantiate the Serialization Factory
+    AccountExample::SerializationFactory factory;
+
     try {
 
         // Specify log file
-        //ObjectHandler::setLogFile("./example.log");
+        ObjectHandler::setLogFile("./example.log");
         // Also direct log messages to stdout
-        //ObjectHandler::setConsole(1);
+        ObjectHandler::setConsole(1);
         OH_LOG_MESSAGE("begin example program");
 
     } catch (const std::exception &e) {
@@ -116,22 +106,22 @@ int main() {
     }
 
     try {
-        AccountExample::registerEnumeratedTypes();
+       AccountExample::registerEnumeratedTypes();
 
         // Construct some objects and store them in the object handler
         makeCustomer("customer1", "Joe", 40);
         makeAccount("account1", "customer1", "Savings", 123456789);
-        makeAccount("account2", "customer1", "Current", 987654321, 100L);
+        makeAccount("account2", "customer1", "Current", 987654321, 100.00);
 
 
         // High level interrogation
         OH_LOG_MESSAGE("High level interrogation - after constructor");
-        //ObjectHandler::logObject("account2");
+        ObjectHandler::logObject("account2");
 
         // Retrieve an object and update it
         OH_GET_OBJECT(accountObject2_retrieve,
             "account2", AccountExample::AccountObject)
-        accountObject2_retrieve->setBalance(100);
+        accountObject2_retrieve->setBalance(100.00);
 
         // Low-level interrogation
         OH_LOG_MESSAGE("Low-level interrogation - after update");
@@ -145,7 +135,7 @@ int main() {
 
         // Log all objects
         OH_LOG_MESSAGE("Log all objects after deleting account2:");
-        //ObjectHandler::logAllObjects();
+        ObjectHandler::logAllObjects();
 
         // Serialize an object
         std::vector<boost::shared_ptr<ObjectHandler::Object> > objectList;
@@ -160,18 +150,28 @@ int main() {
         // Manipulate the deserialized object
         OH_GET_OBJECT(accountObject1_load,
             "account2", AccountExample::AccountObject)
-        accountObject1_load->setBalance(200);
+        accountObject1_load->setBalance(200.00);
         OH_LOG_MESSAGE("Balance of account account2 = "
             << accountObject1_load->balance());
-    
+
         // initially time
         OH_LOG_MESSAGE("The initially time of creating account2 is ");
-        OH_LOG_MESSAGE(ObjectHandler::formatTime(ObjectHandler::Repository::instance().creationTime("account2")));
+        std::vector<std::string> vecOb;
+        vecOb.push_back("account2");
+        vecOb.push_back("account1");
+        std::vector<double> vecTime;
+        vecTime = ObjectHandler::Repository::instance().creationTime(vecOb);
+         for(unsigned int i = 0; i < vecTime.size(); ++i)
+            OH_LOG_MESSAGE(vecOb[i] <<"  "<< ObjectHandler::formatTime(vecTime[i]));
         //sleep(1);
-        makeAccount("account2", "customer1", "Current", 987654321, 100L, true);
+        makeAccount("account2", "customer1", "Current", 987654321, 100.00, true);
        // last time
         OH_LOG_MESSAGE("The last time of creating account2 is ");
-        OH_LOG_MESSAGE(ObjectHandler::formatTime(ObjectHandler::Repository::instance().updateTime("account2")));
+        vecTime.clear();
+        vecTime = ObjectHandler::Repository::instance().updateTime(vecOb);
+         for(unsigned int i = 0; i < vecTime.size(); ++i)
+            OH_LOG_MESSAGE(vecOb[i] << "  "<< ObjectHandler::formatTime(vecTime[i]));
+
         // relation the  objects list
         OH_LOG_MESSAGE("relation the objects list is ");
         std::vector<std::string> relationIDs = ObjectHandler::Repository::instance().getRelationObs("account2");
@@ -184,7 +184,6 @@ int main() {
         ObjectHandler::Repository::instance().deleteAllObjects();
 
         OH_LOG_MESSAGE("End example program");
-
         return 0;
 
     } catch (const std::exception &e) {

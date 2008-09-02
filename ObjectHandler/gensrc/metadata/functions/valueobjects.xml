@@ -14,7 +14,7 @@
 
   <Functions>
 
-    <Member name='ohPropertyNames' type='ObjectHandler::Object'>
+    <Member name='ohObjectPropertyNames' type='ObjectHandler::Object'>
       <description>retrieve the property names of a given object.</description>
       <libraryFunction>propertyNamesVector</libraryFunction>
       <SupportedPlatforms>
@@ -29,7 +29,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='ohPropertyValue' type='ObjectHandler::Object' loopParameter='PropertyName'>
+    <Member name='ohObjectPropertyValues' type='ObjectHandler::Object' loopParameter='PropertyName'>
       <description>retrieve the value(s) of one or more named properties.</description>
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>

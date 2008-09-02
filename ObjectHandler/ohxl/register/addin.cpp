@@ -71,7 +71,7 @@ DLLEXPORT int xlAutoClose() {
     try {
 
         // empty the ObjectHandler repository
-        Excel(xlUDF, 0, 1, TempStrNoSize("\x12""ohDeleteAllObjects"));
+        Excel(xlUDF, 0, 1, TempStrNoSize("\x11""ohAllObjectDelete"));
 
         // unregister the addin functions
         Excel(xlGetName, &xDll, 0);

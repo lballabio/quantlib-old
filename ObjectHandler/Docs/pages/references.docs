@@ -32,7 +32,7 @@ reference, or by the raw string representing the object's ID.  The use of raw
 strings allows objects to be referenced even if the workbook which instantiated
 them is closed.
 \li It may be useful for objects referenced in this way to be declared
-"permanent" so that they are not deleted by functions ohDeleteObjects() and
+"permanent" so that they are not deleted by functions ohObjectDelete() and
 ohCollectGarbage().
 \li Referencing objects by raw strings circumvents Excel's dependency tracking
 mechanism.  Triggers can be used to force Excel to reestablish dependencies
@@ -73,13 +73,13 @@ flag indicating whether the object is to be permanent or not. It's a boolean
 but is implemented as datatype \c any so that it can be omitted (default =
 false).
 
-Permanent objects are not deleted by functions ohDeleteAllObjects() /
+Permanent objects are not deleted by functions ohAllObjectDelete() /
 ohCollectGarbage(), allowing finer granularity in managing the objects in the
 repository.  For example in the scenario described above where global objects
 are initialized at startup on a workbook which is then closed, these objects
-might be declared permanent, so that functions ohDeleteAllObjects() /
+might be declared permanent, so that functions ohAllObjectDelete() /
 ohCollectGarbage() delete only objects that the user can see. Functions
-ohDeleteAllObjects() / ohCollectGarbage() accept a parameter called
+ohAllObjectDelete() / ohCollectGarbage() accept a parameter called
 "deletePermanent", which defaults to False. Setting deletePermanent = True
 overrides the default behavior, deleting all objects including those that were
 declared permanent.

@@ -42,7 +42,7 @@ sal_Int32 SAL_CALL QLAddin::ohTrigger(
     return returnValue;
 }
 
-SEQSEQ(STRING) SAL_CALL QLAddin::ohPropertyNames(
+SEQSEQ(STRING) SAL_CALL QLAddin::ohObjectPropertyNames(
         const STRING &objectID,
         const ANY &trigger) THROWDEF_RTE_IAE {
     try {
@@ -66,12 +66,12 @@ SEQSEQ(STRING) SAL_CALL QLAddin::ohPropertyNames(
         return returnValueCalc;
 
     } catch (const std::exception &e) {
-        ObjectHandler::logMessage(std::string("ERROR: ohPropertyNames: ") + e.what(), 2);
+        ObjectHandler::logMessage(std::string("ERROR: ohObjectPropertyNames: ") + e.what(), 2);
         THROW_RTE;
     }
 }
 
-ANY SAL_CALL QLAddin::ohPropertyValue(
+ANY SAL_CALL QLAddin::ohObjectPropertyValues(
         const STRING &objectID,
         const STRING &fieldName,
         const ANY &trigger) THROWDEF_RTE_IAE {
@@ -99,7 +99,7 @@ ANY SAL_CALL QLAddin::ohPropertyValue(
         return returnValueCalc;
 
     } catch (const std::exception &e) {
-        ObjectHandler::logMessage(std::string("ERROR: ohPropertyValue: ") + e.what(), 2);
+        ObjectHandler::logMessage(std::string("ERROR: ohObjectPropertyValues: ") + e.what(), 2);
         THROW_RTE;
     }
 }

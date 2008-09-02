@@ -1,12 +1,24 @@
     const char* %(functionName)s::mPropertyNames[] = {
-        "ClassName",
-        "ObjectId"%(propertyDeclaration)s
+        // The two values below are not desired in the return value of ohObjectPropertyNames().
+        // For now we just comment them out as this seems not to break anything.
+        //"ClassName",
+        //"ObjectId"%(propertyDeclaration)s
     };
 
-    std::set<std::string> %(functionName)s::mSystemPropertyNames(mPropertyNames, mPropertyNames + sizeof(mPropertyNames) / sizeof(const char*));
+    std::set<std::string> %(functionName)s::mSystemPropertyNames(
+        mPropertyNames, mPropertyNames + sizeof(mPropertyNames) / sizeof(const char*));
 
     const std::set<std::string>& %(functionName)s::getSystemPropertyNames() const {
         return mSystemPropertyNames;
+    }
+
+    std::vector<std::string> %(functionName)s::getPropertyNamesVector() const {
+        std::vector<std::string> ret(
+            mPropertyNames, mPropertyNames + sizeof(mPropertyNames) / sizeof(const char*));
+        for (std::map<std::string, ObjectHandler::property_t>::const_iterator i = userProperties.begin();
+            i != userProperties.end(); ++i)
+            ret.push_back(i->first);
+        return ret;
     }
 
     ObjectHandler::property_t %(functionName)s::getSystemProperty(const std::string& name) const {

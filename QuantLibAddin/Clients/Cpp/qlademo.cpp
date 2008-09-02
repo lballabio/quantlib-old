@@ -43,7 +43,7 @@ int main() {
 
         initializeAddin();
 
-        //ohSetLogFile("qlademo.log", 4L, OH_NULL);
+        //ohLogFileSet("qlademo.log", 4L, OH_NULL);
         //ohSetConsole(1, 4L, OH_NULL);
         LOG_MESSAGE("Begin example program.");
         LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion(OH_NULL));
@@ -125,7 +125,7 @@ int main() {
 
         LOG_MESSAGE("option PV = " << qlInstrumentNPV(idVanillaOption, OH_NULL));
 
-        ohLogObject(idVanillaOption, OH_NULL);
+        ohObjectLog(idVanillaOption, OH_NULL);
 
         std::vector<std::string> idList;
         idList.push_back(idBlackConstantVol);

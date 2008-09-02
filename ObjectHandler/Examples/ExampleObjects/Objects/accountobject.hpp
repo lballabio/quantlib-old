@@ -33,7 +33,7 @@ namespace AccountExample {
             const boost::shared_ptr<Customer>& customer,
             const Account::Type &type,
             const long &number,
-            const long &balance,
+            const double &balance,
             bool permanent)
             : ObjectHandler::LibraryObject<Account>(properties, permanent) {
 
@@ -42,11 +42,11 @@ namespace AccountExample {
             
         }
 
-        void setBalance(const long &balance)  {
+        void setBalance(const double &balance)  {
             libraryObject_->setBalance(balance);
         }
 
-        const long &balance()  {
+        const double &balance()  {
             return libraryObject_->balance();
         }
 

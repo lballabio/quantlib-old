@@ -23,6 +23,39 @@
 
 /*! \page history Version History
 
+<strong>Release 0.9.7 - ??? 200?</strong>
+
+FUNCTIONALITY
+
+The convention for naming addin functions is that an addin function which
+wraps Foo::Bar() should be called ohFooBar().  Selected functions have been
+renamed as noted below to conform to this convention:
+
+\li ohConcatenate -> ohStringConcatenate
+\li ohDeleteAllObject -> ohAllObjectDelete
+\li ohDeleteObject -> ohObjectDelete
+\li ohLogAllObject -> ohAllObjectLog
+\li ohLogObject -> ohObjectLog
+\li ohObjectCount -> ohAllObjectCount
+\li ohPropertyNames -> ohObjectPropertyNames
+\li ohPropertyValues -> ohObjectPropertyValues
+\li ohRetrieveError -> ohRangeRetrieveError
+\li ohSetLogFile -> ohLogFileSet
+\li ohSetLogLevel -> ohLogLevelSet
+\li ohSplit -> ohStringSplit
+
+New Functions:
+\li ohObjectIsOrphan
+\li ohObjectUpdateCounter
+\li ohObjectIsPermanent
+\li ohObjectClassName
+\li ohLogFile
+\li ohLogLevel
+
+Function ohPropertyNames modified to suppress ObjectId, ClassName from return value
+and to list values in the sequence in which they appear in the constructor of the
+corresponding class.
+
 <strong>Release 0.9.5 - ??? 200?</strong>
 
 DESIGN
@@ -115,7 +148,7 @@ DOCUMENTATION
 - The comments in the code have been brought completely up to date.  As a 
   result the  doxygen-generated documentation of classes and code is also up to date.
   Much of the other hand-written documentation still requires an update.
-- "Topics" page of documentation renamed to "Manual" and updated to provide
+- \c Topics page of documentation renamed to \c Manual and updated to provide
   overview of major design features
 
 LOG4CXX
@@ -152,7 +185,7 @@ REQUIRED PACKAGES
 
 EXCEL
 
-- New function "ohRetrieveError()" returns whatever error message
+- New function ohRetrieveError() returns whatever error message
   is associated with the active range
 
 LOG4CXX

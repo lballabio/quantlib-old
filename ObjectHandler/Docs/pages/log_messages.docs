@@ -39,7 +39,7 @@ about additional %ObjectHandler functions in support of logging.
 On Excel, whenever a function from the %ObjectHandler Addin (or its clients)
 encounters an error, the function returns \#NUM to the calling cell.  In this
 case a corresponding error message is written to the log file.  The error
-message may also be retrieved by calling function ohRetrieveError().
+message may also be retrieved by calling function ohRangeRetrieveError().
 
 \section log_thresholds Logging Levels (Thresholds)
 

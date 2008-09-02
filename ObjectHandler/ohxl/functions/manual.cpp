@@ -239,21 +239,21 @@ XLL_DEC OPER *ohFilter(
 }
 
 /*
-ohRetrieveError() - This implementation uses a couple of undocumented workarounds for an
+ohRangeRetrieveError() - This implementation uses a couple of undocumented workarounds for an
 undocumented Excel bug.
-- ohRetrieveError() requires macro capabilities (#)
-- ohRetrieveError() accepts an XLOPER* (range reference) as input
+- ohRangeRetrieveError() requires macro capabilities (#)
+- ohRangeRetrieveError() accepts an XLOPER* (range reference) as input
 - Macro functions accepting XLOPER* are not recalculated reliably by Excel
-- We implement 2 functions, ohRetrieveError() is a non-macro function which uses xlUDF
+- We implement 2 functions, ohRangeRetrieveError() is a non-macro function which uses xlUDF
   to call ohRetrieveErrorImpl() which is a macro function.  This indirection fools Excel
-  into allowing ohRetrieveError() to invoke macro privileges.  Thanks to Laurent Longre
+  into allowing ohRangeRetrieveError() to invoke macro privileges.  Thanks to Laurent Longre
   for publishing this technique.
-- ohRetrieveError() performs a dummy xlCoerce on the input XLOPER*.  If Excel has called 
-  ohRetrieveError() out of sequence, then the xlCoerce will return xlretUncalced, causing
-  Excel to automatically re-call ohRetrieveError() after the input range is updated.
+- ohRangeRetrieveError() performs a dummy xlCoerce on the input XLOPER*.  If Excel has called 
+  ohRangeRetrieveError() out of sequence, then the xlCoerce will return xlretUncalced, causing
+  Excel to automatically re-call ohRangeRetrieveError() after the input range is updated.
 */
 
-XLL_DEC XLOPER *ohRetrieveError(XLOPER *xRange) {
+XLL_DEC XLOPER *ohRangeRetrieveError(XLOPER *xRange) {
     try {
         XLOPER xTemp;
         Excel(xlCoerce, &xTemp, 1, xRange);

@@ -30,6 +30,7 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <algorithm>
 #include <oh/property.hpp>
 #include <boost/serialization/access.hpp>
 
@@ -68,7 +69,7 @@ namespace ObjectHandler {
         //@{
         //! Retrieve the names of the properties stored in the ValueObject.
         std::set<std::string> getPropertyNames() const;
-        std::vector<std::string> getPropertyNamesVector() const;
+        virtual std::vector<std::string> getPropertyNamesVector() const = 0;
         virtual const std::set<std::string>& getSystemPropertyNames() const = 0;
 
         //! Retrieve the value of a property given its name.
@@ -96,7 +97,7 @@ namespace ObjectHandler {
         //! the name of the processor that is required for that ValueObject;
         /*
             For ValueObject classes which do not require special processing, 
-            processorName() returns ¡°DefaultProcessor¡±
+            processorName() returns DefaultProcessor.
         */
         virtual std::string processorName()  { return "DefaultProcessor"; }
         //@}
@@ -156,22 +157,16 @@ namespace ObjectHandler {
         return ret;
     }
 
-    inline std::vector<std::string> ValueObject::getPropertyNamesVector() const {
-        std::set<std::string> names(getPropertyNames());
-        std::vector<std::string> ret(names.begin(), names.end());
-        return ret;
-    }
-
     inline property_t ValueObject::getProperty(const std::string& name) const {
         if(userProperties.find(name) != userProperties.end())
             return userProperties.find(name)->second;
         else
             return getSystemProperty(name);
-     }
+    }
 
     inline bool ValueObject::hasProperty(const std::string& name) const {
         return userProperties.find(name) != userProperties.end();
-     }
+    }
 
     inline void ValueObject::setProperty(const std::string& name, const property_t& value) {
         const std::set<std::string>& sysNames = getSystemPropertyNames();

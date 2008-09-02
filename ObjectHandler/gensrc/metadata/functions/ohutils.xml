@@ -137,28 +137,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohObjectExists'>
-      <description>list the IDs of objects in repository matching regex.</description>
-      <alias>ObjectHandler::RepositoryXL::instance().objectExists</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='ObjectID'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Object ID name.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>bool</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
-    <Procedure name='ohObjectCount'>
+    <Procedure name='ohAllObjectCount'>
       <description>#/objects in repository.</description>
       <alias>ObjectHandler::RepositoryXL::instance().objectCount</alias>
       <SupportedPlatforms>
@@ -194,7 +173,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohSplit' dependencyTrigger='False'>
+    <Procedure name='ohStringSplit' dependencyTrigger='False'>
       <description>Split a string into substrings using the given delimiter.</description>
       <alias>ObjectHandler::split</alias>
       <SupportedPlatforms>
@@ -225,7 +204,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohConcatenate' dependencyTrigger='False'>
+    <Procedure name='ohStringConcatenate' dependencyTrigger='False'>
       <description>Concatenate substrings into a single string using the given delimiter.</description>
       <alias>ObjectHandler::concatenate</alias>
       <SupportedPlatforms>
@@ -278,7 +257,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohRetrieveError' dependencyTrigger='false'>
+    <Procedure name='ohRangeRetrieveError' dependencyTrigger='false'>
       <description>Retrieve the error message if any that is associated with the given range.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual' xlMacro='false'/>
@@ -299,7 +278,7 @@
     </Procedure>
 
     <Procedure name='ohRetrieveErrorImpl' dependencyTrigger='false' visible='false'>
-      <description>Concrete implementation of ohRetrieveError().  This function is hidden.</description>
+      <description>Concrete implementation of ohRangeRetrieveError().  This function is hidden.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>
@@ -361,48 +340,6 @@
       <ReturnValue>
         <type>string</type>
         <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
-    <Procedure name='ohObjectCallerAddress'>
-      <description>retrieve address of cell in which object resides.</description>
-      <alias>ObjectHandler::RepositoryXL::instance().callerAddress</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='ObjectId'>
-            <type>string</type>
-            <tensorRank>vector</tensorRank>
-            <description>ID of object to be queried.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>string</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
-    <Procedure name='ohObjectCallerKey'>
-      <description>retrieve unique ID of the CallingRange object associated with the cell in which object resides.</description>
-      <alias>ObjectHandler::RepositoryXL::instance().callerKey</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='ObjectId'>
-            <type>string</type>
-            <tensorRank>vector</tensorRank>
-            <description>ID of object to be queried.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>string</type>
-        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Procedure>
 

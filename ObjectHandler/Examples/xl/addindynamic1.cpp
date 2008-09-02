@@ -32,11 +32,10 @@
 #endif
 #include <sstream>
 
-// Instantiate the Serialization Factory
-//ExampleAddin::ExampleFactory factory;
-AccountExample::SerializationFactory factory;
-
 DLLEXPORT int xlAutoOpen() {
+
+    // Instantiate the Serialization Factory
+    static AccountExample::SerializationFactory factory;
 
     static XLOPER xDll;
 
@@ -64,7 +63,7 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x10""addin1SetBalance"),    // function code name
-            TempStrNoSize("\x04""LCN#"),                // parameter codes
+            TempStrNoSize("\x04""LCE#"),                // parameter codes
             TempStrNoSize("\x10""addin1SetBalance"),    // function display name
             TempStrNoSize("\x10""ObjectID,Balance"),    // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
@@ -177,8 +176,8 @@ DLLEXPORT char *addin1CreateAccount(
         OH_GET_REFERENCE(customerRef, customer,
             AccountExample::CustomerObject, AccountExample::Customer)
 
-        long balanceLong = ObjectHandler::convert2<long>(
-            ObjectHandler::ConvertOper(*balance), "balance", 100);
+        double balanceDouble = ObjectHandler::convert2<double>(
+            ObjectHandler::ConvertOper(*balance), "balance", 100.00);
 
         ObjectHandler::property_t balanceProperty =
             ObjectHandler::convert2<ObjectHandler::property_t>(
@@ -191,7 +190,7 @@ DLLEXPORT char *addin1CreateAccount(
             new AccountExample::AccountValueObject(objectID, customer, type, *number, balanceProperty, *permanent));
 
         boost::shared_ptr<ObjectHandler::Object> object(
-            new AccountExample::AccountObject(valueObject, customerRef, typeEnum, *number, balanceLong, *permanent));
+            new AccountExample::AccountObject(valueObject, customerRef, typeEnum, *number, balanceDouble, *permanent));
 
         std::string returnValue = 
             ObjectHandler::RepositoryXL::instance().storeObject(objectID, object, true);
@@ -208,7 +207,7 @@ DLLEXPORT char *addin1CreateAccount(
     }
 }
 
-DLLEXPORT short int *addin1SetBalance(char *objectID, long *balance) {
+DLLEXPORT short int *addin1SetBalance(char *objectID, double *balance) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 

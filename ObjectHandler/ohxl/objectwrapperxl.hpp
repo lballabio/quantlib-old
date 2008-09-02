@@ -99,6 +99,9 @@ namespace ObjectHandler {
 
         //! Associate this object with a different calling range.
         void resetCaller(boost::shared_ptr<CallingRange> callingRange);
+
+        //! get callingRange
+        boost::shared_ptr<CallingRange>& getCallingRange(){ return callingRange_;}
     private:
         // Reference to the worksheet cell in which this object resides.
         boost::shared_ptr<CallingRange> callingRange_;

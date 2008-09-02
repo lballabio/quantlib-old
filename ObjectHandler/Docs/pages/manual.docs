@@ -31,7 +31,7 @@ functionality of %ObjectHandler.
 <tr><td>\ref excelbinding</td><td>%ObjectHandler functionality for Microsoft Excel</td></tr>
 <tr><td>\ref log_messages</td><td>Writing messages to the log file</td></tr>
 <tr><td>\ref garbage_collection</td><td>Culling objects orphaned by the deletion of the calling cell</td></tr>
-<tr><td>\ref references</td><td>Flagging objects as permanent so that they're ignored by ohDeleteAllObjects(), and using triggers to force dependencies between cells in Microsoft Excel</td></tr>
+<tr><td>\ref references</td><td>Flagging objects as permanent so that they're ignored by ohAllObjectDelete(), and using triggers to force dependencies between cells in Microsoft Excel</td></tr>
 </table>
 
 */

@@ -35,12 +35,12 @@ namespace AccountExample {
             const boost::shared_ptr<Customer>& customer,
             const Type &type,
             const long &number,
-            const long &balance)
+            const double &balance)
             : customer_(customer), type_(type), number_(number), balance_(balance) {}
 
         const std::string& customerName() { return customer_->name(); }
-        void setBalance(const int &balance) { balance_ = balance; }
-        const long &balance() { return balance_; }
+        void setBalance(const double &balance) { balance_ = balance; }
+        const double &balance() { return balance_; }
         std::string type() {
             std::ostringstream s;
             s << type_;
@@ -51,7 +51,7 @@ namespace AccountExample {
         boost::shared_ptr<Customer> customer_;
         Type type_;
         long number_;
-        long balance_;
+        double balance_;
     };
 
     inline std::ostream& operator<<(std::ostream& out, Account::Type type) {

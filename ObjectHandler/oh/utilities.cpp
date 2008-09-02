@@ -30,8 +30,10 @@
 #include <boost/algorithm/string/split.hpp>
 #include <sstream>
 #include <ctime>
+#include <sys/timeb.h>
 
 #define            SECS_PER_DAY    (60 * 60 * 24)
+#define            MILLISECS_PER_DAY    (1000 * SECS_PER_DAY)
 
 using boost::algorithm::token_compress_off;
 using boost::algorithm::token_compress_on;
@@ -60,6 +62,14 @@ namespace ObjectHandler {
 
     void setLogLevel(const int &logLevel) {
         Logger::instance().setLogLevel(logLevel);
+    }
+
+    const std::string logFile(){
+        return Logger::instance().logFile();
+    }
+
+    const int logLevel(){
+        return Logger::instance().logLevel();
     }
 
     void setConsole(const int &console,
@@ -235,19 +245,35 @@ namespace ObjectHandler {
 
     double getTime(){
 
-        time_t time_t_T;
-        struct tm tm_T;
+        struct timeb tp;
+        struct tm    tm;
 
-        time ( &time_t_T );
-        tm_T = *localtime(&time_t_T);
-        long years = tm_T.tm_year + 1900; 
+        ftime(&tp);
+        tm = *localtime(&(tp.time ));
+
+        long years = tm.tm_year + 1900; 
         OH_REQUIRE((years>= 1900 && years <= 2200), "year outside valid range");
-        unsigned long l = tm_T.tm_sec
-            + 60 * ( tm_T.tm_min 
-            + 60 * ( tm_T.tm_hour
-            + 24 * ( (tm_T.tm_yday + 1)
-            + YearOffset[tm_T.tm_year])));
-        double d = l / (double)SECS_PER_DAY;
+
+        /*
+        unsigned long long l = tp.millitm 
+            + 1000 * (tm.tm_sec
+            + 60 * ( tm.tm_min 
+            + 60 * ( tm.tm_hour
+            + 24 * ( (tm.tm_yday + 1)
+            + days))));
+            */
+        unsigned long totalDays = 24 * ( (tm.tm_yday + 1) + YearOffset[tm.tm_year]);
+        unsigned long totalHours = (60 * (tm.tm_hour + totalDays));
+        unsigned long long totalMinutes = tm.tm_min + totalHours;
+        totalMinutes *= 60;
+        unsigned long long totalSeconds = tm.tm_sec;
+        totalSeconds += totalMinutes;
+        totalSeconds *= 1000;
+
+        unsigned long long totalMSecond = tp.millitm;
+        totalMSecond += totalSeconds;
+
+        double d = totalMSecond / (double)(MILLISECS_PER_DAY);
 
         return d;
 
@@ -255,10 +281,10 @@ namespace ObjectHandler {
 
     std::string formatTime(double tm){
 
-        unsigned long years, monthes, days, hours, minutes, seconds;
-        unsigned long totalSecond = (unsigned long)(tm *  SECS_PER_DAY);
+        unsigned long long years, monthes, days, hours, minutes, seconds, milliseconds;
+        unsigned long long totalMSecond = (unsigned long long)(tm *  MILLISECS_PER_DAY);
 
-        unsigned long tmp = totalSecond / SECS_PER_DAY;
+        unsigned long long tmp = totalMSecond / MILLISECS_PER_DAY;
         unsigned int yearOffset = 0;
         bool b = false;
 
@@ -273,8 +299,10 @@ namespace ObjectHandler {
         }
         OH_REQUIRE(b, "year outside valid range");
 
-        totalSecond -= (SECS_PER_DAY * YearOffset[yearOffset - 1]);
-        days = totalSecond / SECS_PER_DAY;
+        days = YearOffset[yearOffset - 1];
+        days *= MILLISECS_PER_DAY;
+        totalMSecond -= days;
+        days = totalMSecond / MILLISECS_PER_DAY;
 
         static unsigned long MonthOffset[] = {
             0,  31,  59,  90, 120, 151,   // Jan - Jun
@@ -292,7 +320,7 @@ namespace ObjectHandler {
             pMonth = MonthLeapOffset;
         else
             pMonth = MonthOffset;
-        unsigned int monthoffset = days/30;
+        unsigned long long monthoffset = days/30;
         size = 13;
         b = false;
         OH_REQUIRE(days != 0, "day outside valid range");
@@ -305,17 +333,20 @@ namespace ObjectHandler {
             }
         }
         OH_REQUIRE(b, "month outside valid range");
-        totalSecond -= days * SECS_PER_DAY;
+        totalMSecond -= days * MILLISECS_PER_DAY;
 
         days -=  pMonth[monthoffset - 1];
 
-        hours = totalSecond / 3600;
-        totalSecond -= hours * 3600;
-        minutes =  totalSecond / 60;
-        seconds = totalSecond - minutes * 60;
+        hours = totalMSecond / (3600 * 1000);
+        totalMSecond -= (hours * 3600 * 1000) ;
+        minutes =  totalMSecond / (60 * 1000);
+        totalMSecond -= minutes * 60 * 1000;
+        seconds = totalMSecond / 1000;
+        milliseconds = totalMSecond - seconds * 1000;
+
 
         char buffer[80];
-        sprintf(buffer, "%02lu/%02lu/%04lu %02lu:%02lu:%02lu",  monthes, days, years,hours, minutes, seconds);
+        sprintf(buffer, "%02llu/%02llu/%04llu %02llu:%02llu:%02llu:%03llu",  monthes, days, years,hours, minutes, seconds, milliseconds);
 
         return buffer;
     }

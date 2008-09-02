@@ -92,6 +92,7 @@ class ValueObjects(addin.Addin):
             'propertyDeclaration' : func.parameterList().generate(self.propertyDeclaration_),
             'propertyGet' : func.parameterList().generate(self.propertyGet_),
             'propertySet' : func.parameterList().generate(self.propertySet_),
+            'propertyInsert' : func.parameterList().generate(self.propertyInsert_),
             'propertyPush' : func.parameterList().generate(self.propertyPush_),
             'populateObjectIDs' : func.parameterList().generate(self.populateObjectIDs_) }
 

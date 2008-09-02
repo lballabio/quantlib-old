@@ -97,15 +97,29 @@ namespace ObjectHandler {
         void logMessage(const std::string &message,
                 const int &level = 4);
         //@}
-        
+
+        /** \name logFile and logLevel
+        *  Miscellaneous utility functions.
+        */
+        //@{
+        //!get log file
+        const std::string logFile();
+        //£¡get log level
+        const int logLevel();
+        //@}
+
+
         virtual ~Logger(){}
     private:
         Logger();
-         //log4cxx::LoggerPtr _logger;
+        //log4cxx::LoggerPtr _logger;
         //log4cxx::LayoutPtr _layout;
         //log4cxx::AppenderPtr _fileAppender;
         //log4cxx::AppenderPtr _consoleAppender;
         log4cxx::LayoutPtr getLayout();
+
+        //log4cxx::AppenderPtr fileAppender_;
+        std::string filename_;
     };
 
 }

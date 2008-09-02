@@ -40,7 +40,7 @@ int main() {
 	dummy.data.AsLong = 0;
 
     initialize();
-    ohSetLogFile("quantlib.log", logLevel, dummy, returnString);   // specify log file
+    ohLogFileSet("quantlib.log", logLevel, dummy, returnString);   // specify log file
     ohSetConsole(1, logLevel, dummy, &result);                     // log messages to stdout
     ohLogMessage("begin example program", logLevel, dummy, &result);
 
@@ -138,7 +138,7 @@ int main() {
     ohLogMessage(returnString, logLevel, dummy, &result);
 
     // dump the object to the log file
-    ohLogObject("my_option", dummy, &result);
+    ohObjectLog("my_option", dummy, &result);
 
     ohLogMessage("end example program", logLevel, dummy, &result);
 

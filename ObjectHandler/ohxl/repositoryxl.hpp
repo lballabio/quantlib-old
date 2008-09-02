@@ -52,35 +52,7 @@ namespace ObjectHandler {
             const std::string &objectID,
             const boost::shared_ptr<Object> &object,
             bool overwrite = false);
-        //! Implementation of the retrieveObject function.
-        /*! Convert Excel-format Object IDs into the format recognized by the base
-            Repository class.  Recast references from Object to ObjectWrapperXL.
-        */
-        virtual boost::shared_ptr<Object> retrieveObjectImpl(
-            const std::string &objectID);
-
-        //! Wrapper for the deleteObject function in the base class.
-        /*! Convert Excel-format Object IDs into the format recognized by the base
-            Repository class.
-        */
-        virtual void deleteObject(const std::string &objectID);
-
-        //! Wrapper for the deleteObject function in the base class.
-        /*! Convert Excel-format Object IDs into the format recognized by the base
-            Repository class.
-        */
-        virtual void deleteObject(const std::vector<std::string> &objectIDs);
-        //! Wrapper for the objectExists function in the base class.
-        /*! Convert Excel-format Object IDs into the format recognized by the base
-            Repository class.
-        */
-        virtual bool objectExists(const std::string &objectID) const;
-        virtual double creationTime(const std::string &objectID) const ;
-        virtual double updateTime(const std::string &objectID) const;
-        virtual const std::vector<std::string> getRelationObs(const std::string &objectID);
-        //@}
-        //@}
-
+ 
         //! \name Error Messages
         //@{
         //! Log an error message.
@@ -112,8 +84,6 @@ namespace ObjectHandler {
             specific to the Excel platform, e.g. information on CallingRange objects.
         */
         virtual void dump(std::ostream&);
-        //! Write the indicated Object to the given stream.
-        virtual void dumpObject(const std::string &objectID, std::ostream&);
         //@}
 
         //! \name Garbage Collection
@@ -134,13 +104,18 @@ namespace ObjectHandler {
         std::vector<std::string> callerKey(const std::vector<std::string> &objectList);
         //@}
 
+        //! \name get callername property
+        //@{
+         //! get the object property orphan
+        virtual std::vector<bool> ObjectIsOrphan(const std::vector<std::string> &objectList);
+        //! Retrieve the object property Update Counter
+        virtual std::vector<std::string> ObjectUpdateCounter(const std::vector<std::string> &objectList);
+        //@}
+
     protected:
-        //! register a observer object into observable.
-        /*! get the Objects Observable and Observer with the given ID ObservableId and ObserverId;
-            and then regiest the object Observer into the object Observable
-        */
-        virtual void registerObserver( 
-            boost::shared_ptr<ObjectWrapper> objWrapper);
+         // Convert Excel-format Object IDs into the format recognized by the base Repository class
+        virtual std::string formateID(const std::string &objectID);
+
     private:
         // Associate the given error message to the active cell.
         void setError(

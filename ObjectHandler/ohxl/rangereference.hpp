@@ -116,7 +116,7 @@ namespace ObjectHandler {
         //! Assign an error message to this range.
         void setErrorMessage(const std::string &errorMessage);
         //! Retrieve the error message associated with this range.
-        /*! This function is wrapped by end user function ohRetrieveError().
+        /*! This function is wrapped by end user function ohRangeRetrieveError().
         */
         const std::string errorMessage() const { return errorMessage_; }
         //@}

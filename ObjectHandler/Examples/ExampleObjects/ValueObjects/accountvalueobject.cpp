@@ -27,13 +27,15 @@
 namespace AccountExample {
 
     const char* AccountValueObject::mPropertyNames[] = {
-        "ObjectId",
-        "ClassName",
-        "Permanent",
+        // The two values below are not desired in the return value of ohObjectPropertyNames().
+        // For now we just comment them out as this seems not to break anything.
+        //"ObjectId",
+        //"ClassName",
         "Customer",
         "Number",
         "Type",
-        "Balance"};
+        "Balance",
+        "Permanent"};
 
     const std::set<std::string>& AccountValueObject::getSystemPropertyNames() const {
         static std::set<std::string> ret;
@@ -42,6 +44,15 @@ namespace AccountExample {
                 mPropertyNames + sizeof(mPropertyNames)/sizeof(const char*));
         return ret;
     }
+
+	std::vector<std::string> AccountValueObject::getPropertyNamesVector() const {
+        std::vector<std::string> ret(mPropertyNames,
+            mPropertyNames + sizeof(mPropertyNames)/sizeof(const char*));
+        for (std::map<std::string, ObjectHandler::property_t>::const_iterator i
+            = userProperties.begin(); i != userProperties.end(); ++i)
+            ret.push_back(i->first);
+        return ret;
+	}
 
     ObjectHandler::property_t AccountValueObject::getSystemProperty(const std::string& name) const {
         std::string nameUpper = boost::algorithm::to_upper_copy(name);

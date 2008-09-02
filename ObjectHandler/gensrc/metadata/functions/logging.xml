@@ -16,7 +16,7 @@
 
   <Functions>
 
-    <Procedure name='ohLogAllObjects'>
+    <Procedure name='ohAllObjectLog'>
       <description>write all object descriptions to log file.</description>
       <alias>ObjectHandler::logAllObjects</alias>
       <SupportedPlatforms>
@@ -58,7 +58,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohLogObject'>
+    <Procedure name='ohObjectLog'>
       <description>write object description to log file.</description>
       <alias>ObjectHandler::logObject</alias>
       <SupportedPlatforms>
@@ -80,7 +80,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohSetLogFile'>
+    <Procedure name='ohLogFileSet'>
       <description>begin logging to named file.</description>
       <alias>ObjectHandler::setLogFile</alias>
       <SupportedPlatforms>
@@ -108,7 +108,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohSetLogLevel'>
+    <Procedure name='ohLogLevelSet'>
       <description>set threshold for log messages.</description>
       <alias>ObjectHandler::setLogLevel</alias>
       <SupportedPlatforms>
@@ -156,6 +156,37 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='ohLogFile'>
+      <description>get log file.</description>
+      <alias>ObjectHandler::logFile</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>returns log file name.</description>
+      </ReturnValue>
+    </Procedure>
+    
+    <Procedure name='ohLogLevel'>
+      <description>get log level.</description>
+      <alias>ObjectHandler::logLevel</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>returns log level value.</description>
+      </ReturnValue>
+    </Procedure>
   </Functions>
 
 </Category>

@@ -1,20 +1,20 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
-Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
 
-This file is part of QuantLib, a free-software/open-source library
-for financial quantitative analysts and developers - http://quantlib.org/
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
 
-QuantLib is free software: you can redistribute it and/or modify it
-under the terms of the QuantLib license.  You should have received a
-copy of the license along with this program; if not, please email
-<quantlib-dev@lists.sf.net>. The license is also available online at
-<http://quantlib.org/license.shtml>.
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the license for more details.
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
@@ -99,6 +99,7 @@ namespace ObjectHandler {
                 _fileAppender = AppenderPtr(new FileAppender(getLayout(),  fileName));
                 _logger->addAppender(_fileAppender);
                 setLogLevel(logLevel);
+                filename_ = logFileName;
 
             } catch (helpers::Exception &e) {
                 //OH_FAIL("Logger::setLogFile: unable to set logfile: " + e.getMessage());
@@ -197,6 +198,50 @@ namespace ObjectHandler {
                 }
             } catch (...) {}
     }
+
+    //get log file
+    const std::string Logger::logFile(){
+        try{
+            /*
+            if(fileAppender_ == 0)
+                throw "";
+            std::string filename;
+
+            log4cxx::helpers::Transcoder::encode(fileAppender_->getName(), filename);
+            return filename;
+            */
+            return filename_;
+        }
+        catch(...){
+            OH_FAIL("Logger::LogFile: unable to get logfile.");
+        }
+    }
+    //get log level
+    const int Logger::logLevel(){
+        const LevelPtr& level = log4cxx::Logger::getRootLogger()->getLevel();
+
+        int value = -1;
+        if(level == Level::getOff())
+            value = 0;
+        else if(level == Level::getFatal())                
+            value = 1;
+        else if(level == Level::getError())  
+            value = 2;
+        else if(level == Level::getWarn()) 
+            value = 3;
+        else if(level == Level::getInfo()) 
+            value = 4;
+        else if(level == Level::getDebug())
+            value = 5;
+        else if(level == Level::getTrace())
+            value = 6;
+          else if(level == Level::getAll())
+            value = 7;
+
+		return value ;
+ 
+    }
+
 
 }
 

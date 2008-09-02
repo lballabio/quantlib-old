@@ -50,7 +50,7 @@ namespace ObjectHandler {
             return anytostream<std::string>(out, any);
         else if (any.type() == typeid(Variant))
             return anytostream<Variant>(out, any);
-        // FIXME Function ohLogAllObjects() crashes below in a stack overflow.
+        // FIXME Function ohAllObjectLog() crashes below in a stack overflow.
         // Below is a quick fix pending replacement of boost::any with boost::variant.
         else
             return out << any.type().name();

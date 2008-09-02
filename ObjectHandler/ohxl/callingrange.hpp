@@ -84,6 +84,8 @@ namespace ObjectHandler {
         bool valid() const;
         //! The number of times this cell has been refreshed.
         std::string updateCount();
+        //get the number of times  this cell has been refreshed.
+        std::string getUpdateCount();
         //@}
 
         //! Convert a full ID to a normal one.

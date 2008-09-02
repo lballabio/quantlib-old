@@ -106,7 +106,7 @@ C:\qlxl_swap_trade.xml
 If switching back and forth between import and export during a single Excel
 session you can use the command <tt>QLXL Demo / Delete All Objects</tt> to
 ensure that the ObjectHandler repository is empty.  You can confirm this by
-ensuring that function \c ohObjectCount() returns zero.
+ensuring that function \c ohAllObjectCount() returns zero.
 
 \subsection serialization_win_cpp 1.2 C++
 

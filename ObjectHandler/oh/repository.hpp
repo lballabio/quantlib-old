@@ -149,7 +149,7 @@ namespace ObjectHandler {
             const std::string &regex = "");
 
         //! Indicate whether an Object with the given ID is found in the Repository.
-        virtual bool objectExists(const std::string &objectID) const;
+        virtual std::vector<bool> objectExists(const std::vector<std::string> &objectList);
         //@}
 
         //! Define the type of the structure used to store the Objects.
@@ -163,12 +163,19 @@ namespace ObjectHandler {
         //! \name the getting time and relation object list
         //@{
         //! get the initially time of creating object
-        virtual double creationTime(const std::string &objectID) const ;
+        virtual std::vector<double> creationTime(const std::vector<std::string> &objectList);
         //! get the last time of creating object
-        virtual double updateTime(const std::string &objectID) const;
+        virtual std::vector<double> updateTime(const std::vector<std::string> &objectList);
         //! get relation object list
         virtual const std::vector<std::string> getRelationObs(const std::string &objectID);
         //@}
+
+        //! get the object's permanent proterty
+        virtual std::vector<bool> ObjectIsPermanent(const std::vector<std::string> &objectList);
+        //! get the object's name
+        virtual const std::vector<std::string> ObjectClassName(const std::vector<std::string> &objectList);
+        //@}
+
 
     protected:
         //! A pointer to the Repository instance, used to support the Singleton pattern.
@@ -183,6 +190,14 @@ namespace ObjectHandler {
         virtual void registerObserver( 
             boost::shared_ptr<ObjectWrapper> objWrapper);
 
+        //! Convert Excel-format Object IDs into the format recognized by the base Repository class
+        /*! The functiong will be used in derived class(e.g in class repositoryXL it will change the objectID
+            custorm_#0001 into custrom); 
+        */
+        virtual std::string formateID(const std::string &objectID);
+
+        //! Indicate whether an Object with the given ID is found in the Repository.
+        virtual bool isObjectExists(const std::string &objectID) const;
 
     };
 

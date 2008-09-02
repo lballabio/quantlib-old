@@ -96,49 +96,6 @@ namespace ObjectHandler {
             return objectWrapperXL->idFull();
     }
 
-    void RepositoryXL::registerObserver( 
-        boost::shared_ptr<ObjectWrapper> objectWrapper){
-
-            const std::set<std::string>& relationObs = objectWrapper->object()->properties()->getRelationObs();
-            std::set<std::string>::const_iterator iter = relationObs.begin();
-            for(; iter != relationObs.end();  iter++){
-                boost::shared_ptr<ObjectWrapper> objServable = getObjectWrapper(CallingRange::getStub(*iter));
-                objectWrapper->registerWith(objServable);
-            }
-    }
-
-    boost::shared_ptr<Object> RepositoryXL::retrieveObjectImpl(
-        const std::string &objectID)  {
-            return Repository::retrieveObjectImpl(CallingRange::getStub(objectID));
-    }
-
-    void RepositoryXL::deleteObject(const std::string &objectID) {
-        Repository::deleteObject(CallingRange::getStub(objectID));
-    }
-
-    void RepositoryXL::deleteObject(const std::vector<std::string> &objectIDs) {
-        OH_REQUIRE(!objectIDs.empty(), "List of Object IDs for deletion is empty");
-        for (std::vector<std::string>::const_iterator i = objectIDs.begin();
-            i != objectIDs.end(); ++i)
-            Repository::deleteObject(CallingRange::getStub(*i));
-    }
-
-    bool RepositoryXL::objectExists(const std::string &objectID) const {
-        return Repository::objectExists(CallingRange::getStub(objectID));
-    }
-
-    double RepositoryXL::creationTime(const std::string &objectID) const {
-        return Repository::creationTime(CallingRange::getStub(objectID));
-    }
-
-    double RepositoryXL::updateTime(const std::string &objectID) const{
-        return Repository::updateTime(CallingRange::getStub(objectID));
-    }
-
-    const std::vector<std::string> RepositoryXL::getRelationObs(const std::string &objectID){
-        return Repository::getRelationObs(CallingRange::getStub(objectID));
-    }
-
     void RepositoryXL::setError(
         const std::string &message,
         const boost::shared_ptr<FunctionCall> &functionCall) {
@@ -213,15 +170,6 @@ namespace ObjectHandler {
     void RepositoryXL::clearError() {
         std::string refStr = FunctionCall::instance().refStr();
         errorMessageMap_.erase(boost::algorithm::to_upper_copy(refStr));
-    }
-
-    void RepositoryXL::dumpObject(const std::string &objectID, std::ostream &out) {
-        ObjectMap::const_iterator result = objectMap_.find(CallingRange::getStub(objectID));
-        if (result == objectMap_.end()) {
-            out << "no object in repository with ID = " << objectID << std::endl;
-        } else {
-            out << "log dump of object with ID = " << objectID << std::endl << result->second;
-        }
     }
 
     void RepositoryXL::collectGarbage(const bool &deletePermanent) {
@@ -324,6 +272,55 @@ namespace ObjectHandler {
         }
 
         return ret;
+    }
+
+    std::vector<bool> RepositoryXL::ObjectIsOrphan(const std::vector<std::string> &objectList){
+        std::vector<bool> ret;
+
+        for (std::vector<std::string>::const_iterator i = objectList.begin();
+            i != objectList.end(); ++i) {
+                boost::shared_ptr<ObjectWrapperXL> objectWrapperXL;
+                ObjectMap::const_iterator result = objectMap_.find(CallingRange::getStub(*i));
+                if (result != objectMap_.end()) {
+
+                    objectWrapperXL = boost::static_pointer_cast<ObjectWrapperXL>(result->second);
+
+                    ret.push_back(!objectWrapperXL->getCallingRange()->valid());
+                }
+                else {
+                    OH_FAIL( "Unable to retrieve object with ID " << *i);
+                }
+        }
+        return ret;
+
+    }
+
+    std::vector<std::string> RepositoryXL::ObjectUpdateCounter(const std::vector<std::string> &objectList){
+        std::vector<std::string> ret;
+
+        for (std::vector<std::string>::const_iterator i = objectList.begin();
+            i != objectList.end(); ++i) {
+
+                boost::shared_ptr<ObjectWrapperXL> objectWrapperXL;
+                ObjectMap::const_iterator result = objectMap_.find(CallingRange::getStub(*i));
+                if (result != objectMap_.end()) {
+
+                    objectWrapperXL = boost::static_pointer_cast<ObjectWrapperXL>(result->second);
+
+                    ret.push_back(objectWrapperXL->getCallingRange()->getUpdateCount());
+                }
+                else {
+                    OH_FAIL( "Unable to retrieve object with ID " << *i);
+                }
+        }
+
+        return ret;
+
+    }
+
+    std::string RepositoryXL::formateID(const std::string &objectID){
+
+        return CallingRange::getStub(objectID);
     }
 
 }

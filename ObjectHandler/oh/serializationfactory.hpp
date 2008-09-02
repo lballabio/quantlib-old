@@ -86,11 +86,7 @@ namespace ObjectHandler {
         StrObjectPair createObject(
             const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
             bool overwriteExisting) const;
-        //! Recreate an Object from its ValueObject
-        boost:: shared_ptr<Object> recreateObject( 
-            boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const; 
-
-    protected:
+     protected:
 
         virtual void processPath(
             const std::string &path,

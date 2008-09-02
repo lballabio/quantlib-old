@@ -35,19 +35,18 @@
 #endif
 #include <sstream>
 
-// Instantiate the ObjectHandler Repository
-ObjectHandler::RepositoryXL repositoryXL;
-// Instantiate the Enumerated Type Registry
-ObjectHandler::EnumTypeRegistry enumTypeRegistry;
-// Instantiate the Enumerated Class Registry
-ObjectHandler::EnumClassRegistry enumClassRegistry;
-// Instantiate the Enumerated Pair Registry
-ObjectHandler::EnumPairRegistry enumPairRegistry;
-// Instantiate the Serialization Factory
-//ExampleAddin::SerializationFactory factory;
-AccountExample::SerializationFactory factory;
-
 DLLEXPORT int xlAutoOpen() {
+
+    // Instantiate the ObjectHandler Repository
+    static ObjectHandler::RepositoryXL repositoryXL;
+    // Instantiate the Enumerated Type Registry
+    static ObjectHandler::EnumTypeRegistry enumTypeRegistry;
+    // Instantiate the Enumerated Class Registry
+    static ObjectHandler::EnumClassRegistry enumClassRegistry;
+    // Instantiate the Enumerated Pair Registry
+    static ObjectHandler::EnumPairRegistry enumPairRegistry;
+    // Instantiate the Serialization Factory
+    static AccountExample::SerializationFactory factory;
 
     static XLOPER xDll;
 
@@ -78,7 +77,7 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x13""ohAccountSetBalance"), // function code name
-            TempStrNoSize("\x04""LCN#"),                // parameter codes
+            TempStrNoSize("\x04""LCE#"),                // parameter codes
             TempStrNoSize("\x13""ohAccountSetBalance"), // function display name
             TempStrNoSize("\x10""ObjectID,Balance"),    // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
@@ -86,7 +85,7 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x10""ohAccountBalance"),    // function code name
-            TempStrNoSize("\x04""NCP#"),                // parameter codes
+            TempStrNoSize("\x04""ECP#"),                // parameter codes
             TempStrNoSize("\x10""ohAccountBalance"),    // function display name
             TempStrNoSize("\x10""ObjectID,Trigger"),    // comma-delimited list of parameters
             TempStrNoSize("\x01""1"),                   // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
@@ -216,8 +215,8 @@ DLLEXPORT char *ohAccount(
         OH_GET_REFERENCE(customerRef, customer,
             AccountExample::CustomerObject, AccountExample::Customer)
 
-        long balanceLong = ObjectHandler::convert2<long>(
-            ObjectHandler::ConvertOper(*balance), "balance", 100);
+        double balanceDouble = ObjectHandler::convert2<double>(
+            ObjectHandler::ConvertOper(*balance), "balance", 100.00);
 
         ObjectHandler::property_t balanceProperty =
             ObjectHandler::convert2<ObjectHandler::property_t>(
@@ -230,7 +229,7 @@ DLLEXPORT char *ohAccount(
             new AccountExample::AccountValueObject(objectID, customer, type, *number, balanceProperty, *permanent));
 
         boost::shared_ptr<ObjectHandler::Object> object(
-            new AccountExample::AccountObject(valueObject, customerRef, typeEnum, *number, balanceLong, *permanent));
+            new AccountExample::AccountObject(valueObject, customerRef, typeEnum, *number, balanceDouble, *permanent));
 
     
         std::string returnValue = 
@@ -248,7 +247,7 @@ DLLEXPORT char *ohAccount(
     }
 }
 
-DLLEXPORT short int *ohAccountSetBalance(char *objectID, long *balance) {
+DLLEXPORT short int *ohAccountSetBalance(char *objectID, double *balance) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
@@ -271,7 +270,7 @@ DLLEXPORT short int *ohAccountSetBalance(char *objectID, long *balance) {
     }
 }
 
-DLLEXPORT long *ohAccountBalance(char *objectID, OPER *trigger) {
+DLLEXPORT double *ohAccountBalance(char *objectID, OPER *trigger) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
@@ -282,7 +281,7 @@ DLLEXPORT long *ohAccountBalance(char *objectID, OPER *trigger) {
 
         OH_GET_OBJECT(accountObject, objectID, AccountExample::AccountObject)
 
-        static long ret;
+        static double ret;
         ret = accountObject->balance();
         return &ret;
 

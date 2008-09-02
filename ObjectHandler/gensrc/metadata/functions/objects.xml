@@ -23,14 +23,14 @@
         <Parameters>
           <Parameter name='ObjectID'>
             <type>string</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>double</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
         <description>the time at which the Object was initially created,.</description>
       </ReturnValue>
     </Procedure>
@@ -45,14 +45,14 @@
         <Parameters>
           <Parameter name='ObjectID'>
             <type>string</type>
-            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
             <description>object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>double</type>
-        <tensorRank>scalar</tensorRank>
+        <tensorRank>vector</tensorRank>
         <description>The time at which the Object was last recreated.</description>
       </ReturnValue>
     </Procedure>
@@ -77,6 +77,153 @@
         <type>string</type>
         <tensorRank>vector</tensorRank>
         <description>A list of the Object's precedent Objects.</description>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectExists'>
+      <description>list the IDs of objects in repository matching regex.</description>
+      <alias>ObjectHandler::RepositoryXL::instance().objectExists</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectID'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>Object ID name.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectCallerAddress'>
+      <description>retrieve address of cell in which object resides.</description>
+      <alias>ObjectHandler::RepositoryXL::instance().callerAddress</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>ID of object to be queried.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectCallerKey'>
+      <description>retrieve unique ID of the CallingRange object associated with the cell in which object resides.</description>
+      <alias>ObjectHandler::RepositoryXL::instance().callerKey</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>ID of object to be queried.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohObjectIsOrphan'>
+      <description>get the object property orphan </description>
+      <alias>ObjectHandler::RepositoryXL::instance().ObjectIsOrphan</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>Object ID name.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+    
+    <Procedure name='ohObjectUpdateCounter'>
+      <description>get the object property update counter</description>
+      <alias>ObjectHandler::RepositoryXL::instance().ObjectUpdateCounter</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectID'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>Object ID name.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+    
+    <Procedure name='ohObjectIsPermanent'>
+      <description>get the object property permanent</description>
+      <alias>ObjectHandler::RepositoryXL::instance().ObjectIsPermanent</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectID'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>Object ID name.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+    
+    <Procedure name='ohObjectClassName'>    
+      <description>get the object class name</description>
+      <alias>ObjectHandler::RepositoryXL::instance().ObjectClassName</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectID'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>Object ID name.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Procedure>
 

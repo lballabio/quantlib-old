@@ -41,17 +41,17 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             TempStrNoSize("\x10""addin2GetBalance"),// function code name
-            TempStrNoSize("\x04""NCP#"),            // parameter codes
+            TempStrNoSize("\x04""ECP#"),            // parameter codes
             TempStrNoSize("\x10""addin2GetBalance"),// function display name
-            TempStrNoSize("\x10""ObjectID,Trigger"), // comma-delimited list of parameters
+            TempStrNoSize("\x10""ObjectID,Trigger"),// comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
         Excel(xlfRegister, 0, 7, &xDll,
-            TempStrNoSize("\x05""func2"),           // function code name
+            TempStrNoSize("\x0D""addin2GetType"),   // function code name
             TempStrNoSize("\x04""CCP#"),            // parameter codes
-            TempStrNoSize("\x05""func2"),           // function code name
-            TempStrNoSize("\x10""ObjectID,Trigger"), // comma-delimited list of parameters
+            TempStrNoSize("\x0D""addin2GetType"),   // function display name
+            TempStrNoSize("\x10""ObjectID,Trigger"),// comma-delimited list of parameters
             TempStrNoSize("\x01""1"),               // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
             TempStrNoSize("\x07""Example"));        // function category
 
@@ -80,7 +80,7 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 
 }
 
-DLLEXPORT long *addin2GetBalance(char *objectID, OPER *trigger) {
+DLLEXPORT double *addin2GetBalance(char *objectID, OPER *trigger) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
@@ -91,7 +91,7 @@ DLLEXPORT long *addin2GetBalance(char *objectID, OPER *trigger) {
 
         OH_GET_OBJECT(accountObject, objectID, AccountExample::AccountObject)
 
-        static long ret;
+        static double ret;
         ret = accountObject->balance();
         return &ret;
 
@@ -103,14 +103,14 @@ DLLEXPORT long *addin2GetBalance(char *objectID, OPER *trigger) {
     }
 }
 
-DLLEXPORT char *func2(char *objectID, OPER *trigger) {
+DLLEXPORT char *addin2GetType(char *objectID, OPER *trigger) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
     try {
 
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
-            (new ObjectHandler::FunctionCall("func2"));
+            (new ObjectHandler::FunctionCall("addin2GetType"));
 
         AccountExample::Account::Type accountTypeEnum =
             ObjectHandler::Create<AccountExample::Account::Type>()(objectID);

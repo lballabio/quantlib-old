@@ -101,10 +101,17 @@
       </Rules>
     </RuleGroup>
 
-    <RuleGroup name='propertyPush' indent='2' checkParameterIgnore='true' checkSkipFirst='true'>
+    <RuleGroup name='propertyInsert' indent='2' checkParameterIgnore='true' checkSkipFirst='true'>
       <Wrap/>
       <Rules>
         <Rule>%(indent)sret.insert("%(name)s");&#10;</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='propertyPush' indent='2' checkParameterIgnore='true' checkSkipFirst='true'>
+      <Wrap/>
+      <Rules>
+        <Rule>%(indent)sret.push_back("%(name)s");&#10;</Rule>
       </Rules>
     </RuleGroup>
 

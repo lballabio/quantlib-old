@@ -2,7 +2,15 @@
     inline const std::set<std::string> &%(functionName)s::getSystemPropertyNames() const {
         static std::set<std::string> ret;
         if (ret.empty()) {
-%(propertyPush)s        }
+%(propertyInsert)s        }
+        return ret;
+    }
+
+    inline std::vector<std::string> %(functionName)s::getPropertyNamesVector() const {
+        std::vector<std::string> ret;
+%(propertyPush)s        for (std::map<std::string, ObjectHandler::property_t>::const_iterator i = userProperties.begin();
+            i != userProperties.end(); ++i)
+            ret.push_back(i->first);
         return ret;
     }
 

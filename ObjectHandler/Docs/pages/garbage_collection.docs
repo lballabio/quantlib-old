@@ -54,7 +54,7 @@ the calling cell.
 address of the cell in which the object was instantiated.  If this address
 comes back as a \#REF it indicates that the object is orphaned and will be
 culled next time ohCollectGarbage() is called.
-\li ohLogAllObjects() dumps the complete contents of the %ObjectHandler
+\li ohAllObjectLog() dumps the complete contents of the %ObjectHandler
 repository to the log file, this is followed by a summary of all of the
 references maintained by %ObjectHandler in support of garbage collection.
 
