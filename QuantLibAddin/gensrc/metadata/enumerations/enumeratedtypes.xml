@@ -125,7 +125,6 @@
           <string>OtherFrequency</string>
           <value>QuantLib::OtherFrequency</value>
         </EnumeratedType>
-      </EnumeratedTypes>
         <EnumeratedType>
           <string>NoFrequency</string>
           <value>QuantLib::NoFrequency</value>
