@@ -106,6 +106,10 @@
           <value>QuantLib::Biweekly</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>EveryFourthWeek</string>
+          <value>QuantLib::EveryFourthWeek</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Weekly</string>
           <value>QuantLib::Weekly</value>
         </EnumeratedType>
@@ -117,6 +121,11 @@
           <string>Once</string>
           <value>QuantLib::Once</value>
         </EnumeratedType>
+        <EnumeratedType>
+          <string>OtherFrequency</string>
+          <value>QuantLib::OtherFrequency</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
         <EnumeratedType>
           <string>NoFrequency</string>
           <value>QuantLib::NoFrequency</value>
