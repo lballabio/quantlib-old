@@ -23,28 +23,33 @@
 
 %{
 using QuantLib::Seniority;
-using QuantLib::SEN;
-using QuantLib::SUB;
-using QuantLib::SEC;
-using QuantLib::TI0;
-using QuantLib::TI1;
-using QuantLib::PCL;
+using QuantLib::Senior;
+using QuantLib::Subordinated;
+using QuantLib::Secured;
+using QuantLib::UpperTier;
+using QuantLib::Tier1;
+using QuantLib::PolicyClaims;
 using QuantLib::AnySeniority;
 %}
 
-enum Seniority { SEN, SUB, SEC, TI0, TI1, PCL, AnySeniority };
+enum Seniority { Senior, Subordinated, Secured,
+                 UpperTier, Tier1, PolicyClaims, AnySeniority };
 
 
 %{
 using QuantLib::Restructuring;
-using QuantLib::NR;
-using QuantLib::MR;
-using QuantLib::MM;
-using QuantLib::RR;
+using QuantLib::NoRestructuring;
+using QuantLib::ModifiedRestructuring;
+using QuantLib::ModifiedModifiedRestructuring;
+using QuantLib::FullRestructuring;
 using QuantLib::AnyRestructuring;
 %}
 
-enum Restructuring { NR, MR, MM, RR, AnyRestructuring };
+enum Restructuring { NoRestructuring,
+                     ModifiedRestructuring,
+                     ModifiedModifiedRestructuring,
+                     FullRestructuring,
+                     AnyRestructuring };
 
 %{
 using QuantLib::Protection;
