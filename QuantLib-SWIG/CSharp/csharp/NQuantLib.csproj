@@ -2129,11 +2129,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "McDiscreteArithmeticASO.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "MCEuropeanEngine.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2145,11 +2140,6 @@
                 />
                 <File
                     RelPath = "MCHimalayaEngine.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "McPagoda.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
