@@ -83,10 +83,17 @@ namespace ObjectHandler {
             bool overwriteExisting);
         //@}
 
+        //! \name NewObject - public interface
+        //@{
+        //! create a object by valueObject
+        boost::shared_ptr<Object> NewObject( 
+            boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const ;
+        //!create and store a object into resposity
         StrObjectPair createObject(
             const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
             bool overwriteExisting) const;
-     protected:
+        //@}
+      protected:
 
         virtual void processPath(
             const std::string &path,

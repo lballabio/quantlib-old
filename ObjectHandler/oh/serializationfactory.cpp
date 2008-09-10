@@ -94,18 +94,22 @@ namespace ObjectHandler {
         creatorMap_()[className] = creator;
     }
 
+    boost::shared_ptr<Object> SerializationFactory::NewObject( 
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const {
+
+        CreatorMap::const_iterator i = creatorMap_().find(valueObject->className());
+        OH_REQUIRE(i != creatorMap_().end(), "No creator for class " << valueObject->className());
+        Creator creator = i->second;
+        boost::shared_ptr<ObjectHandler::Object> object = creator(valueObject);
+        return object;
+    }
+
     StrObjectPair SerializationFactory::createObject(
         const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
         bool overwriteExisting) const {
 
-        // Code to overwrite the object ID
-        //valueObject->setProperty("OBJECTID", XXX);
-        CreatorMap::const_iterator i = creatorMap_().find(valueObject->className());
-        OH_REQUIRE(i != creatorMap_().end(), "No creator for class " << valueObject->className());
-
         StrObjectPair object;
-        Creator creator = i->second;
-        object.second = creator(valueObject);
+        object.second = NewObject(valueObject);
 
         object.first = boost::get<std::string>(valueObject->getProperty("OBJECTID"));
         ObjectHandler::Repository::instance().storeObject(object.first, object.second, overwriteExisting);

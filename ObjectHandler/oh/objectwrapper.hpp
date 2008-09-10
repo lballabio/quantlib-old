@@ -35,19 +35,19 @@ namespace ObjectHandler {
 
     //! ObjectWrapper holds a reference to Object.  ObjectWrapper inherits from Observer and Observable.
     /*! 
-    ObjectWrapper holds a reference to Object which is be stored in the ObjectHandle. the relation between 
+    ObjectWrapper holds a reference to Object which is be stored in the ObjectHandle. the relation between
     Object and ObjectWrapper is 1:1;
-    ObjectWrapper inherits from Observer and Observable.  The Dirty property belongs to ObjectWrapper.  
+    ObjectWrapper inherits from Observer and Observable.  The Dirty property belongs to ObjectWrapper.
     ObjectWrapper recreates Object when necessary to what the Dirty property is true
     */
-    class ObjectWrapper : public Observer, public Observable {        
+    class ObjectWrapper : public Observer, public Observable {
     public:
         //! \name Structors
         //@{
 
         //! Default constructor.
         /*! Construct an Object.
-        To using the Observer / Observable design pattern to ensure that all object dependencies are enforced, 
+        To using the Observer / Observable design pattern to ensure that all object dependencies are enforced,
         this class wrapped the result object which will be stored in the ObjectHandler
         */
         ObjectWrapper(const boost::shared_ptr<Object>& object);
@@ -72,7 +72,7 @@ namespace ObjectHandler {
         //! \name recreate a object
         //@{
         //! the object will be recreated when Dirty=true.
-        /*! When this function is invoked, the stored Object is recreated with a call to SerializationFactory::recreateObject() 
+        /*! When this function is invoked, the stored Object is recreated with a call to SerializationFactory::recreateObject()
         */
         void reCreate();
         //@}
@@ -136,14 +136,14 @@ namespace ObjectHandler {
 
     inline void ObjectWrapper::reCreate(){
         try {
-            SerializationFactory::instance().createObject( 
-                object_->properties(), true);
+            object_ = SerializationFactory::instance().NewObject(
+                object_->properties());
             dirty_ = false;
-            //updateTime_ = getTime();
+            updateTime_ = getTime();
 
         } catch (const std::exception &e) {
             OH_FAIL("Error in function ObjectWrapper::reCreate : " << e.what());
-        }    
+        }
     }
 
     inline void ObjectWrapper::update(){
