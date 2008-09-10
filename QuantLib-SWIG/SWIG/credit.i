@@ -68,7 +68,7 @@ using QuantLib::DefaultEvent;
 class DefaultEvent {
   public:
     Date date() const;
-    Real recoveryRatio() const;
+    Real recoveryRate() const;
     Seniority seniority() const;
     Restructuring restructuring() const;
 };
@@ -76,11 +76,11 @@ class DefaultEvent {
 %template(DefaultEvent) boost::shared_ptr<DefaultEvent>;
 %extend boost::shared_ptr<DefaultEvent> {
     boost::shared_ptr<DefaultEvent>(const Date& date,
-                                    Real recoveryRatio,
+                                    Real recoveryRate,
                                     Seniority seniority,
                                     Restructuring restructuring) {
         return new boost::shared_ptr<DefaultEvent>(
-             new DefaultEvent(date, recoveryRatio, seniority, restructuring));
+             new DefaultEvent(date, recoveryRate, seniority, restructuring));
     }
 }
 
