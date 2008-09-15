@@ -50,8 +50,8 @@
       </ReturnValue>
     </Member>
 
-    <Member name='ohPropertyValue2' type='ObjectHandler::Object'>
-      <description>retrieve the value(s) of one or more named properties.</description>
+    <Member name='ohObjectPropertyValues2' type='ObjectHandler::Object'>
+      <description>Duplicate of ohObjectPropertyValues for C++ platform where looping functions are not supported.</description>
       <libraryFunction>propertyValue</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Cpp'/>
