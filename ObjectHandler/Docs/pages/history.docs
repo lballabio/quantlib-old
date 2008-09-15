@@ -27,34 +27,40 @@
 
 FUNCTIONALITY
 
+Renamed Functions:
+
 The convention for naming addin functions is that an addin function which
 wraps Foo::Bar() should be called ohFooBar().  Selected functions have been
 renamed as noted below to conform to this convention:
 
-\li ohConcatenate -> ohStringConcatenate
-\li ohDeleteAllObject -> ohAllObjectDelete
-\li ohDeleteObject -> ohObjectDelete
-\li ohLogAllObject -> ohAllObjectLog
-\li ohLogObject -> ohObjectLog
-\li ohObjectCount -> ohAllObjectCount
-\li ohPropertyNames -> ohObjectPropertyNames
-\li ohPropertyValues -> ohObjectPropertyValues
-\li ohRetrieveError -> ohRangeRetrieveError
-\li ohSetLogFile -> ohLogFileSet
-\li ohSetLogLevel -> ohLogLevelSet
-\li ohSplit -> ohStringSplit
+- ohConcatenate -> ohStringConcatenate
+- ohDeleteAllObjects -> ohAllObjectDelete
+- ohDeleteObject -> ohObjectDelete
+- ohLogAllObjects -> ohAllObjectLog
+- ohLogObject -> ohObjectLog
+- ohObjectCount -> ohAllObjectCount
+- ohPropertyNames -> ohObjectPropertyNames
+- ohPropertyValue -> ohObjectPropertyValues
+- ohRetrieveError -> ohRangeRetrieveError
+- ohSetLogFile -> ohLogFileSet
+- ohSetLogLevel -> ohLogLevelSet
+- ohSplit -> ohStringSplit
 
 New Functions:
-\li ohObjectIsOrphan
-\li ohObjectUpdateCounter
-\li ohObjectIsPermanent
-\li ohObjectClassName
-\li ohLogFile
-\li ohLogLevel
 
-Function ohPropertyNames modified to suppress ObjectId, ClassName from return value
-and to list values in the sequence in which they appear in the constructor of the
-corresponding class.
+- ohLogFile
+- ohLogLevel
+- ohObjectClassName
+- ohObjectIsOrphan
+- ohObjectIsPermanent
+- ohObjectUpdateCounter
+
+Enhanced Functions:
+
+- ohPropertyNames - Modified to suppress ObjectId, ClassName from return value
+  and to list values in the sequence in which they appear in the constructor of the
+  corresponding class.
+- ohObjectCreationTime, ohObjectUpdateTime - Implemented as loop functions.
 
 <strong>Release 0.9.6 - September 2008</strong>
 
