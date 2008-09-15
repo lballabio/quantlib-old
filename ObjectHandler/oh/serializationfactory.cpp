@@ -42,8 +42,10 @@ namespace ObjectHandler {
     boost::shared_ptr<Object> createRange(
         const boost::shared_ptr<ValueObject> &valueObject) {
 
+        // FIXME - Implement ValueObject::permanent() and call that instead?
         bool permanent = 
             boost::get<bool>(valueObject->getProperty("PERMANENT"));
+
         std::vector<std::vector<double> > values = 
             ObjectHandler::matrix::convert2<double>(valueObject->getProperty("VALUES"), "VALUES");
 
@@ -54,8 +56,10 @@ namespace ObjectHandler {
     boost::shared_ptr<Object> createGroup(
         const boost::shared_ptr<ValueObject> &valueObject) {
 
+        // FIXME - Implement ValueObject::permanent() and call that instead?
         bool permanent = 
             boost::get<bool>(valueObject->getProperty("PERMANENT"));
+
         std::vector<std::string> list = 
             boost::get<std::vector<std::string> >(valueObject->getProperty("LIST"));
 
@@ -110,6 +114,7 @@ namespace ObjectHandler {
         StrObjectPair object;
         object.second = NewObject(valueObject);
 
+        // FIXME just call ValueObject::objectId()?
         object.first = boost::get<std::string>(valueObject->getProperty("OBJECTID"));
         ObjectHandler::Repository::instance().storeObject(object.first, object.second, overwriteExisting);
 
@@ -152,6 +157,7 @@ namespace ObjectHandler {
         std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
         for (i=objectList.begin(); i!=objectList.end(); ++i) {
             boost::shared_ptr<ObjectHandler::Object> object = *i;
+            // FIXME just call ValueObject::objectId()?
             std::string objectID
                 = boost::get<std::string>(object->properties()->getProperty("OBJECTID"));
             if (seen.find(objectID) == seen.end()) {
@@ -207,7 +213,9 @@ namespace ObjectHandler {
             int count = 0;
             for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
                 try {
-                    processedIDs.push_back(ProcessorFactory::instance().getProcessor(*i)->process(*this, *i, overwriteExisting));
+                    processedIDs.push_back(
+                        ProcessorFactory::instance().getProcessor(*i)->process(
+                            *this, *i, overwriteExisting));
                     count++;
                 } catch (const std::exception &e) {
                     OH_FAIL("Error processing item " << count << ": " << e.what());
@@ -278,6 +286,7 @@ namespace ObjectHandler {
         std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
         for (i=objectList.begin(); i!=objectList.end(); ++i) {
             boost::shared_ptr<ObjectHandler::Object> object = *i;
+            // FIXME just call ValueObject::objectId()?
             std::string objectID = boost::get<std::string>(
                    object->properties()->getProperty("OBJECTID"));
             if (seen.find(objectID) == seen.end()) {
@@ -286,6 +295,10 @@ namespace ObjectHandler {
             }
         }
 
+        // Provisionally comment out this sort because
+        // 1) It causes legs and schedules to appear in the wrong sequence
+        // 2) In our environment we can control the sequence in which objects are saved
+        // 3) I don't understand why this sort is required anyway?
         //std::stable_sort(valueObjects.begin(), valueObjects.end(), compareCategory);
 
         std::ostringstream os;
@@ -315,7 +328,9 @@ namespace ObjectHandler {
             int count = 0;
             for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
                 try {
-                    returnValue.push_back(ProcessorFactory::instance().getProcessor(*i)->process(*this, *i, overwriteExisting));
+                    returnValue.push_back(
+                        ProcessorFactory::instance().getProcessor(*i)->process(
+                            *this, *i, overwriteExisting));
                     count++;
                 } catch (const std::exception &e) {
                     OH_FAIL("Error processing item " << count << ": " << e.what());
@@ -333,4 +348,3 @@ namespace ObjectHandler {
     }
 
 }
-

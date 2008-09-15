@@ -43,7 +43,7 @@ namespace ObjectHandler {
 
     //! A Singleton wrapping the boost::serialization interface
     /*! The pure virtual functions in this class must be implemented as appropriate
-    for client applications.
+        for client applications.
     */
     class DLL_API SerializationFactory {
 
@@ -83,16 +83,21 @@ namespace ObjectHandler {
             bool overwriteExisting);
         //@}
 
-        //! \name NewObject - public interface
+        //! \name Object Creation
         //@{
-        //! create a object by valueObject
+        //! Recreate an Object from its ValueObject
         boost::shared_ptr<Object> NewObject( 
             boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const ;
-        //!create and store a object into resposity
+        //! Recreate an Object from its ValueObject and store it in the Repository
+        /*! This function calls NewObject to recreate the Object from its
+            ValueObject then stores the newly created Object in the Repository
+            with a call to Repository::storeObject().
+        */
         StrObjectPair createObject(
             const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
             bool overwriteExisting) const;
         //@}
+
       protected:
 
         virtual void processPath(
@@ -106,7 +111,6 @@ namespace ObjectHandler {
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) = 0;
         virtual void register_in(boost::archive::xml_iarchive &ar,
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) = 0;
-
 
         //! A pointer to the SerializationFactory instance, used to support the Singleton pattern.
         static SerializationFactory *instance_;
