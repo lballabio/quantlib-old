@@ -28,12 +28,12 @@
 #endif
 
 #include <oh/ohdefines.hpp>
-#if OBJHANDLER_HEX_VERSION < 0x000906f0
+#if OBJHANDLER_HEX_VERSION < 0x000907f0
     #error using an old version of ObjectHandler, please update.
 #endif
 
 #include <ql/qldefines.hpp>
-#if QL_HEX_VERSION < 0x000906f0
+#if QL_HEX_VERSION < 0x000907f0
     #error using an old version of QuantLib, please update.
 #endif
 
@@ -45,7 +45,7 @@
 #endif
 
 //! version hexadecimal number
-#define QLADDIN_HEX_VERSION 0x000906f0
+#define QLADDIN_HEX_VERSION 0x000907f0
 //! version string for output lib name
 #define QLADDIN_LIB_VERSION "0_9_7"
 

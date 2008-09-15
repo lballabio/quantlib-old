@@ -1,7 +1,7 @@
 
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([QuantLibAddin], [0.9.6],
+AC_INIT([QuantLibAddin], [0.9.7],
         [quantlib-dev@lists.sourceforge.net],
         [QuantLibAddin])
 AC_PREREQ(2.50)

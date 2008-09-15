@@ -2,8 +2,8 @@
 # !defines
 
 !define APP "QuantLibXL"
-!define VER_NUMBER "0.9.6"
-!define VER_NUMBER_UNDERSCORE "0_9_6"
+!define VER_NUMBER "0.9.7"
+!define VER_NUMBER_UNDERSCORE "0_9_7"
 !define COMPILER "vc80"
 
 # Compiler Flags

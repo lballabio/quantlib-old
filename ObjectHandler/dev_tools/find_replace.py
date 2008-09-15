@@ -45,7 +45,7 @@ import re
 import getopt
 import shutil
 
-ROOT_DIR = '/usr/local/erik/projects/R000905-branch/QuantLibXL'
+ROOT_DIR = '/usr/local/erik/projects/trunk/QuantLibXL'
 
 # callback functions - called from regexes which require multiple passes
 
@@ -87,10 +87,12 @@ SUBSTITUTIONS = (
 #    (re.compile(r'^import .*?$', re.M), toLower),
 
 #   frequently used
-    (re.compile(r'0_9_5'), '0_9_6'),
-    (re.compile(r'0\.9\.5'), '0.9.6'),
-    (re.compile(r'0x000905'), '0x000906'),
-    (re.compile(r'Major=0\nMinor=9\nRelease=5'), 'Major=0\nMinor=9\nRelease=6'),
+    (re.compile(r'0_9_6'), '0_9_7'),
+    (re.compile(r'0\.9\.6'), '0.9.7'),
+    (re.compile(r'0x000906'), '0x000907'),
+    (re.compile(r'Major=0\nMinor=9\nRelease=6'), 'Major=0\nMinor=9\nRelease=7'),
+    (re.compile(r'0\.10\.0a'), '0.10.0b'),
+    (re.compile(r'0x001000f0'), '0x001000f1'),
 
 )
 
@@ -105,15 +107,16 @@ INCLUDE_FILES = (
 # Regexes to indicate names of files to be ignored by the find/replace.
 
 IGNORE_FILES = (
+
     re.compile(r'^\.'),
     re.compile(r'^.+\.bmp$'),
     re.compile(r'^.+\.exe$'),
     re.compile(r'^.+\.exp$'),
     re.compile(r'^.+\.ico$'),
     re.compile(r'^.+\.jpg$'),
+    re.compile(r'^.+\.la$'),
     re.compile(r'^.+\.lib$'),
     re.compile(r'^.+\.log$'),
-    re.compile(r'^.+\.la$'),
     re.compile(r'^.+\.ncb$'),
     re.compile(r'^.+\.o$'),
     re.compile(r'^.+\.pdf$'),
@@ -121,20 +124,23 @@ IGNORE_FILES = (
     re.compile(r'^.+\.png$'),
     re.compile(r'^.+\.pyc$'),
     re.compile(r'^.+\.xls$'),
-    re.compile(r'^configure$'),
-    re.compile(r'^libtool$'),
-    re.compile(r'^todonando\.txt$'),
+
+    re.compile(r'^Announce\.txt$'),
+    re.compile(r'^ChangeLog\.txt$'),
+    re.compile(r'^changes\..+$'),
     re.compile(r'^config\.status$'),
+    re.compile(r'^configure$'),
+    re.compile(r'^design\.docs$'),
+    re.compile(r'^history\.docs$'),
+    re.compile(r'^libtool$'),
     re.compile(r'^Makefile$'),
     re.compile(r'^Makefile\.in$'),
-    re.compile(r'^NEWS\.txt$'),
     re.compile(r'^News\.txt$'),
-    re.compile(r'^ChangeLog\.txt$'),
-    re.compile(r'^Announce\.txt$'),
-    re.compile(r'^history\.docs$'),
-    re.compile(r'^design\.docs$'),
-    re.compile(r'^ohfunctions\.cpp$'),
+    re.compile(r'^NEWS\.txt$'),
     re.compile(r'^objecthandler\.cpp$'),
+    re.compile(r'^ohfunctions\.cpp$'),
+    re.compile(r'^todonando\.txt$'),
+
 )
 
 # IGNORE_DIRS

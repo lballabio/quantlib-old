@@ -19,7 +19,7 @@
 // This file is #included by client applications to enforce version
 // number checks.  This package is based on log4cxx version 0.10.0, customized
 // for use by ObjectHandler.  We designate log4cxx hexidecimal version
-// "0x001000f0" for use with ObjectHandler version 0.9.5.
+// "0x001000f1" for use with ObjectHandler version 0.9.7.
 
-#define LOG4CXX_VERSION 0x001000f0
+#define LOG4CXX_VERSION 0x001000f1
 

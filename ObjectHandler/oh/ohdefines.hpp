@@ -40,7 +40,7 @@
 #endif
 
 //! Version hexadecimal number.
-#define OBJHANDLER_HEX_VERSION 0x000906f0
+#define OBJHANDLER_HEX_VERSION 0x000907f0
 //! Version string for output lib name.
 #define OBJHANDLER_LIB_VERSION "0_9_7"
 
