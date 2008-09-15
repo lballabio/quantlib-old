@@ -11,7 +11,7 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Debug|Win32"
+			Name="Debug (static runtime)|Win32"
 			OutputDirectory=".\build\vc71\$(ConfigurationName)"
 			IntermediateDirectory=".\build\vc71\$(ConfigurationName)"
 			ConfigurationType="4"
@@ -39,7 +39,105 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc71-mt-sgd-0_9_6.lib"/>
+				OutputFile=".\lib\AddinCpp-vc71-mt-sgd-0_9_7.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release (static runtime)|Win32"
+			OutputDirectory=".\build\vc71\$(ConfigurationName)"
+			IntermediateDirectory=".\build\vc71\$(ConfigurationName)"
+			ConfigurationType="4"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				RuntimeLibrary="0"
+				BufferSecurityCheck="TRUE"
+				EnableFunctionLevelLinking="TRUE"
+				DisableLanguageExtensions="FALSE"
+				ForceConformanceInForLoopScope="FALSE"
+				RuntimeTypeInfo="TRUE"
+				UsePrecompiledHeader="0"
+				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)/"
+				ObjectFile=".\build\vc71\$(ConfigurationName)/"
+				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)/"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="FALSE"
+				DebugInformationFormat="0"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile=".\lib\AddinCpp-vc71-mt-s-0_9_7.lib"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory=".\build\vc71\$(ConfigurationName)"
+			IntermediateDirectory=".\build\vc71\$(ConfigurationName)"
+			ConfigurationType="4"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				MinimalRebuild="TRUE"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				BufferSecurityCheck="FALSE"
+				DisableLanguageExtensions="FALSE"
+				TreatWChar_tAsBuiltInType="TRUE"
+				ForceConformanceInForLoopScope="FALSE"
+				RuntimeTypeInfo="TRUE"
+				UsePrecompiledHeader="0"
+				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)/"
+				ObjectFile=".\build\vc71\$(ConfigurationName)/"
+				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)/"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="4"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile=".\lib\AddinCpp-vc71-mt-gd-0_9_7.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -69,104 +167,6 @@
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
-				RuntimeLibrary="0"
-				BufferSecurityCheck="TRUE"
-				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="FALSE"
-				ForceConformanceInForLoopScope="FALSE"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="0"
-				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)/"
-				ObjectFile=".\build\vc71\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)/"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="FALSE"
-				DebugInformationFormat="0"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc71-mt-s-0_9_6.lib"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug CRTDLL|Win32"
-			OutputDirectory=".\build\vc71\$(ConfigurationName)"
-			IntermediateDirectory=".\build\vc71\$(ConfigurationName)"
-			ConfigurationType="4"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
-				MinimalRebuild="TRUE"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
-				BufferSecurityCheck="FALSE"
-				DisableLanguageExtensions="FALSE"
-				TreatWChar_tAsBuiltInType="TRUE"
-				ForceConformanceInForLoopScope="FALSE"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="0"
-				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)/"
-				ObjectFile=".\build\vc71\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)/"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="4"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc71-mt-gd-0_9_6.lib"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release CRTDLL|Win32"
-			OutputDirectory=".\build\vc71\$(ConfigurationName)"
-			IntermediateDirectory=".\build\vc71\$(ConfigurationName)"
-			ConfigurationType="4"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				BufferSecurityCheck="TRUE"
 				EnableFunctionLevelLinking="TRUE"
@@ -185,7 +185,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc71-mt-0_9_6.lib"/>
+				OutputFile=".\lib\AddinCpp-vc71-mt-0_9_7.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool

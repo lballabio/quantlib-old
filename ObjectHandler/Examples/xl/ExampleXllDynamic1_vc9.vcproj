@@ -17,7 +17,7 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory=".\buildXllDynamic1\vc90\$(ConfigurationName)"
 			IntermediateDirectory=".\buildXllDynamic1\vc90\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -66,15 +66,15 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\ExampleXLLDynamic1-vc90-mt-gd-0_9_6.xll"
+				OutputFile="xll\ExampleXLLDynamic1-vc90-mt-gd-0_9_7.xll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildXllDynamic1\vc90\$(ConfigurationName)\ExampleXLLDynamic1-vc90-mt-gd-0_9_6.pdb"
+				ProgramDatabaseFile=".\buildXllDynamic1\vc90\$(ConfigurationName)\ExampleXLLDynamic1-vc90-mt-gd-0_9_7.pdb"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildXllDynamic1\vc90\$(ConfigurationName)\ExampleXLLDynamic1-vc90-mt-gd-0_9_6.lib"
+				ImportLibrary=".\buildXllDynamic1\vc90\$(ConfigurationName)\ExampleXLLDynamic1-vc90-mt-gd-0_9_7.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -100,7 +100,7 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release CRTDLL|Win32"
+			Name="Release|Win32"
 			OutputDirectory=".\buildXllDynamic1\vc90\$(ConfigurationName)"
 			IntermediateDirectory=".\buildXllDynamic1\vc90\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -147,17 +147,17 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\ExampleXLLDynamic1-vc90-mt-0_9_6.xll"
+				OutputFile="xll\ExampleXLLDynamic1-vc90-mt-0_9_7.xll"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
 				GenerateDebugInformation="false"
-				ProgramDatabaseFile=".\buildXllDynamic1\vc90\$(ConfigurationName)\ExampleXLLDynamic1-vc90-mt-gd-0_9_6.pdb"
+				ProgramDatabaseFile=".\buildXllDynamic1\vc90\$(ConfigurationName)\ExampleXLLDynamic1-vc90-mt-gd-0_9_7.pdb"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildXllDynamic1\vc90\$(ConfigurationName)\ExampleXLLDynamic1-vc90-mt-0_9_6.lib"
+				ImportLibrary=".\buildXllDynamic1\vc90\$(ConfigurationName)\ExampleXLLDynamic1-vc90-mt-0_9_7.lib"
 				TargetMachine="1"
 			/>
 			<Tool

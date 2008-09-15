@@ -12,7 +12,7 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Release CRTDLL|Win32"
+			Name="Release|Win32"
 			OutputDirectory="build\vc71\$(ConfigurationName)"
 			IntermediateDirectory="build\vc71\$(ConfigurationName)"
 			ConfigurationType="4"
@@ -41,7 +41,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibObjects-vc71-mt-0_9_6.lib"
+				OutputFile="lib\QuantLibObjects-vc71-mt-0_9_7.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -65,7 +65,7 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
+			Name="Release (static runtime)|Win32"
 			OutputDirectory="build\vc71\$(ConfigurationName)"
 			IntermediateDirectory="build\vc71\$(ConfigurationName)"
 			ConfigurationType="4"
@@ -94,7 +94,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibObjects-vc71-mt-s-0_9_6.lib"
+				OutputFile="lib\QuantLibObjects-vc71-mt-s-0_9_7.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -118,7 +118,7 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug|Win32"
+			Name="Debug (static runtime)|Win32"
 			OutputDirectory="build\vc71\$(ConfigurationName)"
 			IntermediateDirectory="build\vc71\$(ConfigurationName)"
 			ConfigurationType="4"
@@ -146,7 +146,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibObjects-vc71-mt-sgd-0_9_6.lib"
+				OutputFile="lib\QuantLibObjects-vc71-mt-sgd-0_9_7.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -170,7 +170,7 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory="build\vc71\$(ConfigurationName)"
 			IntermediateDirectory="build\vc71\$(ConfigurationName)"
 			ConfigurationType="4"
@@ -201,7 +201,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibObjects-vc71-mt-gd-0_9_6.lib"
+				OutputFile="lib\QuantLibObjects-vc71-mt-gd-0_9_7.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>

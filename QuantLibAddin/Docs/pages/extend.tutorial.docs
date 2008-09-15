@@ -23,7 +23,7 @@
 
 /*! \page extend_tutorial Expose Additional QuantLib Functionality to QuantLibXL
 
-<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
 
 This document explains how to expose additional %QuantLib functionality to
 Excel.  As a prerequisite it is assumed that you have already compiled
@@ -153,7 +153,7 @@ Here are the contents of the file:
   <copyright>
     Copyright (C) 2008 Eric Ehlers
   </copyright>
-  
+
   <Functions>
 
     <Constructor name='qlStock'>
@@ -174,7 +174,7 @@ Here are the contents of the file:
     </Constructor>
 
   </Functions>
-  
+
 </Category>
 \endverbatim
 
@@ -233,7 +233,7 @@ files need to be added to the relevant projects as shown below:
 \section extend_build 4 Build QuantLibXL
 
 Build solution <tt>QuantLibXL_full_vc?.sln</tt>, configuration
-<tt>Release</tt>.  The new source code files in %QuantLibAddin and QuantLibXL
+<tt>Release (static runtime)</tt>.  The new source code files in %QuantLibAddin and QuantLibXL
 are compiled and the binaries are linked.
 
 The build process creates the %QuantLibAddin XLL file
@@ -279,7 +279,7 @@ and editing line 28:
 This restricts the gensrc output from "all" (including C++ and Calc) to only
 the modules required for QuantLibXL.
 
-<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
 
 */
 

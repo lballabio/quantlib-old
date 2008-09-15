@@ -15,36 +15,36 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aprutil", "aprutil_vc7.vcpr
 EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
+		Debug (static runtime) = Debug (static runtime)
 		Debug = Debug
-		Debug CRTDLL = Debug CRTDLL
+		Release (static runtime) = Release (static runtime)
 		Release = Release
-		Release CRTDLL = Release CRTDLL
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug (static runtime).ActiveCfg = Debug (static runtime)|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug (static runtime).Build.0 = Debug (static runtime)|Win32
 		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug.ActiveCfg = Debug|Win32
 		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug.Build.0 = Debug|Win32
-		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug CRTDLL.ActiveCfg = Debug CRTDLL|Win32
-		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Debug CRTDLL.Build.0 = Debug CRTDLL|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release (static runtime).ActiveCfg = Release (static runtime)|Win32
+		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release (static runtime).Build.0 = Release (static runtime)|Win32
 		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release.ActiveCfg = Release|Win32
 		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release.Build.0 = Release|Win32
-		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
-		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug (static runtime).ActiveCfg = Debug (static runtime)|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug (static runtime).Build.0 = Debug (static runtime)|Win32
 		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug.ActiveCfg = Debug|Win32
 		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug.Build.0 = Debug|Win32
-		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug CRTDLL.ActiveCfg = Debug CRTDLL|Win32
-		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Debug CRTDLL.Build.0 = Debug CRTDLL|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release (static runtime).ActiveCfg = Release (static runtime)|Win32
+		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release (static runtime).Build.0 = Release (static runtime)|Win32
 		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release.ActiveCfg = Release|Win32
 		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release.Build.0 = Release|Win32
-		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
-		{D0809B1F-8C0A-4940-9464-4F94CECDD12A}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug (static runtime).ActiveCfg = Debug (static runtime)|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug (static runtime).Build.0 = Debug (static runtime)|Win32
 		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug.ActiveCfg = Debug|Win32
 		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug.Build.0 = Debug|Win32
-		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug CRTDLL.ActiveCfg = Debug CRTDLL|Win32
-		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Debug CRTDLL.Build.0 = Debug CRTDLL|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release (static runtime).ActiveCfg = Release (static runtime)|Win32
+		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release (static runtime).Build.0 = Release (static runtime)|Win32
 		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release.ActiveCfg = Release|Win32
 		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release.Build.0 = Release|Win32
-		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release CRTDLL.ActiveCfg = Release CRTDLL|Win32
-		{CBE5793C-6136-4922-84EB-F99EC50CB5FE}.Release CRTDLL.Build.0 = Release CRTDLL|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

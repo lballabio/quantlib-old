@@ -13,7 +13,7 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Release CRTDLL|Win32"
+			Name="Release|Win32"
 			OutputDirectory=".\build\vc71\$(ConfigurationName)"
 			IntermediateDirectory=".\build\vc71\$(ConfigurationName)"
 			ConfigurationType="0"

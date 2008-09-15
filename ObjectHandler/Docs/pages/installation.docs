@@ -144,11 +144,11 @@ object repository which can be shared by other XLLs in the Excel
 session</td></tr></table>
 
 NB: The ohxll build of %ObjectHandler requires a DLL version of the VC runtime
-library i.e. <tt>Debug CRTDLL</tt> or <tt>Release CRTDLL</tt>.
+library i.e. <tt>Debug</tt> or <tt>Release</tt>.
 
 To build all available configurations and related examples - Open solution
 <tt>%ObjectHandler\\ObjectHandler_vc?.sln</tt>, choose configuration
-<tt>Release CRTDLL</tt>, and execute menu item <tt>Build | Build Solution</tt>.
+<tt>Release</tt>, and execute menu item <tt>Build | Build Solution</tt>.
 
 \subsection inst_win_test 3.3 Test
 
@@ -358,7 +358,7 @@ automatically by the directive
 in file <tt>oh/autolink.hpp</tt>
 
 The name of the library depends on your compiler and configuration.
-For example, if you're using VC8, configuration Release, the library
+For example, if you're using VC8, configuration Release (static runtime), the library
 is called
 \verbatim
 ObjectHandler-vc80-mt-s-0_9_6.lib

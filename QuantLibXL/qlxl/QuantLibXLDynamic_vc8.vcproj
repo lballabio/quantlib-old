@@ -15,7 +15,7 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory=".\buildDynamic\vc80\$(ConfigurationName)"
 			IntermediateDirectory=".\buildDynamic\vc80\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -80,13 +80,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-gd-0_9_6.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-gd-0_9_7.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-gd-0_9_6.pdb"
-				ImportLibrary=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-gd-0_9_6.lib"
+				ProgramDatabaseFile=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-gd-0_9_7.pdb"
+				ImportLibrary=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-gd-0_9_7.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -117,7 +117,7 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release CRTDLL|Win32"
+			Name="Release|Win32"
 			OutputDirectory=".\buildDynamic\vc80\$(ConfigurationName)"
 			IntermediateDirectory=".\buildDynamic\vc80\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -182,12 +182,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_6.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_7.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
-				ProgramDatabaseFile=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-0_9_6.pdb"
-				ImportLibrary=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-0_9_6.lib"
+				ProgramDatabaseFile=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-0_9_7.pdb"
+				ImportLibrary=".\buildDynamic\vc80\$(ConfigurationName)/QuantLibAddinDynamic-vc80-mt-0_9_7.lib"
 				TargetMachine="1"
 			/>
 			<Tool

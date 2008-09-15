@@ -50,7 +50,7 @@ are named according to the conventions specified by the boost project:
 <a href="http://www.boost.org/more/getting_started/windows.html#library-naming">http://www.boost.org/more/getting_started/windows.html#library-naming</a>
 
 For example, when you compile %ObjectHandler version 0.9.6 using VC8 solution
-file ObjectHandler_vc8.sln, project ohlib, configuration Release, the output
+file ObjectHandler_vc8.sln, project ohlib, configuration Release (static runtime), the output
 file is ObjectHandler\lib\ObjectHandler-vc80-mt-s-0_9_6.lib.
 
 \section conv_vc Visual C++ Versions and Files
@@ -77,7 +77,7 @@ Visual C++ that you are using.
 
 \section conv_vc Visual C++ Runtime Libraries
 
-The runtime library is a setting in Visual C++, found under Project Properties / 
+The runtime library is a setting in Visual C++, found under Project Properties /
 Configuration Properties / C/C++ / Code Generation / Runtime Library:
 
 <img src="images/runtime_library.jpg">
@@ -88,10 +88,10 @@ configurations.
 
 <table>
 <tr><td><b>Configuration</b></td><td><b>Runtime Library</b></td><td><b>Compiler Flag</b></td></tr>
-<tr><td>Release</td><td>Multi-threaded</td><td>/MT</td></tr>
-<tr><td>Release CRTDLL</td><td>Multi-threaded DLL</td><td>/MD</td></tr>
-<tr><td>Debug</td><td>Multi-threaded Debug</td><td>/MTd</td></tr>
-<tr><td>Debug CRTDLL</td><td>Multi-threaded Debug DLL</td><td>/MDd</td></tr>
+<tr><td>Release</td><td>Multi-threaded DLL</td><td>/MD</td></tr>
+<tr><td>Release (static runtime)</td><td>Multi-threaded</td><td>/MT</td></tr>
+<tr><td>Debug</td><td>Multi-threaded Debug DLL</td><td>/MDd</td></tr>
+<tr><td>Debug (static runtime)</td><td>Multi-threaded Debug</td><td>/MTd</td></tr>
 </table>
 
 All of the lib files linked into a given binary (.exe, .dll, .xll) must be compiled
@@ -101,7 +101,7 @@ If you compile your project against the DLL version of the runtime library
 then the resulting binary will have a dependency on the Microsoft runtime DLLs.
 
 If you are using multiple XLLs linked dynamically at runtime, these must be compiled
-against a DLL version of the runtime library e.g. Release CRTDLL.
+against a DLL version of the runtime library e.g. Release.
 
 */
 

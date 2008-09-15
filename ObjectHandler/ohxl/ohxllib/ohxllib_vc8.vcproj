@@ -14,7 +14,7 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory="..\..\build\vc80\ohxllib\$(ConfigurationName)"
 			IntermediateDirectory="..\..\build\vc80\ohxllib\$(ConfigurationName)"
 			ConfigurationType="4"
@@ -69,7 +69,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc80-mt-gd-0_9_6.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc80-mt-gd-0_9_7.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -91,7 +91,7 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
+			Name="Release (static runtime)|Win32"
 			OutputDirectory="..\..\build\vc80\ohxllib\$(ConfigurationName)"
 			IntermediateDirectory="..\..\build\vc80\ohxllib\$(ConfigurationName)"
 			ConfigurationType="4"
@@ -146,7 +146,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc80-mt-s-0_9_6.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc80-mt-s-0_9_7.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -168,7 +168,7 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release CRTDLL|Win32"
+			Name="Release|Win32"
 			OutputDirectory="..\..\build\vc80\ohxllib\$(ConfigurationName)"
 			IntermediateDirectory="..\..\build\vc80\ohxllib\$(ConfigurationName)"
 			ConfigurationType="4"
@@ -223,7 +223,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc80-mt-0_9_6.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc80-mt-0_9_7.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -245,7 +245,7 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug|Win32"
+			Name="Debug (static runtime)|Win32"
 			OutputDirectory="..\..\build\vc80\ohxllib\$(ConfigurationName)"
 			IntermediateDirectory="..\..\build\vc80\ohxllib\$(ConfigurationName)"
 			ConfigurationType="4"
@@ -300,7 +300,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc80-mt-sgd-0_9_6.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc80-mt-sgd-0_9_7.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool

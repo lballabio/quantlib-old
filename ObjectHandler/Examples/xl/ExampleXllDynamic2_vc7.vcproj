@@ -11,7 +11,7 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory=".\buildXllDynamic2\vc71\$(ConfigurationName)"
 			IntermediateDirectory=".\buildXllDynamic2\vc71\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -39,13 +39,13 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\ExampleXLLDynamic2-vc71-mt-gd-0_9_6.xll"
+				OutputFile="xll\ExampleXLLDynamic2-vc71-mt-gd-0_9_7.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildXllDynamic2\vc71\$(ConfigurationName)\ExampleXLLDynamic2-vc71-mt-gd-0_9_6.pdb"
-				ImportLibrary=".\buildXllDynamic2\vc71\$(ConfigurationName)\ExampleXLLDynamic2-vc71-mt-gd-0_9_6.lib"
+				ProgramDatabaseFile=".\buildXllDynamic2\vc71\$(ConfigurationName)\ExampleXLLDynamic2-vc71-mt-gd-0_9_7.pdb"
+				ImportLibrary=".\buildXllDynamic2\vc71\$(ConfigurationName)\ExampleXLLDynamic2-vc71-mt-gd-0_9_7.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -77,7 +77,7 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release CRTDLL|Win32"
+			Name="Release|Win32"
 			OutputDirectory=".\buildXllDynamic2\vc71\$(ConfigurationName)"
 			IntermediateDirectory=".\buildXllDynamic2\vc71\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -106,12 +106,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\ExampleXLLDynamic2-vc71-mt-0_9_6.xll"
+				OutputFile="xll\ExampleXLLDynamic2-vc71-mt-0_9_7.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
-				ProgramDatabaseFile=".\buildXllDynamic2\vc71\$(ConfigurationName)\ExampleXLLDynamic2-vc71-mt-0_9_6.pdb"
-				ImportLibrary=".\buildXllDynamic2\vc71\$(ConfigurationName)\ExampleXLLDynamic2-vc71-mt-0_9_6.lib"
+				ProgramDatabaseFile=".\buildXllDynamic2\vc71\$(ConfigurationName)\ExampleXLLDynamic2-vc71-mt-0_9_7.pdb"
+				ImportLibrary=".\buildXllDynamic2\vc71\$(ConfigurationName)\ExampleXLLDynamic2-vc71-mt-0_9_7.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"

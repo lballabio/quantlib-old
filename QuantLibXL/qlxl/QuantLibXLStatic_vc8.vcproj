@@ -15,7 +15,7 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug|Win32"
+			Name="Debug (static runtime)|Win32"
 			OutputDirectory=".\buildStatic\vc80\$(ConfigurationName)"
 			IntermediateDirectory=".\buildStatic\vc80\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -77,14 +77,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-sgd-0_9_6.xll"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-sgd-0_9_7.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-0_9_6.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-0_9_6.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-0_9_7.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-0_9_7.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -115,7 +115,7 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory=".\buildStatic\vc80\$(ConfigurationName)"
 			IntermediateDirectory=".\buildStatic\vc80\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -177,14 +177,113 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-gd-0_9_6.xll"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-gd-0_9_7.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-0_9_6.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-0_9_6.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-0_9_7.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-0_9_7.lib"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="false"
+				OutputFile=".\buildStatic\vc80\$(ConfigurationName)/AddinExcelStatic.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release (static runtime)|Win32"
+			OutputDirectory=".\buildStatic\vc80\$(ConfigurationName)"
+			IntermediateDirectory=".\buildStatic\vc80\$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\buildStatic\vc80\$(ConfigurationName)/AddinExcelStatic.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
+				StringPooling="true"
+				RuntimeLibrary="0"
+				EnableFunctionLevelLinking="true"
+				RuntimeTypeInfo="true"
+				PrecompiledHeaderFile=".\buildStatic\vc80\$(ConfigurationName)/AddinExcelStatic.pch"
+				AssemblerListingLocation=".\buildStatic\vc80\$(ConfigurationName)/"
+				ObjectFile=".\buildStatic\vc80\$(ConfigurationName)/"
+				ProgramDataBaseFileName=".\buildStatic\vc80\$(ConfigurationName)/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DisableSpecificWarnings="4819"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="2057"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-s-0_9_7.xll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
+				GenerateManifest="true"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-0_9_7.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-0_9_7.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -252,105 +351,6 @@
 				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				StringPooling="true"
-				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="true"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\buildStatic\vc80\$(ConfigurationName)/AddinExcelStatic.pch"
-				AssemblerListingLocation=".\buildStatic\vc80\$(ConfigurationName)/"
-				ObjectFile=".\buildStatic\vc80\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\buildStatic\vc80\$(ConfigurationName)/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DisableSpecificWarnings="4819"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="2057"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-s-0_9_6.xll"
-				LinkIncremental="1"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
-				GenerateManifest="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-0_9_6.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-0_9_6.lib"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				SuppressStartupBanner="false"
-				OutputFile=".\buildStatic\vc80\$(ConfigurationName)/AddinExcelStatic.bsc"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release CRTDLL|Win32"
-			OutputDirectory=".\buildStatic\vc80\$(ConfigurationName)"
-			IntermediateDirectory=".\buildStatic\vc80\$(ConfigurationName)"
-			ConfigurationType="2"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="NDEBUG"
-				MkTypLibCompatible="true"
-				SuppressStartupBanner="true"
-				TargetEnvironment="1"
-				TypeLibraryName=".\buildStatic\vc80\$(ConfigurationName)/AddinExcelStatic.tlb"
-				HeaderFileName=""
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
-				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
-				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
@@ -376,13 +376,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-0_9_6.xll"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-0_9_7.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-0_9_6.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-0_9_6.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-0_9_7.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-0_9_7.lib"
 				TargetMachine="1"
 			/>
 			<Tool

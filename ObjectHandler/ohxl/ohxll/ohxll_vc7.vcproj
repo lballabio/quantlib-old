@@ -12,7 +12,7 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory="..\..\xll"
 			IntermediateDirectory="..\..\build\vc71\ohxll\DebugCRTDLL"
 			ConfigurationType="2"
@@ -42,13 +42,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-0_9_6.xll"
+				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-0_9_7.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-0_9_6.pdb"
-				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-gd-0_9_6.lib"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-0_9_7.pdb"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-gd-0_9_7.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -80,7 +80,7 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release CRTDLL|Win32"
+			Name="Release|Win32"
 			OutputDirectory="..\..\xll"
 			IntermediateDirectory="..\..\build\vc71\ohxll\ReleaseCRTDLL"
 			ConfigurationType="2"
@@ -111,12 +111,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-0_9_6.xll"
+				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-0_9_7.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
-				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-0_9_6.pdb"
-				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-0_9_6.lib"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-0_9_7.pdb"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-0_9_7.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"

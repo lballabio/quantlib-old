@@ -12,9 +12,9 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory="..\build\vc71\xlsdk\Release"
-			IntermediateDirectory="..\build\vc71\xlsdk\Release"
+			Name="Release (static runtime)|Win32"
+			OutputDirectory="..\build\vc71\xlsdk\Release (static runtime)"
+			IntermediateDirectory="..\build\vc71\xlsdk\Release (static runtime)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -30,10 +30,10 @@
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile="..\build\vc71\xlsdk\Release/xlsdk.pch"
-				AssemblerListingLocation="..\build\vc71\xlsdk\Release/"
-				ObjectFile="..\build\vc71\xlsdk\Release/"
-				ProgramDataBaseFileName="..\build\vc71\xlsdk\Release/"
+				PrecompiledHeaderFile="..\build\vc71\xlsdk\Release (static runtime)/xlsdk.pch"
+				AssemblerListingLocation="..\build\vc71\xlsdk\Release (static runtime)/"
+				ObjectFile="..\build\vc71\xlsdk\Release (static runtime)/"
+				ProgramDataBaseFileName="..\build\vc71\xlsdk\Release (static runtime)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -65,9 +65,9 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory="..\build\vc71\xlsdk\Debug"
-			IntermediateDirectory="..\build\vc71\xlsdk\Debug"
+			Name="Debug (static runtime)|Win32"
+			OutputDirectory="..\build\vc71\xlsdk\Debug (static runtime)"
+			IntermediateDirectory="..\build\vc71\xlsdk\Debug (static runtime)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -81,10 +81,10 @@
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile="..\build\vc71\xlsdk\Debug/xlsdk.pch"
-				AssemblerListingLocation="..\build\vc71\xlsdk\Debug/"
-				ObjectFile="..\build\vc71\xlsdk\Debug/"
-				ProgramDataBaseFileName="..\build\vc71\xlsdk\Debug/"
+				PrecompiledHeaderFile="..\build\vc71\xlsdk\Debug (static runtime)/xlsdk.pch"
+				AssemblerListingLocation="..\build\vc71\xlsdk\Debug (static runtime)/"
+				ObjectFile="..\build\vc71\xlsdk\Debug (static runtime)/"
+				ProgramDataBaseFileName="..\build\vc71\xlsdk\Debug (static runtime)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -117,7 +117,7 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release CRTDLL|Win32"
+			Name="Release|Win32"
 			OutputDirectory="..\build\vc71\xlsdk\ReleaseCRTDLL"
 			IntermediateDirectory="..\build\vc71\xlsdk\ReleaseCRTDLL"
 			ConfigurationType="4"
@@ -170,7 +170,7 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory="..\build\vc71\xlsdk\DebugCRTDLL"
 			IntermediateDirectory="..\build\vc71\xlsdk\DebugCRTDLL"
 			ConfigurationType="4"

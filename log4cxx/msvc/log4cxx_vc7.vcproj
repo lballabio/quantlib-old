@@ -10,7 +10,7 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Debug|Win32"
+			Name="Debug (static runtime)|Win32"
 			OutputDirectory=".\build\vc71\$(ConfigurationName)\log4cxx\"
 			IntermediateDirectory=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj\"
 			ConfigurationType="4"
@@ -55,7 +55,7 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
+			Name="Release (static runtime)|Win32"
 			OutputDirectory=".\build\vc71\$(ConfigurationName)\log4cxx\"
 			IntermediateDirectory=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj\"
 			ConfigurationType="4"
@@ -102,7 +102,7 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory=".\build\vc71\$(ConfigurationName)\log4cxx\"
 			IntermediateDirectory=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj\"
 			ConfigurationType="4"
@@ -147,7 +147,7 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release CRTDLL|Win32"
+			Name="Release|Win32"
 			OutputDirectory=".\build\vc71\$(ConfigurationName)\log4cxx\"
 			IntermediateDirectory=".\build\vc71\$(ConfigurationName)\log4cxx\log4cxx_obj\"
 			ConfigurationType="4"

@@ -16,7 +16,7 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory=".\buildDynamic\vc90\$(ConfigurationName)"
 			IntermediateDirectory=".\buildDynamic\vc90\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -81,15 +81,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-gd-0_9_6.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-gd-0_9_7.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-gd-0_9_6.pdb"
+				ProgramDatabaseFile=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-gd-0_9_7.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-gd-0_9_6.lib"
+				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-gd-0_9_7.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -117,7 +117,7 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release CRTDLL|Win32"
+			Name="Release|Win32"
 			OutputDirectory=".\buildDynamic\vc90\$(ConfigurationName)"
 			IntermediateDirectory=".\buildDynamic\vc90\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -182,14 +182,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-0_9_6.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-0_9_7.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
-				ProgramDatabaseFile=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-0_9_6.pdb"
+				ProgramDatabaseFile=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-0_9_7.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-0_9_6.lib"
+				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-0_9_7.lib"
 				TargetMachine="1"
 			/>
 			<Tool

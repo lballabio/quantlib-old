@@ -124,7 +124,7 @@ Download <tt>QuantLibAddin-0.9.6.exe</tt> and uncompress the package to
 \subsection build_cpp_win_build 2.3 Build
 
 Open solution <tt>%QuantLibAddin\\QuantLibAddin_vc?.sln</tt>, choose
-configuration <tt>Release</tt>, and execute menu item <tt>Build | Build
+configuration <tt>Release (static runtime)</tt>, and execute menu item <tt>Build | Build
 Solution</tt>.
 
 \subsection build_cpp_win_test 2.4 Test
@@ -163,7 +163,7 @@ by the directive
 in file <tt>qlo/autolink.hpp</tt>
 
 The name of the library depends on your compiler and configuration.
-For example, if you're using VC8, configuration Release, the library
+For example, if you're using VC8, configuration Release (static runtime), the library
 is called
 \verbatim
 QuantLibAddin\lib\QuantLibObjects-vc80-mt-s-0_9_6.lib

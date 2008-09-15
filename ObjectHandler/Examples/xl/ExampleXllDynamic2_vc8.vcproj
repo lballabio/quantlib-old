@@ -14,7 +14,7 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug CRTDLL|Win32"
+			Name="Debug|Win32"
 			OutputDirectory=".\buildXllDynamic2\vc80\$(ConfigurationName)"
 			IntermediateDirectory=".\buildXllDynamic2\vc80\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -76,13 +76,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\ExampleXLLDynamic2-vc80-mt-gd-0_9_6.xll"
+				OutputFile="xll\ExampleXLLDynamic2-vc80-mt-gd-0_9_7.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-gd-0_9_6.pdb"
-				ImportLibrary=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-gd-0_9_6.lib"
+				ProgramDatabaseFile=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-gd-0_9_7.pdb"
+				ImportLibrary=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-gd-0_9_7.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -113,7 +113,7 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release CRTDLL|Win32"
+			Name="Release|Win32"
 			OutputDirectory=".\buildXllDynamic2\vc80\$(ConfigurationName)"
 			IntermediateDirectory=".\buildXllDynamic2\vc80\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -175,12 +175,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\ExampleXLLDynamic2-vc80-mt-0_9_6.xll"
+				OutputFile="xll\ExampleXLLDynamic2-vc80-mt-0_9_7.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
-				ProgramDatabaseFile=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-0_9_6.pdb"
-				ImportLibrary=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-0_9_6.lib"
+				ProgramDatabaseFile=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-0_9_7.pdb"
+				ImportLibrary=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-0_9_7.lib"
 				TargetMachine="1"
 			/>
 			<Tool

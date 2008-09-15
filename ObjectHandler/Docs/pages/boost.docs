@@ -34,15 +34,15 @@ depends on the project configurations you intend to use:
 
 <table>
 <tr><td><b>Project Configuration</b></td><td><b>Boost Variant</b></td></tr>
-<tr><td>Release</td><td>Multithread, static runtime</td></tr>
-<tr><td>Release CRTDLL</td><td>Multithread</td></tr>
-<tr><td>Debug</td><td>Multithread Debug, static runtime</td></tr>
-<tr><td>Debug CRTDLL</td><td>Multithread Debug</td></tr>
+<tr><td>Release</td><td>Multithread</td></tr>
+<tr><td>Release (static runtime)</td><td>Multithread, static runtime</td></tr>
+<tr><td>Debug</td><td>Multithread Debug</td></tr>
+<tr><td>Debug (static runtime)</td><td>Multithread Debug, static runtime</td></tr>
 </table>
 
-Often you just want configuration \c Release / Boost variant <tt>Multithread,
+Often you just want configuration \c Release (static runtime) / Boost variant <tt>Multithread,
 static runtime</tt>.  If you will have multiple XLLs linked together
-dynamically at runtime then you need configuration <tt>Release CRTDLL</tt>,
+dynamically at runtime then you need configuration <tt>Release</tt>,
 Boost variant <tt>Multithread</tt>.  The Boost variants \c SingleThread
 and \c DLL are never required for this project.  If disk space is not a
 concern, just select everything.

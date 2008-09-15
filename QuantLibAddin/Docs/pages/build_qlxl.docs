@@ -148,7 +148,7 @@ package to <tt>C:\\build_ql_0_9_6\\gensrc</tt>.
 <b>Full</b> build - open VC solution
 <tt>QuantLibXL\\QuantLibXL_full_vc?.sln</tt>.
 
-Choose configuration <tt>Release</tt> and do <tt>Build | Build Solution</tt>.
+Choose configuration <tt>Release (static runtime)</tt> and do <tt>Build | Build Solution</tt>.
 
 The build process creates the %QuantLibAddin XLL file
 <tt>QuantLibXL\\xll\\QuantLibXL-vc??-mt-s-0_9_6.xll</tt>.  Instructions for

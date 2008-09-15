@@ -24,9 +24,9 @@
 /*! \page faq Frequently Asked Questions
 
 This is the FAQ for %QuantLibAddin and QuantLibXL, which are subprojects of
-%QuantLib.  Please see also the 
+%QuantLib.  Please see also the
 <a href="http://quantlib.org/faq.shtml">general QuantLib FAQ</a>
-and the 
+and the
 <a href="http://quantlib.org/developerFAQ.shtml">QuantLib developer FAQ</a>.
 
 \ref faq_section_general\n
@@ -216,8 +216,8 @@ These errors indicate that the XLL has a runtime dependency which is
 not satisfied.
 
 If you compiled your XLL on one machine, and are trying to use it on another,
-ensure that the C runtime library is present on the target machine.  For
-example an XLL compiled in VC8 using runtime library <tt>Release CRTDLL</tt>
+ensure that the runtime library is present on the target machine.  For
+example an XLL compiled in VC8 using configuration <tt>Release</tt>
 has a runtime dependency on files \c MSVCP80.DLL and \c MSVCR80.DLL.
 
 If you used <tt>QuantLibAllDynamic_vc?.sln</tt> to compile ObjectHandler and

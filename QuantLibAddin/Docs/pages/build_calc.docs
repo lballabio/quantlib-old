@@ -110,7 +110,7 @@ QuantLibAddin\Clients\Calc\Option.ods
 
 Note that to compile %QuantLibAddin for Calc under Windows, you need VC7
 (Microsoft Visual C++ 2003).  Use solution <tt>QuantLibAddinCalc_vc7.sln</tt>,
-configuration <tt>Release CRTDLL</tt>.  You will need to configure VC7 so that
+configuration <tt>Release</tt>.  You will need to configure VC7 so that
 the paths it searches for executables include
 
 \verbatim
