@@ -45,8 +45,8 @@ renamed as noted below to conform to this convention:
 - ohPropertyNames    -> ohObjectPropertyNames
 - ohPropertyValue    -> ohObjectPropertyValues
 - ohRetrieveError    -> ohRangeRetrieveError
-- ohSetLogFile       -> ohLogFileSet
-- ohSetLogLevel      -> ohLogLevelSet
+- ohSetLogFile       -> ohLogSetFile
+- ohSetLogLevel      -> ohLogSetLevel
 - ohSplit            -> ohStringSplit
 
 New Functions:
