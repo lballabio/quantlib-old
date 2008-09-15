@@ -116,42 +116,6 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohListObjectIDs'>
-      <description>list the IDs of objects in repository matching regex.</description>
-      <alias>ObjectHandler::RepositoryXL::instance().listObjectIDs</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Regex'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>optional matching pattern in UNIX format (wildcard is .*).</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>string</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
-    <Procedure name='ohAllObjectCount'>
-      <description>#/objects in repository.</description>
-      <alias>ObjectHandler::RepositoryXL::instance().objectCount</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>long</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
     <Procedure name='ohPack'>
       <description>trim error/null/empty values from bottom/right of matrix/vector.</description>
       <alias>ObjectHandler::RepositoryXL::instance().packMatrix</alias>

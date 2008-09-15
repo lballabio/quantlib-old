@@ -33,18 +33,21 @@ The convention for naming addin functions is that an addin function which
 wraps Foo::Bar() should be called ohFooBar().  Selected functions have been
 renamed as noted below to conform to this convention:
 
-- ohConcatenate -> ohStringConcatenate
-- ohDeleteAllObjects -> ohAllObjectDelete
-- ohDeleteObject -> ohObjectDelete
-- ohLogAllObjects -> ohAllObjectLog
-- ohLogObject -> ohObjectLog
-- ohObjectCount -> ohAllObjectCount
-- ohPropertyNames -> ohObjectPropertyNames
-- ohPropertyValue -> ohObjectPropertyValues
-- ohRetrieveError -> ohRangeRetrieveError
-- ohSetLogFile -> ohLogFileSet
-- ohSetLogLevel -> ohLogLevelSet
-- ohSplit -> ohStringSplit
+- ohCollectGarbage   -> ohRepositoryCollectGarbage
+- ohConcatenate      -> ohStringConcatenate
+- ohDeleteAllObjects -> ohRepositoryDeleteAllObjects
+- ohDeleteObject     -> ohRepositoryDeleteObject
+- ohListObjectIDs    -> ohRepositoryListObjectIDs
+- ohLogAllObjects    -> ohRepositoryLogAllObjects
+- ohLogMessage       -> ohLogWriteMessage
+- ohLogObject        -> ohRepositoryLogObject
+- ohObjectCount      -> ohRepositoryObjectCount
+- ohPropertyNames    -> ohObjectPropertyNames
+- ohPropertyValue    -> ohObjectPropertyValues
+- ohRetrieveError    -> ohRangeRetrieveError
+- ohSetLogFile       -> ohLogFileSet
+- ohSetLogLevel      -> ohLogLevelSet
+- ohSplit            -> ohStringSplit
 
 New Functions:
 
@@ -57,9 +60,9 @@ New Functions:
 
 Enhanced Functions:
 
-- ohPropertyNames - Modified to suppress ObjectId, ClassName from return value
-  and to list values in the sequence in which they appear in the constructor of the
-  corresponding class.
+- ohObjectPropertyNames - Modified to suppress ObjectId, ClassName from return
+  value and to list values in the sequence in which they appear in the
+  constructor of the corresponding class.
 - ohObjectCreationTime, ohObjectUpdateTime - Implemented as loop functions.
 
 <strong>Release 0.9.6 - September 2008</strong>
@@ -173,7 +176,7 @@ EXCEL
 
 DOCUMENTATION
 
-- The comments in the code have been brought completely up to date.  As a 
+- The comments in the code have been brought completely up to date.  As a
   result the  doxygen-generated documentation of classes and code is also up to date.
   Much of the other hand-written documentation still requires an update.
 - \c Topics page of documentation renamed to \c Manual and updated to provide

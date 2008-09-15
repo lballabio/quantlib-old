@@ -57,10 +57,9 @@
       </ReturnValue>
     </Procedure>
 
-
     <Procedure name='ohObjectPrecedentIDs'>
       <description>A list of the Object's precedent Objects, return the object's list.</description>
-      <alias>ObjectHandler::Repository::instance().getRelationObs</alias>
+      <alias>ObjectHandler::Repository::instance().precedentIDs</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' />
       </SupportedPlatforms>
@@ -82,7 +81,7 @@
 
     <Procedure name='ohObjectExists'>
       <description>list the IDs of objects in repository matching regex.</description>
-      <alias>ObjectHandler::RepositoryXL::instance().objectExists</alias>
+      <alias>ObjectHandler::RepositoryXL::instance().exists</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
@@ -145,7 +144,7 @@
 
     <Procedure name='ohObjectIsOrphan'>
       <description>get the object property orphan </description>
-      <alias>ObjectHandler::RepositoryXL::instance().ObjectIsOrphan</alias>
+      <alias>ObjectHandler::RepositoryXL::instance().isOrphan</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
@@ -166,7 +165,7 @@
     
     <Procedure name='ohObjectUpdateCounter'>
       <description>get the object property update counter</description>
-      <alias>ObjectHandler::RepositoryXL::instance().ObjectUpdateCounter</alias>
+      <alias>ObjectHandler::RepositoryXL::instance().updateCounter</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
@@ -187,7 +186,7 @@
     
     <Procedure name='ohObjectIsPermanent'>
       <description>get the object property permanent</description>
-      <alias>ObjectHandler::RepositoryXL::instance().ObjectIsPermanent</alias>
+      <alias>ObjectHandler::RepositoryXL::instance().isPermanent</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
@@ -208,7 +207,7 @@
     
     <Procedure name='ohObjectClassName'>    
       <description>get the object class name</description>
-      <alias>ObjectHandler::RepositoryXL::instance().ObjectClassName</alias>
+      <alias>ObjectHandler::RepositoryXL::instance().className</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>

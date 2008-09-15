@@ -136,10 +136,10 @@ namespace ObjectHandler {
                     }
 
                     fullMessage << functionCall->functionName() << " - " << message;
-                    logMessage(fullMessage.str(), 2);
+                    logWriteMessage(fullMessage.str(), 2);
 
                 } else {
-                    logMessage(message, 2);
+                    logWriteMessage(message, 2);
                 }
 
             } catch(...) {}
@@ -274,7 +274,7 @@ namespace ObjectHandler {
         return ret;
     }
 
-    std::vector<bool> RepositoryXL::ObjectIsOrphan(const std::vector<std::string> &objectList){
+    std::vector<bool> RepositoryXL::isOrphan(const std::vector<std::string> &objectList){
         std::vector<bool> ret;
 
         for (std::vector<std::string>::const_iterator i = objectList.begin();
@@ -295,7 +295,8 @@ namespace ObjectHandler {
 
     }
 
-    std::vector<std::string> RepositoryXL::ObjectUpdateCounter(const std::vector<std::string> &objectList){
+    std::vector<std::string>
+    RepositoryXL::updateCounter(const std::vector<std::string> &objectList) {
         std::vector<std::string> ret;
 
         for (std::vector<std::string>::const_iterator i = objectList.begin();

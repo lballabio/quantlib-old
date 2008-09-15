@@ -14,7 +14,43 @@
 
   <Functions>
 
-    <Procedure name='ohCollectGarbage'>
+    <Procedure name='ohRepositoryObjectCount'>
+      <description>#/objects in repository.</description>
+      <alias>ObjectHandler::RepositoryXL::instance().objectCount</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRepositoryListObjectIDs'>
+      <description>list the IDs of objects in repository matching regex.</description>
+      <alias>ObjectHandler::RepositoryXL::instance().listObjectIDs</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Regex'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>optional matching pattern in UNIX format (wildcard is .*).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRepositoryCollectGarbage'>
       <description>delete orphaned objects from repository.</description>
       <alias>ObjectHandler::RepositoryXL::instance().collectGarbage</alias>
       <SupportedPlatforms>
@@ -35,7 +71,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohAllObjectDelete'>
+    <Procedure name='ohRepositoryDeleteAllObjects'>
       <description>delete all objects from repository.</description>
       <alias>ObjectHandler::Repository::instance().deleteAllObjects</alias>
       <SupportedPlatforms>
@@ -57,7 +93,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohObjectDelete'>
+    <Procedure name='ohRepositoryDeleteObject'>
       <description>delete object from repository.</description>
       <alias>ObjectHandler::RepositoryXL::instance().deleteObject</alias>
       <SupportedPlatforms>
@@ -69,6 +105,43 @@
             <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>ID of object to be deleted.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRepositoryLogAllObjects'>
+      <description>write all object descriptions to log file.</description>
+      <alias>ObjectHandler::logAllObjects</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRepositoryLogObject'>
+      <description>write object description to log file.</description>
+      <alias>ObjectHandler::logObject</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of object to be logged.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

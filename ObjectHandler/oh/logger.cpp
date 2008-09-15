@@ -71,9 +71,8 @@ namespace ObjectHandler {
         return _layout;
     }
 
-    void Logger::setLogFile(
-        const std::string &logFileName,
-        const int &logLevel) {
+    void Logger::setFile(const std::string &logFileName,
+                         const int &logLevel) {
 
             // Create a boost path object from the std::string.
             boost::filesystem::path path(logFileName);
@@ -98,12 +97,12 @@ namespace ObjectHandler {
 
                 _fileAppender = AppenderPtr(new FileAppender(getLayout(),  fileName));
                 _logger->addAppender(_fileAppender);
-                setLogLevel(logLevel);
+                setLevel(logLevel);
                 filename_ = logFileName;
 
             } catch (helpers::Exception &e) {
-                //OH_FAIL("Logger::setLogFile: unable to set logfile: " + e.getMessage());
-                std::string str = "Logger::setLogFile: unable to set logfile: ";
+                //OH_FAIL("Logger::logSetFile: unable to set logfile: " + e.getMessage());
+                std::string str = "Logger::logSetFile: unable to set logfile: ";
                 str += e.what();
                 OH_FAIL(str);
             }
@@ -122,16 +121,16 @@ namespace ObjectHandler {
                     _consoleAppender = AppenderPtr(new ConsoleAppender(getLayout()));
                     _logger->addAppender(_consoleAppender);
                 }
-                setLogLevel(logLevel);
+                setLevel(logLevel);
             } catch (helpers::Exception &e) {
-                //OH_FAIL("Logger::setLogFile: unable to set logfile: " + e.getMessage());
-                std::string str = "Logger::setLogFile: unable to set logfile: ";
+                //OH_FAIL("Logger::logSetFile: unable to set logfile: " + e.getMessage());
+                std::string str = "Logger::logSetFile: unable to set logfile: ";
                 str += e.what();
                 OH_FAIL(str);
             }
     }
 
-    void Logger::setLogLevel(const int &logLevel) {
+    void Logger::setLevel(const int &logLevel) {
         try {
             log4cxx::LoggerPtr _logger = log4cxx::Logger::getRootLogger();
             
@@ -171,9 +170,8 @@ namespace ObjectHandler {
         }
     }
 
-    void Logger::logMessage(
-        const std::string &message,
-        const int &level) {
+    void Logger::writeMessage(const std::string &message,
+                              const int &level) {
             // client applications call this function from within their
             // catch() clauses so this function must not throw.
             try {
@@ -200,7 +198,7 @@ namespace ObjectHandler {
     }
 
     //get log file
-    const std::string Logger::logFile(){
+    const std::string Logger::file() const {
         try{
             /*
             if(fileAppender_ == 0)
@@ -216,8 +214,9 @@ namespace ObjectHandler {
             OH_FAIL("Logger::LogFile: unable to get logfile.");
         }
     }
+
     //get log level
-    const int Logger::logLevel(){
+    const int Logger::level() const {
         const LevelPtr& level = log4cxx::Logger::getRootLogger()->getLevel();
 
         int value = -1;
@@ -244,4 +243,3 @@ namespace ObjectHandler {
 
 
 }
-

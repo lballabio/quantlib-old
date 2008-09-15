@@ -48,10 +48,9 @@ namespace ObjectHandler {
             Perform a test to ensure that an object from one cell cannot overwrite
             an object in another cell with the same ID.
         */
-        virtual std::string storeObject(
-            const std::string &objectID,
-            const boost::shared_ptr<Object> &object,
-            bool overwrite = false);
+        virtual std::string storeObject(const std::string &objectID,
+                                        const boost::shared_ptr<Object> &obj,
+                                        bool overwrite = false);
         //@}
 
         //! \name Error Messages
@@ -65,9 +64,8 @@ namespace ObjectHandler {
 
             This function never throws.
         */
-        void logError(
-            const std::string &message,
-            const boost::shared_ptr<FunctionCall> &functionCall);
+        void logError(const std::string &message,
+                      const boost::shared_ptr<FunctionCall> &functionCall);
         //! Retrieve the error associated with the given range.
         std::string retrieveError(const XLOPER *range);
         //! Retrieve the error associated with VBA.
@@ -108,9 +106,9 @@ namespace ObjectHandler {
         //! \name get callername property
         //@{
          //! get the object property orphan
-        virtual std::vector<bool> ObjectIsOrphan(const std::vector<std::string> &objectList);
+        virtual std::vector<bool> isOrphan(const std::vector<std::string> &objectList);
         //! Retrieve the object property Update Counter
-        virtual std::vector<std::string> ObjectUpdateCounter(const std::vector<std::string> &objectList);
+        virtual std::vector<std::string> updateCounter(const std::vector<std::string> &objectList);
         //@}
 
     protected:

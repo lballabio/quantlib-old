@@ -50,32 +50,30 @@ namespace ObjectHandler {
     */
     //@{
     //! Start logging to file of given name.
-    /*! Wraps function Logger::instance().setLogFile().
+    /*! Wraps function Logger::instance().logSetFile().
     */
-    std::string setLogFile(
-        const std::string &logFileName,
-        const int &logLevel = 4);
+    std::string logSetFile(const std::string &logFileName,
+                           const int &logLevel = 4);
     //! Write a message to the log file.
     /*! Wraps function Logger::instance().logMessage().
     */
-    DLL_API void logMessage(
-        const std::string &message,
-        const int &level = 4);
+    DLL_API void logWriteMessage(const std::string &message,
+                                 const int &level = 4);
     //! Set the logging threshold.
     /*! Wraps function Logger::instance().setLogLevel().
 
         It is seldom necessary to call this function as the default
         logging level is suitable for most purposes.
     */
-    void setLogLevel(const int &logLevel);
+    void logSetLevel(const int &logLevel);
     //! Fork log messages to stdout.
     /*! Wraps function Logger::instance().setConsole().
 
         This function is used in command-line environments and causes
         messages to appear both on the terminal and in the log file.
     */
-    void setConsole(const int &console = 0,
-                    const int &logLevel = 4);
+    void logSetConsole(const int &console = 0,
+                       const int &logLevel = 4);
     //! Write Object with given ID to log file.
     /*! Writes a warning message to the log file
         if no Object is found with the given ID.
@@ -120,4 +118,3 @@ namespace ObjectHandler {
 }
 
 #endif
-

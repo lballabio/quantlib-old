@@ -150,7 +150,7 @@ namespace ObjectHandler {
             const std::string &regex = "");
 
         //! Indicate whether an Object with the given ID is found in the Repository.
-        virtual std::vector<bool> objectExists(const std::vector<std::string> &objectList);
+        virtual std::vector<bool> exists(const std::vector<std::string> &objectList);
         //@}
 
         //! Define the type of the structure used to store the Objects.
@@ -164,7 +164,7 @@ namespace ObjectHandler {
         //! \name Precedent object IDs and timestamps
         //@{
         //! Retrieve the list of IDs of precedent objects
-        virtual const std::vector<std::string> getRelationObs(const std::string &objectID);
+        virtual const std::vector<std::string> precedentIDs(const std::string &objectID);
         //! The object's initial creation time
         virtual std::vector<double> creationTime(const std::vector<std::string> &objectList);
         //! The time of the object's last update
@@ -172,9 +172,9 @@ namespace ObjectHandler {
         //@}
 
         //! get the object's permanent proterty
-        virtual std::vector<bool> ObjectIsPermanent(const std::vector<std::string> &objectList);
+        virtual std::vector<bool> isPermanent(const std::vector<std::string> &objectList);
         //! get the object's name
-        virtual const std::vector<std::string> ObjectClassName(const std::vector<std::string> &objectList);
+        virtual const std::vector<std::string> className(const std::vector<std::string> &objectList);
         //@}
 
 

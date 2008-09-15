@@ -49,44 +49,44 @@ namespace ObjectHandler {
         return OBJHANDLER_VERSION;
     }
 
-    std::string setLogFile(const std::string &logFileName,
-        const int &logLevel) {
-            Logger::instance().setLogFile(logFileName, logLevel);
+    std::string logSetFile(const std::string &logFileName,
+                           const int &logLevel) {
+            Logger::instance().setFile(logFileName, logLevel);
             return logFileName;
     }
 
-    DLL_API void logMessage(const std::string &message,
-        const int &level) {
-            Logger::instance().logMessage(message, level);
+    DLL_API void logWriteMessage(const std::string &message,
+                                 const int &level) {
+            Logger::instance().writeMessage(message, level);
     }
 
-    void setLogLevel(const int &logLevel) {
-        Logger::instance().setLogLevel(logLevel);
+    void logSetLevel(const int &logLevel) {
+        Logger::instance().setLevel(logLevel);
     }
 
     const std::string logFile(){
-        return Logger::instance().logFile();
+        return Logger::instance().file();
     }
 
     const int logLevel(){
-        return Logger::instance().logLevel();
+        return Logger::instance().level();
     }
 
-    void setConsole(const int &console,
-        const int &logLevel) {
+    void logSetConsole(const int &console,
+                      const int &logLevel) {
             Logger::instance().setConsole(console, logLevel);
     }
 
     void logObject(const std::string &objectID) {
         std::ostringstream msg;
         Repository::instance().dumpObject(objectID, msg);
-        Logger::instance().logMessage(msg.str());
+        Logger::instance().writeMessage(msg.str());
     }
 
     void logAllObjects() {
         std::ostringstream msg;
         Repository::instance().dump(msg);
-        Logger::instance().logMessage(msg.str());
+        Logger::instance().writeMessage(msg.str());
     }
 
     std::vector<std::string> split(const std::string& line,

@@ -197,7 +197,7 @@ namespace ObjectHandler {
         return objectMap_.find(objectID) != objectMap_.end();
     }
 
-    std::vector<bool> Repository::objectExists(const std::vector<std::string> &objectList) {
+    std::vector<bool> Repository::exists(const std::vector<std::string> &objectList) {
         std::vector<bool> ret;
 
         for (std::vector<std::string>::const_iterator i = objectList.begin();
@@ -243,7 +243,7 @@ namespace ObjectHandler {
         return ret;
     }
 
-    const std::vector<std::string> Repository::getRelationObs(const std::string &objectID){
+    const std::vector<std::string> Repository::precedentIDs(const std::string &objectID){
         std::string realID = formateID(objectID);
         if (isObjectExists(realID)){
             ObjectMap::const_iterator result = objectMap_.find(realID);
@@ -260,7 +260,7 @@ namespace ObjectHandler {
         }
     }
 
-    std::vector<bool> Repository::ObjectIsPermanent(const std::vector<std::string> &objectList){
+    std::vector<bool> Repository::isPermanent(const std::vector<std::string> &objectList){
         std::vector<bool> ret;
 
         for (std::vector<std::string>::const_iterator i = objectList.begin();
@@ -279,7 +279,7 @@ namespace ObjectHandler {
         return ret;
     }
 
-    const std::vector<std::string> Repository::ObjectClassName(const std::vector<std::string> &objectList){
+    const std::vector<std::string> Repository::className(const std::vector<std::string> &objectList){
         std::vector<std::string> ret;
 
         for (std::vector<std::string>::const_iterator i = objectList.begin();

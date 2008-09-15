@@ -63,8 +63,8 @@ namespace ObjectHandler {
             logLevel which is passed as an argument to setLogLevel 
             (see below). logLevel defaults to 4 (info).
         */
-        void setLogFile(const std::string &logFileName,
-                const int &logLevel = 4);
+        void setFile(const std::string &logFileName,
+                     const int &logLevel = 4);
         //! Direct logging to the console (stdout)
         /*! Logging to the console is disabled by default.
             Call this function with a parameter of 1 to enable
@@ -74,7 +74,7 @@ namespace ObjectHandler {
             (see below). logLevel defaults to 4 (info).
         */
         void setConsole(const int &console = 0,
-                const int &logLevel = 4);
+                        const int &logLevel = 4);
         //! Specify threshold for logging messages.
         /*! Accepts one parameter logLevel with the following values:
             \li 0 - logging disabled
@@ -89,13 +89,13 @@ namespace ObjectHandler {
             If the specified level is not in the range 0-5
             an error is thrown.
         */
-        void setLogLevel(const int &logLevel);
+        void setLevel(const int &logLevel);
         //! Log a message.
         /*! The optional level parameter specifies the logging level
             for the message, if omitted this defaults to 4 (info).
         */
-        void logMessage(const std::string &message,
-                const int &level = 4);
+        void writeMessage(const std::string &message,
+                          const int &level = 4);
         //@}
 
         /** \name logFile and logLevel
@@ -103,9 +103,9 @@ namespace ObjectHandler {
         */
         //@{
         //!get log file
-        const std::string logFile();
+        const std::string file() const;
         //!get log level
-        const int logLevel();
+        const int level() const;
         //@}
 
 
@@ -125,4 +125,3 @@ namespace ObjectHandler {
 }
 
 #endif
-
