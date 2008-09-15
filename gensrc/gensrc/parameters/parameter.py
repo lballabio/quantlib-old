@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""encapsulate state necessary to generate source code
+"""Encapsulate state and behavior necessary to generate source code
 relating to a function parameter."""
 
 from gensrc.parameters import exceptions
@@ -47,54 +47,87 @@ class Value(serializable.Serializable):
     #############################################
 
     def tensorRank(self):
+        """Return the tensor rank of this value i.e. scalar/vector/matrix."""
         return self.tensorRank_
 
     def loop(self):
+        """Return boolean indicating whether this value is a loop parameter."""
         return self.loop_
 
     def vectorIterator(self):
+        """Return a value specifying the iterator behavior for this vector
+        parameter - begin, end, or beginAndEnd.
+
+        begin indicates that the underlying function requires an iterator
+        pointing to the beginning of the std::vector.  end indicates that the
+        underlying function requires an iterator pointing to the beginning of the
+        std::vector.  beginAndEnd indicates that the underlying function requires both
+        values."""
         return self.vectorIterator_
 
     def default(self):
+        """Return the default value that was specified for this parameter in the
+        event that no value is available - or None."""
         return self.default_
 
     def ignore(self):
+        """Return a boolean indicating whether this parameter is ignored by
+        the underlying library function."""
         return self.ignore_
 
     def const(self):
+        """Return a boolean indicating whether this parameter is passed as a
+        const value."""
         return self.const_
 
     def fullType(self):
+        """Return the FullType object that corresponds to this value."""
         return self.fullType_
 
     def nameConverted(self):
+        """Return the variable name to be used for this parameter after datatype
+        conversion has been performed."""
         return self.name_ + self.fullType_.conversionSuffix()
 
     def description(self):
+        """Return the explanatory description that was provided for this parameter
+        for end user documentation."""
         return self.description_
 
     def lastParameter(self):
+        """Return a boolean indicating whether this parameter is the last
+        in the list for the given function."""
         return self.lastParameter_
 
     def errorValue(self):
+        """Return the value, if any, to be substituted for this parameter
+        if the original value is erroneous."""
         return self.errorValue_
 
     def setLastParameter(self, val):
+        """Set the boolean value indicating whether this parameter is the last
+        in the list for the given function."""
         self.lastParameter_ = val
 
     def setLoop(self, val):
+        """Set the boolean value indicating whether this parameter is configured
+        as the loop parameter for the function."""
         self.loop_ = val
 
     def setDefault(self, val):
+        """Set the default value to be used in place of this parameter in the event
+        that no value is available."""
         self.default_ = val
 
     def printValue(self, value):
+        """For debugging purposes, write the given value to stdout."""
         if value is None:
             return ''
         else:
             return str(value) + ''
 
     def printDebug(self):
+        """For debugging purposes, write the properties of this parameter to stdout."""
         print "type=" + str(type(self))
         print "name=" + self.printValue(self.name_)
         print "tensorRank=" + self.printValue(self.tensorRank_)
@@ -148,7 +181,7 @@ class ReturnValue(Value):
     name_ = 'returnValue'
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         serializer.serializeProperty(self, common.TYPE)
         serializer.serializeProperty(self, common.SUPER_TYPE)
         serializer.serializeProperty(self, common.TENSOR_RANK)
@@ -165,6 +198,7 @@ class ConstructorReturnValue(Value):
     tensorRank_ = common.SCALAR
 
     def __init__(self):
+        """Initialize the ConstructorReturnValue object."""
         self.fullType_ = environment.getType(common.STRING)
 
 class PermanentFlag(Value):
@@ -176,6 +210,7 @@ class PermanentFlag(Value):
     default_ = 'false'
 
     def __init__(self):
+        """Initialize the PermanentFlag object."""
         self.fullType_ = environment.getType(common.BOOL)
 
 class ConstructorObjectId(Parameter):
@@ -190,6 +225,7 @@ class ConstructorObjectId(Parameter):
     description_ = 'id of object to be created'
 
     def __init__(self):
+        """Initialize the ConstructorObjectId object."""
         self.fullType_ = environment.getType(common.STRING)
 
 class MemberObjectId(Parameter):
@@ -203,6 +239,7 @@ class MemberObjectId(Parameter):
     ignore_ = False
 
     def __init__(self, typeName, superTypeName):
+        """Initialize the MemberObjectId object."""
         #self.failIfEmpty = True # Member function can't be invoked on null object
 
         self.fullType_ = environment.getType(typeName, superTypeName)
@@ -217,12 +254,13 @@ class EnumerationId(Parameter):
     ignore_ = False
 
     def __init__(self, typeName, superTypeName):
+        """Initialize the EnumerationId object."""
         self.fullType_ = environment.getType(typeName, superTypeName)
         self.name_ = self.fullType_.classname().lower()
         self.description_ = 'ID of Enumeration of class %s' % self.fullType_.value()
 
 class DependencyTrigger(Parameter):
-    """dependency tracking trigger.
+    """Dependency tracking trigger.
 
     A dummy parameter used to force dependencies between cells
     in a worksheet."""
@@ -233,6 +271,7 @@ class DependencyTrigger(Parameter):
     description_ = 'dependency tracking trigger'
 
     def __init__(self):
+        """Initialize the DependencyTrigger object."""
         self.fullType_ = environment.getType(common.ANY)
 
 class OverwriteFlag(Parameter):
@@ -244,5 +283,6 @@ class OverwriteFlag(Parameter):
     description_ = 'overwrite flag'
 
     def __init__(self):
+        """Initialize the OverwriteFlag object."""
         self.fullType_ = environment.getType(common.BOOL)
 

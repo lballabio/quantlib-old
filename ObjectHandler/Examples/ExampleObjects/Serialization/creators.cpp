@@ -43,8 +43,7 @@ namespace AccountExample {
 
         Account::Type typeEnum = ObjectHandler::Create<Account::Type>()(type);
 
-        //long accountBalance = ObjectHandler::convert2<long>(balance, "Balance", 100);
-        long accountBalance = static_cast<long>(ObjectHandler::convert2<double>(balance, "Balance", 100.));
+        double accountBalance = ObjectHandler::convert2<double>(balance, "Balance", 100.00);
 
         boost::shared_ptr<ObjectHandler::Object> object(
             new AccountObject(valueObject, customerRef, typeEnum, number, accountBalance, permanent));

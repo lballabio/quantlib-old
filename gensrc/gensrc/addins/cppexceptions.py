@@ -16,9 +16,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Exception encountered when generating the source code for the C++ addin."""
+
 from gensrc.exceptions import exceptions
 
 class CppException(exceptions.GensrcException):
     """Exception encountered when generating the source code
-    for the Cpp addin."""
+    for the C++ addin."""
 

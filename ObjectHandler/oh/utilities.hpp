@@ -34,34 +34,33 @@
 
 namespace ObjectHandler {
 
-    //! Returns Boost version string.
+    //! \name Diagnostics
+    //@{
+    //! Return the Boost version number as a string.
     std::string boostVersion();
-
-    //! Returns ObjectHandler version string.
+    //! Return the ObjectHandler version number as a string.
     std::string version();
+    //@}
 
-    /** \name Logging
-     *  These functions wrap calls to the Logger class
+    /*! \name Logging
+        These functions wrap calls to the Logger class
         simplifying the syntax for the client application
         and alleviating the need for the client application
         to #include log4cxx headers.
     */
     //@{
-
     //! Start logging to file of given name.
     /*! Wraps function Logger::instance().setLogFile().
     */
     std::string setLogFile(
         const std::string &logFileName,
         const int &logLevel = 4);
-
     //! Write a message to the log file.
     /*! Wraps function Logger::instance().logMessage().
     */
     DLL_API void logMessage(
         const std::string &message,
         const int &level = 4);
-
     //! Set the logging threshold.
     /*! Wraps function Logger::instance().setLogLevel().
 
@@ -69,7 +68,6 @@ namespace ObjectHandler {
         logging level is suitable for most purposes.
     */
     void setLogLevel(const int &logLevel);
-
     //! Fork log messages to stdout.
     /*! Wraps function Logger::instance().setConsole().
 
@@ -78,13 +76,11 @@ namespace ObjectHandler {
     */
     void setConsole(const int &console = 0,
                     const int &logLevel = 4);
-
     //! Write Object with given ID to log file.
     /*! Writes a warning message to the log file
         if no Object is found with the given ID.
     */
     void logObject(const std::string &objectID);
-
     //! Write all Objects to the log file.
     /*! Takes no action if the ObjectHandler
         repository is empty.
@@ -92,9 +88,7 @@ namespace ObjectHandler {
     void logAllObjects();
     //@}
 
-    /** \name Utilities
-     *  Miscellaneous utility functions.
-    */
+    //! \name Strings
     //@{
     //! Split a string into substrings using the given delimiter.
     std::vector<std::string> split(const std::string& line,
@@ -105,13 +99,11 @@ namespace ObjectHandler {
                             const std::string& delim);
     //@}
 
-    /** \name getTime and formatTime
-    *  utility functions.
-    */
+    //! \name Time
     //@{
-    //! get current time .
+    //! Retrieve the current time as a number.
     double getTime();
-    //! format string is hh:mm:ss.
+    //! Return the given time as a string in format HH:MM:SS.
     std::string formatTime(double tm);
     //@}
 
@@ -128,3 +120,4 @@ namespace ObjectHandler {
 }
 
 #endif
+

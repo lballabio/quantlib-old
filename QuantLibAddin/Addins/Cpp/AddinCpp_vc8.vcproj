@@ -63,7 +63,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc80-mt-sgd-0_9_5.lib"
+				OutputFile=".\lib\AddinCpp-vc80-mt-sgd-0_9_6.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -127,7 +127,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc80-mt-s-0_9_5.lib"
+				OutputFile=".\lib\AddinCpp-vc80-mt-s-0_9_6.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -193,7 +193,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc80-mt-gd-0_9_5.lib"
+				OutputFile=".\lib\AddinCpp-vc80-mt-gd-0_9_6.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -257,7 +257,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc80-mt-0_9_5.lib"
+				OutputFile=".\lib\AddinCpp-vc80-mt-0_9_6.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -424,11 +424,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\garbagecollection.cpp"
+			RelativePath="garbagecollection.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\garbagecollection.hpp"
+			RelativePath="garbagecollection.hpp"
 			>
 		</File>
 		<File
@@ -480,11 +480,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\logging.cpp"
+			RelativePath="logging.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\logging.hpp"
+			RelativePath="logging.hpp"
 			>
 		</File>
 		<File
@@ -504,11 +504,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\ohutils.cpp"
+			RelativePath="ohutils.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\ohutils.hpp"
+			RelativePath="ohutils.hpp"
 			>
 		</File>
 		<File
@@ -536,11 +536,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\piecewiseyieldcurve.cpp"
+			RelativePath="piecewiseyieldcurve.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\piecewiseyieldcurve.hpp"
+			RelativePath="piecewiseyieldcurve.hpp"
 			>
 		</File>
 		<File
@@ -616,11 +616,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\serialization.cpp"
+			RelativePath="serialization.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\serialization.hpp"
+			RelativePath="serialization.hpp"
 			>
 		</File>
 		<File
@@ -696,11 +696,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\timeseries.cpp"
+			RelativePath="timeseries.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\timeseries.hpp"
+			RelativePath="timeseries.hpp"
 			>
 		</File>
 		<File
@@ -712,11 +712,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\valueobjects.cpp"
+			RelativePath="valueobjects.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\valueobjects.hpp"
+			RelativePath="valueobjects.hpp"
 			>
 		</File>
 		<File

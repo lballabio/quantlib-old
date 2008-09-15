@@ -30,7 +30,7 @@
 \section log_overview Overview
 
 %ObjectHandler allows specification of a log file where information and error
-messages are written.  Function ohSetLogFile() is used to enable logging to a
+messages are written.  Function \ref ohSetLogFile is used to enable logging to a
 chosen logfile.  Please refer to the functional documentation for specifics
 about additional %ObjectHandler functions in support of logging.
 
@@ -39,7 +39,7 @@ about additional %ObjectHandler functions in support of logging.
 On Excel, whenever a function from the %ObjectHandler Addin (or its clients)
 encounters an error, the function returns \#NUM to the calling cell.  In this
 case a corresponding error message is written to the log file.  The error
-message may also be retrieved by calling function ohRangeRetrieveError().
+message may also be retrieved by calling function \ref ohRangeRetrieveError.
 
 \section log_thresholds Logging Levels (Thresholds)
 
@@ -48,9 +48,8 @@ thresholds, allowing greater granularity in determining which messages appear
 in the logfile.  The %ObjectHandler logging functions expose this threshold
 functionality, however it's not really used and the default logging thresholds
 are adequate.  In the current implementation it's never necessary to override
-the default value for the "loglevel" parameter of the
-ohSetLogFile()/ohLogMessage() function, nor to call the ohSetLogLevel()
-function.
+the default value for the <tt>loglevel</tt> parameter of the \ref ohSetLogFile
+/ \ref ohLogMessage function, nor to call the \ref ohSetLogLevel function.
 
 */
 

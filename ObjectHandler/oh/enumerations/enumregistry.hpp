@@ -78,8 +78,10 @@ namespace ObjectHandler {
     };
 
     //! A concrete instantiation of the Registry class, for "pairs".
-    /*! "Pairs" are enumerated classes which are keyed not by strings but by
+    /*! "Pairs" are enumerated classes which are keyed not by a simple std::string but by
+        \code
             std::pair<std::string, std::string>
+        \endcode
         This additional flexibility is required for some application domains.
     */
     class DLL_API EnumPairRegistry : public Registry<KeyPair> {

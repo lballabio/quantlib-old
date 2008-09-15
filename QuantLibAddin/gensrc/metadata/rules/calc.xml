@@ -53,10 +53,10 @@
   <RuleGroup name='cppConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
     <Wrap codeID='wrap1'/>
     <Rules>
-        <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code71'/>
+        <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code71b'/>
         <Rule tensorRank='scalar' default='true' codeID='code72'/>
-        <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code71b'/>
-        <Rule tensorRank='scalar' nativeType='string' codeID='code70'/>
+        <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code71c'/>
+        <Rule tensorRank='scalar' nativeType='string' codeID='code71a'/>
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)sbool %(name)sCpp = static_cast&lt;bool&gt;(%(name)s);&#10;</Rule>
         <Rule tensorRank='vector' type='QuantLib::Date' codeID='code73b'/>
         <Rule tensorRank='vector' nativeType='double' codeID='code74'/>
@@ -89,18 +89,18 @@
         <!--Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule-->
         <Rule tensorRank='scalar' type='QuantLib::Natural'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='scalar' type='QuantLib::Size'>%(indent)s%(name)s</Rule>
-        <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(name)sLib</Rule>
-        <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(name)sLibObj</Rule>
-        <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(name)sLibObj</Rule>
-        <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(name)sEnum</Rule>
-        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sObj</Rule>
+        <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' superType='libraryClass'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' superType='libToHandle'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(nameConverted)s</Rule>
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
-        <Rule tensorRank='vector' superType='libraryType'>%(indent)s%(name)sLib</Rule>
+        <Rule tensorRank='vector' superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
         <Rule tensorRank='vector'>%(indent)s%(name)sCpp</Rule>
-        <Rule tensorRank='matrix'>%(indent)s%(name)sLib</Rule>
+        <Rule tensorRank='matrix'>%(indent)s%(nameConverted)s</Rule>
     </Rules>
   </RuleGroup>
 

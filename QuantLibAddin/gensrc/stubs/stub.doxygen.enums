@@ -2,7 +2,7 @@
 
     \section enum_overview Overview
     %%QuantLibAddin uses a registration manager to translate text strings
-    into classes of minor or transient QuantLib objects which must be 
+    into classes of minor or transient %%QuantLib objects which must be 
     constructed as part of larger operations.  For example the constructor for
     an option accepts string \c PUT to indicate an option type of class
     \c QuantLib::Option::Put.  

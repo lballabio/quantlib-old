@@ -16,13 +16,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""procedural utilities"""
+"""Procedural utilities."""
 
 from gensrc.serialization import xmlreader
 from gensrc.configuration import environment
 from gensrc.utilities import exceptions
 
 def serializeObjectImpl(objectClass, fileName):
+    """Instantiate an XML reader and load requested object."""
     objectInstance = objectClass()
     serializer = xmlreader.XmlReader(fileName)
     objectInstance.serialize(serializer)
@@ -30,22 +31,25 @@ def serializeObjectImpl(objectClass, fileName):
     return objectInstance
 
 def serializeObject(objectClass, fileName = None):
-    """instantiate an xml reader and load requested object."""
+    """Perform preprocessing and error handling for serializeObjectImpl"""
     if not fileName: 
-        fileName = environment.Environment.instance().gensrcRootPath() + '/metadata/' + objectClass.__name__.lower()
+        fileName = environment.Environment.instance().gensrcRootPath() + \
+            '/metadata/' + objectClass.__name__.lower()
     try:
         return serializeObjectImpl(objectClass, fileName)
     except:
-        raise exceptions.UtilitiesSerializationException(fileName, objectClass.__name__)
+        raise exceptions.UtilitiesSerializationException(
+            fileName, objectClass.__name__)
 
 def serializeList(path, caller, listName, itemName):
-    """instantiate an xml reader and load requested list."""
+    """Instantiate an XML reader and load requested list."""
     if not path: 
-        setattr(caller, listName+'_', [])
+        setattr(caller, listName + '_', [])
         return
     try:
         serializer = xmlreader.XmlReader(path)
         serializer.serializeList(caller, listName, itemName)
     except:
-        raise exceptions.UtilitiesSerializationListException(path, listName, itemName)
+        raise exceptions.UtilitiesSerializationListException(
+            path, listName, itemName)
 

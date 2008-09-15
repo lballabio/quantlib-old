@@ -1,1 +1,1 @@
-InstrumentIn-vc80-mt.exe 39570 cms ConstantMaturitySwap.xml YieldCurves.xml AtmVolatilities.xml SwaptionVolatilities.xml
+InstrumentIn-vc80-mt-s.exe 39573 ConstantMaturitySwap ConstantMaturitySwap.xml YieldCurves.xml AtmVolatilities.xml SwaptionVolatilities.xml

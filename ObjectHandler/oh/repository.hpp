@@ -88,7 +88,8 @@ namespace ObjectHandler {
             ret = boost::dynamic_pointer_cast<T>(object);
             OH_REQUIRE(ret, "Error retrieving object with id '"
                 << id << "' - unable to convert reference to type '"
-                << typeid(T).name() << "' found instead '" << typeid(*object).name() << "'");
+                << typeid(T).name() << "' found instead '"
+                << typeid(*object).name() << "'");
         }
 
         //! Override of template function retrieveObject.
@@ -114,7 +115,7 @@ namespace ObjectHandler {
 
         //! Delete a list of objects with the given IDs.
         /*! Delete the objects regardless of whether or not they are permanent.
-            Take no action for IDs that do not correspond to valie objects.
+            Take no action for IDs that do not correspond to valid objects.
         */
         virtual void deleteObject(const std::vector<std::string> &objectIDs);
 
@@ -160,14 +161,14 @@ namespace ObjectHandler {
         */
         typedef std::map<std::string, boost::shared_ptr<ObjectWrapper>, my_iless> ObjectMap;
 
-        //! \name the getting time and relation object list
+        //! \name Precedent object IDs and timestamps
         //@{
-        //! get the initially time of creating object
-        virtual std::vector<double> creationTime(const std::vector<std::string> &objectList);
-        //! get the last time of creating object
-        virtual std::vector<double> updateTime(const std::vector<std::string> &objectList);
-        //! get relation object list
+        //! Retrieve the list of IDs of precedent objects
         virtual const std::vector<std::string> getRelationObs(const std::string &objectID);
+        //! The object's initial creation time
+        virtual std::vector<double> creationTime(const std::vector<std::string> &objectList);
+        //! The time of the object's last update
+        virtual std::vector<double> updateTime(const std::vector<std::string> &objectList);
         //@}
 
         //! get the object's permanent proterty
@@ -180,12 +181,13 @@ namespace ObjectHandler {
     protected:
         //! A pointer to the Repository instance, used to support the Singleton pattern.
         static Repository *instance_;
-        //!get the object ObjectWrapper from ObjectMap
+        //! Get the object ObjectWrapper from ObjectMap
         virtual const boost::shared_ptr<ObjectWrapper>& getObjectWrapper(const std::string &objectID) const;
 
-        //! register a observer object into observable.
-        /*! get the Objects Observable and Observer with the given ID ObservableId and ObserverId;
-            and then regiest the object Observer into the object Observable
+        //! Register an ObjectWrapper as an Observable of its precedents
+        /*! The given ObjectWrapper is registered as an Observer of all of its
+            precedent ObjectWrappers, which in this case act as Observers.
+            If any of the precedents changes, then the Observable is notified.
         */
         virtual void registerObserver( 
             boost::shared_ptr<ObjectWrapper> objWrapper);

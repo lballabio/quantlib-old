@@ -27,7 +27,7 @@
 #include <oh/singleton.hpp>
 
 // Some older builds of log4cxx did not include file log4cxxdefines.h.
-// If the include below fails, it means either that you have the wrong
+// If the #include below fails, it means either that you have the wrong
 // version of log4cxx, or that your log4cxx installation (if any) cannot
 // be found at all.
 #include <log4cxx/log4cxxdefines.h>
@@ -104,7 +104,7 @@ namespace ObjectHandler {
         //@{
         //!get log file
         const std::string logFile();
-        //£¡get log level
+        //!get log level
         const int logLevel();
         //@}
 

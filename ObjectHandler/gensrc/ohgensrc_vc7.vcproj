@@ -45,28 +45,28 @@
 			Name="functions"
 			Filter="">
 			<File
-				RelativePath=".\metadata\functions\enumerations.xml">
+				RelativePath="metadata\functions\enumerations.xml">
 			</File>
 			<File
 				RelativePath="metadata\functions\garbagecollection.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\functions\group.xml">
+				RelativePath="metadata\functions\group.xml">
 			</File>
 			<File
 				RelativePath="metadata\functions\logging.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\functions\objects.xml">
+				RelativePath="metadata\functions\objects.xml">
 			</File>
 			<File
 				RelativePath="metadata\functions\ohutils.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\functions\range.xml">
+				RelativePath="metadata\functions\range.xml">
 			</File>
 			<File
-				RelativePath=".\metadata\functions\serialization.xml">
+				RelativePath="metadata\functions\serialization.xml">
 			</File>
 			<File
 				RelativePath="metadata\functions\valueobjects.xml">

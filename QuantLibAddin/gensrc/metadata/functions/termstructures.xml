@@ -180,7 +180,7 @@
             <tensorRank>scalar</tensorRank>
             <description>result DayCounter.</description>
           </Parameter>
-          <Parameter name='Compounding' const='False'>
+          <Parameter name='Compounding' default='"Simple"' const='False'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate compounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
@@ -229,7 +229,7 @@
             <tensorRank>scalar</tensorRank>
             <description>result DayCounter.</description>
           </Parameter>
-          <Parameter name='Compounding' const='False'>
+          <Parameter name='Compounding' default='"Simple"' const='False'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate compounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
@@ -273,7 +273,7 @@
             <tensorRank>scalar</tensorRank>
             <description>resultDayCounter.</description>
           </Parameter>
-          <Parameter name='Compounding' const='False'>
+          <Parameter name='Compounding' default='"Continuous"' const='False'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
@@ -347,6 +347,7 @@
         <Parameters>
           <Parameter name='CurrentLink' default='""'>
             <type>string</type>
+            <superType>handlePredecessor</superType>
             <tensorRank>scalar</tensorRank>
             <description>YieldTermStructure object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
           </Parameter>
@@ -453,7 +454,7 @@
             <tensorRank>scalar</tensorRank>
             <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0.</description>
           </Parameter>
-          <Parameter name='Calendar' exampleValue ='NullCalendar'>
+          <Parameter name='Calendar' default ='"NullCalendar"'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate.</description>
@@ -468,12 +469,12 @@
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID.</description>
           </Parameter>
-          <Parameter name='Compounding' exampleValue ='Continuous'>
+          <Parameter name='Compounding' default ='"Continuous"'>
             <type>QuantLib::Compounding</type>
             <tensorRank>scalar</tensorRank>
             <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
           </Parameter>
-          <Parameter name='Frequency' default='"Annual"' exampleValue ='Annual'>
+          <Parameter name='Frequency' default='"Annual"'>
             <type>QuantLib::Frequency</type>
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>

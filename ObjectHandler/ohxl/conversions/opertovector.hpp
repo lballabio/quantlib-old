@@ -24,6 +24,7 @@
 #ifndef ohxl_conversions_opertovector_hpp
 #define ohxl_conversions_opertovector_hpp
 
+#include <ohxl/convert_oper.hpp>
 #include <ohxl/utilities/xlutilities.hpp>
 #include <vector>
 #include <boost/shared_ptr.hpp>

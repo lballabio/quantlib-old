@@ -16,7 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""initialization for gensrc application."""
+"""Initialization for the gensrc application."""
 
 from gensrc.configuration import configuration
 from gensrc.configuration import environment
@@ -24,7 +24,7 @@ from gensrc.types import typelist
 from gensrc.utilities import utilities
 
 def init(ohDir):
-    """initialize the application.
+    """Initialize the application.
 
     Logically these operations belong to the constructor of class Environment
     but must be physically separate to avoid circular imports."""

@@ -16,34 +16,40 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Implement a hook to be invoked when an exception is encountered."""
+
 import sys
 import traceback
 import re
 
 ERROR_WRAPPER='''
-> 
-> gensrc has encountered a fatal error.
->
-> >>>>>>>>>> BEGIN STACK TRACE >>>>>>>>>>
+gensrc has encountered a fatal error.
+
+>>>>>>>>>> BEGIN STACK TRACE >>>>>>>>>>
+
 %(stack)s
-> <<<<<<<<<<  END STACK TRACE  <<<<<<<<<< 
->
-> gensrc error:
-%(message)s
->
+<<<<<<<<<<  END STACK TRACE  <<<<<<<<<< 
+
+gensrc error:
+%(value)s
+
 '''
 
 def gensrc_excepthook(type, value, tb):
+    """Implement a hook to be invoked when an exception is encountered."""
 
-    # This application runs in a makefile project under Visual Studio, which
-    # truncates empty lines, we prevent this by prefixing a > to each line.
-    message = re.sub('(?m)^', '> ', str(value))
+    # Format the stack trace.
+    stack = ''.join(traceback.format_tb(tb))
 
-    # Format the stack trace
-    stack = '>'.join(traceback.format_tb(tb))
-
-    sys.stderr.write(ERROR_WRAPPER % {
+    # Format the error message.
+    message = ERROR_WRAPPER % {
         'stack' : stack,
-        'message' : message })
+        'value' : str(value) }
 
+    # This application runs in a Makefile project under Visual Studio, which
+    # truncates empty lines, we prevent this by prefixing a > to each line.
+    message = re.sub('(?m)^', '> ', message)
+
+    # Write the error message to stdout.
+    sys.stderr.write(message)
 

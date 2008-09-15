@@ -16,12 +16,16 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Exceptions encountered with the gensrc configuration."""
+
 from gensrc.exceptions import exceptions
 
 class ConfigurationException(exceptions.GensrcException):
-    """Exceptions encountered when configuring gensrc."""
+    """Exceptions encountered with the gensrc configuration."""
 
 class InvalidRelativePathException(ConfigurationException):
+    """The configured path is not a right substring of the current working
+    directory."""
 
     INVALID_RELATIVE_PATH_ERROR = """
 Error initializing paths.  gensrc has been started from this directory:
@@ -36,11 +40,13 @@ The relative path is expected to be a right substring of the startup directory
 but this is not the case."""
 
     def __init__(self, cwd, relativePath):
+        """Initialize the InvalidRelativePathException object."""
         self.value_ = InvalidRelativePathException.INVALID_RELATIVE_PATH_ERROR % {
             'cwd' : cwd,
             'relativePath' : relativePath }
 
 class InvalidCorePathException(ConfigurationException):
+    """The configured path to the ObjectHandler application is incorrect."""
 
     INVALID_CORE_PATH_ERROR = """
 Error initializing paths.  gensrc has been configured with the following path
@@ -52,6 +58,7 @@ This path is not valid.  The value is derived by appending "/gensrc/" to the
 value that was supplied to the oh_dir argument on the gensrc.py command line."""
 
     def __init__(self, corePath):
+        """Initialize the InvalidCorePathException object."""
         self.value_ = InvalidCorePathException.INVALID_CORE_PATH_ERROR % {
             'corePath' : corePath }
 

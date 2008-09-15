@@ -5,43 +5,43 @@
 	<count>2</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="124" tracking_level="1" version="0" object_id="_1">
-			<ObjectId>engine2</ObjectId>
+		<px class_id="126" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>fra_engine2</ObjectId>
 			<ClassName>qlDiscountingSwapEngine</ClassName>
-			<YieldCurve>EUR_YC</YieldCurve>
+			<YieldCurve>_EURYC6M</YieldCurve>
 			<Permanent>0</Permanent>
-			<UserProperties class_id="200" tracking_level="0" version="0">
+			<UserProperties class_id="203" tracking_level="0" version="0">
 				<count>0</count>
 				<item_version>0</item_version>
 			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id="59" tracking_level="1" version="0" object_id="_2">
-			<ObjectId>fra</ObjectId>
+		<px class_id="61" tracking_level="1" version="0" object_id="_2">
+			<ObjectId>ForwardRateAgreement</ObjectId>
 			<ClassName>qlFRA</ClassName>
-			<ValueDate class_id="201" tracking_level="0" version="0">
+			<ValueDate class_id="204" tracking_level="0" version="0">
 				<which>4</which>
-				<value>39666</value>
+				<value>39667</value>
 			</ValueDate>
 			<MaturityDate>
 				<which>4</which>
-				<value>39850</value>
+				<value>39853</value>
 			</MaturityDate>
 			<Position>Long</Position>
-			<Strike>0.043111486598914617</Strike>
+			<Strike>0.051407000000000001</Strike>
 			<Notional>1000000</Notional>
-			<IborIndex>EURIBOR6M</IborIndex>
-			<YieldCurve>EUR_YC</YieldCurve>
+			<IborIndex>Euribor6M</IborIndex>
+			<YieldCurve>_EURYC6M</YieldCurve>
 			<Permanent>0</Permanent>
 			<UserProperties>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item class_id="202" tracking_level="0" version="0">
+				<item class_id="205" tracking_level="0" version="0">
 					<first>EngineID</first>
 					<second>
 						<which>2</which>
-						<value>engine2</value>
+						<value>fra_engine2</value>
 					</second>
 				</item>
 			</UserProperties>

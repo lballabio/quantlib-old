@@ -302,6 +302,7 @@
         <Parameters>
           <Parameter name='CurrentLink' default='""'>
             <type>string</type>
+            <superType>handlePredecessor</superType>
             <tensorRank>scalar</tensorRank>
             <description>SwaptionVolatilityStructure object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
           </Parameter>
@@ -351,7 +352,6 @@
 
     <Constructor name='qlSpreadedSwaptionVolatility'>
       <libraryFunction>SpreadedSwaptionVolatility</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -472,7 +472,6 @@
     <Member name='qlSwaptionVTSMatrixLocate' type='QuantLibAddin::SwaptionVolatilityMatrix'>
       <description>Returns the lower indexes of surrounding volatility matrix corners for the given SwaptionVolatilityMatrix object.</description>
       <libraryFunction>locate</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -502,7 +501,6 @@
     <!-- SwaptionVolCube2 constructors -->
     <Constructor name='qlSwaptionVolCube2'>
       <libraryFunction>SwaptionVolCube2</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -616,7 +614,6 @@
     <!-- SwaptionVolCube1 constructors -->
     <Constructor name='qlSwaptionVolCube1'>
       <libraryFunction>SwaptionVolCube1</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -770,7 +767,6 @@
     <!-- SmileSectionInteface constructors -->
     <Constructor name='qlSmileSectionByCube'>
       <libraryFunction>SmileSectionByCube</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -799,7 +795,6 @@
 
     <Constructor name='qlSmileSectionByCube2'>
       <libraryFunction>SmileSectionByCube</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

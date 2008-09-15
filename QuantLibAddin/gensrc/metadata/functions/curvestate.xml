@@ -23,7 +23,6 @@
     <Member name='qlCurveStateRateTimes' type='QuantLib::CurveState' superType='libraryClass'>
       <description>return the rate times of the CurveState object.</description>
       <libraryFunction>rateTimes</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -40,7 +39,6 @@
     <Member name='qlCurveStateRateTaus' type='QuantLib::CurveState' superType='libraryClass'>
       <description>return the rate taus of the CurveState object.</description>
       <libraryFunction>rateTaus</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -268,7 +266,6 @@
     <!-- Discount bond ratios procedures -->
     <Procedure name='qlForwardsFromDiscountRatios'>
       <description>Returns the forward rates implied from discount bond ratios.</description>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -301,7 +298,6 @@
 
     <Procedure name='qlCoterminalSwapRatesFromDiscountRatios'>
       <description>Returns the coterminal swap rates implied from discount bond ratios.</description>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -334,7 +330,6 @@
 
     <Procedure name='qlCoterminalSwapAnnuitiesFromDiscountRatios'>
       <description>Returns the coterminal swap annuities implied from discount bond ratios.</description>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -367,7 +362,6 @@
 
     <Procedure name='qlConstantMaturitySwapRatesFromDiscountRatios'>
       <description>Returns constant maturity swap rates from discount ratios.</description>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -405,7 +399,6 @@
 
     <Procedure name='qlConstantMaturitySwapAnnuitiesFromDiscountRatios'>
       <description>Returns constant maturity swap annuities from discount ratios.</description>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

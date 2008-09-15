@@ -1,25 +1,25 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
-Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
-Copyright (C) 2006 Plamen Neykov
+ Copyright (C) 2004, 2005, 2006, 2007  Eric Ehlers
+ Copyright (C) 2006 Plamen Neykov
 
-This file is part of QuantLib, a free-software/open-source library
-for financial quantitative analysts and developers - http://quantlib.org/
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
 
-QuantLib is free software: you can redistribute it and/or modify it
-under the terms of the QuantLib license.  You should have received a
-copy of the license along with this program; if not, please email
-<quantlib-dev@lists.sf.net>. The license is also available online at
-<http://quantlib.org/license.shtml>.
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the license for more details.
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
 /*! \file
-\brief Class Object - Define interface for Objects to be stored in the Repository
+    \brief Class ObjectWrapper - Ensure that Object references are up to date.
 */
 
 #ifndef oh_objectwrapper_hpp
@@ -33,98 +33,79 @@ FOR A PARTICULAR PURPOSE.  See the license for more details.
 
 namespace ObjectHandler {
 
-    //! ObjectWrapper holds a reference to Object.  ObjectWrapper inherits from Observer and Observable.
-    /*! 
-    ObjectWrapper holds a reference to Object which is be stored in the ObjectHandle. the relation between
-    Object and ObjectWrapper is 1:1;
-    ObjectWrapper inherits from Observer and Observable.  The Dirty property belongs to ObjectWrapper.
-    ObjectWrapper recreates Object when necessary to what the Dirty property is true
+    //! Container to ensure that Object references are updated.
+    /*! ObjectWrapper holds a reference to an Object.  Before returning the reference
+        the ObjectHandler client application, the ObjectWrapper ensures that the state
+        of the Object is updated as necessary to reflect any changes in its precedents.
+        There is a 1:1 relationship between Object and ObjectWrapper instances.
+
+        ObjectWrapper inherits from Observer and Observable.  ObjectWrapper registers as
+        an Observer of its Object's precedents.  If any of those precedents changes,
+        the ObjectWrapper is notified and sets its Dirty property to true.  If the
+        ObjectHandler client application attempts to retrieve a Dirty Object, the
+        ObjectWrapper first recreates the Object, ensuring that its state reflects
+        any changes in the precedents.
     */
-    class ObjectWrapper : public Observer, public Observable {
+    class ObjectWrapper : public Observer, public Observable {        
     public:
         //! \name Structors
         //@{
-
-        //! Default constructor.
-        /*! Construct an Object.
-        To using the Observer / Observable design pattern to ensure that all object dependencies are enforced,
-        this class wrapped the result object which will be stored in the ObjectHandler
-        */
+        //! Construct the ObjectWrapper from the given Object.
         ObjectWrapper(const boost::shared_ptr<Object>& object);
-
-        //! Empty virtual destructor.
+        //! Virtual destructor - unregister with Observers.
         virtual ~ObjectWrapper() {
             unregisterAllWith();
         }
         //@}
 
-
-        //! \name property: dirty
+        //! \name Behavior
         //@{
-        //! Query the value of the "dirty" flag.
-        /*! the Object property Dirty=false, the object is up to date; or the object is invalid.
-        */
-        bool dirty() const {
-            return dirty_;
-        }
-        //@}
-
-        //! \name recreate a object
-        //@{
-        //! the object will be recreated when Dirty=true.
-        /*! When this function is invoked, the stored Object is recreated with a call to SerializationFactory::recreateObject()
+        //! Recreate the Object contained by the ObjectWrapper.
+        /*! This function is called on any attempt to retrieve a Dirty Object.
+            To recreate the Object, we take its ValueObject, which is a snapshot
+            of the arguments to the Object's constructor, and pass this ValueObject
+            to the SerializationFactory which recreates the Object.
         */
         void reCreate();
-        //@}
-
-        //! \name update interface
-        //@{
-        //! modified the Object property Dirty from false to true!
-        /*! The observable object notifies its all Observers to change their property 'dirty'
+        //! Update the ObjectWrapper following a change in its precedents.
+        /*! This function is called by the Observable with which this Observer
+            has registered.  Sets Dirty -> true.
         */
         virtual void update();
-        //@}
-
-        //! \name get a object
-        //@{
-        //! Return a copy of the reference to the Object contained by ObjectWrapperXL.
+        //! Return a copy of the reference to the Object contained by ObjectWrapper.
         boost::shared_ptr<Object> object() const { return object_; }
+        //! Replace the contained Object with the one provided.
+        void reset(boost::shared_ptr<Object> object);
         //@}
 
-        //! \name reset a object
+        //! \name Inspectors
         //@{
-        //! save this object and replace the member object.
-        void reset(boost::shared_ptr<Object> object);
+        //! The object's initial creation time.
+        double creationTime() const { return creationTime_; }
+        //! The time of the object's last update.
+        double updateTime() const { return updateTime_; }
+        //! Query the value of the dirty flag.
+        /*! False means the Object is up to date, true means it is invalid.
+        */
+        bool dirty() const { return dirty_; }
         //@}
 
         //! \name Logging
         //@{
         //! Write this object to the given output stream.
-        /*! Called by the logging framework.  Enhanced from the base class function
-        to provide additional information specific to the Excel platform.
-        */
-        virtual void dump(std::ostream& out){ object_->dump(out);}
-        //@}
-
-        //! \name getting time
-        //@{
-        //! get the initially time of creating object
-        double creationTime() const { return creationTime_; }
-        //! get the last time of creating object
-        double updateTime() const { return updateTime_; }
+        virtual void dump(std::ostream& out) { object_->dump(out); }
         //@}
 
     protected:
-        // Reference to the Object contained by ObjectWrapperXL.
+        //! Reference to the Object contained by ObjectWrapper.
         boost::shared_ptr<Object> object_;
 
     private:
-        //When dirty=false, the object is up to date.  When Dirty=true, the object is invalid
+        // Flag indicating whether contained Object is up to date.
         bool dirty_;
-        typedef std::list<ObjectWrapper*>::iterator iteratorOW;
-        //The time at which the Object was initially created
+        // Time at which Object was first created.
         double creationTime_;
-        //The time at which the Object was last recreated
+        // Time at which Object was last recreated.
         double updateTime_;
     };
 
@@ -133,16 +114,14 @@ namespace ObjectHandler {
             creationTime_ = updateTime_ = getTime();
     }
 
-
     inline void ObjectWrapper::reCreate(){
         try {
-            object_ = SerializationFactory::instance().NewObject(
+            object_ = SerializationFactory::instance().NewObject( 
                 object_->properties());
             dirty_ = false;
             updateTime_ = getTime();
-
         } catch (const std::exception &e) {
-            OH_FAIL("Error in function ObjectWrapper::reCreate : " << e.what());
+            OH_FAIL("Error in function ObjectWrapper::reCreate() : " << e.what());
         }
     }
 
@@ -152,16 +131,17 @@ namespace ObjectHandler {
     }
 
     inline void ObjectWrapper::reset(boost::shared_ptr<Object> object) {
-
         object_ = object;
         updateTime_ = getTime();
         notifyObservers();
     }
 
-    inline std::ostream& operator<<(std::ostream& out,const boost::shared_ptr<ObjectWrapper> &ow) {
+    //! Log the given ObjectWrapper to the given stream.
+    inline std::ostream& operator<<(std::ostream& out, const boost::shared_ptr<ObjectWrapper> &ow) {
         ow->dump(out);
         return out;
     }
 }
+
 #endif
 

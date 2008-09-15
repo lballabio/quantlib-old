@@ -39,9 +39,6 @@
 
 namespace ObjectHandler {
 
-    //std::map<std::string, ProcessorPtr> DTest;
-    std::map<std::string, ProcessorPtr> ProcessorFactory::processorMap_;
-
     boost::shared_ptr<Object> createRange(
         const boost::shared_ptr<ValueObject> &valueObject) {
 
@@ -73,7 +70,9 @@ namespace ObjectHandler {
         registerCreator("ohRange", createRange);
         registerCreator("ohGroup", createGroup);
 
-        ProcessorFactory::processorMap_["DefaultProcessor"] = ProcessorPtr(new DefaultProcessor());
+	    ProcessorPtr processor(new DefaultProcessor());
+        ProcessorFactory::instance().storeProcessor(
+			"DefaultProcessor", processor);
     }
 
     SerializationFactory::~SerializationFactory() {
@@ -208,7 +207,7 @@ namespace ObjectHandler {
             int count = 0;
             for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
                 try {
-                    processedIDs.push_back(ProcessorFactory::getProcessor(*i)->process(*this, *i, overwriteExisting));
+                    processedIDs.push_back(ProcessorFactory::instance().getProcessor(*i)->process(*this, *i, overwriteExisting));
                     count++;
                 } catch (const std::exception &e) {
                     OH_FAIL("Error processing item " << count << ": " << e.what());
@@ -263,7 +262,7 @@ namespace ObjectHandler {
         // so the following is a redundant sanity check.
         OH_REQUIRE(!returnValue.empty(), "No objects loaded from directory : " << directory);
 
-        ProcessorFactory::postProcess();
+        ProcessorFactory::instance().postProcess();
 
         return returnValue;
     }
@@ -316,13 +315,13 @@ namespace ObjectHandler {
             int count = 0;
             for (i=valueObjects.begin(); i!=valueObjects.end(); ++i) {
                 try {
-                    returnValue.push_back(ProcessorFactory::getProcessor(*i)->process(*this, *i, overwriteExisting));
+                    returnValue.push_back(ProcessorFactory::instance().getProcessor(*i)->process(*this, *i, overwriteExisting));
                     count++;
                 } catch (const std::exception &e) {
                     OH_FAIL("Error processing item " << count << ": " << e.what());
                 }
             }
-            ProcessorFactory::postProcess();
+            ProcessorFactory::instance().postProcess();
 
         } catch (const std::exception &e) {
             OH_FAIL("Error deserializing xml : " << e.what());

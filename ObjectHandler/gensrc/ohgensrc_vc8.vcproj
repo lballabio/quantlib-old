@@ -62,7 +62,7 @@
 			Name="functions"
 			>
 			<File
-				RelativePath=".\metadata\functions\enumerations.xml"
+				RelativePath="metadata\functions\enumerations.xml"
 				>
 			</File>
 			<File
@@ -70,7 +70,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\functions\group.xml"
+				RelativePath="metadata\functions\group.xml"
 				>
 			</File>
 			<File
@@ -78,7 +78,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\functions\objects.xml"
+				RelativePath="metadata\functions\objects.xml"
 				>
 			</File>
 			<File
@@ -86,11 +86,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\functions\range.xml"
+				RelativePath="metadata\functions\range.xml"
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\functions\serialization.xml"
+				RelativePath="metadata\functions\serialization.xml"
 				>
 			</File>
 			<File
@@ -142,7 +142,7 @@
 			Name="config"
 			>
 			<File
-				RelativePath=".\config\categories.xml"
+				RelativePath="config\categories.xml"
 				>
 			</File>
 			<File

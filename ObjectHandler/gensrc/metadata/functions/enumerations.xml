@@ -1,7 +1,7 @@
 
 <Category name='enumerations'>
   <description>enumerations.</description>
-  <displayName>enumerations</displayName>
+  <displayName>Enumerations</displayName>
   <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
   <addinIncludes>
     <include>oh/enumerations/enumregistry.hpp</include>

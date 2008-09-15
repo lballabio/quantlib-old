@@ -393,28 +393,28 @@ namespace QuantLibAddin {
         std::sort(rhs.begin(), rhs.end(), detail::RateHelperPrioritySorter());
 
         // remove RateHelpers with duplicate latestDate
-        std::vector<detail::RateHelperItem>::iterator i=rhs.begin();
-        while (i != rhs.end()-1) {
-            if (i->latestDate == (i+1)->latestDate)
-                i = rhs.erase(i);
-            else ++i;
+        std::vector<detail::RateHelperItem>::iterator k=rhs.begin();
+        while (k != rhs.end()-1) {
+            if (k->latestDate == (k+1)->latestDate)
+                k = rhs.erase(k);
+            else ++k;
         }
 
         // remove RateHelpers with near latestDate
-        i=rhs.begin();
-        while (i != rhs.end()-1) {
-            if (i->latestDate + minDistanceInDays > (i+1)->latestDate) {
-                if (i->priority < (i+1)->priority)
-                    i = rhs.erase(i);
+        k=rhs.begin();
+        while (k != rhs.end()-1) {
+            if (k->latestDate + minDistanceInDays > (k+1)->latestDate) {
+                if (k->priority < (k+1)->priority)
+                    k = rhs.erase(k);
                 else {
-                    i = rhs.erase(i+1);
-                    --i;
+                    k = rhs.erase(k+1);
+                    --k;
                 }
-            } else ++i;
+            } else ++k;
         }
 
-        for (i = rhs.begin(); i != rhs.end(); ++i)
-            result.push_back(i->objectID);
+        for (k = rhs.begin(); k != rhs.end(); ++k)
+            result.push_back(k->objectID);
         return result;
     }
 

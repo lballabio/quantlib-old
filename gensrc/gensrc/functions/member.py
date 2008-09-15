@@ -43,6 +43,11 @@ class Member(function.Function):
         return self.behavior_.generateBody(addin)
 
     def memberAccess(self):
+        """Return the member access text corresponding to the datatype
+        of this function's return value.
+
+        The member access text is the symbol used to access members
+        of variables of the given type e.g. '.' or '->'."""
         return self.memberAccess_
 
     def objectId(self):

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,48 +23,41 @@
 
 /*! \mainpage QuantLibXL
 
-%QuantLibXL exports the functionality of the 
+\section idx_overview Overview
+
+%QuantLibXL exports the functionality of the
 <a href="http://quantlib.org">QuantLib</a> C++ analytics library to Microsoft
-Excel.  QuantLib constructor, member, and utility functions are published as
-worksheet cell formulas.  Object-orientation is provided by the
-<a href="http://www.objecthandler.org">ObjectHandler</a> repository - formulas
-in the spreadsheet allow QuantLib objects to be instantiated, interrogated,
-passed as arguments to other functions, and destructed.
+Excel.
 
 \htmlonly
-<div id="download"><a class="imglink" id="imghover" href="http://downloads.sourceforge.net/quantlib/QuantLibXL-bin-0.9.0.exe"><img src="images/download_qlxl.jpg" border=0/></a></div>
+<div id="download"><a class="imglink" id="imghover" href="http://downloads.sourceforge.net/quantlib/QuantLibXL-bin-0.9.6.exe"><img src="images/download_qlxl.jpg" border=0/></a></div>
 \endhtmlonly
 
-%QuantLibXL implements 833 functions in support of market data and pricing for
-a variety of instruments including bonds, options, swaps, swaptions,
-caps/floors, etc.
+The project comprises
+\li A compiled Excel Addin (an XLL)
+\li End user documentation
+\li Example workbooks
 
-The %QuantLibXL project comprises a compiled Addin (an XLL) exposing QuantLib
-functionality to Microsoft Excel, plus example workbooks and end-user
-documentation.  Source code is available in a separate download.
-%QuantLibXL is a subproject of
-<a href="http://www.quantlibaddin.org">QuantLibAddin</a>
-which implements the same interface on a variety of other platforms.  
+The addin implements 855 functions in support of market data and
+pricing for a variety of instruments including bonds, options, swaps,
+swaptions, and caps/floors.
 
 <div class="center"><img src="images/screenshot.jpg"></div>
 
-\section quantlib QuantLib
+%QuantLibXL is the Excel implementation of
+<a href="http://www.quantlibaddin.org">QuantLibAddin</a>
+which supports the same interface on a variety of other platforms.
+QuantLibAddin includes downloads and tutorials for compiling addins from source
+code for all environments including %QuantLibXL.
 
-%QuantLibXL and QuantLibAddin share the QuantLib project structure with regard
-to distribution, licensing, etc., all of which is documented on the main
-QuantLib website: <a href="http://quantlib.org">http://quantlib.org</a>
+\section idx_quantlib QuantLib
 
-\section introduction Introduction
-
-Refer to document \ref installation for instructions on installing
-%QuantLibXL.
-
-The section \ref functional provides end-user documentation of %QuantLibXL
-functionality.  
-
-Additional information is available from the links at the left, if you have a
-question which is not answered here please send email to
-quantlib-users@lists.sf.net.
+%QuantLibXL is a subproject of %QuantLib and shares the %QuantLib project
+structure with regard to distribution and licensing.  The mailing list for
+%QuantLibXL is
+<a href="https://lists.sourceforge.net/lists/listinfo/quantlib-users">quantlib-users@lists.sf.net</a>.
+The list archives may be searched
+<a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">here</a>.
 
 */
 

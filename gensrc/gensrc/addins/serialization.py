@@ -109,15 +109,21 @@ class Serialization(addin.Addin):
                 bufferDeclarations += Serialization.DECLARE_CREATOR % {
                     'functionName' : func.name() }
                 bufferCreators += self.bufferCreator_.text() % {
-                    'cppConversions' : func.parameterList().generate(self.cppConversions_),
-                    'enumConversions' : func.parameterList().generate(self.enumConversions_),
+                    'cppConversions' : func.parameterList().generate(
+                        self.cppConversions_),
+                    'enumConversions' : func.parameterList().generate(
+                        self.enumConversions_),
                     'functionName' : func.name(),
-                    'libraryCall' : func.parameterList().generate(self.libraryCall_),
-                    'libraryConversions' : func.parameterList().generate(self.libraryConversions_),
+                    'libraryCall' : func.parameterList().generate(
+                        self.libraryCall_),
+                    'libraryConversions' : func.parameterList().generate(
+                        self.libraryConversions_),
                     'libraryFunction' : func.libraryFunction(),
-                    'objectConversions' : func.parameterList().generate(self.objectConversions_),
+                    'objectConversions' : func.parameterList().generate(
+                        self.objectConversions_),
                     'namespaceObjects' : environment.config().namespaceObjects(),
-                    'referenceConversions' : func.parameterList().generate(self.referenceConversions_) }
+                    'referenceConversions' : func.parameterList().generate(
+                        self.referenceConversions_) }
 
             createHeaderBuffer = self.bufferHeader_.text() % {
                 'categoryName' : cat.name(),
@@ -149,14 +155,17 @@ class Serialization(addin.Addin):
         # Keep track of the ID assigned to each Addin class by
         # the boost serialization framework.  This number is initialized to 4
         # because 0-3 are reserved for ObjectHandler as explained in file
-        # QuantLibAddin/serialization/register/serialization_oh.cpp
+        # QuantLibAddin/qlo/serialization/register/serialization_oh.cpp
         classID = 4
+
         # Initialize the global map with the values reserved for ObjectHandler.
         # 0 and 1 refer respectively to ValueObject and vector of ValueObject,
         # but these are omitted because they never occur in app XML data.
-        idMap = { 'ohRange' : 2, 'ohGroup' : 3 }
+        idMap = { 'ohGroup' : 2, 'ohRange' : 3 }
 
-        for cat in self.categoryList_.categories('*', self.coreCategories_, self.addinCategories_):
+        for cat in self.categoryList_.categories(
+            '*', self.coreCategories_, self.addinCategories_):
+
             if not cat.generateVOs(): continue
 
             bufferCpp = ''
@@ -215,6 +224,6 @@ class Serialization(addin.Addin):
     #############################################
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         super(Serialization, self).serialize(serializer)
 

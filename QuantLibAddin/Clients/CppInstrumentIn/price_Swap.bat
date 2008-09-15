@@ -1,1 +1,1 @@
-InstrumentIn-vc80-mt.exe 39570 ID2 Swap.xml YieldCurves.xml AtmVolatilities.xml SwaptionVolatilities.xml
+InstrumentIn-vc80-mt-s.exe 39573 Swap Swap.xml YieldCurves.xml

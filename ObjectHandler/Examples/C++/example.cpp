@@ -82,6 +82,8 @@ int main() {
     ObjectHandler::Repository repository;
     // Instantiate the Enumerated Type Registry
     ObjectHandler::EnumTypeRegistry enumTypeRegistry;
+    // Instantiate the Processor Factory
+    ObjectHandler::ProcessorFactory processorFactory;
     // Instantiate the Serialization Factory
     AccountExample::SerializationFactory factory;
 

@@ -3,6 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="AddinCalc"
+	ProjectGUID="{7947CA84-17A6-438A-A297-B9BA1F63CC6E}"
 	SccProjectName=""
 	SccLocalPath=""
 	Keyword="MakeFileProj">

@@ -16,18 +16,24 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Exceptions encountered when processing design patterns."""
+
 from gensrc.exceptions import exceptions
 
 class PatternException(exceptions.GensrcException):
-    """Exceptions encountered when processing patterns."""
+    """Exceptions encountered when processing design patterns."""
 
 class SingletonOverrideNewException(PatternException):
+    """Illegal attempt to override __new__ in a Singleton."""
 
     def __init__(self):
+        """Initialize the SingletonOverrideNewException object."""
         self.value_ = 'Cannot override __new__ in a Singleton'
 
 class SingletonCallException(PatternException):
+    """Illegal attempt to instantiate Singleton without using instance()."""
 
     def __init__(self):
+        """Initialize the SingletonCallException object."""
         self.value_ = 'Singletons may only be instantiated through instance()'
 

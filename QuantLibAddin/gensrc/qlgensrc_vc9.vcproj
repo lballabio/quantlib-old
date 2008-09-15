@@ -188,7 +188,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\metadata\functions\piecewiseyieldcurve.xml"
+				RelativePath="metadata\functions\piecewiseyieldcurve.xml"
 				>
 			</File>
 			<File
@@ -400,7 +400,7 @@
 			Name="config"
 			>
 			<File
-				RelativePath=".\config\categories.xml"
+				RelativePath="config\categories.xml"
 				>
 			</File>
 			<File

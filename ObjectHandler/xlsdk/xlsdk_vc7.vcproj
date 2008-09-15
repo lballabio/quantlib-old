@@ -65,58 +65,6 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Debug SingleThread|Win32"
-			OutputDirectory="..\build\vc71\xlsdk\DebugST"
-			IntermediateDirectory="..\build\vc71\xlsdk\DebugST"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories=".."
-				PreprocessorDefinitions="_DEBUG;_LIB;WIN32;LOG4CXX_STATIC"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile="..\build\vc71\xlsdk\DebugST/xlsdk.pch"
-				AssemblerListingLocation="..\build\vc71\xlsdk\DebugST/"
-				ObjectFile="..\build\vc71\xlsdk\DebugST/"
-				ProgramDataBaseFileName="..\build\vc71\xlsdk\DebugST/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="..\lib\xlsdk-vc71-sgd.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="2057"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="..\build\vc71\xlsdk\Debug"
 			IntermediateDirectory="..\build\vc71\xlsdk\Debug"
@@ -222,59 +170,6 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Release SingleThread|Win32"
-			OutputDirectory="..\build\vc71\xlsdk\ReleaseST"
-			IntermediateDirectory="..\build\vc71\xlsdk\ReleaseST"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".."
-				PreprocessorDefinitions="NDEBUG;_LIB;WIN32;LOG4CXX_STATIC"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile="..\build\vc71\xlsdk\ReleaseST/xlsdk.pch"
-				AssemblerListingLocation="..\build\vc71\xlsdk\ReleaseST/"
-				ObjectFile="..\build\vc71\xlsdk\ReleaseST/"
-				ProgramDataBaseFileName="..\build\vc71\xlsdk\ReleaseST/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="..\lib\xlsdk-vc71-s.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="2057"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
 			Name="Debug CRTDLL|Win32"
 			OutputDirectory="..\build\vc71\xlsdk\DebugCRTDLL"
 			IntermediateDirectory="..\build\vc71\xlsdk\DebugCRTDLL"
@@ -331,7 +226,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath=".\auto_link.hpp">
+			RelativePath="auto_link.hpp">
 		</File>
 		<File
 			RelativePath="framewrk.cpp">

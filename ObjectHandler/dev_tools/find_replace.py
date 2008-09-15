@@ -45,7 +45,7 @@ import re
 import getopt
 import shutil
 
-ROOT_DIR = '/erik/projects/trunk/QuantLibAddin'
+ROOT_DIR = '/usr/local/erik/projects/R000905-branch/QuantLibXL'
 
 # callback functions - called from regexes which require multiple passes
 
@@ -69,7 +69,7 @@ SUBSTITUTIONS = (
 #   place the active regexes here,
 #   using the commented examples below
 
-    (re.compile(r'aaa'), r'bbb'),
+#    (re.compile(r'aaa'), r'bbb'),
 
 #   simple
 #    (re.compile(r'include <Addins/C++'), r'include <Addins/Cpp'),
@@ -87,10 +87,10 @@ SUBSTITUTIONS = (
 #    (re.compile(r'^import .*?$', re.M), toLower),
 
 #   frequently used
-#    (re.compile(r'0_9_0'), '0_9_5'),
-#    (re.compile(r'0\.9\.0'), '0.9.5'),
-#    (re.compile(r'0x000900f0'), '0x000905f0'),
-#    (re.compile(r'Major=0\nMinor=9\nRelease=0'), 'Major=0\nMinor=9\nRelease=5'),
+    (re.compile(r'0_9_5'), '0_9_6'),
+    (re.compile(r'0\.9\.5'), '0.9.6'),
+    (re.compile(r'0x000905'), '0x000906'),
+    (re.compile(r'Major=0\nMinor=9\nRelease=5'), 'Major=0\nMinor=9\nRelease=6'),
 
 )
 

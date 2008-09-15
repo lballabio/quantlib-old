@@ -23,7 +23,7 @@
 
 /*! \page build_cpp Build A QuantLibAddin C++ Environment on Windows and/or Linux
 
-<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
 
 \section build_cpp_overview Overview
 
@@ -55,18 +55,19 @@ environment under Windows, and on platforms which use %Autoconf e.g. Linux.
 
 \section build_cpp_prerequisites 1 Prerequisites
 
-Before proceeding to compile the source code, please consult the
-documents below.
+Before proceeding to compile the source code, consult the documents below.
 
 \subsection build_cpp_conventions 1.1 Conventions
 
-Please read the following document regarding naming conventions in
-use for the project: \ref conventions
+See the following document regarding naming conventions in use for the project:
+\ref conventions
 
 \subsection build_cpp_boost 1.2 Boost
 
-%QuantLibAddin depends on Boost.  Here are the instructions for
-installing Boost: \ref boost
+%QuantLibAddin depends on Boost.  If you're using VC9 then Boost 1.35 or later
+is required.  Other compilers require Boost 1.34 or later.  Boost is included
+in most modern Linux distributions.  Here are the instructions for installing
+Boost on Windows: \ref boost
 
 \subsection build_cpp_python 1.3 Python
 
@@ -82,22 +83,22 @@ machine.  Here is the link to the Python website:
 \subsubsection build_cpp_win_directories 2.2.1 Directories
 
 The Visual C++ project files for %QuantLibAddin rely on relative pathnames to
-refer to the prerequisite projects %QuantLib, log4cxx, gensrc, ObjectHandler,
-and %QuantLibAddin.  In order for this to work, these projects must reside side
-by side in the directory tree, and the name of each project's parent directory
-must not include the version number (e.g.  "QuantLib" not "QuantLib-0.9.5").  
+refer to the prerequisite projects %QuantLib, log4cxx, gensrc, and
+ObjectHandler.  In order for this to work, these projects must reside side by
+side in the directory tree, and the name of each project's parent directory
+must not include the version number (e.g.  \c %QuantLib not \c QuantLib-0.9.6).
 
 By default the installer for each project uncompresses the source code to
-<tt>C:\\build_ql_0_9_5</tt> (with the exception of the zip file for %QuantLib,
-where you must manually specify the target directory, removing the "0.9.5"
+<tt>C:\\build_ql_0_9_6</tt> (with the exception of the zip file for %QuantLib,
+where you must manually specify the target directory, removing the \c 0.9.6
 suffix from the directory name).  For purposes of this tutorial we assume the
-packages have been installed in this way e.g.:
+packages have been installed in this way:
 \verbatim
-C:\build_ql_0_9_5\gensrc
-C:\build_ql_0_9_5\log4cxx
-C:\build_ql_0_9_5\ObjectHandler
-C:\build_ql_0_9_5\QuantLib
-C:\build_ql_0_9_5\QuantLibAddin
+C:\build_ql_0_9_6\gensrc
+C:\build_ql_0_9_6\log4cxx
+C:\build_ql_0_9_6\ObjectHandler
+C:\build_ql_0_9_6\QuantLib
+C:\build_ql_0_9_6\QuantLibAddin
 \endverbatim
 
 \subsubsection build_cpp_auto_uncompress 2.2.2 Uncompress the Source Code
@@ -106,37 +107,41 @@ Go to the
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
 
 Download <tt>log4cxx-0.10.0a.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_9_5\\log4cxx</tt>.
+<tt>C:\\build_ql_0_9_6\\log4cxx</tt>.
 
-Download <tt>gensrc-0.9.5.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_9_5\\gensrc</tt>.
+Download <tt>gensrc-0.9.6.exe</tt> and uncompress the package to
+<tt>C:\\build_ql_0_9_6\\gensrc</tt>.
 
-Download <tt>ObjectHandler-0.9.5.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_9_5\\%ObjectHandler</tt>.
+Download <tt>ObjectHandler-0.9.6.exe</tt> and uncompress the package to
+<tt>C:\\build_ql_0_9_6\\%ObjectHandler</tt>.
 
-Download <tt>QuantLib-0.9.5.zip</tt> and uncompress the package to
-<tt>C:\\build_ql_0_9_5\\%QuantLib</tt>.
+Download <tt>QuantLib-0.9.6.zip</tt> and uncompress the package to
+<tt>C:\\build_ql_0_9_6\\%QuantLib</tt>.
 
-Download <tt>QuantLibAddin-0.9.5.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_9_5\\%QuantLibAddin</tt>.
+Download <tt>QuantLibAddin-0.9.6.exe</tt> and uncompress the package to
+<tt>C:\\build_ql_0_9_6\\%QuantLibAddin</tt>.
 
 \subsection build_cpp_win_build 2.3 Build
 
 Open solution <tt>%QuantLibAddin\\QuantLibAddin_vc?.sln</tt>, choose
-configuration <tt>Release</tt>, and execute menu item <tt>Build / Build
+configuration <tt>Release</tt>, and execute menu item <tt>Build | Build
 Solution</tt>.
 
 \subsection build_cpp_win_test 2.4 Test
 
-Open a DOS prompt in directory 
+Open a DOS prompt in directory
 \verbatim
-C:\build_ql_0_9_5\QuantLibAddin\Clients\Cpp\bin
+C:\build_ql_0_9_6\QuantLibAddin\Clients\Cpp\bin
 \endverbatim
 
 Execute the example program.  The output should appear similar
 to the following:
 \verbatim
-xxx
+Begin example program.
+QuantLibAddin version = 0.9.6
+ObjectHandler version = 0.9.6
+option PV = 3.84431
+End example program.
 \endverbatim
 
 \subsection build_cpp_win_usage 2.5 Usage
@@ -161,7 +166,7 @@ The name of the library depends on your compiler and configuration.
 For example, if you're using VC8, configuration Release, the library
 is called
 \verbatim
-QuantLibAddin\lib\QuantLibObjects-vc80-mt-s-0_9_5.lib
+QuantLibAddin\lib\QuantLibObjects-vc80-mt-s-0_9_6.lib
 \endverbatim
 
 \section build_cpp_auto 3 Autoconf
@@ -187,47 +192,54 @@ where you will install it:
 Go to the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
 
-Download <tt>log4cxx-0.10.0a.tgz</tt> and uncompress the package to
-<tt>/home/erik/build/log4cxx-0.10.0a</tt>.
+Download <tt>apr-0.2.12.tar.gz</tt> and uncompress the package to
+<tt>/home/erik/build/apr-0.2.12</tt>.
 
-Download <tt>gensrc-0.9.5.tgz</tt> and uncompress the package to
-<tt>/home/erik/build/gensrc-0.9.5</tt>.
+Download <tt>aprutil-0.2.12.tar.gz</tt> and uncompress the package to
+<tt>/home/erik/build/aprutil-0.2.12</tt>.
 
-Download <tt>ObjectHandler-0.9.5.tgz</tt> and uncompress the package to
-<tt>/home/erik/build/%ObjectHandler-0.9.5</tt>.
+Download <tt>log4cxx-0.10.0.tar.gz</tt> and uncompress the package to
+<tt>/home/erik/build/log4cxx-0.10.0</tt>.
 
-Download <tt>QuantLib-0.9.5.tgz</tt> and uncompress the package to
-<tt>/home/erik/build/QuantLib-0.9.5</tt>.
+Download <tt>gensrc-0.9.6.tgz</tt> and uncompress the package to
+<tt>/home/erik/build/gensrc-0.9.6</tt>.
 
-Download <tt>QuantLibAddin-0.9.5.tgz</tt> and uncompress the package to
-<tt>/home/erik/build/QuantLibAddin-0.9.5</tt>.
+Download <tt>ObjectHandler-0.9.6.tgz</tt> and uncompress the package to
+<tt>/home/erik/build/%ObjectHandler-0.9.6</tt>.
+
+Download <tt>QuantLib-0.9.6.tgz</tt> and uncompress the package to
+<tt>/home/erik/build/QuantLib-0.9.6</tt>.
+
+Download <tt>QuantLibAddin-0.9.6.tgz</tt> and uncompress the package to
+<tt>/home/erik/build/QuantLibAddin-0.9.6</tt>.
 
 \subsection build_cpp_auto_build 3.3 Build
 
 \subsubsection build_cpp_auto_log4cxx 3.3.1 Build log4cxx
 
 \verbatim
-cd /home/erik/build/log4cxx-0.10.0a
-./autogen.sh
-cd /home/erik/build/log4cxx-0.10.0a/scr/apr
+cd /home/erik/build/apr-0.2.12
+./buildconf
 ./configure --prefix=/home/erik/install
 make install
-cd /home/erik/build/log4cxx-0.10.0a/src/apr-util
+cd /home/erik/build/aprutil-0.2.12
+./buildconf --with-apr=/home/erik/build/apr-0.2.12
 ./configure --prefix=/home/erik/install \
-    --with-apr=/home/erik/install/bin/apr-1-config
+    --with-apr=/home/erik/install
 make install
-cd /home/erik/build/log4cxx-0.10.0a
+cd /home/erik/build/log4cxx-0.10.0
+./autogen.sh
 ./configure --prefix=/home/erik/install \
-    --with-apr=/home/erik/install/bin/apr-1-config \
-    --with-apr-util=/home/erik/install/bin/apu-1-config
+    --with-apr=/home/erik/install \
+    --with-apr-util=/home/erik/install
 make install
 \endverbatim
 
 \subsubsection build_cpp_auto_oh 3.3.2 Build ObjectHandler
 
 \verbatim
-cd /home/erik/build/ObjectHandler-0.9.5
-./configure --with-gensrc=/home/erik/build/gensrc-0.9.5 \
+cd /home/erik/build/ObjectHandler-0.9.6
+./configure --with-gensrc=/home/erik/build/gensrc-0.9.6 \
     --prefix=/home/erik/install \
     CPPFLAGS=-I/home/erik/install/include LDFLAGS=-L/home/erik/install/lib
 make install
@@ -236,7 +248,7 @@ make install
 \subsubsection build_cpp_auto_ql 3.3.3 Build QuantLib
 
 \verbatim
-cd /home/erik/build/QuantLib-0.9.5
+cd /home/erik/build/QuantLib-0.9.6
 ./configure --prefix=/home/erik/install
 make install
 \endverbatim
@@ -244,9 +256,10 @@ make install
 \subsubsection build_cpp_auto_qla 3.3.4 Build QuantLibAddin
 
 \verbatim
-cd /home/erik/build/QuantLibAddin-0.9.5
-./configure --with-gensrc=/home/erik/build/gensrc-0.9.5 \
-    --prefix=/home/erik/install --enable-addin-cpp \
+cd /home/erik/build/QuantLibAddin-0.9.6
+./configure --prefix=/home/erik/install --enable-addin-cpp \
+    --with-gensrc=/home/erik/build/gensrc-0.9.6 \
+    --with-oh=/home/erik/build/ObjectHandler-0.9.6 \
     CPPFLAGS=-I/home/erik/install/include LDFLAGS=-L/home/erik/install/lib
 make install
 \endverbatim
@@ -254,14 +267,18 @@ make install
 \subsection build_cpp_auto_test 3.4 Test
 
 \verbatim
-cd /home/erik/build/QuantLibAddin-0.9.5/Clients/Cpp
+cd /home/erik/build/QuantLibAddin-0.9.6/Clients/Cpp
 ./QLADemo
 \endverbatim
 
 This should generate output similar to the following:
 
 \verbatim
-xxx
+Begin example program.
+QuantLibAddin version = 0.9.6
+ObjectHandler version = 0.9.6
+option PV = 3.84431
+End example program.
 \endverbatim
 
 \subsection build_cpp_auto_usage 3.5 Usage
@@ -297,8 +314,7 @@ loader knows where to find the libraries, e.g:
 export LD_LIBRARY_PATH=/home/erik/install/lib
 \endverbatim
 
-<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
 
 */
-
 

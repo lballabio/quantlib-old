@@ -16,7 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""encapsulate state necessary to generate source code 
+"""Encapsulate state necessary to generate source code 
 relating to a function parameter."""
 
 from gensrc.utilities import common
@@ -25,6 +25,8 @@ from gensrc.parameters import exceptions
 from gensrc.serialization import serializable
 
 class ParameterList(serializable.Serializable):
+    """The list of Parameter objects that relate to a given
+    Function object."""
 
     #############################################
     # class variables
@@ -48,12 +50,14 @@ class ParameterList(serializable.Serializable):
             ruleResult = ruleGroup.apply(param)
             if ruleResult:
                 codeItems.append(ruleResult)
+        # FIXME the logic below should be moved into the RuleGroup class?
         code = ruleGroup.delimiter().join(codeItems)
         if code and ruleGroup.wrapText():
             code = ruleGroup.wrapText() % code
         return code
 
     def prepend(self, param):
+        """Prepend a parameter to the list."""
         if self.parameterCount_ == 0:
             param.setLastParameter(True)
         self.parameters_.insert(0, param)
@@ -61,6 +65,7 @@ class ParameterList(serializable.Serializable):
         self.skipFirst_ = True
 
     def append(self, param):
+        """Append a parameter to the list."""
         if self.parameterCount_:
             self.parameters_[self.parameterCount_ - 1].setLastParameter(False)
         self.parameters_.append(param)
@@ -68,15 +73,23 @@ class ParameterList(serializable.Serializable):
         self.parameterCount_ += 1
 
     def parameters(self):
+        """Return the list of parameters."""
         return self.parameters_
 
     def underlyingCount(self):
+        """Return the number of parameters that will actually
+        be passed to the underlying Addin function.
+
+        This count excludes parameters with the "ignore" flag set to true,
+        e.g. object IDs."""
         return self.underlyingCount_
 
     def parameterCount(self):
+        """Return the number of parameters in the list."""
         return self.parameterCount_
 
     def printDebug(self):
+        """Print debug information to stdout."""
         for param in self.parameters_:
             param.printDebug()
 
@@ -114,3 +127,4 @@ class ParameterList(serializable.Serializable):
             if i == self.parameterCount_:
                 param.setLastParameter(True)
             i += 1
+

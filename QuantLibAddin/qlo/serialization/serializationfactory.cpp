@@ -33,18 +33,24 @@ namespace QuantLibAddin {
 
         registerCreators();
 
-        ObjectHandler::ProcessorFactory::processorMap_["RelinkableHandleProcessor"] =
-            ObjectHandler::ProcessorPtr(new RelinkableHandleProcessor());
-        ObjectHandler::ProcessorFactory::processorMap_["InstrumentProcessor"] =
-            ObjectHandler::ProcessorPtr(new InstrumentProcessor());
-        ObjectHandler::ProcessorFactory::processorMap_["InstrumentProcessor"] =
-            ObjectHandler::ProcessorPtr(new InstrumentProcessor());
-        ObjectHandler::ProcessorFactory::processorMap_["LegProcessor"] =
-            ObjectHandler::ProcessorPtr(new LegProcessor());
-        ObjectHandler::ProcessorFactory::processorMap_["IndexProcessor"] =
-            ObjectHandler::ProcessorPtr(new IndexProcessor());
-        ObjectHandler::ProcessorFactory::processorMap_["ExtrapolatorProcessor"] =
-            ObjectHandler::ProcessorPtr(new ExtrapolatorProcessor());
+		ObjectHandler::ProcessorPtr processorRH(new RelinkableHandleProcessor());
+        ObjectHandler::ProcessorFactory::instance().storeProcessor("RelinkableHandleProcessor",
+            processorRH);
+        ObjectHandler::ProcessorPtr processorI(new InstrumentProcessor());
+        ObjectHandler::ProcessorFactory::instance().storeProcessor("InstrumentProcessor",
+            processorI);
+        ObjectHandler::ProcessorPtr processorP(new InstrumentProcessor());
+        ObjectHandler::ProcessorFactory::instance().storeProcessor("InstrumentProcessor",
+            processorP);
+        ObjectHandler::ProcessorPtr processorL(new LegProcessor());
+        ObjectHandler::ProcessorFactory::instance().storeProcessor("LegProcessor",
+            processorL);
+        ObjectHandler::ProcessorPtr processorIndex(new IndexProcessor());
+        ObjectHandler::ProcessorFactory::instance().storeProcessor("IndexProcessor",
+            processorIndex);
+        ObjectHandler::ProcessorPtr processorE(new ExtrapolatorProcessor());
+        ObjectHandler::ProcessorFactory::instance().storeProcessor("ExtrapolatorProcessor",
+            processorE);
         
 
     }

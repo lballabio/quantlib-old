@@ -49,6 +49,9 @@ namespace ObjectHandler {
         for (unsigned int i=0; i<vv.size(); ++i) {
             std::vector<T> v = vv[i];
             for (unsigned int j=0; j<v.size(); ++j) {
+                // FIXME - is the workaround below still required,
+                // now that we are no longer using boost::any ?
+
                 // For some instantiations of this template, VC8 refuses to compile the line below:
                 //scalarToOper(v[j], xMatrix.val.array.lparray[i * v.size() + j]);
                 // A static_cast is necessary to disambiguate native C++ datatypes from boost::any.

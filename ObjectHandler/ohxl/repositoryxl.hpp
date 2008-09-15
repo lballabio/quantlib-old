@@ -52,7 +52,8 @@ namespace ObjectHandler {
             const std::string &objectID,
             const boost::shared_ptr<Object> &object,
             bool overwrite = false);
- 
+        //@}
+
         //! \name Error Messages
         //@{
         //! Log an error message.
@@ -125,7 +126,6 @@ namespace ObjectHandler {
         boost::shared_ptr<CallingRange> getCallingRange();
         // Error associated with VBA
         std::string vbaError_;
-
     };
 
 }

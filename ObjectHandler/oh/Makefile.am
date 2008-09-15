@@ -19,7 +19,6 @@ include_HEADERS = \
     repository.hpp \
     serializationfactory.hpp \
     singleton.hpp \
-    types.hpp \
     utilities.hpp \
     valueobject.hpp
 
@@ -31,6 +30,7 @@ LDFLAGS = -llog4cxx -lboost_regex -lboost_serialization -release $(PACKAGE_VERSI
 
 libObjectHandler_la_SOURCES = \
     logger.cpp \
+    processor.cpp \
     repository.cpp \
     serializationfactory.cpp \
     utilities.cpp

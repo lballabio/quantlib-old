@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""generate source code for Guile addin."""
+"""Generate source code for Guile addin."""
 
 from gensrc.addins import addin
 from gensrc.functions import function

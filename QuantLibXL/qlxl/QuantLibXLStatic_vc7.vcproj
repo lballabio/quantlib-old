@@ -41,13 +41,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-sgd-0_9_5.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-sgd-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-sgd-0_9_5.pdb"
-				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-sgd-0_9_5.lib"
+				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-sgd-0_9_6.pdb"
+				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-sgd-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -108,13 +108,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-gd-0_9_5.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-gd-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-gd-0_9_5.pdb"
-				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-gd-0_9_5.lib"
+				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-gd-0_9_6.pdb"
+				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-gd-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -133,140 +133,6 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
-				Culture="2057"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug SingleThread|Win32"
-			OutputDirectory=".\buildStatic\vc71\$(ConfigurationName)"
-			IntermediateDirectory=".\buildStatic\vc71\$(ConfigurationName)"
-			ConfigurationType="2"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic.pch"
-				AssemblerListingLocation=".\buildStatic\vc71\$(ConfigurationName)/"
-				ObjectFile=".\buildStatic\vc71\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\buildStatic\vc71\$(ConfigurationName)/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-sgd-0_9_5.xll"
-				LinkIncremental="2"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-sgd-0_9_5.pdb"
-				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-sgd-0_9_5.lib"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="_DEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="2057"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release SingleThread|Win32"
-			OutputDirectory=".\buildStatic\vc71\$(ConfigurationName)"
-			IntermediateDirectory=".\buildStatic\vc71\$(ConfigurationName)"
-			ConfigurationType="2"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin"
-				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic.pch"
-				AssemblerListingLocation=".\buildStatic\vc71\$(ConfigurationName)/"
-				ObjectFile=".\buildStatic\vc71\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\buildStatic\vc71\$(ConfigurationName)/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-s-0_9_5.xll"
-				LinkIncremental="2"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
-				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-s-0_9_5.pdb"
-				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-s-0_9_5.lib"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="NDEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
 				Culture="2057"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
@@ -310,12 +176,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-s-0_9_5.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-s-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
-				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-s-0_9_5.pdb"
-				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-s-0_9_5.lib"
+				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-s-0_9_6.pdb"
+				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-s-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -377,12 +243,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-0_9_5.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
-				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-0_9_5.pdb"
-				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-0_9_5.lib"
+				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-0_9_6.pdb"
+				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"

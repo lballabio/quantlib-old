@@ -29,7 +29,6 @@
 #include <oh/ohdefines.hpp>
 #include <oh/valueobject.hpp>
 #include <oh/exception.hpp>
-//#include <oh/conversions/anytostream.hpp>
 #include <boost/shared_ptr.hpp>
 #include <vector>
 #include <string>
@@ -51,35 +50,35 @@ namespace ObjectHandler {
     public:
         //! \name Structors
         //@{
-
         //! Default constructor.
-        /*! Construct an Object.
-            To store the resulting Object in the ObjectHandler, call
+        /*! Construct an Object.  To store the resulting Object in the
+            Repository, call
+            \code
                 Repository::instance().storeObject(objectID, object);
+            \endcode
         */
         Object(
             const boost::shared_ptr<ValueObject>& properties = boost::shared_ptr<ValueObject>(),
             bool permanent = false)
             : mProps(properties), permanent_(permanent) {}
-
         //! Empty virtual destructor.
         virtual ~Object() {}
         //@}
 
-        //! \name Value Objects
+        //! \name ValueObjects
         //@{
         //! Retrieve the ValueObject associated with this Object.
         const boost::shared_ptr<ValueObject>& properties() const {
             return mProps;
         }
+        //@}
 
-        //! Retrieve a vector of property names.
-        /*! Retrieve property names from associated ValueObject.
-            Return an empty vector if the Object has no properties.
-        */
+        //! \name Properties
+        //@{
+        //! Retrieve the property names as a std::set.
         std::set<std::string> propertyNames() const;
+        //! Retrieve the property names as a std::vector.
         std::vector<std::string> propertyNamesVector() const;
-
         //! Retrieve the value of a given property.
         /*! Forward the request to the associated ValueObject.
             Throw an exception if the Object has no property by that name.
@@ -101,14 +100,14 @@ namespace ObjectHandler {
 
         //! \name Logging
         //@{
-        //! "dump" - Write this Object's properties (from the ValueObject) to the given stream.
+        //! Write this Object's properties (from the ValueObject) to the given stream.
         /*! This function is called by the logging framework.  Derived classes may
             override this function if additional information is available.
         */
         virtual void dump(std::ostream &out);
         //@}
 
-        // The width of a column of data written to the log file.
+        //! The width of a column of data written to the log file.
         static const int logColumnWidth = 20;
 
     private:
@@ -116,7 +115,7 @@ namespace ObjectHandler {
         boost::shared_ptr<ValueObject> mProps;
         // Flag to indicate whether this Object is permanent.
         bool permanent_;
-        // Operator = declared but not implemented - assignment is not supported.
+        // Assignment operator declared but not implemented - assignment is not supported.
         Object& operator= (const Object&);
         // Copy ctor declared but not implemented - copy construction is not supported.
         Object(const Object&);
@@ -144,20 +143,21 @@ namespace ObjectHandler {
     }
 
     inline void Object::dump(std::ostream &out) {
-        /*out << std::endl;
+        out << std::endl;
         std::set<std::string> propertyNames = this->propertyNames();
         for (std::set<std::string>::const_iterator i = propertyNames.begin(); 
                 i != propertyNames.end(); ++i) {
             std::string propertyName = *i;
-            boost::any propertyValue = this->propertyValue(propertyName);
+            property_t propertyValue = this->propertyValue(propertyName);
             out << "property = " << std::left << std::setw(logColumnWidth) << propertyName;
             out << " value = " << std::left << std::setw(logColumnWidth) << propertyValue << std::endl;
         }
         out << "Permanent = " << std::left << std::setw(logColumnWidth) 
             << std::boolalpha << permanent_ << std::endl;
-        out << std::endl;*/
+        out << std::endl;
     }
 
+    //! Log the given Object to the given stream.
     inline std::ostream &operator<<(std::ostream &out, const boost::shared_ptr<Object> &object) {
         object->dump(out);
         return out;

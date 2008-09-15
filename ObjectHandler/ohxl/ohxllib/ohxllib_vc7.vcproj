@@ -40,7 +40,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc71-mt-gd-0_9_5.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc71-mt-gd-0_9_6.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -53,60 +53,6 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
-				Culture="2057"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release SingleThread|Win32"
-			OutputDirectory="..\..\build\vc71\ohxllib\ReleaseST"
-			IntermediateDirectory="..\..\build\vc71\ohxllib\ReleaseST"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..;..\..\..\log4cxx\src\main\include\log4cxx\win32;..\..\..\log4cxx\src\main\include"
-				PreprocessorDefinitions="NDEBUG;_LIB;XLL_STATIC;WIN32;LOG4CXX_STATIC"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderThrough=""
-				PrecompiledHeaderFile="..\..\build\vc71\ohxllib\ReleaseST/ohxllib.pch"
-				AssemblerListingLocation="..\..\build\vc71\ohxllib\ReleaseST/"
-				ObjectFile="..\..\build\vc71\ohxllib\ReleaseST/"
-				ProgramDataBaseFileName="..\..\build\vc71\ohxllib\ReleaseST/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc71-s-0_9_5.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
 				Culture="2057"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
@@ -147,7 +93,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc71-mt-s-0_9_5.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc71-mt-s-0_9_6.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -200,7 +146,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc71-mt-0_9_5.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc71-mt-0_9_6.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -252,59 +198,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc71-mt-sgd-0_9_5.lib"
-				SuppressStartupBanner="TRUE"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="2057"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug SingleThread|Win32"
-			OutputDirectory="..\..\build\vc71\ohxllib\DebugST"
-			IntermediateDirectory="..\..\build\vc71\ohxllib\DebugST"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="..\..;..\..\..\log4cxx\src\main\include\log4cxx\win32;..\..\..\log4cxx\src\main\include"
-				PreprocessorDefinitions="_DEBUG;_LIB;XLL_STATIC;WIN32;LOG4CXX_STATIC"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile="..\..\build\vc71\ohxllib\DebugST/ohxllib.pch"
-				AssemblerListingLocation="..\..\build\vc71\ohxllib\DebugST/"
-				ObjectFile="..\..\build\vc71\ohxllib\DebugST/"
-				ProgramDataBaseFileName="..\..\build\vc71\ohxllib\DebugST/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc71-sgd-0_9_5.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc71-mt-sgd-0_9_6.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -365,6 +259,9 @@
 					RelativePath="..\..\oh\ohdefines.hpp">
 				</File>
 				<File
+					RelativePath="..\..\oh\processor.cpp">
+				</File>
+				<File
 					RelativePath="..\..\oh\processor.hpp">
 				</File>
 				<File
@@ -389,13 +286,7 @@
 					RelativePath="..\..\oh\singleton.hpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\types.hpp">
-				</File>
-				<File
 					RelativePath="..\..\oh\valueobject.hpp">
-				</File>
-				<File
-					RelativePath="..\..\oh\variant.hpp">
 				</File>
 			</Filter>
 			<Filter
@@ -474,9 +365,6 @@
 				</File>
 				<File
 					RelativePath="..\conversions\opertomatrix.hpp">
-				</File>
-				<File
-					RelativePath="..\conversions\opertoscalar.hpp">
 				</File>
 				<File
 					RelativePath="..\conversions\opertovector.hpp">

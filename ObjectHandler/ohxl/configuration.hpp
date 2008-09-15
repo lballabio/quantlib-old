@@ -38,7 +38,9 @@ namespace ObjectHandler {
         Configuration() : initialized_(false) {}
         //! Initialize the global Configuration Singleton object.
         /*! The app must call this function at startup e.g. 
-                Configuration::instance().init()
+            \code
+                Configuration::instance().init();
+            \endcode
             Failure to do so will lead to runtime errors later as ObjectHandler
             functions attempt to access the configuration information.
         */

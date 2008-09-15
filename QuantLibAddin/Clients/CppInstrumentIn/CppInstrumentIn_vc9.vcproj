@@ -18,8 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="Debug"
-			IntermediateDirectory="Debug"
+			OutputDirectory="build\vc90\$(ConfigurationName)\"
+			IntermediateDirectory="build\vc90\$(ConfigurationName)\"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
@@ -42,14 +42,20 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile="build\vc90\$(ConfigurationName)\"
+				AssemblerListingLocation="build\vc90\$(ConfigurationName)\"
+				ObjectFile="build\vc90\$(ConfigurationName)\"
+				ProgramDataBaseFileName="build\vc90\$(ConfigurationName)\vc90.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4819"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -62,10 +68,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
 				OutputFile="InstrumentIn-vc90-mt-sgd.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/CppInstrumentIn.pdb"
+				ProgramDatabaseFile="build\vc90\$(ConfigurationName)/$(ProjectName).pdb"
 				SubSystem="1"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -95,8 +102,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="Release"
-			IntermediateDirectory="Release"
+			OutputDirectory="build\vc90\$(ConfigurationName)\"
+			IntermediateDirectory="build\vc90\$(ConfigurationName)\"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
@@ -118,12 +125,18 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile="build\vc90\$(ConfigurationName)\"
+				AssemblerListingLocation="build\vc90\$(ConfigurationName)\"
+				ObjectFile="build\vc90\$(ConfigurationName)\"
+				ProgramDataBaseFileName="build\vc90\$(ConfigurationName)\vc90.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
+				DisableSpecificWarnings="4819"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -136,9 +149,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
 				OutputFile="InstrumentIn-vc90-mt-s.exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
+				ProgramDatabaseFile="build\vc90\$(ConfigurationName)/$(ProjectName).pdb"
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -170,8 +185,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug CRTDLL|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="build\vc90\$(ConfigurationName)\"
+			IntermediateDirectory="build\vc90\$(ConfigurationName)\"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
@@ -194,14 +209,20 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile="build\vc90\$(ConfigurationName)\"
+				AssemblerListingLocation="build\vc90\$(ConfigurationName)\"
+				ObjectFile="build\vc90\$(ConfigurationName)\"
+				ProgramDataBaseFileName="build\vc90\$(ConfigurationName)\vc90.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4819"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -214,10 +235,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
 				OutputFile="InstrumentIn-vc90-mt-gd.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/CppInstrumentIn.pdb"
+				ProgramDatabaseFile="build\vc90\$(ConfigurationName)/$(ProjectName).pdb"
 				SubSystem="1"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -247,8 +269,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release CRTDLL|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="build\vc90\$(ConfigurationName)"
+			IntermediateDirectory="build\vc90\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
@@ -270,12 +292,19 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				Optimization="2"
+				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile="build\vc90\$(ConfigurationName)\"
+				AssemblerListingLocation="build\vc90\$(ConfigurationName)\"
+				ObjectFile="build\vc90\$(ConfigurationName)\"
+				ProgramDataBaseFileName="build\vc90\$(ConfigurationName)\vc90.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
+				DisableSpecificWarnings="4819"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -288,9 +317,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
 				OutputFile="InstrumentIn-vc90-mt.exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
+				ProgramDatabaseFile="build\vc90\$(ConfigurationName)/$(ProjectName).pdb"
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -325,27 +356,7 @@
 	</References>
 	<Files>
 		<File
-			RelativePath=".\AtmVolatilities.xml"
-			>
-		</File>
-		<File
-			RelativePath=".\ConstantMaturitySwap.xml"
-			>
-		</File>
-		<File
 			RelativePath=".\instrument_in.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\SwaptionVolatilities.xml"
-			>
-		</File>
-		<File
-			RelativePath=".\VanillaSwap.xml"
-			>
-		</File>
-		<File
-			RelativePath=".\YieldCurves.xml"
 			>
 		</File>
 	</Files>

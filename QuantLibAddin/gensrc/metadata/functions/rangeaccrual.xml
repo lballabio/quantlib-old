@@ -29,7 +29,6 @@
 
     <Constructor name='qlRangeAccrualFloatersCoupon'>
       <libraryFunction>RangeAccrualFloatersCoupon</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -114,7 +113,6 @@
 
     <Constructor name='qlRangeAccrualFloatersCouponFromLeg'>
       <libraryFunction>RangeAccrualFloatersCoupon</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -235,7 +233,6 @@
     <Member name='qlRangeAccrualFloatersPrice' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
       <description>return the price of Range Accrual Floater Coupon.</description>
       <libraryFunction>price</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -260,7 +257,6 @@
     <Member name='qlSimpleFloaterPrice' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
       <description>return the price of Simple Floater Coupon.</description>
       <libraryFunction>priceWithoutOptionality</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -286,7 +282,6 @@
 
     <Constructor name='qlRangeAccrualPricerByBgm'>
       <libraryFunction>RangeAccrualPricerByBgm</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

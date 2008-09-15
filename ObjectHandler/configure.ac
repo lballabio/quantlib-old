@@ -1,7 +1,7 @@
 
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([ObjectHandler], [0.9.5],
+AC_INIT([ObjectHandler], [0.9.6],
         [quantlib-dev@lists.sourceforge.net],
         [ObjectHandler])
 AC_PREREQ(2.50)
@@ -82,6 +82,7 @@ AC_CONFIG_FILES([
     Makefile
     oh/conversions/Makefile
     oh/enumerations/Makefile
+    oh/loop/Makefile
     oh/valueobjects/Makefile
     oh/Makefile
     ohxl/Makefile

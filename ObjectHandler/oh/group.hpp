@@ -17,6 +17,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*! \file
+    \brief class Group - A collection of Objects
+*/
+
 #ifndef oh_group_hpp
 #define oh_group_hpp
 
@@ -25,6 +29,11 @@
 
 namespace ObjectHandler {
 
+    //! A collection of Objects.
+    /*! This class was implemented to facilitate serialization of a collection
+        of Objects.  In practice this functionality has not proved necessary so
+        this class is not fully implemented.
+    */
     class Group : public Object {
     public:
         Group(

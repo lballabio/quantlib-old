@@ -25,7 +25,6 @@
 
     <Constructor name='qlCmsMarketCalibration'>
       <libraryFunction>CmsMarketCalibration</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

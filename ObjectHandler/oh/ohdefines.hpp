@@ -27,25 +27,22 @@
 
 #include <boost/config.hpp>
 #include <boost/version.hpp>
-// Boost version 1.34.1 is now required for the boost::filesystem features
-// used in classes derived from ObjectHandler::SerializationFactory in
-// downstream applications e.g. QuantLibAddin.  If you don't require that
-// functionality you can probably disable this test without problems.
+
 #if BOOST_VERSION < 103401
     #error using an old version of Boost, please update to 1.34.1 or higher.
 #endif
 
-//! version string
+//! Version string.
 #ifdef _DEBUG
-    #define OBJHANDLER_VERSION "0.9.5-debug"
+    #define OBJHANDLER_VERSION "0.9.6-debug"
 #else
-    #define OBJHANDLER_VERSION "0.9.5"
+    #define OBJHANDLER_VERSION "0.9.6"
 #endif
 
-//! version hexadecimal number
-#define OBJHANDLER_HEX_VERSION 0x000905f0
-//! version string for output lib name
-#define OBJHANDLER_LIB_VERSION "0_9_5"
+//! Version hexadecimal number.
+#define OBJHANDLER_HEX_VERSION 0x000906f0
+//! Version string for output lib name.
+#define OBJHANDLER_LIB_VERSION "0_9_6"
 
 #include <cctype>
 #if defined(BOOST_NO_STDC_NAMESPACE)
@@ -86,34 +83,25 @@
 #define STRICMP strcasecmp
 #endif
 
-/*! \def OH_GET_OBJECT
-    Get a boost shared pointer to a class derived from Object.
-*/
+//! Get a boost shared pointer to a class derived from Object.
 #define OH_GET_OBJECT( NAME, ID, OBJECT_CLASS ) \
     boost::shared_ptr<OBJECT_CLASS > NAME; \
     ObjectHandler::Repository::instance().retrieveObject(NAME, ID);
 
-/*! \def OH_GET_OBJECT_DEFAULT
-    Like OH_GET_OBJECT but only attempt retrieval if id supplied.
-*/
+//! Like OH_GET_OBJECT but only attempt retrieval if id supplied.
 #define OH_GET_OBJECT_DEFAULT( NAME, ID, OBJECT_CLASS ) \
     boost::shared_ptr<OBJECT_CLASS > NAME; \
     if (!ID.empty()) { \
         ObjectHandler::Repository::instance().retrieveObject(NAME, ID); \
     }
 
-/*! \def OH_GET_REFERENCE
-    Get a boost shared pointer to the client library object referenced by an
-    ObjectHandler::Object.
-*/
+//! Get a shared pointer to the library object referenced by an Object.
 #define OH_GET_REFERENCE( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
     OH_GET_OBJECT(NAME ## temp, ID, OBJECT_CLASS ) \
     boost::shared_ptr<LIBRARY_CLASS> NAME; \
     NAME ## temp->getLibraryObject(NAME);
 
-/*! \def OH_GET_REFERENCE_DEFAULT
-    Like OH_GET_REFERENCE but only attempt retrieval if id supplied.
-*/
+//! Like OH_GET_REFERENCE but only attempt retrieval if id supplied.
 #define OH_GET_REFERENCE_DEFAULT( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
     boost::shared_ptr<LIBRARY_CLASS> NAME; \
     if (!ID.empty()) { \
@@ -121,24 +109,17 @@
         NAME ## temp->getLibraryObject(NAME); \
     }
 
-/*! \def OH_GET_UNDERLYING
-    Get a direct reference to the underlying object wrapped by the
-    ObjectHandler::Object.
-*/
+//! Get a direct reference to the underlying object wrapped by the Object.
 #define OH_GET_UNDERLYING( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
     OH_GET_REFERENCE(NAME ## temp, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
     const LIBRARY_CLASS &NAME = *(NAME ## temp.get());
 
-/*! \def OH_GET_UNDERLYING_NONCONST
-    Like OH_GET_UNDERLYING but without const qualifier.
-*/
+//! Like OH_GET_UNDERLYING but without const qualifier.
 #define OH_GET_UNDERLYING_NONCONST( NAME, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
     OH_GET_REFERENCE(NAME ## temp, ID, OBJECT_CLASS, LIBRARY_CLASS ) \
     LIBRARY_CLASS &NAME = *(NAME ## temp.get());
 
-/*! \def OH_LOG_MESSAGE(message)
-    Log the given message.
-*/
+//! Log the given message.
 #define OH_LOG_MESSAGE(message) \
 do { \
     std::ostringstream _oh_msg_stream; \
@@ -146,9 +127,7 @@ do { \
     ObjectHandler::logMessage(_oh_msg_stream.str()); \
 } while (false)
 
-/*! \def OH_LOG_ERROR(message)
-    Log the given error message.
-*/
+//! Log the given error message.
 #define OH_LOG_ERROR(message) \
 do { \
     std::ostringstream _oh_msg_stream; \
@@ -156,20 +135,14 @@ do { \
     ObjectHandler::logMessage(_oh_msg_stream.str(), 1); \
 } while (false)
 
-/*! \def OH_OBJ_CTOR(derived_class, base_class)
-    Declaration and implementation of empty constructor
-    for a class derived from ObjectHandler::Object.
-*/
+//! An empty constructor for a class derived from Object.
 #define OH_OBJ_CTOR(derived_class, base_class) \
 derived_class( \
 const boost::shared_ptr<ObjectHandler::ValueObject>& properties, \
 bool permanent) \
 : base_class(properties, permanent) {}
 
-/*! \def OH_OBJ_CLASS(derived_class, base_class)
-    Declaration and implementation of empty class
-    derived from ObjectHandler::Object.
-*/
+//! An empty class derived from Object.
 #define OH_OBJ_CLASS(derived_class, base_class) \
 class derived_class : \
 public base_class { \
@@ -177,20 +150,14 @@ protected: \
 OH_OBJ_CTOR(derived_class, base_class) \
 }
 
-/*! \def OH_LIB_CTOR(derived_class, base_class)
-    Declaration and implementation of empty constructor
-    for a class derived from ObjectHandler::LibraryObject.
-*/
+//! An empty constructor for a class derived from LibraryObject.
 #define OH_LIB_CTOR(derived_class, base_class) \
 derived_class( \
 const boost::shared_ptr<ObjectHandler::ValueObject>& properties, \
 bool permanent) \
 : ObjectHandler::LibraryObject<base_class>(properties, permanent) {}
 
-/*! \def OH_LIB_CLASS(derived_class, base_class)
-    Declaration and implementation of empty class
-    derived from ObjectHandler::LibraryObject.
-*/
+//! An empty class derived from LibraryObject.
 #define OH_LIB_CLASS(derived_class, base_class) \
 class derived_class : \
 public ObjectHandler::LibraryObject<base_class> { \

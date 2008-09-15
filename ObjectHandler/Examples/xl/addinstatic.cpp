@@ -1,8 +1,5 @@
 
 /*
- Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
- Copyright (C) 2008 Nazcatech sprl Belgium
-
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
@@ -45,6 +42,8 @@ DLLEXPORT int xlAutoOpen() {
     static ObjectHandler::EnumClassRegistry enumClassRegistry;
     // Instantiate the Enumerated Pair Registry
     static ObjectHandler::EnumPairRegistry enumPairRegistry;
+	//Instantiate the Processor Factory
+	static ObjectHandler::ProcessorFactory processorFactory;
     // Instantiate the Serialization Factory
     static AccountExample::SerializationFactory factory;
 

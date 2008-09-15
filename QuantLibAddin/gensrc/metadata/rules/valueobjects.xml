@@ -131,6 +131,7 @@
         <Rule tensorRank='scalar' superType='libraryTermStructure' codeID='code69'/>
         <Rule tensorRank='scalar' superType='underlyingClass' codeID='code69'/>
         <Rule tensorRank='scalar' superType='libToHandle' codeID='code69'/>
+        <Rule tensorRank='scalar' superType='handlePredecessor' codeID='code69'/>
         <Rule tensorRank='vector' superType='objectClass' codeID='code70'/>
         <Rule tensorRank='vector' superType='objectQuote' codeID='code70'/>
         <Rule tensorRank='vector' superType='objectTermStructure' codeID='code70'/>

@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""generate doxygen documentation files."""
+"""Generate doxygen documentation files."""
 
 from gensrc.addins import addin
 from gensrc.functions import function
@@ -61,18 +61,22 @@ class Doxygen(addin.Addin):
         log.Log.instance().logMessage(' done generating Doxygen.')
 
     def generateEnumeratedType(self, enumeratedTypeGroup, i, line1, line2):
+        """Generate documentation relating to an enumerated type."""
         ret = line1 % (i, enumeratedTypeGroup.type())
         ret += line2
         for enumeratedType in enumeratedTypeGroup.enumeratedTypes():
-            ret += Doxygen.LINE_ENUM % (enumeratedType.string(), enumeratedType.value())
+            ret += Doxygen.LINE_ENUM % (
+                enumeratedType.string(), enumeratedType.value())
         ret += '    </table>\n\n'
         return ret
 
     def generateEnumeratedClass(self, enumeratedClassGroup, i, line1, line2):
+        """Generate documentation relating to an enumerated class."""
         ret = line1 % (i, enumeratedClassGroup.className())
         ret += line2
         for enumeratedClass in enumeratedClassGroup.enumeratedClasses():
-            ret += Doxygen.LINE_ENUM % (enumeratedClass.string(), enumeratedClass.libraryClass())
+            ret += Doxygen.LINE_ENUM % (
+                enumeratedClass.string(), enumeratedClass.libraryClass())
         ret += '    </table>\n\n'
         return ret
 
@@ -124,7 +128,8 @@ class Doxygen(addin.Addin):
         # ensure list of links is sorted alphabetically by display name
         dispNmToCatNm = {}
         displayNames = []
-        for cat in self.categoryList_.categories('*', self.coreCategories_, self.addinCategories_):
+        for cat in self.categoryList_.categories(
+            '*', self.coreCategories_, self.addinCategories_):
             dispNmToCatNm[cat.displayName()] = cat.name()
             displayNames.append(cat.displayName())
         displayNames.sort()
@@ -153,7 +158,8 @@ class Doxygen(addin.Addin):
     def generateDocs(self):
         """Generate doxygen documentation files."""
         allFuncs = []
-        for cat in self.categoryList_.categories('*', self.coreCategories_, self.addinCategories_):
+        for cat in self.categoryList_.categories(
+            '*', self.coreCategories_, self.addinCategories_):
             bufLink = ''
             bufDoc = ''
             for func in cat.functions('*'): 

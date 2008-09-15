@@ -16,6 +16,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""A class to contain all of the information that gensrc requires
+for a type such as a native C++ type or a user defined class."""
+
 from gensrc.utilities import common
 from gensrc.serialization import serializable
 
@@ -34,12 +37,17 @@ class DataType(serializable.Serializable):
     #############################################
 
     def value(self):
+        """Return the data type."""
         return self.value_
 
     def nativeType(self):
+        """Return the underlying native type that corresponds to
+        the given data type."""
         return self.nativeType_
 
     def defaultSuperType(self):
+        """Return the default supertype that is configured for
+        this datatype."""
         return self.defaultSuperType_
 
     #############################################
@@ -47,13 +55,13 @@ class DataType(serializable.Serializable):
     #############################################
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NATIVE_TYPE)
         serializer.serializeAttribute(self, common.DEFAULT_SUPER_TYPE)
         serializer.serializeValue(self)
 
     def postSerialize(self):
-        """invoke any post serialization behavior that may be required."""
+        """Invoke any post serialization behavior that may be required."""
         self.name_ = self.value_
 
 class DataTypeDict(serializable.Serializable):
@@ -64,6 +72,7 @@ class DataTypeDict(serializable.Serializable):
     #############################################
 
     def dataTypes(self):
+        """Return the dictionary of DataType objects."""
         return self.dataTypes_
 
     #############################################
@@ -71,6 +80,6 @@ class DataTypeDict(serializable.Serializable):
     #############################################
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         serializer.serializeObjectDict(self, DataType)
 

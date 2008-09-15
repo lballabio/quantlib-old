@@ -33,7 +33,7 @@
 
 namespace ObjectHandler {
 
-    // Execute one iteration of the loop function
+    //! Execute one iteration of the loop function
     template<class LoopFunction, class InputType, class OutputType>
     struct LoopIteration {
         void operator()(
@@ -47,7 +47,7 @@ namespace ObjectHandler {
         }
     };
 
-    // Partial specialization for LoopIteration where return type is void
+    //! Partial specialization for LoopIteration where return type is void
     template<class LoopFunction, class InputType>
     struct LoopIteration<LoopFunction, InputType, void> {
         void operator()(
@@ -61,6 +61,7 @@ namespace ObjectHandler {
         }
     };
 
+    //! Invoke the contained function once for each item in the input vector.
     template<class LoopFunction, class InputType, class OutputType>
     void loop(
               const boost::shared_ptr<FunctionCall> &functionCall,
@@ -122,7 +123,7 @@ namespace ObjectHandler {
                     err << std::endl << std::endl 
                         << "iteration #" << i << " - " << e.what();
                     errorCount++;
-                } else if (errorCount == ERROR_LIMIT) {
+                } else { // errorCount == ERROR_LIMIT
                     err << std::endl << std::endl 
                         << "iteration #" << i << " - " << e.what()
                         << std::endl << std::endl 
@@ -136,8 +137,7 @@ namespace ObjectHandler {
         if (errorCount)
             RepositoryXL::instance().logError(err.str(), functionCall);
 
-        // free memory
-
+        // Free memory
         if (excelToFree) {
             Excel(xlFree, 0, 1, &xTemp);
         } else if (xllToFree) {

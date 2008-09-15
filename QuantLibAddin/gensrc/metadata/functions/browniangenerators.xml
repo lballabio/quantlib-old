@@ -17,7 +17,6 @@
     <!-- BrownianGeneratorFactory derived classes constructor  -->
     <Constructor name='qlMTBrownianGeneratorFactory'>
       <libraryFunction>MTBrownianGeneratorFactory</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

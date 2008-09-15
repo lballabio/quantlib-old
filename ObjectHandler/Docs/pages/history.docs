@@ -56,30 +56,52 @@ Function ohPropertyNames modified to suppress ObjectId, ClassName from return va
 and to list values in the sequence in which they appear in the constructor of the
 corresponding class.
 
-<strong>Release 0.9.5 - ??? 200?</strong>
+<strong>Release 0.9.6 - September 2008</strong>
 
 DESIGN
 
-- xxx
+- Type boost::any is replaced with boost::variant as the latter offers
+  native support for boost::serialization (thanks to Plamen Neykov)
+- New class Processor facilitates stateful serialization of Objects
+  (thanks to Plamen Neykov)
+- Additional logic to ensure that, when an Object is retrieved from the
+  Repository, if the Object is older than any of its precedents then
+  it is recreated before being returned to the client application
+- New functions ohObjectCreationTime(), ohObjectUpdateTime(),
+  ohObjectPrecedentIDs(), ohConcatenate()
+- Class SerializationFactory cleaned up and consolidated
 
-FUNCTIONALITY
+BUILD
 
+- Introduce support for VC9.  Drop the SingleThread configurations from the VC7
+  build as these are no longer supported by log4cxx.
 - When compiling under Linux, rather than using relative paths to locate
   gensrc, the path is now specified with a mandatory argument to the configure
   script:
-    ./configure --with-gensrc=/path/to/gensrc
+\verbatim
+./configure --with-gensrc=/path/to/gensrc
+\endverbatim
+
+DOCUMENTATION
+
+- Installation document revised and expanded
+- Fixed bug which caused chm files to hang
 
 LOG4CXX
 
-- A couple of minor fixes to makefiles
-- Repackaged as version 0.9.7f (see below for explanation of
-  log4cxx version numbers)
+- Migrate from log4cxx 0.9.7 to log4cxx 0.10.0
+- A customized build of log4cxx 0.10.0 is packaged for use with
+  %ObjectHandler and released as version 0.10.0a.  The convention for log4cxx
+  version numbers is explained below in the notes for %ObjectHandler version
+  0.1.4.
+- log4cxx now relies on the apr and apr-utils applications, which are included
+  with the log4cxx 0.10.0a package.
 
 REQUIRED PACKAGES
 
 - Boost version 1.34.1 or later
-- log4cxx version 0.9.7f
-- gensrc version 0.9.5
+- log4cxx version 0.10.0a
+- gensrc version 0.9.6
 
 <strong>Release 0.9.0 - January 2008</strong>
 
@@ -105,8 +127,8 @@ DESIGN
 LOG4CXX
 
 - A couple of minor fixes to makefiles
-- Repackaged as version 0.9.7e (see below for explanation of
-  log4cxx version numbers)
+- Repackaged as version 0.9.7e.  The convention for log4cxx version numbers is
+  explained below in the notes for %ObjectHandler version 0.1.4.
 
 REQUIRED PACKAGES
 
@@ -154,8 +176,8 @@ DOCUMENTATION
 LOG4CXX
 
 - A couple of minor fixes to makefiles
-- Repackaged as version 0.9.7d (see below for explanation of
-  log4cxx version numbers)
+- Repackaged as version 0.9.7d.  The convention for log4cxx version numbers is
+  explained below in the notes for %ObjectHandler version 0.1.4.
 
 REQUIRED PACKAGES
 
@@ -172,8 +194,8 @@ DESIGN
 LOG4CXX
 
 - A couple of minor fixes to makefiles
-- Repackaged as version 0.9.7c (see below for explanation of
-  log4cxx version numbers)
+- Repackaged as version 0.9.7c.  The convention for log4cxx version numbers is
+  explained below in the notes for %ObjectHandler version 0.1.4.
 
 REQUIRED PACKAGES
 
@@ -191,8 +213,8 @@ EXCEL
 LOG4CXX
 
 - A couple of minor fixes to makefiles
-- Repackaged as version 0.9.7b (see below for explanation of
-  log4cxx version numbers)
+- Repackaged as version 0.9.7b.  The convention for log4cxx version numbers is
+  explained below in the notes for %ObjectHandler version 0.1.4.
 
 REQUIRED PACKAGES
 

@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""generate source code for enumerations."""
+"""Generate source code for enumerations."""
 
 from gensrc.addins import addin
 from gensrc.utilities import outputfile
@@ -27,7 +27,7 @@ from gensrc.utilities import log
 from gensrc.configuration import environment
 
 class Enumerations(addin.Addin):
-    """generate source code for enumerations."""
+    """Generate source code for enumerations."""
 
     #############################################
     # class variables
@@ -55,7 +55,7 @@ class Enumerations(addin.Addin):
     #############################################
 
     def generate(self, categoryList, enumerationList):
-        """generate source code for enumerations."""
+        """Generate source code for enumerations."""
 
         self.enumerationList_ = enumerationList
 
@@ -67,7 +67,7 @@ class Enumerations(addin.Addin):
 
 
     def generateEnumeratedTypes(self):
-        """generate source file for enumerated types."""
+        """Generate source file for enumerated types."""
         if not self.enumerationList_.hasEnumeratedTypes:
             return
         codeRegister = ''       # code to register the enumeration
@@ -84,7 +84,7 @@ class Enumerations(addin.Addin):
             self.enumerationList_.enumeratedTypeCopyright(), buffer)
 
     def generateEnumeratedType(self, enumeratedTypeGroup):
-        """generate source code for enumerated type group."""
+        """Generate source code for enumerated type group."""
         buffer = ''
         for enumeratedType in enumeratedTypeGroup.enumeratedTypes():
             buffer += Enumerations.ENUM_LINE % {
@@ -96,7 +96,7 @@ class Enumerations(addin.Addin):
 
 
     def generateEnumeratedClasses(self):
-        """generate source file for enumerated types."""
+        """Generate source file for enumerated types."""
         if not self.enumerationList_.hasEnumeratedClasses:
             return
         buffer = ''   # code to register the enumeration
@@ -109,7 +109,7 @@ class Enumerations(addin.Addin):
             self.enumerationList_.enumeratedClassCopyright(), buf)
 
     def generateEnumeratedClass(self, enumeratedClassGroup):
-        """generate source code for enumerated type group."""
+        """Generate source code for enumerated type group."""
         buffer = ''
         for enumeratedType in enumeratedClassGroup.enumeratedClasses():
             buffer += Enumerations.ENUM_LINE2 % {
@@ -125,7 +125,7 @@ class Enumerations(addin.Addin):
 
 
     def generateEnumeratedPairs(self):
-        """generate source file for enumerated types."""
+        """Generate source file for enumerated types."""
         if not self.enumerationList_.hasEnumeratedPairs:
             return
         buffer = ''   # code to register the enumeration
@@ -138,7 +138,7 @@ class Enumerations(addin.Addin):
             self.enumerationList_.enumeratedPairCopyright(), buf)
 
     def generateEnumeratedPair(self, enumeratedPairGroup):
-        """generate source code for enumerated type group."""
+        """Generate source code for enumerated type group."""
         buffer = ''
         for enumeratedPair in enumeratedPairGroup.enumeratedPairs():
             buffer += Enumerations.ENUM_LINE3 % {

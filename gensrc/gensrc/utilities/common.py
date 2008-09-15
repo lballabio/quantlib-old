@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""global constants."""
+"""Global constants."""
 
 ADDIN_INCLUDES = 'addinIncludes'
 ALIAS = 'alias'

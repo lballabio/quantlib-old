@@ -31,6 +31,7 @@
 
 namespace ObjectHandler {
 
+    //! The dimensions of the calling range.
     struct CallerDimensions {
         enum Type { Uninitialized, Row, Column /*, Matrix, Scalar */ };
     };
@@ -49,7 +50,8 @@ namespace ObjectHandler {
     /*! An instance of this object is instantiated on the stack when the
         function is invoked such that the object goes out of scope when
         the function exits.  This class allows global access to
-        function-specific state e.g. the return value of xlfGetCaller.
+        function-specific state e.g. a reference to the range from which
+        the active function was called.
     */
     class DLL_API FunctionCall {
     public:
@@ -67,7 +69,9 @@ namespace ObjectHandler {
         ~FunctionCall();
         //! A reference to the global FunctionCall Singleton.
         /*! Clients of this class access it with a call to
+            \code
                 FunctionCall::instance()
+            \endcode
         */
         static FunctionCall &instance();
         //@}

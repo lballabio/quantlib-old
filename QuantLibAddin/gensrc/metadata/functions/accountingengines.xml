@@ -28,7 +28,6 @@
     <!-- AccountingEngine class constructor -->
     <Constructor name='qlAccountingEngine'>
       <libraryFunction>AccountingEngine</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -60,7 +59,6 @@
     <!--Member name='qlAccountingEngineMultiplePathValues' type='QuantLib::AccountingEngine'>
       <description>return multiple path values.</description>
       <libraryFunction>multiplePathValues</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>

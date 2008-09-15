@@ -22,6 +22,9 @@
 This section of the documentation provides technical information relating
 to %QuantLibAddin/QuantLibXL source code.
 
+Section <a href="tutorials.html">Tutorials</a> explains how to compile various
+builds of %QuantLibAddin.
+
 Section <a href="qlo/annotated.html">Classes</a> documents the classes in
 %QuantLibAddin.
 
@@ -33,12 +36,6 @@ documentation according to source code files.
 
 Section <a href="qlo/examples.html">Examples</a> summarizes some command-line
 examples of %QuantLibAddin functionality.
-
-Section <a href="calc.html">Calc</a> documents the %QuantLibAddin build for
-OpenOffice.org Calc.
-
-Section <a href="tutorials.html">Tutorials</a> explains how to compile various
-builds of %QuantLibAddin.
 
 */
 

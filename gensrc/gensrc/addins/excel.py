@@ -35,7 +35,7 @@ from gensrc.utilities import log
 import re
 import string
 
-# constants
+# Constants
 
 MAXLEN = 255                        # max length of excel string
 MAXPARAM = 30                       # max #/params to an Excel function
@@ -55,12 +55,12 @@ LOOP_INCLUDES = '''\
 #include <%s/loop/loop_%s.hpp>
 #include <ohxl/loop.hpp>\n'''
 
-# some constant values for processing cell range names
+# Some constant values for processing cell range names
 CELL_MAX_COL_ID = "XFD"         # the last column in Excel 2007
 CELL_MAX_COL_NUM = 16384        # value XFD expressed as base 26 number
 CELL_MAX_ROW_NUM = 1048576      # the last row in Excel 2007
 CELL_NAME_REGEX = re.compile(r'(?P<colLabel>[A-Z]+)(?P<rowLabel>\d+)', re.I)
-# we need the 1-based index of letters so prefix the alphabet with a dummy character
+# We need the 1-based index of letters so prefix the alphabet with a dummy character
 COL_TO_NUM = "_" + string.lowercase
 
 class ExcelAddin(addin.Addin):
@@ -116,16 +116,20 @@ class ExcelAddin(addin.Addin):
             outputfile.OutputFile(self, fileName, cat.copyright(), buf)
 
     def indexOfCol(self, str):
-        """convert an Excel column ID to an int"""
+        """Convert an Excel column ID to an int"""
         return reduce(lambda x, y: 26 * x + y, map(COL_TO_NUM.index, str.lower()))
 
     def cellNameConflict(self, funcName):
+        """Return a boolean indicating whether the given function name
+        conflicts with a cell range name in Excel."""
         m = CELL_NAME_REGEX.match(funcName.upper())
         return m \
         and self.indexOfCol(m.group('colLabel')) <= CELL_MAX_COL_NUM \
         and int(m.group('rowLabel')) <= CELL_MAX_ROW_NUM
 
     def xlWizardCheck(self, func):
+        """Test whether the function should check for the Function Wizard
+        and if so return the relevant code snippet."""
         if func.calcInWizard():
             return ''
         else:
@@ -177,7 +181,8 @@ class ExcelAddin(addin.Addin):
             paramStr += '#'
         paramNames = func.parameterList().generate(self.parameterList_)
         if len(paramNames) > MAX_LEN_PARAMLIST:
-            raise excelexceptions.ExcelParameterLengthException(func.name(), paramNames, MAX_LEN_PARAMLIST)
+            raise excelexceptions.ExcelParameterLengthException(
+                func.name(), paramNames, MAX_LEN_PARAMLIST)
 
         # Configure call to xlfRegister.  We will pass in NUMDESC params to
         # register the function, plus one additional param to describe each
@@ -190,8 +195,8 @@ class ExcelAddin(addin.Addin):
         # The workaround is to pad the last string with two spaces:
         # - If the function has parameters then the last parameter will get padded
         #   in rule.py according to RuleGroup attribute "padLastParamName='True'"
-        # - If the function has no parameters then the function description will be the
-        #   last parameter and we pad it here.
+        # - If the function has no parameters then the function description will be
+        #   the last parameter and we pad it here.
         if numUserParams:
             funcDesc = func.description()
             delim = ','
@@ -228,6 +233,7 @@ class ExcelAddin(addin.Addin):
             'unregister' : unregister }
 
     def outputRegisterFile(self, registerCode, unregisterCode, categoryName):
+        """Write to disk the buffer for registering functions."""
         registerBuffer = self.bufferRegisterFile_.text() % {
             'categoryName' : categoryName.capitalize(),
             'registerCode' : registerCode,
@@ -237,6 +243,7 @@ class ExcelAddin(addin.Addin):
         outputfile.OutputFile(self, registerFile, self.copyright_, registerBuffer)
 
     def generateRegisterFunctions(self, cat):
+        """Generate the code for registering addin functions with Excel."""
         registerCode = ''
         unregisterCode = ''
         for func in cat.functions(self.name_, supportedplatform.MANUAL):
@@ -289,48 +296,78 @@ class ExcelAddin(addin.Addin):
         outputfile.OutputFile(self, fileName, self.copyright_, buf)
 
     def printDebug(self):
+        """Write debug info to stdout."""
         self.xlRegisterParam_.printDebug()
 
     def functionDeclaration(self):
+        """Return the RuleGroup object named functionDeclaration which was loaded
+        from the XML rule metadata for this addin."""
         return self.functionDeclaration_
 
     def functionReturnType(self):
+        """Return the RuleGroup object named functionReturnType which was loaded
+        from the XML rule metadata for this addin."""
         return self.functionReturnType_
 
     def xlRegisterParam(self):
+        """Return the RuleGroup object named xlRegisterParam which was loaded
+        from the XML rule metadata for this addin."""
         return self.xlRegisterParam_
 
     def xlRegisterReturn(self):
+        """Return the RuleGroup object named xlRegisterReturn which was loaded
+        from the XML rule metadata for this addin."""
         return self.xlRegisterReturn_
 
     def parameterList(self):
+        """Return the RuleGroup object named parameterList which was loaded
+        from the XML rule metadata for this addin."""
         return self.parameterList_
 
     def registerParameters(self):
+        """Return the RuleGroup object named registerParameters which was loaded
+        from the XML rule metadata for this addin."""
         return self.registerParameters_
 
     def cppConversions(self):
+        """Return the RuleGroup object named cppConversions which was loaded
+        from the XML rule metadata for this addin."""
         return self.cppConversions_
 
     def libraryConversions(self):
+        """Return the RuleGroup object named libraryConversions which was loaded
+        from the XML rule metadata for this addin."""
         return self.libraryConversions_
 
     def enumConversions(self):
+        """Return the RuleGroup object named enumConversions which was loaded
+        from the XML rule metadata for this addin."""
         return self.enumConversions_
 
     def objectConversions(self):
+        """Return the RuleGroup object named objectConversions which was loaded
+        from the XML rule metadata for this addin."""
         return self.objectConversions_
 
     def referenceConversions(self):
+        """Return the RuleGroup object named referenceConversions which was loaded
+        from the XML rule metadata for this addin."""
         return self.referenceConversions_
 
     def returnConversion(self):
+        """Return the RuleGroup object named returnConversion which was loaded
+        from the XML rule metadata for this addin."""
         return self.returnConversion_
 
     def loopName(self, param):
+        """Return the name of the given parameter as required for loop code - in
+        this case no conversion is performed."""
         return param.name()
 
     def idStrip(self, parameterList):
+        """Return a snippet of code comprising the list of parameters,
+        where the Excel cell update counter suffix has been removed
+        from object IDs."""
         return ExcelAddin.ID_STRIP % parameterList.generate(self.idStrip_)
 
     #############################################
@@ -338,7 +375,7 @@ class ExcelAddin(addin.Addin):
     #############################################
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         super(ExcelAddin, self).serialize(serializer)
         serializer.serializeBoolean(self, 'exportSymbols')
 

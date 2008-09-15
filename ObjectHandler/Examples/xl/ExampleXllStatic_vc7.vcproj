@@ -40,13 +40,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc71-mt-sgd-0_9_5.xll"
+				OutputFile="xll\ExampleXLLStatic-vc71-mt-sgd-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-sgd-0_9_5.pdb"
-				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-sgd-0_9_5.lib"
+				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-sgd-0_9_6.pdb"
+				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-sgd-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -108,12 +108,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc71-mt-s-0_9_5.xll"
+				OutputFile="xll\ExampleXLLStatic-vc71-mt-s-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-s-0_9_5.pdb"
-				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-s-0_9_5.lib"
+				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-s-0_9_6.pdb"
+				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-s-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -132,141 +132,6 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
-				Culture="2057"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release SingleThread|Win32"
-			OutputDirectory=".\buildXllStatic\vc71\$(ConfigurationName)"
-			IntermediateDirectory=".\buildXllStatic\vc71\$(ConfigurationName)"
-			ConfigurationType="2"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..,..\.."
-				PreprocessorDefinitions="NDEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
-				StringPooling="TRUE"
-				RuntimeLibrary="4"
-				EnableFunctionLevelLinking="TRUE"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="0"
-				PrecompiledHeaderThrough=""
-				PrecompiledHeaderFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXllStatic.pch"
-				AssemblerListingLocation=".\buildXllStatic\vc71\$(ConfigurationName)\"
-				ObjectFile=".\buildXllStatic\vc71\$(ConfigurationName)\"
-				ProgramDataBaseFileName=".\buildXllStatic\vc71\$(ConfigurationName)\"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc71-s-0_9_5.xll"
-				LinkIncremental="2"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-s-0_9_5.pdb"
-				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-s-0_9_5.lib"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="NDEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXllStatic.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="2057"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug SingleThread|Win32"
-			OutputDirectory=".\buildXllStatic\vc71\$(ConfigurationName)"
-			IntermediateDirectory=".\buildXllStatic\vc71\$(ConfigurationName)"
-			ConfigurationType="2"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="..,..\.."
-				PreprocessorDefinitions="_DEBUG;_WINDOWS;_USRDLL;XLL_STATIC;WIN32;LOG4CXX_STATIC"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXllStatic.pch"
-				AssemblerListingLocation=".\buildXllStatic\vc71\$(ConfigurationName)\"
-				ObjectFile=".\buildXllStatic\vc71\$(ConfigurationName)\"
-				ProgramDataBaseFileName=".\buildXllStatic\vc71\$(ConfigurationName)\"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc71-sgd-0_9_5.xll"
-				LinkIncremental="2"
-				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-sgd-0_9_5.pdb"
-				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-sgd-0_9_5.lib"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="_DEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXllStatic.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
 				Culture="2057"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
@@ -310,12 +175,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc71-mt-0_9_5.xll"
+				OutputFile="xll\ExampleXLLStatic-vc71-mt-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-0_9_5.pdb"
-				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-0_9_5.lib"
+				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-0_9_6.pdb"
+				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -376,13 +241,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc71-mt-gd-0_9_5.xll"
+				OutputFile="xll\ExampleXLLStatic-vc71-mt-gd-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-gd-0_9_5.pdb"
-				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-gd-0_9_5.lib"
+				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-gd-0_9_6.pdb"
+				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-gd-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"

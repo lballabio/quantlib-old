@@ -107,7 +107,7 @@ enable-auto-props = yes
 *.R = svn:eol-style=native
 *.ac = svn:eol-style=LF
 *.am = svn:eol-style=LF
-*.bat = svn:eol-style=native
+*.bat = svn:eol-style=CRLF
 *.c = svn:eol-style=native
 *.cmake = svn:eol-style=native
 *.cmd = svn:eol-style=CRLF
@@ -126,7 +126,7 @@ enable-auto-props = yes
 *.dtd = svn:eol-style=native
 *.el = svn:eol-style=native
 *.exe = svn:mime-type=application/octet-stream
-*.gif = svn:mime-type=image/gif
+*.gif = svn:mime-type=image/gif;svn:needs-lock
 *.h = svn:eol-style=native
 *.hpp = svn:eol-style=native
 *.htm = svn:eol-style=native
@@ -150,7 +150,7 @@ enable-auto-props = yes
 *.rb = svn:eol-style=native
 *.rst = svn:eol-style=native
 *.scm = svn:eol-style=native
-*.sh = svn:eol-style=native;svn:executable
+*.sh = svn:eol-style=LF;svn:executable
 *.sln = svn:eol-style=CRLF
 *.ss = svn:eol-style=native
 *.tex = svn:eol-style=native
@@ -163,7 +163,5 @@ enable-auto-props = yes
 *.xls = svn:mime-type=application/vnd.ms-excel;svn:needs-lock
 *.xlsx = svn:mime-type=application/vnd.ms-excel;svn:needs-lock
 *.xml = svn:eol-style=native
-Makefile = svn:eol-style=native
 README = svn:eol-style=native
-configure = svn:eol-style=native
 stub.* = svn:eol-style=native

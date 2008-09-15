@@ -226,11 +226,11 @@
 				>
 			</File>
 			<File
-				RelativePath="gensrc\configuration\initialization.py"
+				RelativePath="gensrc\configuration\exceptions.py"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\configuration\exceptions.py"
+				RelativePath="gensrc\configuration\initialization.py"
 				>
 			</File>
 		</Filter>
@@ -382,15 +382,15 @@
 				>
 			</File>
 			<File
+				RelativePath="gensrc\types\fulltype.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\types\supertype.py"
 				>
 			</File>
 			<File
 				RelativePath="gensrc\types\typelist.py"
-				>
-			</File>
-			<File
-				RelativePath="gensrc\types\fulltype.py"
 				>
 			</File>
 		</Filter>
@@ -594,11 +594,11 @@
 				>
 			</File>
 			<File
-				RelativePath="gensrc\stubs\stub.vo.class.decl"
+				RelativePath="gensrc\stubs\stub.vo.class.body.inline"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\stubs\stub.vo.class.body.inline"
+				RelativePath="gensrc\stubs\stub.vo.class.decl"
 				>
 			</File>
 			<File
@@ -619,7 +619,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\dependencies.vc"
+			RelativePath="dependencies.vc"
 			>
 		</File>
 		<File

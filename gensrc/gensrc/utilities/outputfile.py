@@ -16,7 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""represent a file which gets overwritten only when its contents change."""
+"""Represent a file which gets overwritten only when its contents change."""
 
 from gensrc.configuration import environment
 from gensrc.utilities import log
@@ -26,7 +26,7 @@ import filecmp
 import re
 
 class OutputFile(object):
-    """represent a file which gets overwritten only when its contents change."""
+    """Represent a file which gets overwritten only when its contents change."""
 
     #############################################
     # class variables
@@ -34,8 +34,8 @@ class OutputFile(object):
     
     TRIM_WHITESPACE = re.compile(r'^ *', re.M)
     HEADER = """\
-// This file was generated automatically by %s.
-// Editing this file manually is not recommended.\n\n"""
+// This file was generated automatically by %s.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.\n\n"""
     UPDATE_MSG = '%-100s %10s'
 
     #############################################
@@ -43,29 +43,34 @@ class OutputFile(object):
     #############################################
 
     def printCopyright(self, copyright):
+        """Print the copyright message relevant for this source code file."""
         copyrightTrim = OutputFile.TRIM_WHITESPACE.sub(' ', copyright)
         self.outFile_.write(environment.config().copyrightBuffer() % 
             { 'copyright' : copyrightTrim } )
 
     def printHeader(self):
+        """Print the gensrc comment header for this source code file."""
         self.outFile_.write(OutputFile.HEADER % os.path.basename(sys.argv[0]))
 
     def close(self):
-        """close temp file and overwrite original if they are different."""
+        """Close temp file and overwrite original if they are different."""
         self.outFile_.close()
         if os.path.exists(self.fileName_):
             if filecmp.cmp(self.fileName_, self.fileNameTemp_):
                 os.unlink(self.fileNameTemp_)
-                log.Log.instance().logMessage(OutputFile.UPDATE_MSG % (self.fileName_ + ':', 'unchanged'))
+                log.Log.instance().logMessage(OutputFile.UPDATE_MSG %
+                    (self.fileName_ + ':', 'unchanged'))
                 self.addin_.incrementUnchanged()
             else:
                 os.unlink(self.fileName_)
                 os.rename(self.fileNameTemp_, self.fileName_)
-                log.Log.instance().logMessage(OutputFile.UPDATE_MSG % (self.fileName_ + ':', 'updated'))
+                log.Log.instance().logMessage(OutputFile.UPDATE_MSG %
+                    (self.fileName_ + ':', 'updated'))
                 self.addin_.incrementUpdated()
         else:
             os.rename(self.fileNameTemp_, self.fileName_)
-            log.Log.instance().logMessage(OutputFile.UPDATE_MSG % (self.fileName_ + ':', 'created'))
+            log.Log.instance().logMessage(OutputFile.UPDATE_MSG %
+                    (self.fileName_ + ':', 'created'))
             self.addin_.incrementCreated()
 
     #############################################
@@ -73,7 +78,7 @@ class OutputFile(object):
     #############################################
 
     def __init__(self, addin, fileName, copyright, buffer, printHeader = True):
-        """open file and write header."""
+        """Open file and write header."""
         self.addin_ = addin
         self.fileName_ = fileName
         self.fileNameTemp_ = self.fileName_ + '.temp'

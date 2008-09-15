@@ -462,7 +462,6 @@
     <Procedure name='qlCoterminalSwapForwardJacobian'>
       <description>Returns the jacobian between coterminal swap rates and forward rates.</description>
       <alias>QuantLib::SwapForwardMappings::coterminalSwapForwardJacobian</alias>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -487,7 +486,6 @@
     <Procedure name='qlCoterminalSwapZedMatrix'>
       <description>Returns the Z matrix to switch base from forward to coterminal swap rates.</description>
       <alias>QuantLib::SwapForwardMappings::coterminalSwapZedMatrix</alias>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -517,7 +515,6 @@
     <Procedure name='qlCoinitialSwapForwardJacobian'>
       <description>Returns the jacobian between coinitial swap rates and forward rates.</description>
       <alias>QuantLib::SwapForwardMappings::coinitialSwapForwardJacobian</alias>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -542,7 +539,6 @@
     <Procedure name='qlCoinitialSwapZedMatrix'>
       <description>Returns the Z matrix to switch base from forward to coinitial swap rates.</description>
       <alias>QuantLib::SwapForwardMappings::coinitialSwapZedMatrix</alias>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -572,7 +568,6 @@
     <Procedure name='qlCmSwapForwardJacobian'>
       <description>Returns the jacobian between constant maturity swap rates and forward rates.</description>
       <alias>QuantLib::SwapForwardMappings::cmSwapForwardJacobian</alias>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -602,7 +597,6 @@
     <Procedure name='qlCmSwapZedMatrix'>
       <description>Returns the Z matrix to switch base from forward to constant maturity swap rates.</description>
       <alias>QuantLib::SwapForwardMappings::cmSwapZedMatrix</alias>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -637,7 +631,6 @@
     <Procedure name='qlAnnuity'>
       <description>returns annuity of arbitrary swap-rate.</description>
       <alias>QuantLib::SwapForwardMappings::annuity</alias>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -677,7 +670,6 @@
     <Procedure name='qlSwapDerivative'>
       <description>returns derivative of swap-rate to underlying forward rate.</description>
       <alias>QuantLib::SwapForwardMappings::swapDerivative</alias>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -716,7 +708,6 @@
 
     <Procedure name='qlRateVolDifferences'>
       <description>Compute the differences between all implied forwards volatilities.</description>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -746,7 +737,6 @@
 
     <Procedure name='qlRateInstVolDifferences'>
       <description>Compute the differences between volatilities at each evolution step.</description>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

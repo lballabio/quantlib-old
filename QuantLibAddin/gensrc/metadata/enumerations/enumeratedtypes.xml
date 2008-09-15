@@ -47,6 +47,14 @@
           <string>ThirdWednesday</string>
           <value>QuantLib::DateGeneration::ThirdWednesday</value>
         </EnumeratedType>
+        <EnumeratedType>
+          <string>Twentieth</string>
+          <value>QuantLib::DateGeneration::Twentieth</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>TwentiethIMM</string>
+          <value>QuantLib::DateGeneration::TwentiethIMM</value>
+        </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 

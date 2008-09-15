@@ -24,10 +24,13 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS"
+				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				TreatWChar_tAsBuiltInType="TRUE"
+				ForceConformanceInForLoopScope="FALSE"
 				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=".\buildDynamic\vc71\$(ConfigurationName)/AddinExcelDynamic.pch"
 				AssemblerListingLocation=".\buildDynamic\vc71\$(ConfigurationName)/"
 				ObjectFile=".\buildDynamic\vc71\$(ConfigurationName)/"
@@ -35,18 +38,20 @@
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
-				CompileAs="0"/>
+				CompileAs="0"
+				DisableSpecificWarnings="4819"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc71-mt-gd-0_9_5.xll"
+				AdditionalDependencies="odbc32.lib odbccp32.lib"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc71-mt-gd-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
+				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibXLDynamic-vc71-mt-gd-0_9_5.pdb"
-				ImportLibrary=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibXLDynamic-vc71-mt-gd-0_9_5.lib"
+				ProgramDatabaseFile=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibXLDynamic-vc71-mt-gd-0_9_6.pdb"
+				ImportLibrary=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibXLDynamic-vc71-mt-gd-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -110,12 +115,13 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc71-mt-0_9_5.xll"
+				AdditionalDependencies="odbc32.lib odbccp32.lib"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc71-mt-0_9_6.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
-				ProgramDatabaseFile=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibXLDynamic-vc71-mt-0_9_5.pdb"
-				ImportLibrary=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibXLDynamic-vc71-mt-0_9_5.lib"
+				ProgramDatabaseFile=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibXLDynamic-vc71-mt-0_9_6.pdb"
+				ImportLibrary=".\buildDynamic\vc71\$(ConfigurationName)/QuantLibXLDynamic-vc71-mt-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"

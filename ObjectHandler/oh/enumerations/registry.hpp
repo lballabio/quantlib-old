@@ -58,13 +58,13 @@ namespace ObjectHandler {
         //@{
         //! Return a reference to the type map.
         /*! The type map would normally be declared as a member variable but that
-        isn't possible because std::map cannot be exported across DLL boundaries.
-        Instead this pure virtual member function is declared in the base class.
-        Derived classes must implement a concrete override of the function, returning
-        a (non-const) reference to a static variable declared in a cpp file.
+            isn't possible because std::map cannot be exported across DLL boundaries.
+            Instead this pure virtual member function is declared in the base class.
+            Derived classes must implement a concrete override of the function, returning
+            a (non-const) reference to a static variable declared in a cpp file.
 
         \todo Make this function protected, and provide a public function returning
-        a const reference for use by client classes (e.g. RegistryManager).
+            a const reference for use by client classes (e.g. RegistryManager).
         */
         virtual AllTypeMap& getAllTypesMap() const = 0;
         //! Store a type in the registry.
@@ -75,8 +75,8 @@ namespace ObjectHandler {
         std::vector<std::string> getTypeElements(const std::string&) const;
         //! Free any memory allocated to the type map.
         /*! If the derived class has called "new" when initializing the type map,
-        then when the application shuts down, a (harmless) memory leak will occur.
-        This function should be called to ensure a clean shutdown.
+            then when the application shuts down, a (harmless) memory leak will occur.
+            This function should be called to ensure a clean shutdown.
         */
         void deleteTypeMap(const std::string &mapID) const;
         //@}

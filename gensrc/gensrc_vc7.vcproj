@@ -76,6 +76,12 @@
 				RelativePath="gensrc\addins\calc.py">
 			</File>
 			<File
+				RelativePath="gensrc\addins\cpp.py">
+			</File>
+			<File
+				RelativePath="gensrc\addins\cppexceptions.py">
+			</File>
+			<File
 				RelativePath="gensrc\addins\doxygen.py">
 			</File>
 			<File
@@ -88,13 +94,16 @@
 				RelativePath="gensrc\addins\excelexceptions.py">
 			</File>
 			<File
-				RelativePath="gensrc\addins\serializationexceptions.py">
-			</File>
-			<File
 				RelativePath="gensrc\addins\guile.py">
 			</File>
 			<File
 				RelativePath="gensrc\addins\loop.py">
+			</File>
+			<File
+				RelativePath="gensrc\addins\serialization.py">
+			</File>
+			<File
+				RelativePath="gensrc\addins\serializationexceptions.py">
 			</File>
 			<File
 				RelativePath="gensrc\addins\valueobjects.py">
@@ -123,10 +132,10 @@
 				RelativePath="gensrc\configuration\environment.py">
 			</File>
 			<File
-				RelativePath="gensrc\configuration\initialization.py">
+				RelativePath="gensrc\configuration\exceptions.py">
 			</File>
 			<File
-				RelativePath="gensrc\configuration\exceptions.py">
+				RelativePath="gensrc\configuration\initialization.py">
 			</File>
 		</Filter>
 		<Filter
@@ -165,22 +174,22 @@
 				RelativePath="gensrc\functions\behaviorloop.py">
 			</File>
 			<File
+				RelativePath="gensrc\functions\constructor.py">
+			</File>
+			<File
+				RelativePath="gensrc\functions\enumerationmember.py">
+			</File>
+			<File
 				RelativePath="gensrc\functions\exceptions.py">
 			</File>
 			<File
 				RelativePath="gensrc\functions\function.py">
 			</File>
 			<File
-				RelativePath="gensrc\functions\constructor.py">
-			</File>
-			<File
 				RelativePath="gensrc\functions\member.py">
 			</File>
 			<File
 				RelativePath="gensrc\functions\procedure.py">
-			</File>
-			<File
-				RelativePath="gensrc\functions\enumerationmember.py">
 			</File>
 			<File
 				RelativePath="gensrc\functions\supportedplatform.py">
@@ -248,13 +257,13 @@
 				RelativePath="gensrc\types\exceptions.py">
 			</File>
 			<File
+				RelativePath="gensrc\types\fulltype.py">
+			</File>
+			<File
 				RelativePath="gensrc\types\supertype.py">
 			</File>
 			<File
 				RelativePath="gensrc\types\typelist.py">
-			</File>
-			<File
-				RelativePath="gensrc\types\fulltype.py">
 			</File>
 		</Filter>
 		<Filter
@@ -276,7 +285,7 @@
 				RelativePath="gensrc\utilities\outputfile.py">
 			</File>
 			<File
-				RelativePath="gensrc\utilities\types.py">
+				RelativePath="gensrc\utilities\utilities.py">
 			</File>
 		</Filter>
 		<Filter
@@ -314,6 +323,18 @@
 			</File>
 			<File
 				RelativePath="gensrc\stubs\stub.calc.map">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.cpp.declaration">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.cpp.function">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.cpp.header">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.cpp.loop">
 			</File>
 			<File
 				RelativePath="gensrc\stubs\stub.doxygen.categories">
@@ -367,13 +388,40 @@
 				RelativePath="gensrc\stubs\stub.guile.initfunc">
 			</File>
 			<File
+				RelativePath="gensrc\stubs\stub.serialization.all">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.serialization.body">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.serialization.creator">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.serialization.declaration">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.serialization.factory">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.serialization.header">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.serialization.register">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.serialization.registerall">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.vo.all">
+			</File>
+			<File
 				RelativePath="gensrc\stubs\stub.vo.class.body">
 			</File>
 			<File
-				RelativePath="gensrc\stubs\stub.vo.class.decl">
+				RelativePath="gensrc\stubs\stub.vo.class.body.inline">
 			</File>
 			<File
-				RelativePath="gensrc\stubs\stub.vo.class.body.inline">
+				RelativePath="gensrc\stubs\stub.vo.class.decl">
 			</File>
 			<File
 				RelativePath="gensrc\stubs\stub.vo.class.decl.inline">
@@ -388,6 +436,9 @@
 				RelativePath="gensrc\stubs\stub.vo.includes.inline">
 			</File>
 		</Filter>
+		<File
+			RelativePath="dependencies.vc">
+		</File>
 		<File
 			RelativePath="gensrc.py">
 		</File>

@@ -46,6 +46,9 @@
     <!-- upgrade shared_ptr<QuantLib::xx> to QuantLib::Handle<QuantLib::xx> -->
     <SuperType name='libToHandle' nativeType='string' conversionSuffix='LibObj'/>
 
+    <!-- force a relationship between RelinkableHandle and its precedents-->
+    <SuperType name='handlePredecessor' nativeType='string' objectReference='false' conversionSuffix=''/>
+
   </SuperTypes>
 
 </root>

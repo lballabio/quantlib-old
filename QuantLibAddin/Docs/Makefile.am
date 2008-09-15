@@ -1,7 +1,8 @@
 
 EXTRA_DIST = \
-    docs-QuantLibAddin_vc8.vcproj \
     docs-QuantLibAddin_vc7.vcproj \
+    docs-QuantLibAddin_vc8.vcproj \
+    docs-QuantLibAddin_vc9.vcproj \
     Makefile.vc \
     quantlibaddin.doxy \
     qla_footer.html \
@@ -11,20 +12,21 @@ EXTRA_DIST = \
     tabs.css \
     ql.css
 
-FILENAME := QuantLibAddin-$(VERSION)-docs-html
+FILENAME := QuantLibAddin-docs-$(VERSION)-html
 PROJECTNAME := quantlibaddin
 PROJECTINITIALS := qla
 DOXYGEN_INPUT := $(shell find ${top_srcdir}/qlo -name *.hpp) \
              $(wildcard ../../ObjectHandler/Docs/pages/*.docs) \
              $(wildcard auto.pages/*.docs) \
              $(wildcard pages/*.docs)
+OH_DIR := @oh_dir@
 
 # From here on this file is identical for ObjectHandler, gensrc, QuantLibAddin, QuantLibXL
 
 DOXYGEN_CONFIG := $(PROJECTNAME).doxy
 DOXYGEN_CONFIG_TEMP := .$(DOXYGEN_CONFIG)
 DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css $(PROJECTINITIALS)_footer.html $(PROJECTINITIALS)_header.html $(PROJECTINITIALS)_headeronline.html 
-SCRIPT := ../../ObjectHandler/dev_tools/preprocess_doxyfile.py
+SCRIPT := $(OH_DIR)/dev_tools/preprocess_doxyfile.py
 
 %.gz: %
 	rm -f $@
@@ -69,7 +71,7 @@ docs-online: .time-stamp-online
 	cp tabs.css html-online
 	cp ql.css html-online
 	mkdir -p html-online/images
-	cp -f images/*.ico images/*.jpg images/*.png html/images
+	cp -f images/*.ico images/*.jpg images/*.png html-online/images
 	touch .time-stamp-online
 
 docs-online-dist: docs-online

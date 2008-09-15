@@ -4,13 +4,13 @@
 # For further info: http://www.quantlibaddin.org/calc.html
 
 QL_DIR=..\..\..\QuantLib
-OBJECT_HANDLER_DIR=..\..\..\ObjectHandler
+OH_DIR=..\..\..\ObjectHandler
 LOG4CXX_DIR=..\..\..\log4cxx
-OFFICE_PROGRAM_PATH=C:\Program Files\OpenOffice.org 2.3\program
-OFFICE_SDK_PATH=C:\Program Files\OpenOffice.org_2.3_SDK
+OFFICE_PROGRAM_PATH=C:\Program Files\OpenOffice.org 2.4\program
+OFFICE_SDK_PATH=C:\Program Files\OpenOffice.org_2.4_SDK
 
 COMPONENT_NAME=QuantLibAddinCalc
-DLL_NAME=$(COMPONENT_NAME)-vc71-mt-0_9_0
+DLL_NAME=$(COMPONENT_NAME)-vc71-mt-0_9_6
 DLL_DIR=dll
 INT_DIR=build\vc71\ReleaseCRTDLL
 IDL_DIR="$(OFFICE_SDK_PATH)\idl"
@@ -28,7 +28,7 @@ FLAG6=$(INT_DIR)\$(COMPONENT_NAME).flag6
 
 CC_INCLUDES=-I. -I..\.. \
     -I"$(QL_DIR)" \
-    -I"$(OBJECT_HANDLER_DIR)" \
+    -I"$(OH_DIR)" \
     -I"$(OFFICE_SDK_PATH)\include"
 
 CC_FLAGS=/c /nologo /MD /GX /GR \
@@ -59,14 +59,14 @@ LFLAGS=/nologo /dll /out:$(DLL_FILE) \
 /libpath:. /libpath:..\..\lib \
 /libpath:"$(OFFICE_SDK_PATH)\windows\lib" \
 /libpath:"$(QL_DIR)\lib" \
-/libpath:"$(OBJECT_HANDLER_DIR)\lib" \
+/libpath:"$(OH_DIR)\lib" \
 /libpath:"$(LOG4CXX_DIR)\msvc\lib" \
 kernel32.lib wsock32.lib advapi32.lib \
 oldnames.lib netapi32.lib advapi32.lib gdi32.lib comdlg32.lib \
 comctl32.lib user32.lib winspool.lib shell32.lib ole32.lib \
 oleaut32.lib uuid.lib odbc32.lib odbccp32.lib \
 icppuhelper.lib icppu.lib isal.lib \
-msvcrt.lib msvcprt.lib
+msvcrt.lib msvcprt.lib WS2_32.lib
 
 TYPES = -Tcom.sun.star.sheet.XAddIn \
         -Tcom.sun.star.lang.XServiceName \
@@ -123,8 +123,7 @@ $(FLAG6) : $(FLAG5)
     echo flagged > $@
 
 CLEAN :
-    -@ if EXIST "$(INT_DIR)\*"            del /f /q "$(INT_DIR)\*"
-    -@ if EXIST "$(DLL_DIR)\*"            del /f /q "$(DLL_DIR)\*"
-    -@ if EXIST "$(URD_FILE)"             del /f /q "$(URD_FILE)"
-    -@ if EXIST com                       rmdir /q /s com
-
+    -@ if EXIST "$(INT_DIR)\*"	del /f /q "$(INT_DIR)\*"
+    -@ if EXIST "$(DLL_DIR)\*"  del /f /q "$(DLL_DIR)\*"
+    -@ if EXIST "$(URD_FILE)"   del /f /q "$(URD_FILE)"
+    -@ if EXIST com             rmdir /q /s com

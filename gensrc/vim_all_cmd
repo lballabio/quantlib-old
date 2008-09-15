@@ -1,2 +1,2 @@
 X=$(find . -name "*py" | grep -v __init__.py)
-vi $X gensrc/metadata/supertypelist.xml gensrc/metadata/addinexcel.xml
+vi $X

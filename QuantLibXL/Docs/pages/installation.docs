@@ -23,20 +23,44 @@
 
 /*! \page installation Installation
 
-Download QuantLibXL-bin-0.9.5.exe from the 
+Download QuantLibXL-bin-0.9.6.exe from the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=260244">Downloads page</a>.
 
 Run the installer to install QuantLibXL to your system.  You are given the
-option to install the \ref framework if desired.  To use QuantLibXL:
-\li Start Excel
-\li Load the addin - QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_5.xll
-\li Load an example workbook e.g. QuantLibXL\\Workbooks\\StandaloneExamples\\Option.xls
-\li Hit Ctrl-Alt-F9 to refresh the workbook
-\li For more info see the file README.txt in the folder StandaloneExamples
+option to install the \ref framework if desired.
 
-Send any support queries to <a href="mailto:quantlib-users@lists.sf.net">quantlib-users@lists.sf.net</a>.
-You can also
-<a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">search the archives</a>.
+\section qlxl_install_usage Usage
+
+To use QuantLibXL:
+\li Start Excel
+\li Load the addin:
+\verbatim
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_6.xll
+\endverbatim
+\li Load the example workbooks:
+\verbatim
+QuantLibXL\Workbooks\StandaloneExamples\YieldCurveBootstrapping.xls
+QuantLibXL\Workbooks\StandaloneExamples\InterestRateDerivatives.xls
+\endverbatim
+\li Hit <tt>Ctrl-Alt-F9</tt> to force a full recalculation
+
+If you want to have QuantLibXL loaded every time you start Excel,
+you can accomplish this as follows:
+\li Start Excel
+\li Ensure that at least one workbook is loaded - creating a new empty workbook if necessary
+\li Do <tt>Tools | Add-Ins</tt>, and click the Browse button
+\li Browse your way to the QuantLibXL XLL and click OK
+
+\section qlxl_install_directories Directories
+
+The SerializationDemo directory contains a VBA application which implements a
+demo serialization environment as described in the following document:
+
+<a href="http://www.quantlibaddin.org/serialization.html">http://www.quantlibaddin.org/serialization.html</a>
+
+Apart from the StandaloneExamples directory, other subdirectories of the
+Workbooks directory contain workbooks that belong to the \ref framework
+application.
 
 */
 

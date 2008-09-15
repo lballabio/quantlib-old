@@ -50,11 +50,11 @@ the calling cell.
 
 \section gc_diagnostics Diagnostics
 
-\li ohObjectCallerAddress() may be called on an object ID to retrieve the
+\li \ref ohObjectCallerAddress may be called on an object ID to retrieve the
 address of the cell in which the object was instantiated.  If this address
 comes back as a \#REF it indicates that the object is orphaned and will be
 culled next time ohCollectGarbage() is called.
-\li ohAllObjectLog() dumps the complete contents of the %ObjectHandler
+\li \ref ohLogAllObjects dumps the complete contents of the %ObjectHandler
 repository to the log file, this is followed by a summary of all of the
 references maintained by %ObjectHandler in support of garbage collection.
 

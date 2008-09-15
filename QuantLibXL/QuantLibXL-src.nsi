@@ -2,10 +2,10 @@
 # !defines
 
 !define APP "QuantLibXL"
-!define VER_NUMBER "0.9.5"
-!define VER_NUMBER_UNDERSCORE "0_9_5"
-!define COMPILER "vc90"
-!define DEFAULT_PATH "c:\build_ql_0_9_5\${APP}"
+!define VER_NUMBER "0.9.6"
+!define VER_NUMBER_UNDERSCORE "0_9_6"
+!define COMPILER "vc80"
+!define DEFAULT_PATH "c:\build_ql_0_9_6\${APP}"
 
 # Compiler Flags
 
@@ -63,7 +63,7 @@ Section
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"
     File "Docs\images\*.png"
-    File "Docs\images\*.php"
+    #File "Docs\images\*.php"
 
     SetOutPath "$INSTDIR\Docs\pages"
     File "Docs\pages\*.docs"
@@ -75,9 +75,11 @@ Section
     File "Workbooks\Math\*.xls"
 
     SetOutPath "$INSTDIR\Workbooks\StandaloneExamples"
-    File "Workbooks\StandaloneExamples\README.txt"
-    File "Workbooks\StandaloneExamples\*.xls"
-    File "Workbooks\StandaloneExamples\*.xla"
+    File /r "Workbooks\StandaloneExamples\*.xls"
+    File /r "Workbooks\StandaloneExamples\*.xla"
+    
+    SetOutPath "$INSTDIR\Workbooks\StandaloneExamples\SerializationDemo"
+    File "Workbooks\StandaloneExamples\SerializationDemo\README.TXT"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"

@@ -392,14 +392,14 @@ code218 = '''\
 # code for Calc
 ##########################################################################
 
-code70 = '''\
+code71a = '''\
         std::string %(name)sCpp = ouStringToStlString(%(name)s);\n'''
 
-code71 = '''\
+code71b = '''\
         std::string %(name)sCpp;
         calcToScalar(%(name)sCpp, %(name)s);\n'''
 
-code71b = '''\
+code71c = '''\
         ObjectHandler::property_t %(name)sCpp;
         calcToScalar(%(name)sCpp, %(name)s);\n'''
 

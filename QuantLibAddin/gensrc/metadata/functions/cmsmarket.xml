@@ -30,7 +30,6 @@
 
     <Constructor name='qlCmsMarket'>
       <libraryFunction>CmsMarket</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

@@ -137,6 +137,9 @@
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\mathf.docs">
 			</File>
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\objects.docs">
+			</File>
+			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\ohutils.docs">
 			</File>
 			<File
@@ -259,7 +262,13 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath="doxygen.css">
+		</File>
+		<File
 			RelativePath="Makefile.vc">
+		</File>
+		<File
+			RelativePath="ql.css">
 		</File>
 		<File
 			RelativePath="qlxl_footer.html">
@@ -272,6 +281,9 @@
 		</File>
 		<File
 			RelativePath="quantlibxl.doxy">
+		</File>
+		<File
+			RelativePath="tabs.css">
 		</File>
 	</Files>
 	<Globals>

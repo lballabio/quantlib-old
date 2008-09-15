@@ -88,6 +88,8 @@ namespace ObjectHandler {
         std::string getUpdateCount();
         //@}
 
+        //! \name Utilities
+        //@{
         //! Convert a full ID to a normal one.
         /*! Instances of class Object are identified by their ID.
             ObjectWrapperXL recognizes this "normal" ID and also a "full" ID which has
@@ -96,9 +98,19 @@ namespace ObjectHandler {
             if full the suffix is removed, if normal the value is returned unmodified.
         */
         static DLL_API std::string getStub(const std::string &objectID);
-
+        //! Initialize the Object ID.
+        /*! If a value has been provided then validate it.
+            If not then autogenerate a value.  In this case the Object is
+            considered to be "anonymous".
+        */
         std::string initializeID(const std::string &objectID);
+        //! Update the Object ID.
+        /*! If the Object resides in a worksheet cell then update the counter.
+            If not, for example if the Object was instantiated by VBA code,
+            then no change is made to the ID.
+        */
         std::string updateID(const std::string &objectID);
+        //@}
 
     private:
         static int keyCount_;

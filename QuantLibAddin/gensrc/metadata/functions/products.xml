@@ -32,7 +32,6 @@
 
     <Constructor name='qlMarketModelMultiProductComposite'>
       <libraryFunction>MultiProductComposite</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -47,7 +46,6 @@
     <Member name='qlMarketModelMultiProductCompositeAdd' type='QuantLib::MultiProductComposite' superType='libraryClass'>
       <description>Add new product to MarketModelComposite object.</description>
       <libraryFunction>MarketModelComposite::add</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -71,7 +69,6 @@
     <Member name='qlMarketModelMultiProductCompositeFinalize' type='QuantLib::MultiProductComposite' superType='libraryClass'>
       <description>finalize the MarketModelComposite object.</description>
       <libraryFunction>finalize</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -90,7 +87,6 @@
     <Member name='qlMarketModelMultiProductSuggestedNumeraires' type='QuantLib::MarketModelMultiProduct' superType='libraryClass'>
       <description>suggested Numeraires for the MarketModelMultiProduct object.</description>
       <libraryFunction>suggestedNumeraires</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -107,7 +103,6 @@
     <Member name='qlMarketModelMultiProductPossibleCashFlowTimes' type='QuantLib::MarketModelMultiProduct' superType='libraryClass'>
       <description>possible cash flow times for the MarketModelMultiProduct object.</description>
       <libraryFunction>possibleCashFlowTimes</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -124,7 +119,6 @@
     <Member name='qlMarketModelMultiProductNumberOfProducts' type='QuantLib::MarketModelMultiProduct' superType='libraryClass'>
       <description>number of products in the MarketModelMultiProduct object.</description>
       <libraryFunction>numberOfProducts</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -141,7 +135,6 @@
     <Member name='qlMarketModelMultiProductMaxNumberOfCashFlowsPerProductPerStep' type='QuantLib::MarketModelMultiProduct' superType='libraryClass'>
       <description>Max number of cashflows per product per step for the MarketModelMultiProduct object.</description>
       <libraryFunction>maxNumberOfCashFlowsPerProductPerStep</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -159,7 +152,6 @@
 
     <Constructor name='qlMarketModelOneStepForwards'>
       <libraryFunction>OneStepForwards</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -193,7 +185,6 @@
 
     <Constructor name='qlMarketModelMultiStepRatchet'>
       <libraryFunction>MultiStepRatchet</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -252,7 +243,6 @@
 
     <Constructor name='qlMarketModelOneStepOptionlets'>
       <libraryFunction>OneStepOptionlets</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

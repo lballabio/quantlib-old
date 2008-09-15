@@ -40,8 +40,10 @@ using namespace QuantLibAddinCpp;
 int main(int argc, char** argv) {
 
     try {
+
         if(argc < 5) {
-            std::cerr << "Usage:" << argv[0] << "  evaldate tradeid tradefile marketfile_1 marketfile_2 ... marketfile_n\n";
+            std::cerr << "Usage:" << argv[0] << "  evaldate tradeid tradefile "
+                "marketfile_1 marketfile_2 ... marketfile_n\n";
             return -1;
         }
 
@@ -78,7 +80,8 @@ int main(int argc, char** argv) {
 
         // Deserialize the objects
         for(unsigned int index = 0; index < vecMaketfiles.size(); ++index) {
-            ohObjectLoad("MarketData", vecMaketfiles[index], false, OH_NULL, OH_NULL);
+            ohObjectLoad("MarketData", vecMaketfiles[index],
+                false, OH_NULL, OH_NULL);
         }
         ohObjectLoad("Models", tradeFile, false, OH_NULL, OH_NULL);
 

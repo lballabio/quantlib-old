@@ -21,36 +21,50 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page boost Installing Boost
-
-If you are using VC9, then Boost 1.35 or later is required.  For other compilers,
-Boost 1.34 or later is required.
+/*! \page boost Installing Boost On Windows
 
 The main Boost website <a href="http://www.boost.org">http://www.boost.org</a>
-includes instructions for downloading Boost and building the package from source code.
-However it's easier to use the installer from the following link on the Boost 
-Consulting website:
+includes instructions for downloading Boost and building the package from
+source code.  However it's easier to use the installer from the following link
+on the Boost Consulting website:
 <a href="http://www.boost-consulting.com/products/free">http://www.boost-consulting.com/products/free</a>
 
-Start the installer, when prompted to select the variant you require, specify
-VC8 and Multithread e.g:
+The installer prompts you to select the variants you require.  The choice
+depends on the project configurations you intend to use:
+
+<table>
+<tr><td><b>Project Configuration</b></td><td><b>Boost Variant</b></td></tr>
+<tr><td>Release</td><td>Multithread, static runtime</td></tr>
+<tr><td>Release CRTDLL</td><td>Multithread</td></tr>
+<tr><td>Debug</td><td>Multithread Debug, static runtime</td></tr>
+<tr><td>Debug CRTDLL</td><td>Multithread Debug</td></tr>
+</table>
+
+Often you just want configuration \c Release / Boost variant <tt>Multithread,
+static runtime</tt>.  If you will have multiple XLLs linked together
+dynamically at runtime then you need configuration <tt>Release CRTDLL</tt>,
+Boost variant <tt>Multithread</tt>.  The Boost variants \c SingleThread
+and \c DLL are never required for this project.  If disk space is not a
+concern, just select everything.
 
 <img src="images/boost_installer.jpg">
 
 The next dialog asks you which components you need, retain the default setting
 which is to install everything.  Finish the installation.
 
-\li You need to configure VC8 with the location of the Boost header files.
-Under <tt>Tools/Options/Projects and Solutions/VC++ Directories</tt>, select
-Include files and specify the path to the top level directory containing the
-Boost header files <tt>C:\\Program Files\\boost\\boost_1_34_1</tt>:
+Configure VC with the location of the Boost header files.  Under <tt>Tools |
+Options | Projects and Solutions | VC++ Directories</tt>, select <tt>Include
+files</tt> and specify the path to the top level directory containing the Boost
+header files
+<tt>C:\\Program Files\\boost\\boost_1_35_0</tt>:
 
 <img src="images/boost_include_path.jpg">
 
-\li You need to configure VC8 with the location of the Boost lib files. Under
-<tt>Tools/Options/Projects and Solutions/VC++ Directories</tt>, select Library
-files and specify the path to the top level directory containing the Boost lib
-files <tt>C:\\Program Files\\boost\\boost_1_34_1\\lib</tt>:
+Configure VC with the location of the Boost lib files.  Under <tt>Tools |
+Options | Projects and Solutions | VC++ Directories</tt>, select <tt>Library
+files</tt> and specify the path to the top level directory containing the Boost
+lib files
+<tt>C:\\Program Files\\boost\\boost_1_35_0\\lib</tt>:
 
 <img src="images/boost_lib_path.jpg">
 

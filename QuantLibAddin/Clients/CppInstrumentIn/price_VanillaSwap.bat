@@ -1,1 +1,1 @@
-InstrumentIn-vc80-mt.exe 39570 swap VanillaSwap.xml YieldCurves.xml
+InstrumentIn-vc80-mt-s.exe 39573 VanillaSwap VanillaSwap.xml YieldCurves.xml

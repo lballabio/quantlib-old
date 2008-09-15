@@ -16,6 +16,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Exceptions encountered when generating the source code for serialization."""
+
 from gensrc.exceptions import exceptions
 
 class SerializationException(exceptions.GensrcException):
@@ -23,12 +25,14 @@ class SerializationException(exceptions.GensrcException):
     for serialization."""
 
 class InvalidClassException(SerializationException):
+    """XML data contains a class name that is not recognized."""
 
     CLASS_NAME_ERROR = """
 Error processing application XML data -
 The class name %(className)s is invalid"""
 
     def __init__(self, className):
+        """Initialize the InvalidClassException object."""
         self.value_ = InvalidClassException.CLASS_NAME_ERROR % {
             'className' : className }
 

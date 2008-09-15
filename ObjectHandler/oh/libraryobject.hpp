@@ -39,7 +39,7 @@ namespace ObjectHandler {
     template <class LibraryClass>
     class LibraryObject : public Object {
     public:
-        //! Ctor.
+        //! Empty Constructor.
         LibraryObject(
             const boost::shared_ptr<ValueObject>& properties,
             bool permanent)

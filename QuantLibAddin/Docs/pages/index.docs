@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006 Eric Ehlers
+ Copyright (C) 2005, 2006, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,57 +23,55 @@
 
 /*! \mainpage QuantLibAddin
 
+\section idx_overview Overview
+
 %QuantLibAddin exports the functionality of the
 <a href="http://quantlib.org">QuantLib</a> C++ analytics library to a variety
 of end-user platforms including Microsoft Excel and OpenOffice.org Calc.
 
-The %QuantLibAddin Excel implementation resides in a separate project called
-QuantLibXL.  If you're looking for a compiled Excel addin with documentation,
-please go to the QuantLibXL website: 
-<a href="http://www.quantlibxl.org">www.quantlibxl.org</a>
+The Excel implementation of %QuantLibAddin is packaged for end users as the
+<a href="http://www.quantlibxl.org">QuantLibXL</a> project which provides
+\li An installer for the addin
+\li Business documentation
+\li Example workbooks
 
-Stay here if you're interested in:
-\li compiling %QuantLibAddin/QuantLibXL from source code
-\li %QuantLibAddin implementations for non-Excel platforms
+The scope of the %QuantLibAddin project includes
+\li Implementations for platforms other than Excel
+\li Downloads and tutorials for compiling %QuantLibAddin/QuantLibXL from source
+    code
 
-\section overview Overview
-
-Constructor, member and utility functions are defined in XML metadata from
-which Python application <a href="http://www.gensrc.org">gensrc</a> generates
-source code for supported platforms:
-
-\li Microsoft Excel
-\li OpenOffice.Org Calc (Windows and Linux)
-\li Guile
-\li C/C++ (standalone programs)
+The %QuantLibAddin application comprises
+\li QuantLibObjects, a library which wraps %QuantLib classes in a format which
+allows them to be stored in <a href="http://www.objecthandler.org">ObjectHandler</a>
+\li An interface configured in XML from which
+<a href="http://www.gensrc.org">gensrc</a>
+generates source code for Addins on supported platforms
 
 <div class="center"><img src="images/screenshot.jpg"></div>
 
-The <a href="http://www.objecthandler.org">ObjectHandler</a> repository is used
-to provide an object oriented environment even on procedural platforms such as
-spreadsheets - QuantLib objects may be constructed, interrogated, passed as
-arguments to other functions, and destructed.  Polymorphism is supported, for
-example function qlNPV returns the NPV of an Instrument and can be invoked on
-an instance of any derived class - Swap, Bond, etc.
+Features of %QuantLibAddin include
+\li Object Orientation - %QuantLib objects may be constructed, interrogated,
+updated, passed as arguments to other functions, and destructed.
+\li Polymorphism - For example, function \c qlNPV() returns the NPV of an \c
+Instrument and may be invoked on an instance of any derived class such as \c
+Swap or \c Bond.
+\li Portability - The same interface is implemented in platform neutral C++
+and is available on all supported environments.
+\li Serialization - A pricing environment may be created in Excel workbooks and
+transmitted to a Linux process for calculation.
+\li Coercion - The value which the user inputs to a function may be one of a
+number of datatypes and any necessary conversion is performed automatically.
+\li Enumerations - Minor or transient types are represented by a registry of
+string/value pairs, for example \c "PUT" indicates \c QuantLib::Option::Put.
 
-\section quantlib QuantLib
+\section idx_quantlib QuantLib
 
-%QuantLibAddin shares the QuantLib project structure with regard to
-distribution, licensing, etc., all of which is documented on the main QuantLib
-website:<br>
-http://quantlib.org
-
-\section introduction Introduction
-
-Please refer to document \ref installation for instructions on building
-%QuantLibAddin.
-
-The section \ref functional provides platform-independent, end-user
-documentation of %QuantLibAddin functionality.  
-
-Additional information is available from the links at the left, if you have a
-question which is not answered here please send email to
-quantlib-users@lists.sf.net.
+%QuantLibAddin is a subproject of %QuantLib and shares the %QuantLib project
+structure with regard to distribution and licensing.  The mailing list for
+%QuantLibAddin is
+<a href="https://lists.sourceforge.net/lists/listinfo/quantlib-users">quantlib-users@lists.sf.net</a>.
+The list archives may be searched
+<a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">here</a>.
 
 */
 

@@ -33,22 +33,22 @@ void calcToScalar(QuantLib::Date &ret, const ANY &date) {
     ret = QuantLib::Date(dateLong);
 }
 
-void calcToScalar(ObjectHandler::Variant &ret, const ANY &value) {
+void calcToScalar(ObjectHandler::property_t &ret, const ANY &value) {
     STRING t = value.getValueTypeName();
     if (t.equalsIgnoreAsciiCase(STRFROMANSI("VOID"))) {
-        ret = ObjectHandler::Variant();
+        ret = ObjectHandler::property_t();
     } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("LONG"))) {
         long temp;
         value >>= temp;
-        ret = ObjectHandler::Variant(temp);
+        ret = ObjectHandler::property_t(temp);
     } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
         double temp;
         value >>= temp;
-        ret = ObjectHandler::Variant(temp);
+        ret = ObjectHandler::property_t(temp);
     } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("STRING"))) {
         STRING temp;
         value >>= temp;
-        ret = ObjectHandler::Variant(ouStringToStlString(temp));
+        ret = ObjectHandler::property_t(ouStringToStlString(temp));
     /*} else if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
         ret = std::string("<MATRIX>");*/
     } else {

@@ -22,7 +22,6 @@
 #define qla_convert_quotehandle_hpp
 
 #include <qlo/quote.hpp>
-#include <oh/types.hpp>
 #include <ql/quotes/simplequote.hpp>
 #include <oh/conversions/convert2.hpp>
 

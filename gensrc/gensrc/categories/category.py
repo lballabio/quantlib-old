@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""class to represent a group of functions."""
+"""Class to represent a group of functions."""
 
 from gensrc.utilities import common
 from gensrc.utilities import utilities
@@ -28,7 +28,7 @@ from gensrc.serialization import serializable
 from gensrc.configuration import environment
 
 class Category(serializable.Serializable):
-    """class to represent a group of functions."""
+    """Class to represent a group of functions."""
 
     # class constants
 
@@ -55,6 +55,8 @@ class Category(serializable.Serializable):
                 yield func
 
     def includeList(self, loopBuffer = None):
+        """Return the list of #include directives required for source code
+        relating to this Category."""
         ret = self.addinIncludeList_
         if loopBuffer and self.containsLoopFunction_:
             ret += loopBuffer % (
@@ -63,6 +65,7 @@ class Category(serializable.Serializable):
         return ret
 
     def printDebug(self):
+        """Write debug info to stdout."""
         for func in self.functions('*'):
             func.printDebug()
 
@@ -92,7 +95,7 @@ class Category(serializable.Serializable):
     #############################################
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeProperty(self, common.DISPLAY_NAME)
         serializer.serializeProperty(self, common.DESCRIPTION)

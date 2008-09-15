@@ -511,6 +511,7 @@
         <Parameters>
           <Parameter name='CurrentLink' default='""'>
             <type>string</type>
+            <superType>handlePredecessor</superType>
             <tensorRank>scalar</tensorRank>
             <description>Quote object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
           </Parameter>

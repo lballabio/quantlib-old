@@ -16,6 +16,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""A class to merge the properties of DataType and SuperType."""
+
 import re
 from gensrc.types import exceptions
 
@@ -39,30 +41,43 @@ class FullType(object):
     #############################################
 
     def value(self):
+        """Return the type."""
         return self.value_
 
     def nativeType(self):
+        """Return the native datatype."""
         return self.nativeType_
 
     def superType(self):
+        """Return the supertype."""
         return self.superType_
 
     def conversionSuffix(self):
+        """Return the string which is to be suffixed to the variable name
+        after datatype conversion is performed."""
         return self.conversionSuffix_
 
     def memberAccess(self):
+        """Return the operator used to access members
+        of variables of the specified type."""
         return self.memberAccess_
 
     def namespace(self):
+        """Return the namespace for variables of the specified datatype."""
         return self.namespace_
 
     def classname(self):
+        """Return the class of the specified datatype."""
         return self.classname_
 
     def objectReference(self):
+        """Return a boolean indicating whether or not variables of the
+        specified datatype comprise references to objects."""
         return self.objectReference_
 
     def __init__(self, dataType, superType):
+        """Initialize the FullType object, deriving its properties from
+        the input DataType and SuperType objects."""
 
         self.value_ = dataType.value()
         if dataType.nativeType():
@@ -70,7 +85,8 @@ class FullType(object):
         elif superType.nativeType():
             self.nativeType_ = superType.nativeType()
         else:
-            raise exceptions.InvalidNativeTypeException(dataType.name(), superType.name())
+            raise exceptions.InvalidNativeTypeException(
+                dataType.name(), superType.name())
 
         self.superType_ = superType.name()
         self.conversionSuffix_ = superType.conversionSuffix()

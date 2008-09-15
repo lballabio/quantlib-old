@@ -23,15 +23,16 @@ EXTRA_DIST = \
     Announce.txt \
     Authors.txt \
     autogen.sh \
-    configure.ac \
     Contributors.txt \
     LICENSE.TXT \
     NEWS.txt \
     QuantLibAddin.nsi \
     QuantLibAddin_vc7.sln \
     QuantLibAddin_vc8.sln \
+    QuantLibAddin_vc9.sln \
     QuantLibObjects_vc8.vcproj \
     QuantLibObjects_vc7.vcproj \
+    QuantLibObjects_vc9.vcproj \
     README.txt \
     todo.txt
 

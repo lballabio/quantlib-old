@@ -1,8 +1,5 @@
 
 /*
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
- Copyright (C) 2008 Nazcatech sprl Belgium
-
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
@@ -34,6 +31,8 @@
 
 DLLEXPORT int xlAutoOpen() {
 
+	//Instantiate the Processor Factory
+	static ObjectHandler::ProcessorFactory processorFactory;
     // Instantiate the Serialization Factory
     static AccountExample::SerializationFactory factory;
 

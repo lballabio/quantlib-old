@@ -18,7 +18,7 @@
 */
 
 /*! \file
-    \brief Class ObjectWrapperXL - Customization of the Object class for the Excel platform
+    \brief Class ObjectWrapperXL - Customization of the ObjectWrapper class for the Excel platform
 */
 
 #ifndef oh_objectwrapperxl_hpp
@@ -30,26 +30,18 @@ namespace ObjectHandler {
 
     class CallingRange;
 
-    //! Customization of the Object class for the Excel platform.
-    /*! It is not possible to use simple inheritance from the Object class as that
-        would impact application libraries who also inherit directly from Object.
-        Therefore this class comprises a rudimentary implementation of the Decorator
-        design pattern: ObjectWrapperXL both inherits from Object, and holds a reference to
-        an instance of an Object.  Clients of ObjectWrapperXL can access ObjectWrapperXL via the
-        standard Object interface, ObjectWrapperXL forwards the calls to the contained Object,
-        where necessary adding additional support for the Excel platform e.g.:
+    //! Customization of the ObjectWrapper class for the Excel platform.
+    /*! Extend ObjectWrapper with additional Excel-specific functionality e.g:
         - Retain a reference to the cell which constructed the Object
         - Suffix the Object's ID with an update count e.g. my_object#00123
     */
     class ObjectWrapperXL : public ObjectWrapper {
     public:
-
-        //! \name Structors and static members
+        //! \name Structors
         //@{
-
         //! Constructor - accepts ID and reference to contained Object.
-        /*! Unlike Object, ObjectWrapperXL knows its own ID as additional functionality
-            is built around this value.
+        /*! Unlike ObjectWrapper, ObjectWrapperXL knows its own ID as additional
+            functionality is implemented around this value.
 
             The callingRange parameter is a reference to the calling cell.  A null
             value indicates that this constructor was invoked from Excel VBA code.
@@ -58,7 +50,6 @@ namespace ObjectHandler {
             const std::string &id,
             const boost::shared_ptr<Object> &object,
             const boost::shared_ptr<CallingRange> &callingRange);
-
         //! Destructor - de-register this object with its CallingRange object.
         virtual ~ObjectWrapperXL();
         //@}
@@ -75,6 +66,11 @@ namespace ObjectHandler {
         //! Get the address of the calling cell.
         /*! Returns the string "VBA" if this object was constructed by VBA code. */
         std::string callerAddress() const;
+        //! Query the value of the "permanent" flag.
+        /*! The request is forwarded to the Object contained by this ObjectWrapperXL. */
+        const virtual bool &permanent() const { return object_->permanent(); }
+        //! Calling Range
+        boost::shared_ptr<CallingRange>& getCallingRange(){ return callingRange_;}
         //@}
 
         //! \name Logging
@@ -86,22 +82,13 @@ namespace ObjectHandler {
         virtual void dump(std::ostream& out);
         //@}
 
-        //! \name Permanent Objects
+        //! \name Behavior
         //@{
-        //! Query the value of the "permanent" flag.
-        /*! The request is forwarded to the Object contained by this ObjectWrapperXL.
-        */
-        const virtual bool &permanent() const { return object_->permanent(); }
-        //@}
-
-        //! save this object and replace the member object.
+        //! Replace the contained Object with the one provided.
         void reset(boost::shared_ptr<Object> object);
-
         //! Associate this object with a different calling range.
         void resetCaller(boost::shared_ptr<CallingRange> callingRange);
-
-        //! get callingRange
-        boost::shared_ptr<CallingRange>& getCallingRange(){ return callingRange_;}
+        //@}
     private:
         // Reference to the worksheet cell in which this object resides.
         boost::shared_ptr<CallingRange> callingRange_;

@@ -2,8 +2,8 @@
 # !defines
 
 !define APP "gensrc"
-!define VER_NUMBER "0.9.5"
-!define DEFAULT_PATH "C:\build_ql_0_9_5"
+!define VER_NUMBER "0.9.6"
+!define DEFAULT_PATH "C:\build_ql_0_9_6"
 
 # Compiler Flags
 
@@ -33,8 +33,10 @@ Section
     File "Authors.txt"
     File "gensrc_vc7.sln"
     File "gensrc_vc8.sln"
+    File "gensrc_vc9.sln"
     File "gensrc_vc7.vcproj"
     File "gensrc_vc8.vcproj"
+    File "gensrc_vc9.vcproj"
     File "dependencies.vc"
     File "gensrc.py"
     File "gensrc.nsi"
@@ -59,7 +61,8 @@ Section
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"
-    File "Docs\images\*.php"
+    File "Docs\images\*.png"
+    #File "Docs\images\*.php"
 
     SetOutPath "$INSTDIR\Docs\pages"
     File "Docs\pages\*.docs"

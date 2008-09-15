@@ -11,8 +11,8 @@
 
 ; Constants
 
-!define VER_NUMBER "0.9.5"
-!define VER_NUMBER_UNDERSCORE "0_9_5"
+!define VER_NUMBER "0.9.6"
+!define VER_NUMBER_UNDERSCORE "0_9_6"
 !define COMPILER "vc90"
 
 ; General Attributes

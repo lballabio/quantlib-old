@@ -16,12 +16,15 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Exceptions encountered when processing datatypes."""
+
 from gensrc.exceptions import exceptions
 
 class ParameterException(exceptions.GensrcException):
     """Exceptions encountered when processing datatypes."""
 
 class ParameterIllegalNameException(ParameterException):
+    """The name provided for the parameter is not valid."""
 
     ILLEGAL_NAME_ERROR = """
 Error processing parameter name "%(parameterName)s":
@@ -36,6 +39,7 @@ which cannot be used as parameter names:
             'parameterName' : parameterName }
 
 class ParameterNameNullException(ParameterException):
+    """The name provided for the parameter is an empty string."""
 
     NULL_STRING_ERROR = """
 Null string provided for parameter name."""
@@ -44,6 +48,7 @@ Null string provided for parameter name."""
         self.value_ = ParameterNameNullException.NULL_STRING_ERROR
 
 class ParameterNameCapitalizationException(ParameterException):
+    """The parameter name does not begin with an uppercase letter."""
 
     INVALID_CAPITALIZATION_ERROR = """
 The string "%(parameterName)s" is not a valid parameter name -
@@ -54,6 +59,8 @@ All parameter names must begin with an uppercase letter."""
             'parameterName' : parameterName }
 
 class ParameterDuplicateNameException(ParameterException):
+    """The parameter name is the same as that of another parameter
+    in the same function."""
 
     DUPLICATE_NAME_ERROR = """
 Error processing parameter name "%(parameterName)s":

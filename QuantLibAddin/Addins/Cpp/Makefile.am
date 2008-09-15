@@ -5,7 +5,8 @@ includedir = $(prefix)/include/qlo/Addins/Cpp
 
 EXTRA_DIST = \
 	AddinCpp_vc7.vcproj \
-    AddinCpp_vc8.vcproj
+    AddinCpp_vc8.vcproj \
+    AddinCpp_vc9.vcproj
 
 if BUILD_CPP
 lib_LTLIBRARIES = libQuantLibAddinCpp.la

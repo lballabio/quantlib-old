@@ -24,7 +24,7 @@
 /*! \page faq Frequently Asked Questions
 
 This is the FAQ for %QuantLibAddin and QuantLibXL, which are subprojects of
-QuantLib.  Please see also the 
+%QuantLib.  Please see also the 
 <a href="http://quantlib.org/faq.shtml">general QuantLib FAQ</a>
 and the 
 <a href="http://quantlib.org/developerFAQ.shtml">QuantLib developer FAQ</a>.
@@ -38,11 +38,12 @@ and the
 - \ref faq_item_installation\n
 
 \ref faq_sec_compilation\n
-- \ref faq_item_bstr\n
+- \ref faq_item_winheader\n
 
 \ref faq_sec_usage\n
 - \ref faq_item_start\n
 - \ref faq_item_vba\n
+- \ref faq_item_numparams\n
 
 \ref faq_sec_troubleshooting\n
 - \ref faq_item_startup\n
@@ -56,98 +57,49 @@ and the
 
 \subsection faq_item_whats_qla What is QuantLibAddin?
 
-QuantLibAddin is an interface allowing 
+%QuantLibAddin is an interface allowing
 <a href="http://quantlib.org">QuantLib</a> (an open source analytics library
 for quantitative finance) to be deployed to end user environments such as
 spreadsheets.
 
 <h3>QuantLib</h3>
 
-QuantLib is a C++ library implementing classes to represent entities such as
-term structures and instruments.  On its own, QuantLib doesn't do anything.
-For example, there's a class called PiecewiseYieldCurve which implements a
-member function to perform bootstrapping, but there's no button a user might
-press to invoke this function.  QuantLib is a library which must be wrapped in
-an application layer and delivered to the end user in the form of an
-executable.
+%QuantLib is a static library of classes.  Before it can be deployed to an end
+user, it must be wrapped in an application layer - a command line executable, a
+spreadsheet addin, a webserver application.
 
 <h3>ObjectHandler</h3>
 
-A primary task of the application layer is to solve the problem of where to
-store QuantLib objects once they are created.  This is particularly tricky on
-an end user environment such as a spreadsheet, which has no native mechanism
-for storing and retrieving objects independently of the spreadsheet itself.
+A function of the application layer is to provide a mechanism for storing
+%QuantLib objects once they are created.  Spreadsheets do not provide such
+a mechanism so one must be implemented by the addin.
 %QuantLibAddin uses <a href="http://www.objecthandler.org">ObjectHandler</a>
 as its object repository.  The core of %QuantLibAddin is a library called
-QuantLibObjects, which wraps QuantLib objects in a form that allows them to be
+QuantLibObjects, which wraps %QuantLib objects in a form that allows them to be
 stored in the ObjectHandler repository.
 
 <h3>QuantLibAddin</h3>
 
 Additionally %QuantLibAddin implements an interface, a library of functions,
-which the end business user invokes to access the underlying QuantLib objects.
-For example on a spreadsheet when the user enters formula
-qlPiecewiseYieldCurve() into a cell, a QuantLib yield curve is instantiated in
-the ObjectHandler repository and a reference to that object is returned to the
-calling cell.  %QuantLibAddin supports this interface on a variety of end user
-platforms such as Microsoft Excel and OpenOffice.org Calc.  
+which the end user invokes to access the underlying %QuantLib objects.  For
+example on a spreadsheet when the user enters formula qlPiecewiseYieldCurve()
+into a cell, a %QuantLib yield curve is instantiated in the ObjectHandler
+repository and a reference to that object is returned to the calling cell.
+%QuantLibAddin supports this interface on a variety of end user platforms such
+as Microsoft Excel and OpenOffice.org Calc.
 
 \subsection faq_item_whats_qlxl What is QuantLibXL?
 
-QuantLibXL is the Excel implementation of the QuantLibAddin interface.
-QuantLibXL is an Excel Addin, a C++ binary in the XLL format, allowing QuantLib
-functions to be accessed from cell formulas.
-
-<h3>Background</h3>
-
-The name QuantLibXL was originally applied to an Excel addin which supplemented
-QuantLib releases 0.3.3 through 0.3.8.  That project was discontinued.
-
-QuantLib releases 0.3.10 and later have been accompanied by a release of
-%QuantLibAddin.  All %QuantLibAddin releases have included an Excel addin.
-Beginning with %QuantLibAddin version 0.3.13, the QuantLibXL name has been
-resurrected and given to the %QuantLibAddin build for the Excel platform.  The
-%QuantLibAddin/QuantLibXL projects are structured as follows:
-- <a href="http://www.quantlibxl.org">http://www.quantlibxl.org</a> -
-    A compiled, documented Excel addin, for end business users
-- <a href="http://www.quantlibaddin.org">http://www.quantlibaddin.org</a> -
-    Core project, for people who are interested in 
-    - compiling %QuantLibAddin/QuantLibXL from source code
-    - implementations of %QuantLibAddin on platforms other than Excel, such
-       as OpenOffice.org Calc
-
-The table below summarizes the differences between the old QuantLibXL project
-versus the new %QuantLibAddin project, including the Excel addin which has taken
-over the QuantLibXL name:
-
-<table>
-<tr>
-<td><b>Feature</b></td>
-<td><b>QuantLibXL 0.3.8</b></td>
-<td><b>%QuantLibAddin/QuantLibXL 0.3.10+</b></td>
-</tr>
-<tr>
-<td><b>Design</b></td>
-<td>Procedural and stateless.  Each function returns a value, no state persists within the library</td>
-<td>Object oriented and stateful.  Calling a function instantiates an object in the repository - objects may be interrogated, updated, or passed as inputs to constructors/member functions of other objects.</td>
-</tr>
-<tr>
-<td><b>Lifecycle</b></td>
-<td>Stable, discontinued.  Last updated for QuantLib 0.3.8</td>
-<td>Stable application which at the time of this writing is under active development</td>
-</tr>
-<tr>
-<td><b>Platforms</b></td>
-<td>Microsoft Excel</td>
-<td>Microsoft Excel, OpenOffice.org Calc (Windows and Linux), Guile, C/C++</td>
-</tr>
-</table>
+QuantLibXL is the Excel implementation of the %QuantLibAddin interface.
+QuantLibXL is an Excel Addin, a C++ binary in the XLL format, allowing
+%QuantLib functions to be accessed from cell formulas.
 
 \subsection faq_item_help Where do I go for help?
 
-Send email to <a href="mailto:quantlib-users@lists.sf.net">quantlib-users@lists.sf.net</a>.
-You can also
-<a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">search the archives</a>.
+The mailing list for this project is
+<a href="https://lists.sourceforge.net/lists/listinfo/quantlib-users">quantlib-users@lists.sf.net</a>.
+The list archives may be searched
+<a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">here</a>.
 
 %QuantLibAddin is the product of collaboration from many volunteers.  Not all
 %of them follow the mailing list and some questions go unanswered, sorry about
@@ -160,73 +112,33 @@ You can also
 \li If you want an installer delivering a compiled QuantLibXL Addin and
 documentation for use with Microsoft Excel, visit
 <a href="http://www.quantlibxl.org">www.quantlibxl.org</a>.
-\li If you want to compile QuantLibXL from source code, visit
-<a href="http://www.quantlibaddin.org/build_tutorial.html">http://www.quantlibaddin.org/build_tutorial.html</a>.
-\li If you want to build QuantLibAddin for use on platforms other than
-Microsoft Excel, visit
-<a href="http://www.quantlibaddin.org/installation.html">http://www.quantlibaddin.org/installation.html</a>.
+\li If you want to compile %QuantLibAddin/QuantLibXL from source code for Excel
+or other platforms, visit
+<a href="http://www.quantlibaddin.org/tutorials.html">http://www.quantlibaddin.org/tutorials.html</a>.
 
 \section faq_sec_compilation Compilation
 
-\subsection faq_item_bstr Why does my compilation fail with an error message about ConvertStringToBSTR?
+\subsection faq_item_winheader Why does my compilation fail with an error message about windows.h?
 
-Several users have reported that their %QuantLibAddin or QuantLibXL build fails
-with an error message such as:
 \verbatim
-Creating library
-.\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_9_5.lib and object
-.\buildStatic\vc80\Release/QuantLibAddinStatic-vc80-mt-s-0_9_5.exp
-log4cxxs-vc80-mt-s.lib(msxml.obj) : error LNK2019: unresolved external symbol
-"wchar_t * __stdcall _com_util::ConvertStringToBSTR(char const *)"
-(?ConvertStringToBSTR@_com_util@@ YGPA_WPBD@Z) referenced in function "public:
-__thiscall _bstr_t::Data_t::Data_t(char const *)"
-(??0Data_t@_bstr_t@@QAE@PBD@Z)
+fatal error C1083: Cannot open include file: 'windows.h':
+    No such file or directory
 \endverbatim
 
-Apparently the fix is
-\li Set "C/C++ -> Language -> Treat wchar_t as Built-In Type" to "No".
-\li Add comsupp.lib to the additional dependencies of the linker.
-
-There is some confusion on this issue.  The table below summarizes the relevant
-compiler flag:
-<table>
-<tr><td><b>Label</b></td><td><b>Flag</b></td><td><b>Library</b></td></tr>
-<tr><td>Treat wchar_t as Built-In Type = No</td><td>/Zc:wchar_t-</td><td>comsupp.lib</td></tr>
-<tr><td>Treat wchar_t as Built-In Type = Yes</td><td>/Zc:wchar_t</td><td>comsuppw.lib</td></tr>
-</table>
-
-For most users the flag defaults to No and the project builds successfully.
-Some users report that it's necessary to manually set the value of the flag to
-No.  Some users have indicated that this change is necessary only for the
-log4cxx project, others have had to make the change in other projects as well
-e.g. %QuantLibAddin.
-
-Normally for whatever value of the flag, VC should automatically pick up the
-corresponding library.  Some users report that this is not the case and that
-it's necessary to manually specify the linker dependency.
-
-It may be that VC8 Express behaves differently than the commercial release of
-VC8.
-
-If you experience this error and can provide a definitive description of the
-fix it would be much appreciated.
+You need to install the Platform SDK as explained in the documentation for Visual Studio Express.
 
 \section faq_sec_usage Usage
 
 \subsection faq_item_start How do I start QuantLibXL?
 
-\li Start Excel
-\li Load the addin - QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_5.xll
-\li Load an example workbook e.g. QuantLibXL\\Workbooks\\StandaloneExamples\\Option.xls
-\li Hit Ctrl-Alt-F9 to refresh the workbook
-\li For more info see the file README.txt in the folder StandaloneExamples
+See <a href="http://www.quantlibxl.org/installation.html">http://www.quantlibxl.org/installation.html</a>.
 
 \subsection faq_item_vba How do I call QuantLibXL functions from Excel VBA?
 
 QuantLibXL can be invoked from VBA using Application.Run().  For example, below
 is a subroutine which calculates the price of an option.  This code mimics the
 behavior of example spreadsheet
-QuantLibXL\\Workbooks\\StandaloneExamples\\Options.xls.
+<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\Options.xls</tt>.
 
 \verbatim
 Sub priceEuropeanOption()
@@ -273,6 +185,26 @@ MsgBox Err.Description, vbCritical, "QuantLibXL Error"
 End Sub
 \endverbatim
 
+\subsection faq_item_numparams What is the maximum number of arguments for a QuantLibXL function?
+
+Twenty.
+
+Excel versions up to and including 2003 have a limit of 30 function arguments.
+But there is an effective limit of 20 arguments for user defined functions.
+This is because the function is registered with a call to xlfRegister, which is
+itself limited to 30 arguments. xlfRegister uses 10 of its arguments to
+register the function, leaving 20 slots for the descriptions of the arguments
+to your addin function.
+
+It is in fact possible to register a user defined function with up to 30
+arguments, by omitting descriptions for arguments beyond the 20th. The 21st and
+later arguments are valid but appear in the Function Wizard with no
+descriptions. An attempt was made to support this trick in QuantLibXL but at
+present the implementation is not functional because of a bug.
+
+Excel 2007 introduces support for user defined functions with up to 255
+arguments but QuantLibXL has not yet been upgraded to take advantage of this.
+
 \section faq_sec_troubleshooting Troubleshooting
 
 \subsection faq_item_startup Why does Excel display an error message when I load QuantLibXL?
@@ -285,18 +217,19 @@ not satisfied.
 
 If you compiled your XLL on one machine, and are trying to use it on another,
 ensure that the C runtime library is present on the target machine.  For
-example an XLL compiled in VC8 using runtime library Release Multithreaded DLL
-has a runtime dependency on files MSVCP80.DLL and MSVCR80.DLL.
+example an XLL compiled in VC8 using runtime library <tt>Release CRTDLL</tt>
+has a runtime dependency on files \c MSVCP80.DLL and \c MSVCR80.DLL.
 
-If you're using AddinExcelDynamic, note that the ObjectHandler XLL must be
-loaded into Excel before the AddinExcelDynamic XLL.
+If you used <tt>QuantLibAllDynamic_vc?.sln</tt> to compile ObjectHandler and
+QuantLibXL as separate, dynamically linked XLLs, note that the ObjectHandler
+XLL must be loaded into Excel before QuantLibXL.
 
-Microsoft Visual C++ includes the utility DEPENDS.EXE which can be used
+Microsoft Visual C++ includes the utility \c DEPENDS.EXE which can be used
 to identify the runtime dependencies of a binary.
 
 \subsection faq_item_wizard Why does Excel crash when I use the Function Wizard?
 
-The Function Wizard (launched by clicking the "fx" button next to the Formula
+The Function Wizard (launched by clicking the \c fx button next to the Formula
 Bar) allows the user to specify function inputs by clicking in selected cell
 ranges.  The Function Wizard calls the underlying cell formula repeatedly every
 time the inputs change - so the formula will get invoked repeatedly with
@@ -305,12 +238,14 @@ cause the formula to malfunction or crash.  Try calling the function without
 using the Function Wizard - for example, format the call to the function in
 Notepad, and paste the formula directly into a cell.
 
-There is a technique which an Excel Addin can use to detect whether a function
-is called from the Function Wizard.  The function could be designed to return a
-default value in this case.  Previous versions of QuantLibXL employed this
-approach.  However the test for the Function Wizard was found to degrade
-performance severely and its use has been discontinued.  Unfortunately some
-QuantLibXL functions are known to crash when called from the Function Wizard.
+It is possible for an Excel Addin function to detect whether it has been called
+from the Function Wizard.  Certain QuantLibXL functions perform this test,
+exiting immediately with a return value of null if the Function Wizard is
+detected.  Such functions are configured with tag <tt>calcInWizard='false'</tt>
+in the XML metadata (<tt>%QuantLibAddin\\gensrc\\metadata\\functions</tt>).  The
+test is expensive and its use is discouraged.  Unfortunately QuantLibXL may
+contain functions which do not perform the test and which crash when invoked
+from the Function Wizard.
 
 \section faq_sec_debugging Debugging
 
@@ -319,16 +254,16 @@ QuantLibXL functions are known to crash when called from the Function Wizard.
 \li compile QuantLibXL with the Debug configuration
 \li start Excel and load QuantLibXL and a client worksheet
 \li Go into Microsoft Visual Studio
-\li do <strong>Build/Debug/Attach to Process</strong>
+\li do <tt>Build | Debug | Attach to Process</tt>
 \li Select Excel from the list of processes.
 \li From VC, open up a file containing the source code you'd like to debug -
 for example file
-<strong>%QuantLibXL\\qlxl\\Functions\\volatilities.cpp</strong>
-\li Identify a function you'd like to debug, for example \b qlBlackConstantVol().
+<tt>%QuantLibXL\\qlxl\\Functions\\volatilities.cpp</tt>
+\li Identify a function you'd like to debug, for example \c qlBlackConstantVol().
 Put the cursor on a line in the function and hit F9 to set a breakpoint on the
 line
 \li Back in Excel, trigger the breakpoint - select the cell containing the
-relevant formula, e.g. \b qlBlackConstantVol(), hit F2 to force the cell to
+relevant formula, e.g. \c qlBlackConstantVol(), hit F2 to force the cell to
 recalc
 \li Back in VC, execution should now be stopped on the breakpoint and you can
 debug from there, e.g.\n F10 - advance a line\n F11 - step into a function\n
@@ -337,12 +272,12 @@ F5 - run until the next breakpoint or until completion\n etc.
 \subsection faq_item_debuglinux How do I debug a QuantLibAddin Linux executable at the command line?
 
 This section describes how to debug a standalone C++ %QuantLibAddin client
-linux program with the \b gdb command line debugger, using program \b
+linux program with the \c gdb command line debugger, using program \c
 %QuantLibAddin/Clients/C++/QLADemo as an example.
 
 <h3>Compiling for Debug</h3>
 
-By default %QuantLibAddin compiles with flags <strong>-g -O2</strong>
+By default %QuantLibAddin compiles with flags <tt>-g -O2</tt>
 which is good for general purpose use but does not give ideal results
 in gdb:
 \li certain variables get optimized away - so you're looking at a line
@@ -351,22 +286,21 @@ in the source code, but it's invisible to the debugger
 Library, even if you try to tell it not to
 
 gdb performs better when run against programs which are compiled with flag
-\b -gdwarf-2.  So before debugging the %QuantLibAddin executable, it's
+\c -gdwarf-2.  So before debugging the %QuantLibAddin executable, it's
 best to first reconfigure and recompile all relevant binaries - QuantLib,
 log4cxx, ObjectHandler, and %QuantLibAddin.  cd to the top level directory
-for each project, and run configure with the appropriate flags:
+for each project and run configure with the appropriate flag:
 \verbatim
-./configure CXXFLAGS="-gdwarf-2 -Wall"
+./configure CXXFLAGS=-gdwarf-2
 \endverbatim
 Then recompile.
 
 <h3>The Executable</h3>
 
-The program we want to debug is QLADemo.
-File \b %QuantLibAddin/Clients/C++/QLADemo is a
-shell script wrapper for the underlying executable
-<strong>%QuantLibAddin/Clients/C++/.libs/lt-QLADemo</strong> which is
-created the first time the wrapper is invoked.  So run the wrapper
+The program we want to debug is QLADemo.  File
+<tt>%QuantLibAddin/Clients/C++/QLADemo</tt> is a shell script wrapper for the
+underlying executable <tt>%QuantLibAddin/Clients/C++/.libs/lt-QLADemo</tt>
+which is created the first time the wrapper is invoked.  So run the wrapper
 once to create the executable, then cd into the .libs directory.
 
 (Or maybe you can do

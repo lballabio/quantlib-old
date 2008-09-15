@@ -25,20 +25,20 @@
 
 <table border="1" bgcolor="lightsteelblue">
 <tr>
-<td><b>NB:</b> This document is out of date.  The QuantLibAddin implementation
+<td><b>NB:</b> This document is out of date.  The %QuantLibAddin implementation
 still reflects the high-level ideas in this document but many of the details
-have changed.  For further information please refer to the QuantLibAddin source
+have changed.  For further information please refer to the %QuantLibAddin source
 code or send email to quantlib-users@lists.sf.net.</td>
 </tr>
 </table>
 
 <h2>Abstract</h2>
 <p>%QuantLibAddin implements an interface supporting a subset of
-QuantLib functionality.  Constructor, member and utility functions are
+%QuantLib functionality.  Constructor, member and utility functions are
 defined in XML metadata from which a Python application generates source
 code for supported platforms.  The ObjectHandler repository is used to
 provide an object oriented environment even on procedural platforms such
-as spreadsheets - QuantLib objects may be constructed, interrogated,
+as spreadsheets - %QuantLib objects may be constructed, interrogated,
 passed as arguments to other functions, and destructed.  Polymorphism is
 supported, for example function qlNPV returns the NPV of an Instrument and
 can be invoked on an instance of any derived class - Swap, Bond, etc.</p>
@@ -66,17 +66,17 @@ can be invoked on an instance of any derived class - Swap, Bond, etc.</p>
 \section sec_1 1. Design
 <div class="center"><img src="images/design.jpg"></div>
 <p>%QuantLibAddin uses ObjectHandler to allow the user to build up a repository
-of QuantLib objects.  Each QuantLib class to be available in %QuantLibAddin is
+of %QuantLib objects.  Each %QuantLib class to be available in %QuantLibAddin is
 wrapped in a class descended from Object.</p>
 <p>The core %QuantLibAddin library can be loaded directly into standalone C++
 programs.  For other platforms, %QuantLibAddin is wrapped in an additional
 layer providing platform-specific functionality.  %QuantLibAddin has the same
 interface on all platforms.</p>
 \section sec_1_1 1.1 Classes
-<p>The class for each QuantLib object to be stored in ObjectHandler is wrapped
+<p>The class for each %QuantLib object to be stored in ObjectHandler is wrapped
 in a class derived from <tt>Object</tt>.  The constructor of the derived Object
-class calls the constructor of the corresponding QuantLib class, and the
-resulting QuantLib object is stored as a member variable of the derived Object.
+class calls the constructor of the corresponding %QuantLib class, and the
+resulting %QuantLib object is stored as a member variable of the derived Object.
 The Propery vector in the base Object class is populated appropriately.</p>
 \section sec_1_2 1.2 Addins
 <p>The core %QuantLibAddin binary can be linked directly into end-user C++
@@ -84,7 +84,7 @@ applications.  For other platforms, %QuantLibAddin is linked into a
 platform-specific library which:</p>
 <ul>
 <li>retrieves inputs in native format from host application</li>
-<li>converts inputs to QuantLib format</li>
+<li>converts inputs to %QuantLib format</li>
 <li>invokes the %QuantLibAddin function and captures its return value</li>
 <li>converts the return value to native format and returns it to the host application</li>
 </ul>

@@ -28,19 +28,19 @@ class Serializable(object):
     deserialization."""
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         raise exceptions.SerializationOverrideException("Serializable", "serialize")
 
     def postSerialize(self):
-        """invoke any post serialization behavior that may be required."""
+        """Invoke any post serialization behavior that may be required."""
         pass
 
     def name(self):
-        """return unique identifier for this object."""
+        """Return unique identifier for this object."""
         return self.name_
 
     def groupName(self):
-        """return unique identifier for this object."""
+        """Return unique identifier for this object."""
         return self.groupName_
     groupName = classmethod(groupName)
 

@@ -1,8 +1,8 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2007 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -32,15 +32,17 @@
 
 namespace ObjectHandler {
 
-    //@{
-    //! Convert type std::vector<T> to an Excel OPER.
-    /*! If dllToFree is true then the function sets the xlbitDLLFree bit if necessary.
+    //! Wrapper for the other vectorToOper.
+    /*! Extracts the begin and end iterators of the input vector.
     */
     template <class T>
     void vectorToOper(const std::vector<T> &v, OPER &xVector, bool dllToFree = true) {
         vectorToOper<std::vector<T>::const_iterator>(v.begin(), v.end(), xVector, dllToFree);
     }
 
+    //! Convert type std::vector<T> to an Excel OPER.
+    /*! If dllToFree is true then the function sets the xlbitDLLFree bit if necessary.
+    */
     template <class T>
     void vectorToOper(T begin, T end, OPER &xVector, bool dllToFree = true) {
         std::size_t size = end - begin;
@@ -65,7 +67,6 @@ namespace ObjectHandler {
         for (unsigned int i=0; i<size; ++i, ++begin)
             scalarToOper(*begin, xVector.val.array.lparray[i], dllToFree, false);
     }
-    //@}
 
 }
 

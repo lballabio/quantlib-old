@@ -28,10 +28,9 @@ implementation of QuantLibAddin.  For a summary of updates to the core
 QuantLibAddin project, please refer to
 <a href="http://www.quantlibaddin.org/history.html">http://www.quantlibaddin.org/history.html</a>
 
-<strong>Release 0.9.5 - ??? 200?</strong>
+<strong>Release 0.9.6 - September 2008</strong>
 
-- xxx new functions / xxx in total
-- New function categories: xxx, xxx
+- 22 new functions / 855 in total
 
 <strong>Release 0.9.0 - January 2008</strong>
 

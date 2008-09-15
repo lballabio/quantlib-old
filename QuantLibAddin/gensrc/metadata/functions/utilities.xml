@@ -1,6 +1,6 @@
 <Category name='utilities'>
   <description>diagnostic and utility functions.</description>
-  <displayName>utilities</displayName>
+  <displayName>Utilities</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
     <include>qlo/utilities.hpp</include>

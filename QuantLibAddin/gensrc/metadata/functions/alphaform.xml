@@ -16,7 +16,6 @@
     <Member name='qlAlphaFormOperator' type='QuantLib::AlphaForm' superType='libraryClass'>
       <description>returns the Alpha Form value at time i.</description>
       <libraryFunction>operator()</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -39,7 +38,6 @@
     <Member name='qlAlphaFormSetAlpha' type='QuantLib::AlphaForm' superType='libraryClass'>
       <description>set the Alpha parameter value to Alpha Form.</description>
       <libraryFunction>setAlpha</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->

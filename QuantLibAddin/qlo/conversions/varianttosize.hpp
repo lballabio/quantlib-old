@@ -21,7 +21,6 @@
 #ifndef qla_convert_size_hpp
 #define qla_convert_size_hpp
 
-#include <oh/types.hpp>
 #include <ql/utilities/dataparsers.hpp>
 
 namespace ObjectHandler {

@@ -1,0 +1,79 @@
+
+
+# !defines
+
+!define APP "log4cxx"
+!define VER_NUMBER "0.10.0a"
+!define DEFAULT_PATH "C:\build_ql_0_9_6\${APP}"
+
+# Compiler Flags
+
+SetCompressor lzma
+
+# Installer Attributes
+
+Caption "${APP} - Setup"
+DirText "Please select a location to install ${APP} (or use the default):"
+InstallDir "${DEFAULT_PATH}"
+LicenseData "LICENSE"
+LicenseText "${APP} is released under the following license:"
+Name "${APP}"
+OutFile "..\${APP}-${VER_NUMBER}.exe"
+
+# Installer Instructions
+
+Section
+
+    SetOutPath $INSTDIR
+
+    File /r "*"
+ 
+    WriteRegStr HKEY_LOCAL_MACHINE \
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-${VER_NUMBER}" \
+                "DisplayName" "log4cxx-${VER_NUMBER} (remove only)"
+
+    WriteRegStr HKEY_LOCAL_MACHINE \
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-${VER_NUMBER}" \
+                "UninstallString" "$INSTDIR\log4cxxUninstall.exe"
+
+    CreateDirectory "$SMPROGRAMS\log4cxx-${VER_NUMBER}"
+
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\Uninstall log4cxx.lnk" \
+                   "$INSTDIR\log4cxxUninstall.exe" "" \
+                   "$INSTDIR\log4cxxUninstall.exe" 0
+
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\README.lnk" \
+                   "$INSTDIR\README.txt"
+
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\License.lnk" \
+                   "$INSTDIR\LICENSE.txt"
+
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx VC 7 project workspace.lnk" \
+                   "$INSTDIR\msvc\log4cxx.sln"
+
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx VC 8 project workspace.lnk" \
+                   "$INSTDIR\msvc\log4cxx_vc8.sln"
+
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx Folder.lnk" \
+                   "$INSTDIR"
+
+    WriteINIStr "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx-ObjectHandler Home Page.url" \
+                "InternetShortcut" "URL" "http://www.objecthandler.org"
+
+    WriteUninstaller "log4cxxUninstall.exe"
+
+SectionEnd
+
+
+UninstallText "This will uninstall log4cxx. Hit next to continue."
+
+Section "Uninstall"
+
+    RMDir /r /REBOOTOK "$INSTDIR"
+    RMDir /r /REBOOTOK "$SMPROGRAMS\log4cxx-${VER_NUMBER}"
+
+    DeleteRegKey HKEY_LOCAL_MACHINE \
+        "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-${VER_NUMBER}"
+
+SectionEnd
+

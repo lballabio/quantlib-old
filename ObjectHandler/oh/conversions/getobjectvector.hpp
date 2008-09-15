@@ -18,7 +18,7 @@
 */
 
 /*! \file
-    \brief Class Repository - Maintain a store of Objects
+    \brief Helper functions to facilitate retrieval of Object lists
 */
 
 #ifndef oh_getobjectlist_hpp
@@ -29,7 +29,7 @@
 
 namespace ObjectHandler {
 
-    //! Convert a vector of strings to a vector of objects.
+    // Convert a vector of strings to a vector of objects.
     //template <class ObjectClass>
     //std::vector<boost::shared_ptr<ObjectClass> > getObjectVector(
     //        const std::vector<std::string> &objectIDs) {
@@ -45,6 +45,7 @@ namespace ObjectHandler {
     //    return ret;
     //}
 
+    //! Convert a vector of Object IDs to a vector of objects.
     template <class ObjectClass>
     std::vector<boost::shared_ptr<ObjectClass> > getObjectVector(
             const std::vector<std::string> &objectIDs,
@@ -88,7 +89,7 @@ namespace ObjectHandler {
         return ret;
     }
 
-    //! Convert a vector of strings to a vector of library objects.
+    // Convert a vector of strings to a vector of library objects.
     //template <class ObjectClass, class LibraryClass>
     //std::vector<boost::shared_ptr<LibraryClass> > getLibraryObjectVector(
     //        const std::vector<std::string> &objectIDs) {
@@ -104,6 +105,7 @@ namespace ObjectHandler {
     //    return ret;
     //}
 
+    //! Convert a vector of Object IDs to a vector of library objects.
     template <class ObjectClass, class LibraryClass>
     std::vector<boost::shared_ptr<LibraryClass> > getLibraryObjectVector(
             const std::vector<std::string> &objectIDs,
@@ -120,8 +122,8 @@ namespace ObjectHandler {
             std::string objectId = *i;
 
             // If the object ID is a null string then silently ignore.
-            // This will be revised to raise an exception in the absence of explicit
-            // indication from the user to do otherwise.
+            // This will be revised to raise an exception in the absence
+            // of explicit indication from the user to do otherwise.
             if (objectId.empty())
                 continue;
 

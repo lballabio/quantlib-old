@@ -207,7 +207,6 @@
     <!-- LmExtLinearExponentialVolModel constructor  -->
     <Constructor name='qlMarketModelLmExtLinearExponentialVolModel'>
       <libraryFunction>LmExtLinearExponentialVolModel</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

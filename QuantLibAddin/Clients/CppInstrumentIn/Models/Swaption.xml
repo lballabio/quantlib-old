@@ -2,69 +2,19 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="4">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>10</count>
+	<count>11</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="124" tracking_level="1" version="0" object_id="_1">
-			<ObjectId>EngineP</ObjectId>
-			<ClassName>qlDiscountingSwapEngine</ClassName>
-			<YieldCurve>EuriborYC6M</YieldCurve>
-			<Permanent>0</Permanent>
-			<UserProperties class_id="200" tracking_level="0" version="0">
-				<count>0</count>
-				<item_version>0</item_version>
-			</UserProperties>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="124" object_id="_2">
-			<ObjectId>EngineR</ObjectId>
-			<ClassName>qlDiscountingSwapEngine</ClassName>
-			<YieldCurve>EuriborYC6M</YieldCurve>
-			<Permanent>0</Permanent>
-			<UserProperties>
-				<count>0</count>
-				<item_version>0</item_version>
-			</UserProperties>
-		</px>
-	</item>
-	<item>
-		<px class_id="121" tracking_level="1" version="0" object_id="_3">
-			<ObjectId>SwaptionEP</ObjectId>
-			<ClassName>qlBlackSwaptionEngine</ClassName>
-			<YieldCurve>EuriborYC6M</YieldCurve>
-			<VolTS>SpreadsVol</VolTS>
-			<Permanent>0</Permanent>
-			<UserProperties>
-				<count>0</count>
-				<item_version>0</item_version>
-			</UserProperties>
-		</px>
-	</item>
-	<item>
-		<px class_id_reference="121" object_id="_4">
-			<ObjectId>SwaptionER</ObjectId>
-			<ClassName>qlBlackSwaptionEngine</ClassName>
-			<YieldCurve>EuriborYC6M</YieldCurve>
-			<VolTS>SpreadsVol</VolTS>
-			<Permanent>0</Permanent>
-			<UserProperties>
-				<count>0</count>
-				<item_version>0</item_version>
-			</UserProperties>
-		</px>
-	</item>
-	<item>
-		<px class_id="155" tracking_level="1" version="0" object_id="_5">
-			<ObjectId>sched_fix</ObjectId>
+		<px class_id="158" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>swaption_sched_fix</ObjectId>
 			<ClassName>qlSchedule</ClassName>
-			<EffectiveDate class_id="201" tracking_level="0" version="0">
+			<EffectiveDate class_id="203" tracking_level="0" version="0">
 				<which>4</which>
-				<value>40303</value>
+				<value>40305</value>
 			</EffectiveDate>
 			<TerminationDate>
 				<which>4</which>
-				<value>42129</value>
+				<value>42131</value>
 			</TerminationDate>
 			<Tenor>1Y</Tenor>
 			<Calendar>TARGET</Calendar>
@@ -74,30 +24,30 @@
 			<EndOfMonth>0</EndOfMonth>
 			<FirstDate>
 				<which>0</which>
-				<value class_id="202" tracking_level="0" version="0"></value>
+				<value class_id="204" tracking_level="0" version="0"></value>
 			</FirstDate>
 			<NextToLastDate>
 				<which>0</which>
 				<value></value>
 			</NextToLastDate>
 			<Permanent>0</Permanent>
-			<UserProperties>
+			<UserProperties class_id="205" tracking_level="0" version="0">
 				<count>0</count>
 				<item_version>0</item_version>
 			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="155" object_id="_6">
-			<ObjectId>sched_flt</ObjectId>
+		<px class_id_reference="158" object_id="_2">
+			<ObjectId>swaption_sched_flt</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
 				<which>4</which>
-				<value>40303</value>
+				<value>40305</value>
 			</EffectiveDate>
 			<TerminationDate>
 				<which>4</which>
-				<value>42129</value>
+				<value>42131</value>
 			</TerminationDate>
 			<Tenor>6M</Tenor>
 			<Calendar>TARGET</Calendar>
@@ -121,15 +71,80 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="191" tracking_level="1" version="0" object_id="_7">
-			<ObjectId>SwapP</ObjectId>
+		<px class_id="60" tracking_level="1" version="0" object_id="_3">
+			<ObjectId>Eur</ObjectId>
+			<ClassName>qlEuropeanExercise</ClassName>
+			<ExpiryDate>
+				<which>4</which>
+				<value>40303</value>
+			</ExpiryDate>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="126" tracking_level="1" version="0" object_id="_4">
+			<ObjectId>EngineP</ObjectId>
+			<ClassName>qlDiscountingSwapEngine</ClassName>
+			<YieldCurve>_EURYC6M</YieldCurve>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="126" object_id="_5">
+			<ObjectId>EngineR</ObjectId>
+			<ClassName>qlDiscountingSwapEngine</ClassName>
+			<YieldCurve>_EURYC6M</YieldCurve>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="123" tracking_level="1" version="0" object_id="_6">
+			<ObjectId>SwaptionEP</ObjectId>
+			<ClassName>qlBlackSwaptionEngine</ClassName>
+			<YieldCurve>_EURYC6M</YieldCurve>
+			<VolTS>SpreadsVol</VolTS>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="123" object_id="_7">
+			<ObjectId>SwaptionER</ObjectId>
+			<ClassName>qlBlackSwaptionEngine</ClassName>
+			<YieldCurve>_EURYC6M</YieldCurve>
+			<VolTS>SpreadsVol</VolTS>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="194" tracking_level="1" version="0" object_id="_8">
+			<ObjectId>swaption_pay</ObjectId>
 			<ClassName>qlVanillaSwap</ClassName>
 			<PayerReceiver>Payer</PayerReceiver>
 			<Nominal>1000000</Nominal>
-			<FixedLegSchedule>sched_fix</FixedLegSchedule>
-			<FixedRate>0.051768232928501801</FixedRate>
+			<FixedLegSchedule>swaption_sched_fix</FixedLegSchedule>
+			<FixedRate>0.048505</FixedRate>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<FloatingLegSchedule>sched_flt</FloatingLegSchedule>
+			<FloatingLegSchedule>swaption_sched_flt</FloatingLegSchedule>
 			<IborIndex>Euribor6M</IborIndex>
 			<FloatingLegSpread>0</FloatingLegSpread>
 			<FloatingLegDayCounter>Actual/360</FloatingLegDayCounter>
@@ -138,7 +153,7 @@
 			<UserProperties>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item class_id="203" tracking_level="0" version="0">
+				<item class_id="206" tracking_level="0" version="0">
 					<first>EngineID</first>
 					<second>
 						<which>2</which>
@@ -149,15 +164,15 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="191" object_id="_8">
-			<ObjectId>SwapR</ObjectId>
+		<px class_id_reference="194" object_id="_9">
+			<ObjectId>swaption_receive</ObjectId>
 			<ClassName>qlVanillaSwap</ClassName>
 			<PayerReceiver>Receiver</PayerReceiver>
 			<Nominal>1000000</Nominal>
-			<FixedLegSchedule>sched_fix</FixedLegSchedule>
-			<FixedRate>0.051768232928501801</FixedRate>
+			<FixedLegSchedule>swaption_sched_fix</FixedLegSchedule>
+			<FixedRate>0.048505</FixedRate>
 			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
-			<FloatingLegSchedule>sched_flt</FloatingLegSchedule>
+			<FloatingLegSchedule>swaption_sched_flt</FloatingLegSchedule>
 			<IborIndex>Euribor6M</IborIndex>
 			<FloatingLegSpread>0</FloatingLegSpread>
 			<FloatingLegDayCounter>Actual/360</FloatingLegDayCounter>
@@ -177,11 +192,11 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="171" tracking_level="1" version="0" object_id="_9">
-			<ObjectId>Swaption1</ObjectId>
+		<px class_id="174" tracking_level="1" version="0" object_id="_10">
+			<ObjectId>Swaption</ObjectId>
 			<ClassName>qlSwaption</ClassName>
-			<VanillaSwap>SwapP</VanillaSwap>
-			<Exercise>obj_002fa</Exercise>
+			<VanillaSwap>swaption_pay</VanillaSwap>
+			<Exercise>Eur</Exercise>
 			<SettlementType>Physical</SettlementType>
 			<Permanent>0</Permanent>
 			<UserProperties>
@@ -198,11 +213,11 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="171" object_id="_10">
+		<px class_id_reference="174" object_id="_11">
 			<ObjectId>Swaption2</ObjectId>
 			<ClassName>qlSwaption</ClassName>
-			<VanillaSwap>SwapR</VanillaSwap>
-			<Exercise>obj_002fa</Exercise>
+			<VanillaSwap>swaption_receive</VanillaSwap>
+			<Exercise>Eur</Exercise>
 			<SettlementType>Physical</SettlementType>
 			<Permanent>0</Permanent>
 			<UserProperties>

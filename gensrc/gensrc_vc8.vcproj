@@ -197,6 +197,10 @@
 				>
 			</File>
 			<File
+				RelativePath="gensrc\addins\serialization.py"
+				>
+			</File>
+			<File
 				RelativePath="gensrc\addins\valueobjects.py"
 				>
 			</File>
@@ -597,11 +601,11 @@
 				>
 			</File>
 			<File
-				RelativePath="gensrc\stubs\stub.vo.class.decl"
+				RelativePath="gensrc\stubs\stub.vo.class.body.inline"
 				>
 			</File>
 			<File
-				RelativePath="gensrc\stubs\stub.vo.class.body.inline"
+				RelativePath="gensrc\stubs\stub.vo.class.decl"
 				>
 			</File>
 			<File
@@ -622,7 +626,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\dependencies.vc"
+			RelativePath="dependencies.vc"
 			>
 		</File>
 		<File

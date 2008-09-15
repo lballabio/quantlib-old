@@ -57,6 +57,10 @@
 				RelativePath=".\pages\license.docs"
 				>
 			</File>
+			<File
+				RelativePath=".\pages\technical.docs"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\doxygen.css"

@@ -42,6 +42,10 @@ namespace ObjectHandler {
         xBoolean.val.boolean = value;
     }
 
+    DLL_API void scalarToOper(const char *value, OPER &xChar, bool dllToFree, bool expandVector) {
+		scalarToOper(std::string(value), xChar, dllToFree, expandVector);
+    }
+
     DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree, bool expandVector) {
         // Must use type unsigned char (BYTE) to process the 0th byte of Excel byte-counted string
         unsigned char len = __min(XL_MAX_STR_LEN - 1, value.length());

@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005 Eric Ehlers
+ Copyright (C) 2005, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,25 +23,22 @@
 
 /*! \mainpage ObjectHandler
 
-    \section overview Overview
-    Integration of a generic C++ library such as Quantlib
-    into spreadsheets and other end user tools 
-    requires a standalone <strong>%ObjectHandler</strong> component, 
-    a repository allowing objects to be stored, shared, updated, 
-    interrogated, and destroyed.
+\section idx_overview Overview
 
-    \section quantlib QuantLib
-    %ObjectHandler shares the QuantLib project structure with regard
-    to distribution, licensing, etc., all of which is documented
-    on the main QuantLib website:<br>
-    http://quantlib.org
+%ObjectHandler implements a repository in which objects may be instantiated,
+queried, updated, and destroyed, facilitating deployment of object oriented
+functionality to procedural platforms such as spreadsheets.  Core functionality
+is implemented in platform neutral C++ and an interface to Microsoft Excel is
+supported.
 
-    \section log4cxx log4cxx
-    %ObjectHandler logging is performed by 
-    <a href="http://logging.apache.org/log4cxx/index.html">log4cxx</a>, 
-    the logging framework for the Apache project.  The document
-    \ref installation gives instructions for installing log4cxx and
-    %ObjectHandler.
+\section idx_quantlib QuantLib
+
+%ObjectHandler is a subproject of the <a href="http://quantlib.org">QuantLib</a>
+C++ analytics library and shares the QuantLib project structure with regard to
+distribution and licensing.  The mailing list for %ObjectHandler is
+<a href="https://lists.sourceforge.net/lists/listinfo/quantlib-users">quantlib-users@lists.sf.net</a>.
+The list archives may be searched
+<a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">here</a>.
 
 */
 

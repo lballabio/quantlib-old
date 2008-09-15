@@ -55,7 +55,7 @@ namespace ObjectHandler {
 
         //! \name Inspectors
         //@{
-        //! Return the datatype of the underlying value.
+        // Return the datatype of the underlying value.
         //Type type() const;
         //! Indicate whether the OPER value is missing.
         bool missing() const;
@@ -65,7 +65,6 @@ namespace ObjectHandler {
 
         //! \name Conversion Operators
         //@{
-
         //! Convert the OPER to a long.
         operator long() const;
         //! Convert the OPER to a double.
@@ -78,7 +77,7 @@ namespace ObjectHandler {
         operator property_t() const;
         //@}
 
-        //! deduced C++ typeid - used in the convert2 templates
+        //! Deduced C++ typeid - used in the convert2 templates
         const std::type_info& type() const;
 
         //! Return a const pointer to the underlying OPER.

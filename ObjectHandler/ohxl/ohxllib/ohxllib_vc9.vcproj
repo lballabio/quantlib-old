@@ -70,7 +70,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc90-mt-gd-0_9_5.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc90-mt-gd-0_9_6.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -147,7 +147,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc90-mt-s-0_9_5.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc90-mt-s-0_9_6.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -224,7 +224,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc90-mt-0_9_5.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc90-mt-0_9_6.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -301,7 +301,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\lib\ObjectHandler-xllib-vc90-mt-sgd-0_9_5.lib"
+				OutputFile="..\..\lib\ObjectHandler-xllib-vc90-mt-sgd-0_9_6.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -369,6 +369,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\oh\processor.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\oh\processor.hpp"
 					>
 				</File>
@@ -401,15 +405,7 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\types.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\..\oh\valueobject.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\oh\variant.hpp"
 					>
 				</File>
 			</Filter>
@@ -474,14 +470,6 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="loop"
-				>
-				<File
-					RelativePath="..\..\oh\loop\loop_valueobjects.hpp"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="valueobjects"
 				>
 				<File
@@ -514,10 +502,6 @@
 				</File>
 				<File
 					RelativePath="..\conversions\opertomatrix.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\conversions\opertoscalar.hpp"
 					>
 				</File>
 				<File

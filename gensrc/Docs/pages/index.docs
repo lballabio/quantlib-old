@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,22 +23,23 @@
 
 /*! \mainpage gensrc
 
-\section overview Overview
+\section idx_overview Overview
+
 gensrc is a Python application which takes XML descriptions of functions
 defined in a library and generates source code for addins on supported
 platforms including Microsoft Excel and OpenOffice.org Calc.  gensrc is used to
 generate source code for the
-<a href="http://www.objecthandler.org">ObjectHandler</a> and 
+<a href="http://www.objecthandler.org">ObjectHandler</a> and
 <a href="http://www.quantlibaddin.org">QuantLibAddin</a> applications.
 
-\section quantlib QuantLib
-gensrc shares the QuantLib project structure with regard to
-distribution, licensing, etc., all of which is documented on the main QuantLib
-website:<br> http://quantlib.org
+\section idx_quantlib QuantLib
 
-\section mailinglist Mailing List
-The mailing list for gensrc is 
-<a href="mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a>.
+gensrc is a subproject of the <a href="http://quantlib.org">QuantLib</a> C++
+analytics library and shares the QuantLib project structure with regard to
+distribution and licensing.  The mailing list for gensrc is
+<a href="https://lists.sourceforge.net/lists/listinfo/quantlib-users">quantlib-users@lists.sf.net</a>.
+The list archives may be searched
+<a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">here</a>.
 
 */
 

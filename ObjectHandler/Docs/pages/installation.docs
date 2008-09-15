@@ -75,18 +75,19 @@ installation of <a href="http://www.quantlibxl.org">QuantLibXL</a>.
 
 \section inst_prerequisites 2 Prerequisites
 
-Before proceeding to compile the source code, please consult the
-documents below.
+Before proceeding to compile the source code, consult the documents below.
 
 \subsection inst_pre_conventions 2.1 Conventions
 
-Please read the following document regarding naming conventions in
-use for the project: \ref conventions
+See the following document regarding naming conventions in use for the project:
+\ref conventions
 
 \subsection inst_pre_boost 2.2 Boost
 
-%ObjectHandler depends on Boost.  Here are the instructions for
-installing Boost: \ref boost
+%ObjectHandler depends on Boost.  If you're using VC9 then Boost 1.35 or later
+is required.  Other compilers require Boost 1.34 or later.  Boost is included
+in most modern Linux distributions.  Here are the instructions for installing
+Boost on Windows: \ref boost
 
 \subsection inst_pre_python 2.3 Python
 
@@ -105,13 +106,13 @@ The Visual C++ project files for %ObjectHandler rely on relative pathnames
 to refer to prerequisite projects gensrc and log4cxx.  In order for this
 to work, these projects must reside side by side in the directory tree.
 By default the installer for each project uncompresses the source code to
-<tt>C:\\build_ql_0_9_5</tt>.  For purposes of this tutorial we assume the
-packages have been installed in this way e.g.:
+<tt>C:\\build_ql_0_9_6</tt>.  For purposes of this tutorial we assume the
+packages have been installed in this way:
 
 \verbatim
-C:\build_ql_0_9_5\gensrc
-C:\build_ql_0_9_5\log4cxx
-C:\build_ql_0_9_5\ObjectHandler
+C:\build_ql_0_9_6\gensrc
+C:\build_ql_0_9_6\log4cxx
+C:\build_ql_0_9_6\ObjectHandler
 \endverbatim
 
 \subsubsection inst_auto_uncompress 3.1.2 Uncompress the Source Code
@@ -120,13 +121,13 @@ Go to the
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
 
 Download <tt>log4cxx-0.10.0a.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_9_5\\log4cxx</tt>.
+<tt>C:\\build_ql_0_9_6\\log4cxx</tt>.
 
-Download <tt>gensrc-0.9.5.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_9_5\\gensrc</tt>.
+Download <tt>gensrc-0.9.6.exe</tt> and uncompress the package to
+<tt>C:\\build_ql_0_9_6\\gensrc</tt>.
 
-Download <tt>ObjectHandler-0.9.5.exe</tt> and uncompress the package to
-<tt>C:\\build_ql_0_9_5\\%ObjectHandler</tt>.
+Download <tt>ObjectHandler-0.9.6.exe</tt> and uncompress the package to
+<tt>C:\\build_ql_0_9_6\\%ObjectHandler</tt>.
 
 \subsection inst_win_build 3.2 Build
 
@@ -142,14 +143,12 @@ for Excel, to be statically linked into a single client XLL</td></tr>
 object repository which can be shared by other XLLs in the Excel
 session</td></tr></table>
 
-NB: The ohxll build of %ObjectHandler requires a DLL version of the
-VC runtime library (i.e. <b>Debug CRTDLL</b> or <b>Release
-CRTDLL</b>).
+NB: The ohxll build of %ObjectHandler requires a DLL version of the VC runtime
+library i.e. <tt>Debug CRTDLL</tt> or <tt>Release CRTDLL</tt>.
 
-To build all available configurations and related examples -
-Open solution <tt>%ObjectHandler\\ObjectHandler_vc?.sln</tt>, choose
-configuration <tt>Release CRTDLL</tt>, and execute menu item
-<tt>Build / Build Solution</tt>.
+To build all available configurations and related examples - Open solution
+<tt>%ObjectHandler\\ObjectHandler_vc?.sln</tt>, choose configuration
+<tt>Release CRTDLL</tt>, and execute menu item <tt>Build | Build Solution</tt>.
 
 \subsection inst_win_test 3.3 Test
 
@@ -157,13 +156,13 @@ configuration <tt>Release CRTDLL</tt>, and execute menu item
 
 Open a DOS prompt in directory 
 \verbatim
-C:\build_ql_0_9_5\ObjectHandler\Examples\C++\bin
+C:\build_ql_0_9_6\ObjectHandler\Examples\C++\bin
 \endverbatim
 
 Execute the example program.  The output should appear similar
 to the following:
 \verbatim
-C:\build_ql_0_9_5\ObjectHandler\Examples\C++\bin>ExampleCpp-vc80-mt-0_9_5.exe
+C:\build_ql_0_9_6\ObjectHandler\Examples\C++\bin>ExampleCpp-vc80-mt-0_9_6.exe
 INFO - begin example program
 INFO - High level interrogation - after constructor
 INFO - log dump of object with ID = account2
@@ -219,7 +218,7 @@ INFO - End example program
 \li Start Excel
 \li Load the following files:
 \verbatim
-ObjectHandler\Examples\xl\xll\ExampleXLLStatic-vc??-mt-0_9_5.xll
+ObjectHandler\Examples\xl\xll\ExampleXLLStatic-vc??-mt-0_9_6.xll
 ObjectHandler\Examples\xl\exampleStatic.xls
 \endverbatim
 \li Hit <tt>Ctrl-Alt-F9</tt> to recalculate
@@ -229,9 +228,9 @@ ObjectHandler\Examples\xl\exampleStatic.xls
 \li Start Excel
 \li Load the following files:
 \verbatim
-ObjectHandler\xll\ObjectHandler-xll-vc??-mt-0_9_5.xll
-ObjectHandler\Examples\xl\xll\ExampleXLLDynamic1-vc??-mt-0_9_5.xll
-ObjectHandler\Examples\xl\xll\ExampleXLLDynamic2-vc??-mt-0_9_5.xll
+ObjectHandler\xll\ObjectHandler-xll-vc??-mt-0_9_6.xll
+ObjectHandler\Examples\xl\xll\ExampleXLLDynamic1-vc??-mt-0_9_6.xll
+ObjectHandler\Examples\xl\xll\ExampleXLLDynamic2-vc??-mt-0_9_6.xll
 ObjectHandler\Examples\xl\exampleDynamic.xls
 \endverbatim
 \li Hit <tt>Ctrl-Alt-F9</tt> to recalculate
@@ -362,7 +361,7 @@ The name of the library depends on your compiler and configuration.
 For example, if you're using VC8, configuration Release, the library
 is called
 \verbatim
-ObjectHandler-vc80-mt-s-0_9_5.lib
+ObjectHandler-vc80-mt-s-0_9_6.lib
 \endverbatim
 
 The location of the library depends on which project you're using
@@ -391,41 +390,46 @@ where you will install it:
 Go to the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
 
-Download <tt>log4cxx-0.10.0a.tgz</tt> and uncompress the package to
-<tt>/home/erik/build/log4cxx-0.10.0a</tt>.
+Download <tt>apr-0.2.12.tar.gz</tt> and uncompress the package to
+<tt>/home/erik/build/apr-0.2.12</tt>.
 
-Download <tt>gensrc-0.9.5.tgz</tt> and uncompress the package to
-<tt>/home/erik/build/gensrc-0.9.5</tt>.
+Download <tt>aprutil-0.2.12.tar.gz</tt> and uncompress the package to
+<tt>/home/erik/build/aprutil-0.2.12</tt>.
 
-Download <tt>ObjectHandler-0.9.5.tgz</tt> and uncompress the package to
-<tt>/home/erik/build/%ObjectHandler-0.9.5</tt>.
+Download <tt>log4cxx-0.10.0.tar.gz</tt> and uncompress the package to
+<tt>/home/erik/build/log4cxx-0.10.0</tt>.
+
+Download <tt>gensrc-0.9.6.tgz</tt> and uncompress the package to
+<tt>/home/erik/build/gensrc-0.9.6</tt>.
+
+Download <tt>ObjectHandler-0.9.6.tgz</tt> and uncompress the package to
+<tt>/home/erik/build/%ObjectHandler-0.9.6</tt>.
 
 \subsection inst_auto_build 4.2 Build
 
 \subsubsection inst_auto_log4cxx 4.2.1 Build log4cxx
 
 \verbatim
-cd /home/erik/build/log4cxx-0.10.0a
-./autogen.sh
-cd /home/erik/build/log4cxx-0.10.0a/scr/apr
+cd /home/erik/build/apr-0.2.12
+./buildconf
 ./configure --prefix=/home/erik/install
 make install
-cd /home/erik/build/log4cxx-0.10.0a/src/apr-util
-./configure --prefix=/home/erik/install \
-    --with-apr=/home/erik/install/bin/apr-1-config
+cd /home/erik/build/aprutil-0.2.12
+./buildconf --with-apr=/home/erik/build/apr-0.2.12
+./configure --prefix=/home/erik/install --with-apr=/home/erik/install
 make install
-cd /home/erik/build/log4cxx-0.10.0a
-./configure --prefix=/home/erik/install \
-    --with-apr=/home/erik/install/bin/apr-1-config \
-    --with-apr-util=/home/erik/install/bin/apu-1-config
+cd /home/erik/build/log4cxx-0.10.0
+./autogen.sh
+./configure --prefix=/home/erik/install --with-apr=/home/erik/install \
+    --with-apr-util=/home/erik/install
 make install
 \endverbatim
 
 \subsubsection inst_auto_oh 4.2.2 Build ObjectHandler
 
 \verbatim
-cd /home/erik/build/ObjectHandler-0.9.5
-./configure --with-gensrc=/home/erik/build/gensrc-0.9.5 \
+cd /home/erik/build/ObjectHandler-0.9.6
+./configure --with-gensrc=/home/erik/build/gensrc-0.9.6 \
     --prefix=/home/erik/install \
     CPPFLAGS=-I/home/erik/install/include LDFLAGS=-L/home/erik/install/lib
 make install
@@ -434,14 +438,62 @@ make install
 \subsection inst_auto_test 4.3 Test
 
 \verbatim
-cd /home/erik/build/ObjectHandler-0.9.5/Examples/C++
+cd /home/erik/build/ObjectHandler-0.9.6/Examples/C++
 ./ExampleCpp
 \endverbatim
 
 This should generate output similar to the following:
 
 \verbatim
-xxx
+[erik@client2 C++]$ ./ExampleCpp 
+INFO - begin example program
+INFO - High level interrogation - after constructor
+INFO - log dump of object with ID = account2
+
+property = Balance              value = 100                 
+property = ClassName            value = Account             
+property = Customer             value = customer1           
+property = Number               value = 987654321           
+property = ObjectId             value = account2            
+property = Permanent            value = 0                   
+property = Type                 value = Current             
+Permanent = false               
+
+
+INFO - Low-level interrogation - after update
+INFO - Result of getBalance on underlying = 100
+INFO - Log all objects after deleting account2:
+INFO - dump of all objects in ObjectHandler:
+
+Object with ID = account1:
+
+property = Balance              value = [Null value]        
+property = ClassName            value = Account             
+property = Customer             value = customer1           
+property = Number               value = 123456789           
+property = ObjectId             value = account1            
+property = Permanent            value = 0                   
+property = Type                 value = Savings             
+Permanent = false               
+
+Object with ID = customer1:
+
+property = Age                  value = 40                  
+property = ClassName            value = Customer            
+property = Name                 value = Joe                 
+property = ObjectId             value = customer1           
+property = Permanent            value = false               
+Permanent = false               
+
+
+INFO - Balance of account account2 = 200
+INFO - The initially time of creating account2 is 
+INFO - 08/28/2008 15:54:18
+INFO - The last time of creating account2 is 
+INFO - 08/28/2008 15:54:18
+INFO - relation the objects list is 
+INFO - customer1
+INFO - End example program
 \endverbatim
 
 \subsection inst_auto_usage 4.4 Usage

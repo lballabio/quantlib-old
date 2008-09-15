@@ -25,9 +25,7 @@
 #define ohxl_conversions_all_hpp
 
 #include <oh/conversions/coerce.hpp>
-#include <oh/conversions/varianttoscalar.hpp>
 #include <oh/conversions/getobjectvector.hpp>
-#include <ohxl/conversions/opertoscalar.hpp>
 #include <ohxl/conversions/opertovector.hpp>
 #include <ohxl/conversions/opertomatrix.hpp>
 #include <ohxl/conversions/scalartooper.hpp>

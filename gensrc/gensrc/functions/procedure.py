@@ -18,8 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""Encapsulate state and behavior required to generate source code for a
-function."""
+"""Procedural function not associated with any library object."""
 
 from gensrc.utilities import common
 from gensrc.utilities import buffer

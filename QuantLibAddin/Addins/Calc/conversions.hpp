@@ -19,7 +19,7 @@
 #ifndef qla_calc_conversions_hpp
 #define qla_calc_conversions_hpp
 
-#include <oh/variant.hpp>
+#include <oh/property.hpp>
 #include <ql/time/date.hpp>
 #include <ql/time/calendar.hpp>
 #include <ql/math/matrix.hpp>
@@ -32,7 +32,7 @@
 
 void calcToScalar(QuantLib::Date &, const sal_Int32&);
 void calcToScalar(QuantLib::Date &, const ANY&);
-void calcToScalar(ObjectHandler::Variant &, const ANY&);
+void calcToScalar(ObjectHandler::property_t &, const ANY&);
 void calcToScalar(QuantLib::Calendar &, const STRING &id);
 void calcToScalar(QuantLib::Period &, const STRING &id);
 void calcToVector(std::vector<QuantLib::Date> &, const SEQSEQ(sal_Int32) &);

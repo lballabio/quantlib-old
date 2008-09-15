@@ -37,7 +37,7 @@ class XmlReader(serializer.Serializer):
     ################################################
 
     def serializeValue(self, caller, valueName = 'value'):
-        """Read a named attribute."""
+        """Read a value."""
         identifierName = self.formatIdentifier(valueName)
         setattr(caller, identifierName, self.getNodeValue(self.node_))
 
@@ -260,6 +260,8 @@ class XmlReader(serializer.Serializer):
             raise exceptions.SerializationConvertBooleanException(self.documentName_, str)
 
     def sub1(self, m):
+        """Convert input value from format InputValue to format
+        inputValue_."""
         return m.group(1).lower() + m.group(2) + '_'
 
     REGEX_FORMAT_ID = re.compile(r'^(\w)(\w.*)$')

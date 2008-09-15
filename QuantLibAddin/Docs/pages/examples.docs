@@ -22,14 +22,14 @@
 */
 
 /*! \example qlademo.cpp
-    General demo of a QuantLibAddin C++ client.
+    General demo of a %QuantLibAddin C++ client.
 */
 
-/*! \example swap_in.cpp
-    Example QuantLibAddin C++ program which deserializes a swap.
+/*! \example instrument_in.cpp
+    Example %QuantLibAddin C++ program which deserializes an instrument.
 */
 
 /*! \example swap_out.cpp
-    Example QuantLibAddin C++ program which serializes a swap.
+    Example %QuantLibAddin C++ program which serializes a swap.
 */
 

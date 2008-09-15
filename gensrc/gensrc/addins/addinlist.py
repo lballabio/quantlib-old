@@ -16,10 +16,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""A list of all the Addin objects in use for this running
+instance of gensrc."""
+
 from gensrc.addins import excel
 from gensrc.addins import calc
 from gensrc.addins import cpp
-from gensrc.addins import c
+#from gensrc.addins import c
 #from gensrc.addins import guile
 from gensrc.addins import doxygen
 from gensrc.addins import serialization
@@ -34,8 +37,8 @@ from gensrc.utilities import log
 from gensrc.configuration import environment
 
 class AddinList(object):
-    """class to encapsulate data and behavior 
-    required to generate addin source code."""
+    """A list of all the Addin objects in use for this running
+    instance of gensrc."""
 
     #############################################
     # class variables
@@ -51,7 +54,7 @@ addin           unchanged   updated     created     total'''
         'x' : (excel.ExcelAddin, 'excel'),
         'o' : (calc.CalcAddin, 'calc'),
         'p' : (cpp.CppAddin, 'cpp'),
-        'c' : (c.CAddin, 'c'),
+        #'c' : (c.CAddin, 'c'),
         #'g' : (guile.GuileAddin, 'guile'),
         'v' : (valueobjects.ValueObjects, 'valueobjects'),
         'e' : (enumerations.Enumerations, 'enumerations'),
@@ -65,11 +68,14 @@ addin           unchanged   updated     created     total'''
     #############################################
 
     def generate(self):
+        """Generate the code for each Addin and write summary status
+        to stdout."""
 
         self.generateCode()
         self.printSummary()
 
     def generateCode(self):
+        """Generate the code for each Addin."""
 
         log.Log.instance().logMessage('begin ...')
 
@@ -79,6 +85,7 @@ addin           unchanged   updated     created     total'''
         log.Log.instance().logMessage('end')
 
     def printSummary(self):
+        """Write summary status to stdout."""
 
         log.Log.instance().logMessage()
         log.Log.instance().logMessage(AddinList.LINE_HEADER1)
@@ -106,6 +113,7 @@ addin           unchanged   updated     created     total'''
             log.Log.instance().logMessage(msg)
 
     def printDebug(self):
+        """Write debug info to stdout."""
 
         #for cat in self.categoryList_.categories('*'):
         #    cat.printDebug()
@@ -114,7 +122,7 @@ addin           unchanged   updated     created     total'''
             addin.printDebug()
 
     def __init__(self, addinIds):
-        """initialize"""
+        """Initialize the AddinList object."""
 
         self.categoryList_ = categorylist.CategoryList()
         if environment.config().usingEnumerations():

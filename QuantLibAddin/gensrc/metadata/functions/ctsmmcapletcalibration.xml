@@ -33,7 +33,6 @@
     <Member name='qlCTSMMCapletCalibrationCalibrate' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>calibrate.</description>
       <libraryFunction>calibrate</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -76,7 +75,6 @@
     <Member name='qlCTSMMCapletCalibrationFailures' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>failures.</description>
       <libraryFunction>failures</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -93,7 +91,6 @@
     <Member name='qlCTSMMCapletCalibrationDeformationSize' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>deformationSize.</description>
       <libraryFunction>deformationSize</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -110,7 +107,6 @@
     <Member name='qlCTSMMCapletCalibrationMarketCapletVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>market caplet volalitilies.</description>
       <libraryFunction>mktCapletVols</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -127,7 +123,6 @@
     <Member name='qlCTSMMCapletCalibrationModelCapletVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>model caplet volalitilies.</description>
       <libraryFunction>mdlCapletVols</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -144,7 +139,6 @@
     <Member name='qlCTSMMCapletCalibrationCapletRmsError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>capletRmsError.</description>
       <libraryFunction>capletRmsError</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -161,7 +155,6 @@
     <Member name='qlCTSMMCapletCalibrationCapletMaxError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>capletMaxError.</description>
       <libraryFunction>capletMaxError</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -178,7 +171,6 @@
     <Member name='qlCTSMMCapletCalibrationMarketSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>market swaption volalitilies.</description>
       <libraryFunction>mktSwaptionVols</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -195,7 +187,6 @@
     <Member name='qlCTSMMCapletCalibrationModelSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>model swaption volalitilies.</description>
       <libraryFunction>mdlSwaptionVols</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -212,7 +203,6 @@
     <Member name='qlCTSMMCapletCalibrationSwaptionRmsError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>swaptionRmsError.</description>
       <libraryFunction>swaptionRmsError</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -229,7 +219,6 @@
     <Member name='qlCTSMMCapletCalibrationSwaptionMaxError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>swaptionMaxError.</description>
       <libraryFunction>swaptionMaxError</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -246,7 +235,6 @@
     <Member name='qlCTSMMCapletCalibrationSwapPseudoRoot' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>swapPseudoRoot.</description>
       <libraryFunction>swapPseudoRoot</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -269,7 +257,6 @@
     <Member name='qlCTSMMCapletCalibrationTimeDependentCalibratedSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>timeDependentCalibratedSwaptionVols.</description>
       <libraryFunction>timeDependentCalibratedSwaptionVols</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -292,7 +279,6 @@
     <Member name='qlCTSMMCapletCalibrationTimeDependentUnCalibratedSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
       <description>timeDependentUnCalibratedSwaptionVols.</description>
       <libraryFunction>timeDependentUnCalibratedSwaptionVols</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -447,7 +433,6 @@
     <Member name='qlCTSMMCapletAlphaFormCalibrationAlpha' type='QuantLib::CTSMMCapletAlphaFormCalibration' superType='libraryClass'>
       <description>alpha.</description>
       <libraryFunction>alpha</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->

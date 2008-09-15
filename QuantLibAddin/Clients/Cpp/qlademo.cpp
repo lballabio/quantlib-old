@@ -43,8 +43,8 @@ int main() {
 
         initializeAddin();
 
-        //ohLogFileSet("qlademo.log", 4L, OH_NULL);
-        //ohSetConsole(1, 4L, OH_NULL);
+        ohSetLogFile("qlademo.log", 4L, OH_NULL);
+        ohSetConsole(1, 4L, OH_NULL);
         LOG_MESSAGE("Begin example program.");
         LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion(OH_NULL));
         LOG_MESSAGE("ObjectHandler version = " << ohVersion(OH_NULL));
@@ -76,7 +76,8 @@ int main() {
             OH_NULL,
             false);
 
-        std::string idGeneralizedBlackScholesProcess = qlGeneralizedBlackScholesProcess(
+        std::string idGeneralizedBlackScholesProcess =
+        qlGeneralizedBlackScholesProcess(
             "my_blackscholes",
             idBlackConstantVol,
             underlying,

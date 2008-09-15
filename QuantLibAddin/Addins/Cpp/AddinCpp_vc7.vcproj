@@ -31,7 +31,7 @@
 				UsePrecompiledHeader="0"
 				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)/"
 				ObjectFile=".\build\vc71\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\lib\AddinCpp-vc71-mt-sgd-0_9_5"
+				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)/"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="4"/>
@@ -39,7 +39,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc71-mt-sgd-0_9_5.lib"/>
+				OutputFile=".\lib\AddinCpp-vc71-mt-sgd-0_9_6.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -87,56 +87,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc71-mt-s-0_9_5.lib"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug SingleThread|Win32"
-			OutputDirectory=".\build\vc71\$(ConfigurationName)"
-			IntermediateDirectory=".\build\vc71\$(ConfigurationName)"
-			ConfigurationType="4"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
-				MinimalRebuild="TRUE"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				BufferSecurityCheck="FALSE"
-				DisableLanguageExtensions="FALSE"
-				ForceConformanceInForLoopScope="FALSE"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="0"
-				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)/"
-				ObjectFile=".\build\vc71\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\lib\AddinCpp-vc71-sgd-0_9_5"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="4"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc71-sgd-0_9_5.lib"/>
+				OutputFile=".\lib\AddinCpp-vc71-mt-s-0_9_6.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -172,53 +123,7 @@
 				RuntimeLibrary="3"
 				BufferSecurityCheck="FALSE"
 				DisableLanguageExtensions="FALSE"
-				ForceConformanceInForLoopScope="FALSE"
-				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="0"
-				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)/"
-				ObjectFile=".\build\vc71\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\lib\AddinCpp-vc71-mt-gd-0_9_5"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="4"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc71-mt-gd-0_9_5.lib"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release SingleThread|Win32"
-			OutputDirectory=".\build\vc71\$(ConfigurationName)"
-			IntermediateDirectory=".\build\vc71\$(ConfigurationName)"
-			ConfigurationType="4"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../..;../../../ObjectHandler;../../../QuantLib"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
-				RuntimeLibrary="4"
-				BufferSecurityCheck="TRUE"
-				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="FALSE"
+				TreatWChar_tAsBuiltInType="TRUE"
 				ForceConformanceInForLoopScope="FALSE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="0"
@@ -226,14 +131,13 @@
 				ObjectFile=".\build\vc71\$(ConfigurationName)/"
 				ProgramDataBaseFileName=".\build\vc71\$(ConfigurationName)/"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="FALSE"
-				DebugInformationFormat="0"
-				CompileAs="0"/>
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="4"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc71-s-0_9_5.lib"/>
+				OutputFile=".\lib\AddinCpp-vc71-mt-gd-0_9_6.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -281,7 +185,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc71-mt-0_9_5.lib"/>
+				OutputFile=".\lib\AddinCpp-vc71-mt-0_9_6.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -415,6 +319,12 @@
 			RelativePath="forwardrateagreement.hpp">
 		</File>
 		<File
+			RelativePath="garbagecollection.cpp">
+		</File>
+		<File
+			RelativePath="garbagecollection.hpp">
+		</File>
+		<File
 			RelativePath="handles.cpp">
 		</File>
 		<File
@@ -451,10 +361,10 @@
 			RelativePath="leg.hpp">
 		</File>
 		<File
-			RelativePath=".\logging.cpp">
+			RelativePath="logging.cpp">
 		</File>
 		<File
-			RelativePath=".\logging.hpp">
+			RelativePath="logging.hpp">
 		</File>
 		<File
 			RelativePath="marketmodelevolvers.cpp">
@@ -469,10 +379,10 @@
 			RelativePath="marketmodels.hpp">
 		</File>
 		<File
-			RelativePath=".\ohutils.cpp">
+			RelativePath="ohutils.cpp">
 		</File>
 		<File
-			RelativePath=".\ohutils.hpp">
+			RelativePath="ohutils.hpp">
 		</File>
 		<File
 			RelativePath="optimization.cpp">
@@ -493,10 +403,10 @@
 			RelativePath="payoffs.hpp">
 		</File>
 		<File
-			RelativePath=".\piecewiseyieldcurve.cpp">
+			RelativePath="piecewiseyieldcurve.cpp">
 		</File>
 		<File
-			RelativePath=".\piecewiseyieldcurve.hpp">
+			RelativePath="piecewiseyieldcurve.hpp">
 		</File>
 		<File
 			RelativePath="pricingengines.cpp">
@@ -553,10 +463,10 @@
 			RelativePath="sequencestatistics.hpp">
 		</File>
 		<File
-			RelativePath=".\serialization.cpp">
+			RelativePath="serialization.cpp">
 		</File>
 		<File
-			RelativePath=".\serialization.hpp">
+			RelativePath="serialization.hpp">
 		</File>
 		<File
 			RelativePath="settings.cpp">
@@ -617,6 +527,12 @@
 		</File>
 		<File
 			RelativePath="utilities.hpp">
+		</File>
+		<File
+			RelativePath="valueobjects.cpp">
+		</File>
+		<File
+			RelativePath="valueobjects.hpp">
 		</File>
 		<File
 			RelativePath="vanillaswap.cpp">

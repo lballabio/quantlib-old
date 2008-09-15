@@ -1,1 +1,1 @@
-InstrumentIn-vc80-mt.exe 39570 goods MultiLegSwap.xml YieldCurves.xml AtmVolatilities.xml SwaptionVolatilities.xml
+InstrumentIn-vc80-mt-s.exe 39573 MultiLegSwap MultiLegSwap.xml YieldCurves.xml AtmVolatilities.xml SwaptionVolatilities.xml

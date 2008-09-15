@@ -26,7 +26,6 @@
     <!-- MarketModelEvolver derived classes constructors  -->
     <Constructor name='qlForwardRatePc'>
       <libraryFunction>LogNormalFwdRatePc</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -56,7 +55,6 @@
 
     <Constructor name='qlForwardRateIpc'>
       <libraryFunction>LogNormalFwdRateIpc</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -86,7 +84,6 @@
 
     <Constructor name='qlForwardRateNormalPc'>
       <libraryFunction>NormalFwdRatePc</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -118,7 +115,6 @@
     <Member name='qlMarketModelEvolverStartNewPath' type='QuantLib::MarketModelEvolver'>
       <description>start a new path for the MarketModelEvolver object.</description>
       <libraryFunction>startNewPath</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -135,7 +131,6 @@
     <Member name='qlMarketModelEvolverAdvanceStep' type='QuantLib::MarketModelEvolver'>
       <description>advance a single step in the current path for the MarketModelEvolver object.</description>
       <libraryFunction>advanceStep</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -152,7 +147,6 @@
     <Member name='qlMarketModelEvolverCurrentStep' type='QuantLib::MarketModelEvolver'>
       <description>returns the current step index in the current path for the MarketModelEvolver object.</description>
       <libraryFunction>currentStep</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -169,7 +163,6 @@
     <Member name='qlMarketModelEvolverNumeraires' type='QuantLib::MarketModelEvolver'>
       <description>returns the current step index in the current path for the MarketModelEvolver object.</description>
       <libraryFunction>numeraires</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->

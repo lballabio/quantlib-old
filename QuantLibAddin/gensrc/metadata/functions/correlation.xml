@@ -36,7 +36,6 @@
 
     <Constructor name='qlMarketModelLmLinearExponentialCorrelationModel'>
       <libraryFunction>LmLinearExponentialCorrelationModel</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -155,7 +154,6 @@
 
     <Constructor name='qlHistoricalForwardRatesAnalysis'>
       <libraryFunction>HistoricalForwardRatesAnalysis</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
         <SupportedPlatform name='Cpp'/>
@@ -268,7 +266,6 @@
 
     <Constructor name='qlHistoricalRatesAnalysis'>
       <libraryFunction>HistoricalRatesAnalysis</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
         <SupportedPlatform name='Cpp'/>
@@ -307,7 +304,6 @@
 
     <Constructor name='qlTimeHomogeneousForwardCorrelation'>
       <libraryFunction>TimeHomogeneousForwardCorrelation</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -374,7 +370,6 @@
 
     <Constructor name='qlExponentialForwardCorrelation'>
       <libraryFunction>ExponentialForwardCorrelation</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

@@ -66,7 +66,7 @@ Right clicking in a cell brings up a QuantLibXL menu.
 
 If a QuantLib function returns \#NUM then menu option "Display Error" returns the
 associated error message.  (The error message may also be found in the log file,
-or by calling ohRangeRetrieveError() on the relevant cell).
+or by calling ohRetrieveError() on the relevant cell).
 
 The right click menu provides additional functions to create/remove various drop
 down menus in the chosen cell and to reformat the cell.

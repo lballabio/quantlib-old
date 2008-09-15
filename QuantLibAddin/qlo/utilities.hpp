@@ -34,7 +34,7 @@
 
 namespace QuantLibAddin {
 
-/*! \group utilities
+/*! \ingroup utilities
     diagnostic and information functions for QuantLibAddin
 */
 

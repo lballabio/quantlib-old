@@ -8,5 +8,6 @@ EXTRA_DIST = \
     xlsdkdefines.hpp \
     xlsdk.hpp \
     xlsdk_vc7.vcproj \
-    xlsdk_vc8.vcproj
+    xlsdk_vc8.vcproj \
+    xlsdk_vc9.vcproj
 

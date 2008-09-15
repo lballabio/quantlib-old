@@ -77,15 +77,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\..\xll\ObjectHandler-xll-vc90-mt-gd-0_9_5.xll"
+				OutputFile="..\..\xll\ObjectHandler-xll-vc90-mt-gd-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib;..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc90-mt-gd-0_9_5.pdb"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc90-mt-gd-0_9_6.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="..\..\lib\ObjectHandler-xll-vc90-mt-gd-0_9_5.lib"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc90-mt-gd-0_9_6.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -175,14 +175,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\..\xll\ObjectHandler-xll-vc90-mt-0_9_5.xll"
+				OutputFile="..\..\xll\ObjectHandler-xll-vc90-mt-0_9_6.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc90-mt-0_9_5.pdb"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc90-mt-0_9_6.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="..\..\lib\ObjectHandler-xll-vc90-mt-0_9_5.lib"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc90-mt-0_9_6.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -256,7 +256,7 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\oh\other.hpp"
+					RelativePath="..\..\oh\processor.cpp"
 					>
 				</File>
 				<File
@@ -289,10 +289,6 @@
 				</File>
 				<File
 					RelativePath="..\..\oh\singleton.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\oh\types.hpp"
 					>
 				</File>
 				<File
@@ -357,14 +353,6 @@
 				</File>
 				<File
 					RelativePath="..\..\oh\enumerations\typefactory.hpp"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="loop"
-				>
-				<File
-					RelativePath="..\..\oh\loop\loop_valueobjects.hpp"
 					>
 				</File>
 			</Filter>
@@ -473,10 +461,6 @@
 				</File>
 				<File
 					RelativePath="..\conversions\opertomatrix.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\conversions\opertoscalar.hpp"
 					>
 				</File>
 				<File

@@ -306,7 +306,7 @@
           <Parameter name='GenRule' exampleValue='Backward'>
             <type>QuantLib::DateGeneration::Rule</type>
             <tensorRank>scalar</tensorRank>
-            <description>Date generation rule (Backward, Forward, ThirdWednesday, Zero).</description>
+            <description>Date generation rule (Backward, Forward, ThirdWednesday, Twentieth, TwentiethIMM, Zero).</description>
           </Parameter>
           <Parameter name='EndOfMonth' default='false'>
             <type>bool</type>

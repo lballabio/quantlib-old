@@ -2,9 +2,9 @@
 # !defines
 
 !define APP "QuantLibXL"
-!define VER_NUMBER "0.9.5"
-!define VER_NUMBER_UNDERSCORE "0_9_5"
-!define COMPILER "vc90"
+!define VER_NUMBER "0.9.6"
+!define VER_NUMBER_UNDERSCORE "0_9_6"
+!define COMPILER "vc80"
 
 # Compiler Flags
 
@@ -53,9 +53,11 @@ Section
     File "Workbooks\Math\*.xls"
 
     SetOutPath "$INSTDIR\Workbooks\StandaloneExamples"
-    File "Workbooks\StandaloneExamples\README.txt"
-    File "Workbooks\StandaloneExamples\*.xls"
-    File "Workbooks\StandaloneExamples\*.xla"
+    File /r "Workbooks\StandaloneExamples\*.xls"
+    File /r "Workbooks\StandaloneExamples\*.xla"
+
+    SetOutPath "$INSTDIR\Workbooks\StandaloneExamples\SerializationDemo"
+    File "Workbooks\StandaloneExamples\SerializationDemo\README.TXT"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"

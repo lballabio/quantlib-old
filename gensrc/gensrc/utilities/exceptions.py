@@ -16,6 +16,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Exceptions encountered when performing utility functions."""
+
 from gensrc.exceptions import exceptions
 import sys
 
@@ -23,12 +25,14 @@ class UtilitiesException(exceptions.GensrcException):
     """Exceptions encountered when performing utility functions."""
 
 class UtilitiesSerializationException(UtilitiesException):
+    """Error serializing an object from XML."""
 
     SERIALIZATION_ERROR = """
 Error loading object of class '%(className)s' from XML document '%(fileName)s.xml' :
 %(parseError)s"""
 
     def __init__(self, fileName, className):
+        """Initialize the UtilitiesSerializationException object."""
         errorClass, errorObject, traceBack = sys.exc_info()
         self.value_ = UtilitiesSerializationException.SERIALIZATION_ERROR % {
             'className' : className,
@@ -36,6 +40,7 @@ Error loading object of class '%(className)s' from XML document '%(fileName)s.xm
             'parseError' : str(errorObject) }
 
 class UtilitiesSerializationListException(UtilitiesException):
+    """Error serializing an object list from XML."""
 
     SERIALIZATION_LIST_ERROR = """
 Error loading list '%(listName)s' containing items '%(itemName)s'
@@ -43,6 +48,7 @@ from XML document '%(fileName)s.xml' :
 %(parseError)s"""
 
     def __init__(self, fileName, listName, itemName):
+        """Initialize the UtilitiesSerializationListException object."""
         errorClass, errorObject, traceBack = sys.exc_info()
         self.value_ = UtilitiesSerializationListException.SERIALIZATION_LIST_ERROR % {
             'fileName' : fileName,

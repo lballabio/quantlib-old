@@ -79,6 +79,7 @@ namespace ObjectHandler {
             }
         }
 
+        //! Empty virtual destructor.
         virtual ~Coerce() {}
 
     protected:

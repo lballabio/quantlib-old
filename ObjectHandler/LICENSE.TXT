@@ -1,11 +1,14 @@
 
 ObjectHandler is
 
-    Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
-    Copyright (C) 2004, 2005, 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
+    Copyright (C) 2004, 2005, 2006, 2007, 2008 Ferdinando Ametrano
 
-    Copyright (C) 2004 StatPro Italia srl
-    Copyright (C) 2005, 2006 Plamen Neykov
+    Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+    Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
+    Copyright (C) 2005, 2006, 2008 Plamen Neykov
+    Copyright (C) 2008 Luigi Ballabio
+    Copyright (C) 2008 Nazcatech sprl Belgium
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:

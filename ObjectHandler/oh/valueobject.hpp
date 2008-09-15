@@ -45,6 +45,10 @@ namespace ObjectHandler {
         The ValueObject captures a snapshot of the input arguments that were
         passed to the Object's constructor.  These values can be used later
         for serialization or run-time interrogation of the Object.
+
+        This class's member functions are implemented inline in this header
+        file.  This is necessary to work around problems on the Windows platform
+        when exporting this class across DLL boundaries.
     */
     class ValueObject {
     public:
@@ -65,30 +69,39 @@ namespace ObjectHandler {
         virtual ~ValueObject() {}
         //@}
 
-        //! \name Inspectors
-        //@{
-        //! Retrieve the names of the properties stored in the ValueObject.
-        std::set<std::string> getPropertyNames() const;
-        virtual std::vector<std::string> getPropertyNamesVector() const = 0;
-        virtual const std::set<std::string>& getSystemPropertyNames() const = 0;
+        /*! \name Properties
+            System properties are set when the ValueObject is constructed - a snapshot
+            of the inputs to the ValueObject's constructor.
 
+            User properties are additional values which are attached to the ValueObject
+            after its creation.
+        */
+        //@{
+        //! Retrieve the property names as a std::set.
+        std::set<std::string> getPropertyNames() const;
+        //! Retrieve the property names as a std::vector.
+        virtual std::vector<std::string> getPropertyNamesVector() const = 0;
+        //! Retrieve the names of the system properties stored in the ValueObject.
+        virtual const std::set<std::string>& getSystemPropertyNames() const = 0;
         //! Retrieve the value of a property given its name.
         property_t getProperty(const std::string& name) const;
+        //! Retrieve the value of a system property given its name.
         virtual property_t getSystemProperty(const std::string& name) const = 0;
-        // for now only checks for user properties not system properties
+        //! Determine whether the given user property is present.
         bool hasProperty(const std::string& name) const;
-
-        //! Set the value of a named property.
+        //! Set the value of the given property.
         void setProperty(const std::string& name, const property_t& value);
+        //! Set the value of the given system property.
         virtual void setSystemProperty(const std::string& name, const property_t& value) = 0;
-
-        //! Retrieve the object id of the underlying object in the object repository
-        const std::string& objectId() const { return objectId_; }
         //@}
 
-        //! \name className
+        //! \name Inspectors
         //@{
-        //! Name of this ValueObject's class, used by class SerializationFactory.
+        //! Retrieve the ID of the underlying Object in the Repository.
+        const std::string& objectId() const { return objectId_; }
+        //! Retrieve the list of precedent Object IDs.
+        const std::set<std::string>& getRelationObs() { return relatedIDs_;}
+        //! Name of this ValueObject's class.
         const std::string &className() const { return className_; }
         //@}
 
@@ -102,26 +115,35 @@ namespace ObjectHandler {
         virtual std::string processorName()  { return "DefaultProcessor"; }
         //@}
 
-        //! \name getRelationObs
-        //@{
-        //! Retrieve the list relatedIDs_.
-        const std::set<std::string>& getRelationObs() { return relatedIDs_;}
-        //@}
-
     protected:
+        //! ID of the Object associated with this ValueObject.
         std::string objectId_;
+        //! A string identifiying the class of this ValueObject.
         std::string className_;
+        //! Boolean indicating whether the associated Object is permanent.
+        /*! \sa Object::permanent() */
         bool permanent_;
-        //! Name Value pair map representing the user defined properties.
+        //! Name/Value pair map representing the user defined properties.
         std::map<std::string, property_t> userProperties;
-        //relation the observable objects
-        std::set<std::string> relatedIDs_;
 
-        //void processVariant(const property_t& variantID);
-        void processVariant(property_t variantID);
-        void processVariant(const std::vector<property_t>& vecVariantID);
-        void processVariant(const std::vector<std::vector<property_t> >& vecVariantIDs);
+        /*! \name Precedent Object IDs
+            Functions used in managing the list of precedent Objects.
+
+            If any of the precedent Objects changes then the Object associated
+            with this ValueObject must also be recreated.
+        */
+        //@{
+        //! List of precedent Object IDs
+        std::set<std::string> relatedIDs_;
+        //! Store the object ID in the list of precedents.
         void processRelatedID(const std::string& relatedID);
+        //! Extract the Object ID from the property_t and pass it to processRelatedID()
+        void processVariant(property_t variantID);
+        //! Extract the Object IDs from the property_t vector and pass them to processRelatedID()
+        void processVariant(const std::vector<property_t>& vecVariantID);
+        //! Extract the Object IDs from the property_t matrix and pass them to processRelatedID()
+        void processVariant(const std::vector<std::vector<property_t> >& vecVariantIDs);
+        //@}
     };
 
     inline void ValueObject::processRelatedID(const std::string& relatedID) {
@@ -129,6 +151,7 @@ namespace ObjectHandler {
             relatedIDs_.insert(relatedID);
     }
 
+    // FIXME This function should take a const ref:
     //inline void ValueObject::processVariant(const property_t& variantID){
     inline void ValueObject::processVariant(property_t variantID){
         if (std::string *objectID = boost::get<std::string>(&variantID))
@@ -146,7 +169,6 @@ namespace ObjectHandler {
         for(; iterator != vecVariantIDs.end(); ++iterator){
             processVariant(*iterator);
         }
-
     }
 
     inline std::set<std::string> ValueObject::getPropertyNames() const {

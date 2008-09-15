@@ -2,6 +2,7 @@
 EXTRA_DIST = \
     docs_vc7.vcproj \
     docs_vc8.vcproj \
+    docs_vc9.vcproj \
     doxygen.css \
     gensrc.doxy \
     gs_footer.html \
@@ -11,18 +12,19 @@ EXTRA_DIST = \
     ql.css \
     tabs.css
 
-FILENAME := gensrc-$(VERSION)-docs-html
+FILENAME := gensrc-docs-$(VERSION)-html
 PROJECTNAME := gensrc
 PROJECTINITIALS := gs
 DOXYGEN_INPUT := $(shell find ${top_srcdir} -name *.py) \
                  $(wildcard pages/*.docs)
+OH_DIR := ../../ObjectHandler
 
 # From here on this file is identical for ObjectHandler, gensrc, QuantLibAddin, QuantLibXL
 
 DOXYGEN_CONFIG := $(PROJECTNAME).doxy
 DOXYGEN_CONFIG_TEMP := .$(DOXYGEN_CONFIG)
 DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css $(PROJECTINITIALS)_footer.html $(PROJECTINITIALS)_header.html $(PROJECTINITIALS)_headeronline.html 
-SCRIPT := ../../ObjectHandler/dev_tools/preprocess_doxyfile.py
+SCRIPT := $(OH_DIR)/dev_tools/preprocess_doxyfile.py
 
 %.gz: %
 	rm -f $@
@@ -35,8 +37,7 @@ SCRIPT := ../../ObjectHandler/dev_tools/preprocess_doxyfile.py
 .PHONY: docs-dist docs-html-dist 
 
 dist-hook:
-	mkdir -p $(distdir)/auto.pages $(distdir)/pages $(distdir)/images
-	cp -p $(srcdir)/auto.pages/*.docs $(distdir)/auto.pages
+	mkdir -p $(distdir)/pages $(distdir)/images
 	cp -p $(srcdir)/pages/*.docs $(distdir)/pages
 	cp -p $(srcdir)/images/*.ico $(srcdir)/images/*.jpg $(srcdir)/images/*.png $(distdir)/images
 
@@ -67,7 +68,7 @@ docs-online: .time-stamp-online
 	cp tabs.css html-online
 	cp ql.css html-online
 	mkdir -p html-online/images
-	cp -f images/*.ico images/*.jpg images/*.png html/images
+	cp -f images/*.ico images/*.jpg images/*.png html-online/images
 	touch .time-stamp-online
 
 docs-online-dist: docs-online

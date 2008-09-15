@@ -16,13 +16,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""class to encapsulate state and behavior for a named file buffer."""
+"""Class to encapsulate state and behavior for a named file buffer."""
 
 from gensrc.utilities import common
 from gensrc.configuration import environment
 from gensrc.serialization import serializable
 
 def loadBuffer(bufferName):
+    """Load a buffer from the filesystem into memory."""
     fileName = environment.Environment.instance().gensrcRootPath() + '/stubs/' + bufferName
     fileBuffer = open(fileName)
     ret = fileBuffer.read()
@@ -30,7 +31,7 @@ def loadBuffer(bufferName):
     return ret
 
 class Buffer(serializable.Serializable):
-    """class to encapsulate state and behavior for a named file buffer."""
+    """Class to encapsulate state and behavior for a named file buffer."""
 
     #############################################
     # class variables
@@ -43,6 +44,7 @@ class Buffer(serializable.Serializable):
     #############################################
 
     def text(self):
+        """Return the text of this buffer."""
         return self.text_
 
     #############################################
@@ -50,17 +52,19 @@ class Buffer(serializable.Serializable):
     #############################################
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.NAME)
         serializer.serializeAttribute(self, common.FILE_NAME)
         serializer.serializeAttributeBoolean(self, common.LOCAL)
 
     def postSerialize(self):
-        """load the named buffer."""
+        """Load the named buffer."""
         if self.local_:
-            fileBuffer = open(environment.Environment.instance().addinConfigPath() + 'stubs/' + self.fileName_)
+            fileBuffer = open(environment.Environment.instance().addinConfigPath() +
+                'stubs/' + self.fileName_)
         else:
-            fileBuffer = open(environment.Environment.instance().gensrcRootPath() + 'stubs/' + self.fileName_)
+            fileBuffer = open(environment.Environment.instance().gensrcRootPath() +
+                'stubs/' + self.fileName_)
         self.text_ = fileBuffer.read()
         fileBuffer.close()
 

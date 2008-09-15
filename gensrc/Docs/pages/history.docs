@@ -23,9 +23,13 @@
 
 /*! \page history Version History
 
-<strong>Release 0.9.5 - ??? 200?</strong>
+<strong>Release 0.9.6 - September 2008</strong>
 
 - More flexible validation of type/supertype combinations in function metadata
+- Autogeneration of some additional source code files relating to
+  ValueObjects
+- Support for enhancements in ObjectHandler where type boost::any
+  is replaced by boost::variant
 - Numerous features which were hard-coded have been cleaned up and
   parameterized
 

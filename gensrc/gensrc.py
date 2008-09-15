@@ -18,6 +18,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Main script to invoke the gensrc application."""
+
 import sys
 import getopt
 from gensrc.addins import addinlist
@@ -31,8 +33,6 @@ usage: %(scriptName)s -[flags] --oh_dir
         x - Excel addin
         o - OpenOffice.org Calc addin
         p - C++ addin
-       [c - C addin]
-       [g - Guile addin]
         v - ValueObjects code
         e - Enumerations
         l - Loops

@@ -16,7 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""generate source code for loop functions."""
+"""Generate source code for loop functions."""
 
 from gensrc.addins import addin
 from gensrc.utilities import outputfile

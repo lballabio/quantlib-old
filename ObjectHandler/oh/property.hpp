@@ -20,7 +20,7 @@
 */
 
 /*! \file
-    \brief Class Variant - A class to represent any of a selection of native C++ datatypes
+    \brief Class property_t - A class to represent any of a selection of native C++ datatypes
 */
 
 #ifndef oh_property_hpp
@@ -38,28 +38,39 @@
 
 namespace ObjectHandler {
 
+    //! Placeholder for a null value
     struct empty_property_tag {
+        //! Serialize this value to/from an archive
         template<class Archive>
         void serialize(Archive &ar, const unsigned int) {}
     };
 
+    //! The underlying types supported by property_t
     typedef boost::make_recursive_variant<empty_property_tag, bool, std::string, long, double,
             std::vector<boost::recursive_variant_> >::type property_base;
 
+    //! A value of variant type
+    /*! Class property_t is a wrapper for boost::variant, which is natively
+        supported by boost::serialization.  Therefore any value of type property_t
+        can be serialized and deserialized.
+    */
     class property_t : public property_base {
         friend class boost::serialization::access;
     public:
         typedef std::vector<property_base> vector;
 
+        //! \name Structors
+        //@{
+        //! Empty default constructor
         property_t() {}
-
+        //! Explicit copy constructor
         property_t(const property_t& t) : property_base(static_cast<const property_base&>(t)) {}
-
+        //! Construct from char*
         property_t(const char* s) : property_base(std::string(s)) {}
-
+        //! Construct from T
         template<typename T>
         property_t(const T& t) : property_base(t) {}
-
+        //! Construct from std::vector<T>
         template<typename T>
         property_t(const std::vector<T>& vct) {
             vector row;
@@ -68,7 +79,7 @@ namespace ObjectHandler {
 
             property_base::operator= <vector>(row);
         }
-
+        //! Construct from std::vector<std::vector<T> >
         template<typename T>
         property_t(const std::vector<std::vector<T> >& mtx) {
             vector matrix;
@@ -80,26 +91,39 @@ namespace ObjectHandler {
             }
             property_base::operator= <vector>(matrix);
         }
+        //@}
 
+        //! \name Operators
+        //@{
+        //! Assignment operator
         property_t& operator=(const property_t& rhs) {
             property_base::operator=(static_cast<const property_base&>(rhs));
             return *this;
         }
-
+        //! Function call operator - return underlying data
         template<typename T>
         operator T() const { return boost::get<T>(*this); }
-        
+        //! Type conversion operator
         operator property_t() const { return *this; }
-        
-        bool missing() const { return which() == 0; }
+        //@}
 
+        //! \name Inspectors
+        //@{
+        //! Boolean indicating whether underlying value is populated
+        bool missing() const { return which() == 0; }
+        //@}
     protected:
+        //! \name Serialization
+        //@{
+        //! Serialize this value to/from the given archive
         template<class Archive>
         void serialize(Archive &ar, const unsigned int ver) {
             boost::serialization::serialize(ar, *static_cast<property_base*>(this), ver);
         }
+        //@}
     };
 
+    //! Template function to convert a vector from type property_t to type value_t
     namespace vector {
         template<class value_t>
         std::vector<value_t> convert2(const property_t& c, const std::string &parameterName) {
@@ -117,6 +141,7 @@ namespace ObjectHandler {
         }
     }
     
+    //! Template function to convert a matrix from type property_t to type value_t
     namespace matrix {
         template<class value_t>
         std::vector<std::vector<value_t> > convert2(const property_t& c, const std::string &parameterName) {
@@ -139,220 +164,31 @@ namespace ObjectHandler {
         }
     }
 
-    //! Definition of the user property type.
-    /*typedef boost::make_recursive_variant<empty_property_tag, long, double, std::string,
-        std::vector<bool>, std::vector<long>, std::vector<double>, std::vector<std::string>, 
-        std::vector<std::vector<bool> >, std::vector<std::vector<long> >, std::vector<std::vector<double> >, std::vector<std::vector<std::string> >, 
-        std::vector<boost::recursive_variant_>,
-        std::vector<std::vector<boost::recursive_variant_> > >::type property_t;
+    //! Log the given property_t value to the given stream.
+    inline std::ostream &operator<<(std::ostream &out, const property_t &p) {
 
-    typedef boost::make_recursive_variant<
-        empty_property_tag, long, double, std::string,
-        std::vector<boost::recursive_variant_> >::type property_t;*/
-    
-    /*template<>
-    struct convert2<bool> {
-        bool operator()(const property_t& p, const std::string &parameterName, bool defaultValue) {
-            #pragma warning(disable:4800)
-            return convert2<long>()(p, parameterName, defaultValue);
-            #pragma warning(default:4800)
-        }
+        // FIXME - I can't figure out how to implement a visitor
+        // for a recursive variant :-(
+        //boost::apply_visitor(stream_visitor(out), p);
 
-        bool operator()(const property_t& p) {
-            #pragma warning(disable:4800)
-            return convert2<long>()(p);
-            #pragma warning(default:4800)
-        }
-    };*/
-
-    //! Helper template to call ohVariantToScalar on a vector.
-    /*template <class T>
-    std::vector<T> propertyVector2(
-        const std::vector<property_t> &variant,
-        const std::string &parameterName) {
-
-        try {
-            std::vector<T> ret;
-            for (std::vector<property_t>::const_iterator i = variant.begin(); i != variant.end(); ++i) {
-                ret.push_back(convert2<T>()(*i));
-            }
-            return ret;
-        } catch (const std::exception &e) {
-            OH_FAIL("ohVariantToVector: unable to convert parameter '" << parameterName 
-                << "' to type '" << typeid(T).name() << "' - " << e.what());
-        }
-    }*/
-
-    //! Helper template to call ohVariantToScalar on a matrix.
-    /*template <class T>
-    std::vector<std::vector<T> > propertyMatrix2(
-        const std::vector<std::vector<property_t> > &variant,
-        const std::string &parameterName) {
-
-        try {
-            std::vector<std::vector<T> > ret;
-            for (std::vector<std::vector<property_t> >::const_iterator i = variant.begin();
-                i != variant.end(); ++i) {
-                std::vector<T> rowOut;
-                for (std::vector<property_t>::const_iterator j = i->begin(); j != i->end(); ++j) {
-                    rowOut.push_back(convert2<T>()(*j));                
-                }
-                ret.push_back(rowOut);                
-            }
-            return ret;
-        } catch (const std::exception &e) {
-            OH_FAIL("ohVariantToMatrix: unable to convert parameter '" << parameterName 
-                << "' to type '" << typeid(T).name() << "' - " << e.what());
-        }
-    }*/
-
-    /*//! Helper template to call VariantToScalarObject on a vector.
-    template <class LibraryClass, class ObjectClass>
-    std::vector<boost::shared_ptr<LibraryClass> >
-    ohVariantToObjectVector(
-        const std::vector<Variant> &variant,
-        const std::string &parameterName) {
-
-        try {
-            std::vector<boost::shared_ptr<LibraryClass> > ret;
-            for (std::vector<Variant>::const_iterator i = variant.begin(); i != variant.end(); ++i) {
-                ret.push_back(VariantToScalarObject<Variant, LibraryClass, ObjectClass>()(*i));
-            }
-            return ret;
-        } catch (const std::exception &e) {
-            OH_FAIL("ohVariantToObjectVector: unable to convert parameter '" << parameterName 
-                << "' to type '" << typeid(boost::shared_ptr<LibraryClass>).name() << "' - " << e.what());
-        }
-    }*/
-
-    /* //! Typedef for the datatype of the variant value data member
-    typedef boost::variant<long, double, bool, std::string, Other> ScalarVariant;
-
-    //! Definition of the user property type.
-    typedef boost::variant<bool, long, double, std::string, ScalarVariant,
-            std::vector<bool>, std::vector<long>, std::vector<double>, std::vector<std::string>, std::vector<ScalarVariant>,
-            std::vector<std::vector<bool> >, std::vector<std::vector<long> >, std::vector<std::vector<double> >, 
-            std::vector<std::vector<std::string> >, std::vector<std::vector<ScalarVariant> >
-        > Variant;*/
-
-    //! A class to represent any of a selection of native C++ datatypes
-    /*!
-        This class wraps a boost::variant value with conversion operators and
-        additional functionality required by ObjectHandler.
-
-        The same interface is supported by classes ConvertOper and Variant, allowing
-        any conversion algorithm that is based on VariantToScalar to be applied to
-        either class, or to other user-defined types which support the same interface.
-    */
-/*    class Variant {
-        friend class boost::serialization::access;
-
-    public:
-        //! Constructor - initialize the variant.
-        Variant(const VariantDef &variant = Other()) : variant_(variant) {}
-        Variant(const long &l) : variant_(l) {}
-        Variant(const double &d) : variant_(d) {}
-        Variant(const bool &b) : variant_(b) {}
-        Variant(const char *s) : variant_(std::string(s)) {}
-        Variant(const std::string &s) : variant_(s) {}
-
-        //! \name Inspectors
-        //@{
-        //! Return the datatype of the underlying value.
-        Type type() const;
-        //! Indicate whether the Variant value is missing.
-        bool missing() const;
-        //! Indicate whether the Variant contains an error value.
-        bool error() const;
-        //@}
-
-        //! \name Conversion Operators
-        //@{
-        //! Convert the variant to a long.
-        operator unsigned int() const;
-        //! Convert the variant to a long.
-        operator long() const;
-        //! Convert the variant to a double.
-        operator double() const;
-        //! Convert the variant to a boolean.
-        operator bool() const;
-        //! Convert the variant to a std::string.
-        operator std::string() const;
-        //@}
-
-        //! Return a const reference to the underlying value.
-        const VariantDef &variant() const { return variant_; }
-
-    private:
-        // Support for boost::serialization.
-        template<class Archive>
-        void serialize(Archive &ar, const unsigned int) {
-            ar & boost::serialization::make_nvp<VariantDef>("variant_", variant_);
-        }
-        // The underlying boost::variant value.
-        VariantDef variant_;
-    };
-
-    inline Type Variant::type() const {
-        Type ret;
-        VariantType variantType(ret);
-        boost::apply_visitor(variantType, variant_);
-        return ret;
+        if (const double* val = boost::get<double>(&p))
+            out << *val;
+        else if (const std::string* val = boost::get<std::string>(&p))
+            out << *val;
+        else if (const long* val = boost::get<long>(&p))
+            out << *val;
+        else if (const bool* val = boost::get<bool>(&p))
+            out << *val;
+        else if (const empty_property_tag* val = boost::get<empty_property_tag>(&p))
+            out << "[Null value]";
+        else if (const std::vector<boost::recursive_variant_>* val =
+            boost::get<std::vector<boost::recursive_variant_> >(&p))
+            out << "[Logging not supported for values of type vector]";
+        else
+            out << "[Attempt to log a value of unknown datatype : '" << p.type().name() << "']";
+        return out;
     }
 
-    inline bool Variant::missing() const {
-        bool ret;
-        VariantMissing variantMissing(ret);
-        boost::apply_visitor(variantMissing, variant_);
-        return ret;
-    }
-
-    inline bool Variant::error() const {
-        bool ret;
-        VariantError variantError(ret);
-        boost::apply_visitor(variantError, variant_);
-        return ret;
-    }
-
-    inline Variant::operator long() const {
-        long ret;
-        VariantToLong variantToLong(ret);
-        boost::apply_visitor(variantToLong, variant_);
-        return ret;
-    }
-
-    inline Variant::operator unsigned int() const {
-        long ret;
-        VariantToLong variantToLong(ret);
-        boost::apply_visitor(variantToLong, variant_);
-        return static_cast<unsigned int>(ret);
-    }
-
-    inline Variant::operator double() const {
-        double ret;
-        VariantToDouble variantToDouble(ret);
-        boost::apply_visitor(variantToDouble, variant_);
-        return ret;
-    }
-
-    inline Variant::operator bool() const {
-        bool ret;
-        VariantToBoolean variantToBoolean(ret);
-        boost::apply_visitor(variantToBoolean, variant_);
-        return ret;
-    }
-
-    inline Variant::operator std::string() const {
-        std::string ret;
-        VariantToString variantToString(ret);
-        boost::apply_visitor(variantToString, variant_);
-        return ret;
-    }
-
-    inline std::ostream &operator<<(std::ostream &out, const Variant &variant) {
-        return out << variant.variant();
-    }
-*/
 }
 
 #endif

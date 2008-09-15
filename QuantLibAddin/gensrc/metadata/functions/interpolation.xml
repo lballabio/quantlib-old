@@ -277,7 +277,7 @@
             <tensorRank>scalar</tensorRank>
             <description>Derivative Approximation ().</description>
           </Parameter>
-          <Parameter name='Monotonic' default='TRUE'>
+          <Parameter name='Monotonic' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>monotonicity constraint flag.</description>

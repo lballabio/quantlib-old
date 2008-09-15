@@ -16,12 +16,15 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Exceptions encountered when processing datatypes."""
+
 from gensrc.exceptions import exceptions
 
 class TypeException(exceptions.GensrcException):
     """Exceptions encountered when processing datatypes."""
 
 class InvalidTypeNameException(TypeException):
+    """Encountered a type name which is not defined in types.xml."""
 
     INVALID_TYPE_NAME_ERROR = """
 The type name "%(typeName)s" is not defined in the "types.xml" datatype metadata file."""
@@ -31,6 +34,7 @@ The type name "%(typeName)s" is not defined in the "types.xml" datatype metadata
             'typeName' : typeName }
 
 class InvalidSuperTypeNameException(TypeException):
+    """Encountered a supertype name which is not defined in supertypes.xml."""
 
     INVALID_SUPER_TYPE_NAME_ERROR = """
 The supertype name "%(superTypeName)s" is not defined in the "supertypes.xml" datatype metadata file."""
@@ -40,6 +44,8 @@ The supertype name "%(superTypeName)s" is not defined in the "supertypes.xml" da
             'superTypeName' : superTypeName }
 
 class InvalidNativeTypeException(TypeException):
+    """Encountered a type/supertype combination for which no native type
+    is specified."""
 
     INVALID_NATIVE_TYPE_ERROR = """
 Error processing type/supertype combination '%(typeName)s/%(superTypeName)s - neither specifies a native datatype."""

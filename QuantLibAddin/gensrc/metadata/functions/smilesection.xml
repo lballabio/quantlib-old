@@ -128,7 +128,6 @@
     <!-- SmileSection constructors -->
     <Constructor name='qlFlatSmileSection'>
       <libraryFunction>FlatSmileSection</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -167,7 +166,6 @@
 
     <Constructor name='qlSabrInterpolatedSmileSection'>
       <libraryFunction>SabrInterpolatedSmileSection</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -271,7 +269,6 @@
 
     <Constructor name='qlSabrInterpolatedSmileSection1'>
       <libraryFunction>SabrInterpolatedSmileSection</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -490,7 +487,6 @@
 
     <Constructor name='qlSabrSmileSection'>
       <libraryFunction>SabrSmileSection</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -581,7 +577,6 @@
 
     <Constructor name='qlInterpolatedSmileSection'>
       <libraryFunction>InterpolatedSmileSection</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -622,7 +617,6 @@
 
     <Constructor name='qlSmileSectionFromSabrVolSurface'>
       <libraryFunction>SmileSectionFromSabrVolSurface</libraryFunction>
-      <!--<functionCategory>QuantLib</functionCategory>-->
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>

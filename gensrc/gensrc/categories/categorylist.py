@@ -16,7 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""class to represent a group of functions."""
+"""The list of Category objects in use for this running instance of gensrc."""
 
 from gensrc.utilities import utilities
 from gensrc.categories import category
@@ -25,13 +25,14 @@ from gensrc.functions import supportedplatform
 from gensrc.configuration import environment
 
 class CategoryList(object):
+    """The list of Category objects in use for this running instance of gensrc."""
 
     #############################################
     # public interface
     #############################################
 
     def categories(self, platformName, coreCategories, addinCategories, implementation = supportedplatform.AUTO):
-        """serve up function category objects alphabetically by name."""
+        """Serve up function category objects alphabetically by name."""
         if coreCategories:
             for categoryName in self.coreCategoryNames_:
                 cat = self.categoryDict_[categoryName]
@@ -60,14 +61,19 @@ class CategoryList(object):
             self.categoryDict_[cat.name()] = cat
     
     def __init__(self):
+        """Initialize the CategoryList object."""
 
-        utilities.serializeList(environment.Environment.instance().coreConfigPath() + 'config/categories', self, 'coreCategoryNames', 'categoryName')
-        utilities.serializeList(environment.Environment.instance().addinConfigPath() + 'config/categories', self, 'addinCategoryNames', 'categoryName')
+        utilities.serializeList(environment.Environment.instance().coreConfigPath() +
+            'config/categories', self, 'coreCategoryNames', 'categoryName')
+        utilities.serializeList(environment.Environment.instance().addinConfigPath() +
+            'config/categories', self, 'addinCategoryNames', 'categoryName')
 
         self.coreCategoryNames_.sort()
         self.addinCategoryNames_.sort()
 
         self.categoryDict_ = {}
-        self.loadCategories(self.coreCategoryNames_, environment.Environment.instance().coreConfigPath())
-        self.loadCategories(self.addinCategoryNames_, environment.Environment.instance().addinConfigPath())
+        self.loadCategories(self.coreCategoryNames_,
+            environment.Environment.instance().coreConfigPath())
+        self.loadCategories(self.addinCategoryNames_,
+            environment.Environment.instance().addinConfigPath())
 

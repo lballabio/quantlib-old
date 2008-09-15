@@ -37,7 +37,7 @@ namespace ObjectHandler {
         from the need to manage this e.g. in the event of the stack unwinding after
         an exception.
     */
-    class DLL_API Xloper {        
+    class DLL_API Xloper {
     public:
 
         //! \name Structors
@@ -47,7 +47,6 @@ namespace ObjectHandler {
             any memory has subsequently been allocated to the XLOPER by Excel.
         */
         Xloper() { xloper_.xltype = 0; }
-
         //! Destructor - call xlFree on the XLOPER, if memory has been allocated.
         ~Xloper() {
             if (xloper_.xltype)

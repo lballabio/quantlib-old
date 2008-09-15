@@ -77,13 +77,12 @@ namespace ObjectHandler {
         \endcode
 
         In all cases, the cell reference, represented above as R1C1, may also
-        be given as R1C1:R9C9 i.e. a range consisting of multiple cells, in 
+        be given as R1C1:R9C9 i.e. a range consisting of multiple cells, in
         which case the RangeReference constructor sets multicell_ to true.
     */
     class RangeReference {
         friend std::ostream &operator<<(std::ostream&, const RangeReference&);
     public:
-
         //! \name Structors and static members
         //@{
         //! Constructor - initialize the RangeReference object.
@@ -101,7 +100,6 @@ namespace ObjectHandler {
             that case.
         */
         bool operator==(const RangeReference&) const;
-
         //! Determine whether this range contains the given one.
         /*! This functionality is presently used for processing error messages -
             An error message may be associated with a multi-cell range and the

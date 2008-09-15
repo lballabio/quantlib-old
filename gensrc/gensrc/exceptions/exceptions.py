@@ -16,9 +16,12 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Base class for all exceptions raised by the gensrc application."""
+
 import sys
 
 class GensrcException(Exception):
+    """Base class for all exceptions raised by the gensrc application."""
 
     def __str__(self):
         """Stringify this exception."""

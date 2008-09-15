@@ -31,27 +31,24 @@
 
 namespace ObjectHandler {
 
-    //@{
-    //! Some utilities required by class RegistryManager.
-    /*! These utilities allow template functions to treat std::string
-        and KeyPair interchangeably.
-    */
+    //! Convert a std::string to uppercase.
     inline std::string uppercase(const std::string &s) {
         return boost::algorithm::to_upper_copy(s);
     }
+    //! Convert a KeyPair to uppercase.
     inline KeyPair uppercase(const KeyPair &s) {
         return KeyPair(boost::algorithm::to_upper_copy(s.first),
                        boost::algorithm::to_upper_copy(s.second));
     }
+    //! Write a KeyPair to the given stream.
     inline std::ostream& operator<<(std::ostream& left, const KeyPair &right) {
         left << right.first << ":" << right.second;
         return left;
     }
-    //@}
 
     //! Manage access to an Enumeration Registry.
-    /*! This template class manages the intersection between the given template
-        parameters:
+    /*! This template class manages the intersection between the given
+        template parameters:
         \param T - The type of the Enumeration to be stored
         \param RegistryClass - The structure in which to store it
     */
@@ -146,6 +143,7 @@ namespace ObjectHandler {
         using RegistryManager<T, EnumTypeRegistry>::unregisterTypes;
     };
 
+    //! Convert a list of strings into the associated enumerations.
     template <class T>
     std::vector<T> vectorStringToEnum(
         const std::vector<std::string> ids,

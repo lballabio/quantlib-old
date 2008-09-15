@@ -36,6 +36,7 @@
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
+      <processorName>InstrumentProcessor</processorName>
       <ParameterList>
         <Parameters>
           <!-- if you change the vanillaSwap name, C++ code should be updated'-->

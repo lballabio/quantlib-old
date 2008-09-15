@@ -16,17 +16,21 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Exceptions encountered when processing rules."""
+
 from gensrc.exceptions import exceptions
 
 class RuleException(exceptions.GensrcException):
     """Exceptions encountered when processing rules."""
 
 class RuleCodeInvalidException(RuleException):
+    """Encountered an invalid code ID."""
 
     INVALID_CODE_ERROR = '''
 The code ID "%(codeID)s" is not defined in file "codedict.py"'''
 
     def __init__(self, codeID):
+        """Initialize the RuleCodeInvalidException object."""
         self.value_ = RuleCodeInvalidException.INVALID_CODE_ERROR % {
             'codeID' : codeID }
 

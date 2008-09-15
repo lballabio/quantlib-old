@@ -43,11 +43,11 @@
 			Name="pages"
 			>
 			<File
-				RelativePath="pages\conventions.docs"
+				RelativePath="pages\boost.docs"
 				>
 			</File>
 			<File
-				RelativePath="pages\boost.docs"
+				RelativePath="pages\conventions.docs"
 				>
 			</File>
 			<File
@@ -63,7 +63,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\pages\force_links.docs"
+				RelativePath="pages\functional.docs"
 				>
 			</File>
 			<File
@@ -91,6 +91,10 @@
 				>
 			</File>
 			<File
+				RelativePath="pages\manual.docs"
+				>
+			</File>
+			<File
 				RelativePath="pages\people.docs"
 				>
 			</File>
@@ -99,7 +103,7 @@
 				>
 			</File>
 			<File
-				RelativePath="pages\topics.docs"
+				RelativePath="pages\technical.docs"
 				>
 			</File>
 		</Filter>
@@ -115,7 +119,15 @@
 				>
 			</File>
 			<File
+				RelativePath="auto.pages\enumerations.docs"
+				>
+			</File>
+			<File
 				RelativePath="auto.pages\garbagecollection.docs"
+				>
+			</File>
+			<File
+				RelativePath="auto.pages\group.docs"
 				>
 			</File>
 			<File
@@ -123,7 +135,19 @@
 				>
 			</File>
 			<File
+				RelativePath="auto.pages\objects.docs"
+				>
+			</File>
+			<File
 				RelativePath="auto.pages\ohutils.docs"
+				>
+			</File>
+			<File
+				RelativePath="auto.pages\range.docs"
+				>
+			</File>
+			<File
+				RelativePath="auto.pages\serialization.docs"
 				>
 			</File>
 			<File
@@ -132,7 +156,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\doxygen.css"
+			RelativePath="doxygen.css"
 			>
 		</File>
 		<File
@@ -156,11 +180,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\ql.css"
+			RelativePath="ql.css"
 			>
 		</File>
 		<File
-			RelativePath=".\tabs.css"
+			RelativePath="tabs.css"
 			>
 		</File>
 	</Files>

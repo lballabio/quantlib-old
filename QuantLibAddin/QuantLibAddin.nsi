@@ -2,8 +2,8 @@
 # !defines
 
 !define APP "QuantLibAddin"
-!define VER_NUMBER "0.9.5"
-!define DEFAULT_PATH "c:\build_ql_0_9_5\${APP}"
+!define VER_NUMBER "0.9.6"
+!define DEFAULT_PATH "c:\build_ql_0_9_6\${APP}"
 
 # Compiler Flags
 
@@ -33,7 +33,7 @@ Section
     File "NEWS.txt"
     File "QuantLibAddin_vc7.sln"
     File "QuantLibAddin_vc8.sln"
-    File "QLA_serialization_vc8.sln"
+    #File "QLA_serialization_vc8.sln"
 
     File "*.txt"
     File "*.TXT"
@@ -44,11 +44,14 @@ Section
     File /r "*.h"
     File /r "*.c"
 
+	SetOutPath "$INSTDIR\qlo\serialization\create"
+	
     SetOutPath "$INSTDIR\gensrc"
     File /r "gensrc\Makefile.vc"
     File /r "gensrc\*.py"
     File /r "gensrc\*.xml"
     File /r "gensrc\stub.*"
+    
 
     SetOutPath "$INSTDIR\Addins\Calc"
     File "Addins\Calc\Makefile.vc"
@@ -71,7 +74,7 @@ Section
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"
     File "Docs\images\*.png"
-    File "Docs\images\*.php"
+    #File "Docs\images\*.php"
 
     SetOutPath "$INSTDIR\Docs\pages"
     File "Docs\pages\*.docs"

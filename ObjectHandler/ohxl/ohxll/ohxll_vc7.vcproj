@@ -41,14 +41,14 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-0_9_5.xll"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
+				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-0_9_5.pdb"
-				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-gd-0_9_5.lib"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-0_9_6.pdb"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-gd-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -97,25 +97,26 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				RuntimeTypeInfo="TRUE"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile="..\..\build\vc71\ohxll\ReleaseCRTDLL/ohxll.pch"
 				AssemblerListingLocation="..\..\build\vc71\ohxll\ReleaseCRTDLL/"
 				ObjectFile="..\..\build\vc71\ohxll\ReleaseCRTDLL/"
 				ProgramDataBaseFileName="..\..\build\vc71\ohxll\ReleaseCRTDLL/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
+				CompileAs="2"
+				DisableSpecificWarnings="4819"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-0_9_5.xll"
-				LinkIncremental="2"
+				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
+				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-0_9_6.xll"
+				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
-				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-0_9_5.pdb"
-				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-0_9_5.lib"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-0_9_6.pdb"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -184,6 +185,9 @@
 					RelativePath="..\..\oh\ohdefines.hpp">
 				</File>
 				<File
+					RelativePath="..\..\oh\processor.cpp">
+				</File>
+				<File
 					RelativePath="..\..\oh\processor.hpp">
 				</File>
 				<File
@@ -208,13 +212,7 @@
 					RelativePath="..\..\oh\singleton.hpp">
 				</File>
 				<File
-					RelativePath="..\..\oh\types.hpp">
-				</File>
-				<File
 					RelativePath="..\..\oh\valueobject.hpp">
-				</File>
-				<File
-					RelativePath="..\..\oh\variant.hpp">
 				</File>
 			</Filter>
 			<Filter
@@ -276,13 +274,6 @@
 				</File>
 				<File
 					RelativePath="..\..\oh\valueobjects\vo_range.hpp">
-				</File>
-			</Filter>
-			<Filter
-				Name="loop"
-				Filter="">
-				<File
-					RelativePath="..\..\oh\loop\loop_valueobjects.hpp">
 				</File>
 			</Filter>
 		</Filter>
@@ -355,9 +346,6 @@
 				</File>
 				<File
 					RelativePath="..\conversions\opertomatrix.hpp">
-				</File>
-				<File
-					RelativePath="..\conversions\opertoscalar.hpp">
 				</File>
 				<File
 					RelativePath="..\conversions\opertovector.hpp">

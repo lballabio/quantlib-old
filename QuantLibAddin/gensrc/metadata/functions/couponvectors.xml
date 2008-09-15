@@ -605,7 +605,6 @@
 
     <Constructor name='qlConundrumPricerByNumericalIntegration'>
       <libraryFunction>NumericHaganPricer</libraryFunction>
-      <functionCategory>QuantLib</functionCategory>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

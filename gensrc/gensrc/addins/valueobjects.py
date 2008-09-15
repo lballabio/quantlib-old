@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""generate source code for ValueObjects."""
+"""Generate source code for ValueObjects."""
 
 from gensrc.addins import addin
 from gensrc.functions import function
@@ -77,7 +77,8 @@ class ValueObjects(addin.Addin):
         else:
             processorName = ""
         return self.bufferClassDeclInline_.text() % {
-            'constructorDeclaration' : func.parameterList().generate(self.constructorDeclaration_),
+            'constructorDeclaration' : func.parameterList().generate(
+                self.constructorDeclaration_),
             'functionName' : func.name(),
             'processorName' : processorName,
             'serializeMembers' : func.parameterList().generate(self.serializeMembers_),
@@ -122,7 +123,8 @@ class ValueObjects(addin.Addin):
         else:
             processorName = ""
         return self.bufferClassDecl_.text() % {
-            'constructorDeclaration' : func.parameterList().generate(self.constructorDeclaration_),
+            'constructorDeclaration' : func.parameterList().generate(
+                self.constructorDeclaration_),
             'functionName' : func.name(),
             'processorName' : processorName,
             'serializeMembers' : func.parameterList().generate(self.serializeMembers_),
@@ -174,7 +176,7 @@ class ValueObjects(addin.Addin):
     #############################################
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         super(ValueObjects, self).serialize(serializer)
         serializer.serializeBoolean(self, common.HEADERS_INLINE, False)
 

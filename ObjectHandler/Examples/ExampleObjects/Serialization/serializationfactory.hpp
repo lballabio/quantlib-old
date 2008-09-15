@@ -32,8 +32,6 @@ namespace AccountExample {
     public:
         SerializationFactory();
 
-        //static SerializationFactory &instance();
-
    private:
      protected:
         virtual void register_out(boost::archive::xml_oarchive &ar,
@@ -46,3 +44,4 @@ namespace AccountExample {
 }
 
 #endif
+

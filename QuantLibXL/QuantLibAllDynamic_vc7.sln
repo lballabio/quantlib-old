@@ -46,6 +46,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ohxll", "..\ObjectHandler\ohxl\ohxll\ohxll_vc7.vcproj", "{20F28955-2312-414A-AE79-C92330B2910C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A4ABBD25-4E75-4BC7-8274-C5A07C9BD521} = {A4ABBD25-4E75-4BC7-8274-C5A07C9BD521}
+		{FD403B4B-C59F-4A0B-B7CB-8544BFC740A5} = {FD403B4B-C59F-4A0B-B7CB-8544BFC740A5}
 		{E23C4DA6-10CD-4BF6-91D7-10AF87B16BB8} = {E23C4DA6-10CD-4BF6-91D7-10AF87B16BB8}
 	EndProjectSection
 EndProject
@@ -68,8 +69,6 @@ Global
 		All = All
 		Debug CRTDLL = Debug CRTDLL
 		Release CRTDLL = Release CRTDLL
-	EndGlobalSection
-	GlobalSection(ProjectDependencies) = postSolution
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{60E2EF10-4F8A-4745-81B2-363115E9A31A}.All.ActiveCfg = All|Win32

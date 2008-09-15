@@ -16,13 +16,16 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Exceptions encountered when generating the source code for the Excel addin."""
+
 from gensrc.exceptions import exceptions
 
 class ExcelException(exceptions.GensrcException):
-    """exceptions encountered when generating the source code
+    """Exceptions encountered when generating the source code
     for the Excel addin."""
 
 class ExcelParameterLengthException(ExcelException):
+    """List of parameter names is too long."""
 
     PARAM_ERROR = """
 Error processing function %(functionName)s -
@@ -35,6 +38,7 @@ allowed by the Excel function wizard.
 Please shorten the names of the parameters."""
 
     def __init__(self, functionName, parameterNames, max):
+        """Initialize the ExcelParameterLengthException object."""
         self.value_ = ExcelParameterLengthException.PARAM_ERROR % {
             'functionName' : functionName,
             'parameterNames' : parameterNames,
@@ -42,6 +46,7 @@ Please shorten the names of the parameters."""
             'max' : max }
 
 class ExcelParameterCountException(ExcelException):
+    """Too many parameters for a given function."""
 
     MAXPARAMERR = '''\
 Error processing function "%(functionName)s" -
@@ -49,12 +54,14 @@ This function is defined with %(parameterCount)d arguments
 which exceeds the Excel maximum of %(parameterMax)d arguments.'''
 
     def __init__(self, functionName, parameterCount, parameterMax):
+        """Initialize the ExcelParameterCountException object."""
         self.value_ = ExcelParameterCountException.MAXPARAMERR % {
             'functionName' : functionName,
             'parameterCount' : parameterCount,
             'parameterMax' : parameterMax }
 
 class ExcelCellNameException(ExcelException):
+    """Function name conflicts with Excel cell range name."""
 
     CELL_NAME_ERROR = '''
 Error processing function %(functionName)s -
@@ -65,12 +72,14 @@ Excel 2007, cells are named from A1 to %(maxColumnId)s%(maxRowNumber)s
 and these identifiers may not be used as function names.'''
 
     def __init__(self, functionName, maxColumnId, maxRowNumber):
+        """Initialize the ExcelCellNameException object."""
         self.value_ = ExcelCellNameException.CELL_NAME_ERROR % {
             'functionName' : functionName,
             'maxColumnId' : maxColumnId,
             'maxRowNumber' : maxRowNumber }
 
 class ExcelStringLengthException(ExcelException):
+    """String too long for Excel."""
 
     MAX_LEN_ERROR = '''
 The following string is invalid:
@@ -79,6 +88,7 @@ This string has a length of %(stringLength)d bytes
 which exceeds the Excel maximum string length of %(maxStringLength)d bytes.'''
 
     def __init__(self, stringValue, stringLength, maxStringLength):
+        """Initialize the ExcelStringLengthException object."""
         self.value_ = ExcelStringLengthException.MAX_LEN_ERROR % {
             'stringValue' : stringValue,
             'stringLength' : stringLength,

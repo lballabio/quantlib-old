@@ -11,20 +11,21 @@ EXTRA_DIST = \
     tabs.css \
     ql.css
 
-FILENAME := ObjectHandler-$(VERSION)-docs-html
+FILENAME := ObjectHandler-docs-$(VERSION)-html
 PROJECTNAME := objecthandler
 PROJECTINITIALS := oh
 DOXYGEN_INPUT := $(shell find ${top_srcdir} -name *.hpp) \
                  $(shell find ${top_srcdir}/Examples -name *.cpp) \
                  $(wildcard auto.pages/*.docs) \
                  $(wildcard pages/*.docs)
+OH_DIR := ..
 
 # From here on this file is identical for ObjectHandler, gensrc, QuantLibAddin, QuantLibXL
 
 DOXYGEN_CONFIG := $(PROJECTNAME).doxy
 DOXYGEN_CONFIG_TEMP := .$(DOXYGEN_CONFIG)
 DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css $(PROJECTINITIALS)_footer.html $(PROJECTINITIALS)_header.html $(PROJECTINITIALS)_headeronline.html 
-SCRIPT := ../../ObjectHandler/dev_tools/preprocess_doxyfile.py
+SCRIPT := $(OH_DIR)/dev_tools/preprocess_doxyfile.py
 
 %.gz: %
 	rm -f $@
@@ -69,7 +70,7 @@ docs-online: .time-stamp-online
 	cp tabs.css html-online
 	cp ql.css html-online
 	mkdir -p html-online/images
-	cp -f images/*.ico images/*.jpg images/*.png html/images
+	cp -f images/*.ico images/*.jpg images/*.png html-online/images
 	touch .time-stamp-online
 
 docs-online-dist: docs-online

@@ -18,7 +18,7 @@
 */
 
 /*! \file
-    \brief generic conversion functions - used to convert from property_t or OPER to an C++ data type
+    \brief Generic conversion functions - used to convert from property_t or OPER to an C++ data type
 */
 
 #ifndef oh_Conversions_convert2_hpp
@@ -32,7 +32,7 @@ namespace ObjectHandler {
             return c.operator value_t();
         }
         catch(const std::exception& e) {
-            OH_FAIL("unable to convert type '" << c.type().name()
+            OH_FAIL("Unable to convert type '" << c.type().name()
                 << "' to type '" << typeid(value_t).name() << "' - " << e.what());
         }
     }
@@ -43,7 +43,7 @@ namespace ObjectHandler {
             return convert2<value_t, container_t>(c);
         }
         catch(const std::exception& e) {
-            OH_FAIL("Error converting parameter '" << parameterName << "': '" << e.what());
+            OH_FAIL("Error converting parameter '" << parameterName << "' : '" << e.what());
         }
     }
 
@@ -55,7 +55,7 @@ namespace ObjectHandler {
             return convert2<value_t, container_t>(c);
         }
         catch(const std::exception& e) {
-            OH_FAIL("Error converting parameter '" << parameterName << "': '" << e.what());
+            OH_FAIL("Error converting parameter '" << parameterName << "' : '" << e.what());
         }
     }
 
@@ -75,3 +75,4 @@ namespace ObjectHandler {
 }
 
 #endif
+

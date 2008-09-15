@@ -21,7 +21,6 @@
 #ifndef qla_convert_timeseries_hpp
 #define qla_convert_timeseries_hpp
 
-#include <oh/types.hpp>
 #include <oh/property.hpp>
 #include <ql/timeseries.hpp>
 #include <qlo/timeseries.hpp>

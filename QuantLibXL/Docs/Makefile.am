@@ -1,28 +1,33 @@
 
 EXTRA_DIST = \
+    docs-QuantLibXL_vc7.vcproj \
     docs-QuantLibXL_vc8.vcproj \
-    docs-QuantLibXL.vcproj \
+    docs-QuantLibXL_vc9.vcproj \
+    doxygen.css \
     Makefile.vc \
+    ql.css \
     qlxl_footer.html \
     qlxl_header.html \
-    qlxl_header.subdir.html \
-    quantlibxl.root.doxy \
-    quantlibxl.auto.doxy \
-    doxygen.css \
-    tabs.css \
-    ql.css
+    qlxl_headeronline.html \
+    quantlibxl.doxy \
+    robots.txt \
+    tabs.css
 
+FILENAME := QuantLibXL-docs-$(VERSION)-html
+PROJECTNAME := quantlibxl
+PROJECTINITIALS := qlxl
 DOXYGEN_INPUT := $(wildcard pages/*.docs) \
                  $(wildcard ../../ObjectHandler/Docs/pages/*.docs) \
                  $(wildcard ../../QuantLibAddin/Docs/pages/*.docs) \
                  $(wildcard ../../QuantLibAddin/Docs/auto.pages/*.docs)
+OH_DIR := ../../ObjectHandler
 
 # From here on this file is identical for ObjectHandler, gensrc, QuantLibAddin, QuantLibXL
 
 DOXYGEN_CONFIG := $(PROJECTNAME).doxy
 DOXYGEN_CONFIG_TEMP := .$(DOXYGEN_CONFIG)
 DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css $(PROJECTINITIALS)_footer.html $(PROJECTINITIALS)_header.html $(PROJECTINITIALS)_headeronline.html 
-SCRIPT := ../../ObjectHandler/dev_tools/preprocess_doxyfile.py
+SCRIPT := $(OH_DIR)/dev_tools/preprocess_doxyfile.py
 
 %.gz: %
 	rm -f $@
@@ -67,7 +72,7 @@ docs-online: .time-stamp-online
 	cp tabs.css html-online
 	cp ql.css html-online
 	mkdir -p html-online/images
-	cp -f images/*.ico images/*.jpg images/*.png html/images
+	cp -f images/*.ico images/*.jpg images/*.png html-online/images
 	touch .time-stamp-online
 
 docs-online-dist: docs-online

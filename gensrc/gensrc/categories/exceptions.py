@@ -16,6 +16,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Exceptions encountered when processing categories."""
+
 from gensrc.exceptions import exceptions
 
 class CategoryException(exceptions.GensrcException):
@@ -28,6 +30,7 @@ Cannot create category with name %(categoryName)s
 because another category has already been defined with that name."""
 
     def __init__(self, categoryName):
+        """Initialize the DuplicateNameException object."""
         self.value_ = DuplicateNameException.DUPLICATE_NAME_ERROR % {
             'categoryName' : categoryName }
 

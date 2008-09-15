@@ -64,7 +64,8 @@ class CppAddin(addin.Addin):
         loopIncludes = '''\
 #include <%s/loop/loop_%s.hpp>
 #include <''' + self.relativePath_ + '''/loop.hpp>\n'''
-        for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_):
+        for cat in self.categoryList_.categories(self.name_,
+            self.coreCategories_, self.addinCategories_):
             categoryIncludes = cat.includeList(loopIncludes)
             bufferAll += "#include <Addins/Cpp/%s.hpp>\n" % cat.name()
             bufferCpp = ''
@@ -108,6 +109,7 @@ class CppAddin(addin.Addin):
             'functionName' : func.name() }
 
     def loopName(self, param):
+        """Return the variable name for a loop parameter."""
         if param.type() == common.STRING:
             return param.name()
         else:
@@ -118,6 +120,6 @@ class CppAddin(addin.Addin):
     #############################################
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         super(CppAddin, self).serialize(serializer)
 

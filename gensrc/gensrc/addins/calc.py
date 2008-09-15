@@ -179,7 +179,7 @@ class CalcAddin(addin.Addin):
     #############################################
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         super(CalcAddin, self).serialize(serializer)
         serializer.serializeAttribute(self, 'addinClassName')
 

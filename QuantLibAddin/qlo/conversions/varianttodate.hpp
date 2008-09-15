@@ -22,7 +22,6 @@
 #ifndef qla_convert_date_hpp
 #define qla_convert_date_hpp
 
-#include <oh/types.hpp>
 #include <oh/conversions/convert2.hpp>
 #include <ql/utilities/dataparsers.hpp>
 #include <ql/time/imm.hpp>

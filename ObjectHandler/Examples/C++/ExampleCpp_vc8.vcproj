@@ -73,11 +73,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc80-mt-0_9_5.exe"
+				OutputFile="bin\ExampleCpp-vc80-mt-0_9_6.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
-				ProgramDatabaseFile=".\build\vc80\$(ConfigurationName)/ExampleCpp-vc80-mt-0_3_12.pdb"
+				ProgramDatabaseFile=".\build\vc80\$(ConfigurationName)/ExampleCpp-vc80-mt-0_9_6.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -167,12 +167,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc80-mt-sgd-0_9_5.exe"
+				OutputFile="bin\ExampleCpp-vc80-mt-sgd-0_9_6.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc80\$(ConfigurationName)/ExampleCpp-vc80-mt-sgd-0_3_12.pdb"
+				ProgramDatabaseFile=".\build\vc80\$(ConfigurationName)/ExampleCpp-vc80-mt-sgd-0_9_6.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -262,11 +262,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc80-mt-s-0_9_5.exe"
+				OutputFile="bin\ExampleCpp-vc80-mt-s-0_9_6.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
-				ProgramDatabaseFile=".\build\vc80\$(ConfigurationName)/ExampleCpp-vc80-mt-s-0_3_12.pdb"
+				ProgramDatabaseFile=".\build\vc80\$(ConfigurationName)/ExampleCpp-vc80-mt-s-0_9_6.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -356,12 +356,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc80-mt-gd-0_9_5.exe"
+				OutputFile="bin\ExampleCpp-vc80-mt-gd-0_9_6.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\build\vc80\$(ConfigurationName)/ExampleCpp-vc80-mt-gd-0_3_12.pdb"
+				ProgramDatabaseFile=".\build\vc80\$(ConfigurationName)/ExampleCpp-vc80-mt-gd-0_9_6.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>

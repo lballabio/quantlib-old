@@ -16,6 +16,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""Encapsulate a list of enumerated types, classes, and pairs."""
+
 from gensrc.enumerations import enumeratedtypes
 from gensrc.enumerations import enumeratedclasses
 from gensrc.enumerations import enumeratedpairs
@@ -24,38 +26,44 @@ from gensrc.utilities import common
 import os.path
 
 class EnumerationList(object):
+    """Encapsulate a list of enumerated types, classes, and pairs."""
 
     #############################################
     # public interface
     #############################################
 
     def enumeratedTypeCopyright(self):
+        """Return the copyright message for enumerated types."""
         return self.enumeratedTypeCopyright_
 
     def enumeratedClassCopyright(self):
+        """Return the copyright message for enumerated classes."""
         return self.enumeratedClassCopyright_
 
     def enumeratedPairCopyright(self):
+        """Return the copyright message for enumerated pairs."""
         return self.enumeratedPairCopyright_
 
-    def enumeratedTypeGroups(self):
-        """serve up enumerated type objects alphabetically by name."""
-        for key in self.enumeratedTypeGroupKeys_:
-            yield self.enumeratedTypeGroups_[key]
-
     def enumeratedTypeGroupsCount(self):
+        """Return the number of enumerated types."""
         return len(self.enumeratedTypeGroups_)
 
     def enumeratedClassGroupsCount(self):
+        """Return the number of enumerated classes."""
         return len(self.enumeratedClassGroups_)
 
+    def enumeratedTypeGroups(self):
+        """Serve up enumerated type objects alphabetically by name."""
+        for key in self.enumeratedTypeGroupKeys_:
+            yield self.enumeratedTypeGroups_[key]
+
     def enumeratedClassGroups(self):
-        """serve up enumerated class objects alphabetically by name."""
+        """Serve up enumerated class objects alphabetically by name."""
         for key in self.enumeratedClassGroupKeys_:
             yield self.enumeratedClassGroups_[key]
 
     def enumeratedPairGroups(self):
-        """serve up enumerated pair objects alphabetically by name."""
+        """Serve up enumerated pair objects alphabetically by name."""
         for key in self.enumeratedPairGroupKeys_:
             yield self.enumeratedPairGroups_[key]
 
@@ -64,6 +72,8 @@ class EnumerationList(object):
     #############################################
 
     def __init__(self):
+        """Initialize the EnumerationList object and load enumeration parameters from
+        available config files."""
 
         self.typeDict_ = {}
 

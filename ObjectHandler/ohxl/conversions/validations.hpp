@@ -32,6 +32,7 @@ namespace ObjectHandler {
 
     //! Determine whether the given range contains an error value.
     DLL_API void validateRange(const OPER *xRange, const std::string &name);
+
     //! Convert the std::string to the char*.  
     /*! Assumes that the caller has allocated XL_MAX_STR_LEN bytes for the char *.
     */

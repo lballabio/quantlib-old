@@ -34,6 +34,7 @@ DLL_API void freeOper(XLOPER *px) {
         delete [] px->val.array.lparray;
     }
 }
+
 DLL_API bool isList(const OPER *xValue) {
     if (xValue->xltype == xltypeStr) {
         // Must use type unsigned char (BYTE) to process the 0th byte of Excel byte-counted string
@@ -50,3 +51,4 @@ DLL_API void splitOper(const OPER *xFrom, OPER *xTo) {
     std::vector<std::string> vec = ObjectHandler::split(text, ",;", false);
     ObjectHandler::vectorToOper(vec, *xTo, false);
 }
+

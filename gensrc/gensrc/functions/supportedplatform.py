@@ -56,12 +56,18 @@ class SupportedPlatform(serializable.Serializable):
     #############################################
 
     def implNum(self):
+        """Return the constant which corresponds to the string describing this
+        platform."""
         return self.implNum_
 
     def xlMacro(self):
+        """Return a boolean indicating whether this Addin function should
+        acquire macro capabilities on the Excel platform."""
         return self.xlMacro_
 
     def calcInWizard(self):
+        """Return a boolean indicating whether this Addin function should
+        execute under the Function Wizard  on the Excel platform."""
         return self.calcInWizard_
 
     #############################################
@@ -76,5 +82,7 @@ class SupportedPlatform(serializable.Serializable):
         serializer.serializeAttributeBoolean(self, common.CALC_IN_WIZARD, True)
 
     def postSerialize(self):
+        """Derive the integer constant associated with the deserialized
+        string."""
         self.implNum_ = SupportedPlatform.implStrToInt[self.implementation_]
 

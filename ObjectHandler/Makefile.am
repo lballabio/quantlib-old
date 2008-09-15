@@ -3,6 +3,7 @@ SUBDIRS = \
     gensrc \
     oh/conversions \
     oh/enumerations \
+    oh/loop \
     oh/valueobjects \
     oh \
     ohxl \
@@ -27,8 +28,10 @@ EXTRA_DIST = \
     ObjectHandler.nsi \
     ObjectHandler_vc7.sln \
     ObjectHandler_vc8.sln \
+    ObjectHandler_vc9.sln \
     ohlib_vc7.vcproj \
     ohlib_vc8.vcproj \
+    ohlib_vc9.vcproj \
     README.txt \
     TODO.txt
 

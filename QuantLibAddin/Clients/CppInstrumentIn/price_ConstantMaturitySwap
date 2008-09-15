@@ -1,1 +1,0 @@
-./instrument_in 39570 cms ConstantMaturitySwap.xml YieldCurves.xml AtmVolatilities.xml SwaptionVolatilities.xml

@@ -60,6 +60,7 @@ include_HEADERS = \
     qladdin.hpp \
     quantoforwardvanillaoption.hpp \
     quantovanillaoption.hpp \
+    quote.hpp \
     quotes.hpp \
     randomsequencegenerator.hpp \
     rangeaccrual.hpp \

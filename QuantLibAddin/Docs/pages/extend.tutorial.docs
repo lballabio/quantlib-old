@@ -25,13 +25,13 @@
 
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
 
-This document explains how to expose additional QuantLib functionality to
+This document explains how to expose additional %QuantLib functionality to
 Excel.  As a prerequisite it is assumed that you have already compiled
-QuantLibXL from source code as explained in the document \ref build_tutorial.
+QuantLibXL from source code using the Full build documented in the tutorial
+\ref build_qlxl.
 
-In this example, the QuantLib class Stock is exposed to Excel.  This tutorial
-assumes you are working with VC8 solution
-<tt>QuantLibXL\\QuantLibAllStatic_vc8.sln</tt>.
+In this example, the %QuantLib class \c Stock is exposed to Excel.  The Visual
+C++ solution for this tuturial is <tt>QuantLibXL\\QuantLibXL_full_vc?.sln</tt>.
 
 \ref extend_wrap \n
 \ref extend_category \n
@@ -57,8 +57,7 @@ QuantLibAddin\qlo\stock.hpp
 QuantLibAddin\qlo\stock.cpp
 \endverbatim
 
-Add the files to project QuantLibObjects, under folder Instruments.  Here is
-the code for the files:
+Here is the code for the files:
 
 stock.hpp:
 \verbatim
@@ -108,21 +107,40 @@ namespace QuantLibAddin {
 }
 \endverbatim
 
+Add the files to project QuantLibObjects, under folder Instruments.
+
 \section extend_category 2 Create a New Function Category
 
-QuantLibAddin functions are grouped into Categories.  Here we create a new
+%QuantLibAddin functions are grouped into Categories.  Here we create a new
 category called Stock.
 
-Edit file QuantLibAddin\\gensrc\\config\\categories.xml and add the new
-category stock.
+Edit file %QuantLibAddin\\gensrc\\config\\categories.xml and add the new
+category stock:
+
+<tt><root>
+
+&nbsp;&nbsp;<addinCategoryNames><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>abcd</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>accountingengines</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>assetswap</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>statistics</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><categoryName>stock</categoryName></b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>swap</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>volatilities</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>volatility</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>quotes</categoryName><br>
+&nbsp;&nbsp;</addinCategoryNames><br>
+
+</root></tt>
 
 Create the following new file:
 \verbatim
 QuantLibAddin\gensrc\metadata\Functions\stock.xml
 \endverbatim
 
-Add the file to project qlgensrc, under folder Functions.  Here are the
-contents of the file:
+Here are the contents of the file:
 
 \verbatim
 <Category name='stock'>
@@ -133,7 +151,7 @@ contents of the file:
     <include>qlo/stock.hpp</include>
   </includes>
   <copyright>
-    Copyright (C) 2007 Eric Ehlers
+    Copyright (C) 2008 Eric Ehlers
   </copyright>
   
   <Functions>
@@ -160,66 +178,66 @@ contents of the file:
 </Category>
 \endverbatim
 
+Add the file to project \c qlgensrc, under folder \c functions.
+
 Above we have configured a single constructor.  There is also support for
 member and utility functions, refer to the other XML files for examples.  The
 tag \c superType determines the type of reference which is passed to the
-underlying QuantLib code, in this case \c libToHandle reflects the fact that
+underlying %QuantLib code, in this case \c libToHandle reflects the fact that
 <tt>Handle<Quote></tt> is expected.  For a summary of supported supertypes refer to the
-comments in file <tt>QuantLibAddin\\gensrc\\metadata\\types\\supertypes.xml</tt>.
+comments in file <tt>%QuantLibAddin\\gensrc\\metadata\\types\\supertypes.xml</tt>.
 
 \section extend_autogenerate 3 Autogenerate New Source Code Files
 
 Now we run gensrc to autogenerate the new source code corresponding to the
 contents of stock.xml.  Build project qlgensrc.  In the gensrc output, notice
-that 11 new files are created (irrelevant output omitted):
+that 9 new files are created (irrelevant output omitted):
 
 \verbatim
-1>08-Feb-2008 10:58:36   file ../../QuantLibXL/qlxl/register/register_stock.cpp                 -    created
-1>08-Feb-2008 10:58:38   file ../../QuantLibXL/qlxl/functions/stock.cpp                         -    created
-1>08-Feb-2008 10:58:38   file ../../QuantLibXL/qlxl/serialization/serialization_stock.hpp       -    created
-1>08-Feb-2008 10:58:38   file ../../QuantLibXL/qlxl/serialization/serialization_stock.cpp       -    created
-1>08-Feb-2008 10:58:39   file ../Addins/Cpp/Serialization/serialization_stock.hpp               -    created
-1>08-Feb-2008 10:58:39   file ../Addins/Cpp/Serialization/serialization_stock.cpp               -    created
-1>08-Feb-2008 10:58:40   file ../qlo/ValueObjects/vo_stock.hpp                                  -    created
-1>08-Feb-2008 10:58:40   file ../qlo/ValueObjects/vo_stock.cpp                                  -    created
-1>08-Feb-2008 10:58:40   file ../qlo/Serialization/create_stock.hpp                             -    created
-1>08-Feb-2008 10:58:40   file ../qlo/Serialization/create_stock.cpp                             -    created
-1>08-Feb-2008 10:58:41   file ../Docs/auto.pages/stock.docs                                     -    created
-1>08-Feb-2008 10:58:41
-1>08-Feb-2008 10:58:41 addin           unchanged   updated     created     total
-1>08-Feb-2008 10:58:41 =============== =========== =========== =========== ===========
-1>08-Feb-2008 10:58:41 Excel                   204          12           4         220
-1>08-Feb-2008 10:58:41 Calc                     23           0           0          23
-1>08-Feb-2008 10:58:41 Cpp                     199          10           2         211
-1>08-Feb-2008 10:58:41 ValueObjects             98           1           2         101
-1>08-Feb-2008 10:58:41 Enumerations              3           0           0           3
-1>08-Feb-2008 10:58:41 Loop                     11           0           0          11
-1>08-Feb-2008 10:58:41 Serialization            98           2           2         102
-1>08-Feb-2008 10:58:41 Doxygen                  66           2           1          69
-1>08-Feb-2008 10:58:41 =============== =========== =========== =========== ===========
-1>08-Feb-2008 10:58:41 total                   702          27          11         740
+1>C:\..\QuantLibXL\qlxl\register\register_stock.cpp:                       created
+1>C:\..\QuantLibXL\qlxl\functions\stock.cpp:                               created
+1>C:\..\QuantLibAddin\qlo\valueobjects\vo_stock.hpp:                       created
+1>C:\..\QuantLibAddin\qlo\valueobjects\vo_stock.cpp:                       created
+1>C:\..\QuantLibAddin\qlo\serialization\create\create_stock.hpp:           created
+1>C:\..\QuantLibAddin\qlo\serialization\create\create_stock.cpp:           created
+1>C:\..\QuantLibAddin\qlo\serialization\register\serialization_stock.hpp:  created
+1>C:\..\QuantLibAddin\qlo\serialization\register\serialization_stock.cpp:  created
+1>C:\..\QuantLibAddin\Docs\auto.pages\stock.docs:                          created
+1>
+1>addin           unchanged   updated     created     total
+1>=============== =========== =========== =========== ===========
+1>Excel                   114           2           2         118
+1>Calc                     23           0           0          23
+1>Cpp                     111           0           0         111
+1>ValueObjects             98           1           2         101
+1>Enumerations              3           0           0           3
+1>Loop                     11           0           0          11
+1>Serialization           188          12           4         204
+1>Doxygen                  67           2           1          70
+1>=============== =========== =========== =========== ===========
+1>total                   615          17           9         641
 \endverbatim
 
-For purposes of this tutorial we ignore the new files for Doxygen and C++.  The
-other 8 files need to be added to the relevant projects as shown below:
+For purposes of this tutorial we ignore the new file for Doxygen.  The other 8
+files need to be added to the relevant projects as shown below:
 
 <table>
 <tr><td><b>Add file(s) ...</b></td><td><b>To project ...</b></td><td><b>In folder ...</b></td></tr>
-<tr><td>QuantLibXL/qlxl/Register/register_stock.cpp</td><td>QuantLibXLStatic</td><td>Register</td></tr>
-<tr><td>QuantLibXL/qlxl/Functions/stock.cpp</td><td>QuantLibXLStatic</td><td>Functions</td></tr>
-<tr><td>QuantLibXL/qlxl/Serialization/serialization_stock.*pp</td><td>QuantLibXLStatic</td><td>Serialization</td></tr>
-<tr><td>QuantLibAddin/qlo/ValueObjects/vo_stock.*pp</td><td>QuantLibObjects</td><td>ValueObjects</td></tr>
-<tr><td>QuantLibAddin/qlo/Serialization/create_stock.*pp</td><td>QuantLibObjects</td><td>Serialization</td></tr>
+<tr><td>QuantLibXL/qlxl/register/register_stock.cpp</td><td>QuantLibXLStatic</td><td>register</td></tr>
+<tr><td>QuantLibXL/qlxl/functions/stock.cpp</td><td>QuantLibXLStatic</td><td>functions</td></tr>
+<tr><td>QuantLibAddin/qlo/valueobjects/vo_stock.*pp</td><td>QuantLibObjects</td><td>valueobjects</td></tr>
+<tr><td>QuantLibAddin/qlo/serialization/create/create_stock.*pp</td><td>QuantLibObjects</td><td>serialization/create</td></tr>
+<tr><td>QuantLibAddin/qlo/serialization/register/serialization_stock.*pp</td><td>QuantLibObjects</td><td>serialization/register</td></tr>
 </table>
 
 \section extend_build 4 Build QuantLibXL
 
-Build project <tt>QuantLibXLStatic</tt>, configuration <tt>Release</tt>.  The
-new source code files in QuantLibAddin and QuantLibXL are compiled and the
-binaries are linked.
+Build solution <tt>QuantLibXL_full_vc?.sln</tt>, configuration
+<tt>Release</tt>.  The new source code files in %QuantLibAddin and QuantLibXL
+are compiled and the binaries are linked.
 
-The build process creates the QuantLibAddin XLL file
-<tt>QuantLibXL\\xll\\QuantLibXL-vc80-mt-s-0_9_5.xll</tt>.
+The build process creates the %QuantLibAddin XLL file
+<tt>QuantLibXL\\xll\\QuantLibXL-vc??-mt-s-0_9_6.xll</tt>.
 
 \section extend_test 5 Test the New Functions
 
@@ -240,9 +258,26 @@ This should return the value 1.23.
 
 \section extend_notes 6 Notes
 
-\li See also project ExampleXllStatic in solution ObjectHandler/ObjectHandler_vc?.sln (where ? is 7 or 8 for the Visual Studio version).  This is a hello world XLL using ObjectHandler to export an object-oriented interface (constructors and member functions) to Excel.  All of the source code is hand-written, as opposed to the QuantLibXL code which is autogenerated by gensrc.  ExampleXllStatic relies on an example library called ExampleObjects which could be replaced by QuantLib or some third-party library.
+\li See also project \c ExampleXllStatic in solution
+<tt>ObjectHandler\\ObjectHandler_vc?.sln</tt>.  This is a hello world XLL using
+ObjectHandler to export an object-oriented interface (constructors and member
+functions) to Excel.  All of the source code is hand-written, as opposed to the
+QuantLibXL code which is autogenerated by gensrc.  \c ExampleXllStatic relies
+on an example library called \c ExampleObjects which could be replaced by
+%QuantLib or some third-party library.
 
-\li If you're going to rerun gensrc often, and if you're only interested in the Excel addin, then you can speed gensrc up by editing file QuantLibAddin/gensrc/Makefile.vc, commenting out line 30 and uncommenting line 31.  This changes the gensrc arguments from -a (generate everything including C++ and Calc) to -xyelsd (generate only the modules required to compile QuantLibXL).
+\li If you're going to rerun gensrc often, and if you're only interested in the
+Excel addin, then you can speed gensrc up by opening file
+\verbatim
+QuantLibAddin/gensrc/Makefile.vc
+\endverbatim
+and editing line 28:
+\verbatim
+    #$(GENSRC_DIR)\gensrc.py -a --oh_dir=$(OH_DIR)
+    $(GENSRC_DIR)\gensrc.py -xvels --oh_dir=$(OH_DIR)
+\endverbatim
+This restricts the gensrc output from "all" (including C++ and Calc) to only
+the modules required for QuantLibXL.
 
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
 

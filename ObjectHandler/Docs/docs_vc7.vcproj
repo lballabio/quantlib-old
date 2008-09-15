@@ -29,10 +29,10 @@
 			Name="pages"
 			Filter="">
 			<File
-				RelativePath="pages\conventions.docs">
+				RelativePath="pages\boost.docs">
 			</File>
 			<File
-				RelativePath="pages\boost.docs">
+				RelativePath="pages\conventions.docs">
 			</File>
 			<File
 				RelativePath="pages\design.docs">
@@ -44,7 +44,7 @@
 				RelativePath="pages\excelbinding.docs">
 			</File>
 			<File
-				RelativePath=".\pages\functional.docs">
+				RelativePath="pages\functional.docs">
 			</File>
 			<File
 				RelativePath="pages\garbage_collection.docs">
@@ -65,7 +65,7 @@
 				RelativePath="pages\log_messages.docs">
 			</File>
 			<File
-				RelativePath=".\pages\manual.docs">
+				RelativePath="pages\manual.docs">
 			</File>
 			<File
 				RelativePath="pages\people.docs">
@@ -74,7 +74,7 @@
 				RelativePath="pages\references.docs">
 			</File>
 			<File
-				RelativePath=".\pages\technical.docs">
+				RelativePath="pages\technical.docs">
 			</File>
 		</Filter>
 		<Filter
@@ -87,32 +87,35 @@
 				RelativePath="auto.pages\categories.docs">
 			</File>
 			<File
-				RelativePath=".\auto.pages\enumerations.docs">
+				RelativePath="auto.pages\enumerations.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\garbagecollection.docs">
 			</File>
 			<File
-				RelativePath=".\auto.pages\group.docs">
+				RelativePath="auto.pages\group.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\logging.docs">
 			</File>
 			<File
+				RelativePath="auto.pages\objects.docs">
+			</File>
+			<File
 				RelativePath="auto.pages\ohutils.docs">
 			</File>
 			<File
-				RelativePath=".\auto.pages\range.docs">
+				RelativePath="auto.pages\range.docs">
 			</File>
 			<File
-				RelativePath=".\auto.pages\serialization.docs">
+				RelativePath="auto.pages\serialization.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\valueobjects.docs">
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\doxygen.css">
+			RelativePath="doxygen.css">
 		</File>
 		<File
 			RelativePath="Makefile.vc">
@@ -130,10 +133,10 @@
 			RelativePath="oh_headeronline.html">
 		</File>
 		<File
-			RelativePath=".\ql.css">
+			RelativePath="ql.css">
 		</File>
 		<File
-			RelativePath=".\tabs.css">
+			RelativePath="tabs.css">
 		</File>
 	</Files>
 	<Globals>

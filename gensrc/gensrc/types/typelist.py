@@ -16,6 +16,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+"""A collection of all the FullType objects that are defined
+for this running instance of gensrc."""
+
 from gensrc.types import fulltype
 from gensrc.types import exceptions
 from gensrc.types import datatype
@@ -31,8 +34,11 @@ class TypeList(object):
     #############################################
 
     def __init__(self):
-        self.dataTypeDict_ = utilities.serializeObject(datatype.DataTypeDict, 'metadata/types/types')
-        self.superTypeDict_ = utilities.serializeObject(supertype.SuperTypeDict, 'metadata/types/supertypes')
+        """Initialize the TypeList object."""
+        self.dataTypeDict_ = utilities.serializeObject(
+            datatype.DataTypeDict, 'metadata/types/types')
+        self.superTypeDict_ = utilities.serializeObject(
+            supertype.SuperTypeDict, 'metadata/types/supertypes')
         # A dictionary of all FullType objects required for this running instance of gensrc.
         # Each FullType object is created on the fly as required and is derived
         # from a pair of DataType/SuperType objects (deserialized above).

@@ -56,8 +56,8 @@ int main() {
 
         initializeAddin();
 
-        //ohLogFileSet("qlademo.log", 4L, OH_NULL);
-        //ohSetConsole(1, 4L, OH_NULL);
+        ohSetLogFile("qlademo.log", 4L, OH_NULL);
+        ohSetConsole(1, 4L, OH_NULL);
         LOG_MESSAGE("Begin example program.");
         LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion(OH_NULL));
         LOG_MESSAGE("ObjectHandler version = " << ohVersion(OH_NULL));
@@ -71,12 +71,12 @@ int main() {
 
         // Create the market data objects
 
-        std::string EuriborYC3M =
-            qlRelinkableHandleYieldTermStructure("EuriborYC3M", "", false, OH_NULL, false);
+        std::string EuriborYC3M = qlRelinkableHandleYieldTermStructure(
+            "EuriborYC3M", "", false, OH_NULL, false);
         marketObjects.push_back(EuriborYC3M);
 
-        std::string EuriborYC6M =
-            qlRelinkableHandleYieldTermStructure("EuriborYC6M", "", false, OH_NULL, false);
+        std::string EuriborYC6M = qlRelinkableHandleYieldTermStructure(
+            "EuriborYC6M", "", false, OH_NULL, false);
         marketObjects.push_back(EuriborYC6M);
 
         const char *tenors[] = {
@@ -107,8 +107,8 @@ int main() {
             marketObjects.push_back(quoteId);
         }
 
-        std::string ts_handle =
-            qlRelinkableHandleYieldTermStructure("ts_handle", "", false, OH_NULL, false);
+        std::string ts_handle = qlRelinkableHandleYieldTermStructure(
+            "ts_handle", "", false, OH_NULL, false);
         marketObjects.push_back(ts_handle);
 
         std::string RH_EURIBOR6M =
@@ -224,7 +224,8 @@ int main() {
             std::ostringstream objectId, quoteId;
             objectId << "EURFUT" << futureData[i].tenor << "ConvAdj_Quote";
             quoteId << "EURFUT" << futureData[i].tenor << "_Quote";
-            std::string futuresConvAdjQuoteId = qlFuturesConvAdjustmentQuote(objectId.str(),
+            std::string futuresConvAdjQuoteId =qlFuturesConvAdjustmentQuote(
+                objectId.str(),
                 "Euribor3M",
                 futureData[i].tenor,
                 quoteId.str(),
@@ -308,8 +309,8 @@ int main() {
             false, OH_NULL, false);
         marketObjects.push_back(EUR_YC);
 
-        std::string EUR_YC_HANDLE =
-            qlRelinkableHandleYieldTermStructure("EUR_YC_HANDLE", EUR_YC, false, OH_NULL, false);
+        std::string EUR_YC_HANDLE = qlRelinkableHandleYieldTermStructure(
+            "EUR_YC_HANDLE", EUR_YC, false, OH_NULL, false);
         marketObjects.push_back(EUR_YC_HANDLE);
 
         // Create the trade objects
@@ -362,15 +363,13 @@ int main() {
         tradeObjects.push_back(swap);
 
         // Attach relinkable handles to term structures
+
         qlRelinkableHandleLinkTo(EuriborYC3M, EUR_YC, OH_NULL);
         qlRelinkableHandleLinkTo(EuriborYC6M, EUR_YC, OH_NULL);
 
         // Set the pricing engine
-        qlInstrumentSetPricingEngine(swap, engine, OH_NULL);
 
-        // Serialize the objects
-        ohObjectSave(marketObjects, "YieldCurves.xml", true, OH_NULL);
-        ohObjectSave(tradeObjects, "VanillaSwap.xml", true, OH_NULL);
+        qlInstrumentSetPricingEngine(swap, engine, OH_NULL);
 
         // Enable extrapolation for the yield curve
 
@@ -379,6 +378,11 @@ int main() {
         // Output the PV of the deal
 
         LOG_MESSAGE("SWAP PV = " << qlInstrumentNPV(swap, OH_NULL));
+
+        // Serialize the objects
+
+        ohObjectSave(marketObjects, "YieldCurves.xml", true, OH_NULL);
+        ohObjectSave(tradeObjects, "VanillaSwap.xml", true, OH_NULL);
 
         // Example of serializing to/from a buffer
 
@@ -391,7 +395,7 @@ int main() {
         LOG_MESSAGE("XML = " << std::endl << xml);
 
         std::vector<std::string> idList2 = ohObjectLoadString(xml, true, OH_NULL);
-        //ohObjectLog(idList2[0], OH_NULL);
+        ohLogObject(idList2[0], OH_NULL);
 
         LOG_MESSAGE("End example program.");
 

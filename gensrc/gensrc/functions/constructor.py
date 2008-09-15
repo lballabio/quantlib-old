@@ -59,9 +59,13 @@ class Constructor(function.Function):
             'voParameters' : self.parameterList_.generate(addin.voCall()) }
 
     def libraryFunction(self):
+        """Return the name of the function in the underlying application
+        library which is wrapped by this Addin function."""
         return self.libraryFunction_
 
     def processorName(self):
+        """Return the name of the Processor class which implements post
+        serialization logic for objects of this class."""
         return self.processorName_
         
     #############################################
@@ -96,5 +100,6 @@ class Constructor(function.Function):
     #############################################
 
     def __init__(self):
+        """Initialize the Constructor object."""
         self.returnValue_ = parameter.ConstructorReturnValue()
 

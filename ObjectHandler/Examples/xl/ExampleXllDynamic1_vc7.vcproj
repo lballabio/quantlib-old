@@ -40,12 +40,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\ExampleXLLDynamic1-vc71-mt-0_9_5.xll"
+				OutputFile="xll\ExampleXLLDynamic1-vc71-mt-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
-				ProgramDatabaseFile=".\buildExampleDynamic1\vc71\$(ConfigurationName)\ExampleXLLDynamic1-vc71-mt-0_9_5.pdb"
-				ImportLibrary=".\buildExampleDynamic1\vc71\$(ConfigurationName)\ExampleXLLDynamic1-vc71-mt-0_9_5.lib"
+				ProgramDatabaseFile=".\buildExampleDynamic1\vc71\$(ConfigurationName)\ExampleXLLDynamic1-vc71-mt-0_9_6.pdb"
+				ImportLibrary=".\buildExampleDynamic1\vc71\$(ConfigurationName)\ExampleXLLDynamic1-vc71-mt-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -105,13 +105,13 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="xll\ExampleXLLDynamic1-vc71-mt-gd-0_9_5.xll"
+				OutputFile="xll\ExampleXLLDynamic1-vc71-mt-gd-0_9_6.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildExampleDynamic1\vc71\$(ConfigurationName)\ExampleXLLDynamic1-vc71-mt-gd-0_9_5.pdb"
-				ImportLibrary=".\buildExampleDynamic1\vc71\$(ConfigurationName)\ExampleXLLDynamic1-vc71-mt-gd-0_9_5.lib"
+				ProgramDatabaseFile=".\buildExampleDynamic1\vc71\$(ConfigurationName)\ExampleXLLDynamic1-vc71-mt-gd-0_9_6.pdb"
+				ImportLibrary=".\buildExampleDynamic1\vc71\$(ConfigurationName)\ExampleXLLDynamic1-vc71-mt-gd-0_9_6.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"

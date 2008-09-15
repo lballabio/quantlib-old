@@ -16,16 +16,16 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""global log class - presently outputs all messages to stdout."""
+"""Global log class - presently outputs all messages to stdout."""
 
 from gensrc.patterns import singleton
 #import time
 
 class Log(singleton.Singleton):
-    """global log class - presently outputs all messages to stdout."""
+    """Global log class - presently outputs all messages to stdout."""
 
     def logMessage(self, message = ''):
-        """print a message to stdout."""
+        """Print a message to stdout."""
         #print time.strftime('%d-%b-%Y %H:%M:%S ') + message
         print message
 

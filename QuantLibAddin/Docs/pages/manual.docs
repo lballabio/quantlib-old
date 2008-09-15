@@ -24,7 +24,7 @@
 /*! \page manual Manual
 
 This reference manual summarizes selected features concerning end-user
-functionality of ObjectHandler, QuantLibAddin, and QuantLibXL.
+functionality of ObjectHandler, %QuantLibAddin, and QuantLibXL.
 
 \section manual_oh ObjectHandler
 
@@ -40,7 +40,7 @@ functionality of ObjectHandler, QuantLibAddin, and QuantLibXL.
 
 <table>
 <tr><td><b>Topic</b></td><td><b>Summary</b></td></tr>
-<tr><td>\ref evaluationdate</td><td>Description of special processing for the Evaluation Date, which is implemented in QuantLib as a global variable</td></tr>
+<tr><td>\ref evaluationdate</td><td>Description of special processing for the Evaluation Date, which is implemented in %QuantLib as a global variable</td></tr>
 <tr><td>\ref coercion</td><td>Automatic coercion of datatypes</td></tr>
 <tr><td>\ref loops</td><td>Functions which automatically loop on one of their arguments</td></tr>
 <tr><td>\ref observer</td><td>Designing spreadsheets to exploit QuantLib's use of the Observer/Observable design pattern</td></tr>

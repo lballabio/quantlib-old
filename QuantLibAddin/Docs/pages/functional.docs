@@ -23,7 +23,7 @@ This section of the documentation provides end-user, platform-independent
 documentation of %QuantLibAddin/QuantLibXL functionality.
 
 Section <a href="manual.html">Manual</a> summarizes selected topics concerning
-end-user functionality of ObjectHandler, QuantLibAddin, and QuantLibXL.
+end-user functionality of ObjectHandler, %QuantLibAddin, and QuantLibXL.
 
 Section <a href="auto/all_functions.html">Functions</a> is an alphabetic list of links to
 the documentation for all functions in %QuantLibAddin.

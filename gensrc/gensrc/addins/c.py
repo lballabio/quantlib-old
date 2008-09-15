@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""generate source code for C addin."""
+"""Generate source code for C addin."""
 
 from gensrc.addins import addin
 from gensrc.functions import function

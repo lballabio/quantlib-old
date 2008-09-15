@@ -16,7 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-"""construct an object given its class name."""
+"""Construct an object given its class name."""
 
 from gensrc.serialization import exceptions
 from gensrc.patterns import singleton
@@ -33,7 +33,7 @@ from gensrc.types import datatype
 from gensrc.types import supertype
 
 class Factory(singleton.Singleton):
-    """construct an object given its class name."""
+    """Construct an object given its class name."""
 
     creators_ = {
         'Constructor' : constructor.Constructor,
@@ -52,7 +52,7 @@ class Factory(singleton.Singleton):
     }
 
     def makeObject(self, className):
-        """construct an object given its class name."""
+        """Construct an object given its class name."""
         if self.creators_.has_key(className):
             return self.creators_[className]()
         else:

@@ -27,8 +27,20 @@
 #include <oh/ohdefines.hpp>
 #include <xlsdk/xlsdkdefines.hpp>
 
+//! Free any memory associated with the XLOPER.
 DLL_API void freeOper(XLOPER *px);
+
+//! Determine whether the input value comprises a list.
+/*! Returns true if the input value is a string containing
+    one or more ',' or ';' characters.  Returns false otherwise.
+*/
 DLL_API bool isList(const OPER *xValue);
+
+//! Convert a delimited list into a vector.
+/*! The input value is a string containing one or more values
+    delimited by ',' or ';'.  These are extracted and written
+    to a vector which is written to the second parameter.
+*/
 DLL_API void splitOper(const OPER *xFrom, OPER *xTo);
 
 #endif

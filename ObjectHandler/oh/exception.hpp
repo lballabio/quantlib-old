@@ -29,10 +29,7 @@
 #include <string>
 #include <sstream>
 
-/*! \def OH_FAIL(message)
-    Raises an exception with the given message.
-*/
-
+//! Raise an exception with the given message.
 #define OH_FAIL(message) \
 do { \
     std::ostringstream _oh_msg_stream; \
@@ -40,10 +37,7 @@ do { \
     throw ObjectHandler::Exception(_oh_msg_stream.str()); \
 } while (false)
 
-/*! \def OH_REQUIRE(condition,message)
-    Raises an exception if the given condition evaluates to false.
-*/
-
+//! Raise an exception if the given condition evaluates to false.
 #define OH_REQUIRE(condition,message) \
 if (!(condition)) { \
     std::ostringstream _oh_msg_stream; \
@@ -54,9 +48,7 @@ if (!(condition)) { \
 namespace ObjectHandler {
 
     //! Simple implementation of an exception.
-    /*! Descended from std::exception,
-        supports an error message string.
-    */
+    /*! Inherits from std::exception, supports an error message string. */
     class Exception : public std::exception {
         public:
             Exception(const std::string& message): message_(message) {}

@@ -32,17 +32,22 @@
 
 namespace ObjectHandler {
 
-    //@{
-    //! Convert a scalar value to an OPER.
-    /*! If dllToFree is true then the function sets the xlbitDLLFree bit if necessary.
-    */
+    // For the functions below, if dllToFree = true it means that the function will
+    // set the xlbitDLLFree bit if any memory is allocated.  dllToFree = false means
+    // that the caller is responsible for freeing any memory.
+
+    //! Convert a long to an OPER.
     DLL_API void scalarToOper(const long &value, OPER &xLong, bool dllToFree = true, bool expandVector = true);
+    //! Convert a double to an OPER.
     DLL_API void scalarToOper(const double &value, OPER &xDouble, bool dllToFree = true, bool expandVector = true);
+    //! Convert a bool to an OPER.
     DLL_API void scalarToOper(const bool &value, OPER &xBoolean, bool dllToFree = true, bool expandVector = true);
+    //! Convert a char * to an OPER.
+    DLL_API void scalarToOper(const char *value, OPER &xChar, bool dllToFree = true, bool expandVector = true);
+    //! Convert a string to an OPER.
     DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree = true, bool expandVector = true);
-    //DLL_API void scalarToOper(const boost::any &value, OPER &xAny, bool dllToFree = true, bool expandVector = true);
-    DLL_API void scalarToOper(const ObjectHandler::property_t &value, OPER &xAny, bool dllToFree = true, bool expandVector = true);
-    //@}
+    //! Convert a property_t to an OPER.
+    DLL_API void scalarToOper(const property_t &value, OPER &xAny, bool dllToFree = true, bool expandVector = true);
 
 }
 

@@ -3,6 +3,7 @@ SUBDIRS = \
     Docs
 
 EXTRA_DIST = \
+    autogen.sh \
     Authors.txt \
     Contributors.txt \
     dependencies.vc \
@@ -12,6 +13,8 @@ EXTRA_DIST = \
     gensrc_vc7.vcproj \
     gensrc_vc8.sln \
     gensrc_vc8.vcproj \
+    gensrc_vc9.sln \
+    gensrc_vc9.vcproj \
     LICENSE.TXT \
     NEWS.txt \
     README.txt \

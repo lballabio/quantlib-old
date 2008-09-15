@@ -40,7 +40,7 @@ def getCode(codeID):
         raise exceptions.RuleCodeInvalidException(codeID)
 
 class Rule(serializable.Serializable):
-    """the subset of a Rule pertaining to one or more tensor ranks."""
+    """The subset of a Rule pertaining to one or more tensor ranks."""
 
     #############################################
     # class variables
@@ -88,7 +88,7 @@ class Rule(serializable.Serializable):
     #############################################
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         serializer.serializeAttribute(self, common.TENSOR_RANK)
         serializer.serializeAttribute(self, common.SUPER_TYPE)
         serializer.serializeAttribute(self, common.NATIVE_TYPE)
@@ -138,7 +138,7 @@ class Wrap(serializable.Serializable):
     #############################################
 
     def serialize(self, serializer):
-        """load/unload class state to/from serializer object."""
+        """Load/unload class state to/from serializer object."""
         serializer.serializeValue(self)
         serializer.serializeAttribute(self, common.CODE_ID)
 
@@ -215,6 +215,7 @@ class RuleGroup(serializable.Serializable):
         return self.wrapText_
 
     def printDebug(self):
+        """Write debug information to stdout."""
         print "debug rule group *****"
         print self.name_, self.delimiter_, self.checkParameterIgnore_, \
             self.checkSkipFirst_, self.indent_
