@@ -2,8 +2,8 @@
 # !defines
 
 !define APP "QuantLibAddin"
-!define VER_NUMBER "0.9.7"
-!define DEFAULT_PATH "c:\build_ql_0_9_7\${APP}"
+!define VER_NUMBER "0.9.6"
+!define DEFAULT_PATH "c:\build_ql_0_9_6\${APP}"
 
 # Compiler Flags
 
@@ -50,7 +50,9 @@ Section
     File /r "gensrc\Makefile.vc"
     File /r "gensrc\*.py"
     File /r "gensrc\*.xml"
-    File /r "gensrc\stub.*"
+    
+    SetOutPath "$INSTDIR\gensrc\stubs"
+    File "gensrc\stubs\stub.*"
     
 
     SetOutPath "$INSTDIR\Addins\Calc"
