@@ -29,33 +29,42 @@ This is the FAQ for %QuantLibAddin and QuantLibXL, which are subprojects of
 and the
 <a href="http://quantlib.org/developerFAQ.shtml">QuantLib developer FAQ</a>.
 
-\ref faq_section_general\n
-- \ref faq_item_whats_qla\n
-- \ref faq_item_whats_qlxl\n
-- \ref faq_item_help\n
+<dl>
+<dt>\ref faq_section_general</dt>
+<dd><dl>
+<dt>\ref faq_item_whats_qla</dt>
+<dt>\ref faq_item_whats_qlxl</dt>
+<dt>\ref faq_item_help</dt>
+</dl></dd>
+<dt>\ref faq_sec_installation</dt>
+<dd><dl>
+<dt>\ref faq_item_installation</dt>
+</dl></dd>
+<dt>\ref faq_sec_compilation</dt>
+<dd><dl>
+<dt>\ref faq_item_winheader</dt>
+</dl></dd>
+<dt>\ref faq_sec_usage</dt>
+<dd><dl>
+<dt>\ref faq_item_start</dt>
+<dt>\ref faq_item_vba</dt>
+<dt>\ref faq_item_numparams</dt>
+</dl></dd>
+<dt>\ref faq_sec_troubleshooting</dt>
+<dd><dl>
+<dt>\ref faq_item_startup</dt>
+<dt>\ref faq_item_wizard</dt>
+</dl></dd>
+<dt>\ref faq_sec_debugging</dt>
+<dd><dl>
+<dt>\ref faq_item_debugexcel</dt>
+<dt>\ref faq_item_debuglinux</dt>
+</dl></dd>
+</dl>
 
-\ref faq_sec_installation\n
-- \ref faq_item_installation\n
+\section faq_section_general 1. General
 
-\ref faq_sec_compilation\n
-- \ref faq_item_winheader\n
-
-\ref faq_sec_usage\n
-- \ref faq_item_start\n
-- \ref faq_item_vba\n
-- \ref faq_item_numparams\n
-
-\ref faq_sec_troubleshooting\n
-- \ref faq_item_startup\n
-- \ref faq_item_wizard\n
-
-\ref faq_sec_debugging\n
-- \ref faq_item_debugexcel\n
-- \ref faq_item_debuglinux\n
-
-\section faq_section_general General
-
-\subsection faq_item_whats_qla What is QuantLibAddin?
+\subsection faq_item_whats_qla 1.1 What is QuantLibAddin?
 
 %QuantLibAddin is an interface allowing
 <a href="http://quantlib.org">QuantLib</a> (an open source analytics library
@@ -88,13 +97,13 @@ repository and a reference to that object is returned to the calling cell.
 %QuantLibAddin supports this interface on a variety of end user platforms such
 as Microsoft Excel and OpenOffice.org Calc.
 
-\subsection faq_item_whats_qlxl What is QuantLibXL?
+\subsection faq_item_whats_qlxl 1.2 What is QuantLibXL?
 
 QuantLibXL is the Excel implementation of the %QuantLibAddin interface.
 QuantLibXL is an Excel Addin, a C++ binary in the XLL format, allowing
 %QuantLib functions to be accessed from cell formulas.
 
-\subsection faq_item_help Where do I go for help?
+\subsection faq_item_help 1.3 Where do I go for help?
 
 The mailing list for this project is
 <a href="https://lists.sourceforge.net/lists/listinfo/quantlib-users">quantlib-users@lists.sf.net</a>.
@@ -102,12 +111,12 @@ The list archives may be searched
 <a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">here</a>.
 
 %QuantLibAddin is the product of collaboration from many volunteers.  Not all
-%of them follow the mailing list and some questions go unanswered, sorry about
-%that.  Try writing in Italian ;-)
+of them follow the mailing list and some questions go unanswered, sorry about
+that.  Try writing in Italian ;-)
 
-\section faq_sec_installation Installation
+\section faq_sec_installation 2. Installation
 
-\subsection faq_item_installation How do I compile and/or install QuantLibAddin/QuantLibXL?
+\subsection faq_item_installation 2.1 How do I compile and/or install QuantLibAddin/QuantLibXL?
 
 \li If you want an installer delivering a compiled QuantLibXL Addin and
 documentation for use with Microsoft Excel, visit
@@ -116,24 +125,25 @@ documentation for use with Microsoft Excel, visit
 or other platforms, visit
 <a href="http://www.quantlibaddin.org/tutorials.html">http://www.quantlibaddin.org/tutorials.html</a>.
 
-\section faq_sec_compilation Compilation
+\section faq_sec_compilation 3. Compilation
 
-\subsection faq_item_winheader Why does my compilation fail with an error message about windows.h?
+\subsection faq_item_winheader 3.1 Why does my compilation fail with an error message about windows.h?
 
 \verbatim
 fatal error C1083: Cannot open include file: 'windows.h':
     No such file or directory
 \endverbatim
 
-You need to install the Platform SDK as explained in the documentation for Visual Studio Express.
+You need to install the Platform SDK as explained in the documentation for
+Visual Studio Express.
 
-\section faq_sec_usage Usage
+\section faq_sec_usage 4. Usage
 
-\subsection faq_item_start How do I start QuantLibXL?
+\subsection faq_item_start 4.1 How do I start QuantLibXL?
 
 See <a href="http://www.quantlibxl.org/installation.html">http://www.quantlibxl.org/installation.html</a>.
 
-\subsection faq_item_vba How do I call QuantLibXL functions from Excel VBA?
+\subsection faq_item_vba 4.2 How do I call QuantLibXL functions from Excel VBA?
 
 QuantLibXL can be invoked from VBA using Application.Run().  For example, below
 is a subroutine which calculates the price of an option.  This code mimics the
@@ -185,7 +195,7 @@ MsgBox Err.Description, vbCritical, "QuantLibXL Error"
 End Sub
 \endverbatim
 
-\subsection faq_item_numparams What is the maximum number of arguments for a QuantLibXL function?
+\subsection faq_item_numparams 4.3 What is the maximum number of arguments for a QuantLibXL function?
 
 Twenty.
 
@@ -205,9 +215,9 @@ present the implementation is not functional because of a bug.
 Excel 2007 introduces support for user defined functions with up to 255
 arguments but QuantLibXL has not yet been upgraded to take advantage of this.
 
-\section faq_sec_troubleshooting Troubleshooting
+\section faq_sec_troubleshooting 5. Troubleshooting
 
-\subsection faq_item_startup Why does Excel display an error message when I load QuantLibXL?
+\subsection faq_item_startup 5.1 Why does Excel display an error message when I load QuantLibXL?
 
 When you try to load an XLL into Excel, you may get a warning message
 such as "This file is not in a recognizable format" or "XYZ.XLL is
@@ -227,7 +237,7 @@ XLL must be loaded into Excel before QuantLibXL.
 Microsoft Visual C++ includes the utility \c DEPENDS.EXE which can be used
 to identify the runtime dependencies of a binary.
 
-\subsection faq_item_wizard Why does Excel crash when I use the Function Wizard?
+\subsection faq_item_wizard 5.2 Why does Excel crash when I use the Function Wizard?
 
 The Function Wizard (launched by clicking the \c fx button next to the Formula
 Bar) allows the user to specify function inputs by clicking in selected cell
@@ -247,9 +257,9 @@ test is expensive and its use is discouraged.  Unfortunately QuantLibXL may
 contain functions which do not perform the test and which crash when invoked
 from the Function Wizard.
 
-\section faq_sec_debugging Debugging
+\section faq_sec_debugging 6. Debugging
 
-\subsection faq_item_debugexcel How do I debug QuantLibXL?
+\subsection faq_item_debugexcel 6.1 How do I debug QuantLibXL?
 
 \li compile QuantLibXL with the Debug configuration
 \li start Excel and load QuantLibXL and a client worksheet
@@ -269,7 +279,7 @@ recalc
 debug from there, e.g.\n F10 - advance a line\n F11 - step into a function\n
 F5 - run until the next breakpoint or until completion\n etc.
 
-\subsection faq_item_debuglinux How do I debug a QuantLibAddin Linux executable at the command line?
+\subsection faq_item_debuglinux 6.2 How do I debug a QuantLibAddin Linux executable at the command line?
 
 This section describes how to debug a standalone C++ %QuantLibAddin client
 linux program with the \c gdb command line debugger, using program \c
