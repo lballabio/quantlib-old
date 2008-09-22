@@ -1,5 +1,5 @@
 #!/bin/sh
-# text files
+# text files: native end of line
 find . -name '*.[hc]pp' -o -name '*.[hc]' \
     -o -name '*.xhtml' -o -name '*.html' -o -name '*.htm' -o -name '*.css' \
     -o -name '*.docs' -o -name '*.doxy' -o -name '*.qbk' \
@@ -23,32 +23,34 @@ find . -name '*.dev' -o -name '*.sln' \
     -o -name '*.vc' -o -name '*.cmd' -o -name '*.bat' \
     -o -name '*.dsw' -o -name '*.dsp' \
  | xargs -n 1 svn propset svn:eol-style CRLF
-# these should have svn:needs-lock
+
+# binary files: these should have svn:needs-lock
 find . -name '*.png' -o -name '*.jpg' -o -name '*.ico' \
     -o -name '*.xls' -o -name '*.xla' -o -name '*.xll' \
     -o -name '*.doc' -o -name '*.pdf' \
  | xargs -n 1 svn propset svn:needs-lock 1
-# these should have svn:mime-type application/msword
-find . -name '*.doc' \
- | xargs -n 1 svn propset svn:mime-type application/msword
-# these should have svn:mime-type application/vnd.ms-excel
-find . -name '*.xla' -o -name '*.xll' -o -name '*.xls' \
- | xargs -n 1 svn propset svn:mime-type application/vnd.ms-excel
-# these should have svn:mime-type application/pdf
-find . -name '*.pdf' \
- | xargs -n 1 svn propset svn:mime-type application/pdf
-# these should have svn:executable
+
+# shell scripts: these should have svn:executable
 find . -name '*.sh' \
  | xargs -n 1 svn propset svn:executable 1
-# these should have svn:mime-type image/gif
+
+# source files: not executable, even if Windows says so
+find . -name '*.[hc]pp' -o -name '*.[hc]' \
+ | xargs -n 1 svn propdel svn:executable
+
+# set mime types when known
+find . -name '*.doc' \
+ | xargs -n 1 svn propset svn:mime-type application/msword
+find . -name '*.xla' -o -name '*.xll' -o -name '*.xls' \
+ | xargs -n 1 svn propset svn:mime-type application/vnd.ms-excel
+find . -name '*.pdf' \
+ | xargs -n 1 svn propset svn:mime-type application/pdf
 find . -name '*.gif' \
  | xargs -n 1 svn propset svn:mime-type image/gif
-# these should have svn:mime-type image/x-icon
 find . -name '*.ico' \
  | xargs -n 1 svn propset svn:mime-type image/x-icon
-# these should have svn:mime-type image/jpeg
 find . -name '*.jpg' \
  | xargs -n 1 svn propset svn:mime-type image/jpeg
-# these should have svn:mime-type image/png
 find . -name '*.png' \
  | xargs -n 1 svn propset svn:mime-type image/png
+
