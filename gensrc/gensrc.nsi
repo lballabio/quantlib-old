@@ -25,8 +25,8 @@ UninstallText "This will uninstall ${APP}. Hit next to continue."
 # Installer Instructions
 
 Section
-    SetOutPath $INSTDIR
 
+    SetOutPath $INSTDIR
     File "README.txt"
     File "LICENSE.txt"
     File "NEWS.txt"
@@ -62,7 +62,6 @@ Section
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"
     File "Docs\images\*.png"
-    #File "Docs\images\*.php"
 
     SetOutPath "$INSTDIR\Docs\pages"
     File "Docs\pages\*.docs"
@@ -95,6 +94,9 @@ Section
 
     CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc VC 8 project workspace.lnk" \
                    "$INSTDIR\gensrc_vc8.sln"
+
+    CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc VC 9 project workspace.lnk" \
+                   "$INSTDIR\gensrc_vc9.sln"
 
     CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc Folder.lnk" \
                    "$INSTDIR"

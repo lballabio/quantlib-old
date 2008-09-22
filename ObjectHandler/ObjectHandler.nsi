@@ -72,7 +72,6 @@ Section
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"
     File "Docs\images\*.png"
-    #File "Docs\images\*.php"
 
     SetOutPath "$INSTDIR\Docs\pages"
     File "Docs\pages\*.docs"
@@ -105,6 +104,9 @@ Section
 
     CreateShortCut "$SMPROGRAMS\ObjectHandler-${VER_NUMBER}\ObjectHandler VC 8 project workspace.lnk" \
                    "$INSTDIR\ObjectHandler_vc8.sln"
+
+    CreateShortCut "$SMPROGRAMS\ObjectHandler-${VER_NUMBER}\ObjectHandler VC 9 project workspace.lnk" \
+                   "$INSTDIR\ObjectHandler_vc9.sln"
 
     CreateShortCut "$SMPROGRAMS\ObjectHandler-${VER_NUMBER}\ObjectHandler Folder.lnk" \
                    "$INSTDIR"

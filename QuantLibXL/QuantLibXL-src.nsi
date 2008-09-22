@@ -27,8 +27,8 @@ UninstallText "This will uninstall ${APP}. Hit next to continue."
 ComponentText \
 "By default the installer will install the QuantLibXL source code and basic example workbooks." \
 "Optional components:" \
-"The QuantLibXL Framework is a business application layer written in Excel VBA, \
-including template workbooks for market data and interest rate derivates."
+"The QuantLibXL Framework is a business application layer written in Excel VBA," \
+"including template workbooks for market data and interest rate derivates."
 
 Section
 
@@ -63,7 +63,6 @@ Section
     File "Docs\images\*.ico"
     File "Docs\images\*.jpg"
     File "Docs\images\*.png"
-    #File "Docs\images\*.php"
 
     SetOutPath "$INSTDIR\Docs\pages"
     File "Docs\pages\*.docs"
@@ -77,7 +76,7 @@ Section
     SetOutPath "$INSTDIR\Workbooks\StandaloneExamples"
     File /r "Workbooks\StandaloneExamples\*.xls"
     File /r "Workbooks\StandaloneExamples\*.xla"
-    
+
     SetOutPath "$INSTDIR\Workbooks\StandaloneExamples\SerializationDemo"
     File "Workbooks\StandaloneExamples\SerializationDemo\README.TXT"
 
@@ -98,10 +97,13 @@ Section
                    "$INSTDIR\QuantLibXLUninstall.exe" 0
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 7 project workspace.lnk" \
-                   "$INSTDIR\QuantLibAllStatic_vc7.sln"
+                   "$INSTDIR\QuantLibXL_basic_vc7.sln"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 8 project workspace.lnk" \
-                   "$INSTDIR\QuantLibAllStatic_vc8.sln"
+                   "$INSTDIR\QuantLibXL_basic_vc8.sln"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 9 project workspace.lnk" \
+                   "$INSTDIR\QuantLibXL_basic_vc9.sln"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
                    "$INSTDIR\framework\QuantLibXL.xla"

@@ -1,10 +1,9 @@
 
-
 # !defines
 
 !define APP "log4cxx"
-!define VER_NUMBER "0.10.0a"
-!define DEFAULT_PATH "C:\build_ql_0_9_6\${APP}"
+!define VER_NUMBER "0.10.0b"
+!define DEFAULT_PATH "C:\build_ql_0_9_7\${APP}"
 
 # Compiler Flags
 
@@ -40,12 +39,12 @@ Section
     SetOutPath $INSTDIR\msvc
     File "msvc\*.vcproj"
     File "msvc\*.sln"
-    
-	SetOutPath $INSTDIR\src
+
+    SetOutPath $INSTDIR\src
     File /r "src\*.h"
     File /r "src\*.hpp"
     File /r "src\*.c"
-    File /r "src\*.cpp"    
+    File /r "src\*.cpp"
     File /r "src\*.am"
     File /r "src\*.xml"
     File /r "src\buildconf"
@@ -72,26 +71,26 @@ Section
     File /r "src\renames_pending"
     File /r "src\*.bin"
     File /r "src\*.xslt"
-    
+
     SetOutPath $INSTDIR\src\site\apt
     File   "src\site\apt\*.apt"
-    
+
     SetOutPath $INSTDIR\src\site\apt\building
     File   "src\site\apt\building\*.apt"
-    
+
     SetOutPath $INSTDIR\src\apr
     File  "src\apr\libaprnw.mcp.zip"
     File  "src\apr\CHANGES"
-    
+
     SetOutPath $INSTDIR\src\apr\test
     File  "src\apr\test\README"
-    
+
     SetOutPath $INSTDIR\src\apr\build\pkg
     File  "src\apr\build\pkg\README"
-    
-	SetOutPath $INSTDIR\src\apr-util
+
+    SetOutPath $INSTDIR\src\apr-util
     File  "src\apr-util\CHANGES"
-    
+
     SetOutPath $INSTDIR\src\apr-util\build\pkg
     File  "src\apr-util\build\pkg\README"
 
@@ -99,7 +98,6 @@ Section
     File  "src\apr-util\xml\expat\README"
     File  "src\apr-util\xml\expat\COPYING"
 
- 
     WriteRegStr HKEY_LOCAL_MACHINE \
                 "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-${VER_NUMBER}" \
                 "DisplayName" "log4cxx-${VER_NUMBER} (remove only)"
@@ -125,6 +123,9 @@ Section
 
     CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx VC 8 project workspace.lnk" \
                    "$INSTDIR\msvc\log4cxx_vc8.sln"
+
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx VC 9 project workspace.lnk" \
+                   "$INSTDIR\msvc\log4cxx_vc9.sln"
 
     CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx Folder.lnk" \
                    "$INSTDIR"
