@@ -3,24 +3,24 @@
   <displayName>Swaption</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
-    <include>ql/exercise.hpp</include>
-    <include>qlo/index.hpp</include>
     <include>qlo/swaption.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/exercise.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/exercise.hpp</include>
   </serializationIncludes>
   <addinIncludes>
-    <include>ql/exercise.hpp</include>
     <include>qlo/swaption.hpp</include>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/exercise.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/exercise.hpp</include>
   </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
@@ -87,7 +87,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='SwapIndex' exampleValue='EuriborSwapFixA10Y'>
+          <Parameter name='SwapIndex' exampleValue='EuriborSwapIsdaFixA10Y'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>SwapIndex object ID.</description>

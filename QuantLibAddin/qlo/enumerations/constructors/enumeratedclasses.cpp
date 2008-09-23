@@ -27,12 +27,8 @@
 #include <qlo/conversions/conversions.hpp>
 #include <ql/indexes/ibor/euribor.hpp>
 #include <ql/indexes/ibor/eurlibor.hpp>
-#include <ql/indexes/swap/euriborswapfixa.hpp>
-#include <ql/indexes/swap/euriborswapfixb.hpp>
-#include <ql/indexes/swap/eurliborswapfixa.hpp>
-#include <ql/indexes/swap/eurliborswapfixb.hpp>
-#include <ql/indexes/swap/eurliborswapfixifr.hpp>
-#include <ql/indexes/swap/euriborswapfixifr.hpp>
+#include <ql/indexes/swap/euriborswap.hpp>
+#include <ql/indexes/swap/eurliborswap.hpp>
 
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>

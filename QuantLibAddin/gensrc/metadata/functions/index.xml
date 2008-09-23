@@ -3,19 +3,27 @@
   <displayName>Indices</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/bmaindex.hpp</include>
+    <include>qlo/indexes/ibor/euribor.hpp</include>
+    <include>qlo/indexes/ibor/libor.hpp</include>
+    <include>qlo/indexes/swap/euriborswap.hpp</include>
+    <include>qlo/indexes/swap/liborswap.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <addinIncludes>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/bmaindex.hpp</include>
+    <include>qlo/indexes/ibor/euribor.hpp</include>
+    <include>qlo/indexes/ibor/libor.hpp</include>
+    <include>qlo/indexes/swap/euriborswap.hpp</include>
+    <include>qlo/indexes/swap/liborswap.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>qlo/timeseries.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
     Copyright (C) 2006 Katiuscia Manzoni
     Copyright (C) 2005, 2007 Eric Ehlers
     Copyright (C) 2005 Plamen Neykov
@@ -498,8 +506,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlEurLibor'>
-      <libraryFunction>EurLibor</libraryFunction>
+    <Constructor name='qlLibor'>
+      <libraryFunction>Libor</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -508,6 +516,11 @@
       <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
+          <Parameter name='Currency'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Libor index currency.</description>
+          </Parameter>
           <Parameter name='Tenor' exampleValue='6M'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
@@ -589,7 +602,7 @@
       <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
-          <Parameter name='FamilyName' exampleValue='EuriborSwapFixA10Y 30/360 (BondBasis)'>
+          <Parameter name='FamilyName' exampleValue='EuriborSwapIsdaFixA10Y'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
             <description>index name.</description>
@@ -638,8 +651,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlEuriborSwapFixA'>
-      <libraryFunction>EuriborSwapFixA</libraryFunction>
+    <Constructor name='qlEuriborSwap'>
+      <libraryFunction>EuriborSwap</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -648,6 +661,11 @@
       <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
+          <Parameter name='FixingType' default='"Default"'>
+            <type>QuantLibAddin::SwapIndex::FixingType</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Swap index fixing type (e.g. IsdaFixA, IsdaFixB, IfrFix, IsdaFixAm, IsdaFixPm).</description>
+          </Parameter>
           <Parameter name='Tenor' exampleValue='10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
@@ -663,8 +681,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlEuriborSwapFixB'>
-      <libraryFunction>EuriborSwapFixB</libraryFunction>
+    <Constructor name='qlLiborSwap'>
+      <libraryFunction>LiborSwap</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -673,106 +691,16 @@
       <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
-          <Parameter name='Tenor' exampleValue='10Y'>
-            <type>QuantLib::Period</type>
+          <Parameter name='Currency'>
+            <type>QuantLib::Currency</type>
             <tensorRank>scalar</tensorRank>
-            <description>index tenor (e.g. 1Y for one year).</description>
+            <description>Libor swap index currency.</description>
           </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
+          <Parameter name='FixingType' default='"Default"'>
+            <type>QuantLibAddin::SwapIndex::FixingType</type>
             <tensorRank>scalar</tensorRank>
-            <description>forecasting yield term structure.</description>
+            <description>Swap index fixing type (e.g. IsdaFixA, IsdaFixB, IfrFix, IsdaFixAm, IsdaFixPm).</description>
           </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlEurLiborSwapFixA'>
-      <libraryFunction>EurLiborSwapFixA</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <processorName>IndexProcessor</processorName>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Tenor' exampleValue='10Y'>
-            <type>QuantLib::Period</type>
-            <tensorRank>scalar</tensorRank>
-            <description>index tenor (e.g. 1Y for one year).</description>
-          </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>forecasting yield term structure.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlEurLiborSwapFixB'>
-      <libraryFunction>EurLiborSwapFixB</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <processorName>IndexProcessor</processorName>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Tenor' exampleValue='10Y'>
-            <type>QuantLib::Period</type>
-            <tensorRank>scalar</tensorRank>
-            <description>index tenor (e.g. 1Y for one year).</description>
-          </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>forecasting yield term structure.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlEuriborSwapFixIFR'>
-      <libraryFunction>EuriborSwapFixIFR</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <processorName>IndexProcessor</processorName>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Tenor' exampleValue='10Y'>
-            <type>QuantLib::Period</type>
-            <tensorRank>scalar</tensorRank>
-            <description>index tenor (e.g. 1Y for one year).</description>
-          </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>forecasting yield term structure.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlEurLiborSwapFixIFR'>
-      <libraryFunction>EurLiborSwapFixIFR</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <processorName>IndexProcessor</processorName>
-      <ParameterList>
-        <Parameters>
           <Parameter name='Tenor' exampleValue='10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>

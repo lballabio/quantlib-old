@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -20,27 +20,22 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_index_hpp
-#define qla_index_hpp
+#ifndef qla_liborswap_hpp
+#define qla_liborswap_hpp
 
-#include <oh/libraryobject.hpp>
-
-#include <ql/types.hpp>
-
-namespace QuantLib {
-    class Date;
-    class Index;
-}
+#include <qlo/indexes/swapindex.hpp>
 
 namespace QuantLibAddin {
 
-    class Index : public ObjectHandler::LibraryObject<QuantLib::Index> {
+    class LiborSwap : public SwapIndex {
       public:
-        void addFixings(const std::vector<QuantLib::Date>& dates,
-                        const std::vector<QuantLib::Real>& values,
-                        bool forceOverwrite, bool updateValuObject = true);
-      public:
-        OH_LIB_CTOR(Index, QuantLib::Index);
+        LiborSwap(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Currency& currency,
+            SwapIndex::FixingType fixingType,
+            const QuantLib::Period& p,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+            bool permanent);
     };
 
 }

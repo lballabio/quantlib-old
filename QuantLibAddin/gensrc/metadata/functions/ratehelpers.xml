@@ -4,7 +4,8 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
     <include>qlo/ratehelpers.hpp</include>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/bonds.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
@@ -13,7 +14,8 @@
   </serializationIncludes>
   <addinIncludes>
     <include>qlo/ratehelpers.hpp</include>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/bonds.hpp</include>
     <include>ql/termstructures/yield/ratehelpers.hpp</include>
@@ -165,7 +167,7 @@
             <tensorRank>scalar</tensorRank>
             <description>quote.</description>
           </Parameter>
-          <Parameter name='SwapIndex' exampleValue='EuriborSwapFixA10Y'>
+          <Parameter name='SwapIndex' exampleValue='EuriborSwapIsdaFixA10Y'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>SwapIndex object ID.</description>

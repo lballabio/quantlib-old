@@ -4,7 +4,8 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
     <include>qlo/bonds.hpp</include>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/capletvolstructure.hpp</include>
@@ -16,7 +17,8 @@
     <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
   <addinIncludes>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/bonds.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>

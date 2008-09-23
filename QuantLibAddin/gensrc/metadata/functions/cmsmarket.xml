@@ -6,7 +6,8 @@
     <include>qlo/quote.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
@@ -15,7 +16,8 @@
     <include>qlo/quote.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
@@ -42,7 +44,7 @@
             <tensorRank>vector</tensorRank>
             <description>vector of swap lengths.</description>
           </Parameter>
-          <Parameter name='SwapIndexes' exampleValue='EuriborSwapFixA2Y,EuriborSwapFixA5Y,EuriborSwapFixA10Y,EuriborSwapFixA20Y,EuriborSwapFixA30Y'>
+          <Parameter name='SwapIndexes' exampleValue='EuriborSwapIsdaFixA2Y,EuriborSwapIsdaFixA5Y,EuriborSwapIsdaFixA10Y,EuriborSwapIsdaFixA20Y,EuriborSwapIsdaFixA30Y'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>vector</tensorRank>
             <description>vector of SwapIndex object IDs.</description>

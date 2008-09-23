@@ -26,24 +26,8 @@
 
 #include <qlo/index.hpp>
 
-#include <ql/indexes/bmaindex.hpp>
-
-#include <ql/indexes/ibor/euribor.hpp>
-#include <ql/indexes/ibor/eurlibor.hpp>
-
-#include <ql/indexes/swap/euriborswapfixa.hpp>
-#include <ql/indexes/swap/euriborswapfixb.hpp>
-#include <ql/indexes/swap/euriborswapfixifr.hpp>
-
-#include <ql/indexes/swap/eurliborswapfixa.hpp>
-#include <ql/indexes/swap/eurliborswapfixb.hpp>
-#include <ql/indexes/swap/eurliborswapfixifr.hpp>
-
-#include <ql/utilities/dataparsers.hpp>
-
-#include <boost/algorithm/string/case_conv.hpp>
-
-using boost::algorithm::to_upper_copy;
+#include <ql/timeseries.hpp>
+#include <ql/index.hpp>
 
 namespace QuantLibAddin {
 
@@ -68,11 +52,12 @@ namespace QuantLibAddin {
         libraryObject_->addFixings(d.begin(), d.end(),
                                    v.begin(), forceOverwrite);
 
-        if(updateValuObject) {
+        if (updateValuObject) {
             std::vector<long> fixingDates;
             std::vector<QuantLib::Real> fixingRates;
             const QuantLib::TimeSeries<QuantLib::Real>& history = libraryObject_->timeSeries();
-            for(QuantLib::TimeSeries<QuantLib::Real>::const_iterator hi = history.begin(); hi != history.end(); ++hi) {
+            for (QuantLib::TimeSeries<QuantLib::Real>::const_iterator hi = history.begin();
+                 hi != history.end(); ++hi) {
                 fixingDates.push_back(hi->first.serialNumber());
                 fixingRates.push_back(hi->second);
             }
@@ -80,190 +65,6 @@ namespace QuantLibAddin {
             inst_properties->setProperty("IndexFixingDates", fixingDates);
             inst_properties->setProperty("IndexFixingRates", fixingRates);
         }
-    }
-
-    IborIndex::IborIndex(
-                 const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                 const std::string& indexName,
-                 const QuantLib::Period& p,
-                 const QuantLib::Natural fixingDays,
-                 const QuantLib::Currency& crr,
-                 const QuantLib::Calendar& calendar,
-                 QuantLib::BusinessDayConvention fltBDC,
-                 bool endOfMonth,
-                 const QuantLib::DayCounter& fltDayCounter,
-                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-                 bool permanent) : InterestRateIndex(properties, permanent)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-            QuantLib::IborIndex(indexName, 
-                                p,
-                                fixingDays, crr, calendar, 
-                                fltBDC, endOfMonth, fltDayCounter,
-                                hYTS));
-    }
-
-    Euribor::Euribor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                     const std::string& p,
-                     const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                     bool permanent) : IborIndex(properties, permanent)
-    {
-        if (to_upper_copy(p)=="ON")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::DailyTenorEuribor(0, h));
-        else if (to_upper_copy(p)=="1D")
-            QL_FAIL("1D is ambigous: please specify ON, TN, or SN");
-        else if (to_upper_copy(p)=="TN")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::DailyTenorEuribor(1, h));
-        else if (to_upper_copy(p)=="SN")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::DailyTenorEuribor(2, h));
-        else if (to_upper_copy(p)=="SW")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-            QuantLib::Euribor(1*QuantLib::Weeks, h));
-        else {
-            QuantLib::Period pp = QuantLib::PeriodParser::parse(p);
-            pp.normalize();
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::Euribor(pp, h));
-        }
-    }
-
-    Euribor365::Euribor365(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                           const std::string& p,
-                           const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                           bool permanent) : IborIndex(properties, permanent)
-    {
-        if (to_upper_copy(p)=="ON")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::DailyTenorEuribor365(0, h));
-        else if (to_upper_copy(p)=="1D")
-            QL_FAIL("1D is ambigous: please specify ON, TN, or SN");
-        else if (to_upper_copy(p)=="TN")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::DailyTenorEuribor365(1, h));
-        else if (to_upper_copy(p)=="SN")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::DailyTenorEuribor365(2, h));
-        else if (to_upper_copy(p)=="SW")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::Euribor365(1*QuantLib::Weeks, h));
-        else {
-            QuantLib::Period pp = QuantLib::PeriodParser::parse(p);
-            pp.normalize();
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::Euribor365(pp, h));
-        }
-    }
-
-    EurLibor::EurLibor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                       const std::string& p,
-                       const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                       bool permanent) : IborIndex(properties, permanent)
-    {
-        if (to_upper_copy(p)=="ON")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::DailyTenorEURLibor(0, h));
-        else if (to_upper_copy(p)=="1D")
-            QL_FAIL("1D is ambigous: please specify ON, TN, or SN");
-        else if (to_upper_copy(p)=="TN")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::DailyTenorEURLibor(1, h));
-        else if (to_upper_copy(p)=="SN")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::DailyTenorEURLibor(2, h));
-        else if (to_upper_copy(p)=="SW")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::EURLibor(1*QuantLib::Weeks, h));
-        else {
-            QuantLib::Period pp = QuantLib::PeriodParser::parse(p);
-            pp.normalize();
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::EURLibor(pp, h));
-        }
-    }
-
-    SwapIndex::SwapIndex(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                         const std::string& familyName,
-                         const QuantLib::Period& p,
-                         QuantLib::Natural fixingDays,
-                         QuantLib::Currency& crr,
-                         const QuantLib::Calendar& calendar,
-                         const QuantLib::Period& fixedLegTenor,
-                         QuantLib::BusinessDayConvention fixedLegBDC,
-                         const QuantLib::DayCounter& fixedLegDayCounter,
-                         const boost::shared_ptr<QuantLib::IborIndex>& index,
-                         bool permanent) : InterestRateIndex(properties, permanent)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::SwapIndex>(new
-            QuantLib::SwapIndex(familyName, p,
-                                fixingDays, crr, calendar, 
-                                fixedLegTenor, fixedLegBDC,
-                                fixedLegDayCounter, index));
-    }
-
-    EuriborSwapFixA::EuriborSwapFixA(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                     const QuantLib::Period& p,
-                                     const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                                     bool permanent) : SwapIndex(properties, permanent)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::EuriborSwapFixA>(new
-            QuantLib::EuriborSwapFixA(p, h));
-    }
-
-    EuriborSwapFixB::EuriborSwapFixB(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                     const QuantLib::Period& p,
-                                     const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                                     bool permanent) : SwapIndex(properties, permanent)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::EuriborSwapFixB>(new
-            QuantLib::EuriborSwapFixB(p, h));
-    }
-
-    EurLiborSwapFixA::EurLiborSwapFixA(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                       const QuantLib::Period& p,
-                                       const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                                       bool permanent) : SwapIndex(properties, permanent)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::EurliborSwapFixA>(new
-            QuantLib::EurliborSwapFixA(p, h));
-    }
-
-    EurLiborSwapFixB::EurLiborSwapFixB(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                       const QuantLib::Period& p,
-                                       const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                                       bool permanent) : SwapIndex(properties, permanent)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::EurliborSwapFixB>(new
-            QuantLib::EurliborSwapFixB(p, h));
-    }
-
-    EuriborSwapFixIFR::EuriborSwapFixIFR(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                         const QuantLib::Period& p,
-                                         const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                                         bool permanent) : SwapIndex(properties, permanent)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::EuriborSwapFixIFR>(new
-            QuantLib::EuriborSwapFixIFR(p, h));
-    }
-
-    EurLiborSwapFixIFR::EurLiborSwapFixIFR(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                           const QuantLib::Period& p,
-                                           const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                                           bool permanent) : SwapIndex(properties, permanent)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::EurliborSwapFixIFR>(new
-            QuantLib::EurliborSwapFixIFR(p, h));
-    }
-
-    BMAIndex::BMAIndex(
-                 const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-                 bool permanent) : InterestRateIndex(properties, permanent)
-    {
-        libraryObject_ = boost::shared_ptr<QuantLib::BMAIndex>(new
-            QuantLib::BMAIndex(hYTS));
     }
 
 }

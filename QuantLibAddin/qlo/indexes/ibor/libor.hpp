@@ -20,27 +20,20 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_index_hpp
-#define qla_index_hpp
+#ifndef qla_libor_hpp
+#define qla_libor_hpp
 
-#include <oh/libraryobject.hpp>
-
-#include <ql/types.hpp>
-
-namespace QuantLib {
-    class Date;
-    class Index;
-}
+#include <qlo/indexes/iborindex.hpp>
 
 namespace QuantLibAddin {
 
-    class Index : public ObjectHandler::LibraryObject<QuantLib::Index> {
+    class Libor : public IborIndex {
       public:
-        void addFixings(const std::vector<QuantLib::Date>& dates,
-                        const std::vector<QuantLib::Real>& values,
-                        bool forceOverwrite, bool updateValuObject = true);
-      public:
-        OH_LIB_CTOR(Index, QuantLib::Index);
+        Libor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+              const QuantLib::Currency& currency,
+              const std::string& p,
+              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+              bool permanent);
     };
 
 }

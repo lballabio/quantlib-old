@@ -1264,6 +1264,37 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
+    <EnumeratedTypeGroup type='QuantLibAddin::SwapIndex::FixingType'>
+      <includeFile>oh/enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Isda</string>
+          <value>QuantLibAddin::SwapIndex::Isda</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>IsdaFixA</string>
+          <value>QuantLibAddin::SwapIndex::IsdaFixA</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>IsdaFixB</string>
+          <value>QuantLibAddin::SwapIndex::IsdaFixB</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>IfrFix</string>
+          <value>QuantLibAddin::SwapIndex::IfrFix</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>IsdaFixAm</string>
+          <value>QuantLibAddin::SwapIndex::IsdaFixAm</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>IsdaFixPm</string>
+          <value>QuantLibAddin::SwapIndex::IsdaFixPm</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
     <EnumeratedTypeGroup type='QuantLibAddin::Token::Traits'>
       <includeFile>qlo/piecewiseyieldcurve.hpp</includeFile>
       <constructor>true</constructor>

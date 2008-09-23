@@ -4,10 +4,11 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
     <include>qlo/swap.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
-    <include>qlo/index.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/termstructures/yieldtermstructure.hpp</include>
@@ -17,7 +18,8 @@
     <include>qlo/yieldtermstructures.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>ql/instruments/swap.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
@@ -70,7 +72,7 @@
             <tensorRank>scalar</tensorRank>
             <description>swap tenor period.</description>
           </Parameter>
-          <Parameter name='SwapIndex' exampleValue='EuriborSwapFixA10Y'>
+          <Parameter name='SwapIndex' exampleValue='EuriborSwapIsdaFixA10Y'>
             <type>QuantLib::SwapIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>SwapIndex object ID.</description>

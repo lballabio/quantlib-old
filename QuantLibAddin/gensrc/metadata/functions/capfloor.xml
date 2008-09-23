@@ -4,14 +4,14 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
     <include>qlo/capfloor.hpp</include>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <addinIncludes>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
     <include>qlo/capfloor.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/pricingengines.hpp</include>

@@ -4,22 +4,22 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
     <include>qlo/swaptionvolstructure.hpp</include>
-    <include>ql/termstructures/volatility/swaption/swaptionvolcube2.hpp</include>
     <include>qlo/quote.hpp</include>
     <include>qlo/optimization.hpp</include>
-    <include>qlo/index.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/conversions/coercetermstructure.hpp</include>
+    <include>ql/termstructures/volatility/swaption/swaptionvolcube2.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
   <addinIncludes>
-    <include>ql/termstructures/volatility/swaption/swaptionvolcube2.hpp</include>
+    <include>qlo/swaptionvolstructure.hpp</include>
     <include>qlo/quote.hpp</include>
     <include>qlo/optimization.hpp</include>
-    <include>qlo/swaptionvolstructure.hpp</include>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/handleimpl.hpp</include>
-    <include>ql/indexes/swapindex.hpp</include>
     <include>qlo/conversions/coercetermstructure.hpp</include>
+    <include>ql/termstructures/volatility/swaption/swaptionvolcube2.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano

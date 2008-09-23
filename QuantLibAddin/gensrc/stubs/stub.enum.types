@@ -25,6 +25,7 @@
 #include <qlo/interpolation2D.hpp>
 #include <qlo/ratehelpers.hpp>
 #include <qlo/piecewiseyieldcurve.hpp>
+#include <qlo/indexes/swapindex.hpp>
 
 namespace QuantLibAddin {
 

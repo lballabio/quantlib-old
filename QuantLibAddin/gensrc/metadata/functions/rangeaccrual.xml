@@ -7,7 +7,7 @@
     <include>ql/cashflows/rangeaccrual.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
@@ -16,7 +16,7 @@
     <include>qlo/rangeaccrual.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>qlo/swaptionvolstructure.hpp</include>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>

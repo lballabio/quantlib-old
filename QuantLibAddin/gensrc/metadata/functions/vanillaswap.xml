@@ -3,7 +3,8 @@
   <displayName>Vanilla Swap</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
@@ -13,7 +14,8 @@
     <include>ql/termstructures/yield/ratehelpers.hpp</include>
   </addinIncludes>
   <serializationIncludes>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>

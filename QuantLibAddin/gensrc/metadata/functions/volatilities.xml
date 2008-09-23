@@ -3,7 +3,7 @@
   <displayName>Volatilities</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/interestrateindex.hpp</include>
     <include>qlo/volatilities.hpp</include>
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
     <include>ql/termstructures/volatility/equityfx/blackconstantvol.hpp</include>
@@ -12,7 +12,7 @@
     <include>ql/experimental/volatility/sabrvolsurface.hpp</include>
   </serializationIncludes>
   <addinIncludes>
-    <include>qlo/index.hpp</include>
+    <include>qlo/indexes/interestrateindex.hpp</include>
     <include>qlo/volatilities.hpp</include>
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
     <include>ql/termstructures/volatility/equityfx/blackconstantvol.hpp</include>

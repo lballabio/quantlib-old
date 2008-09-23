@@ -20,28 +20,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_index_hpp
-#define qla_index_hpp
+#ifndef qla_interestrateindex_hpp
+#define qla_interestrateindex_hpp
 
-#include <oh/libraryobject.hpp>
-
-#include <ql/types.hpp>
-
-namespace QuantLib {
-    class Date;
-    class Index;
-}
+#include <qlo/index.hpp>
 
 namespace QuantLibAddin {
 
-    class Index : public ObjectHandler::LibraryObject<QuantLib::Index> {
-      public:
-        void addFixings(const std::vector<QuantLib::Date>& dates,
-                        const std::vector<QuantLib::Real>& values,
-                        bool forceOverwrite, bool updateValuObject = true);
-      public:
-        OH_LIB_CTOR(Index, QuantLib::Index);
-    };
+    OH_OBJ_CLASS(InterestRateIndex, Index);
 
 }
 
