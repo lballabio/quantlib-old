@@ -23,7 +23,7 @@
 
 /*! \mainpage QuantLibAddin
 
-\section idx_overview Overview
+\section idx_project Project
 
 %QuantLibAddin exports the functionality of the
 <a href="http://quantlib.org">QuantLib</a> C++ analytics library to a variety
@@ -40,29 +40,35 @@ The scope of the %QuantLibAddin project includes
 \li Downloads and tutorials for compiling %QuantLibAddin/QuantLibXL from source
     code
 
+\section idx_components Components
+
 The %QuantLibAddin application comprises
 \li QuantLibObjects, a library which wraps %QuantLib classes in a format which
-allows them to be stored in <a href="http://www.objecthandler.org">ObjectHandler</a>
+    allows them to be stored in <a href="http://www.objecthandler.org">ObjectHandler</a>
 \li An interface configured in XML from which
-<a href="http://www.gensrc.org">gensrc</a>
-generates source code for Addins on supported platforms
+    <a href="http://www.gensrc.org">gensrc</a>
+    generates source code for Addins on supported platforms
 
 <div class="center"><img src="images/screenshot.jpg"></div>
 
+\section idx_features Features
+
 Features of %QuantLibAddin include
-\li Object Orientation - %QuantLib objects may be constructed, interrogated,
-updated, passed as arguments to other functions, and destructed.
-\li Polymorphism - For example, function \c qlNPV() returns the NPV of an \c
-Instrument and may be invoked on an instance of any derived class such as \c
-Swap or \c Bond.
-\li Portability - The same interface is implemented in platform neutral C++
-and is available on all supported environments.
-\li Serialization - A pricing environment may be created in Excel workbooks and
-transmitted to a Linux process for calculation.
-\li Coercion - The value which the user inputs to a function may be one of a
-number of datatypes and any necessary conversion is performed automatically.
-\li Enumerations - Minor or transient types are represented by a registry of
-string/value pairs, for example \c "PUT" indicates \c QuantLib::Option::Put.
+\li <b>Object Orientation</b> - %QuantLib objects may be constructed,
+    interrogated, updated, passed as arguments to other functions, and destructed.
+\li <b>Polymorphism</b> - For example, function \c qlNPV() returns the NPV of
+    an \c Instrument and may be invoked on an instance of any derived class such as
+    \c Swap or \c Bond.
+\li <b>Portability</b> - The same interface is implemented in platform neutral
+    C++ and is available on all supported environments.
+\li <b>Serialization</b> - A pricing environment may be created in Excel
+    workbooks and transmitted to a Linux process for calculation.
+\li <b>Coercion</b> - The value which the user inputs to a function may be one
+    of a number of datatypes and any necessary conversion is performed
+    automatically.
+\li <b>Enumerations</b> - Minor or transient types are represented by a
+    registry of string/value pairs, for example \c "PUT" indicates \c
+    QuantLib::Option::Put.
 
 \section idx_quantlib QuantLib
 
