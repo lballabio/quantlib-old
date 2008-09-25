@@ -66,7 +66,7 @@ namespace ObjectHandler {
             of the arguments to the Object's constructor, and pass this ValueObject
             to the SerializationFactory which recreates the Object.
         */
-        void reCreate();
+        void recreate();
         //! Update the ObjectWrapper following a change in its precedents.
         /*! This function is called by the Observable with which this Observer
             has registered.  Sets Dirty -> true.
@@ -114,14 +114,14 @@ namespace ObjectHandler {
             creationTime_ = updateTime_ = getTime();
     }
 
-    inline void ObjectWrapper::reCreate(){
+    inline void ObjectWrapper::recreate(){
         try {
-            object_ = SerializationFactory::instance().NewObject( 
+            object_ = SerializationFactory::instance().recreateObject( 
                 object_->properties());
             dirty_ = false;
             updateTime_ = getTime();
         } catch (const std::exception &e) {
-            OH_FAIL("Error in function ObjectWrapper::reCreate() : " << e.what());
+            OH_FAIL("Error in function ObjectWrapper::recreate() : " << e.what());
         }
     }
 

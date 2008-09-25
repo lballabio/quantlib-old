@@ -113,7 +113,7 @@ namespace ObjectHandler {
 
     protected:
          // Convert Excel-format Object IDs into the format recognized by the base Repository class
-        virtual std::string formateID(const std::string &objectID);
+        virtual std::string formatID(const std::string &objectID);
 
     private:
         // Associate the given error message to the active cell.

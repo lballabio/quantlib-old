@@ -319,7 +319,7 @@ namespace ObjectHandler {
 
     }
 
-    std::string RepositoryXL::formateID(const std::string &objectID){
+    std::string RepositoryXL::formatID(const std::string &objectID){
 
         return CallingRange::getStub(objectID);
     }

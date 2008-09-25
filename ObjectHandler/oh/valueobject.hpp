@@ -100,7 +100,7 @@ namespace ObjectHandler {
         //! Retrieve the ID of the underlying Object in the Repository.
         const std::string& objectId() const { return objectId_; }
         //! Retrieve the list of precedent Object IDs.
-        const std::set<std::string>& getRelationObs() { return relatedIDs_;}
+        const std::set<std::string>& getPrecedentObjects() { return precedentIDs_;}
         //! Name of this ValueObject's class.
         const std::string &className() const { return className_; }
         //@}
@@ -134,28 +134,28 @@ namespace ObjectHandler {
         */
         //@{
         //! List of precedent Object IDs
-        std::set<std::string> relatedIDs_;
+        std::set<std::string> precedentIDs_;
         //! Store the object ID in the list of precedents.
-        void processRelatedID(const std::string& relatedID);
-        //! Extract the Object ID from the property_t and pass it to processRelatedID()
+        void processPrecedentID(const std::string& precedentID);
+        //! Extract the Object ID from the property_t and pass it to processPrecedentID()
         void processVariant(property_t variantID);
-        //! Extract the Object IDs from the property_t vector and pass them to processRelatedID()
+        //! Extract the Object IDs from the property_t vector and pass them to processPrecedentID()
         void processVariant(const std::vector<property_t>& vecVariantID);
-        //! Extract the Object IDs from the property_t matrix and pass them to processRelatedID()
+        //! Extract the Object IDs from the property_t matrix and pass them to processPrecedentID()
         void processVariant(const std::vector<std::vector<property_t> >& vecVariantIDs);
         //@}
     };
 
-    inline void ValueObject::processRelatedID(const std::string& relatedID) {
-        if (!relatedID.empty())
-            relatedIDs_.insert(relatedID);
+    inline void ValueObject::processPrecedentID(const std::string& precedentID) {
+        if (!precedentID.empty())
+            precedentIDs_.insert(precedentID);
     }
 
     // FIXME This function should take a const ref:
     //inline void ValueObject::processVariant(const property_t& variantID){
     inline void ValueObject::processVariant(property_t variantID){
         if (std::string *objectID = boost::get<std::string>(&variantID))
-            processRelatedID(*objectID);
+            processPrecedentID(*objectID);
     }
 
     inline void ValueObject::processVariant(const std::vector<property_t>& vecVariantID){

@@ -33,7 +33,7 @@ namespace QuantLibAddin {
         const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
         bool overwriteExisting) const {
         
-        ObjectHandler::StrObjectPair object = factory.createObject(valueObject, overwriteExisting);
+        ObjectHandler::StrObjectPair object = factory.restoreObject(valueObject, overwriteExisting);
         boost::shared_ptr<Instrument> instrument =
             boost::dynamic_pointer_cast<Instrument>(object.second);
         if (instrument && valueObject->hasProperty("EngineID")) {
@@ -55,7 +55,7 @@ namespace QuantLibAddin {
         link.first = boost::get<std::string>(valueObject->getProperty("CurrentLink"));
         valueObject->setProperty("CurrentLink", std::string(""));
 
-        ObjectHandler::StrObjectPair object = factory.createObject(valueObject, overwriteExisting);
+        ObjectHandler::StrObjectPair object = factory.restoreObject(valueObject, overwriteExisting);
         
         link.second = object.second;
         handles.push_back(link);
@@ -74,7 +74,7 @@ namespace QuantLibAddin {
         const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
         bool overwriteExisting) const {
         
-        ObjectHandler::StrObjectPair object = factory.createObject(valueObject, overwriteExisting);
+        ObjectHandler::StrObjectPair object = factory.restoreObject(valueObject, overwriteExisting);
         boost::shared_ptr<Leg> inst = boost::dynamic_pointer_cast<Leg>(object.second);
         if (inst && valueObject->hasProperty("UserLegIDs")) {
             std::vector<boost::shared_ptr<QuantLibAddin::FloatingRateCouponPricer> > legs2;
@@ -94,7 +94,7 @@ namespace QuantLibAddin {
         const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
         bool overwriteExisting) const {
         
-        ObjectHandler::StrObjectPair object = factory.createObject(valueObject, overwriteExisting);
+        ObjectHandler::StrObjectPair object = factory.restoreObject(valueObject, overwriteExisting);
         boost::shared_ptr<Index> index = boost::dynamic_pointer_cast<Index>(object.second);
         if(index) {
             try {
@@ -116,7 +116,7 @@ namespace QuantLibAddin {
     std::string ExtrapolatorProcessor::process(const ObjectHandler::SerializationFactory& factory,
         const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
         bool overwriteExisting) const {
-        ObjectHandler::StrObjectPair object = factory.createObject(valueObject, overwriteExisting);
+        ObjectHandler::StrObjectPair object = factory.restoreObject(valueObject, overwriteExisting);
         boost::shared_ptr<Extrapolator> extrapolator =
             boost::dynamic_pointer_cast<Extrapolator>(object.second);
         if (extrapolator && valueObject->hasProperty("UserExtrapolation")) {

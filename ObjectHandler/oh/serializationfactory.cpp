@@ -97,7 +97,7 @@ namespace ObjectHandler {
         creatorMap_()[className] = creator;
     }
 
-    boost::shared_ptr<Object> SerializationFactory::NewObject( 
+    boost::shared_ptr<Object> SerializationFactory::recreateObject( 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const {
 
         CreatorMap::const_iterator i = creatorMap_().find(valueObject->className());
@@ -107,12 +107,12 @@ namespace ObjectHandler {
         return object;
     }
 
-    StrObjectPair SerializationFactory::createObject(
+    StrObjectPair SerializationFactory::restoreObject(
         const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
         bool overwriteExisting) const {
 
         StrObjectPair object;
-        object.second = NewObject(valueObject);
+        object.second = recreateObject(valueObject);
 
         // FIXME just call ValueObject::objectId()?
         object.first = boost::get<std::string>(valueObject->getProperty("OBJECTID"));

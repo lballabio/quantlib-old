@@ -574,12 +574,12 @@ code68 = '''\
             processVariant(%(name)s);'''
 
 code69 = '''\
-            processRelatedID(%(name)s);'''
+            processPrecedentID(%(name)s);'''
 
 code70 = '''\
             for (std::vector<std::string>::const_iterator i = %(name)s.begin();
                     i != %(name)s.end(); ++i)
-                processRelatedID(*i);'''
+                processPrecedentID(*i);'''
 
 ##########################################################################
 # code for Serialization

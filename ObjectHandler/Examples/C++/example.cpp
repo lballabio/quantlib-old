@@ -90,9 +90,9 @@ int main() {
     try {
 
         // Specify log file
-        ObjectHandler::setLogFile("./example.log");
+        ObjectHandler::logSetFile("./example.log");
         // Also direct log messages to stdout
-        ObjectHandler::setConsole(1);
+        ObjectHandler::logSetConsole(1);
         OH_LOG_MESSAGE("begin example program");
 
     } catch (const std::exception &e) {
@@ -176,7 +176,7 @@ int main() {
 
         // relation the  objects list
         OH_LOG_MESSAGE("relation the objects list is ");
-        std::vector<std::string> relationIDs = ObjectHandler::Repository::instance().getRelationObs("account2");
+        std::vector<std::string> relationIDs = ObjectHandler::Repository::instance().precedentIDs("account2");
         std::string show;
         for(unsigned int i = 0; i < relationIDs.size(); ++i)
             show += relationIDs[i];

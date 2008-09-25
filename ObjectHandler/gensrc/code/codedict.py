@@ -219,12 +219,12 @@ code67i = '''\
             %(name)s_ = ObjectHandler::matrix::convert2<%(nativeType)s>(value, nameUpper);\n'''
 
 code69 = '''\
-            processRelatedID(%(name)s);'''
+            processPrecedentID(%(name)s);'''
 
 code70 = '''\
             for (std::vector<std::string>::const_iterator i = %(name)s.begin();
                     i != %(name)s.end(); ++i)
-                processRelatedID(*i);'''
+                processPrecedentID(*i);'''
 
 ##########################################################################
 # code common to mutiple addins

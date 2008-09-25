@@ -150,7 +150,7 @@ namespace ObjectHandler {
             const std::string &regex = "");
 
         //! Indicate whether an Object with the given ID is found in the Repository.
-        virtual std::vector<bool> exists(const std::vector<std::string> &objectList);
+        virtual std::vector<bool> objectExists(const std::vector<std::string> &objectList);
         //@}
 
         //! Define the type of the structure used to store the Objects.
@@ -196,10 +196,10 @@ namespace ObjectHandler {
         /*! The functiong will be used in derived class(e.g in class repositoryXL it will change the objectID
             custorm_#0001 into custrom); 
         */
-        virtual std::string formateID(const std::string &objectID);
+        virtual std::string formatID(const std::string &objectID);
 
         //! Indicate whether an Object with the given ID is found in the Repository.
-        virtual bool isObjectExists(const std::string &objectID) const;
+        virtual bool objectExists(const std::string &objectID) const;
 
     };
 

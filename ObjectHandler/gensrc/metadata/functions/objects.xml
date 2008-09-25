@@ -81,7 +81,7 @@
 
     <Procedure name='ohObjectExists'>
       <description>list the IDs of objects in repository matching regex.</description>
-      <alias>ObjectHandler::RepositoryXL::instance().exists</alias>
+      <alias>ObjectHandler::RepositoryXL::instance().objectExists</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>

@@ -86,14 +86,14 @@ namespace ObjectHandler {
         //! \name Object Creation
         //@{
         //! Recreate an Object from its ValueObject
-        boost::shared_ptr<Object> NewObject( 
+        boost::shared_ptr<Object> recreateObject( 
             boost::shared_ptr<ObjectHandler::ValueObject> valueObject) const ;
         //! Recreate an Object from its ValueObject and store it in the Repository
-        /*! This function calls NewObject to recreate the Object from its
+        /*! This function calls recreateObject to recreate the Object from its
             ValueObject then stores the newly created Object in the Repository
             with a call to Repository::storeObject().
         */
-        StrObjectPair createObject(
+        StrObjectPair restoreObject(
             const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
             bool overwriteExisting) const;
         //@}

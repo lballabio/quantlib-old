@@ -124,7 +124,7 @@
 do { \
     std::ostringstream _oh_msg_stream; \
     _oh_msg_stream << message; \
-    ObjectHandler::logMessage(_oh_msg_stream.str()); \
+    ObjectHandler::logWriteMessage(_oh_msg_stream.str()); \
 } while (false)
 
 //! Log the given error message.
@@ -132,7 +132,7 @@ do { \
 do { \
     std::ostringstream _oh_msg_stream; \
     _oh_msg_stream << message; \
-    ObjectHandler::logMessage(_oh_msg_stream.str(), 1); \
+    ObjectHandler::logWriteMessage(_oh_msg_stream.str(), 1); \
 } while (false)
 
 //! An empty constructor for a class derived from Object.

@@ -93,7 +93,7 @@ namespace ObjectHandler {
             const boost::shared_ptr<ValueObject> &valueObject,
             bool overwriteExisting) const {
 
-                StrObjectPair object = factory.createObject(valueObject, overwriteExisting);
+                StrObjectPair object = factory.restoreObject(valueObject, overwriteExisting);
                 return object.first;
         }
 
