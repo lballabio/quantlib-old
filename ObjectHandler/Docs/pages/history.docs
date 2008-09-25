@@ -27,7 +27,7 @@
 
 FUNCTIONALITY
 
-Renamed Functions:
+Renamed Addin Functions:
 
 The convention for naming addin functions is that an addin function which
 wraps Foo::Bar() should be called ohFooBar().  Selected functions have been
@@ -49,7 +49,7 @@ renamed as noted below to conform to this convention:
 - ohSetLogLevel      -> ohLogSetLevel
 - ohSplit            -> ohStringSplit
 
-New Functions:
+New Addin Functions:
 
 - ohLogFile
 - ohLogLevel
@@ -58,12 +58,36 @@ New Functions:
 - ohObjectIsPermanent
 - ohObjectUpdateCounter
 
-Enhanced Functions:
+Enhanced Addin Functions:
 
 - ohObjectPropertyNames - Modified to suppress ObjectId, ClassName from return
   value and to list values in the sequence in which they appear in the
   constructor of the corresponding class.
 - ohObjectCreationTime, ohObjectUpdateTime - Implemented as loop functions.
+
+Renamed C++ Functions:
+
+Within the C++ code, some functions are renamed as well to conform to project
+standards (http://quantlib.org/style.shtml).  These changes are transparent to
+end users.
+
+<table>
+<tr><td><b>Class</b></td><td><b>Member - Old Name</b></td><td><b>Member - New Name</b></td></tr>
+<tr><td>ObjectWrapper</td><td>reCreate()</td><td>recreate()</td></tr>
+<tr><td>Repository</td><td>formateID()</td><td>formatID()</td></tr>
+<tr><td>Repository</td><td>exists()</td><td>objectExists()</td></tr>
+<tr><td>Repository</td><td>isObjectExists()</td><td>objectExists()</td></tr>
+<tr><td>SerializationFactory</td><td>NewObject()</td><td>recreateObject()</td></tr>
+<tr><td>SerializationFactory</td><td>createObject()</td><td>restoreObject()</td></tr>
+<tr><td>ValueObject</td><td>getRelationObs()</td><td>getPrecedentObjects()</td></tr>
+<tr><td>ValueObject</td><td>processRelatedID()</td><td>processPrecedentID()</td></tr>
+</table>
+
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.10.0b
+- gensrc version 0.9.7
 
 <strong>Release 0.9.6 - September 2008</strong>
 
