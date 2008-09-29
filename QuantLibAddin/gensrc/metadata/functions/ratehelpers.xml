@@ -79,6 +79,22 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlRateHelperRate' type='QuantLib::RateHelper'>
+      <description>returns the rate implied by the quote value wrapped in the given RateHelper object.</description>
+      <libraryFunction>rate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Constructor name='qlDepositRateHelper'>
       <libraryFunction>DepositRateHelper</libraryFunction>
       <SupportedPlatforms>
