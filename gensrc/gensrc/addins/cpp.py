@@ -40,9 +40,6 @@ class CppAddin(addin.Addin):
     #    if (permanentCpp)
     #        objectPointer->setPermanent();'''
     convertPermanentFlag_ = ''
-    BUFFER_ALL = '''\
-#include <%(path)s/addincppdefines.hpp>
-#include <%(path)s/init.hpp>\n'''
 
     #############################################
     # public interface
@@ -60,36 +57,36 @@ class CppAddin(addin.Addin):
 
     def generateFunctions(self):
         """Generate source code for all functions in all categories."""
-        bufferAll = CppAddin.BUFFER_ALL % { 'path' : self.relativePath_ }
+        self.bufferAll_.set({ 'path' : self.relativePath_ })
         loopIncludes = '''\
 #include <%s/loop/loop_%s.hpp>
 #include <''' + self.relativePath_ + '''/loop.hpp>\n'''
         for cat in self.categoryList_.categories(self.name_,
             self.coreCategories_, self.addinCategories_):
             categoryIncludes = cat.includeList(loopIncludes)
-            bufferAll += "#include <Addins/Cpp/%s.hpp>\n" % cat.name()
+            self.bufferAll_.append("#include <Addins/Cpp/%s.hpp>\n" % cat.name())
             bufferCpp = ''
             bufferHpp = ''
             for func in cat.functions(self.name_): 
                 bufferCpp += self.generateFunction(func)
                 bufferHpp += self.generateDeclaration(func)
-            bufferBody = self.bufferBody_.text() % { 
+            self.bufferBody_.set({
                 'bufferCpp' : bufferCpp,
-                'categoryIncludes' : categoryIncludes }
-            bufferHeader = self.bufferHeader_.text() % { 
+                'categoryIncludes' : categoryIncludes })
+            self.bufferHeader_.set({
                 'categoryName' : cat.name(),
-                'bufferHpp' : bufferHpp }
+                'bufferHpp' : bufferHpp })
             fileNameCpp = '%s%s.cpp' % ( self.rootPath_, cat.name())
-            outputfile.OutputFile(self, fileNameCpp, cat.copyright(), bufferBody)
+            outputfile.OutputFile(self, fileNameCpp, cat.copyright(), self.bufferBody_)
             fileNameHpp = '%s%s.hpp' % ( self.rootPath_, cat.name())
-            outputfile.OutputFile(self, fileNameHpp, cat.copyright(), bufferHeader)
-        bufferAll += "\n"
+            outputfile.OutputFile(self, fileNameHpp, cat.copyright(), self.bufferHeader_)
+        self.bufferAll_.append("\n")
         fileNameAll = '%saddincpp.hpp' % self.rootPath_
-        outputfile.OutputFile(self, fileNameAll, self.copyright_, bufferAll)
+        outputfile.OutputFile(self, fileNameAll, self.copyright_, self.bufferAll_)
 
     def generateFunction(self, func):
         """Generate source code for a given function."""
-        return self.bufferFunction_.text() % {
+        return self.bufferFunction_.set({
             'cppConversions' : func.parameterList().generate(self.cppConversions_),
             'enumConversions' : func.parameterList().generate(self.enumConversions_),
             'functionBody' : func.generateBody(self),
@@ -99,14 +96,14 @@ class CppAddin(addin.Addin):
             'libConversions' : func.parameterList().generate(self.libraryConversions_),
             'objectConversions' : func.parameterList().generate(self.objectConversions_),
             'refConversions' : func.parameterList().generate(self.referenceConversions_),
-            'returnConversion' : self.returnConversion_.apply(func.returnValue()) }
+            'returnConversion' : self.returnConversion_.apply(func.returnValue()) })
 
     def generateDeclaration(self, func):
         """Generate source code for a given function."""
-        return self.bufferDeclaration_.text() % {
+        return self.bufferDeclaration_.set({
             'functionReturnType' : self.functionReturnType_.apply(func.returnValue()),
             'functionDeclaration' : func.parameterList().generate(self.functionDeclaration_),
-            'functionName' : func.name() }
+            'functionName' : func.name() })
 
     def loopName(self, param):
         """Return the variable name for a loop parameter."""

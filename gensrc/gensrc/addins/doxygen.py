@@ -100,14 +100,14 @@ class Doxygen(addin.Addin):
             bufTypeDocs += self.generateEnumeratedType(enumeratedTypeGroup, i, 
                 Doxygen.LINE_SECTION_TYPE, Doxygen.LINE_TABLE % 'Type')
             i += 1
-        buf = self.bufferEnumerations_.text() % {
+        self.bufferEnumerations_.set({
             'classLinks' : bufClassLinks,
             'typeLinks' : bufTypeLinks,
             'classDocs' : bufClassDocs,
-            'typeDocs' : bufTypeDocs }
+            'typeDocs' : bufTypeDocs })
         fileName = self.rootPath_ + 'enums.docs'
         outputfile.OutputFile(self, fileName, 
-            self.enumerationList_.enumeratedTypeCopyright(), buf)
+            self.enumerationList_.enumeratedTypeCopyright(), self.bufferEnumerations_)
 
     def generateFunctionDoc(self, func):
         """Generate documentation for given function."""
@@ -115,13 +115,13 @@ class Doxygen(addin.Addin):
         for param in func.parameterList().parameters():
             bufParam += '\\param %s %s\n' % (param.name(), param.description())
 
-        return self.bufferFunction_.text() % {
+        return self.bufferFunction_.set({
             'functionName' : func.name(),
             'retCode' : self.functionReturn_.apply(func.returnValue()),
             'functionDoc' : func.parameterList().generate(self.functionDocs_),
             'functionLongDesc' : func.longDescription(),
             'supportedPlatforms' : func.supportedPlatforms(),
-            'paramDoc' : bufParam }
+            'paramDoc' : bufParam })
 
     def generateCategoryDoc(self):
         """Generate page listing function categories."""
@@ -136,11 +136,11 @@ class Doxygen(addin.Addin):
         bufCat = ''
         for displayKey in displayNames:
             bufCat += '    \\ref func_%s\\n\n' % dispNmToCatNm[displayKey]
-        buf = self.bufferCategories_.text() % {
+        self.bufferCategories_.set({
             'application' : environment.config().namespaceObjects(),
-            'categories' : bufCat }
+            'categories' : bufCat })
         fileName = self.rootPath_ + 'categories.docs'
-        outputfile.OutputFile(self, fileName, self.copyright_, buf)
+        outputfile.OutputFile(self, fileName, self.copyright_, self.bufferCategories_)
 
     def generateFunctionList(self, allFuncs):
         """Generate alphabetical list of links to all functions."""
@@ -148,12 +148,12 @@ class Doxygen(addin.Addin):
         bufList = ''
         for func in allFuncs:
             bufList += '\\ref %s ()\\n\n' % func
-        buf = self.bufferHeader_.text() % {
+        self.bufferHeader_.set({
             'application' : environment.config().namespaceObjects(),
             'count' : len(allFuncs),
-            'list' : bufList }
+            'list' : bufList })
         fileName = self.rootPath_ + 'all_functions.docs'
-        outputfile.OutputFile(self, fileName, self.copyright_, buf)
+        outputfile.OutputFile(self, fileName, self.copyright_, self.bufferHeader_)
 
     def generateDocs(self):
         """Generate doxygen documentation files."""
@@ -167,13 +167,13 @@ class Doxygen(addin.Addin):
                 bufLink += '\\ref %s ()\\n\n' % func.name()
                 bufDoc += self.generateFunctionDoc(func)
                 allFuncs.append(func.name())
-            buf = self.bufferFile_.text() % {
+            self.bufferFile_.set({
                 'categoryDescription' : cat.description(),
                 'categoryDisplayName' : cat.displayName(),
                 'categoryName' : cat.name(),
                 'documentation' : bufDoc,
-                'links' : bufLink }
+                'links' : bufLink })
             fileName = self.rootPath_ + cat.name() + '.docs'
-            outputfile.OutputFile(self, fileName, cat.copyright(), buf)
+            outputfile.OutputFile(self, fileName, cat.copyright(), self.bufferFile_)
         self.generateFunctionList(allFuncs)
 

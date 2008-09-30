@@ -25,7 +25,8 @@ import getopt
 from gensrc.addins import addinlist
 from gensrc.exceptions import excepthook
 from gensrc.configuration import initialization
-from gensrc.configuration import environment
+#from gensrc.configuration import environment
+import os
 
 USAGE_ERROR = """
 usage: %(scriptName)s -[flags] --oh_dir
@@ -100,7 +101,7 @@ for o, v in opts:
     elif o == '-a':
         buildAll = True
         #addinIds = [ 'x', 'o', 'p', 'c', 'g', 'v', 'e', 'l', 's', 'd' ]
-        addinIds = [ 'x', 'o', 'p', 'v', 'e', 'l', 's', 'd' ]
+        addinIds = [ 'x', 'p', 'v', 'e', 'l', 's', 'd' ]
     elif o == '--oh_dir':
         ohDir = v
     elif o in ('-h', '--help'):

@@ -325,6 +325,9 @@
 				RelativePath="gensrc\stubs\stub.calc.map">
 			</File>
 			<File
+				RelativePath="gensrc\stubs\stub.cpp.all">
+			</File>
+			<File
 				RelativePath="gensrc\stubs\stub.cpp.declaration">
 			</File>
 			<File
@@ -386,6 +389,9 @@
 			</File>
 			<File
 				RelativePath="gensrc\stubs\stub.guile.initfunc">
+			</File>
+			<File
+				RelativePath="gensrc\stubs\stub.loop.file">
 			</File>
 			<File
 				RelativePath="gensrc\stubs\stub.serialization.all">

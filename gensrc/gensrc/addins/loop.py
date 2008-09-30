@@ -31,13 +31,6 @@ class Loop(addin.Addin):
     # class variables
     #############################################
 
-    BUF_FILE = '''\
-#include <boost/bind.hpp>
-
-namespace %(namespace)s {
-%(buffer)s
-}\n'''
-
     FUNC_BIND = '''\
     typedef     boost::_bi::bind_t<
                 %(returnType)s,
@@ -103,9 +96,10 @@ namespace %(namespace)s {
         for func in cat.functions('*'): 
             if func.loopParameter():
                 buf += self.generateLoop(func)
-        bufFile = Loop.BUF_FILE % {
+        self.bufferFile_.set({
             'buffer' : buf,
-            'namespace' : environment.config().namespaceObjects() }
+            'namespace' : environment.config().namespaceObjects() })
         fileName = self.rootPath_ + 'loop_' + cat.name() + '.hpp'
-        outputfile.OutputFile(self, fileName, self.copyright_, bufFile)
+        outputfile.OutputFile(self, fileName, self.copyright_, self.bufferFile_)
+
 

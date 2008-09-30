@@ -45,14 +45,15 @@ class BehaviorLoop(object):
             functionSignature = '(' + environment.config().namespaceObjects() + '::' + self.functionSignature_ + ')'
         else:
             functionSignature = ''
-        return addin.bufferLoop().text() % {
+        addin.bufferLoop().set({
             'inputList' : self.func_.parameterList().generate(addin.loopInputs()),
             'inputParam' : addin.loopName(self.loopParamRef_),
             'functionCodeName' : self.functionCodeName_,
             'functionName' : self.functionName_,
             'functionSignature' : functionSignature,
             'inputType' : addin.loopReturnType().apply(self.loopParamRef_),
-            'returnType' : addin.loopReturnType().apply(self.func_.returnValue()) }
+            'returnType' : addin.loopReturnType().apply(self.func_.returnValue()) })
+        return addin.bufferLoop().text()
 
     #############################################
     # private member functions

@@ -1,0 +1,3 @@
+#include <%(path)s/addincppdefines.hpp>
+#include <%(path)s/init.hpp>
+

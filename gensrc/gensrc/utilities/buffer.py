@@ -43,9 +43,22 @@ class Buffer(serializable.Serializable):
     # public interface
     #############################################
 
+    def set(self, dict):
+        """Set and return the text of this buffer."""
+        self.buffer_ = self.text_ % dict
+        return self.buffer_
+
+    def append(self, text):
+        """Append text to this buffer."""
+        self.buffer_ += text
+
     def text(self):
         """Return the text of this buffer."""
-        return self.text_
+        return self.buffer_
+
+    def stubFileName(self):
+        """Return the name of the stub file for this buffer."""
+        return self.relativeFileName_
 
     #############################################
     # serializer interface
@@ -60,11 +73,14 @@ class Buffer(serializable.Serializable):
     def postSerialize(self):
         """Load the named buffer."""
         if self.local_:
-            fileBuffer = open(environment.Environment.instance().addinConfigPath() +
-                'stubs/' + self.fileName_)
+            self.fullFileName_ = environment.Environment.instance().addinConfigPath() + \
+                'stubs/' + self.fileName_
         else:
-            fileBuffer = open(environment.Environment.instance().gensrcRootPath() +
-                'stubs/' + self.fileName_)
+            self.fullFileName_ = environment.Environment.instance().gensrcRootPath() + \
+                'stubs/' + self.fileName_
+        self.relativeFileName_ = self.fullFileName_[
+            len(environment.Environment.instance().appRootPath()):len(self.fullFileName_)]
+        fileBuffer = open(self.fullFileName_)
         self.text_ = fileBuffer.read()
         fileBuffer.close()
 

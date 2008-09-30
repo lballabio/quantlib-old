@@ -82,12 +82,12 @@ class Serialization(addin.Addin):
                 bufferCreators += Serialization.REGISTER_CREATOR % {
                     'functionName' : func.name() }
 
-        factoryBuffer = self.bufferFactory_.text() % {
+        self.bufferFactory_.set({
             'bufferCreators' : bufferCreators,
             'libRootDirectory' : environment.config().libRootDirectory(),
-            'namespaceObjects' : environment.config().namespaceObjects() }
+            'namespaceObjects' : environment.config().namespaceObjects() })
         factoryFile = self.rootPath_ + 'register_creators.cpp'
-        outputfile.OutputFile(self, factoryFile, self.copyright_, factoryBuffer)
+        outputfile.OutputFile(self, factoryFile, self.copyright_, self.bufferFactory_)
 
     def generateCreators(self):
         """Generate source code for all functions in all categories."""
@@ -108,7 +108,7 @@ class Serialization(addin.Addin):
                 if not func.generateVOs(): continue
                 bufferDeclarations += Serialization.DECLARE_CREATOR % {
                     'functionName' : func.name() }
-                bufferCreators += self.bufferCreator_.text() % {
+                bufferCreators += self.bufferCreator_.set({
                     'cppConversions' : func.parameterList().generate(
                         self.cppConversions_),
                     'enumConversions' : func.parameterList().generate(
@@ -123,28 +123,28 @@ class Serialization(addin.Addin):
                         self.objectConversions_),
                     'namespaceObjects' : environment.config().namespaceObjects(),
                     'referenceConversions' : func.parameterList().generate(
-                        self.referenceConversions_) }
+                        self.referenceConversions_) })
 
-            createHeaderBuffer = self.bufferHeader_.text() % {
+            self.bufferHeader_.set({
                 'categoryName' : cat.name(),
                 'bufferDeclarations' : bufferDeclarations,
                 'libRootDirectory' : environment.config().libRootDirectory(),
-                'namespaceObjects' : environment.config().namespaceObjects() }
+                'namespaceObjects' : environment.config().namespaceObjects() })
             createHeaderFile = self.rootPath_ + 'create/create_' + cat.name() + '.hpp'
-            outputfile.OutputFile(self, createHeaderFile, self.copyright_, createHeaderBuffer)
+            outputfile.OutputFile(self, createHeaderFile, self.copyright_, self.bufferHeader_)
 
-            createBodyBuffer = self.bufferIncludes_.text() % {
+            self.bufferIncludes_.set({
                 'bufferCreators' : bufferCreators,
                 'serializationIncludes' : cat.serializationIncludes(),
-                'categoryName' : cat.name() }
+                'categoryName' : cat.name() })
             createBodyFile = self.rootPath_ + 'create/create_' + cat.name() + '.cpp'
-            outputfile.OutputFile(self, createBodyFile, self.copyright_, createBodyBuffer)
+            outputfile.OutputFile(self, createBodyFile, self.copyright_, self.bufferIncludes_)
 
-        createAllBuffer = self.bufferAll_.text() % {
+        self.bufferAll_.set({
             'bufferAll' : bufferAll,
-            'libRootDirectory' : environment.config().libRootDirectory() }
+            'libRootDirectory' : environment.config().libRootDirectory() })
         createAllFile = self.rootPath_ + 'create/create_all.hpp'
-        outputfile.OutputFile(self, createAllFile, self.copyright_, createAllBuffer)
+        outputfile.OutputFile(self, createAllFile, self.copyright_, self.bufferAll_)
 
     def generateRegister(self):
         """Generate source code for serialization factory."""
@@ -177,13 +177,13 @@ class Serialization(addin.Addin):
                 'categoryDisplayName' : cat.displayName(),
                 'categoryName' : cat.name() }
 
-            bufferHpp = self.bufferSerializeDeclaration_.text() % {
+            self.bufferSerializeDeclaration_.set({
                 'addinDirectory' : environment.config().libRootDirectory(),
                 'categoryName' : cat.name(),
-                'namespaceAddin' : environment.config().namespaceObjects() }
+                'namespaceAddin' : environment.config().namespaceObjects() })
             headerFile = '%sregister/serialization_%s.hpp' % (
                     self.rootPath_, cat.name() )
-            outputfile.OutputFile(self, headerFile, self.copyright_, bufferHpp)
+            outputfile.OutputFile(self, headerFile, self.copyright_, self.bufferSerializeDeclaration_)
 
             for func in cat.functions('*'):
                 if not func.generateVOs(): continue
@@ -196,28 +196,28 @@ class Serialization(addin.Addin):
                 idMap[func.name()] = classID
                 classID += 1
 
-            bufferBody = self.bufferSerializeBody_.text() % {
+            self.bufferSerializeBody_.set({
                 'addinDirectory' : environment.config().libRootDirectory(),
                 'bufferCpp' : bufferCpp,
                 'categoryName' : cat.name(),
                 'libRootDirectory' : environment.config().libRootDirectory(),
-                'namespaceAddin' : environment.config().namespaceObjects() }
+                'namespaceAddin' : environment.config().namespaceObjects() })
             cppFile = '%sregister/serialization_%s.cpp' % ( self.rootPath_, cat.name() )
-            outputfile.OutputFile(self, cppFile, self.copyright_, bufferBody)
+            outputfile.OutputFile(self, cppFile, self.copyright_, self.bufferSerializeBody_)
 
-        allBuffer = self.bufferSerializeAll_.text() % {
+        self.bufferSerializeAll_.set({
             'includeGuard' : environment.config().libRootDirectory(),
             'allIncludes' : allIncludes,
-            'addinDirectory' : environment.config().libRootDirectory() }
+            'addinDirectory' : environment.config().libRootDirectory() })
         allFilename = self.rootPath_ + 'register/serialization_all.hpp'
-        outputfile.OutputFile(self, allFilename, self.copyright_, allBuffer)
+        outputfile.OutputFile(self, allFilename, self.copyright_, self.bufferSerializeAll_)
 
-        bufferFactory = self.bufferSerializeRegister_.text() % {
+        self.bufferSerializeRegister_.set({
             'addinDirectory' : environment.config().libRootDirectory(),
             'bufferRegister' : bufferRegister,
-            'namespaceAddin' : environment.config().namespaceObjects() }
+            'namespaceAddin' : environment.config().namespaceObjects() })
         factoryFile = self.rootPath_ + 'register/serialization_register.hpp'
-        outputfile.OutputFile(self, factoryFile, self.copyright_, bufferFactory)
+        outputfile.OutputFile(self, factoryFile, self.copyright_, self.bufferSerializeRegister_)
 
     #############################################
     # serializer interface

@@ -76,12 +76,12 @@ class Enumerations(addin.Addin):
             codeRegister += self.generateEnumeratedType(enumeratedTypeGroup)
             codeUnregister += Enumerations.ENUM_UNREGISTER % {
                 'type' : enumeratedTypeGroup.type() }
-        buffer = self.bufferEnumTypes_.text() % {
+        self.bufferEnumTypes_.set({
                 'codeRegister' : codeRegister,
-                'codeUnregister' : codeUnregister }
+                'codeUnregister' : codeUnregister })
         fileName = self.rootPath_ + 'register_types.cpp'
         outputfile.OutputFile(self, fileName,
-            self.enumerationList_.enumeratedTypeCopyright(), buffer)
+            self.enumerationList_.enumeratedTypeCopyright(), self.bufferEnumTypes_)
 
     def generateEnumeratedType(self, enumeratedTypeGroup):
         """Generate source code for enumerated type group."""
@@ -102,11 +102,11 @@ class Enumerations(addin.Addin):
         buffer = ''   # code to register the enumeration
         for enumeratedClassGroup in self.enumerationList_.enumeratedClassGroups():
             buffer += self.generateEnumeratedClass(enumeratedClassGroup)
-        buf = self.bufferEnumClasses_.text() % {
-                'buffer' : buffer }
+        self.bufferEnumClasses_.set({
+                'buffer' : buffer })
         fileName = self.rootPath_ + 'register_classes.cpp'
         outputfile.OutputFile(self, fileName,
-            self.enumerationList_.enumeratedClassCopyright(), buf)
+            self.enumerationList_.enumeratedClassCopyright(), self.bufferEnumClasses_)
 
     def generateEnumeratedClass(self, enumeratedClassGroup):
         """Generate source code for enumerated type group."""
@@ -131,11 +131,11 @@ class Enumerations(addin.Addin):
         buffer = ''   # code to register the enumeration
         for enumeratedPairGroup in self.enumerationList_.enumeratedPairGroups():
             buffer += self.generateEnumeratedPair(enumeratedPairGroup)
-        buf = self.bufferEnumPairs_.text() % {
-                'buffer' : buffer }
+        self.bufferEnumPairs_.set({
+                'buffer' : buffer })
         fileName = self.rootPath_ + 'register_pairs.cpp'
         outputfile.OutputFile(self, fileName,
-            self.enumerationList_.enumeratedPairCopyright(), buf)
+            self.enumerationList_.enumeratedPairCopyright(), self.bufferEnumPairs_)
 
     def generateEnumeratedPair(self, enumeratedPairGroup):
         """Generate source code for enumerated type group."""

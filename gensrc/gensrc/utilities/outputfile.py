@@ -37,6 +37,10 @@ class OutputFile(object):
 // This file was generated automatically by %s.  If you edit this file
 // manually then your changes will be lost the next time gensrc runs.\n\n"""
     UPDATE_MSG = '%-100s %10s'
+    STUBFILE_NAME = """\
+// This source code file was generated from the following stub:
+//      %s\n\n"""
+
 
     #############################################
     # public interface
@@ -87,6 +91,7 @@ class OutputFile(object):
             self.printCopyright(copyright)
         if printHeader:
             self.printHeader()
-        self.outFile_.write(buffer)
+        self.outFile_.write(OutputFile.STUBFILE_NAME % buffer.stubFileName())
+        self.outFile_.write(buffer.text())
         self.close()
 

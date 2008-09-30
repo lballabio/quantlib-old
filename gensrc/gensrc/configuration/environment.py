@@ -40,7 +40,8 @@ class Environment(singleton.Singleton):
 
     def gensrcRootPath(self):
         """Return the root path of the application."""
-        return gensrc.__path__[0] + '/'
+        self.gensrcRootPath_ = gensrc.__path__[0].replace('\\', '/') + '/'
+        return self.gensrcRootPath_
 
     def addinRootPath(self):
         """Return the root path of the target source code tree."""
@@ -53,6 +54,10 @@ class Environment(singleton.Singleton):
     def coreConfigPath(self):
         """Return the gensrc subdirectory of the ObjectHandler application."""
         return self.coreConfigPath_
+
+    def appRootPath(self):
+        """Return the root path of the application."""
+        return self.appRootPath_
 
     def typeList(self):
         """Return the global typelist object."""
@@ -77,4 +82,8 @@ class Environment(singleton.Singleton):
         self.coreConfigPath_ = ohDir + '/gensrc/'
         if not os.path.exists(self.coreConfigPath_):
             raise exceptions.InvalidCorePathException(self.coreConfigPath_)
+        self.gensrcRootPath_ = gensrc.__path__[0].replace('\\', '/') + '/'
+        self.appRootPath_ = os.path.commonprefix([
+            self.gensrcRootPath_,
+            self.addinConfigPath_])
 

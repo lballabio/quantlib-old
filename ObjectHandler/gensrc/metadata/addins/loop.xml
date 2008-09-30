@@ -9,7 +9,9 @@
     Copyright (C) 2006 Eric Ehlers
   </copyright>
 
-  <Buffers/>
+  <Buffers>
+    <Buffer name='bufferFile' fileName='stub.loop.file'/>
+  </Buffers>
 
 </Addin>
 
