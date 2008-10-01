@@ -1,6 +1,6 @@
 
 AM_CPPFLAGS = -I${top_srcdir}
-includedir = $(prefix)/include/qlo/factories
+includedir = $(prefix)/include/qlo/enumerations/factories
 
 noinst_LTLIBRARIES = libFactories.la
 
