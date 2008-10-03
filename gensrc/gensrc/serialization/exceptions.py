@@ -110,7 +110,7 @@ Error deserializing element with name "%(keyName)s" - duplicate key'''
 
     def __init__(self, xmlDocumentName, keyName):
         """Initialize the SerializationDuplicateKeyException object."""
-        self.value_ = DuplicateKeyException.DUPLICATE_KEY_ERROR % {
+        self.value_ = SerializationDuplicateKeyException.DUPLICATE_KEY_ERROR % {
             'xmlDocumentName' : xmlDocumentName,
             'keyName' : keyName }
 
