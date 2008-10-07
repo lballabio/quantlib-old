@@ -266,12 +266,6 @@
 		<File
 			RelativePath="swap_out.cpp">
 		</File>
-		<File
-			RelativePath="VanillaSwap.xml">
-		</File>
-		<File
-			RelativePath="YieldCurves.xml">
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
