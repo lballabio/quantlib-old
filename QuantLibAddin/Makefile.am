@@ -5,6 +5,9 @@ SUBDIRS = \
     qlo/enumerations/constructors \
     qlo/enumerations/factories \
     qlo/enumerations/register \
+    qlo/indexes \
+    qlo/indexes/ibor \
+    qlo/indexes/swap \
     qlo/loop \
     qlo/serialization/create \
     qlo/serialization/register \

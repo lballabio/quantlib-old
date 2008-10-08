@@ -27,7 +27,7 @@
 do { \
     std::ostringstream _oh_msg_stream; \
     _oh_msg_stream << message; \
-    ohLogMessage(_oh_msg_stream.str(), 4L, ObjectHandler::property_t()); \
+    ohLogWriteMessage(_oh_msg_stream.str(), 4L, ObjectHandler::property_t()); \
 } while (false)
 
 /*! \def LOG_ERROR(message)
@@ -38,7 +38,7 @@ do { \
 do { \
     std::ostringstream _oh_msg_stream; \
     _oh_msg_stream << message; \
-    ohLogMessage(_oh_msg_stream.str(), 1L, ObjectHandler::property_t()); \
+    ohLogWriteMessage(_oh_msg_stream.str(), 1L, ObjectHandler::property_t()); \
 } while (false)
 
 #endif

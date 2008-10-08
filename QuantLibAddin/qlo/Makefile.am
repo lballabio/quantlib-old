@@ -160,6 +160,7 @@ libQuantLibAddin_la_LIBADD = \
     enumerations/constructors/libConstructors.la \
     enumerations/factories/libFactories.la \
     enumerations/register/libRegister.la \
+    indexes/libIndexes.la \
     serialization/libSerialization.la \
     valueobjects/libValueObjects.la
 

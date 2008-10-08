@@ -40,7 +40,7 @@ EXTRA_DIST = .time-stamp \
 all-local: .time-stamp
 
 .time-stamp: $(GENSRC_INPUTS)
-	python $(GENSRC_DIR)/gensrc.py -xdv --oh_dir=$(OH_DIR)
+	python $(GENSRC_DIR)/gensrc.py -xdvl --oh_dir=$(OH_DIR)
 	touch .time-stamp
 
 dist-hook:

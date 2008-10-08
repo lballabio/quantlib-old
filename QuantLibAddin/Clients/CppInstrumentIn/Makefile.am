@@ -38,5 +38,3 @@ dist-hook:
 	cp -p $(srcdir)/MarketData/*.xml $(distdir)/MarketData
 	cp -p $(srcdir)/Models/*.xml $(distdir)/Models
 
-#	cp -p $(srcdir)/MarketData/*.xml $(distdir)/MarketData
-#	cp -p $(srcdir)/Models/*.xml $(distdir)/Models

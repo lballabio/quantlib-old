@@ -24,6 +24,7 @@
     #include <qlo/config.hpp>
 #endif
 
+#include <ql/termstructures/yieldtermstructure.hpp>
 #include <qlo/indexes/swap/liborswap.hpp>
 
 #include <ql/indexes/swap/chfliborswap.hpp>

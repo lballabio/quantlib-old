@@ -27,24 +27,14 @@ using namespace QuantLibAddinCpp;
 
 #define OH_NULL ObjectHandler::property_t()
 
-#ifdef LOG_MESSAGE
-#undef LOG_MESSAGE
-#endif
-#ifdef LOG_ERROR
-#undef LOG_ERROR
-#endif
-
-#define LOG_MESSAGE(msg) std::cerr << msg << std::endl
-#define LOG_ERROR(msg) std::cerr << msg << std::endl
-
 int main() {
 
     try {
 
         initializeAddin();
 
-        ohSetLogFile("qlademo.log", 4L, OH_NULL);
-        ohSetConsole(1, 4L, OH_NULL);
+        ohLogSetFile("qlademo.log", 4L, OH_NULL);
+        ohLogSetConsole(1, 4L, OH_NULL);
         LOG_MESSAGE("Begin example program.");
         LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion(OH_NULL));
         LOG_MESSAGE("ObjectHandler version = " << ohVersion(OH_NULL));
@@ -126,7 +116,7 @@ int main() {
 
         LOG_MESSAGE("option PV = " << qlInstrumentNPV(idVanillaOption, OH_NULL));
 
-        ohObjectLog(idVanillaOption, OH_NULL);
+        ohRepositoryLogObject(idVanillaOption, OH_NULL);
 
         std::vector<std::string> idList;
         idList.push_back(idBlackConstantVol);

@@ -56,8 +56,8 @@ int main() {
 
         initializeAddin();
 
-        ohSetLogFile("qlademo.log", 4L, OH_NULL);
-        ohSetConsole(1, 4L, OH_NULL);
+        ohLogSetFile("qlademo.log", 4L, OH_NULL);
+        ohLogSetConsole(1, 4L, OH_NULL);
         LOG_MESSAGE("Begin example program.");
         LOG_MESSAGE("QuantLibAddin version = " << qlAddinVersion(OH_NULL));
         LOG_MESSAGE("ObjectHandler version = " << ohVersion(OH_NULL));
@@ -395,7 +395,7 @@ int main() {
         LOG_MESSAGE("XML = " << std::endl << xml);
 
         std::vector<std::string> idList2 = ohObjectLoadString(xml, true, OH_NULL);
-        ohLogObject(idList2[0], OH_NULL);
+        ohRepositoryLogObject(idList2[0], OH_NULL);
 
         LOG_MESSAGE("End example program.");
 
