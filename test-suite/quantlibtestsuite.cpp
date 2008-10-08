@@ -72,7 +72,9 @@
 #include "europeanoption.hpp"
 #include "everestoption.hpp"
 #include "exchangerate.hpp"
+#include "extendedtrees.hpp"
 #include "factorial.hpp"
+#include "fdmlinearop.hpp"
 #include "forwardoption.hpp"
 #include "gaussianquadratures.hpp"
 #include "gjrgarchmodel.hpp"
@@ -218,7 +220,9 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(EuropeanOptionTest::suite());
     test->add(EverestOptionTest::suite());
     test->add(ExchangeRateTest::suite());
+    test->add(ExtendedTreesTest::suite());
     test->add(FactorialTest::suite());
+    test->add(FdmLinearOpTest::suite());
     test->add(ForwardOptionTest::suite());
     test->add(GaussianQuadraturesTest::suite());
     test->add(GJRGARCHModelTest::suite());
@@ -239,9 +243,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(MarketModelSmmCapletAlphaCalibrationTest::suite());
     test->add(MarketModelSmmCapletCalibrationTest::suite());
     test->add(MarketModelSmmCapletHomoCalibrationTest::suite());
-   
     test->add(MarketModelTest::suite());
-
     test->add(MatricesTest::suite());
     test->add(MCLongstaffSchwartzEngineTest::suite());
     test->add(MersenneTwisterTest::suite());
