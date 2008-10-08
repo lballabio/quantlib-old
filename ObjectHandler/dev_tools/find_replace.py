@@ -90,6 +90,7 @@ SUBSTITUTIONS = (
     (re.compile(r'0_9_6'), '0_9_7'),
     (re.compile(r'0\.9\.6'), '0.9.7'),
     (re.compile(r'0x000906'), '0x000907'),
+    (re.compile(r'R000906f0'), 'R000907f0'),
     (re.compile(r'Major=0\nMinor=9\nRelease=6'), 'Major=0\nMinor=9\nRelease=7'),
     (re.compile(r'0\.10\.0a'), '0.10.0b'),
     (re.compile(r'0x001000f0'), '0x001000f1'),
