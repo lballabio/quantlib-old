@@ -26,6 +26,7 @@
 #endif
 
 #include <qlo/ratehelpers.hpp>
+
 #include <ql/indexes/iborindex.hpp>
 #include <ql/indexes/swapindex.hpp>
 #include <ql/termstructures/yield/ratehelpers.hpp>
@@ -209,7 +210,7 @@ namespace QuantLibAddin {
     }
 
     // helper class
-    namespace detail {
+    namespace {
 
         struct RateHelperItem {
             bool isImmFutures;
@@ -219,17 +220,23 @@ namespace QuantLibAddin {
             long priority;
             QuantLib::Date earliestDate;
             QuantLib::Date latestDate;
-            RateHelperItem(bool isImmFutures,
-                           bool isSerialFutures,
-                           bool isDepo,
-                           const std::string& objectID,
-                           const long& priority,
-                           const QuantLib::Date& earliestDate,
-                           const QuantLib::Date& latestDate)
-            : isImmFutures(isImmFutures), isSerialFutures(isSerialFutures),
-              isDepo(isDepo), objectID(objectID),
-              priority(priority),
-              earliestDate(earliestDate), latestDate(latestDate) {}
+            QuantLib::Natural minDist;
+            RateHelperItem(bool isImmFutures_inp,
+                           bool isSerialFutures_inp,
+                           bool isDepo_inp,
+                           const std::string& objectID_inp,
+                           const long& priority_inp,
+                           const QuantLib::Date& earliestDate_inp,
+                           const QuantLib::Date& latestDate_inp,
+                           QuantLib::Natural minDist_inp)
+            : isImmFutures(isImmFutures_inp), isSerialFutures(isSerialFutures_inp),
+              isDepo(isDepo_inp), objectID(objectID_inp),
+              priority(priority_inp),
+              earliestDate(earliestDate_inp), latestDate(latestDate_inp),
+              minDist(minDist_inp)
+            {
+                QL_REQUIRE(minDist>0, "zero minimum distance not allowed");
+            }
         };
 
         class RateHelperPrioritySorter {
@@ -251,25 +258,29 @@ namespace QuantLibAddin {
         };
     }
 
-    std::vector<std::string> rateHelperSelection(
+    std::vector<std::string> qlRateHelperSelection(
         const std::vector<boost::shared_ptr<QuantLibAddin::RateHelper> >& qlarhs,
         const std::vector<QuantLib::Natural>& priority,
         QuantLib::Natural nImmFutures,
         QuantLib::Natural nSerialFutures,
         QuantLib::Natural frontFuturesRollingDays,
         RateHelper::DepoInclusionCriteria depoInclusionCriteria,
-        QuantLib::Natural minDistanceInDays)
+        const std::vector<QuantLib::Natural>& minDist)
     {
         // Checks
         QL_REQUIRE(!qlarhs.empty(), "no instrument given");
         QuantLib::Size nInstruments = qlarhs.size();
         QL_REQUIRE(priority.size()==nInstruments,
-                   "priority / instruments mismatch");
+                   "priority (" << priority.size() <<
+                   ") / instruments (" << nInstruments << ") size mismatch");
+        QL_REQUIRE(minDist.size()==nInstruments || minDist.size()==1,
+                   "minDist (" << minDist.size() <<
+                   ") / instruments (" << nInstruments << ") mismatch");
 
         // RateHelperItem
         boost::shared_ptr<QuantLibAddin::RateHelper> qlarh;
         boost::shared_ptr<QuantLib::RateHelper> qlrh;
-        std::vector<detail::RateHelperItem> rhsAll;
+        std::vector<RateHelperItem> rhsAll;
         rhsAll.reserve(nInstruments);
         for (QuantLib::Size i=0; i<nInstruments; ++i) {
             qlarh = qlarhs[i];
@@ -282,25 +293,26 @@ namespace QuantLibAddin {
                 isSerialFutures = !isImmFutures;
             }
             bool isDepo = boost::dynamic_pointer_cast<DepositRateHelper>(qlarh);
-            rhsAll.push_back(detail::RateHelperItem(isImmFutures, isSerialFutures,
-                                                    isDepo,
-                                                    qlarh_id,
-                                                    priority[i],
-                                                    qlrh->earliestDate(),
-                                                    qlrh->latestDate()));
+            rhsAll.push_back(RateHelperItem(isImmFutures,
+                                            isSerialFutures,
+                                            isDepo,
+                                            qlarh_id,
+                                            priority[i],
+                                            qlrh->earliestDate(),
+                                            qlrh->latestDate(),
+                                            minDist.size()==1 ? minDist[0] : minDist[i]));
         }
 
         // Preliminary sort of RateHelperItems according to
         // their latest date and priority
-        std::sort(rhsAll.begin(), rhsAll.end(),
-                  detail::RateHelperPrioritySorter());
+        std::sort(rhsAll.begin(), rhsAll.end(), RateHelperPrioritySorter());
 
         // Select input rate helpers according to:
         // expiration, maximum number of allowed Imm and Serial Futures, Depo/Futures priorities
         QuantLib::Natural immFuturesCounter = 0;
         QuantLib::Natural serialFuturesCounter = 0;
         QuantLib::Date evalDate = QuantLib::Settings::instance().evaluationDate();
-        std::vector<detail::RateHelperItem> rhs, rhsDepo;
+        std::vector<RateHelperItem> rhs, rhsDepo;
 
         // FIXME: the number 2 must not be hard coded, but asked to the index
         long actualFrontFuturesRollingDays = 2+frontFuturesRollingDays;
@@ -379,40 +391,27 @@ namespace QuantLibAddin {
             }
         }
 
+        std::vector<RateHelperItem>::iterator k;
+
+        if (rhs.size()>1) {
+            // Sort rate helpers according to their latest date and priority
+            std::sort(rhs.begin(), rhs.end(), RateHelperPrioritySorter());
+
+            // remove RateHelpers with near latestDate
+            k = rhs.begin();
+            while (k != rhs.end()-1) {
+                QuantLib::Natural distance = static_cast<QuantLib::Natural>((k+1)->latestDate - k->latestDate);
+                QuantLib::Natural minDistance = std::max(k->minDist, (k+1)->minDist);
+                if ( distance < minDistance) {
+                    if (k->priority <= (k+1)->priority)
+                        k = rhs.erase(k);
+                    else
+                        rhs.erase(k+1);
+                } else ++k;
+            }
+        }
+
         std::vector<std::string> result;
-
-        // Zero or one rate helper left
-        if (rhs.size()<2) {
-            std::vector<detail::RateHelperItem>::const_iterator i;
-            for (i = rhs.begin(); i != rhs.end(); ++i)
-                result.push_back(i->objectID);
-            return result;
-        }
-
-        // Sort rate helpers according to their latest date and priority
-        std::sort(rhs.begin(), rhs.end(), detail::RateHelperPrioritySorter());
-
-        // remove RateHelpers with duplicate latestDate
-        std::vector<detail::RateHelperItem>::iterator k=rhs.begin();
-        while (k != rhs.end()-1) {
-            if (k->latestDate == (k+1)->latestDate)
-                k = rhs.erase(k);
-            else ++k;
-        }
-
-        // remove RateHelpers with near latestDate
-        k=rhs.begin();
-        while (k != rhs.end()-1) {
-            if (k->latestDate + minDistanceInDays > (k+1)->latestDate) {
-                if (k->priority < (k+1)->priority)
-                    k = rhs.erase(k);
-                else {
-                    k = rhs.erase(k+1);
-                    --k;
-                }
-            } else ++k;
-        }
-
         for (k = rhs.begin(); k != rhs.end(); ++k)
             result.push_back(k->objectID);
         return result;

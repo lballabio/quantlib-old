@@ -570,7 +570,6 @@
 
     <Procedure name='qlRateHelperSelection'>
       <description>selects rate helpers for bootstrapping.</description>
-      <alias>QuantLibAddin::rateHelperSelection</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
       </SupportedPlatforms>
@@ -596,20 +595,20 @@
             <tensorRank>scalar</tensorRank>
             <description>max number of Serial (January, February, April, May, July, August, October, November) Futures to be included.</description>
           </Parameter>
-          <Parameter name='FrontFuturesRollingDays' default='2'>
+          <Parameter name='FutureRollDays' default='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>discard the front Futures the given number of (positive) days before its expiry (e.g zero implies the use of the front Futures during its expiry day).</description>
           </Parameter>
-          <Parameter name='DepoFuturesPriority' default='"AllDepos"'>
+          <Parameter name='DepoInclusion' default='"AllDepos"'>
             <type>QuantLibAddin::RateHelper::DepoInclusionCriteria</type>
             <tensorRank>scalar</tensorRank>
             <description>Depo inclusion criteria.</description>
           </Parameter>
-          <Parameter name='MinDistanceInDays' default='0'>
+          <Parameter name='MinDistance' default='1'>
             <type>QuantLib::Natural</type>
-            <tensorRank>scalar</tensorRank>
-            <description>minimum distance in (positive) days between two adjacent intruments.</description>
+            <tensorRank>vector</tensorRank>
+            <description>minimum distance in (positive) days from near instruments.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
