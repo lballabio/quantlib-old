@@ -34,7 +34,9 @@ namespace QuantLib {
     class RateHelper;
 }
 
-namespace ObjectHandler {
+namespace QuantLibAddin {
+
+    using ObjectHandler::Create<>;
 
     typedef boost::shared_ptr<QuantLib::YieldTermStructure>(*YieldTermStructureConstructor)(
             QuantLib::Natural nDays,
@@ -47,8 +49,8 @@ namespace ObjectHandler {
 
     template<>
     class Create<boost::shared_ptr<QuantLib::YieldTermStructure> > :
-        private RegistryManager<QuantLib::YieldTermStructure,
-                                EnumPairRegistry> {
+        private ObjectHandler::RegistryManager<QuantLib::YieldTermStructure,
+            ObjectHandler::EnumPairRegistry> {
     public:
         boost::shared_ptr<QuantLib::YieldTermStructure> operator() (
                 const std::string& traitsID,
@@ -60,7 +62,7 @@ namespace ObjectHandler {
                 const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
                 const std::vector<QuantLib::Date>& jumpDates,
                 const QuantLib::Real accuracy) {
-            KeyPair key(traitsID, interpolatorID);
+            ObjectHandler::KeyPair key(traitsID, interpolatorID);
             YieldTermStructureConstructor yieldTermStructureConstructor =
                 reinterpret_cast<YieldTermStructureConstructor>(getType(key));
             return yieldTermStructureConstructor(nDays, calendar,
@@ -68,10 +70,11 @@ namespace ObjectHandler {
                                                  jumps, jumpDates,
                                                  accuracy);
         }
-        using RegistryManager<QuantLib::YieldTermStructure,
-                              EnumPairRegistry>::registerType;
+        using ObjectHandler::RegistryManager<QuantLib::YieldTermStructure,
+            ObjectHandler::EnumPairRegistry>::registerType;
     };
 
  }
 
 #endif
+

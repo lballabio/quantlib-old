@@ -1,10 +1,10 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
+ Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2006, 2007 Ferdinando Ametrano
- Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,10 +26,10 @@
 
 #include <qlo/yieldtermstructures.hpp>
 #include <qlo/ratehelpers.hpp>
-#include <qlo/enumerations/factories/termstructuresfactory.hpp>
+//#include <qlo/enumerations/factories/termstructuresfactory.hpp>
 
 #include <ql/time/date.hpp>
-#include <ql/math/interpolations/cubicinterpolation.hpp>
+//#include <ql/math/interpolations/cubicinterpolation.hpp>
 #include <ql/termstructures/yield/discountcurve.hpp>
 #include <ql/termstructures/yield/forwardcurve.hpp>
 #include <ql/termstructures/yield/zerocurve.hpp>
@@ -38,7 +38,7 @@
 #include <ql/termstructures/yield/forwardspreadedtermstructure.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
 
-#include <oh/repository.hpp>
+//#include <oh/repository.hpp>
 
 namespace QuantLibAddin {
 
@@ -112,3 +112,4 @@ namespace QuantLibAddin {
     }
 
 }
+
