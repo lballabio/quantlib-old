@@ -314,6 +314,11 @@
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>London stock exchange</string>
+          <!-- Clone for UnitedKingdom::Exchange -->
+          <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>LONDON</string>
           <!-- Clone for UnitedKingdom::Exchange -->
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
