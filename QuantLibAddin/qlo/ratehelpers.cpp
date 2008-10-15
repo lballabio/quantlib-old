@@ -347,13 +347,13 @@ namespace QuantLibAddin {
                             rhs.push_back(rhsAll[i]);
                             break;
                         case RateHelper::DeposBeforeFirstFuturesStartDate:
-                        // Include only depos with maturity date before 
+                        // Include only depos with maturity date before
                         // the front Futures start date
                             if (rhsAll[i].latestDate < frontFuturesEarliestDate)
                                 rhs.push_back(rhsAll[i]);
                             break;
                         case RateHelper::DeposBeforeFirstFuturesStartDatePlusOne:
-                        // Include only depos with maturity date before  
+                        // Include only depos with maturity date before
                         // the front Futures start date + 1 more Futures
                             if (rhsAll[i].latestDate < frontFuturesEarliestDate) {
                                 rhs.push_back(rhsAll[i]);
@@ -365,7 +365,7 @@ namespace QuantLibAddin {
                             }
                             break;
                         case RateHelper::DeposBeforeFirstFuturesExpiryDate:
-                        // Include only depos with maturity date before 
+                        // Include only depos with maturity date before
                         // the front Futures expiry date
                             if (rhsAll[i].latestDate < frontFuturesLatestDate)
                                 rhs.push_back(rhsAll[i]);
@@ -415,6 +415,57 @@ namespace QuantLibAddin {
         for (k = rhs.begin(); k != rhs.end(); ++k)
             result.push_back(k->objectID);
         return result;
+    }
+
+    namespace {
+
+        class RateInspector
+            : public QuantLib::AcyclicVisitor,
+              public QuantLib::Visitor<QuantLib::DepositRateHelper>,
+              public QuantLib::Visitor<QuantLib::FraRateHelper>,
+              public QuantLib::Visitor<QuantLib::FuturesRateHelper>,
+              public QuantLib::Visitor<QuantLib::SwapRateHelper>,
+              public QuantLib::Visitor<QuantLib::BMASwapRateHelper>,
+              public QuantLib::Visitor<QuantLib::FixedRateBondHelper> {
+            QuantLib::Rate rate_;
+          public:
+            QuantLib::Rate rate() const { return rate_; }
+            void visit(QuantLib::DepositRateHelper& h) {
+                rate_ = h.quoteValue();
+            }
+            void visit(QuantLib::FraRateHelper& h) {
+                rate_ = h.quoteValue();
+            }
+            void visit(QuantLib::FuturesRateHelper& h) {
+                QuantLib::Rate futureRate = 1.0 - h.quoteValue()/100.0;
+                QuantLib::Rate convAdj = h.convexityAdjustment();
+                QL_ENSURE(convAdj >= 0.0,
+                          "Negative (" << convAdj <<
+                          ") futures convexity adjustment");
+                rate_ = futureRate - convAdj;
+            }
+            void visit(QuantLib::SwapRateHelper& h) {
+                rate_ = h.quoteValue();
+            }
+            void visit(QuantLib::BMASwapRateHelper& h) {
+                rate_ = h.quoteValue();
+            }
+            void visit(QuantLib::FixedRateBondHelper& h) {
+                QL_FAIL("not implemented yet");
+            }
+        };
+
+    }
+
+    QuantLib::Real qlRateHelperRate(
+        const boost::shared_ptr<QuantLibAddin::RateHelper>& qlarh) {
+
+        boost::shared_ptr<QuantLib::RateHelper> qlrh;
+        qlarh->getLibraryObject(qlrh);
+
+        RateInspector v;
+        qlrh->accept(v);
+        return v.rate();
     }
 
 }

@@ -79,22 +79,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlRateHelperRate' type='QuantLib::RateHelper'>
-      <description>returns the rate implied by the quote value wrapped in the given RateHelper object.</description>
-      <libraryFunction>rate</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Rate</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Constructor name='qlDepositRateHelper'>
       <libraryFunction>DepositRateHelper</libraryFunction>
       <SupportedPlatforms>
@@ -615,6 +599,26 @@
       <ReturnValue>
         <type>QuantLibAddin::RateHelper</type>
         <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlRateHelperRate'>
+      <description>returns the rate (if any) associated to a rate helper.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RateHelper'>
+            <type>QuantLibAddin::RateHelper</type>
+            <tensorRank>scalar</tensorRank>
+            <description>RateHelper ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
 

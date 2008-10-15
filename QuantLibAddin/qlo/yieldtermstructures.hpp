@@ -37,7 +37,10 @@ namespace QuantLib {
 
     class YieldTermStructure;
 
-    class RateHelper;
+    template<class TS>
+    class BootstrapHelper;
+
+    typedef BootstrapHelper<YieldTermStructure> RateHelper;
 
     template <class T>
     class Handle;

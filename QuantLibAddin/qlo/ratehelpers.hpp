@@ -33,7 +33,10 @@
 namespace QuantLib {
     class YieldTermStructure;
 
-    class  RateHelper;
+    template<class TS>
+    class BootstrapHelper;
+
+    typedef BootstrapHelper<YieldTermStructure> RateHelper;
 
     class Quote;
     class Period;
@@ -178,6 +181,11 @@ namespace QuantLibAddin {
         QuantLib::Natural frontFuturesRollingDays,
         RateHelper::DepoInclusionCriteria depoInclusionCriteria,
         const std::vector<QuantLib::Natural>& minDistance);
+
+    // Returns the rate, if any, associated to the given rate helper
+    QuantLib::Real qlRateHelperRate(
+        const boost::shared_ptr<QuantLibAddin::RateHelper>& qlarh);
+
 }
 
 #endif
