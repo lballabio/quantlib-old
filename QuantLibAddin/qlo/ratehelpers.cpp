@@ -84,7 +84,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
             const QuantLib::Date& immDate,
-            QuantLib::Size months,
+            QuantLib::Natural lengthInMonths,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
             bool endOfMonth,
@@ -95,7 +95,7 @@ namespace QuantLibAddin {
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FuturesRateHelper(price,
                                         immDate,
-                                        months,
+                                        lengthInMonths,
                                         calendar,
                                         convention,
                                         endOfMonth,
@@ -143,19 +143,19 @@ namespace QuantLibAddin {
     FraRateHelper::FraRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
-            QuantLib::Natural monthsToStart,
+            QuantLib::Period periodToStart,
             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             bool permanent)
     : RateHelper(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
-            QuantLib::FraRateHelper(rate, monthsToStart, iborIndex));
+            QuantLib::FraRateHelper(rate, periodToStart, iborIndex));
     }
 
     FraRateHelper::FraRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
-            QuantLib::Natural monthsToStart,
-            QuantLib::Natural monthsToEnd,
+            QuantLib::Period periodToStart,
+            QuantLib::Natural lengthInMonths,
             QuantLib::Natural fixingDays,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
@@ -165,8 +165,8 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FraRateHelper(rate,
-                                    monthsToStart,
-                                    monthsToEnd,
+                                    periodToStart,
+                                    lengthInMonths,
                                     fixingDays,
                                     calendar,
                                     convention,

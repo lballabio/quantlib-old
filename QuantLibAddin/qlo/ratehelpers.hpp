@@ -96,7 +96,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
             const QuantLib::Date& immDate,
-            QuantLib::Size months,
+            QuantLib::Natural lengthInMonths,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
             bool endOfMonth,
@@ -133,14 +133,14 @@ namespace QuantLibAddin {
         FraRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
-            QuantLib::Natural monthsToStart,
+            QuantLib::Period periodToStart,
             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             bool permanent);
         FraRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
-            QuantLib::Natural monthsToStart,
-            QuantLib::Natural monthsToEnd,
+            QuantLib::Period periodToStart,
+            QuantLib::Natural lengthInMonths,
             QuantLib::Natural fixingDays,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
