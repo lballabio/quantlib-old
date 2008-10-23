@@ -142,6 +142,7 @@
     <DataType defaultSuperType='libraryQuote'>QuantLib::FuturesConvAdjustmentQuote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::Quote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::SimpleQuote</DataType>
+    <DataType defaultSuperType='libraryQuote'>QuantLib::LastFixingQuote</DataType>
 
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityCube</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityDiscrete</DataType>

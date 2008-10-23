@@ -27,6 +27,7 @@
     <include>ql/quotes/eurodollarfuturesquote.hpp</include>
     <include>ql/quotes/forwardvaluequote.hpp</include>
     <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
+    <include>ql/quotes/lastfixingquote.hpp</include>
     <include>ql/quotes/impliedstddevquote.hpp</include>
     <include>ql/experimental/risk/sensitivityanalysis.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
@@ -497,6 +498,41 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- LastFixingQuote interface and constructor -->
+    <Constructor name='qlLastFixingQuote'>
+      <libraryFunction>LastFixingQuote</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Index'>
+            <type>QuantLib::Index</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlLastFixingQuoteReferenceDate' type='QuantLib::LastFixingQuote' superType='libraryQuote'>
+      <description>Return the date of the last fixing</description>
+      <libraryFunction>referenceDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>

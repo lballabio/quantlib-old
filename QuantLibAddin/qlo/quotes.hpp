@@ -30,6 +30,7 @@
 #include <ql/experimental/risk/sensitivityanalysis.hpp>
 
 namespace QuantLib {
+    class Index;
     class IborIndex;
     class SwapIndex;
     class Quote;
@@ -123,6 +124,12 @@ namespace QuantLibAddin {
                     bool permanent);
     };
 
+    class LastFixingQuote : public Quote {
+      public:
+        LastFixingQuote(const boost::shared_ptr<ObjectHandler::ValueObject>& p,
+                        const boost::shared_ptr<QuantLib::Index>& index,
+                        bool permanent);
+    };
 
     std::vector<std::vector<QuantLib::Real> >
     bucketAnalysis(const std::vector<std::vector<QuantLib::Handle<QuantLib::Quote> > >&,

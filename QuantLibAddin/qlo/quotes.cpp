@@ -28,6 +28,7 @@
 #include <ql/quotes/forwardswapquote.hpp>
 #include <ql/quotes/futuresconvadjustmentquote.hpp>
 #include <ql/quotes/impliedstddevquote.hpp>
+#include <ql/quotes/lastfixingquote.hpp>
 #include <ql/experimental/risk/sensitivityanalysis.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
 
@@ -180,6 +181,16 @@ namespace QuantLibAddin {
                 QuantLib::CompositeQuote<binary_f>(element1, element2, plus));
         else
             QL_FAIL("unknow operator " << op);
+    }
+
+    LastFixingQuote::LastFixingQuote(
+                    const boost::shared_ptr<ObjectHandler::ValueObject>& p,
+                    const boost::shared_ptr<QuantLib::Index>& index,
+                    bool permanent)
+    : Quote(p, permanent)
+    {
+        libraryObject_ = shared_ptr<QuantLib::LastFixingQuote>(new
+            QuantLib::LastFixingQuote(index));
     }
 
     vector<vector<Real> >
