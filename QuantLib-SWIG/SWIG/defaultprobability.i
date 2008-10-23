@@ -219,6 +219,16 @@ typedef boost::shared_ptr<DefaultProbabilityHelper> CdsHelperPtr;
 // rate helpers for curve bootstrapping
 %template(DefaultProbabilityHelper) boost::shared_ptr<DefaultProbabilityHelper>;
 
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_SPECIALIZE( DefaultProbabilityHelper,
+                            boost::shared_ptr<DefaultProbabilityHelper> )
+#endif
+namespace std {
+    %template(DefaultProbabilityHelperVector)
+    vector<boost::shared_ptr<DefaultProbabilityHelper> >;
+}
+
+
 %rename(CdsHelper) CdsHelperPtr;
 class CdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
   public:
@@ -336,10 +346,10 @@ class Name##Ptr : public boost::shared_ptr<DefaultProbabilityTermStructure> {
 %enddef
 
 
-export_piecewise_defaultcurve(PiecewiseFlatHazardRate,HazardRate,BackwardFlat);
+export_piecewise_default_curve(PiecewiseFlatHazardRate,HazardRate,BackwardFlat);
 
 // combine traits as you wish, e.g.,
-// export_piecewise_curve(PiecewiseLinearDensity,DefaultDensity,Linear);
+// export_piecewise_default_curve(PiecewiseLinearDensity,DefaultDensity,Linear);
 
 
 #endif
