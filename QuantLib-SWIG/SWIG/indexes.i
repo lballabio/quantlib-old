@@ -380,6 +380,7 @@ export_xibor_instance(GBPLibor);
 export_xibor_instance(Jibar);
 export_xibor_instance(JPYLibor);
 export_xibor_instance(NZDLibor);
+export_xibor_instance(SEKLibor);
 export_xibor_instance(Tibor);
 export_xibor_instance(TRLibor);
 export_xibor_instance(USDLibor);
