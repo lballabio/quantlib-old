@@ -97,6 +97,8 @@ using QuantLib::Issuer;
 %}
 
 class Issuer {
+    %feature("kwargs") Issuer;
+    %feature("kwargs") defaultedBetween;
   public:
     Issuer(const Handle<DefaultProbabilityTermStructure>& probability =
                                     Handle<DefaultProbabilityTermStructure>(),
