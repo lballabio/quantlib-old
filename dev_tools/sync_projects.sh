@@ -85,3 +85,5 @@ rm -f ql.vc8.files test-suite.vc8.files
 rm -f ql.vc9.files test-suite.vc9.files
 rm -f ql.devcpp.files test-suite.devcpp.files
 
+cat sync.report
+
