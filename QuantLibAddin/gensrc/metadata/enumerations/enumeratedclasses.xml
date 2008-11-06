@@ -81,6 +81,12 @@
           <libraryClass>QuantLib::FritschButlandLogCubic</libraryClass>
         </EnumeratedClass>
 
+        <EnumeratedClass>
+          <string>Abcd</string>
+          <value>ABCD_Interpolation</value>
+          <libraryClass>QuantLib::AbcdInterpolation</libraryClass>
+        </EnumeratedClass>
+
       </EnumeratedClasses>
     </EnumeratedClassGroup>
 

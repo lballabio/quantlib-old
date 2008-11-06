@@ -410,22 +410,22 @@
           <Parameter name='A' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>alpha (fixed value or guess).</description>
+            <description>The a in { y = (a + b*x) e^(-c*x) + d }. It can be a fixed value or just a guess.</description>
           </Parameter>
           <Parameter name='B' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>beta (fixed value or guess).</description>
+            <description>The b in { y = (a + b*x) e^(-c*x) + d }. It can be a fixed value or just a guess.</description>
           </Parameter>
           <Parameter name='C' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>nu (fixed value or guess).</description>
+            <description>The c in { y = (a + b*x) e^(-c*x) + d }. It can be a fixed value or just a guess.</description>
           </Parameter>
           <Parameter name='D' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
-            <description>rho (fixed value or guess).</description>
+            <description>The d in { y = (a + b*x) e^(-c*x) + d }. It can be a fixed value or just a guess.</description>
           </Parameter>
           <Parameter name='AIsFixed' default='false'>
             <type>bool</type>
@@ -457,7 +457,7 @@
             <tensorRank>scalar</tensorRank>
             <description>EndCriteria object ID.</description>
           </Parameter>
-          <Parameter name='OptimizationMethod' default='""'>
+          <Parameter name='OptimizationMeth' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
             <description>OptimizationMethod object ID.</description>
@@ -467,7 +467,7 @@
     </Constructor>
 
     <Member name='qlAbcdInterpolationA' type='QuantLib::AbcdInterpolation'>
-      <description>Returns the A of the Abcd fit for the given AbcdInterpolation object.</description>
+      <description>Returns the a in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.</description>
       <libraryFunction>a</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -483,7 +483,7 @@
     </Member>
 
     <Member name='qlAbcdInterpolationB' type='QuantLib::AbcdInterpolation'>
-      <description>Returns the B of the Abcd fit for the given AbcdInterpolation object.</description>
+      <description>Returns the b in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.</description>
       <libraryFunction>b</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -499,7 +499,7 @@
     </Member>
 
     <Member name='qlAbcdInterpolationC' type='QuantLib::AbcdInterpolation'>
-      <description>Returns the C of the Abcd fit for the given AbcdInterpolation object.</description>
+      <description>Returns the c in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.</description>
       <libraryFunction>c</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -515,7 +515,7 @@
     </Member>
 
     <Member name='qlAbcdInterpolationD' type='QuantLib::AbcdInterpolation'>
-      <description>Returns the D of the Abcd fit for the given AbcdInterpolation object.</description>
+      <description>Returns the d in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.</description>
       <libraryFunction>d</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -531,7 +531,7 @@
     </Member>
 
     <Member name='qlAbcdInterpolationRmsError' type='QuantLib::AbcdInterpolation'>
-      <description>Returns the error of the SABR fit for the given SABRInterpolation object.</description>
+      <description>Returns the error of the fit for the given AbcdInterpolation object.</description>
       <libraryFunction>rmsError</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -547,7 +547,7 @@
     </Member>
 
     <Member name='qlAbcdInterpolationMaxError' type='QuantLib::AbcdInterpolation'>
-      <description>Returns the max error of the SABR fit for the given SABRInterpolation object.</description>
+      <description>Returns the max error of the fit for the given AbcdInterpolation object.</description>
       <libraryFunction>maxError</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -563,7 +563,7 @@
     </Member>
 
     <Member name='qlAbcdInterpolationEndCriteria' type='QuantLib::AbcdInterpolation'>
-      <description>Returns the optimization end criteria of the SABR fit for the given SABRInterpolation object.</description>
+      <description>Returns the optimization end criteria of the fit for the given AbcdInterpolation object.</description>
       <libraryFunction>endCriteria</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -659,7 +659,7 @@
             <tensorRank>scalar</tensorRank>
             <description>EndCriteria object ID.</description>
           </Parameter>
-          <Parameter name='OptimizationMethod' default='""'>
+          <Parameter name='OptimizationMeth' default='""'>
             <type>QuantLib::OptimizationMethod</type>
             <tensorRank>scalar</tensorRank>
             <description>OptimizationMethod object ID.</description>
@@ -701,7 +701,7 @@
     </Member>
 
     <Member name='qlSABRInterpolationAlpha' type='QuantLib::SABRInterpolation'>
-      <description>Returns the alpha of the SABR fit for the given SABRInterpolation object.</description>
+      <description>Returns the alpha of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>alpha</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -717,7 +717,7 @@
     </Member>
 
     <Member name='qlSABRInterpolationBeta' type='QuantLib::SABRInterpolation'>
-      <description>Returns the alpha of the SABR fit for the given SABRInterpolation object.</description>
+      <description>Returns the alpha of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>beta</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -733,7 +733,7 @@
     </Member>
 
     <Member name='qlSABRInterpolationNu' type='QuantLib::SABRInterpolation'>
-      <description>Returns the nu of the SABR fit for the given SABRInterpolation object.</description>
+      <description>Returns the nu of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>nu</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -749,7 +749,7 @@
     </Member>
 
     <Member name='qlSABRInterpolationRho' type='QuantLib::SABRInterpolation'>
-      <description>Returns the rho of the SABR fit for the given SABRInterpolation object.</description>
+      <description>Returns the rho of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>rho</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -765,7 +765,7 @@
     </Member>
 
     <Member name='qlSABRInterpolationRmsError' type='QuantLib::SABRInterpolation'>
-      <description>Returns the error of the SABR fit for the given SABRInterpolation object.</description>
+      <description>Returns the error of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>rmsError</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -781,7 +781,7 @@
     </Member>
 
     <Member name='qlSABRInterpolationMaxError' type='QuantLib::SABRInterpolation'>
-      <description>Returns the max error of the SABR fit for the given SABRInterpolation object.</description>
+      <description>Returns the max error of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>maxError</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -797,7 +797,7 @@
     </Member>
 
     <Member name='qlSABRInterpolationEndCriteria' type='QuantLib::SABRInterpolation'>
-      <description>Returns the optimization end criteria of the SABR fit for the given SABRInterpolation object.</description>
+      <description>Returns the optimization end criteria of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>endCriteria</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -813,7 +813,7 @@
     </Member>
 
     <Member name='qlSABRInterpolationWeights' type='QuantLib::SABRInterpolation'>
-      <description>Returns the weights of the SABR fit for the given SABRInterpolation object.</description>
+      <description>Returns the weights of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>interpolationWeights</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
