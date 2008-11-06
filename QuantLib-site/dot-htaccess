@@ -21,3 +21,6 @@ Redirect 301 /svn.html http://quantlib.org/svn.shtml
 Redirect 301 /reference/faq.html http://quantlib.org/faq.shtml
 Redirect 301 /html/ http://quantlib.org/reference/
 Redirect 301 /html http://quantlib.org/reference/
+Redirect 301 /quep/ http://quantlib.org/quep.shtml
+Redirect 301 /quep http://quantlib.org/quep.shtml
+
