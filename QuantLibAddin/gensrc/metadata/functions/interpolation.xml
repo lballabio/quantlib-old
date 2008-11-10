@@ -69,7 +69,7 @@
             <tensorRank>vector</tensorRank>
             <description>x values.</description>
           </Parameter>
-          <Parameter name='AllowExtrapolation' default='0' const='false'>
+          <Parameter name='AllowExtrapolation' default='false' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag.</description>
@@ -97,7 +97,7 @@
             <tensorRank>vector</tensorRank>
             <description>x values.</description>
           </Parameter>
-          <Parameter name='AllowExtrapolation' default='0' const='false'>
+          <Parameter name='AllowExtrapolation' default='false' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag.</description>
@@ -125,7 +125,7 @@
             <tensorRank>vector</tensorRank>
             <description>x values.</description>
           </Parameter>
-          <Parameter name='AllowExtrapolation' default='0' const='false'>
+          <Parameter name='AllowExtrapolation' default='false' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag.</description>
@@ -153,7 +153,7 @@
             <tensorRank>vector</tensorRank>
             <description>x values.</description>
           </Parameter>
-          <Parameter name='AllowExtrapolation' default='0' const='false'>
+          <Parameter name='AllowExtrapolation' default='false' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag.</description>
@@ -991,7 +991,7 @@
             <tensorRank>scalar</tensorRank>
             <description>y value.</description>
           </Parameter>
-          <Parameter name='AllowExtrapolation' default='0' const='false'>
+          <Parameter name='AllowExtrapolation' default='false' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>allow extrapolation flag.</description>

@@ -102,7 +102,7 @@
             <tensorRank>vector</tensorRank>
             <description>fixing date(s).</description>
           </Parameter>
-          <Parameter name='ForecastToday' default='0' const='False'>
+          <Parameter name='ForecastToday' default='false' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>If set to TRUE it forces the forecasting of today's fixing even if the actual fixing is already available in the time series.</description>
@@ -135,7 +135,7 @@
             <tensorRank>vector</tensorRank>
             <description>fixing values.</description>
           </Parameter>
-          <Parameter name='ForceOverwrite' default='0' const='False'>
+          <Parameter name='ForceOverwrite' default='false' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Set to TRUE to force overwriting of existing fixings, if any.</description>
@@ -163,7 +163,7 @@
             <tensorRank>vector</tensorRank>
             <description>TimeSeries object ID.</description>
           </Parameter>
-          <Parameter name='ForceOverwrite' default='0' const='False'>
+          <Parameter name='ForceOverwrite' default='false' const='False'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>Set to TRUE to force overwriting of existing fixings, if any.</description>
