@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2006, 2007 Chiara Fornarola
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
@@ -45,6 +45,18 @@ namespace QuantLibAddin {
         const QuantLib::Leg& cashflows = temp->cashflows();
 
         return QuantLibAddin::flowAnalysis(cashflows);
+    }
+
+    QuantLib::Real Bond::redemptionAmount() {
+        boost::shared_ptr<QuantLib::Bond> temp;
+        getLibraryObject(temp);
+        return temp->redemption()->amount();
+    }
+
+    QuantLib::Date Bond::redemptionDate() {
+        boost::shared_ptr<QuantLib::Bond> temp;
+        getLibraryObject(temp);
+        return temp->redemption()->date();
     }
 
     std::string Bond::description() {

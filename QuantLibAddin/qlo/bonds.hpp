@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2006, 2007 Chiara Fornarola
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
@@ -49,12 +49,14 @@ namespace QuantLibAddin {
 
     class Bond : public Instrument {
       public:
-        std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis();
         std::string description();
-        //QuantLib::Currency currency();
         std::string currency();
+        //QuantLib::Currency currency();
+        QuantLib::Real redemptionAmount();
+        QuantLib::Date redemptionDate();
         void setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
+        std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis();
       protected:
         OH_OBJ_CTOR(Bond, Instrument);
     };

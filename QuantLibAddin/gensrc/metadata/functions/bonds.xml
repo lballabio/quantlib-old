@@ -32,7 +32,7 @@
   </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Chiara Fornarola
-    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Walter Penschke
@@ -40,26 +40,11 @@
 
   <Functions>
 
-    <Member name='qlBondFlowAnalysis' type='QuantLibAddin::Bond'>
-      <description>Returns the bond cash flow analysis.</description>
-      <libraryFunction>flowAnalysis</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>any</type>
-        <tensorRank>matrix</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondDescription' type='QuantLibAddin::Bond'>
-      <description>Returns the bond description string.</description>
-      <libraryFunction>description</libraryFunction>
+    <!-- QuantLib::Bond interface -->
+    
+    <Member name='qlBondSettlementDays' type='QuantLib::Bond'>
+      <description>Returns the number of settlement days of the bond.</description>
+      <libraryFunction>settlementDays</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -68,14 +53,14 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <type>string</type>
+        <type>QuantLib::Natural</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondCurrency' type='QuantLibAddin::Bond'>
-      <description>Returns the bond currency.</description>
-      <libraryFunction>currency</libraryFunction>
+    <Member name='qlBondCalendar' type='QuantLib::Bond'>
+      <description>Returns the calendar of the bond, e.g. TARGET.</description>
+      <libraryFunction>calendar</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -84,8 +69,93 @@
         <Parameters/>
       </ParameterList>
       <ReturnValue>
-        <!--<type>QuantLib::Currency</type>-->
-        <type>string</type>
+        <type>QuantLib::Calendar</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondFaceAmount' type='QuantLib::Bond'>
+      <description>Returns the face amount of the bond.</description>
+      <libraryFunction>faceAmount</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondNotionals' type='QuantLib::Bond'>
+      <description>Returns the notionals of the bond.</description>
+      <libraryFunction>notionals</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondNotional' type='QuantLib::Bond'>
+      <description>Returns the notional of the bond at a given date.</description>
+      <libraryFunction>notional</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The date for which the nominal is required. The current bond settlement is used if no date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondMaturityDate' type='QuantLib::Bond'>
+      <description>Returns the maturity date of the bond.</description>
+      <libraryFunction>maturityDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondIssueDate' type='QuantLib::Bond'>
+      <description>Returns the issue date of the bond.</description>
+      <libraryFunction>issueDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -108,38 +178,6 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondMaturityDate' type='QuantLib::Bond'>
-      <description>Returns the maturity date of the bond.</description>
-      <libraryFunction>maturityDate</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondCalendar' type='QuantLib::Bond'>
-      <description>Returns the calendar of the bond, e.g. TARGET.</description>
-      <libraryFunction>calendar</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Calendar</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -205,52 +243,6 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Rate</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondSetCouponPricer' type='QuantLibAddin::Bond'>
-      <description>Set the coupon pricer at the given Bond object.</description>
-      <libraryFunction>setCouponPricer</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='FloatingRateCouponPricer'>
-            <type>QuantLib::FloatingRateCouponPricer</type>
-            <tensorRank>scalar</tensorRank>
-            <description>FloatingRate coupon pricer object ID.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondSetCouponPricers' type='QuantLibAddin::Bond'>
-      <description>Set the coupon pricer at the given Bond object.</description>
-      <libraryFunction>setCouponPricers</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='FloatingRateCouponPricer'>
-            <type>QuantLib::FloatingRateCouponPricer</type>
-            <tensorRank>vector</tensorRank>
-            <description>FloatingRate coupon pricer object ID.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -541,63 +533,137 @@
       </ReturnValue>
     </Member>
 
-    <Constructor name='qlZeroCouponBond'>
-      <libraryFunction>ZeroCouponBond</libraryFunction>
+    <!-- QuantLibAddin::Bond interface -->
+
+    <Member name='qlBondDescription' type='QuantLibAddin::Bond'>
+      <description>Returns the bond description string.</description>
+      <libraryFunction>description</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondCurrency' type='QuantLibAddin::Bond'>
+      <description>Returns the bond currency.</description>
+      <libraryFunction>currency</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <!--<type>QuantLib::Currency</type>-->
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondRedemptionAmount' type='QuantLibAddin::Bond'>
+      <description>Returns the redemption amount of the bond.</description>
+      <libraryFunction>redemptionAmount</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondRedemptionDate' type='QuantLibAddin::Bond'>
+      <description>Returns the redemption payment date of the bond.</description>
+      <libraryFunction>redemptionDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondFlowAnalysis' type='QuantLibAddin::Bond'>
+      <description>Returns the bond cash flow analysis.</description>
+      <libraryFunction>flowAnalysis</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondSetCouponPricer' type='QuantLibAddin::Bond'>
+      <description>Set the coupon pricer at the given Bond object.</description>
+      <libraryFunction>setCouponPricer</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Description' default='"no description available"'>
-            <type>string</type>
+          <Parameter name='FloatingRateCouponPricer'>
+            <type>QuantLib::FloatingRateCouponPricer</type>
             <tensorRank>scalar</tensorRank>
-            <description>bond description string.</description>
-          </Parameter>
-          <Parameter name='Currency'>
-            <type>QuantLib::Currency</type>
-            <tensorRank>scalar</tensorRank>
-            <description>bond Currency.</description>
-          </Parameter>
-          <Parameter name='SettlementDays' exampleValue='3'>
-            <type>QuantLib::Size</type>
-            <tensorRank>scalar</tensorRank>
-            <description>settlement days.</description>
-          </Parameter>
-          <Parameter name='Calendar' exampleValue='TARGET'>
-            <type>QuantLib::Calendar</type>
-            <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET).</description>
-          </Parameter>
-          <Parameter name='FaceAmount' default='100.0'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Face nominal amount.</description>
-          </Parameter>
-          <Parameter name='Maturity' exampleValue='45348'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>maturity date.</description>
-          </Parameter>
-          <Parameter name='PaymentBDC' default='"Following"'>
-            <type>QuantLib::BusinessDayConvention</type>
-            <tensorRank>scalar</tensorRank>
-            <description>payment business day convention.</description>
-          </Parameter>
-          <Parameter name='Redemption' default='100'>
-            <type>QuantLib::Real</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Redemption value.</description>
-          </Parameter>
-          <Parameter name='IssueDate' default='QuantLib::Date()'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>issue date: the bond can't be traded until then.</description>
+            <description>FloatingRate coupon pricer object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
-    </Constructor>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondSetCouponPricers' type='QuantLibAddin::Bond'>
+      <description>Set the coupon pricer at the given Bond object.</description>
+      <libraryFunction>setCouponPricers</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FloatingRateCouponPricer'>
+            <type>QuantLib::FloatingRateCouponPricer</type>
+            <tensorRank>vector</tensorRank>
+            <description>FloatingRate coupon pricer object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- Bond constructors -->
 
     <Constructor name='qlFixedRateBond'>
       <libraryFunction>FixedRateBond</libraryFunction>
@@ -836,6 +902,64 @@
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
             <description>cap strikes.</description>
+          </Parameter>
+          <Parameter name='Redemption' default='100'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Redemption value.</description>
+          </Parameter>
+          <Parameter name='IssueDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>issue date: the bond can't be traded until then.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlZeroCouponBond'>
+      <libraryFunction>ZeroCouponBond</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Description' default='"no description available"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond description string.</description>
+          </Parameter>
+          <Parameter name='Currency'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond Currency.</description>
+          </Parameter>
+          <Parameter name='SettlementDays' exampleValue='3'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement days.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='FaceAmount' default='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Face nominal amount.</description>
+          </Parameter>
+          <Parameter name='Maturity' exampleValue='45348'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>maturity date.</description>
+          </Parameter>
+          <Parameter name='PaymentBDC' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment business day convention.</description>
           </Parameter>
           <Parameter name='Redemption' default='100'>
             <type>QuantLib::Real</type>
