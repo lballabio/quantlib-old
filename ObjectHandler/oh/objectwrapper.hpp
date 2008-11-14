@@ -132,6 +132,7 @@ namespace ObjectHandler {
 
     inline void ObjectWrapper::reset(boost::shared_ptr<Object> object) {
         object_ = object;
+        dirty_ = false;
         updateTime_ = getTime();
         notifyObservers();
     }
