@@ -40,16 +40,21 @@ cpp/quantlib_wrap.cpp: ../SWIG/*.i
 
 dist-hook: cpp/quantlib_wrap.cpp
 	mkdir -p $(distdir)/cpp
-	cp ./cpp/QuantlibWrapper.vcproj $(distdir)/cpp
+	cp ./cpp/*.vcproj $(distdir)/cpp
 	cp ./cpp/quantlib_wrap.cpp $(distdir)/cpp
 	cp ./cpp/QuantlibWrapper.h ./cpp/QuantlibWrapper.cpp $(distdir)/cpp
 	cp ./cpp/stdafx.h $(distdir)/cpp
 	mkdir -p $(distdir)/csharp
-	cp ./csharp/NQuantLib.csproj $(distdir)/csharp
+	cp ./csharp/*.csproj $(distdir)/csharp
 	cp ./csharp/*.cs $(distdir)/csharp
 	mkdir -p $(distdir)/examples
 	cp ./examples/*.csproj $(distdir)/examples
 	cp ./examples/*.cs $(distdir)/examples
 
-EXTRA_DIST = QuantLib.sln swig.cmd README.txt
+EXTRA_DIST = \
+    QuantLib_vc7.sln \
+    QuantLib_vc8.sln \
+    QuantLib_vc9.sln \
+    swig.cmd \
+    README.txt
 

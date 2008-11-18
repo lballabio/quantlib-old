@@ -1,26 +1,392 @@
-2007-12-04 11:44  Luigi Ballabio
+2008-11-10 12:09  Luigi Ballabio
 
-	* [r13663] Makefile.am, SWIG/piecewiseflatforward.i:
+	* [r15745] MzScheme/examples/swap.scm:
 	  
-	  Removed obsolete file
+	  Fix for name conflict in recent MzScheme versions
 
-2007-11-30 08:47  Luigi Ballabio
+2008-11-10 09:27  Luigi Ballabio
 
-	* [r13619] LICENSE.TXT:
+	* [r15743] MzScheme/setup.scm, Python/setup.py, Ruby/setup.rb:
 	  
-	  Updated license with new copyrights
+	  Fixed VC++ options
 
-2007-11-29 09:56  Luigi Ballabio
+2008-11-07 13:39  Luigi Ballabio
 
-	* [r13602] SWIG/ql.i, SWIG/vectors.i:
+	* [r15741] MzScheme/setup.scm:
 	  
-	  Ensured correct application of std::vector typemaps
+	  Update for recent MzScheme versions
 
-2007-11-27 12:45  Luigi Ballabio
+2008-11-07 11:49  Luigi Ballabio
 
-	* [r13573] :
+	* [r15740] CSharp/Makefile.am:
 	  
-	  Created 0.9.0 release branch
+	  Added new files to distribution
+
+2008-11-07 11:22  Luigi Ballabio
+
+	* [r15737] CSharp/QuantLib_vc9.sln,
+	  CSharp/cpp/QuantlibWrapper_vc9.vcproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj,
+	  CSharp/examples/BermudanSwaption_vc9.csproj,
+	  CSharp/examples/EquityOption_vc9.csproj:
+	  
+	  Added VS9 support to C# bindings
+
+2008-11-07 11:12  Luigi Ballabio
+
+	* [r15735] CSharp/QuantLib_vc8.sln,
+	  CSharp/cpp/QuantlibWrapper_vc8.vcproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/examples/BermudanSwaption_vc8.csproj,
+	  CSharp/examples/EquityOption_vc8.csproj:
+	  
+	  Added VS8 support to C# bindings
+
+2008-11-07 10:54  Luigi Ballabio
+
+	* [r15734] CSharp/QuantLib_vc7.sln, CSharp/cpp, CSharp/csharp,
+	  CSharp/csharp/NQuantLib.csproj, CSharp/csharp/NQuantLib_vc7.csproj:
+	  
+	  Upgraded VS7 projects
+
+2008-11-07 10:33  Luigi Ballabio
+
+	* [r15733] CSharp, CSharp/QuantLib.sln, CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp, CSharp/cpp/QuantlibWrapper.vcproj,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib.csproj, CSharp/examples,
+	  CSharp/examples/BermudanSwaption.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  Upgraded VS7 projects
+
+2008-10-31 15:59  Luigi Ballabio
+
+	* [r15716] :
+	  
+	  Created release branch for version 0.9.7
+
+2008-10-23 15:40  Luigi Ballabio
+
+	* [r15684] SWIG/credit.i:
+	  
+	  Enabled keyword args
+
+2008-10-23 15:39  Luigi Ballabio
+
+	* [r15683] SWIG/vectors.i:
+	  
+	  Added unsigned int specialization
+
+2008-10-23 15:39  Luigi Ballabio
+
+	* [r15682] SWIG/indexes.i:
+	  
+	  Exported missing index
+
+2008-10-23 15:38  Luigi Ballabio
+
+	* [r15681] SWIG/defaultprobability.i:
+	  
+	  Added vector declaration; fixed macro call
+
+2008-09-24 09:09  Luigi Ballabio
+
+	* [r15585] SWIG/indexes.i:
+	  
+	  Sync with C++
+
+2008-09-10 15:10  Luigi Ballabio
+
+	* [r15534] SWIG/credit.i:
+	  
+	  Enforced uniform naming
+
+2008-09-09 16:00  Luigi Ballabio
+
+	* [r15532] CSharp/cpp/QuantlibWrapper.vcproj,
+	  CSharp/csharp/NQuantLib.csproj:
+	  
+	  Updated projects
+
+2008-09-04 09:28  Luigi Ballabio
+
+	* [r15502] SWIG/credit.i:
+	  
+	  More descriptive names for Seniority and Restructuring enumerations
+
+2008-09-02 09:50  Luigi Ballabio
+
+	* [r15490] SWIG/date.i:
+	  
+	  Added OtherFrequency to Frequency enum; conversion from Frequency to
+	  Period no longer fails, so that it should be now possible to create
+	  bonds with unusual coupon tenors (thanks to Slava Mazur)
+
+2008-08-20 15:25  Luigi Ballabio
+
+	* [r15405] SWIG/stochasticprocess.i:
+	  
+	  Exported GeometricBrownianMotionProcess (thanks to Tito Ingargiola)
+
+2008-08-11 14:00  Luigi Ballabio
+
+	* [r15357] SWIG/old_pricers.i:
+	  
+	  Ported Monte Carlo average-strike pricer to pricing-engine framework
+	  (thanks to the IMAFA students at Polytech'Nice Sophia)
+
+2008-08-06 13:01  Luigi Ballabio
+
+	* [r15339] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number to 0.9.7
+
+2008-08-01 14:15  Luigi Ballabio
+
+	* [r15317] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number to 0.9.6
+
+2008-08-01 10:03  Luigi Ballabio
+
+	* [r15315] SWIG/old_volatility.i, SWIG/volatilities.i:
+	  
+	  Formatting
+
+2008-08-01 09:41  Luigi Ballabio
+
+	* [r15314] SWIG/stochasticprocess.i:
+	  
+	  Exported GeneralizedBlackScholesProcess inspectors
+
+2008-08-01 09:40  Luigi Ballabio
+
+	* [r15313] SWIG/daycounters.i:
+	  
+	  Exported Business/252 day counter
+
+2008-08-01 09:39  Luigi Ballabio
+
+	* [r15312] SWIG/volatilities.i:
+	  
+	  Exported BlackVarianceCurve class
+
+2008-07-31 15:25  Luigi Ballabio
+
+	* [r15308] SWIG/date.i:
+	  
+	  Added 4-week frequency
+
+2008-07-31 09:52  Luigi Ballabio
+
+	* [r15303] Guile/Makefile.am, Java/examples/DiscreteHedging.java,
+	  LICENSE.TXT, MzScheme/Makefile.am, Perl/Makefile.am,
+	  Python/Makefile.am, Ruby/Makefile.am, acinclude.m4, configure.ac:
+	  
+	  Merged R000905-branch up to revision 15285 (QuantLib, QuantLib-SWIG,
+	  and QuantLib-site modules only)
+
+2008-07-16 04:34  Joseph Wang
+
+	* [r15241] R/Makefile.am:
+	  
+	  make quantlib config a variable that can be overridden
+
+2008-07-16 03:29  Joseph Wang
+
+	* [r15240] Python/Makefile.am, R/Makefile.am, Ruby/Makefile.am:
+	  
+	  remove setting path in makefiles. This can probably be done better
+	  externally
+
+2008-07-13 05:49  Joseph Wang
+
+	* [r15231] Ruby/Makefile.am:
+	  
+	  Add path so that ruby is configured by the quantlib-config that is
+	  in
+	  the configure script
+
+2008-07-13 05:28  Joseph Wang
+
+	* [r15230] R/Makefile.am:
+	  
+	  change calling procedure to R so that you can get the config
+	  arguments
+	  from the install directory
+
+2008-07-12 22:57  Joseph Wang
+
+	* [r15223] SWIG/common.i:
+	  
+	  Work around iterator range error in boost 1.35 with GCC 4
+
+2008-07-12 22:38  Joseph Wang
+
+	* [r15222] SWIG/common.i:
+	  
+	  Put in a NDEBUG define which is necessary for linux boost 1.35
+
+2008-07-12 19:56  Joseph Wang
+
+	* [r15221] Python/Makefile.am:
+	  
+	  pull in quantlib-config from install directory even if it is not
+	  part
+	  of the path
+
+2008-07-02 15:52  Luigi Ballabio
+
+	* [r15154] CSharp/csharp/NQuantLib.csproj:
+	  
+	  Updated VC# project
+
+2008-07-01 08:08  Luigi Ballabio
+
+	* [r15146] configure.ac:
+	  
+	  Removed outdated RPM specification files from distributed tarballs
+
+2008-06-27 14:57  Luigi Ballabio
+
+	* [r15132] SWIG/defaultprobability.i:
+	  
+	  Added choice of date-generation rule to CDS helpers
+
+2008-06-27 13:24  Luigi Ballabio
+
+	* [r15131] SWIG/scheduler.i:
+	  
+	  Added date-generation rules for CDS schedules
+
+2008-06-24 12:55  Luigi Ballabio
+
+	* [r15116] SWIG/basketoptions.i, SWIG/old_pricers.i,
+	  SWIG/piecewiseyieldcurve.i:
+	  
+	  Sync with C++
+
+2008-04-30 14:37  Luigi Ballabio
+
+	* [r14817] SWIG/defaultprobability.i:
+	  
+	  Added piecewise default-probability curve
+
+2008-04-24 12:37  Luigi Ballabio
+
+	* [r14792] SWIG/credit.i, SWIG/creditdefaultswap.i,
+	  SWIG/defaultprobability.i, SWIG/ql.i, SWIG/types.i:
+	  
+	  Exported default curves and CDS
+
+2008-04-22 08:13  Luigi Ballabio
+
+	* [r14769] SWIG/calendars.i:
+	  
+	  Fixes for South Korea calendar (thanks to Charles Chongseok Hyun)
+
+2008-04-21 13:22  Luigi Ballabio
+
+	* [r14766] SWIG/cashflows.i:
+	  
+	  Added overload for term-structure handles
+
+2008-04-21 09:54  Luigi Ballabio
+
+	* [r14760] SWIG/cashflows.i:
+	  
+	  Adapted YieldTermStructure references to shared_ptr
+
+2008-04-21 09:39  Luigi Ballabio
+
+	* [r14759] SWIG/interpolation.i:
+	  
+	  Sync with C++
+
+2008-03-11 15:57  Luigi Ballabio
+
+	* [r14559] Java/Makefile.am, Java/examples/DiscreteHedging.java,
+	  SWIG/montecarlo.i, SWIG/options.i:
+	  
+	  Added DiscreteHedging example to Java module (thanks to Tito
+	  Ingargiola)
+
+2008-02-29 15:26  Luigi Ballabio
+
+	* [r14523] SWIG/interpolation.i:
+	  
+	  Sync with C++ changes
+
+2008-02-19 16:36  Luigi Ballabio
+
+	* [r14365] SWIG/piecewiseyieldcurve.i:
+	  
+	  Sync with C++ library
+
+2008-02-13 04:21  Joseph Wang
+
+	* [r14339] SWIG/old_volatility.i, SWIG/piecewiseyieldcurve.i,
+	  SWIG/volatilities.i:
+	  
+	  Sync with current QuantLib
+
+2008-02-01 09:44  Luigi Ballabio
+
+	* [r14235] Guile/examples/swap.scm, Guile/test/termstructures.scm,
+	  MzScheme/examples/swap.scm, MzScheme/test/termstructures.scm,
+	  Python/examples/swap.py, Python/test/termstructures.py,
+	  Ruby/examples/swap.rb, Ruby/test/termstructures.rb:
+	  
+	  Sync with C++ library
+
+2008-02-01 08:27  Luigi Ballabio
+
+	* [r14234] SWIG/currencies.i:
+	  
+	  Added syntactic sugar to Python module
+
+2008-01-30 15:04  Luigi Ballabio
+
+	* [r14217] SWIG/currencies.i:
+	  
+	  Added Peruvian currency
+
+2008-01-25 10:37  Luigi Ballabio
+
+	* [r14181] SWIG/capfloor.i, SWIG/ratehelpers.i, SWIG/volatilities.i:
+	  
+	  Sync with C++ library
+
+2008-01-18 12:56  Luigi Ballabio
+
+	* [r14137] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number
+
+2008-01-05 08:05  Joseph Wang
+
+	* [r14020] SWIG/volatilities.i:
+	  
+	  sync with newest quantlib
+
+2007-12-19 20:03  Ferdinando Ametrano
+
+	* [r13855] ChangeLog.txt, LICENSE.TXT, Makefile.am, News.txt,
+	  SWIG/piecewiseflatforward.i, SWIG/ql.i, SWIG/vectors.i:
+	  
+	  merged changeset 13573:13852 from branches\R000900-branch into trunk
+
+2007-11-29 06:26  Joseph Wang
+
+	* [r13600] R/README.txt, R/examples/european-option.R,
+	  R/examples/fd-option.R, R/examples/graph.R, R/examples/scatter.R,
+	  R/examples/wireframe.R:
+	  
+	  Fix to new calling conventions
 
 2007-11-27 11:24  Luigi Ballabio
 

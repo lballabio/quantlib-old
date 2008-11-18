@@ -1,4 +1,21 @@
 
+Release 0.9.7 - November 2008
+Changes since Release 0.9.6:
+    - in sync with QuantLib 0.9.7
+    - added C# projects for Visual Studio 8 and 9
+    - Exported GeometricBrownianMotionProcess (thanks to Tito Ingargiola)
+
+Release 0.9.6 - August 2008
+Changes since Release 0.9.5:
+    - in sync with QuantLib 0.9.6
+
+Release 0.9.5 - July 2008
+Changes since Release 0.9.0:
+    - in sync with QuantLib 0.9.5
+    - migrated to SWIG 1.3.36
+    - added DiscreteHedging example to Java module (thanks
+      to Tito Ingargiola)
+
 Release 0.9.0 - December 2007
 Changes since Release 0.8.0:
     - in sync with QuantLib 0.9.0

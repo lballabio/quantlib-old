@@ -89,7 +89,7 @@ Build = Command.new {
         puts 'warning: unable to detect QuantLib installation'
         puts 'I will assume that it was added to the default compiler paths'
       end
-      $CPPFLAGS += " /MT"
+      $CPPFLAGS += " /MD"
       $CPPFLAGS += " /GR"
       $CPPFLAGS += " /GX"
       $CPPFLAGS += " /Zm250"

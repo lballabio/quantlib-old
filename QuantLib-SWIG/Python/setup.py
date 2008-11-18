@@ -1,7 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 """
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -79,29 +79,29 @@ class my_wrap(Command):
 
 class my_build(build):
     user_options = build.user_options + [
-        ('dll', None,
-         "link against CRTDLL libraries on Windows")
+        ('static', None,
+         "link against static CRT libraries on Windows")
     ]
-    boolean_options = build.boolean_options + ['dll']
+    boolean_options = build.boolean_options + ['static']
     def initialize_options(self):
         build.initialize_options(self)
-        self.dll = None
+        self.static = None
     def finalize_options(self):
         build.finalize_options(self)
 
 
 class my_build_ext(build_ext):
     user_options = build_ext.user_options + [
-        ('dll', None,
-         "link against CRTDLL libraries on Windows")
+        ('static', None,
+         "link against static CRT libraries on Windows")
     ]
-    boolean_options = build.boolean_options + ['dll']
+    boolean_options = build.boolean_options + ['static']
     def initialize_options(self):
         build_ext.initialize_options(self)
-        self.dll = None
+        self.static = None
     def finalize_options(self):
         build_ext.finalize_options(self)
-        self.set_undefined_options('build', ('dll','dll'))
+        self.set_undefined_options('build', ('static','static'))
 
         self.include_dirs = self.include_dirs or []
         self.library_dirs = self.library_dirs or []
@@ -135,15 +135,15 @@ class my_build_ext(build_ext):
             extra_link_args = ['/subsystem:windows', '/machine:I386']
 
             if self.debug:
-                if self.dll:
-                    extra_compile_args.append('/MDd')
-                else:
+                if self.static:
                     extra_compile_args.append('/MTd')
-            else:
-                if self.dll:
-                    extra_compile_args.append('/MD')
                 else:
+                    extra_compile_args.append('/MDd')
+            else:
+                if self.static:
                     extra_compile_args.append('/MT')
+                else:
+                    extra_compile_args.append('/MD')
 
         elif compiler == 'unix':
             ql_compile_args = \

@@ -42,7 +42,8 @@
     (do ((i 0 (+ i 1)))
         ((= i n))
       (if (char=? (string-ref s i) c)
-          (set! spcs (cons i spcs))))
+          (set! spcs (cons i spcs))
+          '()))
     (let ((begins (cons 0 (map (lambda (i) (+ i 1))
                                (reverse spcs))))
           (ends (reverse (cons n spcs))))
@@ -78,19 +79,22 @@
                  (c-flags (getenv "CFLAGS"))
                  (c++-flags (getenv "CXXFLAGS")))
              (if (not c++-compiler)
-                 (set! c++-compiler (find-executable-path "g++" #f)))
+                 (set! c++-compiler (find-executable-path "g++" #f))
+                 '())
              (current-extension-compiler c++-compiler)
              (current-extension-linker c++-compiler)
              (if c-flags
                  (current-extension-compiler-flags
                   (append
                    (current-extension-compiler-flags)
-                   (string-split c-flags #\space))))
+                   (string-split c-flags #\space)))
+                 '())
              (if c++-flags
                  (current-extension-compiler-flags
                   (append
                    (current-extension-compiler-flags)
-                   (string-split c++-flags #\space))))
+                   (string-split c++-flags #\space)))
+                 '())
              (current-extension-compiler-flags
                   (append
                    (current-extension-compiler-flags)
@@ -118,7 +122,7 @@
            (current-extension-compiler-flags
             (append
              (current-extension-compiler-flags)
-             (list "-DNOMINMAX" "/MT" "/GR" "/GX" "/Zm250"))))
+             (list "-DNOMINMAX" "/MD" "/GR" "/GX" "/Zm250"))))
           (else
            (error "Unsupported platform")))
     (let ((object (append-object-suffix "quantlib_wrap"))
@@ -141,13 +145,15 @@
   (let-values (((collect-path _1 _2) (split-path (collection-path "mzlib"))))
               (let ((installation-path (build-path collect-path "quantlib")))
                 (if (not (directory-exists? installation-path))
-                    (make-directory installation-path))
+                    (make-directory installation-path)
+                    '())
                 (for-each
                  (lambda (f)
                    (let* ((destination-file
                            (build-path installation-path f)))
                      (if (file-exists? destination-file)
-                         (delete-file destination-file))
+                         (delete-file destination-file)
+                         '())
                      (display (build-path "." "quantlib" f))
                      (display " -> ")
                      (display destination-file)
@@ -165,11 +171,11 @@
         (cons "install" install)))
 
 ; parse command line
-(if (not (= (vector-length argv) 1))
-    (usage))
-
-(let ((command (assoc (vector-ref argv 0) available-commands)))
-  (if command
-      ((cdr command))
-      (usage)))
+(let ((argv (current-command-line-arguments)))
+  (if (not (= (vector-length argv) 1))
+      (usage) '())
+  (let ((command (assoc (vector-ref argv 0) available-commands)))
+    (if command
+        ((cdr command))
+        (usage))))
 

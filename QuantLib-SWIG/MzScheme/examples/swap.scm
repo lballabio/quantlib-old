@@ -24,10 +24,10 @@
       (car l)
       (i-th (- n 1) (cdr l))))
 
-(define (first n l)
+(define (my-first n l)
   (if (= n 0)
       '()
-      (cons (car l) (first (- n 1) (cdr l)))))
+      (cons (car l) (my-first (- n 1) (cdr l)))))
 (define (trim-front n l)
   (if (= n 0)
       l
@@ -151,7 +151,7 @@
 (define depo-futures-swap-curve (new-PiecewiseFlatForward
                                  settlement-date
                                  (append
-                                  (first 2 deposit-helpers)
+                                  (my-first 2 deposit-helpers)
                                   futures-helpers
                                   (trim-front 1 swap-helpers))
                                  (new-Actual360)))
@@ -159,7 +159,7 @@
 (define depo-fra-swap-curve (new-PiecewiseFlatForward
                              settlement-date
                              (append
-                              (first 3 deposit-helpers)
+                              (my-first 3 deposit-helpers)
                               fra-helpers
                               swap-helpers)
                              (new-Actual360)))
