@@ -26,7 +26,7 @@
   (exit))
 
 ; current QuantLib version
-(define version "0.9.7")
+(define version "0.9.8")
 
 ; commands
 
