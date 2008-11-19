@@ -95,51 +95,51 @@ class BasketOptionPtr : public MultiAssetOptionPtr {
 
 
 %{
-using QuantLib::MCBasketEngine;
-typedef boost::shared_ptr<PricingEngine> MCBasketEnginePtr;
+using QuantLib::MCEuropeanBasketEngine;
+typedef boost::shared_ptr<PricingEngine> MCEuropeanBasketEnginePtr;
 %}
 
-%rename(MCBasketEngine) MCBasketEnginePtr;
-class MCBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
-    %feature("kwargs") MCBasketEnginePtr;
+%rename(MCEuropeanBasketEngine) MCEuropeanBasketEnginePtr;
+class MCEuropeanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
+    %feature("kwargs") MCEuropeanBasketEnginePtr;
   public:
     %extend {
-        MCBasketEnginePtr(const StochasticProcessArrayPtr& process,
-                          const std::string& traits,
-                          Size timeStepsPerYear = Null<Size>(),
-                          bool brownianBridge = false,
-                          bool antitheticVariate = false,
-                          bool controlVariate = false,
-                          intOrNull requiredSamples = Null<Size>(),
-                          doubleOrNull requiredTolerance = Null<Real>(),
-                          intOrNull maxSamples = Null<Size>(),
-                          BigInteger seed = 0) {
+        MCEuropeanBasketEnginePtr(const StochasticProcessArrayPtr& process,
+                                  const std::string& traits,
+                                  Size timeStepsPerYear = Null<Size>(),
+                                  bool brownianBridge = false,
+                                  bool antitheticVariate = false,
+                                  bool controlVariate = false,
+                                  intOrNull requiredSamples = Null<Size>(),
+                                  doubleOrNull requiredTolerance = Null<Real>(),
+                                  intOrNull maxSamples = Null<Size>(),
+                                  BigInteger seed = 0) {
             boost::shared_ptr<StochasticProcessArray> processes =
                  boost::dynamic_pointer_cast<StochasticProcessArray>(process);
             QL_REQUIRE(processes, "stochastic-process array required");
             std::string s = boost::algorithm::to_lower_copy(traits);
             if (s == "pseudorandom" || s == "pr")
-                return new MCBasketEnginePtr(
-                         new MCBasketEngine<PseudoRandom>(processes,
-                                                          timeStepsPerYear,
-                                                          brownianBridge,
-                                                          antitheticVariate,
-                                                          controlVariate,
-                                                          requiredSamples,
-                                                          requiredTolerance,
-                                                          maxSamples,
-                                                          seed));
+                return new MCEuropeanBasketEnginePtr(
+                   new MCEuropeanBasketEngine<PseudoRandom>(processes,
+                                                            timeStepsPerYear,
+                                                            brownianBridge,
+                                                            antitheticVariate,
+                                                            controlVariate,
+                                                            requiredSamples,
+                                                            requiredTolerance,
+                                                            maxSamples,
+                                                            seed));
             else if (s == "lowdiscrepancy" || s == "ld")
-                return new MCBasketEnginePtr(
-                       new MCBasketEngine<LowDiscrepancy>(processes,
-                                                          timeStepsPerYear,
-                                                          brownianBridge,
-                                                          antitheticVariate,
-                                                          controlVariate,
-                                                          requiredSamples,
-                                                          requiredTolerance,
-                                                          maxSamples,
-                                                          seed));
+                return new MCEuropeanBasketEnginePtr(
+                   new MCEuropeanBasketEngine<LowDiscrepancy>(processes,
+                                                              timeStepsPerYear,
+                                                              brownianBridge,
+                                                              antitheticVariate,
+                                                              controlVariate,
+                                                              requiredSamples,
+                                                              requiredTolerance,
+                                                              maxSamples,
+                                                              seed));
             else
                 QL_FAIL("unknown Monte Carlo engine type: "+s);
         }
