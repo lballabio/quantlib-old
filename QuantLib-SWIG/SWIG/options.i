@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
  Copyright (C) 2008 Tito Ingargiola
 
@@ -469,7 +469,6 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                             intOrNull timeStepsPerYear = Null<Size>(),
                             bool brownianBridge = false,
                             bool antitheticVariate = false,
-                            bool controlVariate = false,
                             intOrNull requiredSamples = Null<Size>(),
                             doubleOrNull requiredTolerance = Null<Real>(),
                             intOrNull maxSamples = Null<Size>(),
@@ -489,7 +488,6 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                             timeStepsPerYear,
                                                             brownianBridge,
                                                             antitheticVariate,
-                                                            controlVariate,
                                                             requiredSamples,
                                                             requiredTolerance,
                                                             maxSamples,
@@ -501,7 +499,6 @@ class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                             timeStepsPerYear,
                                                             brownianBridge,
                                                             antitheticVariate,
-                                                            controlVariate,
                                                             requiredSamples,
                                                             requiredTolerance,
                                                             maxSamples,
@@ -891,7 +888,6 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
                            Size timeStepsPerYear = Null<Size>(),
                            bool brownianBridge = false,
                            bool antitheticVariate = false,
-                           bool controlVariate = false,
                            intOrNull requiredSamples = Null<Size>(),
                            doubleOrNull requiredTolerance = Null<Real>(),
                            intOrNull maxSamples = Null<Size>(),
@@ -908,7 +904,6 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                            timeStepsPerYear,
                                                            brownianBridge,
                                                            antitheticVariate,
-                                                           controlVariate,
                                                            requiredSamples,
                                                            requiredTolerance,
                                                            maxSamples,
@@ -920,7 +915,6 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                            timeStepsPerYear,
                                                            brownianBridge,
                                                            antitheticVariate,
-                                                           controlVariate,
                                                            requiredSamples,
                                                            requiredTolerance,
                                                            maxSamples,
