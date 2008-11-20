@@ -106,6 +106,7 @@ class MCEuropeanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
     %extend {
         MCEuropeanBasketEnginePtr(const StochasticProcessArrayPtr& process,
                                   const std::string& traits,
+                                  Size timeSteps = Null<Size>(),
                                   Size timeStepsPerYear = Null<Size>(),
                                   bool brownianBridge = false,
                                   bool antitheticVariate = false,
@@ -120,6 +121,7 @@ class MCEuropeanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
             if (s == "pseudorandom" || s == "pr")
                 return new MCEuropeanBasketEnginePtr(
                    new MCEuropeanBasketEngine<PseudoRandom>(processes,
+                                                            timeSteps,
                                                             timeStepsPerYear,
                                                             brownianBridge,
                                                             antitheticVariate,
@@ -130,6 +132,7 @@ class MCEuropeanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
             else if (s == "lowdiscrepancy" || s == "ld")
                 return new MCEuropeanBasketEnginePtr(
                    new MCEuropeanBasketEngine<LowDiscrepancy>(processes,
+                                                              timeSteps,
                                                               timeStepsPerYear,
                                                               brownianBridge,
                                                               antitheticVariate,
@@ -251,6 +254,7 @@ class MCEverestEnginePtr : public boost::shared_ptr<PricingEngine> {
     %extend {
         MCEverestEnginePtr(const StochasticProcessArrayPtr& process,
                            const std::string& traits,
+                           Size timeSteps = Null<Size>(),
                            Size timeStepsPerYear = Null<Size>(),
                            bool brownianBridge = false,
                            bool antitheticVariate = false,
@@ -265,6 +269,7 @@ class MCEverestEnginePtr : public boost::shared_ptr<PricingEngine> {
             if (s == "pseudorandom" || s == "pr")
                 return new MCEverestEnginePtr(
                         new MCEverestEngine<PseudoRandom>(processes,
+                                                          timeSteps,
                                                           timeStepsPerYear,
                                                           brownianBridge,
                                                           antitheticVariate,
@@ -275,6 +280,7 @@ class MCEverestEnginePtr : public boost::shared_ptr<PricingEngine> {
             else if (s == "lowdiscrepancy" || s == "ld")
                 return new MCEverestEnginePtr(
                       new MCEverestEngine<LowDiscrepancy>(processes,
+                                                          timeSteps,
                                                           timeStepsPerYear,
                                                           brownianBridge,
                                                           antitheticVariate,

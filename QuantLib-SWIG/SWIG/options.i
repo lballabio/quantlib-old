@@ -885,6 +885,7 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
     %extend {
         MCBarrierEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
                            const std::string& traits,
+                           Size timeSteps = Null<Size>(),
                            Size timeStepsPerYear = Null<Size>(),
                            bool brownianBridge = false,
                            bool antitheticVariate = false,
@@ -901,6 +902,7 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
             if (s == "pseudorandom" || s == "pr")
                 return new MCBarrierEnginePtr(
                          new MCBarrierEngine<PseudoRandom>(bsProcess,
+                                                           timeSteps,
                                                            timeStepsPerYear,
                                                            brownianBridge,
                                                            antitheticVariate,
@@ -912,6 +914,7 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
             else if (s == "lowdiscrepancy" || s == "ld")
                 return new MCBarrierEnginePtr(
                        new MCBarrierEngine<LowDiscrepancy>(bsProcess,
+                                                           timeSteps,
                                                            timeStepsPerYear,
                                                            brownianBridge,
                                                            antitheticVariate,
