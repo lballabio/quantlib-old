@@ -54,48 +54,50 @@ EXTRA_DIST = \
     AddinCalc_vc7.vcproj \
     Makefile.vc \
     QuantLibAddinCalc.def \
-    QuantLibAddinCalc.idl \
     README.TXT
+#    QuantLibAddinCalc.idl 
 
 if BUILD_CALC
 noinst_HEADERS = \
     calcutils.hpp \
     conversions.hpp \
-    exercise.hpp \
-    instruments.hpp \
     init.hpp \
-    logging.hpp \
     loop.hpp \
-    options.hpp \
-    payoffs.hpp \
-    pricingengines.hpp \
-    processes.hpp \
-    qlo_all.hpp \
     qladdin.hpp \
-    qldefs.hpp \
-    settings.hpp \
-    utilities.hpp \
-    volatilities.hpp
+    qldefs.hpp 
+#    exercise.hpp \
+#   logging.hpp \
+#   options.hpp \
+#    payoffs.hpp \
+#    pricingengines.hpp \
+#    processes.hpp \
+#    qlo_all.hpp \
+#    instruments.hpp \
+#    settings.hpp \
+#    utilities.hpp \
+#    volatilities.hpp
+
 endif
 
 libQuantLibAddinCalc_la_SOURCES = \
     calcutils.cpp \
     conversions.cpp \
-    exercise.cpp \
-    funcdef.cpp \
     init.cpp \
-    instruments.cpp \
-    logging.cpp \
     manual.cpp \
-    options.cpp \
-    payoffs.cpp \
-    pricingengines.cpp \
-    processes.cpp \
-    qladdin.cpp \
-    session.cpp \
-    settings.cpp \
-    utilities.cpp \
-    volatilities.cpp
+    session.cpp 
+#    settings.cpp 
+#    exercise.cpp \
+#    funcdef.cpp \
+#    instruments.cpp \
+#    logging.cpp \
+#    options.cpp \
+#    payoffs.cpp \
+#    pricingengines.cpp \
+#    processes.cpp \
+#    qladdin.cpp \
+#    utilities.cpp \
+#    volatilities.cpp
+
 
 if BUILD_CALC
 

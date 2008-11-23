@@ -23,9 +23,14 @@
 
 /*! \page history Version History
 
-<strong>Release 0.9.7 - ??? 200?</strong>
+<strong>Release 0.9.7 - November 2008</strong>
 
 FUNCTIONALITY
+
+Bugfixes:
+
+- Fixed bug in which function ObjectWrapper::reset() neglected to update the
+  dirty_ flag
 
 Renamed Addin Functions:
 

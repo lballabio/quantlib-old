@@ -2354,6 +2354,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\qlo\indexes\swap\isdafixaswap.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\indexes\swap\isdafixaswap.hpp"
+					>
+				</File>
+				<File
 					RelativePath=".\qlo\indexes\swap\liborswap.cpp"
 					>
 				</File>

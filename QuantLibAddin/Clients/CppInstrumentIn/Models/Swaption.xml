@@ -2,13 +2,13 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="4">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>11</count>
+	<count>13</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="158" tracking_level="1" version="0" object_id="_1">
+		<px class_id="156" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>swaption_sched_fix</ObjectId>
 			<ClassName>qlSchedule</ClassName>
-			<EffectiveDate class_id="203" tracking_level="0" version="0">
+			<EffectiveDate class_id="204" tracking_level="0" version="0">
 				<which>4</which>
 				<value>40305</value>
 			</EffectiveDate>
@@ -24,21 +24,21 @@
 			<EndOfMonth>0</EndOfMonth>
 			<FirstDate>
 				<which>0</which>
-				<value class_id="204" tracking_level="0" version="0"></value>
+				<value class_id="205" tracking_level="0" version="0"></value>
 			</FirstDate>
 			<NextToLastDate>
 				<which>0</which>
 				<value></value>
 			</NextToLastDate>
 			<Permanent>0</Permanent>
-			<UserProperties class_id="205" tracking_level="0" version="0">
+			<UserProperties class_id="206" tracking_level="0" version="0">
 				<count>0</count>
 				<item_version>0</item_version>
 			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="158" object_id="_2">
+		<px class_id_reference="156" object_id="_2">
 			<ObjectId>swaption_sched_flt</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -86,7 +86,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="126" tracking_level="1" version="0" object_id="_4">
+		<px class_id="123" tracking_level="1" version="0" object_id="_4">
 			<ObjectId>EngineP</ObjectId>
 			<ClassName>qlDiscountingSwapEngine</ClassName>
 			<YieldCurve>_EURYC6M</YieldCurve>
@@ -98,7 +98,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="126" object_id="_5">
+		<px class_id_reference="123" object_id="_5">
 			<ObjectId>EngineR</ObjectId>
 			<ClassName>qlDiscountingSwapEngine</ClassName>
 			<YieldCurve>_EURYC6M</YieldCurve>
@@ -110,11 +110,43 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="123" tracking_level="1" version="0" object_id="_6">
+		<px class_id="180" tracking_level="1" version="0" object_id="_6">
+			<ObjectId>SwaptionVolPayer</ObjectId>
+			<ClassName>qlSpreadedSwaptionVolatility</ClassName>
+			<BaseVolStructure>SpreadsVol</BaseVolStructure>
+			<Spread>
+				<which>4</which>
+				<value>0.089999999999999997</value>
+			</Spread>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="180" object_id="_7">
+			<ObjectId>SwaptionVolReceiver</ObjectId>
+			<ClassName>qlSpreadedSwaptionVolatility</ClassName>
+			<BaseVolStructure>SpreadsVol</BaseVolStructure>
+			<Spread>
+				<which>4</which>
+				<value>0.089999999999999997</value>
+			</Spread>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="120" tracking_level="1" version="0" object_id="_8">
 			<ObjectId>SwaptionEP</ObjectId>
 			<ClassName>qlBlackSwaptionEngine</ClassName>
 			<YieldCurve>_EURYC6M</YieldCurve>
-			<VolTS>SpreadsVol</VolTS>
+			<VolTS>SwaptionVolPayer</VolTS>
 			<Permanent>0</Permanent>
 			<UserProperties>
 				<count>0</count>
@@ -123,11 +155,11 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="123" object_id="_7">
+		<px class_id_reference="120" object_id="_9">
 			<ObjectId>SwaptionER</ObjectId>
 			<ClassName>qlBlackSwaptionEngine</ClassName>
 			<YieldCurve>_EURYC6M</YieldCurve>
-			<VolTS>SpreadsVol</VolTS>
+			<VolTS>SwaptionVolReceiver</VolTS>
 			<Permanent>0</Permanent>
 			<UserProperties>
 				<count>0</count>
@@ -136,7 +168,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="194" tracking_level="1" version="0" object_id="_8">
+		<px class_id="195" tracking_level="1" version="0" object_id="_10">
 			<ObjectId>swaption_pay</ObjectId>
 			<ClassName>qlVanillaSwap</ClassName>
 			<PayerReceiver>Payer</PayerReceiver>
@@ -153,7 +185,7 @@
 			<UserProperties>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item class_id="206" tracking_level="0" version="0">
+				<item class_id="207" tracking_level="0" version="0">
 					<first>EngineID</first>
 					<second>
 						<which>2</which>
@@ -164,7 +196,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="194" object_id="_9">
+		<px class_id_reference="195" object_id="_11">
 			<ObjectId>swaption_receive</ObjectId>
 			<ClassName>qlVanillaSwap</ClassName>
 			<PayerReceiver>Receiver</PayerReceiver>
@@ -192,7 +224,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="174" tracking_level="1" version="0" object_id="_10">
+		<px class_id="175" tracking_level="1" version="0" object_id="_12">
 			<ObjectId>Swaption</ObjectId>
 			<ClassName>qlSwaption</ClassName>
 			<VanillaSwap>swaption_pay</VanillaSwap>
@@ -213,7 +245,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="174" object_id="_11">
+		<px class_id_reference="175" object_id="_13">
 			<ObjectId>Swaption2</ObjectId>
 			<ClassName>qlSwaption</ClassName>
 			<VanillaSwap>swaption_receive</VanillaSwap>

@@ -23,11 +23,11 @@ OutFile "..\${APP}-bin-${VER_NUMBER}.exe"
 UninstallIcon "Docs\images\favicon.ico"
 UninstallText "This will uninstall ${APP}. Hit next to continue."
 
-ComponentText \
-"By default the installer will install the QuantLibXL Addin (XLL) and basic example workbooks." \
-"Optional components:" \
-"The QuantLibXL Framework is a business application layer written in Excel VBA, \
-including template workbooks for market data and interest rate derivates."
+#ComponentText \
+#"By default the installer will install the QuantLibXL Addin (XLL) and basic example workbooks." \
+#"Optional components:" \
+#"The QuantLibXL Framework is a business application layer written in Excel VBA, \
+#including template workbooks for market data and interest rate derivates."
 
 # Installer Instructions
 
@@ -79,8 +79,8 @@ Section
                    "$INSTDIR\QuantLibXLUninstall.exe" "" \
                    "$INSTDIR\QuantLibXLUninstall.exe" 0
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
-                   "$INSTDIR\framework\QuantLibXL.xla"
+    #CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
+    #               "$INSTDIR\framework\QuantLibXL.xla"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\README.txt.lnk" \
                    "$INSTDIR\README.txt"
@@ -104,27 +104,27 @@ Section
 
 SectionEnd
 
-Section /o Framework
+#Section /o Framework
 
-    SetOutPath "$INSTDIR\framework"
-    File "framework\QuantLibXL.xla"
-    File "framework\QuantLibXLDeveloperTeam.cer"
+#    SetOutPath "$INSTDIR\framework"
+#    File "framework\QuantLibXL.xla"
+#    File "framework\QuantLibXLDeveloperTeam.cer"
+#
+#    SetOutPath "$INSTDIR\Workbooks"
+#    File /r "Workbooks\*.xls"
 
-    SetOutPath "$INSTDIR\Workbooks"
-    File /r "Workbooks\*.xls"
+#    SetOutPath "$INSTDIR\Data"
+#    File /r "Data\*.xls"
+#    File /r "Data\*.xml"
 
-    SetOutPath "$INSTDIR\Data"
-    File /r "Data\*.xls"
-    File /r "Data\*.xml"
+#    SetOutPath "$INSTDIR\metadata"
+#    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
 
-    SetOutPath "$INSTDIR\metadata"
-    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
+#    # ObjectBuilder crashes if it can't find the icon
+#    SetOutPath "$INSTDIR\Docs\images"
+#    File "Docs\images\favicon.bmp"
 
-    # ObjectBuilder crashes if it can't find the icon
-    SetOutPath "$INSTDIR\Docs\images"
-    File "Docs\images\favicon.bmp"
-
-SectionEnd
+#SectionEnd
 
 Section "Uninstall"
 

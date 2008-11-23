@@ -58,7 +58,7 @@ Section
     SetOutPath "$INSTDIR\Addins\Calc"
     File "Addins\Calc\Makefile.vc"
     File "Addins\Calc\QuantLibAddinCalc.def"
-    File "Addins\Calc\QuantLibAddinCalc.idl"
+    #File "Addins\Calc\QuantLibAddinCalc.idl"
 
     SetOutPath "$INSTDIR\Clients\Calc"
     File /r "Clients\Calc\*.ods"

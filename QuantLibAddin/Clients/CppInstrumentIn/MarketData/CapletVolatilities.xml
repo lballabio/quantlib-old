@@ -5,20 +5,20 @@
 	<count>188</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="140" tracking_level="1" version="0" object_id="_1">
+		<px class_id="138" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>EUR_VCAP_3Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.17010000000000003</Value>
 			<TickValue>0.0001</TickValue>
 			<Permanent>0</Permanent>
-			<UserProperties class_id="203" tracking_level="0" version="0">
+			<UserProperties class_id="204" tracking_level="0" version="0">
 				<count>0</count>
 				<item_version>0</item_version>
 			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_2">
+		<px class_id_reference="138" object_id="_2">
 			<ObjectId>EUR_VCAP_3Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.30099999999999999</Value>
@@ -31,7 +31,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_3">
+		<px class_id_reference="138" object_id="_3">
 			<ObjectId>EUR_VCAP_3Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.28000000000000003</Value>
@@ -44,7 +44,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_4">
+		<px class_id_reference="138" object_id="_4">
 			<ObjectId>EUR_VCAP_3Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.26200000000000001</Value>
@@ -57,7 +57,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_5">
+		<px class_id_reference="138" object_id="_5">
 			<ObjectId>EUR_VCAP_3Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.23000000000000001</Value>
@@ -70,7 +70,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_6">
+		<px class_id_reference="138" object_id="_6">
 			<ObjectId>EUR_VCAP_3Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.20300000000000001</Value>
@@ -83,7 +83,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_7">
+		<px class_id_reference="138" object_id="_7">
 			<ObjectId>EUR_VCAP_3Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.17999999999999999</Value>
@@ -96,7 +96,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_8">
+		<px class_id_reference="138" object_id="_8">
 			<ObjectId>EUR_VCAP_3Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.161</Value>
@@ -109,7 +109,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_9">
+		<px class_id_reference="138" object_id="_9">
 			<ObjectId>EUR_VCAP_3Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14699999999999999</Value>
@@ -122,7 +122,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_10">
+		<px class_id_reference="138" object_id="_10">
 			<ObjectId>EUR_VCAP_3Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14199999999999999</Value>
@@ -135,7 +135,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_11">
+		<px class_id_reference="138" object_id="_11">
 			<ObjectId>EUR_VCAP_3Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14199999999999999</Value>
@@ -148,7 +148,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_12">
+		<px class_id_reference="138" object_id="_12">
 			<ObjectId>EUR_VCAP_3Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14699999999999999</Value>
@@ -161,7 +161,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_13">
+		<px class_id_reference="138" object_id="_13">
 			<ObjectId>EUR_VCAP_3Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.155</Value>
@@ -174,7 +174,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_14">
+		<px class_id_reference="138" object_id="_14">
 			<ObjectId>EUR_VCAP_3Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.17199999999999999</Value>
@@ -187,7 +187,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_15">
+		<px class_id_reference="138" object_id="_15">
 			<ObjectId>EUR_VCAP_4Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.16420000000000001</Value>
@@ -200,7 +200,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_16">
+		<px class_id_reference="138" object_id="_16">
 			<ObjectId>EUR_VCAP_4Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.28600000000000003</Value>
@@ -213,7 +213,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_17">
+		<px class_id_reference="138" object_id="_17">
 			<ObjectId>EUR_VCAP_4Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.26700000000000002</Value>
@@ -226,7 +226,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_18">
+		<px class_id_reference="138" object_id="_18">
 			<ObjectId>EUR_VCAP_4Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.25</Value>
@@ -239,7 +239,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_19">
+		<px class_id_reference="138" object_id="_19">
 			<ObjectId>EUR_VCAP_4Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.22</Value>
@@ -252,7 +252,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_20">
+		<px class_id_reference="138" object_id="_20">
 			<ObjectId>EUR_VCAP_4Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.19399999999999998</Value>
@@ -265,7 +265,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_21">
+		<px class_id_reference="138" object_id="_21">
 			<ObjectId>EUR_VCAP_4Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.17300000000000001</Value>
@@ -278,7 +278,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_22">
+		<px class_id_reference="138" object_id="_22">
 			<ObjectId>EUR_VCAP_4Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.155</Value>
@@ -291,7 +291,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_23">
+		<px class_id_reference="138" object_id="_23">
 			<ObjectId>EUR_VCAP_4Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14300000000000002</Value>
@@ -304,7 +304,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_24">
+		<px class_id_reference="138" object_id="_24">
 			<ObjectId>EUR_VCAP_4Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13800000000000001</Value>
@@ -317,7 +317,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_25">
+		<px class_id_reference="138" object_id="_25">
 			<ObjectId>EUR_VCAP_4Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13800000000000001</Value>
@@ -330,7 +330,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_26">
+		<px class_id_reference="138" object_id="_26">
 			<ObjectId>EUR_VCAP_4Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14400000000000002</Value>
@@ -343,7 +343,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_27">
+		<px class_id_reference="138" object_id="_27">
 			<ObjectId>EUR_VCAP_4Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.152</Value>
@@ -356,7 +356,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_28">
+		<px class_id_reference="138" object_id="_28">
 			<ObjectId>EUR_VCAP_4Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.16899999999999998</Value>
@@ -369,7 +369,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_29">
+		<px class_id_reference="138" object_id="_29">
 			<ObjectId>EUR_VCAP_5Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.15939999999999999</Value>
@@ -382,7 +382,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_30">
+		<px class_id_reference="138" object_id="_30">
 			<ObjectId>EUR_VCAP_5Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.27399999999999997</Value>
@@ -395,7 +395,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_31">
+		<px class_id_reference="138" object_id="_31">
 			<ObjectId>EUR_VCAP_5Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.25600000000000001</Value>
@@ -408,7 +408,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_32">
+		<px class_id_reference="138" object_id="_32">
 			<ObjectId>EUR_VCAP_5Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.23999999999999999</Value>
@@ -421,7 +421,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_33">
+		<px class_id_reference="138" object_id="_33">
 			<ObjectId>EUR_VCAP_5Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.21199999999999999</Value>
@@ -434,7 +434,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_34">
+		<px class_id_reference="138" object_id="_34">
 			<ObjectId>EUR_VCAP_5Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.188</Value>
@@ -447,7 +447,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_35">
+		<px class_id_reference="138" object_id="_35">
 			<ObjectId>EUR_VCAP_5Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.16800000000000001</Value>
@@ -460,7 +460,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_36">
+		<px class_id_reference="138" object_id="_36">
 			<ObjectId>EUR_VCAP_5Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.152</Value>
@@ -473,7 +473,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_37">
+		<px class_id_reference="138" object_id="_37">
 			<ObjectId>EUR_VCAP_5Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14000000000000001</Value>
@@ -486,7 +486,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_38">
+		<px class_id_reference="138" object_id="_38">
 			<ObjectId>EUR_VCAP_5Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13500000000000001</Value>
@@ -499,7 +499,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_39">
+		<px class_id_reference="138" object_id="_39">
 			<ObjectId>EUR_VCAP_5Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13500000000000001</Value>
@@ -512,7 +512,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_40">
+		<px class_id_reference="138" object_id="_40">
 			<ObjectId>EUR_VCAP_5Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14000000000000001</Value>
@@ -525,7 +525,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_41">
+		<px class_id_reference="138" object_id="_41">
 			<ObjectId>EUR_VCAP_5Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14699999999999999</Value>
@@ -538,7 +538,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_42">
+		<px class_id_reference="138" object_id="_42">
 			<ObjectId>EUR_VCAP_5Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.16200000000000001</Value>
@@ -551,7 +551,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_43">
+		<px class_id_reference="138" object_id="_43">
 			<ObjectId>EUR_VCAP_6Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.15460000000000002</Value>
@@ -564,7 +564,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_44">
+		<px class_id_reference="138" object_id="_44">
 			<ObjectId>EUR_VCAP_6Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.26200000000000001</Value>
@@ -577,7 +577,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_45">
+		<px class_id_reference="138" object_id="_45">
 			<ObjectId>EUR_VCAP_6Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.245</Value>
@@ -590,7 +590,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_46">
+		<px class_id_reference="138" object_id="_46">
 			<ObjectId>EUR_VCAP_6Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.23000000000000001</Value>
@@ -603,7 +603,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_47">
+		<px class_id_reference="138" object_id="_47">
 			<ObjectId>EUR_VCAP_6Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.20399999999999999</Value>
@@ -616,7 +616,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_48">
+		<px class_id_reference="138" object_id="_48">
 			<ObjectId>EUR_VCAP_6Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.182</Value>
@@ -629,7 +629,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_49">
+		<px class_id_reference="138" object_id="_49">
 			<ObjectId>EUR_VCAP_6Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.16399999999999998</Value>
@@ -642,7 +642,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_50">
+		<px class_id_reference="138" object_id="_50">
 			<ObjectId>EUR_VCAP_6Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14800000000000002</Value>
@@ -655,7 +655,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_51">
+		<px class_id_reference="138" object_id="_51">
 			<ObjectId>EUR_VCAP_6Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13699999999999998</Value>
@@ -668,7 +668,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_52">
+		<px class_id_reference="138" object_id="_52">
 			<ObjectId>EUR_VCAP_6Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13200000000000001</Value>
@@ -681,7 +681,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_53">
+		<px class_id_reference="138" object_id="_53">
 			<ObjectId>EUR_VCAP_6Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13100000000000001</Value>
@@ -694,7 +694,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_54">
+		<px class_id_reference="138" object_id="_54">
 			<ObjectId>EUR_VCAP_6Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13300000000000001</Value>
@@ -707,7 +707,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_55">
+		<px class_id_reference="138" object_id="_55">
 			<ObjectId>EUR_VCAP_6Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13900000000000001</Value>
@@ -720,7 +720,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_56">
+		<px class_id_reference="138" object_id="_56">
 			<ObjectId>EUR_VCAP_6Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.152</Value>
@@ -733,7 +733,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_57">
+		<px class_id_reference="138" object_id="_57">
 			<ObjectId>EUR_VCAP_7Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14990000000000001</Value>
@@ -746,7 +746,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_58">
+		<px class_id_reference="138" object_id="_58">
 			<ObjectId>EUR_VCAP_7Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.252</Value>
@@ -759,7 +759,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_59">
+		<px class_id_reference="138" object_id="_59">
 			<ObjectId>EUR_VCAP_7Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.23699999999999999</Value>
@@ -772,7 +772,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_60">
+		<px class_id_reference="138" object_id="_60">
 			<ObjectId>EUR_VCAP_7Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.223</Value>
@@ -785,7 +785,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_61">
+		<px class_id_reference="138" object_id="_61">
 			<ObjectId>EUR_VCAP_7Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.19800000000000001</Value>
@@ -798,7 +798,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_62">
+		<px class_id_reference="138" object_id="_62">
 			<ObjectId>EUR_VCAP_7Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.17800000000000002</Value>
@@ -811,7 +811,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_63">
+		<px class_id_reference="138" object_id="_63">
 			<ObjectId>EUR_VCAP_7Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.16</Value>
@@ -824,7 +824,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_64">
+		<px class_id_reference="138" object_id="_64">
 			<ObjectId>EUR_VCAP_7Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14499999999999999</Value>
@@ -837,7 +837,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_65">
+		<px class_id_reference="138" object_id="_65">
 			<ObjectId>EUR_VCAP_7Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13500000000000001</Value>
@@ -850,7 +850,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_66">
+		<px class_id_reference="138" object_id="_66">
 			<ObjectId>EUR_VCAP_7Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.129</Value>
@@ -863,7 +863,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_67">
+		<px class_id_reference="138" object_id="_67">
 			<ObjectId>EUR_VCAP_7Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.127</Value>
@@ -876,7 +876,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_68">
+		<px class_id_reference="138" object_id="_68">
 			<ObjectId>EUR_VCAP_7Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.128</Value>
@@ -889,7 +889,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_69">
+		<px class_id_reference="138" object_id="_69">
 			<ObjectId>EUR_VCAP_7Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13300000000000001</Value>
@@ -902,7 +902,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_70">
+		<px class_id_reference="138" object_id="_70">
 			<ObjectId>EUR_VCAP_7Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14400000000000002</Value>
@@ -915,7 +915,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_71">
+		<px class_id_reference="138" object_id="_71">
 			<ObjectId>EUR_VCAP_8Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14550000000000002</Value>
@@ -928,7 +928,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_72">
+		<px class_id_reference="138" object_id="_72">
 			<ObjectId>EUR_VCAP_8Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.245</Value>
@@ -941,7 +941,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_73">
+		<px class_id_reference="138" object_id="_73">
 			<ObjectId>EUR_VCAP_8Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.23000000000000001</Value>
@@ -954,7 +954,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_74">
+		<px class_id_reference="138" object_id="_74">
 			<ObjectId>EUR_VCAP_8Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.217</Value>
@@ -967,7 +967,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_75">
+		<px class_id_reference="138" object_id="_75">
 			<ObjectId>EUR_VCAP_8Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.193</Value>
@@ -980,7 +980,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_76">
+		<px class_id_reference="138" object_id="_76">
 			<ObjectId>EUR_VCAP_8Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.17399999999999999</Value>
@@ -993,7 +993,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_77">
+		<px class_id_reference="138" object_id="_77">
 			<ObjectId>EUR_VCAP_8Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.157</Value>
@@ -1006,7 +1006,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_78">
+		<px class_id_reference="138" object_id="_78">
 			<ObjectId>EUR_VCAP_8Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14199999999999999</Value>
@@ -1019,7 +1019,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_79">
+		<px class_id_reference="138" object_id="_79">
 			<ObjectId>EUR_VCAP_8Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13200000000000001</Value>
@@ -1032,7 +1032,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_80">
+		<px class_id_reference="138" object_id="_80">
 			<ObjectId>EUR_VCAP_8Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.125</Value>
@@ -1045,7 +1045,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_81">
+		<px class_id_reference="138" object_id="_81">
 			<ObjectId>EUR_VCAP_8Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.12300000000000001</Value>
@@ -1058,7 +1058,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_82">
+		<px class_id_reference="138" object_id="_82">
 			<ObjectId>EUR_VCAP_8Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.12300000000000001</Value>
@@ -1071,7 +1071,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_83">
+		<px class_id_reference="138" object_id="_83">
 			<ObjectId>EUR_VCAP_8Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.127</Value>
@@ -1084,7 +1084,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_84">
+		<px class_id_reference="138" object_id="_84">
 			<ObjectId>EUR_VCAP_8Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13699999999999998</Value>
@@ -1097,7 +1097,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_85">
+		<px class_id_reference="138" object_id="_85">
 			<ObjectId>EUR_VCAP_9Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14150000000000001</Value>
@@ -1110,7 +1110,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_86">
+		<px class_id_reference="138" object_id="_86">
 			<ObjectId>EUR_VCAP_9Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.23899999999999999</Value>
@@ -1123,7 +1123,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_87">
+		<px class_id_reference="138" object_id="_87">
 			<ObjectId>EUR_VCAP_9Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.22500000000000001</Value>
@@ -1136,7 +1136,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_88">
+		<px class_id_reference="138" object_id="_88">
 			<ObjectId>EUR_VCAP_9Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.21199999999999999</Value>
@@ -1149,7 +1149,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_89">
+		<px class_id_reference="138" object_id="_89">
 			<ObjectId>EUR_VCAP_9Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.19</Value>
@@ -1162,7 +1162,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_90">
+		<px class_id_reference="138" object_id="_90">
 			<ObjectId>EUR_VCAP_9Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.17100000000000001</Value>
@@ -1175,7 +1175,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_91">
+		<px class_id_reference="138" object_id="_91">
 			<ObjectId>EUR_VCAP_9Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.154</Value>
@@ -1188,7 +1188,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_92">
+		<px class_id_reference="138" object_id="_92">
 			<ObjectId>EUR_VCAP_9Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14000000000000001</Value>
@@ -1201,7 +1201,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_93">
+		<px class_id_reference="138" object_id="_93">
 			<ObjectId>EUR_VCAP_9Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.129</Value>
@@ -1214,7 +1214,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_94">
+		<px class_id_reference="138" object_id="_94">
 			<ObjectId>EUR_VCAP_9Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.122</Value>
@@ -1227,7 +1227,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_95">
+		<px class_id_reference="138" object_id="_95">
 			<ObjectId>EUR_VCAP_9Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11900000000000001</Value>
@@ -1240,7 +1240,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_96">
+		<px class_id_reference="138" object_id="_96">
 			<ObjectId>EUR_VCAP_9Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11900000000000001</Value>
@@ -1253,7 +1253,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_97">
+		<px class_id_reference="138" object_id="_97">
 			<ObjectId>EUR_VCAP_9Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.122</Value>
@@ -1266,7 +1266,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_98">
+		<px class_id_reference="138" object_id="_98">
 			<ObjectId>EUR_VCAP_9Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13200000000000001</Value>
@@ -1279,7 +1279,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_99">
+		<px class_id_reference="138" object_id="_99">
 			<ObjectId>EUR_VCAP_10Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13830000000000001</Value>
@@ -1292,7 +1292,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_100">
+		<px class_id_reference="138" object_id="_100">
 			<ObjectId>EUR_VCAP_10Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.23499999999999999</Value>
@@ -1305,7 +1305,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_101">
+		<px class_id_reference="138" object_id="_101">
 			<ObjectId>EUR_VCAP_10Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.222</Value>
@@ -1318,7 +1318,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_102">
+		<px class_id_reference="138" object_id="_102">
 			<ObjectId>EUR_VCAP_10Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.20899999999999999</Value>
@@ -1331,7 +1331,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_103">
+		<px class_id_reference="138" object_id="_103">
 			<ObjectId>EUR_VCAP_10Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.187</Value>
@@ -1344,7 +1344,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_104">
+		<px class_id_reference="138" object_id="_104">
 			<ObjectId>EUR_VCAP_10Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.16800000000000001</Value>
@@ -1357,7 +1357,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_105">
+		<px class_id_reference="138" object_id="_105">
 			<ObjectId>EUR_VCAP_10Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.152</Value>
@@ -1370,7 +1370,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_106">
+		<px class_id_reference="138" object_id="_106">
 			<ObjectId>EUR_VCAP_10Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13800000000000001</Value>
@@ -1383,7 +1383,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_107">
+		<px class_id_reference="138" object_id="_107">
 			<ObjectId>EUR_VCAP_10Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.127</Value>
@@ -1396,7 +1396,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_108">
+		<px class_id_reference="138" object_id="_108">
 			<ObjectId>EUR_VCAP_10Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.12</Value>
@@ -1409,7 +1409,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_109">
+		<px class_id_reference="138" object_id="_109">
 			<ObjectId>EUR_VCAP_10Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11599999999999999</Value>
@@ -1422,7 +1422,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_110">
+		<px class_id_reference="138" object_id="_110">
 			<ObjectId>EUR_VCAP_10Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.115</Value>
@@ -1435,7 +1435,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_111">
+		<px class_id_reference="138" object_id="_111">
 			<ObjectId>EUR_VCAP_10Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11800000000000001</Value>
@@ -1448,7 +1448,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_112">
+		<px class_id_reference="138" object_id="_112">
 			<ObjectId>EUR_VCAP_10Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.128</Value>
@@ -1461,7 +1461,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_113">
+		<px class_id_reference="138" object_id="_113">
 			<ObjectId>EUR_VCAP_12Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.1326</Value>
@@ -1474,7 +1474,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_114">
+		<px class_id_reference="138" object_id="_114">
 			<ObjectId>EUR_VCAP_12Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.22800000000000001</Value>
@@ -1487,7 +1487,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_115">
+		<px class_id_reference="138" object_id="_115">
 			<ObjectId>EUR_VCAP_12Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.214</Value>
@@ -1500,7 +1500,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_116">
+		<px class_id_reference="138" object_id="_116">
 			<ObjectId>EUR_VCAP_12Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.20300000000000001</Value>
@@ -1513,7 +1513,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_117">
+		<px class_id_reference="138" object_id="_117">
 			<ObjectId>EUR_VCAP_12Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.182</Value>
@@ -1526,7 +1526,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_118">
+		<px class_id_reference="138" object_id="_118">
 			<ObjectId>EUR_VCAP_12Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.16399999999999998</Value>
@@ -1539,7 +1539,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_119">
+		<px class_id_reference="138" object_id="_119">
 			<ObjectId>EUR_VCAP_12Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14800000000000002</Value>
@@ -1552,7 +1552,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_120">
+		<px class_id_reference="138" object_id="_120">
 			<ObjectId>EUR_VCAP_12Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13500000000000001</Value>
@@ -1565,7 +1565,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_121">
+		<px class_id_reference="138" object_id="_121">
 			<ObjectId>EUR_VCAP_12Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.124</Value>
@@ -1578,7 +1578,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_122">
+		<px class_id_reference="138" object_id="_122">
 			<ObjectId>EUR_VCAP_12Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11699999999999999</Value>
@@ -1591,7 +1591,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_123">
+		<px class_id_reference="138" object_id="_123">
 			<ObjectId>EUR_VCAP_12Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11199999999999999</Value>
@@ -1604,7 +1604,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_124">
+		<px class_id_reference="138" object_id="_124">
 			<ObjectId>EUR_VCAP_12Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11</Value>
@@ -1617,7 +1617,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_125">
+		<px class_id_reference="138" object_id="_125">
 			<ObjectId>EUR_VCAP_12Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11199999999999999</Value>
@@ -1630,7 +1630,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_126">
+		<px class_id_reference="138" object_id="_126">
 			<ObjectId>EUR_VCAP_12Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.12</Value>
@@ -1643,7 +1643,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_127">
+		<px class_id_reference="138" object_id="_127">
 			<ObjectId>EUR_VCAP_15Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.12590000000000001</Value>
@@ -1656,7 +1656,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_128">
+		<px class_id_reference="138" object_id="_128">
 			<ObjectId>EUR_VCAP_15Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.21899999999999997</Value>
@@ -1669,7 +1669,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_129">
+		<px class_id_reference="138" object_id="_129">
 			<ObjectId>EUR_VCAP_15Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.20600000000000002</Value>
@@ -1682,7 +1682,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_130">
+		<px class_id_reference="138" object_id="_130">
 			<ObjectId>EUR_VCAP_15Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.19500000000000001</Value>
@@ -1695,7 +1695,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_131">
+		<px class_id_reference="138" object_id="_131">
 			<ObjectId>EUR_VCAP_15Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.17499999999999999</Value>
@@ -1708,7 +1708,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_132">
+		<px class_id_reference="138" object_id="_132">
 			<ObjectId>EUR_VCAP_15Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.159</Value>
@@ -1721,7 +1721,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_133">
+		<px class_id_reference="138" object_id="_133">
 			<ObjectId>EUR_VCAP_15Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14400000000000002</Value>
@@ -1734,7 +1734,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_134">
+		<px class_id_reference="138" object_id="_134">
 			<ObjectId>EUR_VCAP_15Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13</Value>
@@ -1747,7 +1747,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_135">
+		<px class_id_reference="138" object_id="_135">
 			<ObjectId>EUR_VCAP_15Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.12</Value>
@@ -1760,7 +1760,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_136">
+		<px class_id_reference="138" object_id="_136">
 			<ObjectId>EUR_VCAP_15Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11199999999999999</Value>
@@ -1773,7 +1773,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_137">
+		<px class_id_reference="138" object_id="_137">
 			<ObjectId>EUR_VCAP_15Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.107</Value>
@@ -1786,7 +1786,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_138">
+		<px class_id_reference="138" object_id="_138">
 			<ObjectId>EUR_VCAP_15Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10400000000000001</Value>
@@ -1799,7 +1799,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_139">
+		<px class_id_reference="138" object_id="_139">
 			<ObjectId>EUR_VCAP_15Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.106</Value>
@@ -1812,7 +1812,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_140">
+		<px class_id_reference="138" object_id="_140">
 			<ObjectId>EUR_VCAP_15Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.114</Value>
@@ -1825,7 +1825,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_141">
+		<px class_id_reference="138" object_id="_141">
 			<ObjectId>EUR_VCAP_20Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.12039999999999999</Value>
@@ -1838,7 +1838,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_142">
+		<px class_id_reference="138" object_id="_142">
 			<ObjectId>EUR_VCAP_20Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.21100000000000002</Value>
@@ -1851,7 +1851,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_143">
+		<px class_id_reference="138" object_id="_143">
 			<ObjectId>EUR_VCAP_20Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.19899999999999998</Value>
@@ -1864,7 +1864,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_144">
+		<px class_id_reference="138" object_id="_144">
 			<ObjectId>EUR_VCAP_20Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.188</Value>
@@ -1877,7 +1877,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_145">
+		<px class_id_reference="138" object_id="_145">
 			<ObjectId>EUR_VCAP_20Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.16899999999999998</Value>
@@ -1890,7 +1890,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_146">
+		<px class_id_reference="138" object_id="_146">
 			<ObjectId>EUR_VCAP_20Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.153</Value>
@@ -1903,7 +1903,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_147">
+		<px class_id_reference="138" object_id="_147">
 			<ObjectId>EUR_VCAP_20Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13900000000000001</Value>
@@ -1916,7 +1916,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_148">
+		<px class_id_reference="138" object_id="_148">
 			<ObjectId>EUR_VCAP_20Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.126</Value>
@@ -1929,7 +1929,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_149">
+		<px class_id_reference="138" object_id="_149">
 			<ObjectId>EUR_VCAP_20Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11599999999999999</Value>
@@ -1942,7 +1942,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_150">
+		<px class_id_reference="138" object_id="_150">
 			<ObjectId>EUR_VCAP_20Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10800000000000001</Value>
@@ -1955,7 +1955,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_151">
+		<px class_id_reference="138" object_id="_151">
 			<ObjectId>EUR_VCAP_20Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10400000000000001</Value>
@@ -1968,7 +1968,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_152">
+		<px class_id_reference="138" object_id="_152">
 			<ObjectId>EUR_VCAP_20Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10199999999999999</Value>
@@ -1981,7 +1981,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_153">
+		<px class_id_reference="138" object_id="_153">
 			<ObjectId>EUR_VCAP_20Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10400000000000001</Value>
@@ -1994,7 +1994,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_154">
+		<px class_id_reference="138" object_id="_154">
 			<ObjectId>EUR_VCAP_20Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.113</Value>
@@ -2007,7 +2007,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_155">
+		<px class_id_reference="138" object_id="_155">
 			<ObjectId>EUR_VCAP_25Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.1168</Value>
@@ -2020,7 +2020,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_156">
+		<px class_id_reference="138" object_id="_156">
 			<ObjectId>EUR_VCAP_25Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.20499999999999999</Value>
@@ -2033,7 +2033,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_157">
+		<px class_id_reference="138" object_id="_157">
 			<ObjectId>EUR_VCAP_25Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.193</Value>
@@ -2046,7 +2046,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_158">
+		<px class_id_reference="138" object_id="_158">
 			<ObjectId>EUR_VCAP_25Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.182</Value>
@@ -2059,7 +2059,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_159">
+		<px class_id_reference="138" object_id="_159">
 			<ObjectId>EUR_VCAP_25Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.16399999999999998</Value>
@@ -2072,7 +2072,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_160">
+		<px class_id_reference="138" object_id="_160">
 			<ObjectId>EUR_VCAP_25Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14800000000000002</Value>
@@ -2085,7 +2085,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_161">
+		<px class_id_reference="138" object_id="_161">
 			<ObjectId>EUR_VCAP_25Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13400000000000001</Value>
@@ -2098,7 +2098,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_162">
+		<px class_id_reference="138" object_id="_162">
 			<ObjectId>EUR_VCAP_25Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.122</Value>
@@ -2111,7 +2111,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_163">
+		<px class_id_reference="138" object_id="_163">
 			<ObjectId>EUR_VCAP_25Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11199999999999999</Value>
@@ -2124,7 +2124,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_164">
+		<px class_id_reference="138" object_id="_164">
 			<ObjectId>EUR_VCAP_25Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.105</Value>
@@ -2137,7 +2137,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_165">
+		<px class_id_reference="138" object_id="_165">
 			<ObjectId>EUR_VCAP_25Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10199999999999999</Value>
@@ -2150,7 +2150,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_166">
+		<px class_id_reference="138" object_id="_166">
 			<ObjectId>EUR_VCAP_25Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10000000000000001</Value>
@@ -2163,7 +2163,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_167">
+		<px class_id_reference="138" object_id="_167">
 			<ObjectId>EUR_VCAP_25Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10400000000000001</Value>
@@ -2176,7 +2176,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_168">
+		<px class_id_reference="138" object_id="_168">
 			<ObjectId>EUR_VCAP_25Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.113</Value>
@@ -2189,7 +2189,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_169">
+		<px class_id_reference="138" object_id="_169">
 			<ObjectId>EUR_VCAP_30Y_6M_ATM</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.1142</Value>
@@ -2202,7 +2202,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_170">
+		<px class_id_reference="138" object_id="_170">
 			<ObjectId>EUR_VCAP_30Y_6M_200</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.20000000000000001</Value>
@@ -2215,7 +2215,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_171">
+		<px class_id_reference="138" object_id="_171">
 			<ObjectId>EUR_VCAP_30Y_6M_225</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.188</Value>
@@ -2228,7 +2228,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_172">
+		<px class_id_reference="138" object_id="_172">
 			<ObjectId>EUR_VCAP_30Y_6M_250</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.17699999999999999</Value>
@@ -2241,7 +2241,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_173">
+		<px class_id_reference="138" object_id="_173">
 			<ObjectId>EUR_VCAP_30Y_6M_300</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.159</Value>
@@ -2254,7 +2254,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_174">
+		<px class_id_reference="138" object_id="_174">
 			<ObjectId>EUR_VCAP_30Y_6M_350</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.14400000000000002</Value>
@@ -2267,7 +2267,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_175">
+		<px class_id_reference="138" object_id="_175">
 			<ObjectId>EUR_VCAP_30Y_6M_400</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.13</Value>
@@ -2280,7 +2280,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_176">
+		<px class_id_reference="138" object_id="_176">
 			<ObjectId>EUR_VCAP_30Y_6M_450</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.11900000000000001</Value>
@@ -2293,7 +2293,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_177">
+		<px class_id_reference="138" object_id="_177">
 			<ObjectId>EUR_VCAP_30Y_6M_500</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.109</Value>
@@ -2306,7 +2306,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_178">
+		<px class_id_reference="138" object_id="_178">
 			<ObjectId>EUR_VCAP_30Y_6M_550</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10300000000000001</Value>
@@ -2319,7 +2319,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_179">
+		<px class_id_reference="138" object_id="_179">
 			<ObjectId>EUR_VCAP_30Y_6M_600</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10000000000000001</Value>
@@ -2332,7 +2332,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_180">
+		<px class_id_reference="138" object_id="_180">
 			<ObjectId>EUR_VCAP_30Y_6M_700</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10000000000000001</Value>
@@ -2345,7 +2345,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_181">
+		<px class_id_reference="138" object_id="_181">
 			<ObjectId>EUR_VCAP_30Y_6M_800</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.10400000000000001</Value>
@@ -2358,7 +2358,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="140" object_id="_182">
+		<px class_id_reference="138" object_id="_182">
 			<ObjectId>EUR_VCAP_30Y_6M_1000</ObjectId>
 			<ClassName>qlSimpleQuote</ClassName>
 			<Value>0.114</Value>
@@ -2389,10 +2389,10 @@
 			<SettlementDays>0</SettlementDays>
 			<Calendar>Target</Calendar>
 			<BusinessDayConvention>Following</BusinessDayConvention>
-			<OptionTenors class_id="204" tracking_level="0" version="0">
+			<OptionTenors class_id="205" tracking_level="0" version="0">
 				<count>13</count>
 				<item_version>0</item_version>
-				<item class_id="205" tracking_level="0" version="0">
+				<item class_id="206" tracking_level="0" version="0">
 					<which>2</which>
 					<value>3Y</value>
 				</item>
@@ -2588,7 +2588,7 @@
 				<item>0.080000000000000002</item>
 				<item>0.10000000000000001</item>
 			</Strikes>
-			<Volatilities class_id="207" tracking_level="0" version="0">
+			<Volatilities class_id="208" tracking_level="0" version="0">
 				<count>13</count>
 				<item_version>0</item_version>
 				<item>
@@ -3366,7 +3366,7 @@
 			<UserProperties>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item class_id="208" tracking_level="0" version="0">
+				<item class_id="209" tracking_level="0" version="0">
 					<first>UserExtrapolation</first>
 					<second>
 						<which>1</which>

@@ -8,6 +8,7 @@
     <include>qlo/indexes/ibor/libor.hpp</include>
     <include>qlo/indexes/swap/euriborswap.hpp</include>
     <include>qlo/indexes/swap/liborswap.hpp</include>
+    <include>qlo/indexes/swap/isdafixaswap.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
@@ -17,6 +18,7 @@
     <include>qlo/indexes/ibor/libor.hpp</include>
     <include>qlo/indexes/swap/euriborswap.hpp</include>
     <include>qlo/indexes/swap/liborswap.hpp</include>
+    <include>qlo/indexes/swap/isdafixaswap.hpp</include>
     <include>qlo/yieldtermstructures.hpp</include>
     <include>qlo/timeseries.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
@@ -476,6 +478,30 @@
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>forecasting yield term structure.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    
+    <Constructor name='qlEuriborSwapIsdaFixA'>
+      <libraryFunction>EuriborSwapIsdaFixA</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Tenor' exampleValue='10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor (e.g. 1Y for one year)</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting yield term structure</description>
           </Parameter>
         </Parameters>
       </ParameterList>

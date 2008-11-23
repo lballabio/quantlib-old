@@ -24,11 +24,11 @@ OutFile "..\${APP}-src-${VER_NUMBER}.exe"
 UninstallIcon "Docs\images\favicon.ico"
 UninstallText "This will uninstall ${APP}. Hit next to continue."
 
-ComponentText \
-"By default the installer will install the QuantLibXL source code and basic example workbooks." \
-"Optional components:" \
-"The QuantLibXL Framework is a business application layer written in Excel VBA," \
-"including template workbooks for market data and interest rate derivates."
+#ComponentText \
+#"By default the installer will install the QuantLibXL source code and basic example workbooks." \
+#"Optional components:" \
+#"The QuantLibXL Framework is a business application layer written in Excel VBA, \
+#including template workbooks for market data and interest rate derivates."
 
 Section
 
@@ -130,29 +130,29 @@ Section
 
 SectionEnd
 
-Section /o Framework
+#Section /o Framework
 
-    SetOutPath "$INSTDIR\xll"
-    #File "xll\QuantLibXLDynamic-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    #File "..\ObjectHandler\xll\ObjectHandler-xll-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    File "xll\QuantLibXL-${COMPILER}-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+#    SetOutPath "$INSTDIR\xll"
+#    #File "xll\QuantLibXLDynamic-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+#    #File "..\ObjectHandler\xll\ObjectHandler-xll-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+#    File "xll\QuantLibXL-${COMPILER}-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 
-    SetOutPath "$INSTDIR\framework"
-    File "framework\QuantLibXL.xla"
-    File "framework\QuantLibXLDeveloperTeam.cer"
+#    SetOutPath "$INSTDIR\framework"
+#    File "framework\QuantLibXL.xla"
+#    File "framework\QuantLibXLDeveloperTeam.cer"
 
-    SetOutPath "$INSTDIR\Workbooks"
-    File /r "Workbooks\*.xls"
+#    SetOutPath "$INSTDIR\Workbooks"
+#    File /r "Workbooks\*.xls"
 
-    SetOutPath "$INSTDIR\Data"
-    File /r "Data\*.xls"
-    File /r "Data\*.xml"
+#    SetOutPath "$INSTDIR\Data"
+#    File /r "Data\*.xls"
+#    File /r "Data\*.xml"
 
-    # ObjectBuilder crashes if it can't find the icon
-    SetOutPath "$INSTDIR\Docs\images"
-    File "Docs\images\favicon.bmp"
+#    # ObjectBuilder crashes if it can't find the icon
+#    SetOutPath "$INSTDIR\Docs\images"
+#    File "Docs\images\favicon.bmp"
 
-SectionEnd
+#SectionEnd
 
 Section "Uninstall"
 

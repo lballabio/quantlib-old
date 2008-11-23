@@ -5,16 +5,16 @@
 	<count>8</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="179" tracking_level="1" version="0" object_id="_1">
+		<px class_id="180" tracking_level="1" version="0" object_id="_1">
 			<ObjectId>spreadedvol</ObjectId>
 			<ClassName>qlSpreadedSwaptionVolatility</ClassName>
 			<BaseVolStructure>SpreadsVol</BaseVolStructure>
-			<Spread class_id="203" tracking_level="0" version="0">
+			<Spread class_id="204" tracking_level="0" version="0">
 				<which>4</which>
 				<value>0</value>
 			</Spread>
 			<Permanent>0</Permanent>
-			<UserProperties class_id="204" tracking_level="0" version="0">
+			<UserProperties class_id="205" tracking_level="0" version="0">
 				<count>0</count>
 				<item_version>0</item_version>
 			</UserProperties>
@@ -39,7 +39,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="158" tracking_level="1" version="0" object_id="_3">
+		<px class_id="156" tracking_level="1" version="0" object_id="_3">
 			<ObjectId>sched_cms</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -58,7 +58,7 @@
 			<EndOfMonth>0</EndOfMonth>
 			<FirstDate>
 				<which>0</which>
-				<value class_id="205" tracking_level="0" version="0"></value>
+				<value class_id="206" tracking_level="0" version="0"></value>
 			</FirstDate>
 			<NextToLastDate>
 				<which>0</which>
@@ -72,7 +72,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="158" object_id="_4">
+		<px class_id_reference="156" object_id="_4">
 			<ObjectId>sched_float</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
@@ -127,7 +127,7 @@
 				<count>1</count>
 				<item>1</item>
 			</Gearings>
-			<SwapIndex>EuriborSwapFixA30Y</SwapIndex>
+			<SwapIndex>EuriborSwapIsdaFixA30Y</SwapIndex>
 			<Spreads>
 				<count>1</count>
 				<item>0</item>
@@ -140,14 +140,14 @@
 			<UserProperties>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item class_id="208" tracking_level="0" version="0">
+				<item class_id="209" tracking_level="0" version="0">
 					<first>UserLegIDs</first>
 					<second>
 						<which>5</which>
-						<value class_id="209" tracking_level="0" version="0">
+						<value class_id="210" tracking_level="0" version="0">
 							<count>1</count>
 							<item_version>0</item_version>
-							<item class_id="210" tracking_level="0" version="0">
+							<item class_id="211" tracking_level="0" version="0">
 								<which>2</which>
 								<value>pricer</value>
 							</item>
@@ -196,7 +196,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="126" tracking_level="1" version="0" object_id="_7">
+		<px class_id="123" tracking_level="1" version="0" object_id="_7">
 			<ObjectId>engineCMS</ObjectId>
 			<ClassName>qlDiscountingSwapEngine</ClassName>
 			<YieldCurve>_EURYC6M</YieldCurve>
@@ -208,10 +208,10 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="172" tracking_level="1" version="0" object_id="_8">
+		<px class_id="173" tracking_level="1" version="0" object_id="_8">
 			<ObjectId>ConstantMaturitySwap</ObjectId>
 			<ClassName>qlSwap</ClassName>
-			<LegIDs class_id="211" tracking_level="0" version="0">
+			<LegIDs class_id="212" tracking_level="0" version="0">
 				<count>2</count>
 				<item_version>0</item_version>
 				<item>leg_cms</item>

@@ -387,12 +387,6 @@ where you will install it:
 Go to the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
 
-Download <tt>apr-0.2.12.tar.gz</tt> and uncompress the package to
-<tt>/home/erik/build/apr-0.2.12</tt>.
-
-Download <tt>aprutil-0.2.12.tar.gz</tt> and uncompress the package to
-<tt>/home/erik/build/aprutil-0.2.12</tt>.
-
 Download <tt>log4cxx-0.10.0.tar.gz</tt> and uncompress the package to
 <tt>/home/erik/build/log4cxx-0.10.0</tt>.
 
@@ -407,12 +401,12 @@ Download <tt>ObjectHandler-0.9.7.tgz</tt> and uncompress the package to
 \subsubsection inst_auto_log4cxx 3.2.1 Build log4cxx
 
 \verbatim
-cd /home/erik/build/apr-0.2.12
+cd /home/erik/build/log4cxx-0.10.0/src/apr
 ./buildconf
 ./configure --prefix=/home/erik/install
 make install
-cd /home/erik/build/aprutil-0.2.12
-./buildconf --with-apr=/home/erik/build/apr-0.2.12
+cd /home/erik/build/log4cxx-0.10.0/src/apr-util
+./buildconf
 ./configure --prefix=/home/erik/install --with-apr=/home/erik/install
 make install
 cd /home/erik/build/log4cxx-0.10.0
