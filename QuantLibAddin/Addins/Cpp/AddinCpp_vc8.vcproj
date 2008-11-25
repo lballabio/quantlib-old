@@ -63,7 +63,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc80-mt-sgd-0_9_7.lib"
+				OutputFile=".\lib\AddinCpp-vc80-mt-sgd-0_9_8.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -127,7 +127,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc80-mt-s-0_9_7.lib"
+				OutputFile=".\lib\AddinCpp-vc80-mt-s-0_9_8.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -193,7 +193,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc80-mt-gd-0_9_7.lib"
+				OutputFile=".\lib\AddinCpp-vc80-mt-gd-0_9_8.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -257,7 +257,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\AddinCpp-vc80-mt-0_9_7.lib"
+				OutputFile=".\lib\AddinCpp-vc80-mt-0_9_8.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"

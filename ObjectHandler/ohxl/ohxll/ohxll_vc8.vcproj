@@ -76,13 +76,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\..\xll\ObjectHandler-xll-vc80-mt-gd-0_9_7.xll"
+				OutputFile="..\..\xll\ObjectHandler-xll-vc80-mt-gd-0_9_8.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib;..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc80-mt-gd-0_9_7.pdb"
-				ImportLibrary="..\..\lib\ObjectHandler-xll-vc80-mt-gd-0_9_7.lib"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc80-mt-gd-0_9_8.pdb"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc80-mt-gd-0_9_8.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -175,12 +175,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\..\xll\ObjectHandler-xll-vc80-mt-0_9_7.xll"
+				OutputFile="..\..\xll\ObjectHandler-xll-vc80-mt-0_9_8.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib;..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc80-mt-0_9_7.pdb"
-				ImportLibrary="..\..\lib\ObjectHandler-xll-vc80-mt-0_9_7.lib"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc80-mt-0_9_8.pdb"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc80-mt-0_9_8.lib"
 				TargetMachine="1"
 			/>
 			<Tool

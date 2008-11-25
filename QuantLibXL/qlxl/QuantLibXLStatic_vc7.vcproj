@@ -41,13 +41,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-sgd-0_9_7.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-sgd-0_9_8.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-sgd-0_9_7.pdb"
-				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-sgd-0_9_7.lib"
+				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-sgd-0_9_8.pdb"
+				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-sgd-0_9_8.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -108,13 +108,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-gd-0_9_7.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-gd-0_9_8.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-gd-0_9_7.pdb"
-				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-gd-0_9_7.lib"
+				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-gd-0_9_8.pdb"
+				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-gd-0_9_8.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -176,12 +176,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-s-0_9_7.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-s-0_9_8.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
-				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-s-0_9_7.pdb"
-				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-s-0_9_7.lib"
+				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-s-0_9_8.pdb"
+				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-s-0_9_8.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -243,12 +243,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-0_9_7.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXL-vc71-mt-0_9_8.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\ObjectHandler\lib;..\..\QuantLib\lib;../../log4cxx/msvc/lib;..\..\QuantLibAddin\lib"
-				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-0_9_7.pdb"
-				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-0_9_7.lib"
+				ProgramDatabaseFile=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-0_9_8.pdb"
+				ImportLibrary=".\buildStatic\vc71\$(ConfigurationName)/QuantLibXLStatic-vc71-mt-0_9_8.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"

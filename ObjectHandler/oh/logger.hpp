@@ -31,7 +31,7 @@
 // version of log4cxx, or that your log4cxx installation (if any) cannot
 // be found at all.
 #include <log4cxx/log4cxxdefines.h>
-#if LOG4CXX_VERSION != 0x001000f1
+#if LOG4CXX_VERSION != 0x001000f2
     #error using an incorrect version of log4cxx, please update.
 #endif
 

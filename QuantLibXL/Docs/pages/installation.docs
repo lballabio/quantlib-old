@@ -23,7 +23,7 @@
 
 /*! \page installation Installation
 
-Download QuantLibXL-bin-0.9.7.exe from the 
+Download QuantLibXL-bin-0.9.8.exe from the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=260244">Downloads page</a>.
 
 Run the installer to install QuantLibXL to your system.  You are given the
@@ -35,7 +35,7 @@ To use QuantLibXL:
 \li Start Excel
 \li Load the addin:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_7.xll
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_8.xll
 \endverbatim
 \li Load the example workbooks:
 \verbatim

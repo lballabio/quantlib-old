@@ -31,7 +31,7 @@ PROJECT_NAME           = gensrc
 # This could be handy for archiving the generated documentation or 
 # if some version control system is used.
 
-PROJECT_NUMBER         = 0.9.7
+PROJECT_NUMBER         = 0.9.8
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) 
 # base path where the generated documentation will be put. 
@@ -811,7 +811,7 @@ HTML_DYNAMIC_SECTIONS  = NO
 # can add a path in front of the file if the result should not be 
 # written to the html output directory.
 
-CHM_FILE               = ../gensrc-docs-0.9.7.chm
+CHM_FILE               = ../gensrc-docs-0.9.8.chm
 
 # If the GENERATE_HTMLHELP tag is set to YES, the HHC_LOCATION tag can 
 # be used to specify the location (absolute path including file name) of 

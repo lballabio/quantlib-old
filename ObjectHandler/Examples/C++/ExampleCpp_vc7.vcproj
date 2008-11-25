@@ -41,11 +41,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="bin\ExampleCpp-vc71-mt-0_9_7.exe"
+				OutputFile="bin\ExampleCpp-vc71-mt-0_9_8.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
-				ProgramDatabaseFile=".\build\vc71\$(ConfigurationName)/ExampleCpp-vc71-mt-0_9_7.pdb"
+				ProgramDatabaseFile=".\build\vc71\$(ConfigurationName)/ExampleCpp-vc71-mt-0_9_8.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
@@ -103,12 +103,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="bin\ExampleCpp-vc71-mt-sgd-0_9_7.exe"
+				OutputFile="bin\ExampleCpp-vc71-mt-sgd-0_9_8.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\vc71\$(ConfigurationName)/ExampleCpp-vc71-mt-sgd-0_9_7.pdb"
+				ProgramDatabaseFile=".\build\vc71\$(ConfigurationName)/ExampleCpp-vc71-mt-sgd-0_9_8.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
@@ -167,11 +167,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="bin\ExampleCpp-vc71-mt-s-0_9_7.exe"
+				OutputFile="bin\ExampleCpp-vc71-mt-s-0_9_8.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
-				ProgramDatabaseFile=".\build\vc71\$(ConfigurationName)/ExampleCpp-vc71-mt-s-0_9_7.pdb"
+				ProgramDatabaseFile=".\build\vc71\$(ConfigurationName)/ExampleCpp-vc71-mt-s-0_9_8.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
@@ -229,12 +229,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="bin\ExampleCpp-vc71-mt-gd-0_9_7.exe"
+				OutputFile="bin\ExampleCpp-vc71-mt-gd-0_9_8.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\build\vc71\$(ConfigurationName)/ExampleCpp-vc71-mt-gd-0_9_7.pdb"
+				ProgramDatabaseFile=".\build\vc71\$(ConfigurationName)/ExampleCpp-vc71-mt-gd-0_9_8.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool

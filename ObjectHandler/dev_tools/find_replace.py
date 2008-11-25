@@ -87,13 +87,13 @@ SUBSTITUTIONS = (
 #    (re.compile(r'^import .*?$', re.M), toLower),
 
 #   frequently used
-    (re.compile(r'0_9_6'), '0_9_7'),
-    (re.compile(r'0\.9\.6'), '0.9.7'),
-    (re.compile(r'0x000906'), '0x000907'),
-    (re.compile(r'R000906f0'), 'R000907f0'),
-    (re.compile(r'Major=0\nMinor=9\nRelease=6'), 'Major=0\nMinor=9\nRelease=7'),
-    (re.compile(r'0\.10\.0a'), '0.10.0b'),
-    (re.compile(r'0x001000f0'), '0x001000f1'),
+    (re.compile(r'0_9_7'), '0_9_8'),
+    (re.compile(r'0\.9\.7'), '0.9.8'),
+    (re.compile(r'0x000907'), '0x000908'),
+    (re.compile(r'R000907f0'), 'R000908f0'),
+    (re.compile(r'Major=0\nMinor=9\nRelease=7'), 'Major=0\nMinor=9\nRelease=8'),
+    (re.compile(r'0\.10\.0b'), '0.10.0c'),
+    (re.compile(r'0x001000f1'), '0x001000f2'),
 
 )
 
@@ -125,6 +125,7 @@ IGNORE_FILES = (
     re.compile(r'^.+\.png$'),
     re.compile(r'^.+\.pyc$'),
     re.compile(r'^.+\.xls$'),
+    re.compile(r'^.+~$'),
 
     re.compile(r'^Announce\.txt$'),
     re.compile(r'^ChangeLog\.txt$'),
@@ -221,7 +222,7 @@ def processDir(ignore, dirPath, nameList):
     i = len(nameList) - 1
     while i > -1:
         name = nameList[i]
-        fullPath = os.path.join(dirPath, name)
+        fullPath = os.path.join(dirPath, name).replace('\\', '/')
         logMessage('processing path ' + fullPath)
         if os.path.isdir(fullPath):
             logMessage('dir')
