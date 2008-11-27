@@ -383,6 +383,82 @@ namespace QuantLibAddin {
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::FritschButland)));
     }
 
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_Parabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
+                                          QuantLib::Cubic>(nDays,
+                                                           calendar,
+                                                           rateHelpers,
+                                                           dayCounter,
+                                                           jumps, jumpDates,
+                                                           accuracy,
+                                                           QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic, false)));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_LogParabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
+                                          QuantLib::LogCubic>(nDays,
+                                                              calendar,
+                                                              rateHelpers,
+                                                              dayCounter,
+                                                              jumps, jumpDates,
+                                                              accuracy,
+                                                              QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, false)));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_MonotonicParabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
+                                          QuantLib::Cubic>(nDays,
+                                                           calendar,
+                                                           rateHelpers,
+                                                           dayCounter,
+                                                           jumps, jumpDates,
+                                                           accuracy,
+                                                           QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic, true)));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_MonotonicLogParabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
+                                          QuantLib::LogCubic>(nDays,
+                                                              calendar,
+                                                              rateHelpers,
+                                                              dayCounter,
+                                                              jumps, jumpDates,
+                                                              accuracy,
+                                                              QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, true)));
+    }
+
     /* *** ZeroYield based *** */
     boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_BACKWARDFLAT_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
@@ -732,6 +808,82 @@ namespace QuantLibAddin {
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::FritschButland)));
     }
 
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_Parabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
+                                          QuantLib::Cubic>(nDays,
+                                                           calendar,
+                                                           rateHelpers,
+                                                           dayCounter,
+                                                           jumps, jumpDates,
+                                                           accuracy,
+                                                           QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic, false)));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_LogParabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
+                                          QuantLib::LogCubic>(nDays,
+                                                              calendar,
+                                                              rateHelpers,
+                                                              dayCounter,
+                                                              jumps, jumpDates,
+                                                              accuracy,
+                                                              QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, false)));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_MonotonicParabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
+                                          QuantLib::Cubic>(nDays,
+                                                           calendar,
+                                                           rateHelpers,
+                                                           dayCounter,
+                                                           jumps, jumpDates,
+                                                           accuracy,
+                                                           QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic, true)));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_MonotonicLogParabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
+                                          QuantLib::LogCubic>(nDays,
+                                                              calendar,
+                                                              rateHelpers,
+                                                              dayCounter,
+                                                              jumps, jumpDates,
+                                                              accuracy,
+                                                              QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, true)));
+    }
+
     /* *** ForwardRate based *** */
     boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_BACKWARDFLAT_PiecewiseYieldCurve(
             QuantLib::Natural nDays,
@@ -1079,6 +1231,82 @@ namespace QuantLibAddin {
                                                               jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::FritschButland)));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_Parabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+                                          QuantLib::Cubic>(nDays,
+                                                           calendar,
+                                                           rateHelpers,
+                                                           dayCounter,
+                                                           jumps, jumpDates,
+                                                           accuracy,
+                                                           QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic, false)));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_LogParabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+                                          QuantLib::LogCubic>(nDays,
+                                                              calendar,
+                                                              rateHelpers,
+                                                              dayCounter,
+                                                              jumps, jumpDates,
+                                                              accuracy,
+                                                              QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, false)));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_MonotonicParabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+                                          QuantLib::Cubic>(nDays,
+                                                           calendar,
+                                                           rateHelpers,
+                                                           dayCounter,
+                                                           jumps, jumpDates,
+                                                           accuracy,
+                                                           QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic, true)));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> FORWARDRATE_MonotonicLogParabolic_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy) {
+        return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+            QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
+                                          QuantLib::LogCubic>(nDays,
+                                                              calendar,
+                                                              rateHelpers,
+                                                              dayCounter,
+                                                              jumps, jumpDates,
+                                                              accuracy,
+                                                              QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, true)));
     }
 
 }

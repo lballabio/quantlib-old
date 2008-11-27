@@ -1371,6 +1371,22 @@
           <string>FritschButlandLogCubic</string>
           <value>QuantLibAddin::Token::FritschButlandLogCubic</value>
         </EnumeratedType>
+        <EnumeratedType>
+          <string>Parabolic</string>
+          <value>QuantLibAddin::Token::Parabolic</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>LogParabolic</string>
+          <value>QuantLibAddin::Token::LogParabolic</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>MonotonicParabolic</string>
+          <value>QuantLibAddin::Token::MonotonicParabolic</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>MonotonicLogParabolic</string>
+          <value>QuantLibAddin::Token::MonotonicLogParabolic</value>
+        </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
@@ -1478,10 +1494,6 @@
         <EnumeratedType>
           <string>Parabolic</string>
           <value>QuantLib::CubicInterpolation::DerivativeApprox(QuantLib::CubicInterpolation::Parabolic)</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>ModifiedParabolic</string>
-          <value>QuantLib::CubicInterpolation::DerivativeApprox(QuantLib::CubicInterpolation::ModifiedParabolic)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>FritschButland</string>

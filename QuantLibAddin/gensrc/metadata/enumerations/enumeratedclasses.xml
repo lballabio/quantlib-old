@@ -82,6 +82,28 @@
         </EnumeratedClass>
 
         <EnumeratedClass>
+          <string>Parabolic</string>
+          <value>Parabolic_Interpolation</value>
+          <libraryClass>QuantLib::Parabolic</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>LogParabolic</string>
+          <value>LogParabolic_Interpolation</value>
+          <libraryClass>QuantLib::LogParabolic</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>MonotonicParabolic</string>
+          <value>MonotonicParabolic_Interpolation</value>
+          <libraryClass>QuantLib::MonotonicParabolic</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>MonotonicLogParabolic</string>
+          <value>MonotonicLogParabolic_Interpolation</value>
+          <libraryClass>QuantLib::MonotonicLogParabolic</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
           <string>Abcd</string>
           <value>ABCD_Interpolation</value>
           <libraryClass>QuantLib::AbcdInterpolation</libraryClass>

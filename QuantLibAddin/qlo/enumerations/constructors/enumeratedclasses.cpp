@@ -359,6 +359,46 @@ namespace QuantLibAddin {
                                             QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                             QuantLib::CubicInterpolation::SecondDerivative, 0.0));
     }
+    boost::shared_ptr<QuantLib::Interpolation> Parabolic_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::CubicInterpolation(xBegin, xEnd, yBegin,
+                                         QuantLib::CubicInterpolation::Parabolic, false,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> MonotonicParabolic_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::CubicInterpolation(xBegin, xEnd, yBegin,
+                                         QuantLib::CubicInterpolation::Parabolic, true,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> LogParabolic_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::LogCubicInterpolation(xBegin, xEnd, yBegin,
+                                            QuantLib::CubicInterpolation::Parabolic, false,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0));
+    }
+    boost::shared_ptr<QuantLib::Interpolation> MonotonicLogParabolic_Interpolation(
+                                            ObjectHandler::dbl_itr& xBegin,
+                                            ObjectHandler::dbl_itr& xEnd,
+                                            ObjectHandler::dbl_itr& yBegin) {
+        return boost::shared_ptr<QuantLib::Interpolation>(new
+            QuantLib::LogCubicInterpolation(xBegin, xEnd, yBegin,
+                                            QuantLib::CubicInterpolation::Parabolic, true,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0));
+    }
     boost::shared_ptr<QuantLib::Interpolation> ABCD_Interpolation(
                                             ObjectHandler::dbl_itr& xBegin,
                                             ObjectHandler::dbl_itr& xEnd,

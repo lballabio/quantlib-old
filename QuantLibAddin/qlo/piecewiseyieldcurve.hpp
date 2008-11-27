@@ -43,7 +43,11 @@ namespace QuantLibAddin {
                             KrugerCubic,
                             KrugerLogCubic,
                             FritschButlandCubic,
-                            FritschButlandLogCubic
+                            FritschButlandLogCubic,
+                            Parabolic,
+                            LogParabolic,
+                            MonotonicParabolic,
+                            MonotonicLogParabolic,
         };
     };
 

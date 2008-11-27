@@ -154,13 +154,13 @@ namespace QuantLibAddin {
 
         switch (tokenPair.first) {
             case Token::Discount:
-                out << "Discount, ";
+                out << "<Discount, ";
                 break;
             case Token::ForwardRate:
-                out << "ForwardRate, ";
+                out << "<ForwardRate, ";
                 break;
             case Token::ZeroYield:
-                out << "ZeroYield, ";
+                out << "<ZeroYield, ";
                 break;
             default:
                 OH_FAIL("Unknown value for enumeration QuantLibAddin::Token::Traits");
@@ -203,6 +203,18 @@ namespace QuantLibAddin {
             case Token::FritschButlandLogCubic:
                 out << "FritschButlandLogCubic>";
                 break;
+            case Token::Parabolic:
+                out << "Parabolic>";
+                break;
+            case Token::LogParabolic:
+                out << "LogParabolic>";
+                break;
+            case Token::MonotonicParabolic:
+                out << "MonotonicParabolic>";
+                break;
+            case Token::MonotonicLogParabolic:
+                out << "MonotonicLogParabolic>";
+                break;
             default:
                 OH_FAIL("Unknown value for enumeration QuantLibAddin::Token::Interpolator");
         }
@@ -242,6 +254,10 @@ namespace QuantLibAddin {
             init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::KrugerLogCubic));
             init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::FritschButlandCubic));
             init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::FritschButlandLogCubic));
+            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::Parabolic));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::LogParabolic));
+            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::MonotonicParabolic));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::MonotonicLogParabolic));
 
             // ForwardRate
             init<QuantLib::ForwardRate, QuantLib::BackwardFlat>(TokenPair(Token::ForwardRate, Token::BackwardFlat));
@@ -256,6 +272,10 @@ namespace QuantLibAddin {
             init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::KrugerLogCubic));
             init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::FritschButlandCubic));
             init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::FritschButlandLogCubic));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::Parabolic));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::LogParabolic));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::MonotonicParabolic));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::MonotonicLogParabolic));
 
             // ZeroYield
             init<QuantLib::ZeroYield, QuantLib::BackwardFlat>(  TokenPair(Token::ZeroYield, Token::BackwardFlat));
@@ -270,6 +290,10 @@ namespace QuantLibAddin {
             init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::KrugerLogCubic));
             init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::FritschButlandCubic));
             init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::FritschButlandLogCubic));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::Parabolic));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::LogParabolic));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::MonotonicParabolic));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::MonotonicLogParabolic));
 
         }
 
