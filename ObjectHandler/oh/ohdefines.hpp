@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2009 Eric Ehlers
  Copyright (C) 2004 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
@@ -30,6 +30,12 @@
 
 #if BOOST_VERSION < 103401
     #error using an old version of Boost, please update to 1.34.1 or higher.
+#endif
+
+// Workaround for problem with boost 1.34.1 + gcc 4.3.2 (or all 4.3.x?) for
+// #include <boost/serialization/vector.hpp>
+#if (BOOST_VERSION == 103401 && __GNUC__ == 4 && __GNUC_MINOR__ == 3) // && __GNUC_PATCHLEVEL__ == 2
+#define BOOST_NO_INTRINSIC_INT64_T
 #endif
 
 //! Version string.

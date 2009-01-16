@@ -179,11 +179,11 @@ namespace ObjectHandler {
             out << *val;
         else if (const bool* val = boost::get<bool>(&p))
             out << *val;
-        else if (const empty_property_tag* val = boost::get<empty_property_tag>(&p))
-            out << "[Null value]";
-        else if (const std::vector<boost::recursive_variant_>* val =
-            boost::get<std::vector<boost::recursive_variant_> >(&p))
-            out << "[Logging not supported for values of type vector]";
+        //else if (const empty_property_tag* val = boost::get<empty_property_tag>(&p))
+        //    out << "[Null value]";
+        //else if (const std::vector<boost::recursive_variant_>* val =
+        //    boost::get<std::vector<boost::recursive_variant_> >(&p))
+        //    out << "[Logging not supported for values of type vector]";
         else
             out << "[Attempt to log a value of unknown datatype : '" << p.type().name() << "']";
         return out;
