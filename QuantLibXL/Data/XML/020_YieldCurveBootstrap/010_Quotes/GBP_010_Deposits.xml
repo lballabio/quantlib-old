@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="5">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>18</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="138" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>GBPOND_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties class_id="204" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_2">
+			<ObjectId>GBPTND_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_3">
+			<ObjectId>GBPSND_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_4">
+			<ObjectId>GBPSWD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_5">
+			<ObjectId>GBP2WD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_6">
+			<ObjectId>GBP3WD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_7">
+			<ObjectId>GBP1MD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_8">
+			<ObjectId>GBP2MD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_9">
+			<ObjectId>GBP3MD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_10">
+			<ObjectId>GBP4MD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_11">
+			<ObjectId>GBP5MD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_12">
+			<ObjectId>GBP6MD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_13">
+			<ObjectId>GBP7MD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_14">
+			<ObjectId>GBP8MD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_15">
+			<ObjectId>GBP9MD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_16">
+			<ObjectId>GBP10MD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_17">
+			<ObjectId>GBP11MD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_18">
+			<ObjectId>GBP1YD_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+

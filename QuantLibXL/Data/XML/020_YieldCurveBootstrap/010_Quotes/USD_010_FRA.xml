@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="5">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>23</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="138" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>USDT1F1_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties class_id="204" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_2">
+			<ObjectId>USDTOM1F1_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_3">
+			<ObjectId>USDT3F1_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_4">
+			<ObjectId>USDTOM3F1_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_5">
+			<ObjectId>USD1x4F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_6">
+			<ObjectId>USD2x5F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_7">
+			<ObjectId>USD3x6F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_8">
+			<ObjectId>USD4x7F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_9">
+			<ObjectId>USD5x8F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_10">
+			<ObjectId>USD6x9F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_11">
+			<ObjectId>USDT6F1_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_12">
+			<ObjectId>USDTOM6F1_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_13">
+			<ObjectId>USD1x7F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_14">
+			<ObjectId>USD2x8F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_15">
+			<ObjectId>USD3x9F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_16">
+			<ObjectId>USD4x10F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_17">
+			<ObjectId>USD5x11F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_18">
+			<ObjectId>USD6x12F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_19">
+			<ObjectId>USD12x18F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_20">
+			<ObjectId>USD18x24F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_21">
+			<ObjectId>USDT12F1_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_22">
+			<ObjectId>USDTOM12F1_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="138" object_id="_23">
+			<ObjectId>USD12x24F_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>0.0001</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+
