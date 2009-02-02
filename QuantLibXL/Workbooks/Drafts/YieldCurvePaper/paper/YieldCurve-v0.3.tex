@@ -1,0 +1,949 @@
+
+\documentclass[11pt,reqno]{amsart}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb}
+\usepackage{amsfonts,epsfig}
+
+\setcounter{MaxMatrixCols}{10}
+
+\hfuzz=12pt
+\hbadness=5000
+\vbadness=5000
+\frenchspacing
+\vfuzz=2pt
+\input epsf
+\email{ferdinando@ametrano.net}
+\email{marco.bianchetti@bancaimi.com}
+\email{nicola.moreni@bancaimi.com}
+\keywords{smooth yield curve, bootstrapping, forward Euribor rates, QuantLib}
+
+\begin{document}
+\title[Smooth Yield Curves For Euribor Estimation]{Smooth Yield Curves
+Bootstrapping \\
+For Forward Euribor Rate Estimation}
+\author{Ferdinando M. Ametrano}
+\address{Financial Engineering, Banca IMI, Piazzetta G. Dell'Amore 3, 20121
+Milan Italy, ferdinando.ametrano@bancaimi.com}
+\author{Marco Bianchetti}
+\address{Risk Management, Banca Intesa S. Paolo, Piazza G. Ferrari 10, 20121
+Milan Italy, marco.bianchetti@intesasanpaolo.com}
+\date{Draft v. 0.3, Jan. 27th, 2008}
+
+\begin{abstract}
+The large basis spreads observed since the liquidity crisis of summer 2007
+imply that
+different yield curves are required for coherent estimation of forward Euribor
+rates with different tenors. We describe a
+methodology for bootstrapping smooth and market-consistent yield curves from
+interest rate instruments such as deposits, Forward Rate Agreements,
+futures, swaps, and basis
+swaps. The approach is robust to cope with turn-of-year effect and always
+ensures non-negative rates. 
+
+We then revisit the problem of pricing interest
+rate derivatives using two yield curves for forwarding and discounting,
+respectively. We show that standard no-arbitrage relationships are broken
+up, and must be generalized with the introduction of an adjustment for
+forward rates. We derive an explicit expression for this adjustment in
+analogy with the well-known quanto adjustment widely used for cross-currency
+derivatives. 
+
+The concrete EUR market case is analyzed in detail, using the QuantLib
+implementation of the proposed algorithms.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Pricing complex interest rate derivatives requires modeling the future
+dynamics of the yield curve term structure. Most of the literature assumes
+the existence of the current term structure as a given, and its construction
+is often neglected as it is considered more an art than a science. Anyway
+every possible yield curve term structure modeling approach will fail to
+produce good/reasonable prices if the current term structure is not correct.
+
+Practioners and software houses have developed various methodologies in
+order to extract a reasonable yield curve term structure from observed
+prices of a finte number of liquid market instruments. \textquotedblleft
+Best-fit\textquotedblright\ algorithms assume a smooth functional form for
+the term structure and calibrate its parameters such that to minimize the
+repricing error of the chosen set of calibration instruments. For instance,
+the European Central Bank publishes yield curves on the basis of the
+Soderlind and Svensson (1997) model \cite{SoderlindSwensson1997}, which is
+an extension of the Nelson-Siegel (1987) model (see e.g. \cite{NelsonSiegel}%
+, \cite{Diament}, \cite{ChristensenEtAl2007} and \cite{Coroneo2008}). Such
+approach is popular due to the smoothness of the curve, calibration
+easyness, intuitive financial interpretation of functional form parameters
+(level, slope, curvature) and correspondence with principal component
+analysis. On the other side, the fit quality is typically not good enough
+for trading purposes in liquid markets.
+
+In practice 
+\textquotedblleft exact-fit\textquotedblright\ algorithms are often preferred:
+they fix the
+yield curve on a grid of $N$ time points (pillars) in order to \emph{exactly}
+reprice $N$ pre-selected market instruments. The implementation of such
+algorithms is often incremental, extending the yield curve step-by-step with
+the increasing maturity of the ordered instruments, in a so
+called \textquotedblleft bootstrap\textquotedblright approach. Intermediate yield
+curve values are obtained by interpolation on the boostrapping grid:
+different alternatives are available but little attention has been devoted
+in the literature to the fact that an interpolation schema is often already
+used during bootstrapping, not just after that, and the interaction between
+bootstrapping and interpolation can be subtle if not nasty (see e.g. \cite%
+{HaganWest2006}, \cite{HaganWest2008}).
+
+Whilst naive algorithms might fail to deal with market
+subleties such as date conventions,
+the intra-day fixing of the first floating payment of a swap,
+the turn-of-year effect, future convexity adjustment, etc.
+even very sophisticated algorithms used in a naive way
+fail to estimate correct forward Euribor rates in the current
+market conditions. Namely using just one single curve is
+not enough to account for forward Euribor rates of different tenor,
+such as 1, 3, 6, 12 months, because of the large
+basis swap spreads observed since the summer of 2007 in occasion
+of the so-called {\it subprime credit cruch crisis.}
+
+The plan of the paper is as follows: first we fix the notation and
+nomenclature, then we describe the market instruments used in the bootstrap
+and detail their peculiarities. In section 4 we present the standard
+traditional boostrapping approach and show its deficiencies. Section 5
+introduces the multiple curves approach based on peculiar instrument
+selection. The next three following sections deal with issues crucial for
+smooth curve bootstrapping:
+section 6 shows how to estimate the turn-of-year
+effect and incorporate it as a jump in the yield curve bootstrapping;
+section 7 sets the record straight on sensibile
+interpolation choices; 
+section 8 illustrates how to allocate the discount factor decrease in the
+underspecified first period in a way coherent with interpolate market FRAs.
+Two final sections wraps up the results obtained so far: section 8 provides
+a quick overview of the QuantLib implementation which has been used to
+generate all the numerical examples provided here and can be used,
+especially through it Excel interface, to bootstrap yield curve in real-time
+for real-life needs.
+
+\section{Fixing Notation and Nomenclature}
+
+An yield curve is completely specified by a continuous of discount factors
+(i.e. zero coupon prices) $P(t) $, $t\geq 0$ defining the
+present value of one unit of currency paid at time $t$.
+
+Time is measured in years from today\footnote{%
+or spot, which in the EUR market is two business days after today, according
+to the TARGET holiday calendar.} with a day count convention $daycount\left(
+today,d\right) =t\geq 0$ which maps a future date $d\geq today$ to time $t$.
+This map must be
+
+\begin{itemize}
+\item monotonically increasing with increasing end date $d$ \footnote{%
+non increasing convention would lead to spurious null forward rates.};
+
+\item additive as in $daycount\left( d_{1},d_{2}\right) +daycount\left(
+d_{2},d_{3}\right) =daycount\left( d_{1},d_{3}\right) $.
+\end{itemize}
+
+In this paper we use the \textit{Actual/365 (Fixed)} \cite{ISDA} day count
+convention:
+
+\begin{equation*}
+t=daycount_{act/365}\left( today,d\right) =\left( d-today\right) /365.
+\end{equation*}
+
+Since the discount factor curve is observed to be exponentially decreasing
+(as expected when the interest rate compounding is made so frequent to be
+continuous) the yield curve is usually described through an exponential
+transformation, i.e. by continously compounded zero coupon rates $z(t)$ or
+instantaneous forward rates $f(t)$ \footnote{%
+par rates could be used too, we do not use them here as they are not
+frequently used and would not provide additional benefit anyway.}:
+
+\begin{equation}
+P(t)=\exp \left[ -z\left( t\right) t\right] =\exp \left[ -\int_{0}^{t}f%
+\left( \tau \right) d\tau \right] ,  \label{eqn:relationship}
+\end{equation}
+
+or in the equivalent $\log$ notation
+
+\begin{equation}
+\log P\left( t\right) =-z\left( t\right) t=-\int_{0}^{t}f(\tau )d\tau ,
+\label{eqn:logrelationship}
+\end{equation}
+
+From these relationships is immediate to observe that:
+
+\begin{itemize}
+\item $P\left( 0\right) =1$ by construction, while $z\left( 0\right) $ and $%
+f\left( 0\right) $ are less significant values, being just relevant as
+limits for shrinking $t\rightarrow 0$. Therefore it makes sense for a
+discount factor grid to add the $\left( t=0,P=1\right) $ extra point, while
+an equivalent choice for zero or forward rates is to some extent arbitrary
+and as such is to be handled with care;
+
+\item $z\left( t\right) $ is the average of $f\left( t\right) $ in $\left[
+0,t\right] $;
+
+\item the instantaneous forward rate curve $f\left( t\right) $ is the most
+severe test of yield curve smoothness, since anything else is obtained
+through its integration, therefore being smoother by construction.
+\end{itemize}
+
+Besides when rates are non-negative (as it is in all western markets and in
+the EUR market we consider in this paper):
+
+\begin{itemize}
+\item ($\log $) $P(t) $ is a monotone non-increasing function of 
+$t$. Therefore it would make sense to interpolate on a (log-)discount grid
+with an algorithm that ensures monotonicity;
+
+\item $P\left( t\right) >0$;
+\end{itemize}
+
+With this notation for the $T$-tenor $t$-fixing {\it Actual/360} discrete
+forward Euribor rate $L(t, t+T)$ it holds
+
+\begin{equation}
+P(t) (1 + L(t, t+T) \alpha) = 1/P(t+T)
+\label{eqn:Euriborrate}
+\end{equation}
+
+where $\alpha = daycount_{act/360}(t,t+T)$.
+
+For the $T$ year tenor {\it 30/360 (Bond Basis)}
+swap rate $S$ starting at $\tau_0$ with yearly payment at $\tau_1, ..., \tau_T$ it
+holds
+
+\begin{equation}
+P(\tau_0)-P(\tau_T) = S \sum_1^T \delta_j P(\tau_j)
+\label{eqn:swaprate}
+\end{equation}
+
+where $\delta_j = daycount_{30/360 (Bond Basis)}(\tau_{j-1}, \tau_j)$.
+
+\section{Bootstrapping a Euribor Curve}
+
+A summary of standard bootstrapping methodology is given in common textbooks
+as, for instance, \cite{Hull} and \cite{Rebonato}.
+
+Different kind of instruments can be used for bootstrapping, and whilst they
+roughly cover different periods of the yield curve, they overlap in
+significant areas. The relative illiquidity of some instruments, and the
+idiosincracies of different segmented markets often cause a problem of
+market data synchronization: even small differences in their implied rates
+can result in erratic forward rates. Therefore it is usually impossible to
+include all the rates and mostly non-overlapping instruments are chosen,
+with preference given to more liquid ones with a tighter bid/ask spread,
+monitoring the mispricing of the excluded ones as safety check (or
+cheap-rich analysis).
+
+The so-called Euribor curve is usually bootstrapped from:
+
+\begin{itemize}
+\item Deposits which cover the period from today up to 1Y;
+
+\item Forward Rate Agreement (FRA) which cover the period from 1M up to 2Y;
+
+\item Short term interest rate futures which cover the period from spot/3M (depending on
+the current calendar date) up to 2Y and more;
+
+\item Swaps which cover the period from 1Y up to 60Y.
+\end{itemize}
+
+Futures with short expiries are the most liquid, so they are preferred to
+deposits and short term swaps. For longer expiries futures are not as liquid, so
+swaps are used.
+
+For a detailed analisys in the following we use observed market quotes as of
+xxth March 2008.
+
+\subsection{Deposits}
+
+Deposits in the EUR market start at spot date (two working days after today,
+according to the TARGET holiday calendar) and span the length indicated by their maturity.
+Exceptions are the {\it over-night} and {\it tom-next} one-day deposits, which start today and
+tomorrow respectively, covering without overlapping the interval between today and spot date.
+
+The maturity date of deposits shorter than one month is calculated with the
+{\it Following} convention; for longer deposits the convention
+is {\it Modified Following}. For the latters the {\it end-of-month} convention
+is also respected: if the start date is the last working day in a given month,
+the end date must be the last working date of the ending month too.
+
+Assuming $P(0)=1$, for each deposit rate $r$ maturing at $t$ one can calculate:
+
+\begin{equation}
+P(t) = \frac{1}{(1 + r \alpha)}.
+\label{eqn:deposit}
+\end{equation}
+
+where $\alpha = daycount_{act/360}(0,t)$.
+
+\begin{table}[tbp]
+\label{tab:deposits} 
+\begin{tabular}{cccccccc}
+Tenor & Rate & Settlement & Business       & End of & Start & End  & Year \\ 
+      &      &            & day convention & month   & Date  & Date & Fraction \\
+ON & 1.0000\% & today & Following &  &  \\ 
+TN & 1.0000\% & tomorrow & Following &  &  \\ 
+SN & 1.0000\% & spot & Following &  &  \\ 
+SW & 1.0000\% & spot & Following &  &  \\ 
+1W & 1.0000\% & spot & Following &  &  \\ 
+2W & 1.0000\% & spot & Following &  &  \\ 
+3W & 1.0000\% & spot & Following &  &  \\ 
+1M & 1.0000\% & spot & Modified Following &  &  \\ 
+2M & 1.0000\% & spot & Modified Following &  &  \\ 
+3M & 1.0000\% & spot & Modified Following &  &  \\ 
+4M & 1.0000\% & spot & Modified Following &  &  \\ 
+5M & 1.0000\% & spot & Modified Following &  &  \\ 
+6M & 1.0000\% & spot & Modified Following &  &  \\ 
+9M & 1.0000\% & spot & Modified Following &  &  \\ 
+12M & 1.0000\% & spot & Modified Following &  &  \\ 
+&  &  &  &  & 
+\end{tabular}%
+\caption{Deposits pay simple interest using an \emph{Actual/360} day count.}
+\end{table}
+
+\subsection{Forward Rate Agreements}
+
+\begin{table}[tbp]
+\label{tab:fra} 
+\begin{tabular}{cccccc}
+Type & Rate & Start Date & End Date &  &  \\ 
+1x4 & 1.0000\% &  &  &  &  \\ 
+2x5 & 1.0000\% &  &  &  &  \\ 
+3x6 & 1.0000\% &  &  &  &  \\ 
+4x7 & 1.0000\% &  &  &  &  \\ 
+5x8 & 1.0000\% &  &  &  &  \\ 
+6x9 & 1.0000\% &  &  &  &  \\ 
+9x12 & 1.0000\% &  &  &  &  \\ 
+1x7 & 1.0000\% &  &  &  &  \\ 
+2x8 & 1.0000\% &  &  &  &  \\ 
+3x9 & 1.0000\% &  &  &  &  \\ 
+4x10 & 1.0000\% &  &  &  &  \\ 
+5x11 & 1.0000\% &  &  &  &  \\ 
+6x12 & 1.0000\% &  &  &  &  \\ 
+12x18 & 1.0000\% &  &  &  &  \\ 
+18x24 & 1.0000\% &  &  &  &  \\ 
+12x24 & 1.0000\% &  &  &  &  \\ 
+&  &  &  &  & 
+\end{tabular}%
+\caption{FRA on 3M, 6M, and 1Y deposits}
+\end{table}
+
+FRAs are forward starting deposits, e.g. the 3x9 FRA is a six months deposit
+starting three months forward. The forward start date is
+calculated with the same convention used for the end date of deposits,
+so FRAs do concatenate exactly, i.e. the 6x9 starts where the 3x6 ended.
+
+For each FRA rate $r$ spanning the interval $[t_{start}, t_{end}]$ one can imply:
+
+\begin{equation}
+P(t_{end}) = \frac{P(t_{start})}{(1 + r \alpha)}.
+\label{eqn:deposit}
+\end{equation}
+
+where $\alpha = daycount_{act/360}(t_{start}, t_{end})$.
+
+
+FRAs provides direct empirical evidence that a single curve 
+cannot be used to estimate forward rate for different tenors.
+As seen in \ref{tab:fra} the level of the 1x4 
+(spanning from March 3rd to June 3rd, $t_{act/360} = 0.2555$) was 1.888,
+the level of
+4x7 (spanning from June 3rd to September 3rd, $t_{act/360} = 0.2555$) was 1.721.
+If one would compound these two rates to imply the level of the 1x7
+(spanning from March 3rd to September 3rd, $t_{act/360} = 0.5111$) would obtain:
+
+\begin{equation}
+\frac{
+    \left( 1 + 1.888 \times 0.255\right)
+    \left( 1 + 1.721 \times 0.255\right)
+    - 1.0
+}{
+    0.5111
+}=1.809,
+\label{eqn:FRAarbitrage}
+\end{equation}
+
+while the market rate for the 1x7 was 2.008.
+
+\subsection{Futures}
+
+\begin{table}[tbp]
+\label{tab:futures} 
+\begin{tabular}{cccccc}
+IMM  & Price & Convexity  & Forward & IMM  & End  \\
+code &       & adjustment & Rate    & Date & Date \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\ 
+&  &  &  &  & 
+\end{tabular}%
+\caption{Futures on 3M deposit}
+\end{table}
+
+Futures are the exchange-traded equivalent of over-the-counter
+three-month FRAs.  They're quoted as prices instead of rates, the relation being
+
+\begin{equation}
+p = 100 - r,
+\label{eqn:futurepricerate}
+\end{equation}
+
+and refer to the 3M Euribor fixing for the third Wednesday
+of the given month. Because of the two days of settlement
+the last trading day is actually the preceding Monday.
+There are contracts that expire every March, June, September and December.
+
+While FRAs have the advantage of being more customizable, futures offer
+much greater liquidity and lower transaction costs, and their
+credit risk is eliminated through the margining process
+(i.e. through daily marking to market of any profit and loss).
+The first {\it front} contract is the most liquid interest rate instrument,
+with longer expiry contracts having very good liquidity up to the 8th-12th contract. 
+
+Beside regular contracts in the main March,
+June, September, December cycle, there are
+so called {\it serial} contracts expiring in the upcoming months
+not covered by the quarterly expirations.
+The first serial contact is quite liquid, especially when its expiration
+is before the front contract.
+
+Because of their marking to market futures do
+not have the same payoff of forwards:
+an investor long a future contract
+will have a loss when the future price decrease but will finance his loss
+at lower rate (see \ref{eqn:futurepricerate}); viceversa when the future price increase
+the profit will be reinvested at higher rate. This means that the volatility of the forward rates and their correlation to the spot rates have to be accounted for:
+a {\it convexity adjustment}
+is needed to convert the rate implied in the future price to its corresponding forward
+rate $f$ as in
+
+\begin{equation}
+f = 100 - p - adj,
+\label{eqn:fwdfromfutureprice}
+\end{equation}
+
+While different approaches are available in literature (\cite[JaeckelCA],
+\cite[PiterbargCA], \cite[Vaillant]), a practioner reference recipe
+to estimate the convexity adjustment is due to
+ XXX and YYY, using a simple Hull \& White model.
+Their approach it's used in \ref{tab:futures} to calculate adjustments using
+$\sigma = 0.0$ and $\mu = 0.0$.
+
+It's worth noting that when used in bootstrapping algorithms, futures contract generates
+rolling pillars. While other instruments have a (roughly)
+constant time to maturity, i.e. constant pillars, this is not true for futures, whose
+expiration shrinks gradually to zero.
+
+\subsection{Swaps}
+
+\begin{table}[tbp]
+\label{tab:swaps6M} 
+\begin{tabular}{cc}
+Tenor & Rate \\ 
+2Y  & 3.34\% \\ 
+3Y  & 3.34\% \\ 
+4Y  & 3.34\% \\ 
+5Y  & 3.34\% \\ 
+6Y  & 3.34\% \\ 
+7Y  & 3.34\% \\ 
+8Y  & 3.34\% \\ 
+9Y  & 3.34\% \\ 
+10Y & 3.34\% \\ 
+11Y & 3.34\% \\ 
+12Y & 3.34\% \\ 
+15Y & 3.34\% \\ 
+20Y & 3.34\% \\ 
+25Y & 3.34\% \\ 
+30Y & 3.34\% \\ 
+40Y & 3.34\% \\ 
+50Y & 3.34\% \\ 
+60Y & 3.34\% \\ 
+& 
+\end{tabular}%
+\caption{Fixed rate vs 6M Euribor swaps}
+\end{table}
+
+\begin{table}[tbp]
+\label{tab:swaps3M} 
+\begin{tabular}{cc}
+Tenor & Rate \\ 
+12M & 3.34\% \\ 
+15M & 3.34\% \\ 
+18M & 3.34\% \\ 
+21M & 3.34\% \\ 
+& 
+\end{tabular}%
+\caption{Fixed rate vs 3M Euribor swaps}
+\end{table}
+
+\begin{table}[tbp]
+\label{tab:swapsIMM} 
+\begin{tabular}{cc}
+Type & Rate \\ 
+MAR/MAR & 3.34\% \\ 
+JUN/JUN & 3.34\% \\ 
+SEP/SEP & 3.34\% \\ 
+MAR/MAR 2Y & 3.34\% \\ 
+MAR/MAR 3Y & 3.34\% \\ 
+& 
+\end{tabular}%
+\caption{IMM dated fixed rate vs 3M Euribor swaps}
+\end{table}
+
+A vanilla swap is an over-the-counter contract
+in which two counterparties agree to exchange annual fixed rate cash
+flows against six (or three) month floating rate cash flows indexed to six (or three)
+month Euribor. These streams are called the legs of the swap.
+The floating leg can be regarded as a portfolio of forward contracts.
+
+Assuming $P(0)=1$, from equation \ref{eqn:swaprate} one obtains:
+
+\begin{equation}
+P(\tau_T) = \frac
+    {1 - S \sum_1^{T-1} \delta_j P(\tau_j)}
+    {1+S \delta_T}
+\label{eqn:discfromswaprate}
+\end{equation}
+
+The left side of equation \ref{eqn:swaprate} actually arise from
+the reduction of the telescopic sum of discounted floating leg cashflows;
+assuming semiannual floating payments at $t_i$ with
+$\alpha_i=daycount_{act/360}(t_{i-1},t_i) $ the floating leg
+present value is
+
+\begin{equation}
+\sum_1^{2T} L(t_{i-1},t_i) \alpha_i P(t_i) 
+\label{eqn:discfloatlegcf}
+\end{equation}
+
+using \ref{eqn:Euriborrate}
+
+\begin{equation}
+\sum_1^{2T} \frac{P(t_{i-1}) / P(t_i) - 1}{alpha_i} \alpha_i P(t_i) 
+\end{equation}
+
+and simplyfing:
+
+\begin{equation}
+P(0)-P(t_T) 
+\end{equation}
+
+Anyway at XX Frankfurt time the first Euribor rate is fixed at level $E$, so
+equation \ref{eqn:swaprate} becomes
+
+\begin{equation}
+E \alpha_1 P(t_1) + P(t_1) - P(t_0+T) = S \sum_1^T \tau_j P(t_j)
+\label{eqn:swapratewithfixingeffect}
+\end{equation}
+
+
+liquid swaps and interpolated ones
+
+
+\subsection{Basis Swaps}
+
+\begin{table}[tbp]
+\label{tab:basisSwaps} 
+\begin{tabular}{cc}
+Type & Rate \\ 
+MAR/MAR & 3.34\% \\ 
+JUN/JUN & 3.34\% \\ 
+SEP/SEP & 3.34\% \\ 
+MAR/MAR 2Y & 3.34\% \\ 
+MAR/MAR 3Y & 3.34\% \\ 
+& 
+\end{tabular}%
+\caption{Basis swaps}
+\end{table}
+
+
+\section{The Traditional Single Curve Approach}
+
+instrument mix
+
+\section{The Multiple Yield Curve Approach}
+
+instrument selection
+
+sinthetic depo
+
+\section{The Role of Interpolation}
+
+The interpolation we choose for the given parametrization determines how
+reasonable the yield curve will be. For instance, linear interpolation of
+the discount factors is an obvious but extremely poor choice.
+
+linear interpolation of zero rates or log-discounts are popular choices
+leading to stable and fast booststrapping procedures. unfortunately they
+produce discontinuous forward rates, with a sagsaw or piecewise-constant
+shape.
+
+flat extrapolation out to infinity.
+
+well-documented problems with spurious inflection points, excessive
+convexity, and lack of locality in the effects of input price perturbations.
+Andersen \cite{Andersen2005} addresses these issues through the use of
+shape-preserving splines from the class of generalized tension splines.
+
+swap selection
+
+\section{The Turn-of-Year Effect}
+
+TBD
+
+\section{Pricing Interest Rate Derivatives Using Separated Yield Curves for
+Discounting and Forwarding}
+
+In this section we revisit the general problem of pricing interest rate
+derivatives using two different yield curves for discounting and forwarding.
+We proof that this amounts to an adjustment for forward rates, for which an
+explicit expression can be derived in full analogy with the well known
+quanto adjustment widely used for cross-currency derivatives. Our numerical
+results show that in our context the size of this correction is negligible
+in all practical cases.
+
+\subsection{Discounting Curve (WIP)}
+
+The discounting curve - the curve used to discount cashflows happening in
+the future - can be built in different ways, depending on uses, preferences
+and idiosynchrasis. For sure, there are at least two options:
+
+\begin{enumerate}
+\item the \textquotedblleft traditional\textquotedblright\ way: bootstrap
+the curve as before the market change of last August, e.g. using Deposits,
+Futures and Swaps with maximum liquidity but mixed tenors (better with the
+monotonic cubic spline interpolation discussed before). [\textit{TBD: pros.
+?\ cons. ?}]
+
+\item the \textquotedblleft segmentation\textquotedblright\ way: partition
+your portfolios of interest rate instruments into homogeneous books
+containing with 1M, 3M, 6M and 12M tenors, respectively, and for each book
+assume the discounting curve to be equal to its own forwarding curve. This
+generally covers the larger part of interest rate portfolios. The
+(eventually)\ remaining non-homogeneous instruments.(depending on more than
+one rate tenor, or even hybrids) can be redistributed in the books above
+(according to their prevailing tenor) or put in other isolated books. The
+main advantage of this approach is to \textquotedblleft clean
+up\textquotedblright\ the trading books, \textquotedblleft
+cornering\textquotedblright\ the more complex deals in a controlled way; the
+main drawback is that the same cashflow (amount of money to be exchanged at
+a future date) can assume, in principle, different present values in two
+different books. The difference is the quanto adjustment discussed in
+section \ref{SecQuantoAdj} below, where we prove that it is negligible in
+most cases.
+\end{enumerate}
+
+\subsection{Quanto Adjustment}
+
+We start assuming the existence of \textit{two} interest rate markets,
+characterized by two bank accounts $B_{d}\left( t\right) $ and $B_{f}\left(
+t\right) $ and by two yield curves $\complement _{d},\complement _{f}$ in
+the form of a (continuous) term structure of discount factors,%
+\begin{eqnarray}
+\complement _{d} &=&\left\{ T\longrightarrow P_{d}\left( t_{ref},T\right)
+,T>t_{ref}\right\} , \\
+\complement _{f} &=&\left\{ T\longrightarrow P_{f}\left( t_{ref},T\right)
+,T>t_{ref}\right\} ,
+\end{eqnarray}%
+where $t_{ref}$\ is the (common)\ reference date of the curves (e.g.
+settlement date, or today) and $P_{x}\left( t_{ref},T\right) $ is the zero
+coupon bond for maturity $T$ (such that $P_{x}\left( t_{ref},t_{ref}\right)
+=1,x=\left\{ d,f\right\} $). We interpret $\complement _{d}$ as the
+discounting curve and $\complement _{f}$ as the forwarding curve, and we
+want to price interest rate derivatives evaluating (forward) rates/cashflows
+on $\complement _{f}$ and discount factors/NPVs on $\complement _{d}$.
+
+The simplest case is that of a zero coupon bond paying a single cashflow
+depending on a single spot Euribor rate, with payoff at maturity $T>t_{ref}$
+given by%
+\begin{eqnarray}
+\text{\textbf{ZCB}}\left( T,T,dc,dc_{f},N_{d}\right)  &=&N_{d}\tau \left(
+t_{ref},T,dc\right) L_{f}\left( t_{ref},T,dc_{f}\right) ,  \label{ZCBPayoff}
+\\
+L_{f}\left( t_{ref},T,dc_{f}\right)  &=&\frac{1-P_{f}\left( t_{ref},T\right) 
+}{\tau \left( t_{ref},T,dc_{f}\right) P_{f}\left( t_{ref},T\right) },
+\end{eqnarray}%
+where\footnote{%
+we adopt here a slightly cumbersome notation in order to make explicit all
+the dependencies and to avoid any possible confusion between quantities
+referring to the two curves.} $N_{d}$ is the nominal amount of the contract, 
+$\tau \left( t_{ref},T,dc\right) $ is the year fraction between times $%
+t_{ref}$ and $T$, $dc$ and $dc_{f}$ are the daycount conventions associated
+with the contract and with $\complement _{f}$, respectively, and $%
+L_{f}\left( t_{ref},T,dc_{f}\right) $ is the (simply compounded) Euribor rate
+prevailing at time $t_{ref}$ for maturity $T$. For sake of generality we
+will concentrate on the next simplest case, a Forward Rate Agreement (FRA)
+contract with payoff at maturity $T_{2}>T_{1}>t_{ref}$ given by%
+\begin{equation}
+\text{\textbf{FRA}}\left( T_{2},T_{1},T_{2},dc,dc_{f},K,N_{d}\right)
+=N_{d}\tau \left( T_{1},T_{2},dc\right) \left[ F_{f}\left(
+T_{1};T_{1},T_{2},dc_{f}\right) -K\right] ,  \label{FRAPayoff}
+\end{equation}%
+where $F_{f}\left( t;T_{1},T_{2},dc_{f}\right) $\ is the (simply compounded)
+forward rate prevailing at time $t$ for expiry at time $T_{1}$ and maturity
+at time $T_{2}$, 
+\begin{equation}
+F_{f}\left( t;T_{1},T_{2},dc_{f}\right) =\frac{P_{f}\left( t,T_{1}\right)
+-P_{f}\left( t,T_{2}\right) }{\tau \left( t,T_{2},dc_{f}\right) P_{f}\left(
+t,T_{2}\right) }  \label{FraRate}
+\end{equation}%
+and $K$ is the (simply compounded) strike of the contract. What we are
+looking for is an expression for the FRA price\footnote{%
+Obviously \textbf{ZCB}$\left( t_{ref},T_{2},dc,dc_{f},N_{d}\right) =$\textbf{%
+FRA}$\left( t_{ref},t_{ref},T_{2},dc,dc_{f},0,N_{d}\right) .$} \textbf{FRA}$%
+\left( t,T_{1},T_{2},dc,dc_{f},K,N_{d}\right) ,\forall t$ such that $%
+t_{ref}\leq t<T_{1}$. The difference with the familiar single-curve interest
+rate world is that the cashflow in eq. \ref{FRAPayoff} must refer to $%
+\complement _{d}$ while the rate in eq. \ref{FraRate} is intrinsically
+defined on $\complement _{f}$.
+
+At this point it is clear the analogy with the case of cross currency
+derivatives: we can identify $\complement _{d}$ and $\complement _{f}$ with
+the \textit{domestic} and \textit{foreign} yield curves, respectively, and
+the bank accounts $B_{d}\left( t\right) $ and $B_{f}\left( t\right) $ with
+the corresponding currencies\footnote{%
+here one can appreciate the notation we have adopted: \textquotedblleft
+d\textquotedblright\ stands for \textquotedblleft
+discounting\textquotedblright\ or \textquotedblleft
+domestic\textquotedblright\ and \textquotedblleft f\textquotedblright\ for
+\textquotedblleft forwarding\textquotedblright\ or \textquotedblleft
+foreign\textquotedblright .}. The forward rate in eq. \ref{FraRate} is
+expressed in foreign currency, while the cashflow in eq. \ref{FRAPayoff} is
+expressed in domestic currency. We thus proceed on this way by assuming the
+existence, at time $t$, of a an exchange rate between the two
+currencies/curves such that 
+\begin{equation}
+c_{d}\left( t\right) =X\left( t\right) c_{f}\left( t\right) ,
+\end{equation}%
+where $c_{f}\left( t\right) $ is any cashflow at time $t$ in units of
+foreign currency (that is, evaluated on $\complement _{f}$) and $c_{d}\left(
+t\right) $ is the \textit{same} cashflow in units of domestic currency (that
+is, evaluated on $\complement _{d}$). According to the standard market
+practice, we further assume the following (driftless) lognormal martingale
+dynamics for the domestic and foreign forward rates, 
+\begin{equation}
+\frac{dF_{x}\left( t;T_{1},T_{2},dc_{x}\right) }{F_{x}\left(
+t;T_{1},T_{2},dc_{x}\right) }=\sigma _{x}\left( t\right)
+dW_{x}^{T_{2}}\left( t\right) ,\text{ \ \ }x\in \left\{ d,f\right\} ,
+\end{equation}%
+where $\sigma _{x}\left( t\right) $ are the volatilities (positive
+deterministic functions of time) of the two processes, under the probability
+spaces $\left( \Omega ,\mathcal{F}^{x},Q_{x}^{T_{2}}\right) $ with the
+associated filtrations $\mathcal{F}_{t}^{x}$ generated by the two brownian
+motions $W_{x}^{T_{2}}$ under the two $T_{2}-$forward measures $%
+Q_{x}^{T_{2}} $. We also define the forward exchange rate $X\left(
+t,T_{2},dc_{X}\right) $ at time $t$ maturing at time $T_{2}$, with daycount
+convention $dc_{X}$, as%
+\begin{equation}
+X\left( t,T_{2},dc_{X}\right) =X\left( t\right) \frac{P_{f}\left(
+t,T_{2}\right) }{P_{d}\left( t,T_{2}\right) }.
+\end{equation}%
+Since $X\left( t\right) P_{f}\left( t,T_{2}\right) $ is the price of a
+tradable asset in the domestic market (that is, on $\complement _{d}$), $%
+X\left( t,T_{2},dc_{X}\right) $ must be a (driftless)\ martingale process
+under $Q_{d}^{T_{2}}$,%
+\begin{equation}
+\frac{dX\left( t,T_{2},dc_{x}\right) }{X\left( t,T_{2},dc_{x}\right) }%
+=\sigma _{X}\left( t\right) dW_{X}^{T_{2}}\left( t\right) ,
+\end{equation}%
+where $\sigma _{X}\left( t\right) $ is the\ volatility (positive
+deterministic function of time) of the process and $W_{X}^{T_{2}}\left(
+t\right) $ is a brownian motion under $Q_{d}^{T_{2}}$ such that%
+\begin{equation}
+dW_{f}^{T_{2}}\left( t\right) dW_{X}^{T_{2}}\left( t\right) =\rho
+_{fX}\left( t\right) dt.
+\end{equation}
+
+Given the assumptions before, the no-arbitrage FRA price in domestic
+currency (on $\complement _{d}$) is given, for $t_{ref}\leq t<T_{1}$, by%
+\begin{align}
+\text{\textbf{FRA}}\left( t,T_{1},T_{2},dc,dc_{f},K,N_{d}\right) &
+=N_{d}\tau \left( T_{1},T_{2},dc\right) P_{d}\left( t,T_{2}\right)  \notag \\
+& \times \mathbb{E}^{Q_{d}^{T_{2}}}\left[ F_{f}\left(
+T_{1};T_{1},T_{2},dc_{f}\right) -K|\mathcal{F}_{t}^{d}\right] .
+\label{FRAPrice1}
+\end{align}%
+In order to compute the expectation on the r.h.s. of eq. \ref{FRAPrice1}, a
+change from the foreign measure $Q_{f}^{T_{2}}$ to the domestic measure $%
+Q_{d}^{T_{2}}$ (from $\complement _{f}$ to $\complement _{d}$) is required.
+We obtain (see chs. 2.9 and 14.4.2. in ref. \cite{BrigoMercurio2006}) that
+under $Q_{d}^{T_{2}}$ the dynamic of $F_{f}\left(
+t;T_{1},T_{2},dc_{f}\right) $ acquires a non-zero drift 
+\begin{eqnarray}
+\frac{dF_{f}\left( t;T_{1},T_{2},dc_{f}\right) }{F_{f}\left(
+t;T_{1},T_{2},dc_{f}\right) } &=&\mu _{f}\left( t\right) dt+\sigma
+_{f}\left( t\right) dW_{f}^{T_{2}}\left( t\right) , \\
+\mu _{f}\left( t\right) &=&-\rho _{fX}\left( t\right) \sigma _{f}\left(
+t\right) \sigma _{X}\left( t\right) ,
+\end{eqnarray}%
+and that $F_{f}\left( t;T_{1},T_{2},dc_{f}\right) $ is lognormally
+distributed with 
+\begin{eqnarray}
+\mathbb{E}^{Q_{d}^{T_{2}}}\left[ \ln \frac{dF_{f}\left(
+T_{1};T_{1},T_{2},dc_{f}\right) }{F_{f}\left(
+T_{1};T_{1},T_{2},dc_{f}\right) }|\mathcal{F}_{t}^{d}\right]
+&=&\int_{t}^{T_{1}}\left[ \mu _{f}\left( u\right) -\frac{1}{2}\sigma
+_{f}^{2}\left( u\right) \right] du, \\
+\text{Var}^{Q_{d}^{T_{2}}}\left[ \ln \frac{dF_{f}\left(
+T_{1};T_{1},T_{2},dc_{f}\right) }{F_{f}\left(
+T_{1};T_{1},T_{2},dc_{f}\right) }|\mathcal{F}_{t}^{d}\right]
+&=&\int_{t}^{T_{1}}\sigma _{f}^{2}\left( u\right) du.
+\end{eqnarray}%
+We thus arrive at the price of the FRA on $\complement _{d}$%
+\begin{align}
+\text{\textbf{FRA}}\left( t,T_{1},T_{2},dc,dc_{f},K,N_{d}\right) &
+=N_{d}\tau \left( T_{1},T_{2},dc\right) P_{d}\left( t,T_{2}\right)  \notag \\
+& \times \left[ F_{f}\left( t;T_{1},T_{2},dc_{f}\right) C\left( t,T_{1},\rho
+_{fX},\sigma _{f},\sigma _{X}\right) -K\right] ,  \label{FRAPrice2}
+\end{align}%
+where the quanto adjustment $C\left( t,T_{1},\rho _{fX},\sigma _{f},\sigma
+_{X}\right) $ is given, for $t_{ref}\leq t<T_{1}$, by%
+\begin{align}
+C\left( t,T_{1},\rho _{fX},\sigma _{f},\sigma _{X}\right) & =\exp \left[
+\int_{t}^{T_{1}}\mu _{f}\left( u\right) du\right]  \notag \\
+& =\exp \left[ -\int_{t}^{T_{1}}\rho _{fX}\left( u\right) \sigma _{f}\left(
+u\right) \sigma _{X}\left( u\right) du\right] .  \label{QuantoAdj}
+\end{align}
+
+The calculations above can be used for pricing on $\complement _{d}$ other
+derivatives depending on forward rates on $\complement _{f}$, such as a
+floating swap leg (with obvious notation) 
+\begin{multline}
+\text{\textbf{Swap}}\left( t,\mathbf{T},dc,dc_{f},\mathbf{K},\mathbf{N}%
+_{d}\right) =\sum\limits_{i=1}^{n}N_{d,i}\tau \left( T_{i-1},T_{i},dc\right)
+P_{d}\left( t,T_{i}\right)  \notag \\
+\times \left[ F_{f}\left( t;T_{i-1},T_{i},dc_{f}\right) C\left(
+t,T_{i-1},\rho _{fX,i},\sigma _{f,i},\sigma _{X,i}\right) -K_{i}\right] ,
+\end{multline}%
+and caps/floors%
+\begin{multline}
+\text{\textbf{CF}}\left( t,\mathbf{T},dc,dc_{f},\mathbf{K},\mathbf{N}%
+_{d},\omega \right) =\omega \sum\limits_{i=1}^{n}N_{d,i}\tau \left(
+T_{i-1},T_{i},dc\right) P_{d}\left( t,T_{i}\right)  \notag \\
+\times \left[ F_{f}\left( t;T_{i-1},T_{i},dc_{f}\right) C\left(
+t,T_{i-1},\rho _{fX,i},\sigma _{f,i},\sigma _{X,i}\right) N\left( \omega
+d_{i}^{+}\right) -K_{i}N\left( \omega d_{i}^{-}\right) \right] ,
+\end{multline}%
+where $\omega =+/-1$ for cap/floor options, respectively, and 
+\begin{equation}
+N\left( \omega d_{i}^{\pm }\right) =\frac{\ln \frac{F_{f}\left(
+t;T_{i-1},T_{i},dc_{f}\right) }{K_{i}}+\int_{t}^{T_{1}}\left[ \mu
+_{f,i}\left( u\right) \pm \frac{1}{2}\sigma _{f,i}^{2}\left( u\right) \right]
+du}{\sqrt{\int_{t}^{T_{1}}\sigma _{f,i}^{2}\left( u\right) du}}.
+\end{equation}
+
+We conclude that pricing interest rate derivatives using separated yield
+curves for discounting and forwarding amounts to a quanto adjustment of the
+form \ref{QuantoAdj} for the forward rates $F_{f}\left(
+t;T_{i-1},T_{i},dc_{f}\right) $ evaluated on the forwarding curve $%
+\complement _{f}$. Such correction depends on the volatility $\sigma _{f}$
+of the forward rates $F_{f}$ on $\complement _{f}$, on the volatility $%
+\sigma _{X}$ of the forward exchange rate $X$ between $\complement _{f}$ and 
+$\complement _{d}$, and on the correlation $\rho _{fX}$ between $F_{f}$ and $%
+X$.
+
+[\textit{TBD: eventualmente derivare esplicitamente l'espressione per
+cambiare da una curva di forwarding ad un'altra, ad es. per esprimere un
+forward 3M in valuta 6M}]
+
+\subsection{Numerical Results (TBD)}
+
+Tests of repricing \ (grafici di repricing degli stessi strumenti sulle 4
+curve con breve commento)\newline
+cap/floor parity
+
+\section{Implementation}
+
+Using \cite{ql090} is fun
+
+The results discussed above have been obtained by the authors using the
+QuantLib framework. The object oriented C++ QuantLib library \cite{QuantLib}
+offers tools for advanced modeling and practical implementation, with
+features such as market conventions, yield curve models, solvers, PDEs,
+(Quasi)\ Monte Carlo, exotic options, VAR, etc. The QuantLibAddin \cite%
+{QuantLibAddin} and QuantLibXL \cite{QuantLibXL} projects use the
+ObjectHandler in-memory repository \cite{ObjectHandler} to export the
+QuantLib objects (classes) and analytics (methods) to a variety of end-user
+platforms including Excel and Calc. The full implementation of the work
+described before, comprehensive of C++ code and Excel workbooks, is open
+source. In particular... [\textit{TBD: ampliare questo punto descrivendo
+meglio che cosa \`{e} effettivamente fatto e disponibile ?\ }]. Anyone
+interested in the topic is invited to post to the QuantLib community any
+comment or suggestion to improve the job.
+
+\section{\textbf{Conclusions}}
+
+TBD
+
+\textbf{Acknowledgements (WIP)}
+
+The authors acknowledge fruitful interactions with Fabio Mercurio, G. West,
+Banca IMI\ traders R. Giura and S. De Nuccio, and the QuantLib community.
+The opinions expressed in this paper are those of the authors and do not
+reflect or represent in any way the views of their employers.
+
+\bibliographystyle{apalike}
+\bibliography{YieldCurve}
+
+\begin{thebibliography}{99}
+\bibitem{HaganWest2006} P. S. Hagan, G. West, \textquotedblleft \textit{%
+Interpolation Methods for Curve Construction}\textquotedblright , Applied
+Mathematical Finance, Vol. 13, No. 2, 89--129, June 2006.
+
+\bibitem{HaganWest2008} P. S. Hagan, G. West, \textquotedblleft \textit{%
+Methods for Constructing a Yield Curve}\textquotedblright , (2008), preprint
+available at \textit{www.finmod.co.za/interpreview.pdf}, workbook available
+from \textit{www.finmod.co.za/monotone convex.xls}).
+
+\bibitem{ChristensenEtAl2007} J. Christensen, F. Diebold, G. Rudebusch
+\textquotedblleft \textit{The Affine Arbitrage-Free Class of Nelson-Siegel
+Term Structure Models}\textquotedblright , FRB of San Francisco Working
+Paper No. 2007-20, (2007).
+
+\bibitem{SoderlindSwensson1997} P. Soderlind, L.O.E. Svensson
+\textquotedblleft \textit{New Techniques to Extract Market Expectations from
+Financial Instruments}\textquotedblright\ Journal of Monetary Economics 40,
+383--429 (1997).
+
+\bibitem{Coroneo2008} L. Coroneo, K. Nyholm, R.V.Koleva, \textquotedblleft 
+
+\bibitem{BrigoMercurio2006} D. Brigo, F. Mercurio, \textquotedblleft \textit{%
+Interest Rate Models - Theory and Practice}\textquotedblright , 2nd edition,
+Springer 2006.
+
+\bibitem{SourceForge} SourceForge, the Open Source software development web
+site, \textit{sourceforge.net.}
+
+\bibitem{QuantLib} QuantLib, a free/open-source library for quantitative
+finance, \textit{www.quantlib.org.}
+
+\bibitem{QuantLibAddin} QuantLibAddin, a free/open-source library for
+exporting QuantLib to end-user platforms, \textit{www.quantlibaddin.org.}
+
+\bibitem{QuantLibXL} QuantLibXL, a free/open-source library for exporting
+QuantLib to Microsoft Excel, \textit{www.quantlibxl.org.}
+
+\bibitem{ObjectHandler} ObjectHandler, a free/open-source library to
+interface object-oriented libraries, \textit{www.objecthandler.org.}
+\end{thebibliography}
+
+\end{document}
