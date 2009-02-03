@@ -20,8 +20,15 @@
 #ifdef SWIGPERL
 %{
 // Undefine perl symbols that are also used in quantlib
+#ifdef Null
 #undef Null
+#endif
+#ifdef Stat
 #undef Stat
+#endif
+#ifdef seed
+#undef seed
+#endif
 %}
 #endif
 
