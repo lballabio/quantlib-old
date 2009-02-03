@@ -181,6 +181,7 @@
    <pre>
    configure --disable-shared
    </pre>
+   This is not necessary under Mac OS X 10.4 or higher.
 
 <c>Using QuantLib
 <q>I cannot link QuantLib to my project under Visual C++
@@ -202,6 +203,7 @@
    <pre>
    configure --disable-shared
    </pre>
+   This is not necessary under Mac OS X 10.4 or higher.
 
 <c>QuantLib features
 <q>Why is feature X missing from QuantLib? It would be a very useful one.
