@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2005, 2006, 2007, 2008 StatPro Italia srl
+ Copyright (C) 2009 Joseph Malicki
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,6 +20,7 @@
 #ifndef quantlib_rate_helpers_i
 #define quantlib_rate_helpers_i
 
+%include bonds.i
 %include date.i
 %include calendars.i
 %include daycounters.i
@@ -198,6 +200,10 @@ class FixedRateBondHelperPtr : public boost::shared_ptr<RateHelper> {
                                         schedule, coupons, paymentDayCounter,
                                         paymentConvention, redemption,
                                         issueDate));
+        }
+
+      	FixedRateBondPtr bond() {
+            return FixedRateBondPtr(boost::dynamic_pointer_cast<FixedRateBondHelper>(*self)->bond());
         }
     }
 };

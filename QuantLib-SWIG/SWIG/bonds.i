@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
+ Copyright (C) 2009 Joseph Malicki
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -54,18 +55,49 @@ class BondPtr : public boost::shared_ptr<Instrument> {
     BondPtr();
   public:
     %extend {
+        // public functions
+        Rate nextCoupon(const Date& d = Date()) {
+            return boost::dynamic_pointer_cast<Bond>(*self)
+                ->nextCoupon();
+        }
+        Rate previousCoupon(const Date& d = Date()) {
+            return boost::dynamic_pointer_cast<Bond>(*self)
+                ->previousCoupon();
+        }
         // inspectors
+        Natural settlementDays() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)
+                ->settlementDays();
+        }
         Date settlementDate() {
             return boost::dynamic_pointer_cast<Bond>(*self)->settlementDate();
         }
+        Date maturityDate() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->maturityDate();
+        }
+        Date issueDate() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->issueDate();
+        }
         std::vector<boost::shared_ptr<CashFlow> > cashflows() const {
             return boost::dynamic_pointer_cast<Bond>(*self)->cashflows();
+        }
+        std::vector<boost::shared_ptr<CashFlow> > redemptions() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->redemptions();
         }
         boost::shared_ptr<CashFlow> redemption() const {
             return boost::dynamic_pointer_cast<Bond>(*self)->redemption();
         }
         Calendar calendar() const {
             return boost::dynamic_pointer_cast<Bond>(*self)->calendar();
+        }
+        Real faceAmount() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->faceAmount();
+        }
+        std::vector<Real> notionals() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->notionals();
+        }
+        Real notional(Date d=Date()) const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->notional(d);
         }
         // calculations
         Real cleanPrice() {
@@ -83,16 +115,15 @@ class BondPtr : public boost::shared_ptr<Instrument> {
         }
         Real dirtyPrice(Rate yield, const DayCounter &dc,
                         Compounding compounding,
-            Frequency frequency,
+                        Frequency frequency,
                         const Date& settlement = Date()) {
             return boost::dynamic_pointer_cast<Bond>(*self)
                 ->dirtyPrice(yield,dc, compounding,
-        frequency,
-        settlement);
+                             frequency, settlement);
         }
         Real yield(const DayCounter& dc,
                    Compounding compounding,
-           Frequency freq,
+                   Frequency freq,
                    Real accuracy = 1.0e-8,
                    Size maxEvaluations = 100) {
             return boost::dynamic_pointer_cast<Bond>(*self)
@@ -101,18 +132,43 @@ class BondPtr : public boost::shared_ptr<Instrument> {
         Real yield(Real cleanPrice,
                const DayCounter& dc,
                    Compounding compounding,
-           Frequency freq,
+                   Frequency freq,
                    const Date& settlement = Date(),
                    Real accuracy = 1.0e-8,
                    Size maxEvaluations = 100) {
             return boost::dynamic_pointer_cast<Bond>(*self)
                 ->yield(cleanPrice,dc,compounding,freq,
-            settlement,
-                        accuracy,maxEvaluations);
+                        settlement,accuracy,maxEvaluations);
         }
         Real accruedAmount(const Date& settlement = Date()) {
             return boost::dynamic_pointer_cast<Bond>(*self)
                 ->accruedAmount(settlement);
+        }
+        Real settlementValue() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)
+                ->settlementValue();
+        }
+        Real settlementValue(Real cleanPrice) const {
+            return boost::dynamic_pointer_cast<Bond>(*self)
+                ->settlementValue(cleanPrice);
+        }
+        Real cleanPriceFromZSpread(Spread zSpread,
+                                   const DayCounter& dc,
+                                   Compounding compounding,
+                                   Frequency freq,
+                                   const Date& settlementDate = Date()) const {
+            return boost::dynamic_pointer_cast<Bond>(*self)
+                ->cleanPriceFromZSpread(zSpread, dc, compounding,
+                                        freq, settlementDate);
+        }
+        Real dirtyPriceFromZSpread(Spread zSpread,
+                                   const DayCounter& dc,
+                                   Compounding compounding,
+                                   Frequency freq,
+                                   const Date& settlementDate = Date()) const {
+            return boost::dynamic_pointer_cast<Bond>(*self)
+                ->dirtyPriceFromZSpread(zSpread, dc, compounding,
+                                        freq, settlementDate);
         }
     }
 };
@@ -159,6 +215,14 @@ class FixedRateBondPtr : public BondPtr {
                                   schedule, coupons, paymentDayCounter,
                                   paymentConvention, redemption,
                                   issueDate));
+        }
+        Frequency frequency() const {
+            return boost::dynamic_pointer_cast<FixedRateBond>(*self)
+                ->frequency();
+        }
+        DayCounter dayCounter() const {
+            return boost::dynamic_pointer_cast<FixedRateBond>(*self)
+                ->dayCounter();
         }
     }
 };
