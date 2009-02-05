@@ -53,12 +53,12 @@ you can do. Possibilities include:
 <li>accept one of the various tasks listed in the <a href=
     "http://sourceforge.net/pm/?group_id=12740">task manager</a>.</li>
 </ul>
-Even if contributions were little, their cumulative effect would be a
+<p>Even if contributions were little, their cumulative effect would be a
 great help to improve the library. Moreover, each of the above are
 also ways to familiarize with the library (so that in time you'll
 become able to work on its internals) and to establish yourself as a
 trusted contributor. In the latter case, you might be granted write
-access to the CVS tree.</p>
+access to the Subversion repository tree.</p>
 <p>Finally, we might need to ask for a disclaimer from your employer
 stating that your contribution can be released under the QuantLib
 license. Such disclaimer won't be necessary if you own the copyright
