@@ -56,17 +56,14 @@
 <a href="http://opensource.org/docs/definition.html"><img src=
 "images/osi-certified-90x75.png" width="90" height="75" border="0"
 alt="OSI Certification Mark"></a></div>
+
 <hr>
 <div class="center"><strong>Hosted by</strong><br>
-<a href="http://sourceforge.net"><img src=
-"http://sflogo.sourceforge.net/sflogo.php?group_id=12740&amp;type=1"
-width="88" height="31" border="0" alt="SourceForge.net Logo"></a></div>
-
-<ul class="navbarlist">
-<li class="navlink"> <a
-  href="http://sourceforge.net/docman/?group_id=1">About
-SourceForge.net</a></li>
-</ul>
+<a href="http://sourceforge.net/projects/quantlib"><img
+src="http://sflogo.sourceforge.net/sflogo.php?group_id=12740&amp;type=13"
+width="120" height="30" border="0" alt="Get QuantLib at
+SourceForge.net. Fast, secure and Free Open Source software downloads">
+</a></div>
 
 <hr>
 <div class="center"><strong>Supported by</strong><br>
@@ -94,8 +91,8 @@ height="33" border="0" alt="StatPro Logo"></a></div>
 <form action="http://www.google.com/search" method="get">
 <div class="center">
 <img src="images/google.png" border="0" alt="Google Logo"><br>
-<input type="text" size="15" maxlength="255" value="" name="q"/>
-<input type="hidden" value="quantlib.org" name="domains"/>
-<input type="hidden" value="quantlib.org" name="sitesearch"/>
+<input type="text" size="15" maxlength="255" value="" name="q">
+<input type="hidden" value="quantlib.org" name="domains">
+<input type="hidden" value="quantlib.org" name="sitesearch">
 </div>
 </form>
