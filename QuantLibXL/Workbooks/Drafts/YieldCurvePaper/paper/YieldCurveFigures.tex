@@ -1,10 +1,12 @@
 
 \documentclass{article}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %TCIDATA{OutputFilter=LATEX.DLL}
 %TCIDATA{Version=4.00.0.2312}
 %TCIDATA{Created=Thursday, February 05, 2009 18:41:07}
-%TCIDATA{LastRevised=Thursday, February 05, 2009 19:10:19}
+%TCIDATA{LastRevised=Thursday, February 05, 2009 23:20:53}
 %TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
 %TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
 %TCIDATA{CSTFile=40 LaTeX article.cst}
@@ -36,31 +38,45 @@
 \begin{document}
 
 
-\FRAME{ftbpFU}{254.8125pt}{398.9375pt}{0pt}{\Qcb{Yield curve 1M}}{\Qlb{%
-FigYC1M}}{Figure}{\special{language "Scientific Word";type
-"GRAPHIC";maintain-aspect-ratio TRUE;display "USEDEF";valid_file "T";width
-254.8125pt;height 398.9375pt;depth 0pt;original-width
-339.5pt;original-height 533pt;cropleft "0";croptop "1";cropright
-"1";cropbottom "0";tempfilename 'FigYC1M.wmf';tempfile-properties "XNPR";}}
+\ref{FigYC1M}
 
-\FRAME{ftbpFU}{254.8125pt}{398.9375pt}{0pt}{\Qcb{Yield curve 3M}}{\Qlb{%
-FigYC3M}}{Figure}{\special{language "Scientific Word";type
+\FRAME{ftbpFU}{254.8125pt}{398.9375pt}{0pt}{\Qcb{Yield curve on Euribor1M.
+Brown line: zero curve, plotted with zero rates $Z\left( t_{0},t_{0}+t,\text{%
+\textit{act/365}}\right) $, $t$ daily sampled and settlement date $t_{0}=$
+Jan. 27th, 2009. Blu line: forward curve $\complement _{f}^{I_{1M}}$,
+plotted with 1M-tenor forward rates $F\left( t_{0};t,t+1M,\text{\textit{%
+act/360}}\right) $. Upper panel: short term structure up to 3 years; middel
+panel: medium term structure up to 10 years; lower panel: long term
+structure up to 60 years. NOTA:\ correggere titoli}}{\Qlb{FigYC1M}}{Figure}{%
+\special{language "Scientific Word";type "GRAPHIC";maintain-aspect-ratio
+TRUE;display "USEDEF";valid_file "T";width 254.8125pt;height
+398.9375pt;depth 0pt;original-width 339.5pt;original-height 533pt;cropleft
+"0";croptop "1";cropright "1";cropbottom "0";tempfilename
+'FigYC1M.wmf';tempfile-properties "XNPR";}}
+
+\FRAME{ftbpFU}{254.8125pt}{398.9375pt}{0pt}{\Qcb{Yield curve on Euribor3M.
+As in fig. \protect\ref{FigYC1M}. Cyan diamonds: quoted 3M FRAs. Green
+triangles: quoted 3M\ Futures. NOTA: correggere titoli}}{\Qlb{FigYC3M}}{%
+Figure}{\special{language "Scientific Word";type
 "GRAPHIC";maintain-aspect-ratio TRUE;display "USEDEF";valid_file "T";width
 254.8125pt;height 398.9375pt;depth 0pt;original-width
 339.5pt;original-height 533pt;cropleft "0";croptop "1";cropright
 "1";cropbottom "0";tempfilename 'FigYC3M.wmf';tempfile-properties "XNPR";}}
 
-\FRAME{ftbpFU}{254.8125pt}{398.9375pt}{0pt}{\Qcb{Yield Curve 6M}}{\Qlb{%
-FigYC6M}}{Figure}{\special{language "Scientific Word";type
+\FRAME{ftbpFU}{254.8125pt}{398.9375pt}{0pt}{\Qcb{Yield curve on Euribor6M.
+As in fig. \protect\ref{FigYC1M}. Cyan diamonds: quoted 6M FRAs. Green
+triangles: quoted 6M\ Futures. NOTA: correggere titoli}}{\Qlb{FigYC6M}}{%
+Figure}{\special{language "Scientific Word";type
 "GRAPHIC";maintain-aspect-ratio TRUE;display "USEDEF";valid_file "T";width
 254.8125pt;height 398.9375pt;depth 0pt;original-width
 339.5pt;original-height 533pt;cropleft "0";croptop "1";cropright
 "1";cropbottom "0";tempfilename 'FigYC6M.wmf';tempfile-properties "XNPR";}}
 
-\FRAME{ftbpFU}{254.8125pt}{398.9375pt}{0pt}{\Qcb{Yield curve 12M}}{\Qlb{%
-FigYC12M}}{Figure}{\special{language "Scientific Word";type
-"GRAPHIC";maintain-aspect-ratio TRUE;display "USEDEF";valid_file "T";width
-254.8125pt;height 398.9375pt;depth 0pt;original-width
+\FRAME{ftbpFU}{254.8125pt}{398.9375pt}{0pt}{\Qcb{Yield curve on Euribor12M.
+As in fig. \protect\ref{FigYC1M}. Cyan diamonds: quoted 12M FRAs. NOTA:
+correggere titoli}}{\Qlb{FigYC12M}}{Figure}{\special{language "Scientific
+Word";type "GRAPHIC";maintain-aspect-ratio TRUE;display "USEDEF";valid_file
+"T";width 254.8125pt;height 398.9375pt;depth 0pt;original-width
 339.5pt;original-height 533pt;cropleft "0";croptop "1";cropright
 "1";cropbottom "0";tempfilename 'FigYC12M.wmf';tempfile-properties "XNPR";}}
 
