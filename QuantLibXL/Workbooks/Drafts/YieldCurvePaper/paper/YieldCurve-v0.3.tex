@@ -16,9 +16,10 @@
 
 \begin{document}
 
-\title[Smooth Yield Curves For Euribor Estimation]{Bootstrapping the Illiquidity: \\ \emph{Smooth Yield Curves Construction \\
+\title[Smooth Yield Curves For Euribor Estimation]{Bootstrapping the Illiquidity: \\ \emph{Post Credit Crunch \\
+Smooth Yield Curves Construction \\
 For Market Coherent \\
-Forward Euribor Rate Estimation}}
+Forward Rates Estimation}}
 
 \author{Ferdinando M. Ametrano}
 \address{Financial Engineering, Banca IMI, Piazzetta G. Dell'Amore 3, 20121
@@ -27,7 +28,7 @@ Milan Italy, ferdinando.ametrano@bancaimi.com}
 \address{Risk Management, Banca IntesaSanpaolo, Piazza G. Ferrari 10, 20121
 Milan Italy, marco.bianchetti@intesasanpaolo.com}
 
-\thanks{The authors acknowledges fruitful discussions with S. De Nuccio, R. Giura, C. Maffi, F. Mercurio, N. Moreni and with many colleagues in Financial Engineering and Risk Management. A particular mention is due to the QuantLib community for the open-source developements used to compute the numerical results reported in the paper. The opinions expressed here are solely of the authors and do not represent in any way those of theirs employers.}
+\thanks{The authors acknowledges fruitful discussions with S. De Nuccio, R. Giura, C. Maffi, F. Mercurio, N. Moreni and with many colleagues in Financial Engineering and Risk Management. A particular mention is due to the QuantLib community for the open-source developments used to compute the numerical results reported in the paper. The opinions expressed here are solely of the authors and do not represent in any way those of theirs employers.}
 
 \date{Draft v. 0.4, Feb. 6th, 2008}
 
@@ -40,78 +41,19 @@ JEL Classifications: E45, G13.
 
 \maketitle
 
-\section{Introduction}
+\section{\label{SecIntro}Introduction}
+Pricing complex interest rate derivatives requires modeling the future dynamics of the yield curve term structure. Most of the literature assumes the existence of the \textit{current} term structure as given, and its construction is often neglected as it is considered either straightforward or more an art than a science. Actually any yield curve term structure modeling approach will fail to produce good/reasonable prices if the current term structure is not correct.
 
-Pricing complex interest rate derivatives requires modeling the future
-dynamics of the yield curve term structure. Most of the literature assumes
-the existence of the current term structure as a given, and its construction
-is often neglected as it is considered more an art than a science. Anyway
-every possible yield curve term structure modeling approach will fail to
-produce good/reasonable prices if the current term structure is not correct.
+Practitioners and software houses have developed various methodologies in order to extract a reasonable yield curve term structure from quoted prices of a finite number of liquid market instruments. \textquotedblleft Best-fit\textquotedblright\ algorithms assume a smooth functional form for the term structure and calibrate its parameters such that to minimize the repricing error of the chosen set of calibration instruments. For instance, the European Central Bank publishes yield curves on the basis of the Soderlind and Svensson (1997) model \cite{SoderlindSwensson1997}, which is an extension of the Nelson-Siegel (1987) model (see e.g. \cite{NelsonSiegel}, \cite{Diament}, \cite{ChristensenEtAl2007} and \cite{Coroneo2008}). Such approach is popular due to the smoothness of the curve, calibration easyness, intuitive financial interpretation of functional form parameters (level, slope, curvature) and correspondence with principal component analysis. On the other side, the fit quality is typically not good enough for trading purposes in liquid markets.
+\par 
+In practice \textquotedblleft exact-fit\textquotedblright\ algorithms are often preferred: they fix the yield curve on a grid of $N$ time points (pillars) in order to \emph{exactly} reprice $N$ pre-selected market instruments. The implementation of such algorithms is often incremental, extending the yield curve step-by-step with the increasing maturity of the ordered instruments, in a so called \textquotedblleft bootstrap\textquotedblright approach. Intermediate yield curve values are obtained by interpolation on the bootstrapping grid. Here different interpolation algorithms are available but little attention has been devoted in the literature to the fact that interpolation is often already used during bootstrapping, not just after that, and that the interaction between bootstrapping and interpolation can be subtle if not nasty (see e.g. \cite{HaganWest2006}, \cite{HaganWest2008}).
 
-Practioners and software houses have developed various methodologies in
-order to extract a reasonable yield curve term structure from observed
-prices of a finte number of liquid market instruments. \textquotedblleft
-Best-fit\textquotedblright\ algorithms assume a smooth functional form for
-the term structure and calibrate its parameters such that to minimize the
-repricing error of the chosen set of calibration instruments. For instance,
-the European Central Bank publishes yield curves on the basis of the
-Soderlind and Svensson (1997) model \cite{SoderlindSwensson1997}, which is
-an extension of the Nelson-Siegel (1987) model (see e.g. \cite{NelsonSiegel}%
-, \cite{Diament}, \cite{ChristensenEtAl2007} and \cite{Coroneo2008}). Such
-approach is popular due to the smoothness of the curve, calibration
-easyness, intuitive financial interpretation of functional form parameters
-(level, slope, curvature) and correspondence with principal component
-analysis. On the other side, the fit quality is typically not good enough
-for trading purposes in liquid markets.
+Whilst naive algorithms might fail to deal with market subtleties such as date conventions, the intra-day fixing of the first floating payment of a swap, the turn-of-year effect, future convexity adjustment, etc. even very sophisticated algorithms used in a naive way fail to estimate correct forward Euribor rates in difficult market conditions. Namely using just one single curve is not enough to account for forward Euribor rates of different tenor, such as 1, 3, 6, 12 months, because of the large basis swap spreads observed since the summer of 2007 in occasion of the so-called {\it subprime credit crunch crisis.}
 
-In practice
-\textquotedblleft exact-fit\textquotedblright\ algorithms are often preferred:
-they fix the
-yield curve on a grid of $N$ time points (pillars) in order to \emph{exactly}
-reprice $N$ pre-selected market instruments. The implementation of such
-algorithms is often incremental, extending the yield curve step-by-step with
-the increasing maturity of the ordered instruments, in a so
-called \textquotedblleft bootstrap\textquotedblright approach. Intermediate yield
-curve values are obtained by interpolation on the boostrapping grid:
-different alternatives are available but little attention has been devoted
-in the literature to the fact that an interpolation schema is often already
-used during bootstrapping, not just after that, and the interaction between
-bootstrapping and interpolation can be subtle if not nasty (see e.g. \cite%
-{HaganWest2006}, \cite{HaganWest2008}).
+The plan of the paper is as follows: first we fix the notation and nomenclature, then we describe the market instruments used in the bootstrap and detail their peculiarities. In section 4 we present the standard traditional bootstrapping approach and show its deficiencies. Section 5 introduces the multiple curves approach based on peculiar instrument selection. The next three following sections deal with issues crucial for smooth curve bootstrapping: section 6 shows how to estimate the turn-of-year effect and incorporate it as a jump in the yield curve bootstrapping; section 7 sets the record straight on sensitive interpolation choices; section 8 illustrates how to allocate the discount factor decrease in the underspecified first period in a way coherent with interpolate market FRAs. Two final sections wraps up the results obtained so far: section 8 provides a quick overview of the QuantLib implementation which has been used to generate all the numerical examples provided here and can be used, especially through it Excel interface, to bootstrap yield curve in real-time for real-life needs.
 
-Whilst naive algorithms might fail to deal with market
-subleties such as date conventions,
-the intra-day fixing of the first floating payment of a swap,
-the turn-of-year effect, future convexity adjustment, etc.
-even very sophisticated algorithms used in a naive way
-fail to estimate correct forward Euribor rates in the current
-market conditions. Namely using just one single curve is
-not enough to account for forward Euribor rates of different tenor,
-such as 1, 3, 6, 12 months, because of the large
-basis swap spreads observed since the summer of 2007 in occasion
-of the so-called {\it subprime credit cruch crisis.}
 
-The plan of the paper is as follows: first we fix the notation and
-nomenclature, then we describe the market instruments used in the bootstrap
-and detail their peculiarities. In section 4 we present the standard
-traditional boostrapping approach and show its deficiencies. Section 5
-introduces the multiple curves approach based on peculiar instrument
-selection. The next three following sections deal with issues crucial for
-smooth curve bootstrapping:
-section 6 shows how to estimate the turn-of-year
-effect and incorporate it as a jump in the yield curve bootstrapping;
-section 7 sets the record straight on sensibile
-interpolation choices;
-section 8 illustrates how to allocate the discount factor decrease in the
-underspecified first period in a way coherent with interpolate market FRAs.
-Two final sections wraps up the results obtained so far: section 8 provides
-a quick overview of the QuantLib implementation which has been used to
-generate all the numerical examples provided here and can be used,
-especially through it Excel interface, to bootstrap yield curve in real-time
-for real-life needs.
-
-\section{Pricing \& Hedging Interest Rate Derivatives}
+\section{\label{SecPricing}Pricing \& Hedging Interest Rate Derivatives}
 
 \subsection{\label{SecSingleCurve}The Traditional Single Curve Approach}
 The pre-crisis standard market practice (which does not automatically mean good practice) can be summarized in the following procedure (see e.g. refs. \cite{HaganWest2008}-\cite{Ron2000}):
@@ -126,7 +68,7 @@ The pre-crisis standard market practice (which does not automatically mean good 
 \item compute the delta sensitivity and hedge the resulting delta risk using the suggested amounts (hedge ratios) of the \textit{same} set of vanillas.
 \end{enumerate}
 
-For instance, a 5.5Y maturity EUR floating swap leg on Euribor1M (not directly quoted on the market) is commonly priced using discount factors and forward rates calculated on the same depo-Futures-swap curve cited above. The corresponding delta sensitivity is calculated by shoking one by one the curve pillars and the resulting delta risk is hedged using the suggested amounts (hedge ratios)\ of 5Y and 6Y Euribor6M swaps\footnote{we refer here to the case of local yield curve bootstrapping methods, for which there are no sensitivity delocalization effect (see refs. \cite{HaganWest2008}, \cite{HaganWest2006}).}.
+For instance, a 5.5Y maturity EUR floating swap leg on Euribor1M (not directly quoted on the market) is commonly priced using discount factors and forward rates calculated on the same depo-Futures-swap curve cited above. The corresponding delta sensitivity is calculated by shocking one by one the curve pillars and the resulting delta risk is hedged using the suggested amounts (hedge ratios)\ of 5Y and 6Y Euribor6M swaps\footnote{we refer here to the case of local yield curve bootstrapping methods, for which there are no sensitivity delocalization effect (see refs. \cite{HaganWest2008}, \cite{HaganWest2006}).}.
 
 We stress that this is a \textit{single-currency-single-curve approach}, in that a \textit{unique} curve is built and used to price and hedge any interest rate derivative on a given currency. Thinking in terms of more fundamental variables, e.g. the short rate, this is equivalent to assume that there exist a unique fundamental underlying short rate process able to model and explain the whole term structure of interest rates of any tenor.
 
@@ -137,7 +79,6 @@ Finally, we stress that the first key point in the procedure above is much more 
 The pricing \& hedging methodology described above can be extended, in principle, to more complicated cases, in particular when a model of the underlying interest rate evolution is used to calculate the future dynamic of the yield curve and the expected cashflows. The volatility and (eventually) correlation dependence carried by the model implies, in principle, the bootstrapping of a variance/covariance matrix (two or even three dimensional) and hedging the corresponding sensitivities (vega and rho) using volatility and correlation dependent vanilla market instruments. In practice just a small subset of such quotations is available on the market, and thus only some portions of the variance/covariance matrix can be extracted from the market. In this note we will focus only on the basic matter of yield curves and forget the volatility/correlation dimensions.
 
 \subsection{\label{SecMultiCurve}The New Multi Curve Approach}
-
 Unfortunately, the pre-crisis approach outlined above is no longer consistent, at least in this simple formulation, with the present market configuration.
 
 First, it does not take into account the market information carried by the basis swap spreads, now much larger than in the past and no longer negligible.
@@ -152,27 +93,22 @@ The market practice has thus evolved to take into account the new market informa
 \item build \textit{one discounting curve} using the preferred procedure;
 
 \item select \textit{multiple separated} sets of vanilla interest rate instruments traded in real time on the market with increasing maturities, each set \textit{homogeneous} in the underlying rate (typically with 1M, 3M, 6M, 12M tenors);
-
 \item build \textit{multiple separated forwarding curves} using the selected instruments plus their bootstrapping rules;
-
 \item compute \textit{on each forwarding curve} the forward rates and the corresponding cashflows relevant for pricing derivatives on the \textit{same} underlying;
-
 \item compute the corresponding discount factors using the discounting curve and work out prices by summing up the discounted cashflows;
-
 \item compute the delta sensitivity and hedge the resulting delta risk using the suggested amounts (hedge ratios) of the \textit{corresponding} set of vanillas.
 \end{enumerate}
 
-For instance, the 5.5Y floating swap leg cited in the previous section should be priced using Euribor1M forward rates calculated on an \textquotedblleft pure\textquotedblright\ 1M forwarding curve, bootstrapped only on Euribor1M vanillas, plus discount factors calculated on the discounting curve. The corresponding delta sensitivity should be calculated by shoking one by one the pillars of both yield curves, and the resulting delta risk hedged using the suggested amounts (hedge ratios)\ of 5Y and 6Y Euribor1M swaps plus the suggested amounts of 5Y and 6Y instruments from the discounting curve.
+For instance, the 5.5Y floating swap leg cited in the previous section should be priced using Euribor1M forward rates calculated on an \textquotedblleft pure\textquotedblright\ 1M forwarding curve, bootstrapped only on Euribor1M vanillas, plus discount factors calculated on the discounting curve. The corresponding delta sensitivity should be calculated by shocking one by one the pillars of both yield curves, and the resulting delta risk hedged using the suggested amounts (hedge ratios)\ of 5Y and 6Y Euribor1M swaps plus the suggested amounts of 5Y and 6Y instruments from the discounting curve.
 
 The improved approach described above is more consistent with the present market situation, but - there is no free lunch - it does demand much more additional efforts. First, the discounting curve clearly plays a special and fundamental role, and must be built with particular care. This \textquotedblleft pre-crisis\textquotedblright\ obvious step has become, in the present market situation, a very subtle and controversial point, that would require a whole paper in itself. In fact, while the forwarding curves construction is driven by the underlying rate tenor homogeneity principle, for which there is (now) a general market consensus, there is no longer general consensus for the discounting curve construction. At least two different practices can be encountered on the market: a) the old
 \textquotedblleft pre-crisis\textquotedblright\ approach (e.g. the depo, Futures and swap curve cited before), that can be justified with the principle of maximum liquidity (plus a little of inertia), and b) the Eonia curve, justified with no risky or collateralized counterparties, and by increasing liquidity (see e.g. the discussion in ref. \cite{Madigan2008}).
-Second, building multiple curves requires multiple quotations: much more interest rate bostrapping instruments must be considered (deposits, Futures, swaps, basis swaps, FRAs, etc.), which are available on the market with different degrees of liquidity and can display transitory inconsistencies.
+Second, building multiple curves requires multiple quotations: much more interest rate bootstrapping instruments must be considered (deposits, Futures, swaps, basis swaps, FRAs, etc.), which are available on the market with different degrees of liquidity and can display transitory inconsistencies.
 Third, non trivial interpolation algorithms are crucial to produce smooth forward curves (see e.g. refs. \cite{HaganWest2008}-\cite{Andersen2005}).
-Fourth, multiple bootstrapping instruments implies multiple sensitivities, so hedging becomes more complicated. Last but not least, pricing libraries, platforms, reports, etc. must be extendend, configured, tested and released to manage multiple and separated yield curves for forwarding and discounting, not a trivial task for quants, developers and IT\ people.
+Fourth, multiple bootstrapping instruments implies multiple sensitivities, so hedging becomes more complicated. Last but not least, pricing libraries, platforms, reports, etc. must be extended, configured, tested and released to manage multiple and separated yield curves for forwarding and discounting, not a trivial task for quants, developers and IT\ people.
 
 
-\section{Fixing Notation and Nomenclature}
-
+\section{\label{SecMath}Fixing Notation and Nomenclature}
 An yield curve is completely specified by a continuous of discount factors (i.e. zero coupon prices) $P(t) $, $t\geq 0$ defining the present value of one unit of currency paid at time $t$.
 
 Time is measured in years from today \footnote{or spot, which in the EUR market is two business days after today, according to the TARGET holiday calendar.} with a day count convention $daycount\left(
@@ -180,27 +116,19 @@ today,d\right) =t\geq 0$ which maps a future date $d\geq today$ to time $t$.
 This map must be TBD
 
 \begin{itemize}
-\item monotonically increasing with increasing end date $d$ \footnote{%
-non increasing convention would lead to spurious null forward rates.};
+\item monotonically increasing with increasing end date $d$ \footnote{non increasing convention would lead to spurious null forward rates.};
 
 \item additive as in $daycount\left( d_{1},d_{2}\right) +daycount\left(
 d_{2},d_{3}\right) =daycount\left( d_{1},d_{3}\right) $.
 \end{itemize}
 
-In this paper we use the \textit{Actual/365 (Fixed)} \cite{ISDA} day count
-convention:
+In this paper we use the \textit{Actual/365 (Fixed)} \cite{ISDA} day count convention:
 
 \begin{equation*}
 t=daycount_{act/365}\left( today,d\right) =\left( d-today\right) /365.
 \end{equation*}
 
-Since the discount factor curve is observed to be exponentially decreasing
-(as expected when the interest rate compounding is made so frequent to be
-continuous) the yield curve is usually described through an exponential
-transformation, i.e. by continously compounded zero coupon rates $z(t)$ or
-instantaneous forward rates $f(t)$ \footnote{%
-par rates could be used too, we do not use them here as they are not
-frequently used and would not provide additional benefit anyway.}:
+Since the discount factor curve is observed to be exponentially decreasing (as expected when the interest rate compounding is made so frequent to be continuous) the yield curve is usually described through an exponential transformation, i.e. by continuously compounded zero coupon rates $z(t)$ or instantaneous forward rates $f(t)$ \footnote{par rates could be used too, we do not use them here as they are not frequently used and would not provide additional benefit anyway.}:
 
 \begin{equation}
 P(t)=\exp \left[ -z\left( t\right) t\right] =\exp \left[ -\int_{0}^{t}f%
@@ -217,34 +145,18 @@ or in the equivalent $\log$ notation
 From these relationships is immediate to observe that:
 
 \begin{itemize}
-\item $P\left( 0\right) =1$ by construction, while $z\left( 0\right) $ and $%
-f\left( 0\right) $ are less significant values, being just relevant as
-limits for shrinking $t\rightarrow 0$. Therefore it makes sense for a
-discount factor grid to add the $\left( t=0,P=1\right) $ extra point, while
-an equivalent choice for zero or forward rates is to some extent arbitrary
-and as such is to be handled with care;
-
-\item $z\left( t\right) $ is the average of $f\left( t\right) $ in $\left[
-0,t\right] $;
-
-\item the instantaneous forward rate curve $f\left( t\right) $ is the most
-severe test of yield curve smoothness, since anything else is obtained
-through its integration, therefore being smoother by construction.
+\item $P\left( 0\right) =1$ by construction, while $z\left( 0\right) $ and $f\left( 0\right) $ are less significant values, being just relevant a limits for shrinking $t\rightarrow 0$. Therefore it makes sense for a discount factor grid to add the $\left( t=0,P=1\right) $ extra point, while an equivalent choice for zero or forward rates is to some extent arbitrary and as such is to be handled with care;
+\item $z\left( t\right) $ is the average of $f\left( t\right) $ in $\left[0,t\right] $;
+\item the instantaneous forward rate curve $f\left( t\right) $ is the most severe test of yield curve smoothness, since anything else is obtained through its integration, therefore being smoother by construction.
 \end{itemize}
 
-Besides when rates are non-negative (as it is in all western markets and in
-the EUR market we consider in this paper):
-
+Besides when rates are non-negative (as it is in all western markets and in the EUR market we consider in this paper):
 \begin{itemize}
-\item ($\log $) $P(t) $ is a monotone non-increasing function of
-$t$. Therefore it would make sense to interpolate on a (log-)discount grid
-with an algorithm that ensures monotonicity;
-
+\item ($\log $) $P(t) $ is a monotone non-increasing function of $t$. Therefore it would make sense to interpolate on a (log-)discount grid with an algorithm that ensures monotonicity;
 \item $P\left( t\right) >0$;
 \end{itemize}
 
-With this notation for the $T$-tenor $t$-fixing {\it Actual/360} discrete
-forward Euribor rate $L(t, t+T)$ it holds
+With this notation for the $T$-tenor $t$-fixing {\it Actual/360} discrete forward Euribor rate $L(t, t+T)$ it holds
 
 \begin{equation}
 P(t) (1 + L(t, t+T) \alpha) = 1/P(t+T)
@@ -253,9 +165,7 @@ P(t) (1 + L(t, t+T) \alpha) = 1/P(t+T)
 
 where $\alpha = daycount_{act/360}(t,t+T)$.
 
-For the $T$ year tenor {\it 30/360 (Bond Basis)}
-swap rate $S$ starting at $\tau_0$ with yearly payment at $\tau_1, ..., \tau_T$ it
-holds
+For the $T$ year tenor {\it 30/360 (Bond Basis)} swap rate $S$ starting at $\tau_0$ with yearly payment at $\tau_1, ..., \tau_T$ it holds
 
 \begin{equation}
 P(\tau_0)-P(\tau_T) = S \sum_1^T \delta_j P(\tau_j)
@@ -264,64 +174,32 @@ P(\tau_0)-P(\tau_T) = S \sum_1^T \delta_j P(\tau_j)
 
 where $\delta_j = daycount_{30/360 (Bond Basis)}(\tau_{j-1}, \tau_j)$.
 
-\section{Bootstrapping Multiple Euribor Curves}
-
-A summary of standard bootstrapping methodology is given in common textbooks
-as, for instance, \cite{Hull} and \cite{Rebonato}.
-
-Different kind of instruments can be used for bootstrapping, and whilst they
-roughly cover different periods of the yield curve, they overlap in
-significant areas. The relative illiquidity of some instruments, and the
-idiosincracies of different segmented markets often cause a problem of
-market data synchronization: even small differences in their implied rates
-can result in erratic forward rates. Therefore it is usually impossible to
-include all the rates and mostly non-overlapping instruments are chosen,
-with preference given to more liquid ones with a tighter bid/ask spread,
-monitoring the mispricing of the excluded ones as safety check (or
-cheap-rich analysis).
+\section{\label{SecBootstrapping}Bootstrapping Multiple Euribor Curves}
+A summary of standard bootstrapping methodology is given in common textbooks as, for instance, \cite{Hull} and \cite{Rebonato}.  Different kind of instruments can be used for bootstrapping, and whilst they roughly cover different periods of the yield curve, they overlap in significant areas. The relative illiquidity of some instruments, and the idiosyncracies of different segmented markets often cause a problem of market data synchronization: even small differences in their implied rates can result in erratic forward rates. Therefore it is usually impossible to include all the rates and mostly non-overlapping instruments are chosen, with preference given to more liquid ones with a tighter bid/ask spread, monitoring the mispricing of the excluded ones as safety check (or cheap-rich analysis).
 
 The so-called Euribor curve is usually bootstrapped from:
-
 \begin{itemize}
 \item Deposits which cover the period from today up to 1Y;
-
 \item Forward Rate Agreement (FRA) which cover the period from 1M up to 2Y;
-
-\item Short term interest rate futures which cover the period from spot/3M (depending on
-the current calendar date) up to 2Y and more;
-
+\item Short term interest rate futures which cover the period from spot/3M (depending on the current calendar date) up to 2Y and more;
 \item Swaps which cover the period from 1Y up to 60Y.
 \end{itemize}
 
 Futures with short expiries are the most liquid, so they are preferred to
 deposits and short term swaps. For longer expiries futures are not as liquid, so
-swaps are used.
+swaps are used. For a detailed analysis in the following we use observed market quotes as of
+23th Jan. 2009.
 
-For a detailed analisys in the following we use observed market quotes as of
-xxth March 2008.
+\subsection{\label{SecDepo}Deposits}
+Deposits in the EUR market start at spot date (two working days after today, according to the TARGET holiday calendar) and span the length indicated by their maturity. Exceptions are the {\it over-night} and {\it tom-next} one-day deposits, which start today and tomorrow respectively, covering without overlapping the interval between today and spot date.
 
-\subsection{Deposits}
-
-Deposits in the EUR market start at spot date (two working days after today,
-according to the TARGET holiday calendar) and span the length indicated by their maturity.
-Exceptions are the {\it over-night} and {\it tom-next} one-day deposits, which start today and
-tomorrow respectively, covering without overlapping the interval between today and spot date.
-
-The maturity date of deposits shorter than one month is calculated with the
-{\it Following} convention; for longer deposits the convention
-is {\it Modified Following}. For the latters the {\it end-of-month} convention
-is also respected: if the start date is the last working day in a given month,
-the end date must be the last working date of the ending month too.
-
+The maturity date of deposits shorter than one month is calculated with the {\it Following} convention; for longer deposits the convention is {\it Modified Following}. For the latters the {\it end-of-month} convention is also respected: if the start date is the last working day in a given month, the end date must be the last working date of the ending month too. 
 Assuming $P(0)=1$, for each deposit rate $r$ maturing at $t$ one can calculate:
-
 \begin{equation}
 P(t) = \frac{1}{(1 + r \alpha)}.
 \label{eqn:deposit}
 \end{equation}
-
 where $\alpha = daycount_{act/360}(0,t)$.
-
 \begin{table}[tbp]
 \label{tab:deposits}
 \begin{tabular}{cccccccc}
@@ -347,8 +225,7 @@ SW & 1.0000\% & spot & Following &  &  \\
 \caption{Deposits pay simple interest using an \emph{Actual/360} day count.}
 \end{table}
 
-\subsection{Forward Rate Agreements}
-
+\subsection{\label{SecFRA}Forward Rate Agreements}
 \begin{table}[tbp]
 \label{tab:fra}
 \begin{tabular}{cccccc}
@@ -374,45 +251,24 @@ Type & Rate & Start Date & End Date &  &  \\
 \caption{FRA on 3M, 6M, and 1Y deposits}
 \end{table}
 
-FRAs are forward starting deposits, e.g. the 3x9 FRA is a six months deposit
-starting three months forward. The forward start date is
-calculated with the same convention used for the end date of deposits,
-so FRAs do concatenate exactly, i.e. the 6x9 starts where the 3x6 ended.
-
-For each FRA rate $r$ spanning the interval $[t_{start}, t_{end}]$ one can imply:
-
+FRAs are forward starting deposits, e.g. the 3x9 FRA is a six months deposit starting three months forward. The forward start date is calculated with the same convention used for the end date of deposits, so FRAs do concatenate exactly, i.e. the 6x9 starts where the 3x6 ended. For each FRA rate $r$ spanning the interval $[t_{start}, t_{end}]$ one can imply:
 \begin{equation}
 P(t_{end}) = \frac{P(t_{start})}{(1 + r \alpha)}.
 \label{eqn:deposit}
 \end{equation}
-
 where $\alpha = daycount_{act/360}(t_{start}, t_{end})$.
 
-
-FRAs provides direct empirical evidence that a single curve
-cannot be used to estimate forward rate for different tenors.
-As seen in \ref{tab:fra} the level of the 1x4
-(spanning from March 3rd to June 3rd, $t_{act/360} = 0.2555$) was 1.888,
-the level of
-4x7 (spanning from June 3rd to September 3rd, $t_{act/360} = 0.2555$) was 1.721.
-If one would compound these two rates to imply the level of the 1x7
-(spanning from March 3rd to September 3rd, $t_{act/360} = 0.5111$) would obtain:
-
+FRAs provides direct empirical evidence that a single curve cannot be used to estimate forward rate for different tenors. As seen in \ref{tab:fra} the level of the 1x4 (spanning from March 3rd to June 3rd, $t_{act/360} = 0.2555$) was 1.888, the level of 4x7 (spanning from June 3rd to September 3rd, $t_{act/360} = 0.2555$) was 1.721. If one would compound these two rates to imply the level of the 1x7 (spanning from March 3rd to September 3rd, $t_{act/360} = 0.5111$) would obtain:
 \begin{equation}
 \frac{
     \left( 1 + 1.888 \times 0.255\right)
     \left( 1 + 1.721 \times 0.255\right)
-    - 1.0
-}{
-    0.5111
-}=1.809,
+    - 1.0}{0.5111 }=1.809,
 \label{eqn:FRAarbitrage}
 \end{equation}
-
 while the market rate for the 1x7 was 2.008.
 
-\subsection{Futures}
-
+\subsection{\label{SecFutures}Futures}
 \begin{table}[tbp]
 \label{tab:futures}
 \begin{tabular}{cccccc}
@@ -441,62 +297,31 @@ H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\
 \caption{Futures on 3M deposit}
 \end{table}
 
-Futures are the exchange-traded equivalent of over-the-counter
-three-month FRAs.  They're quoted as prices instead of rates, the relation being
-
+Futures are the exchange-traded equivalent of over-the-counter three-month FRAs.  They're quoted as prices instead of rates, the relation being
 \begin{equation}
 p = 100 - r,
 \label{eqn:futurepricerate}
 \end{equation}
+and refer to the 3M Euribor fixing for the third Wednesday of the given month. Because of the two days of settlement the last trading day is actually the preceding Monday. There are contracts that expire every March, June, September and December. 
 
-and refer to the 3M Euribor fixing for the third Wednesday
-of the given month. Because of the two days of settlement
-the last trading day is actually the preceding Monday.
-There are contracts that expire every March, June, September and December.
+While FRAs have the advantage of being more customizable, futures offer much greater liquidity and lower transaction costs, and their credit risk is eliminated through the margining process (i.e. through daily marking to market of any profit and loss). The first {\it front} contract is the most liquid interest rate instrument, with longer expiry contracts having very good liquidity up to the 8th-12th contract.
 
-While FRAs have the advantage of being more customizable, futures offer
-much greater liquidity and lower transaction costs, and their
-credit risk is eliminated through the margining process
-(i.e. through daily marking to market of any profit and loss).
-The first {\it front} contract is the most liquid interest rate instrument,
-with longer expiry contracts having very good liquidity up to the 8th-12th contract.
+Beside regular contracts in the main March, June, September, December cycle, there are so called {\it serial} contracts expiring in the upcoming months not covered by the quarterly expirations. The first serial contact is quite liquid, especially when its expiration is before the front contract.
 
-Beside regular contracts in the main March,
-June, September, December cycle, there are
-so called {\it serial} contracts expiring in the upcoming months
-not covered by the quarterly expirations.
-The first serial contact is quite liquid, especially when its expiration
-is before the front contract.
-
-Because of their marking to market futures do
-not have the same payoff of forwards:
-an investor long a future contract
-will have a loss when the future price decrease but will finance his loss
-at lower rate (see \ref{eqn:futurepricerate}); viceversa when the future price increase
-the profit will be reinvested at higher rate. This means that the volatility of the forward rates and their correlation to the spot rates have to be accounted for:
-a {\it convexity adjustment}
-is needed to convert the rate implied in the future price to its corresponding forward
-rate $f$ as in
-
+Because of their marking to market futures do not have the same payoff of forwards: an investor long a future contract will have a loss when the future price decrease but will finance his loss at lower rate (see \ref{eqn:futurepricerate}); viceversa when the future price increase the profit will be reinvested at higher rate. This means that the volatility of the forward rates and their correlation to the spot rates have to be accounted for: a {\it convexity adjustment} is needed to convert the rate implied in the future price to its corresponding forward rate $f$ as in
 \begin{equation}
 f = 100 - p - adj,
 \label{eqn:fwdfromfutureprice}
 \end{equation}
 
-While different approaches are available in literature (\cite[JaeckelCA],
-\cite[PiterbargCA], \cite[Vaillant]), a practioner reference recipe
-to estimate the convexity adjustment is due to
- XXX and YYY, using a simple Hull \& White model.
-Their approach it's used in \ref{tab:futures} to calculate adjustments using
+
+\cite{}
+
+While different approaches are available in literature (\cite{JaeckelCA}, \cite{PiterbargCA}, \cite{Vaillant}), a practitioner reference recipe to estimate the convexity adjustment is due to  XXX and YYY, using a simple Hull \& White model. Their approach it's used in \ref{tab:futures} to calculate adjustments using
 $\sigma = 0.0$ and $\mu = 0.0$.
+It's worth noting that when used in bootstrapping algorithms, futures contract generates rolling pillars. While other instruments have a (roughly) constant time to maturity, i.e. constant pillars, this is not true for futures, whose expiration shrinks gradually to zero.
 
-It's worth noting that when used in bootstrapping algorithms, futures contract generates
-rolling pillars. While other instruments have a (roughly)
-constant time to maturity, i.e. constant pillars, this is not true for futures, whose
-expiration shrinks gradually to zero.
-
-\subsection{Swaps}
-
+\subsection{\label{SecSwap}Swaps}
 \begin{table}[tbp]
 \label{tab:swaps6M}
 \begin{tabular}{cc}
@@ -551,14 +376,9 @@ MAR/MAR 3Y & 3.34\% \\
 \caption{IMM dated fixed rate vs 3M Euribor swaps}
 \end{table}
 
-A vanilla swap is an over-the-counter contract
-in which two counterparties agree to exchange annual fixed rate cash
-flows against six (or three) month floating rate cash flows indexed to six (or three)
-month Euribor. These streams are called the legs of the swap.
-The floating leg can be regarded as a portfolio of forward contracts.
+A vanilla swap is an over-the-counter contract in which two counterparties agree to exchange annual fixed rate cash flows against six (or three) month floating rate cash flows indexed to six (or three) month Euribor. These streams are called the legs of the swap. The floating leg can be regarded as a portfolio of forward contracts.
 
 Assuming $P(0)=1$, from equation \ref{eqn:swaprate} one obtains:
-
 \begin{equation}
 P(\tau_T) = \frac
     {1 - S \sum_1^{T-1} \delta_j P(\tau_j)}
@@ -566,32 +386,24 @@ P(\tau_T) = \frac
 \label{eqn:discfromswaprate}
 \end{equation}
 
-The left side of equation \ref{eqn:swaprate} actually arise from
-the reduction of the telescopic sum of discounted floating leg cashflows;
-assuming semiannual floating payments at $t_i$ with
-$\alpha_i=daycount_{act/360}(t_{i-1},t_i) $ the floating leg
-present value is
-
+The left side of equation \ref{eqn:swaprate} actually arise from the reduction of the telescopic sum of discounted floating leg cashflows; assuming semiannual floating payments at $t_i$ with $\alpha_i=daycount_{act/360}(t_{i-1},t_i) $ the floating leg present value is
 \begin{equation}
 \sum_1^{2T} L(t_{i-1},t_i) \alpha_i P(t_i)
 \label{eqn:discfloatlegcf}
 \end{equation}
-
 using \ref{eqn:Euriborrate}
 
 \begin{equation}
 \sum_1^{2T} \frac{P(t_{i-1}) / P(t_i) - 1}{alpha_i} \alpha_i P(t_i)
 \end{equation}
 
-and simplyfing:
+and simplifying:
 
 \begin{equation}
 P(0)-P(t_T)
 \end{equation}
 
-Anyway at XX Frankfurt time the first Euribor rate is fixed at level $E$, so
-equation \ref{eqn:swaprate} becomes
-
+Anyway at XX Frankfurt time the first Euribor rate is fixed at level $E$, so equation \ref{eqn:swaprate} becomes
 \begin{equation}
 E \alpha_1 P(t_1) + P(t_1) - P(t_0+T) = S \sum_1^T \tau_j P(t_j)
 \label{eqn:swapratewithfixingeffect}
@@ -601,8 +413,7 @@ E \alpha_1 P(t_1) + P(t_1) - P(t_0+T) = S \sum_1^T \tau_j P(t_j)
 liquid swaps and interpolated ones
 
 
-\subsection{Basis Swaps}
-
+\subsection{\label{SecBasis}Basis Swaps}
 \begin{table}[tbp]
 \label{tab:basisSwaps}
 \begin{tabular}{cc}
@@ -618,43 +429,30 @@ MAR/MAR 3Y & 3.34\% \\
 \end{table}
 
 
-\section{Sinthetic Instruments}
+\section{\label{SecSynt}Synthetic Instruments}
 
 TBD:
-problema dello scodamento. e sua soluzione tramite sinthetic depos
+problema dello scodamento. e sua soluzione tramite synthetic depos
 
 
-\section{The Role of Interpolation}
-
-The interpolation we choose for the given parametrization determines how
-reasonable the yield curve will be. For instance, linear interpolation of
-the discount factors is an obvious but extremely poor choice.
-
-linear interpolation of zero rates or log-discounts are popular choices
-leading to stable and fast booststrapping procedures. unfortunately they
-produce discontinuous forward rates, with a sagsaw or piecewise-constant
-shape.
+\section{\label{SecInterp}The Role of Interpolation}
+The interpolation we choose for the given parametrization determines how reasonable the yield curve will be. For instance, linear interpolation of the discount factors is an obvious but extremely poor choice. Linear interpolation of zero rates or log-discounts are popular choices leading to stable and fast bootstrapping procedures. Unfortunately they produce discontinuous forward rates, with a sagsaw or piecewise-constant shape.
 
 flat extrapolation out to infinity.
 
-well-documented problems with spurious inflection points, excessive
-convexity, and lack of locality in the effects of input price perturbations.
-Andersen \cite{Andersen2005} addresses these issues through the use of
-shape-preserving splines from the class of generalized tension splines.
+well-documented problems with spurious inflection points, excessive convexity, and lack of locality in the effects of input price perturbations. Andersen \cite{Andersen2005} addresses these issues through the use of shape-preserving splines from the class of generalized tension splines.
 
 swap selection
 
 TBD: mostrare casi di cattiva interpolazione, ad es. linear on zero rates
 
 
-\section{The Turn-of-Year Effect}
-
+\section{\label{SecTOY}The Turn-of-Year Effect}
 TBD
 
-\section{Pricing Interest Rate Derivatives Using Separated Yield Curves for
+\section{\label{SecPricing}Pricing Interest Rate Derivatives Using Separated Yield Curves for
 Discounting and Forwarding}
-
-In this section we revisit the general problem of pricing interest rate derivatives using two different yield curves for discounting and forwarding. 
+In this section we revisit the general problem of pricing interest rate derivatives using two different yield curves for discounting and forwarding.
 TBD, mettere solo cenni a quanto c'e' nell'altro paper.
 
 
@@ -665,28 +463,15 @@ TBD
 \subsection{Numerical Results (TBD)}
 
 Tests of repricing \ (grafici di repricing degli stessi strumenti sulle 4
-curve con breve commento)\newline
+curve con breve commento)
+
 cap/floor parity
 
 \section{Implementation}
-
 Using \cite{ql090} is fun
 
-The results discussed above have been obtained by the authors using the
-QuantLib framework. The object oriented C++ QuantLib library \cite{QuantLib}
-offers tools for advanced modeling and practical implementation, with
-features such as market conventions, yield curve models, solvers, PDEs,
-(Quasi)\ Monte Carlo, exotic options, VAR, etc. The QuantLibAddin \cite%
-{QuantLibAddin} and QuantLibXL \cite{QuantLibXL} projects use the
-ObjectHandler in-memory repository \cite{ObjectHandler} to export the
-QuantLib objects (classes) and analytics (methods) to a variety of end-user
-platforms including Excel and Calc. The full implementation of the work
-described before, comprehensive of C++ code and Excel workbooks, is open
-source. In particular... 
-[\textit{TBD: ampliare questo punto descrivendo
-meglio che cosa \`{e} effettivamente fatto e disponibile ?\ }]. Anyone
-interested in the topic is invited to post to the QuantLib community any
-comment or suggestion to improve the job.
+The results discussed above have been obtained by the authors using the QuantLib framework. The object oriented C++ QuantLib library \cite{QuantLib} offers tools for advanced modeling and practical implementation, with features such as market conventions, yield curve models, solvers, PDEs, (Quasi)\ Monte Carlo, exotic options, VAR, etc. The QuantLibAddin \cite{QuantLibAddin} and QuantLibXL \cite{QuantLibXL} projects use the ObjectHandler in-memory repository \cite{ObjectHandler} to export the QuantLib objects (classes) and analytic (methods) to a variety of end-user platforms including Excel and Calc. The full implementation of the work described before, comprehensive of C++ code and Excel workbooks, is open source. In particular...
+[\textit{TBD: ampliare questo punto descrivendo meglio che cosa \`{e} effettivamente implementato e disponibile ?\ }]. Anyone interested in the topic is invited to post to the QuantLib community any comment or suggestion to improve the job.
 
 \section{\textbf{Conclusions}}
 
@@ -698,47 +483,17 @@ TBD
 
 \begin{thebibliography}{99}
 
-\bibitem{HaganWest2006} P. S. Hagan, G. West, \textquotedblleft \textit{%
-Interpolation Methods for Curve Construction}\textquotedblright , Applied
-Mathematical Finance, Vol. 13, No. 2, 89--129, June 2006.
-
-\bibitem{HaganWest2008} P. S. Hagan, G. West, \textquotedblleft \textit{%
-Methods for Constructing a Yield Curve}\textquotedblright , 2008, preprint
-available at \textit{www.finmod.co.za/interpreview.pdf}, workbook available
-from \textit{www.finmod.co.za/monotone convex.xls}).
-
-\bibitem{ChristensenEtAl2007} J. Christensen, F. Diebold, G. Rudebusch
-\textquotedblleft \textit{The Affine Arbitrage-Free Class of Nelson-Siegel
-Term Structure Models}\textquotedblright , FRB of San Francisco Working
-Paper No. 2007-20, 2007.
-
-\bibitem{SoderlindSwensson1997} P. Soderlind, L.O.E. Svensson
-\textquotedblleft \textit{New Techniques to Extract Market Expectations from
-Financial Instruments}\textquotedblright\ Journal of Monetary Economics 40,
-383--429, 1997.
-
-\bibitem{Coroneo2008} L. Coroneo, K. Nyholm, R.V.Koleva, \textquotedblleft
-\textit{How Arbitgae Free is the Nelson-Siegel Model ?}\textquotedblright\
-European Central Bank, working paper series, n. 874 (2008).
-
-\bibitem{BrigoMercurio2006} D. Brigo, F. Mercurio, \textquotedblleft \textit{%
-Interest Rate Models - Theory and Practice}\textquotedblright , 2nd edition,
-Springer 2006.
-
-\bibitem{SourceForge} SourceForge, the Open Source software development web
-site, \textit{sourceforge.net.}
-
-\bibitem{QuantLib} QuantLib, a free/open-source library for quantitative
-finance, \textit{www.quantlib.org.}
-
-\bibitem{QuantLibAddin} QuantLibAddin, a free/open-source library for
-exporting QuantLib to end-user platforms, \textit{www.quantlibaddin.org.}
-
-\bibitem{QuantLibXL} QuantLibXL, a free/open-source library for exporting
-QuantLib to Microsoft Excel, \textit{www.quantlibxl.org.}
-
-\bibitem{ObjectHandler} ObjectHandler, a free/open-source library to
-interface object-oriented libraries, \textit{www.objecthandler.org.}
+\bibitem{HaganWest2006} P. S. Hagan, G. West, \textquotedblleft \textit{Interpolation Methods for Curve Construction}\textquotedblright , Applied Mathematical Finance, Vol. 13, No. 2, 89--129, June 2006.
+\bibitem{HaganWest2008} P. S. Hagan, G. West, \textquotedblleft \textit{Methods for Constructing a Yield Curve}\textquotedblright , 2008, preprint available at \textit{www.finmod.co.za/interpreview.pdf}, workbook available from \textit{www.finmod.co.za/monotone convex.xls}).
+\bibitem{ChristensenEtAl2007} J. Christensen, F. Diebold, G. Rudebusch \textquotedblleft \textit{The Affine Arbitrage-Free Class of Nelson-Siegel Term Structure Models}\textquotedblright , FRB of San Francisco Working Paper No. 2007-20, 2007.
+\bibitem{SoderlindSwensson1997} P. Soderlind, L.O.E. Svensson \textquotedblleft \textit{New Techniques to Extract Market Expectations from Financial Instruments}\textquotedblright\ Journal of Monetary Economics 40, 383--429, 1997.
+\bibitem{Coroneo2008} L. Coroneo, K. Nyholm, R.V.Koleva, \textquotedblleft \textit{How Arbitgae Free is the Nelson-Siegel Model ?}\textquotedblright\ European Central Bank, working paper series, n. 874 (2008). 
+\bibitem{BrigoMercurio2006} D. Brigo, F. Mercurio, \textquotedblleft \textit{Interest Rate Models - Theory and Practice}\textquotedblright , 2nd edition, Springer 2006.
+\bibitem{SourceForge} SourceForge, the Open Source software development web site, \textit{sourceforge.net.}
+\bibitem{QuantLib} QuantLib, a free/open-source library for quantitative finance, \textit{www.quantlib.org.}
+\bibitem{QuantLibAddin} QuantLibAddin, a free/open-source library for exporting QuantLib to end-user platforms, \textit{www.quantlibaddin.org.} 
+\bibitem{QuantLibXL} QuantLibXL, a free/open-source library for exporting QuantLib to Microsoft Excel, \textit{www.quantlibxl.org.}
+\bibitem{ObjectHandler} ObjectHandler, a free/open-source library to interface object-oriented libraries, \textit{www.objecthandler.org.}
 
 \end{thebibliography}
 
