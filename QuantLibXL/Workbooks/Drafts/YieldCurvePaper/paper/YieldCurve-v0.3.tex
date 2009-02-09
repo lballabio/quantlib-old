@@ -1,16 +1,18 @@
 \documentclass[11pt,reqno]{amsart}
-\usepackage{amssymb}
-\usepackage{amsfonts,epsfig}
+\usepackage{epsfig}
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{mathrsfs}
 \setcounter{MaxMatrixCols}{10}
 \hfuzz=12pt
 \hbadness=5000
 \vbadness=5000
 \frenchspacing
 \vfuzz=2pt
-\input epsf
+\input{epsf}
+%\input{tcilatex}
 
 \begin{document}
 
@@ -122,72 +124,101 @@ Fourth, multiple bootstrapping instruments implies multiple sensitivities, so he
 
 
 \section{\label{SecMath}Fixing Notation and Nomenclature}
-An yield curve is completely specified by a continuous of discount factors (i.e. zero coupon prices) $P(t) $, $t\geq 0$ defining the present value of one unit of currency paid at time $t$.
-
-Time is measured in years from today \footnote{or spot, which in the EUR market is two business days after today, according to the TARGET holiday calendar.} with a day count convention $daycount\left(
-today,d\right) =t\geq 0$ which maps a future date $d\geq today$ to time $t$.
-This map must be TBD
-
-\begin{itemize}
-\item monotonically increasing with increasing end date $d$ \footnote{non increasing convention would lead to spurious null forward rates.};
-
-\item additive as in $daycount\left( d_{1},d_{2}\right) +daycount\left(
-d_{2},d_{3}\right) =daycount\left( d_{1},d_{3}\right) $.
-\end{itemize}
-
-In this paper we use the \emph{Actual/365 (Fixed)} \cite{ISDA} day count convention:
-
-\begin{equation*}
-t=daycount_{act/365}\left( today,d\right) =\left( d-today\right) /365.
-\end{equation*}
-
-Since the discount factor curve is observed to be exponentially decreasing (as expected when the interest rate compounding is made so frequent to be continuous) the yield curve is usually described through an exponential transformation, i.e. by continuously compounded zero coupon rates $z(t)$ or instantaneous forward rates $f(t)$ \footnote{par rates could be used too, we do not use them here as they are not frequently used and would not provide additional benefit anyway.}:
-
+In this section we fix notation and nomenclature for our multi-curve environment. Following the discussion of section \ref{SecPricing}, we start by postulating the existence of $N$ distinct interest rate markets, denoted by $M_{x}$. The index $x$ will take the values associated to the corresponding yield curves, e.g. $x=\left\{d,1M,3M,6M,12M\right\}$, where $d$ stands for discounting and $1M,3M,6M,12M$ stand for the underlying rate tenors. The $N$ markets $M_{x}$ are characterized by the same currency and by distinct bank accounts $B_{x}$ and yield curves $\mathcal{C}_{x}$ in the form of a continuous term structure of discount factors,
 \begin{equation}
-P(t)=\exp \left[ -z\left( t\right) t\right] =\exp \left[ -\int_{0}^{t}f%
-\left( \tau \right) d\tau \right] ,  \label{eqn:relationship}
+\mathcal{C}_{x}=\left\{ T\longrightarrow P_{x}\left( t_{0},T\right) ,T\geq t_{0}\right\} ,
 \end{equation}
+where $t_{0}$\ is the reference date of the curve, e.g. today, or settlement date (which in the EUR money market is two business days after today, according to the TARGET\footnote{Trans-european Automated Real-time Gross settlement Express Transfer.} holiday calendar) and $P_{x}\left(t,T\right)$ denotes the price at time $t\geq t_{0}$ of the \textit{x}-zero coupon bond for maturity $T$, such that $P_{x}\left( T,T\right) =1$.
 
-or in the equivalent $\log$ notation
-
+Time intervals between couples of dates $\left[T_{1},T_{2}\right]$ are measured in each market $M_{x}$ as year fractions with a given day count convention $dc_x$, $\tau\left(T_{1},T_{2};dc_x\right)$.
+In particular, the year fraction associated to discount factors must be monotonically increasing with increasing time intervals (non increasing convention would lead to spurious null forward rates), and additive, such that:
 \begin{equation}
-\log P\left( t\right) =-z\left( t\right) t=-\int_{0}^{t}f(\tau )d\tau ,
+\tau\left(T_{1},T_{2};dc_x\right) + \tau\left(T_{2},T_{3};dc_x\right)
+= \tau\left(T_{1},T_{3};dc_x\right).
+\end{equation}
+The day count convention satisfying the above conditions that will be used in this paper (for any market $M_x$) is the common \emph{Actual/365 (Fixed)} \cite{ISDA}, such that:
+\begin{equation}
+\tau_{\mathcal{C}}\left(T_{1},T_{2}\right) 
+:= \tau\left[T_{1},T_{2};actual/365 (Fixed)\right]
+= \frac{T_2-T_1}{365}.
+\end{equation}
+\\ 
+Since the discount factor curve is observed to be exponentially decreasing, as expected when the interest rate compounding is made so frequent to be practically continuous, the yield curve is usually described through an exponential transformation, i.e. by continuously compounded zero coupon rates $z_x(t_0,T)$ or instantaneous forward rates\footnote{par rates could be used too; we do not use them here as they are not frequently used and would not provide additional benefit anyway.} $f_x(t)$ such that
+\begin{equation}
+P_x(t_0,T) 
+= \exp\left[-z_x\left(t_0,T\right)\tau_{\mathcal{C}}\left(t_0,T\right)\right]
+= \exp\left[-\int_{t_0}^{T}f_x\left(u\right)du\right],
+\label{eqn:relationship}
+\end{equation}
+or, using the equivalent $\log$ notation,
+\begin{equation}
+\log P_x(t_0,T)
+= -z_x\left(t_0,T\right)\tau_{\mathcal{C}}\left(t_0,T\right)
+= -\int_{t_0}^{T}f_x\left(u\right)du.
 \label{eqn:logrelationship}
 \end{equation}
-
 From these relationships is immediate to observe that:
-
 \begin{itemize}
-\item $P\left( 0\right) =1$ by construction, while $z\left( 0\right) $ and $f\left( 0\right) $ are less significant values, being just relevant a limits for shrinking $t\rightarrow 0$. Therefore it makes sense for a discount factor grid to add the $\left( t=0,P=1\right) $ extra point, while an equivalent choice for zero or forward rates is to some extent arbitrary and as such is to be handled with care;
-\item $z\left( t\right) $ is the average of $f\left( t\right) $ in $\left[0,t\right] $;
-\item the instantaneous forward rate curve $f\left( t\right) $ is the most severe test of yield curve smoothness, since anything else is obtained through its integration, therefore being smoother by construction.
+\item the starting point of the discount curve is $P_x(t_0,t_0)=1$ by construction, while $z_x\left(t_0,t_0\right) $ and $f_x\left(t_0\right)$ are less significant values, being just limits for shrinking $T\rightarrow t_0$. Therefore it makes sense for a discount factor grid to add the $\left(t_0,P_x=1\right)$ extra point, while an equivalent choice for zero or forward rates is to some extent arbitrary and as such is to be handled with care;
+\item $z_x\left(t_0,T\right)$ is the average of $f_x\left(u\right)$ over $\left[t_0,T\right]$;
+\item the instantaneous forward rate curve $f_x\left(t\right)$ is the most severe indicator of yield curve smoothness, since anything else is obtained through its integration (therefore being smoother by construction).
 \end{itemize}
-
 Besides when rates are non-negative (as it is in all western markets and in the EUR market we consider in this paper):
 \begin{itemize}
-\item ($\log $) $P(t) $ is a monotone non-increasing function of $t$. Therefore it would make sense to interpolate on a (log-)discount grid with an algorithm that ensures monotonicity;
-\item $P\left( t\right) >0$;
+\item ($\log $) $P(t_0,T)$ is a monotone non-increasing function of $T$. Therefore it would make sense to interpolate on a (log-)discount grid with an algorithm that ensures monotonicity;
+\item $P\left(t_0,T\right)>0\quad\forall\,T>t_0$.
 \end{itemize}
-
-With this notation for the $T$-tenor $t$-fixing {\it Actual/360} discrete forward Euribor rate $L(t, t+T)$ it holds
-
+\par
+We also assume the usual no arbitrage relation among discount factors in each market $M_{x}$,
 \begin{equation}
-P(t) (1 + L(t, t+T) \alpha) = 1/P(t+T)
-\label{eqn:Euriborrate}
+P_{x}\left(t,T_{2}\right)
+= P_{x}\left(t,T_{1}\right) \times P_{x}\left(t,T_{1},T_{2}\right),
+\quad\forall\, t_0 \leq t \leq T_{1}<T_{2},
+\label{eqn:NoArbitrage}
 \end{equation}
-
-where $\alpha = daycount_{act/360}(t,t+T)$.
-
-For the $T$ year tenor {\it 30/360 (Bond Basis)} swap rate $S$ starting at $\tau_0$ with yearly payment at $\tau_1, ..., \tau_T$ it holds
-
+where $P_{x}\left(t,T_{1},T_{2}\right) $ denotes the forward discount factor from time $T_{2}$ to time $T_{1}$, prevailing at any time $t\geq t_0$. The financial meaning of expression (\ref{eqn:NoArbitrage}) is that, in each market $M_{x}$, given a cashflow of one unit of currency at time $T_{2}$, its corresponding value at time $t<T_{2}$ must be the same both if we discount in one single step from $T_{2}$ to $t$, using the discount factor $P_{x}\left(t,T_{2}\right)$, and if we discount in two steps, first from $T_{2}$ to $T_{1}$, using the forward discount $P_{x}\left(t,T_{1},T_{2}\right)$ and then from $T_{1}$ to $t$, using $P_{x}\left(t,T_{1}\right)$. Denoting with $F_{x}\left(t;T_{1},T_{2}\right) $ the simple compounded forward rate associated to $P_{x}\left(t,T_{1},T_{2}\right)$, resetting at time $T_{1}$ and covering the time interval $\left[T_{1},T_{2}\right]$ with \emph{actual/360} day count convention, we have
 \begin{equation}
-P(\tau_0)-P(\tau_T) = S \sum_1^T \delta_j P(\tau_j)
-\label{eqn:swaprate}
+P_{x}\left(t,T_{1},T_{2}\right)
+= \frac{P_{x}\left(t,T_{2}\right)}{P_{x}\left(t,T_{1}\right)}
+= \frac{1}{1+F_{x}\left(t;T_{1},T_{2}\right)\tau_F\left(T_{1},T_{2}\right) },
 \end{equation}
-
-where $\delta_j = daycount_{30/360 (Bond Basis)}(\tau_{j-1}, \tau_j)$.
+where we have defined
+\begin{equation}
+\tau_F\left(T_{1},T_{2}\right) := \tau\left(T_{1},T_{2};actual/360\right).
+\end{equation}
+From eq. (\ref{eqn:NoArbitrage}) we obtain the familiar no arbitrage expression
+\begin{eqnarray}
+F_{x}\left(t;T_{1},T_{2}\right)
+&=& \frac{1}{\tau_F\left(T_{1},T_{2}\right)}\left[\frac{1}{P_{x}\left(t,T_{1},T_{2}\right) }-1\right]   \notag \\
+&=& \frac{P_{x}\left(t,T_{1}\right) - P_{x}\left(t,T_{2}\right)}{\tau_F\left(T_{1},T_{2}\right) P_{x}\left(t,T_{2}\right)}.
+\label{eqn:FwdRate}
+\end{eqnarray}
+\par
+Regarding swap rates, given two increasing dates vectors 
+$\mathbf{T=}\left\{T_{0},...,T_{n}\right\}$, 
+$\mathbf{S=}\left\{S_{0},...,S_{m}\right\}$, $T_{0}=S_{0}\geq t_0$, and an interest rate swap with a floating leg paying at times $T_{i}$, $i=1,..,n$, the Euribor rate with tenor 
+$\left[T_{i-1},T_{i}\right]$ fixed at time $T_{i-1}$, plus a fixed leg paying a fixed rate at times $S_{j}$, $j=1,..,m$, the corresponding fair swap rate on curve $\mathcal{C}_{x}$ with \emph{30/360 (Bond Basis)} day count convention is given by
+\begin{eqnarray}
+S_{x}\left(t,\mathbf{T},\mathbf{S}\right) 
+&=& \frac{\sum\limits_{i=1}^{n}P_{x}\left(t,T_{i}\right) \tau_F\left(T_{i-1},T_{i}\right) F_{x}\left(t;T_{i-1},T_{i}\right)}{A_{x}\left(t,\mathbf{S}\right)} \notag \\
+&=& \frac{P_{x}\left(t,T_0\right) - P_{x}\left(t,T_n\right)}{A_{x}\left(t,\mathbf{S}\right)}
+,\quad t_0\leq t\leq T_{0}
+\label{eqn:SwapRateFwd}
+\end{eqnarray}
+where
+\begin{equation}
+A_{x}\left(t,\mathbf{S}\right) 
+= \sum\limits_{j=1}^{m}P_{f}\left(t,S_{j}\right) \tau_S\left(S_{j-1},S_{j}\right)
+\end{equation}
+is the annuity on curve $\mathcal{C}_{x}$ and we have defined
+\begin{equation}
+\tau_S\left(T_{i-1},T_{i}\right)
+:= \text{\textit{yearf}}\left[T_{1},T_{2};30/360\,(Bond Basis)\right].
+\end{equation}
 
 \section{\label{SecBootstrapping}Bootstrapping Multiple Euribor Curves}
+[NOTA: rivedere la notazione come da par. precedente (Marco)]
+
 A summary of standard bootstrapping methodology is given in common textbooks as, for instance, \cite{Hul08} and \cite{Reb1998}. Different kinds of instruments can be selected for bootstrapping an yield curve, and whilst they roughly cover different periods of the yield curve, they overlap in significant areas. The different relative liquidity of some instruments, and the idiosyncracies of different market segments (relative to different underlying rate tenors) often cause problems of market data synchronization: even small differences in their implied rates can result in erratic forward rates. Therefore it is usually impossible to include all the available instruments, and the subset of the mostly non-overlapping instruments is selected, with preference given to more liquid ones with a tighter bid/ask spread. The mispricing level of the excluded instruments must thus be monitored as safety check (or cheap-rich analysis).
 
 The so-called Euribor curve is usually bootstrapped from:
@@ -478,6 +509,33 @@ curve con breve commento)
 
 cap/floor parity
 
+\begin{figure}[tbp]
+\centering
+\includegraphics[scale=0.9]{./FigYC1M}
+\caption{Yield curve on Euribor1M. Brown line: zero curve, plotted with zero rates $Z_{f}^{I_{1M}}\left(t_{0},t_{0}+t,\text{\textit{act/365}}\right)$, $t$ daily sampled and settlement date $t_{0}=$ Jan. 27th, 2009. Blu line: forward curve $\mathcal{C}_{f}^{I_{1M}}$, plotted with 1M-tenor forward rates $F\left( t_{0};t,t+1M,\text{\textit{act/360}}\right) $. Upper panel: short term structure up to 3 years; middle panel: medium term structure up to 10 years; lower panel: long term structure up to 60 years.}
+\label{FigYC1M}
+\end{figure}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[scale=0.9]{./FigYC3M}
+\caption{Yield curve on Euribor3M. Plots as in fig. \protect\ref{FigYC1M}. Cyan diamonds: quoted 3M FRAs. Green triangles: quoted 3M\ Futures.}
+\label{FigYC3M}
+\end{figure}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[scale=0.9]{./FigYC6M}
+\caption{Yield curve on Euribor6M. Plots as in fig. \protect\ref{FigYC1M}. Cyan diamonds: quoted 6M FRAs. Green triangles: quoted 6M\ Futures.}
+\label{FigYC3M}
+\end{figure}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[scale=0.9]{./FigYC12M}
+\caption{Yield curve on Euribor12M. Plots as in fig. \protect\ref{FigYC1M}. Cyan diamonds: quoted 12M FRAs.}
+\label{FigYC3M}
+\end{figure}
 
 \section{\label{SecPricing2curves}Pricing Interest Rate Derivatives Using Separated Yield Curves for
 Discounting and Forwarding}
