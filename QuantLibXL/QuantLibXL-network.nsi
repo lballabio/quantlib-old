@@ -13,7 +13,7 @@
 
 !define VER_NUMBER "0.9.8"
 !define VER_NUMBER_UNDERSCORE "0_9_8"
-!define COMPILER "vc90"
+!define COMPILER "vc80"
 
 ; General Attributes
 
@@ -21,7 +21,7 @@
 
 Name "QuantLibXL Network Distribution"
 OutFile "..\QuantLibXL-${VER_NUMBER}-${NOW}-network.exe"
-InstallDir "X:\Apps\Appsscript\CabotoXL\RevXXXXX"
+InstallDir "X:\Apps\Appsscript\CabotoXL\Rev15909"
 
 ; Interface Settings
 
@@ -37,6 +37,7 @@ ROOT_FOLDER\xll - the XLL addin$\n\
 ROOT_FOLDER\framework - the VBA addin$\n\
 ROOT_FOLDER\Workbooks - the workbooks$\n\
 ROOT_FOLDER\metadata - the XML metadata$\n\
+ROOT_FOLDER\Data - the xls/xml data serialization files$\n\
 ROOT_FOLDER\Docs - the chm documentation file"
 
 !define MUI_DIRECTORYPAGE_TEXT_DESTINATION "Root folder for QuantLibXL Network installation"
@@ -64,39 +65,8 @@ $INSTDIR$\n\
 Are you certain that this is what you want to do?' IDYES +2
     Quit
 
-    ; For most directories we just do a recursive delete:
-    RMDir /r "$INSTDIR\xll"
-    RMDir /r "$INSTDIR\framework"
-    RMDir /r "$INSTDIR\metadata"
-    RMDir /r "$INSTDIR\Docs"
-
-    ; For the Workbooks directory, we explicitly delete the contents of each subdirectory
-    ; without deleting the directories themselves.  This is to preserve directory permissions
-    ; for the installation of the next version of QLXL.
-    Delete "$INSTDIR\Workbooks\*"
-    Delete "$INSTDIR\Workbooks\Bonds\*"
-    Delete "$INSTDIR\Workbooks\CmsCalibrations\*"
-    Delete "$INSTDIR\Workbooks\CoveredWarrants\*"
-    Delete "$INSTDIR\Workbooks\DateCalendarsDayCounters\*"
-    Delete "$INSTDIR\Workbooks\InterestRateDerivatives\*"
-    Delete "$INSTDIR\Workbooks\MarketData\*"
-    Delete "$INSTDIR\Workbooks\MarketData\BloombergFeed\*"
-    Delete "$INSTDIR\Workbooks\MarketData\ManualFeed\*"
-    Delete "$INSTDIR\Workbooks\MarketData\ReutersFeed\*"
-    Delete "$INSTDIR\Workbooks\MarketMetaData\*"
-    Delete "$INSTDIR\Workbooks\MarketModels\*"
-    Delete "$INSTDIR\Workbooks\Math\*"
-    Delete "$INSTDIR\Workbooks\ohTests\*"
-    Delete "$INSTDIR\Workbooks\PricingEngines\*"
-    Delete "$INSTDIR\Workbooks\StandAloneExamples\*"
-    Delete "$INSTDIR\Workbooks\Tests\*"
-    Delete "$INSTDIR\Workbooks\TimeSeries\*"
-    Delete "$INSTDIR\Workbooks\TimeSeries\BloombergFeed\*"
-    Delete "$INSTDIR\Workbooks\TimeSeries\ReutersFeed\*"
-    Delete "$INSTDIR\Workbooks\Utilities\*"
-
     ; Delete the contents of the root installation directory:
-    Delete "$INSTDIR\*"
+    RMDir /r "$INSTDIR\*"
 
 FunctionEnd
 
@@ -123,6 +93,10 @@ Section
     SetOutPath "$INSTDIR\Docs"
     File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
 
+    SetOutPath "$INSTDIR\Data"
+    File /r "Data\*.xls"
+    File /r "Data\*.xml"
+
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\favicon.bmp"
 
@@ -135,7 +109,6 @@ Section
     SetOutPath "$INSTDIR\xll"
     File "xll\QuantLibXLDynamic-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
     File "..\ObjectHandler\xll\ObjectHandler-xll-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    File "..\SensitivityAnalysis\saohxll\xll\saohxll-${COMPILER}-mt-0_1_9.xll"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r /x Drafts "Workbooks\*.xls"
