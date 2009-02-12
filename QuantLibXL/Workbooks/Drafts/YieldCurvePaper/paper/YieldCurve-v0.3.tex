@@ -51,13 +51,13 @@ In practice \textquotedblleft exact-fit\textquotedblright\ algorithms are often 
 
 Whilst naive algorithms may fail to deal with market subtleties such as date conventions, the intra-day fixing of the first floating payment of a swap, the turn-of-year effect, the Futures convexity adjustment, etc., even very sophisticated algorithms used in a naive way may fail to estimate correct forward Euribor rates in difficult market conditions. Namely using just one single curve is not enough to account for forward Euribor rates of different tenor, such as 1, 3, 6, 12 months, because of the large basis swap spreads observed since the summer of 2007 in occasion of the so-called {\it subprime credit crunch crisis.}
 
-The plan of the paper is as follows: 
+The plan of the paper is as follows:
 in section \ref{SecPricing} we review the traditional (old style) single curve market practice for pricing and hedging interest rate derivatives and the recent market evolution, triggered by the credit crunch crisis, towards a double-curve approach;
-in section \ref{SecMath} we fix the notation and nomenclature; 
+in section \ref{SecMath} we fix the notation and nomenclature;
 in section \ref{SecBootstrapping} we describe the market instruments available for the bootstrap, detailing their peculiarities, and we introduce the multiple curves approach based on accurate instrument selection.
-The next three following sections deal with issues crucial for smooth curve bootstrapping: 
+The next three following sections deal with issues crucial for smooth curve bootstrapping:
 section \ref{SecTOY} shows how to estimate the turn-of-year effect and incorporate it as a jump in the yield curve bootstrapping;
-section \ref{SecInterp} sets the record straight on sensitive interpolation choices; 
+section \ref{SecInterp} sets the record straight on sensitive interpolation choices;
 section \ref{SecSynt} illustrates how to allocate the discount factor decrease in the underspecified first period in a way coherent with interpolated market FRAs.
 Then, in section \ref{SecimplementationResults} we describe the numerical results delivered by the proposed framework, along with a quick overview of the corresponding open-source QuantLib implementation and of its Excel interface, able to bootstrap multiple yield curves in real-time for real-life needs.
 Finally, in section \ref{SecPricing2curves} we take a look of the consequences of using different curves for calculating forward rates and discount factors on no arbitrage conditions and on pricing expression for interest rate derivatives.
@@ -66,7 +66,7 @@ Conclusions are collected in section \ref{SecConclusions}.
 \section{\label{SecPricing}Pricing \& Hedging Interest Rate Derivatives}
 One of the many consequences of the liquidity crisis started in the second half of 2007 has been a strong increase of the basis spreads quoted on the market between single-currency interest rate instruments, swaps in particular, characterized by different underlying rate tenors (e.g. Euribor3M\footnote{Euro Interbank Offered Rate, the rate at which euro interbank term deposits within the euro zone are offered by one prime bank to another prime bank (see e.g. www.euribor.org).}, Euribor6M, etc.), reflecting the increased liquidity risk and the corresponding preference of financial institutions for receiving payments with higher frequency (quarterly instead of semi-annualy, for instance).
 \par
-There are also other indicators of regime changes in the interest rate markets, such as the divergence between deposit (Euribor based) and OIS (Overnight Indexed Swaps, Eonia\footnote{Euro OverNight Index Average, the rate computed as a weighted average of all overnight rates corresponding to unsecured lending transactions in the euro-zone interbank market (see e.g. www.euribor.org).} based) rates with the same maturity, or between FRA (Forward Rate Agreement) contacts and the corresponding forward rates implied by consecutive deposits. 
+There are also other indicators of regime changes in the interest rate markets, such as the divergence between deposit (Euribor based) and OIS (Overnight Indexed Swaps, Eonia\footnote{Euro OverNight Index Average, the rate computed as a weighted average of all overnight rates corresponding to unsecured lending transactions in the euro-zone interbank market (see e.g. www.euribor.org).} based) rates with the same maturity, or between FRA (Forward Rate Agreement) contacts and the corresponding forward rates implied by consecutive deposits.
 \par
 The asymmetries cited above have also induced a sort of "segmentation" of the interest rate market into sub-areas, mainly corresponding to instruments with 1M, 3M, 6M, 12M underlying rate tenors, characterized, in principle, by different internal dynamics, liquidity and credit risk premia, reflecting the different views and interests of the market players. We stress that such new market situation is nothing else that a new equilibrium configuration determined by the pressure of the increased illiquidity force, that magnifies well known effects historically very small and traditionally neglected before the crisis (see also the discussion in refs. \cite{Mor08}, \cite{Mer09}).
 \par
@@ -140,14 +140,14 @@ In particular, the year fraction associated to discount factors must be monotoni
 \end{equation}
 The day count convention satisfying the above conditions that will be used in this paper (for any market $M_x$) is the common \emph{Actual/365 (Fixed)} \cite{ISDA}, such that:
 \begin{equation}
-\tau_{\mathcal{C}}\left(T_{1},T_{2}\right) 
+\tau_{\mathcal{C}}\left(T_{1},T_{2}\right)
 := \tau\left[T_{1},T_{2};actual/365 (Fixed)\right]
 = \frac{T_2-T_1}{365}.
 \end{equation}
-\\ 
+\\
 Since the discount factor curve is observed to be exponentially decreasing, as expected when the interest rate compounding is made so frequent to be practically continuous, the yield curve is usually described through an exponential transformation, i.e. by continuously compounded zero coupon rates $z_x(t_0,T)$ or instantaneous forward rates\footnote{par rates could be used too; we do not use them here as they are not frequently used and would not provide additional benefit anyway.} $f_x(t)$ such that
 \begin{equation}
-P_x(t_0,T) 
+P_x(t_0,T)
 = \exp\left[-z_x\left(t_0,T\right)\tau_{\mathcal{C}}\left(t_0,T\right)\right]
 = \exp\left[-\int_{t_0}^{T}f_x\left(u\right)du\right],
 \label{eqn:relationship}
@@ -198,12 +198,12 @@ F_{x}\left(t;T_{1},T_{2}\right)
 \label{eqn:FwdRate}
 \end{eqnarray}
 \par
-Regarding swap rates, given two increasing dates vectors 
-$\mathbf{T=}\left\{T_{0},...,T_{n}\right\}$, 
-$\mathbf{S=}\left\{S_{0},...,S_{m}\right\}$, $T_{0}=S_{0}\geq t_0$, and an interest rate swap with a floating leg paying at times $T_{i}$, $i=1,..,n$, the Euribor rate with tenor 
+Regarding swap rates, given two increasing dates vectors
+$\mathbf{T=}\left\{T_{0},...,T_{n}\right\}$,
+$\mathbf{S=}\left\{S_{0},...,S_{m}\right\}$, $T_{0}=S_{0}\geq t_0$, and an interest rate swap with a floating leg paying at times $T_{i}$, $i=1,..,n$, the Euribor rate with tenor
 $\left[T_{i-1},T_{i}\right]$ fixed at time $T_{i-1}$, plus a fixed leg paying a fixed rate at times $S_{j}$, $j=1,..,m$, the corresponding fair swap rate on curve $\mathcal{C}_{x}$ with \emph{30/360 (Bond Basis)} day count convention is given by
 \begin{eqnarray}
-S_{x}\left(t,\mathbf{T},\mathbf{S}\right) 
+S_{x}\left(t,\mathbf{T},\mathbf{S}\right)
 &=& \frac{\sum\limits_{i=1}^{n}P_{x}\left(t,T_{i}\right) \tau_F\left(T_{i-1},T_{i}\right) F_{x}\left(t;T_{i-1},T_{i}\right)}{A_{x}\left(t,\mathbf{S}\right)} \notag \\
 &=& \frac{P_{x}\left(t,T_0\right) - P_{x}\left(t,T_n\right)}{A_{x}\left(t,\mathbf{S}\right)}
 ,\quad t_0\leq t\leq T_{0}
@@ -211,7 +211,7 @@ S_{x}\left(t,\mathbf{T},\mathbf{S}\right)
 \end{eqnarray}
 where
 \begin{equation}
-A_{x}\left(t,\mathbf{S}\right) 
+A_{x}\left(t,\mathbf{S}\right)
 = \sum\limits_{j=1}^{m}P_{f}\left(t,S_{j}\right) \tau_S\left(S_{j-1},S_{j}\right)
 \end{equation}
 is the annuity on curve $\mathcal{C}_{x}$ and we have defined
@@ -224,7 +224,7 @@ is the annuity on curve $\mathcal{C}_{x}$ and we have defined
 In this section we first review and criticize the standard pre-crisis bootstrapping methodology for interbank Euribor curves, then we examine in detail all the market instruments used in the new multi curve framework.
 
 \subsection{Single Curve Bootstrapping}
-A summary of standard pre-crisis bootstrapping methodology is given in common textbooks as, for instance, \cite{Hul08} and \cite{Reb1998}. 
+A summary of standard pre-crisis bootstrapping methodology is given in common textbooks as, for instance, \cite{Hul08} and \cite{Reb1998}.
 Different kinds of instruments can be selected for bootstrapping an yield curve term structure, and whilst they roughly cover different maturities, they overlap in significant areas. Therefore it is usually impossible to include all the available instruments, and the subset of the mostly non-overlapping instruments is selected, with preference given to more liquid ones with a tighter bid/ask spread. The mispricing level of the excluded instruments must thus be monitored as safety check (or cheap-rich analysis).
 \par
 The so-called interbank Euribor curve was usually bootstrapped from the following market instruments:
@@ -239,21 +239,19 @@ The instrument set above overlaps (by maturity) at the deposit/Futures and Futur
 \subsection{Multi Curve Bootstrapping}
 [NOTA: da rivedere prima parte di testo]
 
-As mentioned in section \ref{SecPricing}, in the present post credit crunch market situation, distinct interest rate market segments $M_x$, relative to different Euribor rate tenors, are characterized by different internal dynamics, liquidity and credit risk premia, reflecting the different views and interests of the market players. 
+As mentioned in section \ref{SecPricing}, in the present post credit crunch market situation, distinct interest rate market segments $M_x$, relative to different Euribor rate tenors, are characterized by different internal dynamics, liquidity and credit risk premia, reflecting the different views and interests of the market players.
 Such more complex market mechanic generates the following features:
 \begin{itemize}
 \item similar market instruments insisting on different underlyings, for instance FRAs or swaps on Euribor3M and Euribor6M, may display very different price levels;
 \item similar market instruments may display very different relative liquidities;
 \item even small idiosyncracies, asynchronies and inconsistencies in market quotations may result in erratic forward rates.
 \end{itemize}
-Hence, the first step for multiple yield curve construction is a very careful selection of the multiple corresponding sets of bootstrapping instruments. In the following subsections we examine these instruments in detail. We refer to the market quotes observed as of 23th Jan. 2009.
+Hence, the first step for multiple yield curve construction is a very careful selection of the corresponding multiple sets of bootstrapping instruments. In the following subsections we examine these instruments in detail. We refer to the market quotes observed as of 23th Jan. 2009.
 
 \subsubsection{\label{SecDepo}Deposits}
-Deposits in the EUR market start at spot date (two working days after today, according to the TARGET holiday calendar) and span the length indicated by their maturity. Exceptions are the {\it over-night} (ON) and {\it tomorrow-next} (TN) one-day deposits, which start today and tomorrow, respectively, and cover (without overlapping) the interval between today and spot date.
-The maturity date of deposits shorter than one month obeys the {\it Following} convention; for longer deposits the convention is {\it Modified Following}. For the latters the {\it end-of-month} convention is also respected: if the start date is the last working day in a given month, the end date must be the last working date of the ending month too. Notice that each deposit admits a different underlying rate tenor, corresponding to its maturity.
-\par
-In table \ref{tab:deposits} we report the depo strip quoted in Reuters page XXX (NOTA: verificare pagina).
-\begin{table}[tbp]
+Interest rate deposit contracts (depos) quoted in the EUR market start at spot date (two working days after today, according to the TARGET holiday calendar) and span the length indicated by their maturity. Exceptions are the {\it over-night} (ON) and {\it tomorrow-next} (TN) one-day deposits, which start today and tomorrow, respectively, and cover (without overlapping) the interval between today and spot date.
+The maturity date of deposits shorter than one month obeys the {\it Following} convention; for longer deposits the convention is {\it Modified Following}. For the latters the {\it end-of-month} convention is also respected: if the start date is the last working day in a given month, the end date must be the last working date of the ending month too.
+\begin{table}[btp]
 \label{tab:deposits}
 \begin{tabular}{cccccccc}
 Tenor & Rate & Settlement & Business       & End of & Start & End  & Year \\
@@ -277,17 +275,21 @@ SW & 1.0000\% & spot & Following &  &  \\
 \end{tabular}%
 \caption{Depo strip. Source: Reuters page XXX (NOTA: verificare pagina), 23rd Jan. 2009.}
 \end{table}
-If $R_{depo}\left(t_0,T_i\right)$ is the quoted rate associated to the i-th deposit with maturity $T_i$ and underlying rate tenor $\left[t_0,T_i\right]$, we have that the implied discount factor at time $T_i$ is given by
+\par
+In table \ref{tab:deposits} we report the depo strip quoted in Reuters page XXX (NOTA: verificare pagina).
+If $R^{depo}_x\left(t_0,T_i\right)$ is the quoted rate associated to the i-th deposit with maturity $T_i$ and underlying rate tenor $x=T_i - t_0$ months, we have that the implied discount factor at time $T_i$ is given by\footnote{here we keep the subscript $x$ explicit also to be consistent with eq. (\ref{eqn:FRA}).}
 \begin{equation}
-P(t_0,T_i) = \frac{1}{1 + R_{depo}\left(t_0,T_i\right)\tau_F\left(t_0,T_i\right)}.
+P_x(t_0,T_i) = \frac{1}{1 + R^{depo}_x\left(t_0,T_i\right)\tau_F\left(t_0,T_i\right)},\quad t_0<T_i,
 \label{eqn:deposit}
 \end{equation}
-where $\tau_F$ is given by eq. (\ref{eqn:yfFRA}).
+where $\tau_F$ is given by eq. (\ref{eqn:yfFRA}). Notice that the reference date $t_0$ is different for ON, TN and other depos
+\par
+Market deposits can be selected as bootstrapping instruments for the construction of the short term structure section of the yield curves. Notice that each depo admits a different underlying rate tenor, corresponding to its maturity. Hence each depo can be selected, in principle, for the construction of a single curve. We will discuss this point in section \ref{SecSynt}.
 
-\subsubsection{\label{SecFRA}Forward Rate Agreements}
-FRAs are forward starting deposits, e.g. the $3x9$ FRA is a six months deposit starting three months forward. The forward start date is calculated with the same convention used for the end date of deposits, so FRAs do concatenate exactly, e.g. the $6x9$ starts when the $3x6$ ends.
-In table \ref{tab:deposits} we report the three FRA strips quoted in Reuters page XXX (NOTA: verificare ).
-\begin{table}[tbp]
+\subsubsection{\label{SecFRA}Forward Rate Agreements (FRAs)}
+FRA contacts are forward starting deposits. For instance the 3x9 FRA is a six months deposit starting three months forward. In the EUR market the forward start date (i.e. the start date of the forward depo) is calculated with the same convention used for the end date of deposits, so FRAs do concatenate exactly, e.g. the 6x9 FRA starts when the preceding 3x6 FRA ends. The underlying forward rate fixes two working days before the forward start date (NOTA: VERIFICARE).
+In table \ref{tab:deposits} we report the three FRA strips on 3M, 6M, and 12M Euribor rate quoted in Reuters page XXX (NOTA: verificare ).
+\begin{table}[btp]
 \label{tab:FRA}
 \begin{tabular}{cccccc}
 Type & Rate & Start Date & End Date &  &  \\
@@ -311,14 +313,18 @@ Type & Rate & Start Date & End Date &  &  \\
 \end{tabular}%
 \caption{FRA strips on Euribor3M, Euribor6M, and Euribor12M. Source: Reuters page XXX (NOTA: verificare pagina), 23rd Jan. 2009.}
 \end{table}
-If $F_{x}\left(t;T_{i-1},T_{i}\right)$ is the i-th Euribor forward rate resetting at time $T_{i-1}$ with tenor $x=\left[T_{i-1},T_{i}\right]$, the $T_i$ discount factor $P_{x}\left(t_0,T_i\right)$ is given by eq. \ref{eqn:FwdRate}
+If $F_{x}\left(t;T_{i-1},T_{i}\right)$ is the i-th Euribor forward rate resetting at time $T_{i-1}$ with tenor $x=T_{i}-T_{i-1}$ months associated to the i-th FRA with maturity $T_i$, we have that the implied discount factor is obtained by eq. (\ref{eqn:FwdRate}) as
 \begin{equation}
-P_x\left(t_0,T_i\right) = \frac{P_x\left(t_0,T_{i-1}\right)}{1+F_{x}\left(t;T_{i-1},T_{i}\right)\tau_F\left(T_{i-1},T_{i}\right) },
+P_x\left(t_0,T_i\right) = \frac{P_x\left(t_0,T_{i-1}\right)}{1+F_{x}\left(t_0;T_{i-1},T_{i}\right)\tau_F\left(T_{i-1},T_{i}\right) },\quad t_0<T_{i-1}<T_i,
 \label{eqn:FRA}
 \end{equation}
-where $\tau_F$ is given by eq. (\ref{eqn:yfFRA}).
+where $\tau_F$ is given by eq. (\ref{eqn:yfFRA}). We observe that FRAs collapse to depos for shrinking $T_{i-1}-t_0$
+\begin{equation}
+\lim_{T_{i-1} \to t_0}F_{x}\left(t_0;T_{i-1},T_{i}\right) = R^{depo}_x\left(t_0,T_i\right),
+\end{equation}
+hence eq. (\ref{eqn:FRA}) reduces to eq. (\ref{eqn:deposit})
 \par
-FRAs provide direct empirical evidence that a single curve cannot be used to estimate forward rates with different tenors. As seen in \ref{tab:FRA} the level of the $1x4$ (spanning from March 3rd to June 3rd, $\tau_{F,3M} = 0.2555$) was $1.888\%$, the level of $4x7$ (spanning from June 3rd to September 3rd, $\tau_{F,3M} = 0.2555$) was $1.721\%$. If one would compound these two rates to imply the level of the $1x7$ (spanning from March 3rd to September 3rd, $\tau_{F,6M} = 0.5111$) would obtain:
+Market FRAs provide direct empirical evidence that a single curve cannot be used to estimate forward rates with different tenors. We can observe in \ref{tab:FRA} that, for instance, the level of the 1x4 FRA3M (spanning from March 3rd to June 3rd, $\tau_{F,3M} = 0.2555$) was $1.888\%$, the level of 4x7 FRA3M (spanning from June 3rd to September 3rd, $\tau_{F,3M} = 0.2555$) was $1.721\%$. If one would compound these two rates to imply the level of the 1x7 FRA6M (spanning from March 3rd to September 3rd, $\tau_{F,6M} = 0.5111$) would obtain
 \begin{equation}
 \frac{
     \left(1 + 0.01888 \times 0.255\right) \left(1 + 0.01721 \times 0.255\right) - 1.0}
@@ -326,11 +332,12 @@ FRAs provide direct empirical evidence that a single curve cannot be used to est
     = 1.809\%,
 \label{eqn:FRAarbitrage}
 \end{equation}
-while the market rate for the $1x7$ was $2.008\%$, twenty basis point larger.
-[NOTA: aggiornare questi dati al 23 gennaio 2009]
+while the market rate for the $1x7$ was $2.008\%$, twenty basis point larger. As discussed in section \ref{SecPricing}, the difference is the liquidity/default risk premium seen by the market in post credit crunch times. [NOTA: aggiornare questi dati al 23 gennaio 2009]
+\par
+Market FRAs on $x$-tenor Euribor can be selected, together with the corresponding depos, as bootstrapping instruments for the construction of short term structure section of the yield curve with tenor $x$.
 
 \subsubsection{\label{SecFutures}Futures}
-\begin{table}[tbp]
+\begin{table}[btp]
 \label{tab:Futures}
 \begin{tabular}{cccccc}
 IMM  & Price & Convexity  & Forward & IMM  & End  \\
@@ -357,32 +364,29 @@ H8 & 97.34\% & 0.01\% & 3.65\% &  &  \\
 \end{tabular}%
 \caption{Futures on 3M deposit}
 \end{table}
-
-Futures are the exchange-traded equivalent of over-the-counter three-month FRAs.  They're quoted as prices instead of rates, the relation being
+Interest Rate Futures are the exchange-traded contracts equivalent to the over-the-counter FRAs. They are quoted in terms of prices instead of rates, the relation being
 \begin{equation}
-p = 100 - r,
+P^{Fut}_x\left(t_0,T_{i-1},T_i\right) = 100 - R^{Fut}_x\left(t_0,T_{i-1},T_i\right),
 \label{eqn:futurepricerate}
 \end{equation}
-and refer to the 3M Euribor fixing for the third Wednesday of the given month. Because of the two days of settlement the last trading day is actually the preceding Monday. There are contracts that expire every March, June, September and December.
-
-While FRAs have the advantage of being more customizable, Futures offer much greater liquidity and lower transaction costs, and their credit risk is eliminated through the margining process (i.e. through daily marking to market of any profit and loss). The first {\it front} contract is the most liquid interest rate instrument, with longer expiry contracts having very good liquidity up to the 8th-12th contract.
-
-Beside regular contracts in the main March, June, September, December cycle, there are so called {\it serial} contracts expiring in the upcoming months not covered by the quarterly expirations. The first serial contact is quite liquid, especially when its expiration is before the front contract.
-
-Because of their marking to market Futures do not have the same payoff of forwards: an investor long a Futures contract will have a loss when the Futures price decrease but will finance his loss at lower rate (see \ref{eqn:futurepricerate}); viceversa when the Futures price increase the profit will be reinvested at higher rate. This means that the volatility of the forward rates and their correlation to the spot rates have to be accounted for: a {\it convexity adjustment} is needed to convert the rate implied in the Futures price to its corresponding forward rate $f$ as in
+and admit the $x$-months Euribor rate as underlying.
+\par
+While FRAs have the advantage of being more customizable, Futures are highly standardized: in the EUR market they fix the third Wednesday of the maturity month; the last trading day is the preceding Monday (because of the two days of settlement); the most common contracts (so called IMM\footnote{International Money Market of the Chicago Mercantile Exchange.} Futures) insist on Euribor3M [NOTA: E BASTA ? VERIFICARE] and expire every March, June, September and December (IMM dates). There are also so called {\it serial} contracts expiring in the upcoming months not covered by the quarterly Futures. Maturities extend up to 5 years {NOTA: VERIFICARE}. Any profit and loss is regulated through daily marking to market (so called margining process), thus reducing the credit risk.
+Such standard characteristics reduce the transaction costs and imply a very high liquidity. The first {\it front} contract is the most liquid interest rate instrument, with longer expiry contracts having very good liquidity up to the 8th-12th contract. Also the first serial contact is quite liquid, especially when its expiration is before the front contract.
+\par
+Because of their marking to market mechanism Futures do not have the same payoff of FRAs: an investor long a Futures contract will have a loss when the Futures price decrease but will finance such loss at lower rate (see \ref{eqn:futurepricerate}); viceversa when the Futures price increase the profit will be reinvested at higher rate [NOTA: VERIFICARE]. This means that the volatility of the forward rates and their correlation to the spot rates have to be accounted for, hence a {\it convexity adjustment} is needed to convert the rate $R^{Fut}_x$ implied in the Futures price to its corresponding forward rate $F_x$,
 \begin{equation}
-f = 100 - p - adj,
+F_x\left(t_0,T_{i-1},T_i\right) = R^{Fut}_x\left(t_0,T_{i-1},T_i\right)-C_x\left(t_0,T_{i-1},T_i,\sigma_i,\rho_i\right),
 \label{eqn:fwdfromfutureprice}
 \end{equation}
-
-
-\cite{}
-
-While different approaches are available in literature (\cite{Jac05}, \cite{PitRen06}, \cite{Vaillant}), a practitioner reference recipe to estimate the convexity adjustment is due to  XXX and YYY, using a simple Hull \& White model \cite{HulWhi1990}. Their approach it's used in \ref{tab:Futures} to calculate adjustments using
-$\sigma = 0.0$ and $\mu = 0.0$.
-It's worth noting that when used in bootstrapping algorithms, Futures contract generates rolling pillars. While other instruments have a (roughly) constant time to maturity, i.e. constant pillars, this is not true for Futures, whose expiration shrinks gradually to zero.
+While different approaches are available in literature (see e.g. refs. \cite{Jac05}, \cite{PitRen06}, \cite{Vaillant}), a practitioner reference recipe to estimate the convexity adjustment is due to  XXX and YYY, using a simple Hull \& White model \cite{HulWhi1990}. Their approach it's used in \ref{tab:Futures} to calculate adjustments using
+$\sigma = 0.0$ and $\mu = 0.0$ [NOTA: VERIFICARE].
+\par
+Market Futures on $x$-tenor Euribor can be selected as bootstrapping instruments for the construction of short-medium term structure section of the yield curve with tenor $x$.
+Notice that Futures contracts have expiration dates gradually shrinking to zero and as such they generate rolling pillars that periodically jumps and overlap the fixed depo and FRA pillars. Hence some {\emph priority} rule must be used to decide which instrument must be excluded from the bootstrapping procedure.
 
 \subsubsection{\label{SecSwap}Swaps}
+[NOTA: da rivedere (Marco)]
 \begin{table}[tbp]
 \label{tab:swaps6M}
 \begin{tabular}{cc}
