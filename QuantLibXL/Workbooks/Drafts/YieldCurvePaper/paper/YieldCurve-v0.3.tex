@@ -29,7 +29,7 @@ Milan Italy, ferdinando.ametrano(AT)bancaimi.com}
 \address{Risk Management, Banca IntesaSanpaolo, Piazza G. Ferrari 10, 20121
 Milan Italy, marco.bianchetti(AT)intesasanpaolo.com}
 
-\thanks{JEL Classifications: E45, G13. \\ 
+\thanks{JEL Classifications: E45, G13. \\
 The authors acknowledge fruitful discussions with S. De Nuccio, R. Giura, C. Maffi, F. Mercurio, N. Moreni and the QuantLib community. The opinions expressed here are solely of the authors and do not represent in any way those of theirs employers.}
 
 \date{Draft Feb. 14th, 2008}
@@ -50,8 +50,8 @@ In particular we describe how to extract multiple yield curve term structures, e
 \label{sec:Intro}
 Pricing complex interest rate derivatives requires modeling the future dynamics of the yield curve term structure. Most of the literature assumes the existence of the \emph{current} yield curve as given, and its construction is often neglected, or even obscured, as it is considered more an art than a science. Actually any yield curve term structure modeling approach will fail to produce good/reasonable prices if the current term structure is not correct.
 \par
-Financial institutions, software houses and practitioners have developed various methodologies in order to extract the yield curve term structure from quoted prices of a finite number of liquid market instruments. 
-\textquotedblleft Best-fit\textquotedblright\ algorithms assume a smooth functional form for the term structure and calibrate its parameters such that to minimize the repricing error of the chosen set of calibration instruments. For instance, the European Central Bank publishes yield curves on the basis of the Soderlind and Svensson model \cite{SodSwe1997}, which is an extension of the Nelson-Siegel model (see e.g. refs. \cite{NelSig1987}, \cite{Diament}, \cite{ChrDie07} and \cite{Cor08}). Such approach is popular due to the smoothness of the curve, calibration easiness, intuitive financial interpretation of functional form parameters (level, slope, curvature) and correspondence with principal component analysis. On the other side, the fit quality is typically not good enough for trading purposes in liquid markets.
+Financial institutions, software houses and practitioners have developed various methodologies in order to extract the yield curve term structure from quoted prices of a finite number of liquid market instruments.
+\textquotedblleft Best-fit\textquotedblright\ algorithms assume a smooth functional form for the term structure and calibrate its parameters such that to minimize the repricing error of the chosen set of calibration instruments. For instance, the European Central Bank publishes yield curves on the basis of the Soderlind and Svensson model \cite{SodSwe1997}, which is an extension of the Nelson-Siegel model (see e.g. refs. \cite{NelSie1987}, \cite{Diament}, \cite{ChrDie07} and \cite{Cor08}). Such approach is popular due to the smoothness of the curve, calibration easiness, intuitive financial interpretation of functional form parameters (level, slope, curvature) and correspondence with principal component analysis. On the other side, the fit quality is typically not good enough for trading purposes in liquid markets.
 \par
 In practice \textquotedblleft exact-fit\textquotedblright\ algorithms are often preferred: they fix the yield curve on a time grid of $N$ points (pillars) in order to \emph{exactly} reprice $N$ pre-selected market instruments. The implementation of such algorithms is often incremental, extending the yield curve step-by-step with the increasing maturity of the ordered instruments, in a so called \textquotedblleft bootstrap\textquotedblright approach. Intermediate yield curve values are obtained by interpolation on the bootstrapping grid. Here different interpolation algorithms are available but little attention has been devoted in the literature to the fact that interpolation is often already used during bootstrapping, not just after that, and that the interaction between bootstrapping and interpolation can be subtle if not nasty (see e.g. \cite{HagWes06}, \cite{HagWes08}).
 \par
@@ -59,12 +59,12 @@ Whilst naive algorithms may fail to deal with market subtleties such as date con
 \par
 The plan of the paper is as follows:
 in section \ref{sec:Pricing} we start by reviewing the traditional (old style) single curve market practice for pricing and hedging interest rate derivatives and the recent market evolution, triggered by the credit crunch crisis, towards a double-curve approach.
-In section \ref{sec:Math} we fix the notation and nomenclature. 
+In section \ref{sec:Math} we fix the notation and nomenclature.
 In section \ref{sec:SingleBootstrapping} we summarize the traditional pre-credit crunch yield curve construction methodology.
 In section \ref{sec:MultiBootstrapping}, that constitutes the central contribution of this work, we describe in great detail the new post-credit crunch multi-curve approach; in particular in its six subsections we discuss the general features of the bootstrapping procedure, we review the (EUR) market instruments available for the bootstrap, and we deal with issues crucial for smooth curve bootstrapping:
-the fundamental role of interpolation (\ref{sec:Interp}), 
+the fundamental role of interpolation (\ref{sec:Interp}),
 the treatment of priorities and of the overlapping points at different market instruments sections (\ref{sec:DepoFuturesOverlap}),
-the incorporation of the turn-of-year effect (\ref{sec:TOY}), 
+the incorporation of the turn-of-year effect (\ref{sec:TOY}),
 the construction of the underspecified first period coherently with interpolated market FRAs (\ref{sec:Synt}).
 Then, in section \ref{sec:ImplementResults} we describe the numerical results delivered by the proposed framework, along with a quick overview of the corresponding open-source QuantLib implementation and of its Excel interface, able to bootstrap multiple yield curves in real-time for real-life needs.
 Finally, in section \ref{sec:Pricing2curves} we take a look of the consequences of using different curves for calculating forward rates and discount factors on no arbitrage conditions and on pricing expression for interest rate derivatives.
@@ -156,12 +156,12 @@ or, using the equivalent log notation,
     = -\int_{t_0}^T f_x\left(t_0,u\right)du,
 \label{eqn:logrelationship}
 \end{equation}
-where 
+where
 \begin{equation}
 \tau_{\mathcal{C}}\left(T_1,T_2\right) := \tau\left(T_1,T_2;dc_{\mathcal{C}}\right)
 \label{eqn:yfZeroRate}
 \end{equation}
-and $dc_{\mathcal{C}}$ is the day count convention for the zero rate. 
+and $dc_{\mathcal{C}}$ is the day count convention for the zero rate.
 From the relationships above it is immediate to observe that:
 \begin{itemize}
 \item $z_x\left(t_0,T\right)$ is the average of $f_x\left(t_0,u\right)$ over $\left[t_0,T\right]$;
@@ -333,7 +333,7 @@ where $\tau_F$ is given by eq. (\ref{eqn:yfFRA}). The expression (\ref{eqn:Depos
 \caption{EUR FRA strip on Euribor3M, Euribor6M, and Euribor12M. Source: Reuters page ICAPSHORT2, 23 Jan. 2009.}
 \label{fig:FRA}
 \end{figure}
-FRA contacts are forward starting Deposits. For instance the 3x9 FRA is a six months Deposit starting three months forward. 
+FRA contacts are forward starting Deposits. For instance the 3x9 FRA is a six months Deposit starting three months forward.
 \par
 The EUR market quotes standard plain vanilla FRA strips with different forward start dates (i.e. the start date of the forward Depo), calculated with the same convention used for the end date of Deposits. So FRAs do concatenate exactly, e.g. the 6x9 FRA starts when the preceding 3x6 FRA ends. The underlying forward rate fixes two working days before the forward start date (NOTA: VERIFICARE).
 In figure \ref{fig:FRA} we report the three FRA strips on 3M, 6M, and 12M Euribor rate quoted in Reuters page ICAPSHORT2.
@@ -371,7 +371,7 @@ and eq. (\ref{eqn:FRA}) reduces to eq. (\ref{eqn:Deposit}).
 \caption{EUR Futures on Euribor 3M. Source: Reuters page 0\#/FEI, 23 Jan. 2009.}
 \label{fig:Futures3M}
 \end{figure}
-Interest Rate Futures are the exchange-traded contracts equivalent to the over-the-counter FRAs. While FRAs have the advantage of being more customizable, Futures are highly standardized contracts. In the EUR market they fix the third Wednesday of the maturity month; the last trading day is the preceding Monday (because of the two days of settlement); the most common contracts (so called IMM\footnote{International Money Market of the Chicago Mercantile Exchange.} Futures) insist on Euribor3M [NOTA: E BASTA ? VERIFICARE] and expire every March, June, September and December (IMM dates). There are also so called serial contracts expiring in the upcoming months not covered by the quarterly Futures. Maturities extend up to 8 years [NOTA: VERIFICARE]. 
+Interest Rate Futures are the exchange-traded contracts equivalent to the over-the-counter FRAs. While FRAs have the advantage of being more customizable, Futures are highly standardized contracts. In the EUR market they fix the third Wednesday of the maturity month; the last trading day is the preceding Monday (because of the two days of settlement); the most common contracts (so called IMM\footnote{International Money Market of the Chicago Mercantile Exchange.} Futures) insist on Euribor3M [NOTA: E BASTA ? VERIFICARE] and expire every March, June, September and December (IMM dates). There are also so called serial contracts expiring in the upcoming months not covered by the quarterly Futures. Maturities extend up to 8 years [NOTA: VERIFICARE].
 Any profit and loss is regulated through daily marking to market (so called margining process).
 \par
 Such standard characteristics reduce the credit risk and the transaction costs, thus enhancing a very high liquidity. The first front contract is the most liquid interest rate instrument, with longer expiry contracts having very good liquidity up to the 8th-12th contract. Also the first serial contract is quite liquid, especially when its expiration is before the front contract.
@@ -393,9 +393,9 @@ Notice that Futures contracts have expiration dates gradually shrinking to zero 
 \par
 Given the i-th Futures market quote $P^{Fut}_x\left(t_0,T_{i-1},T_i\right)$ with maturity $T_i$, the implied discount factor at time $T_i$ is obtained by eqs. (\ref{eqn:FRA}), (\ref{eqn:FuturePriceRate}) and (\ref{eqn:fwdfromfutureprice}) as
 \begin{equation}
-P_x\left(t_0,T_i\right) 
+P_x\left(t_0,T_i\right)
 =   \frac{P_x\left(t_0,T_{i-1}\right)}
-         {1+\left[R^{Fut}_x\left(t_0,T_{i-1},T_i\right) - 
+         {1+\left[R^{Fut}_x\left(t_0,T_{i-1},T_i\right) -
           C_x\left(t_0,T_{i-1},T_i\right)\right]
           \tau_F\left(T_{i-1},T_{i}\right)},
 \label{eqn:FuturesBootstrap}
@@ -434,12 +434,12 @@ S_x\left(t_0,T_i\right)
 \end{eqnarray}
 The expression above can be inverted to find the implied discount factor at time $T_i$ as
 \begin{equation}
-P_x\left(t_0,T_i\right) 
+P_x\left(t_0,T_i\right)
 =   \frac{1-S_x\left(t_0,T_i\right)A_x\left(t_0,T_{i-1}\right)}
          {1+S_x\left(t_0,T_i\right)\tau_S\left(T_{i-1},T_i\right)},
 \label{eqn:SwapBootstrap}
 \end{equation}
-where $\tau_S$ is given by 
+where $\tau_S$ is given by
 \begin{equation}
 \tau_S\left(T_1,T_2\right) := \tau\left[T_1,T_2;30/360 (bond basis)\right].
 \end{equation}
@@ -493,7 +493,7 @@ If $\Delta_{x,6M}\left(t_0,T_i\right)$ is the quoted basis between Euribor xM an
 S_x\left(t_0,T_i\right) = \Delta_{x,6M}\left(t_0,T_i\right) + S_{6M}\left(t_0,T_i\right),
 \label{eqn:BasisSwap}
 \end{equation}
-with the obvious caveat that 
+with the obvious caveat that
 $\Delta_{6M,x}\left(t_0,T_i\right) = - \Delta_{x,6M}\left(t_0,T_i\right)$. Obviously, non quoted basis can be deduced as
 \begin{eqnarray}
 \Delta_{x,y}\left(t_0,T_i\right) &=& S_x\left(t_0,T_i\right)-S_y\left(t_0,T_i\right),\notag\\
@@ -503,7 +503,7 @@ $\Delta_{6M,x}\left(t_0,T_i\right) = - \Delta_{x,6M}\left(t_0,T_i\right)$. Obvio
 \end{eqnarray}
 We have reported all the possible combinations in figure \ref{fig:BasisSwapsGraph}.
 
-\subsection{The Deposits-Futures Overlap (TBD)} 
+\subsection{The Deposits-Futures Overlap (TBD)}
 \label{sec:DepoFuturesOverlap}\par
 [NOTA: descrivere i vari modi per gestire il raccordo fra Depositi e Futures ?]
 
