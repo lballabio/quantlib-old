@@ -298,14 +298,14 @@ Such more complex market mechanic generates the following features:
 \end{itemize}
 Hence, the first step for multiple yield curve construction is a very careful selection of the corresponding multiple sets of bootstrapping instruments. Different kinds of instruments can be selected for bootstrapping an yield curve term structure, and whilst they roughly cover different maturities, they overlap in significant areas. Therefore it is usually impossible to include all the available instruments, and the subset of the mostly non-overlapping contracts is selected, with preference given to more liquid ones with a tighter bid/ask spread. The mispricing level of the excluded instruments must thus be monitored as safety check (or cheap-rich analysis).
 \par
-In the following subsections we examine these instruments in detail. In order to fix the data set once for all, we thoroughly refer to the EUR market quotes observed on the Reuters platform as of 23th Jan. 2009, close time (around 16.30 CET\footnote{Central European Time, equal to Greenwich Mean Time (GMT) plus 1 hour (see e.g. \url{http://en.wikipedia.org/wiki/Central_European_Time})}. Obviously the discussion holds for other EUR market data sets and can be remapped to other major currencies with small changes.
+In the following subsections we examine these instruments in detail. In order to fix the data set once for all, we thoroughly refer to the EUR market quotes observed on the Reuters platform as of 16 Feb. 2009, close time (around 16.30 CET\footnote{Central European Time, equal to Greenwich Mean Time (GMT) plus 1 hour (see e.g. \url{http://en.wikipedia.org/wiki/Central_European_Time})}. Obviously the discussion holds for other EUR market data sets and can be remapped to other major currencies with small changes.
 
 \subsubsection{Deposits}
 \label{sec:Depo}
 \begin{figure}[tp]
 \centering
 \includegraphics[scale=0.8]{./FigMktDepos}
-\caption{EUR Deposit strip. Source: Reuters page KLIEM, 23 Jan. 2009.}
+\caption{EUR Deposit strip. Source: Reuters page KLIEM, 16 Feb. 2009.}
 \label{fig:Deposits}
 \end{figure}
 Interest rate Deposits (Depos) are Over-The-Counter (OTC) zero coupon contracts that start at reference date $t_0$ (today or spot), span the length corresponding to their maturity, and pay the interest accrued over the period with a given rate fixed at $t_0$.
@@ -326,28 +326,27 @@ where $\tau_F$ is given by eq. (\ref{eqn:yfFRA}). The expression (\ref{eqn:Depos
 
 \subsubsection{Forward Rate Agreements (FRAs)}
 \label{sec:FRA}
-[NOTA: aggiungere IMMFRA6M]\\
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.85]{./FigMktFRA}
-\caption{EUR FRA strip on Euribor3M, Euribor6M, and Euribor12M. Source: Reuters page ICAPSHORT2, 23 Jan. 2009.}
+\includegraphics[scale=0.9]{./FigMktFRA}
+\caption{EUR FRA strips on Euribor3M, Euribor6M, and Euribor12M. Source: Reuters page ICAPSHORT2, 16 Feb. 2009.}
 \label{fig:FRA}
 \end{figure}
 FRA contacts are forward starting Deposits. For instance the 3x9 FRA is a six months Deposit starting three months forward.
 \par
-The EUR market quotes standard plain vanilla FRA strips with different forward start dates (i.e. the start date of the forward Depo), calculated with the same convention used for the end date of Deposits. So FRAs do concatenate exactly, e.g. the 6x9 FRA starts when the preceding 3x6 FRA ends. The underlying forward rate fixes two working days before the forward start date (NOTA: VERIFICARE).
-In figure \ref{fig:FRA} we report the three FRA strips on 3M, 6M, and 12M Euribor rate quoted in Reuters page ICAPSHORT2.
+The EUR market quotes standard plain vanilla FRA strips with different forward start dates (i.e. the start date of the forward Depo), calculated with the same convention used for the end date of Deposits. So FRAs do concatenate exactly, e.g. the 6x9 FRA starts when the preceding 3x6 FRA ends. The underlying forward rate fixes two working days before the forward start date.
+In figure \ref{fig:FRA} we report the four FRA strips on 3M, 6M, and 12M Euribor rate quoted in Reuters page ICAPSHORT2.
 \par
-Market FRAs provide direct empirical evidence that a single curve cannot be used to estimate forward rates with different tenors. We can observe in figure \ref{fig:FRA} that, for instance, the level of the market 1x4 FRA3M (spanning from Feb. 23th to May 25th, $\tau_{F,1x4} = 0.25278$) was $F_{1x4}^{mkt} = 2.374\%$, the level of market 4x7 FRA3M (spanning from May 25th to Aug. 25th, $\tau_{F,4x7} = 0.25556$) was $F_{4x7}^{mkt}=1.948\%$. If one would compound these two rates to obtain the level of the implied 1x7 FRA6M (spanning from Feb. 24th to Aug 24th, $\tau_{F,1x7} = 0.50556$) would obtain
+Market FRAs provide direct empirical evidence that a single curve cannot be used to estimate forward rates with different tenors. We can observe in figure \ref{fig:FRA} that, for instance, the level of the market 1x4 FRA3M (spanning from Mar. 18th to Jun. 18th, $\tau_{F,1x4} = 0.25556$) was $F_{1x4}^{mkt} = 1.696\%$, the level of market 4x7 FRA3M (spanning from Jun. 18th to Sep. 18th, $\tau_{F,4x7} = 0.25556$) was $F_{4x7}^{mkt}=1.580\%$. If one would compound these two rates to obtain the level of the implied 1x7 FRA6M (spanning from Mar. 18th to Sep 18th, $\tau_{F,1x7} = 0.50556$) would obtain
 \begin{eqnarray}
 F_{1x7}^{implied}
 &=& \frac{
     \left(1 + F_{1x4}^{mkt}\tau_{F,1x4}\right) \times
     \left(1 + F_{4x7}^{mkt}\tau_{F,4x7}\right) - 1.0}
-    {\tau_{F,1x7}} = 2.178\%,
+    {\tau_{F,1x7}} = 1.641\%,
 \label{eqn:FRAarbitrage}
 \end{eqnarray}
-while the market quote for the $1x7$ FRA6M was $F_{1x7}^{mkt}=2.450\%$, 27 basis point larger. As discussed in section \ref{sec:Pricing}, the difference is the liquidity/default risk premium seen by the market in post credit crunch times.
+while the market quote for the $1x7$ FRA6M was $F_{1x7}^{mkt}=1.831\%$, 19 basis point larger. As discussed in section \ref{sec:Pricing}, the difference is the liquidity/default risk premium seen by the market in post credit crunch times.
 \par
 Market FRAs on $x$-tenor Euribor can be selected, together with the corresponding Depos, as bootstrapping instruments for the construction of the short term structure section of the yield curve $\mathcal{C}_x$.
 If $F_x\left(t;T_{i-1},T_i\right)$ is the i-th Euribor forward rate resetting at time $T_{i-1}$ with tenor $x=T_i-T_{i-1}$ months associated to the i-th FRA with maturity $T_i$, the implied discount factor at time $T_i$ is obtained by eq. (\ref{eqn:FwdRate}) as
@@ -367,8 +366,8 @@ and eq. (\ref{eqn:FRA}) reduces to eq. (\ref{eqn:Deposit}).
 \label{sec:Futures}
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.85]{./FigMktFut3M}
-\caption{EUR Futures on Euribor 3M. Source: Reuters page 0\#/FEI, 23 Jan. 2009.}
+\includegraphics[scale=0.9]{./FigMktFut3M}
+\caption{EUR Futures on Euribor 3M. Source: Reuters page 0\#/FEI, 16 Feb. 2009.}
 \label{fig:Futures3M}
 \end{figure}
 Interest Rate Futures are the exchange-traded contracts equivalent to the over-the-counter FRAs. While FRAs have the advantage of being more customizable, Futures are highly standardized contracts. In the EUR market they fix the third Wednesday of the maturity month; the last trading day is the preceding Monday (because of the two days of settlement); the most common contracts (so called IMM\footnote{International Money Market of the Chicago Mercantile Exchange.} Futures) insist on Euribor3M [NOTA: E BASTA ? VERIFICARE] and expire every March, June, September and December (IMM dates). There are also so called serial contracts expiring in the upcoming months not covered by the quarterly Futures. Maturities extend up to 8 years [NOTA: VERIFICARE].
@@ -408,10 +407,10 @@ where $\tau_F$ is given by eq. (\ref{eqn:yfFRA}). The expression above can be us
 HW parameter   & Value \\
 \midrule
 Mean reversion & 0.03  \\
-Volatility & 0.827\%   \\
+Volatility & 0.709\%   \\
 \midrule
 \end{tabular}
-\caption{Hull-White parameters values for Futures3M convexity adjustment at 23 Jan. 2009. [NOTA: specificare come sono stati calibrati]}
+\caption{Hull-White parameters values for Futures3M convexity adjustment at 16 Feb. 2009. [NOTA: specificare come sono stati calibrati]}
 \label{tab:FuturesConAdy}
 \end{table}
 
@@ -449,35 +448,35 @@ TBD: liquid Swaps and interpolated ones
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.85]{./FigMktSwaps6M}
-\caption{EUR Swaps on Euribor6M. Source: Reuters page ICAPEURO, 23 Jan. 2009.}
+\includegraphics[scale=0.9]{./FigMktSwaps6M}
+\caption{EUR Swaps on Euribor6M. Source: Reuters page ICAPEURO, 16 Feb. 2009.}
 \label{fig:Swaps6M}
 \end{figure}
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.85]{./FigMktSwapsIMM}
-\caption{EUR IMM Swaps on Euribor3M. Source: Reuters page ICAPSHORT2, 23 Jan. 2009.}
+\includegraphics[scale=0.9]{./FigMktSwapsIMM}
+\caption{EUR IMM Swaps on Euribor3M. Source: Reuters page ICAPSHORT2, 16 Feb. 2009.}
 \label{fig:SwapsIMM}
 \end{figure}
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.85]{./FigMktSwaps1M}
-\caption{EUR Swaps on Euribor1M. Source: Reuters page ICAPSHORT2, 23 Jan. 2009.}
+\includegraphics[scale=0.9]{./FigMktSwaps1M}
+\caption{EUR Swaps on Euribor1M. Source: Reuters page ICAPSHORT2, 16 Feb. 2009.}
 \label{fig:Swaps1M}
 \end{figure}
 
 \subsubsection{Basis Swaps}
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.85]{./FigMktBasis}
-\caption{EUR Basis Swaps. Source: Reuters page ICAPEUROBASIS, 23 Jan. 2009.}
+\includegraphics[scale=0.9]{./FigMktBasis}
+\caption{EUR Basis Swaps. Source: Reuters page ICAPEUROBASIS, 16 Feb. 2009.}
 \label{fig:BasisSwaps}
 \end{figure}
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.65]{./FigMktBasisSwapsGraph}
+\includegraphics[scale=0.65]{./FigMktBasisGraph}
 \caption{EUR Basis Swaps from figure \ref{fig:BasisSwaps}. The other basis have been deduced using eq. (\ref{eqn:BasisSwap}).}
 \label{fig:BasisSwapsGraph}
 \end{figure}
@@ -548,29 +547,29 @@ Inserire 4 figure con il bootstrapping delle 4 curve (strumenti, scadenze, tassi
 Inserire tests di repricing degli strumenti sulle 4 curve ??
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.9]{./FigYC1M}
-\caption{Yield curve on Euribor1M. Brown line: zero curve, plotted with zero rates $Z_{f}^{I_{1M}}\left(t_{0},t_{0}+t,\text{\textit{act/365}}\right)$, $t$ daily sampled and spot date $t_{0}=$ Jan. 27th, 2009. Blu line: forward curve $\mathcal{C}_{I_{1M}}^f$, plotted with 1M-tenor forward rates $F\left( t_{0};t,t+1M,\text{\textit{act/360}}\right) $. Upper panel: short term structure up to 3 years; middle panel: medium term structure up to 10 years; lower panel: long term structure up to 60 years.}
+\includegraphics[scale=1.0]{./FigYC1M}
+\caption{Yield curve on Euribor1M. Blue line: forward curve $\mathcal{C}_{I_{1M}}^f$, plotted with 1M-tenor forward rates $F\left( t_{0};t,t+1M,\text{\textit{act/360}}\right)$, $t$ daily sampled and spot date $t_{0}=$ Feb. 18th, 2009. Upper panel: short term structure up to 3 years; lower panel: whole term structure up to 30 years. The two jumps observed in the yield curve take into account the turn of year effect and correspond to the 1-month forwards starting in Dec. 2009 and 2010 that cross the end of year.}
 \label{FigYC1M}
 \end{figure}
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.9]{./FigYC3M}
-\caption{Yield curve on Euribor3M. Plots as in fig. \protect\ref{FigYC1M}. Cyan diamonds: quoted 3M FRAs. Green triangles: quoted 3M\ Futures.}
+\includegraphics[scale=1.0]{./FigYC3M}
+\caption{Yield curve on Euribor3M. Plots as in fig. \protect\ref{FigYC1M}. Quoted 3M FRAs and 3M Futures are also reported.}
 \label{FigYC3M}
 \end{figure}
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.9]{./FigYC6M}
-\caption{Yield curve on Euribor6M. Plots as in fig. \protect\ref{FigYC1M}. Cyan diamonds: quoted 6M FRAs. Green triangles: quoted 6M\ Futures.}
+\includegraphics[scale=1.0]{./FigYC6M}
+\caption{Yield curve on Euribor6M. Plots as in fig. \protect\ref{FigYC1M}. Quoted 6M FRAs and 6M IMM FRAs are also reported.}
 \label{FigYC6M}
 \end{figure}
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.9]{./FigYC12M}
-\caption{Yield curve on Euribor12M. Plots as in fig. \protect\ref{FigYC1M}. Cyan diamonds: quoted 12M FRAs.}
+\includegraphics[scale=1.0]{./FigYC12M}
+\caption{Yield curve on Euribor12M. Plots as in fig. \protect\ref{FigYC1M}. Quoted 12M FRAs are also reported.}
 \label{FigYC12M}
 \end{figure}
 
