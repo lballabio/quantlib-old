@@ -23,6 +23,7 @@
 
 #include <qlo/assetswap.hpp>
 #include <ql/instruments/assetswap.hpp>
+#include <ql/pricingengines/swap/discountingswapengine.hpp>
 
 namespace QuantLibAddin {
 
@@ -46,16 +47,21 @@ namespace QuantLibAddin {
         else
             actualFloatSchedule = floatSchedule;
 
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(
-            new QuantLib::AssetSwap(payFixedRate,
-                                    bond,
-                                    bondCleanPrice,
-                                    index,
-                                    spread,
-                                    hYTS,
-                                    *actualFloatSchedule,
-                                    floatingDayCount,
-                                    parSwap));
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::AssetSwap(payFixedRate,
+                                bond,
+                                bondCleanPrice,
+                                index,
+                                spread,
+                                *actualFloatSchedule,
+                                floatingDayCount,
+                                parSwap));
+
+       boost::shared_ptr<QuantLib::PricingEngine> swapEngine(new
+           QuantLib::DiscountingSwapEngine(hYTS));
+       
+       libraryObject_->setPricingEngine(swapEngine);
+
     }
 
 }
