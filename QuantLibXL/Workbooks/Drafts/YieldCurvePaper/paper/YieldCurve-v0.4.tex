@@ -6,7 +6,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 %\usepackage{mathrsfs}
-\usepackage{hyperref}
+\usepackage[dvips=true]{hyperref}
 \setcounter{MaxMatrixCols}{10}
 \hfuzz=12pt
 \hbadness=5000
@@ -71,7 +71,7 @@ One of the many consequences of the credit and liquidity crisis started in the s
 There are also other indicators of regime changes in the interest rate markets, such as the divergence between Deposit (Euribor based) and OIS (Overnight Indexed Swaps, Eonia\footnote{Euro OverNight Index Average, the rate computed as a weighted average of all overnight rates corresponding to unsecured lending transactions in the euro-zone interbank market (see e.g. \url{http://www.euribor.org}).} based) rates with the same maturity, or between FRA (Forward Rate Agreement) contacts and the corresponding forward rates implied by consecutive Deposits.
 We stress that such situation is not completely new on the market: non-zero basis swap spreads were already quoted and understood before the crisis (see e.g. ref. \cite{TucPor03}), but their magnitude was very small and traditionally neglected (see also the discussion in refs. \cite{Mor08}, \cite{Mer09}).
 \par
-The asymmetries cited above have also induced a sort of "segmentation" of the interest rate market into sub-areas, mainly corresponding to instruments with 1M, 3M, 6M, 12M underlying rate tenors, characterized, in principle, by different internal dynamics, liquidity and credit risk premia, reflecting the different views and interests of the market players. 
+The asymmetries cited above have also induced a sort of "segmentation" of the interest rate market into sub-areas, mainly corresponding to instruments with 1M, 3M, 6M, 12M underlying rate tenors, characterized, in principle, by different internal dynamics, liquidity and credit risk premia, reflecting the different views and interests of the market players.
 \par
 The evolution of the financial markets briefly described above has triggered a general reflection about the methodology used to price and hedge interest rate derivatives, namely those financial instruments whose price depends on the present value of future interest rate-linked cashflows, that we review in the next two sections.
 
@@ -512,45 +512,48 @@ TBD: mostrare casi di cattiva interpolazione, ad es. linear on zero rates
 
 \section{Implementation and Numerical Results}
 \label{sec:ImplementResults}
-The full implementation of the work described before, comprehensive of C++ code and Excel workbooks, is open source. The basic bootstrapping algorithms (iterative solver, interpolations, market conventions, etc.) are implemented in the object oriented C++ QuantLib library \cite{QuantLib}. The QuantLib objects (classes) and analytics (methods) are exposed to a variety of end-user platforms (including Excel and Calc) through the QuantLibAddin \cite{QuantLibAddin} and QuantLibXL \cite{QuantLibXL} libraries. Real time is ensured by the ObjectHandler in-memory repository \cite{ObjectHandler}.
+The full implementation of the work described before, comprehensive of C++ code and Excel workbooks, is available open source. The basic objects and analytics (iterative bootstrapping, interpolations, market conventions, etc.) are implemented in the object oriented C++ QuantLib library \cite{QuantLib}. The QuantLib objects (classes) and analytics (methods) are exposed to a variety of end-user platforms (including Excel and Calc) through the QuantLibAddin \cite{QuantLibAddin} and QuantLibXL \cite{QuantLibXL} libraries. Real time is ensured by the ObjectHandler in-memory repository \cite{ObjectHandler}.
 Anyone interested in the topic is invited to test the implementation and to post to the QuantLib community any comment or suggestion to improve the job.
 \par
 In the figures below an example of bootstrapping using the market data discussed in the sections above. In particular the forward curves for Euribor 1M, 3M, 6M and 12M are reported in figures \ref{FigYC1M}, \ref{FigYC3M}, \ref{FigYC6M} and \ref{FigYC12M}, respectively.
 
-\begin{figure}[t]
+\begin{figure}[p]
 \centering
 \includegraphics[scale=1.0]{./FigYC1M}
 \caption{Yield curve on Euribor1M. Blue line: forward curve $\mathcal{C}_{I_{1M}}^f$, plotted with 1M-tenor forward rates $F\left( t_{0};t,t+1M,\text{\textit{act/360}}\right)$, $t$ daily sampled and spot date $t_{0}=$ Feb. 18th, 2009. Upper panel: short term structure up to 3 years; lower panel: whole term structure up to 30 years. The two jumps observed in the yield curve take into account the turn of year effect and correspond to the 1-month forwards starting in Dec. 2009 and 2010 that cross the end of year.}
 \label{FigYC1M}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[p]
 \centering
 \includegraphics[scale=1.0]{./FigYC3M}
 \caption{Yield curve on Euribor3M. Plots as in fig. \protect\ref{FigYC1M}. Quoted 3M FRAs and 3M Futures are also reported.}
 \label{FigYC3M}
 \end{figure}
+\newpage
 
-\begin{figure}[t]
+\begin{figure}[p]
 \centering
 \includegraphics[scale=1.0]{./FigYC6M}
 \caption{Yield curve on Euribor6M. Plots as in fig. \protect\ref{FigYC1M}. Quoted 6M FRAs and 6M IMM FRAs are also reported.}
 \label{FigYC6M}
 \end{figure}
+\newpage
 
-\begin{figure}[t]
+\begin{figure}[p]
 \centering
 \includegraphics[scale=1.0]{./FigYC12M}
 \caption{Yield curve on Euribor12M. Plots as in fig. \protect\ref{FigYC1M}. Quoted 12M FRAs are also reported.}
 \label{FigYC12M}
 \end{figure}
-
+\newpage
 
 \section{Conclusions (TBD)}
 \label{sec:Conclusions}
 TBD
 
 
+%\bibliographystyle{unsrt}
 \bibliographystyle{unsrt}
 \bibliography{FinanceBibliography}
 
