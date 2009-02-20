@@ -212,17 +212,17 @@ namespace QuantLibAddin {
     boost::shared_ptr<QuantLib::PricingEngine> FDA_Engine(
         const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::FDAmericanEngine(process, timeSteps, timeSteps-1));
+            new QuantLib::FDAmericanEngine<>(process, timeSteps, timeSteps-1));
     }
     boost::shared_ptr<QuantLib::PricingEngine> FDB_Engine(
         const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::FDBermudanEngine(process, timeSteps, timeSteps-1));
+            new QuantLib::FDBermudanEngine<>(process, timeSteps, timeSteps-1));
     }
     boost::shared_ptr<QuantLib::PricingEngine> FDE_Engine(
         const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
         return boost::shared_ptr<QuantLib::PricingEngine> (
-            new QuantLib::FDEuropeanEngine(process, timeSteps, timeSteps-1));
+            new QuantLib::FDEuropeanEngine<>(process, timeSteps, timeSteps-1));
     }
     boost::shared_ptr<QuantLib::PricingEngine> JOSHI_Engine(
         const boost::shared_ptr<QuantLib::GeneralizedBlackScholesProcess>& process, const long& timeSteps) {
