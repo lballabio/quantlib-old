@@ -66,7 +66,7 @@ The conclusions are collected in section \ref{sec:Conclusions}.
 
 \section{Pre and Post Credit Crunch Pricing \& Hedging Interest Rate Derivatives}
 \label{sec:Pricing}
-One of the many consequences of the credit and liquidity crisis started in the second half of 2007 has been a strong increase of the basis spreads quoted on the market between single-currency interest rate instruments, Swaps in particular, characterized by different underlying rate tenors (e.g. Euribor3M\footnote{Euro Interbank Offered Rate, the rate at which euro interbank term Deposits within the euro zone are offered by one prime bank to another prime bank (see e.g. www.euribor.org).}, Euribor6M, etc.), reflecting the increased liquidity risk and the corresponding preference of financial institutions for receiving payments with higher frequency (quarterly instead of semi-annual, for instance).
+One of the many consequences of the credit and liquidity crisis started in the second half of 2007 has been a strong increase of the basis spreads quoted on the market between single-currency interest rate instruments, Swaps in particular, characterized by different underlying rate tenors (e.g. Euribor3M\footnote{Euro Interbank Offered Rate, the rate at which euro interbank term Deposits within the euro zone are offered by one prime bank to another prime bank (see e.g. www.euribor.org).}, Euribor6M, etc.), reflecting the increased liquidity risk and the corresponding preference of financial institutions for receiving payments with higher frequency (quarterly instead of semi-annualy, for instance).
 \par
 There are also other indicators of regime changes in the interest rate markets, such as the divergence between Deposit (Euribor based) and OIS (Overnight Indexed Swaps, Eonia\footnote{Euro OverNight Index Average, the rate computed as a weighted average of all overnight rates corresponding to unsecured lending transactions in the euro-zone interbank market (see e.g. \url{http://www.euribor.org}).} based) rates with the same maturity, or between FRA (Forward Rate Agreement) contacts and the corresponding forward rates implied by consecutive Deposits.
 We stress that such situation is not completely new on the market: non-zero basis swap spreads were already quoted and understood before the crisis (see e.g. ref. \cite{TucPor03}), but their magnitude was very small and traditionally neglected (see also the discussion in refs. \cite{Mor08}, \cite{Mer09}).
@@ -493,10 +493,41 @@ S_x\left(t_0,T_i\right) = \Delta_{x,6M}\left(t_0,T_i\right) + S_{6M}\left(t_0,T_
 with the obvious caveat that
 $\Delta_{6M,x}\left(t_0,T_i\right) = - \Delta_{x,6M}\left(t_0,T_i\right)$. We report all the possible basis combinations in figure \ref{fig:BasisSwapsGraph}.
 
-\subsection{\label{sec:Interp}The Role of Interpolation}
+\subsection{\label{sec:Interp}The Role of Interpolation (TBD)}
 \par
-The interpolation we choose for the given parametrization determines how reasonable the yield curve will be. For instance, linear interpolation of the discount factors is an obvious but extremely poor choice. Linear interpolation of zero rates or log-discounts are popular choices leading to stable and fast bootstrapping procedures. Unfortunately they produce discontinuous forward rates, with a sagsaw or piecewise-constant shape (see e.g. refs. \cite{And07}, \cite{HagWes06}, \cite{HagWes08}).
-A good choice is monotonic cube interpolation as described by Hyman \cite{Hym1983} applied to discount factors, that always ensures continuous and smooth forward curves with positive rates. This is the methodology used to produce the results displayed in the next section.
+The interpolation we choose for the given parametrization determines how reasonable the yield curve will be. For instance, linear interpolation of the discount factors is an obvious but extremely poor choice. Linear interpolation of zero rates or log-discounts are popular choices leading to stable and fast bootstrapping procedures. Unfortunately they produce discontinuous forward rates, with a sagsaw or piecewise-constant shape.
+
+flat extrapolation out to infinity.
+
+well-documented problems with spurious inflection points, excessive convexity, and lack of locality in the effects of input price perturbations. Andersen \cite{And07} addresses these issues through the use of shape-preserving splines from the class of generalized tension splines.
+
+Swap selection
+
+liquid Swaps and interpolated ones
+
+citare Hyman \cite{Hym1983}, \cite{HagWes06}, \cite{HagWes08}).
+
+TBD: mostrare casi di cattiva interpolazione, ad es. linear on zero rates
+
+\subsection{\label{sec:TOY}The Turn of Year Effect}
+\par
+Smooth interpolation allows for a correct treatment of the so called turn of year effect.
+This is a jump normally observed in market quotations for interest rate instruments with an underlying rate tenor that crosses the end of the year.
+Such effect is due essentially to the increased search for liquidity by financial institutions at the beginning of the year for balance sheet reasons.
+\par
+The larger jump is observed in the Overnight Deposit that crosses the end of the year. This enters in all deposits with larger maturity that crosses the same border. We may think to the 1M deposit, for instance, as an average of 22 (business days in one month) 1D rates plus a basis, in which one single rate crosses the end of the year and displays the jump, while the others do not. So, the overnight jump weight is 1/22. For rates with longer tenors the jumping overnight weights less. Hence longer deposits display smaller jumps.
+\par
+An yield curve including the turn of year effect must display discontinuities, essentially at the end of the current and the next year.
+Such effect can be modeled through a multiplicative coefficient applied to all discount factors corresponding to dates following a given end of year.
+In this way we are allowed to estimate the coefficient for a given curve, and to apply it to any curve.
+Notice that starting from a smooth and continuous yield curve is crucial for correctly take into account the discontinuity at the turn of year.
+\par
+Gli approcci empirici utilizzati per la stima degli scavalchi di fine d'anno sono molteplici ed utilizzati contemporaneamente, sebbene non tutti siano utilizzabili in tutti i periodi dell'anno a causa delle peculiarità degli strumenti quotati che non variano con la distanza dalla prossima fine d'anno. Tutti gli approcci, quando utilizzabili, danno luogo a stime in eccellente accordo tra loro. Gli approcci sono:
+"	Salto nella strip del 3M Euribor come ricavabile dai futures corretti per il convexity adjustment. Si considera quale sarebbe il livello del forward che scavalca l'anno ottenuto interpolando tra i forward che non scavalcano l'anno. La differenza tra questo valore e quello quotato sul mercato è l'effto di fine d'anno. Questo metodo consente di ottenere sempre il secondo scavalco di fine d'anno, ed il primo scavalco fino a settembre. Dopo settembre per il primo bisognerebbe estrapolare e l'approccio non è robusto.
+"	Salto nella strip dei FRA 6M. Il metodo è equivalente al precedente sul 3M e consente la stima per primo scavalco di fine d'anno fino a giugno
+"	Salto nella strip dei FRA 1M ottenuta dagli swap mesali. Il metodo è equivalente a quello illustrato per il 3M ed il 6M e consente la stima per primo scavalco di fine d'anno fino a novembre
+"	Rilevazione del salto nella strip di FRA CROSS quotata dai broker ogni lunedì. Questo metodo vale tutto l'anno, ma da un'aggiornamento solo settimanale e non continuo come i metodi precedenti.
+
 
 \section{Implementation and Numerical Results}
 \label{sec:ImplementResults}
@@ -536,14 +567,12 @@ In the figures below an example of bootstrapping using the market data discussed
 \end{figure}
 \newpage
 
-\section{Conclusions}
+\section{Conclusions (TBD)}
 \label{sec:Conclusions}
-We have illustrated a possible methodology for bootstrapping multiple interest rate yield curves, each homogeneous in the underlying rate tenor, from non-homogeneous plain vanilla instruments quoted on the market. 
-\par
-Results for the concrete EUR market case have been analyzed in detail, showing how real quotations for interest rate instruments on Euribor1M, 3M, 6M and 12M tenor can be used in practice to construct stable, robust and smooth yield curves for pricing and hedging interest rate derivatives.
-\par
-The full implementation of the work, comprehensive of C++ code and Excel workbooks, is available open source. 
+TBD
 
+
+%\bibliographystyle{unsrt}
 \bibliographystyle{unsrt}
 \bibliography{FinanceBibliography}
 
