@@ -367,7 +367,7 @@ class FDBermudanEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                                      process);
             QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDBermudanEnginePtr(
-                              new FDBermudanEngine(bsProcess,timeSteps,
+                            new FDBermudanEngine<>(bsProcess,timeSteps,
                                                    gridPoints,timeDependent));
         }
     }
@@ -390,7 +390,7 @@ class FDEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                                      process);
             QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDEuropeanEnginePtr(
-                              new FDEuropeanEngine(bsProcess,timeSteps,
+                            new FDEuropeanEngine<>(bsProcess,timeSteps,
                                                    gridPoints,timeDependent));
         }
     }
@@ -531,7 +531,7 @@ class FDAmericanEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                                      process);
             QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDAmericanEnginePtr(
-                              new FDAmericanEngine(bsProcess,timeSteps,
+                            new FDAmericanEngine<>(bsProcess,timeSteps,
                                                    gridPoints,timeDependent));
         }
     }
@@ -549,7 +549,7 @@ class FDShoutEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                                      process);
             QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDShoutEnginePtr(
-                                 new FDShoutEngine(bsProcess,timeSteps,
+                               new FDShoutEngine<>(bsProcess,timeSteps,
                                                    gridPoints,timeDependent));
         }
     }
@@ -748,7 +748,7 @@ class FDDividendEuropeanEnginePtr
                                                                      process);
             QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDDividendEuropeanEnginePtr(
-                     new FDDividendEuropeanEngine(bsProcess,timeSteps,
+                   new FDDividendEuropeanEngine<>(bsProcess,timeSteps,
                                                   gridPoints, timeDependent));
         }
     }
@@ -769,7 +769,7 @@ class FDDividendAmericanEnginePtr
                                                                      process);
             QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new FDDividendAmericanEnginePtr(
-                     new FDDividendAmericanEngine(bsProcess,timeSteps,
+                   new FDDividendAmericanEngine<>(bsProcess,timeSteps,
                                                   gridPoints, timeDependent));
         }
     }
