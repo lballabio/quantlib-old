@@ -120,11 +120,11 @@
 ; method: Monte Carlo
 (with-pricing-engine (option (new-MCEuropeanEngine process
                                                    "pseudorandom" 1 #f #f
-                                                   #f #f #f 0.02 #f 42))
+                                                   #f #f 0.02 #f 42))
   (report "MC (crude)"
           (Instrument-NPV option) (Instrument-error-estimate option)))
 
 (with-pricing-engine (option (new-MCEuropeanEngine process
-                                                   "lowdiscrepancy" 1 #f #f
+                                                   "lowdiscrepancy" 1 #f
                                                    #f #f 32768))
   (report "MC (Sobol)" (Instrument-NPV option) "n/a"))

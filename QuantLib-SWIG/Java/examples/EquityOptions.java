@@ -19,6 +19,7 @@
 
 package examples;
 
+import org.quantlib.QuantLib;
 import org.quantlib.Actual365Fixed;
 import org.quantlib.AmericanExercise;
 import org.quantlib.AnalyticEuropeanEngine;
@@ -314,8 +315,9 @@ public class EquityOptions {
         method = "MC (crude)";
         europeanOption.setPricingEngine(
                     new MCEuropeanEngine(stochasticProcess,
-                                         "PseudoRandom", timeSteps, 252,
-                                         false, false, false,
+                                         "PseudoRandom", timeSteps,
+                                         QuantLib.nullInt(),
+                                         false, false,
                                          nSamples, 0.02, maxSamples, mcSeed));
         System.out.printf(fmt, new Object[] { method,
                                               europeanOption.NPV(),
@@ -325,8 +327,9 @@ public class EquityOptions {
         method = "MC (Sobol)";
         europeanOption.setPricingEngine(
                     new MCEuropeanEngine(stochasticProcess,
-                                         "LowDiscrepancy", timeSteps, 252,
-                                         false, false, false,
+                                         "LowDiscrepancy", timeSteps,
+                                         QuantLib.nullInt(),
+                                         false, false,
                                          nSamples, 0.02, maxSamples, mcSeed));
         System.out.printf(fmt, new Object[] { method,
                                               europeanOption.NPV(),

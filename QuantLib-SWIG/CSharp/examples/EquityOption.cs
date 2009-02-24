@@ -330,7 +330,6 @@ namespace EquityOptionTest
                 int timeStepsPerYear = int.MaxValue;
                 bool brownianBridge = false;
                 bool antitheticVariate = false;
-                bool controlVariate = false;
                 int requiredSamples = int.MaxValue;
                 double requiredTolerance = 0.02;
                 int maxSamples = int.MaxValue;
@@ -341,7 +340,6 @@ namespace EquityOptionTest
                                          timeStepsPerYear,
                                          brownianBridge,
                                          antitheticVariate,
-                                         controlVariate,
                                          requiredSamples,
                                          requiredTolerance,
                                          maxSamples, seed));
@@ -358,7 +356,6 @@ namespace EquityOptionTest
                 int timeStepsPerYear = int.MaxValue;
                 bool brownianBridge = false;
                 bool antitheticVariate = false;
-                bool controlVariate = false;
                 int requiredSamples = 32768;  // 2^15
                 double requiredTolerance = double.MaxValue;
                 int maxSamples = int.MaxValue;
@@ -369,7 +366,6 @@ namespace EquityOptionTest
                                          timeStepsPerYear,
                                          brownianBridge,
                                          antitheticVariate,
-                                         controlVariate,
                                          requiredSamples,
                                          requiredTolerance, maxSamples, seed));
                 ReportResults("MC (Sobol)", europeanOption.NPV(), null, null);
