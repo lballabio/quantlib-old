@@ -92,27 +92,5 @@ namespace std {
 }
 
 
-%{
-using QuantLib::Issuer;
-%}
-
-class Issuer {
-    %feature("kwargs") Issuer;
-    %feature("kwargs") defaultedBetween;
-  public:
-    Issuer(const Handle<DefaultProbabilityTermStructure>& probability =
-                                    Handle<DefaultProbabilityTermStructure>(),
-           Real recoveryRate = 0.4,
-           const std::vector<boost::shared_ptr<DefaultEvent> >& events =
-                             std::vector<boost::shared_ptr<DefaultEvent> >());
-    const Handle<DefaultProbabilityTermStructure>& defaultProbability() const;
-    Real recoveryRate() const;
-    boost::shared_ptr<DefaultEvent> defaultedBetween(
-                        const Date& start,
-                        const Date& end,
-                        Seniority seniority = AnySeniority,
-                        Restructuring restructuring = AnyRestructuring) const;
-};
-
 
 #endif

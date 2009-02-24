@@ -100,10 +100,13 @@ class CreditDefaultSwapPtr : public boost::shared_ptr<Instrument> {
 class MidPointCdsEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
-        MidPointCdsEnginePtr(const Issuer& issuer,
-                             const Handle<YieldTermStructure>& discountCurve) {
+        MidPointCdsEnginePtr(
+                   const Handle<DefaultProbabilityTermStructure>& probability,
+                   Real recoveryRate,
+                   const Handle<YieldTermStructure>& discountCurve) {
             return new MidPointCdsEnginePtr(
-                                new MidPointCdsEngine(issuer, discountCurve));
+                              new MidPointCdsEngine(probability, recoveryRate,
+                                                    discountCurve));
         }
     }
 };
