@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1FD947F1-D99E-46FB-8890-04E11E8340C2}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -98,7 +98,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy "$(SolutionDir)cpp\bin\vc90\$(ConfigurationName)\NQuantLibc.dll" "$(TargetDir)"</PreBuildEvent>
+    <PreBuildEvent>copy "$(SolutionDir)cpp\bin\vc90\$(ConfigurationName)\NQuantLibc.dll" "$(TargetDir)"
+copy "$(SolutionDir)csharp\bin\vc90\$(ConfigurationName)\NQuantLib.dll" "$(TargetDir)"</PreBuildEvent>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>

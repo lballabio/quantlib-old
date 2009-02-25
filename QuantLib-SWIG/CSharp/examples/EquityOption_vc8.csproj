@@ -96,7 +96,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy "$(SolutionDir)cpp\bin\vc80\$(ConfigurationName)\NQuantLibc.dll" "$(TargetDir)"</PreBuildEvent>
+    <PreBuildEvent>copy "$(SolutionDir)cpp\bin\vc80\$(ConfigurationName)\NQuantLibc.dll" "$(TargetDir)"
+copy "$(SolutionDir)csharp\bin\vc80\$(ConfigurationName)\NQuantLib.dll" "$(TargetDir)"</PreBuildEvent>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>

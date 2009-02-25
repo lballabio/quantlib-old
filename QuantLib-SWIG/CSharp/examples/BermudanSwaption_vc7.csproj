@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "2.0"
         ProjectGuid = "{1BEC49E8-122D-4CC9-9DAC-DD59F551E5E9}"
     >
@@ -16,7 +16,7 @@
                 DefaultTargetSchema = "IE50"
                 DelaySign = "false"
                 OutputType = "Exe"
-                PreBuildEvent = 'copy "$(SolutionDir)cpp\bin\vc71\$(ConfigurationName)\NQuantLibc.dll" "$(TargetDir)"'
+                PreBuildEvent = 'copy "$(SolutionDir)cpp\bin\vc71\$(ConfigurationName)\NQuantLibc.dll" "$(TargetDir)"&#xd;&#xa;copy "$(SolutionDir)csharp\bin\vc71\$(ConfigurationName)\NQuantLib.dll" "$(TargetDir)"&#xd;&#xa;'
                 PostBuildEvent = ""
                 RootNamespace = "BermudanSwaption"
                 RunPostBuildEvent = "OnBuildSuccess"
