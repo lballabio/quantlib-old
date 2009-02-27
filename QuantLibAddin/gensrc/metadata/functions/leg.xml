@@ -63,6 +63,50 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlLegPreviousCouponDate' type='QuantLibAddin::Leg'>
+      <description>Returns the previous coupon date.</description>
+      <libraryFunction>previousCouponDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlementDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlLegNextCouponDate' type='QuantLibAddin::Leg'>
+      <description>Returns the next coupon date.</description>
+      <libraryFunction>nextCouponRate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlementDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlLegStartDate' type='QuantLibAddin::Leg'>
       <description>Returns the start (i.e. first accrual) date for the given Leg object.</description>
       <libraryFunction>startDate</libraryFunction>
