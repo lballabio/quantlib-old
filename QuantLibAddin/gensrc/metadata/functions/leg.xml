@@ -87,7 +87,7 @@
 
     <Member name='qlLegNextCouponDate' type='QuantLibAddin::Leg'>
       <description>Returns the next coupon date.</description>
-      <libraryFunction>nextCouponRate</libraryFunction>
+      <libraryFunction>nextCouponDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
