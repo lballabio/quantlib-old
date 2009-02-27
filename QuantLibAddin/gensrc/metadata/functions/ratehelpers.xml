@@ -362,8 +362,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlFixedRateBondHelper'>
-      <libraryFunction>FixedRateBondHelper</libraryFunction>
+    <Constructor name='qlBondHelper'>
+      <libraryFunction>BondHelper</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -377,16 +377,16 @@
             <tensorRank>scalar</tensorRank>
             <description>cleanPrice.</description>
           </Parameter>
-          <Parameter name='FixedRateBond' exampleValue='DE0003088704'>
-            <type>QuantLib::FixedRateBond</type>
+          <Parameter name='Bond' exampleValue='DE0003088704'>
+            <type>QuantLib::Bond</type>
             <tensorRank>scalar</tensorRank>
-            <description>FixedRateBond object ID.</description>
+            <description>Bond object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlFixedRateBondHelper2'>
+    <Constructor name='qlFixedRateBondHelper'>
       <libraryFunction>FixedRateBondHelper</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->

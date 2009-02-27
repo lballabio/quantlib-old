@@ -174,14 +174,14 @@ namespace QuantLibAddin {
                                     dayCounter));
     }
 
-    FixedRateBondHelper::FixedRateBondHelper(
+    BondHelper::BondHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
-            const boost::shared_ptr<QuantLib::FixedRateBond>& fixedBond,
+            const boost::shared_ptr<QuantLib::Bond>& bond,
             bool permanent)
     : RateHelper(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
-            QuantLib::FixedRateBondHelper(cleanPrice, fixedBond));
+        libraryObject_ = boost::shared_ptr<QuantLib::BondHelper>(new
+            QuantLib::BondHelper(cleanPrice, bond));
     }
 
     FixedRateBondHelper::FixedRateBondHelper(
@@ -196,8 +196,8 @@ namespace QuantLibAddin {
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
             bool permanent)
-    : RateHelper(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+    : BondHelper(properties, cleanPrice, boost::shared_ptr<QuantLib::Bond>(), permanent) {
+        libraryObject_ = boost::shared_ptr<QuantLib::FixedRateBondHelper>(new
             QuantLib::FixedRateBondHelper(cleanPrice,
                                           settlementDays,
                                           faceAmount,
@@ -225,7 +225,7 @@ namespace QuantLibAddin {
                            bool isSerialFutures_inp,
                            bool isDepo_inp,
                            const std::string& objectID_inp,
-                           const long& priority_inp,
+                           long priority_inp,
                            const QuantLib::Date& earliestDate_inp,
                            const QuantLib::Date& latestDate_inp,
                            QuantLib::Natural minDist_inp)

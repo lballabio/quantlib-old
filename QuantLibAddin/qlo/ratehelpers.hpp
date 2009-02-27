@@ -46,7 +46,7 @@ namespace QuantLib {
     class SwapIndex;
     class Schedule;
     class Date;
-    class FixedRateBond;
+    class Bond;
     template <class T>
     class Handle;
 }
@@ -149,13 +149,17 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
-    class FixedRateBondHelper : public RateHelper {
+    class BondHelper : public RateHelper {
       public:
-        FixedRateBondHelper(
+        BondHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
-            const boost::shared_ptr<QuantLib::FixedRateBond>& fixedBond,
+            const boost::shared_ptr<QuantLib::Bond>& bond,
             bool permanent);
+    };
+
+    class FixedRateBondHelper : public BondHelper {
+      public:
         FixedRateBondHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
@@ -189,4 +193,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-
