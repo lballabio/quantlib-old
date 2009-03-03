@@ -512,16 +512,16 @@ TBD: mostrare casi di cattiva interpolazione, ad es. linear on zero rates
 
 \subsection{\label{sec:TOY}The Turn of Year Effect (TBD)}
 \par
-Smooth interpolation allows for a correct treatment of the so called turn of year effect.
-This is a jump normally observed in market quotations for interest rate instruments with an underlying rate that crosses the end of a year.
+Smooth interpolation allows for a correct treatment of the so called turn of year, or January, effect.
+In the interest rate market, this is a jump normally observed in market quotations of instruments with an underlying rate that crosses the end of a year.
 \par
-In the EUR market the larger jump is observed the last working day of the year (e.g. 31th December) in the Overnight Deposit maturing the first working day of the year (e.g. 2nd January).
+In the EUR market the larger jump is observed the last working day of the year (e.g. 31th December) in the Overnight Deposit maturing the first working day of the next year (e.g. 2nd January).
 The same happens for the Tomorrow Next and Spot Next Deposits one and two business days before, respectively (e.g. 30th and 29th December).
-Other instruments with longer rate tenors display smaller jumps when their maturity crosses the same border: for instance, the 1M Deposit quotation jumps two business days before the 1st of December; the 12M Deposits always include a jump except two business days before the end of the year (due to the end of month rule); the December IMM Futures always include a jump, as well as the October and November serial Futures; 2Y Swaps always include two jumps; etc.
-The effect is generally observable at the first two end of year and becomes negligible at the following crosses.
+Other instruments with longer underlying rate tenors display smaller jumps when their maturity crosses the same border: for instance, the 1M Deposit quotation jumps 2 business days before the 1st business day of December; the 12M Deposits always include a jump except 2 business days before the end of the year (due to the end of month rule); the December IMM Futures always include a jump, as well as the October and November serial Futures; 2Y Swaps always include two jumps; etc.
+The effect is generally observable at the first two ends of year and becomes negligible at the following crosses.
 \par
-The decreasing jump with increasing rate tenor can be easily understood once we isolate the jumping rates among the non-jumping rates.
-For instance, we may think to the 1M Deposit as a weighted average of 22 (business days in one month) Overnight rates (plus a basis). If such Depo crosses an end of year, there must be a single Overnight rate, weighting 1/22, that crosses the end of year and displays the jump, while the others do not. For rates with longer tenors there is still a single jumping Overnight rate, but with a smaller weight. Hence longer deposits/FRAs display smaller jumps.
+The decreasing jump with increasing underlying rate tenor can be easily understood once we isolate the jumping rates among the non-jumping rates.
+For instance, we may think to the 1M Deposit as a weighted average of 22 (business days in one month) overnight rates (plus a basis). If such Depo crosses an end of year, there must be a single overnight rate, weighting 1/22th, that crosses that end of year and displays the jump, while the others do not. Considering rates with longer tenors, there are still single jumping overnight rates, but with smaller weights. Hence longer deposits/FRAs display smaller jumps. The same holds for Swaps, as portfolios of Depos/FRAs.
 \par
 From a financial point of view, the turn of year effect is due essentially to the increased search for liquidity by financial institutions at the beginning of the year for balance sheet reasons (NOTA: COMPLETARE SPIEGAZIONE).
 \par
