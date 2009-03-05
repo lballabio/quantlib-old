@@ -21,7 +21,7 @@
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007 Chiara Fornarola
+    Copyright (C) 2006, 2007, 2009 Chiara Fornarola
   </copyright>
   <Functions>
 
@@ -39,12 +39,12 @@
             <tensorRank>scalar</tensorRank>
             <description>TRUE to pay the bond's coupons and receive floating.</description>
           </Parameter>
-          <Parameter name='UnderlyingBond' exampleValue='DE0003088704'>
+          <Parameter name='Bond' exampleValue='DE0003088704'>
             <type>QuantLib::Bond</type>
             <tensorRank>scalar</tensorRank>
             <description>underlying bond object ID.</description>
           </Parameter>
-          <Parameter name='BondCleanPrice' exampleValue='99.16'>
+          <Parameter name='CleanPrice' exampleValue='99.16'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>market price of the underlying bond.</description>
@@ -54,12 +54,12 @@
             <tensorRank>scalar</tensorRank>
             <description>floating leg Index object ID.</description>
           </Parameter>
-          <Parameter name='FloatingLegSpread'>
+          <Parameter name='Spread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>Index Spread.</description>
+            <description>Floating leg spread.</description>
           </Parameter>
-          <Parameter name='YieldCurve'  exampleValue='EURYC'>
+          <Parameter name='YieldCurve' exampleValue='EURYC'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -152,9 +152,57 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAssetSwapFairPrice' type='QuantLib::AssetSwap'>
+    <Member name='qlAssetSwapFairCleanPrice' type='QuantLib::AssetSwap'>
       <description>the fair price of the bond in the asset swap.</description>
-      <libraryFunction>fairPrice</libraryFunction>
+      <libraryFunction>fairCleanPrice</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAssetSwapParSwap' type='QuantLib::AssetSwap'>
+      <description>Returns TRUE if par swap</description>
+      <libraryFunction>parSwap</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        SupportedPlatform name='Cpp'/
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAssetSwapPayFixedRate' type='QuantLib::AssetSwap'>
+      <description>Returns TRUE if it is a fixed rate payer swap</description>
+      <libraryFunction>payFixedRate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAssetSwapNominal' type='QuantLib::AssetSwap'>
+      <description>Returns the floating leg nominal</description>
+      <libraryFunction>nominal</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
