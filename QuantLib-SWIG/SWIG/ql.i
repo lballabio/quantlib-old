@@ -165,5 +165,4 @@
 %include zerocurve.i
 
 // to be deprecated
-%include old_pricers.i
 %include old_volatility.i
