@@ -38,11 +38,11 @@ The authors acknowledge fruitful discussions with S. De Nuccio, R. Giura, C. Maf
 
 \begin{abstract}
 The large basis spreads observed on the interest rate market since the liquidity crisis of summer 2007 imply that different yield curves are required for market coherent estimation of forward rates with different tenors (e.g. Euribor 3 months, Euribor 6 months, etc.).
-\par 
+\par
 In this paper we review the methodology for bootstrapping multiple interest rate yield curves, each homogeneous in the underlying rate tenor, from non-homogeneous plain vanilla instruments quoted on the market, such as Deposits, Forward Rate Agreements, Futures, Swaps, and Basis Swaps.
 \par
 The approach includes turn-of-year effects and is robust to deliver smooth yield curves and to ensure non-negative rates also in highly stressed market situations, characterized by crazy roller coaster shapes of the market quotations.
-\par 
+\par
 The concrete EUR market case is analyzed in detail, using the open source QuantLib implementation of the proposed algorithms.
 \end{abstract}
 
@@ -58,7 +58,7 @@ Financial institutions, software houses and practitioners have developed their o
 \par
 In practice \textquotedblleft exact-fit\textquotedblright\ algorithms are often preferred: they fix the yield curve on a time grid of $N$ points (pillars) in order to \emph{exactly} reprice $N$ pre-selected market instruments. The implementation of such algorithms is often incremental, extending the yield curve step-by-step with the increasing maturity of the ordered instruments, in a so called \textquotedblleft bootstrap\textquotedblright approach. Intermediate yield curve values are obtained by interpolation on the bootstrapping grid. Here different interpolation algorithms are available but little attention has been devoted in the literature to the fact that interpolation is often already used during bootstrapping, not just after that, and that the interaction between bootstrapping and interpolation can be subtle if not nasty (see e.g. \cite{HagWes06}, \cite{HagWes08}).
 \par
-Whilst naive algorithms may fail to deal with market subtleties such as date conventions, the intra-day fixing of the first floating payment of a Swap, the turn-of-year effect, the Futures convexity adjustment, etc., even very sophisticated algorithms used in a naive way may fail to estimate correct forward Euribor rates in difficult market conditions, as those observed since the summer of 2007 in occasion of the so-called {\it subprime credit crunch crisis.} 
+Whilst naive algorithms may fail to deal with market subtleties such as date conventions, the intra-day fixing of the first floating payment of a Swap, the turn-of-year effect, the Futures convexity adjustment, etc., even very sophisticated algorithms used in a naive way may fail to estimate correct forward Euribor rates in difficult market conditions, as those observed since the summer of 2007 in occasion of the so-called {\it subprime credit crunch crisis.}
 Namely using just one single curve is not enough to account for forward rates of different tenor, such as 1, 3, 6, 12 months, because of the large Basis Swap spreads presently quoted on the market.
 \par
 The plan of the paper is as follows:
@@ -523,8 +523,8 @@ TBD: mostrare casi di cattiva interpolazione, ad es. linear on zero rates
 \subsection{\label{sec:TOY}The Turn of Year Effect (TBD)}
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.55]{../figures/FigEuribor1M}
-\caption{Turn of Year effect on Euribor1M. The historical rates in the October 2007 - January 2008 window are displayed. The sudden jump (more than 60 bps) on 28th Nov. 2007 is clearly visible, with rates reverting to similar levels one month later. The following turn of year jump in Nov. 2008 (not shown in the figure) has been partially covered by the higher market stress of that period. Source: Bloomberg.}
+\includegraphics[scale=1.0]{../figures/FigEuribor1M}
+\caption{Turn of Year effect on Euribor1M. The historical time series in the Oct. 2007 - Feb 2009 window is displayed. The 2007 turn of year jump (64 bps) is clearly visible on 29th Nov. 2007 (left rectangle), with rates reverting to previous levels one month later. The 2008 turn of year jump on 27th Nov. 2008 (22 bps, right oval) is partially covered by the higher stressed market period. Instead, the quiet market in May-Jun. 2008 allows for the identification of a smaller \textquotedblleft end of semester effect\textquotedblright (9 bps, middle rhombus). Source: Reuters.}
 \label{fig:ToY}
 \end{figure}
 Smooth interpolation allows for a correct treatment of the so called turn of year, or January, effect.
