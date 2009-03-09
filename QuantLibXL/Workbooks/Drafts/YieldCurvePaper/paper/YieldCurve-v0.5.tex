@@ -41,8 +41,7 @@ The large basis spreads observed on the interest rate market since the liquidity
 \par
 In this paper we review the methodology for bootstrapping multiple interest rate yield curves, each homogeneous in the underlying rate tenor, from non-homogeneous plain vanilla instruments quoted on the market, such as Deposits, Forward Rate Agreements, Futures, Swaps, and Basis Swaps.
 \par
-The approach includes turn-of-year effects and is robust to deliver smooth yield curves and to ensure non-negative rates also in highly stressed market situations, characterized by crazy roller coaster shapes of the market quotations.
-\par
+The approach includes turn of year effects and is robust to deliver smooth yield curves and to ensure non-negative rates also in highly stressed market situations, characterized by crazy roller coaster shapes of the market quotations.
 The concrete EUR market case is analyzed in detail, using the open source QuantLib implementation of the proposed algorithms.
 \end{abstract}
 
@@ -133,6 +132,7 @@ Fourth, multiple bootstrapping instruments implies multiple sensitivities, so he
 
 \section{Fixing Notation and Nomenclature}
 \label{sec:Math}
+%NOTA: RIVEDERE MATH ALLA LUCE DI SEC. 1 IN HAGAN-WEST.
 In this section we fix notation and nomenclature for the multi-curve environment. Following the discussion of section \ref{sec:Pricing} (see also refs. \cite{Bia09}, \cite{Mer09}), we start by postulating the existence of $N$ distinct yield curves $\mathcal{C}_{x}$ in the form of a continuous term structure of discount factors,
 \begin{equation}
 \mathcal{C}_x^P=\left\{ T\longrightarrow P_{x}\left( t_{0},T\right) ,T\geq t_{0}\right\},
@@ -166,7 +166,7 @@ From the relationships above it is immediate to observe that:
 \begin{itemize}
 \item $z_x\left(t_0,T\right)$ is the average of $f_x\left(t_0,u\right)$ over $\left[t_0,T\right]$;
 \item if rates are non-negative\footnote{this is generally true in all western markets and in the EUR market we consider in this paper}, ($\log $) $P(t_0,T)$ is a monotone non-increasing function of $T$ such that $0<P\left(t_0,T\right)\leq 1\quad\forall\,T>t_0$.
-\item the instantaneous forward curve $\mathcal{C}_x^f$ is the most severe indicator of yield curve smoothness, since anything else is obtained through its integration, therefore being smoother by construction.
+\item the instantaneous forward curve $\mathcal{C}_x^f$ is the most severe indicator of yield curve smoothness, since anything else is obtained through its integration, therefore being smoother by construction. We will discuss this point in section \ref{sec:Interp}.
 \end{itemize}
 \par
 Eq. (\ref{eqn:relationship}) or (\ref{eqn:logrelationship}) allows to define other two rate curves associated to $\mathcal{C}_x^P$, precisely a zero curve and an instantaneous forward rate curve,
@@ -177,12 +177,14 @@ Eq. (\ref{eqn:relationship}) or (\ref{eqn:logrelationship}) allows to define oth
 \label{eqn:InstFwdCurve}
 \end{gather}
 where
-\begin{gather}
+\begin{eqnarray}
 z_x\left(t_0,T\right)
-    = \frac{1}{\tau_{\mathcal{C}}\left(t_0,T\right)}\log P_x(t_0,t),\\
+    &=& -\frac{1}{\tau_{\mathcal{C}}\left(t_0,T\right)}\log P_x(t_0,t),\\
 f_x\left(t_0,T\right)
-    = -\frac{\partial}{\partial t}\log P_x(t_0,t)|_{t=T},
-\end{gather}
+    &=& -\frac{\partial}{\partial t}\log P_x(t_0,t)|_{t=T}\nonumber\\
+    &=& z_x\left(t_0,T\right)
+    + \frac{\partial}{\partial t}z_x\left(t_0,t\right)|_{t=T}\tau_{\mathcal{C}}\left(t_0,T\right),
+\end{eqnarray}
 respectively. In the following we will denote with $\mathcal{C}_x$ the generic curve and we will specify the particular typology (discount, zero or forward curve) if necessary.
 \par
 The usual no arbitrage relation among discount factors holds,
@@ -313,7 +315,7 @@ Interest rate Deposits (Depos) are Over-The-Counter (OTC) zero coupon contracts 
 The EUR market quotes standard plain vanilla Deposits strip that start at spot date and span various periods up to 1 year.
 Exceptions are the first {\it over-night} (ON) and the second {\it tomorrow-next} (TN) one-day contracts, which start today and tomorrow, respectively, and span one day each, covering (without overlapping) the two business days interval between today and spot dates.
 The maturity date of Deposits shorter than one month obeys the {\it following} convention; for longer Deposits the convention is {\it modified following}. For the latters the {\it end-of-month} convention is also respected: if the start date is the last working day in a given month, the end date must be the last working date of the ending month too.
-In figure \ref{fig:Deposits} we report the EUR Depo strip quoted in Reuters page KLIEM.
+In fig. \ref{fig:Deposits} we report the EUR Depo strip quoted in Reuters page KLIEM.
 \par
 Market Deposits can be selected as bootstrapping instruments for the construction of the short term structure section of the discount curves. Notice that, apart ON, TN and SN, each Depo admits its own underlying rate tenor, corresponding to its maturity. Hence each Depo should be selected, in principle, for the construction of a different curve.
 \par
@@ -335,9 +337,9 @@ where $\tau_F$ is given by eq. (\ref{eqn:yfFRA}). The expression (\ref{eqn:Depos
 FRA contacts are forward starting Deposits. For instance the 3x9 FRA is a six months Deposit starting three months forward.
 \par
 The EUR market quotes standard plain vanilla FRA strips with different forward start dates (i.e. the start date of the forward Depo), calculated with the same convention used for the end date of Deposits. So FRAs do concatenate exactly, e.g. the 6x9 FRA starts when the preceding 3x6 FRA ends. The underlying forward rate fixes two working days before the forward start date.
-In figure \ref{fig:FRA} we report the four FRA strips on 3M, 6M, and 12M Euribor rate quoted in Reuters page ICAPSHORT2.
+In fig. \ref{fig:FRA} we report the four FRA strips on 3M, 6M, and 12M Euribor rate quoted in Reuters page ICAPSHORT2.
 \par
-Market FRAs provide direct empirical evidence that a single curve cannot be used to estimate forward rates with different tenors. We can observe in figure \ref{fig:FRA} that, for instance, the level of the market 1x4 FRA3M (spanning from 18th March to 18th June, $\tau_{F,1x4} = 0.25556$) was $F_{1x4}^{mkt} = 1.696\%$, the level of market 4x7 FRA3M (spanning from 18th June to 18th September, $\tau_{F,4x7} = 0.25556$) was $F_{4x7}^{mkt}=1.580\%$. If one would compound these two rates to obtain the level of the implied 1x7 FRA6M (spanning from 18th March to 18th September, $\tau_{F,1x7} = 0.50556$) would obtain
+Market FRAs provide direct empirical evidence that a single curve cannot be used to estimate forward rates with different tenors. We can observe in fig. \ref{fig:FRA} that, for instance, the level of the market 1x4 FRA3M (spanning from 18th March to 18th June, $\tau_{F,1x4} = 0.25556$) was $F_{1x4}^{mkt} = 1.696\%$, the level of market 4x7 FRA3M (spanning from 18th June to 18th September, $\tau_{F,4x7} = 0.25556$) was $F_{4x7}^{mkt}=1.580\%$. If one would compound these two rates to obtain the level of the implied 1x7 FRA6M (spanning from 18th March to 18th September, $\tau_{F,1x7} = 0.50556$) would obtain
 \begin{eqnarray}
 F_{1x7}^{implied}
 &=& \frac{
@@ -375,7 +377,7 @@ There are also so called \emph{serial Futures}, expiring in the upcoming months 
 \par
 Such standard characteristics reduce the credit risk and the transaction costs, thus enhancing a very high liquidity. The first front contract is the most liquid interest rate instrument, with longer expiry contracts having very good liquidity up to the 8th-12th contract. Also the first serial contract is quite liquid, especially when it expires before the front contract.
 \par
-In figure \ref{fig:Futures3M} we report the quoted Futures strip on 3M Euribor rate up to 3 years maturity. As we can see, Futures are quoted in terms of prices instead of rates, the relation being
+In fig. \ref{fig:Futures3M} we report the quoted Futures strip on 3M Euribor rate up to 3 years maturity. As we can see, Futures are quoted in terms of prices instead of rates, the relation being
 \begin{equation}
 P^{Fut}_x\left(t_0,S_i,T_i\right) = 100 - R^{Fut}_x\left(t_0,S_i,T_i\right),
 \label{eqn:FuturePriceRate}
@@ -385,9 +387,10 @@ Because of their daily marking to market mechanism Futures do not have the same 
 F_x\left(t_0,S_i,T_i\right) = R^{Fut}_x\left(t_0,S_i,T_i\right)-C_x\left(t_0,S_i,T_i\right)
 \label{eqn:fwdfromfutureprice}
 \end{equation}
-(see e.g. ref. \cite{JacKaw05}). In other words, there is a pricing measure mismatch... [NOTA: COMPLETARE con riferimento a ch Brigo-Mercurio]
+(see e.g. ref. \cite{JacKaw05}).
+%In other words, there is a pricing measure mismatch... [NOTA: COMPLETARE con riferimento a  %Brigo-Mercurio]
 \par
-The calculation of convexity adjustment thus requires a model for the evolution of the rates.  While advanced approaches are available in literature (see e.g. refs. \cite{JacKaw05}, \cite{PitRen06}, \cite{BriMer06}), a standard practitioners' recipe is given in ref. \cite{KirNov1997}, based on a simple short rate 1 factor Hull \& White model \cite{HulWhi1990}. This approach has been used in figure \ref{fig:Futures3M} to calculate the adjustments, using the  Hull-White parameters values given in table \ref{tab:FuturesConAdy}.
+The calculation of convexity adjustment thus requires a model for the evolution of the rates.  While advanced approaches are available in literature (see e.g. refs. \cite{JacKaw05}, \cite{PitRen06}, \cite{BriMer06}), a standard practitioners' recipe is given in ref. \cite{KirNov1997}, based on a simple short rate 1 factor Hull \& White model \cite{HulWhi1990}. This approach has been used in fig. \ref{fig:Futures3M} to calculate the adjustments, using the  Hull-White parameters values given in table \ref{tab:FuturesConAdy}.
 \par
 Market Futures on $x$-tenor Euribor can be selected as bootstrapping instruments for the construction of short-medium term structure section of the yield curve $\mathcal{C}_x$.
 Notice that Futures contracts have expiration dates gradually shrinking to zero and as such they generate rolling pillars that periodically jumps and overlap the fixed Depo and FRA pillars. Hence some \emph{priority} rule must be used in order to decide which instruments must be excluded from the bootstrapping procedure.
@@ -423,27 +426,27 @@ Volatility & 0.709\%   \\
 \begin{figure}[tbp]
 \centering
 \includegraphics[scale=0.9]{../figures/FigMktSwaps6M}
-\caption{EUR Swaps on Euribor6M. Source: Reuters page ICAPEURO, 16 Feb. 2009.}
+\caption{EUR Swaps on Euribor6M. The codes \textquotedblleft AB6E$n$\textquotedblright in col. 1 label swaps receiving annually a fixed rate and paying semi-annually a floating rate on Euribor6M with maturity in $n$ months/years. Source: Reuters page ICAPEURO, 16 Feb. 2009.}
 \label{fig:Swaps6M}
 \end{figure}
 
 \begin{figure}[tbp]
 \centering
 \includegraphics[scale=0.9]{../figures/FigMktSwapsIMM}
-\caption{EUR IMM Swaps on Euribor3M. Source: Reuters page ICAPSHORT2, 16 Feb. 2009.}
+\caption{EUR IMM Swaps on Euribor3M. The codes \textquotedblleft $m$S$n$Y\textquotedblright in col. 1 label $m=$ Mar., Jun., Sep. and Dec. IMM starting swaps receiving annually a fixed rate and paying quarterly a floating rate on Euribor3M with maturity in $n=1,2,3$ years. The 1x1S instrument, not reported, is equivalent to the 1M Deposit in fig. \ref{fig:Deposits}. Source: Reuters page ICAPSHORT2, 16 Feb. 2009.}
 \label{fig:SwapsIMM}
 \end{figure}
 
 \begin{figure}[tbp]
 \centering
 \includegraphics[scale=0.9]{../figures/FigMktSwaps1M}
-\caption{EUR Swaps on Euribor1M. Source: Reuters page ICAPSHORT2, 16 Feb. 2009.}
+\caption{EUR Swaps on Euribor1M. The codes \textquotedblleft $n$x1S\textquotedblright in col. 1 label $n$-months maturity swaps receiving a single fixed rate at maturity and paying monthly a floating rate on Euribor1M. Source: Reuters page ICAPSHORT2, 16 Feb. 2009.}
 \label{fig:Swaps1M}
 \end{figure}
 
 Interest rate Swaps are Over-The-Counter (OTC) contracts in which two counterparties agree to exchange fixed against floating rate cash flows. These payment streams are called fixed and floating leg of the Swap, respectively.
 \par
-The EUR market quotes standard plain vanilla Swaps starting at spot date with annual fixed leg versus floating leg indexed to x-months Euribor rate payed with x-months frequency. Such Swaps can be regarded as a portfolio of FRA contracts (the first one is actually a Deposit). The day count convention for the quoted (fair) swap rates is \emph{30/360 (bond basis)} \cite{ISDA}.
+The EUR market quotes standard plain vanilla Swaps starting at spot date with annual fixed leg versus floating leg indexed to x-months Euribor rate payed with x-months frequency. Such Swaps can be regarded as portfolioS of FRA contracts (the first one being actually a Deposit). The day count convention for the quoted (fair) swap rates is \emph{30/360 (bond basis)} \cite{ISDA}.
 In figures \ref{fig:Swaps6M}, \ref{fig:SwapsIMM} and \ref{fig:Swaps1M} we report the quoted Swaps strips on 6M, 3M and 1M Euribor rates, respectively.
 \par
 Market Swaps on $x$-tenor Euribor can be selected as bootstrapping instruments for the construction of the medium-long term structure section of the yield curve $\mathcal{C}_x$.
@@ -472,68 +475,79 @@ Expression (\ref{eqn:SwapBootstrap}) can be used to bootstrap the yield curve $\
 
 
 \subsection{Basis Swaps}
+\label{sec:BasisSwaps}
+
 \begin{figure}[tbp]
 \centering
 \includegraphics[scale=0.9]{../figures/FigMktBasis}
-\caption{EUR Basis Swaps. Source: Reuters page ICAPEUROBASIS, 16 Feb. 2009.}
+\caption{EUR Basis Swaps. The codes \textquotedblleft $x$E$y$E$n$Y\textquotedblright in col. 1 label basis swaps receiving Euribor $x$M and paying Euribor $y$M plus basis spread with $n$ years maturity. Source: Reuters page ICAPEUROBASIS, 16 Feb. 2009.}
 \label{fig:BasisSwaps}
 \end{figure}
+
 \begin{figure}[tbp]
 \centering
 \includegraphics[scale=0.65]{../figures/FigMktBasisGraph}
-\caption{EUR Basis Swaps from figure \ref{fig:BasisSwaps}. The other basis have been deduced using eq. (\ref{eqn:BasisSwap}).}
+\caption{EUR Basis spreads from fig. \ref{fig:BasisSwaps}. The spreads not explicitly quoted there have been deduced using eq. (\ref{eqn:BasisSwap}).}
 \label{fig:BasisSwapsGraph}
 \end{figure}
+
 Interest rate (single currency) Basis Swaps are floating vs floating swaps admitting underlying rates with different tenors.
 \par
 The EUR market quotes standard plain vanilla Basis Swaps as portfolios of two swaps with the same fixed legs and floating legs paying Euribor xM and yM, e.g. 3M vs 6M, 1M vs 6M, 6M vs 12M, etc.
-In figure \ref{fig:BasisSwaps} we report three quoted Basis Swaps strips.
-The quotation convention is to provide the difference (in basis points) between the fixed rate of the lower frequency swap and the fixed rate of the higher frequency swap. At the moment such difference is positive and decreasing with maturity, reflecting the preference of market players for receiving payments with higher frequency (3M instead of 6M, for instance) and short maturities.
+In fig. \ref{fig:BasisSwaps} we report three quoted Basis Swaps strips.
+The quotation convention is to provide the difference (in basis points) between the fixed rate of the higher frequency swap and the fixed rate of the lower frequency swap. At the moment such difference is positive and decreasing with maturity, reflecting the preference of market players for receiving payments with higher frequency (e.g. 3M instead of 6M, 6M instead of 12M, etc.) and shorter maturities.
+%NOTA: lo swap1M a 1Y implicito nei basis vale 1.933-0.551 = 1.382 mentre lo swap1M 1Y quotato (12x1S) vale 1.355, 2.7 bps di differenza...illiquidità ?
 \par
-Basis swaps are a fundamental element for multi-curve bootstrapping, because, starting from the quoted Swaps on Euribor 6M (figure \ref{fig:Swaps6M}), they allow to imply levels for non-quoted Swaps on Euribor 1M, 3M, and 12M, to be selected as bootstrapping instruments for the corresponding yield curves construction.
-If $\Delta_{x,6M}\left(t_0,T_i\right)$ is the quoted basis between Euribor xM and Euribor 6M for maturity $T_i$, we have simply
+Basis swaps are a fundamental element for long term multi-curve bootstrapping, because, starting from the quoted Swaps on Euribor 6M (fig. \ref{fig:Swaps6M}), they allow to imply levels for non-quoted Swaps on Euribor 1M, 3M, and 12M, to be selected as bootstrapping instruments for the corresponding yield curves construction.
+If $\Delta_{x,6M}\left(t_0,T_i\right)$ is the quoted basis spread for a basis swap receiving Euribor $x$M and paying Euribor 6M plus spread for maturity $T_i$, we simply have
 \begin{equation}
-S_x\left(t_0,T_i\right) = \Delta_{x,6M}\left(t_0,T_i\right) + S_{6M}\left(t_0,T_i\right),
+S_x\left(t_0,T_i\right) = S_{6M}\left(t_0,T_i\right) + \Delta_{x,6M}\left(t_0,T_i\right),
 \label{eqn:BasisSwap}
 \end{equation}
 with the obvious caveat that
-$\Delta_{6M,x}\left(t_0,T_i\right) = - \Delta_{x,6M}\left(t_0,T_i\right)$. We report all the possible basis combinations in figure \ref{fig:BasisSwapsGraph}.
+$\Delta_{6M,x}\left(t_0,T_i\right) = - \Delta_{x,6M}\left(t_0,T_i\right)$. In fig. \ref{fig:BasisSwapsGraph} we report all the possible basis combinations obtained from fig. \ref{fig:BasisSwaps}.
+Notice that basis swaps in fig. \ref{fig:BasisSwaps} are quoted up to 30 years, while swaps on Euribor6M in fig. \ref{fig:Swaps6M} are quoted up to 60 years. Thus the bootstrapping of yield curves different from $\mathcal{C}_{6M}$ over 30 years maturity requires extrapolation of basis swap quotations. In the present market conditions, such extrapolation is not particularly critical, given the smooth and monotonic long term shape of the basis curves in fig. \ref{fig:BasisSwaps}.
 
-\subsection{\label{sec:Interp}The Role of Interpolation (TBD)}
+\subsection{The Role of Interpolation}
+\label{sec:Interp}
+
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=0.7]{../figures/FigInterpolations}
-\caption{Examples of \emph{bad} (but very popular!) interpolation schemes. Upper panel: different zero curves display smooth and very similar behaviors. Lower panel: forward curves reveals very different and non-smooth behaviors, with oscillations larger than 100 basis points. The smooth monotonic cubic spline interpolation on logarithmic discounts (continuous black line) of fig. \ref{FigYC6M}, reported for comparison.}
+\includegraphics[scale=0.95]{../figures/FigInterpolations}
+\caption{Examples of \emph{bad} (but very popular!) interpolation schemes. Upper panel: different zero curves display smooth and very similar behaviors. Lower panel: forward curves reveals very different and non-smooth behaviors, with oscillations larger than 100 basis points. The smooth monotonic cubic spline interpolation on logarithmic discounts (continuous black line) of fig. \ref{FigYC6M} is shown as a benchmark.}
 \label{fig:Interpolations}
 \end{figure}
-The interpolation scheme we choose for the given parametrization determines how reasonable the yield curve will be. For instance, linear interpolation of the discount factors is an obvious but extremely poor choice. Linear interpolation of zero rates or log-discounts are popular choices leading to stable and fast bootstrapping procedures. Unfortunately they produce discontinuous forward rates, with a sagsaw or piecewise-constant shape. We display in fig. \ref{fig:Interpolations} some examples. Looking at different zero curves display smooth and very similar behaviors, and one would conclude that, at least in this market situation, they are almost equivalent. Visual inspection of forward curves (lower panel) instead reveals very different and non-smooth behaviors, with oscillations larger than 100 basis points.
-Such discontinuities in the forward curves are generated by angle points in the corresponding zero curves (as pointed out in section \ref{sec:Math}, where they \textquotedblleft turn\textquotedblright around a market quotation.
-The smooth monotonic cubic spline interpolation on log-discounts clearly ensures the better financially sound behavior.
 
-
-flat extrapolation out to infinity.
-
-well-documented problems with spurious inflection points, excessive convexity, and lack of locality in the effects of input price perturbations. Andersen \cite{And07} addresses these issues through the use of shape-preserving splines from the class of generalized tension splines.
-
-Swap selection
-
-liquid Swaps and interpolated ones
-
-citare Hyman \cite{Hym1983}, \cite{HagWes06}, \cite{HagWes08}).
-
-TBD: mostrare casi di cattiva interpolazione, ad es. linear on zero rates
-
-\subsection{\label{sec:TOY}The Turn of Year Effect (TBD)}
+The interpolation scheme we choose for the given parametrization determines how reasonable the yield curve will be. For instance, linear interpolation of the discount factors is an obvious but extremely poor choice. Linear interpolation of zero rates or log-discounts are popular choices leading to stable and fast bootstrapping procedures, but unfortunately they produce horrible forward curves, with a sagsaw or piecewise-constant shape (see e.g. \cite{HagWes06}, \cite{HagWes08} for a review of interpolation schemes).
+We show in fig. \ref{fig:Interpolations} one examples of such poor interpolation schemes. While zero curves (upper panel) display smooth and very similar behaviors, visual inspection of forward curves (lower panel) instead reveals very different and non-smooth behaviors, with oscillations larger than 100 basis points.
+Such discontinuities in the forward curves correspond to angle points in the zero curves (as pointed out in section \ref{sec:Math}), generated by linear interpolation that forces them to suddenly \textquotedblleft turn\textquotedblright around a market point.
+Notice that only the most liquid Swaps from fig. \ref{fig:Swaps6M}, with maturities 3-10, 12, 15, 20, 25 and 30 years have been included in the bootstrapping of curve $\mathcal{C}_{6M}$. Often the remaining less liquid quotations for 11, 13, 14, 16-19, 21-24, 26-29 years maturity are included in the linear interpolations schemes to reduce the amplitude of the forward curve oscillations. The same can be done for longer maturities using interpolated quotes on the quoted 30, 40, 50 and 60 years pillars.
 \begin{figure}[tbp]
 \centering
-\includegraphics[scale=1.0]{../figures/FigEuribor1M}
-\caption{Turn of Year effect on Euribor1M. The historical time series in the Oct. 2007 - Feb 2009 window is displayed. The 2007 turn of year jump (64 bps) is clearly visible on 29th Nov. 2007 (left rectangle), with rates reverting to previous levels one month later. The 2008 turn of year jump on 27th Nov. 2008 (22 bps, right oval) is partially covered by the higher stressed market period. Instead, the quiet market in May-Jun. 2008 allows for the identification of a smaller \textquotedblleft end of semester effect\textquotedblright (9 bps, middle rhombus). Source: Reuters.}
-\label{fig:ToY}
+\includegraphics[scale=0.9]{../figures/FigInterpolationHagan}
+\caption{Example of nasty curve taken from ref. \cite{HagWes06} (p. 98 and fig. 2, bottom right panel). Upper panel: the example curve. Lower panel: the forward curve obtained through Hyman monotonic cubic spline \cite{Hym1983} applied on log discounts. The forward rate at 20Y is null but no negative rates appear.}
+\label{fig:InterpolationHagan}
 \end{figure}
-Smooth interpolation allows for a correct treatment of the so called turn of year, or January, effect.
-In the interest rate market, this is a jump normally observed in market quotations of rates that cross the end of a year. In fig. \ref{fig:ToY} we display the historical series of Euribor1M in the window October 2007 - January 2008, where the sudden jump (more than 60 bps) is clearly visible on 28th Nov. 2007, just when the spot starting 1M tenor rate overcomes the end of 2007.
-Market quotations of interest rate derivatives also displays jumps when the underlying rate crosses the end of the year.
 \par
+In fig. \ref{fig:Interpolations} also the monotonic cubic spline interpolation on log-discounts is shown, clearly ensuring a smooth and financially sound behavior to the forward curve.
+The choice of spline interpolations is a very delicate question. Simple splines (see e.g. \cite{PreTeu07}) suffer of well-documented problems with spurious inflection points, excessive convexity, and lack of locality after input price perturbations (distributed sensitivities). Recently, Andersen \cite{And07} has addressed these issues through the use of shape-preserving splines from the class of generalized tension splines, while Hagan and West \cite{HagWes06}-\cite{HagWes08} have developed a new scheme based on positive preserving forward interpolation. 
+We have found that the classic Hyman monotonic cubic spline \cite{Hym1983} applied on log discounts suffices to ensure non negative forward curves. In fig. \ref{fig:InterpolationHagan} we show an example of particularly nasty curve taken from ref. Hagan and West \cite{HagWes06} (p. 98 and fig. 2, bottom right panel). The forward curve obtained through Hyman monotonic cubic spline \cite{Hym1983} applied on log discounts (lower panel) is always non negative.
+
+
+\subsection{The Turn of Year Effect}
+\label{sec:TOY}
+Smooth interpolation allows for a correct treatment of the so called turn of year, or January, effect.
+In the interest rate market, this is a jump normally observed in market quotations of rates that cross the end of a year. In fig. \ref{fig:Euribor1M} we display the historical series of Euribor1M in the window October 2007 - February 2009.
+The 2007 turn of year jump (64 bps) is clearly visible on 29th Nov. 2007 (left rectangle), just when the spot starting 1M tenor rate overcomes the end of 2007, with rates reverting to previous levels one month later.
+The 2008 turn of year jump on 27th Nov. 2008 (22 bps, right oval) is partially covered by the higher stressed market period. Instead, the quiet market in May-Jun. 2008 allows for the identification of a smaller \textquotedblleft end of semester effect\textquotedblright on 29th May 2008 (9 bps, middle rhombus).
+\begin{figure}[tbp]
+\centering
+\includegraphics[scale=0.95]{../figures/FigEuribor1M}
+\caption{Turn of year effect on Euribor1M. The historical time series in the Oct. 2007 - Feb 2009 window is displayed. Three jumps can be identified: the 2007 turn of year (29th Nov. 2007, 64 bps, left rectangle); the 2008 turn of year (27th Nov. 2008, 22 bps, right oval); a smaller \textquotedblleft end of semester effect\textquotedblright (29th May 2008, 9 bps, middle rhombus). Source: Reuters.}
+\label{fig:Euribor1M}
+\end{figure}
+\par
+Market quotations of interest rate derivatives also displays jumps when the underlying rate crosses the end of the year.
 In the EUR market the larger jump is observed the last working day of the year (e.g. 31th December) in the Overnight Deposit maturing the first working day of the next year (e.g. 2nd January).
 The same happens for the Tomorrow Next and Spot Next Deposits one and two business days before, respectively (e.g. 30th and 29th December).
 Other instruments with longer underlying rate tenors display smaller jumps when their maturity crosses the same border: for instance, the 1M Deposit quotation jumps 2 business days before the 1st business day of December; the 12M Deposits always include a jump except 2 business days before the end of the year (due to the end of month rule); the December IMM Futures always include a jump, as well as the October and November serial Futures; 2Y Swaps always include two jumps; etc.
@@ -542,60 +556,80 @@ The effect is generally observable at the first two ends of year and becomes neg
 The decreasing jump with increasing underlying rate tenor can be easily understood once we isolate the jumping rates among the non-jumping rates.
 For instance, we may think to the 1M Deposit as a weighted average of 22 (business days in one month) overnight rates (plus a basis). If such Depo crosses an end of year, there must be a single overnight rate, weighting 1/22th, that crosses that end of year and displays the jump, while the others do not. Considering rates with longer tenors, there are still single jumping overnight rates, but with smaller weights. Hence longer deposits/FRAs display smaller jumps. The same holds for Swaps, as portfolios of Depos/FRAs.
 \par
-From a financial point of view, the turn of year effect is due essentially to the increased search for liquidity by financial institutions at the beginning of the year for balance sheet reasons (NOTA: DA COMPLETARE SPIEGAZIONE).
+From a financial point of view, the turn of year effect is due essentially to the increased search for liquidity by financial institutions just after the periodic balance sheet strikes.
+%NOTA: AMPLIARE QUESTA SPIEGAZIONE
 \par
 An yield curve including the turn of year effect must be discontinuous, essentially at the end of the current and the next year.
 Such effect can be modeled simply through a multiplicative coefficient applied to discount factors, or, equivalently, an additive coefficient applied to zero rates, corresponding to all the dates following a given end of year.
 In this way we are allowed to estimate the coefficient using instruments with a given tenor (e.g. those for $\mathcal C_{3M}$), and to apply it to any other curve, taking into account the proper weights.
 Notice that starting from a smooth and continuous yield curve is crucial for correctly take into account the discontinuity at the turn of year.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[scale=0.95]{../figures/FigYC1MToY}
+\caption{Detail from fig. \ref{FigYC1M}, upper panel, showing the turn of year effect included in the short term bootstrapping of the forward rate curve $\mathcal{C}_{1M}^f$ (blue line). The 2009 and 2010 turn of year jumps are clearly observable (left and right dashed rectangles, respectively). The smooth zero rate curve $\mathcal{C}_{1M}^z$ (red line) is also shown for sake of comparison.}
+\label{fig:YC1MToY}
+\end{figure}
+
 \par
-The jump coefficient can be estimated through different approaches:
+The jump coefficient can be estimated from market quotations using different approaches:
 \begin{itemize}
   \item jump in the 3M Futures strip: the (no-jump) end of year crossing forward is obtained through interpolation of non-crossing forwards; the jump coefficient is given by the difference between the latter and the quoted value. This approach always allows the estimation of the second turn of year. The first turn of year can be obtained only up to the third Wednesday of September, when the corresponding Futures expiries. In the period October-December there are no non-crossing Futures to interpolate and the first turn of year should be extrapolated from the second, making the method not robust;
   \item jump in the 6M FRA strip: this is equivalent to the approach above but it allows the estimation of the first turn of year up to June (included);
   \item jump in the 1M Swaps strip: this is equivalent to the approaches above and it allows the estimation of the first turn of year up to November (included);
   \item jump in the FRA strip quoted by brokers each Monday: this approach is valid all year long, but it allows only a discontinuous weekly update.
 \end{itemize}
-The empirical approaches above, when available, give estimates in excellent agreement with each other.
-[NOTA: QUI CI STAREBBE BENE UN ESEMPIO NUMERICO]
-
-\section{Implementation and Numerical Results}
-\label{sec:ImplementResults}
-The full implementation of the work described before, comprehensive of C++ code and Excel workbooks, is available open source. The basic objects and analytics (iterative bootstrapping, interpolations, market conventions, etc.) are implemented in the object oriented C++ QuantLib library \cite{QuantLib}. The QuantLib objects (classes) and analytics (methods) are exposed to a variety of end-user platforms (including Excel and Calc) through the QuantLibAddin \cite{QuantLibAddin} and QuantLibXL \cite{QuantLibXL} libraries. Real time is ensured by the ObjectHandler in-memory repository \cite{ObjectHandler}.
-Anyone interested in the topic is invited to test the implementation and to post to the QuantLib community any comment or suggestion to improve the job.
+The empirical approaches above, when available at the same time, give estimates in excellent agreement with each other.
 \par
-In the figures below an example of bootstrapping using the market data and the methodology discussed in the sections above. In particular the forward curves for Euribor 1M, 3M, 6M and 12M are reported in figures \ref{FigYC1M}, \ref{FigYC3M}, \ref{FigYC6M} and \ref{FigYC12M}, respectively.
+A numerical example of application of the methodology discussed above is given in fig. \ref{fig:YC1MToY} (a detail from upper panel of fig. \ref{FigYC1M} reported in section \ref{sec:ImplementResults}), where we display the bootstrapping of the forward and zero rate curves $\mathcal{C}_{1M}^f$ and $\mathcal{C}_{1M}^z$ on Euribor1M.
+The 2009 turn of year jump is clearly observable in $\mathcal{C}_{1M}^f$ from 27th Nov. 2009 (+7.5 bps) to 30th Dec. 2009 (-8.6 bps) for Euribor1M rates spot starting on 1st Dec. 2009 and terminating on 4th Dec. 2010.
+Also the 2010 turn of year jump is observable from 29th Nov. 2010 (+9.3 bps) to 30th Dec. 2010 (-8.6 bps) for rates spot starting on 1st Dec. 2010 and terminating on 3rd Dec. 2011.
+Such discontinuities in the forward rates correspond to tiny angle points in the zero rates, not observable in the smooth zero curve $\mathcal{C}_{1M}^z$, thus confirming again that the forward curve is the most severe bootstrapping test.
+% NOTA: VERIFICARE CURVA DISCOUNT
+\par
+The forward rate curve discontinuities induced by the turn of year effect may appear, to a non market driven reader, a fuzzy effect broking the desired yield curve smoothness. Instead, we stress that they are neither a strangeness of the market quotations nor an accident of the bootstrapping, but correspond to true and detectable financial effects that should be included in any yield curve used to evaluate interest rate derivatives according to the market.
 
-\begin{figure}[p]
+
+\section{Implementation and Examples of Bootstrapping}
+\label{sec:ImplementResults}
+\begin{figure}[tbp]
 \centering
 \includegraphics[scale=1.0]{../figures/FigYC1M}
-\caption{Yield curve on Euribor1M. Blue line: forward curve $\mathcal{C}_{I_{1M}}^f$, plotted with 1M-tenor forward rates $F\left( t_{0};t,t+1M,\text{\textit{act/360}}\right)$, $t$ daily sampled and spot date $t_{0}=$ Feb. 18th, 2009. Upper panel: short term structure up to 3 years; lower panel: whole term structure up to 30 years. The two jumps observed in the yield curve take into account the turn of year effect and correspond to the 1-month forwards starting in Dec. 2009 and 2010 that cross the end of year.}
+\caption{Forward curve $\mathcal{C}_{1M}^f$ on Euribor1M at 16 Feb. 2009, plotted with 1M-tenor forward rates $F\left( t_{0};t,t+1M,\text{\textit{act/360}}\right)$, $t$ daily sampled and spot date $t_{0}=$ Feb. 18th, 2009. Upper panel: short term structure up to 3 years; lower panel: whole term structure up to 30 years. The two jumps observed in the curve correspond to the two turn of years for 1M tenor forward rates spot starting at 1st Dec. 2009 and 1st Dec. 2010.}
 \label{FigYC1M}
 \end{figure}
 
-\begin{figure}[p]
+\begin{figure}[tbp]
 \centering
 \includegraphics[scale=1.0]{../figures/FigYC3M}
-\caption{Yield curve on Euribor3M. Plots as in fig. \protect\ref{FigYC1M}. Quoted 3M FRAs and 3M Futures are also reported.}
+\caption{Forward curve $\mathcal{C}_{3M}^f$ on Euribor3M at 16 Feb. 2009. Plots as in fig. \protect\ref{FigYC1M}. Quoted 3M FRAs and 3M Futures are also reported.}
 \label{FigYC3M}
 \end{figure}
-\newpage
 
-\begin{figure}[p]
+\begin{figure}[tbp]
 \centering
 \includegraphics[scale=1.0]{../figures/FigYC6M}
-\caption{Yield curve on Euribor6M. Plots as in fig. \protect\ref{FigYC1M}. Quoted 6M FRAs and 6M IMM FRAs are also reported.}
+\caption{Forward curve $\mathcal{C}_{6M}^f$ on Euribor6M at 16 Feb. 2009. Plots as in fig. \protect\ref{FigYC1M}. Quoted 6M FRAs and 6M IMM FRAs are also reported.}
 \label{FigYC6M}
 \end{figure}
-\newpage
 
-\begin{figure}[p]
+\begin{figure}[tbp]
 \centering
 \includegraphics[scale=1.0]{../figures/FigYC12M}
-\caption{Yield curve on Euribor12M. Plots as in fig. \protect\ref{FigYC1M}. Quoted 12M FRAs are also reported.}
+\caption{Forward curve $\mathcal{C}_{12M}^f$ on Euribor12M at 16 Feb. 2009. Plots as in fig. \protect\ref{FigYC1M}. Quoted 12M FRAs are also reported.}
 \label{FigYC12M}
 \end{figure}
-\newpage
+
+Given the methodology discussed in the previous sections, we are able to bootstrap four yield curves $\mathcal{C}_{1M}$, $\mathcal{C}_{3M}$, $\mathcal{C}_{6M}$, $\mathcal{C}_{12M}$ on Euribor 1M, 3M, 6M and 12M, respectively.
+In the four figures \ref{FigYC1M}, \ref{FigYC3M}, \ref{FigYC6M} and \ref{FigYC12M} below we show an example of bootstrapping using the appropriate subsets of the market data discussed in sections \ref{sec:Depo}-\ref{sec:BasisSwaps}. Only the forward curves are displayed, being the most severe test of bootstrapping as discussed in section \ref{sec:Interp}.
+The scales are the same across all graphs, allowing a general comparison. The maximum maturity reported is 30 years, according to the basis swaps quotations (see fig. \ref{fig:BasisSwaps}). As discussed in section \ref{sec:BasisSwaps}, while for the $\mathcal{C}_{6M}$ curve swaps market data are available up to 60 years (see fig. \ref{fig:Swaps6M}), the bootstrapping of other curves
+over 30 years maturity would require extrapolation of basis swap quotations (see figures \ref{fig:BasisSwaps} and \ref{fig:BasisSwapsGraph}).
+%NOTA: COMPLETARE DISCUSSIONE GENERALE DELLE CURVE
+%curve zero, smoothness, turn of the year, short term structure, instrument selection, mixed upward/downward sloping behavior
+\par
+The results discussed in this paper has been obtained using the QuantLib framework. The basic classes and methods (iterative bootstrapping, interpolations, market conventions, etc.) are implemented in the object oriented C++ QuantLib library \cite{QuantLib}. The QuantLib objects and analytics are exposed to a variety of end-user platforms (including Excel and Calc) through the QuantLibAddin \cite{QuantLibAddin} and QuantLibXL \cite{QuantLibXL} libraries. Market data are retrieved from the chosen provider and real time is ensured by the ObjectHandler in-memory repository \cite{ObjectHandler}.
+The full framework described above is available open source. Anyone interested in the topic is invited to test the implementation and to post to the QuantLib community any comment or suggestion to improve the job.
+
 
 \section{Conclusions}
 \label{sec:Conclusions}
@@ -605,7 +639,7 @@ Results for the concrete EUR market case have been analyzed in detail, showing h
 \par
 The full implementation of the work, comprehensive of C++ code and Excel workbooks, is available open source.
 
-
+\newpage
 %\bibliographystyle{unsrt}
 \bibliographystyle{unsrt}
 \bibliography{FinanceBibliography}
