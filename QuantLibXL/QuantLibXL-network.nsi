@@ -13,6 +13,7 @@
 
 !define VER_NUMBER "0.9.8"
 !define VER_NUMBER_UNDERSCORE "0_9_8"
+!define REV_NUMBER "Rev16XXX"
 !define COMPILER "vc80"
 
 ; General Attributes
@@ -20,8 +21,8 @@
 !define /date NOW "%Y%m%d-%H_%M"
 
 Name "QuantLibXL Network Distribution"
-OutFile "..\QuantLibXL-${VER_NUMBER}-${NOW}-network.exe"
-InstallDir "X:\Apps\Appsscript\CabotoXL\Rev15909"
+OutFile "..\QuantLibXL-${VER_NUMBER}-${REV_NUMBER}-${NOW}-network.exe"
+InstallDir "X:\Apps\Appsscript\CabotoXL\${REV_NUMBER}"
 
 ; Interface Settings
 
@@ -30,9 +31,7 @@ InstallDir "X:\Apps\Appsscript\CabotoXL\Rev15909"
 !define MUI_ABORTWARNING
 
 !define MUI_DIRECTORYPAGE_TEXT_TOP \
-"Specify the root folder for the QuantLibXL network installation. The various \
-QuantLibXL components will be installed to subdirectories of this root folder \
-as follows:$\n\
+"Specify the root folder for the QuantLibXL network installation:$\n\
 ROOT_FOLDER\xll - the XLL addin$\n\
 ROOT_FOLDER\framework - the VBA addin$\n\
 ROOT_FOLDER\Workbooks - the workbooks$\n\
