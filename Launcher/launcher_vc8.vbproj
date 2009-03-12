@@ -33,7 +33,7 @@
     <ProductName>QuantLibXL Launcher 2008</ProductName>
     <PublisherName>QuantLib Developer Team</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>2.4.2.7</ApplicationVersion>
+    <ApplicationVersion>2.4.4.2</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -170,33 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\down.bmp" />
-    <Content Include="Addins\01 Production\ObjectHandler-xll-vc80-mt-0_9_5.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Addins\01 Production\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_8.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_8.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_8.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_8.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Addins\03 Testing\PDGLib.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Addins\03 Testing\PdgLibXLDynamic-vc80-mt-0_9_0.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Addins\03 Testing\PdgLibXL.xla">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="images\excel.ico" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\up.bmp" />
@@ -223,87 +196,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="Addins\01 Production\ObjectHandler-xll-vc80-mt-0_9_5.xll">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Addins\01 Production\QuantLibXLDynamic-vc80-mt-0_9_5.xll">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Addins\02 Pre-Production\ObjectHandler-xll-vc80-mt-0_9_8.xll">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Addins\02 Pre-Production\QuantLibXLDynamic-vc80-mt-0_9_8.xll">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Addins\03 Testing\ObjectHandler-xll-vc80-mt-0_9_8.xll">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Addins\03 Testing\PDGLib.xll">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Addins\03 Testing\PdgLibXL.xla">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Addins\03 Testing\PdgLibXLDynamic-vc80-mt-0_9_0.xll">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Addins\03 Testing\QuantLibXLDynamic-vc80-mt-0_9_8.xll">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>DataFile</PublishState>
-      <FileType>File</FileType>
-    </PublishFile>
     <PublishFile Include="QuantLibXL_Launcher_2008.pdb">
       <Visible>False</Visible>
       <Group>
