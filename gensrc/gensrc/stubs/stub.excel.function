@@ -7,7 +7,7 @@ XLL_DEC %(functionReturnType)s%(functionName)s(%(functionDeclaration)s) {
     try {
 
         // instantiate the Function Call object
-    
+
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>(
             new ObjectHandler::FunctionCall("%(functionName)s"));
 %(xlWizardCheck)s%(xlTrigger)s
@@ -20,6 +20,9 @@ XLL_DEC %(functionReturnType)s%(functionName)s(%(functionDeclaration)s) {
     } catch (const std::exception &e) {
         ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
         return 0;
+    } catch(...) {
+        ObjectHandler::RepositoryXL::instance().logError("unkown error type", functionCall);
+        return 0;
     }
-}
 
+}
