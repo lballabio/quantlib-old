@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2006, 2007 Chiara Fornarola
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
@@ -57,22 +57,18 @@ namespace QuantLibAddin {
         void setCouponPricer(const boost::shared_ptr<QuantLib::FloatingRateCouponPricer>& pricer);
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> >& pricers);
         std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis();
+        Bond(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+             const std::string& des,
+             const QuantLib::Currency& cur,
+             QuantLib::Natural settlementDays,
+             const QuantLib::Calendar& calendar,
+             QuantLib::Real faceAmount,
+             const QuantLib::Date& maturityDate,
+             const QuantLib::Date& issueDate,
+             const boost::shared_ptr<Leg>& leg,
+             bool permanent);
       protected:
         OH_OBJ_CTOR(Bond, Instrument);
-    };
-
-    class GenericBond : public Bond {
-      public:
-        GenericBond(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                    const std::string& des,
-                    const QuantLib::Currency& cur,
-                    QuantLib::Natural settlementDays,
-                    const QuantLib::Calendar& calendar,
-                    QuantLib::Real faceAmount,
-                    const QuantLib::Date& maturityDate,
-                    const QuantLib::Date& issueDate,
-                    const boost::shared_ptr<Leg>& leg,
-                    bool permanent);
     };
 
     class ZeroCouponBond : public Bond {

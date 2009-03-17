@@ -32,7 +32,7 @@
   </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Chiara Fornarola
-    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Walter Penschke
@@ -1020,8 +1020,8 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlGenericBond'>
-      <libraryFunction>GenericBond</libraryFunction>
+    <Constructor name='qlBond'>
+      <libraryFunction>Bond</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
