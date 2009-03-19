@@ -25,13 +25,17 @@
 
 #include <ql/cashflows/rangeaccrual.hpp>
 
+using ObjectHandler::LibraryObject;
+using ObjectHandler::ValueObject;
+using boost::shared_ptr;
+
 namespace QuantLibAddin {
     
    RangeAccrualFloatersCoupon::RangeAccrualFloatersCoupon(
-                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                const shared_ptr<ValueObject>& p,
                 QuantLib::Real nominal,
                 const QuantLib::Date& paymentDate,
-                const boost::shared_ptr<QuantLib::IborIndex>& index,
+                const shared_ptr<QuantLib::IborIndex>& index,
                 const QuantLib::Date& startDate,                                  
                 const QuantLib::Date& endDate,                                   
                 QuantLib::Integer fixingDays,
@@ -40,36 +44,35 @@ namespace QuantLibAddin {
                 QuantLib::Rate spread,
                 const QuantLib::Date& refPeriodStart,
                 const QuantLib::Date& refPeriodEnd,    
-                const boost::shared_ptr<QuantLib::Schedule>&  observationsSchedule,
+                const shared_ptr<QuantLib::Schedule>&  observationsSchedule,
                 QuantLib::Real lowerTrigger,                                    
                 QuantLib::Real upperTrigger,
                 bool permanent)
-       : ObjectHandler::LibraryObject<QuantLib::RangeAccrualFloatersCoupon>(properties, permanent)
-   {
-      libraryObject_ = boost::shared_ptr<QuantLib::RangeAccrualFloatersCoupon>(
-            new QuantLib::RangeAccrualFloatersCoupon(
-                nominal,
-                paymentDate,
-                index,
-                startDate,                                  
-                endDate,                                   
-                fixingDays, 
-                dayCounter,
-                gearing,
-                spread,
-                refPeriodStart,
-                refPeriodEnd,    
-                observationsSchedule,
-                lowerTrigger,                                    
-                upperTrigger));   
+    : LibraryObject<QuantLib::RangeAccrualFloatersCoupon>(p, perm)
+    {
+        libraryObject_ = shared_ptr<QuantLib::RangeAccrualFloatersCoupon>(new
+            QuantLib::RangeAccrualFloatersCoupon(paymentDate,
+                                                 nominal,
+                                                 index,
+                                                 startDate,
+                                                 endDate,
+                                                 fixingDays,
+                                                 dayCounter,
+                                                 gearing,
+                                                 spread,
+                                                 refPeriodStart,
+                                                 refPeriodEnd,
+                                                 observationsSchedule,
+                                                 lowerTrigger,
+                                                 upperTrigger));
     }
 
     RangeAccrualFloatersCoupon::RangeAccrualFloatersCoupon(
-                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                const boost::shared_ptr<Leg>& rangeAccrualLeg,
+                const shared_ptr<ValueObject>& properties,
+                const shared_ptr<Leg>& rangeAccrualLeg,
                 QuantLib::Size i,
                 bool permanent)
-       : ObjectHandler::LibraryObject<QuantLib::RangeAccrualFloatersCoupon>(properties, permanent)
+    : LibraryObject<QuantLib::RangeAccrualFloatersCoupon>(properties, permanent)
     {
         const QuantLib::Leg& leg = rangeAccrualLeg->getQuantLibLeg();
         QL_REQUIRE(i<leg.size(), "i>=leg.size()");
@@ -77,22 +80,21 @@ namespace QuantLibAddin {
     }
 
     RangeAccrualPricerByBgm::RangeAccrualPricerByBgm(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ValueObject>& properties,
             QuantLib::Real correlation,
-            const boost::shared_ptr<QuantLib::SmileSection>& smilesOnExpiry,
-            const boost::shared_ptr<QuantLib::SmileSection>& smilesOnPayment,
+            const shared_ptr<QuantLib::SmileSection>& smilesOnExpiry,
+            const shared_ptr<QuantLib::SmileSection>& smilesOnPayment,
             bool isClosedFormula,
             bool byCallSpread,
-            bool permanent) : RangeAccrualPricer(properties, permanent) {
-    
-      libraryObject_ = boost::shared_ptr<QuantLib::RangeAccrualPricerByBgm>(
-            new QuantLib::RangeAccrualPricerByBgm(
-                correlation,
-                smilesOnExpiry, 
-                smilesOnPayment,
-                isClosedFormula,
-                byCallSpread)); 
+            bool permanent)
+    : RangeAccrualPricer(properties, permanent)
+    {
+      libraryObject_ = shared_ptr<QuantLib::RangeAccrualPricerByBgm>(new
+          QuantLib::RangeAccrualPricerByBgm(correlation,
+                                            smilesOnExpiry,
+                                            smilesOnPayment,
+                                            isClosedFormula,
+                                            byCallSpread));
     }
 
 }
-

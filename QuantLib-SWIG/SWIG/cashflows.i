@@ -75,13 +75,13 @@ class SimpleCashFlowPtr : public boost::shared_ptr<CashFlow> {
 class FixedRateCouponPtr : public boost::shared_ptr<CashFlow> {
   public:
     %extend {
-        FixedRateCouponPtr(Real nominal, const Date& paymentDate,
+        FixedRateCouponPtr(const Date& paymentDate, Real nominal,
                            Rate rate, const DayCounter& dayCounter,
                            const Date& startDate, const Date& endDate,
                            const Date& refPeriodStart = Date(),
                            const Date& refPeriodEnd = Date()) {
             return new FixedRateCouponPtr(
-                new FixedRateCoupon(nominal, paymentDate, rate,
+                new FixedRateCoupon(paymentDate, nominal, rate,
                                     dayCounter, startDate, endDate,
                                     refPeriodStart, refPeriodEnd));
         }
@@ -92,7 +92,7 @@ class FixedRateCouponPtr : public boost::shared_ptr<CashFlow> {
 class IborCouponPtr : public boost::shared_ptr<CashFlow> {
   public:
     %extend {
-        IborCouponPtr(Real nominal, const Date& paymentDate,
+        IborCouponPtr(const Date& paymentDate, Real nominal,
                       const Date& startDate, const Date& endDate,
                       Integer fixingDays, InterestRateIndexPtr& index,
                       Real gearing = 1.0, Spread spread = 0.0,
@@ -102,7 +102,7 @@ class IborCouponPtr : public boost::shared_ptr<CashFlow> {
             const boost::shared_ptr<IborIndex> iri =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new IborCouponPtr(
-                new IborCoupon(nominal, paymentDate, startDate, endDate,
+                new IborCoupon(paymentDate, nominal, startDate, endDate,
                                fixingDays, iri, gearing, spread,
                                refPeriodStart, refPeriodEnd, dayCounter));
         }
@@ -395,7 +395,7 @@ class CashFlows {
                     const DayCounter& dayCounter,
                     Compounding compounding,
                     Frequency frequency = NoFrequency,
-                    Date settlementDate = Date(),
+                   Date settlementDate = Date(),
                     Real tolerance = 1.0e-10,
                     Size maxIterations = 10000,
                     Rate guess = 0.05);
