@@ -460,7 +460,8 @@
             <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate.</description>
           </Parameter>
           <Parameter name='Rate' exampleValue='0.044'>
-            <type>QuantLib::Rate</type>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>the curve level.</description>
           </Parameter>

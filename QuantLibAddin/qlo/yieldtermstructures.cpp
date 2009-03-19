@@ -73,13 +73,14 @@ namespace QuantLibAddin {
     }
 
     FlatForward::FlatForward(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                             QuantLib::Size nDays,
+                             QuantLib::Natural nDays,
                              const QuantLib::Calendar& calendar,
-                             QuantLib::Rate forward,
+                             const QuantLib::Handle<QuantLib::Quote>& forward,
                              const QuantLib::DayCounter& dayCounter,
                              QuantLib::Compounding compounding,
                              QuantLib::Frequency frequency,
-                             bool permanent) : YieldTermStructure(properties, permanent)
+                             bool permanent)
+    : YieldTermStructure(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::FlatForward(nDays, calendar, forward, dayCounter,

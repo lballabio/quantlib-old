@@ -60,7 +60,7 @@ namespace QuantLibAddin {
       public:
         ZeroCurve(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                   const std::vector<QuantLib::Date>& dates,
-                  const std::vector <QuantLib::Rate>& zeroRates,
+                  const std::vector<QuantLib::Rate>& zeroRates,
                   const QuantLib::DayCounter& dayCounter,
                   bool permanent);
     };
@@ -69,7 +69,7 @@ namespace QuantLibAddin {
       public:
         ForwardCurve(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                      const std::vector<QuantLib::Date>& dates,
-                     const std::vector <QuantLib::Rate>& forwardRates,
+                     const std::vector<QuantLib::Rate>& forwardRates,
                      const QuantLib::DayCounter& dayCounter,
                      bool permanent);
     };
@@ -77,9 +77,9 @@ namespace QuantLibAddin {
     class FlatForward : public YieldTermStructure {
       public:
         FlatForward(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                    QuantLib::Size nDays,
+                    QuantLib::Natural nDays,
                     const QuantLib::Calendar& calendar,
-                    QuantLib::Rate forward,
+                    const QuantLib::Handle<QuantLib::Quote>& forward,
                     const QuantLib::DayCounter& dayCounter,
                     QuantLib::Compounding compounding,
                     QuantLib::Frequency frequency,
