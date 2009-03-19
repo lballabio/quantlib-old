@@ -93,10 +93,13 @@ class FlatHazardRatePtr
     : public boost::shared_ptr<DefaultProbabilityTermStructure> {
   public:
     %extend {
-        FlatHazardRatePtr(const Handle<Quote>& hazardRate,
+        FlatHazardRatePtr(Integer settlementDays,
+                          const Calendar& calendar,
+                          const Handle<Quote>& hazardRate,
                           const DayCounter& dayCounter) {
             return new FlatHazardRatePtr(
-                           new FlatHazardRate(hazardRate,dayCounter));
+                           new FlatHazardRate(settlementDays,calendar,
+                                              hazardRate,dayCounter));
         }
         FlatHazardRatePtr(const Date& todaysDate,
                           const Handle<Quote>& hazardRate,
