@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
 
  This file is part of QuantLib, a free-software/open-source library
@@ -92,19 +92,19 @@ class FixedRateCouponPtr : public boost::shared_ptr<CashFlow> {
 class IborCouponPtr : public boost::shared_ptr<CashFlow> {
   public:
     %extend {
-        IborCouponPtr(const Date& paymentDate, Real nominal,
-                     const Date& startDate, const Date& endDate,
-                     Integer fixingDays, InterestRateIndexPtr& index,
-                     Real gearing = 1.0, Spread spread = 0.0,
-                     const Date& refPeriodStart = Date(),
-                     const Date& refPeriodEnd = Date(),
-                     const DayCounter& dayCounter = DayCounter()) {
+        IborCouponPtr(Real nominal, const Date& paymentDate,
+                      const Date& startDate, const Date& endDate,
+                      Integer fixingDays, InterestRateIndexPtr& index,
+                      Real gearing = 1.0, Spread spread = 0.0,
+                      const Date& refPeriodStart = Date(),
+                      const Date& refPeriodEnd = Date(),
+                      const DayCounter& dayCounter = DayCounter()) {
             const boost::shared_ptr<IborIndex> iri =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new IborCouponPtr(
-                new IborCoupon(paymentDate, nominal, startDate, endDate,
-                              fixingDays, iri, gearing, spread,
-                              refPeriodStart, refPeriodEnd, dayCounter));
+                new IborCoupon(nominal, paymentDate, startDate, endDate,
+                               fixingDays, iri, gearing, spread,
+                               refPeriodStart, refPeriodEnd, dayCounter));
         }
         Rate rate() {
             return boost::dynamic_pointer_cast<IborCoupon>(*self)->rate();
