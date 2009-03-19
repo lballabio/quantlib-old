@@ -30,7 +30,6 @@
 
 namespace QuantLib {
     class Calendar;
-    class SwaptionVolatilityStructure;
     class SwaptionVolatilityCube;
     class SwapIndex;
     class Matrix;
@@ -38,8 +37,6 @@ namespace QuantLib {
 }
 
 namespace QuantLibAddin {
-
-    OH_OBJ_CLASS(SwaptionVolatilityStructure, TermStructure);
 
     class ConstantSwaptionVolatility : public SwaptionVolatilityStructure {
       public:

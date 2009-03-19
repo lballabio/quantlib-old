@@ -21,9 +21,14 @@
 #ifndef qla_shortratemodels_hpp
 #define qla_shortratemodels_hpp
 
-#include <qlo/yieldtermstructures.hpp>
+#include <qlo/termstructures.hpp>
+
+#include <ql/types.hpp>
 
 namespace QuantLib {
+    template <class T>
+    class Handle;
+
     class AffineModel;
 }
 

@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -25,9 +25,34 @@
 
 #include <qlo/extrapolator.hpp>
 
+namespace QuantLib {
+
+    class YieldTermStructure;
+
+    class OptionletVolatilityStructure;
+    class CapFloorTermVolatilityStructure;
+
+    class SwaptionVolatilityStructure;
+
+    class DefaultProbabilityTermStructure;
+
+    class InflationTermStructure;
+}
+
 namespace QuantLibAddin {
      
     OH_OBJ_CLASS(TermStructure, Extrapolator);
+
+    OH_OBJ_CLASS(YieldTermStructure, TermStructure);
+
+    OH_OBJ_CLASS(OptionletVolatilityStructure, TermStructure);
+    OH_OBJ_CLASS(CapFloorTermVolatilityStructure, TermStructure);
+
+    OH_OBJ_CLASS(SwaptionVolatilityStructure, TermStructure);
+
+    OH_OBJ_CLASS(DefaultProbabilityTermStructure, TermStructure);
+
+    OH_OBJ_CLASS(InflationTermStructure, TermStructure);
 
 }
 

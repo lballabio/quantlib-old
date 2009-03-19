@@ -2,12 +2,14 @@
   <description>functions to construct and use Leg objects.</description>
   <displayName>Leg</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/couponvectors.hpp</include>
+  </serializationIncludes>
   <addinIncludes>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
-    <include>qlo/swaptionvolstructure.hpp</include>
-    <include>qlo/capletvolstructure.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
   </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Ferdinando Ametrano

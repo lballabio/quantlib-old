@@ -6,7 +6,7 @@
     <include>qlo/swaption.hpp</include>
     <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/termstructures.hpp</include>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/exercise.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
@@ -16,7 +16,7 @@
     <include>qlo/swaption.hpp</include>
     <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/termstructures.hpp</include>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/exercise.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>

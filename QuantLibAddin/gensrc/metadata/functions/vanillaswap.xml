@@ -7,7 +7,7 @@
     <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/schedule.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/termstructures.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
@@ -18,7 +18,7 @@
     <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/schedule.hpp</include>
-    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/termstructures.hpp</include>
     <include>qlo/vanillaswap.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>

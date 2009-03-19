@@ -5,14 +5,14 @@
   <serializationIncludes>
     <include>qlo/cmsmarketcalibration.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
-    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/termstructures.hpp</include>
     <include>qlo/optimization.hpp</include>
     <include>ql/termstructures/volatility/swaption/swaptionvolcube1.hpp</include>
   </serializationIncludes>
   <addinIncludes>
     <include>qlo/cmsmarketcalibration.hpp</include>
     <include>qlo/cmsmarket.hpp</include>
-    <include>qlo/swaptionvolstructure.hpp</include>
+    <include>qlo/termstructures.hpp</include>
     <include>qlo/optimization.hpp</include>
     <include>ql/termstructures/volatility/swaption/swaptionvolcube1.hpp</include>
   </addinIncludes>

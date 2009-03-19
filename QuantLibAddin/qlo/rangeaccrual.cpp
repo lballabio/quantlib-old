@@ -48,7 +48,7 @@ namespace QuantLibAddin {
                 QuantLib::Real lowerTrigger,                                    
                 QuantLib::Real upperTrigger,
                 bool permanent)
-    : LibraryObject<QuantLib::RangeAccrualFloatersCoupon>(p, perm)
+    : LibraryObject<QuantLib::RangeAccrualFloatersCoupon>(p, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::RangeAccrualFloatersCoupon>(new
             QuantLib::RangeAccrualFloatersCoupon(paymentDate,

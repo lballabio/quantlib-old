@@ -35,8 +35,6 @@ namespace QuantLib {
     class Date;
     class Quote;
 
-    class YieldTermStructure;
-
     template<class TS>
     class BootstrapHelper;
 
@@ -48,8 +46,6 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
      
-    OH_OBJ_CLASS(YieldTermStructure, TermStructure);
-
     class DiscountCurve : public YieldTermStructure {
       public:
         DiscountCurve(

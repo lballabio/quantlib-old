@@ -26,10 +26,8 @@
 
 #include <qlo/yieldtermstructures.hpp>
 #include <qlo/ratehelpers.hpp>
-//#include <qlo/enumerations/factories/termstructuresfactory.hpp>
 
 #include <ql/time/date.hpp>
-//#include <ql/math/interpolations/cubicinterpolation.hpp>
 #include <ql/termstructures/yield/discountcurve.hpp>
 #include <ql/termstructures/yield/forwardcurve.hpp>
 #include <ql/termstructures/yield/zerocurve.hpp>
@@ -37,8 +35,6 @@
 #include <ql/termstructures/yield/flatforward.hpp>
 #include <ql/termstructures/yield/forwardspreadedtermstructure.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
-
-//#include <oh/repository.hpp>
 
 namespace QuantLibAddin {
 

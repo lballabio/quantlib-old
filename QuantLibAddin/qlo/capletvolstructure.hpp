@@ -22,27 +22,33 @@
 #define qla_capletvolstructure_hpp
 
 #include <qlo/termstructures.hpp>
-#include <ql/termstructures/yieldtermstructure.hpp>
-#include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
-#include <ql/termstructures/volatility/optionlet/strippedoptionletadapter.hpp>
+
+#include <ql/types.hpp>
+#include <ql/time/businessdayconvention.hpp>
 
 namespace QuantLib {
-    class OptionletVolatilityStructure;
     class Period;
     class SmileSection;
     class IborIndex;
+    class Calendar;
+    class DayCounter;
+    class Quote;
+    class Date;
+
+    template <class T>
+    class Handle;
+
     class CapFloorTermVolSurface;
     class CapFloorTermVolCurve;
     class OptionletStripper1;
     class OptionletStripper2;
     class StrippedOptionletAdapter;
     class StrippedOptionlet;
+    class StrippedOptionletBase;
 }
 
 namespace QuantLibAddin {
     
-    OH_OBJ_CLASS(OptionletVolatilityStructure, TermStructure);
-
     class ConstantOptionletVolatility : public OptionletVolatilityStructure {
       public:
         ConstantOptionletVolatility(
@@ -72,8 +78,6 @@ namespace QuantLibAddin {
                     const boost::shared_ptr<QuantLib::StrippedOptionletBase>&,
                     bool permanent);
     };
-
-    OH_OBJ_CLASS(CapFloorTermVolatilityStructure, TermStructure);
 
     class CapFloorTermVolCurve : public CapFloorTermVolatilityStructure {
       public:
