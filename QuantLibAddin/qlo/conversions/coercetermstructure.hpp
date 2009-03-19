@@ -22,12 +22,17 @@
 
 #include <oh/conversions/coerce.hpp>
 #include <oh/exception.hpp>
+
 #include <qlo/handle.hpp>
 #include <qlo/conversions/coerceobject.hpp>
 #include <qlo/conversions/coercelibrarydifferent.hpp>
+
 #include <qlo/yieldtermstructures.hpp>
+#include <qlo/defaulttermstructures.hpp>
 #include <qlo/swaptionvolstructure.hpp>
+
 #include <ql/termstructures/yieldtermstructure.hpp>
+#include <ql/termstructures/defaulttermstructure.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
 
 namespace QuantLibAddin {

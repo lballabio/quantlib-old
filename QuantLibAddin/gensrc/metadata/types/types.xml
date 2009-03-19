@@ -40,7 +40,8 @@
     <DataType defaultSuperType='implicitConversion'>QuantLib::Spread</DataType>
     <DataType defaultSuperType='implicitConversion'>QuantLib::Time</DataType>
     <DataType defaultSuperType='implicitConversion'>QuantLib::Volatility</DataType>
-    
+    <DataType defaultSuperType='implicitConversion'>QuantLib::Probability</DataType>
+
     <DataType defaultSuperType='libraryClass'>QuantLib::AbcdAtmVolCurve</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::AbcdCalibration</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::AbcdFunction</DataType>
@@ -144,11 +145,12 @@
     <DataType defaultSuperType='libraryQuote'>QuantLib::SimpleQuote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::LastFixingQuote</DataType>
 
-    <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityCube</DataType>
-    <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityDiscrete</DataType>
-    <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityStructure</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::TermStructure</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::YieldTermStructure</DataType>
+    <DataType defaultSuperType='libraryTermStructure'>QuantLib::DefaultProbabilityTermStructure</DataType>
+    <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityStructure</DataType>
+    <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityDiscrete</DataType>
+    <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityCube</DataType>
 
     <DataType defaultSuperType='libraryType' nativeType='string'>QuantLib::InterestRate</DataType>
     <DataType defaultSuperType='libraryType' nativeType='double'>QuantLib::Array</DataType>

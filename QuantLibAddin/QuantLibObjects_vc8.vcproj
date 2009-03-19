@@ -538,6 +538,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\valueobjects\vo_defaulttermstructures.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\valueobjects\vo_defaulttermstructures.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\valueobjects\vo_driftcalculators.cpp"
 				>
 			</File>
@@ -1597,6 +1605,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\qlo\serialization\create\create_defaulttermstructures.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\create\create_defaulttermstructures.hpp"
+					>
+				</File>
+				<File
 					RelativePath="qlo\serialization\create\create_driftcalculators.cpp"
 					>
 				</File>
@@ -1997,6 +2013,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\qlo\serialization\register\serialization_defaulttermstructures.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_defaulttermstructures.hpp"
+					>
+				</File>
+				<File
 					RelativePath="qlo\serialization\register\serialization_driftcalculators.cpp"
 					>
 				</File>
@@ -2369,6 +2393,18 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="credit"
+			>
+			<File
+				RelativePath=".\qlo\defaulttermstructures.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\defaulttermstructures.hpp"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="qlo\auto_link.hpp"

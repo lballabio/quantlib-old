@@ -143,6 +143,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\functions\defaulttermstructures.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\functions\exercise.xml"
 				>
 			</File>
