@@ -20,7 +20,7 @@ install-exec-local: .build-stamp
 endif
 
 quantlib_wrap.cpp: ../SWIG/*.i
-	$(SWIG) -ruby -c++ -I../SWIG -o ./quantlib_wrap.cpp quantlib.i
+	$(SWIG) -ruby -c++ -o ./quantlib_wrap.cpp ../SWIG/quantlib.i
 
 dist-hook:
 	mkdir -p $(distdir)/examples

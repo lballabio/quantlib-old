@@ -36,8 +36,8 @@ endif
 
 
 quantlib_wrap.cpp: org/quantlib ../SWIG/*.i
-	$(SWIG) -java -c++ -I../SWIG -outdir org/quantlib \
-            -package org.quantlib -o quantlib_wrap.cpp quantlib.i
+	$(SWIG) -java -c++ -outdir org/quantlib \
+            -package org.quantlib -o quantlib_wrap.cpp ../SWIG/quantlib.i
 
 org/quantlib:
 	mkdir -p org/quantlib

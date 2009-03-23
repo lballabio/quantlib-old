@@ -1,1 +1,1 @@
-swig.exe -csharp -c++ -I..\SWIG -outdir csharp -namespace QuantLib -o cpp\quantlib_wrap.cpp ..\SWIG\quantlib.i
+swig.exe -csharp -c++ -outdir csharp -namespace QuantLib -o cpp\quantlib_wrap.cpp ..\SWIG\quantlib.i

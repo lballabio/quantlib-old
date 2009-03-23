@@ -32,7 +32,7 @@ clean-local:
 	rm -rf $(BUILT_SOURCES) $(QUANTLIB_R_ROOT).cpp *.so *.o $(QUANTLIB_R_ROOT).RData *.Rout
 
 $(BUILT_SOURCES): ../SWIG/*.i
-	$(SWIG) -r -c++ -I../SWIG -o $(QUANTLIB_R_ROOT).cpp quantlib.i
+	$(SWIG) -r -c++ -o $(QUANTLIB_R_ROOT).cpp ../SWIG/quantlib.i
 
 endif
 

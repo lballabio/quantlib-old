@@ -34,7 +34,7 @@ clean-local:
 endif
 
 QuantLib.mli QuantLib.ml quantlib_wrap.c: ../SWIG/*.i
-	$(SWIG) -ocaml -c++ -I../SWIG -o quantlib_wrap.c quantlib.i
+	$(SWIG) -ocaml -c++ -o quantlib_wrap.c ../SWIG/quantlib.i
 
 swig.mli:
 	$(SWIG) -ocaml -co swig.mli

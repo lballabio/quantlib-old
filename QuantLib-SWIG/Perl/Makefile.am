@@ -29,7 +29,7 @@ $(PERL_MAKEFILE): Makefile.PL
 endif
 
 quantlib_wrap.cpp QuantLib.pm: ../SWIG/*.i
-	$(SWIG) -perl -c++ -I../SWIG -o quantlib_wrap.cpp quantlib.i
+	$(SWIG) -perl -c++ -o quantlib_wrap.cpp ../SWIG/quantlib.i
 
 dist-hook:
 	mkdir -p $(distdir)/examples

@@ -35,8 +35,8 @@ examples/NQuantLib.dll: NQuantLib.dll
 endif
 
 cpp/quantlib_wrap.cpp: ../SWIG/*.i
-	$(SWIG) -csharp -c++ -I../SWIG -outdir csharp \
-            -namespace QuantLib -o cpp/quantlib_wrap.cpp quantlib.i
+	$(SWIG) -csharp -c++ -outdir csharp \
+            -namespace QuantLib -o cpp/quantlib_wrap.cpp ../SWIG/quantlib.i
 
 dist-hook: cpp/quantlib_wrap.cpp
 	mkdir -p $(distdir)/cpp

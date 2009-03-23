@@ -23,8 +23,8 @@ clean-local:
 endif
 
 QuantLib/quantlib_wrap.cpp QuantLib/QuantLib.py: ../SWIG/*.i
-	$(SWIG) -python -c++ -modern -I../SWIG -outdir QuantLib \
-            -o QuantLib/quantlib_wrap.cpp quantlib.i
+	$(SWIG) -python -c++ -modern -outdir QuantLib \
+            -o QuantLib/quantlib_wrap.cpp ../SWIG/quantlib.i
 
 dist-hook:
 	mkdir -p $(distdir)/examples
