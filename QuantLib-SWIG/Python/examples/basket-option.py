@@ -57,26 +57,26 @@ matrix[1][0] = 0.5
 
 process = StochasticProcessArray(procs, matrix)
 basketoption = BasketOption(MaxBasketPayoff(payoff), exercise)
-basketoption.setPricingEngine(MCBasketEngine(process,
-                                             'pseudorandom',
-                                             timeStepsPerYear = 1,
-                                             requiredTolerance = 0.02,
-                                             seed = 42))
+basketoption.setPricingEngine(MCEuropeanBasketEngine(process,
+                                                     'pseudorandom',
+                                                     timeStepsPerYear = 1,
+                                                     requiredTolerance = 0.02,
+                                                     seed = 42))
 print basketoption.NPV()
 
 basketoption = BasketOption(MinBasketPayoff(payoff), exercise)
-basketoption.setPricingEngine(MCBasketEngine(process,
-                                             'pseudorandom',
-                                             timeStepsPerYear = 1,
-                                             requiredTolerance = 0.02,
-                                             seed = 42))
+basketoption.setPricingEngine(MCEuropeanBasketEngine(process,
+                                                     'pseudorandom',
+                                                     timeStepsPerYear = 1,
+                                                     requiredTolerance = 0.02,
+                                                     seed = 42))
 print basketoption.NPV()
 
 basketoption = BasketOption(AverageBasketPayoff(payoff, 2), exercise)
-basketoption.setPricingEngine(MCBasketEngine(process,
-                                             'pseudorandom',
-                                             timeStepsPerYear = 1,
-                                             requiredTolerance = 0.02,
-                                             seed = 42))
+basketoption.setPricingEngine(MCEuropeanBasketEngine(process,
+                                                     'pseudorandom',
+                                                     timeStepsPerYear = 1,
+                                                     requiredTolerance = 0.02,
+                                                     seed = 42))
 print basketoption.NPV()
 

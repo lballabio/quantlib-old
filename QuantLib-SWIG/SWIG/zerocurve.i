@@ -39,10 +39,12 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
         Name##Ptr(const std::vector<Date>& dates,
                   const std::vector<Rate>& yields,
                   const DayCounter& dayCounter,
+                  const Calendar& calendar = Calendar(),
                   const Interpolator& i = Interpolator()) {
             return new Name##Ptr(
                 new InterpolatedZeroCurve<Interpolator>(dates,yields,
-                                                        dayCounter,i));
+                                                        dayCounter,
+                                                        calendar,i));
         }
         const std::vector<Date>& dates() {
             typedef InterpolatedZeroCurve<Interpolator> Name;
