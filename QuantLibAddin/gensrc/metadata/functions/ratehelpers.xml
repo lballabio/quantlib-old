@@ -64,8 +64,56 @@
     </Member>
 
     <Member name='qlRateHelperQuoteValue' type='QuantLib::RateHelper'>
-      <description>returns the quote value wrapped in the given RateHelper object.</description>
-      <libraryFunction>quoteValue</libraryFunction>
+      <description>returns the value of the Quote wrapped in the given RateHelper object.</description>
+      <libraryFunction>quote()->value</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRateHelperQuoteIsValid' type='QuantLib::RateHelper'>
+      <description>returns the isValid boolean of the Quote wrapped in the given RateHelper object.</description>
+      <libraryFunction>quote()->isValid</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRateHelperImpliedQuote' type='QuantLib::RateHelper'>
+      <description>returns the curve implied quote of the given RateHelper object.</description>
+      <libraryFunction>impliedQuote</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRateHelperQuoteError' type='QuantLib::RateHelper'>
+      <description>returns the error between the curve implied quote and the value of the Quote wrapped in the given RateHelper object.</description>
+      <libraryFunction>quoteError</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>

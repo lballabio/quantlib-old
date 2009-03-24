@@ -431,13 +431,13 @@ namespace QuantLibAddin {
           public:
             QuantLib::Rate rate() const { return rate_; }
             void visit(QuantLib::DepositRateHelper& h) {
-                rate_ = h.quoteValue();
+                rate_ = h.quote()->value();
             }
             void visit(QuantLib::FraRateHelper& h) {
-                rate_ = h.quoteValue();
+                rate_ = h.quote()->value();
             }
             void visit(QuantLib::FuturesRateHelper& h) {
-                QuantLib::Rate futureRate = 1.0 - h.quoteValue()/100.0;
+                QuantLib::Rate futureRate = 1.0 - h.quote()->value()/100.0;
                 QuantLib::Rate convAdj = h.convexityAdjustment();
                 QL_ENSURE(convAdj >= 0.0,
                           "Negative (" << convAdj <<
@@ -445,10 +445,10 @@ namespace QuantLibAddin {
                 rate_ = futureRate - convAdj;
             }
             void visit(QuantLib::SwapRateHelper& h) {
-                rate_ = h.quoteValue();
+                rate_ = h.quote()->value();
             }
             void visit(QuantLib::BMASwapRateHelper& h) {
-                rate_ = h.quoteValue();
+                rate_ = h.quote()->value();
             }
             void visit(QuantLib::FixedRateBondHelper& h) {
                 QL_FAIL("not implemented yet");
