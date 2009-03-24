@@ -11,6 +11,7 @@
     <include>qlo/interpolation.hpp</include>
     <include>qlo/interpolation2D.hpp</include>
     <include>qlo/optimization.hpp</include>
+    
     <include>ql/math/interpolations/sabrinterpolation.hpp</include>
     <include>ql/math/interpolations/abcdinterpolation.hpp</include>
     <include>ql/math/interpolations/interpolation2d.hpp</include>
@@ -48,7 +49,7 @@
 
     <!-- Interpolation interface -->
 
-    <Member name='qlInterpolationInterpolate' type='QuantLib::Interpolation' loopParameter='XValues' const='true'>
+    <Member name='qlInterpolationInterpolate' type='QuantLibAddin::Interpolation' loopParameter='XValues' const='true'>
       <description>Returns interpolated values using the given Interpolation object.</description>
       <longDescription>
         this is an example of long description.
@@ -82,7 +83,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolationDerivative' type='QuantLib::Interpolation' loopParameter='XValues' const='true'>
+    <Member name='qlInterpolationDerivative' type='QuantLibAddin::Interpolation' loopParameter='XValues' const='true'>
       <description>Returns the first derivative function values using the given Interpolation object.</description>
       <libraryFunction>derivative</libraryFunction>
       <SupportedPlatforms>
@@ -110,7 +111,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolationSecondDerivative' type='QuantLib::Interpolation' loopParameter='XValues' const='true'>
+    <Member name='qlInterpolationSecondDerivative' type='QuantLibAddin::Interpolation' loopParameter='XValues' const='true'>
       <description>Returns the second derivative function values using the given Interpolation object.</description>
       <libraryFunction>secondDerivative</libraryFunction>
       <SupportedPlatforms>
@@ -138,7 +139,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlInterpolationPrimitive' type='QuantLib::Interpolation' loopParameter='XValues' const='true'>
+    <Member name='qlInterpolationPrimitive' type='QuantLibAddin::Interpolation' loopParameter='XValues' const='true'>
       <description>Returns the primitive function values using the given Interpolation object.</description>
       <libraryFunction>primitive</libraryFunction>
       <SupportedPlatforms>
@@ -243,7 +244,8 @@
             <description>x array.</description>
           </Parameter>
           <Parameter name='YArray' exampleValue ='2.0,4.0,6.0,8.0,10.0,12.0'>
-            <type>QuantLib::Real</type>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
             <description>y array.</description>
           </Parameter>
@@ -268,7 +270,8 @@
             <description>x array.</description>
           </Parameter>
           <Parameter name='YArray' exampleValue ='1.0,8.0,27.0,64.0,125.0' >
-            <type>QuantLib::Real</type>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
             <description>y array.</description>
           </Parameter>
@@ -403,7 +406,8 @@
             <description>x array.</description>
           </Parameter>
           <Parameter name='YArray' exampleValue='0.0850,0.0733,0.0844,0.1082'>
-            <type>QuantLib::Real</type>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
             <description>y array.</description>
           </Parameter>
@@ -595,7 +599,8 @@
             <description>x array.</description>
           </Parameter>
           <Parameter name='YArray' exampleValue='0.0850,0.0733,0.0844,0.1082'>
-            <type>QuantLib::Real</type>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
             <description>y array.</description>
           </Parameter>

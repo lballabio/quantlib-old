@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,24 +23,58 @@
 #include <qlo/extrapolator.hpp>
 // needed for the enumerative types
 #include <ql/math/interpolations/cubicinterpolation.hpp>
+#include <ql/patterns/lazyobject.hpp>
 #include <ql/types.hpp>
 
 namespace QuantLib {
     class Extrapolator;
     class EndCriteria;
     class OptimizationMethod;
+
+    template<class T>
+    class Handle;
+
+    class Quote;
 }
 
 namespace QuantLibAddin {
 
-    class Interpolation : public Extrapolator {
+    class Interpolation : public Extrapolator, public QuantLib::LazyObject {
       public:
         Interpolation(const boost::shared_ptr<ObjectHandler::ValueObject>&,
                       const std::vector<QuantLib::Real>& x,
-                      const std::vector<QuantLib::Real>& y,
+                      const std::vector<QuantLib::Handle<QuantLib::Quote> >& yh,
                       bool permanent);
+        QuantLib::Real operator()(QuantLib::Real x,
+                                  bool allowExtrapolation) const {
+            calculate();
+            return boost::dynamic_pointer_cast<QuantLib::Interpolation>(
+                libraryObject_)->operator()(x, allowExtrapolation);
+        }
+        QuantLib::Real primitive(QuantLib::Real x,
+                                 bool allowExtrapolation = false) const {
+            calculate();
+            return boost::dynamic_pointer_cast<QuantLib::Interpolation>(
+                libraryObject_)->primitive(x, allowExtrapolation);
+        }
+        QuantLib::Real derivative(QuantLib::Real x,
+                                  bool allowExtrapolation = false) const {
+            calculate();
+            return boost::dynamic_pointer_cast<QuantLib::Interpolation>(
+                libraryObject_)->derivative(x, allowExtrapolation);
+        }
+        QuantLib::Real secondDerivative(QuantLib::Real x,
+                                        bool allowExtrapolation = false) const {
+            calculate();
+            return boost::dynamic_pointer_cast<QuantLib::Interpolation>(
+                libraryObject_)->secondDerivative(x, allowExtrapolation);
+        }
+        void performCalculations() const;
       protected:
-        std::vector<QuantLib::Real> x_, y_;
+        QuantLib::Size n_;
+        std::vector<QuantLib::Real> x_;
+        mutable std::vector<QuantLib::Real> y_;
+        std::vector<QuantLib::Handle<QuantLib::Quote> > yh_;
     };
 
     class GenericInterp : public Interpolation {
@@ -48,7 +82,7 @@ namespace QuantLibAddin {
         GenericInterp(const boost::shared_ptr<ObjectHandler::ValueObject>&,
                       const std::string& type,
                       const std::vector<QuantLib::Real>& x,
-                      const std::vector<QuantLib::Real>& y,
+                      const std::vector<QuantLib::Handle<QuantLib::Quote> >& y,
                       bool permanent);
     };
     
@@ -57,7 +91,7 @@ namespace QuantLibAddin {
         CubicInterpolation(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Real>& x,
-            const std::vector<QuantLib::Real>& y,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& y,
             QuantLib::CubicInterpolation::DerivativeApprox da,
             bool monotonic,
             QuantLib::CubicInterpolation::BoundaryCondition leftCondition,
@@ -72,7 +106,7 @@ namespace QuantLibAddin {
         AbcdInterpolation(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Real>& x,
-            const std::vector<QuantLib::Real>& y,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& y,
             QuantLib::Real a,
             QuantLib::Real b,
             QuantLib::Real c,
@@ -92,7 +126,7 @@ namespace QuantLibAddin {
         SABRInterpolation(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Real>& x,
-            const std::vector<QuantLib::Real>& y,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& y,
             QuantLib::Time t,
             QuantLib::Rate forward,
             QuantLib::Real alpha,

@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,69 +28,88 @@
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/math/interpolations/abcdinterpolation.hpp>
+#include <ql/quote.hpp>
 
 using std::pair;
 using std::vector;
+
 using boost::shared_ptr;
 using boost::dynamic_pointer_cast;
+
 using ObjectHandler::ValueObject;
 using ObjectHandler::Create;
+
 using QuantLib::Real;
 using QuantLib::Size;
 using QuantLib::EndCriteria;
 using QuantLib::OptimizationMethod;
+using QuantLib::Handle;
+using QuantLib::Quote;
 
 namespace QuantLibAddin {
 
+    namespace {
+        class QuoteHandleSorter {
+          public:
+            bool operator()(const pair<Real, Handle<Quote> >& h1,
+                            const pair<Real, Handle<Quote> >& h2) const {
+                if (h1.first > h2.first)
+                    return false;
+                return true;
+            }
+        };
+    }
+
     Interpolation::Interpolation(const shared_ptr<ValueObject>& prop,
                                  const vector<Real>& x,
-                                 const vector<Real>& y,
+                                 const vector<Handle<Quote> >& yh,
                                  bool permanent)
-    : Extrapolator(prop, permanent)
+    : Extrapolator(prop, permanent), n_(x.size()), x_(n_), y_(n_, 1.0), yh_(n_)
     {
         QL_REQUIRE(!x.empty(), "empty x vector");
-        Size n = x.size();
-        QL_REQUIRE(n==y.size(),
-                   "unmatched size between x (" << n << ") and y(" <<
-                   y.size() << ")");
-        vector<pair<Real, Real> > pairs(n);
-        for (Size i=0; i<n; ++i)
-            pairs[i] = std::make_pair<Real, Real>(x[i], y[i]);
-        std::sort(pairs.begin(), pairs.end());
-        vector<pair<Real, Real> >::iterator end = std::unique(pairs.begin(),
-                                                              pairs.end());
-        x_.push_back(pairs[0].first);
-        y_.push_back(pairs[0].second);
-        vector<pair<Real, Real> >::iterator j;
-        for (j=pairs.begin()+1; j<end; ++j) {
-            if (x_.back() == j->first) {
-                if (y_.back() == j->second) continue;
-                QL_FAIL("duplicated x value: " << j->first <<
-                        " with different y values: " << y_.back() <<
-                        ", " << j->second);
-            }
-            x_.push_back(j->first);
-            y_.push_back(j->second);
+        QL_REQUIRE(n_==yh.size(),
+                   "unmatched size between x (" << n_ << ") and y(" <<
+                   yh.size() << ")");
+        vector<pair<Real, Handle<Quote> > > pairs(n_);
+        for (Size i=0; i<n_; ++i)
+            pairs[i] = std::make_pair<Real, Handle<Quote> >(x[i], yh[i]);
+        std::sort(pairs.begin(), pairs.end(), QuoteHandleSorter());
+
+        x_[0] = pairs[0].first;
+        yh_[0] = pairs[0].second;
+        registerWith(yh_[0]);
+        vector<pair<Real, Handle<Quote> > >::iterator j = pairs.begin()+1;
+        for (Size i=1; i<n_; ++i, ++j) {
+            QL_REQUIRE(x_[i-1] != j->first,
+                       "duplicated x value: " << j->first);
+            x_[i] = j->first;
+            yh_[i] = j->second;
+            registerWith(yh_[i]);
         }
+    }
+
+    void Interpolation::performCalculations() const {
+        for (Size i=0; i<n_; ++i)
+            y_[i] = yh_[i]->value();
+        dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_)->update();
     }
 
     GenericInterp::GenericInterp(const shared_ptr<ValueObject>& p,
                                  const std::string& type,
                                  const vector<Real>& x,
-                                 const vector<Real>& y,
+                                 const vector<Handle<Quote> >& yh,
                                  bool permanent)
-    : Interpolation(p, x, y, permanent)
+    : Interpolation(p, x, yh, permanent)
     {
         libraryObject_ = Create<shared_ptr<QuantLib::Interpolation> >()
             (type, x_.begin(), x_.end(), y_.begin());
-        dynamic_pointer_cast<QuantLib::Interpolation>(
-            libraryObject_)->update();
     }
 
     CubicInterpolation::CubicInterpolation(
         const shared_ptr<ValueObject>& properties,
         const vector<Real>& x,
-        const vector<Real>& y,
+        const vector<Handle<Quote> >& yh,
         QuantLib::CubicInterpolation::DerivativeApprox da,
         bool monotonic,
         QuantLib::CubicInterpolation::BoundaryCondition leftCondition,
@@ -98,7 +117,7 @@ namespace QuantLibAddin {
         QuantLib::CubicInterpolation::BoundaryCondition rightCondition,
         Real rightValue,
         bool permanent)
-    : Interpolation(properties, x, y, permanent)
+    : Interpolation(properties, x, yh, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::CubicInterpolation(x_.begin(), x_.end(),
@@ -106,14 +125,12 @@ namespace QuantLibAddin {
                                          da, monotonic,
                                          leftCondition, leftValue,
                                          rightCondition, rightValue));
-        dynamic_pointer_cast<QuantLib::Interpolation>(
-            libraryObject_)->update();
     }
 
     AbcdInterpolation::AbcdInterpolation(
             const shared_ptr<ValueObject>& properties,
             const vector<Real>& x,
-            const vector<Real>& y,
+            const vector<Handle<Quote> >& yh,
             Real a,
             Real b,
             Real c,
@@ -126,7 +143,7 @@ namespace QuantLibAddin {
             const shared_ptr<QuantLib::EndCriteria>& ec,
             const shared_ptr<QuantLib::OptimizationMethod>& om,
             bool permanent)
-    : Interpolation(properties, x, y, permanent)
+    : Interpolation(properties, x, yh, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::AbcdInterpolation(x_.begin(), x_.end(), y_.begin(),
@@ -134,14 +151,12 @@ namespace QuantLibAddin {
                                         aIsFixed, bIsFixed, cIsFixed, dIsFixed,
                                         vegaWeighted,
                                         ec, om));
-        dynamic_pointer_cast<QuantLib::Interpolation>(
-            libraryObject_)->update();
     }
 
     SABRInterpolation::SABRInterpolation(
                                     const shared_ptr<ValueObject>& p,
                                     const vector<Real>& x,
-                                    const vector<Real>& y,
+                                    const vector<Handle<Quote> >& yh,
                                     QuantLib::Time t,
                                     QuantLib::Rate forward,
                                     Real alpha,
@@ -156,7 +171,7 @@ namespace QuantLibAddin {
                                     const shared_ptr<EndCriteria>& ec,
                                     const shared_ptr<OptimizationMethod>& om,
                                     bool permanent)
-    : Interpolation(p, x, y, permanent), forward_(forward)
+    : Interpolation(p, x, yh, permanent), forward_(forward)
     {
         libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SABRInterpolation(x_.begin(), x_.end(), y_.begin(),
@@ -165,8 +180,6 @@ namespace QuantLibAddin {
                                         isNuFixed, isRhoFixed,
                                         vegaWeighted,
                                         ec, om));
-        dynamic_pointer_cast<QuantLib::Interpolation>(
-            libraryObject_)->update();
     }
 
 }
