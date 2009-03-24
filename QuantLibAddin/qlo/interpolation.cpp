@@ -64,7 +64,7 @@ namespace QuantLibAddin {
                                  const vector<Real>& x,
                                  const vector<Handle<Quote> >& yh,
                                  bool permanent)
-    : Extrapolator(prop, permanent), n_(x.size()), x_(n_), y_(n_, 1.0), yh_(n_)
+    : Extrapolator(prop, permanent), n_(x.size()), x_(n_), y_(n_), yh_(n_)
     {
         QL_REQUIRE(!x.empty(), "empty x vector");
         QL_REQUIRE(n_==yh.size(),
@@ -86,13 +86,14 @@ namespace QuantLibAddin {
             yh_[i] = j->second;
             registerWith(yh_[i]);
         }
+        qlInterpolation_ = dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_);
     }
 
     void Interpolation::performCalculations() const {
         for (Size i=0; i<n_; ++i)
             y_[i] = yh_[i]->value();
-        dynamic_pointer_cast<QuantLib::Interpolation>(
-            libraryObject_)->update();
+        qlInterpolation_->update();
     }
 
     GenericInterp::GenericInterp(const shared_ptr<ValueObject>& p,

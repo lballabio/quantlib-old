@@ -48,26 +48,22 @@ namespace QuantLibAddin {
         QuantLib::Real operator()(QuantLib::Real x,
                                   bool allowExtrapolation) const {
             calculate();
-            return boost::dynamic_pointer_cast<QuantLib::Interpolation>(
-                libraryObject_)->operator()(x, allowExtrapolation);
+            return qlInterpolation_->operator()(x, allowExtrapolation);
         }
         QuantLib::Real primitive(QuantLib::Real x,
-                                 bool allowExtrapolation = false) const {
+                                 bool allowExtrapolation) const {
             calculate();
-            return boost::dynamic_pointer_cast<QuantLib::Interpolation>(
-                libraryObject_)->primitive(x, allowExtrapolation);
+            return qlInterpolation_->primitive(x, allowExtrapolation);
         }
         QuantLib::Real derivative(QuantLib::Real x,
-                                  bool allowExtrapolation = false) const {
+                                  bool allowExtrapolation) const {
             calculate();
-            return boost::dynamic_pointer_cast<QuantLib::Interpolation>(
-                libraryObject_)->derivative(x, allowExtrapolation);
+            return qlInterpolation_->derivative(x, allowExtrapolation);
         }
         QuantLib::Real secondDerivative(QuantLib::Real x,
-                                        bool allowExtrapolation = false) const {
+                                        bool allowExtrapolation) const {
             calculate();
-            return boost::dynamic_pointer_cast<QuantLib::Interpolation>(
-                libraryObject_)->secondDerivative(x, allowExtrapolation);
+            return qlInterpolation_->secondDerivative(x, allowExtrapolation);
         }
         void performCalculations() const;
       protected:
@@ -75,6 +71,7 @@ namespace QuantLibAddin {
         std::vector<QuantLib::Real> x_;
         mutable std::vector<QuantLib::Real> y_;
         std::vector<QuantLib::Handle<QuantLib::Quote> > yh_;
+        boost::shared_ptr<QuantLib::Interpolation> qlInterpolation_;
     };
 
     class GenericInterp : public Interpolation {
