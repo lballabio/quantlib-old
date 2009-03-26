@@ -86,8 +86,6 @@ namespace QuantLibAddin {
             yh_[i] = j->second;
             registerWith(yh_[i]);
         }
-        qlInterpolation_ = dynamic_pointer_cast<QuantLib::Interpolation>(
-            libraryObject_);
     }
 
     void Interpolation::performCalculations() const {
@@ -105,6 +103,8 @@ namespace QuantLibAddin {
     {
         libraryObject_ = Create<shared_ptr<QuantLib::Interpolation> >()
             (type, x_.begin(), x_.end(), y_.begin());
+        qlInterpolation_ = dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_);
     }
 
     CubicInterpolation::CubicInterpolation(
@@ -126,6 +126,8 @@ namespace QuantLibAddin {
                                          da, monotonic,
                                          leftCondition, leftValue,
                                          rightCondition, rightValue));
+        qlInterpolation_ = dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_);
     }
 
     AbcdInterpolation::AbcdInterpolation(
@@ -152,6 +154,8 @@ namespace QuantLibAddin {
                                         aIsFixed, bIsFixed, cIsFixed, dIsFixed,
                                         vegaWeighted,
                                         ec, om));
+        qlInterpolation_ = dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_);
     }
 
     SABRInterpolation::SABRInterpolation(
@@ -181,6 +185,8 @@ namespace QuantLibAddin {
                                         isNuFixed, isRhoFixed,
                                         vegaWeighted,
                                         ec, om));
+        qlInterpolation_ = dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_);
     }
 
 }

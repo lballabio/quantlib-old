@@ -41,10 +41,6 @@ namespace QuantLibAddin {
 
     class Interpolation : public Extrapolator, public QuantLib::LazyObject {
       public:
-        Interpolation(const boost::shared_ptr<ObjectHandler::ValueObject>&,
-                      const std::vector<QuantLib::Real>& x,
-                      const std::vector<QuantLib::Handle<QuantLib::Quote> >& yh,
-                      bool permanent);
         QuantLib::Real operator()(QuantLib::Real x,
                                   bool allowExtrapolation) const {
             calculate();
@@ -67,6 +63,10 @@ namespace QuantLibAddin {
         }
         void performCalculations() const;
       protected:
+        Interpolation(const boost::shared_ptr<ObjectHandler::ValueObject>&,
+                      const std::vector<QuantLib::Real>& x,
+                      const std::vector<QuantLib::Handle<QuantLib::Quote> >& yh,
+                      bool permanent);
         QuantLib::Size n_;
         std::vector<QuantLib::Real> x_;
         mutable std::vector<QuantLib::Real> y_;
