@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
- Copyright (C) 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2007, 2008, 2009 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -47,7 +47,7 @@ namespace QuantLibAddin {
                             Parabolic,
                             LogParabolic,
                             MonotonicParabolic,
-                            MonotonicLogParabolic,
+                            MonotonicLogParabolic
         };
     };
 
@@ -69,6 +69,17 @@ namespace QuantLibAddin {
             const std::string& traitsID,
             const std::string& interpolatorID,
             bool permanent);
+        PiecewiseYieldCurve(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Date>& dates,
+            const std::vector<QuantLib::Rate>& forwards,
+            const QuantLib::Calendar& calendar,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            const std::string& traitsID,
+            const std::string& interpolatorID,
+            bool permanent);
 
         const std::vector<QuantLib::Time>& times(
             Token::Traits traits, Token::Interpolator interpolator) const;
@@ -84,6 +95,12 @@ namespace QuantLibAddin {
 
         //QuantLib::Size iterations(
         //    Token::Traits traits, Token::Interpolator interpolator) const;
+
+        const std::vector<QuantLib::Time>& jumpTimes(
+            Token::Traits traits, Token::Interpolator interpolator) const;
+
+        const std::vector<QuantLib::Date>& jumpDates(
+            Token::Traits traits, Token::Interpolator interpolator) const;
 
     };
 

@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2007 Eric Ehlers
- Copyright (C) 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2007, 2008, 2009 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,6 +24,7 @@
 
 #include <qlo/piecewiseyieldcurve.hpp>
 #include <qlo/enumerations/factories/termstructuresfactory.hpp>
+
 #include <ql/termstructures/yield/piecewiseyieldcurve.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
@@ -43,23 +44,9 @@ namespace QuantLibAddin {
             QuantLib::Real accuracy,
             const std::string& traitsID,
             const std::string& interpolatorID,
-            bool permanent) : YieldTermStructure(properties, permanent)
+            bool permanent)
+    : YieldTermStructure(properties, permanent)
     {
-        //QuantLib::CubicSpline naturalCubic(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    false);
-
-        //QuantLib::CubicSpline cubic1(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::FirstDerivative, 0.0,
-        //    false);
-
-        //QuantLib::CubicSpline monotoneCubic(
-        //    QuantLib::CubicSpline::SecondDerivative, 0.0,
-        //    QuantLib::CubicSpline::FirstDerivative, 0.0,
-        //    true);
-
         libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
             QuantLib::YieldTermStructure> >()(traitsID,
                                               interpolatorID,
@@ -70,17 +57,31 @@ namespace QuantLibAddin {
                                               jumps,
                                               jumpDates,
                                               accuracy);
-
-        //libraryObject_ = boost::shared_ptr<QuantLib::YieldTermStructure>(new
-        //    QuantLib::PiecewiseYieldCurve<QuantLib::ForwardRate,
-        //                                  QuantLib::CubicSpline>(nDays,
-        //                                                   calendar,
-        //                                                   rateHelpersQL,
-        //                                                   dayCounter,
-        //                                                   accuracy,
-        //                                                   monotoneCubic));
-
     }
+
+    //PiecewiseYieldCurve::PiecewiseYieldCurve(
+    //        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+    //        const std::vector<QuantLib::Date>& dates,
+    //        const std::vector<QuantLib::Rate>& forwards,
+    //        const QuantLib::Calendar& calendar,
+    //        const QuantLib::DayCounter& dayCounter,
+    //        const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+    //        const std::vector<QuantLib::Date>& jumpDates,
+    //        const std::string& traitsID,
+    //        const std::string& interpolatorID,
+    //        bool permanent)
+    //: YieldTermStructure(properties, permanent)
+    //{
+    //    libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
+    //        QuantLib::YieldTermStructure> >()(traitsID,
+    //                                          interpolatorID,
+    //                                          dates,
+    //                                          forwards,
+    //                                          calendar,
+    //                                          dayCounter,
+    //                                          jumps,
+    //                                          jumpDates);
+    //}
 
     // Before implementing the member functions it is necessary to provide some logic to wrap
     // the underlying QuantLib template class PiecewiseYieldCurve<Traits, Interpolator>.
@@ -102,6 +103,10 @@ namespace QuantLibAddin {
         virtual const std::vector<QuantLib::Real>& data(const QuantLib::Extrapolator *extrapolator) const = 0;
         //virtual const std::vector<QuantLib::Real>& improvements(const QuantLib::Extrapolator *extrapolator) const = 0;
         //virtual QuantLib::Size iterations(const QuantLib::Extrapolator *extrapolator) const = 0;
+
+        virtual const std::vector<QuantLib::Time>& jumpTimes(const QuantLib::Extrapolator *extrapolator) const = 0;
+        virtual const std::vector<QuantLib::Date>& jumpDates(const QuantLib::Extrapolator *extrapolator) const = 0;
+
         virtual ~CallerBase() {}
     };
 
@@ -141,6 +146,14 @@ namespace QuantLibAddin {
         //virtual QuantLib::Size iterations(const QuantLib::Extrapolator *extrapolator) const {
         //    return get(extrapolator)->iterations();
         //}
+
+        virtual const std::vector<QuantLib::Time>& jumpTimes(const QuantLib::Extrapolator *extrapolator) const {
+            return get(extrapolator)->jumpTimes();
+        }
+
+        virtual const std::vector<QuantLib::Date>& jumpDates(const QuantLib::Extrapolator *extrapolator) const {
+            return get(extrapolator)->jumpDates();
+        }
 
     };
 
@@ -299,7 +312,7 @@ namespace QuantLibAddin {
 
         // Destructor - deallocate the CallerMap.
         ~CallerFactory() {
-            for (CallerMap::const_iterator i = callerMap_.begin(); i != callerMap_.end(); i++)
+            for (CallerMap::const_iterator i = callerMap_.begin(); i != callerMap_.end(); ++i)
                 delete i->second;
         }
 
@@ -352,5 +365,15 @@ Call::callerFactory().getCaller(Call::TokenPair(traits, interpolator))->FUNC(lib
     //    Token::Traits traits, Token::Interpolator interpolator) const {
     //    return CALL(iterations);
     //}
+
+    const std::vector<QuantLib::Time>& PiecewiseYieldCurve::jumpTimes(
+        Token::Traits traits, Token::Interpolator interpolator) const {
+        return CALL(jumpTimes);
+    }
+
+    const std::vector<QuantLib::Date>& PiecewiseYieldCurve::jumpDates(
+        Token::Traits traits, Token::Interpolator interpolator) const {
+        return CALL(jumpDates);
+    }
 
 }
