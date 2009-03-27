@@ -62,7 +62,7 @@ namespace QuantLibAddin {
     //PiecewiseYieldCurve::PiecewiseYieldCurve(
     //        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
     //        const std::vector<QuantLib::Date>& dates,
-    //        const std::vector<QuantLib::Rate>& forwards,
+    //        const std::vector<QuantLib::Real>& data,
     //        const QuantLib::Calendar& calendar,
     //        const QuantLib::DayCounter& dayCounter,
     //        const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
@@ -76,7 +76,7 @@ namespace QuantLibAddin {
     //        QuantLib::YieldTermStructure> >()(traitsID,
     //                                          interpolatorID,
     //                                          dates,
-    //                                          forwards,
+    //                                          data,
     //                                          calendar,
     //                                          dayCounter,
     //                                          jumps,

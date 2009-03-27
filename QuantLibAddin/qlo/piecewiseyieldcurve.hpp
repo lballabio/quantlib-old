@@ -69,17 +69,17 @@ namespace QuantLibAddin {
             const std::string& traitsID,
             const std::string& interpolatorID,
             bool permanent);
-        PiecewiseYieldCurve(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const std::vector<QuantLib::Date>& dates,
-            const std::vector<QuantLib::Rate>& forwards,
-            const QuantLib::Calendar& calendar,
-            const QuantLib::DayCounter& dayCounter,
-            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
-            const std::vector<QuantLib::Date>& jumpDates,
-            const std::string& traitsID,
-            const std::string& interpolatorID,
-            bool permanent);
+        //PiecewiseYieldCurve(
+        //    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        //    const std::vector<QuantLib::Date>& dates,
+        //    const std::vector<QuantLib::Real>& data,
+        //    const QuantLib::Calendar& calendar,
+        //    const QuantLib::DayCounter& dayCounter,
+        //    const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+        //    const std::vector<QuantLib::Date>& jumpDates,
+        //    const std::string& traitsID,
+        //    const std::string& interpolatorID,
+        //    bool permanent);
 
         const std::vector<QuantLib::Time>& times(
             Token::Traits traits, Token::Interpolator interpolator) const;
