@@ -80,11 +80,25 @@ class Safe##T {
 
 make_safe_interpolation(LinearInterpolation,LinearInterpolation);
 make_safe_interpolation(LogLinearInterpolation,LogLinearInterpolation);
+
 make_safe_interpolation(BackwardFlatInterpolation,BackwardFlatInterpolation);
 make_safe_interpolation(ForwardFlatInterpolation,ForwardFlatInterpolation);
-make_safe_interpolation(NaturalCubicInterpolation,CubicSplineInterpolation);
-make_safe_interpolation(MonotonicNaturalCubicInterpolation,
-                        MonotonicCubicSplineInterpolation);
+
+make_safe_interpolation(CubicNaturalSpline,CubicNaturalSpline);
+make_safe_interpolation(LogCubicNaturalSpline,LogCubicNaturalSpline);
+make_safe_interpolation(MonotonicCubicNaturalSpline,MonotonicCubicNaturalSpline);
+make_safe_interpolation(MonotonicLogCubicNaturalSpline,MonotonicLogCubicNaturalSpline);
+
+make_safe_interpolation(KrugerCubic,KrugerCubic);
+make_safe_interpolation(KrugerLogCubic,KrugerLogCubic);
+
+make_safe_interpolation(FritschButlandCubic,FritschButlandCubic);
+make_safe_interpolation(FritschButlandLogCubic,FritschButlandLogCubic);
+
+make_safe_interpolation(Parabolic,Parabolic);
+make_safe_interpolation(LogParabolic,LogParabolic);
+make_safe_interpolation(MonotonicParabolic,MonotonicParabolic);
+make_safe_interpolation(MonotonicLogParabolic,MonotonicLogParabolic);
 
 %define extend_spline(T)
 %extend Safe##T {
@@ -94,11 +108,27 @@ make_safe_interpolation(MonotonicNaturalCubicInterpolation,
     Real secondDerivative(Real x, bool extrapolate = false) {
         return self->f_.secondDerivative(x,extrapolate);
     }
+    Real primitive(Real x, bool extrapolate = false) {
+        return self->f_.primitive(x,extrapolate);
+    }
 }
 %enddef
 
-extend_spline(NaturalCubicInterpolation);
-extend_spline(MonotonicNaturalCubicInterpolation);
+extend_spline(CubicNaturalSpline);
+extend_spline(LogCubicNaturalSpline);
+extend_spline(MonotonicCubicNaturalSpline);
+extend_spline(MonotonicLogCubicNaturalSpline);
+
+extend_spline(KrugerCubic);
+extend_spline(KrugerLogCubic);
+
+extend_spline(FritschButlandCubic);
+extend_spline(FritschButlandLogCubic);
+
+extend_spline(Parabolic);
+extend_spline(LogParabolic);
+extend_spline(MonotonicParabolic);
+extend_spline(MonotonicLogParabolic);
 
 %{
 // safe versions which copy their arguments
