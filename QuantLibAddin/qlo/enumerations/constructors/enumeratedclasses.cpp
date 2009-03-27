@@ -325,7 +325,7 @@ namespace QuantLibAddin {
                                             ObjectHandler::dbl_itr& yBegin) {
         return boost::shared_ptr<QuantLib::Interpolation>(new
             QuantLib::CubicInterpolation(xBegin, xEnd, yBegin,
-                                         QuantLib::CubicInterpolation::Kruger, true,
+                                         QuantLib::CubicInterpolation::Kruger, false,
                                          QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                          QuantLib::CubicInterpolation::SecondDerivative, 0.0));
     }
@@ -335,7 +335,7 @@ namespace QuantLibAddin {
                                             ObjectHandler::dbl_itr& yBegin) {
         return boost::shared_ptr<QuantLib::Interpolation>(new
             QuantLib::LogCubicInterpolation(xBegin, xEnd, yBegin,
-                                            QuantLib::CubicInterpolation::Kruger, true,
+                                            QuantLib::CubicInterpolation::Kruger, false,
                                             QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                             QuantLib::CubicInterpolation::SecondDerivative, 0.0));
     }
@@ -345,7 +345,7 @@ namespace QuantLibAddin {
                                             ObjectHandler::dbl_itr& yBegin) {
         return boost::shared_ptr<QuantLib::Interpolation>(new
             QuantLib::CubicInterpolation(xBegin, xEnd, yBegin,
-                                         QuantLib::CubicInterpolation::FritschButland, true,
+                                         QuantLib::CubicInterpolation::FritschButland, false,
                                          QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                          QuantLib::CubicInterpolation::SecondDerivative, 0.0));
     }
@@ -355,7 +355,7 @@ namespace QuantLibAddin {
                                             ObjectHandler::dbl_itr& yBegin) {
         return boost::shared_ptr<QuantLib::Interpolation>(new
             QuantLib::LogCubicInterpolation(xBegin, xEnd, yBegin,
-                                            QuantLib::CubicInterpolation::FritschButland, true,
+                                            QuantLib::CubicInterpolation::FritschButland, false,
                                             QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                             QuantLib::CubicInterpolation::SecondDerivative, 0.0));
     }
