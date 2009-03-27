@@ -15,7 +15,7 @@
     <include>qlo/conversions/coercetermstructure.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2007 Ferdinando Ametrano
+    Copyright (C) 2007, 2009 Ferdinando Ametrano
     Copyright (C) 2007 Eric Ehlers
   </copyright>
   <Functions>
@@ -80,60 +80,6 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
-    <!--<Constructor name='qlPiecewiseYieldCurve2'>
-      <libraryFunction>PiecewiseYieldCurve</libraryFunction>
-      <SupportedPlatforms>
-        --><!--SupportedPlatform name='Excel' calcInWizard='false'/--><!--
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Dates' exampleValue ='0D,1M,3M,6M,1Y,2Y,3Y,5Y,10Y'>
-            <type>QuantLib::Date</type>
-            <tensorRank>vector</tensorRank>
-            <description>vector of dates, the first one being the one at which discount factor = 1.0</description>
-          </Parameter>
-          <Parameter name='Data' exampleValue ='1.0,0.99,0.96,0.94,0.9,0.8,0.7,0.6,0.4'>
-            <type>QuantLib::Real</type>
-            <tensorRank>vector</tensorRank>
-            <description>data vector. Each element should be of the type selected by TraitsID</description>
-          </Parameter>
-          <Parameter name='Calendar'>
-            <type>QuantLib::Calendar</type>
-            <tensorRank>scalar</tensorRank>
-            <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate.</description>
-          </Parameter>
-          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
-            <type>QuantLib::DayCounter</type>
-            <tensorRank>scalar</tensorRank>
-            <description>DayCounter ID.</description>
-          </Parameter>
-          <Parameter name='Jumps' exampleValue='1.0'>
-            <type>QuantLib::Quote</type>
-            <superType>libToHandle</superType>
-            <tensorRank>vector</tensorRank>
-            <description>Jump quotes vector.</description>
-          </Parameter>
-          <Parameter name='JumpDates' exampleValue='1Y'>
-            <type>QuantLib::Date</type>
-            <tensorRank>vector</tensorRank>
-            <description>Jump dates vector.</description>
-          </Parameter>
-          <Parameter name='TraitsID' default='"Discount"'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Discount, ZeroYield, or ForwardRate.</description>
-          </Parameter>
-          <Parameter name='InterpolatorID' default='"MonotonicLogCubicNaturalSpline"'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>BackwardFlat, ForwardFlat, Linear, LogLinear, LogParabolic, KrugerLogCubic, etc.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>-->
 
     <!-- PiecewiseYieldCurve interface -->
 
@@ -211,6 +157,58 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseYieldCurveJumpTimes' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
+      <description>Retrieve list of jump times for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;.</description>
+      <libraryFunction>jumpTimes</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Traits'>
+            <type>QuantLibAddin::Token::Traits</type>
+            <tensorRank>scalar</tensorRank>
+            <description>traits.</description>
+          </Parameter>
+          <Parameter name='Interpolator'>
+            <type>QuantLibAddin::Token::Interpolator</type>
+            <tensorRank>scalar</tensorRank>
+            <description>interpolator.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseYieldCurveJumpDates' type='QuantLibAddin::PiecewiseYieldCurve' superType='objectClass'>
+      <description>Retrieve list of jump dates for the given PiecewiseYieldCurve&lt;Traits, Interpolator&gt;.</description>
+      <libraryFunction>jumpDates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Traits'>
+            <type>QuantLibAddin::Token::Traits</type>
+            <tensorRank>scalar</tensorRank>
+            <description>traits.</description>
+          </Parameter>
+          <Parameter name='Interpolator'>
+            <type>QuantLibAddin::Token::Interpolator</type>
+            <tensorRank>scalar</tensorRank>
+            <description>interpolator.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </Member>

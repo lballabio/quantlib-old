@@ -59,30 +59,6 @@ namespace QuantLibAddin {
                                               accuracy);
     }
 
-    //PiecewiseYieldCurve::PiecewiseYieldCurve(
-    //        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-    //        const std::vector<QuantLib::Date>& dates,
-    //        const std::vector<QuantLib::Real>& data,
-    //        const QuantLib::Calendar& calendar,
-    //        const QuantLib::DayCounter& dayCounter,
-    //        const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
-    //        const std::vector<QuantLib::Date>& jumpDates,
-    //        const std::string& traitsID,
-    //        const std::string& interpolatorID,
-    //        bool permanent)
-    //: YieldTermStructure(properties, permanent)
-    //{
-    //    libraryObject_ = ObjectHandler::Create<boost::shared_ptr<
-    //        QuantLib::YieldTermStructure> >()(traitsID,
-    //                                          interpolatorID,
-    //                                          dates,
-    //                                          data,
-    //                                          calendar,
-    //                                          dayCounter,
-    //                                          jumps,
-    //                                          jumpDates);
-    //}
-
     // Before implementing the member functions it is necessary to provide some logic to wrap
     // the underlying QuantLib template class PiecewiseYieldCurve<Traits, Interpolator>.
     // This logic is placed in namespace Call.
