@@ -183,6 +183,7 @@
     <DataType defaultSuperType='objectClass'>QuantLibAddin::HistoricalForwardRatesAnalysis</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Index</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Instrument</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::InterpolatedYieldCurve</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Interpolation</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::LMMDriftCalculator</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::LMMNormalDriftCalculator</DataType>

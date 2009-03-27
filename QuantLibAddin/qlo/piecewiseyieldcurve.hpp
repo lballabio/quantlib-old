@@ -25,32 +25,6 @@
 
 namespace QuantLibAddin {
 
-    // The struct 'Token' provides values which act as placeholders for
-    // QuantLib types of the same name.
-    struct Token {
-        enum Traits { Discount,
-                      ForwardRate,
-                      ZeroYield
-        };
-        enum Interpolator { BackwardFlat,
-                            ForwardFlat,
-                            Linear,
-                            LogLinear,
-                            CubicNaturalSpline,
-                            LogCubicNaturalSpline,
-                            MonotonicCubicNaturalSpline,
-                            MonotonicLogCubicNaturalSpline,
-                            KrugerCubic,
-                            KrugerLogCubic,
-                            FritschButlandCubic,
-                            FritschButlandLogCubic,
-                            Parabolic,
-                            LogParabolic,
-                            MonotonicParabolic,
-                            MonotonicLogParabolic
-        };
-    };
-
     // A wrapper for QuantLib template class PiecewiseYieldCurve<Traits, Interpolator>.
     // Calls to constructor/member functions must specify values for Traits and Interpolator
     // because it is not possible to expose a template class directly to client platforms
@@ -69,18 +43,6 @@ namespace QuantLibAddin {
             const std::string& traitsID,
             const std::string& interpolatorID,
             bool permanent);
-        //PiecewiseYieldCurve(
-        //    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        //    const std::vector<QuantLib::Date>& dates,
-        //    const std::vector<QuantLib::Real>& data,
-        //    const QuantLib::Calendar& calendar,
-        //    const QuantLib::DayCounter& dayCounter,
-        //    const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
-        //    const std::vector<QuantLib::Date>& jumpDates,
-        //    const std::string& traitsID,
-        //    const std::string& interpolatorID,
-        //    bool permanent);
-
         const std::vector<QuantLib::Time>& times(
             Token::Traits traits, Token::Interpolator interpolator) const;
 

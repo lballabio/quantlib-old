@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -46,6 +46,32 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
      
+    // The struct 'Token' provides values which act as placeholders for
+    // QuantLib types of the same name.
+    struct Token {
+        enum Traits { Discount,
+                      ForwardRate,
+                      ZeroYield
+        };
+        enum Interpolator { BackwardFlat,
+                            ForwardFlat,
+                            Linear,
+                            LogLinear,
+                            CubicNaturalSpline,
+                            LogCubicNaturalSpline,
+                            MonotonicCubicNaturalSpline,
+                            MonotonicLogCubicNaturalSpline,
+                            KrugerCubic,
+                            KrugerLogCubic,
+                            FritschButlandCubic,
+                            FritschButlandLogCubic,
+                            Parabolic,
+                            LogParabolic,
+                            MonotonicParabolic,
+                            MonotonicLogParabolic
+        };
+    };
+
     class DiscountCurve : public YieldTermStructure {
       public:
         DiscountCurve(
@@ -102,6 +128,29 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
             const QuantLib::Date& referenceDate,
             bool permanent);
+    };
+
+
+    class InterpolatedYieldCurve : public YieldTermStructure {
+      public:
+        InterpolatedYieldCurve(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Date>& dates,
+            const std::vector<QuantLib::Real>& data,
+            const QuantLib::Calendar& calendar,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            const std::string& traitsID,
+            const std::string& interpolatorID,
+            bool permanent);
+        const std::vector<QuantLib::Time>& times() const;
+        const std::vector<QuantLib::Date>& dates() const;
+        const std::vector<QuantLib::Real>& data() const;
+        //const std::vector<QuantLib::Time>& jumpTimes() const;
+        //const std::vector<QuantLib::Date>& jumpDates() const;
+      private:
+        std::string traitsID_, interpolatorID_;
     };
 
 }
