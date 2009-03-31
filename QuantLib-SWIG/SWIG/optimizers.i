@@ -199,6 +199,7 @@ using QuantLib::OptimizationMethod;
 using QuantLib::ConjugateGradient;
 using QuantLib::Simplex;
 using QuantLib::SteepestDescent;
+using QuantLib::BFGS;
 %}
 
 class OptimizationMethod {
@@ -220,6 +221,11 @@ class Simplex : public OptimizationMethod {
 class SteepestDescent : public OptimizationMethod {
   public:
     SteepestDescent();
+};
+
+class BFGS : public OptimizationMethod {
+  public:
+    BFGS();
 };
 
 
