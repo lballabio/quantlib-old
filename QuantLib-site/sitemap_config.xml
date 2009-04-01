@@ -106,7 +106,9 @@
   <filter  action="drop"  type="wildcard"  pattern="*/reference*"  />
   <filter  action="drop"  type="wildcard"  pattern="*/styles*"     />
   <filter  action="drop"  type="wildcard"  pattern="*/templates*"  />
-  <filter  action="drop"  type="wildcard"  pattern="*/quep/quep*/*" />
+  <filter  action="drop"  type="wildcard"  pattern="*/press*"      />
+  <filter  action="drop"  type="wildcard"  pattern="*/quep/quep*/*"/>
+  <filter  action="drop"  type="wildcard"  pattern="*/quep/"       />
 
   <filter  action="drop"  type="wildcard"  pattern="*/gensrc*"           />
   <filter  action="drop"  type="wildcard"  pattern="*/objecthandler*"    />
