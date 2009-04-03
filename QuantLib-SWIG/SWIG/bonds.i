@@ -46,10 +46,17 @@ class BondPtr : public boost::shared_ptr<Instrument> {
     #if defined(SWIGPYTHON) || defined (SWIGRUBY)
     %rename(bondYield) yield;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("settlement-date") settlementDate;
-    %rename("clean-price")     cleanPrice;
-    %rename("dirty-price")     dirtyPrice;
-    %rename("accrued-amount")  accruedAmount;
+    %rename("next-coupon")      nextCoupon;
+    %rename("previous-coupon")  previousCoupon;
+    %rename("settlement-days")  settlementDays;
+    %rename("settlement-date")  settlementDate;
+    %rename("maturity-date")    maturityDate;
+    %rename("issue-date")       issueDate;
+    %rename("face-amount")      faceAmount;
+    %rename("clean-price")      cleanPrice;
+    %rename("dirty-price")      dirtyPrice;
+    %rename("settlement-value") settlementValue;
+    %rename("accrued-amount")   accruedAmount;
     #endif
   protected:
     BondPtr();
@@ -152,26 +159,49 @@ class BondPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<Bond>(*self)
                 ->settlementValue(cleanPrice);
         }
-        Real cleanPriceFromZSpread(Spread zSpread,
-                                   const DayCounter& dc,
-                                   Compounding compounding,
-                                   Frequency freq,
-                                   const Date& settlementDate = Date()) const {
-            return boost::dynamic_pointer_cast<Bond>(*self)
-                ->cleanPriceFromZSpread(zSpread, dc, compounding,
-                                        freq, settlementDate);
-        }
-        Real dirtyPriceFromZSpread(Spread zSpread,
-                                   const DayCounter& dc,
-                                   Compounding compounding,
-                                   Frequency freq,
-                                   const Date& settlementDate = Date()) const {
-            return boost::dynamic_pointer_cast<Bond>(*self)
-                ->dirtyPriceFromZSpread(zSpread, dc, compounding,
-                                        freq, settlementDate);
-        }
     }
 };
+
+
+#if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+%rename("clean-price-from-z-spread") cleanPriceFromZSpread;
+%rename("dirty-price-from-z-spread") dirtyPriceFromZSpread;
+#endif
+
+%inline %{
+
+    Real cleanPriceFromZSpread(
+                   const BondPtr& bond,
+                   const boost::shared_ptr<YieldTermStructure>& discountCurve,
+                   Spread zSpread,
+                   const DayCounter& dc,
+                   Compounding compounding,
+                   Frequency freq,
+                   const Date& settlementDate = Date()) {
+        return QuantLib::cleanPriceFromZSpread(
+                                  *(boost::dynamic_pointer_cast<Bond>(bond)),
+                                  discountCurve,
+                                  zSpread, dc, compounding,
+                                  freq, settlementDate);
+    }
+
+    Real dirtyPriceFromZSpread(
+                   const BondPtr& bond,
+                   const boost::shared_ptr<YieldTermStructure>& discountCurve,
+                   Spread zSpread,
+                   const DayCounter& dc,
+                   Compounding compounding,
+                   Frequency freq,
+                   const Date& settlementDate = Date()) {
+        return QuantLib::dirtyPriceFromZSpread(
+                                  *(boost::dynamic_pointer_cast<Bond>(bond)),
+                                  discountCurve,
+                                  zSpread, dc, compounding,
+                                  freq, settlementDate);
+    }
+
+%}
+
 
 
 %rename(ZeroCouponBond) ZeroCouponBondPtr;
