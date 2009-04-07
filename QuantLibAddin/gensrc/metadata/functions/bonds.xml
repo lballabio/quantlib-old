@@ -22,6 +22,7 @@
     <include>qlo/termstructures.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>ql/instruments/bond.hpp</include>
+    <include>ql/pricingengines/bond/zspread.hpp</include>
     <include>ql/currency.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
@@ -373,9 +374,9 @@
       </ReturnValue>
     </Member>-->
 
-    <Member name='qlBondCleanPriceFromZSpread' type='QuantLib::Bond' loopParameter='ZSpread'>
-      <description>Returns the clean price for the bond given Z-Spread and settlement date. The bond settlement is used if no date is given.</description>
-      <libraryFunction>cleanPriceFromZSpread</libraryFunction>
+    <Procedure name='qlBondCleanPriceFromZSpread'>
+      <description>Returns the bond clean price implied by the given Z-Spread.</description>
+      <alias>QuantLib::cleanPriceFromZSpread</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -383,9 +384,21 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Object IDs.</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
           <Parameter name='ZSpread' const='False' exampleValue='0.30%'>
             <type>QuantLib::Spread</type>
-            <tensorRank>vector</tensorRank>
+            <tensorRank>scalar</tensorRank>
             <description>the Z-spread.</description>
           </Parameter>
           <Parameter name='DayCounter' default='"Actual/Actual (ISDA)"'>
@@ -406,58 +419,15 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement is used if no date is given.</description>
+            <description>The current bond settlement date is used if no date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
-
-    <Member name='qlBondDirtyPriceFromZSpread' type='QuantLib::Bond' loopParameter='ZSpread'>
-      <description>Returns the dirty price for the bond given Z-Spread and settlement date. The bond settlement is used if no date is given.</description>
-      <libraryFunction>dirtyPriceFromZSpread</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='ZSpread' const='False' exampleValue='0.30%'>
-            <type>QuantLib::Spread</type>
-            <tensorRank>vector</tensorRank>
-            <description>the Z-spread.</description>
-          </Parameter>
-          <Parameter name='DayCounter' default='"Actual/Actual (ISDA)"'>
-            <type>QuantLib::DayCounter</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Yield DayCounter ID.</description>
-          </Parameter>
-          <Parameter name='Compounding' const='False' default='"Compounded"'>
-            <type>QuantLib::Compounding</type>
-            <tensorRank>scalar</tensorRank>
-            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
-          </Parameter>
-          <Parameter name='Frequency' const='False' default='"Annual"'>
-            <type>QuantLib::Frequency</type>
-            <tensorRank>scalar</tensorRank>
-            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
-          </Parameter>
-          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement is used if no date is given.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
+    </Procedure>
 
     <Member name='qlBondAccruedAmount' type='QuantLib::Bond' >
       <description>Returns the accrued amount for the given bond. The bond settlement is used if no date is given.</description>
