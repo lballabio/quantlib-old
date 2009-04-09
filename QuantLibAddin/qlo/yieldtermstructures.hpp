@@ -147,8 +147,8 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Time>& times() const;
         const std::vector<QuantLib::Date>& dates() const;
         const std::vector<QuantLib::Real>& data() const;
-        //const std::vector<QuantLib::Time>& jumpTimes() const;
-        //const std::vector<QuantLib::Date>& jumpDates() const;
+        const std::vector<QuantLib::Time>& jumpTimes() const;
+        const std::vector<QuantLib::Date>& jumpDates() const;
       private:
         std::string traitsID_, interpolatorID_;
     };

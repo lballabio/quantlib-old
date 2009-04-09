@@ -677,5 +677,37 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlInterpolatedYieldCurveJumpTimes' type='QuantLibAddin::InterpolatedYieldCurve' superType='objectClass'>
+      <description>Retrieve list of jump times for the given InterpolatedYieldCurve.</description>
+      <libraryFunction>jumpTimes</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolatedYieldCurveJumpDates' type='QuantLibAddin::InterpolatedYieldCurve' superType='objectClass'>
+      <description>Retrieve list of jump dates for the given InterpolatedYieldCurve.</description>
+      <libraryFunction>jumpDates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
   </Functions>
 </Category>

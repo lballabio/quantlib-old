@@ -133,86 +133,86 @@ namespace QuantLibAddin {
             if (interpolatorID_=="BACKWARDFLAT") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::BackwardFlat>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="FORWARDFLAT") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::ForwardFlat>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="LINEAR") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::Linear>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="LOGLINEAR") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::LogLinear>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="CUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, false,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="LOGCUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, false,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="MONOTONICCUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, true,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="MONOTONICLOGCUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, true,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="KRUGERCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Kruger)));
             } else if (interpolatorID_=="KRUGERLOGCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Kruger)));
             } else if (interpolatorID_=="FRITSCHBUTLANDCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::FritschButland)));
             } else if (interpolatorID_=="FRITSCHBUTLANDLOGCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::FritschButland)));
             } else if (interpolatorID_=="PARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic, false)));
             } else if (interpolatorID_=="LOGPARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, false)));
             } else if (interpolatorID_=="MONOTONICPARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic, true)));
             } else if (interpolatorID_=="MONOTONICLOGPARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, true)));
             } else
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_);
@@ -220,86 +220,86 @@ namespace QuantLibAddin {
             if (interpolatorID_=="BACKWARDFLAT") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::BackwardFlat>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="FORWARDFLAT") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::ForwardFlat>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="LINEAR") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::Linear>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="LOGLINEAR") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::LogLinear>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="CUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, false,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="LOGCUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, false,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="MONOTONICCUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, true,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="MONOTONICLOGCUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, true,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="KRUGERCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Kruger)));
             } else if (interpolatorID_=="KRUGERLOGCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Kruger)));
             } else if (interpolatorID_=="FRITSCHBUTLANDCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::FritschButland)));
             } else if (interpolatorID_=="FRITSCHBUTLANDLOGCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::FritschButland)));
             } else if (interpolatorID_=="PARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic, false)));
             } else if (interpolatorID_=="LOGPARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, false)));
             } else if (interpolatorID_=="MONOTONICPARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic, true)));
             } else if (interpolatorID_=="MONOTONICLOGPARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, true)));
             } else
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_);
@@ -307,86 +307,86 @@ namespace QuantLibAddin {
             if (interpolatorID_=="BACKWARDFLAT") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::BackwardFlat>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="FORWARDFLAT") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::ForwardFlat>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="LINEAR") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::Linear>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="LOGLINEAR") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::LogLinear>(
-                        dates, data, dayCounter, calendar));
+                        dates, data, dayCounter, calendar, jumps, jumpDates));
             } else if (interpolatorID_=="CUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, false,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="LOGCUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, false,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="MONOTONICCUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Spline, true,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                         QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="MONOTONICLOGCUBICNATURALSPLINE") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, true,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
                                            QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_=="KRUGERCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Kruger)));
             } else if (interpolatorID_=="KRUGERLOGCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Kruger)));
             } else if (interpolatorID_=="FRITSCHBUTLANDCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::FritschButland)));
             } else if (interpolatorID_=="FRITSCHBUTLANDLOGCUBIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::FritschButland)));
             } else if (interpolatorID_=="PARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic)));
             } else if (interpolatorID_=="LOGPARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, false)));
             } else if (interpolatorID_=="MONOTONICPARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::Cubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::Cubic(QuantLib::CubicInterpolation::Parabolic, true)));
             } else if (interpolatorID_=="MONOTONICLOGPARABOLIC") {
                 libraryObject_ = boost::shared_ptr<QuantLib::Extrapolator>(new
                     QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic>(
-                        dates, data, dayCounter, calendar,
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, true)));
             } else
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_);
@@ -516,12 +516,12 @@ namespace QuantLibAddin {
         RESOLVE_TEMPLATE(data)
     }
 
-    //const std::vector<QuantLib::Time>& InterpolatedYieldCurve::jumpTimes() const {
-    //    RESOLVE_TEMPLATE(jumpTimes)
-    //}
+    const std::vector<QuantLib::Time>& InterpolatedYieldCurve::jumpTimes() const {
+        RESOLVE_TEMPLATE(jumpTimes)
+    }
 
-    //const std::vector<QuantLib::Date>& InterpolatedYieldCurve::jumpDates() const {
-    //    RESOLVE_TEMPLATE(jumpDates)
-    //}
+    const std::vector<QuantLib::Date>& InterpolatedYieldCurve::jumpDates() const {
+        RESOLVE_TEMPLATE(jumpDates)
+    }
 
 }
