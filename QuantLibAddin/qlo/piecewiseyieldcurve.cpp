@@ -103,125 +103,47 @@ namespace QuantLibAddin {
             return ret;
         }
 
-        virtual const std::vector<QuantLib::Time>& times(const QuantLib::Extrapolator *extrapolator) const {
+        const std::vector<QuantLib::Time>& times(const QuantLib::Extrapolator *extrapolator) const {
             return get(extrapolator)->times();
         }
 
-        virtual const std::vector<QuantLib::Date>& dates(const QuantLib::Extrapolator *extrapolator) const {
+        const std::vector<QuantLib::Date>& dates(const QuantLib::Extrapolator *extrapolator) const {
             return get(extrapolator)->dates();
         }
 
-        virtual const std::vector<QuantLib::Real>& data(const QuantLib::Extrapolator *extrapolator) const {
+        const std::vector<QuantLib::Real>& data(const QuantLib::Extrapolator *extrapolator) const {
             return get(extrapolator)->data();
         }
 
-        //virtual const std::vector<QuantLib::Real>& improvements(const QuantLib::Extrapolator *extrapolator) const {
+        //const std::vector<QuantLib::Real>& improvements(const QuantLib::Extrapolator *extrapolator) const {
         //    return get(extrapolator)->improvements();
         //}
 
-        //virtual QuantLib::Size iterations(const QuantLib::Extrapolator *extrapolator) const {
+        //QuantLib::Size iterations(const QuantLib::Extrapolator *extrapolator) const {
         //    return get(extrapolator)->iterations();
         //}
 
-        virtual const std::vector<QuantLib::Time>& jumpTimes(const QuantLib::Extrapolator *extrapolator) const {
+        const std::vector<QuantLib::Time>& jumpTimes(const QuantLib::Extrapolator *extrapolator) const {
             return get(extrapolator)->jumpTimes();
         }
 
-        virtual const std::vector<QuantLib::Date>& jumpDates(const QuantLib::Extrapolator *extrapolator) const {
+        const std::vector<QuantLib::Date>& jumpDates(const QuantLib::Extrapolator *extrapolator) const {
             return get(extrapolator)->jumpDates();
         }
 
     };
-
-    // "TokenPair" - A pair of Tokens indicating a combination of Traits / Interpolator.
-    typedef std::pair<Token::Traits, Token::Interpolator> TokenPair;
-
-    // Stream operator to write a TokenPair to a stream - for logging / error handling.
-    std::ostream &operator<<(std::ostream &out, TokenPair tokenPair) {
-
-        out << "PiecewiseYieldCurve<";
-
-        switch (tokenPair.first) {
-            case Token::Discount:
-                out << "<Discount, ";
-                break;
-            case Token::ForwardRate:
-                out << "<ForwardRate, ";
-                break;
-            case Token::ZeroYield:
-                out << "<ZeroYield, ";
-                break;
-            default:
-                OH_FAIL("Unknown value for enumeration QuantLibAddin::Token::Traits");
-        }
-
-        switch (tokenPair.second) {
-            case Token::BackwardFlat:
-                out << "BackwardFlat>";
-                break;
-            case Token::ForwardFlat:
-                out << "ForwardFlat>";
-                break;
-            case Token::Linear:
-                out << "Linear>";
-                break;
-            case Token::LogLinear:
-                out << "LogLinear>";
-                break;
-            case Token::CubicNaturalSpline:
-                out << "CubicNaturalSpline>";
-                break;
-            case Token::LogCubicNaturalSpline:
-                out << "LogCubicNaturalSpline>";
-                break;
-            case Token::MonotonicCubicNaturalSpline:
-                out << "MonotonicCubicNaturalSpline>";
-                break;
-            case Token::MonotonicLogCubicNaturalSpline:
-                out << "MonotonicLogCubicNaturalSpline>";
-                break;
-            case Token::KrugerCubic:
-                out << "KrugerCubic>";
-                break;
-            case Token::KrugerLogCubic:
-                out << "KrugerLogCubic>";
-                break;
-            case Token::FritschButlandCubic:
-                out << "FritschButlandCubic>";
-                break;
-            case Token::FritschButlandLogCubic:
-                out << "FritschButlandLogCubic>";
-                break;
-            case Token::Parabolic:
-                out << "Parabolic>";
-                break;
-            case Token::LogParabolic:
-                out << "LogParabolic>";
-                break;
-            case Token::MonotonicParabolic:
-                out << "MonotonicParabolic>";
-                break;
-            case Token::MonotonicLogParabolic:
-                out << "MonotonicLogParabolic>";
-                break;
-            default:
-                OH_FAIL("Unknown value for enumeration QuantLibAddin::Token::Interpolator");
-        }
-
-        return out;
-    }
 
     // Class CallerFactory stores a map of pointers to Caller objects
 
     class CallerFactory {
 
         // CallerMap - Holds a pointer to Caller for each combination of Traits / Interpolator.
-        typedef std::map<TokenPair, CallerBase*> CallerMap;
+        typedef std::map<InterpolatedYieldCurvePair, CallerBase*> CallerMap;
         CallerMap callerMap_;
 
         // Add an entry to the caller map.
         template <class Traits, class Interpolator>
-        void init(TokenPair tokenPair) {
+        void init(InterpolatedYieldCurvePair tokenPair) {
             callerMap_[tokenPair] = new Caller<Traits, Interpolator>;
         }
 
@@ -231,58 +153,58 @@ namespace QuantLibAddin {
         CallerFactory() {
 
             // Discount
-            init<QuantLib::Discount, QuantLib::BackwardFlat>(   TokenPair(Token::Discount, Token::BackwardFlat));
-            init<QuantLib::Discount, QuantLib::ForwardFlat>(    TokenPair(Token::Discount, Token::ForwardFlat));
-            init<QuantLib::Discount, QuantLib::Linear>(         TokenPair(Token::Discount, Token::Linear));
-            init<QuantLib::Discount, QuantLib::LogLinear>(      TokenPair(Token::Discount, Token::LogLinear));
-            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::CubicNaturalSpline));
-            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::LogCubicNaturalSpline));
-            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::MonotonicCubicNaturalSpline));
-            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::MonotonicLogCubicNaturalSpline));
-            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::KrugerCubic));
-            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::KrugerLogCubic));
-            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::FritschButlandCubic));
-            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::FritschButlandLogCubic));
-            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::Parabolic));
-            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::LogParabolic));
-            init<QuantLib::Discount, QuantLib::Cubic>(          TokenPair(Token::Discount, Token::MonotonicParabolic));
-            init<QuantLib::Discount, QuantLib::LogCubic>(       TokenPair(Token::Discount, Token::MonotonicLogParabolic));
+            init<QuantLib::Discount, QuantLib::BackwardFlat>(   InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::BackwardFlat));
+            init<QuantLib::Discount, QuantLib::ForwardFlat>(    InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::ForwardFlat));
+            init<QuantLib::Discount, QuantLib::Linear>(         InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::Linear));
+            init<QuantLib::Discount, QuantLib::LogLinear>(      InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::LogLinear));
+            init<QuantLib::Discount, QuantLib::Cubic>(          InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::CubicNaturalSpline));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::LogCubicNaturalSpline));
+            init<QuantLib::Discount, QuantLib::Cubic>(          InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::MonotonicCubicNaturalSpline));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::MonotonicLogCubicNaturalSpline));
+            init<QuantLib::Discount, QuantLib::Cubic>(          InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::KrugerCubic));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::KrugerLogCubic));
+            init<QuantLib::Discount, QuantLib::Cubic>(          InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::FritschButlandCubic));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::FritschButlandLogCubic));
+            init<QuantLib::Discount, QuantLib::Cubic>(          InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::Parabolic));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::LogParabolic));
+            init<QuantLib::Discount, QuantLib::Cubic>(          InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::MonotonicParabolic));
+            init<QuantLib::Discount, QuantLib::LogCubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::MonotonicLogParabolic));
 
             // ForwardRate
-            init<QuantLib::ForwardRate, QuantLib::BackwardFlat>(TokenPair(Token::ForwardRate, Token::BackwardFlat));
-            init<QuantLib::ForwardRate, QuantLib::ForwardFlat>( TokenPair(Token::ForwardRate, Token::ForwardFlat));
-            init<QuantLib::ForwardRate, QuantLib::Linear>(      TokenPair(Token::ForwardRate, Token::Linear));
-            init<QuantLib::ForwardRate, QuantLib::LogLinear>(   TokenPair(Token::ForwardRate, Token::LogLinear));
-            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::CubicNaturalSpline));
-            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::LogCubicNaturalSpline));
-            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::MonotonicCubicNaturalSpline));
-            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::MonotonicLogCubicNaturalSpline));
-            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::KrugerCubic));
-            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::KrugerLogCubic));
-            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::FritschButlandCubic));
-            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::FritschButlandLogCubic));
-            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::Parabolic));
-            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::LogParabolic));
-            init<QuantLib::ForwardRate, QuantLib::Cubic>(       TokenPair(Token::ForwardRate, Token::MonotonicParabolic));
-            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    TokenPair(Token::ForwardRate, Token::MonotonicLogParabolic));
+            init<QuantLib::ForwardRate, QuantLib::BackwardFlat>(InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::BackwardFlat));
+            init<QuantLib::ForwardRate, QuantLib::ForwardFlat>( InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::ForwardFlat));
+            init<QuantLib::ForwardRate, QuantLib::Linear>(      InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::Linear));
+            init<QuantLib::ForwardRate, QuantLib::LogLinear>(   InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::LogLinear));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::CubicNaturalSpline));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::LogCubicNaturalSpline));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::MonotonicCubicNaturalSpline));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::MonotonicLogCubicNaturalSpline));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::KrugerCubic));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::KrugerLogCubic));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::FritschButlandCubic));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::FritschButlandLogCubic));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::Parabolic));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::LogParabolic));
+            init<QuantLib::ForwardRate, QuantLib::Cubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::MonotonicParabolic));
+            init<QuantLib::ForwardRate, QuantLib::LogCubic>(    InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::MonotonicLogParabolic));
 
             // ZeroYield
-            init<QuantLib::ZeroYield, QuantLib::BackwardFlat>(  TokenPair(Token::ZeroYield, Token::BackwardFlat));
-            init<QuantLib::ZeroYield, QuantLib::ForwardFlat>(   TokenPair(Token::ZeroYield, Token::ForwardFlat));
-            init<QuantLib::ZeroYield, QuantLib::Linear>(        TokenPair(Token::ZeroYield, Token::Linear));
-            init<QuantLib::ZeroYield, QuantLib::LogLinear>(     TokenPair(Token::ZeroYield, Token::LogLinear));
-            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::CubicNaturalSpline));
-            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::LogCubicNaturalSpline));
-            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::MonotonicCubicNaturalSpline));
-            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::MonotonicLogCubicNaturalSpline));
-            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::KrugerCubic));
-            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::KrugerLogCubic));
-            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::FritschButlandCubic));
-            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::FritschButlandLogCubic));
-            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::Parabolic));
-            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::LogParabolic));
-            init<QuantLib::ZeroYield, QuantLib::Cubic>(         TokenPair(Token::ZeroYield, Token::MonotonicParabolic));
-            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      TokenPair(Token::ZeroYield, Token::MonotonicLogParabolic));
+            init<QuantLib::ZeroYield, QuantLib::BackwardFlat>(  InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::BackwardFlat));
+            init<QuantLib::ZeroYield, QuantLib::ForwardFlat>(   InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::ForwardFlat));
+            init<QuantLib::ZeroYield, QuantLib::Linear>(        InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::Linear));
+            init<QuantLib::ZeroYield, QuantLib::LogLinear>(     InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::LogLinear));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::CubicNaturalSpline));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::LogCubicNaturalSpline));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::MonotonicCubicNaturalSpline));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::MonotonicLogCubicNaturalSpline));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::KrugerCubic));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::KrugerLogCubic));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::FritschButlandCubic));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::FritschButlandLogCubic));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::Parabolic));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::LogParabolic));
+            init<QuantLib::ZeroYield, QuantLib::Cubic>(         InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::MonotonicParabolic));
+            init<QuantLib::ZeroYield, QuantLib::LogCubic>(      InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::MonotonicLogParabolic));
 
         }
 
@@ -292,8 +214,8 @@ namespace QuantLibAddin {
                 delete i->second;
         }
 
-        // Retrieve the Caller pointer corresponding to a given TokenPair
-        const CallerBase *getCaller(TokenPair tokenPair) const {
+        // Retrieve the Caller pointer corresponding to a given InterpolatedYieldCurvePair
+        const CallerBase *getCaller(InterpolatedYieldCurvePair tokenPair) const {
             CallerMap::const_iterator i = callerMap_.find(tokenPair);
             OH_REQUIRE(i!=callerMap_.end(), "Unable to retrieve caller for type " << tokenPair);
             return i->second;
@@ -315,40 +237,40 @@ namespace QuantLibAddin {
     // passed off to the CallerFactory which hides the details of the template class.
 
 #define CALL(FUNC) \
-Call::callerFactory().getCaller(Call::TokenPair(traits, interpolator))->FUNC(libraryObject_.get())
+Call::callerFactory().getCaller(InterpolatedYieldCurvePair(traits, interpolator))->FUNC(libraryObject_.get())
 
     const std::vector<QuantLib::Time>& PiecewiseYieldCurve::times(
-        Token::Traits traits, Token::Interpolator interpolator) const {
+        InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
         return CALL(times);
     }
 
     const std::vector<QuantLib::Date>& PiecewiseYieldCurve::dates(
-        Token::Traits traits, Token::Interpolator interpolator) const {
+        InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
         return CALL(dates);
     }
 
     const std::vector<QuantLib::Real>& PiecewiseYieldCurve::data(
-        Token::Traits traits, Token::Interpolator interpolator) const {
+        InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
         return CALL(data);
     }
 
     //const std::vector<QuantLib::Real>& PiecewiseYieldCurve::improvements(
-    //    Token::Traits traits, Token::Interpolator interpolator) const {
+    //    InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
     //    return CALL(improvements);
     //}
 
     //QuantLib::Size PiecewiseYieldCurve::iterations(
-    //    Token::Traits traits, Token::Interpolator interpolator) const {
+    //    InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
     //    return CALL(iterations);
     //}
 
     const std::vector<QuantLib::Time>& PiecewiseYieldCurve::jumpTimes(
-        Token::Traits traits, Token::Interpolator interpolator) const {
+        InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
         return CALL(jumpTimes);
     }
 
     const std::vector<QuantLib::Date>& PiecewiseYieldCurve::jumpDates(
-        Token::Traits traits, Token::Interpolator interpolator) const {
+        InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
         return CALL(jumpDates);
     }
 

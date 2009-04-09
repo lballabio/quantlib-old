@@ -44,25 +44,32 @@ namespace QuantLibAddin {
             const std::string& interpolatorID,
             bool permanent);
         const std::vector<QuantLib::Time>& times(
-            Token::Traits traits, Token::Interpolator interpolator) const;
+            InterpolatedYieldCurve::Traits traits,
+            InterpolatedYieldCurve::Interpolator interpolator) const;
 
         const std::vector<QuantLib::Date>& dates(
-            Token::Traits traits, Token::Interpolator interpolator) const;
+            InterpolatedYieldCurve::Traits traits,
+            InterpolatedYieldCurve::Interpolator interpolator) const;
 
         const std::vector<QuantLib::Real>& data(
-            Token::Traits traits, Token::Interpolator interpolator) const;
+            InterpolatedYieldCurve::Traits traits,
+            InterpolatedYieldCurve::Interpolator interpolator) const;
 
         //const std::vector<QuantLib::Real>& improvements(
-        //    Token::Traits traits, Token::Interpolator interpolator) const;
+        //    InterpolatedYieldCurve::Traits traits,
+        //    InterpolatedYieldCurve::Interpolator interpolator) const;
 
         //QuantLib::Size iterations(
-        //    Token::Traits traits, Token::Interpolator interpolator) const;
+        //    InterpolatedYieldCurve::Traits traits,
+        //    InterpolatedYieldCurve::Interpolator interpolator) const;
 
         const std::vector<QuantLib::Time>& jumpTimes(
-            Token::Traits traits, Token::Interpolator interpolator) const;
+            InterpolatedYieldCurve::Traits traits,
+            InterpolatedYieldCurve::Interpolator interpolator) const;
 
         const std::vector<QuantLib::Date>& jumpDates(
-            Token::Traits traits, Token::Interpolator interpolator) const;
+            InterpolatedYieldCurve::Traits traits,
+            InterpolatedYieldCurve::Interpolator interpolator) const;
 
     };
 

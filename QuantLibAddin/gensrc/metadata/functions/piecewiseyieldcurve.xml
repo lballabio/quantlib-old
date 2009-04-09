@@ -92,12 +92,12 @@
       <ParameterList>
         <Parameters>
           <Parameter name='Traits'>
-            <type>QuantLibAddin::Token::Traits</type>
+            <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
             <tensorRank>scalar</tensorRank>
             <description>traits.</description>
           </Parameter>
           <Parameter name='Interpolator'>
-            <type>QuantLibAddin::Token::Interpolator</type>
+            <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
             <tensorRank>scalar</tensorRank>
             <description>interpolator.</description>
           </Parameter>
@@ -118,12 +118,12 @@
       <ParameterList>
         <Parameters>
           <Parameter name='Traits'>
-            <type>QuantLibAddin::Token::Traits</type>
+            <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
             <tensorRank>scalar</tensorRank>
             <description>traits.</description>
           </Parameter>
           <Parameter name='Interpolator'>
-            <type>QuantLibAddin::Token::Interpolator</type>
+            <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
             <tensorRank>scalar</tensorRank>
             <description>interpolator.</description>
           </Parameter>
@@ -144,12 +144,12 @@
       <ParameterList>
         <Parameters>
           <Parameter name='Traits'>
-            <type>QuantLibAddin::Token::Traits</type>
+            <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
             <tensorRank>scalar</tensorRank>
             <description>traits.</description>
           </Parameter>
           <Parameter name='Interpolator'>
-            <type>QuantLibAddin::Token::Interpolator</type>
+            <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
             <tensorRank>scalar</tensorRank>
             <description>interpolator.</description>
           </Parameter>
@@ -170,12 +170,12 @@
       <ParameterList>
         <Parameters>
           <Parameter name='Traits'>
-            <type>QuantLibAddin::Token::Traits</type>
+            <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
             <tensorRank>scalar</tensorRank>
             <description>traits.</description>
           </Parameter>
           <Parameter name='Interpolator'>
-            <type>QuantLibAddin::Token::Interpolator</type>
+            <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
             <tensorRank>scalar</tensorRank>
             <description>interpolator.</description>
           </Parameter>
@@ -196,12 +196,12 @@
       <ParameterList>
         <Parameters>
           <Parameter name='Traits'>
-            <type>QuantLibAddin::Token::Traits</type>
+            <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
             <tensorRank>scalar</tensorRank>
             <description>traits.</description>
           </Parameter>
           <Parameter name='Interpolator'>
-            <type>QuantLibAddin::Token::Interpolator</type>
+            <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
             <tensorRank>scalar</tensorRank>
             <description>interpolator.</description>
           </Parameter>
@@ -222,12 +222,12 @@
             <ParameterList>
                 <Parameters>
                     <Parameter name='Traits'>
-                        <type>QuantLibAddin::Token::Traits</type>
+                        <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
                         <tensorRank>scalar</tensorRank>
                         <description>traits.</description>
                     </Parameter>
                     <Parameter name='Interpolator'>
-                        <type>QuantLibAddin::Token::Interpolator</type>
+                        <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
                         <tensorRank>scalar</tensorRank>
                         <description>interpolator.</description>
                     </Parameter>
@@ -248,12 +248,12 @@
             <ParameterList>
                 <Parameters>
                     <Parameter name='Traits'>
-                        <type>QuantLibAddin::Token::Traits</type>
+                        <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
                         <tensorRank>scalar</tensorRank>
                         <description>traits.</description>
                     </Parameter>
                     <Parameter name='Interpolator'>
-                        <type>QuantLibAddin::Token::Interpolator</type>
+                        <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
                         <tensorRank>scalar</tensorRank>
                         <description>interpolator.</description>
                     </Parameter>

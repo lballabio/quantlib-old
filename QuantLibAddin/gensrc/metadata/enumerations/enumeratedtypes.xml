@@ -1300,92 +1300,92 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLibAddin::Token::Traits'>
-      <includeFile>qlo/piecewiseyieldcurve.hpp</includeFile>
+    <EnumeratedTypeGroup type='QuantLibAddin::InterpolatedYieldCurve::Traits'>
+      <includeFile>qlo/yieldtermstructures.hpp</includeFile>
       <constructor>true</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
           <string>Discount</string>
-          <value>QuantLibAddin::Token::Discount</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::Discount</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>ForwardRate</string>
-          <value>QuantLibAddin::Token::ForwardRate</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::ForwardRate</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>ZeroYield</string>
-          <value>QuantLibAddin::Token::ZeroYield</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::ZeroYield</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLibAddin::Token::Interpolator'>
-      <includeFile>qlo/piecewiseyieldcurve.hpp</includeFile>
+    <EnumeratedTypeGroup type='QuantLibAddin::InterpolatedYieldCurve::Interpolator'>
+      <includeFile>qlo/yieldtermstructures.hpp</includeFile>
       <constructor>true</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
           <string>BackwardFlat</string>
-          <value>QuantLibAddin::Token::BackwardFlat</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::BackwardFlat</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>ForwardFlat</string>
-          <value>QuantLibAddin::Token::ForwardFlat</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::ForwardFlat</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Linear</string>
-          <value>QuantLibAddin::Token::Linear</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::Linear</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>LogLinear</string>
-          <value>QuantLibAddin::Token::LogLinear</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::LogLinear</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>CubicNaturalSpline</string>
-          <value>QuantLibAddin::Token::CubicNaturalSpline</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::CubicNaturalSpline</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>LogCubicNaturalSpline</string>
-          <value>QuantLibAddin::Token::LogCubicNaturalSpline</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::LogCubicNaturalSpline</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>MonotonicCubicNaturalSpline</string>
-          <value>QuantLibAddin::Token::MonotonicCubicNaturalSpline</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::MonotonicCubicNaturalSpline</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>MonotonicLogCubicNaturalSpline</string>
-          <value>QuantLibAddin::Token::MonotonicLogCubicNaturalSpline</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::MonotonicLogCubicNaturalSpline</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>KrugerCubic</string>
-          <value>QuantLibAddin::Token::KrugerCubic</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::KrugerCubic</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>KrugerLogCubic</string>
-          <value>QuantLibAddin::Token::KrugerLogCubic</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::KrugerLogCubic</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>FritschButlandCubic</string>
-          <value>QuantLibAddin::Token::FritschButlandCubic</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::FritschButlandCubic</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>FritschButlandLogCubic</string>
-          <value>QuantLibAddin::Token::FritschButlandLogCubic</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::FritschButlandLogCubic</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Parabolic</string>
-          <value>QuantLibAddin::Token::Parabolic</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::Parabolic</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>LogParabolic</string>
-          <value>QuantLibAddin::Token::LogParabolic</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::LogParabolic</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>MonotonicParabolic</string>
-          <value>QuantLibAddin::Token::MonotonicParabolic</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::MonotonicParabolic</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>MonotonicLogParabolic</string>
-          <value>QuantLibAddin::Token::MonotonicLogParabolic</value>
+          <value>QuantLibAddin::InterpolatedYieldCurve::MonotonicLogParabolic</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>

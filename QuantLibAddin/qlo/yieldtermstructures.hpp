@@ -46,32 +46,6 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
      
-    // The struct 'Token' provides values which act as placeholders for
-    // QuantLib types of the same name.
-    struct Token {
-        enum Traits { Discount,
-                      ForwardRate,
-                      ZeroYield
-        };
-        enum Interpolator { BackwardFlat,
-                            ForwardFlat,
-                            Linear,
-                            LogLinear,
-                            CubicNaturalSpline,
-                            LogCubicNaturalSpline,
-                            MonotonicCubicNaturalSpline,
-                            MonotonicLogCubicNaturalSpline,
-                            KrugerCubic,
-                            KrugerLogCubic,
-                            FritschButlandCubic,
-                            FritschButlandLogCubic,
-                            Parabolic,
-                            LogParabolic,
-                            MonotonicParabolic,
-                            MonotonicLogParabolic
-        };
-    };
-
     class DiscountCurve : public YieldTermStructure {
       public:
         DiscountCurve(
@@ -130,9 +104,30 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
-
     class InterpolatedYieldCurve : public YieldTermStructure {
       public:
+        // placeholders for QuantLib types of the same name.
+        enum Traits { Discount,
+                      ForwardRate,
+                      ZeroYield
+        };
+        enum Interpolator { BackwardFlat,
+                            ForwardFlat,
+                            Linear,
+                            LogLinear,
+                            CubicNaturalSpline,
+                            LogCubicNaturalSpline,
+                            MonotonicCubicNaturalSpline,
+                            MonotonicLogCubicNaturalSpline,
+                            KrugerCubic,
+                            KrugerLogCubic,
+                            FritschButlandCubic,
+                            FritschButlandLogCubic,
+                            Parabolic,
+                            LogParabolic,
+                            MonotonicParabolic,
+                            MonotonicLogParabolic
+        };
         InterpolatedYieldCurve(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Date>& dates,
@@ -149,10 +144,22 @@ namespace QuantLibAddin {
         const std::vector<QuantLib::Real>& data() const;
         const std::vector<QuantLib::Time>& jumpTimes() const;
         const std::vector<QuantLib::Date>& jumpDates() const;
-      private:
+      protected:
+        InterpolatedYieldCurve(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string& traitsID,
+            const std::string& interpolatorID,
+            bool permanent);
         std::string traitsID_, interpolatorID_;
     };
 
+
+    // A pair indicating a combination of Traits / Interpolator.
+    typedef std::pair<InterpolatedYieldCurve::Traits, InterpolatedYieldCurve::Interpolator> InterpolatedYieldCurvePair;
+
+    // Stream operator to write a InterpolatedYieldCurvePair to a stream - for logging / error handling.
+    std::ostream &operator<<(std::ostream &out,
+                             InterpolatedYieldCurvePair tokenPair);
 }
 
 #endif

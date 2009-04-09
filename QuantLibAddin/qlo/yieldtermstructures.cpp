@@ -524,4 +524,91 @@ namespace QuantLibAddin {
         RESOLVE_TEMPLATE(jumpDates)
     }
 
+    InterpolatedYieldCurve::InterpolatedYieldCurve(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string& traitsID,
+            const std::string& interpolatorID,
+            bool permanent)
+    : YieldTermStructure(properties, permanent),
+      traitsID_(to_upper_copy(traitsID)),
+      interpolatorID_(to_upper_copy(interpolatorID))
+    {
+    }
+
+    // Stream operator to write a InterpolatedYieldCurvePair to a stream - for logging / error handling.
+    std::ostream &operator<<(std::ostream &out,
+                             InterpolatedYieldCurvePair tokenPair)
+    {
+        out << "InterpolatedYieldCurve<";
+
+        switch (tokenPair.first) {
+            case InterpolatedYieldCurve::Discount:
+                out << "<Discount, ";
+                break;
+            case InterpolatedYieldCurve::ForwardRate:
+                out << "<ForwardRate, ";
+                break;
+            case InterpolatedYieldCurve::ZeroYield:
+                out << "<ZeroYield, ";
+                break;
+            default:
+                OH_FAIL("Unknown value for enumeration QuantLibAddin::InterpolatedYieldCurve::Traits");
+        }
+
+        switch (tokenPair.second) {
+            case InterpolatedYieldCurve::BackwardFlat:
+                out << "BackwardFlat>";
+                break;
+            case InterpolatedYieldCurve::ForwardFlat:
+                out << "ForwardFlat>";
+                break;
+            case InterpolatedYieldCurve::Linear:
+                out << "Linear>";
+                break;
+            case InterpolatedYieldCurve::LogLinear:
+                out << "LogLinear>";
+                break;
+            case InterpolatedYieldCurve::CubicNaturalSpline:
+                out << "CubicNaturalSpline>";
+                break;
+            case InterpolatedYieldCurve::LogCubicNaturalSpline:
+                out << "LogCubicNaturalSpline>";
+                break;
+            case InterpolatedYieldCurve::MonotonicCubicNaturalSpline:
+                out << "MonotonicCubicNaturalSpline>";
+                break;
+            case InterpolatedYieldCurve::MonotonicLogCubicNaturalSpline:
+                out << "MonotonicLogCubicNaturalSpline>";
+                break;
+            case InterpolatedYieldCurve::KrugerCubic:
+                out << "KrugerCubic>";
+                break;
+            case InterpolatedYieldCurve::KrugerLogCubic:
+                out << "KrugerLogCubic>";
+                break;
+            case InterpolatedYieldCurve::FritschButlandCubic:
+                out << "FritschButlandCubic>";
+                break;
+            case InterpolatedYieldCurve::FritschButlandLogCubic:
+                out << "FritschButlandLogCubic>";
+                break;
+            case InterpolatedYieldCurve::Parabolic:
+                out << "Parabolic>";
+                break;
+            case InterpolatedYieldCurve::LogParabolic:
+                out << "LogParabolic>";
+                break;
+            case InterpolatedYieldCurve::MonotonicParabolic:
+                out << "MonotonicParabolic>";
+                break;
+            case InterpolatedYieldCurve::MonotonicLogParabolic:
+                out << "MonotonicLogParabolic>";
+                break;
+            default:
+                OH_FAIL("Unknown value for enumeration QuantLibAddin::InterpolatedYieldCurve::Interpolator");
+        }
+
+        return out;
+    }
+
 }
