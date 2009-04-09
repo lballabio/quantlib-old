@@ -408,27 +408,27 @@ namespace QuantLibAddin {
             } else if (interpolatorID_=="CUBICNATURALSPLINE") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="LOGCUBICNATURALSPLINE") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICCUBICNATURALSPLINE") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICLOGCUBICNATURALSPLINE") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="KRUGERCUBIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="KRUGERLOGCUBIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="FRITSCHBUTLANDCUBIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="FRITSCHBUTLANDLOGCUBIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="PARABOLIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="LOGPARABOLIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICPARABOLIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICLOGPARABOLIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedDiscountCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else \
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_); \
         } else if (traitsID_=="ZEROYIELD") { \
@@ -443,27 +443,27 @@ namespace QuantLibAddin {
             } else if (interpolatorID_=="CUBICNATURALSPLINE") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="LOGCUBICNATURALSPLINE") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICCUBICNATURALSPLINE") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICLOGCUBICNATURALSPLINE") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="KRUGERCUBIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="KRUGERLOGCUBIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="FRITSCHBUTLANDCUBIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="FRITSCHBUTLANDLOGCUBIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="PARABOLIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="LOGPARABOLIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICPARABOLIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICLOGPARABOLIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedZeroCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else \
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_); \
         } else if (traitsID_=="FORWARDRATE") { \
@@ -478,27 +478,27 @@ namespace QuantLibAddin {
             } else if (interpolatorID_=="CUBICNATURALSPLINE") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="LOGCUBICNATURALSPLINE") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICCUBICNATURALSPLINE") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICLOGCUBICNATURALSPLINE") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="KRUGERCUBIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="KRUGERLOGCUBIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="FRITSCHBUTLANDCUBIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="FRITSCHBUTLANDLOGCUBIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="PARABOLIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="LOGPARABOLIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICPARABOLIC") { \
                 return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICLOGPARABOLIC") { \
-                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
+                return boost::dynamic_pointer_cast<QuantLib::InterpolatedForwardCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
             } else \
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_); \
         } else \
