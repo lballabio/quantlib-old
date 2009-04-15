@@ -429,9 +429,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondPreviousCoupon' type='QuantLib::Bond'>
-      <description>Returns the previous coupon. Depending on (the Bond and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the last paid one.</description>
-      <libraryFunction>previousCoupon</libraryFunction>
+    <Member name='qlBondPreviousCouponRate' type='QuantLib::Bond'>
+      <description>Returns the previous coupon rate. Depending on (the Bond and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the last paid one.</description>
+      <libraryFunction>previousCouponRate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -452,9 +452,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondNextCoupon' type='QuantLib::Bond'>
-      <description>Returns the next coupon. Depending on (the Bond and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the already-fixed not-yet-paid one.</description>
-      <libraryFunction>nextCoupon</libraryFunction>
+    <Member name='qlBondNextCouponRate' type='QuantLib::Bond'>
+      <description>Returns the next coupon rate. Depending on (the Bond and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the already-fixed not-yet-paid one.</description>
+      <libraryFunction>nextCouponRate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -475,9 +475,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondPreviousCouponDate' type='QuantLib::Bond'>
-      <description>Returns the previous coupon date.</description>
-      <libraryFunction>previousCouponDate</libraryFunction>
+    <Member name='qlBondPreviousCashFlowDate' type='QuantLib::Bond'>
+      <description>Returns the previous cash flow date.</description>
+      <libraryFunction>previousCashFlowDate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -498,9 +498,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondNextCouponDate' type='QuantLib::Bond'>
-      <description>Returns the next coupon date.</description>
-      <libraryFunction>nextCouponDate</libraryFunction>
+    <Member name='qlBondNextCashFlowDate' type='QuantLib::Bond'>
+      <description>Returns the next cash flow date.</description>
+      <libraryFunction>nextCashFlowDate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>

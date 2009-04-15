@@ -12,7 +12,7 @@
     <include>ql/termstructures/yieldtermstructure.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
     Copyright (C) 2006, 2007 Cristina Duminuco
     Copyright (C) 2006, 2007 Giorgio Facchinetti
     Copyright (C) 2005 Aurelien Chanudet
@@ -65,9 +65,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlLegPreviousCouponDate' type='QuantLibAddin::Leg'>
-      <description>Returns the previous coupon date.</description>
-      <libraryFunction>previousCouponDate</libraryFunction>
+    <Member name='qlLegPreviousCashFlowDate' type='QuantLibAddin::Leg'>
+      <description>Returns the previous cash flow date.</description>
+      <libraryFunction>previousCashFlowDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
@@ -87,9 +87,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlLegNextCouponDate' type='QuantLibAddin::Leg'>
-      <description>Returns the next coupon date.</description>
-      <libraryFunction>nextCouponDate</libraryFunction>
+    <Member name='qlLegNextCashFlowDate' type='QuantLibAddin::Leg'>
+      <description>Returns the next cash flow date.</description>
+      <libraryFunction>nextCashFlowDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->

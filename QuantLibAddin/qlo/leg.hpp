@@ -44,8 +44,8 @@ namespace QuantLibAddin {
       public:
         QuantLib::Rate previousCouponRate(const QuantLib::Date& refDate) const;
         QuantLib::Rate nextCouponRate(const QuantLib::Date& refDate) const;
-        QuantLib::Date previousCouponDate(const QuantLib::Date& refDate) const;
-        QuantLib::Date nextCouponDate(const QuantLib::Date& refDate) const;
+        QuantLib::Date previousCashFlowDate(const QuantLib::Date& refDate) const;
+        QuantLib::Date nextCashFlowDate(const QuantLib::Date& refDate) const;
         QuantLib::Date startDate() const;
         QuantLib::Date maturityDate() const;
         QuantLib::Real npv(const QuantLib::YieldTermStructure&,

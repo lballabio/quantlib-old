@@ -54,12 +54,12 @@ namespace QuantLibAddin {
         return QuantLib::CashFlows::nextCouponRate(leg_, refDate);
     }
 
-    QuantLib::Date Leg::previousCouponDate(const Date& refDate) const {
-        return QuantLib::CashFlows::previousCouponDate(leg_, refDate);
+    QuantLib::Date Leg::previousCashFlowDate(const Date& refDate) const {
+        return QuantLib::CashFlows::previousCashFlowDate(leg_, refDate);
     }
 
-    QuantLib::Date Leg::nextCouponDate(const Date& refDate) const {
-        return QuantLib::CashFlows::nextCouponDate(leg_, refDate);
+    QuantLib::Date Leg::nextCashFlowDate(const Date& refDate) const {
+        return QuantLib::CashFlows::nextCashFlowDate(leg_, refDate);
     }
 
     QuantLib::Date Leg::startDate() const {
@@ -125,10 +125,10 @@ namespace QuantLibAddin {
                             QuantLib::Real tolerance,
                             QuantLib::Size maxIterations,
                             QuantLib::Rate guess) const {
-        return QuantLib::CashFlows::irr(leg_, marketPrice, dayCounter,
-                                        compounding, frequency,
-                                        settlementDate, tolerance,
-                                        maxIterations, guess);
+        return QuantLib::CashFlows::irr(leg_, marketPrice,
+                                        dayCounter, compounding, frequency,
+                                        settlementDate, 0,
+                                        tolerance, maxIterations, guess);
     }
     QuantLib::Time Leg::duration(const QuantLib::InterestRate& y,
                         QuantLib::Duration::Type type,
