@@ -42,50 +42,99 @@ namespace QuantLibAddin {
 
     class Leg : public ObjectHandler::Object {
       public:
-        QuantLib::Rate previousCouponRate(const QuantLib::Date& refDate) const;
-        QuantLib::Rate nextCouponRate(const QuantLib::Date& refDate) const;
-        QuantLib::Date previousCashFlowDate(const QuantLib::Date& refDate) const;
-        QuantLib::Date nextCashFlowDate(const QuantLib::Date& refDate) const;
         QuantLib::Date startDate() const;
         QuantLib::Date maturityDate() const;
+        bool isExpired(QuantLib::Date refDate) const;
+
+        QuantLib::Date previousCashFlowDate(const QuantLib::Date& refDate) const;
+        QuantLib::Date nextCashFlowDate(const QuantLib::Date& refDate) const;
+        QuantLib::Real previousCashFlowAmount(const QuantLib::Date& refDate) const;
+        QuantLib::Real nextCashFlowAmount(const QuantLib::Date& refDate) const;
+
+        QuantLib::Rate previousCouponRate(const QuantLib::Date& settlementDate) const;
+        QuantLib::Rate nextCouponRate(const QuantLib::Date& settlementDate) const;
+        QuantLib::Real accruedAmount(const QuantLib::Date& settlementDate) const;
+
         QuantLib::Real npv(const QuantLib::YieldTermStructure&,
-                           const QuantLib::Date& settlementDate,
+                           QuantLib::Date settlementDate,
                            const QuantLib::Date& npvDate,
-                           QuantLib::Integer exDividendDays) const;
-        QuantLib::Real npv(const QuantLib::InterestRate& y,
-                           const QuantLib::Date& settlementDate
-                           //,
-                           //const QuantLib::Date& npvDate,
-                           //QuantLib::Integer exDividendDays
-                           ) const;
+                           QuantLib::Natural exDividendDays) const;
         QuantLib::Real bps(const QuantLib::YieldTermStructure&,
-                           const QuantLib::Date& settlementDate,
+                           QuantLib::Date settlementDate,
                            const QuantLib::Date& npvDate,
-                           QuantLib::Integer exDividendDays) const;
-        QuantLib::Real bps(const QuantLib::InterestRate& y,
-                           const QuantLib::Date& settlementDate
-                           //,
-                           //const QuantLib::Date& npvDate,
-                           //QuantLib::Integer exDividendDays
-                           ) const;
+                           QuantLib::Natural exDividendDays) const;
         QuantLib::Rate atmRate(const QuantLib::YieldTermStructure&,
-                               const QuantLib::Date& settlementDate,
+                               QuantLib::Date settlementDate,
                                const QuantLib::Date& npvDate,
-                               QuantLib::Integer exDividendDays,
+                               QuantLib::Natural exDividendDays,
                                QuantLib::Real npv) const;
-        QuantLib::Rate irr(QuantLib::Real marketPrice,
+
+        QuantLib::Real npv(QuantLib::Rate y,
                            const QuantLib::DayCounter& dayCounter,
                            QuantLib::Compounding compounding,
                            QuantLib::Frequency frequency,
                            QuantLib::Date settlementDate,
-                           QuantLib::Real tolerance,
-                           QuantLib::Size maxIterations,
-                           QuantLib::Rate guess) const;
-        QuantLib::Time duration(const QuantLib::InterestRate& y,
+                           QuantLib::Natural exDividendDays) const;
+        QuantLib::Real bps(QuantLib::Rate y,
+                           const QuantLib::DayCounter& dayCounter,
+                           QuantLib::Compounding compounding,
+                           QuantLib::Frequency frequency,
+                           QuantLib::Date settlementDate,
+                           QuantLib::Natural exDividendDays) const;
+        QuantLib::Rate yield(QuantLib::Real npv,
+                             const QuantLib::DayCounter& dayCounter,
+                             QuantLib::Compounding compounding,
+                             QuantLib::Frequency frequency,
+                             QuantLib::Date settlementDate,
+                             QuantLib::Natural exDividendDays,
+                             QuantLib::Real accuracy,
+                             QuantLib::Size maxIterations,
+                             QuantLib::Rate guess) const;
+        QuantLib::Time duration(QuantLib::Rate y,
+                                const QuantLib::DayCounter& dayCounter,
+                                QuantLib::Compounding compounding,
+                                QuantLib::Frequency frequency,
                                 QuantLib::Duration::Type type,
-                                QuantLib::Date settlementDate) const;
-        QuantLib::Real convexity(const QuantLib::InterestRate& y,
-                                 QuantLib::Date settlementDate) const;
+                                QuantLib::Date settlementDate,
+                                QuantLib::Natural exDividendDays) const;
+        QuantLib::Real convexity(QuantLib::Rate y,
+                                 const QuantLib::DayCounter& dayCounter,
+                                 QuantLib::Compounding compounding,
+                                 QuantLib::Frequency frequency,
+                                 QuantLib::Date settlementDate,
+                                 QuantLib::Natural exDividendDays) const;
+        QuantLib::Real basisPointValue(QuantLib::Rate y,
+                                       const QuantLib::DayCounter& dayCounter,
+                                       QuantLib::Compounding compounding,
+                                       QuantLib::Frequency frequency,
+                                       QuantLib::Date settlementDate,
+                                       QuantLib::Natural exDividendDays) const;
+        QuantLib::Real yieldValueBasisPoint(QuantLib::Rate y,
+                                            const QuantLib::DayCounter& dayCounter,
+                                            QuantLib::Compounding compounding,
+                                            QuantLib::Frequency frequency,
+                                            QuantLib::Date settlementDate,
+                                            QuantLib::Natural exDividendDays) const;
+
+        QuantLib::Real npv(const boost::shared_ptr<QuantLib::YieldTermStructure>&,
+                           QuantLib::Spread zSpread,
+                           const QuantLib::DayCounter& dayCounter,
+                           QuantLib::Compounding compounding,
+                           QuantLib::Frequency frequency,
+                           QuantLib::Date settlementDate,
+                           const QuantLib::Date& npvDate,
+                           QuantLib::Natural exDividendDays) const;
+        QuantLib::Spread zSpread(QuantLib::Real npv,
+                                 const boost::shared_ptr<QuantLib::YieldTermStructure>&,
+                                 const QuantLib::DayCounter& dayCounter,
+                                 QuantLib::Compounding compounding,
+                                 QuantLib::Frequency frequency,
+                                 QuantLib::Date settlementDate,
+                                 const QuantLib::Date& npvDate,
+                                 QuantLib::Natural exDividendDays,
+                                 QuantLib::Real accuracy,
+                                 QuantLib::Size maxIterations,
+                                 QuantLib::Rate guess) const;
 
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLibAddin::FloatingRateCouponPricer> >& p);
 
