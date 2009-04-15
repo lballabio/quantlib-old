@@ -223,7 +223,7 @@ $\left[S_{j-1},S_j\right]$ fixed at time $S_{j-1}$, plus a fixed leg paying a fi
 \begin{eqnarray}
 S_x\left(t,\mathbf{T},\mathbf{S}\right)
 &=& \frac{\sum\limits_{j=1}^m P_x\left(t,S_j\right) \tau_F\left(S_{j-1},S_j\right) F_x\left(t;S_{j-1},S_j\right)}{A_x\left(t,\mathbf{T}\right)} \notag \\
-&\simeq& \frac{P_x\left(t,T_0\right) - P_x\left(t,T_n\right)}{A_x\left(t,\mathbf{T}\right)}
+&=& \frac{P_x\left(t,T_0\right) - P_x\left(t,T_n\right)}{A_x\left(t,\mathbf{T}\right)}
 ,\quad t_0\leq t\leq T_{0}
 \label{eqn:SwapRateFwd}
 \end{eqnarray}
@@ -239,7 +239,7 @@ is the annuity on curve $\mathcal{C}_x$ and we have defined
 := \tau\left(T_{i-1},T_i;dc_S\right).
 \end{equation}
 Notice that on the r.h.s. of eq. (\ref{eqn:SwapRateFwd}) we have used the definition of forward rate from eq. (\ref{eqn:FwdRate}) and the telescopic property of the summation.
-Actually the telescopic property holds exactly with regular dates grid $\mathbf{S}$, such that periods corresponding to consecutive forward rates do concatenate exactly, with no gaps or overlaps. In practice, dates $S_j$ are adjusted with their relevant business day convention, and the resulting periods do not match exactly. Typically, such date mismatch does not exceed one business day (which sometimes can be three calendar days). Hence the second line in eq. \ref{eqn:SwapRateFwd} is just an approximation of the exact expression in the first line.
+Actually the telescopic property would hold exactly only if forward rate end dates would be equal to next forward start dates. This is not true: typically, such date mismatch does not exceed one business day (which sometimes can be three calendar days). In practice on one hand the error is negligible, on the other hand nothing prevents using the correct dates and accrual periods.
 
 \section{Bootstrapping Single Yield Curves}
 \label{sec:SingleBootstrapping}
