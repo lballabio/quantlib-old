@@ -32,7 +32,7 @@ Milan Italy, ferdinando.ametrano(AT)bancaimi.com}
 Milan Italy, marco.bianchetti(AT)intesasanpaolo.com}
 
 \thanks{JEL Classifications: E45, G13. \\
-The authors acknowledge fruitful discussions with S. De Nuccio, R. Giura, C. Maffi, F. Mercurio, N. Moreni and the QuantLib community. The opinions expressed here are solely of the authors and do not represent in any way those of theirs employers.}
+The authors acknowledge fruitful discussions with S. De Nuccio, R. Giura, C. Maffi, F. Mercurio, N. Moreni, S. Pichugov and the QuantLib community. The opinions expressed here are solely of the authors and do not represent in any way those of theirs employers.}
 
 \date{March 10th, 2009}
 
@@ -239,7 +239,7 @@ is the annuity on curve $\mathcal{C}_x$ and we have defined
 := \tau\left(T_{i-1},T_i;dc_S\right).
 \end{equation}
 Notice that on the r.h.s. of eq. (\ref{eqn:SwapRateFwd}) we have used the definition of forward rate from eq. (\ref{eqn:FwdRate}) and the telescopic property of the summation.
-Actually the telescopic property would hold exactly only if forward rate end dates would be equal to next forward start dates. This is not true: typically, such date mismatch does not exceed one business day (which sometimes can be three calendar days). In practice on one hand the error is negligible, on the other hand nothing prevents using the correct dates and accrual periods.
+Actually the telescopic property would hold exactly only if the forward rates end dates equal the next forward rate start dates, with no periods gaps or overlaps. This is not true in general, because start and end dates are adjusted with their business day convention, and the resulting periods do not concatenate exactly. Typically, such date mismatch does not exceed one business day (which sometimes can be three calendar days). In practice, on one hand the error is small, of the order of $0.1$ basis points, on the other hand nothing prevents using the correct dates and accrual periods, as we have done in this paper.
 
 \section{Bootstrapping Single Yield Curves}
 \label{sec:SingleBootstrapping}
@@ -453,7 +453,7 @@ In figures \ref{fig:Swaps6M}, \ref{fig:SwapsIMM} and \ref{fig:Swaps1M} we report
 \par
 Market Swaps on $x$-tenor Euribor can be selected as bootstrapping instruments for the construction of the medium-long term structure section of the yield curve $\mathcal{C}_x$.
 By setting $T_0=S_0=t=t_0$ and $T_n=S_m=T_i=S_j$ in equation (\ref{eqn:SwapRateFwd}) we obtain, for the swap rate
-$S_x\left(t_0,T_i\right):= S_x\left(t_0;t_0,...,S_j;t_0,...,T_i\right)$ 
+$S_x\left(t_0,T_i\right):= S_x\left(t_0;t_0,...,S_j;t_0,...,T_i\right)$
 quoted for maturity $T_i=S_j$,
 \begin{multline}
 S_x\left(t_0,T_i\right)
@@ -470,12 +470,12 @@ where the last discount factor $P_x\left(t_0,T_i\right)$ has been separated in t
 \begin{equation}
 \tau_S\left(T_1,T_2\right) := \tau\left[T_1,T_2;30/360 (bond basis)\right].
 \end{equation}
-The expression above can be inverted to find $P_x\left(t_0,T_i\right)$ as
+Notice that in eq. \ref{eqn:SwapRateMkt} above we have not used the telescopic property of the summation (see the discussion closing section \ref{sec:Math}). Eq. \ref{eqn:SwapRateMkt} can be inverted to find $P_x\left(t_0,T_i\right)$ as
 \begin{multline}
 P_x\left(t_0,T_i\right)
 = \left[\sum\limits_{\alpha=1}^{j-1} P_x\left(t_0,S_\alpha\right)\tau_F\left(S_{\alpha-1},S_\alpha\right)
 F_x\left(t_0;S_{\alpha-1},S_\alpha\right)\right. \\
-+ P_x\left(t_0,S_{j-1}\right) 
++ P_x\left(t_0,S_{j-1}\right)
 - S_x\left(t_0,T_i\right)A_x\left(t_0,T_{i-1}\right)\bigg]
 \frac{1}{1+S_x\left(t_0,T_i\right)\tau_S\left(T_{i-1},T_i\right)}.
 \label{eqn:SwapBootstrap}
@@ -621,7 +621,7 @@ over 30 years maturity would require extrapolation of basis swap quotations (see
 %NOTA: COMPLETARE DISCUSSIONE GENERALE DELLE CURVE
 %curve zero, smoothness, turn of the year, short term structure, instrument selection, mixed upward/downward sloping behavior
 \par
-The results discussed in this paper have been obtained using the QuantLib framework. The basic classes and methods (iterative bootstrapping, interpolations, market conventions, etc.) are implemented in the object oriented C++ QuantLib library \cite{QuantLib}. The QuantLib objects and analytics are exposed to a variety of end-user platforms (including Excel and Calc) through the QuantLibAddin \cite{QuantLibAddin} and QuantLibXL \cite{QuantLibXL} libraries. Market data are retrieved from the chosen provider and real time is ensured by the ObjectHandler in-memory repository \cite{ObjectHandler}.
+The results discussed in this paper have been obtained using the QuantLib framework\footnote{precisely, revision 15931 in the QuantLib SVN repository.}. The basic classes and methods (iterative bootstrapping, interpolations, market conventions, etc.) are implemented in the object oriented C++ QuantLib library \cite{QuantLib}. The QuantLib objects and analytics are exposed to a variety of end-user platforms (including Excel and Calc) through the QuantLibAddin \cite{QuantLibAddin} and QuantLibXL \cite{QuantLibXL} libraries. Market data are retrieved from the chosen provider and real time is ensured by the ObjectHandler in-memory repository \cite{ObjectHandler}.
 The full framework described above is available open source. Anyone interested in the topic may download and test the implementation, posting to the QuantLib community forum any comment or suggestion to improve the job.
 
 \begin{figure}[tbp]
