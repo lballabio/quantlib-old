@@ -44,7 +44,7 @@ namespace QuantLibAddin {
       public:
         QuantLib::Date startDate() const;
         QuantLib::Date maturityDate() const;
-        bool isExpired(QuantLib::Date refDate) const;
+        bool isExpired(const QuantLib::Date& refDate) const;
 
         QuantLib::Date previousCashFlowDate(const QuantLib::Date& refDate) const;
         QuantLib::Date nextCashFlowDate(const QuantLib::Date& refDate) const;

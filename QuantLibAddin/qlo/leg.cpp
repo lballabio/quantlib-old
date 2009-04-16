@@ -54,7 +54,7 @@ namespace QuantLibAddin {
         return QuantLib::CashFlows::maturityDate(leg_);
     }
 
-    bool Leg::isExpired(Date refDate) const {
+    bool Leg::isExpired(const Date& refDate) const {
         return QuantLib::CashFlows::isExpired(leg_, refDate);
     }
 
