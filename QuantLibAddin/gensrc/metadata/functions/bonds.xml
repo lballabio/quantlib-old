@@ -586,22 +586,6 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlBondFaceAmount' type='QuantLib::Bond'>
-      <description>Returns the face amount of the bond.</description>
-      <libraryFunction>faceAmount</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
     <Member name='qlBondNotionals' type='QuantLib::Bond'>
       <description>Returns the notionals of the bond.</description>
       <libraryFunction>notionals</libraryFunction>

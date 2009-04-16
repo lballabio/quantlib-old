@@ -201,21 +201,5 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAssetSwapNominal' type='QuantLib::AssetSwap'>
-      <description>Returns the floating leg nominal</description>
-      <libraryFunction>nominal</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
   </Functions>
 </Category>
