@@ -78,35 +78,6 @@
       </ReturnValue>
     </Member>
 
-    <Procedure name='qlBondIsExpired'>
-      <description>Returns TRUE is the Bond is expired</description>
-      <alias>QuantLib::BondFunctions::isExpired</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='ObjectId'>
-            <type>QuantLib::Bond</type>
-            <superType>underlyingClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>id of existing QuantLib::Bond object</description>
-          </Parameter>
-          <Parameter name='RefDate' default='QuantLib::Date()'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>reference date.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>bool</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
-
     <Procedure name='qlBondPreviousCashFlowDate'>
       <description>Returns the previous cash flow date.</description>
       <alias>QuantLib::BondFunctions::previousCashFlowDate</alias>
@@ -649,10 +620,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Today' default='QuantLib::Date()'>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>today's date.</description>
+            <description>reference date, usually today's date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -661,6 +632,34 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
+
+    <Procedure name='qlBondIsTradable'>
+      <description>Returns TRUE is the Bond is tradable</description>
+      <alias>QuantLib::BondFunctions::isTradable</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>reference date, usually today's date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
 
     <Member name='qlBondCleanPrice' type='QuantLib::Bond'>
       <description>Returns the clean price for the given bond.</description>
