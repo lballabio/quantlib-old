@@ -2,18 +2,15 @@
 <c>General questions
 <q>Is it OK to email a QuantLib developer to ask questions, or seek
    help, or report a bug?
-<a>Yes, it is.  However, we urge you to consider posting to the
-   QuantLib mailing list instead.  This is for two reasons.  The first
-   is that messages on the list are stored: the next one with your
+<a>Well, it's not a crime.  However, we urge you to consider posting
+   to the QuantLib mailing list instead.  Messages on the list are
+   stored, and thus benefit the whole project: the next user with your
    problem will be able to find the answer by searching the archives.
-   Moreover, the developers can volunteer only a limited time; if they
-   have to choose what to answer to, they will privilege the posts
-   that will benefit more people.  The second reason is that you might
-   get your answer sooner.  For instance, it just so happens that I am
-   writing this entry in the middle of a two-weeks period without an
-   Internet connection.  If anybody wrote me last Monday, the poor
-   soul will wait two weeks for an answer which could have been given
-   already by someone else on the list.
+   Moreover, the developers can volunteer only a limited time; thus,
+   they will employ such time to answer questions on the list (which
+   serves the project) rather than doing private tutoring for free.
+   They are likely to answer you "please, post your question on the
+   mailing list" anyway. They might even refer you to this FAQ entry.
 
 <c>General questions
 <q>How should I report a bug?
@@ -105,10 +102,10 @@
 
 <c>Building QuantLib
 <q>I'm having trouble building Boost.
-<a>If you're using Visual C++ 7.1 or 8.0, you don't need to build
+<a>If you're using Visual C++ 7.1 or later, you don't need to build
    Boost: an installer for precompiled binaries is available <a
    href="http://www.boost-consulting.com/download.html">here</a>
-   (note, though, that at this time it won't work through a proxy
+   (note, though, that it was reported not to work through a proxy
    server.)
 
    <br>
@@ -147,7 +144,10 @@
    its header files somewhere in your include path. The Boost
    libraries must be built as well; see <a
    href="http://www.boost.org/more/getting_started.html">here</a> for
-   instructions.
+   instructions.  Another possibility is that you built the libraries
+   with bjam, which in later Boost releases doesn't build all
+   libraries by default; you'll have to run it with the
+   <tt>--build-type=complete</tt> flag.
 
 <c>Building QuantLib
 <q>Ok, now I have the library; and the library path is set correctly.
@@ -160,7 +160,6 @@
 
 <c>Building QuantLib
 <q>I'm having trouble building QuantLib with the Sun Studio 11 compiler.
-
 <a>If the error you're getting resembles to
    <pre>
 >> Assertion:   (../lnk/init.cc, line 1032)
@@ -234,26 +233,18 @@
 <q>Does QuantLib support FpML? Serialization?
 <a>Not yet. The subject has been discussed in the mailing lists (look
    in the archives for the relevant threads) but no actual work has
-   been done and help is needed in this area.  The first step would be
-   to formalize and document the proposed design, perhaps as a <a
-   href="http://quantlib.org/quep.shtml">QuEP</a>.
+   been done and help is needed in this area.
 
 <c>Building QuantLib
 <q>I'm having trouble building QuantLib with the Visual C++ 7.1
    compiler (a.k.a Visual C++ .NET.)
-
 <a>If such error is
-<pre>
-c:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\include\vector(1112) : error C2065: '_Myoff' : undeclared identifier
-</pre>
-it is caused by the latest VC++7.1 implementation of
-<tt>std::vector&lt;bool&gt;</tt>, which compiles fine when Microsoft
-extensions are enabled, but fails to compile in ANSI-compliance mode
-(used when building QuantLib.)
-
-<br>
-In order to fix it, you'll have to edit line 1112 of vector (and
-possibly other lines in the method being defined) and replace all
-occurrences of "<tt>_Myoff</tt>" with "<tt>this-&gt;_Myoff</tt>"
-(without quotes, of course.)
+   <pre>
+   c:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\include\vector(1112) : error C2065: '_Myoff' : undeclared identifier
+   </pre>
+   it is caused by the latest VC++7.1 implementation of
+   <tt>std::vector&lt;bool&gt;</tt>, which compiles fine when
+   Microsoft extensions are enabled, but fails to compile in
+   ANSI-compliance mode (used when building QuantLib.)  You can avoid
+   the error by turning off ANSI compliance in the project settings.
 
