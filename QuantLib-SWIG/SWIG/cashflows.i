@@ -390,15 +390,16 @@ class CashFlows {
                                                 exDividendDays, npv);
         }
     }
-    static Rate irr(const Leg&,
-                    Real marketPrice,
-                    const DayCounter& dayCounter,
-                    Compounding compounding,
-                    Frequency frequency = NoFrequency,
-                   Date settlementDate = Date(),
-                    Real tolerance = 1.0e-10,
-                    Size maxIterations = 10000,
-                    Rate guess = 0.05);
+    static Rate yield(const Leg&,
+                      Real npv,
+                      const DayCounter& dayCounter,
+                      Compounding compounding,
+                      Frequency frequency,
+                      Date settlementDate = Date(),
+                      Natural exDividendDays = 0,
+                      Real accuracy = 1.0e-10,
+                      Size maxIterations = 10000,
+                      Rate guess = 0.05);
     static Time duration(const Leg&,
                          const InterestRate&,
                          Duration::Type type = Duration::Modified,

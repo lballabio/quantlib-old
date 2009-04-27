@@ -38,10 +38,10 @@ class FixedRateBondTest(unittest.TestCase):
                                            QuantLib.Following, self.redemption,
                                            self.issue_date)
 
-        flat_forward = QuantLib.FlatForward(self.issue_date+self.settlement_days*QuantLib.Days,
+        self.flat_forward = QuantLib.FlatForward(self.issue_date+self.settlement_days*QuantLib.Days,
                                             self.coupons[0], self.day_counter,
                                             QuantLib.Compounded, QuantLib.Semiannual)
-        self.term_structure_handle = QuantLib.RelinkableYieldTermStructureHandle(flat_forward)
+        self.term_structure_handle = QuantLib.RelinkableYieldTermStructureHandle(self.flat_forward)
         bondEngine = QuantLib.DiscountingBondEngine(self.term_structure_handle)
         self.bond.setPricingEngine(bondEngine)
 
@@ -56,7 +56,7 @@ class FixedRateBondTest(unittest.TestCase):
     def testSimpleInspectors(self):
         """ Testing FixedRateBond simple inspectors. """
         self.assertEqual(self.bond.settlementDays(), self.settlement_days)
-        self.assertEqual(self.bond.faceAmount(), self.face_amount)
+        self.assertEqual(self.bond.notional(), self.face_amount)
         self.assertEqual(self.bond.issueDate(), self.issue_date)
         self.assertEqual(self.bond.maturityDate(), self.maturity_date)
 
@@ -92,11 +92,11 @@ class FixedRateBondTest(unittest.TestCase):
 
     def testNextCoupon(self):
         """ Testing FixedRateBond correct next coupon amount. """
-        self.assertEqual(self.bond.nextCoupon(self.issue_date), 0.05)
+        self.assertEqual(self.bond.nextCouponRate(self.issue_date), 0.05)
 
     def testPrevCoupon(self):
         """ Testing FixedRateBond correct previous coupon amount. """
-        self.assertEqual(self.bond.previousCoupon(self.issue_date), 0.05)
+        self.assertEqual(self.bond.previousCouponRate(self.issue_date), 0.05)
 
     def testCleanPrice(self):
         """ Testing FixedRateBond clean price. """
@@ -136,15 +136,10 @@ class FixedRateBondTest(unittest.TestCase):
 
     def testCleanPriceFromZSpread(self):
         """ Testing FixedRateBond clean price derived from Z-spread. """
-        self.assertEqual(round(self.bond.cleanPriceFromZSpread(
-                    0.01, self.day_counter, QuantLib.Compounded, QuantLib.Semiannual,
+        self.assertEqual(round(QuantLib.cleanPriceFromZSpread(
+                    self.bond, self.flat_forward, 0.01,
+                    self.day_counter, QuantLib.Compounded, QuantLib.Semiannual,
                     self.issue_date + 1 * QuantLib.Months), 4), 92.5637)
-
-    def testDirtyPriceFromZSpread(self):
-        """ Testing FixedRateBond dirty price derived from Z-spread. """
-        self.assertEqual(round(self.bond.dirtyPriceFromZSpread(
-                    0.01, self.day_counter, QuantLib.Compounded, QuantLib.Semiannual,
-                    self.issue_date + 1 * QuantLib.Months), 4), 92.5912)
 
 if __name__ == '__main__':
     print 'testing QuantLib', QuantLib.__version__

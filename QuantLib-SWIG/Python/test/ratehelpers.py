@@ -43,7 +43,7 @@ class FixedRateBondHelperTest(unittest.TestCase):
         """ Testing FixedRateBondHelper bond() method. """
         bond = self.bond_helper.bond()
         self.assertEqual(bond.issueDate(), self.issue_date)
-        self.assertEqual(bond.nextCoupon(), self.coupons[0])
+        self.assertEqual(bond.nextCouponRate(), self.coupons[0])
 
 if __name__ == '__main__':
     print 'testing QuantLib', QuantLib.__version__

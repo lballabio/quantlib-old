@@ -46,30 +46,29 @@ class BondPtr : public boost::shared_ptr<Instrument> {
     #if defined(SWIGPYTHON) || defined (SWIGRUBY)
     %rename(bondYield) yield;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("next-coupon")      nextCoupon;
-    %rename("previous-coupon")  previousCoupon;
-    %rename("settlement-days")  settlementDays;
-    %rename("settlement-date")  settlementDate;
-    %rename("maturity-date")    maturityDate;
-    %rename("issue-date")       issueDate;
-    %rename("face-amount")      faceAmount;
-    %rename("clean-price")      cleanPrice;
-    %rename("dirty-price")      dirtyPrice;
-    %rename("settlement-value") settlementValue;
-    %rename("accrued-amount")   accruedAmount;
+    %rename("next-coupon-rate")      nextCouponRate;
+    %rename("previous-coupon-rate")  previousCouponRate;
+    %rename("settlement-days")       settlementDays;
+    %rename("settlement-date")       settlementDate;
+    %rename("maturity-date")         maturityDate;
+    %rename("issue-date")            issueDate;
+    %rename("clean-price")           cleanPrice;
+    %rename("dirty-price")           dirtyPrice;
+    %rename("settlement-value")      settlementValue;
+    %rename("accrued-amount")        accruedAmount;
     #endif
   protected:
     BondPtr();
   public:
     %extend {
         // public functions
-        Rate nextCoupon(const Date& d = Date()) {
+        Rate nextCouponRate(const Date& d = Date()) {
             return boost::dynamic_pointer_cast<Bond>(*self)
-                ->nextCoupon();
+                ->nextCouponRate();
         }
-        Rate previousCoupon(const Date& d = Date()) {
+        Rate previousCouponRate(const Date& d = Date()) {
             return boost::dynamic_pointer_cast<Bond>(*self)
-                ->previousCoupon();
+                ->previousCouponRate();
         }
         // inspectors
         Natural settlementDays() const {
@@ -97,22 +96,20 @@ class BondPtr : public boost::shared_ptr<Instrument> {
         Calendar calendar() const {
             return boost::dynamic_pointer_cast<Bond>(*self)->calendar();
         }
-        Real faceAmount() const {
-            return boost::dynamic_pointer_cast<Bond>(*self)->faceAmount();
-        }
         std::vector<Real> notionals() const {
             return boost::dynamic_pointer_cast<Bond>(*self)->notionals();
         }
-        Real notional(Date d=Date()) const {
+        Real notional(Date d = Date()) const {
             return boost::dynamic_pointer_cast<Bond>(*self)->notional(d);
         }
         // calculations
         Real cleanPrice() {
             return boost::dynamic_pointer_cast<Bond>(*self)->cleanPrice();
         }
-        Real cleanPrice(Rate yield, const DayCounter &dc,
-                Compounding compounding,
-            Frequency frequency,
+        Real cleanPrice(Rate yield,
+                        const DayCounter &dc,
+                        Compounding compounding,
+                        Frequency frequency,
                         const Date& settlement = Date()) {
             return boost::dynamic_pointer_cast<Bond>(*self)
                 ->cleanPrice(yield,dc, compounding, frequency, settlement);
@@ -120,7 +117,8 @@ class BondPtr : public boost::shared_ptr<Instrument> {
         Real dirtyPrice() {
             return boost::dynamic_pointer_cast<Bond>(*self)->dirtyPrice();
         }
-        Real dirtyPrice(Rate yield, const DayCounter &dc,
+        Real dirtyPrice(Rate yield,
+                        const DayCounter &dc,
                         Compounding compounding,
                         Frequency frequency,
                         const Date& settlement = Date()) {
@@ -137,7 +135,7 @@ class BondPtr : public boost::shared_ptr<Instrument> {
                 ->yield(dc,compounding,freq,accuracy,maxEvaluations);
         }
         Real yield(Real cleanPrice,
-               const DayCounter& dc,
+                   const DayCounter& dc,
                    Compounding compounding,
                    Frequency freq,
                    const Date& settlement = Date(),
@@ -178,22 +176,7 @@ class BondPtr : public boost::shared_ptr<Instrument> {
                    Compounding compounding,
                    Frequency freq,
                    const Date& settlementDate = Date()) {
-        return QuantLib::cleanPriceFromZSpread(
-                                  *(boost::dynamic_pointer_cast<Bond>(bond)),
-                                  discountCurve,
-                                  zSpread, dc, compounding,
-                                  freq, settlementDate);
-    }
-
-    Real dirtyPriceFromZSpread(
-                   const BondPtr& bond,
-                   const boost::shared_ptr<YieldTermStructure>& discountCurve,
-                   Spread zSpread,
-                   const DayCounter& dc,
-                   Compounding compounding,
-                   Frequency freq,
-                   const Date& settlementDate = Date()) {
-        return QuantLib::dirtyPriceFromZSpread(
+        return QuantLib::BondFunctions::cleanPrice(
                                   *(boost::dynamic_pointer_cast<Bond>(bond)),
                                   discountCurve,
                                   zSpread, dc, compounding,
