@@ -54,7 +54,7 @@ AM_CONDITIONAL(HAVE_MZSCHEME, test "x${MZSCHEME}" != "x")
 AC_PATH_PROG([GUILE], [guile])
 AM_CONDITIONAL(HAVE_GUILE, test "x${GUILE}" != "x")
 
-AC_PATH_PROGS([MCS], [gmcs mcs])
+AC_PATH_PROGS([MCS], [gmcs mcs gmcs2])
 AM_CONDITIONAL(HAVE_MCS, test "x${MCS}" != "x")
 
 AC_PATH_PROG([OCAMLC], [ocamlc])
