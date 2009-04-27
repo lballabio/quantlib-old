@@ -17,6 +17,7 @@
 """
 
 from QuantLib import *
+from QuantLib import _QuantLib
 
 __author__ = 'The QuantLib Group'
 __email__ = 'quantlib-users@lists.sourceforge.net'
