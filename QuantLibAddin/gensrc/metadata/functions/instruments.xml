@@ -34,6 +34,43 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlInstrumentErrorEstimate' type='QuantLib::Instrument'>
+      <description>Returns the NPV error estimation (for e.g. Monte Carlo simulation) for the given Instrument object.</description>
+      <libraryFunction>errorEstimate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInstrumentValuationDate' type='QuantLib::Instrument'>
+      <description>Returns the NPV for the given Instrument object.</description>
+      <libraryFunction>valuationDate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlInstrumentResults' type='QuantLib::Instrument'>
       <description>Returns the required result (if available) for the given Instrument object.</description>
       <libraryFunction>result&lt;QuantLib::Real&gt;</libraryFunction>
@@ -50,23 +87,6 @@
             <description>result type (e.g. 'vega').</description>
           </Parameter>
         </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>double</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlInstrumentErrorEstimate' type='QuantLib::Instrument'>
-      <description>Returns the NPV error estimation (for e.g. Monte Carlo simulation) for the given Instrument object.</description>
-      <libraryFunction>errorEstimate</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
       </ParameterList>
       <ReturnValue>
         <type>double</type>
