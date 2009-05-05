@@ -67,6 +67,11 @@
             <tensorRank>scalar</tensorRank>
             <description>reference date.</description>
           </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -93,6 +98,11 @@
             <tensorRank>scalar</tensorRank>
             <description>reference date.</description>
           </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -114,6 +124,11 @@
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>reference date.</description>
+          </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -137,6 +152,11 @@
             <tensorRank>scalar</tensorRank>
             <description>reference date.</description>
           </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -158,6 +178,11 @@
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>reference date.</description>
+          </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -183,6 +208,11 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement date.</description>
           </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -205,6 +235,11 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement date.</description>
           </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -226,6 +261,11 @@
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement date.</description>
+          </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -265,10 +305,10 @@
             <tensorRank>scalar</tensorRank>
             <description>npv date.</description>
           </Parameter>
-          <Parameter name='ExDividendDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -304,10 +344,10 @@
             <tensorRank>scalar</tensorRank>
             <description>npv date.</description>
           </Parameter>
-          <Parameter name='ExDividendDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -343,10 +383,10 @@
             <tensorRank>scalar</tensorRank>
             <description>npv date.</description>
           </Parameter>
-          <Parameter name='ExDividendDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
           <Parameter name='NPV' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
@@ -399,25 +439,20 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement date.</description>
           </Parameter>
-          <Parameter name='ExDivDays' default='0'>
-            <type>QuantLib::Natural</type>
-            <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
-          </Parameter>
-          <!--<Parameter name='NpvDate' default='QuantLib::Date()'>
+          <Parameter name='NpvDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>npv date.</description>
           </Parameter>
-          <Parameter name='ExDividendDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
-          </Parameter>-->
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>double</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
@@ -457,21 +492,16 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement date.</description>
           </Parameter>
-          <Parameter name='ExDivDays' default='0'>
-            <type>QuantLib::Natural</type>
-            <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
-          </Parameter>
-          <!--<Parameter name='NpvDate' default='QuantLib::Date()'>
+          <Parameter name='NpvDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>npv date.</description>
           </Parameter>
-          <Parameter name='ExDividendDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
-          </Parameter>-->
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -515,10 +545,15 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement date.</description>
           </Parameter>
-          <Parameter name='ExDivDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='NpvDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
+            <description>npv date.</description>
+          </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-10'>
             <type>QuantLib::Real</type>
@@ -583,10 +618,15 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement date.</description>
           </Parameter>
-          <Parameter name='ExDivDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='NpvDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
+            <description>npv date.</description>
+          </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -631,10 +671,15 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement date.</description>
           </Parameter>
-          <Parameter name='ExDivDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='NpvDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
+            <description>npv date.</description>
+          </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -679,10 +724,15 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement date.</description>
           </Parameter>
-          <Parameter name='ExDivDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='NpvDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
+            <description>npv date.</description>
+          </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -727,10 +777,15 @@
             <tensorRank>scalar</tensorRank>
             <description>settlement date.</description>
           </Parameter>
-          <Parameter name='ExDivDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='NpvDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
+            <description>npv date.</description>
+          </Parameter>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -791,10 +846,10 @@
             <tensorRank>scalar</tensorRank>
             <description>NPVDate.</description>
           </Parameter>
-          <Parameter name='ExDivDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -850,10 +905,10 @@
             <tensorRank>scalar</tensorRank>
             <description>NPVDate.</description>
           </Parameter>
-          <Parameter name='ExDivDays' default='0'>
-            <type>QuantLib::Natural</type>
+          <Parameter name='IncludeRefDate' const='False' default='false'>
+            <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>ex-dividend days.</description>
+            <description>FALSE if cashflows paid at RefDate must be discarded.</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-10'>
             <type>QuantLib::Real</type>

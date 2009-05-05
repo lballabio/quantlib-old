@@ -36,139 +36,165 @@
 #include <ql/cashflows/cmscoupon.hpp>
 #include <ql/cashflows/couponpricer.hpp>
 
+using ObjectHandler::ValueObject;
+using ObjectHandler::LibraryObject;
+
 using QuantLib::earlier_than;
 using QuantLib::CashFlow;
+using QuantLib::CashFlows;
 using QuantLib::Date;
+using QuantLib::Real;
+using QuantLib::Time;
+using QuantLib::Rate;
+using QuantLib::Spread;
 using QuantLib::YieldTermStructure;
+
 using std::vector;
+
 using boost::shared_ptr;
-using QuantLib::FloatingRateCouponPricer;
 
 namespace QuantLibAddin {
 
-    QuantLib::Date Leg::startDate() const {
-        return QuantLib::CashFlows::startDate(leg_);
+    Date Leg::startDate() const {
+        return CashFlows::startDate(leg_);
     }
 
-    QuantLib::Date Leg::maturityDate() const {
-        return QuantLib::CashFlows::maturityDate(leg_);
+    Date Leg::maturityDate() const {
+        return CashFlows::maturityDate(leg_);
     }
 
-    bool Leg::isExpired(const Date& refDate) const {
-        return QuantLib::CashFlows::isExpired(leg_, refDate);
-    }
-
-
-
-
-
-    QuantLib::Date Leg::previousCashFlowDate(const Date& refDate) const {
-        return QuantLib::CashFlows::previousCashFlowDate(leg_, refDate);
-    }
-
-    QuantLib::Date Leg::nextCashFlowDate(const Date& refDate) const {
-        return QuantLib::CashFlows::nextCashFlowDate(leg_, refDate);
-    }
-
-    QuantLib::Real Leg::previousCashFlowAmount(const Date& refDate) const {
-        return QuantLib::CashFlows::previousCashFlowAmount(leg_, refDate);
-    }
-
-    QuantLib::Real Leg::nextCashFlowAmount(const Date& refDate) const {
-        return QuantLib::CashFlows::nextCashFlowAmount(leg_, refDate);
+    bool Leg::isExpired(const Date& refDate,
+                        bool includeSettlementDateFlows) const {
+        return CashFlows::isExpired(leg_,
+                                    refDate,
+                                    includeSettlementDateFlows);
     }
 
 
-
-
-
-
-    QuantLib::Rate Leg::previousCouponRate(const Date& settlementDate) const {
-        return QuantLib::CashFlows::previousCouponRate(leg_, settlementDate);
+    Date Leg::previousCashFlowDate(const Date& refDate,
+                                   bool includeSettlementDateFlows) const {
+        return CashFlows::previousCashFlowDate(leg_,
+                                               refDate,
+                                               includeSettlementDateFlows);
     }
 
-    QuantLib::Rate Leg::nextCouponRate(const Date& settlementDate) const {
-        return QuantLib::CashFlows::nextCouponRate(leg_, settlementDate);
+    Date Leg::nextCashFlowDate(const Date& refDate,
+                               bool includeSettlementDateFlows) const {
+        return CashFlows::nextCashFlowDate(leg_,
+                                           refDate,
+                                           includeSettlementDateFlows);
     }
 
-    QuantLib::Real Leg::accruedAmount(const Date& settlementDate) const {
-        return QuantLib::CashFlows::accruedAmount(leg_, settlementDate);
+    Real Leg::previousCashFlowAmount(const Date& refDate,
+                                     bool includeSettlementDateFlows) const {
+        return CashFlows::previousCashFlowAmount(leg_,
+                                                 refDate,
+                                                 includeSettlementDateFlows);
+    }
+
+    Real Leg::nextCashFlowAmount(const Date& refDate,
+                                 bool includeSettlementDateFlows) const {
+        return CashFlows::nextCashFlowAmount(leg_,
+                                             refDate,
+                                             includeSettlementDateFlows);
     }
 
 
 
-
-
-    QuantLib::Real Leg::npv(const YieldTermStructure& hYTS,
-                            QuantLib::Date settlementDate,
-                            const QuantLib::Date& npvDate,
-                            QuantLib::Natural exDividendDays) const {
-        return QuantLib::CashFlows::npv(leg_, hYTS,
-                                        settlementDate, npvDate,
-                                        exDividendDays);
+    Rate Leg::previousCouponRate(const Date& settlementDate,
+                                 bool includeSettlementDateFlows) const {
+        return CashFlows::previousCouponRate(leg_,
+                                             settlementDate,
+                                             includeSettlementDateFlows);
     }
 
-    QuantLib::Real Leg::bps(const YieldTermStructure& hYTS,
-                            QuantLib::Date settlementDate,
-                            const QuantLib::Date& npvDate,
-                            QuantLib::Natural exDividendDays) const {
-        return QuantLib::CashFlows::bps(leg_, hYTS,
-                                        settlementDate, npvDate,
-                                        exDividendDays);
+    Rate Leg::nextCouponRate(const Date& settlementDate,
+                             bool includeSettlementDateFlows) const {
+        return CashFlows::nextCouponRate(leg_,
+                                         settlementDate,
+                                         includeSettlementDateFlows);
     }
 
-    QuantLib::Rate Leg::atmRate(const YieldTermStructure& hYTS,
-                                QuantLib::Date settlementDate,
-                                const QuantLib::Date& npvDate,
-                                QuantLib::Natural exDividendDays,
-                                QuantLib::Real npv) const {
-        return QuantLib::CashFlows::atmRate(leg_, hYTS,
-                                            settlementDate, npvDate,
-                                            exDividendDays,
-                                            npv);
+    Real Leg::accruedAmount(const Date& settlementDate,
+                            bool includeSettlementDateFlows) const {
+        return CashFlows::accruedAmount(leg_,
+                                        settlementDate,
+                                        includeSettlementDateFlows);
     }
 
 
 
-
-
-
-    QuantLib::Real Leg::npv(QuantLib::Rate y,
-                            const QuantLib::DayCounter& dayCounter,
-                            QuantLib::Compounding compounding,
-                            QuantLib::Frequency frequency,
-                            QuantLib::Date settlementDate,
-                            QuantLib::Natural exDividendDays) const {
-        return QuantLib::CashFlows::npv(leg_,
-                                        y, dayCounter, compounding, frequency,
-                                        settlementDate, exDividendDays);
+    Real Leg::npv(const YieldTermStructure& hYTS,
+                  Date settlementDate,
+                  const Date& npvDate,
+                  bool includeSettlementDateFlows) const {
+        return CashFlows::npv(leg_, hYTS,
+                              settlementDate, npvDate,
+                              includeSettlementDateFlows);
     }
 
-    QuantLib::Real Leg::bps(QuantLib::Rate y,
-                            const QuantLib::DayCounter& dayCounter,
-                            QuantLib::Compounding compounding,
-                            QuantLib::Frequency frequency,
-                            QuantLib::Date settlementDate,
-                            QuantLib::Natural exDividendDays) const {
-        return QuantLib::CashFlows::bps(leg_,
-                                        y, dayCounter, compounding, frequency,
-                                        settlementDate, exDividendDays);
+    Real Leg::bps(const YieldTermStructure& hYTS,
+                  Date settlementDate,
+                  const Date& npvDate,
+                  bool includeSettlementDateFlows) const {
+        return CashFlows::bps(leg_, hYTS,
+                              settlementDate, npvDate,
+                              includeSettlementDateFlows);
     }
 
-    QuantLib::Rate Leg::yield(QuantLib::Real npv,
+    Rate Leg::atmRate(const YieldTermStructure& hYTS,
+                      Date settlementDate,
+                      const Date& npvDate,
+                      bool includeSettlementDateFlows,
+                      Real npv) const {
+        return CashFlows::atmRate(leg_, hYTS,
+                                  settlementDate, npvDate,
+                                  includeSettlementDateFlows,
+                                  npv);
+    }
+
+
+    Real Leg::npv(QuantLib::Rate y,
+                  const QuantLib::DayCounter& dayCounter,
+                  QuantLib::Compounding compounding,
+                  QuantLib::Frequency frequency,
+                  Date settlementDate,
+                  const Date& npvDate,
+                  bool includeSettlementDateFlows) const {
+        return CashFlows::npv(leg_,
+                              y, dayCounter, compounding, frequency,
+                              settlementDate, npvDate,
+                              includeSettlementDateFlows);
+    }
+
+    Real Leg::bps(QuantLib::Rate y,
+                  const QuantLib::DayCounter& dayCounter,
+                  QuantLib::Compounding compounding,
+                  QuantLib::Frequency frequency,
+                  Date settlementDate,
+                  const Date& npvDate,
+                  bool includeSettlementDateFlows) const {
+        return CashFlows::bps(leg_,
+                              y, dayCounter, compounding, frequency,
+                              settlementDate, npvDate,
+                              includeSettlementDateFlows);
+    }
+
+    QuantLib::Rate Leg::yield(Real npv,
                               const QuantLib::DayCounter& dayCounter,
                               QuantLib::Compounding compounding,
                               QuantLib::Frequency frequency,
-                              QuantLib::Date settlementDate,
-                              QuantLib::Natural exDividendDays,
-                              QuantLib::Real accuracy,
+                              Date settlementDate,
+                              const Date& npvDate,
+                              bool includeSettlementDateFlows,
+                              Real accuracy,
                               QuantLib::Size maxIterations,
                               QuantLib::Rate guess) const {
-        return QuantLib::CashFlows::yield(leg_, npv,
-                                          dayCounter, compounding, frequency,
-                                          settlementDate,
-                                          exDividendDays,
-                                          accuracy, maxIterations, guess);
+        return CashFlows::yield(leg_, npv,
+                                dayCounter, compounding, frequency,
+                                settlementDate, npvDate,
+                                includeSettlementDateFlows,
+                                accuracy, maxIterations, guess);
     }
 
     QuantLib::Time Leg::duration(QuantLib::Rate y,
@@ -176,113 +202,107 @@ namespace QuantLibAddin {
                                  QuantLib::Compounding compounding,
                                  QuantLib::Frequency frequency,
                                  QuantLib::Duration::Type type,
-                                 QuantLib::Date settlementDate,
-                                 QuantLib::Natural exDividendDays) const {
-        return QuantLib::CashFlows::duration(leg_,
-                                             y, dayCounter, compounding, frequency,
-                                             type,
-                                             settlementDate, exDividendDays);
+                                 Date settlementDate,
+                                 const Date& npvDate,
+                                 bool includeSettlementDateFlows) const {
+        return CashFlows::duration(leg_,
+                                   y, dayCounter, compounding, frequency,
+                                   type,
+                                   settlementDate, npvDate,
+                                   includeSettlementDateFlows);
     }
 
     QuantLib::Time Leg::convexity(QuantLib::Rate y,
                                   const QuantLib::DayCounter& dayCounter,
                                   QuantLib::Compounding compounding,
                                   QuantLib::Frequency frequency,
-                                  QuantLib::Date settlementDate,
-                                  QuantLib::Natural exDividendDays) const {
-        return QuantLib::CashFlows::convexity(leg_,
-                                             y, dayCounter, compounding, frequency,
-                                             settlementDate, exDividendDays);
+                                  Date settlementDate,
+                                  const Date& npvDate,
+                                  bool includeSettlementDateFlows) const {
+        return CashFlows::convexity(leg_,
+                                    y, dayCounter, compounding, frequency,
+                                    settlementDate, npvDate,
+                                    includeSettlementDateFlows);
     }
 
     QuantLib::Time Leg::basisPointValue(QuantLib::Rate y,
                                         const QuantLib::DayCounter& dayCounter,
                                         QuantLib::Compounding compounding,
                                         QuantLib::Frequency frequency,
-                                        QuantLib::Date settlementDate,
-                                        QuantLib::Natural exDividendDays) const {
-        return QuantLib::CashFlows::basisPointValue(leg_,
-                                             y, dayCounter, compounding, frequency,
-                                             settlementDate, exDividendDays);
+                                        Date settlementDate,
+                                        const Date& npvDate,
+                                        bool includeSettlementDateFlows) const {
+        return CashFlows::basisPointValue(leg_,
+                                          y, dayCounter, compounding, frequency,
+                                          settlementDate, npvDate,
+                                          includeSettlementDateFlows);
     }
 
-    QuantLib::Time Leg::yieldValueBasisPoint(QuantLib::Rate y,
-                                             const QuantLib::DayCounter& dayCounter,
-                                             QuantLib::Compounding compounding,
-                                             QuantLib::Frequency frequency,
-                                             QuantLib::Date settlementDate,
-                                             QuantLib::Natural exDividendDays) const {
-        return QuantLib::CashFlows::yieldValueBasisPoint(leg_,
-                                             y, dayCounter, compounding, frequency,
-                                             settlementDate, exDividendDays);
+    Time Leg::yieldValueBasisPoint(QuantLib::Rate y,
+                                   const QuantLib::DayCounter& dc,
+                                   QuantLib::Compounding comp,
+                                   QuantLib::Frequency freq,
+                                   Date settlementDate,
+                                   const Date& npvDate,
+                                   bool includeSettlementDateFlows) const {
+        return CashFlows::yieldValueBasisPoint(leg_,
+                                               y, dc, comp, freq,
+                                               settlementDate, npvDate,
+                                               includeSettlementDateFlows);
     }
 
 
 
+    Real Leg::npv(const shared_ptr<QuantLib::YieldTermStructure>& discountC,
+                  QuantLib::Spread zSpread,
+                  const QuantLib::DayCounter& dayCounter,
+                  QuantLib::Compounding compounding,
+                  QuantLib::Frequency frequency,
+                  Date settlementDate,
+                  const Date& npvDate,
+                  bool includeSettlementDateFlows) const {
+        return  CashFlows::npv(leg_, discountC,
+                               zSpread, dayCounter, compounding, frequency,
+                               settlementDate, npvDate,
+                               includeSettlementDateFlows);
+    }
 
+    Spread Leg::zSpread(Real npv,
+                        const shared_ptr<QuantLib::YieldTermStructure>& disc,
+                        const QuantLib::DayCounter& dayCounter,
+                        QuantLib::Compounding compounding,
+                        QuantLib::Frequency frequency,
+                        Date settlementDate,
+                        const Date& npvDate,
+                        bool includeSettlementDateFlows,
+                        Real accuracy,
+                        QuantLib::Size maxIterations,
+                        QuantLib::Rate guess) const {
+        return  CashFlows::zSpread(leg_, npv, disc,
+                                   dayCounter, compounding, frequency,
+                                   settlementDate, npvDate,
+                                   includeSettlementDateFlows,
+                                   accuracy, maxIterations, guess);
+    }
 
-
-
-        QuantLib::Real Leg::npv(const boost::shared_ptr<QuantLib::YieldTermStructure>& d,
-                           QuantLib::Spread zSpread,
-                           const QuantLib::DayCounter& dayCounter,
-                           QuantLib::Compounding compounding,
-                           QuantLib::Frequency frequency,
-                           QuantLib::Date settlementDate,
-                           const QuantLib::Date& npvDate,
-                           QuantLib::Natural exDividendDays) const {
-            return  QuantLib::CashFlows::npv(leg_, d,
-                                             zSpread, dayCounter, compounding, frequency,
-                                             settlementDate, npvDate,
-                                             exDividendDays);
-        }
-
-        QuantLib::Spread Leg::zSpread(QuantLib::Real npv,
-                                 const boost::shared_ptr<QuantLib::YieldTermStructure>& d,
-                                 const QuantLib::DayCounter& dayCounter,
-                                 QuantLib::Compounding compounding,
-                                 QuantLib::Frequency frequency,
-                                 QuantLib::Date settlementDate,
-                                 const QuantLib::Date& npvDate,
-                                 QuantLib::Natural exDividendDays,
-                                 QuantLib::Real accuracy,
-                                 QuantLib::Size maxIterations,
-                                 QuantLib::Rate guess) const {
-            return  QuantLib::CashFlows::zSpread(leg_, npv, d,
-                                                 dayCounter, compounding, frequency,
-                                                 settlementDate, npvDate,
-                                                 exDividendDays,
-                                                 accuracy, maxIterations, guess);
-        }
-
-
-
-
-
-
-
-
-
-
-
-    std::vector<std::vector<ObjectHandler::property_t> > Leg::analysis() const {
+    vector<vector<ObjectHandler::property_t> > Leg::analysis() const {
         return flowAnalysis(leg_);
     }
 
     void Leg::setCouponPricers(
-                const vector<shared_ptr<QuantLibAddin::FloatingRateCouponPricer> >& pricers) {
-        std::vector<std::string> ids;
-        std::vector<boost::shared_ptr<QuantLib::FloatingRateCouponPricer> > ql_pricers;
-        std::vector<boost::shared_ptr<QuantLibAddin::FloatingRateCouponPricer> >::const_iterator i;
+                const vector<shared_ptr<FloatingRateCouponPricer> >& pricers) {
+        vector<std::string> ids;
+        vector<shared_ptr<QuantLib::FloatingRateCouponPricer> > ql_pricers;
+        vector<shared_ptr<FloatingRateCouponPricer> >::const_iterator i;
         for (i = pricers.begin(); i != pricers.end(); ++i) {
             ids.push_back((*i)->properties()->objectId());
-            boost::shared_ptr<QuantLib::FloatingRateCouponPricer> p;
+            shared_ptr<QuantLib::FloatingRateCouponPricer> p;
             (*i)->getLibraryObject(p);
             ql_pricers.push_back(p);
         }
         QuantLib::setCouponPricers(leg_, ql_pricers);
 
-        boost::shared_ptr<ObjectHandler::ValueObject> inst_properties = properties();
+        shared_ptr<ObjectHandler::ValueObject> inst_properties = properties();
         inst_properties->setProperty("UserLegIDs", ids);
     }
 
@@ -290,42 +310,44 @@ namespace QuantLibAddin {
         return leg_;
     }
 
-    MultiPhaseLeg::MultiPhaseLeg(
-                    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                    const std::vector<boost::shared_ptr<Leg> >& streams,
-                    bool toBeSorted,
-                    bool permanent) : Leg(properties, permanent) {
+    MultiPhaseLeg::MultiPhaseLeg(const shared_ptr<ValueObject>& p,
+                                 const vector<shared_ptr<Leg> >& streams,
+                                 bool toBeSorted,
+                                 bool permanent)
+    : Leg(p, permanent) {
         for (QuantLib::Size i=0; i<streams.size(); ++i) {
             const QuantLib::Leg& leg = streams[i]->getQuantLibLeg();
             leg_.insert(leg_.end(), leg.begin(), leg.end());
         }
         if (toBeSorted)
             std::stable_sort(leg_.begin(), leg_.end(),
-                             earlier_than<boost::shared_ptr<CashFlow> >());
+                             earlier_than<shared_ptr<CashFlow> >());
     };
 
-    SimpleCashFlowVector::SimpleCashFlowVector(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                                               const std::vector<QuantLib::Real>& amounts,
-                                               const std::vector<QuantLib::Date>& dates,
-                                               bool permanent) : Leg(properties, permanent)
-    {
-        QL_REQUIRE(!amounts.empty(), "Amounts vector must have at least one element");
-        QL_REQUIRE(amounts.size() == dates.size(), "Dates and amounts vector must have the same size");
+    SimpleCashFlowVector::SimpleCashFlowVector(
+                                            const shared_ptr<ValueObject>& p,
+                                            const vector<Real>& amounts,
+                                            const vector<Date>& dates,
+                                            bool permanent)
+    : Leg(p, permanent) {
+        QL_REQUIRE(!amounts.empty(),
+                   "Amounts vector must have at least one element");
+        QL_REQUIRE(amounts.size() == dates.size(),
+                   "Dates and amounts vector must have the same size");
         for (QuantLib::Size i=0; i < amounts.size(); ++i) {
-            leg_.push_back(boost::shared_ptr<CashFlow>(new
+            leg_.push_back(shared_ptr<CashFlow>(new
                 QuantLib::SimpleCashFlow(amounts[i], dates[i])));
         }
     }
 
-    InterestRate::InterestRate(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            QuantLib::Rate r,
-            const QuantLib::DayCounter& dc,
-            QuantLib::Compounding comp,
-            QuantLib::Frequency freq,
-            bool permanent)
-    : ObjectHandler::LibraryObject<QuantLib::InterestRate>(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::InterestRate>(new
+    InterestRate::InterestRate(const shared_ptr<ValueObject>& properties,
+                               QuantLib::Rate r,
+                               const QuantLib::DayCounter& dc,
+                               QuantLib::Compounding comp,
+                               QuantLib::Frequency freq,
+                               bool permanent)
+    : LibraryObject<QuantLib::InterestRate>(properties, permanent) {
+        libraryObject_ = shared_ptr<QuantLib::InterestRate>(new
             QuantLib::InterestRate(r, dc, comp, freq));
     }
 

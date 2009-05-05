@@ -44,29 +44,37 @@ namespace QuantLibAddin {
       public:
         QuantLib::Date startDate() const;
         QuantLib::Date maturityDate() const;
-        bool isExpired(const QuantLib::Date& refDate) const;
+        bool isExpired(const QuantLib::Date& refDate,
+                       bool includeSettlementDateFlows) const;
 
-        QuantLib::Date previousCashFlowDate(const QuantLib::Date& refDate) const;
-        QuantLib::Date nextCashFlowDate(const QuantLib::Date& refDate) const;
-        QuantLib::Real previousCashFlowAmount(const QuantLib::Date& refDate) const;
-        QuantLib::Real nextCashFlowAmount(const QuantLib::Date& refDate) const;
+        QuantLib::Date previousCashFlowDate(const QuantLib::Date& refDate,
+                                            bool includeSettlementDateFlows) const;
+        QuantLib::Date nextCashFlowDate(const QuantLib::Date& refDate,
+                                            bool includeSettlementDateFlows) const;
+        QuantLib::Real previousCashFlowAmount(const QuantLib::Date& refDate,
+                                              bool includeSettlementDateFlows) const;
+        QuantLib::Real nextCashFlowAmount(const QuantLib::Date& refDate,
+                                          bool includeSettlementDateFlows) const;
 
-        QuantLib::Rate previousCouponRate(const QuantLib::Date& settlementDate) const;
-        QuantLib::Rate nextCouponRate(const QuantLib::Date& settlementDate) const;
-        QuantLib::Real accruedAmount(const QuantLib::Date& settlementDate) const;
+        QuantLib::Rate previousCouponRate(const QuantLib::Date& settlementDate,
+                                          bool includeSettlementDateFlows) const;
+        QuantLib::Rate nextCouponRate(const QuantLib::Date& settlementDate,
+                                      bool includeSettlementDateFlows) const;
+        QuantLib::Real accruedAmount(const QuantLib::Date& settlementDate,
+                                     bool includeSettlementDateFlows) const;
 
         QuantLib::Real npv(const QuantLib::YieldTermStructure&,
                            QuantLib::Date settlementDate,
                            const QuantLib::Date& npvDate,
-                           QuantLib::Natural exDividendDays) const;
+                           bool includeSettlementDateFlows) const;
         QuantLib::Real bps(const QuantLib::YieldTermStructure&,
                            QuantLib::Date settlementDate,
                            const QuantLib::Date& npvDate,
-                           QuantLib::Natural exDividendDays) const;
+                           bool includeSettlementDateFlows) const;
         QuantLib::Rate atmRate(const QuantLib::YieldTermStructure&,
                                QuantLib::Date settlementDate,
                                const QuantLib::Date& npvDate,
-                               QuantLib::Natural exDividendDays,
+                               bool includeSettlementDateFlows,
                                QuantLib::Real npv) const;
 
         QuantLib::Real npv(QuantLib::Rate y,
@@ -74,19 +82,22 @@ namespace QuantLibAddin {
                            QuantLib::Compounding compounding,
                            QuantLib::Frequency frequency,
                            QuantLib::Date settlementDate,
-                           QuantLib::Natural exDividendDays) const;
+                           const QuantLib::Date& npvDate,
+                           bool includeSettlementDateFlows) const;
         QuantLib::Real bps(QuantLib::Rate y,
                            const QuantLib::DayCounter& dayCounter,
                            QuantLib::Compounding compounding,
                            QuantLib::Frequency frequency,
                            QuantLib::Date settlementDate,
-                           QuantLib::Natural exDividendDays) const;
+                           const QuantLib::Date& npvDate,
+                           bool includeSettlementDateFlows) const;
         QuantLib::Rate yield(QuantLib::Real npv,
                              const QuantLib::DayCounter& dayCounter,
                              QuantLib::Compounding compounding,
                              QuantLib::Frequency frequency,
                              QuantLib::Date settlementDate,
-                             QuantLib::Natural exDividendDays,
+                             const QuantLib::Date& npvDate,
+                             bool includeSettlementDateFlows,
                              QuantLib::Real accuracy,
                              QuantLib::Size maxIterations,
                              QuantLib::Rate guess) const;
@@ -96,25 +107,29 @@ namespace QuantLibAddin {
                                 QuantLib::Frequency frequency,
                                 QuantLib::Duration::Type type,
                                 QuantLib::Date settlementDate,
-                                QuantLib::Natural exDividendDays) const;
+                                const QuantLib::Date& npvDate,
+                                bool includeSettlementDateFlows) const;
         QuantLib::Real convexity(QuantLib::Rate y,
                                  const QuantLib::DayCounter& dayCounter,
                                  QuantLib::Compounding compounding,
                                  QuantLib::Frequency frequency,
                                  QuantLib::Date settlementDate,
-                                 QuantLib::Natural exDividendDays) const;
+                                 const QuantLib::Date& npvDate,
+                                 bool includeSettlementDateFlows) const;
         QuantLib::Real basisPointValue(QuantLib::Rate y,
                                        const QuantLib::DayCounter& dayCounter,
                                        QuantLib::Compounding compounding,
                                        QuantLib::Frequency frequency,
                                        QuantLib::Date settlementDate,
-                                       QuantLib::Natural exDividendDays) const;
+                                       const QuantLib::Date& npvDate,
+                                       bool includeSettlementDateFlows) const;
         QuantLib::Real yieldValueBasisPoint(QuantLib::Rate y,
                                             const QuantLib::DayCounter& dayCounter,
                                             QuantLib::Compounding compounding,
                                             QuantLib::Frequency frequency,
                                             QuantLib::Date settlementDate,
-                                            QuantLib::Natural exDividendDays) const;
+                                            const QuantLib::Date& npvDate,
+                                            bool includeSettlementDateFlows) const;
 
         QuantLib::Real npv(const boost::shared_ptr<QuantLib::YieldTermStructure>&,
                            QuantLib::Spread zSpread,
@@ -123,7 +138,7 @@ namespace QuantLibAddin {
                            QuantLib::Frequency frequency,
                            QuantLib::Date settlementDate,
                            const QuantLib::Date& npvDate,
-                           QuantLib::Natural exDividendDays) const;
+                           bool includeSettlementDateFlows) const;
         QuantLib::Spread zSpread(QuantLib::Real npv,
                                  const boost::shared_ptr<QuantLib::YieldTermStructure>&,
                                  const QuantLib::DayCounter& dayCounter,
@@ -131,7 +146,7 @@ namespace QuantLibAddin {
                                  QuantLib::Frequency frequency,
                                  QuantLib::Date settlementDate,
                                  const QuantLib::Date& npvDate,
-                                 QuantLib::Natural exDividendDays,
+                                 bool includeSettlementDateFlows,
                                  QuantLib::Real accuracy,
                                  QuantLib::Size maxIterations,
                                  QuantLib::Rate guess) const;
