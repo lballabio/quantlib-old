@@ -86,6 +86,8 @@ namespace QuantLibAddin {
             yh_[i] = j->second;
             registerWith(yh_[i]);
         }
+        // temporary patch
+        performCalculations();
     }
 
     void Interpolation::performCalculations() const {
