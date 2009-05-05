@@ -87,7 +87,12 @@ namespace QuantLibAddin {
             registerWith(yh_[i]);
         }
         // temporary patch
-        performCalculations();
+        for (Size i=0; i<n_; ++i) {
+            if (yh_[i]->isValid())
+                y_[i] = yh_[i]->value();
+            else 
+                y_[i] = 1.0;
+        }
     }
 
     void Interpolation::performCalculations() const {
