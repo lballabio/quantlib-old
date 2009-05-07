@@ -94,10 +94,10 @@
             <tensorRank>scalar</tensorRank>
             <description>id of existing QuantLib::Bond object</description>
           </Parameter>
-          <Parameter name='RefDate' const='False' default='QuantLib::Date()'>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>reference date.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -123,10 +123,10 @@
             <tensorRank>scalar</tensorRank>
             <description>id of existing QuantLib::Bond object</description>
           </Parameter>
-          <Parameter name='RefDate' const='False' default='QuantLib::Date()'>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>reference date.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -153,10 +153,10 @@
             <tensorRank>scalar</tensorRank>
             <description>id of existing QuantLib::Bond object</description>
           </Parameter>
-          <Parameter name='RefDate' const='False' default='QuantLib::Date()'>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>reference date.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -182,10 +182,10 @@
             <tensorRank>scalar</tensorRank>
             <description>id of existing QuantLib::Bond object</description>
           </Parameter>
-          <Parameter name='RefDate' const='False' default='QuantLib::Date()'>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>reference date.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -215,7 +215,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement is used if no date is given.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -244,7 +244,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement is used if no date is given.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -273,7 +273,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement is used if no date is given.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -324,7 +324,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement is used if no date is given.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -373,7 +373,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement is used if no date is given.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-10'>
             <type>QuantLib::Real</type>
@@ -443,7 +443,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement date is used if no date is given.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -498,7 +498,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement is used if no date is given.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-10'>
             <type>QuantLib::Real</type>
@@ -582,10 +582,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Date' const='False' default='QuantLib::Date()'>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The date for which the nominal is required. The current bond settlement is used if no date is given.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -620,10 +620,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='RefDate' default='QuantLib::Date()'>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>reference date, usually today's date.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -648,10 +648,10 @@
             <tensorRank>scalar</tensorRank>
             <description>id of existing QuantLib::Bond object</description>
           </Parameter>
-          <Parameter name='RefDate' default='QuantLib::Date()'>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>reference date, usually today's date.</description>
+            <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
