@@ -320,94 +320,95 @@ class CashFlows {
         static Real npv(
                    const Leg& leg,
                    const boost::shared_ptr<YieldTermStructure>& discountCurve,
-		   Spread zSpread,
-		   const DayCounter &dayCounter,
-		   Compounding compounding,
-		   Frequency frequency,
-		   bool includeSettlementDateFlows,
+                   Spread zSpread,
+                   const DayCounter &dayCounter,
+                   Compounding compounding,
+                   Frequency frequency,
+                   bool includeSettlementDateFlows,
                    const Date& settlementDate = Date(),
                    const Date& npvDate = Date()) {
-            return QuantLib::CashFlows::npv(leg, *discountCurve,
-					    zSpread,
-					    dayCounter,
-					    compounding,
-					    frequency,
-                                            settlementDate, npvDate);
+            return QuantLib::CashFlows::npv(leg, discountCurve,
+                                            zSpread,
+                                            dayCounter,
+                                            compounding,
+                                            frequency,
+                                            includeSettlementDateFlows,
+                                            settlementDate,
+                                            npvDate);
         }
         static Real npv(
                    const Leg& leg,
                    const Handle<YieldTermStructure>& discountCurve,
-		   bool includeSettlementDateFlows,
+                   bool includeSettlementDateFlows,
                    const Date& settlementDate = Date(),
                    const Date& npvDate = Date()) {
             return QuantLib::CashFlows::npv(leg, **discountCurve,
-					    includeSettlementDateFlows,	 
+                                            includeSettlementDateFlows,
                                             settlementDate, npvDate);
         }
     }
     static Real npv(const Leg&,
                     const InterestRate&,
-		    bool includeSettlementDateFlows,
+                    bool includeSettlementDateFlows,
                     Date settlementDate = Date(),
-		    Date npvDate = Date());
+                    Date npvDate = Date());
 
     static Real npv(const Leg&,
                     Rate yield,
-		    const DayCounter&dayCounter,
-		    Compounding compounding, 
-		    Frequency frequency,
-		    bool includeSettlementDateFlows,
+                    const DayCounter&dayCounter,
+                    Compounding compounding,
+                    Frequency frequency,
+                    bool includeSettlementDateFlows,
                     Date settlementDate = Date(),
-		    Date npvDate = Date());
+                    Date npvDate = Date());
     %extend {
         static Real bps(
                    const Leg& leg,
                    const boost::shared_ptr<YieldTermStructure>& discountCurve,
-		   bool includeSettlementDateFlows,
+                   bool includeSettlementDateFlows,
                    const Date& settlementDate = Date(),
                    const Date& npvDate = Date()) {
             return QuantLib::CashFlows::bps(leg, *discountCurve,
-					    includeSettlementDateFlows,
+                                            includeSettlementDateFlows,
                                             settlementDate, npvDate);
         }
         static Real bps(
                    const Leg& leg,
                    const Handle<YieldTermStructure>& discountCurve,
-		   bool includeSettlementDateFlows,
+                   bool includeSettlementDateFlows,
                    const Date& settlementDate = Date(),
                    const Date& npvDate = Date()) {
             return QuantLib::CashFlows::bps(leg, **discountCurve,
-					    includeSettlementDateFlows,
+                                            includeSettlementDateFlows,
                                             settlementDate, npvDate);
         }
     }
     static Real bps(const Leg&,
                     const InterestRate &,
-		    bool includeSettlementDateFlows,
+                    bool includeSettlementDateFlows,
                     Date settlementDate = Date(),
-		    Date npvDate = Date());
+                    Date npvDate = Date());
     static Real bps(const Leg&,
                     Rate yield,
-		    const DayCounter&dayCounter,
-		    Compounding compounding, 
-		    Frequency frequency,
-		    bool includeSettlementDateFlows,
+                    const DayCounter&dayCounter,
+                    Compounding compounding,
+                    Frequency frequency,
+                    bool includeSettlementDateFlows,
                     Date settlementDate = Date(),
-		    Date npvDate = Date());
-
+                    Date npvDate = Date());
 
     %extend {
         static Rate atmRate(
                    const Leg& leg,
                    const boost::shared_ptr<YieldTermStructure>& discountCurve,
-		   bool includeSettlementDateFlows,
+                   bool includeSettlementDateFlows,
                    const Date& settlementDate = Date(),
                    const Date& npvDate = Date(),
                    Real npv = Null<Real>()) {
             return QuantLib::CashFlows::atmRate(leg, *discountCurve,
-						includeSettlementDateFlows,
+                                                includeSettlementDateFlows,
                                                 settlementDate, npvDate,
-						npv);
+                                                npv);
         }
     }
     static Rate yield(const Leg&,
@@ -415,42 +416,42 @@ class CashFlows {
                       const DayCounter& dayCounter,
                       Compounding compounding,
                       Frequency frequency,
-		      bool includeSettlementDateFlows,
+                      bool includeSettlementDateFlows,
                       Date settlementDate = Date(),
-		      Date npvDate = Date(),
+                      Date npvDate = Date(),
                       Real accuracy = 1.0e-10,
                       Size maxIterations = 10000,
                       Rate guess = 0.05);
     static Time duration(const Leg&,
                          const InterestRate&,
                          Duration::Type type,
-			 bool includeSettlementDateFlows,
+                         bool includeSettlementDateFlows,
                          Date settlementDate = Date());
 
     static Time duration(const Leg&,
-			 Rate yield,
-			 const DayCounter& dayCounter,
-			 Compounding compounding,
-			 Frequency frequency,
-			 Duration::Type type,
-			 bool includeSettlementDateFlows,
-			 Date settlementDate = Date(),
-			 Date npvDate = Date());
+             Rate yield,
+             const DayCounter& dayCounter,
+             Compounding compounding,
+             Frequency frequency,
+             Duration::Type type,
+             bool includeSettlementDateFlows,
+             Date settlementDate = Date(),
+             Date npvDate = Date());
 
     static Real convexity(const Leg&,
                           const InterestRate&,
-			  bool includeSettlementDateFlows,
+                          bool includeSettlementDateFlows,
                           Date settlementDate = Date(),
-			  Date npvDate = Date());
+                          Date npvDate = Date());
 
     static Real convexity(const Leg&,
-			 Rate yield,
-			 const DayCounter& dayCounter,
-			 Compounding compounding,
-			 Frequency frequency,
-			 bool includeSettlementDateFlows,
-			 Date settlementDate = Date(),
-			 Date npvDate = Date());
+             Rate yield,
+             const DayCounter& dayCounter,
+             Compounding compounding,
+             Frequency frequency,
+             bool includeSettlementDateFlows,
+             Date settlementDate = Date(),
+             Date npvDate = Date());
 };
 
 
