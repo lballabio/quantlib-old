@@ -328,7 +328,7 @@ class CashFlows {
                    const Date& settlementDate = Date(),
                    const Date& npvDate = Date()) {
             return QuantLib::CashFlows::npv(leg, *discountCurve,
-					    Spread zSpread,
+					    zSpread,
 					    dayCounter,
 					    compounding,
 					    frequency,
@@ -409,17 +409,6 @@ class CashFlows {
                                                 settlementDate, npvDate,
 						npv);
         }
-        static Rate atmRate(
-                   const Leg& leg,
-                   const Handle<YieldTermStructure>& discountCurve,
-                   const Date& settlementDate = Date(),
-                   const Date& npvDate = Date(),
-                   Integer exDividendDays = 0,
-                   Real npv = Null<Real>()) {
-            return QuantLib::CashFlows::atmRate(leg, **discountCurve,
-                                                settlementDate, npvDate,
-                                                exDividendDays, npv);
-        }
     }
     static Rate yield(const Leg&,
                       Real npv,
@@ -428,6 +417,7 @@ class CashFlows {
                       Frequency frequency,
 		      bool includeSettlementDateFlows,
                       Date settlementDate = Date(),
+		      Date npvDate = Date(),
                       Real accuracy = 1.0e-10,
                       Size maxIterations = 10000,
                       Rate guess = 0.05);
@@ -458,7 +448,6 @@ class CashFlows {
 			 const DayCounter& dayCounter,
 			 Compounding compounding,
 			 Frequency frequency,
-			 Duration::Type type,
 			 bool includeSettlementDateFlows,
 			 Date settlementDate = Date(),
 			 Date npvDate = Date());
