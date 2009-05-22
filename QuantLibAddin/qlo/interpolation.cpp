@@ -26,9 +26,6 @@
 #include <ql/math/interpolations/linearinterpolation.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
-#include <ql/math/interpolations/sabrinterpolation.hpp>
-#include <ql/math/interpolations/abcdinterpolation.hpp>
-#include <ql/quote.hpp>
 
 using std::pair;
 using std::vector;
@@ -135,6 +132,8 @@ namespace QuantLibAddin {
                                          rightCondition, rightValue));
         qlInterpolation_ = dynamic_pointer_cast<QuantLib::Interpolation>(
             libraryObject_);
+        qlCubicInterpolation_ = dynamic_pointer_cast<QuantLib::CubicInterpolation>(
+            libraryObject_);
     }
 
     AbcdInterpolation::AbcdInterpolation(
@@ -163,6 +162,8 @@ namespace QuantLibAddin {
                                         ec, om));
         qlInterpolation_ = dynamic_pointer_cast<QuantLib::Interpolation>(
             libraryObject_);
+        qlAbcdInterpolation_ = dynamic_pointer_cast<QuantLib::AbcdInterpolation>(
+            libraryObject_);
     }
 
     SABRInterpolation::SABRInterpolation(
@@ -170,7 +171,7 @@ namespace QuantLibAddin {
                                     const vector<Real>& x,
                                     const vector<Handle<Quote> >& yh,
                                     QuantLib::Time t,
-                                    QuantLib::Rate forward,
+                                    Handle<Quote> forwardh,
                                     Real alpha,
                                     Real beta,
                                     Real nu,
@@ -183,7 +184,7 @@ namespace QuantLibAddin {
                                     const shared_ptr<EndCriteria>& ec,
                                     const shared_ptr<OptimizationMethod>& om,
                                     bool permanent)
-    : Interpolation(p, x, yh, permanent), forward_(forward)
+    : Interpolation(p, x, yh, permanent), forwardh_(forwardh), forward_(0.01)
     {
         libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::SABRInterpolation(x_.begin(), x_.end(), y_.begin(),
@@ -193,6 +194,8 @@ namespace QuantLibAddin {
                                         vegaWeighted,
                                         ec, om));
         qlInterpolation_ = dynamic_pointer_cast<QuantLib::Interpolation>(
+            libraryObject_);
+        qlSABRInterpolation_ = dynamic_pointer_cast<QuantLib::SABRInterpolation>(
             libraryObject_);
     }
 

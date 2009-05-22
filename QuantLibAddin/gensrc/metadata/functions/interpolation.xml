@@ -56,7 +56,6 @@
 
         on multiple lines.
       </longDescription>
-
       <libraryFunction>operator()</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -309,7 +308,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlCubicInterpolationPrimitiveConstants' type='QuantLib::CubicInterpolation'>
+    <Member name='qlCubicInterpolationPrimitiveConstants' type='QuantLibAddin::CubicInterpolation'>
       <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object.</description>
       <libraryFunction>primitiveConstants</libraryFunction>
       <SupportedPlatforms>
@@ -325,7 +324,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCubicInterpolationACoefficients' type='QuantLib::CubicInterpolation'>
+    <Member name='qlCubicInterpolationACoefficients' type='QuantLibAddin::CubicInterpolation'>
       <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object.</description>
       <libraryFunction>aCoefficients</libraryFunction>
       <SupportedPlatforms>
@@ -341,7 +340,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCubicInterpolationBCoefficients' type='QuantLib::CubicInterpolation'>
+    <Member name='qlCubicInterpolationBCoefficients' type='QuantLibAddin::CubicInterpolation'>
       <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object.</description>
       <libraryFunction>bCoefficients</libraryFunction>
       <SupportedPlatforms>
@@ -357,7 +356,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCubicInterpolationCCoefficients' type='QuantLib::CubicInterpolation'>
+    <Member name='qlCubicInterpolationCCoefficients' type='QuantLibAddin::CubicInterpolation'>
       <description>Returns the constant terms in the primitive of the cubic interpolants for the given CubicSplineInterpolation object.</description>
       <libraryFunction>cCoefficients</libraryFunction>
       <SupportedPlatforms>
@@ -373,7 +372,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlCubicInterpolationMonotonicityAdjustments' type='QuantLib::CubicInterpolation'>
+    <Member name='qlCubicInterpolationMonotonicityAdjustments' type='QuantLibAddin::CubicInterpolation'>
       <description>Returns a vector of bool (one per cubic) indicating if there has been a monotonicity adjustment.</description>
       <libraryFunction>monotonicityAdjustments</libraryFunction>
       <SupportedPlatforms>
@@ -470,7 +469,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlAbcdInterpolationA' type='QuantLib::AbcdInterpolation'>
+    <Member name='qlAbcdInterpolationA' type='QuantLibAddin::AbcdInterpolation'>
       <description>Returns the a in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.</description>
       <libraryFunction>a</libraryFunction>
       <SupportedPlatforms>
@@ -486,7 +485,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdInterpolationB' type='QuantLib::AbcdInterpolation'>
+    <Member name='qlAbcdInterpolationB' type='QuantLibAddin::AbcdInterpolation'>
       <description>Returns the b in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.</description>
       <libraryFunction>b</libraryFunction>
       <SupportedPlatforms>
@@ -502,7 +501,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdInterpolationC' type='QuantLib::AbcdInterpolation'>
+    <Member name='qlAbcdInterpolationC' type='QuantLibAddin::AbcdInterpolation'>
       <description>Returns the c in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.</description>
       <libraryFunction>c</libraryFunction>
       <SupportedPlatforms>
@@ -518,7 +517,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdInterpolationD' type='QuantLib::AbcdInterpolation'>
+    <Member name='qlAbcdInterpolationD' type='QuantLibAddin::AbcdInterpolation'>
       <description>Returns the d in the { y = (a + b*x) e^(-c*x) + d } fit for the given AbcdInterpolation object.</description>
       <libraryFunction>d</libraryFunction>
       <SupportedPlatforms>
@@ -534,7 +533,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdInterpolationRmsError' type='QuantLib::AbcdInterpolation'>
+    <Member name='qlAbcdInterpolationRmsError' type='QuantLibAddin::AbcdInterpolation'>
       <description>Returns the error of the fit for the given AbcdInterpolation object.</description>
       <libraryFunction>rmsError</libraryFunction>
       <SupportedPlatforms>
@@ -550,7 +549,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdInterpolationMaxError' type='QuantLib::AbcdInterpolation'>
+    <Member name='qlAbcdInterpolationMaxError' type='QuantLibAddin::AbcdInterpolation'>
       <description>Returns the max error of the fit for the given AbcdInterpolation object.</description>
       <libraryFunction>maxError</libraryFunction>
       <SupportedPlatforms>
@@ -566,7 +565,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAbcdInterpolationEndCriteria' type='QuantLib::AbcdInterpolation'>
+    <Member name='qlAbcdInterpolationEndCriteria' type='QuantLibAddin::AbcdInterpolation'>
       <description>Returns the optimization end criteria of the fit for the given AbcdInterpolation object.</description>
       <libraryFunction>endCriteria</libraryFunction>
       <SupportedPlatforms>
@@ -610,9 +609,10 @@
             <description>expiry time in years.</description>
           </Parameter>
           <Parameter name='Forward' exampleValue='0.039'>
-            <type>QuantLib::Rate</type>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>forward.</description>
+            <description>at-the-money forward rate.</description>
           </Parameter>
           <Parameter name='Alpha' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
@@ -705,7 +705,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSABRInterpolationAlpha' type='QuantLib::SABRInterpolation'>
+    <Member name='qlSABRInterpolationAlpha' type='QuantLibAddin::SABRInterpolation'>
       <description>Returns the alpha of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>alpha</libraryFunction>
       <SupportedPlatforms>
@@ -721,7 +721,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSABRInterpolationBeta' type='QuantLib::SABRInterpolation'>
+    <Member name='qlSABRInterpolationBeta' type='QuantLibAddin::SABRInterpolation'>
       <description>Returns the alpha of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>beta</libraryFunction>
       <SupportedPlatforms>
@@ -737,7 +737,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSABRInterpolationNu' type='QuantLib::SABRInterpolation'>
+    <Member name='qlSABRInterpolationNu' type='QuantLibAddin::SABRInterpolation'>
       <description>Returns the nu of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>nu</libraryFunction>
       <SupportedPlatforms>
@@ -753,7 +753,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSABRInterpolationRho' type='QuantLib::SABRInterpolation'>
+    <Member name='qlSABRInterpolationRho' type='QuantLibAddin::SABRInterpolation'>
       <description>Returns the rho of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>rho</libraryFunction>
       <SupportedPlatforms>
@@ -769,7 +769,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSABRInterpolationRmsError' type='QuantLib::SABRInterpolation'>
+    <Member name='qlSABRInterpolationRmsError' type='QuantLibAddin::SABRInterpolation'>
       <description>Returns the error of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>rmsError</libraryFunction>
       <SupportedPlatforms>
@@ -785,7 +785,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSABRInterpolationMaxError' type='QuantLib::SABRInterpolation'>
+    <Member name='qlSABRInterpolationMaxError' type='QuantLibAddin::SABRInterpolation'>
       <description>Returns the max error of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>maxError</libraryFunction>
       <SupportedPlatforms>
@@ -801,7 +801,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSABRInterpolationEndCriteria' type='QuantLib::SABRInterpolation'>
+    <Member name='qlSABRInterpolationEndCriteria' type='QuantLibAddin::SABRInterpolation'>
       <description>Returns the optimization end criteria of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>endCriteria</libraryFunction>
       <SupportedPlatforms>
@@ -817,7 +817,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlSABRInterpolationWeights' type='QuantLib::SABRInterpolation'>
+    <Member name='qlSABRInterpolationWeights' type='QuantLibAddin::SABRInterpolation'>
       <description>Returns the weights of the fit for the given SABRInterpolation object.</description>
       <libraryFunction>interpolationWeights</libraryFunction>
       <SupportedPlatforms>
