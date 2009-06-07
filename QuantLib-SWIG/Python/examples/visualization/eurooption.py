@@ -1,24 +1,4 @@
-# Example of option baskets
-# Distributed under Library GNU Public License
-
-from enthought.mayavi.scripts import mayavi2
-mayavi2.standalone(globals())
-
-
-import scipy
-import numpy
 from QuantLib import *
-from enthought.tvtk.tools import mlab
-from enthought.mayavi.sources.vtk_data_source import VTKDataSource
-from enthought.mayavi.filters.warp_scalar import WarpScalar
-from enthought.mayavi.modules.outline import Outline
-from enthought.mayavi.modules.surface import Surface
-
-
-spot = scipy.arange(10.0, 100.0, 5.0)
-vol = scipy.arange(0.1, 1.0, 0.1)
-riskfree = scipy.arange(0.0, 5.0, 1.0)
-
 todaysDate = Date(15, May, 1998)
 Settings.instance().evaluationDate = todaysDate
 settlementDate = Date(17, May, 1998)
@@ -53,33 +33,5 @@ def f(x,y):
     volatilityQuote.setValue(y)
     return option1.NPV()
 
-    
-def add_data(tvtk_data):
-    """Add a TVTK data object `tvtk_data` to the mayavi pipleine.
-    """
-    d = VTKDataSource()
-    d.data = tvtk_data
-    mayavi.add_source(d)
-    return d
-
-def surf_regular(source):
-    """Now visualize the data as done in mlab.
-    """
-    w = WarpScalar()
-    source.add_child(w)
-    s = Surface()
-    w.add_child(s)
-
-
-# 3D visualization of f:
-from enthought.tvtk.tools import mlab
-
-if __name__ == '__main__':
-    mayavi.new_scene()
-    for r in riskfree:
-        riskFreeQuote.setValue(r)
-        s1 = mlab.SurfRegular(spot, vol, scipy.vectorize(f), scale=[1,100, 1])
-        s1.lut.alpha_range=(0.2,0.2)
-        d = add_data(s1.data)
-        surf_regular(d)
-
+def setQuote(r):
+    riskFreeQuote.setValue(r)

@@ -1,3 +1,6 @@
+# Example of option baskets
+# Distributed under Library GNU Public License
+
 from enthought.mayavi.scripts import mayavi2
 from enthought.tvtk.tools import mlab
 from plotspace import PlotSpace
