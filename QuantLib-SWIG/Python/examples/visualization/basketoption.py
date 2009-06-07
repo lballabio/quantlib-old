@@ -1,3 +1,6 @@
+# Example of option baskets
+# Distributed under Library GNU Public License
+
 from QuantLib import *
 class BasketOptionClass:
     def __init__(self, btype):

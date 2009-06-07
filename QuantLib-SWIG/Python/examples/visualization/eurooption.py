@@ -1,3 +1,6 @@
+# Example of option baskets
+# Distributed under Library GNU Public License
+
 from QuantLib import *
 todaysDate = Date(15, May, 1998)
 Settings.instance().evaluationDate = todaysDate
