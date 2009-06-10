@@ -292,7 +292,7 @@
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle.</description>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -371,7 +371,7 @@
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle.</description>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -398,7 +398,7 @@
           <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. If omitted returns the first 40 H, M, U, Z futures.</description>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -454,7 +454,7 @@
           <Parameter name='MainCycle' default='true' const='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle.</description>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -481,7 +481,7 @@
           <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
             <type>bool</type>
             <tensorRank>vector</tensorRank>
-            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle. If omitted returns the first 40 H, M, U, Z futures.</description>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
