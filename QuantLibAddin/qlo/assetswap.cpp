@@ -58,7 +58,8 @@ namespace QuantLibAddin {
                                 parSwap));
 
        boost::shared_ptr<QuantLib::PricingEngine> swapEngine(new
-           QuantLib::DiscountingSwapEngine(hYTS));
+           QuantLib::DiscountingSwapEngine(hYTS, false,
+                                           bond->settlementDate()));
        
        libraryObject_->setPricingEngine(swapEngine);
 

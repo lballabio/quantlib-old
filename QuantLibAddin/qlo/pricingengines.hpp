@@ -27,6 +27,7 @@
 #include <ql/types.hpp>
 
 namespace QuantLib {
+    class Date;
     class SimpleQuote;
     class AffineModel;
     class MarketModelFactory;
@@ -75,6 +76,9 @@ namespace QuantLibAddin {
         DiscountingSwapEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>&,
+            bool includeSettlementDateFlows,
+            const QuantLib::Date& settlementDate,
+            const QuantLib::Date& npvDate,
             bool permanent);
     };
 

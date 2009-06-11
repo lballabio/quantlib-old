@@ -55,10 +55,14 @@ namespace QuantLibAddin {
     DiscountingSwapEngine::DiscountingSwapEngine(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+        bool includeSettlementDateFlows,
+        const QuantLib::Date& settlementDate,
+        const QuantLib::Date& npvDate,
         bool permanent) : PricingEngine(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
-            QuantLib::DiscountingSwapEngine(hYTS));
+            QuantLib::DiscountingSwapEngine(hYTS, includeSettlementDateFlows,
+                                            settlementDate, npvDate));
     }
 
     BlackSwaptionEngine::BlackSwaptionEngine(
