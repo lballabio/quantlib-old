@@ -70,7 +70,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -101,7 +101,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -128,7 +128,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -155,7 +155,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -182,7 +182,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -211,7 +211,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -238,7 +238,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -265,7 +265,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -303,12 +303,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -342,12 +342,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -381,12 +381,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
           <Parameter name='NPV' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
             <type>QuantLib::Real</type>
@@ -442,12 +442,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -495,12 +495,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -548,12 +548,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-10'>
             <type>QuantLib::Real</type>
@@ -621,12 +621,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -674,12 +674,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -727,12 +727,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -780,12 +780,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -844,12 +844,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -903,12 +903,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>settlement date: cashflows before this date are not taken into account. If missing it defaults to the current evaluation date.</description>
+            <description>cashflows before this date are not taken into account. If missing it defaults to the current evaluation date.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>net present value date: all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
           <Parameter name='Accuracy' default='1.0e-10'>
             <type>QuantLib::Real</type>
