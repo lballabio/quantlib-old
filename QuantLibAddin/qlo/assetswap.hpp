@@ -36,7 +36,7 @@ namespace QuantLibAddin {
                   const QuantLib::Real bondCleanPrice,
                   const boost::shared_ptr<QuantLib::IborIndex>& index,
                   QuantLib::Spread spread,
-                  const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                  //const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                   const boost::shared_ptr<QuantLib::Schedule>& floatSchedule,
                   const QuantLib::DayCounter& floatingDayCount,
                   bool parSwap,
