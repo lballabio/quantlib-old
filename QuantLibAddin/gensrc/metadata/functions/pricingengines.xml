@@ -1147,12 +1147,12 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing it is assumed equal to the discounting yield term structure's reference date.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the discounting yield term structure's reference date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
