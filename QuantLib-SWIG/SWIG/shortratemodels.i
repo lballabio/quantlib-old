@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2007 StatPro Italia srl
+ Copyright (C) 2003, 2007, 2009 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
  Copyright (C) 2007 Luis Cota
 
@@ -44,7 +44,11 @@ typedef boost::shared_ptr<CalibrationHelper> CapHelperPtr;
 %}
 
 // calibration helpers
+#if defined(SWIGJAVA) || defined(SWIGCSHARP)
+%rename(_CalibrationHelper) CalibrationHelper;
+#else
 %ignore CalibrationHelper;
+#endif
 class CalibrationHelper {
     #if defined(SWIGRUBY)
     %rename("pricingEngine=")      setPricingEngine;
@@ -55,7 +59,11 @@ class CalibrationHelper {
     %rename("implied-volatility")  impliedVolatility;
     %rename("black-price")         blackPrice;
     #endif
+  private:
+    CalibrationHelper();
   public:
+    enum CalibrationErrorType {
+                            RelativePriceError, PriceError, ImpliedVolError };
     void setPricingEngine(const boost::shared_ptr<PricingEngine>& engine);
     Real marketValue() const;
     Real modelValue() const;
@@ -65,6 +73,14 @@ class CalibrationHelper {
     Real blackPrice(Volatility volatility) const;
 };
 %template(CalibrationHelper) boost::shared_ptr<CalibrationHelper>;
+%extend boost::shared_ptr<CalibrationHelper> {
+    static const CalibrationHelper::CalibrationErrorType RelativePriceError =
+        CalibrationHelper::RelativePriceError;
+    static const CalibrationHelper::CalibrationErrorType PriceError =
+        CalibrationHelper::PriceError;
+    static const CalibrationHelper::CalibrationErrorType ImpliedVolError =
+        CalibrationHelper::ImpliedVolError;
+}
 
 %rename(SwaptionHelper) SwaptionHelperPtr;
 class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
@@ -77,7 +93,8 @@ class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
                           const DayCounter& fixedLegDayCounter,
                           const DayCounter& floatingLegDayCounter,
                           const Handle<YieldTermStructure>& termStructure,
-                          bool calibrateVolatility = false) {
+                          CalibrationHelper::CalibrationErrorType errorType
+                                    = CalibrationHelper::RelativePriceError) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new SwaptionHelperPtr(
@@ -86,7 +103,7 @@ class SwaptionHelperPtr : public boost::shared_ptr<CalibrationHelper> {
                                    fixedLegDayCounter,
                                    floatingLegDayCounter,
                                    termStructure,
-                                   calibrateVolatility));
+                                   errorType));
         }
         std::vector<Time> times() {
             std::list<Time> l;
@@ -108,7 +125,9 @@ class CapHelperPtr : public boost::shared_ptr<CalibrationHelper> {
                      Frequency fixedLegFrequency,
                      const DayCounter& fixedLegDayCounter,
                      bool includeFirstSwaplet,
-                     const Handle<YieldTermStructure>& termStructure) {
+                     const Handle<YieldTermStructure>& termStructure,
+                     CalibrationHelper::CalibrationErrorType errorType
+                                    = CalibrationHelper::RelativePriceError) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new CapHelperPtr(
