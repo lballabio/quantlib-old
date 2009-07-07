@@ -234,9 +234,9 @@ typedef double doubleOrNull;
 
 %typemap(out) doubleOrNull {
     if ($1 == Null<double>())
-    $result = Rf_ScalarLogical(NA_LOGICAL)
+        $result = Rf_ScalarLogical(NA_LOGICAL);
     else
-    $result = ScalarReal($1);
+        $result = Rf_ScalarReal($1);
 }
 
 #endif
