@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2008 StatPro Italia srl
+ Copyright (C) 2008, 2009 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,6 +21,7 @@
 %include instruments.i
 %include credit.i
 %include termstructures.i
+%include null.i
 
 %{
 using QuantLib::CreditDefaultSwap;
@@ -47,6 +48,21 @@ class CreditDefaultSwapPtr : public boost::shared_ptr<Instrument> {
                                           paymentConvention, dayCounter,
                                           settlesAccrual, paysAtDefaultTime));
         }
+        CreditDefaultSwapPtr(Protection::Side side,
+                             Real notional,
+                             Rate upfront,
+                             Rate spread,
+                             const Schedule& schedule,
+                             BusinessDayConvention paymentConvention,
+                             const DayCounter& dayCounter,
+                             bool settlesAccrual = true,
+                             bool paysAtDefaultTime = true) {
+            return new CreditDefaultSwapPtr(
+                    new CreditDefaultSwap(side, notional, upfront, spread,
+                                          schedule, paymentConvention,
+                                          dayCounter, settlesAccrual,
+                                          paysAtDefaultTime));
+        }
         Protection::Side side() const {
             return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
                 ->side();
@@ -55,9 +71,18 @@ class CreditDefaultSwapPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
                 ->notional();
         }
-        Rate spread() const {
+        Rate runningSpread() const {
             return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
-                ->spread();
+                ->runningSpread();
+        }
+        doubleOrNull upfront() const {
+            boost::optional<Rate> result =
+                boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
+                ->upfront();
+            if (result)
+                return *result;
+            else
+                return Null<double>();
         }
         bool settlesAccrual() const {
             return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
@@ -71,6 +96,10 @@ class CreditDefaultSwapPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
                 ->fairSpread();
         }
+        Rate fairUpfront() const {
+            return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
+                ->fairUpfront();
+        }
         Real couponLegBPS() const {
             return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
                 ->couponLegBPS();
@@ -82,6 +111,14 @@ class CreditDefaultSwapPtr : public boost::shared_ptr<Instrument> {
         Real defaultLegNPV() const {
             return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
                 ->defaultLegNPV();
+        }
+        Real upfrontBPS() const {
+            return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
+                ->upfrontBPS();
+        }
+        Real upfrontNPV() const {
+            return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
+                ->upfrontNPV();
         }
         Rate impliedHazardRate(Real targetNPV,
                                const Handle<YieldTermStructure>& discountCurve,

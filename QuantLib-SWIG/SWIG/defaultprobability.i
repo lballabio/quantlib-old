@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2008 StatPro Italia srl
+ Copyright (C) 2008, 2009 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -215,8 +215,10 @@ export_default_density_curve(DefaultDensityCurve,Linear);
 
 %{
 using QuantLib::DefaultProbabilityHelper;
-using QuantLib::CdsHelper;
-typedef boost::shared_ptr<DefaultProbabilityHelper> CdsHelperPtr;
+using QuantLib::SpreadCdsHelper;
+typedef boost::shared_ptr<DefaultProbabilityHelper> SpreadCdsHelperPtr;
+using QuantLib::UpfrontCdsHelper;
+typedef boost::shared_ptr<DefaultProbabilityHelper> UpfrontCdsHelperPtr;
 %}
 
 // rate helpers for curve bootstrapping
@@ -232,11 +234,11 @@ namespace std {
 }
 
 
-%rename(CdsHelper) CdsHelperPtr;
-class CdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
+%rename(SpreadCdsHelper) SpreadCdsHelperPtr;
+class SpreadCdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
   public:
     %extend {
-        CdsHelperPtr(
+        SpreadCdsHelperPtr(
                 const Handle<Quote>& spread,
                 const Period& tenor,
                 Integer settlementDays,
@@ -249,13 +251,13 @@ class CdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
                 const Handle<YieldTermStructure>& discountCurve,
                 bool settlesAccrual = true,
                 bool paysAtDefaultTime = true) {
-            return new CdsHelperPtr(
-                new CdsHelper(spread,tenor,settlementDays,calendar,
-                              frequency,convention,rule,dayCounter,
-                              recoveryRate,discountCurve,
-                              settlesAccrual,paysAtDefaultTime));
+            return new SpreadCdsHelperPtr(
+                new SpreadCdsHelper(spread,tenor,settlementDays,calendar,
+                                    frequency,convention,rule,dayCounter,
+                                    recoveryRate,discountCurve,
+                                    settlesAccrual,paysAtDefaultTime));
         }
-        CdsHelperPtr(
+        SpreadCdsHelperPtr(
                 Rate spread,
                 const Period& tenor,
                 Integer settlementDays,
@@ -268,11 +270,61 @@ class CdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
                 const Handle<YieldTermStructure>& discountCurve,
                 bool settlesAccrual = true,
                 bool paysAtDefaultTime = true) {
-            return new CdsHelperPtr(
-                new CdsHelper(spread,tenor,settlementDays,calendar,
-                              frequency,convention,rule,dayCounter,
-                              recoveryRate,discountCurve,
-                              settlesAccrual,paysAtDefaultTime));
+            return new SpreadCdsHelperPtr(
+                new SpreadCdsHelper(spread,tenor,settlementDays,calendar,
+                                    frequency,convention,rule,dayCounter,
+                                    recoveryRate,discountCurve,
+                                    settlesAccrual,paysAtDefaultTime));
+        }
+    }
+};
+
+
+%rename(UpfrontCdsHelper) UpfrontCdsHelperPtr;
+class UpfrontCdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
+  public:
+    %extend {
+        UpfrontCdsHelperPtr(
+                const Handle<Quote>& upfront,
+                Rate spread,
+                const Period& tenor,
+                Integer settlementDays,
+                const Calendar& calendar,
+                Frequency frequency,
+                BusinessDayConvention convention,
+                DateGeneration::Rule rule,
+                const DayCounter& dayCounter,
+                Real recoveryRate,
+                const Handle<YieldTermStructure>& discountCurve,
+                bool settlesAccrual = true,
+                bool paysAtDefaultTime = true) {
+            return new UpfrontCdsHelperPtr(
+                new UpfrontCdsHelper(upfront,spread,tenor,
+                                     settlementDays,calendar,
+                                     frequency,convention,rule,dayCounter,
+                                     recoveryRate,discountCurve,
+                                     settlesAccrual,paysAtDefaultTime));
+        }
+        UpfrontCdsHelperPtr(
+                Rate upfront,
+                Rate spread,
+                const Period& tenor,
+                Integer settlementDays,
+                const Calendar& calendar,
+                Frequency frequency,
+                BusinessDayConvention convention,
+                DateGeneration::Rule rule,
+                const DayCounter& dayCounter,
+                Real recoveryRate,
+                const Handle<YieldTermStructure>& discountCurve,
+                bool settlesAccrual = true,
+                bool paysAtDefaultTime = true) {
+            return new UpfrontCdsHelperPtr(
+                new UpfrontCdsHelper(upfront,spread,tenor,
+                                     settlementDays,calendar,
+                                     frequency,convention,rule,dayCounter,
+                                     recoveryRate,discountCurve,
+                                     settlesAccrual,paysAtDefaultTime));
         }
     }
 };
