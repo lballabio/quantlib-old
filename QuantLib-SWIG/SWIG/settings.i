@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2004, 2005 StatPro Italia srl
+ Copyright (C) 2004, 2005, 2009 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,9 +29,13 @@ class Settings {
     #if defined(SWIGRUBY)
     %rename("evaluationDate") getEvaluationDate;
     %rename("evaluationDate=") setEvaluationDate;
+    %rename("includeReferenceDateCashFlows=") includeReferenceDateCashFlows;
+    %rename("includeTodaysCashFlows=") includeTodaysCashFlows;
     #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
     %rename("evaluation-date-get")  evaluationDate;
     %rename("evaluation-date-set!") setEvaluationDate;
+    %rename("include-reference-date-cash-flows!") includeReferenceDateCashFlows;
+    %rename("include-todays-cash-flows!") includeTodaysCashFlows;
     #endif
   private:
     Settings();
@@ -44,10 +48,19 @@ class Settings {
         void setEvaluationDate(const Date& d) {
             self->evaluationDate() = d;
         }
+
+        void includeReferenceDateCashFlows(bool b) {
+            self->includeReferenceDateCashFlows() = b;
+        }
+        void includeTodaysCashFlows(bool b) {
+            self->includeTodaysCashFlows() = b;
+        }
     }
     #if defined(SWIGPYTHON)
     %pythoncode %{
     evaluationDate = property(getEvaluationDate,setEvaluationDate,None)
+    includeReferenceDateCashFlows = property(None,includeReferenceDateCashFlows,None)
+    includeTodaysCashFlows = property(None,includeTodaysCashFlows,None)
     %}
     #endif
 };
