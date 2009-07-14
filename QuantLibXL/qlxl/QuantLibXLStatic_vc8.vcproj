@@ -500,6 +500,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\register\register_defaulttermstructures.cpp"
+				>
+			</File>
+			<File
 				RelativePath="register\register_driftcalculators.cpp"
 				>
 			</File>
@@ -729,6 +733,10 @@
 			</File>
 			<File
 				RelativePath="functions\daycounter.cpp"
+				>
+			</File>
+			<File
+				RelativePath="functions\defaulttermstructures.cpp"
 				>
 			</File>
 			<File
