@@ -26,3 +26,5 @@ Redirect 301 /download.shtml>. http://quantlib.org/download.shtml
 Redirect 301 /download.shtml&gt;. http://quantlib.org/download.shtml
 Redirect 301 /index.shtm http://quantlib.org/index.shtml
 Redirect 301 /) http://quantlib.org/index.shtml
+Redirect 301 /Documentation http://quantlib.org/docs.shtml
+Redirect 301 /</a> http://quantlib.org/index.shtml
