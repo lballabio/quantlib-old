@@ -123,9 +123,9 @@ class CompositeQuotePtr : public boost::shared_ptr<Quote> {
 #endif
 
 #if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_SPECIALIZE( Quote, boost::shared_ptr<Quote> )
-SWIG_STD_VECTOR_SPECIALIZE( QuoteHandle, Handle<Quote> )
-SWIG_STD_VECTOR_SPECIALIZE( RelinkableQuoteHandle, RelinkableHandle<Quote> )
+SWIG_STD_VECTOR_ENHANCED( boost::shared_ptr<Quote> )
+SWIG_STD_VECTOR_ENHANCED( Handle<Quote> )
+SWIG_STD_VECTOR_ENHANCED( RelinkableHandle<Quote> )
 #endif
 namespace std {
     %template(QuoteVector) vector<boost::shared_ptr<Quote> >;

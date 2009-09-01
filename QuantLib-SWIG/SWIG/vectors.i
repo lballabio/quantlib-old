@@ -24,7 +24,7 @@
 %include date.i
 
 #if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_SPECIALIZE( NodePair, std::pair<Date,double> )
+SWIG_STD_VECTOR_ENHANCED( std::pair<Date,double> )
 #endif
 
 namespace std {

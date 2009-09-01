@@ -202,7 +202,7 @@ class FixedRateBondHelperPtr : public boost::shared_ptr<RateHelper> {
                                         issueDate));
         }
 
-      	FixedRateBondPtr bond() {
+        FixedRateBondPtr bond() {
             return FixedRateBondPtr(boost::dynamic_pointer_cast<FixedRateBondHelper>(*self)->bond());
         }
     }
@@ -211,7 +211,7 @@ class FixedRateBondHelperPtr : public boost::shared_ptr<RateHelper> {
 
 // allow use of RateHelper vectors
 #if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_SPECIALIZE( RateHelper, boost::shared_ptr<RateHelper> )
+SWIG_STD_VECTOR_ENHANCED( boost::shared_ptr<RateHelper> )
 #endif
 namespace std {
     %template(RateHelperVector) vector<boost::shared_ptr<RateHelper> >;

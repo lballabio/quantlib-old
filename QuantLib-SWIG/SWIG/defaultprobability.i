@@ -225,8 +225,7 @@ typedef boost::shared_ptr<DefaultProbabilityHelper> UpfrontCdsHelperPtr;
 %template(DefaultProbabilityHelper) boost::shared_ptr<DefaultProbabilityHelper>;
 
 #if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_SPECIALIZE( DefaultProbabilityHelper,
-                            boost::shared_ptr<DefaultProbabilityHelper> )
+SWIG_STD_VECTOR_ENHANCED( boost::shared_ptr<DefaultProbabilityHelper> )
 #endif
 namespace std {
     %template(DefaultProbabilityHelperVector)

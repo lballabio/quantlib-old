@@ -60,7 +60,7 @@ class FractionalDividendPtr : public boost::shared_ptr<Dividend> {
 
 
 #if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_SPECIALIZE( Dividend, boost::shared_ptr<Dividend> )
+SWIG_STD_VECTOR_ENHANCED( boost::shared_ptr<Dividend> )
 #endif
 namespace std {
     %template(DividendSchedule) vector<boost::shared_ptr<Dividend> >;

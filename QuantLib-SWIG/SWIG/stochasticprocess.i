@@ -231,7 +231,7 @@ class GeometricBrownianMotionProcessPtr : public StochasticProcess1DPtr {
 
 // allow use of diffusion process vectors
 #if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_SPECIALIZE( StochasticProcess, boost::shared_ptr<StochasticProcess> )
+SWIG_STD_VECTOR_ENHANCED( boost::shared_ptr<StochasticProcess> )
 #endif
 %template(StochasticProcessVector)
 std::vector<boost::shared_ptr<StochasticProcess> >;

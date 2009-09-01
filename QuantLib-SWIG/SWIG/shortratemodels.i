@@ -148,8 +148,7 @@ class CapHelperPtr : public boost::shared_ptr<CalibrationHelper> {
 
 // allow use of CalibrationHelper vectors
 #if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_SPECIALIZE( CalibrationHelper,
-                            boost::shared_ptr<CalibrationHelper> )
+SWIG_STD_VECTOR_ENHANCED( boost::shared_ptr<CalibrationHelper> )
 #endif
 namespace std {
     %template(CalibrationHelperVector)
