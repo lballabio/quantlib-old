@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="qlmeta.inc"-->
+<meta name="author" content="Luigi Ballabio">
+<meta name="copyright" content=
+"StatPro Italia srl (c) 2009">
+<meta name="description" content="QuantLib Installation">
+<title>QuantLib Installation</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="header.inc"-->
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
+<h1 class="center">QuantLib Installation</h1>
+
+<p>At this time, installation instructions are available
+for <a href="/install/vc9.shtml">Microsoft Visual C++.</a></p>
+
+<p>Instructions for other platforms are in the works.</p>
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>

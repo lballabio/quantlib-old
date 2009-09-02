@@ -6,6 +6,8 @@
 
 <li class="navlink"><a href="/download.shtml">Download</a></li>
 
+<li class="navlink"><a href="/install.shtml">Install</a></li>
+
 <li class="navlink"><a href=
 "http://sourceforge.net/tracker/?func=add&amp;group_id=12740&amp;atid=112740">Submit a bug report</a></li>
 
@@ -54,7 +56,7 @@
 <hr>
 <div class="center">
 <a href="http://opensource.org/docs/definition.html"><img src=
-"images/osi-certified-90x75.png" width="90" height="75" border="0"
+"/images/osi-certified-90x75.png" width="90" height="75" border="0"
 alt="OSI Certification Mark"></a></div>
 
 <hr>
@@ -68,7 +70,7 @@ SourceForge.net. Fast, secure and Free Open Source software downloads">
 <hr>
 <div class="center"><strong>Supported by</strong><br>
 <a href="http://www.statpro.com"><img src=
-"images/statpro.jpg" width="98"
+"/images/statpro.jpg" width="98"
 height="33" border="0" alt="StatPro Logo"></a></div>
 
 <hr>
@@ -90,7 +92,7 @@ height="33" border="0" alt="StatPro Logo"></a></div>
 <hr>
 <form action="http://www.google.com/search" method="get">
 <div class="center">
-<img src="images/google.png" border="0" alt="Google Logo"><br>
+<img src="/images/google.png" border="0" alt="Google Logo"><br>
 <input type="text" size="15" maxlength="255" value="" name="q">
 <input type="hidden" value="quantlib.org" name="domains">
 <input type="hidden" value="quantlib.org" name="sitesearch">

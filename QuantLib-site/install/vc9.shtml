@@ -1,0 +1,377 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="/qlmeta.inc"-->
+<meta name="author" content="Dimitri Reiswich">
+<meta name="copyright" content=
+"Dimitri Reiswich (c) 2009">
+<meta name="description" content="QuantLib Installation in Visual C++">
+<title>QuantLib Installation in Visual C++</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="/header.inc"-->
+<div id="menu">
+<!--#include virtual="/usermenu.inc"-->
+</div>
+<div id="content">
+
+<h1 class="center">QuantLib Installation in Visual C++</h1>
+<h4 class="center">Dimitri Reiswich</h4>
+
+<p>These are step-by-step instructions to install QuantLib on the
+Microsoft Visual C++ 2008 IDE (the free Express version can be
+downloaded
+at <a href="http://www.microsoft.com/express/vc/">http://www.microsoft.com/express/vc/</a>.)
+I tried to include almost every step in the installation
+procedure. Something that is obvious to one person might not be
+obvious to someone else. The only thing that I assume that you have on
+your computer is the Visual C++ 2008 IDE.</p>
+
+<p>These instructions should also work for Visual C++ 2005 and
+(possibly with some slight modification) for Visual C++ 2003.</p>
+
+<p>Before using QuantLib you need to install the Boost library on your
+computer. Detailed instructions follow in the next section. There are
+two options to install Boost. The first one (the fastest) is to
+download an installer, which in turn downloads and extracts pre-built
+libraries. The second option is that you build the Boost
+libraries. This takes more time than the first option; installation
+instructions are provided in the Appendix.</p>
+
+<h2>Boost Installation</h2>
+<p>I suggest to use the installer provided by BoostPro
+Computing, that can be downloaded
+at <a href="http://www.boostpro.com/download">http://www.boostpro.com/download</a>.</p>
+
+<p>At the time of this writing, the current version is the
+executable <tt>boost_1_39_setup.exe</tt> and can be downloaded after a
+free registration, which takes just a few seconds. Double clicking the
+installer yields the screen shown below. Select the download mirror of
+your choice.</p>
+
+<p class="center"><img src="pics/vc9/boost1.png" alt="Mirror selection"></p>
+
+<p>The next step asks you to select the binaries to download. Since we
+have using Visual Studio 2008, we will select this version in the left
+panel; select the appropriate version if you're using an earlier
+IDE. In the right panel, select Multithread, Multithread Debug,
+Multithread static runtime, and Multithread Debug static runtime (the
+others are not needed by QuantLib, but you might want to download them
+anyway.) The resulting screen is shown below.</p>
+
+<p class="center"><img src="pics/vc9/boost2.png" alt="Version selection"></p>
+
+<p>The next window asks you which libraries you'd like to install. You
+can add any library that you want besides the ones selected by
+default; the one needed for a complete QuantLib build is the unit test
+framework, which can be found at the end of the list. The
+corresponding screen follows.</p>
+
+<p class="center"><img src="pics/vc9/boost3.png" alt="Default library selection"></p>
+
+<p>Choose the VC9.0 version (or the one corresponding to your IDE) to
+include the unit test framework. You can also open the VC9.0 list and
+select specific build versions.</p>
+
+<p class="center"><img src="pics/vc9/boost3A.png" alt="Library selection"></p>
+
+<p>The next step asks for a destination folder. I will install
+everything in a folder called <tt>Boost</tt> on my
+<tt>C:</tt> drive. Feel free to choose your own folder.</p>
+
+<p class="center"><img src="pics/vc9/boost4.png" alt="Install location"></p>
+
+<p>Clicking Install starts the download, which takes a while. After
+finishing, the final screen should say:</p>
+
+<p class="center"><img src="pics/vc9/boost5.png" alt="Boost installed"></p>
+
+<h2>Boost Configuration</h2>
+
+<p>Before proceeding, we will make the Boost headers and libraries
+available to all C++ projects. This allows us to make changes in only
+one place after updating Boost. To do this, open Visual Studio without
+a project and go to <i>Tools/Options</i> in the upper menu.</p>
+
+<p class="center"><img src="pics/vc9/qlA1.png" alt="VC options"></p>
+
+<p>Go to <i>Projects and Solutions/VC++ Directories</i> in the
+left-side tree, and choose <i>Include files</i> in the <i>Show
+directories for:</i> drop-down menu on the upper right.</p>
+
+<p class="center"><img src="pics/vc9/qlA2.png" alt="directories dialog"></p>
+
+<p>Include the Boost folder, in our case <tt>C:\Boost\boost_1_39</tt>.</p>
+
+<p class="center"><img src="pics/vc9/qlA3.png" alt="Include boost dir"></p>
+
+<!--l. 225-->
+<p>Go again to the <i>Show directories for:</i> drop-down menu and
+choose <i>Library files</i>.
+
+<p class="center"><img src="pics/vc9/qlA4.png" alt="Library dirs"></p>
+
+<p>Include the Boost library folder, in our
+case <tt>C:\Boost\boost_1_39\lib</tt>. Click <i>OK</i>. You're done.
+In case you run into problems afterwards, the Appendix shows how to
+build a test program to check that Boost is correctly installed.</p>
+
+<p class="center"><img src="pics/vc9/qlA5.png" alt="Boost library dir"></p>
+
+
+<h2>QuantLib Installation</h2>
+
+<p>If you haven't downloaded QuantLib yet, go to its download page on
+SourceForge, located
+at <a href="http://sourceforge.net/projects/quantlib/files/">http://sourceforge.net/projects/quantlib/files/.</a></p>
+
+<p>Open the QuantLib tree, find the latest version (at the time of
+this writing, 0.9.7; this might have changed when you read this) and
+download the zip archive to your local drive. This is illustrated in
+the screenshot below. Unzip the file in the <tt>C:\QuantLib</tt>
+folder (or any folder you want) which will result in
+a <tt>C:\QuantLib\QuantLib-0.9.7</tt> folder.</p>
+
+<p class="center"><img src="pics/vc9/ql1.png" alt="download QuantLib"></p>
+
+<p>Enter the folder and open the Visual Studio solution
+called <tt>QuantLib_vc9.sln</tt> by double clicking (use the solution
+ending in <tt>_vc8</tt> or <tt>_vc7</tt> if you're using an earlier
+IDE.)  As shown in the figure, choose <i>Release</i> from the
+configuration menu in the toolbar.</p>
+
+<p class="center"><img src="pics/vc9/ql7.png" alt="QuantLib solution"></p>
+
+<p>Right-click on the solution icon and choose <i>Build Solution</i>
+to build all projects. Besides QuantLib, this will build the examples
+and run the test suite. The building process takes a while. </p>
+
+<p class="center"><img src="pics/vc9/ql5.png" alt="Build solution"></p>
+
+<p>After finishing, the output should show no errors.</p>
+
+<p class="center"><img src="pics/vc9/ql6.png" alt="Build output"></p>
+
+<p>You are done with building QuantLib. If you want, you can build the
+Debug version in the same way by choosing <i>Debug</i> from the
+configuration menu as shown below. This will allow you to debug your
+application later.</p>
+
+<p class="center"><img src="pics/vc9/ql12.png" alt="Debug version"></p>
+
+<h2>Quantlib Usage</h2>
+
+<p>As an example of QuantLib usage, I create
+a <span class="cmti-9">QuantLibTest </span>folder in
+the <tt>C:\QuantLib</tt> folder and set up a Win32 Console Application
+in Visual Studio by clicking <i>File/New Project/Visual C++/Win32
+Console Application</i>.</p>
+
+<p>I've chosen the project name <tt>TestingQuantLib</tt>. Choose, for
+example, the Release mode for that project.  Note that very often,
+users don't setup a project correctly since they build QuantLib in one
+mode and try to call it from a test programm which runs in some other
+mode.  If you build in QuantLib in release mode, you should build
+your project in release mode. If you build your project in debug mode
+without ever building QuantLib in debug mode, you'll have link
+errors.</p>
+
+<p>To tell your project where to find QuantLib, open the project
+properties, go to <i>Configuration Properties/C/C++/General/Additional
+Include Directories</i> and enter the QuantLib path, which
+is <tt>C:\QuantLib\QuantLib-0.9.7</tt>.</p>
+
+<p>You don't need to do anything here regarding Boost, since you have
+added its paths to the general options before.</p>
+
+<p>The result should be as shown below.</p>
+
+<p class="center"><img src="pics/vc9/ql8.png" alt="QuantLib include directory"></p>
+
+<p>Finally, go to <i>Configuration Properties/Linker/General/Additional Library Directories</i> and add <tt>C:\QuantLib\QuantLib-0.9.7\lib</tt> (see figure below.) Click <i>OK</i>.</p>
+
+<p class="center"><img src="pics/vc9/ql9.png" alt="QuantLib library dir"></p>
+
+<p>To test if the setup works, input the following main program in
+the <tt>TestingQuantLib</tt> project. The program tests some Date and
+Calendar classes.</p>
+
+<pre>
+// TestingQuantLib.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+
+#include &lt;ql/quantlib.hpp&gt;
+#include &lt;iostream&gt;
+
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+        QuantLib::Calendar myCal=QuantLib::UnitedKingdom();
+        QuantLib::Date newYearsEve(31,QuantLib::Dec,2008);
+
+        std::cout << "Name: "                       << myCal.name()<< std::endl;
+        std::cout << "New Year is Holiday: "        << myCal.isHoliday(newYearsEve)<< std::endl;
+        std::cout << "New Year is Business Day: "   << myCal.isBusinessDay(newYearsEve)<< std::endl;
+
+        std::cout << "--------------- Date Counter --------------------" << std::endl;
+
+        QuantLib::Date date1(28,QuantLib::Dec,2008);
+        QuantLib::Date date2(04,QuantLib::Jan,2009);
+
+        std::cout << "First Date: "            << date1 << std::endl;
+        std::cout << "Second Date: "           << date2 << std::endl;
+        std::cout << "Business Days Betweeen: "<< myCal.businessDaysBetween(date1,date2) << std::endl;
+        std::cout << "End of Month 1. Date: "  << myCal.endOfMonth(date1) << std::endl;
+        std::cout << "End of Month 2. Date: "  << myCal.endOfMonth(date2) << std::endl;
+
+        return 0;
+}
+</pre>
+
+<p>The output of the program should be:</p>
+<pre>
+<p>
+Name: UK settlement
+New Year is Holiday: 0
+New Year is Business Day: 1
+--------------- Date Counter --------------------
+First Date: December 28th, 2008
+Second Date: January 4th, 2009
+Business Days Betweeen: 4
+End of Month 1. Date: December 31st, 2008
+End of Month 2. Date: January 30th, 2009
+</pre>
+
+<p>A last thing: If you see some warnings after building, to get rid
+of them open the project properties again, go to <i>Configuration
+Properties/C/C++/Preprocessor/Preprocessor Definitions</i> and
+add <tt>_SCL_SECURE_NO_DEPRECATE</tt>
+and <tt>_CRT_SECURE_NO_DEPRECATE</tt> to the definitions, as shown
+below.</p>
+
+<p class="center"><img src="pics/vc9/ql10.png" alt="Preprocessor defs"></p>
+
+<p>Now, building the <tt>TestingQuantLib</tt> project again shouldn't
+show you any warnings anymore, just as in the Output below. We're
+done!</p>
+
+<p class="center"><img src="pics/vc9/ql11.png" alt="Test output"></p>
+
+
+<h2>Appendix: Manual Boost Installation</h2>
+
+To build Boost manually, download the zip archive of the latest Boost release from <a href="http://sourceforge.net/projects/boost/files/boost/">http://sourceforge.net/projects/boost/files/boost/</a>.</p>
+
+<p class="center"><img src="pics/vc9/boostA1.png" alt="Boost download"></p>
+
+<p>In addition, download the latest Boost Jam from <a href="http://sourceforge.net/projects/boost/files/boost-jam/">http://sourceforge.net/projects/boost/files/boost-jam/</a>.</p>
+
+<p class="center"><img src="pics/vc9/boostA2.png" alt="Boost-Jam download"></p>
+
+<p>Unzip the Boost zip archive in the folder <tt>C:\Boost</tt>. You
+will then have a directory called <tt>C:\Boost\boost_1_39_0</tt>
+(depending on the version of the latest release.)</p>
+
+<p>Unzip the Boost Jam zip archive in the
+folder <tt>C:\Boost</tt>. You will then have a directory
+called <tt>C:\Boost\boost-jam-3.1.17-1-ntx86</tt>. Go into this
+directory and copy the file called <tt>bjam.exe</tt>. Go back
+to <tt>C:\Boost\boost_1_39_0</tt> and paste <tt>bjam.exe</tt>.</p>
+
+<p>Now, open Visual Studio without any project and go
+to <i>Tools/Visual Studio 2008 Command Prompt</i> in the upper
+menu.</p>
+
+<p class="center"><img src="pics/vc9/boostA3.png" alt="open command prompt"></p>
+
+<p>This will open a window. In the window, paste</p>
+<pre>
+cd C:\Boost\boost_1_39_0
+</pre>
+<p>to change the directory to your Boost folder (if you're not
+building release 1.39, modify the above accordingly.) The result
+should look similar to the window shown below. </p>
+
+<p class="center"><img src="pics/vc9/boostA4.png" alt="command prompt"></p>
+
+<!--l. 573-->
+<p>Now start bjam by pasting</p>
+<pre>
+bjam --build-type=complete --toolset=msvc install
+</pre>
+<p>into the DOS window. Press enter. Depending on the daytime of your
+installation, get a tea or a drink, as the above command will take a
+few hours to finish.</p>
+
+<p>After the compilation, setup your IDE to use Boost as described in
+the <i>Boost configuration</i> section above.</p>
+
+<h2>Appendix: Boost Usage</h2>
+<p>To check that Boost was successfully installed, set up a Win32
+Console Application in Visual Studio by clicking <i>File/New
+Project/Visual C++/Win32 Console Application</i>.</p>
+
+<p>I created the project in a folder called <tt>BoostTest</tt> in
+the <tt>C:\Boost</tt> folder. The project name
+is <tt>TestingBoost</tt>. Since you should have included the Boost
+directories in the global IDE option, no further configuration should
+be necessary.</p>
+
+<p>Paste the following test program in the file with the main
+function, in our case <tt>TestingBoost.cpp</tt>. The program shows
+Boost's
+<tt>FOR_EACH</tt> functionality.</p>
+
+<pre>
+// TestingBoost.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+
+#include &lt;boost/foreach.hpp&gt;
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+        std::vector&lt;double&gt; myVec(5);
+
+        myVec[0]=0.0;
+        myVec[1]=0.1;
+        myVec[2]=0.2;
+        myVec[3]=0.3;
+        myVec[4]=0.4;
+
+        std::cout << "--- Vector For Each ---" << std::endl;
+        BOOST_FOREACH(double x, myVec){
+                std::cout << x << std::endl;
+        }
+
+        return 0;
+}
+</pre>
+
+<p>The output of the program should be</p>
+<pre>
+--- Vector For Each ---
+0
+0.1
+0.2
+0.3
+0.4
+</pre>
+
+</div>
+
+<div class="footer">
+<!--#include virtual="/footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>
