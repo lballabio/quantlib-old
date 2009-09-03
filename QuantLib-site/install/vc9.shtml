@@ -53,7 +53,7 @@ your choice.</p>
 <p class="center"><img src="pics/vc9/boost1.png" alt="Mirror selection"></p>
 
 <p>The next step asks you to select the binaries to download. Since we
-have using Visual Studio 2008, we will select this version in the left
+are using Visual Studio 2008, we will select this version in the left
 panel; select the appropriate version if you're using an earlier
 IDE. In the right panel, select Multithread, Multithread Debug,
 Multithread static runtime, and Multithread Debug static runtime (the
@@ -129,8 +129,8 @@ at <a href="http://sourceforge.net/projects/quantlib/files/">http://sourceforge.
 <p>Open the QuantLib tree, find the latest version (at the time of
 this writing, 0.9.7; this might have changed when you read this) and
 download the zip archive to your local drive. This is illustrated in
-the screenshot below. Unzip the file in the <tt>C:\QuantLib</tt>
-folder (or any folder you want) which will result in
+the screenshot below. Create a <tt>C:\QuantLib</tt> folder (or any
+folder you want) and unzip the file in there, which will result in
 a <tt>C:\QuantLib\QuantLib-0.9.7</tt> folder.</p>
 
 <p class="center"><img src="pics/vc9/ql1.png" alt="download QuantLib"></p>
