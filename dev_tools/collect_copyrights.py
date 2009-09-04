@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import re, sys, sets
+import re, sys
 
 regex1 = re.compile(r"Copyright \(C\) ([0-9]{4}-[0-9]{4}) (.+)$")
 regex2 = re.compile(r"Copyright \(C\) (([0-9]{4})(, [0-9]{4})*) (.+)$")
@@ -20,7 +20,7 @@ for line in sys.stdin:
     elif m2:
         years = [ int(y) for y in m2.groups()[0].split(', ') ]
         owner = m2.groups()[-1].strip()
-    s = copyrights.get(owner,sets.Set())
+    s = copyrights.get(owner,set())
     for y in years:
         s.add(y)
     copyrights[owner] = s
