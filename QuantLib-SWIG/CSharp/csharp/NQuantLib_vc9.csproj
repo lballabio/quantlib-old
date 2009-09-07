@@ -1,7 +1,7 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{928F98EE-7D50-457F-9304-A6818DCF1079}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -105,9 +105,12 @@
     <Compile Include="AnalyticCapFloorEngine.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AnalyticContinuousGeometricAveragePriceAsianEngine.cs" />
     <Compile Include="AnalyticDigitalAmericanEngine.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AnalyticDiscreteGeometricAveragePriceAsianEngine.cs" />
+    <Compile Include="AnalyticDiscreteGeometricAverageStrikeAsianEngine.cs" />
     <Compile Include="AnalyticDividendEuropeanEngine.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -135,6 +138,7 @@
     <Compile Include="Australia.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Average.cs" />
     <Compile Include="AverageBasketPayoff.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -168,6 +172,7 @@
     <Compile Include="BermudanExercise.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BFGS.cs" />
     <Compile Include="BGLCurrency.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -226,9 +231,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BlackVolTermStructureHandle.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BlackVolTermStructureVector.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bond.cs">
@@ -324,9 +326,6 @@
     <Compile Include="Cdor.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CdsHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="CeilingTruncation.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -381,6 +380,7 @@
     <Compile Include="Constraint.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ContinuousAveragingAsianOption.cs" />
     <Compile Include="ConvertibleFixedCouponBond.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -399,9 +399,7 @@
     <Compile Include="Cubic.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CubicSplineInterpolation.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="CubicNaturalSpline.cs" />
     <Compile Include="CumulativeNormalDistribution.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -436,12 +434,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DefaultDensityCurve.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DefaultEvent.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DefaultEventVector.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DefaultProbabilityHelper.cs">
@@ -480,9 +472,7 @@
     <Compile Include="DiscountingSwapEngine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DiscreteGeometricASO.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="DiscreteAveragingAsianOption.cs" />
     <Compile Include="Dividend.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -798,6 +788,8 @@
     <Compile Include="FRFCurrency.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FritschButlandCubic.cs" />
+    <Compile Include="FritschButlandLogCubic.cs" />
     <Compile Include="FuturesRateHelper.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -990,9 +982,6 @@
     <Compile Include="ISKCurrency.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Issuer.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Italy.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1026,6 +1015,8 @@
     <Compile Include="KnuthUniformRsg.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="KrugerCubic.cs" />
+    <Compile Include="KrugerLogCubic.cs" />
     <Compile Include="KRWCurrency.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1059,12 +1050,14 @@
     <Compile Include="LocalVolTermStructureHandle.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LogCubicNaturalSpline.cs" />
     <Compile Include="LogLinear.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LogLinearInterpolation.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LogParabolic.cs" />
     <Compile Include="LTLCurrency.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1086,9 +1079,10 @@
     <Compile Include="MCBarrierEngine.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MCBasketEngine.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="MCDiscreteArithmeticAPEngine.cs" />
+    <Compile Include="MCDiscreteArithmeticASEngine.cs" />
+    <Compile Include="MCDiscreteGeometricAPEngine.cs" />
+    <Compile Include="MCEuropeanBasketEngine.cs" />
     <Compile Include="MCEuropeanEngine.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1119,9 +1113,10 @@
     <Compile Include="Money.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MonotonicCubicSplineInterpolation.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="MonotonicCubicNaturalSpline.cs" />
+    <Compile Include="MonotonicLogCubicNaturalSpline.cs" />
+    <Compile Include="MonotonicLogParabolic.cs" />
+    <Compile Include="MonotonicParabolic.cs" />
     <Compile Include="Month.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1230,6 +1225,7 @@
     <Compile Include="OptionletVolatilityStructureHandle.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Parabolic.cs" />
     <Compile Include="ParkinsonSigma.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1356,9 +1352,6 @@
     <Compile Include="RelinkableYieldTermStructureHandle.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Restructuring.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Ridder.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1414,9 +1407,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SEKLibor.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Seniority.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SequenceStatistics.cs">
@@ -1476,6 +1466,7 @@
     <Compile Include="SouthKorea.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SpreadCdsHelper.cs" />
     <Compile Include="Statistics.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1545,16 +1536,10 @@
     <Compile Include="SWIGTYPE_p_boost__shared_ptrT_Domain_t.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SWIGTYPE_p_CalibrationHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="SWIGTYPE_p_CapFloorTermVolatilityStructure.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SWIGTYPE_p_CashFlow.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SWIGTYPE_p_DefaultEvent.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SWIGTYPE_p_DefaultProbabilityHelper.cs">
@@ -1698,6 +1683,7 @@
     <Compile Include="UnsignedIntVector.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UpfrontCdsHelper.cs" />
     <Compile Include="UpRounding.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1728,9 +1714,6 @@
     <Compile Include="YieldTermStructureHandle.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="YieldTermStructureVector.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ZARCurrency.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1755,6 +1738,7 @@
     <Compile Include="_BoundaryCondition.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="_CalibrationHelper.cs" />
     <Compile Include="_Callability.cs">
       <SubType>Code</SubType>
     </Compile>
