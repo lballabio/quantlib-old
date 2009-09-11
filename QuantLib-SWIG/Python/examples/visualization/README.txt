@@ -1,6 +1,5 @@
 This is an example of visualization using Mayavi2 and QuantLib
-python.  These examples are all distributed under the Library GNU
-Public License.
+python.  These examples are all distributed under the BSD License.
 
 There are three components:
 

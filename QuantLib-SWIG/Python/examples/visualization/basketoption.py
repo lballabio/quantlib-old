@@ -1,5 +1,5 @@
 # Example of option baskets
-# Distributed under Library GNU Public License
+# Distributed under BSD License
 
 from QuantLib import *
 class BasketOptionClass:

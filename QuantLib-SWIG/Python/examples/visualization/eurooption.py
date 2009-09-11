@@ -1,5 +1,5 @@
 # Example of option baskets
-# Distributed under Library GNU Public License
+# Distributed under BSD license
 
 from QuantLib import *
 todaysDate = Date(15, May, 1998)
