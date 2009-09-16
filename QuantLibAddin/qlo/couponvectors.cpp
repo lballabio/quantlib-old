@@ -66,9 +66,9 @@ namespace QuantLibAddin {
                     bool perm)
     : Leg(p, perm)
     {
-        leg_ = QuantLib::FixedRateLeg(*schedule, paymentDayCounter)
+        leg_ = QuantLib::FixedRateLeg(*schedule/*, paymentDayCounter*/)
             .withNotionals(nominals)
-            .withCouponRates(couponRates)
+            .withCouponRates(couponRates, paymentDayCounter)
             .withPaymentAdjustment(paymentConvention);
     }
 
