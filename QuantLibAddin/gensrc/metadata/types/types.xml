@@ -75,6 +75,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::CurveState</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::DigitalReplication</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::EndCriteria</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::Eonia</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::EuropeanExercise</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::EvolutionDescription</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Exercise</DataType>
@@ -127,6 +128,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::SmileSection</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Statistics</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::IncrementalStatistics</DataType>
+    <DataType defaultSuperType='libraryClass' nativeType='string'>QuantLib::InterestRate</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::StrikedTypePayoff</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::StrippedOptionletBase</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Swap</DataType>
@@ -140,6 +142,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::TypePayoff</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::VanillaSwap</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::VolatilityTermStructure</DataType>
+
     <DataType defaultSuperType='libraryQuote'>QuantLib::FuturesConvAdjustmentQuote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::Quote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::SimpleQuote</DataType>
@@ -152,7 +155,6 @@
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityDiscrete</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityCube</DataType>
 
-    <DataType defaultSuperType='libraryType' nativeType='string'>QuantLib::InterestRate</DataType>
     <DataType defaultSuperType='libraryType' nativeType='double'>QuantLib::Array</DataType>
     <DataType defaultSuperType='libraryType' nativeType='double'>QuantLib::Matrix</DataType>
     <DataType defaultSuperType='libraryType' nativeType='double'>QuantLib::Real</DataType>

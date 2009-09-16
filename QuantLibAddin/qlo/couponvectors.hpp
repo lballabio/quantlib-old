@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2006, 2007 Cristina Duminuco
  Copyright (C) 2006 Giorgio Facchinetti
@@ -53,11 +53,18 @@ namespace QuantLibAddin {
       public:
         FixedRateLeg(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            QuantLib::BusinessDayConvention              paymentConvention,
-            const std::vector<QuantLib::Real>&           nominals,
+            QuantLib::BusinessDayConvention paymentConvention,
+            const std::vector<QuantLib::Real>& nominals,
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
-            const std::vector<QuantLib::Rate>&           couponRates,
-            const QuantLib::DayCounter&                  paymentDayCounter,
+            const std::vector<QuantLib::Rate>& couponRates,
+            const QuantLib::DayCounter& paymentDayCounter,
+            bool permanent);
+        FixedRateLeg(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::BusinessDayConvention paymentConvention,
+            const std::vector<QuantLib::Real>& nominals,
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            const std::vector<boost::shared_ptr<QuantLib::InterestRate> >& couponRates,
             bool permanent);
     };
 

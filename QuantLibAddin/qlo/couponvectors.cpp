@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2007 Cristina Duminuco
  Copyright (C) 2006 Eric Ehlers
@@ -43,6 +43,7 @@ using ObjectHandler::ValueObject;
 using QuantLib::earlier_than;
 using QuantLib::CashFlow;
 using boost::shared_ptr;
+using std::vector;
 
 namespace QuantLibAddin {
 
@@ -59,31 +60,46 @@ namespace QuantLibAddin {
     FixedRateLeg::FixedRateLeg(
                     const shared_ptr<ValueObject>& p,
                     QuantLib::BusinessDayConvention paymentConvention,
-                    const std::vector<QuantLib::Real>& nominals,
+                    const vector<QuantLib::Real>& nominals,
                     const shared_ptr<QuantLib::Schedule>& schedule,
-                    const std::vector<QuantLib::Rate>& couponRates,
+                    const vector<QuantLib::Rate>& couponRates,
                     const QuantLib::DayCounter& paymentDayCounter,
                     bool perm)
     : Leg(p, perm)
     {
-        leg_ = QuantLib::FixedRateLeg(*schedule/*, paymentDayCounter*/)
+        leg_ = QuantLib::FixedRateLeg(*schedule)
             .withNotionals(nominals)
             .withCouponRates(couponRates, paymentDayCounter)
             .withPaymentAdjustment(paymentConvention);
     }
 
+    FixedRateLeg::FixedRateLeg(
+                    const shared_ptr<ValueObject>& p,
+                    QuantLib::BusinessDayConvention paymentConvention,
+                    const vector<QuantLib::Real>& nominals,
+                    const shared_ptr<QuantLib::Schedule>& schedule,
+                    const vector<shared_ptr<QuantLib::InterestRate> >& couponRates,
+                    bool perm)
+    : Leg(p, perm)
+    {
+        leg_ = QuantLib::FixedRateLeg(*schedule)
+            .withNotionals(nominals)
+            .withCouponRates(couponRates)
+            .withPaymentAdjustment(paymentConvention);
+    }
+
     IborLeg::IborLeg(const shared_ptr<ValueObject>& p,
                      QuantLib::BusinessDayConvention paymentConvention,
-                     const std::vector<QuantLib::Real>& nominals,
+                     const vector<QuantLib::Real>& nominals,
                      const shared_ptr<QuantLib::Schedule>& schedule,
-                     const std::vector<QuantLib::Natural>& fixingDays,
+                     const vector<QuantLib::Natural>& fixingDays,
                      bool isInArrears,
                      const QuantLib::DayCounter& paymentDayCounter,
-                     const std::vector<QuantLib::Rate>& floors,
-                     const std::vector<QuantLib::Real>& gearings,
+                     const vector<QuantLib::Rate>& floors,
+                     const vector<QuantLib::Real>& gearings,
                      const shared_ptr<QuantLib::IborIndex>& index,
-                     const std::vector<QuantLib::Spread>& spreads,
-                     const std::vector<QuantLib::Rate>& caps,
+                     const vector<QuantLib::Spread>& spreads,
+                     const vector<QuantLib::Rate>& caps,
                      bool permanent)
     : Leg(p, permanent)
     {
@@ -102,20 +118,20 @@ namespace QuantLibAddin {
     DigitalIborLeg::DigitalIborLeg(
             const shared_ptr<ValueObject>& p,
             QuantLib::BusinessDayConvention paymentConvention,
-            const std::vector<QuantLib::Real>& nominals,
+            const vector<QuantLib::Real>& nominals,
             const shared_ptr<QuantLib::Schedule>& schedule,
-            const std::vector<QuantLib::Natural>& fixingDays,
+            const vector<QuantLib::Natural>& fixingDays,
             bool isInArrears,
             const QuantLib::DayCounter& paymentDayCounter,
-            const std::vector<QuantLib::Real>& gearings,
+            const vector<QuantLib::Real>& gearings,
             const shared_ptr<QuantLib::IborIndex>& index,
-            const std::vector<QuantLib::Spread>& spreads,
-            const std::vector<QuantLib::Rate>& callStrikes,
+            const vector<QuantLib::Spread>& spreads,
+            const vector<QuantLib::Rate>& callStrikes,
             std::string callPositionAndATMInclusion,
-            const std::vector<QuantLib::Rate>& callDigitalPayoffs,
-            const std::vector<QuantLib::Rate>& putStrikes,
+            const vector<QuantLib::Rate>& callDigitalPayoffs,
+            const vector<QuantLib::Rate>& putStrikes,
             std::string putPositionAndATMInclusion,
-            const std::vector<QuantLib::Rate>& putDigitalPayoffs,
+            const vector<QuantLib::Rate>& putDigitalPayoffs,
             const shared_ptr<QuantLib::DigitalReplication>& replication,
             bool permanent)
     : Leg(p, permanent)
@@ -221,16 +237,16 @@ namespace QuantLibAddin {
 
     CmsLeg::CmsLeg(const shared_ptr<ValueObject>& properties,
                    QuantLib::BusinessDayConvention paymentConvention,
-                   const std::vector<QuantLib::Real>& nominals,
+                   const vector<QuantLib::Real>& nominals,
                    const shared_ptr<QuantLib::Schedule>& schedule,
-                   const std::vector<QuantLib::Natural>& fixingDays,
+                   const vector<QuantLib::Natural>& fixingDays,
                    bool isInArrears,
                    const QuantLib::DayCounter& paymentDayCounter,
-                   const std::vector<QuantLib::Rate>& floors,
-                   const std::vector<QuantLib::Real>& gearings,
+                   const vector<QuantLib::Rate>& floors,
+                   const vector<QuantLib::Real>& gearings,
                    const shared_ptr<QuantLib::SwapIndex>& index,
-                   const std::vector<QuantLib::Spread>& spreads,
-                   const std::vector<QuantLib::Rate>& caps,
+                   const vector<QuantLib::Spread>& spreads,
+                   const vector<QuantLib::Rate>& caps,
                    bool permanent)
     : Leg(properties, permanent)
     {
@@ -249,20 +265,20 @@ namespace QuantLibAddin {
     DigitalCmsLeg::DigitalCmsLeg(
                     const shared_ptr<ValueObject>& properties,
                     QuantLib::BusinessDayConvention paymentConvention,
-                    const std::vector<QuantLib::Real>& nominals,
+                    const vector<QuantLib::Real>& nominals,
                     const shared_ptr<QuantLib::Schedule>& schedule,
-                    const std::vector<QuantLib::Natural>& fixingDays,
+                    const vector<QuantLib::Natural>& fixingDays,
                     bool isInArrears,
                     const QuantLib::DayCounter& paymentDayCounter,
-                    const std::vector<QuantLib::Real>& gearings,
+                    const vector<QuantLib::Real>& gearings,
                     const shared_ptr<QuantLib::SwapIndex>& index,
-                    const std::vector<QuantLib::Spread>& spreads,
-                    const std::vector<QuantLib::Rate>& callStrikes,
+                    const vector<QuantLib::Spread>& spreads,
+                    const vector<QuantLib::Rate>& callStrikes,
                     std::string callPositionAndATMInclusion,
-                    const std::vector<QuantLib::Rate>& callDigitalPayoffs,
-                    const std::vector<QuantLib::Rate>& putStrikes,
+                    const vector<QuantLib::Rate>& callDigitalPayoffs,
+                    const vector<QuantLib::Rate>& putStrikes,
                     std::string putPositionAndATMInclusion,
-                    const std::vector<QuantLib::Rate>& putDigitalPayoffs,
+                    const vector<QuantLib::Rate>& putDigitalPayoffs,
                     const shared_ptr<QuantLib::DigitalReplication>& replication,
                     bool permanent)
     : Leg(properties, permanent)
@@ -358,15 +374,15 @@ namespace QuantLibAddin {
     RangeAccrualLeg::RangeAccrualLeg(
            const shared_ptr<ValueObject>& properties,
            QuantLib::BusinessDayConvention paymentConvention,
-           const std::vector<QuantLib::Real>& nominals,
+           const vector<QuantLib::Real>& nominals,
            const shared_ptr<QuantLib::Schedule>& schedule,
-           const std::vector<QuantLib::Natural>& fixingDays,
+           const vector<QuantLib::Natural>& fixingDays,
            const QuantLib::DayCounter& paymentDayCounter,
-           const std::vector<QuantLib::Rate>& lowerTriggers,
-           const std::vector<QuantLib::Real>& gearings,
+           const vector<QuantLib::Rate>& lowerTriggers,
+           const vector<QuantLib::Real>& gearings,
            const shared_ptr<QuantLib::IborIndex>& index,
-           const std::vector<QuantLib::Spread>& spreads,
-           const std::vector<QuantLib::Rate>& upperTriggers,
+           const vector<QuantLib::Spread>& spreads,
+           const vector<QuantLib::Rate>& upperTriggers,
            const QuantLib::Period& observationTenor,
            QuantLib::BusinessDayConvention observationConvention,
            bool permanent)
@@ -388,16 +404,16 @@ namespace QuantLibAddin {
     CmsZeroLeg::CmsZeroLeg(
                     const shared_ptr<ValueObject>& properties,
                     QuantLib::BusinessDayConvention paymentConvention,
-                    const std::vector<QuantLib::Real>& nominals,
+                    const vector<QuantLib::Real>& nominals,
                     const shared_ptr<QuantLib::Schedule>& schedule,
-                    const std::vector<QuantLib::Natural>& fixingDays,
+                    const vector<QuantLib::Natural>& fixingDays,
                     bool isInArrears,
                     const QuantLib::DayCounter& paymentDayCounter,
-                    const std::vector<QuantLib::Rate>& floors,
-                    const std::vector<QuantLib::Real>& gearings,
+                    const vector<QuantLib::Rate>& floors,
+                    const vector<QuantLib::Real>& gearings,
                     const shared_ptr<QuantLib::SwapIndex>& index,
-                    const std::vector<QuantLib::Spread>& spreads,
-                    const std::vector<QuantLib::Rate>& caps,
+                    const vector<QuantLib::Spread>& spreads,
+                    const vector<QuantLib::Rate>& caps,
                     bool permanent)
     : Leg(properties, permanent)
     {
