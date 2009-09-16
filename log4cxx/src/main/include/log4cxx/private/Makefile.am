@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 privateincdir = $(includedir)/log4cxx/private
-privateinc_HEADERS= $(top_builddir)/src/main/include/log4cxx/private/*.h log4cxx_private.h
+privateinc_HEADERS= $(top_builddir)/src/main/include/log4cxx/private/*.h
 DISTCLEANFILES = log4cxx_private.h
 EXTRA_DIST = log4cxx_private.hw
 

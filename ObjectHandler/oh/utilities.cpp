@@ -31,6 +31,7 @@
 #include <sstream>
 #include <ctime>
 #include <sys/timeb.h>
+#include <stdio.h>
 
 #define            SECS_PER_DAY    (60 * 60 * 24)
 #define            MILLISECS_PER_DAY    (1000 * SECS_PER_DAY)

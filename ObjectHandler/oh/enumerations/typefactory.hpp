@@ -108,7 +108,7 @@ namespace ObjectHandler {
         }
         //@}
 
-    private:
+    protected:
         const typename RegistryClass::TypeMapPtr &getTypeMap() {
             static typename RegistryClass::TypeMapPtr typeMap;
             if(!typeMap) {

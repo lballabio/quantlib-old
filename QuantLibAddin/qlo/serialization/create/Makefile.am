@@ -20,6 +20,7 @@ include_HEADERS = \
     create_couponvectors.hpp \
     create_ctsmmcapletcalibration.hpp \
     create_curvestate.hpp \
+    create_defaulttermstructures.hpp \
     create_driftcalculators.hpp \
     create_evolutiondescription.hpp \
     create_exercise.hpp \
@@ -71,6 +72,7 @@ libCreate_la_SOURCES = \
     create_couponvectors.cpp \
     create_ctsmmcapletcalibration.cpp \
     create_curvestate.cpp \
+    create_defaulttermstructures.cpp \
     create_driftcalculators.cpp \
     create_evolutiondescription.cpp \
     create_exercise.cpp \

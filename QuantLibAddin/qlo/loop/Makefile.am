@@ -3,7 +3,6 @@ includedir = $(prefix)/include/qlo/loop
 
 include_HEADERS = \
     loop_abcd.hpp \
-    loop_bonds.hpp \
     loop_calendar.hpp \
     loop_capletvolstructure.hpp \
     loop_date.hpp \

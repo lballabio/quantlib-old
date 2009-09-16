@@ -30,6 +30,7 @@ include_HEADERS = \
     ctsmmcapletcalibration.hpp \
     curvestate.hpp \
     date.hpp \
+    defaulttermstructures.hpp \
     dividendvanillaoption.hpp \
     driftcalculators.hpp \
     europeanoption.hpp \
@@ -108,6 +109,7 @@ libQuantLibAddin_la_SOURCES = \
     ctsmmcapletcalibration.cpp \
     curvestate.cpp \
     date.cpp \
+    defaulttermstructures.cpp \
     dividendvanillaoption.cpp \
     driftcalculators.cpp \
     europeanoption.cpp \

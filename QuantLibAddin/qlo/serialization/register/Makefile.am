@@ -20,6 +20,7 @@ noinst_HEADERS = \
     serialization_couponvectors.hpp \
     serialization_ctsmmcapletcalibration.hpp \
     serialization_curvestate.hpp \
+    serialization_defaulttermstructures.hpp \
     serialization_driftcalculators.hpp \
     serialization_evolutiondescription.hpp \
     serialization_exercise.hpp \
@@ -73,6 +74,7 @@ libRegister_la_SOURCES = \
     serialization_couponvectors.cpp \
     serialization_ctsmmcapletcalibration.cpp \
     serialization_curvestate.cpp \
+    serialization_defaulttermstructures.cpp \
     serialization_driftcalculators.cpp \
     serialization_evolutiondescription.cpp \
     serialization_exercise.cpp \

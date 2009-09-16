@@ -20,6 +20,7 @@ include_HEADERS = \
     vo_couponvectors.hpp \
     vo_ctsmmcapletcalibration.hpp \
     vo_curvestate.hpp \
+    vo_defaulttermstructures.hpp \
     vo_driftcalculators.hpp \
     vo_evolutiondescription.hpp \
     vo_exercise.hpp \
@@ -73,6 +74,7 @@ libValueObjects_la_SOURCES = \
     vo_couponvectors.cpp \
     vo_ctsmmcapletcalibration.cpp \
     vo_curvestate.cpp \
+    vo_defaulttermstructures.cpp \
     vo_driftcalculators.cpp \
     vo_evolutiondescription.cpp \
     vo_exercise.cpp \
