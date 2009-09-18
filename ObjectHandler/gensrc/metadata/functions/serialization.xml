@@ -24,7 +24,8 @@
       <ParameterList>
         <Parameters>
           <Parameter name='ObjectList'>
-            <type>ObjectHandler::Object</type>
+            <!--<type>ObjectHandler::Object</type-->
+            <type>string</type>
             <tensorRank>vector</tensorRank>
             <description>list of IDs of objects to be serialized.</description>
           </Parameter>
@@ -37,6 +38,11 @@
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>overwrite the output file if it exists.</description>
+          </Parameter>
+          <Parameter name='IncludeGroups' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>include Groups in the serialisation.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

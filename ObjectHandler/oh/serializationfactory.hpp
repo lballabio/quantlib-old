@@ -66,6 +66,13 @@ namespace ObjectHandler {
             const std::vector<boost::shared_ptr<Object> >&,
             const std::string &path,
             bool forceOverwrite);
+
+		virtual int saveObject(
+			const std::vector<std::string>& handlesList,
+            const std::string &path,
+            bool forceOverwrite,
+			bool includeGroups = true);
+
         //! Deserialize an Object list from the path indicated.
         virtual std::vector<std::string> loadObject(
             const std::string &directory,

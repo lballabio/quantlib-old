@@ -27,6 +27,7 @@
 #include <oh/range.hpp>
 #include <oh/group.hpp>
 #include <oh/repository.hpp>
+#include <oh/conversions/getobjectvector.hpp>
 
 #include <boost/regex.hpp>
 #include <boost/filesystem.hpp>
@@ -39,9 +40,8 @@
 
 namespace ObjectHandler {
 
-    boost::shared_ptr<Object> createRange(
-        const boost::shared_ptr<ValueObject> &valueObject) {
-
+    boost::shared_ptr<Object> createRange(const boost::shared_ptr<ValueObject> &valueObject) 
+	{
         // FIXME - Implement ValueObject::permanent() and call that instead?
         bool permanent = 
             boost::get<bool>(valueObject->getProperty("PERMANENT"));
@@ -53,18 +53,14 @@ namespace ObjectHandler {
         return object;
     }
 
-    boost::shared_ptr<Object> createGroup(
-        const boost::shared_ptr<ValueObject> &valueObject) {
-
-        // FIXME - Implement ValueObject::permanent() and call that instead?
-        bool permanent = 
-            boost::get<bool>(valueObject->getProperty("PERMANENT"));
-
-        std::vector<std::string> list = 
-            boost::get<std::vector<std::string> >(valueObject->getProperty("LIST"));
-
-        boost::shared_ptr<Object> object(new Group(valueObject, list, permanent));
-        return object;
+    boost::shared_ptr<Object> createGroup(const boost::shared_ptr<ValueObject> &valueObject) 
+	{
+        return boost::shared_ptr<Object>(
+			new Group(
+				valueObject,
+				vector::convert2<std::string>(valueObject->getProperty("OBJECTIDLIST"), "OBJECTIDLIST"),
+				// FIXME - Implement ValueObject::permanent() and call that instead?
+				boost::get<bool>(valueObject->getProperty("PERMANENT"))));
     }
 
     SerializationFactory *SerializationFactory::instance_;
@@ -75,8 +71,7 @@ namespace ObjectHandler {
         registerCreator("ohGroup", createGroup);
 
 	    ProcessorPtr processor(new DefaultProcessor());
-        ProcessorFactory::instance().storeProcessor(
-			"DefaultProcessor", processor);
+        ProcessorFactory::instance().storeProcessor("DefaultProcessor", processor);
     }
 
     SerializationFactory::~SerializationFactory() {
@@ -120,6 +115,18 @@ namespace ObjectHandler {
 
         return object;
     }
+
+	int SerializationFactory::saveObject(
+		const std::vector<std::string>& handlesList,
+		const std::string &path,
+		bool forceOverwrite,
+		bool includeGroups) 
+	{
+        std::vector<boost::shared_ptr<ObjectHandler::Object> > ObjectListObjPtr =
+            ObjectHandler::getObjectVector<ObjectHandler::Object>(handlesList, 0, includeGroups);
+
+		return saveObject(ObjectListObjPtr, path, forceOverwrite);
+	}
 
     int SerializationFactory::saveObject(
         const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,

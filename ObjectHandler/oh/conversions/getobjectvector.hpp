@@ -49,7 +49,8 @@ namespace ObjectHandler {
     template <class ObjectClass>
     std::vector<boost::shared_ptr<ObjectClass> > getObjectVector(
             const std::vector<std::string> &objectIDs,
-            const int &nestingLevel = 0) {
+            const int &nestingLevel = 0,
+			bool includeGroups = false) {
 
         OH_REQUIRE(nestingLevel < 10, "getObjectVector - nesting level exceeds 10. "
             "(Possible infinite recursion?)");
@@ -74,8 +75,16 @@ namespace ObjectHandler {
                 boost::dynamic_pointer_cast<Group>(object);
             if (group) {
                 std::vector<boost::shared_ptr<ObjectClass> > ret2 =
-                    getObjectVector<ObjectClass>(group->list(), nestingLevel + 1);
+                    getObjectVector<ObjectClass>(group->list(), nestingLevel + 1, includeGroups);
                 ret.insert(ret.end(), ret2.begin(), ret2.end());
+				if(includeGroups) {
+					boost::shared_ptr<ObjectClass> objectDerived =
+						boost::dynamic_pointer_cast<ObjectClass>(object);
+					OH_REQUIRE(objectDerived, "Error converting Group with id '"
+						<< objectId << "' - unable to convert to type '"
+						<< typeid(ObjectClass).name() << "'");
+					ret.push_back(objectDerived);				
+				}
             } else {
                 boost::shared_ptr<ObjectClass> objectDerived =
                     boost::dynamic_pointer_cast<ObjectClass>(object);
