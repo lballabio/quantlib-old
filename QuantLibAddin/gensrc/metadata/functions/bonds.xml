@@ -33,6 +33,7 @@
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Walter Penschke
+    Copyright (C) 2009 Piter Dias
   </copyright>
 
   <Functions>
@@ -853,6 +854,65 @@
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>Payment DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='PaymentBDC' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment business day convention.</description>
+          </Parameter>
+          <Parameter name='Redemption' default='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Redemption value.</description>
+          </Parameter>
+          <Parameter name='IssueDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>issue date: the bond can't be traded until then.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlFixedRateBond2'>
+      <libraryFunction>FixedRateBond</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Description' default='"no description available"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond description string.</description>
+          </Parameter>
+          <Parameter name='Currency' examplevalue='EUR'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond Currency.</description>
+          </Parameter>
+          <Parameter name='SettlementDays' exampleValue='3'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement days.</description>
+          </Parameter>
+          <Parameter name='FaceAmount' default='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Face nominal amount.</description>
+          </Parameter>
+          <Parameter name='ScheduleID'>
+            <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Schedule object ID.</description>
+          </Parameter>
+          <Parameter name='Coupons'>
+            <type>QuantLib::InterestRate</type>
+            <tensorRank>vector</tensorRank>
+            <description>coupon fixed rates.</description>
           </Parameter>
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>

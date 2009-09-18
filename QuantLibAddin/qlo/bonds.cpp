@@ -6,6 +6,7 @@
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
+ Copyright (C) 2009 Piter Dias
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -35,6 +36,7 @@
 #include <ql/cashflows/couponpricer.hpp>
 #include <ql/pricingengines/bond/discountingbondengine.hpp>
 #include <ql/currency.hpp>
+#include <ql/interestrate.hpp>
 
 using std::vector;
 using boost::shared_ptr;
@@ -182,6 +184,34 @@ namespace QuantLibAddin {
                                     rule));
     }
 
+    FixedRateBond::FixedRateBond(
+            const shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string& des,
+            const QuantLib::Currency& cur,
+            QuantLib::Natural settlementDays,
+            QuantLib::Real faceAmount,
+            const shared_ptr<QuantLib::Schedule>& schedule,
+            const std::vector<boost::shared_ptr<QuantLib::InterestRate> >& coupons,
+            QuantLib::BusinessDayConvention paymentConvention,
+            QuantLib::Real redemption,
+            const QuantLib::Date& issueDate,
+            bool permanent) : Bond(properties, permanent)
+    {
+		vector<QuantLib::InterestRate> couponRate(coupons.size());
+
+		for(QuantLib::Size couponIndex = 0; couponIndex < coupons.size(); couponIndex++)
+		{
+			couponRate[couponIndex] = *coupons[couponIndex];
+		}
+
+        libraryObject_ = shared_ptr<QuantLib::Instrument>(new
+            QuantLib::FixedRateBond(settlementDays, faceAmount,
+                                    *schedule,
+                                    couponRate,
+                                    paymentConvention,
+									redemption,
+                                    issueDate));
+    }
 
     FloatingRateBond::FloatingRateBond(
             const shared_ptr<ObjectHandler::ValueObject>& properties,

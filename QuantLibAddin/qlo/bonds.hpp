@@ -6,6 +6,7 @@
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
+ Copyright (C) 2009 Piter Dias
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -120,6 +121,18 @@ namespace QuantLibAddin {
             const QuantLib::Date& issueDate,
             const QuantLib::Date& stubDate,
             QuantLib::DateGeneration::Rule rule,
+            bool permanent);
+        FixedRateBond(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string& des,
+            const QuantLib::Currency& cur,
+            QuantLib::Natural settlementDays,
+            QuantLib::Real faceAmount,
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            const std::vector<boost::shared_ptr<QuantLib::InterestRate> >& coupons,
+            QuantLib::BusinessDayConvention paymentConvention,
+            QuantLib::Real redemption,
+            const QuantLib::Date& issueDate,
             bool permanent);
     };
 

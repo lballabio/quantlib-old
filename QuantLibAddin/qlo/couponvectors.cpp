@@ -6,6 +6,7 @@
  Copyright (C) 2007 Cristina Duminuco
  Copyright (C) 2006 Eric Ehlers
  Copyright (C) 2006 Giorgio Facchinetti
+ Copyright (C) 2009 Piter Dias
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -82,9 +83,16 @@ namespace QuantLibAddin {
                     bool perm)
     : Leg(p, perm)
     {
-        leg_ = QuantLib::FixedRateLeg(*schedule)
+		vector<QuantLib::InterestRate> coupons(couponRates.size());
+
+		for(QuantLib::Size i = 0; i < couponRates.size(); i++)
+		{
+			coupons[i] = *couponRates[i];
+		}
+
+		leg_ = QuantLib::FixedRateLeg(*schedule)
             .withNotionals(nominals)
-            .withCouponRates(couponRates)
+            .withCouponRates(coupons)
             .withPaymentAdjustment(paymentConvention);
     }
 
