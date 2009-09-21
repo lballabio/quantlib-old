@@ -34,23 +34,25 @@ page</a>.
 <ul>
 <li><strong>Four years of open source financial models</strong> [<a href=
 "press/WilmottQuantLib.pdf">PDF</a>]<br>
-
 Wilmott Magazine (September 2004)</li>
+<li><strong>Option Engine: A Grid-Enabled Software Package to Evaluate
+Financial Options</strong> [<a href=
+"http://www.hpcwire.com/features/Option-Engine-A-Grid-Enabled-Software-Package-to-Evaluate-Financial-Options-59669252.html?viewAll=y">HTML</a>]<br>
+Francesca Mariani, Maria Cristina Recchioni, Francesco Zirilli<br>
+HPCwire (September 2009)</li>
 </ul>
 
 <h2 class="center">Books</h2>
 <ul>
 <li><strong>Implementing QuantLib</strong> (in progress) [<a href=
 "http://luigi.ballabio.googlepages.com/qlbook">web page</a>]<br>
-
-Ballabio, L. (2007)</li>
+Ballabio, L.</li>
 </ul>
 
 <h2 class="center">Papers</h2>
 <ul>
 <li><strong>Why Use QuantLib?</strong> [<a href=
 "http://www.quantlib.co.uk/publications/quantlib.pdf">PDF</a>]<br>
-
 Firth, N.P. (2004)</li>
 </ul>
 
