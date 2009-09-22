@@ -163,9 +163,9 @@ Leg _FixedRateLeg(const Schedule& schedule,
                   const std::vector<Rate>& couponRates,
                   BusinessDayConvention paymentAdjustment = Following,
                   const DayCounter& firstPeriodDayCount = DayCounter()) {
-    return QuantLib::FixedRateLeg(schedule,dayCount)
+    return QuantLib::FixedRateLeg(schedule)
         .withNotionals(nominals)
-        .withCouponRates(couponRates)
+        .withCouponRates(couponRates,dayCount)
         .withPaymentAdjustment(paymentAdjustment)
         .withFirstPeriodDayCounter(firstPeriodDayCount);
 }
