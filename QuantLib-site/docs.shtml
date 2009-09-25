@@ -30,16 +30,25 @@ page</a>.
 
 <h1 class="center">Other information</h1>
 
-<h2 class="center">Press</h2>
+<h2 class="center">Papers</h2>
 <ul>
-<li><strong>Four years of open source financial models</strong> [<a href=
-"press/WilmottQuantLib.pdf">PDF</a>]<br>
-Wilmott Magazine (September 2004)</li>
 <li><strong>Option Engine: A Grid-Enabled Software Package to Evaluate
 Financial Options</strong> [<a href=
 "http://www.hpcwire.com/features/Option-Engine-A-Grid-Enabled-Software-Package-to-Evaluate-Financial-Options-59669252.html?viewAll=y">HTML</a>]<br>
 Francesca Mariani, Maria Cristina Recchioni, Francesco Zirilli<br>
 HPCwire (September 2009)</li>
+<li><strong>Bootstrapping the Illiquidity: Multiple Yield Curves
+Construction for Market Coherent Forward Rates Estimation</strong>
+[<a href= "http://ssrn.com/abstract=1371311">abstract</a>]<br>
+Ferdinando Ametrano, Marco Bianchetti<br>
+In <i>Modeling Interest Rates</i>, Fabio Mercurio, ed., Risk Books,
+Incisive Media, forthcoming.</li>
+<li><strong>Smooth Simultaneous Calibration of the LMM to Caplets and Coterminal Swaptions</strong>
+[<a href= "http://ssrn.com/abstract=1092665">abstract/download</a>]<br>
+Ferdinando Ametrano, Mark S. Joshi (2008)</li>
+<li><strong>Why Use QuantLib?</strong> [<a href=
+"http://www.quantlib.co.uk/publications/quantlib.pdf">PDF</a>]<br>
+Firth, N.P. (2004)</li>
 </ul>
 
 <h2 class="center">Books</h2>
@@ -49,11 +58,11 @@ HPCwire (September 2009)</li>
 Ballabio, L.</li>
 </ul>
 
-<h2 class="center">Papers</h2>
+<h2 class="center">Press</h2>
 <ul>
-<li><strong>Why Use QuantLib?</strong> [<a href=
-"http://www.quantlib.co.uk/publications/quantlib.pdf">PDF</a>]<br>
-Firth, N.P. (2004)</li>
+<li><strong>Four years of open source financial models</strong> [<a href=
+"press/WilmottQuantLib.pdf">PDF</a>]<br>
+Wilmott Magazine (September 2004)</li>
 </ul>
 
 </div>
