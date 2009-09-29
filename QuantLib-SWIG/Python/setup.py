@@ -131,7 +131,7 @@ class my_build_ext(build_ext):
             self.define += [('__WIN32__', None), ('WIN32', None),
                             ('NDEBUG', None), ('_WINDOWS', None),
                             ('NOMINMAX', None)]
-            extra_compile_args = ['/GR', '/FD', '/Zm250']
+            extra_compile_args = ['/GR', '/FD', '/Zm250', '/EHsc' ]
             extra_link_args = ['/subsystem:windows', '/machine:I386']
 
             if self.debug:
