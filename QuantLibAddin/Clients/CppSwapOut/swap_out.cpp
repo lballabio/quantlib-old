@@ -381,8 +381,8 @@ int main() {
 
         // Serialize the objects
 
-        ohObjectSave(marketObjects, "YieldCurves.xml", true, OH_NULL);
-        ohObjectSave(tradeObjects, "VanillaSwap.xml", true, OH_NULL);
+        ohObjectSave(marketObjects, "YieldCurves.xml", true, OH_NULL, true);
+        ohObjectSave(tradeObjects, "VanillaSwap.xml", true, OH_NULL, true);
 
         // Example of serializing to/from a buffer
 

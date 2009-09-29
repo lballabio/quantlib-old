@@ -31,6 +31,7 @@ include_HEADERS = \
     couponvectors.hpp \
     ctsmmcapletcalibration.hpp \
     curvestate.hpp \
+    defaulttermstructures.hpp \
     evolutiondescription.hpp \
     exercise.hpp \
     forwardrateagreement.hpp \
@@ -92,6 +93,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     couponvectors.cpp \
     ctsmmcapletcalibration.cpp \
     curvestate.cpp \
+    defaulttermstructures.cpp \
     evolutiondescription.cpp \
     exercise.cpp \
     forwardrateagreement.cpp \

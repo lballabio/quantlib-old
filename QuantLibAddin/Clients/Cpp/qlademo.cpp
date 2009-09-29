@@ -125,7 +125,7 @@ int main() {
         idList.push_back(idExercise);
         idList.push_back(idPricingEngine);
         idList.push_back(idVanillaOption);
-        ohObjectSave(idList, xmlFileName, true, OH_NULL);
+        ohObjectSave(idList, xmlFileName, true, OH_NULL, true);
 
         LOG_MESSAGE("End example program.");
 
