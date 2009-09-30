@@ -55,6 +55,10 @@
           <string>TwentiethIMM</string>
           <value>QuantLib::DateGeneration::TwentiethIMM</value>
         </EnumeratedType>
+        <EnumeratedType>
+          <string>OldCDS</string>
+          <value>QuantLib::DateGeneration::OldCDS</value>
+        </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
