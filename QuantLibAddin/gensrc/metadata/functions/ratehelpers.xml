@@ -8,9 +8,13 @@
     <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/bonds.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/indexes/ibor/euribor.hpp</include>
+
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
     <include>ql/instruments/bonds/fixedratebond.hpp</include>
+    <include>ql/indexes/ibor/euribor.hpp</include>
   </serializationIncludes>
   <addinIncludes>
     <include>qlo/ratehelpers.hpp</include>
@@ -18,14 +22,18 @@
     <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/bonds.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>qlo/indexes/ibor/euribor.hpp</include>
+
     <include>ql/termstructures/yield/ratehelpers.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
     <include>ql/instruments/bonds/fixedratebond.hpp</include>
+    <include>ql/indexes/ibor/euribor.hpp</include>
   </addinIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers
-    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Aurelien Chanudet
   </copyright>
@@ -166,7 +174,7 @@
             <tensorRank>scalar</tensorRank>
             <description>deposit quote.</description>
           </Parameter>
-          <Parameter name='Period' exampleValue='6M'>
+          <Parameter name='Tenor' exampleValue='6M'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>deposit length (e.g. 3M for three months).</description>
@@ -231,6 +239,12 @@
             <tensorRank>scalar</tensorRank>
             <description>forward start period.</description>
           </Parameter>
+          <Parameter name='DiscountingCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -250,10 +264,10 @@
             <tensorRank>scalar</tensorRank>
             <description>quote.</description>
           </Parameter>
-          <Parameter name='Period' exampleValue='10Y'>
+          <Parameter name='Tenor' exampleValue='10Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>deposit legth (e.g. 5Y for five years).</description>
+            <description>swap length (e.g. 5Y for five years).</description>
           </Parameter>
           <Parameter name='Calendar' exampleValue='TARGET'>
             <type>QuantLib::Calendar</type>
@@ -270,7 +284,7 @@
             <tensorRank>scalar</tensorRank>
             <description>fixed leg convention (e.g. Unadjusted).</description>
           </Parameter>
-          <Parameter name='FixedLegDayCounter' exampleValue='307360 (Bond Basis)'>
+          <Parameter name='FixedLegDayCounter' exampleValue='30/360 (Bond Basis)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360).</description>
@@ -290,6 +304,12 @@
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>forward start period.</description>
+          </Parameter>
+          <Parameter name='DiscountingCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -326,6 +346,72 @@
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Member>
+
+    <Constructor name='qlEoniaSwapRateHelper'>
+      <libraryFunction>EoniaSwapRateHelper</libraryFunction>
+      <SupportedPlatforms>
+        SupportedPlatform name='Excel' calcInWizard='false'/
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FixedRate' exampleValue='0.00423'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>quote.</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap length (e.g. 5Y for five years).</description>
+          </Parameter>
+          <Parameter name='SettlDays' exampleValue='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap settlement days.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+
+          <Parameter name='EoniaTenor' exampleValue='1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tenor of Eonia payments (e.g. 1Y for annual frequency).</description>
+          </Parameter>
+          <Parameter name='EoniaConvention' exampleValue='Following'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixed leg convention (e.g. Following).</description>
+          </Parameter>
+          <Parameter name='EoniaIndex' exampleValue='Eonia'>
+            <type>QuantLib::Eonia</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg Eonia object ID.</description>
+          </Parameter>
+
+          <Parameter name='FixedLegTenor' exampleValue='1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tenor of fixed leg payments.</description>
+          </Parameter>
+          <Parameter name='FixedLegConvention' exampleValue='ModifiedFollowing'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixed leg convention (e.g. Unadjusted).</description>
+          </Parameter>
+          <Parameter name='FixedLegDayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
     <Constructor name='qlFraRateHelper'>
       <libraryFunction>FraRateHelper</libraryFunction>

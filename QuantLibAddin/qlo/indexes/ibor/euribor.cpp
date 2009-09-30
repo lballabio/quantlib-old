@@ -64,7 +64,7 @@ namespace QuantLibAddin {
         }
     }
 
-    EONIA::EONIA(const shared_ptr<ValueObject>& properties,
+    Eonia::Eonia(const shared_ptr<ValueObject>& properties,
                  const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
                  bool permanent)
     : Euribor(properties, "EONIA", h, permanent) {}

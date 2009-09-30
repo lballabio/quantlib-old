@@ -35,9 +35,9 @@ namespace QuantLibAddin {
                 bool permanent);
     };
 
-    class EONIA : public Euribor {
+    class Eonia : public Euribor {
       public:
-        EONIA(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        Eonia(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
               const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
               bool permanent);
     };

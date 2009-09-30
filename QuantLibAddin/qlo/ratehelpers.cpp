@@ -31,24 +31,31 @@
 #include <ql/indexes/swapindex.hpp>
 #include <ql/termstructures/yield/ratehelpers.hpp>
 #include <ql/termstructures/yield/bondhelpers.hpp>
+#include <ql/experimental/overnightswap/eoniaswaphelper.hpp>
 #include <ql/time/imm.hpp>
 
 #include <oh/repository.hpp>
 
+using ObjectHandler::ValueObject;
+using ObjectHandler::convert2;
+using boost::shared_ptr;
+using boost::dynamic_pointer_cast;
+using std::string;
+
 namespace QuantLibAddin {
 
     DepositRateHelper::DepositRateHelper(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
-            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
+            const shared_ptr<QuantLib::IborIndex>& iborIndex,
             bool permanent)
     : RateHelper(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+        libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::DepositRateHelper(rate, iborIndex));
     }
 
     DepositRateHelper::DepositRateHelper(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& quote,
             const QuantLib::Period& p,
             QuantLib::Natural fixingDays,
@@ -58,7 +65,7 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dayCounter,
             bool permanent)
     : RateHelper(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+        libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::DepositRateHelper(quote,
                                         p,
                                         fixingDays,
@@ -69,19 +76,19 @@ namespace QuantLibAddin {
     }
 
     FuturesRateHelper::FuturesRateHelper(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
             const QuantLib::Date& immDate,
-            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
+            const shared_ptr<QuantLib::IborIndex>& iborIndex,
             const QuantLib::Handle<QuantLib::Quote>& convAdj,
             bool permanent)
     : RateHelper(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+        libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FuturesRateHelper(price, immDate, iborIndex, convAdj));
     }
 
     FuturesRateHelper::FuturesRateHelper(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
             const QuantLib::Date& immDate,
             QuantLib::Natural lengthInMonths,
@@ -92,7 +99,7 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::Quote>& convAdj,
             bool permanent)
     : RateHelper(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+        libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FuturesRateHelper(price,
                                         immDate,
                                         lengthInMonths,
@@ -104,55 +111,53 @@ namespace QuantLibAddin {
     }
 
     SwapRateHelper::SwapRateHelper(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
-            const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
+            const shared_ptr<QuantLib::SwapIndex>& swapIndex,
             const QuantLib::Handle<QuantLib::Quote>& spread,
             const QuantLib::Period& forwardStart,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             bool permanent)
     : RateHelper(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
-            QuantLib::SwapRateHelper(rate, swapIndex, spread, forwardStart));
+        libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
+            QuantLib::SwapRateHelper(rate,
+                                     swapIndex,
+                                     spread, forwardStart, discount));
     }
 
     SwapRateHelper::SwapRateHelper(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::Quote>& quote,
+            const shared_ptr<ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::Quote>& rate,
             const QuantLib::Period& p,
-            const QuantLib::Calendar& calendar,
-            const QuantLib::Frequency& fixedFrequency,
-            QuantLib::BusinessDayConvention fixedConvention,
-            const QuantLib::DayCounter& fixedDayCounter,
-            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
+            const QuantLib::Calendar& cal,
+            const QuantLib::Frequency& fixFreq,
+            QuantLib::BusinessDayConvention fixConv,
+            const QuantLib::DayCounter& fixDC,
+            const shared_ptr<QuantLib::IborIndex>& ibor,
             const QuantLib::Handle<QuantLib::Quote>& spread,
             const QuantLib::Period& forwardStart,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             bool permanent)
     : RateHelper(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
-            QuantLib::SwapRateHelper(quote,
-                                     p,
-                                     calendar,
-                                     fixedFrequency,
-                                     fixedConvention,
-                                     fixedDayCounter,
-                                     iborIndex,
-                                     spread,
-                                     forwardStart));
+        libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
+            QuantLib::SwapRateHelper(rate,
+                                     p, cal, fixFreq, fixConv, fixDC, ibor,
+                                     spread, forwardStart, discount));
     }
 
     FraRateHelper::FraRateHelper(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
             QuantLib::Period periodToStart,
-            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
+            const shared_ptr<QuantLib::IborIndex>& iborIndex,
             bool permanent)
     : RateHelper(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+        libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FraRateHelper(rate, periodToStart, iborIndex));
     }
 
     FraRateHelper::FraRateHelper(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
             QuantLib::Period periodToStart,
             QuantLib::Natural lengthInMonths,
@@ -163,7 +168,7 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dayCounter,
             bool permanent)
     : RateHelper(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::RateHelper>(new
+        libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FraRateHelper(rate,
                                     periodToStart,
                                     lengthInMonths,
@@ -174,30 +179,50 @@ namespace QuantLibAddin {
                                     dayCounter));
     }
 
+    EoniaSwapRateHelper::EoniaSwapRateHelper(
+                        const shared_ptr<ValueObject>& properties,
+                        const QuantLib::Handle<QuantLib::Quote>& fixedRate,
+                        const QuantLib::Period& tenor,
+                        QuantLib::Natural settlementDays,
+                        const QuantLib::Calendar& calendar,
+                        const QuantLib::Period& eoniaPeriod,
+                        QuantLib::BusinessDayConvention eoniaConvention,
+                        const shared_ptr<QuantLib::Eonia>& eoniaIndex,
+                        const QuantLib::Period& fixedPeriod,
+                        QuantLib::BusinessDayConvention fixedConvention,
+                        const QuantLib::DayCounter& fixedDayCount,
+                        bool permanent)
+    : RateHelper(properties, permanent) {
+        libraryObject_ = shared_ptr<QuantLib::EoniaSwapHelper>(new
+            QuantLib::EoniaSwapHelper(fixedRate, tenor, settlementDays,
+                calendar, eoniaPeriod, eoniaConvention, eoniaIndex,
+                fixedPeriod, fixedConvention, fixedDayCount));
+    }
+
     BondHelper::BondHelper(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
-            const boost::shared_ptr<QuantLib::Bond>& bond,
+            const shared_ptr<QuantLib::Bond>& bond,
             bool permanent)
     : RateHelper(properties, permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::BondHelper>(new
+        libraryObject_ = shared_ptr<QuantLib::BondHelper>(new
             QuantLib::BondHelper(cleanPrice, bond));
     }
 
     FixedRateBondHelper::FixedRateBondHelper(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
             QuantLib::Natural settlementDays,
             QuantLib::Real faceAmount,
-            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            const shared_ptr<QuantLib::Schedule>& schedule,
             const std::vector<QuantLib::Rate>& coupons,
             const QuantLib::DayCounter& paymentDayCounter,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
             bool permanent)
-    : BondHelper(properties, cleanPrice, boost::shared_ptr<QuantLib::Bond>(), permanent) {
-        libraryObject_ = boost::shared_ptr<QuantLib::FixedRateBondHelper>(new
+    : BondHelper(properties, cleanPrice, shared_ptr<QuantLib::Bond>(), permanent) {
+        libraryObject_ = shared_ptr<QuantLib::FixedRateBondHelper>(new
             QuantLib::FixedRateBondHelper(cleanPrice,
                                           settlementDays,
                                           faceAmount,
@@ -216,7 +241,7 @@ namespace QuantLibAddin {
             bool isImmFutures;
             bool isSerialFutures;
             bool isDepo;
-            std::string objectID;
+            string objectID;
             long priority;
             QuantLib::Date earliestDate;
             QuantLib::Date latestDate;
@@ -224,7 +249,7 @@ namespace QuantLibAddin {
             RateHelperItem(bool isImmFutures_inp,
                            bool isSerialFutures_inp,
                            bool isDepo_inp,
-                           const std::string& objectID_inp,
+                           const string& objectID_inp,
                            long priority_inp,
                            const QuantLib::Date& earliestDate_inp,
                            const QuantLib::Date& latestDate_inp,
@@ -258,8 +283,8 @@ namespace QuantLibAddin {
         };
     }
 
-    std::vector<std::string> qlRateHelperSelection(
-        const std::vector<boost::shared_ptr<QuantLibAddin::RateHelper> >& qlarhs,
+    std::vector<string> qlRateHelperSelection(
+        const std::vector<shared_ptr<QuantLibAddin::RateHelper> >& qlarhs,
         const std::vector<QuantLib::Natural>& priority,
         QuantLib::Natural nImmFutures,
         QuantLib::Natural nSerialFutures,
@@ -278,21 +303,22 @@ namespace QuantLibAddin {
                    ") / instruments (" << nInstruments << ") mismatch");
 
         // RateHelperItem
-        boost::shared_ptr<QuantLibAddin::RateHelper> qlarh;
-        boost::shared_ptr<QuantLib::RateHelper> qlrh;
+        shared_ptr<QuantLibAddin::RateHelper> qlarh;
+        shared_ptr<QuantLib::RateHelper> qlrh;
         std::vector<RateHelperItem> rhsAll;
         rhsAll.reserve(nInstruments);
         for (QuantLib::Size i=0; i<nInstruments; ++i) {
             qlarh = qlarhs[i];
             qlarh->getLibraryObject(qlrh);
-            std::string qlarh_id = ObjectHandler::convert2<std::string>(qlarh->propertyValue("OBJECTID"));
-            bool isFutures = boost::dynamic_pointer_cast<FuturesRateHelper>(qlarh);
+            string qlarh_id = convert2<string>(
+                qlarh->propertyValue("OBJECTID"));
+            bool isFutures = dynamic_pointer_cast<FuturesRateHelper>(qlarh);
             bool isImmFutures = false, isSerialFutures = false;
             if (isFutures) {
                 isImmFutures = QuantLib::IMM::isIMMdate(qlrh->earliestDate());
                 isSerialFutures = !isImmFutures;
             }
-            bool isDepo = boost::dynamic_pointer_cast<DepositRateHelper>(qlarh);
+            bool isDepo = dynamic_pointer_cast<DepositRateHelper>(qlarh);
             rhsAll.push_back(RateHelperItem(isImmFutures,
                                             isSerialFutures,
                                             isDepo,
@@ -411,7 +437,7 @@ namespace QuantLibAddin {
             }
         }
 
-        std::vector<std::string> result;
+        std::vector<string> result;
         for (k = rhs.begin(); k != rhs.end(); ++k)
             result.push_back(k->objectID);
         return result;
@@ -458,9 +484,9 @@ namespace QuantLibAddin {
     }
 
     QuantLib::Real qlRateHelperRate(
-        const boost::shared_ptr<QuantLibAddin::RateHelper>& qlarh) {
+        const shared_ptr<QuantLibAddin::RateHelper>& qlarh) {
 
-        boost::shared_ptr<QuantLib::RateHelper> qlrh;
+        shared_ptr<QuantLib::RateHelper> qlrh;
         qlarh->getLibraryObject(qlrh);
 
         RateInspector v;

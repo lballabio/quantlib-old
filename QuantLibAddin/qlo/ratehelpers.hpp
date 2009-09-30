@@ -43,6 +43,7 @@ namespace QuantLib {
     class Calendar;
     class DayCounter;
     class IborIndex;
+    class Eonia;
     class SwapIndex;
     class Schedule;
     class Date;
@@ -113,6 +114,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
             const QuantLib::Handle<QuantLib::Quote>& spread,
             const QuantLib::Period& forwardStart,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             bool permanent);
         SwapRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -125,6 +127,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             const QuantLib::Handle<QuantLib::Quote>& spread,
             const QuantLib::Period& forwardStart,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             bool permanent);
      };
 
@@ -146,6 +149,25 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention convention,
             bool endOfMonth,
             const QuantLib::DayCounter& dayCounter,
+            bool permanent);
+    };
+
+    class EoniaSwapRateHelper : public RateHelper {
+      public:
+        EoniaSwapRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::Quote>& fixedRate,
+            const QuantLib::Period& tenor, // swap maturity
+            QuantLib::Natural settlementDays,
+            const QuantLib::Calendar& calendar,
+            // eonia leg
+            const QuantLib::Period& eoniaPeriod,
+            QuantLib::BusinessDayConvention eoniaConvention,
+            const boost::shared_ptr<QuantLib::Eonia>& index,
+            // fixed leg
+            const QuantLib::Period& fixedPeriod,
+            QuantLib::BusinessDayConvention fixedConvention,
+            const QuantLib::DayCounter& fixedDayCount,
             bool permanent);
     };
 

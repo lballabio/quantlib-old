@@ -484,7 +484,7 @@
     </Constructor>
 
     <Constructor name='qlEONIA'>
-      <libraryFunction>EONIA</libraryFunction>
+      <libraryFunction>Eonia</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
