@@ -49,6 +49,8 @@ class IndexManager {
     const TimeSeries<Real>& getHistory(const std::string& name) const;
     bool hasHistory(const std::string& name) const;
     std::vector<std::string> histories() const;
+    void clearHistory(const std::string& name);
+    void clearHistories();
 };
 
 
