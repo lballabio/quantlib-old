@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2009 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,24 +20,30 @@
 
 #include <qlo/date.hpp>
 #include <ql/time/imm.hpp>
+#include <ql/time/ecb.hpp>
 #include <ql/settings.hpp>
 
+using QuantLib::Size;
 using QuantLib::Date;
 using QuantLib::Days;
+using QuantLib::Period;
+using QuantLib::Frequency;
 using std::vector;
 using std::string;
+using QuantLib::IMM;
+using QuantLib::ECB;
 
 namespace QuantLibAddin {
 
-    QuantLib::Period periodFromFrequency(QuantLib::Frequency f) {
-        return QuantLib::Period(f);
+    Period periodFromFrequency(Frequency f) {
+        return Period(f);
     }
 
-    QuantLib::Frequency frequencyFromPeriod(const QuantLib::Period& p) {
+    Frequency frequencyFromPeriod(const Period& p) {
         return p.frequency();
     }
 
-    QuantLib::Period periodEquivalent(const QuantLib::Period& p) {
+    Period periodEquivalent(const Period& p) {
         return p;
     }
 
@@ -47,12 +53,12 @@ namespace QuantLibAddin {
         Date d = (date == Date() ?
                   Date(QuantLib::Settings::instance().evaluationDate()) :
                   date);
-                  vector<Date> out(1, QuantLib::IMM::nextDate(d, mainCycle[0]));
+                  vector<Date> out(1, IMM::nextDate(d, mainCycle[0]));
 
-        QuantLib::Size n = mainCycle.size();
+        Size n = mainCycle.size();
         out.reserve(n);
-        for (QuantLib::Size i=1; i<n; ++i)
-            out.push_back(QuantLib::IMM::nextDate(out[i-1]+1*Days, mainCycle[i]));
+        for (Size i=1; i<n; ++i)
+            out.push_back(IMM::nextDate(out[i-1]+1*Days, mainCycle[i]));
         return out;
     }
 
@@ -60,12 +66,15 @@ namespace QuantLibAddin {
                                   const vector<bool>& mainCycle) {
         vector<Date> immDates = qlIMMNextDates(date, mainCycle);
         vector<string> out;
-        QuantLib::Size n = mainCycle.size();
+        Size n = mainCycle.size();
         out.reserve(n);
-        for (QuantLib::Size i=0; i<n; ++i)
-            out.push_back(QuantLib::IMM::code(immDates[i]));
+        for (Size i=0; i<n; ++i)
+            out.push_back(IMM::code(immDates[i]));
         return out;
     }
 
+    vector<Date> qlECBKnownDates() {
+        return vector<Date>(ECB::knownDates().begin(),
+                            ECB::knownDates().end());
+    }
 }
-
