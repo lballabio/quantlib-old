@@ -677,6 +677,56 @@
           <string>Dec</string>
           <value>QuantLib::Dec</value>
         </EnumeratedType>
+
+        <EnumeratedType>
+          <string>1</string>
+          <value>QuantLib::January</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>2</string>
+          <value>QuantLib::February</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>3</string>
+          <value>QuantLib::March</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>4</string>
+          <value>QuantLib::April</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>5</string>
+          <value>QuantLib::May</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>6</string>
+          <value>QuantLib::June</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>7</string>
+          <value>QuantLib::July</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>8</string>
+          <value>QuantLib::August</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>9</string>
+          <value>QuantLib::September</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>10</string>
+          <value>QuantLib::October</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>11</string>
+          <value>QuantLib::November</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>12</string>
+          <value>QuantLib::December</value>
+        </EnumeratedType>
+
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
