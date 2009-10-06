@@ -330,8 +330,8 @@ code203 = '''\
             QuantLibXL::operToQlArray(%(name)s, "%(name)s");*/\n'''
 
 code204 = '''\
-        std::vector<QuantLib::Date> %(nameConverted)s = 
-            ObjectHandler::vector::convert2<QuantLib::Date>(%(name)s, "%(name)s");\n'''
+        std::vector<%(type)s> %(nameConverted)s = 
+            ObjectHandler::vector::convert2<%(type)s>(%(name)s, "%(name)s");\n'''
 
 code205 = '''\
         std::vector<%(type)s> %(nameConverted)s =
