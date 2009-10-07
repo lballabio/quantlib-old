@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -43,7 +43,7 @@ namespace QuantLibAddin {
     class IborIndex : public InterestRateIndex {
       public:
         IborIndex(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                  const std::string& indexName,
+                  const std::string& familyName,
                   const QuantLib::Period& p,
                   const QuantLib::Natural fixingDays,
                   const QuantLib::Currency& crr,
@@ -55,6 +55,21 @@ namespace QuantLibAddin {
                   bool permanent);
       protected:
         OH_OBJ_CTOR(IborIndex, InterestRateIndex);
+    };
+
+    class OvernightIndex : public IborIndex {
+      public:
+        OvernightIndex(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string& familyName,
+            const QuantLib::Natural fixingDays,
+            const QuantLib::Currency& crr,
+            const QuantLib::Calendar& calendar,
+            const QuantLib::DayCounter& fltDayCounter,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+            bool permanent);
+      protected:
+        OH_OBJ_CTOR(OvernightIndex, IborIndex);
     };
 
 }

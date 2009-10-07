@@ -408,10 +408,10 @@
       <processorName>IndexProcessor</processorName>
       <ParameterList>
         <Parameters>
-          <Parameter name='FamilyName' exampleValue='Euribor6M Actual/360'>
+          <Parameter name='FamilyName' exampleValue='Euribor'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>index name.</description>
+            <description>index family name.</description>
           </Parameter>
           <Parameter name='Tenor' exampleValue='6M'>
             <type>QuantLib::Period</type>
@@ -423,7 +423,7 @@
             <tensorRank>scalar</tensorRank>
             <description>fixing days (e.g. 2).</description>
           </Parameter>
-          <Parameter name='Currency'>
+          <Parameter name='Currency' exampleValue='EUR'>
             <type>QuantLib::Currency</type>
             <tensorRank>scalar</tensorRank>
             <description>Index Currency.</description>
@@ -458,6 +458,51 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlOvernightIndex'>
+      <libraryFunction>OvernightIndex</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FamilyName' exampleValue='Eonia'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index family name.</description>
+          </Parameter>
+          <Parameter name='FixingDays' exampleValue='0'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 0).</description>
+          </Parameter>
+          <Parameter name='Currency' exampleValue='EUR'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index Currency.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <Constructor name='qlEuribor'>
       <libraryFunction>Euribor</libraryFunction>
       <SupportedPlatforms>
@@ -471,7 +516,32 @@
           <Parameter name='Tenor' exampleValue='6M'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>index tenor: ON (1D), TN, SN, SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).</description>
+            <description>index tenor: SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEuribor365'>
+      <libraryFunction>Euribor365</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Tenor' exampleValue='6M'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor: SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).</description>
           </Parameter>
           <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
@@ -502,55 +572,6 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlEuriborSwapIsdaFixA'>
-      <libraryFunction>EuriborSwapIsdaFixA</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Tenor' exampleValue='10Y'>
-            <type>QuantLib::Period</type>
-            <tensorRank>scalar</tensorRank>
-            <description>index tenor (e.g. 1Y for one year)</description>
-          </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>forecasting yield term structure</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlEuribor365'>
-      <libraryFunction>Euribor365</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <processorName>IndexProcessor</processorName>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Tenor' exampleValue='6M'>
-            <type>string</type>
-            <tensorRank>scalar</tensorRank>
-            <description>index tenor: ON (1D), TN, SN, SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).</description>
-          </Parameter>
-          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
-            <type>QuantLib::YieldTermStructure</type>
-            <superType>libToHandle</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>forecasting YieldTermStructure object ID.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
     <Constructor name='qlLibor'>
       <libraryFunction>Libor</libraryFunction>
       <SupportedPlatforms>
@@ -569,7 +590,7 @@
           <Parameter name='Tenor' exampleValue='6M'>
             <type>string</type>
             <tensorRank>scalar</tensorRank>
-            <description>index tenor: ON (1D), TN, SN, SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).</description>
+            <description>index tenor: ON (1D), SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).</description>
           </Parameter>
           <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
@@ -756,6 +777,30 @@
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>forecasting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEuriborSwapIsdaFixA'>
+      <libraryFunction>EuriborSwapIsdaFixA</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Tenor' exampleValue='10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor (e.g. 1Y for one year)</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting yield term structure</description>
           </Parameter>
         </Parameters>
       </ParameterList>

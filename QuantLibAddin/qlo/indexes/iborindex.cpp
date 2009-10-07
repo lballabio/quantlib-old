@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -31,7 +31,7 @@ namespace QuantLibAddin {
 
     IborIndex::IborIndex(
                  const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                 const std::string& indexName,
+                 const std::string& familyName,
                  const QuantLib::Period& p,
                  const QuantLib::Natural fixingDays,
                  const QuantLib::Currency& crr,
@@ -40,14 +40,33 @@ namespace QuantLibAddin {
                  bool endOfMonth,
                  const QuantLib::DayCounter& fltDayCounter,
                  const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-                 bool permanent) : InterestRateIndex(properties, permanent)
+                 bool permanent)
+    : InterestRateIndex(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-            QuantLib::IborIndex(indexName, 
+            QuantLib::IborIndex(familyName, 
                                 p,
                                 fixingDays, crr, calendar, 
                                 fltBDC, endOfMonth, fltDayCounter,
                                 hYTS));
+    }
+
+    OvernightIndex::OvernightIndex(
+                 const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                 const std::string& familyName,
+                 const QuantLib::Natural fixingDays,
+                 const QuantLib::Currency& crr,
+                 const QuantLib::Calendar& calendar,
+                 const QuantLib::DayCounter& fltDayCounter,
+                 const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+                 bool permanent)
+    : IborIndex(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::OvernightIndex>(new
+            QuantLib::OvernightIndex(familyName, 
+                                     fixingDays, crr, calendar, 
+                                     fltDayCounter,
+                                     hYTS));
     }
 
 }

@@ -75,7 +75,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::CurveState</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::DigitalReplication</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::EndCriteria</DataType>
-    <DataType defaultSuperType='libraryClass'>QuantLib::Eonia</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::OverNightIndex</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::EuropeanExercise</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::EvolutionDescription</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Exercise</DataType>
