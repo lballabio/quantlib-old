@@ -43,7 +43,7 @@ namespace QuantLib {
     class Calendar;
     class DayCounter;
     class IborIndex;
-    class Eonia;
+    class OvernightIndex;
     class SwapIndex;
     class Schedule;
     class Date;
@@ -152,18 +152,18 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
-    class EoniaSwapRateHelper : public RateHelper {
+    class OISRateHelper : public RateHelper {
       public:
-        EoniaSwapRateHelper(
+        OISRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& fixedRate,
             const QuantLib::Period& tenor, // swap maturity
             QuantLib::Natural settlementDays,
             const QuantLib::Calendar& calendar,
-            // eonia leg
-            const QuantLib::Period& eoniaPeriod,
-            QuantLib::BusinessDayConvention eoniaConvention,
-            const boost::shared_ptr<QuantLib::Eonia>& index,
+            // overnight leg
+            const QuantLib::Period& overnightPeriod,
+            QuantLib::BusinessDayConvention overnightConvention,
+            const boost::shared_ptr<QuantLib::OvernightIndex>& index,
             // fixed leg
             const QuantLib::Period& fixedPeriod,
             QuantLib::BusinessDayConvention fixedConvention,

@@ -35,19 +35,19 @@ namespace QuantLibAddin {
                 bool permanent);
     };
 
-    class Eonia : public Euribor {
-      public:
-        Eonia(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-              bool permanent);
-    };
-
     class Euribor365 : public IborIndex {
       public:
         Euribor365(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                    const std::string& p,
                    const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                    bool permanent);
+    };
+
+    class Eonia : public OvernightIndex {
+      public:
+        Eonia(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+              bool permanent);
     };
 
 }

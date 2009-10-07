@@ -179,23 +179,23 @@ namespace QuantLibAddin {
                                     dayCounter));
     }
 
-    EoniaSwapRateHelper::EoniaSwapRateHelper(
+    OISRateHelper::OISRateHelper(
                         const shared_ptr<ValueObject>& properties,
                         const QuantLib::Handle<QuantLib::Quote>& fixedRate,
                         const QuantLib::Period& tenor,
                         QuantLib::Natural settlementDays,
                         const QuantLib::Calendar& calendar,
-                        const QuantLib::Period& eoniaPeriod,
-                        QuantLib::BusinessDayConvention eoniaConvention,
-                        const shared_ptr<QuantLib::Eonia>& eoniaIndex,
+                        const QuantLib::Period& overnightPeriod,
+                        QuantLib::BusinessDayConvention overnightConvention,
+                        const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
                         const QuantLib::Period& fixedPeriod,
                         QuantLib::BusinessDayConvention fixedConvention,
                         const QuantLib::DayCounter& fixedDayCount,
                         bool permanent)
     : RateHelper(properties, permanent) {
-        libraryObject_ = shared_ptr<QuantLib::EoniaSwapHelper>(new
-            QuantLib::EoniaSwapHelper(fixedRate, tenor, settlementDays,
-                calendar, eoniaPeriod, eoniaConvention, eoniaIndex,
+        libraryObject_ = shared_ptr<QuantLib::OISRateHelper>(new
+            QuantLib::OISRateHelper(fixedRate, tenor, settlementDays,
+                calendar, overnightPeriod, overnightConvention, overnightIndex,
                 fixedPeriod, fixedConvention, fixedDayCount));
     }
 
@@ -451,6 +451,7 @@ namespace QuantLibAddin {
               public QuantLib::Visitor<QuantLib::FraRateHelper>,
               public QuantLib::Visitor<QuantLib::FuturesRateHelper>,
               public QuantLib::Visitor<QuantLib::SwapRateHelper>,
+              public QuantLib::Visitor<QuantLib::OISRateHelper>,
               public QuantLib::Visitor<QuantLib::BMASwapRateHelper>,
               public QuantLib::Visitor<QuantLib::FixedRateBondHelper> {
             QuantLib::Rate rate_;
@@ -471,6 +472,9 @@ namespace QuantLibAddin {
                 rate_ = futureRate - convAdj;
             }
             void visit(QuantLib::SwapRateHelper& h) {
+                rate_ = h.quote()->value();
+            }
+            void visit(QuantLib::OISRateHelper& h) {
                 rate_ = h.quote()->value();
             }
             void visit(QuantLib::BMASwapRateHelper& h) {

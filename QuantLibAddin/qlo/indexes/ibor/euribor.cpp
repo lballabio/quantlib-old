@@ -25,8 +25,9 @@
 #endif
 
 #include <qlo/indexes/ibor/euribor.hpp>
-#include <ql/indexes/ibor/euribor.hpp>
 
+#include <ql/indexes/ibor/euribor.hpp>
+#include <ql/indexes/ibor/eonia.hpp>
 #include <ql/utilities/dataparsers.hpp>
 
 #include <boost/algorithm/string/case_conv.hpp>
@@ -39,21 +40,11 @@ namespace QuantLibAddin {
     Euribor::Euribor(const shared_ptr<ValueObject>& properties,
                      const std::string& p_inp,
                      const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                     bool permanent) : IborIndex(properties, permanent)
+                     bool permanent)
+    : IborIndex(properties, permanent)
     {
         std::string p = boost::algorithm::to_upper_copy(p_inp);
-        if (p=="ON" || p=="EONIA")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::Eonia(h));
-        else if (p=="1D")
-            QL_FAIL("1D is ambigous: please specify ON, TN, or SN");
-        else if (p=="TN")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::EuriborTomorrowNext(h));
-        else if (p=="SN")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::EuriborSpotNext(h));
-        else if (p=="SW")
+        if (p=="SW")
             libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
             QuantLib::Euribor(1*QuantLib::Weeks, h));
         else {
@@ -64,29 +55,14 @@ namespace QuantLibAddin {
         }
     }
 
-    Eonia::Eonia(const shared_ptr<ValueObject>& properties,
-                 const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                 bool permanent)
-    : Euribor(properties, "EONIA", h, permanent) {}
-
     Euribor365::Euribor365(const shared_ptr<ValueObject>& properties,
                            const std::string& p_inp,
                            const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-                           bool permanent) : IborIndex(properties, permanent)
+                           bool permanent)
+    : IborIndex(properties, permanent)
     {
         std::string p = boost::algorithm::to_upper_copy(p_inp);
-        if (p=="ON" || p=="EONIA")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::Eonia365(h));
-        else if (p=="1D")
-            QL_FAIL("1D is ambigous: please specify ON, TN, or SN");
-        else if (p=="TN")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::Euribor365TomorrowNext(h));
-        else if (p=="SN")
-            libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
-                QuantLib::Euribor365SpotNext(h));
-        else if (p=="SW")
+        if (p=="SW")
             libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
             QuantLib::Euribor365(1*QuantLib::Weeks, h));
         else {
@@ -95,6 +71,15 @@ namespace QuantLibAddin {
             libraryObject_ = boost::shared_ptr<QuantLib::IborIndex>(new
                 QuantLib::Euribor365(pp, h));
         }
+    }
+
+    Eonia::Eonia(const shared_ptr<ValueObject>& properties,
+                 const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
+                 bool permanent)
+    : OvernightIndex(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::Eonia>(new
+            QuantLib::Eonia(h));
     }
 
 }

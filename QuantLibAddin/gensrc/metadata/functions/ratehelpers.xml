@@ -347,8 +347,8 @@
       </ReturnValue>
     </Member>
 
-    <Constructor name='qlEoniaSwapRateHelper'>
-      <libraryFunction>EoniaSwapRateHelper</libraryFunction>
+    <Constructor name='qlOISRateHelper'>
+      <libraryFunction>OISRateHelper</libraryFunction>
       <SupportedPlatforms>
         SupportedPlatform name='Excel' calcInWizard='false'/
         <SupportedPlatform name='Excel'/>
@@ -378,20 +378,20 @@
             <description>holiday calendar (e.g. TARGET).</description>
           </Parameter>
 
-          <Parameter name='EoniaTenor' exampleValue='1Y'>
+          <Parameter name='ONIndexTenor' exampleValue='1Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>tenor of Eonia payments (e.g. 1Y for annual frequency).</description>
           </Parameter>
-          <Parameter name='EoniaConvention' exampleValue='Following'>
+          <Parameter name='ONIndexConvention' exampleValue='Following'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg convention (e.g. Following).</description>
           </Parameter>
-          <Parameter name='EoniaIndex' exampleValue='Eonia'>
-            <type>QuantLib::Eonia</type>
+          <Parameter name='ONIndex' exampleValue='Eonia'>
+            <type>QuantLib::OvernightIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating leg Eonia object ID.</description>
+            <description>floating leg OvernightIndex object ID.</description>
           </Parameter>
 
           <Parameter name='FixedLegTenor' exampleValue='1Y'>
