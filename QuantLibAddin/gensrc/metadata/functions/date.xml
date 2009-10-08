@@ -493,80 +493,6 @@
     </Procedure>
 
 
-    <Procedure name='qlECBIsECBdate' loopParameter='Date'>
-      <description>returns whether or not the given date is an ECB maintenance period start date.</description>
-      <alias>QuantLib::ECB::isECBdate</alias>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Date' exampleValue='38791'>
-            <type>QuantLib::Date</type>
-            <tensorRank>vector</tensorRank>
-            <description>date.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>bool</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
-    <Procedure name='qlECBdate'>
-      <description>returns the ECB maintenance period start date in the given month/year.</description>
-      <alias>QuantLib::ECB::date</alias>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Month' exampleValue='Jan'>
-            <type>QuantLib::Month</type>
-            <tensorRank>scalar</tensorRank>
-            <description>month (e.g. January, or Jan, or '1').</description>
-          </Parameter>
-          <Parameter name='Year' exampleValue='2010'>
-            <type>long</type>
-            <tensorRank>scalar</tensorRank>
-            <description>year (e.g. 2010).</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
-    <Procedure name='qlECBNextDate'>
-      <description>returns the next ECB maintenance period start date following the given date.</description>
-      <alias>QuantLib::ECB::nextDate</alias>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Date' default='QuantLib::Date()'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
     <Procedure name='qlECBKnownDates'>
       <description>returns all the known ECB maintenance period start dates.</description>
       <SupportedPlatforms>
@@ -576,29 +502,6 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
-    <Procedure name='qlECBNextDates'>
-      <description>returns all the known ECB maintenance period start dates following the given date.</description>
-      <alias>QuantLib::ECB::nextDates</alias>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='Date' default='QuantLib::Date()'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>date with respect to which the calculations are performed.</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -649,6 +552,246 @@
       </ParameterList>
       <ReturnValue>
         <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBdate2'>
+      <description>returns the ECB maintenance period start date in the given month/year.</description>
+      <alias>QuantLib::ECB::date</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Month' exampleValue='Jan'>
+            <type>QuantLib::Month</type>
+            <tensorRank>scalar</tensorRank>
+            <description>month (e.g. January, or Jan, or '1').</description>
+          </Parameter>
+          <Parameter name='Year' exampleValue='2010'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>year (e.g. 2010).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBdate'>
+      <description>returns the ECB maintenance period start date for the given ECB code.</description>
+      <alias>QuantLib::ECB::date</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ECBcode' exampleValue='MAR10'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>5 letter ECB code (e.g. MAR10).</description>
+          </Parameter>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBcode'>
+      <description>returns the code corresponding to a given ECB date (e.g. MAR10 for Wednesday, March xxth, 2010). It fails if the input date is not an ECB date.</description>
+      <alias>QuantLib::ECB::code</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ECBdate' exampleValue='38791'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ECB date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBNextDate'>
+      <description>returns the next ECB maintenance period start date following the given date.</description>
+      <alias>QuantLib::ECB::nextDate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBNextDate2'>
+      <description>returns the next ECB maintenance period start date following the given date.</description>
+      <alias>QuantLib::ECB::nextDate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Code' exampleValue='MAR10'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>5 letter ECB code (e.g. MAR10).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBNextDates'>
+      <description>returns all the known ECB maintenance period start dates following the given date.</description>
+      <alias>QuantLib::ECB::nextDates</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBIsECBdate' loopParameter='Date'>
+      <description>returns whether or not the given date is an ECB maintenance period start date.</description>
+      <alias>QuantLib::ECB::isECBdate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' exampleValue='38791'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBIsECBcode' loopParameter='Code'>
+      <description>returns whether or not the given code is an ECB code.</description>
+      <alias>QuantLib::ECB::isECBcode</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Code' exampleValue='MAR10'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>5 letter ECB code (e.g. MAR10).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBNextCode'>
+      <description>returns the code for the first ECB date.</description>
+      <alias>QuantLib::ECB::nextCode</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBNextCode2'>
+      <description>returns the code for the next ECB date.</description>
+      <alias>QuantLib::ECB::nextCode</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Code' exampleValue='MAR10'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>5 letter ECB code (e.g. MAR10).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
