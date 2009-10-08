@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
  Copyright (C) 2006, 2007 Marco Bianchetti
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
@@ -194,9 +194,33 @@ namespace QuantLibAddin {
                         bool permanent)
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::OISRateHelper>(new
-            QuantLib::OISRateHelper(fixedRate, tenor, settlementDays,
-                calendar, overnightPeriod, overnightConvention, overnightIndex,
-                fixedPeriod, fixedConvention, fixedDayCount));
+            QuantLib::OISRateHelper(fixedRate,
+                                    tenor, settlementDays,
+                                    calendar,
+                                    overnightPeriod, overnightConvention, overnightIndex,
+                                    fixedPeriod, fixedConvention, fixedDayCount));
+    }
+
+    DatedOISRateHelper::DatedOISRateHelper(
+                        const shared_ptr<ValueObject>& properties,
+                        const QuantLib::Handle<QuantLib::Quote>& fixedRate,
+                        const QuantLib::Date& startDate,
+                        const QuantLib::Date& endDate,
+                        const QuantLib::Calendar& calendar,
+                        const QuantLib::Period& overnightPeriod,
+                        QuantLib::BusinessDayConvention overnightConvention,
+                        const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+                        const QuantLib::Period& fixedPeriod,
+                        QuantLib::BusinessDayConvention fixedConvention,
+                        const QuantLib::DayCounter& fixedDayCount,
+                        bool permanent)
+    : RateHelper(properties, permanent) {
+        libraryObject_ = shared_ptr<QuantLib::DatedOISRateHelper>(new
+            QuantLib::DatedOISRateHelper(fixedRate,
+                                         startDate, endDate,
+                                         calendar,
+                                         overnightPeriod, overnightConvention, overnightIndex,
+                                         fixedPeriod, fixedConvention, fixedDayCount));
     }
 
     BondHelper::BondHelper(
@@ -452,6 +476,7 @@ namespace QuantLibAddin {
               public QuantLib::Visitor<QuantLib::FuturesRateHelper>,
               public QuantLib::Visitor<QuantLib::SwapRateHelper>,
               public QuantLib::Visitor<QuantLib::OISRateHelper>,
+              public QuantLib::Visitor<QuantLib::DatedOISRateHelper>,
               public QuantLib::Visitor<QuantLib::BMASwapRateHelper>,
               public QuantLib::Visitor<QuantLib::FixedRateBondHelper> {
             QuantLib::Rate rate_;
@@ -475,6 +500,9 @@ namespace QuantLibAddin {
                 rate_ = h.quote()->value();
             }
             void visit(QuantLib::OISRateHelper& h) {
+                rate_ = h.quote()->value();
+            }
+            void visit(QuantLib::DatedOISRateHelper& h) {
                 rate_ = h.quote()->value();
             }
             void visit(QuantLib::BMASwapRateHelper& h) {

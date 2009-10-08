@@ -4,7 +4,7 @@
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
  Copyright (C) 2007 Marco Bianchetti
 
  This file is part of QuantLib, a free-software/open-source library
@@ -159,6 +159,25 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::Quote>& fixedRate,
             const QuantLib::Period& tenor, // swap maturity
             QuantLib::Natural settlementDays,
+            const QuantLib::Calendar& calendar,
+            // overnight leg
+            const QuantLib::Period& overnightPeriod,
+            QuantLib::BusinessDayConvention overnightConvention,
+            const boost::shared_ptr<QuantLib::OvernightIndex>& index,
+            // fixed leg
+            const QuantLib::Period& fixedPeriod,
+            QuantLib::BusinessDayConvention fixedConvention,
+            const QuantLib::DayCounter& fixedDayCount,
+            bool permanent);
+    };
+
+    class DatedOISRateHelper : public RateHelper {
+      public:
+        DatedOISRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::Quote>& fixedRate,
+            const QuantLib::Date& startDate,
+            const QuantLib::Date& endDate,
             const QuantLib::Calendar& calendar,
             // overnight leg
             const QuantLib::Period& overnightPeriod,

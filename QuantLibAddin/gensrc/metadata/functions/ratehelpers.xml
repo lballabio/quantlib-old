@@ -413,6 +413,72 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlDatedOISRateHelper'>
+      <libraryFunction>DatedOISRateHelper</libraryFunction>
+      <SupportedPlatforms>
+        SupportedPlatform name='Excel' calcInWizard='false'/
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FixedRate' exampleValue='0.00423'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>quote.</description>
+          </Parameter>
+          <Parameter name='StartDate' exampleValue='39000'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap start date.</description>
+          </Parameter>
+          <Parameter name='EndDate' exampleValue='40000'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap end date.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+
+          <Parameter name='ONIndexTenor' exampleValue='1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tenor of Eonia payments (e.g. 1Y for annual frequency).</description>
+          </Parameter>
+          <Parameter name='ONIndexConvention' exampleValue='Following'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixed leg convention (e.g. Following).</description>
+          </Parameter>
+          <Parameter name='ONIndex' exampleValue='Eonia'>
+            <type>QuantLib::OvernightIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg OvernightIndex object ID.</description>
+          </Parameter>
+
+          <Parameter name='FixedLegTenor' exampleValue='1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tenor of fixed leg payments.</description>
+          </Parameter>
+          <Parameter name='FixedLegConvention' exampleValue='ModifiedFollowing'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixed leg convention (e.g. Unadjusted).</description>
+          </Parameter>
+          <Parameter name='FixedLegDayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <Constructor name='qlFraRateHelper'>
       <libraryFunction>FraRateHelper</libraryFunction>
       <SupportedPlatforms>
