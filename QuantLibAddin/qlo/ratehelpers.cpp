@@ -31,7 +31,7 @@
 #include <ql/indexes/swapindex.hpp>
 #include <ql/termstructures/yield/ratehelpers.hpp>
 #include <ql/termstructures/yield/bondhelpers.hpp>
-#include <ql/experimental/overnightswap/eoniaswaphelper.hpp>
+#include <ql/experimental/overnightswap/oisratehelper.hpp>
 #include <ql/time/imm.hpp>
 
 #include <oh/repository.hpp>
