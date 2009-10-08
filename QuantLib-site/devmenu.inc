@@ -12,9 +12,6 @@
 <li class="navlink"><a href="/svn.shtml">Subversion</a></li>
 
 <li class="navlink"><a href=
-"http://sourceforge.net/pm/?group_id=12740">Open tasks</a></li>
-
-<li class="navlink"><a href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs</a></li>
 
 <li class="navlink"><a href=
