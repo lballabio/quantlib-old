@@ -156,18 +156,10 @@ namespace QuantLibAddin {
       public:
         OISRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::Quote>& fixedRate,
-            const QuantLib::Period& tenor, // swap maturity
             QuantLib::Natural settlementDays,
-            const QuantLib::Calendar& calendar,
-            // overnight leg
-            const QuantLib::Period& overnightPeriod,
-            QuantLib::BusinessDayConvention overnightConvention,
-            const boost::shared_ptr<QuantLib::OvernightIndex>& index,
-            // fixed leg
-            const QuantLib::Period& fixedPeriod,
-            QuantLib::BusinessDayConvention fixedConvention,
-            const QuantLib::DayCounter& fixedDayCount,
+            const QuantLib::Period& tenor, // swap maturity
+            const QuantLib::Handle<QuantLib::Quote>& fixedRate,
+            const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             bool permanent);
     };
 
@@ -175,18 +167,10 @@ namespace QuantLibAddin {
       public:
         DatedOISRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::Quote>& fixedRate,
             const QuantLib::Date& startDate,
             const QuantLib::Date& endDate,
-            const QuantLib::Calendar& calendar,
-            // overnight leg
-            const QuantLib::Period& overnightPeriod,
-            QuantLib::BusinessDayConvention overnightConvention,
-            const boost::shared_ptr<QuantLib::OvernightIndex>& index,
-            // fixed leg
-            const QuantLib::Period& fixedPeriod,
-            QuantLib::BusinessDayConvention fixedConvention,
-            const QuantLib::DayCounter& fixedDayCount,
+            const QuantLib::Handle<QuantLib::Quote>& fixedRate,
+            const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             bool permanent);
     };
 

@@ -181,46 +181,31 @@ namespace QuantLibAddin {
 
     OISRateHelper::OISRateHelper(
                         const shared_ptr<ValueObject>& properties,
-                        const QuantLib::Handle<QuantLib::Quote>& fixedRate,
-                        const QuantLib::Period& tenor,
                         QuantLib::Natural settlementDays,
-                        const QuantLib::Calendar& calendar,
-                        const QuantLib::Period& overnightPeriod,
-                        QuantLib::BusinessDayConvention overnightConvention,
+                        const QuantLib::Period& tenor,
+                        const QuantLib::Handle<QuantLib::Quote>& fixedRate,
                         const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
-                        const QuantLib::Period& fixedPeriod,
-                        QuantLib::BusinessDayConvention fixedConvention,
-                        const QuantLib::DayCounter& fixedDayCount,
                         bool permanent)
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::OISRateHelper>(new
-            QuantLib::OISRateHelper(fixedRate,
-                                    tenor, settlementDays,
-                                    calendar,
-                                    overnightPeriod, overnightConvention, overnightIndex,
-                                    fixedPeriod, fixedConvention, fixedDayCount));
+            QuantLib::OISRateHelper(settlementDays,
+                                    tenor, 
+                                    fixedRate,
+                                    overnightIndex));
     }
 
     DatedOISRateHelper::DatedOISRateHelper(
                         const shared_ptr<ValueObject>& properties,
-                        const QuantLib::Handle<QuantLib::Quote>& fixedRate,
                         const QuantLib::Date& startDate,
                         const QuantLib::Date& endDate,
-                        const QuantLib::Calendar& calendar,
-                        const QuantLib::Period& overnightPeriod,
-                        QuantLib::BusinessDayConvention overnightConvention,
+                        const QuantLib::Handle<QuantLib::Quote>& fixedRate,
                         const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
-                        const QuantLib::Period& fixedPeriod,
-                        QuantLib::BusinessDayConvention fixedConvention,
-                        const QuantLib::DayCounter& fixedDayCount,
                         bool permanent)
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::DatedOISRateHelper>(new
-            QuantLib::DatedOISRateHelper(fixedRate,
-                                         startDate, endDate,
-                                         calendar,
-                                         overnightPeriod, overnightConvention, overnightIndex,
-                                         fixedPeriod, fixedConvention, fixedDayCount));
+            QuantLib::DatedOISRateHelper(startDate, endDate,
+                                         fixedRate,
+                                         overnightIndex));
     }
 
     BondHelper::BondHelper(
