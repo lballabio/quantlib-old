@@ -1035,6 +1035,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\overnightindexedswap.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\overnightindexedswap.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\payoffs.cpp"
 				>
 			</File>
