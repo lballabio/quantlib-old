@@ -246,8 +246,7 @@
             <tensorRank>scalar</tensorRank>
             <description>strike.</description>
           </Parameter>
-          <!--<Parameter name='ForwardStart' libraryType='QuantLib::Period' default='"0D"'>-->
-          <Parameter name='ForwardStart' exampleValue='0D'>
+          <Parameter name='ForwardStart' example='"0D"'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>as period (if zero days the first caplet is removed).</description>

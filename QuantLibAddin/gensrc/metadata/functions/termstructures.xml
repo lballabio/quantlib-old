@@ -349,7 +349,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Dates' exampleValue ='0D'>
+          <Parameter name='Dates' exampleValue ='0D,3M,6M,9M,1Y,15M,18M,21M,2Y'>
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>par rate payment dates.</description>

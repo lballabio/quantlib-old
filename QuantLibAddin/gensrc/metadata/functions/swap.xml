@@ -85,7 +85,7 @@
             <tensorRank>scalar</tensorRank>
             <description>spread over the ibor leg.</description>
           </Parameter>
-          <Parameter name='ForwardStart' exampleValue='0D'>
+          <Parameter name='ForwardStart' exampleValue='"0D"'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>forward start period.</description>

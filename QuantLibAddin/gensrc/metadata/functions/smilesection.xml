@@ -150,7 +150,7 @@
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID.</description>
           </Parameter>
-          <Parameter name='RefDate' exampleValue ='0D'>
+          <Parameter name='RefDate' exampleValue ='34567'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>ref date.</description>

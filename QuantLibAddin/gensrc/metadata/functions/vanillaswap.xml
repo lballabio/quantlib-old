@@ -3,23 +3,25 @@
   <displayName>Vanilla Swap</displayName>
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <addinIncludes>
+    <include>qlo/vanillaswap.hpp</include>
     <include>qlo/indexes/iborindex.hpp</include>
     <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/termstructures.hpp</include>
-    <include>qlo/vanillaswap.hpp</include>
+
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
     <include>ql/termstructures/yield/ratehelpers.hpp</include>
   </addinIncludes>
   <serializationIncludes>
+    <include>qlo/vanillaswap.hpp</include>
     <include>qlo/indexes/iborindex.hpp</include>
     <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/termstructures.hpp</include>
-    <include>qlo/vanillaswap.hpp</include>
+
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
     <include>ql/termstructures/yield/ratehelpers.hpp</include>
@@ -42,12 +44,12 @@
       <processorName>InstrumentProcessor</processorName>
       <ParameterList>
         <Parameters>
-          <Parameter name='PayerReceiver'>
+          <Parameter name='PayerReceiver' default='"Payer"'>
             <type>QuantLib::VanillaSwap::Type</type>
             <tensorRank>scalar</tensorRank>
             <description>PAYER to pay the fixed rate, RECEIVER to receive it.</description>
           </Parameter>
-          <Parameter name='Nominal' exampleValue='100'>
+          <Parameter name='Nominal' default='100'>
             <type>double</type>
             <tensorRank>scalar</tensorRank>
             <description>Notional Amount.</description>
@@ -56,7 +58,7 @@
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>fixed leg schedule object ID.</description>
+            <description>fixed leg Schedule object ID.</description>
           </Parameter>
           <Parameter name='FixedRate' exampleValue='5%'>
             <type>QuantLib::Rate</type>
@@ -72,7 +74,7 @@
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
-            <description>floating leg schedule object ID.</description>
+            <description>floating leg Schedule object ID.</description>
           </Parameter>
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
@@ -82,7 +84,7 @@
           <Parameter name='FloatingLegSpread' exampleValue='0%'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>Index Spread.</description>
+            <description>floating leg spread.</description>
           </Parameter>
           <Parameter name='FloatingLegDayCounter' exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
@@ -93,47 +95,6 @@
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>Payment dates' business day convention.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlVanillaSwapFromSwapIndex'>
-      <libraryFunction>VanillaSwap</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='SwapIndex'>
-            <type>QuantLib::SwapIndex</type>
-            <tensorRank>scalar</tensorRank>
-            <description>the SwapIndex index object ID.</description>
-          </Parameter>
-          <Parameter name='FixingDate'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>fixing date.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-    </Constructor>
-
-    <Constructor name='qlVanillaSwapFromSwapRateHelper'>
-      <libraryFunction>VanillaSwap</libraryFunction>
-      <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-        <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Cpp'/>
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='SwapRateHelper'>
-            <type>QuantLib::SwapRateHelper</type>
-            <tensorRank>scalar</tensorRank>
-            <description>the SwapRateHelper index object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -161,9 +122,9 @@
           <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate.</description>
+            <description>the fixed rate. If missing atm rate is used.</description>
           </Parameter>
-          <Parameter name='ForwardStart' exampleValue='0D'>
+          <Parameter name='ForwardStart' exampleValue='"0D"'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>forward start period.</description>
@@ -204,7 +165,7 @@
           <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate.</description>
+            <description>the fixed rate. If missing atm rate is used.</description>
           </Parameter>
           <Parameter name='FirstImmDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -225,7 +186,48 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlVanillaSwapFixedLegBPS' type='QuantLib::VanillaSwap'>
+      <Constructor name='qlVanillaSwapFromSwapIndex'>
+          <libraryFunction>VanillaSwap</libraryFunction>
+          <SupportedPlatforms>
+              <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+              <SupportedPlatform name='Excel'/>
+              <SupportedPlatform name='Cpp'/>
+          </SupportedPlatforms>
+          <ParameterList>
+              <Parameters>
+                  <Parameter name='SwapIndex'>
+                      <type>QuantLib::SwapIndex</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>SwapIndex object ID.</description>
+                  </Parameter>
+                  <Parameter name='FixingDate'>
+                      <type>QuantLib::Date</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>fixing date.</description>
+                  </Parameter>
+              </Parameters>
+          </ParameterList>
+      </Constructor>
+
+      <Constructor name='qlVanillaSwapFromSwapRateHelper'>
+          <libraryFunction>VanillaSwap</libraryFunction>
+          <SupportedPlatforms>
+              <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+              <SupportedPlatform name='Excel'/>
+              <SupportedPlatform name='Cpp'/>
+          </SupportedPlatforms>
+          <ParameterList>
+              <Parameters>
+                  <Parameter name='SwapRateHelper'>
+                      <type>QuantLib::SwapRateHelper</type>
+                      <tensorRank>scalar</tensorRank>
+                      <description>SwapRateHelper object ID.</description>
+                  </Parameter>
+              </Parameters>
+          </ParameterList>
+      </Constructor>
+
+      <Member name='qlVanillaSwapFixedLegBPS' type='QuantLib::VanillaSwap'>
       <description>returns the BPS of the fixed rate leg for the given VanillaSwap object.</description>
       <libraryFunction>fixedLegBPS</libraryFunction>
       <SupportedPlatforms>
