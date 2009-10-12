@@ -187,6 +187,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\functions\overnightindexedswap.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\functions\payoffs.xml"
 				>
 			</File>
