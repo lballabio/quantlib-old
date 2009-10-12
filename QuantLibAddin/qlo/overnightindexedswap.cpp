@@ -25,27 +25,29 @@
 #include <ql/experimental/overnightswap/makeois.hpp>
 //#include <ql/indexes/swapindex.hpp>
 #include <ql/experimental/overnightswap/oisratehelper.hpp>
+#include <ql/time/ecb.hpp>
 
 using std::vector;
 using ObjectHandler::property_t;
 using QuantLib::Period;
 using QuantLib::MakeOIS;
+using boost::shared_ptr;
 
 namespace QuantLibAddin {
 
     OvernightIndexedSwap::OvernightIndexedSwap(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::OvernightIndexedSwap::Type type,
             QuantLib::Real nominal,
-            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            const shared_ptr<QuantLib::Schedule>& schedule,
             QuantLib::Rate fixedRate,
             const QuantLib::DayCounter& fixedDC,
-            const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+            const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             QuantLib::Spread overnightSpread,
             bool permanent)
     : Swap(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+        libraryObject_ = shared_ptr<QuantLib::Instrument>(new
             QuantLib::OvernightIndexedSwap(type, nominal,
                                            *schedule,
                                            fixedRate, fixedDC,
@@ -53,55 +55,64 @@ namespace QuantLibAddin {
     }
 
     OvernightIndexedSwap::OvernightIndexedSwap(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            QuantLib::OvernightIndexedSwap::Type type,
-            QuantLib::Real nominal,
-            const QuantLib::Date& startDate,
-            const QuantLib::Period& tenor,
-            QuantLib::Frequency paymentFrequency,
-            QuantLib::Rate fixedRate,
-            const QuantLib::DayCounter& fixedDC,
-            const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+            const shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Period& swapTenor, 
+            const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+            QuantLib::Rate fixRate,
+            const QuantLib::Period& fwdStart,
+            const QuantLib::DayCounter& fixDayCounter,
             QuantLib::Spread overnightSpread,
             bool permanent)
     : Swap(properties, permanent)
     {
-        libraryObject_ = MakeOIS(tenor, overnightIndex, fixedRate, startDate)
-            .withType(type)
-            .withNominal(nominal)
-            .withPaymentFrequency(paymentFrequency)
-            .withFixedLegDayCount(fixedDC)
+        libraryObject_ = MakeOIS(swapTenor, overnightIndex,
+                                 fixRate, fwdStart)
+            .withFixedLegDayCount(fixDayCounter)
             .withOvernightLegSpread(overnightSpread)
-            .operator boost::shared_ptr<QuantLib::OvernightIndexedSwap>();
+            .operator shared_ptr<QuantLib::OvernightIndexedSwap>();
     }
 
     OvernightIndexedSwap::OvernightIndexedSwap(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            QuantLib::OvernightIndexedSwap::Type type,
-            QuantLib::Real nominal,
+            const shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& startDate,
             const QuantLib::Date& enddate,
-            QuantLib::Frequency paymentFrequency,
+            const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             QuantLib::Rate fixedRate,
             const QuantLib::DayCounter& fixedDC,
-            const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             QuantLib::Spread overnightSpread,
             bool permanent)
     : Swap(properties, permanent)
     {
-        libraryObject_= MakeOIS(Period(), overnightIndex, fixedRate, startDate)
-            .withType(type)
-            .withNominal(nominal)
-            .withTerminationDate(enddate)
-            .withPaymentFrequency(paymentFrequency)
+        QuantLib::Date effectiveDate = startDate;
+        if (effectiveDate==QuantLib::Date())
+            effectiveDate = QuantLib::ECB::nextDate();
+
+        QuantLib::Date terminationDate = enddate;
+        if (terminationDate==QuantLib::Date())
+            terminationDate = QuantLib::ECB::nextDate(effectiveDate);
+
+        libraryObject_= MakeOIS(Period(), overnightIndex,
+                                fixedRate)
+            .withEffectiveDate(effectiveDate)
+            .withTerminationDate(terminationDate)
             .withFixedLegDayCount(fixedDC)
             .withOvernightLegSpread(overnightSpread)
-            .operator boost::shared_ptr<QuantLib::OvernightIndexedSwap>();
+            .operator shared_ptr<QuantLib::OvernightIndexedSwap>();
     }
 
+    //VanillaSwap::VanillaSwap(
+    //    const shared_ptr<ObjectHandler::ValueObject>& properties,
+    //    const shared_ptr<QuantLib::OISIndex>& oisIndex,
+    //    const QuantLib::Date& fixingDate,
+    //    bool permanent)
+    //: Swap(properties, permanent)
+    //{
+    //    libraryObject_ = oisIndex->underlyingSwap(fixingDate);
+    //}
+
     OvernightIndexedSwap::OvernightIndexedSwap(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const boost::shared_ptr<QuantLib::OISRateHelper>& swapRH,
+        const shared_ptr<ObjectHandler::ValueObject>& properties,
+        const shared_ptr<QuantLib::OISRateHelper>& swapRH,
         bool permanent)
     : Swap(properties, permanent)
     {

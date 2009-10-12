@@ -43,30 +43,28 @@ namespace QuantLibAddin {
             bool permanent);
         OvernightIndexedSwap( // MakeOIS
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            QuantLib::OvernightIndexedSwap::Type type,
-            QuantLib::Real nominal,
-            const QuantLib::Date& startDate,
-            const QuantLib::Period& tenor,
-            QuantLib::Frequency paymentFrequency,
-            QuantLib::Rate fixedRate,
-            const QuantLib::DayCounter& fixedDC,
+            const QuantLib::Period& swapTenor,
             const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
-            QuantLib::Spread overnightSpread,
+            QuantLib::Rate fixedRate,
+            const QuantLib::Period& forwardStart,
+            const QuantLib::DayCounter& fixLegDayCounter,
+            QuantLib::Spread floatingLegSpread,
             bool permanent);
-        OvernightIndexedSwap( // MakeOIS
+        OvernightIndexedSwap( // MakeDatedOIS
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            QuantLib::OvernightIndexedSwap::Type type,
-            QuantLib::Real nominal,
             const QuantLib::Date& startDate,
             const QuantLib::Date& enddate,
-            QuantLib::Frequency paymentFrequency,
-            QuantLib::Rate fixedRate,
-            const QuantLib::DayCounter& fixedDC,
             const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
-            QuantLib::Spread overnightSpread,
+            QuantLib::Rate fixedRate,
+            const QuantLib::DayCounter& fixLegDayCounter,
+            QuantLib::Spread floatingLegSpread,
             bool permanent);
-        // Index constructor here
-        OvernightIndexedSwap(
+        //OvernightIndexedSwap( //OISIndex->underlyingSwap()
+        //    const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        //    const boost::shared_ptr<QuantLib::OISIndex>& oisIndex,
+        //    const QuantLib::Date& fixingDate,
+        //    bool permanent);
+        OvernightIndexedSwap( // OISRateHelper->swap()
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::OISRateHelper>& swapRH,
             bool permanent);
