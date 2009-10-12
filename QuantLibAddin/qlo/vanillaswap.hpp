@@ -46,8 +46,7 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& floatDayCounter,
             QuantLib::BusinessDayConvention paymentConvention,
             bool permanent);
-        // MakeVanillaSwap
-        VanillaSwap(
+        VanillaSwap( // MakeVanillaSwap
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Period& swapTenor, 
             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
@@ -56,8 +55,7 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& fixLegDayCounter,
             QuantLib::Spread floatingLegSpread,
             bool permanent);
-        // MakeIMMSwap
-        VanillaSwap(
+        VanillaSwap( // MakeIMMSwap
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Period& swapTenor, 
             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
@@ -66,14 +64,12 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& fixLegDayCounter,
             QuantLib::Spread floatingLegSpread,
             bool permanent);
-        // SwapIndex->underlyingSwap()
-        VanillaSwap(
+        VanillaSwap( // SwapIndex->underlyingSwap()
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::SwapIndex>& swapIndex,
             const QuantLib::Date& fixingDate,
             bool permanent);
-        // SwapRateHelper->swap()
-        VanillaSwap(
+        VanillaSwap( // SwapRateHelper->swap()
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::SwapRateHelper>& swapRH,
             bool permanent);
