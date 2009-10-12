@@ -360,6 +360,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\functions\overnightindexedswap.cpp"
+				>
+			</File>
+			<File
 				RelativePath="functions\payoffs.cpp"
 				>
 			</File>
@@ -397,6 +401,10 @@
 			</File>
 			<File
 				RelativePath="functions\ratehelpers.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\register\register_overnightindexedswap.cpp"
 				>
 			</File>
 			<File

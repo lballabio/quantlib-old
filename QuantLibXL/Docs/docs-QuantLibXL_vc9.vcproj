@@ -119,6 +119,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\defaulttermstructures.docs"
+				>
+			</File>
+			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\driftcalculators.docs"
 				>
 			</File>
@@ -200,6 +204,10 @@
 			</File>
 			<File
 				RelativePath="..\..\quantlibaddin\docs\auto.pages\options.docs"
+				>
+			</File>
+			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\overnightindexedswap.docs"
 				>
 			</File>
 			<File

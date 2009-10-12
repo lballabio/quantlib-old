@@ -647,6 +647,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\valueobjects\vo_overnightindexedswap.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\valueobjects\vo_overnightindexedswap.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\valueobjects\vo_payoffs.cpp"
 				>
 			</File>
@@ -1718,6 +1726,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\qlo\serialization\create\create_overnightindexedswap.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\create\create_overnightindexedswap.hpp"
+					>
+				</File>
+				<File
 					RelativePath="qlo\serialization\create\create_payoffs.cpp"
 					>
 				</File>
@@ -2131,6 +2147,14 @@
 				</File>
 				<File
 					RelativePath="qlo\serialization\register\serialization_options.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_overnightindexedswap.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_overnightindexedswap.hpp"
 					>
 				</File>
 				<File
