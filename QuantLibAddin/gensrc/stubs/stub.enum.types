@@ -21,6 +21,7 @@
 #include <ql/math/optimization/endcriteria.hpp>
 #include <ql/termstructures/volatility/swaption/cmsmarketcalibration.hpp>
 #include <ql/experimental/risk/sensitivityanalysis.hpp>
+#include <ql/experimental/overnightswap/overnightindexedswap.hpp>
 #include <qlo/interpolation.hpp>
 #include <qlo/interpolation2D.hpp>
 #include <qlo/ratehelpers.hpp>

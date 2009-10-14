@@ -1209,6 +1209,21 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
+    <EnumeratedTypeGroup type='QuantLib::OvernightIndexedSwap::Type'>
+      <includeFile>oh/enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Payer</string>
+          <value>QuantLib::OvernightIndexedSwap::Payer</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Receiver</string>
+          <value>QuantLib::OvernightIndexedSwap::Receiver</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
     <EnumeratedTypeGroup type='QuantLib::Option::Type'>
       <includeFile>oh/enumerations/typefactory.hpp</includeFile>
       <constructor>true</constructor>

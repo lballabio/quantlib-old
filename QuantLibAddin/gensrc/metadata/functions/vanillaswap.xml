@@ -54,18 +54,18 @@
             <tensorRank>scalar</tensorRank>
             <description>Notional Amount.</description>
           </Parameter>
-          <Parameter name='FixedLegSchedule' exampleValue='FixedSchedule'>
+          <Parameter name='FixSchedule' exampleValue='FixedSchedule'>
             <type>QuantLib::Schedule</type>
             <superType>libraryClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg Schedule object ID.</description>
           </Parameter>
-          <Parameter name='FixedRate' exampleValue='5%'>
+          <Parameter name='FixedRate' default='0.0'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate.</description>
+            <description>the fixed leg rate.</description>
           </Parameter>
-          <Parameter name='FixedLegDayCounter' exampleValue='30/360 (Bond Basis)'>
+          <Parameter name='FixDayCounter' exampleValue='30/360 (Bond Basis)'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg day counter (e.g. Actual/360).</description>
@@ -81,7 +81,7 @@
             <tensorRank>scalar</tensorRank>
             <description>floating leg IborIndex object ID.</description>
           </Parameter>
-          <Parameter name='FloatingLegSpread' exampleValue='0%'>
+          <Parameter name='Spread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>floating leg spread.</description>
@@ -122,22 +122,22 @@
           <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate. If missing atm rate is used.</description>
+            <description>the fixed leg rate. If missing atm rate is used.</description>
           </Parameter>
           <Parameter name='ForwardStart' exampleValue='"0D"'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>forward start period.</description>
           </Parameter>
-          <Parameter name='FixedLegDayCounter' default='"30/360 (Bond Basis)"'>
+          <Parameter name='FixDayCounter' default='"30/360 (Bond Basis)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg day counter.</description>
           </Parameter>
-          <Parameter name='FloatingLegSpread' default='0.0'>
+          <Parameter name='Spread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>the spread in the floating leg rate.</description>
+            <description>floating leg spread.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -165,69 +165,69 @@
           <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate. If missing atm rate is used.</description>
+            <description>the fixed leg rate. If missing atm rate is used.</description>
           </Parameter>
           <Parameter name='FirstImmDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>First (IMM) date.</description>
           </Parameter>
-          <Parameter name='FixedLegDayCounter' default='"30/360 (Bond Basis)"'>
+          <Parameter name='FixDayCounter' default='"30/360 (Bond Basis)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg day counter.</description>
           </Parameter>
-          <Parameter name='FloatingLegSpread' default='0.0'>
+          <Parameter name='Spread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
-            <description>the spread in the floating leg rate.</description>
+            <description>floating leg spread.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
 
-      <Constructor name='qlVanillaSwapFromSwapIndex'>
-          <libraryFunction>VanillaSwap</libraryFunction>
-          <SupportedPlatforms>
-              <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-              <SupportedPlatform name='Excel'/>
-              <SupportedPlatform name='Cpp'/>
-          </SupportedPlatforms>
-          <ParameterList>
-              <Parameters>
-                  <Parameter name='SwapIndex'>
-                      <type>QuantLib::SwapIndex</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>SwapIndex object ID.</description>
-                  </Parameter>
-                  <Parameter name='FixingDate'>
-                      <type>QuantLib::Date</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>fixing date.</description>
-                  </Parameter>
-              </Parameters>
-          </ParameterList>
-      </Constructor>
+    <Constructor name='qlVanillaSwapFromSwapIndex'>
+      <libraryFunction>VanillaSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwapIndex'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>SwapIndex object ID.</description>
+          </Parameter>
+          <Parameter name='FixingDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
-      <Constructor name='qlVanillaSwapFromSwapRateHelper'>
-          <libraryFunction>VanillaSwap</libraryFunction>
-          <SupportedPlatforms>
-              <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
-              <SupportedPlatform name='Excel'/>
-              <SupportedPlatform name='Cpp'/>
-          </SupportedPlatforms>
-          <ParameterList>
-              <Parameters>
-                  <Parameter name='SwapRateHelper'>
-                      <type>QuantLib::SwapRateHelper</type>
-                      <tensorRank>scalar</tensorRank>
-                      <description>SwapRateHelper object ID.</description>
-                  </Parameter>
-              </Parameters>
-          </ParameterList>
-      </Constructor>
+    <Constructor name='qlVanillaSwapFromSwapRateHelper'>
+      <libraryFunction>VanillaSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwapRateHelper'>
+            <type>QuantLib::SwapRateHelper</type>
+            <tensorRank>scalar</tensorRank>
+            <description>SwapRateHelper object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
 
-      <Member name='qlVanillaSwapFixedLegBPS' type='QuantLib::VanillaSwap'>
+    <Member name='qlVanillaSwapFixedLegBPS' type='QuantLib::VanillaSwap'>
       <description>returns the BPS of the fixed rate leg for the given VanillaSwap object.</description>
       <libraryFunction>fixedLegBPS</libraryFunction>
       <SupportedPlatforms>
@@ -262,7 +262,7 @@
     </Member>
 
     <Member name='qlVanillaSwapFairRate' type='QuantLib::VanillaSwap'>
-      <description>returns the fair fixed rate which would zero the swap NPV for the given VanillaSwap object.</description>
+      <description>returns the fair fixed leg rate which would zero the swap NPV for the given VanillaSwap object.</description>
       <libraryFunction>fairRate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -365,7 +365,7 @@
     </Member>
 
     <Member name='qlVanillaSwapFixedRate' type='QuantLib::VanillaSwap'>
-      <description>returns the fixed rate for the given VanillaSwap object.</description>
+      <description>returns the fixed leg rate for the given VanillaSwap object.</description>
       <libraryFunction>fixedRate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->

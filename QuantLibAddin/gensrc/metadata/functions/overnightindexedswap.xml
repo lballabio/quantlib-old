@@ -51,12 +51,12 @@
             <tensorRank>scalar</tensorRank>
             <description>Schedule object ID.</description>
           </Parameter>
-          <Parameter name='FixedRate' exampleValue='5%'>
+          <Parameter name='FixedRate' default='0.0'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate.</description>
+            <description>the fixed leg rate.</description>
           </Parameter>
-          <Parameter name='FixedLegDayCounter' exampleValue='Actual/360'>
+          <Parameter name='FixDayCounter' exampleValue='Actual/360'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg day counter (e.g. Actual/360).</description>
@@ -66,7 +66,7 @@
             <tensorRank>scalar</tensorRank>
             <description>overnight leg OvernightIndex object ID.</description>
           </Parameter>
-          <Parameter name='OvernightLegSpread' exampleValue='0%'>
+          <Parameter name='Spread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>overnight leg spread.</description>
@@ -97,19 +97,19 @@
           <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate. If missing atm rate is used.</description>
+            <description>the fixed leg rate. If missing atm rate is used.</description>
           </Parameter>
           <Parameter name='ForwardStart' exampleValue='"0D"'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
             <description>forward start period.</description>
           </Parameter>
-          <Parameter name='FixedLegDayCounter' default='"Actual/360"'>
+          <Parameter name='FixDayCounter' default='"Actual/360"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg day counter.</description>
           </Parameter>
-          <Parameter name='OvernightLegSpread' default='0.0'>
+          <Parameter name='Spread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>the spread in the overnight leg rate.</description>
@@ -145,14 +145,14 @@
           <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
-            <description>the fixed rate. If missing atm rate is used.</description>
+            <description>the fixed leg rate. If missing atm rate is used.</description>
           </Parameter>
-          <Parameter name='FixedLegDayCounter' default='"Actual/360"'>
+          <Parameter name='FixDayCounter' default='"Actual/360"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg day counter.</description>
           </Parameter>
-          <Parameter name='OvernightLegSpread' default='0.0'>
+          <Parameter name='Spread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>the spread in the overnight leg rate.</description>
@@ -214,7 +214,7 @@
     </Member>
 
     <Member name='qlOvernightIndexedSwapFairRate' type='QuantLib::OvernightIndexedSwap'>
-      <description>returns the fair fixed rate which would zero the swap NPV for the given OvernightIndexedSwap object.</description>
+      <description>returns the fair fixed leg rate which would zero the swap NPV for the given OvernightIndexedSwap object.</description>
       <libraryFunction>fairRate</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
