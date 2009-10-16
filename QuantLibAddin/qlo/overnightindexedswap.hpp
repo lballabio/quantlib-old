@@ -21,7 +21,7 @@
 #define qla_overnightindexedswap_hpp
 
 #include <qlo/swap.hpp>
-#include <ql/experimental/overnightswap/overnightindexedswap.hpp>
+#include <ql/instruments/overnightindexedswap.hpp>
 
 namespace QuantLib {
     class OISRateHelper;

@@ -31,7 +31,7 @@
 #include <ql/indexes/swapindex.hpp>
 #include <ql/termstructures/yield/ratehelpers.hpp>
 #include <ql/termstructures/yield/bondhelpers.hpp>
-#include <ql/experimental/overnightswap/oisratehelper.hpp>
+#include <ql/termstructures/yield/oisratehelper.hpp>
 #include <ql/time/imm.hpp>
 
 #include <oh/repository.hpp>
@@ -189,7 +189,7 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::OISRateHelper>(new
             QuantLib::OISRateHelper(settlementDays,
-                                    tenor, 
+                                    tenor,
                                     fixedRate,
                                     overnightIndex));
     }

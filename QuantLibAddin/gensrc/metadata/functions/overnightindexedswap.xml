@@ -9,7 +9,7 @@
     <include>qlo/ratehelpers.hpp</include>
 
     <include>ql/indexes/iborindex.hpp</include>
-    <include>ql/experimental/overnightswap/oisratehelper.hpp</include>
+    <include>ql/termstructures/yield/oisratehelper.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/overnightindexedswap.hpp</include>
@@ -18,7 +18,7 @@
     <include>qlo/ratehelpers.hpp</include>
 
     <include>ql/indexes/iborindex.hpp</include>
-    <include>ql/experimental/overnightswap/oisratehelper.hpp</include>
+    <include>ql/termstructures/yield/oisratehelper.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2009 Ferdinando Ametrano

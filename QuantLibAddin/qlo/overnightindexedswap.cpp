@@ -22,9 +22,9 @@
 #endif
 
 #include <qlo/overnightindexedswap.hpp>
-#include <ql/experimental/overnightswap/makeois.hpp>
+#include <ql/instruments/makeois.hpp>
 //#include <ql/indexes/swapindex.hpp>
-#include <ql/experimental/overnightswap/oisratehelper.hpp>
+#include <ql/termstructures/yield/oisratehelper.hpp>
 #include <ql/time/ecb.hpp>
 
 using std::vector;
@@ -56,7 +56,7 @@ namespace QuantLibAddin {
 
     OvernightIndexedSwap::OvernightIndexedSwap(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Period& swapTenor, 
+            const QuantLib::Period& swapTenor,
             const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             QuantLib::Rate fixRate,
             const QuantLib::Period& fwdStart,
