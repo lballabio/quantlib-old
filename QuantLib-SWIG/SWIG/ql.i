@@ -112,7 +112,6 @@
 %include callability.i
 %include capfloor.i
 %include cashflows.i
-%include compoundforward.i
 %include convertiblebonds.i
 %include credit.i
 %include creditdefaultswap.i

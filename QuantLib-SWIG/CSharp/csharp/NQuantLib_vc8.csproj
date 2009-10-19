@@ -360,9 +360,6 @@
     <Compile Include="CompositeInstrument.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CompoundForward.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Compounding.cs">
       <SubType>Code</SubType>
     </Compile>

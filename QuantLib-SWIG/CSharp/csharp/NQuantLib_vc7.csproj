@@ -589,11 +589,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "CompoundForward.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Compounding.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
