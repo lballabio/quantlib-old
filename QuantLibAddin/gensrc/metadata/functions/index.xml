@@ -10,7 +10,9 @@
     <include>qlo/indexes/swap/liborswap.hpp</include>
     <include>qlo/indexes/swap/isdafixaswap.hpp</include>
     <include>qlo/termstructures.hpp</include>
+
     <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
   </serializationIncludes>
   <addinIncludes>
     <include>qlo/indexes/bmaindex.hpp</include>
@@ -20,6 +22,8 @@
     <include>qlo/indexes/swap/liborswap.hpp</include>
     <include>qlo/indexes/swap/isdafixaswap.hpp</include>
     <include>qlo/termstructures.hpp</include>
+
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
     <include>qlo/timeseries.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>

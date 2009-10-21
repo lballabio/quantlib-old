@@ -9,6 +9,8 @@
     <include>qlo/indexes/iborindex.hpp</include>
     <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/termstructures.hpp</include>
+
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
   </serializationIncludes>
@@ -19,6 +21,8 @@
     <include>qlo/indexes/iborindex.hpp</include>
     <include>qlo/indexes/swapindex.hpp</include>
     <include>qlo/termstructures.hpp</include>
+
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>

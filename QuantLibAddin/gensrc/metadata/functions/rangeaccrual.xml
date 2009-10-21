@@ -7,6 +7,7 @@
     <include>qlo/indexes/iborindex.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/smilesection.hpp</include>
+    
     <include>ql/indexes/iborindex.hpp</include>
   </serializationIncludes>
   <addinIncludes>
@@ -15,6 +16,8 @@
     <include>qlo/schedule.hpp</include>
     <include>qlo/smilesection.hpp</include>
     <include>qlo/termstructures.hpp</include>
+
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
     <include>ql/cashflows/rangeaccrual.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>

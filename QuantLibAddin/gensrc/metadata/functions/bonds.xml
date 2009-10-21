@@ -9,6 +9,7 @@
     <include>qlo/schedule.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/couponvectors.hpp</include>
+
     <include>ql/instruments/bond.hpp</include>
     <include>ql/currency.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
@@ -22,6 +23,8 @@
     <include>qlo/termstructures.hpp</include>
     <include>qlo/couponvectors.hpp</include>
     <include>ql/instruments/bond.hpp</include>
+
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
     <include>ql/pricingengines/bond/bondfunctions.hpp</include>
     <include>ql/currency.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
