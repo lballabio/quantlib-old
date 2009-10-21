@@ -26,6 +26,7 @@
 #include <oh/repository.hpp>
 #include <oh/serializationfactory.hpp>
 #include <oh/exception.hpp>
+#include <oh/group.hpp>
 #include <boost/regex.hpp>
 #include <ostream>
 #include <sstream>
@@ -243,22 +244,38 @@ namespace ObjectHandler {
         return ret;
     }
 
-    const std::vector<std::string> Repository::precedentIDs(const std::string &objectID){
+    const std::vector<std::string> Repository::precedentIDs(const std::string &objectID) {
         std::string realID = formatID(objectID);
         if (objectExists(realID)){
-            ObjectMap::const_iterator result = objectMap_.find(realID);
-            boost::shared_ptr<ObjectWrapper> objWrapper = result->second;
-           const std::set<std::string>& relationObs = objWrapper->object()->properties()->getPrecedentObjects();
-            std::vector<std::string> vecRelationObs;
-            std::set<std::string>::const_iterator it = relationObs.begin();
-            for(; it != relationObs.end(); ++it){
-                vecRelationObs.push_back(formatID(*it));
-            }
-            return vecRelationObs;
+			ObjectMap::const_iterator result = objectMap_.find(realID);
+
+			boost::shared_ptr<Object> object = result->second->object();
+			boost::shared_ptr<Group> group = boost::dynamic_pointer_cast<Group>(object);
+
+			if(group)
+				return precedentIDs(group);
+
+			const std::set<std::string>& relationObs = object->properties()->getPrecedentObjects();
+			std::vector<std::string> vecRelationObs;
+			std::set<std::string>::const_iterator it = relationObs.begin();
+			for(; it != relationObs.end(); ++it){
+				vecRelationObs.push_back(formatID(*it));
+			}
+			return vecRelationObs;
         } else {
             OH_FAIL( "Unable to retrieve object with ID "<<objectID);
         }
     }
+
+	const std::vector<std::string> Repository::precedentIDs(const boost::shared_ptr<Group>& group) {
+		std::vector<std::string> ret;
+		std::vector<std::string>::const_iterator i = group->list().begin();
+		for(; i != group->list().end(); ++i)
+			if(objectExists(*i))
+				ret.push_back(*i);
+
+		return ret;
+	}
 
     std::vector<bool> Repository::isPermanent(const std::vector<std::string> &objectList){
         std::vector<bool> ret;

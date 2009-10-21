@@ -35,6 +35,9 @@
 */
 namespace ObjectHandler {
 
+	//! Forward declarations
+	class Group;
+
     //! Maintain a store of Objects.
     /*! The client application may store, retrieve, and delete Objects in
         the Repository.
@@ -200,6 +203,9 @@ namespace ObjectHandler {
 
         //! Indicate whether an Object with the given ID is found in the Repository.
         virtual bool objectExists(const std::string &objectID) const;
+
+        //! Retrieve the list of IDs of precedent objects containde in this group
+		virtual const std::vector<std::string> precedentIDs(const boost::shared_ptr<Group>& group);
 
     };
 

@@ -73,6 +73,22 @@ namespace ObjectHandler {
             bool forceOverwrite,
 			bool includeGroups = true);
 
+        //! Write the object(s) to the given string.
+        virtual std::string saveObjectString(
+            const std::vector<boost::shared_ptr<Object> >&,
+            bool forceOverwrite);
+
+        //! Write the object(s) to the given stream.
+        virtual int saveObjectStream(
+			std::ostream& outputStream,
+            const std::vector<boost::shared_ptr<Object> > objectList);
+
+        //! Write the object(s) to the given stream.
+        virtual int saveObjectStream(
+			std::ostream& outputStream,
+            const std::vector<std::string>& handlesList,
+            bool includeGroups = true);
+
         //! Deserialize an Object list from the path indicated.
         virtual std::vector<std::string> loadObject(
             const std::string &directory,
@@ -80,10 +96,11 @@ namespace ObjectHandler {
             bool recurse,
             bool overwriteExisting);
 
-        //! Write the object(s) to the given string.
-        virtual std::string saveObjectString(
-            const std::vector<boost::shared_ptr<Object> >&,
-            bool forceOverwrite);
+        //! Load object(s) from the given stream.
+        virtual std::vector<std::string> loadObjectStream(
+            std::istream &xmlStream,
+            bool overwriteExisting);
+
         //! Load object(s) from the given string.
         virtual std::vector<std::string> loadObjectString(
             const std::string &xml,

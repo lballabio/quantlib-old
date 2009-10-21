@@ -116,6 +116,48 @@ namespace ObjectHandler {
         return object;
     }
 
+	int SerializationFactory::saveObjectStream(
+		std::ostream& outputStream,
+        const std::vector<boost::shared_ptr<Object> > objectList)
+	{
+        OH_REQUIRE(objectList.size(), "Object list is empty");
+
+        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
+        std::set<std::string> seen;
+        std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
+        for (i=objectList.begin(); i!=objectList.end(); ++i) {
+            boost::shared_ptr<ObjectHandler::Object> object = *i;
+            // FIXME just call ValueObject::objectId()?
+            std::string objectID
+                = boost::get<std::string>(object->properties()->getProperty("OBJECTID"));
+            if (seen.find(objectID) == seen.end()) {
+                valueObjects.push_back(object->properties());
+                seen.insert(objectID);
+            }
+        }
+
+        // Provisionally comment out this sort because
+        // 1) It causes legs and schedules to appear in the wrong sequence
+        // 2) In our environment we can control the sequence in which objects are saved
+        // 3) I don't understand why this sort is required anyway?
+        //std::stable_sort(valueObjects.begin(), valueObjects.end(), compareCategory);
+
+        boost::archive::xml_oarchive oa(outputStream);
+        register_out(oa, valueObjects);
+        return valueObjects.size();
+	}
+
+
+	int SerializationFactory::saveObjectStream(
+		std::ostream& outputStream,
+		const std::vector<std::string>& handlesList,
+		bool includeGroups)
+	{
+        std::vector<boost::shared_ptr<ObjectHandler::Object> > ObjectListObjPtr =
+            ObjectHandler::getObjectVector<ObjectHandler::Object>(handlesList, 0, includeGroups);
+		return saveObjectStream(outputStream, ObjectListObjPtr);
+	}
+
 	int SerializationFactory::saveObject(
 		const std::vector<std::string>& handlesList,
 		const std::string &path,
@@ -157,32 +199,8 @@ namespace ObjectHandler {
             }
         }
 
-        OH_REQUIRE(objectList.size(), "Object list is empty");
-
-        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
-        std::set<std::string> seen;
-        std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
-        for (i=objectList.begin(); i!=objectList.end(); ++i) {
-            boost::shared_ptr<ObjectHandler::Object> object = *i;
-            // FIXME just call ValueObject::objectId()?
-            std::string objectID
-                = boost::get<std::string>(object->properties()->getProperty("OBJECTID"));
-            if (seen.find(objectID) == seen.end()) {
-                valueObjects.push_back(object->properties());
-                seen.insert(objectID);
-            }
-        }
-
-        // Provisionally comment out this sort because
-        // 1) It causes legs and schedules to appear in the wrong sequence
-        // 2) In our environment we can control the sequence in which objects are saved
-        // 3) I don't understand why this sort is required anyway?
-        //std::stable_sort(valueObjects.begin(), valueObjects.end(), compareCategory);
-
         std::ofstream ofs(path.c_str());
-        boost::archive::xml_oarchive oa(ofs);
-        register_out(oa, valueObjects);
-        return valueObjects.size();
+        return saveObjectStream(ofs, objectList);
     }
 
     /*std::string SerializationFactory::processObject(
@@ -284,46 +302,27 @@ namespace ObjectHandler {
 
     std::string SerializationFactory::saveObjectString(
         const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
-        bool forceOverwrite) {
-
-        OH_REQUIRE(objectList.size(), "Object list is empty");
-
-        std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
-        std::set<std::string> seen;
-        std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
-        for (i=objectList.begin(); i!=objectList.end(); ++i) {
-            boost::shared_ptr<ObjectHandler::Object> object = *i;
-            // FIXME just call ValueObject::objectId()?
-            std::string objectID = boost::get<std::string>(
-                   object->properties()->getProperty("OBJECTID"));
-            if (seen.find(objectID) == seen.end()) {
-                valueObjects.push_back(object->properties());
-                seen.insert(objectID);
-            }
-        }
-
-        // Provisionally comment out this sort because
-        // 1) It causes legs and schedules to appear in the wrong sequence
-        // 2) In our environment we can control the sequence in which objects are saved
-        // 3) I don't understand why this sort is required anyway?
-        //std::stable_sort(valueObjects.begin(), valueObjects.end(), compareCategory);
+        bool forceOverwrite /* TODO : we need to remove this arg */) {
 
         std::ostringstream os;
-        {
-            boost::archive::xml_oarchive oa(os);
-            register_out(oa, valueObjects);
-        }
-        return os.str();
+		saveObjectStream(os, objectList);
+		return os.str();
     }
 
-    std::vector<std::string> SerializationFactory::loadObjectString(
+	std::vector<std::string> SerializationFactory::loadObjectString(
         const std::string &xml,
+        bool overwriteExisting) {
+        std::istringstream xmlStream(xml);
+		return loadObjectStream(xmlStream, overwriteExisting);
+	}
+
+    std::vector<std::string> SerializationFactory::loadObjectStream(
+        std::istream& xmlStream,
         bool overwriteExisting) {
 
         std::vector<std::string> returnValue;
 
         try {
-            std::istringstream xmlStream(xml);
             boost::archive::xml_iarchive ia(xmlStream);
 
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
