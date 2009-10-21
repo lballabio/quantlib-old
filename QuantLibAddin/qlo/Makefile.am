@@ -52,6 +52,7 @@ include_HEADERS = \
     mathf.hpp \
     optimization.hpp \
     options.hpp \
+    overnightindexedswap.hpp \
     payoffs.hpp \
     piecewiseyieldcurve.hpp \
     pricingengines.hpp \
@@ -127,6 +128,7 @@ libQuantLibAddin_la_SOURCES = \
     marketmodelevolvers.cpp \
     marketmodels.cpp \
     optimization.cpp \
+    overnightindexedswap.cpp \
     payoffs.cpp \
     piecewiseyieldcurve.cpp \
     pricingengines.cpp \

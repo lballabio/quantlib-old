@@ -33,6 +33,7 @@ include_HEADERS = \
     create_mathf.hpp \
     create_optimization.hpp \
     create_options.hpp \
+    create_overnightindexedswap.hpp \
     create_payoffs.hpp \
     create_piecewiseyieldcurve.hpp \
     create_pricingengines.hpp \
@@ -85,6 +86,7 @@ libCreate_la_SOURCES = \
     create_mathf.cpp \
     create_optimization.cpp \
     create_options.cpp \
+    create_overnightindexedswap.cpp \
     create_payoffs.cpp \
     create_piecewiseyieldcurve.cpp \
     create_pricingengines.cpp \

@@ -49,6 +49,7 @@ include_HEADERS = \
     ohutils.hpp \
     optimization.hpp \
     options.hpp \
+    overnightindexedswap.hpp \
     payoffs.hpp \
     piecewiseyieldcurve.hpp \
     pricingengines.hpp \
@@ -110,6 +111,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     ohutils.cpp \
     optimization.cpp \
     options.cpp \
+    overnightindexedswap.cpp \
     payoffs.cpp \
     piecewiseyieldcurve.cpp \
     pricingengines.cpp \

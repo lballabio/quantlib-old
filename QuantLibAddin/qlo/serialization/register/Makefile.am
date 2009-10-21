@@ -34,6 +34,7 @@ noinst_HEADERS = \
     serialization_oh.hpp \
     serialization_optimization.hpp \
     serialization_options.hpp \
+    serialization_overnightindexedswap.hpp \
     serialization_payoffs.hpp \
     serialization_piecewiseyieldcurve.hpp \
     serialization_pricingengines.hpp \
@@ -88,6 +89,7 @@ libRegister_la_SOURCES = \
     serialization_oh.cpp \
     serialization_optimization.cpp \
     serialization_options.cpp \
+    serialization_overnightindexedswap.cpp \
     serialization_payoffs.cpp \
     serialization_piecewiseyieldcurve.cpp \
     serialization_pricingengines.cpp \
