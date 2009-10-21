@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -39,13 +39,16 @@ namespace QuantLibAddin {
                          QuantLib::BusinessDayConvention fixedLegBDC,
                          const QuantLib::DayCounter& fixedLegDayCounter,
                          const boost::shared_ptr<QuantLib::IborIndex>& index,
-                         bool permanent) : InterestRateIndex(properties, permanent)
+                         const QuantLib::Handle<QuantLib::YieldTermStructure>& disc,
+                         bool permanent)
+    : InterestRateIndex(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::SwapIndex>(new
             QuantLib::SwapIndex(familyName, p,
                                 fixingDays, crr, calendar, 
                                 fixedLegTenor, fixedLegBDC,
-                                fixedLegDayCounter, index));
+                                fixedLegDayCounter, index,
+                                disc));
     }
 
     std::ostream& operator<<(std::ostream& out,

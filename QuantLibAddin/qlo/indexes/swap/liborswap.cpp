@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -40,7 +40,8 @@ namespace QuantLibAddin {
             const QuantLib::Currency& currency,
             SwapIndex::FixingType fixingType,
             const QuantLib::Period& p,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& f,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& d,
             bool permanent) : SwapIndex(properties, permanent)
     {
         switch (currency.numericCode()) {
@@ -48,15 +49,15 @@ namespace QuantLibAddin {
             switch (fixingType) {
               case IsdaFixA:
                 libraryObject_ = boost::shared_ptr<QuantLib::EurLiborSwapIsdaFixA>(new
-                    QuantLib::EurLiborSwapIsdaFixA(p, h));
+                    QuantLib::EurLiborSwapIsdaFixA(p, f, d));
                 break;
               case IsdaFixB:
                 libraryObject_ = boost::shared_ptr<QuantLib::EurLiborSwapIsdaFixB>(new
-                    QuantLib::EurLiborSwapIsdaFixB(p, h));
+                    QuantLib::EurLiborSwapIsdaFixB(p, f, d));
                 break;
               case IfrFix:
                 libraryObject_ = boost::shared_ptr<QuantLib::EurLiborSwapIfrFix>(new
-                    QuantLib::EurLiborSwapIfrFix(p, h));
+                    QuantLib::EurLiborSwapIfrFix(p, f, d));
                 break;
               default:
                   QL_FAIL(currency << " Libor Swap " << fixingType << " is not defined");
@@ -66,11 +67,11 @@ namespace QuantLibAddin {
             switch (fixingType) {
               case IsdaFixAm:
                 libraryObject_ = boost::shared_ptr<QuantLib::UsdLiborSwapIsdaFixAm>(new
-                    QuantLib::UsdLiborSwapIsdaFixAm(p, h));
+                    QuantLib::UsdLiborSwapIsdaFixAm(p, f));
                 break;
               case IsdaFixPm:
                 libraryObject_ = boost::shared_ptr<QuantLib::UsdLiborSwapIsdaFixPm>(new
-                    QuantLib::UsdLiborSwapIsdaFixPm(p, h));
+                    QuantLib::UsdLiborSwapIsdaFixPm(p, f));
                 break;
               default:
                   QL_FAIL(currency << " Libor Swap " << fixingType << " is not defined");
@@ -80,7 +81,7 @@ namespace QuantLibAddin {
             switch (fixingType) {
               case Isda:
                 libraryObject_ = boost::shared_ptr<QuantLib::GbpLiborSwapIsdaFix>(new
-                    QuantLib::GbpLiborSwapIsdaFix(p, h));
+                    QuantLib::GbpLiborSwapIsdaFix(p, f));
                 break;
               default:
                   QL_FAIL(currency << " Libor Swap " << fixingType << " is not defined");
@@ -90,7 +91,7 @@ namespace QuantLibAddin {
             switch (fixingType) {
               case Isda:
                 libraryObject_ = boost::shared_ptr<QuantLib::ChfLiborSwapIsdaFix>(new
-                    QuantLib::ChfLiborSwapIsdaFix(p, h));
+                    QuantLib::ChfLiborSwapIsdaFix(p, f));
                 break;
               default:
                   QL_FAIL(currency << " Libor Swap " << fixingType << " is not defined");
@@ -100,11 +101,11 @@ namespace QuantLibAddin {
             switch (fixingType) {
               case IsdaFixAm:
                 libraryObject_ = boost::shared_ptr<QuantLib::JpyLiborSwapIsdaFixAm>(new
-                    QuantLib::JpyLiborSwapIsdaFixAm(p, h));
+                    QuantLib::JpyLiborSwapIsdaFixAm(p, f));
                 break;
               case IsdaFixPm:
                 libraryObject_ = boost::shared_ptr<QuantLib::JpyLiborSwapIsdaFixPm>(new
-                    QuantLib::JpyLiborSwapIsdaFixPm(p, h));
+                    QuantLib::JpyLiborSwapIsdaFixPm(p, f));
                 break;
               default:
                   QL_FAIL(currency << " Libor Swap " << fixingType << " is not defined");

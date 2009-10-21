@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -31,10 +31,11 @@ namespace QuantLibAddin {
 	class EuriborSwapIsdaFixA : public SwapIndex {
       public:
         EuriborSwapIsdaFixA(
-        		const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                        const QuantLib::Period& p,
-                        const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-                        bool permanent);
+                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                const QuantLib::Period& p,
+                const QuantLib::Handle<QuantLib::YieldTermStructure>& f,
+                const QuantLib::Handle<QuantLib::YieldTermStructure>& d,
+                bool permanent);
     };
 }
 

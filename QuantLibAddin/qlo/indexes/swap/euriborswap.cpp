@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2005 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -34,21 +34,22 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             SwapIndex::FixingType fixingType,
             const QuantLib::Period& p,
-            const QuantLib::Handle<QuantLib::YieldTermStructure>& h,
-            bool permanent) : SwapIndex(properties, permanent)
-    {
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& f,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& d,
+            bool permanent)
+    : SwapIndex(properties, permanent) {
         switch (fixingType) {
           case IsdaFixA:
             libraryObject_ = boost::shared_ptr<QuantLib::EuriborSwapIsdaFixA>(new
-                QuantLib::EuriborSwapIsdaFixA(p, h));
+                QuantLib::EuriborSwapIsdaFixA(p, f, d));
             break;
           case IsdaFixB:
             libraryObject_ = boost::shared_ptr<QuantLib::EuriborSwapIsdaFixB>(new
-                QuantLib::EuriborSwapIsdaFixB(p, h));
+                QuantLib::EuriborSwapIsdaFixB(p, f, d));
             break;
           case IfrFix:
             libraryObject_ = boost::shared_ptr<QuantLib::EuriborSwapIfrFix>(new
-                QuantLib::EuriborSwapIfrFix(p, h));
+                QuantLib::EuriborSwapIfrFix(p, f, d));
             break;
           default:
               QL_FAIL("Euribor Swap " << fixingType << " is not defined");
