@@ -557,6 +557,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\register\register_overnightindexedswap.cpp"
+				>
+			</File>
+			<File
 				RelativePath="register\register_payoffs.cpp"
 				>
 			</File>
