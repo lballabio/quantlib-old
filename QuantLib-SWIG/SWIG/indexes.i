@@ -141,9 +141,9 @@ class InterestRateIndexPtr : public boost::shared_ptr<Index> {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->dayCounter();
         }
-        Handle<YieldTermStructure> termStructure() {
+        Handle<YieldTermStructure> forwardingTermStructure() {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
-                ->termStructure();
+                ->forwardingTermStructure();
         }
         Date maturityDate(const Date& valueDate) {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
