@@ -34,8 +34,7 @@ Debian users not wanting to wait for the library to be packaged, or to
 advanced users wanting to <a href="reference/config.html">configure
 the library</a> with non-default settings.  Compiling QuantLib
 requires a working <a href="http://www.boost.org">Boost</a>
-installation; Boost 1.31 or later is needed, while at least Boost 1.34.1 is
-suggested.</p>
+installation; Boost 1.34.1 or later is needed.</p>
 
 </div>
 
