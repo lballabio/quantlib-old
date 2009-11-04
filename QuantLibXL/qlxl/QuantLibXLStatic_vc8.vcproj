@@ -77,14 +77,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-sgd-0_9_8.xll"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-sgd-0_9_9.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-0_9_8.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-0_9_8.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-0_9_9.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-0_9_9.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -177,14 +177,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-gd-0_9_8.xll"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-gd-0_9_9.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-0_9_8.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-0_9_8.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-0_9_9.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-0_9_9.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -277,13 +277,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-s-0_9_8.xll"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-s-0_9_9.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-0_9_8.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-0_9_8.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-0_9_9.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-0_9_9.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -376,13 +376,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-0_9_8.xll"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-0_9_9.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-0_9_8.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-0_9_8.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-0_9_9.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-0_9_9.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -557,6 +557,10 @@
 			</File>
 			<File
 				RelativePath="register\register_options.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\register\register_overnightindexedswap.cpp"
 				>
 			</File>
 			<File
@@ -801,6 +805,10 @@
 			</File>
 			<File
 				RelativePath="functions\options.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\functions\overnightindexedswap.cpp"
 				>
 			</File>
 			<File
