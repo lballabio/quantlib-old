@@ -39,15 +39,15 @@
 
 //! version string
 #ifdef _DEBUG
-    #define QLADDIN_VERSION "0.9.8-debug"
+    #define QLADDIN_VERSION "0.9.9-debug"
 #else
-    #define QLADDIN_VERSION "0.9.8"
+    #define QLADDIN_VERSION "0.9.9"
 #endif
 
 //! version hexadecimal number
-#define QLADDIN_HEX_VERSION 0x000908f0
+#define QLADDIN_HEX_VERSION 0x000909f0
 //! version string for output lib name
-#define QLADDIN_LIB_VERSION "0_9_8"
+#define QLADDIN_LIB_VERSION "0_9_9"
 
 #if defined BOOST_MSVC
 #pragma warning(disable : 4996)     // Using a deprecated function

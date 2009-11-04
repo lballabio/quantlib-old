@@ -40,15 +40,15 @@
 
 //! Version string.
 #ifdef _DEBUG
-    #define OBJHANDLER_VERSION "0.9.8-debug"
+    #define OBJHANDLER_VERSION "0.9.9-debug"
 #else
-    #define OBJHANDLER_VERSION "0.9.8"
+    #define OBJHANDLER_VERSION "0.9.9"
 #endif
 
 //! Version hexadecimal number.
-#define OBJHANDLER_HEX_VERSION 0x000908f0
+#define OBJHANDLER_HEX_VERSION 0x000909f0
 //! Version string for output lib name.
-#define OBJHANDLER_LIB_VERSION "0_9_8"
+#define OBJHANDLER_LIB_VERSION "0_9_9"
 
 #include <cctype>
 #if defined(BOOST_NO_STDC_NAMESPACE)
