@@ -1,3 +1,9 @@
+<!--
+  If this file is missing QuantLib.xla defaults to its own
+  hard-coded default values.
+  Modify the paths to fit your installation. 
+-->
+
 <Environment name="Local">
   <FrameworkVersion>10</FrameworkVersion>
   <Workbooks>C:\Projects\trunk\QuantLibXL\Workbooks</Workbooks>
@@ -30,7 +36,7 @@
     <LoadBonds>False</LoadBonds>
     <MainChecks>True</MainChecks>
     <StaticData>False</StaticData>
-    <!-- should not be in StartUpActions -->, 
+    <!-- should not be in StartUpActions --> 
     <InitSource>Excel</InitSource>
   </StartupActions>
   <Variables />
