@@ -120,10 +120,10 @@ Go to the
 Download <tt>log4cxx-0.10.0c.exe</tt> and uncompress the package to
 <tt>C:\\build_ql_0_9_8\\log4cxx</tt>.
 
-Download <tt>gensrc-0.9.8.exe</tt> and uncompress the package to
+Download <tt>gensrc-0.9.9.exe</tt> and uncompress the package to
 <tt>C:\\build_ql_0_9_8\\gensrc</tt>.
 
-Download <tt>ObjectHandler-0.9.8.exe</tt> and uncompress the package to
+Download <tt>ObjectHandler-0.9.9.exe</tt> and uncompress the package to
 <tt>C:\\build_ql_0_9_8\\%ObjectHandler</tt>.
 
 \subsection inst_win_build 2.2 Build
@@ -390,11 +390,11 @@ Go to the
 Download <tt>log4cxx-0.10.0.tar.gz</tt> and uncompress the package to
 <tt>/home/erik/build/log4cxx-0.10.0</tt>.
 
-Download <tt>gensrc-0.9.8.tgz</tt> and uncompress the package to
-<tt>/home/erik/build/gensrc-0.9.8</tt>.
+Download <tt>gensrc-0.9.9.tgz</tt> and uncompress the package to
+<tt>/home/erik/build/gensrc-0.9.9</tt>.
 
-Download <tt>ObjectHandler-0.9.8.tgz</tt> and uncompress the package to
-<tt>/home/erik/build/%ObjectHandler-0.9.8</tt>.
+Download <tt>ObjectHandler-0.9.9.tgz</tt> and uncompress the package to
+<tt>/home/erik/build/%ObjectHandler-0.9.9</tt>.
 
 \subsection inst_auto_build 3.2 Build
 
@@ -419,8 +419,8 @@ make install
 \subsubsection inst_auto_oh 3.2.2 Build ObjectHandler
 
 \verbatim
-cd /home/erik/build/ObjectHandler-0.9.8
-./configure --with-gensrc=/home/erik/build/gensrc-0.9.8 \
+cd /home/erik/build/ObjectHandler-0.9.9
+./configure --with-gensrc=/home/erik/build/gensrc-0.9.9 \
     --prefix=/home/erik/install \
     CPPFLAGS=-I/home/erik/install/include LDFLAGS=-L/home/erik/install/lib
 make install
@@ -429,7 +429,7 @@ make install
 \subsection inst_auto_test 3.3 Test
 
 \verbatim
-cd /home/erik/build/ObjectHandler-0.9.8/Examples/C++
+cd /home/erik/build/ObjectHandler-0.9.9/Examples/C++
 ./ExampleCpp
 \endverbatim
 

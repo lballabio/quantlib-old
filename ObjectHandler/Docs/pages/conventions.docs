@@ -36,10 +36,10 @@ s  is a letter indicating the status of the release - a(lpha), b(eta), or f(inal
 n  is an ordinal number \n
 
 For example, the number identifying the latest version of %ObjectHandler is
-0.9.8f0.
+0.9.9f0.
 
 The corresponding release my be referred to in the format Rxxyyzzsn, where R
-stands for release.  For example, the release corresponding to version 0.9.8f0
+stands for release.  For example, the release corresponding to version 0.9.9f0
 is R000908f0.
 
 \section conv_binaries Binary Names
@@ -49,7 +49,7 @@ are named according to the conventions specified by the boost project:
 
 <a href="http://www.boost.org/more/getting_started/windows.html#library-naming">http://www.boost.org/more/getting_started/windows.html#library-naming</a>
 
-For example, when you compile %ObjectHandler version 0.9.8 using VC8 solution
+For example, when you compile %ObjectHandler version 0.9.9 using VC8 solution
 file ObjectHandler_vc8.sln, project ohlib, configuration Release (static runtime), the output
 file is ObjectHandler\lib\ObjectHandler-vc80-mt-s-0_9_8.lib.
 
