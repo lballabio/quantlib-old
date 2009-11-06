@@ -81,7 +81,7 @@ Calc (Windows and Linux).  These steps have been incorporated into the
 \li \b idlc - Run OOo utility \b idlc to compile the idl (interface definition language) file QuantLibAddinCalc.idl into urd (UNO reflection data) file QuantLibAddinCalc.urd.  The urd file comprises binary descriptions of the types in the Addin.
 \li \b regmerge - Run OOo utility \b regmerge to merge the urd file into rdb (registry database) file QuantLibAddinCalc.rdb.  The rdb is used by OOo at runtime to infer the functionality available in the Addin.
 \li \b cppumaker - Run OOo utility \b cppumaker to generate the source code corresponding to the definitions in the rdb.
-\li \b compile - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. <b>QuantLibAddinCalc-vc71-mt-0_9_8.dll</b> (Windows) or <b>libQuantLibAddinCalc-0.9.8.so</b> (Linux).
+\li \b compile - Compile the Addin, including the source generated above, plus the function implementation source code supplied for the Addin.  The Addin is compiled into a shared library, i.e. <b>QuantLibAddinCalc-vc71-mt-0_9_9.dll</b> (Windows) or <b>libQuantLibAddinCalc-0.9.8.so</b> (Linux).
 \li \b install - Copy the Addin's shared library and registry database to the OOo program directory.
 
 One further step is required, the name of the registry database must be added
@@ -92,11 +92,11 @@ step is not automated by the build process and must be performed manually:
 \li In a text editor, open the unorc file (\c unorc on Linux, \c unorc.ini on Windows)
 \li On the line for UNO_SERVICES, append the text
 \verbatim
-ORIGIN/QuantLibAddinCalc-vc71-mt-0_9_8.rdb
+ORIGIN/QuantLibAddinCalc-vc71-mt-0_9_9.rdb
 \endverbatim
 \li On the line for UNO_TYPES, append the text
 \verbatim
-$ORIGIN/QuantLibAddinCalc-vc71-mt-0_9_8.rdb
+$ORIGIN/QuantLibAddinCalc-vc71-mt-0_9_9.rdb
 \endverbatim
 
 Once everything is in place, launch OOo Calc and hit \c Ctrl-F2 to bring up the

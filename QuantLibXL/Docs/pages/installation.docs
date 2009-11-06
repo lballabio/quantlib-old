@@ -35,7 +35,7 @@ To use QuantLibXL:
 \li Start Excel
 \li Load the addin:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_8.xll
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_9.xll
 \endverbatim
 \li Load the example workbooks:
 \verbatim

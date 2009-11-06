@@ -51,7 +51,7 @@ are named according to the conventions specified by the boost project:
 
 For example, when you compile %ObjectHandler version 0.9.9 using VC8 solution
 file ObjectHandler_vc8.sln, project ohlib, configuration Release (static runtime), the output
-file is ObjectHandler\lib\ObjectHandler-vc80-mt-s-0_9_8.lib.
+file is ObjectHandler\lib\ObjectHandler-vc80-mt-s-0_9_9.lib.
 
 \section conv_vc Visual C++ Versions and Files
 
