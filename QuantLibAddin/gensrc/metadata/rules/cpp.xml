@@ -80,7 +80,7 @@
       <Rules>
         <Rule tensorRank='scalar' superType='enumeration' default='true' codeID='code33'/>
         <Rule tensorRank='scalar' superType='enumeration' default='false' codeID='code34'/>
-        <Rule tensorRank='vector' superType='enumeration' codeID='code35'/>
+        <Rule tensorRank='vector' superType='enumeration' codeID='code35b'/>
       </Rules>
     </RuleGroup>
 

@@ -100,6 +100,10 @@ code35 = '''\
         std::vector<%(type)s> %(nameConverted)s =
             ObjectHandler::vectorStringToEnum<%(type)s>(%(name)sCpp, "%(name)s");\n'''
 
+code35b = '''\
+        std::vector<%(type)s> %(nameConverted)s =
+            ObjectHandler::vectorStringToEnum<%(type)s>(%(name)s, "%(name)s");\n'''
+
 code36 = '''\
         OH_GET_OBJECT(%(nameConverted)s, %(name)s, %(type)s)\n'''
 
