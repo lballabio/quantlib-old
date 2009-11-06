@@ -79,7 +79,7 @@ the import.
 <tt>QuantLibXL\\Workbooks\\StandaloneExamples\\SerializationDemo\\Start.xla</tt>.
 The addin contains some startup code which should automatically load the following:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_8.xll
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_9.xll
 QuantLibXL\Workbooks\StandaloneExamples\Addins\serialize_utils.xla
 \endverbatim
 \li Invoke menu item <tt>Serialization Demo | Load Model | Vanilla Swap</tt>.
@@ -104,7 +104,7 @@ QuantLibAddin\Clients\CppInstrumentIn\Models\VanillaSwap.xml
 <tt>QuantLibXL\\Workbooks\\StandaloneExamples\\SerializationDemo\\Start.xla</tt>.
 The addin contains some startup code which should automatically load the following:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_8.xll
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_9.xll
 QuantLibXL\Workbooks\StandaloneExamples\Addins\serialize_utils.xla
 \endverbatim
 \li Set range <tt>[MarketData.xls]Summary!DataSource</tt> to <tt>Import</tt>
