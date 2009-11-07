@@ -139,8 +139,8 @@ Invoke the executable. The output from the program should appear as follows:
 \verbatim
 QuantLibAddin\Clients\CppSwapOut\bin>SwapOut-vc80-mt.exe
 Begin example program.
-QuantLibAddin version = 0.9.8
-ObjectHandler version = 0.9.8
+QuantLibAddin version = 0.9.9
+ObjectHandler version = 0.9.9
 SWAP PV = 36120.9
 Example of serializing to/from a buffer:
 XML =
@@ -187,8 +187,8 @@ The output from the program should appear as follows:
 QuantLibAddin\Clients\CppInstrumentIn>InstrumentIn-vc80-mt.exe
 39573 VanillaSwap VanillaSwap.xml YieldCurves.xml
 Begin example program.
-QuantLibAddin version = 0.9.8
-ObjectHandler version = 0.9.8
+QuantLibAddin version = 0.9.9
+ObjectHandler version = 0.9.9
 Instrument PV = 52531.4
 End example program.
 \endverbatim
@@ -204,8 +204,8 @@ program <tt>swap_out</tt>.  The output from the program should appear similar
 to the following:
 \verbatim
 Begin example program.
-QuantLibAddin version = 0.9.8
-ObjectHandler version = 0.9.8
+QuantLibAddin version = 0.9.9
+ObjectHandler version = 0.9.9
 SWAP PV = 36120.9
 Example of serializing to/from a buffer:
 XML = 
@@ -250,8 +250,8 @@ QuantLibAddin/Clients/CppInstrumentIn/Models/VanillaSwap.xml
 The output from the program should appear as follows:
 \verbatim
 Begin example program.
-QuantLibAddin version = 0.9.8
-ObjectHandler version = 0.9.8
+QuantLibAddin version = 0.9.9
+ObjectHandler version = 0.9.9
 Instrument PV = 52531.4
 End example program.
 \endverbatim
