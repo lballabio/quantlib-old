@@ -3,7 +3,7 @@
 
 !define APP "gensrc"
 !define VER_NUMBER "0.9.9"
-!define DEFAULT_PATH "C:\build_ql_0_9_8"
+!define DEFAULT_PATH "C:\build_ql_0_9_9"
 
 # Compiler Flags
 
