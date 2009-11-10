@@ -37,7 +37,7 @@ AH_VERBATIM([HAVE_NO_EXPLICIT_EXPORTS],
 [/* no explicit exports */
 #define LOG4CXX_EXPORT])
 
-AM_INIT_AUTOMAKE(log4cxx, 0.10.0c)
+AM_INIT_AUTOMAKE(log4cxx, 0.10.0d)
 
 # Checks for programs
 # ----------------------------------------------------------------------------

@@ -40,7 +40,7 @@ For example, the number identifying the latest version of %ObjectHandler is
 
 The corresponding release my be referred to in the format Rxxyyzzsn, where R
 stands for release.  For example, the release corresponding to version 0.9.9f0
-is R000908f0.
+is R000909f0.
 
 \section conv_binaries Binary Names
 

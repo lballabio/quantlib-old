@@ -28,12 +28,12 @@
 #endif
 
 #include <oh/ohdefines.hpp>
-#if OBJHANDLER_HEX_VERSION < 0x000908f0
+#if OBJHANDLER_HEX_VERSION < 0x000909f0
     #error using an old version of ObjectHandler, please update.
 #endif
 
 #include <ql/version.hpp>
-#if QL_HEX_VERSION < 0x000908f0
+#if QL_HEX_VERSION < 0x000909f0
     #error using an old version of QuantLib, please update.
 #endif
 
