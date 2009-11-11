@@ -57,7 +57,7 @@
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)/QuantLib.pch"
 				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)/"
 				ObjectFile=".\build\vc90\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\lib\QuantLib-vc90-mt-gd-0_9_9"
+				ProgramDataBaseFileName=".\lib\QuantLib-vc90-mt-gd"
 				BrowseInformation="0"
 				BrowseInformationFile=".\build\vc90\$(ConfigurationName)/"
 				WarningLevel="3"
@@ -81,7 +81,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-mt-gd-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-mt-gd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -167,7 +167,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-mt-s-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-mt-s.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -253,7 +253,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-mt-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-mt.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -312,7 +312,7 @@
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)/QuantLib.pch"
 				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)/"
 				ObjectFile=".\build\vc90\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\lib\QuantLib-vc90-mt-sgd-0_9_9"
+				ProgramDataBaseFileName=".\lib\QuantLib-vc90-mt-sgd"
 				BrowseInformation="0"
 				BrowseInformationFile=".\build\vc90\$(ConfigurationName)/"
 				WarningLevel="3"
@@ -336,7 +336,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-mt-sgd-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-mt-sgd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -396,7 +396,7 @@
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)/QuantLib.pch"
 				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)/"
 				ObjectFile=".\build\vc90\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\lib\QuantLib-vc90-mt-gd-0_9_9"
+				ProgramDataBaseFileName=".\lib\QuantLib-vc90-mt-gd"
 				BrowseInformation="0"
 				BrowseInformationFile=".\build\vc90\$(ConfigurationName)/"
 				WarningLevel="3"
@@ -419,7 +419,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-mt-gd-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-mt-gd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -505,7 +505,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-mt-s-0_9_9-x64.lib"
+				OutputFile=".\lib\QuantLib-vc90-mt-s-x64.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -591,7 +591,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\libx64\QuantLib-vc90-mt-0_9_9.lib"
+				OutputFile=".\libx64\QuantLib-vc90-mt.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -651,7 +651,7 @@
 				PrecompiledHeaderFile=".\build\vc90\$(ConfigurationName)/QuantLib.pch"
 				AssemblerListingLocation=".\build\vc90\$(ConfigurationName)/"
 				ObjectFile=".\build\vc90\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\lib\QuantLib-vc90-mt-sgd-0_9_9"
+				ProgramDataBaseFileName=".\lib\QuantLib-vc90-mt-sgd"
 				BrowseInformation="0"
 				BrowseInformationFile=".\build\vc90\$(ConfigurationName)/"
 				WarningLevel="3"
@@ -674,7 +674,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-mt-sgd-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-mt-sgd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
