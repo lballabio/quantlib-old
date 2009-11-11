@@ -3,8 +3,8 @@
 
 #SetCompressor /SOLID lzma
 
-!define VER_NUMBER "0.9.8"
-!define VER_NUMBER_UNDERSCORE "0_9_8"
+!define VER_NUMBER "0.9.9"
+!define VER_NUMBER_UNDERSCORE "0_9_9"
 !define COMPILER "vc90"
 !define /date NOW "%Y%m%d-%H_%M"
 

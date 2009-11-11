@@ -141,10 +141,6 @@ class InterestRateIndexPtr : public boost::shared_ptr<Index> {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->dayCounter();
         }
-        Handle<YieldTermStructure> forwardingTermStructure() {
-            return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
-                ->forwardingTermStructure();
-        }
         Date maturityDate(const Date& valueDate) {
             return boost::dynamic_pointer_cast<InterestRateIndex>(*self)
                 ->maturityDate(valueDate);
@@ -196,6 +192,10 @@ class IborIndexPtr : public InterestRateIndexPtr {
         }
         bool endOfMonth() {
             return boost::dynamic_pointer_cast<IborIndex>(*self)->endOfMonth();
+        }
+        Handle<YieldTermStructure> forwardingTermStructure() {
+            return boost::dynamic_pointer_cast<IborIndex>(*self)
+                ->forwardingTermStructure();
         }
     }
 };
@@ -281,6 +281,10 @@ class SwapIndexPtr : public InterestRateIndexPtr {
         IborIndexPtr iborIndex() {
             return boost::dynamic_pointer_cast<SwapIndex>(*self)
                 ->iborIndex();
+        }
+        Handle<YieldTermStructure> forwardingTermStructure() {
+            return boost::dynamic_pointer_cast<SwapIndex>(*self)
+                ->forwardingTermStructure();
         }
     }
 };

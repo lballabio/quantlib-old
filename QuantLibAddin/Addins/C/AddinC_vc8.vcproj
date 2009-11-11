@@ -68,7 +68,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc80-mt-sgd-0_9_8.lib"
+				OutputFile="lib\AddinC-vc80-mt-sgd-0_9_9.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -144,7 +144,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc80-mt-gd-0_9_8.lib"
+				OutputFile="lib\AddinC-vc80-mt-gd-0_9_9.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -220,7 +220,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc80-mt-0_9_8.lib"
+				OutputFile="lib\AddinC-vc80-mt-0_9_9.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -296,7 +296,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc80-mt-s-0_9_8.lib"
+				OutputFile="lib\AddinC-vc80-mt-s-0_9_9.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool

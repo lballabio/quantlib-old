@@ -13,7 +13,7 @@ quantlib_wrap.o: quantlib_wrap.cpp
 libQuantLibJNI.@JNILIB_EXTENSION@: quantlib_wrap.o
 	g++ @SHARED_LIB@ quantlib_wrap.o -Wl -o libQuantLibJNI.@JNILIB_EXTENSION@ `quantlib-config --libs`
 
-QuantLib.jar: org/quantlib org/quantlib/*.java
+QuantLib.jar: quantlib_wrap.cpp org/quantlib/*.java
 	mkdir -p bin
 	find org/quantlib -name '*.java' | xargs $(JAVAC) -d bin
 	$(JAR) cf QuantLib.jar -C bin org
@@ -35,12 +35,10 @@ examples/EquityOptions.class: examples/EquityOptions.java QuantLib.jar
 endif
 
 
-quantlib_wrap.cpp: org/quantlib ../SWIG/*.i
+quantlib_wrap.cpp: ../SWIG/*.i
+	mkdir -p org/quantlib
 	$(SWIG) -java -c++ -outdir org/quantlib \
             -package org.quantlib -o quantlib_wrap.cpp ../SWIG/quantlib.i
-
-org/quantlib:
-	mkdir -p org/quantlib
 
 dist-hook:
 	mkdir -p $(distdir)/org/quantlib
