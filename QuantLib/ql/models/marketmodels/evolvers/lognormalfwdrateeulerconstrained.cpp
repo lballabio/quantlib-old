@@ -133,7 +133,7 @@ namespace QuantLib {
 
     void LogNormalFwdRateEulerConstrained::setThisConstraint(
                                 const std::vector<Rate>& rateConstraints,
-                                const std::vector<bool>& isConstraintActive)
+                                const std::valarray<bool>& isConstraintActive)
     {
         QL_REQUIRE(rateConstraints.size() == numeraires_.size(),
                    "wrong number of constraints specified");
@@ -142,6 +142,7 @@ namespace QuantLib {
                    "wrong number of isConstraintActive specified");
 
         rateConstraints_=rateConstraints;
+        isConstraintActive_.resize(isConstraintActive.size());
         isConstraintActive_ = isConstraintActive;
 
         for (unsigned long i=0; i < rateConstraints_.size(); i++)

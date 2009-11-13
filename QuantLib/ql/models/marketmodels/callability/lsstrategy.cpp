@@ -41,16 +41,19 @@ namespace QuantLib {
         checkCompatibility(evolution, numeraires);
         relevantTimes_ = evolution.evolutionTimes();
 
+        isBasisTime_.resize(relevantTimes_.size());
         isBasisTime_ = isInSubset(relevantTimes_,
                                   basisSystem_->evolution().evolutionTimes());
+        isRebateTime_.resize(relevantTimes_.size());
         isRebateTime_ = isInSubset(relevantTimes_,
                                    exercise_->evolution().evolutionTimes());
+        isControlTime_.resize(relevantTimes_.size());
         isControlTime_ = isInSubset(relevantTimes_,
                                     control_->evolution().evolutionTimes());
 
         exerciseIndex_ = std::vector<Size>(relevantTimes_.size());
-        isExerciseTime_ = std::vector<bool>(relevantTimes_.size(),false);
-        std::vector<bool> v = exercise_->isExerciseTime();
+        isExerciseTime_.resize(relevantTimes_.size(), false);
+        std::valarray<bool> v = exercise_->isExerciseTime();
         Size exercises = 0;
         Size i;
         for (i=0; i<relevantTimes_.size(); ++i) {
