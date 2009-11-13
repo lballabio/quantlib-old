@@ -51,10 +51,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS"
-				MinimalRebuild="true"
+				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
@@ -152,11 +153,13 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS"
 				StringPooling="true"
+				MinimalRebuild="false"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"

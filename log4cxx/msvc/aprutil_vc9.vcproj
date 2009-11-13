@@ -38,6 +38,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include\private\win32&quot;;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private&quot;;&quot;..\src\apr-util\xml\expat\lib&quot;;&quot;..\src\apr-util\xml\expat&quot;"
 				PreprocessorDefinitions="_DEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32"
@@ -106,6 +107,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include\private\win32&quot;;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private&quot;;&quot;..\src\apr-util\xml\expat\lib&quot;;&quot;..\src\apr-util\xml\expat&quot;"
 				PreprocessorDefinitions="NDEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32"
@@ -175,10 +177,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include\private\win32&quot;;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private&quot;;&quot;..\src\apr-util\xml\expat\lib&quot;;&quot;..\src\apr-util\xml\expat&quot;"
 				PreprocessorDefinitions="_DEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32"
-				MinimalRebuild="true"
+				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
@@ -242,11 +245,12 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include\private\win32&quot;;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private&quot;;&quot;..\src\apr-util\xml\expat\lib&quot;;&quot;..\src\apr-util\xml\expat&quot;"
 				PreprocessorDefinitions="NDEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32"
 				StringPooling="false"
-				MinimalRebuild="true"
+				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
