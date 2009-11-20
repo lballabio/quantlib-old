@@ -1,41 +1,36 @@
-<!--
-  If this file is missing QuantLib.xla defaults to its own
-  hard-coded default values.
-  Modify the paths to fit your installation. 
--->
 
 <Environment name="Local">
   <FrameworkVersion>10</FrameworkVersion>
-  <Workbooks>C:\Projects\trunk\QuantLibXL\Workbooks</Workbooks>
-  <HelpFile>C:\Projects\trunk\QuantLibXL\Docs</HelpFile>
-  <FunctionMetadata>C:\Projects\trunk\QuantLibAddin\gensrc\metadata</FunctionMetadata>
+  <Workbooks>C:\Projects\QuantLib\R000909-branch\QuantLibXL\Workbooks</Workbooks>
+  <HelpFile>C:\Projects\QuantLib\R000909-branch\QuantLibXL\Docs</HelpFile>
+  <FunctionMetadata>C:\Projects\QuantLib\R000909-branch\QuantLibAddin\gensrc\metadata</FunctionMetadata>
   <AddinList>
     <!--<Addin>
-      <Path>C:\Projects\trunk\ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_9.xll</Path>
+      <Path>C:\Projects\QuantLib\R000909-branch\ObjectHandler\xll\ObjectHandler-xll-vc90-mt-0_9_9.xll</Path>
       <DeliveredByLauncher>False</DeliveredByLauncher>
     </Addin>
     <Addin>
-      <Path>C:\Projects\trunk\QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_9.xll</Path>
+      <Path>C:\Projects\QuantLib\R000909-branch\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-0_9_9.xll</Path>
       <DeliveredByLauncher>False</DeliveredByLauncher>
     </Addin>-->
     <Addin>
-      <Path>C:\Projects\trunk\QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_9.xll</Path>
+      <Path>C:\Projects\QuantLib\R000909-branch\QuantLibXL\xll\QuantLibXL-vc90-mt-s-0_9_9.xll</Path>
       <DeliveredByLauncher>False</DeliveredByLauncher>
     </Addin>
   </AddinList>
   <FeedUse>Reuters</FeedUse>
   <StartupActions>
-    <SetEvaluationDate>False</SetEvaluationDate>
-    <EvaluationDate>0</EvaluationDate>
-    <YieldCurveBootstrap>False</YieldCurveBootstrap>
-    <CapVolBootstrap>False</CapVolBootstrap>
+    <SetEvaluationDate>True</SetEvaluationDate>
+    <EvaluationDate>40137</EvaluationDate>
+    <YieldCurveBootstrap>True</YieldCurveBootstrap>
+    <CapVolBootstrap>True</CapVolBootstrap>
     <SwapSmileBootstrap>False</SwapSmileBootstrap>
     <CalibrateCMS>False</CalibrateCMS>
     <FitCMS>False</FitCMS>
-    <IndexesTimeSeries>False</IndexesTimeSeries>
-    <LoadBonds>False</LoadBonds>
+    <IndexesTimeSeries>True</IndexesTimeSeries>
+    <LoadBonds>True</LoadBonds>
     <MainChecks>True</MainChecks>
-    <StaticData>False</StaticData>
+    <StaticData>True</StaticData>
     <!-- should not be in StartUpActions --> 
     <InitSource>Excel</InitSource>
   </StartupActions>
