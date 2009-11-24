@@ -84,7 +84,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-mt-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-mt.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -167,7 +167,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-mt-gd-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-mt-gd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -253,7 +253,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-mt-s-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-mt-s.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -337,7 +337,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-mt-sgd-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-mt-sgd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -423,7 +423,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-$(PlatformName)-mt-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-$(PlatformName)-mt.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -507,7 +507,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-$(PlatformName)-mt-gd-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-$(PlatformName)-mt-gd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -593,7 +593,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-$(PlatformName)-mt-s-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-$(PlatformName)-mt-s.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -677,7 +677,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc90-$(PlatformName)-mt-sgd-0_9_9.lib"
+				OutputFile=".\lib\QuantLib-vc90-$(PlatformName)-mt-sgd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool

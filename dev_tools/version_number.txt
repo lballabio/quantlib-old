@@ -16,27 +16,7 @@ The current version number is 0.9.9 - 000909f0
 This version number is in:
     QuantLib/Announce.txt,
     QuantLib/configure.ac,
-    QuantLib/QuantLib_vc7.vcproj,
-    QuantLib/QuantLib_vc8.vcproj,
-    QuantLib/QuantLib_vc9.vcproj,
-    QuantLib/QuantLib.dev,
     QuantLib/ql/qldefines.hpp,
-    QuantLib/test-suite/testsuite_vc7.vcproj
-    QuantLib/test-suite/testsuite_vc8.vcproj
-    QuantLib/test-suite/testsuite_vc9.vcproj
-    QuantLib/test-suite/testsuite.dev
-    QuantLib/Examples/BermudanSwaption/BermudanSwaption.dev
-    QuantLib/Examples/Bonds/Bonds.dev
-    QuantLib/Examples/CallableBonds/CallableBonds.dev
-    QuantLib/Examples/CDS/CDS.dev
-    QuantLib/Examples/ConvertibleBonds/ConvertibleBonds.dev
-    QuantLib/Examples/DiscreteHedging/DiscreteHedging.dev
-    QuantLib/Examples/EquityOption/EquityOption.dev
-    QuantLib/Examples/FittedBondCurve/FittedBondCurve.dev
-    QuantLib/Examples/FRA/FRA.dev
-    QuantLib/Examples/Replication/Replication.dev
-    QuantLib/Examples/Repo/Repo.dev
-    QuantLib/Examples/Swap/Swap.dev
     
     QuantLib-SWIG/configure.ac
     QuantLib-SWIG/Guile/setup.scm
