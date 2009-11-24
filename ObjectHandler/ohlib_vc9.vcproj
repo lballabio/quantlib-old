@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="ohlib"
 	ProjectGUID="{CD623FE5-3B3E-4511-80A9-A99D893349A4}"
 	TargetFrameworkVersion="131072"
@@ -41,10 +41,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories=".;..\log4cxx\src\main\include\log4cxx\win32;..\log4cxx\src\main\include"
 				PreprocessorDefinitions="_DEBUG;_LIB;WIN32;LOG4CXX_STATIC"
-				MinimalRebuild="true"
+				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="true"
@@ -118,11 +119,13 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".;..\log4cxx\src\main\include\log4cxx\win32;..\log4cxx\src\main\include"
 				PreprocessorDefinitions="NDEBUG;_LIB;WIN32;LOG4CXX_STATIC"
 				StringPooling="true"
+				MinimalRebuild="false"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
@@ -195,11 +198,13 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".;..\log4cxx\src\main\include\log4cxx\win32;..\log4cxx\src\main\include"
 				PreprocessorDefinitions="NDEBUG;_LIB;WIN32;LOG4CXX_STATIC"
 				StringPooling="true"
+				MinimalRebuild="false"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
@@ -272,10 +277,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories=".;..\log4cxx\src\main\include\log4cxx\win32;..\log4cxx\src\main\include"
 				PreprocessorDefinitions="_DEBUG;_LIB;WIN32;LOG4CXX_STATIC"
-				MinimalRebuild="true"
+				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"

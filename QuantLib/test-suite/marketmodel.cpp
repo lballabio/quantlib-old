@@ -104,6 +104,10 @@ FOR A PARTICULAR PURPOSE.  See the license for more details.
 #include <ql/time/daycounters/actualactual.hpp>
 #include <ql/pricingengines/vanilla/analytichestonengine.hpp>
 
+#include <ql/models/marketmodels/products/multistep/multistepinversefloater.hpp>
+#include <ql/models/marketmodels/products/pathwise/pathwiseproductinversefloater.hpp>
+#include <ql/models/marketmodels/products/multistep/multisteppathwisewrapper.hpp>
+
 #if defined(BOOST_MSVC)
 #include <float.h>
 //namespace { unsigned int u = _controlfp(_EM_INEXACT, _MCW_EM); }
@@ -255,7 +259,7 @@ namespace {
         seed_ = 42;
 
 #ifdef _DEBUG
-        paths_ = 2047;
+        paths_ = 127;
         trainingPaths_ = 31;
 #else
         paths_ = 32767; //262144-1; //; // 2^15-1
@@ -803,7 +807,6 @@ void MarketModelTest::testOneStepForwardsAndOptionlets() {
         }
 }
 
-
 void MarketModelTest::testOneStepNormalForwardsAndOptionlets() {
 
     BOOST_MESSAGE("Testing exact repricing of "
@@ -893,6 +896,151 @@ void MarketModelTest::testOneStepNormalForwardsAndOptionlets() {
                     }
                 }
             }
+        }
+}
+
+void MarketModelTest::testInverseFloater() 
+{
+
+    BOOST_MESSAGE("Testing exact repricing of "
+        "inverse floater "
+        "in forward rate market model...");
+
+    setup();
+
+
+    std::vector<Real> fixedStrikes(accruals.size(), 0.1);
+    std::vector<Real> fixedMultipliers(accruals.size(), 2.0);
+    std::vector<Real> floatingSpreads(accruals.size(), 0.002);
+    std::vector<Real> fixedAccruals(accruals);
+    std::vector<Real> floatingAccruals(accruals);
+
+    bool payer = true;
+
+
+    MultiStepInverseFloater product(
+                                                        rateTimes,
+                                                        fixedAccruals,
+                                                         floatingAccruals,
+                                                        fixedStrikes,
+                                                        fixedMultipliers, 
+                                                        floatingSpreads,
+                                                         paymentTimes,
+                                                         payer);
+
+       MarketModelPathwiseInverseFloater productPathwise(
+                                                        rateTimes,
+                                                        fixedAccruals,
+                                                         floatingAccruals,
+                                                        fixedStrikes,
+                                                        fixedMultipliers, 
+                                                        floatingSpreads,
+                                                         paymentTimes,
+                                                         payer);
+
+       MultiProductPathwiseWrapper productWrapped(productPathwise);
+
+       MultiProductComposite productComposite;
+       productComposite.add(product);
+       productComposite.add(productWrapped);
+       productComposite.finalize();
+
+   
+
+    
+    EvolutionDescription evolution = productComposite.evolution();
+
+    MarketModelType marketModels[] = {
+        // CalibratedMM,
+        ExponentialCorrelationFlatVolatility,
+        ExponentialCorrelationAbcdVolatility };
+        for (Size j=0; j<LENGTH(marketModels); j++)
+        {
+
+            Size testedFactors[] = { std::min<Size>(todaysForwards.size(),3)};
+            for (Size m=0; m<LENGTH(testedFactors); ++m) 
+            {
+                Size factors = testedFactors[m];
+
+                MeasureType measures[] = { MoneyMarket};
+                for (Size k=0; k<LENGTH(measures); k++) 
+                {
+                    std::vector<Size> numeraires = makeMeasure(product, measures[k]);
+
+                    bool logNormal = false;
+                    boost::shared_ptr<MarketModel> marketModel =
+                        makeMarketModel(logNormal, evolution, factors, marketModels[j]);
+
+                    EvolverType evolvers[] = {Pc};
+                    boost::shared_ptr<MarketModelEvolver> evolver;
+        
+                    for (Size i=0; i<LENGTH(evolvers); i++)
+                    {
+
+                      
+                            MTBrownianGeneratorFactory generatorFactory(seed_);
+                            //SobolBrownianGeneratorFactory generatorFactory(
+                            //    SobolBrownianGenerator::Diagonal, seed_);
+
+                            evolver = makeMarketModelEvolver(marketModel,
+                                numeraires,
+                                generatorFactory,
+                                evolvers[i]);
+                            std::ostringstream config;
+                            config <<
+                                marketModelTypeToString(marketModels[j]) << ", " <<
+                                factors << (factors>1 ? (factors==todaysForwards.size() ? " (full) factors, " : " factors, ") : " factor,") <<
+                                measureTypeToString(measures[k]) << ", " <<
+                                evolverTypeToString(evolvers[i]) << ", " <<
+                                "MT BGF";
+                            if (printReport_)
+                                BOOST_MESSAGE("    " << config.str());
+
+                            boost::shared_ptr<SequenceStatisticsInc> stats =
+                                simulate(evolver, productComposite);
+
+                            std::vector<Real> modelVolatilities(accruals.size());
+                            for (Size i=0; i <  accruals.size(); ++i)
+                                    modelVolatilities[i] = sqrt(marketModel->totalCovariance(i)[i][i]);
+                           
+
+
+                             Real truePrice =0.0;
+
+                             for (Size i=0; i < accruals.size(); ++i)
+                             {
+                                        Real floatingCouponPV = floatingAccruals[i] *(todaysForwards[i]+floatingSpreads[i])*todaysDiscounts[i+1];
+                                        Real inverseCouponPV =  2*fixedAccruals[i] *todaysDiscounts[i+1]* blackFormula(Option::Put,
+                                        fixedStrikes[i]/2.0,
+                                        todaysForwards[i],
+                                        modelVolatilities[i]);
+
+                                        truePrice += floatingCouponPV - inverseCouponPV;
+                              }
+
+                                           
+    
+
+
+                            Real priceError = stats->mean()[0] - truePrice;
+                            Real priceSD = stats->errorEstimate()[0];
+
+                            Real errorInSds = priceError/priceSD;
+                            if (fabs(errorInSds) > 4.0)
+                                BOOST_FAIL("Inverse floater product has price error equal to " <<errorInSds << " sds . Price " <<truePrice << " MC price " << stats->mean()[0] <<  " \n" );
+
+                            Real numericalTolerance = 1E-12;
+
+                            if (fabs(stats->mean()[0] - stats->mean()[1]) > numericalTolerance)
+                                BOOST_FAIL("Inverse floater and wrapper pathwise inverse floater do not agree:" << stats->mean()[0]  << "  " << stats->mean()[1] );
+                       
+
+
+
+                        
+                    } // evolvers
+                } // measures
+            } // factors 
         }
 }
 
@@ -2375,7 +2523,6 @@ void MarketModelTest::testPathwiseVegas()
         {
             Size factors = testedFactors[m];
 
-            MTBrownianGeneratorFactory generatorFactory(seed_);
 
             bool logNormal = true;
 
@@ -2394,32 +2541,56 @@ void MarketModelTest::testPathwiseVegas()
             for (Size k=0; k < marketModel->numberOfSteps(); ++k)
                 pseudoRoots.push_back( marketModel->pseudoRoot(k));
 
+         // test that the derivative of swaption implied vols to the pseudo-root elements are correct, finite differencing versus analytic value
 
             for (Size step=0; step < evolution.numberOfSteps(); ++ step)
             {
                 for (Size l=0; l < evolution.numberOfRates(); ++l)
                     for (Size f=0; f < factors; ++f)
                     {
+
+                        // change one pseudo root element in the calibration by adding a bump to it 
+
                         pseudoRoots[step][l][f] += numericalBumpSizeForSwaptionPseudo;
 
+
+                        // create new market model with the pseudo root bumped
+
                         PseudoRootFacade bumpedUp(pseudoRoots,rateTimes,marketModel->initialRates(),marketModel->displacements());
+
+
+                        // compute the implied vol of the swaption with the bumped pseudo roots 
 
                         Real upImpVol = SwapForwardMappings::swaptionImpliedVolatility(bumpedUp,
                             startIndex,
                             endIndex);
 
 
-                        pseudoRoots[step][l][f] -= numericalBumpSizeForSwaptionPseudo;
+                        // undo the bump
 
                         pseudoRoots[step][l][f] -= numericalBumpSizeForSwaptionPseudo;
+
+
+                        // bump down
+
+                        pseudoRoots[step][l][f] -= numericalBumpSizeForSwaptionPseudo;
+
+
+                        // create facade for the bumped down pseudo roots
 
                         PseudoRootFacade bumpedDown(pseudoRoots,rateTimes,marketModel->initialRates(),marketModel->displacements());
+
+                       // compute the implied vol of the swaption with the bumped down pseudo roots 
 
                         Real downImpVol = SwapForwardMappings::swaptionImpliedVolatility(bumpedDown,
                             startIndex,
                             endIndex);
 
+                        // undo bumping
+
                         pseudoRoots[step][l][f] += numericalBumpSizeForSwaptionPseudo;
+
+                        // use symmetric finite differencing to compute the change in the swaptions implied vol for changes in this pseudo-root element
 
                         Real volDeriv = (upImpVol-downImpVol)/(2.0*numericalBumpSizeForSwaptionPseudo);
 
@@ -2449,7 +2620,7 @@ void MarketModelTest::testPathwiseVegas()
         Size testedFactors[] = { std::min<Size>(3UL,todaysForwards.size())
             //    todaysForwards.size()
             //, 4, 8,
-        };
+                                                          };
 
 
 
@@ -2458,7 +2629,6 @@ void MarketModelTest::testPathwiseVegas()
         {
             Size factors = testedFactors[m];
 
-            MTBrownianGeneratorFactory generatorFactory(seed_);
 
             bool logNormal = true;
 
@@ -2479,17 +2649,21 @@ void MarketModelTest::testPathwiseVegas()
                     for (Size k=0; k < marketModel->numberOfSteps(); ++k)
                         pseudoRoots.push_back( marketModel->pseudoRoot(k));
 
+                    // test cap price derivatives with respect to pseudo-root elements
 
                     for (Size step=0; step < evolution.numberOfSteps(); ++ step)
                     {
                         for (Size l=0; l < evolution.numberOfRates(); ++l)
                             for (Size f=0; f < factors; ++f)
                             {
+
+                                // similar to swaption pseudo derivative test but with prices not implied vols
+
                                 pseudoRoots[step][l][f] += numericalBumpSizeForSwaptionPseudo;
 
                                 PseudoRootFacade bumpedUp(pseudoRoots,rateTimes,marketModel->initialRates(),marketModel->displacements());
 
-
+                                // get total covariances of rates with bumped up pseudo-roots , we really only need the variances
                                 Matrix totalCovUp(bumpedUp.totalCovariance( marketModel->numberOfSteps()-1));
 
 
@@ -2499,11 +2673,14 @@ void MarketModelTest::testPathwiseVegas()
 
                                 PseudoRootFacade bumpedDown(pseudoRoots,rateTimes,marketModel->initialRates(),marketModel->displacements());
 
+                                // get total covariances of rates with bumped down pseudo-roots , we really only need the variances
                                 Matrix totalCovDown(bumpedDown.totalCovariance( marketModel->numberOfSteps()-1));
 
 
                                 pseudoRoots[step][l][f] += numericalBumpSizeForSwaptionPseudo;
 
+
+                                // we have to loop through all the caplets underlying the cap to get the price
 
                                 Real priceDeriv=0.0;
                                 for (Size k=startIndex; k < endIndex; ++k)
@@ -2548,7 +2725,7 @@ void MarketModelTest::testPathwiseVegas()
 
                     }
 
-                    // test implied vol
+                    // test the implied vol of the cap, each underlying caplet has a different implied vol and the cap's is different again
 
                     Real impVol = derivative.impliedVolatility();
 
@@ -2592,7 +2769,9 @@ void MarketModelTest::testPathwiseVegas()
 
         }
 
-        // we have tested the price derivative and the implied vol function, now the derivative of the imp vols
+        // we have tested the price derivative and the implied vol function, now the derivative of the cap implied vols
+        // with respect to pseudo-root elements  
+
         // since we have already tested the imp vol function we use it here
 
 
@@ -2600,7 +2779,6 @@ void MarketModelTest::testPathwiseVegas()
         {
             Size factors = testedFactors[m];
 
-            MTBrownianGeneratorFactory generatorFactory(seed_);
 
             bool logNormal = true;
 
@@ -2700,10 +2878,12 @@ void MarketModelTest::testPathwiseVegas()
     for (Size j=0; j<LENGTH(marketModels); j++)
     {
 
-        Size testedFactors[] = { std::min<Size>(1UL,todaysForwards.size())
+        Size testedFactors[] = { 
+                                                                std::min<Size>(1UL,todaysForwards.size())
             //    todaysForwards.size()
             //, 4, 8,
-        };
+                                                        
+                                                            };
 
 
 
@@ -2715,8 +2895,8 @@ void MarketModelTest::testPathwiseVegas()
 
 
             MeasureType measures[] = {
-                MoneyMarket
-            };
+                                                                               MoneyMarket
+                                                                       };
 
             std::vector<Matrix> pseudoBumps;
             std::vector<Matrix> pseudoBumpsDown;
@@ -2768,7 +2948,10 @@ void MarketModelTest::testPathwiseVegas()
             {
 
                 std::vector<Size> numeraires = makeMeasure(product, measures[k]);
+
                 std::vector<RatePseudoRootJacobian> testees;
+                std::vector<RatePseudoRootJacobianAllElements> testees2;
+
                 std::vector<RatePseudoRootJacobianNumerical> testers;
                 std::vector<RatePseudoRootJacobianNumerical> testersDown;
 
@@ -2790,6 +2973,15 @@ void MarketModelTest::testPathwiseVegas()
                         pseudoBumps,
                         marketModel->displacements()
                         ));
+
+                      testees2.push_back(RatePseudoRootJacobianAllElements(pseudoRoot,
+                        evolution.firstAliveRate()[l],
+                        numeraires[l],
+                        evolution.rateTaus(),
+                        marketModel->displacements()
+                        ));
+
+
                     testers.push_back(RatePseudoRootJacobianNumerical(pseudoRoot,
                         evolution.firstAliveRate()[l],
                         numeraires[l],
@@ -2831,11 +3023,21 @@ void MarketModelTest::testPathwiseVegas()
                 Matrix B(pseudoBumps.size(),evolution.numberOfRates());
                 Matrix B2(pseudoBumps.size(),evolution.numberOfRates());
                 Matrix B3(pseudoBumps.size(),evolution.numberOfRates());
+                Matrix B4(pseudoBumps.size(),evolution.numberOfRates());
+
+                std::vector<Matrix> globalB;
+                {
+                    Matrix modelB(evolution.numberOfRates(), factors);
+                    for (Size i=0; i < steps; ++i)
+                        globalB.push_back(modelB);
+                }
+
                 std::vector<Real> oneStepDFs(evolution.numberOfRates()+1);
                 oneStepDFs[0] = 1.0;
 
 
                 Size numberFailures=0;
+                Size numberFailures2=0;
 
                 for (Size l=0; l < pathsToDo; ++l)
                 {
@@ -2866,16 +3068,45 @@ void MarketModelTest::testPathwiseVegas()
                         generator->nextStep(gaussians);
 
                         testees[currentStep].getBumps(oldRates, oneStepDFs, newRates, gaussians, B);
+                        testees2[currentStep].getBumps(oldRates, oneStepDFs, newRates, gaussians, globalB);
+                
+
                         testers[currentStep].getBumps(oldRates, oneStepDFs, newRates, gaussians, B2);
                         testersDown[currentStep].getBumps(oldRates, oneStepDFs, newRates, gaussians, B3);
+
+                        // now do make out put of allElements class into same form 
+
+                        for (Size i1 =0; i1 < pseudoBumps.size(); ++i1)
+                        {
+                            Size j1=0;
+
+                            for (; j1 < evolution.firstAliveRate()[i1]; ++j1)
+                            {
+                                B4[i1][j1]=0.0;
+                            }
+                            for (; j1 < numberRates; ++j1)
+                            {
+                                Real sum =0.0;
+
+                                for (Size k1=evolution.firstAliveRate()[i1]; k1 < numberRates; ++k1)
+                                    for (Size f1=0; f1 < factors; ++f1)
+                                        sum += pseudoBumps[i1][k1][f1]*globalB[j1][k1][f1];
+
+                                B4[i1][j1] =sum;
+
+                            }
+                        }
+
 
 
                         for (Size j=0; j < B.rows(); ++j)
                             for (Size k=0; k < B.columns(); ++k)
                             {
                                 Real analytic = B[j][k]/bumpSizeNumericalDifferentiation;
+                                Real analytic2 = B4[j][k]/bumpSizeNumericalDifferentiation;
                                 Real numerical = (B2[j][k]-B3[j][k])/(2*bumpSizeNumericalDifferentiation);
                                 Real errorSize = (analytic - numerical)/ ( bumpSizeNumericalDifferentiation*bumpSizeNumericalDifferentiation);
+                                Real errorSize2 = (analytic2 - numerical)/ ( bumpSizeNumericalDifferentiation*bumpSizeNumericalDifferentiation);
 
                                 maxError = std::max(maxError,fabs(errorSize));
 
@@ -2889,6 +3120,16 @@ void MarketModelTest::testPathwiseVegas()
 
                                 }
 
+                                if ( fabs( errorSize2  ) > multiplier  )
+                                {
+                                    ++numberFailures2;
+                                    if (printReport_)
+                                        BOOST_MESSAGE("path " << l << " step "
+                                        << currentStep << " j " << j
+                                        << " k " << k << " B4 " << B4[j][k] << "  B2 " << B2[j][k]);
+
+                                }
+
                             }
                             ++currentStep;
                     }
@@ -2898,6 +3139,10 @@ void MarketModelTest::testPathwiseVegas()
 
                 if (numberFailures >0)
                     BOOST_FAIL("Pathwise rate pseudoroot jacobian test fails : " << numberFailures <<"\n");
+
+                
+                if (numberFailures2 >0)
+                    BOOST_FAIL("Pathwise rate pseudoroot jacobian all elements test fails : " << numberFailures2 <<"\n");
             } // end of k loop over measures
 
 
@@ -3193,6 +3438,7 @@ void MarketModelTest::testPathwiseVegas()
                     std::vector<Size> numeraires = makeMeasure(product, measures[k]);
 
                     MTBrownianGeneratorFactory generatorFactory(seed_);
+                    MTBrownianGeneratorFactory generatorFactory2(seed_);
 
                     bool logNormal = true;
                     boost::shared_ptr<MarketModel> marketModel =
@@ -3201,6 +3447,10 @@ void MarketModelTest::testPathwiseVegas()
 
                     LogNormalFwdRateEuler evolver(marketModel,
                         generatorFactory,
+                        numeraires);
+
+                     LogNormalFwdRateEuler evolver2(marketModel,
+                        generatorFactory2,
                         numeraires);
 
                     //      SequenceStatistics stats(product.numberOfProducts()*(todaysForwards.size()+1+vegaBumps[0].size()));
@@ -3220,8 +3470,22 @@ void MarketModelTest::testPathwiseVegas()
                         todaysDiscounts[initialNumeraire];
 
                     std::vector<Real> values;
-
                     std::vector<Real> errors;
+
+                    std::vector<Real> values2;
+                    std::vector<Real> errors2;
+
+
+                    {
+
+                        PathwiseVegasOuterAccountingEngine accountingengine(boost::shared_ptr<LogNormalFwdRateEuler>(new LogNormalFwdRateEuler(evolver2)), // method relies heavily on LMM Euler
+                            capsDeflated,
+                            marketModel, // we need pseudo-roots and displacements
+                            vegaBumps,
+                            initialNumeraireValue);
+
+                        accountingengine.multiplePathValues(values2,errors2,pathsToDoSimulation);
+                    }
 
                     {
 
@@ -3232,6 +3496,25 @@ void MarketModelTest::testPathwiseVegas()
                             initialNumeraireValue);
 
                         accountingengine.multiplePathValues(values,errors,pathsToDoSimulation);
+                    }
+
+                    // first test to see that the two implementation give the same results
+
+                    {
+                        Real tol = 1E-8;
+
+                        Size numberMeanFailures =0;
+
+                        for (Size i=0; i <values.size(); ++i)
+                            if (fabs(values[i]-values2[i]) > tol)
+                                ++numberMeanFailures;
+
+                              if (numberMeanFailures >0)
+                                  BOOST_FAIL("Comparison of Pathwise vegas accounting engine and PathwiseVegasOuterAccountingEngine yields discrepancies:" 
+                                                                 << numberMeanFailures 
+                                                                 << "  out of " 
+                                                                 << values.size() );
+
                     }
 
                     // we have computed the vegas now we have to test them against the analytic values
@@ -4490,13 +4773,16 @@ void MarketModelTest::testIsInSubset() {
 // --- Call the desired tests
 test_suite* MarketModelTest::suite() {
     test_suite* suite = BOOST_TEST_SUITE("Market-model tests");
+ 
+ suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testInverseFloater));
+ suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testCallableSwapLS));
 
-
-
-    suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testStochVolForwardsAndOptionlets));
+ 
     suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testPathwiseVegas));
 
     suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testPathwiseMarketVegas));
+
+    suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testStochVolForwardsAndOptionlets));
 
     suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testPathwiseGreeks));
 
@@ -4513,7 +4799,7 @@ test_suite* MarketModelTest::suite() {
     //// just one of the tests below is run in order to reduce running times...
     //// uncomment as much as you prefer...
     suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testCallableSwapNaif));
-    suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testCallableSwapLS));
+
     // FLOATING_POINT_EXCEPTION
     suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testCallableSwapAnderson));
 

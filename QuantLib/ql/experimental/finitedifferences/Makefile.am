@@ -52,6 +52,7 @@ this_include_HEADERS = \
 	ninepointlinearop.hpp \
 	secondderivativeop.hpp \
 	secondordermixedderivativeop.hpp \
+	sparseilupreconditioner.hpp \
 	triplebandlinearop.hpp \
 	uniform1dmesher.hpp \
 	uniformgridmesher.hpp
@@ -100,6 +101,7 @@ libMultiDimFDM_la_SOURCES = \
 	ninepointlinearop.cpp \
 	secondderivativeop.cpp \
 	secondordermixedderivativeop.cpp \
+	sparseilupreconditioner.cpp \
 	triplebandlinearop.cpp \
 	uniformgridmesher.cpp
 

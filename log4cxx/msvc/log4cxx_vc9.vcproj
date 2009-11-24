@@ -38,6 +38,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private\win32&quot;"
 				PreprocessorDefinitions="_DEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
@@ -106,6 +107,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private\win32&quot;"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
@@ -175,6 +177,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private\win32&quot;"
 				PreprocessorDefinitions="_DEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
@@ -243,11 +246,12 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;&quot;..\src\apr-util\include&quot;;&quot;..\src\apr-util\include\private\win32&quot;"
 				PreprocessorDefinitions="NDEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32"
 				StringPooling="false"
-				MinimalRebuild="true"
+				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="false"

@@ -28,14 +28,14 @@
 				PreprocessorDefinitions="_DEBUG;WIN32;_LIB;"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				DisableLanguageExtensions="FALSE"
+				DisableLanguageExtensions="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\build\vc71\$(ConfigurationName)/QuantLib.pch"
 				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)/"
 				ObjectFile=".\build\vc71\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\lib\QuantLib-vc71-mt-gd"
+				ProgramDataBaseFileName=".\lib\QuantLib-vc71-mt-gd-0_9_9"
 				BrowseInformation="1"
 				BrowseInformationFile=".\build\vc71\$(ConfigurationName)/"
 				WarningLevel="3"
@@ -46,7 +46,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc71-mt-gd.lib"
+				OutputFile=".\lib\QuantLib-vc71-mt-gd-0_9_9.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -93,7 +93,7 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="FALSE"
+				DisableLanguageExtensions="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
@@ -110,7 +110,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc71-s.lib"
+				OutputFile=".\lib\QuantLib-vc71-s-0_9_9.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -157,7 +157,7 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="FALSE"
+				DisableLanguageExtensions="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
@@ -174,7 +174,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc71-mt-s.lib"
+				OutputFile=".\lib\QuantLib-vc71-mt-s-0_9_9.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -221,7 +221,7 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="FALSE"
+				DisableLanguageExtensions="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
@@ -238,7 +238,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc71-mt.lib"
+				OutputFile=".\lib\QuantLib-vc71-mt-0_9_9.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -280,14 +280,14 @@
 				PreprocessorDefinitions="_DEBUG;WIN32;_LIB;"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				DisableLanguageExtensions="FALSE"
+				DisableLanguageExtensions="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\build\vc71\$(ConfigurationName)/QuantLib.pch"
 				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)/"
 				ObjectFile=".\build\vc71\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\lib\QuantLib-vc71-mt-sgd"
+				ProgramDataBaseFileName=".\lib\QuantLib-vc71-mt-sgd-0_9_9"
 				BrowseInformation="1"
 				BrowseInformationFile=".\build\vc71\$(ConfigurationName)/"
 				WarningLevel="3"
@@ -298,7 +298,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc71-mt-sgd.lib"
+				OutputFile=".\lib\QuantLib-vc71-mt-sgd-0_9_9.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -340,14 +340,14 @@
 				PreprocessorDefinitions="_DEBUG;WIN32;_LIB;"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
-				DisableLanguageExtensions="FALSE"
+				DisableLanguageExtensions="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\build\vc71\$(ConfigurationName)/QuantLib.pch"
 				AssemblerListingLocation=".\build\vc71\$(ConfigurationName)/"
 				ObjectFile=".\build\vc71\$(ConfigurationName)/"
-				ProgramDataBaseFileName=".\lib\QuantLib-vc71-sgd"
+				ProgramDataBaseFileName=".\lib\QuantLib-vc71-sgd-0_9_9"
 				BrowseInformation="1"
 				BrowseInformationFile=".\build\vc71\$(ConfigurationName)/"
 				WarningLevel="3"
@@ -358,7 +358,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile=".\lib\QuantLib-vc71-sgd.lib"
+				OutputFile=".\lib\QuantLib-vc71-sgd-0_9_9.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -6671,36 +6671,42 @@
 					Name="Debug|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
+						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release (single-threaded runtime)|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
+						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release (static runtime)|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
+						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
+						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug (static runtime)|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
+						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug (single-threaded runtime)|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
+						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 			</File>
@@ -7516,6 +7522,12 @@
 				</File>
 				<File
 					RelativePath=".\ql\experimental\finitedifferences\secondordermixedderivativeop.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\finitedifferences\sparseilupreconditioner.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\finitedifferences\sparseilupreconditioner.hpp">
 				</File>
 				<File
 					RelativePath=".\ql\experimental\finitedifferences\triplebandlinearop.cpp">
