@@ -28,7 +28,7 @@
 				PreprocessorDefinitions="_DEBUG;WIN32;_LIB;"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				DisableLanguageExtensions="TRUE"
+				DisableLanguageExtensions="FALSE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
@@ -93,7 +93,7 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="TRUE"
+				DisableLanguageExtensions="FALSE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
@@ -157,7 +157,7 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="TRUE"
+				DisableLanguageExtensions="FALSE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
@@ -221,7 +221,7 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
-				DisableLanguageExtensions="TRUE"
+				DisableLanguageExtensions="FALSE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
@@ -280,7 +280,7 @@
 				PreprocessorDefinitions="_DEBUG;WIN32;_LIB;"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				DisableLanguageExtensions="TRUE"
+				DisableLanguageExtensions="FALSE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
@@ -340,7 +340,7 @@
 				PreprocessorDefinitions="_DEBUG;WIN32;_LIB;"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
-				DisableLanguageExtensions="TRUE"
+				DisableLanguageExtensions="FALSE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
@@ -6671,42 +6671,36 @@
 					Name="Debug|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release (single-threaded runtime)|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release (static runtime)|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug (static runtime)|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug (single-threaded runtime)|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						DisableLanguageExtensions="FALSE"
 						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 				</FileConfiguration>
 			</File>
