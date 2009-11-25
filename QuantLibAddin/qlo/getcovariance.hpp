@@ -40,7 +40,6 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Matrix& cov,
             QuantLib::Real tol,
-            QuantLib::SalvagingAlgorithm::Type sa,
             bool permanent);
     };
 }
