@@ -4,13 +4,19 @@ AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 this_includedir=${includedir}/${subdir}
 this_include_HEADERS = \
     all.hpp \
+    pathwiseproductcallspecified.hpp \
     pathwiseproductcaplet.hpp \
+    pathwiseproductcashrebate.hpp \
     pathwiseproductinversefloater.hpp \
+    pathwiseproductswap.hpp \
     pathwiseproductswaption.hpp
 
 libMarketModelsProductsPathwise_la_SOURCES = \
+    pathwiseproductcallspecified.cpp \
     pathwiseproductcaplet.cpp \
+    pathwiseproductcashrebate.cpp \
     pathwiseproductinversefloater.cpp \
+    pathwiseproductswap.cpp \
     pathwiseproductswaption.cpp
 
 noinst_LTLIBRARIES = libMarketModelsProductsPathwise.la
