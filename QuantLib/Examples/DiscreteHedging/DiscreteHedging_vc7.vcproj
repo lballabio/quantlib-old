@@ -21,6 +21,7 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/Zm200"
 				Optimization="2"
 				GlobalOptimizations="TRUE"
 				InlineFunctionExpansion="2"
@@ -92,6 +93,7 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/Zm200"
 				Optimization="2"
 				GlobalOptimizations="TRUE"
 				InlineFunctionExpansion="2"
@@ -163,6 +165,7 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/Zm200"
 				Optimization="0"
 				EnableIntrinsicFunctions="FALSE"
 				ImproveFloatingPointConsistency="TRUE"
@@ -232,6 +235,7 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/Zm200"
 				Optimization="2"
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="FALSE"
@@ -302,6 +306,7 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/Zm200"
 				Optimization="0"
 				EnableIntrinsicFunctions="FALSE"
 				ImproveFloatingPointConsistency="TRUE"
@@ -371,6 +376,7 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/Zm200"
 				Optimization="0"
 				EnableIntrinsicFunctions="FALSE"
 				ImproveFloatingPointConsistency="TRUE"
