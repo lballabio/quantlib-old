@@ -3216,6 +3216,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\ql\models\marketmodels\evolvers\lognormalfwdrateiballand.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\ql\models\marketmodels\evolvers\lognormalfwdrateiballand.hpp"
+						>
+					</File>
+					<File
 						RelativePath=".\ql\models\marketmodels\evolvers\lognormalfwdrateipc.cpp"
 						>
 					</File>
@@ -8205,7 +8213,31 @@
 				Name="mcbasket"
 				>
 				<File
+					RelativePath=".\ql\experimental\mcbasket\adaptedpathpayoff.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\mcbasket\adaptedpathpayoff.hpp"
+					>
+				</File>
+				<File
 					RelativePath=".\ql\experimental\mcbasket\all.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\mcbasket\longstaffschwartzmultipathpricer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\mcbasket\longstaffschwartzmultipathpricer.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\mcbasket\mcamericanpathengine.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\mcbasket\mclongstaffschwartzpathengine.hpp"
 					>
 				</File>
 				<File
