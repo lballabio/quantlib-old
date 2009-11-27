@@ -181,8 +181,7 @@ elsewhere.  You may be able to install a development build of apr (libs and
 headers) with no need to compile from source.  On Ubuntu this can be
 accomplished with
 \verbatim
-sudo apt-get install libapr1-dev
-sudo apt-get install libaprutil1-dev
+sudo apt-get install libapr1-dev libaprutil1-dev
 \endverbatim
 Alternatively you may find that a more recent version of apr can be compiled
 from source on your system.
