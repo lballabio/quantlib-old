@@ -91,6 +91,18 @@ namespace QuantLibAddin {
             return !object;
         }
     };
+
+    template <class ObjectClass, class LibraryClass>
+    std::vector<QuantLib::Handle<LibraryClass> > coerceHandleVector(const std::vector<std::string> &objectIDs) {
+        std::vector<QuantLib::Handle<LibraryClass> > ret;
+        for (std::vector<std::string>::const_iterator i=objectIDs.begin(); objectIDs.end()!=i; ++i) {
+            OH_GET_OBJECT(object, *i, ObjectHandler::Object)
+            ret.push_back(CoerceHandle<ObjectClass, LibraryClass>()(
+                object, QuantLib::Handle<LibraryClass>()));
+        }
+        return ret;
+    }
+
 }
 
 #endif

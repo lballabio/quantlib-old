@@ -76,7 +76,7 @@
         <Rule tensorRank='scalar' superType='underlyingClass' codeID='code48'/>        
         <Rule tensorRank='vector' superType='libraryClass' codeID='code37c'/>
         <Rule tensorRank='vector' superType='libToHandle' type='QuantLib::Quote' codeID='code150'/>
-        <Rule tensorRank='vector' superType='libToHandle' codeID='code153'/>
+        <Rule tensorRank='vector' superType='libToHandle' codeID='code154'/>
         <Rule tensorRank='matrix' superType='libToHandle' type='QuantLib::Quote' codeID='code151'/>
       </Rules>
     </RuleGroup>
