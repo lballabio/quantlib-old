@@ -48,10 +48,12 @@ namespace QuantLib {
         Real dt() const {return dt_;};
 
       protected:
-        void stepback(Size i, const Array& values,
+        void stepback(Size i,
+                      const Array& values,
                       const Array& conversionProbability,
                       const Array& spreadAdjustedRate,
-                      Array& newValues, Array& newConversionProbability,
+                      Array& newValues,
+                      Array& newConversionProbability,
                       Array& newSpreadAdjustedRate) const;
         void rollback(DiscretizedAsset&, Time to) const;
         void partialRollback(DiscretizedAsset&, Time to) const;
@@ -68,10 +70,12 @@ namespace QuantLib {
     TsiveriotisFernandesLattice<T>::TsiveriotisFernandesLattice(
                                              const boost::shared_ptr<T>& tree,
                                              Rate riskFreeRate,
-                                             Time end, Size steps,
+                                             Time end,
+                                             Size steps,
                                              Real creditSpread,
-                                             Volatility sigma, Spread divYield)
-    : BlackScholesLattice<T>(tree,riskFreeRate,end,steps) {
+                                             Volatility sigma,
+                                             Spread divYield)
+    : BlackScholesLattice<T>(tree, riskFreeRate, end, steps) {
 
         dt_ = end/steps;
 
@@ -87,10 +91,13 @@ namespace QuantLib {
 
     template <class T>
     void TsiveriotisFernandesLattice<T>::stepback(
-              Size i, const Array& values, const Array& conversionProbability,
-              const Array& spreadAdjustedRate, Array& newValues,
-              Array& newConversionProbability,
-              Array& newSpreadAdjustedRate) const {
+                                          Size i,
+                                          const Array& values,
+                                          const Array& conversionProbability,
+                                          const Array& spreadAdjustedRate,
+                                          Array& newValues,
+                                          Array& newConversionProbability,
+                                          Array& newSpreadAdjustedRate) const {
 
         for (Size j=0; j<this->size(i); j++) {
 
@@ -114,16 +121,16 @@ namespace QuantLib {
     }
 
     template <class T>
-    void TsiveriotisFernandesLattice<T>::rollback(
-                                     DiscretizedAsset& asset, Time to) const {
+    void TsiveriotisFernandesLattice<T>::rollback(DiscretizedAsset& asset,
+                                                  Time to) const {
         partialRollback(asset,to);
         asset.adjustValues();
     }
 
 
     template <class T>
-    void TsiveriotisFernandesLattice<T>::partialRollback(
-                                     DiscretizedAsset& asset, Time to) const {
+    void TsiveriotisFernandesLattice<T>::partialRollback(DiscretizedAsset& asset,
+                                                         Time to) const {
 
         Time from = asset.time();
 
