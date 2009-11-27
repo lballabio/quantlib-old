@@ -362,6 +362,11 @@ code209b = '''\
             %(namespaceObjects)s::convertVector<%(type)s, %(nativeType)s>(returnValue);
         return returnValueLib;'''
 
+code209c = '''\
+        std::vector<std::vector<%(nativeType)s> > returnValueLib =
+            %(namespaceObjects)s::qlMatrixToVv(returnValue);
+        return returnValueLib;'''
+
 code210 = '''\
         %(nativeType)s returnValueLib = %(namespaceObjects)s::libraryToScalar(returnValue);
         return returnValueLib;'''

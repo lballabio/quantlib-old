@@ -98,6 +98,18 @@ namespace QuantLibAddin {
         return m;
     }
 
+     std::vector<std::vector<double> > qlMatrixToVv(const QuantLib::Matrix &m) {
+        std::vector<std::vector<double> > vv;
+        for(unsigned int r=0; r<m.rows(); ++r) {
+            std::vector<double> v;
+            for(unsigned int c=0; c<m.columns(); ++c) {
+                v.push_back(m[r][c]);
+            }
+            vv.push_back(v);
+        }
+        return vv;
+    }
+
 }
 #include <oh/objecthandler.hpp>
 #include <qlo/conversions/coercehandle.hpp>

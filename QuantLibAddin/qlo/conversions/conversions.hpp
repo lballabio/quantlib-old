@@ -59,6 +59,7 @@ namespace QuantLibAddin {
     }
 
     QuantLib::Matrix vvToQlMatrix(const std::vector<std::vector<double> > &vv);
+    std::vector<std::vector<double> > qlMatrixToVv(const QuantLib::Matrix &m);
 
 }
 

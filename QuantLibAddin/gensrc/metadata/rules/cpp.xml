@@ -181,6 +181,7 @@
         <Rule tensorRank='scalar' superType='enumeration' codeID='code211'/>
         <Rule tensorRank='vector' type='QuantLib::Real' codeID='code209b'/>
         <Rule tensorRank='vector' superType='libraryType' codeID='code209'/>
+        <Rule tensorRank='matrix' type='QuantLib::Matrix' codeID='code209c'/>
         <Rule>%(indent)sreturn returnValue;</Rule>
       </Rules>
     </RuleGroup>
