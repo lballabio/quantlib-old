@@ -288,6 +288,7 @@ int main() {
                 "RH_EURIBOR6M",
                 0L,
                 "0D",
+                "",
                 false, OH_NULL, false);
             marketObjects.push_back(swapId);
             rateHelpers.push_back(swapId);
@@ -344,6 +345,9 @@ int main() {
         std::string engine = qlDiscountingSwapEngine(
                 "engine",
                 EUR_YC,
+                false,
+                OH_NULL,
+                OH_NULL,
                 false, OH_NULL, false);
         tradeObjects.push_back(engine);
 

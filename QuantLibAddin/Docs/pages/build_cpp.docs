@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008, 2009 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -101,7 +101,7 @@ C:\build_ql_0_9_9\QuantLib
 C:\build_ql_0_9_9\QuantLibAddin
 \endverbatim
 
-\subsubsection build_cpp_auto_uncompress 2.2.2 Uncompress the Source Code
+\subsubsection build_cpp_win_uncompress 2.2.2 Uncompress the Source Code
 
 Go to the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
@@ -170,6 +170,22 @@ QuantLibAddin\lib\QuantLibObjects-vc80-mt-s-0_9_9.lib
 \endverbatim
 
 \section build_cpp_auto 3 Autoconf
+
+<b>A Note on APR:</b> ObjectHandler requires log4cxx version 0.10.0, which
+requires apr and apr-utils, the Apache Portable Runtime library.  The log4cxx
+tarball includes the code for apr version 1.2.12, and the instructions below
+explain how to build apr from source, exactly as specified in the log4cxx
+documentation.  However the apr build files are out of date and may not work on
+newer linux systems.  If this problem affects you, you must acquire apr
+elsewhere.  You may be able to install a development build of apr (libs and
+headers) with no need to compile from source.  On Ubuntu this can be
+accomplished with
+\verbatim
+sudo apt-get install libapr1-dev
+sudo apt-get install libaprutil1-dev
+\endverbatim
+Alternatively you may find that a more recent version of apr can be compiled
+from source on your system.
 
 \subsection build_cpp_auto_download 3.2 Download
 
