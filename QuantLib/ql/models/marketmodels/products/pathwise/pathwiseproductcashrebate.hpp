@@ -48,7 +48,7 @@ namespace QuantLib {
                               const Matrix& amounts,
                               Size numberOfProducts);
 
-       virtual std::vector<Size> suggestedNumeraires() const;
+        virtual std::vector<Size> suggestedNumeraires() const;
         virtual const EvolutionDescription& evolution() const;
         virtual std::vector<Time> possibleCashFlowTimes() const;
         virtual Size numberOfProducts() const;
@@ -58,9 +58,9 @@ namespace QuantLib {
 
         virtual bool alreadyDeflated() const;
 
-        virtual bool nextTimeStep(  const CurveState& currentState,
-                                                                   std::vector<Size>& numberCashFlowsThisStep,
-                                                                   std::vector<std::vector<MarketModelPathwiseMultiProduct::CashFlow> >& cashFlowsGenerated) ;
+        virtual bool nextTimeStep(const CurveState& currentState,
+                                  std::vector<Size>& numberCashFlowsThisStep,
+                                  std::vector<std::vector<MarketModelPathwiseMultiProduct::CashFlow> >& cashFlowsGenerated);
         
         virtual std::auto_ptr<MarketModelPathwiseMultiProduct> clone() const;
 
