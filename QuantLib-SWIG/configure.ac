@@ -86,10 +86,6 @@ if test [ -n "$ql_jdk_sys_include_path" ] ; then
 fi
 
 
-# Default compilation variables
-
-AC_SUBST([CXXFLAGS],[${CXXFLAGS='-g -O2 -Wall'}])
-
 # flags
 
 case "$target" in
