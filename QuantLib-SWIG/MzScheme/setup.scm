@@ -103,7 +103,7 @@
               (append
                (current-extension-linker-flags)
                (list "-L/usr/local/lib" "-lstdc++" "-lgcc"
-                     (string-append "-lQuantLib-" version))))))
+                     (string-append "-lQuantLib"))))))
           ((eqv? platform 'windows)
            (let ((ql-dir (getenv "QL_DIR")))
              (if ql-dir
