@@ -68,7 +68,8 @@ namespace QuantLib {
                               bool includeSettlementDateFlows,
                               Date settlementDate)
     {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+        if (leg.empty())
+            return true;
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -84,7 +85,8 @@ namespace QuantLib {
     CashFlows::previousCashFlow(const Leg& leg,
                                 bool includeSettlementDateFlows,
                                 Date settlementDate) {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+        if (leg.empty())
+            return leg.end();
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -108,7 +110,8 @@ namespace QuantLib {
     CashFlows::nextCashFlow(const Leg& leg,
                             bool includeSettlementDateFlows,
                             Date settlementDate) {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+        if (leg.empty())
+            return leg.end();
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -270,7 +273,9 @@ namespace QuantLib {
                         bool includeSettlementDateFlows,
                         Date settlementDate,
                         Date npvDate) {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+
+        if (leg.empty())
+            return 0.0;
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -294,7 +299,8 @@ namespace QuantLib {
                         bool includeSettlementDateFlows,
                         Date settlementDate,
                         Date npvDate) {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+        if (leg.empty())
+            return 0.0;
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -354,7 +360,8 @@ namespace QuantLib {
                             bool includeSettlementDateFlows,
                             Date settlementDate,
                             Date npvDate) {
-            QL_REQUIRE(!leg.empty(), "empty leg");
+            if (leg.empty())
+                return 0.0;
 
             if (settlementDate == Date())
                 settlementDate = Settings::instance().evaluationDate();
@@ -386,7 +393,8 @@ namespace QuantLib {
                               bool includeSettlementDateFlows,
                               Date settlementDate,
                               Date npvDate) {
-            QL_REQUIRE(!leg.empty(), "empty leg");
+            if (leg.empty())
+                return 0.0;
 
             QL_REQUIRE(settlementDate!=Date(), "null settlement date");
 
@@ -549,7 +557,9 @@ namespace QuantLib {
                         bool includeSettlementDateFlows,
                         Date settlementDate,
                         Date npvDate) {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+
+        if (leg.empty())
+            return 0.0;
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -611,7 +621,9 @@ namespace QuantLib {
                         bool includeSettlementDateFlows,
                         Date settlementDate,
                         Date npvDate) {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+
+        if (leg.empty())
+            return 0.0;
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -667,7 +679,9 @@ namespace QuantLib {
                              bool includeSettlementDateFlows,
                              Date settlementDate,
                              Date npvDate) {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+
+        if (leg.empty())
+            return 0.0;
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -713,7 +727,8 @@ namespace QuantLib {
                               bool includeSettlementDateFlows,
                               Date settlementDate,
                               Date npvDate) {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+        if (leg.empty())
+            return 0.0;
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -784,7 +799,8 @@ namespace QuantLib {
                                     bool includeSettlementDateFlows,
                                     Date settlementDate,
                                     Date npvDate) {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+        if (leg.empty())
+            return 0.0;
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -830,7 +846,8 @@ namespace QuantLib {
                                          bool includeSettlementDateFlows,
                                          Date settlementDate,
                                          Date npvDate) {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+        if (leg.empty())
+            return 0.0;
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
@@ -918,7 +935,9 @@ namespace QuantLib {
                         bool includeSettlementDateFlows,
                         Date settlementDate,
                         Date npvDate) {
-        QL_REQUIRE(!leg.empty(), "empty leg");
+
+        if (leg.empty())
+            return 0.0;
 
         if (settlementDate == Date())
             settlementDate = Settings::instance().evaluationDate();
