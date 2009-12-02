@@ -1,7 +1,9 @@
 
 /*  
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
+ Copyright (C) 2006 Katiuscia Manzoni
+ Copyright (C) 2005, 2007 Eric Ehlers
+ Copyright (C) 2005 Plamen Neykov
  
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,18 +31,21 @@
 #include <qlo/enumerations/factories/all.hpp>
 #include <qlo/conversions/all.hpp>
 #include <oh/enumerations/typefactory.hpp>
-#include <qlo/pricingengines.hpp>
+#include <qlo/enumerations/factories/calendarfactory.hpp>
+#include <qlo/indexes/bmaindex.hpp>
+#include <qlo/indexes/ibor/euribor.hpp>
+#include <qlo/indexes/ibor/libor.hpp>
+#include <qlo/indexes/swap/euriborswap.hpp>
+#include <qlo/indexes/swap/liborswap.hpp>
+#include <qlo/indexes/swap/isdafixaswap.hpp>
 #include <qlo/termstructures.hpp>
-#include <qlo/shortratemodels.hpp>
-#include <qlo/payoffs.hpp>
-#include <qlo/marketmodels.hpp>
-#include <qlo/processes.hpp>
-#include <ql/pricingengines/blackformula.hpp>
-#include <ql/pricingengines/blackscholescalculator.hpp>
-#include <ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp>
-#include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
-#include <qlo/valueobjects/vo_pricingengines.hpp>
-
+#include <ql/termstructures/yieldtermstructure.hpp>
+#include <qlo/timeseries.hpp>
+#include <ql/indexes/iborindex.hpp>
+#include <ql/indexes/swapindex.hpp>
+#include <qlo/valueobjects/vo_index.hpp>
+#include <qlo/loop/loop_index.hpp>
+#include <loop.hpp>
 //#include <Addins/Calc/qladdin.hpp>
 //#include <Addins/Calc/calcutils.hpp>
 //#include <Addins/Calc/conversions.hpp>
@@ -48,9 +53,9 @@
 #include <calcutils.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::qlAnalyticCapFloorEngine(
+STRING SAL_CALL CalcAddins_impl::qlBMAIndex(
         const STRING &ObjectId,
-        const STRING &HandleModel,
+        const ANY &YieldCurve,
         const ANY &Permanent,
         const ANY &Trigger,
         sal_Int32 Overwrite) throw(RuntimeException) {
@@ -60,132 +65,8 @@ STRING SAL_CALL CalcAddins_impl::qlAnalyticCapFloorEngine(
 
         std::string ObjectIdCpp = ouStringToStlString(ObjectId);
 
-        std::string HandleModelCpp = ouStringToStlString(HandleModel);
-
-        bool PermanentCpp;
-        calcToScalar(PermanentCpp, Permanent);
-
-        // convert object IDs into library objects
-
-        OH_GET_REFERENCE(HandleModelLibObjPtr, HandleModelCpp,
-            QuantLibAddin::AffineModel, QuantLib::AffineModel)
-
-        // Construct the Value Object
-
-        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new QuantLibAddin::ValueObjects::qlAnalyticCapFloorEngine(
-                ObjectIdCpp,
-                HandleModelCpp,
-                PermanentCpp));
-
-        // Construct the Object
-        
-        boost::shared_ptr<ObjectHandler::Object> object(
-            new QuantLibAddin::AnalyticCapFloorEngine(
-                valueObject,
-                HandleModelLibObjPtr,
-                PermanentCpp));
-
-        // Store the Object in the Repository
-
-        std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
-
-        // Convert and return the return value
-
-
-
-        STRING returnValueCalc;
-        scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
-
-    } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlAnalyticCapFloorEngine: " << e.what());
-        THROW_RTE;
-    }
-}
-
-STRING SAL_CALL CalcAddins_impl::qlBinomialPricingEngine(
-        const STRING &ObjectId,
-        const STRING &EngineID,
-        const STRING &ProcessID,
-        sal_Int32 TimeSteps,
-        const ANY &Permanent,
-        const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
-    try {
-
-        // convert input datatypes to C++ datatypes
-
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
-
-        std::string EngineIDCpp = ouStringToStlString(EngineID);
-
-        std::string ProcessIDCpp = ouStringToStlString(ProcessID);
-
-        bool PermanentCpp;
-        calcToScalar(PermanentCpp, Permanent);
-
-        // convert object IDs into library objects
-
-        OH_GET_REFERENCE(ProcessIDLibObjPtr, ProcessIDCpp,
-            QuantLibAddin::GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)
-
-        // Construct the Value Object
-
-        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new QuantLibAddin::ValueObjects::qlBinomialPricingEngine(
-                ObjectIdCpp,
-                EngineIDCpp,
-                ProcessIDCpp,
-                TimeSteps,
-                PermanentCpp));
-
-        // Construct the Object
-        
-        boost::shared_ptr<ObjectHandler::Object> object(
-            new QuantLibAddin::PricingEngine(
-                valueObject,
-                EngineIDCpp,
-                ProcessIDLibObjPtr,
-                TimeSteps,
-                PermanentCpp));
-
-        // Store the Object in the Repository
-
-        std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
-
-        // Convert and return the return value
-
-
-
-        STRING returnValueCalc;
-        scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
-
-    } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlBinomialPricingEngine: " << e.what());
-        THROW_RTE;
-    }
-}
-
-STRING SAL_CALL CalcAddins_impl::qlBlackCapFloorEngine(
-        const STRING &ObjectId,
-        const STRING &YieldCurve,
-        const STRING &VolTS,
-        const ANY &Permanent,
-        const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
-    try {
-
-        // convert input datatypes to C++ datatypes
-
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
-
-        std::string YieldCurveCpp = ouStringToStlString(YieldCurve);
-
-        std::string VolTSCpp = ouStringToStlString(VolTS);
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -199,29 +80,20 @@ STRING SAL_CALL CalcAddins_impl::qlBlackCapFloorEngine(
                 QuantLib::YieldTermStructure>()(
                     YieldCurveCoerce);
 
-        OH_GET_OBJECT(VolTSCoerce, VolTSCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::OptionletVolatilityStructure> VolTSLibObj =
-            QuantLibAddin::CoerceHandle<
-                QuantLibAddin::OptionletVolatilityStructure,
-                QuantLib::OptionletVolatilityStructure>()(
-                    VolTSCoerce);
-
         // Construct the Value Object
 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new QuantLibAddin::ValueObjects::qlBlackCapFloorEngine(
+            new QuantLibAddin::ValueObjects::qlBMAIndex(
                 ObjectIdCpp,
                 YieldCurveCpp,
-                VolTSCpp,
                 PermanentCpp));
 
         // Construct the Object
         
         boost::shared_ptr<ObjectHandler::Object> object(
-            new QuantLibAddin::BlackCapFloorEngine(
+            new QuantLibAddin::BMAIndex(
                 valueObject,
                 YieldCurveLibObj,
-                VolTSLibObj,
                 PermanentCpp));
 
         // Store the Object in the Repository
@@ -238,15 +110,14 @@ STRING SAL_CALL CalcAddins_impl::qlBlackCapFloorEngine(
         return returnValueCalc;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlBlackCapFloorEngine: " << e.what());
+        OH_LOG_MESSAGE("ERROR: qlBMAIndex: " << e.what());
         THROW_RTE;
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine(
+STRING SAL_CALL CalcAddins_impl::qlEonia(
         const STRING &ObjectId,
-        const STRING &YieldCurve,
-        const STRING &VolTS,
+        const ANY &YieldCurve,
         const ANY &Permanent,
         const ANY &Trigger,
         sal_Int32 Overwrite) throw(RuntimeException) {
@@ -256,9 +127,8 @@ STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine(
 
         std::string ObjectIdCpp = ouStringToStlString(ObjectId);
 
-        std::string YieldCurveCpp = ouStringToStlString(YieldCurve);
-
-        std::string VolTSCpp = ouStringToStlString(VolTS);
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -271,30 +141,21 @@ STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine(
                 QuantLibAddin::YieldTermStructure,
                 QuantLib::YieldTermStructure>()(
                     YieldCurveCoerce);
-
-        OH_GET_OBJECT(VolTSCoerce, VolTSCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::SwaptionVolatilityStructure> VolTSLibObj =
-            QuantLibAddin::CoerceHandle<
-                QuantLibAddin::SwaptionVolatilityStructure,
-                QuantLib::SwaptionVolatilityStructure>()(
-                    VolTSCoerce);
 
         // Construct the Value Object
 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new QuantLibAddin::ValueObjects::qlBlackSwaptionEngine(
+            new QuantLibAddin::ValueObjects::qlEonia(
                 ObjectIdCpp,
                 YieldCurveCpp,
-                VolTSCpp,
                 PermanentCpp));
 
         // Construct the Object
         
         boost::shared_ptr<ObjectHandler::Object> object(
-            new QuantLibAddin::BlackSwaptionEngine(
+            new QuantLibAddin::Eonia(
                 valueObject,
                 YieldCurveLibObj,
-                VolTSLibObj,
                 PermanentCpp));
 
         // Store the Object in the Repository
@@ -311,16 +172,15 @@ STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine(
         return returnValueCalc;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlBlackSwaptionEngine: " << e.what());
+        OH_LOG_MESSAGE("ERROR: qlEonia: " << e.what());
         THROW_RTE;
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine2(
+STRING SAL_CALL CalcAddins_impl::qlEuribor(
         const STRING &ObjectId,
-        const STRING &YieldCurve,
-        const STRING &Vol,
-        const ANY &DayCounter,
+        const STRING &Tenor,
+        const ANY &YieldCurve,
         const ANY &Permanent,
         const ANY &Trigger,
         sal_Int32 Overwrite) throw(RuntimeException) {
@@ -330,12 +190,77 @@ STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine2(
 
         std::string ObjectIdCpp = ouStringToStlString(ObjectId);
 
-        std::string YieldCurveCpp = ouStringToStlString(YieldCurve);
+        std::string TenorCpp = ouStringToStlString(Tenor);
 
-        std::string VolCpp = ouStringToStlString(Vol);
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
 
-        std::string DayCounterCpp;
-        calcToScalar(DayCounterCpp, DayCounter);
+        bool PermanentCpp;
+        calcToScalar(PermanentCpp, Permanent);
+
+        // convert object IDs into library objects
+	// RL: Use OH_GET_OBJECT_DEFAULT instead of OH_GET_OBJECT 
+        OH_GET_OBJECT_DEFAULT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
+        QuantLib::Handle<QuantLib::YieldTermStructure> YieldCurveLibObj =
+            QuantLibAddin::CoerceHandle<
+                QuantLibAddin::YieldTermStructure,
+                QuantLib::YieldTermStructure>()(
+                    YieldCurveCoerce);
+
+        // Construct the Value Object
+
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
+            new QuantLibAddin::ValueObjects::qlEuribor(
+                ObjectIdCpp,
+                TenorCpp,
+                YieldCurveCpp,
+                PermanentCpp));
+
+        // Construct the Object
+        
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new QuantLibAddin::Euribor(
+                valueObject,
+                TenorCpp,
+                YieldCurveLibObj,
+                PermanentCpp));
+
+        // Store the Object in the Repository
+
+        std::string returnValue =
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+
+        // Convert and return the return value
+
+
+
+        STRING returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;
+
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE("ERROR: qlEuribor: " << e.what());
+        THROW_RTE;
+    }
+}
+
+STRING SAL_CALL CalcAddins_impl::qlEuribor365(
+        const STRING &ObjectId,
+        const STRING &Tenor,
+        const ANY &YieldCurve,
+        const ANY &Permanent,
+        const ANY &Trigger,
+        sal_Int32 Overwrite) throw(RuntimeException) {
+    try {
+
+        // convert input datatypes to C++ datatypes
+
+        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+
+        std::string TenorCpp = ouStringToStlString(Tenor);
+
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -349,14 +274,107 @@ STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine2(
                 QuantLib::YieldTermStructure>()(
                     YieldCurveCoerce);
 
-        OH_GET_OBJECT(VolCoerce, VolCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::Quote> VolLibObj =
+        // Construct the Value Object
+
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
+            new QuantLibAddin::ValueObjects::qlEuribor365(
+                ObjectIdCpp,
+                TenorCpp,
+                YieldCurveCpp,
+                PermanentCpp));
+
+        // Construct the Object
+        
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new QuantLibAddin::Euribor365(
+                valueObject,
+                TenorCpp,
+                YieldCurveLibObj,
+                PermanentCpp));
+
+        // Store the Object in the Repository
+
+        std::string returnValue =
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+
+        // Convert and return the return value
+
+
+
+        STRING returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;
+
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE("ERROR: qlEuribor365: " << e.what());
+        THROW_RTE;
+    }
+}
+
+STRING SAL_CALL CalcAddins_impl::qlIborIndex(
+        const STRING &ObjectId,
+        const STRING &FamilyName,
+        const STRING &Tenor,
+        sal_Int32 FixingDays,
+        const STRING &Currency,
+        const STRING &Calendar,
+        const STRING &BDayConvention,
+        sal_Int32 EndOfMonth,
+        const STRING &DayCounter,
+        const ANY &FwdCurve,
+        const ANY &Permanent,
+        const ANY &Trigger,
+        sal_Int32 Overwrite) throw(RuntimeException) {
+    try {
+
+        // convert input datatypes to C++ datatypes
+
+        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+
+        std::string FamilyNameCpp = ouStringToStlString(FamilyName);
+
+        std::string TenorCpp = ouStringToStlString(Tenor);
+
+        std::string CurrencyCpp = ouStringToStlString(Currency);
+
+        std::string CalendarCpp = ouStringToStlString(Calendar);
+
+        std::string BDayConventionCpp = ouStringToStlString(BDayConvention);
+
+        bool EndOfMonthCpp = static_cast<bool>(EndOfMonth);
+
+        std::string DayCounterCpp = ouStringToStlString(DayCounter);
+
+        std::string FwdCurveCpp;
+        calcToScalar(FwdCurveCpp, FwdCurve);
+
+        bool PermanentCpp;
+        calcToScalar(PermanentCpp, Permanent);
+
+        // convert input datatypes to QuantLib datatypes
+
+        QuantLib::Period TenorLib;
+        calcToScalar(TenorLib, Tenor);
+
+        // convert object IDs into library objects
+
+        OH_GET_OBJECT(FwdCurveCoerce, FwdCurveCpp, ObjectHandler::Object)
+        QuantLib::Handle<QuantLib::YieldTermStructure> FwdCurveLibObj =
             QuantLibAddin::CoerceHandle<
-                QuantLibAddin::Quote,
-                QuantLib::Quote>()(
-                    VolCoerce);
+                QuantLibAddin::YieldTermStructure,
+                QuantLib::YieldTermStructure>()(
+                    FwdCurveCoerce);
 
         // convert input datatypes to QuantLib enumerated datatypes
+
+        QuantLib::Currency CurrencyEnum =
+            ObjectHandler::Create<QuantLib::Currency>()(CurrencyCpp);
+
+        QuantLib::Calendar CalendarEnum =
+            ObjectHandler::Create<QuantLib::Calendar>()(CalendarCpp);
+
+        QuantLib::BusinessDayConvention BDayConventionEnum =
+            ObjectHandler::Create<QuantLib::BusinessDayConvention>()(BDayConventionCpp);
 
         QuantLib::DayCounter DayCounterEnum =
             ObjectHandler::Create<QuantLib::DayCounter>()(DayCounterCpp);
@@ -364,21 +382,33 @@ STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine2(
         // Construct the Value Object
 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new QuantLibAddin::ValueObjects::qlBlackSwaptionEngine2(
+            new QuantLibAddin::ValueObjects::qlIborIndex(
                 ObjectIdCpp,
-                YieldCurveCpp,
-                VolCpp,
+                FamilyNameCpp,
+                TenorCpp,
+                FixingDays,
+                CurrencyCpp,
+                CalendarCpp,
+                BDayConventionCpp,
+                EndOfMonthCpp,
                 DayCounterCpp,
+                FwdCurveCpp,
                 PermanentCpp));
 
         // Construct the Object
         
         boost::shared_ptr<ObjectHandler::Object> object(
-            new QuantLibAddin::BlackSwaptionEngine(
+            new QuantLibAddin::IborIndex(
                 valueObject,
-                YieldCurveLibObj,
-                VolLibObj,
+                FamilyNameCpp,
+                TenorLib,
+                FixingDays,
+                CurrencyEnum,
+                CalendarEnum,
+                BDayConventionEnum,
+                EndOfMonthCpp,
                 DayCounterEnum,
+                FwdCurveLibObj,
                 PermanentCpp));
 
         // Store the Object in the Repository
@@ -395,14 +425,16 @@ STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine2(
         return returnValueCalc;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlBlackSwaptionEngine2: " << e.what());
+        OH_LOG_MESSAGE("ERROR: qlIborIndex: " << e.what());
         THROW_RTE;
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlBondEngine(
+STRING SAL_CALL CalcAddins_impl::qlLibor(
         const STRING &ObjectId,
-        const STRING &YieldCurve,
+        const STRING &Currency,
+        const STRING &Tenor,
+        const ANY &YieldCurve,
         const ANY &Permanent,
         const ANY &Trigger,
         sal_Int32 Overwrite) throw(RuntimeException) {
@@ -412,7 +444,12 @@ STRING SAL_CALL CalcAddins_impl::qlBondEngine(
 
         std::string ObjectIdCpp = ouStringToStlString(ObjectId);
 
-        std::string YieldCurveCpp = ouStringToStlString(YieldCurve);
+        std::string CurrencyCpp = ouStringToStlString(Currency);
+
+        std::string TenorCpp = ouStringToStlString(Tenor);
+
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -426,19 +463,28 @@ STRING SAL_CALL CalcAddins_impl::qlBondEngine(
                 QuantLib::YieldTermStructure>()(
                     YieldCurveCoerce);
 
+        // convert input datatypes to QuantLib enumerated datatypes
+
+        QuantLib::Currency CurrencyEnum =
+            ObjectHandler::Create<QuantLib::Currency>()(CurrencyCpp);
+
         // Construct the Value Object
 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new QuantLibAddin::ValueObjects::qlBondEngine(
+            new QuantLibAddin::ValueObjects::qlLibor(
                 ObjectIdCpp,
+                CurrencyCpp,
+                TenorCpp,
                 YieldCurveCpp,
                 PermanentCpp));
 
         // Construct the Object
         
         boost::shared_ptr<ObjectHandler::Object> object(
-            new QuantLibAddin::BondEngine(
+            new QuantLibAddin::Libor(
                 valueObject,
+                CurrencyEnum,
+                TenorCpp,
                 YieldCurveLibObj,
                 PermanentCpp));
 
@@ -456,17 +502,19 @@ STRING SAL_CALL CalcAddins_impl::qlBondEngine(
         return returnValueCalc;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlBondEngine: " << e.what());
+        OH_LOG_MESSAGE("ERROR: qlLibor: " << e.what());
         THROW_RTE;
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlDiscountingSwapEngine(
+STRING SAL_CALL CalcAddins_impl::qlOvernightIndex(
         const STRING &ObjectId,
-        const STRING &YieldCurve,
-        const ANY &IncludeSettlDate,
-        const ANY &SettlementDate,
-        const ANY &NpvDate,
+        const STRING &FamilyName,
+        sal_Int32 FixingDays,
+        const STRING &Currency,
+        const STRING &Calendar,
+        const STRING &DayCounter,
+        const ANY &YieldCurve,
         const ANY &Permanent,
         const ANY &Trigger,
         sal_Int32 Overwrite) throw(RuntimeException) {
@@ -476,27 +524,19 @@ STRING SAL_CALL CalcAddins_impl::qlDiscountingSwapEngine(
 
         std::string ObjectIdCpp = ouStringToStlString(ObjectId);
 
-        std::string YieldCurveCpp = ouStringToStlString(YieldCurve);
+        std::string FamilyNameCpp = ouStringToStlString(FamilyName);
 
-        bool IncludeSettlDateCpp;
-        calcToScalar(IncludeSettlDateCpp, IncludeSettlDate);
+        std::string CurrencyCpp = ouStringToStlString(Currency);
 
-        long SettlementDateCpp;
-        calcToScalar(SettlementDateCpp, SettlementDate);
+        std::string CalendarCpp = ouStringToStlString(Calendar);
 
-        long NpvDateCpp;
-        calcToScalar(NpvDateCpp, NpvDate);
+        std::string DayCounterCpp = ouStringToStlString(DayCounter);
+
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
-
-        // convert input datatypes to QuantLib datatypes
-
-        QuantLib::Date SettlementDateLib;
-        calcToScalar(SettlementDateLib, SettlementDate);
-
-        QuantLib::Date NpvDateLib;
-        calcToScalar(NpvDateLib, NpvDate);
 
         // convert object IDs into library objects
 
@@ -507,26 +547,41 @@ STRING SAL_CALL CalcAddins_impl::qlDiscountingSwapEngine(
                 QuantLib::YieldTermStructure>()(
                     YieldCurveCoerce);
 
+        // convert input datatypes to QuantLib enumerated datatypes
+
+        QuantLib::Currency CurrencyEnum =
+            ObjectHandler::Create<QuantLib::Currency>()(CurrencyCpp);
+
+        QuantLib::Calendar CalendarEnum =
+            ObjectHandler::Create<QuantLib::Calendar>()(CalendarCpp);
+
+        QuantLib::DayCounter DayCounterEnum =
+            ObjectHandler::Create<QuantLib::DayCounter>()(DayCounterCpp);
+
         // Construct the Value Object
 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new QuantLibAddin::ValueObjects::qlDiscountingSwapEngine(
+            new QuantLibAddin::ValueObjects::qlOvernightIndex(
                 ObjectIdCpp,
+                FamilyNameCpp,
+                FixingDays,
+                CurrencyCpp,
+                CalendarCpp,
+                DayCounterCpp,
                 YieldCurveCpp,
-                IncludeSettlDateCpp,
-                SettlementDateCpp,
-                NpvDateCpp,
                 PermanentCpp));
 
         // Construct the Object
         
         boost::shared_ptr<ObjectHandler::Object> object(
-            new QuantLibAddin::DiscountingSwapEngine(
+            new QuantLibAddin::OvernightIndex(
                 valueObject,
+                FamilyNameCpp,
+                FixingDays,
+                CurrencyEnum,
+                CalendarEnum,
+                DayCounterEnum,
                 YieldCurveLibObj,
-                IncludeSettlDateCpp,
-                SettlementDateLib,
-                NpvDateLib,
                 PermanentCpp));
 
         // Store the Object in the Repository
@@ -543,69 +598,7 @@ STRING SAL_CALL CalcAddins_impl::qlDiscountingSwapEngine(
         return returnValueCalc;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlDiscountingSwapEngine: " << e.what());
-        THROW_RTE;
-    }
-}
-
-STRING SAL_CALL CalcAddins_impl::qlPricingEngine(
-        const STRING &ObjectId,
-        const STRING &EngineID,
-        const STRING &ProcessID,
-        const ANY &Permanent,
-        const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
-    try {
-
-        // convert input datatypes to C++ datatypes
-
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
-
-        std::string EngineIDCpp = ouStringToStlString(EngineID);
-
-        std::string ProcessIDCpp = ouStringToStlString(ProcessID);
-
-        bool PermanentCpp;
-        calcToScalar(PermanentCpp, Permanent);
-
-        // convert object IDs into library objects
-
-        OH_GET_REFERENCE(ProcessIDLibObjPtr, ProcessIDCpp,
-            QuantLibAddin::GeneralizedBlackScholesProcess, QuantLib::GeneralizedBlackScholesProcess)
-
-        // Construct the Value Object
-
-        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new QuantLibAddin::ValueObjects::qlPricingEngine(
-                ObjectIdCpp,
-                EngineIDCpp,
-                ProcessIDCpp,
-                PermanentCpp));
-
-        // Construct the Object
-        
-        boost::shared_ptr<ObjectHandler::Object> object(
-            new QuantLibAddin::PricingEngine(
-                valueObject,
-                EngineIDCpp,
-                ProcessIDLibObjPtr,
-                PermanentCpp));
-
-        // Store the Object in the Repository
-
-        std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
-
-        // Convert and return the return value
-
-
-
-        STRING returnValueCalc;
-        scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
-
-    } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlPricingEngine: " << e.what());
+        OH_LOG_MESSAGE("ERROR: qlOvernightIndex: " << e.what());
         THROW_RTE;
     }
 }

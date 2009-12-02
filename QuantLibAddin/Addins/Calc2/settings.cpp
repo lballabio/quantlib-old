@@ -16,23 +16,28 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// This file was generated automatically by gensrc.py.
-// Editing this file manually is not recommended.
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
 #include <qlo/qladdindefines.hpp>
-#include <qlo/Enumerations/Factories/all.hpp>
-#include <qlo/Conversions/all.hpp>
+#include <qlo/enumerations/factories/all.hpp>
+#include <qlo/conversions/all.hpp>
 #include <qlo/settings.hpp>
 
+//#include <Addins/Calc/qladdin.hpp>
+//#include <Addins/Calc/calcutils.hpp>
+//#include <Addins/Calc/conversions.hpp>
 #include <calcaddins.hpp>
 #include <calcutils.hpp>
 #include <conversions.hpp>
 
 sal_Int32 SAL_CALL CalcAddins_impl::qlSettingsEvaluationDate(
-						       const ANY &Trigger)
- throw (RuntimeException) {
+        const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // invoke the utility function
@@ -55,7 +60,7 @@ sal_Int32 SAL_CALL CalcAddins_impl::qlSettingsEvaluationDate(
 
 sal_Int32 SAL_CALL CalcAddins_impl::qlSettingsSetEvaluationDate(
         const ANY &EvalDate,
-        const ANY &Trigger) throw (RuntimeException) {
+        const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes

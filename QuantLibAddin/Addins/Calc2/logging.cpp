@@ -19,24 +19,30 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// This file was generated automatically by gensrc.py.
-// Editing this file manually is not recommended.
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
 #include <qlo/qladdindefines.hpp>
-#include <qlo/Enumerations/Factories/all.hpp>
-#include <qlo/Conversions/all.hpp>
+#include <qlo/enumerations/factories/all.hpp>
+#include <qlo/conversions/all.hpp>
 #include <oh/utilities.hpp>
 
+//#include <Addins/Calc/qladdin.hpp>
+//#include <Addins/Calc/calcutils.hpp>
+//#include <Addins/Calc/conversions.hpp>
 #include <calcaddins.hpp>
 #include <calcutils.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::ohSetLogFile(
+STRING SAL_CALL CalcAddins_impl::ohLogSetFile(
         const STRING &LogFileName,
         const ANY &LogLevel,
-        const ANY &Trigger) throw (RuntimeException) {
+        const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
@@ -48,7 +54,6 @@ STRING SAL_CALL CalcAddins_impl::ohSetLogFile(
 
         // invoke the utility function
 
-	// RL: setLogFile -> logSetFile 
         std::string returnValue = ObjectHandler::logSetFile(
                 LogFileNameCpp,
                 LogLevelCpp);
@@ -62,7 +67,7 @@ STRING SAL_CALL CalcAddins_impl::ohSetLogFile(
         return returnValueCalc;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: ohSetLogFile: " << e.what());
+        OH_LOG_MESSAGE("ERROR: ohLogSetFile: " << e.what());
         THROW_RTE;
     }
 }

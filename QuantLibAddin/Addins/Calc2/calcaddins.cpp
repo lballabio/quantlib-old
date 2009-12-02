@@ -20,8 +20,8 @@
 
 #include <calcaddins.hpp>
 
-
 //XCalcAddins
+
 /******************************************************************************
  * Start implementing the methods here ...
  * Eric has put these into separate cpp files for each function.
@@ -30,6 +30,7 @@
 
 using namespace QuantLib;
 
+/*
 long CalcAddins_impl::methodOne() throw (RuntimeException) {
 //     Settings::instance().evaluationDate() = Date (27, November, 2009);
 //     Date today = Settings::instance().evaluationDate();
@@ -69,7 +70,7 @@ CalcAddins_impl::methodFive(const Sequence<Sequence<long> > &aValList)
     }
     return temp;
 }
-
+*/
 /*****************************************************************************
  * ... and stop implementing the methods here.
  *****************************************************************************/

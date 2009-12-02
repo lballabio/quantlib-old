@@ -1,7 +1,6 @@
 
 /*  
- Copyright (C) 2006 Ferdinando Ametrano
- Copyright (C) 2005 Walter Penschke
+ Copyright (C) 2006, 2007 Eric Ehlers
  
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,9 +27,6 @@
 #include <qlo/qladdindefines.hpp>
 #include <qlo/enumerations/factories/all.hpp>
 #include <qlo/conversions/all.hpp>
-#include <qlo/baseinstruments.hpp>
-#include <qlo/pricingengines.hpp>
-#include <ql/instrument.hpp>
 
 //#include <Addins/Calc/qladdin.hpp>
 //#include <Addins/Calc/calcutils.hpp>
@@ -39,7 +35,7 @@
 #include <calcutils.hpp>
 #include <conversions.hpp>
 
-double SAL_CALL CalcAddins_impl::qlInstrumentNPV(
+STRING SAL_CALL CalcAddins_impl::qlHandleCurrentLink(
         const STRING &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
@@ -50,28 +46,28 @@ double SAL_CALL CalcAddins_impl::qlInstrumentNPV(
 
         // convert object IDs into library objects
 
-        OH_GET_REFERENCE(ObjectIdLibObjPtr, ObjectIdCpp,
-            QuantLibAddin::Instrument, QuantLib::Instrument)
+        OH_GET_OBJECT(ObjectIdObjPtr, ObjectIdCpp, QuantLibAddin::Handle)
 
         // invoke the member function
 
-        double returnValue = ObjectIdLibObjPtr->NPV();
+        std::string returnValue = ObjectIdObjPtr->currentLink();
 
         // convert and return the return value
 
 
 
-        return returnValue;
+        STRING returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlInstrumentNPV: " << e.what());
+        OH_LOG_MESSAGE("ERROR: qlHandleCurrentLink: " << e.what());
         THROW_RTE;
     }
 }
 
-sal_Int32 SAL_CALL CalcAddins_impl::qlInstrumentSetPricingEngine(
+sal_Int32 SAL_CALL CalcAddins_impl::qlHandleEmpty(
         const STRING &ObjectId,
-        const STRING &PricingEngine,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
@@ -79,18 +75,49 @@ sal_Int32 SAL_CALL CalcAddins_impl::qlInstrumentSetPricingEngine(
 
         std::string ObjectIdCpp = ouStringToStlString(ObjectId);
 
-        std::string PricingEngineCpp = ouStringToStlString(PricingEngine);
-
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(ObjectIdObjPtr, ObjectIdCpp, QuantLibAddin::Instrument)
-
-        OH_GET_OBJECT(PricingEngineObjPtr, PricingEngineCpp, QuantLibAddin::PricingEngine)
+        OH_GET_OBJECT(ObjectIdObjPtr, ObjectIdCpp, QuantLibAddin::Handle)
 
         // invoke the member function
 
-        ObjectIdObjPtr->setPricingEngine(
-                PricingEngineObjPtr);
+        bool returnValue = ObjectIdObjPtr->empty();
+
+        // convert and return the return value
+
+
+
+        sal_Int32 returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;
+
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE("ERROR: qlHandleEmpty: " << e.what());
+        THROW_RTE;
+    }
+}
+
+sal_Int32 SAL_CALL CalcAddins_impl::qlRelinkableHandleLinkTo(
+        const STRING &ObjectId,
+        const ANY &CurrentLink,
+        const ANY &Trigger) throw(RuntimeException) {
+    try {
+
+        // convert input datatypes to C++ datatypes
+
+        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+
+        std::string CurrentLinkCpp;
+        calcToScalar(CurrentLinkCpp, CurrentLink);
+
+        // convert object IDs into library objects
+
+        OH_GET_OBJECT(ObjectIdObjPtr, ObjectIdCpp, QuantLibAddin::RelinkableHandle)
+
+        // invoke the member function
+
+        ObjectIdObjPtr->linkTo(
+                CurrentLinkCpp);
 
         // convert and return the return value
 
@@ -99,39 +126,7 @@ sal_Int32 SAL_CALL CalcAddins_impl::qlInstrumentSetPricingEngine(
         return 1;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlInstrumentSetPricingEngine: " << e.what());
-        THROW_RTE;
-    }
-}
-
-sal_Int32 SAL_CALL CalcAddins_impl::qlInstrumentValuationDate(
-        const STRING &ObjectId,
-        const ANY &Trigger) throw(RuntimeException) {
-    try {
-
-        // convert input datatypes to C++ datatypes
-
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
-
-        // convert object IDs into library objects
-
-        OH_GET_REFERENCE(ObjectIdLibObjPtr, ObjectIdCpp,
-            QuantLibAddin::Instrument, QuantLib::Instrument)
-
-        // invoke the member function
-
-        QuantLib::Date returnValue = ObjectIdLibObjPtr->valuationDate();
-
-        // convert and return the return value
-
-
-
-        long returnValueCalc;
-        scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
-
-    } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlInstrumentValuationDate: " << e.what());
+        OH_LOG_MESSAGE("ERROR: qlRelinkableHandleLinkTo: " << e.what());
         THROW_RTE;
     }
 }

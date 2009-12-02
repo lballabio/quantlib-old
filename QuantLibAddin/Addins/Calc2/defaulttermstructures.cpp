@@ -1,6 +1,6 @@
 
 /*  
- Copyright (C) 2004, 2005 Eric Ehlers
+ Copyright (C) 2009 Ferdinando Ametrano
  
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,10 +28,12 @@
 #include <qlo/enumerations/factories/all.hpp>
 #include <qlo/conversions/all.hpp>
 #include <oh/enumerations/typefactory.hpp>
-#include <qlo/processes.hpp>
-#include <qlo/volatilities.hpp>
-#include <qlo/valueobjects/vo_processes.hpp>
-
+#include <qlo/enumerations/factories/calendarfactory.hpp>
+#include <qlo/handleimpl.hpp>
+#include <qlo/conversions/coercetermstructure.hpp>
+#include <qlo/valueobjects/vo_defaulttermstructures.hpp>
+#include <qlo/loop/loop_defaulttermstructures.hpp>
+#include <loop.hpp>
 //#include <Addins/Calc/qladdin.hpp>
 //#include <Addins/Calc/calcutils.hpp>
 //#include <Addins/Calc/conversions.hpp>
@@ -39,14 +41,12 @@
 #include <calcutils.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::qlGeneralizedBlackScholesProcess(
+STRING SAL_CALL CalcAddins_impl::qlFlatHazardRate(
         const STRING &ObjectId,
-        const STRING &BlackVolID,
-        double Underlying,
+        const ANY &NDays,
+        const ANY &Calendar,
+        const STRING &Rate,
         const ANY &DayCounter,
-        const ANY &SettlementDate,
-        double RiskFreeRate,
-        double DividendYield,
         const ANY &Permanent,
         const ANY &Trigger,
         sal_Int32 Overwrite) throw(RuntimeException) {
@@ -56,28 +56,33 @@ STRING SAL_CALL CalcAddins_impl::qlGeneralizedBlackScholesProcess(
 
         std::string ObjectIdCpp = ouStringToStlString(ObjectId);
 
-        std::string BlackVolIDCpp = ouStringToStlString(BlackVolID);
+        long NDaysCpp;
+        calcToScalar(NDaysCpp, NDays);
+
+        std::string CalendarCpp;
+        calcToScalar(CalendarCpp, Calendar);
+
+        std::string RateCpp = ouStringToStlString(Rate);
 
         std::string DayCounterCpp;
         calcToScalar(DayCounterCpp, DayCounter);
 
-        ObjectHandler::property_t SettlementDateCpp;
-        calcToScalar(SettlementDateCpp, SettlementDate);
-
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
 
-        // convert input datatypes to QuantLib datatypes
-
-        QuantLib::Date SettlementDateLib;
-        calcToScalar(SettlementDateLib, SettlementDate);
-
         // convert object IDs into library objects
 
-        OH_GET_REFERENCE(BlackVolIDLibObjPtr, BlackVolIDCpp,
-            QuantLibAddin::BlackVolTermStructure, QuantLib::BlackVolTermStructure)
+        OH_GET_OBJECT(RateCoerce, RateCpp, ObjectHandler::Object)
+        QuantLib::Handle<QuantLib::Quote> RateLibObj =
+            QuantLibAddin::CoerceHandle<
+                QuantLibAddin::Quote,
+                QuantLib::Quote>()(
+                    RateCoerce);
 
         // convert input datatypes to QuantLib enumerated datatypes
+
+        QuantLib::Calendar CalendarEnum =
+            ObjectHandler::Create<QuantLib::Calendar>()(CalendarCpp);
 
         QuantLib::DayCounter DayCounterEnum =
             ObjectHandler::Create<QuantLib::DayCounter>()(DayCounterCpp);
@@ -85,27 +90,23 @@ STRING SAL_CALL CalcAddins_impl::qlGeneralizedBlackScholesProcess(
         // Construct the Value Object
 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new QuantLibAddin::ValueObjects::qlGeneralizedBlackScholesProcess(
+            new QuantLibAddin::ValueObjects::qlFlatHazardRate(
                 ObjectIdCpp,
-                BlackVolIDCpp,
-                Underlying,
+                NDaysCpp,
+                CalendarCpp,
+                RateCpp,
                 DayCounterCpp,
-                SettlementDateCpp,
-                RiskFreeRate,
-                DividendYield,
                 PermanentCpp));
 
         // Construct the Object
         
         boost::shared_ptr<ObjectHandler::Object> object(
-            new QuantLibAddin::GeneralizedBlackScholesProcess(
+            new QuantLibAddin::FlatHazardRate(
                 valueObject,
-                BlackVolIDLibObjPtr,
-                Underlying,
+                NDaysCpp,
+                CalendarEnum,
+                RateLibObj,
                 DayCounterEnum,
-                SettlementDateLib,
-                RiskFreeRate,
-                DividendYield,
                 PermanentCpp));
 
         // Store the Object in the Repository
@@ -122,7 +123,7 @@ STRING SAL_CALL CalcAddins_impl::qlGeneralizedBlackScholesProcess(
         return returnValueCalc;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlGeneralizedBlackScholesProcess: " << e.what());
+        OH_LOG_MESSAGE("ERROR: qlFlatHazardRate: " << e.what());
         THROW_RTE;
     }
 }

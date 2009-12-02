@@ -93,124 +93,15 @@ public:
      * bottom of the class decleration with #include <<Addins/Calc/qlo_all.hpp>
      *************************************************************************/
     // basic examples
-    long SAL_CALL methodOne() throw (RuntimeException);;
-    long SAL_CALL methodTwo(long dummy) throw (RuntimeException);
-    double SAL_CALL methodThree(long dummy, double m) throw (RuntimeException);
-    double SAL_CALL methodFour(double m) throw (RuntimeException);
-    Sequence<Sequence<long> > 
-    methodFive(const Sequence<Sequence<long> > &aValList)
-        throw (RuntimeException);
+//     long SAL_CALL methodOne() throw (RuntimeException);;
+//     long SAL_CALL methodTwo(long dummy) throw (RuntimeException);
+//     double SAL_CALL methodThree(long dummy, double m) throw (RuntimeException);
+//     double SAL_CALL methodFour(double m) throw (RuntimeException);
+//     Sequence<Sequence<long> > 
+//     methodFive(const Sequence<Sequence<long> > &aValList)
+//         throw (RuntimeException);
 
-    // logging
-
-    // Note: Using #include leads to an error when deploying the uno package.
-    //       Explicitly declaring the function works.
-    // #include "logging.hpp"
-    STRING SAL_CALL ohSetLogFile(const STRING &LogFileName,
-                                 const ANY &LogLevel,
-                                 const ANY &Trigger) 
-        throw (RuntimeException);
-
-    // utilities
-    STRING SAL_CALL qlVersion(const ANY &Trigger) throw (RuntimeException);
-    STRING SAL_CALL qlAddinVersion(const ANY &Trigger) throw (RuntimeException);
-    STRING SAL_CALL ohVersion(const ANY &Trigger) throw (RuntimeException);
-
-    // exerxise
-
-    STRING SAL_CALL qlEuropeanExercise(const STRING &ObjectId,
-                                       const ANY &ExpiryDate,
-                                       const ANY &Permanent,
-                                       const ANY &Trigger,
-                                       sal_Int32 Overwrite) 
-        throw (RuntimeException);
-
-    // instruments
-
-    double SAL_CALL qlInstrumentNPV(
-                                    const STRING &ObjectId,
-                                    const ANY &Trigger) 
-        throw (RuntimeException);
-
-    sal_Int32 SAL_CALL qlInstrumentSetPricingEngine(
-                                                    const STRING &ObjectId,
-                                                    const STRING &PricingEngine,
-                                                    const ANY &Trigger)
-        throw (RuntimeException);
-
-    // options
-        
-    STRING SAL_CALL qlVanillaOption(
-                                    const STRING &ObjectId,
-                                    const STRING &Payoff,
-                                    const STRING &Exercise,
-                                    const ANY &Permanent,
-                                    const ANY &Trigger,
-                                    sal_Int32 Overwrite) 
-        throw (RuntimeException);
-
-    // payoffs
-
-    STRING SAL_CALL qlStrikedTypePayoff(
-                                        const STRING &ObjectId,
-                                        const STRING &PayoffID,
-                                        const STRING &OptionType,
-                                        double Strike,
-                                        const ANY &ThirdParameter,
-                                        const ANY &Permanent,
-                                        const ANY &Trigger,
-                                        sal_Int32 Overwrite) 
-        throw (RuntimeException);
-
-    // pricingengines
-
-    STRING SAL_CALL qlPricingEngine(
-                                    const STRING &ObjectId,
-                                    const STRING &EngineID,
-                                    const STRING &ProcessID,
-                                    const ANY &Permanent,
-                                    const ANY &Trigger,
-                                    sal_Int32 Overwrite) 
-        throw (RuntimeException);
-
-    // processes
-
-    STRING SAL_CALL qlGeneralizedBlackScholesProcess(
-        const STRING &ObjectId,
-        const STRING &BlackVolID,
-        double Underlying,
-        const ANY &DayCounter,
-        const ANY &SettlementDate,
-        double RiskFreeRate,
-        double DividendYield,
-        const ANY &Permanent,
-        const ANY &Trigger,
-        sal_Int32 Overwrite) 
-        throw (RuntimeException);
-
-    // settings
-
-    sal_Int32 SAL_CALL qlSettingsEvaluationDate(
-        const ANY &Trigger) 
-        throw (RuntimeException);
-        
-   sal_Int32 SAL_CALL qlSettingsSetEvaluationDate(
-        const ANY &EvalDate,
-        const ANY &Trigger) 
-        throw (RuntimeException);
-
-    // volatilitites
-
-    STRING SAL_CALL qlBlackConstantVol(
-        const STRING &ObjectId,
-        const ANY &SettlementDate,
-        const STRING &Calendar,
-        double Volatility,
-        const ANY &DayCounter,
-        const ANY &Permanent,
-        const ANY &Trigger,
-        sal_Int32 Overwrite)
-        throw (RuntimeException);
+    #include "qlo_all.hpp"
 
     /*************************************************************************
      * ... and stop declaring methods here.

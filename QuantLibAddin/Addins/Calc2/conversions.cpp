@@ -56,6 +56,10 @@ void calcToScalar(ObjectHandler::property_t &ret, const ANY &value) {
     }
 }
 
+void calcToScalar(ObjectHandler::property_t &ret, const STRING &id) {
+  ret = ObjectHandler::property_t(ouStringToStlString(id));
+}
+
 //void calcToScalar(QuantLib::Calendar &ret, const STRING &id2) {
 //    std::string id = ouStringToStlString(id2);
 //    if (QuantLibAddin::Create<QuantLib::Calendar>().checkType(id)) {
@@ -138,6 +142,10 @@ void scalarToCalc(long &ret, const QuantLib::Date &in) {
 
 void scalarToCalc(double &ret, const QuantLib::Real &in) {
     ret = in;
+}
+
+void scalarToCalc(STRING &ret, const QuantLib::Calendar &in) {
+  ret = STRFROMASCII( in.name().c_str() );
 }
 
 void vectorToCalc(SEQSEQ(sal_Int32) &ret, const std::vector<QuantLib::Date> &v) {

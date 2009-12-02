@@ -1,0 +1,818 @@
+
+/*  
+ Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
+ Copyright (C) 2009 Roland Lichters
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.calc.idlhead
+
+#include <com/sun/star/uno/XInterface.idl>
+#include <com/sun/star/lang/XInitialization.idl>
+#include <com/sun/star/lang/XServiceName.idl>
+#include <com/sun/star/lang/XLocalizable.idl>
+#include <com/sun/star/sheet/XAddIn.idl>
+
+module quantlib {
+
+  interface XCalcAddins {
+
+                // logging
+
+                string ohLogSetFile(
+                        [in] string LogFileName,
+                        [in] any LogLevel,
+                        [in] any Trigger);
+
+                // calendar
+
+                long qlCalendarAddHoliday(
+                        [in] string calendar,
+                        [in] any Date,
+                        [in] any Trigger);
+
+                string qlCalendarName(
+                        [in] string calendar,
+                        [in] any Trigger);
+
+                long qlCalendarRemoveHoliday(
+                        [in] string calendar,
+                        [in] any Date,
+                        [in] any Trigger);
+
+                // capfloor
+
+                string qlCapFloor(
+                        [in] string ObjectId,
+                        [in] string OptionType,
+                        [in] string LegID,
+                        [in] sequence<sequence<double> > Strikes,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                long qlCapFloorMaturityDate(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                long qlCapFloorStartDate(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                string qlMakeCapFloor(
+                        [in] string ObjectId,
+                        [in] string OptionType,
+                        [in] string Length,
+                        [in] string IborIndex,
+                        [in] any Strike,
+                        [in] string ForwardStart,
+                        [in] string PricingEngineID,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // capletvolstructure
+
+                string qlConstantOptionletVolatility(
+                        [in] string ObjectId,
+                        [in] any NDays,
+                        [in] string Calendar,
+                        [in] string BusinessDayConvention,
+                        [in] string Volatility,
+                        [in] any DayCounter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlRelinkableHandleOptionletVolatilityStructure(
+                        [in] string ObjectId,
+                        [in] any CurrentLink,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // defaulttermstructures
+
+                string qlFlatHazardRate(
+                        [in] string ObjectId,
+                        [in] any NDays,
+                        [in] any Calendar,
+                        [in] string Rate,
+                        [in] any DayCounter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // exercise
+
+                string qlEuropeanExercise(
+                        [in] string ObjectId,
+                        [in] any ExpiryDate,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // handles
+
+                string qlHandleCurrentLink(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                long qlHandleEmpty(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                long qlRelinkableHandleLinkTo(
+                        [in] string ObjectId,
+                        [in] any CurrentLink,
+                        [in] any Trigger);
+
+                // index
+
+                string qlBMAIndex(
+                        [in] string ObjectId,
+                        [in] any YieldCurve,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlEonia(
+                        [in] string ObjectId,
+                        [in] any YieldCurve,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlEuribor(
+                        [in] string ObjectId,
+                        [in] string Tenor,
+                        [in] any YieldCurve,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlEuribor365(
+                        [in] string ObjectId,
+                        [in] string Tenor,
+                        [in] any YieldCurve,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlIborIndex(
+                        [in] string ObjectId,
+                        [in] string FamilyName,
+                        [in] string Tenor,
+                        [in] long FixingDays,
+                        [in] string Currency,
+                        [in] string Calendar,
+                        [in] string BDayConvention,
+                        [in] long EndOfMonth,
+                        [in] string DayCounter,
+                        [in] any FwdCurve,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlLibor(
+                        [in] string ObjectId,
+                        [in] string Currency,
+                        [in] string Tenor,
+                        [in] any YieldCurve,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlOvernightIndex(
+                        [in] string ObjectId,
+                        [in] string FamilyName,
+                        [in] long FixingDays,
+                        [in] string Currency,
+                        [in] string Calendar,
+                        [in] string DayCounter,
+                        [in] any YieldCurve,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // instruments
+
+                double qlInstrumentNPV(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                long qlInstrumentSetPricingEngine(
+                        [in] string ObjectId,
+                        [in] string PricingEngine,
+                        [in] any Trigger);
+
+                long qlInstrumentValuationDate(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                // options
+
+                string qlVanillaOption(
+                        [in] string ObjectId,
+                        [in] string Payoff,
+                        [in] string Exercise,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // overnightindexedswap
+
+                string qlMakeDatedOIS(
+                        [in] string ObjectId,
+                        [in] any StartDate,
+                        [in] any EndDate,
+                        [in] string OvernightIndex,
+                        [in] any FixedRate,
+                        [in] any FixDayCounter,
+                        [in] any Spread,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlMakeOIS(
+                        [in] string ObjectId,
+                        [in] string SwapTenor,
+                        [in] string OvernightIndex,
+                        [in] any FixedRate,
+                        [in] string ForwardStart,
+                        [in] any FixDayCounter,
+                        [in] any Spread,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlOvernightIndexedSwap(
+                        [in] string ObjectId,
+                        [in] any PayerReceiver,
+                        [in] any Nominal,
+                        [in] string Schedule,
+                        [in] any FixedRate,
+                        [in] string FixDayCounter,
+                        [in] string OvernightIndex,
+                        [in] any Spread,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                double qlOvernightIndexedSwapFairRate(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlOvernightIndexedSwapFairSpread(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlOvernightIndexedSwapFixedLegNPV(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlOvernightIndexedSwapFixedRate(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlOvernightIndexedSwapNominal(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlOvernightIndexedSwapOvernightLegBPS(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlOvernightIndexedSwapOvernightLegNPV(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlOvernightIndexedSwapSpread(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                // payoffs
+
+                string qlStrikedTypePayoff(
+                        [in] string ObjectId,
+                        [in] string PayoffID,
+                        [in] string OptionType,
+                        [in] double Strike,
+                        [in] any ThirdParameter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // piecewiseyieldcurve
+
+                string qlPiecewiseYieldCurve(
+                        [in] string ObjectId,
+                        [in] any NDays,
+                        [in] string Calendar,
+                        [in] sequence<sequence<any> > RateHelpers,
+                        [in] any DayCounter,
+                        [in] sequence<sequence<any> > Jumps,
+                        [in] sequence<sequence<any> > JumpDates,
+                        [in] any Accuracy,
+                        [in] any TraitsID,
+                        [in] any InterpolatorID,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // pricingengines
+
+                string qlAnalyticCapFloorEngine(
+                        [in] string ObjectId,
+                        [in] string HandleModel,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlBinomialPricingEngine(
+                        [in] string ObjectId,
+                        [in] string EngineID,
+                        [in] string ProcessID,
+                        [in] long TimeSteps,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlBlackCapFloorEngine(
+                        [in] string ObjectId,
+                        [in] string YieldCurve,
+                        [in] string VolTS,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlBlackSwaptionEngine(
+                        [in] string ObjectId,
+                        [in] string YieldCurve,
+                        [in] string VolTS,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlBlackSwaptionEngine2(
+                        [in] string ObjectId,
+                        [in] string YieldCurve,
+                        [in] string Vol,
+                        [in] any DayCounter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlBondEngine(
+                        [in] string ObjectId,
+                        [in] string YieldCurve,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlDiscountingSwapEngine(
+                        [in] string ObjectId,
+                        [in] string YieldCurve,
+                        [in] any IncludeSettlDate,
+                        [in] any SettlementDate,
+                        [in] any NpvDate,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlPricingEngine(
+                        [in] string ObjectId,
+                        [in] string EngineID,
+                        [in] string ProcessID,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // processes
+
+                string qlGeneralizedBlackScholesProcess(
+                        [in] string ObjectId,
+                        [in] string BlackVolID,
+                        [in] double Underlying,
+                        [in] any DayCounter,
+                        [in] any SettlementDate,
+                        [in] double RiskFreeRate,
+                        [in] double DividendYield,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // quotes
+
+                double qlQuoteValue(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                string qlRelinkableHandleQuote(
+                        [in] string ObjectId,
+                        [in] any CurrentLink,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlSimpleQuote(
+                        [in] string ObjectId,
+                        [in] any Value,
+                        [in] double TickValue,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                long qlSimpleQuoteReset(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlSimpleQuoteSetValue(
+                        [in] string ObjectId,
+                        [in] any Value,
+                        [in] any Trigger);
+
+                // ratehelpers
+
+                string qlBondHelper(
+                        [in] string ObjectId,
+                        [in] string CleanPrice,
+                        [in] string Bond,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlDatedOISRateHelper(
+                        [in] string ObjectId,
+                        [in] any StartDate,
+                        [in] any EndDate,
+                        [in] string FixedRate,
+                        [in] string ONIndex,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlDepositRateHelper(
+                        [in] string ObjectId,
+                        [in] string Rate,
+                        [in] string IborIndex,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlDepositRateHelper2(
+                        [in] string ObjectId,
+                        [in] string Rate,
+                        [in] string Tenor,
+                        [in] long FixingDays,
+                        [in] string Calendar,
+                        [in] string Convention,
+                        [in] long EndOfMonth,
+                        [in] string DayCounter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlFixedRateBondHelper(
+                        [in] string ObjectId,
+                        [in] string CleanPrice,
+                        [in] long SettlementDays,
+                        [in] any FaceAmount,
+                        [in] string ScheduleID,
+                        [in] sequence<sequence<double> > Coupons,
+                        [in] string DayCounter,
+                        [in] any PaymentBDC,
+                        [in] any Redemption,
+                        [in] any IssueDate,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlFraRateHelper(
+                        [in] string ObjectId,
+                        [in] string Rate,
+                        [in] string PeriodToStart,
+                        [in] string IborIndex,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlFraRateHelper2(
+                        [in] string ObjectId,
+                        [in] string Rate,
+                        [in] string PeriodToStart,
+                        [in] long LengthInMonths,
+                        [in] long FixingDays,
+                        [in] string Calendar,
+                        [in] string Convention,
+                        [in] long EndOfMonth,
+                        [in] string DayCounter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlOISRateHelper(
+                        [in] string ObjectId,
+                        [in] long SettlDays,
+                        [in] string Tenor,
+                        [in] string FixedRate,
+                        [in] string ONIndex,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlSwapRateHelper(
+                        [in] string ObjectId,
+                        [in] string Rate,
+                        [in] string SwapIndex,
+                        [in] string Spread,
+                        [in] string ForwardStart,
+                        [in] any DiscountingCurve,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlSwapRateHelper2(
+                        [in] string ObjectId,
+                        [in] string Rate,
+                        [in] string Tenor,
+                        [in] string Calendar,
+                        [in] string FixedLegFrequency,
+                        [in] string FixedLegConvention,
+                        [in] string FixedLegDayCounter,
+                        [in] string IborIndex,
+                        [in] string Spread,
+                        [in] string ForwardStart,
+                        [in] any DiscountingCurve,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                double qlSwapRateHelperSpread(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                // schedule
+
+                string qlSchedule(
+                        [in] string ObjectId,
+                        [in] any EffectiveDate,
+                        [in] any TerminationDate,
+                        [in] string Tenor,
+                        [in] string Calendar,
+                        [in] string Convention,
+                        [in] string TermDateConv,
+                        [in] string GenRule,
+                        [in] any EndOfMonth,
+                        [in] any FirstDate,
+                        [in] any NextToLastDate,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                long qlScheduleSize(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                // settings
+
+                long qlSettingsEvaluationDate(
+                        [in] any Trigger);
+
+                long qlSettingsSetEvaluationDate(
+                        [in] any EvalDate,
+                        [in] any Trigger);
+
+                // swaption
+
+                string qlMakeSwaption(
+                        [in] string ObjectId,
+                        [in] string SwapIndex,
+                        [in] string OptionTenor,
+                        [in] any Strike,
+                        [in] string PricingEngineID,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlSwaption(
+                        [in] string ObjectId,
+                        [in] string VanillaSwap,
+                        [in] string Exercise,
+                        [in] string SettlementType,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // swaptionvolstructure
+
+                string qlConstantSwaptionVolatility(
+                        [in] string ObjectId,
+                        [in] any NDays,
+                        [in] string Calendar,
+                        [in] string BusinessDayConvention,
+                        [in] string Volatility,
+                        [in] any DayCounter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // termstructures
+
+                string qlDiscountCurve(
+                        [in] string ObjectId,
+                        [in] sequence<sequence<any> > CurveDates,
+                        [in] sequence<sequence<double> > CurveDiscounts,
+                        [in] any DayCounter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlFlatForward(
+                        [in] string ObjectId,
+                        [in] any NDays,
+                        [in] any Calendar,
+                        [in] string Rate,
+                        [in] any DayCounter,
+                        [in] any Compounding,
+                        [in] any Frequency,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlForwardCurve(
+                        [in] string ObjectId,
+                        [in] sequence<sequence<any> > CurveDates,
+                        [in] sequence<sequence<double> > ForwardYields,
+                        [in] any DayCounter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlForwardSpreadedTermStructure(
+                        [in] string ObjectId,
+                        [in] string BaseYieldCurve,
+                        [in] string Spread,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlImpliedTermStructure(
+                        [in] string ObjectId,
+                        [in] string BaseYieldCurve,
+                        [in] any ReferenceDate,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlRelinkableHandleYieldTermStructure(
+                        [in] string ObjectId,
+                        [in] any CurrentLink,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlTermStructureCalendar(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                long qlTermStructureMaxDate(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                long qlTermStructureReferenceDate(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                long qlTermStructureSettlementDays(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlYieldTSParRate(
+                        [in] string ObjectId,
+                        [in] long Tenor,
+                        [in] any StartDate,
+                        [in] string ResultDayCounter,
+                        [in] any Frequency,
+                        [in] any AllowExtrapolation,
+                        [in] any Trigger);
+
+                double qlYieldTSParRate2(
+                        [in] string ObjectId,
+                        [in] sequence<sequence<any> > Dates,
+                        [in] string ResultDayCounter,
+                        [in] any Frequency,
+                        [in] any AllowExtrapolation,
+                        [in] any Trigger);
+
+                string qlZeroCurve(
+                        [in] string ObjectId,
+                        [in] sequence<sequence<any> > CurveDates,
+                        [in] sequence<sequence<double> > CurveYields,
+                        [in] any DayCounter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // utilities
+
+                string qlAddinVersion(
+                        [in] any Trigger);
+
+                string qlVersion(
+                        [in] any Trigger);
+
+                // vanillaswap
+
+                string qlMakeVanillaSwap(
+                        [in] string ObjectId,
+                        [in] string SwapTenor,
+                        [in] string IborIndex,
+                        [in] any FixedRate,
+                        [in] string ForwardStart,
+                        [in] any FixDayCounter,
+                        [in] any Spread,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                string qlVanillaSwap(
+                        [in] string ObjectId,
+                        [in] any PayerReceiver,
+                        [in] any Nominal,
+                        [in] string FixSchedule,
+                        [in] any FixedRate,
+                        [in] string FixDayCounter,
+                        [in] string FloatingLegSchedule,
+                        [in] string IborIndex,
+                        [in] any Spread,
+                        [in] string FloatingLegDayCounter,
+                        [in] any PaymentConvention,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                double qlVanillaSwapFairRate(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlVanillaSwapFairSpread(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlVanillaSwapFixedLegBPS(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlVanillaSwapFixedLegNPV(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlVanillaSwapFloatingLegBPS(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                double qlVanillaSwapFloatingLegNPV(
+                        [in] string ObjectId,
+                        [in] any Trigger);
+
+                // volatilities
+
+                string qlBlackConstantVol(
+                        [in] string ObjectId,
+                        [in] any SettlementDate,
+                        [in] string Calendar,
+                        [in] double Volatility,
+                        [in] any DayCounter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+
+
+  };
+
+  service CalcAddins {
+    interface XCalcAddins;
+    interface com::sun::star::lang::XInitialization;
+    interface com::sun::star::lang::XServiceName;
+    interface com::sun::star::sheet::XAddIn;           
+  };
+};
+

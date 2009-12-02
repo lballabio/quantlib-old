@@ -17,21 +17,27 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// This file was generated automatically by gensrc.py.
-// Editing this file manually is not recommended.
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
 #include <qlo/qladdindefines.hpp>
-#include <qlo/Enumerations/Factories/all.hpp>
-#include <qlo/Conversions/all.hpp>
-#include <oh/Enumerations/typefactory.hpp>
+#include <qlo/enumerations/factories/all.hpp>
+#include <qlo/conversions/all.hpp>
+#include <oh/enumerations/typefactory.hpp>
 #include <qlo/options.hpp>
 #include <qlo/payoffs.hpp>
 #include <qlo/exercise.hpp>
 #include <ql/instruments/oneassetoption.hpp>
-#include <qlo/ValueObjects/vo_options.hpp>
+#include <qlo/valueobjects/vo_options.hpp>
 
+//#include <Addins/Calc/qladdin.hpp>
+//#include <Addins/Calc/calcutils.hpp>
+//#include <Addins/Calc/conversions.hpp>
 #include <calcaddins.hpp>
 #include <calcutils.hpp>
 #include <conversions.hpp>
@@ -42,7 +48,7 @@ STRING SAL_CALL CalcAddins_impl::qlVanillaOption(
         const STRING &Exercise,
         const ANY &Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw (RuntimeException) {
+        sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
@@ -58,10 +64,10 @@ STRING SAL_CALL CalcAddins_impl::qlVanillaOption(
 
         // convert object IDs into library objects
 
-        OH_GET_REFERENCE(PayoffLibObj, PayoffCpp,
+        OH_GET_REFERENCE(PayoffLibObjPtr, PayoffCpp,
             QuantLibAddin::StrikedTypePayoff, QuantLib::StrikedTypePayoff)
 
-        OH_GET_REFERENCE(ExerciseLibObj, ExerciseCpp,
+        OH_GET_REFERENCE(ExerciseLibObjPtr, ExerciseCpp,
             QuantLibAddin::Exercise, QuantLib::Exercise)
 
         // Construct the Value Object
@@ -78,8 +84,8 @@ STRING SAL_CALL CalcAddins_impl::qlVanillaOption(
         boost::shared_ptr<ObjectHandler::Object> object(
             new QuantLibAddin::VanillaOption(
                 valueObject,
-                PayoffLibObj,
-                ExerciseLibObj,
+                PayoffLibObjPtr,
+                ExerciseLibObjPtr,
                 PermanentCpp));
 
         // Store the Object in the Repository

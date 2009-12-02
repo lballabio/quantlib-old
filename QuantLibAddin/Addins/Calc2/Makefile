@@ -129,23 +129,39 @@ COMP_REGISTERFLAG = $(SAMPLE_GEN_OUT)/devguide_$(COMP_NAME)_register_component.f
 COMP_TYPEFLAG = $(SAMPLE_GEN_OUT)/devguide_$(COMP_NAME)_types.flag
 
 # RL: enter the IDL file name here
-IDLFILES = calcaddins.idl
+#IDLFILES = calcaddins.idl
+IDLFILES = QuantLibAddinCalc.idl
 
 # RL: enter all sources here
 CPPFILES = calcaddins.cpp \
 	calcutils.cpp \
 	conversions.cpp \
 	init.cpp \
-	funcdef.cpp \
-	logging.cpp \
-	utilities.cpp \
+	calendar.cpp \
+	capfloor.cpp \
+	capletvolstructure.cpp \
+	defaulttermstructures.cpp \
 	exercise.cpp \
+	funcdef.cpp \
+	handles.cpp \
+	index.cpp \
 	instruments.cpp \
+	logging.cpp \
 	options.cpp \
+	overnightindexedswap.cpp \
 	payoffs.cpp \
+	piecewiseyieldcurve.cpp \
 	pricingengines.cpp \
 	processes.cpp \
+	quotes.cpp \
+	ratehelpers.cpp \
+	schedule.cpp \
 	settings.cpp \
+	swaption.cpp \
+	swaptionvolstructure.cpp \
+	termstructures.cpp \
+	utilities.cpp \
+	vanillaswap.cpp \
 	volatilities.cpp
 
 SLOFILES = $(patsubst %.cpp,$(SAMPLE_SLO_OUT)/%.$(OBJ_EXT),$(CPPFILES))

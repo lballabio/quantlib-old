@@ -18,23 +18,29 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-// This file was generated automatically by gensrc.py.
-// Editing this file manually is not recommended.
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
 #include <qlo/qladdindefines.hpp>
-#include <qlo/Enumerations/Factories/all.hpp>
-#include <qlo/Conversions/all.hpp>
+#include <qlo/enumerations/factories/all.hpp>
+#include <qlo/conversions/all.hpp>
 #include <qlo/utilities.hpp>
 #include <ql/models/marketmodels/utilities.hpp>
 
+//#include <Addins/Calc/qladdin.hpp>
+//#include <Addins/Calc/calcutils.hpp>
+//#include <Addins/Calc/conversions.hpp>
 #include <calcaddins.hpp>
 #include <calcutils.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::qlAddinVersion(const ANY &Trigger) 
-  throw (RuntimeException) {
+STRING SAL_CALL CalcAddins_impl::qlAddinVersion(
+        const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // invoke the utility function
@@ -55,8 +61,8 @@ STRING SAL_CALL CalcAddins_impl::qlAddinVersion(const ANY &Trigger)
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlVersion(const ANY &Trigger) 
-  throw (RuntimeException) {
+STRING SAL_CALL CalcAddins_impl::qlVersion(
+        const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // invoke the utility function
@@ -71,22 +77,6 @@ STRING SAL_CALL CalcAddins_impl::qlVersion(const ANY &Trigger)
         scalarToCalc(returnValueCalc, returnValue);
         return returnValueCalc;
 
-    } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlVersion: " << e.what());
-        THROW_RTE;
-    }
-}
-
-STRING SAL_CALL CalcAddins_impl::ohVersion(const ANY &Trigger) 
-    throw (RuntimeException) {
-    try {
-        // invoke the utility function
-        //std::string returnValue = "fake object handler version";
-        std::string returnValue = OBJHANDLER_VERSION;
-        // convert and return the return value
-        STRING returnValueCalc;
-        scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
     } catch (const std::exception &e) {
         OH_LOG_MESSAGE("ERROR: qlVersion: " << e.what());
         THROW_RTE;

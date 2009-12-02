@@ -1,15 +1,27 @@
-/*	
-    Roland Lichters, 2009
 
-    Simple Calc add-in example in C++
+/*  
+ Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
+ Copyright (C) 2009 Roland Lichters
+ 
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
 
-    Based on: 
-    http://wiki.services.openoffice.org/wiki/Calc/Add-In/Simple_Calc_Add-In
-    http://wiki.services.openoffice.org/wiki/CompleteAddIn
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef ORG_OPENOFFICE_SHEET_ADDIN_XCALCADDIN_IDL
-#define ORG_OPENOFFICE_SHEET_ADDIN_XCALCADDIN_IDL
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.calc.idlhead
 
 #include <com/sun/star/uno/XInterface.idl>
 #include <com/sun/star/lang/XInitialization.idl>
@@ -21,105 +33,163 @@ module quantlib {
 
   interface XCalcAddins {
 
-    // basic examples
+                // logging
 
-    long methodOne();
-    long methodTwo([in] long intDummy);
-    double methodThree([in] long intDummy, [in] double doubleDummy);
-    double methodFour([in] double m);
-    sequence<sequence<long > > 
-    methodFive([in] sequence<sequence<long > > aValList);
+                string ohLogSetFile(
+                        [in] string LogFileName,
+                        [in] any LogLevel,
+                        [in] any Trigger);
 
-    // logging
+                // capfloor
 
-    string ohSetLogFile([in] string LogFileName,
-			[in] any LogLevel,
-			[in] any Trigger);
+                string qlCapFloor(
+                        [in] string ObjectId,
+                        [in] string OptionType,
+                        [in] string LegID,
+                        [in] sequence<sequence<double> > Strikes,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
 
-    // utilities
+                double qlCapFloorAtmRate(
+                        [in] string ObjectId,
+                        [in] string YieldCurve,
+                        [in] any Trigger);
 
-    string qlVersion([in] any Trigger);
+                double qlCapFloorImpliedVolatility(
+                        [in] string ObjectId,
+                        [in] double Price,
+                        [in] string YieldCurve,
+                        [in] any Guess,
+                        [in] any Accuracy,
+                        [in] any MaxIter,
+                        [in] any Trigger);
 
-    string qlAddinVersion([in] any Trigger);
-    
-    string ohVersion([in] any Trigger);
+                long qlCapFloorMaturityDate(
+                        [in] string ObjectId,
+                        [in] any Trigger);
 
-    // exercise
+                long qlCapFloorStartDate(
+                        [in] string ObjectId,
+                        [in] any Trigger);
 
-    string qlEuropeanExercise([in] string ObjectId,
-			      [in] any ExpiryDate,
-			      [in] any Permanent,
-			      [in] any Trigger,
-			      [in] long Overwrite);
+                string qlCapFloorType(
+                        [in] string ObjectId,
+                        [in] any Trigger);
 
-    // instruments
+                string qlMakeCapFloor(
+                        [in] string ObjectId,
+                        [in] string OptionType,
+                        [in] string Length,
+                        [in] string IborIndex,
+                        [in] any Strike,
+                        [in] string ForwardStart,
+                        [in] string PricingEngineID,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
 
-    double qlInstrumentNPV([in] string ObjectId,
-			   [in] any Trigger);
+                // exercise
 
-    long qlInstrumentSetPricingEngine([in] string ObjectId,
-				      [in] string PricingEngine,
-				      [in] any Trigger);
+                string qlEuropeanExercise(
+                        [in] string ObjectId,
+                        [in] any ExpiryDate,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
 
-    // options
+                // instruments
 
-    string qlVanillaOption([in] string ObjectId,
-			   [in] string Payoff,
-			   [in] string Exercise,
-			   [in] any Permanent,
-			   [in] any Trigger,
-			   [in] long Overwrite);
+                double qlInstrumentNPV(
+                        [in] string ObjectId,
+                        [in] any Trigger);
 
-    // payoffs
+                long qlInstrumentSetPricingEngine(
+                        [in] string ObjectId,
+                        [in] string PricingEngine,
+                        [in] any Trigger);
 
-    string qlStrikedTypePayoff([in] string ObjectId,
-			       [in] string PayoffID,
-			       [in] string OptionType,
-			       [in] double Strike,
-			       [in] any ThirdParameter,
-			       [in] any Permanent,
-			       [in] any Trigger,
-			       [in] long Overwrite);
+                long qlInstrumentValuationDate(
+                        [in] string ObjectId,
+                        [in] any Trigger);
 
-    // pricingengines
+                // options
 
-    string qlPricingEngine([in] string ObjectId,
-			   [in] string EngineID,
-			   [in] string ProcessID,
-			   [in] any Permanent,
-			   [in] any Trigger,
-			   [in] long Overwrite);
+                string qlVanillaOption(
+                        [in] string ObjectId,
+                        [in] string Payoff,
+                        [in] string Exercise,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
 
-    // processes
+                // payoffs
 
-    string qlGeneralizedBlackScholesProcess([in] string ObjectId,
-					    [in] string BlackVolID,
-					    [in] double Underlying,
-					    [in] any DayCounter,
-					    [in] any SettlementDate,
-					    [in] double RiskFreeRate,
-					    [in] double DividendYield,
-					    [in] any Permanent,
-					    [in] any Trigger,
-					    [in] long Overwrite);
+                string qlStrikedTypePayoff(
+                        [in] string ObjectId,
+                        [in] string PayoffID,
+                        [in] string OptionType,
+                        [in] double Strike,
+                        [in] any ThirdParameter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
 
-    // settings
+                // pricingengines
 
-    long qlSettingsEvaluationDate([in] any Trigger);
-    
-    long qlSettingsSetEvaluationDate([in] any EvalDate,
-				     [in] any Trigger);
+                string qlPricingEngine(
+                        [in] string ObjectId,
+                        [in] string EngineID,
+                        [in] string ProcessID,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
 
-    // volatilities
+                // processes
 
-    string qlBlackConstantVol([in] string ObjectId,
-			      [in] any SettlementDate,
-			      [in] string Calendar,
-			      [in] double Volatility,
-			      [in] any DayCounter,
-			      [in] any Permanent,
-			      [in] any Trigger,
-			      [in] long Overwrite);
+                string qlGeneralizedBlackScholesProcess(
+                        [in] string ObjectId,
+                        [in] string BlackVolID,
+                        [in] double Underlying,
+                        [in] any DayCounter,
+                        [in] any SettlementDate,
+                        [in] double RiskFreeRate,
+                        [in] double DividendYield,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+                // settings
+
+                long qlSettingsEvaluationDate(
+                        [in] any Trigger);
+
+                long qlSettingsSetEvaluationDate(
+                        [in] any EvalDate,
+                        [in] any Trigger);
+
+                // utilities
+
+                string qlAddinVersion(
+                        [in] any Trigger);
+
+                string qlVersion(
+                        [in] any Trigger);
+
+                // volatilities
+
+                string qlBlackConstantVol(
+                        [in] string ObjectId,
+                        [in] any SettlementDate,
+                        [in] string Calendar,
+                        [in] double Volatility,
+                        [in] any DayCounter,
+                        [in] any Permanent,
+                        [in] any Trigger,
+                        [in] long Overwrite);
+
+
+
   };
 
   service CalcAddins {
@@ -128,8 +198,5 @@ module quantlib {
     interface com::sun::star::lang::XServiceName;
     interface com::sun::star::sheet::XAddIn;           
   };
-
 };
-
-#endif
 
