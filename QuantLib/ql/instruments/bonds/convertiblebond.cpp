@@ -36,7 +36,7 @@ namespace QuantLib {
             const Handle<Quote>& creditSpread,
             const Date& issueDate,
             Natural settlementDays,
-            const DayCounter& dayCounter,
+            const DayCounter&,
             const Schedule& schedule,
             Real)
     : Bond(settlementDays, schedule.calendar(), issueDate),
