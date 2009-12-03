@@ -80,10 +80,10 @@ namespace QuantLib {
     //--------------------------------------------------------------------------
     //! CDO base engine taking schedule steps
     class MidPointCDOEngine : public SyntheticCDO::engine {
-    public:
-        MidPointCDOEngine () {}
+      public:
+        MidPointCDOEngine() {}
         void calculate() const;
-    private:
+      private:
         virtual Real expectedTrancheLoss(const Date&) const = 0;
     };
 
@@ -154,16 +154,14 @@ namespace QuantLib {
     //--------------------------------------------------------------------------
     //! CDO engine, Monte Carlo for the sample payoff
     class MonteCarloCDOEngine2 : public SyntheticCDO::engine {
-    public:
+      public:
         MonteCarloCDOEngine2 (boost::shared_ptr<RandomDefaultModel> rdm,
                               Size samples)
             : rdm_(rdm), samples_(samples) {}
         void calculate() const;
-    private:
+      private:
         // not needed here
-        Real expectedTrancheLoss(const Date& d) const {
-            return 0.0;
-        }
+        Real expectedTrancheLoss(const Date&) const { return 0.0; }
 
         boost::shared_ptr<RandomDefaultModel> rdm_;
         Size samples_;
