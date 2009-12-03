@@ -36,7 +36,6 @@ namespace QuantLib {
             const Handle<Quote>& creditSpread,
             const Date& issueDate,
             Natural settlementDays,
-            const DayCounter&,
             const Schedule& schedule,
             Real)
     : Bond(settlementDays, schedule.calendar(), issueDate),
@@ -67,7 +66,7 @@ namespace QuantLib {
                           const Schedule& schedule,
                           Real redemption)
     : ConvertibleBond(exercise, conversionRatio, dividends, callability,
-                      creditSpread, issueDate, settlementDays, dayCounter,
+                      creditSpread, issueDate, settlementDays,
                       schedule, redemption) {
 
         cashflows_ = Leg();
@@ -96,7 +95,7 @@ namespace QuantLib {
                           const Schedule& schedule,
                           Real redemption)
     : ConvertibleBond(exercise, conversionRatio, dividends, callability,
-                      creditSpread, issueDate, settlementDays, dayCounter,
+                      creditSpread, issueDate, settlementDays,
                       schedule, redemption) {
 
         // !!! notional forcibly set to 100
@@ -132,7 +131,7 @@ namespace QuantLib {
                           const Schedule& schedule,
                           Real redemption)
     : ConvertibleBond(exercise, conversionRatio, dividends, callability,
-                      creditSpread, issueDate, settlementDays, dayCounter,
+                      creditSpread, issueDate, settlementDays,
                       schedule, redemption) {
 
         // !!! notional forcibly set to 100
