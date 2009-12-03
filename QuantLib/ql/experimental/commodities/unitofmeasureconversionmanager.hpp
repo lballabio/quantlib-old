@@ -39,11 +39,12 @@ namespace QuantLib {
 
       public:
         UnitOfMeasureConversionManager();
-        UnitOfMeasureConversion lookup(const CommodityType& commodityType,
-                                       const UnitOfMeasure&,
-                                       const UnitOfMeasure&,
-                                       UnitOfMeasureConversion::Type type =
-                                        UnitOfMeasureConversion::Derived) const;
+        UnitOfMeasureConversion lookup(
+            const CommodityType& commodityType,
+            const UnitOfMeasure&,
+            const UnitOfMeasure&,
+            UnitOfMeasureConversion::Type type =
+                                    UnitOfMeasureConversion::Derived) const;
         void add(const UnitOfMeasureConversion&) const;
         void clear() const;
 
@@ -64,17 +65,16 @@ namespace QuantLib {
                                              const UnitOfMeasure& source,
                                              const UnitOfMeasure& target) const;
         UnitOfMeasureConversion smartLookup(
-                                  const CommodityType& commodityType,
-                                  const UnitOfMeasure& source,
-                                  const UnitOfMeasure& target,
-                                  const std::list<std::string>& forbiddenCodes
-                                            = std::list<std::string>()) const;
+            const CommodityType& commodityType,
+            const UnitOfMeasure& source,
+            const UnitOfMeasure& target,
+            const std::list<std::string>& forbiddenCodes =
+                                            std::list<std::string>()) const;
         const UnitOfMeasureConversion* fetch(const CommodityType& commodityType,
                                              const UnitOfMeasure& source,
                                              const UnitOfMeasure& target) const;
     };
 
 }
-
 
 #endif

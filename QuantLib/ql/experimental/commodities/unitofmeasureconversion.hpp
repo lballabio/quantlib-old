@@ -93,8 +93,10 @@ namespace QuantLib {
             conversionFactorChain;
 
             Data(const CommodityType& commodityType,
-                 const UnitOfMeasure& source, const UnitOfMeasure& target,
-                 Real conversionFactor, Type type);
+                 const UnitOfMeasure& source,
+                 const UnitOfMeasure& target,
+                 Real conversionFactor,
+                 Type type);
 
             Data(const UnitOfMeasureConversion& r1,
                  const UnitOfMeasureConversion& r2);
@@ -134,6 +136,5 @@ namespace QuantLib {
     }
 
 }
-
 
 #endif
