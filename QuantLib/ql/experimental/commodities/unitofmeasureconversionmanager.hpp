@@ -61,13 +61,11 @@ namespace QuantLib {
         Key hash(const CommodityType& commodityType, const UnitOfMeasure& c1,
                  const UnitOfMeasure& c2) const;
         void addKnownConversionFactors() const;
-        UnitOfMeasureConversion directLookup(const CommodityType& commodityType,
-                                             const UnitOfMeasure& source,
-                                             const UnitOfMeasure& target) const;
-        UnitOfMeasureConversion smartLookup(
+        UnitOfMeasureConversion lookupImpl(
             const CommodityType& commodityType,
             const UnitOfMeasure& source,
             const UnitOfMeasure& target,
+            bool smartLookup = false,
             const std::list<std::string>& forbiddenCodes =
                                             std::list<std::string>()) const;
         const UnitOfMeasureConversion* fetch(const CommodityType& commodityType,

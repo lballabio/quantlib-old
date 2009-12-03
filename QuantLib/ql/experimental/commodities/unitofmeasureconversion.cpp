@@ -78,7 +78,7 @@ namespace QuantLib {
                                         const UnitOfMeasureConversion& r2) {
         conversionFactorChain = std::make_pair(
             shared_ptr<UnitOfMeasureConversion>(new UnitOfMeasureConversion(r1)),
-            shared_ptr<UnitOfMeasureConversion>(new UnitOfMeasureConversion(r1)));
+            shared_ptr<UnitOfMeasureConversion>(new UnitOfMeasureConversion(r2)));
     }
 
     Quantity UnitOfMeasureConversion::convert(const Quantity& quantity) const {
