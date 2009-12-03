@@ -81,7 +81,7 @@ namespace QuantLib {
     //! CDO base engine taking schedule steps
     class MidPointCDOEngine : public SyntheticCDO::engine {
     public:
-        MidPointCDOEngine (Period stepSize = 0*Days) {}
+        MidPointCDOEngine () {}
         void calculate() const;
     private:
         virtual Real expectedTrancheLoss(const Date&) const = 0;
@@ -175,8 +175,8 @@ namespace QuantLib {
     class HomogeneousPoolCDOEngine : public CDOEngine {
     public:
         HomogeneousPoolCDOEngine(const Handle<OneFactorCopula> copula,
-                                 Size nBuckets, Period stepSize = 1*Days)
-            : CDOEngine(stepSize), copula_(copula), nBuckets_(nBuckets) {
+                                 Size nBuckets)
+            : copula_(copula), nBuckets_(nBuckets) {
             this->registerWith(copula_);
         }
     private:
@@ -199,8 +199,8 @@ namespace QuantLib {
     class InhomogeneousPoolCDOEngine : public CDOEngine {
     public:
         InhomogeneousPoolCDOEngine(const Handle<OneFactorCopula> copula,
-                                   Size nBuckets, Period stepSize = 1*Days)
-            : CDOEngine(stepSize), copula_(copula), nBuckets_(nBuckets) {
+                                   Size nBuckets)
+            : copula_(copula), nBuckets_(nBuckets) {
             this->registerWith(copula_);
         }
     private:
@@ -229,9 +229,8 @@ namespace QuantLib {
     template <class CDOEngine>
     class GaussianLHPCDOEngine : public CDOEngine {
     public:
-        GaussianLHPCDOEngine(const Handle<OneFactorCopula>& copula,
-                             Period stepSize = 1*Days)
-            : CDOEngine(stepSize), copula_(copula) {
+        GaussianLHPCDOEngine(const Handle<OneFactorCopula>& copula)
+            : copula_(copula) {
             this->registerWith(copula_);
         }
     private:
