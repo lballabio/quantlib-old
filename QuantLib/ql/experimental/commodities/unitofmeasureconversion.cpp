@@ -20,9 +20,13 @@
 #include <ql/experimental/commodities/unitofmeasureconversion.hpp>
 #include <ql/errors.hpp>
 
+using boost::shared_ptr;
+using std::string;
+using std::map;
+
 namespace QuantLib {
 
-    std::map<std::string, boost::shared_ptr<UnitOfMeasureConversion::Data> >
+    map<string, shared_ptr<UnitOfMeasureConversion::Data> >
     UnitOfMeasureConversion::unitOfMeasureConversions_;
 
     UnitOfMeasureConversion::UnitOfMeasureConversion(
@@ -31,15 +35,16 @@ namespace QuantLib {
                                            const UnitOfMeasure& target,
                                            Real conversionFactor,
                                            Type type) {
-        std::string code = commodityType.name() + source.code() + target.code();
-        std::map<std::string, boost::shared_ptr<UnitOfMeasureConversion::Data> >::const_iterator i = unitOfMeasureConversions_.find(code);
+        string code = commodityType.name() + source.code() + target.code();
+        map<string,
+            shared_ptr<UnitOfMeasureConversion::Data> >::const_iterator i;
+        i = unitOfMeasureConversions_.find(code);
         if (i != unitOfMeasureConversions_.end())
             data_ = i->second;
         else {
-            data_ = boost::shared_ptr<UnitOfMeasureConversion::Data>(
-                   new UnitOfMeasureConversion::Data(commodityType,
-                                                     source, target,
-                                                     conversionFactor, type));
+            data_ = shared_ptr<UnitOfMeasureConversion::Data>(new
+                UnitOfMeasureConversion::Data(commodityType, source, target,
+                                              conversionFactor, type));
             unitOfMeasureConversions_[code] = data_;
         }
     }
@@ -47,13 +52,15 @@ namespace QuantLib {
     UnitOfMeasureConversion::UnitOfMeasureConversion(
                                             const UnitOfMeasureConversion& r1,
                                             const UnitOfMeasureConversion& r2) {
-        std::string code = r1.code() + r2.code();
-        std::map<std::string, boost::shared_ptr<UnitOfMeasureConversion::Data> >::const_iterator i = unitOfMeasureConversions_.find(code);
+        string code = r1.code() + r2.code();
+        map<string,
+            shared_ptr<UnitOfMeasureConversion::Data> >::const_iterator i;
+        i = unitOfMeasureConversions_.find(code);
         if (i != unitOfMeasureConversions_.end())
             data_ = i->second;
         else {
-            data_ = boost::shared_ptr<UnitOfMeasureConversion::Data>(
-                                   new UnitOfMeasureConversion::Data(r1, r2));
+            data_ = shared_ptr<UnitOfMeasureConversion::Data>(new
+                UnitOfMeasureConversion::Data(r1, r2));
             unitOfMeasureConversions_[code] = data_;
         }
     }
@@ -69,11 +76,9 @@ namespace QuantLib {
 
     UnitOfMeasureConversion::Data::Data(const UnitOfMeasureConversion& r1,
                                         const UnitOfMeasureConversion& r2) {
-        conversionFactorChain =
-            std::make_pair(boost::shared_ptr<UnitOfMeasureConversion>(
-                                             new UnitOfMeasureConversion(r1)),
-                           boost::shared_ptr<UnitOfMeasureConversion>(
-                                            new UnitOfMeasureConversion(r1)));
+        conversionFactorChain = std::make_pair(
+            shared_ptr<UnitOfMeasureConversion>(new UnitOfMeasureConversion(r1)),
+            shared_ptr<UnitOfMeasureConversion>(new UnitOfMeasureConversion(r1)));
     }
 
     Quantity UnitOfMeasureConversion::convert(const Quantity& quantity) const {
