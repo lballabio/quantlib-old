@@ -39,13 +39,11 @@ namespace QuantLib {
                                     Rate riskFreeRate,
                                     Time end,
                                     Size steps,
-                                    Real creditSpread,
+                                    Spread creditSpread,
                                     Volatility volatility,
                                     Spread divYield);
 
-        Rate riskFreeRate() const { return riskFreeRate_; };
-        Real creditSpread() const { return creditSpread_; };
-        Real dt() const {return dt_;};
+        Spread creditSpread() const { return creditSpread_; };
 
       protected:
         void stepback(Size i,
@@ -59,8 +57,7 @@ namespace QuantLib {
         void partialRollback(DiscretizedAsset&, Time to) const;
 
       private:
-        Real pd_, pu_,creditSpread_,dt_;
-        Rate riskFreeRate_;
+        Spread creditSpread_;
     };
 
 
@@ -75,18 +72,10 @@ namespace QuantLib {
                                              Real creditSpread,
                                              Volatility sigma,
                                              Spread divYield)
-    : BlackScholesLattice<T>(tree, riskFreeRate, end, steps) {
-
-        dt_ = end/steps;
-
-        pd_ = tree->probability(0,0,0);
-        pu_ = tree->probability(0,0,1);
-
-        riskFreeRate_ = riskFreeRate;
-        creditSpread_ = creditSpread;
-
-        QL_REQUIRE(pu_<=1.0, "negative probability");
-        QL_REQUIRE(pu_>=0.0, "negative probability");
+    : BlackScholesLattice<T>(tree, riskFreeRate, end, steps),
+      creditSpread_(creditSpread) {
+        QL_REQUIRE(pu_<=1.0, "probability (" << pu_ << ") higher than one");
+        QL_REQUIRE(pu_>=0.0, "negative (" << pu_ << ") probability");
     }
 
     template <class T>
