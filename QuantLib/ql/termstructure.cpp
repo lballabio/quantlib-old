@@ -36,12 +36,12 @@ namespace QuantLib {
       settlementDays_(Null<Natural>()),
       dayCounter_(dc) {}
 
-    TermStructure::TermStructure(Natural settlementDays,
+    TermStructure::TermStructure(Natural settlDays,
                                  const Calendar& cal,
                                  const DayCounter& dc)
     : moving_(true), calendar_(cal),
       updated_(false),
-      settlementDays_(settlementDays),
+      settlementDays_(settlDays),
       dayCounter_(dc) {
         registerWith(Settings::instance().evaluationDate());
         // verify immediately if calendar and settlementDays are ok
