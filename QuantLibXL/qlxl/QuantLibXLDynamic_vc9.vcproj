@@ -51,6 +51,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS"
@@ -152,6 +153,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="..,../../ObjectHandler,../../QuantLib,../../QuantLibAddin"
