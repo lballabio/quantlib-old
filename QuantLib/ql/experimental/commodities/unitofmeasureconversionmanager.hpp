@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2008 J. Erik Radmall
+ Copyright (C) 2009 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,10 +27,7 @@
 
 #include <ql/experimental/commodities/unitofmeasureconversion.hpp>
 #include <ql/patterns/singleton.hpp>
-#include <ql/time/date.hpp>
-#include <boost/functional/hash.hpp>
 #include <list>
-#include <map>
 
 namespace QuantLib {
 
@@ -45,32 +43,20 @@ namespace QuantLib {
             const UnitOfMeasure&,
             UnitOfMeasureConversion::Type type =
                                     UnitOfMeasureConversion::Derived) const;
-        void add(const UnitOfMeasureConversion&) const;
-        void clear() const;
+        void add(const UnitOfMeasureConversion&);
+        void clear();
 
-        struct Entry {
-            Entry() {}
-            Entry(const UnitOfMeasureConversion& conversionFactor)
-            : conversionFactor(conversionFactor) {}
-            UnitOfMeasureConversion conversionFactor;
-        };
       private:
-        typedef BigInteger Key;
-        boost::hash <std::string> string_hash;
-        mutable std::map<Key, std::list<Entry> > data_;
-        Key hash(const CommodityType& commodityType, const UnitOfMeasure& c1,
-                 const UnitOfMeasure& c2) const;
-        void addKnownConversionFactors() const;
-        UnitOfMeasureConversion lookupImpl(
-            const CommodityType& commodityType,
-            const UnitOfMeasure& source,
-            const UnitOfMeasure& target,
-            bool smartLookup = false,
-            const std::list<std::string>& forbiddenCodes =
-                                            std::list<std::string>()) const;
-        const UnitOfMeasureConversion* fetch(const CommodityType& commodityType,
+        std::list<UnitOfMeasureConversion> data_;
+        void addKnownConversionFactors();
+        UnitOfMeasureConversion directLookup(const CommodityType& commodityType,
                                              const UnitOfMeasure& source,
                                              const UnitOfMeasure& target) const;
+        UnitOfMeasureConversion smartLookup(const CommodityType& commodityType,
+                                            const UnitOfMeasure& source,
+                                            const UnitOfMeasure& target,
+                                            std::list<std::string> forbidden =
+                                                std::list<std::string>()) const;
     };
 
 }
