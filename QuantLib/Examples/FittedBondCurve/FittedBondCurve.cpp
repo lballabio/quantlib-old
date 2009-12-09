@@ -594,10 +594,10 @@ int main(int, char* []) {
         return 0;
 
     } catch (std::exception& e) {
-        cout << e.what() << endl;
+        cerr << e.what() << endl;
         return 1;
     } catch (...) {
-        cout << "unknown error" << endl;
+        cerr << "unknown error" << endl;
         return 1;
     }
 

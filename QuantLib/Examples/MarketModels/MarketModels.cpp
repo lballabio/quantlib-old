@@ -786,8 +786,16 @@ int InverseFloater(Real rateLevel)
 
 int main()
 {
-    for (Size i=5; i < 10; ++i)
-        InverseFloater(i/100.0);
+    try {
+        for (Size i=5; i < 10; ++i)
+            InverseFloater(i/100.0);
 
-    return 0;
+        return 0;
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    } catch (...) {
+        std::cerr << "unknown error" << std::endl;
+        return 1;
+    }
 }
