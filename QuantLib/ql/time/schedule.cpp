@@ -179,7 +179,7 @@ namespace QuantLib {
             if (firstDate != Date())
                 exitDate = firstDate;
 
-            while (true) {
+            for (;;) {
                 Date temp = nullCalendar.advance(seed,
                     -periods*tenor_, convention, endOfMonth);
                 if (temp < exitDate) {
@@ -253,7 +253,7 @@ namespace QuantLib {
             if (nextToLastDate != Date())
                 exitDate = nextToLastDate;
 
-            while (true) {
+            for (;;) {
                 Date temp = nullCalendar.advance(seed, periods*tenor_,
                                                  convention, endOfMonth);
                 if (temp > exitDate) {
