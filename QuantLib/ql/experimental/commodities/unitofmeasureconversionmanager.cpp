@@ -106,61 +106,33 @@ namespace QuantLib {
 
     void UnitOfMeasureConversionManager::addKnownConversionFactors() {
         add(UnitOfMeasureConversion(NullCommodityType(),
-                                    BarrelUnitOfMeasure(),
                                     MBUnitOfMeasure(),
+                                    BarrelUnitOfMeasure(),
                                     1000));
         add(UnitOfMeasureConversion(NullCommodityType(),
-                                    MBUnitOfMeasure(),
                                     BarrelUnitOfMeasure(),
-                                    (Real)1 / 1000));
-        add(UnitOfMeasureConversion(NullCommodityType(),
                                     GallonUnitOfMeasure(),
-                                    BarrelUnitOfMeasure(),
                                     42));
         add(UnitOfMeasureConversion(NullCommodityType(),
-                                    BarrelUnitOfMeasure(),
-                                    GallonUnitOfMeasure(),
-                                    (Real)1 / 42));
-        add(UnitOfMeasureConversion(NullCommodityType(),
                                     GallonUnitOfMeasure(),
                                     MBUnitOfMeasure(),
-                                    (Real)1 / (1000 * 42)));
+                                    1000 * 42));
         add(UnitOfMeasureConversion(NullCommodityType(),
-                                    MBUnitOfMeasure(),
-                                    GallonUnitOfMeasure(),
-                                    (1000 * 42)));
-        add(UnitOfMeasureConversion(NullCommodityType(),
-                                    GallonUnitOfMeasure(),
                                     LitreUnitOfMeasure(),
+                                    GallonUnitOfMeasure(),
                                     3.78541));
         add(UnitOfMeasureConversion(NullCommodityType(),
-                                    LitreUnitOfMeasure(),
-                                    GallonUnitOfMeasure(),
-                                    (Real)1 / 3.78541));
-        add(UnitOfMeasureConversion(NullCommodityType(),
                                     BarrelUnitOfMeasure(),
                                     LitreUnitOfMeasure(),
-                                    (Real)1 / 158.987));
-        add(UnitOfMeasureConversion(NullCommodityType(),
-                                    LitreUnitOfMeasure(),
-                                    BarrelUnitOfMeasure(),
                                     158.987));
         add(UnitOfMeasureConversion(NullCommodityType(),
-                                    BarrelUnitOfMeasure(),
-                                    KilolitreUnitOfMeasure(),
-                                    6.28981));
-        add(UnitOfMeasureConversion(NullCommodityType(),
                                     KilolitreUnitOfMeasure(),
                                     BarrelUnitOfMeasure(),
-                                    (Real)1 / 6.28981));
-        add(UnitOfMeasureConversion(NullCommodityType(),
-                                    BarrelUnitOfMeasure(),
-                                    TokyoKilolitreUnitOfMeasure(),
                                     6.28981));
         add(UnitOfMeasureConversion(NullCommodityType(),
                                     TokyoKilolitreUnitOfMeasure(),
                                     BarrelUnitOfMeasure(),
-                                    (Real)1 / 6.28981));
+                                    6.28981));
     }
 
     UnitOfMeasureConversion UnitOfMeasureConversionManager::directLookup(
