@@ -74,8 +74,10 @@ namespace QuantLib {
                                              Spread divYield)
     : BlackScholesLattice<T>(tree, riskFreeRate, end, steps),
       creditSpread_(creditSpread) {
-        QL_REQUIRE(pu_<=1.0, "probability (" << pu_ << ") higher than one");
-        QL_REQUIRE(pu_>=0.0, "negative (" << pu_ << ") probability");
+        QL_REQUIRE(this->pu_<=1.0,
+                   "probability (" << this->pu_ << ") higher than one");
+        QL_REQUIRE(this->pu_>=0.0,
+                   "negative (" << this->pu_ << ") probability");
     }
 
     template <class T>
@@ -95,16 +97,17 @@ namespace QuantLib {
             // previous conversion probabilities, ie weighted average
             // of previous probabilities.
             newConversionProbability[j] =
-                pd_*conversionProbability[j]+ pu_*conversionProbability[j+1];
+                this->pd_*conversionProbability[j] +
+                this->pu_*conversionProbability[j+1];
 
             // Use blended discounting rate
             newSpreadAdjustedRate[j] =
-                newConversionProbability[j] * riskFreeRate_ +
-                (1-newConversionProbability[j])*(riskFreeRate_+creditSpread_);
+                newConversionProbability[j] * this->riskFreeRate_ +
+                (1-newConversionProbability[j])*(this->riskFreeRate_+creditSpread_);
 
             newValues[j] =
-                (pd_*values[j]/(1+(spreadAdjustedRate[j]*dt_)))
-              + (pu_*values[j+1]/(1+(spreadAdjustedRate[j+1]*dt_)));
+                (this->pd_*values[j]/(1+(spreadAdjustedRate[j]*this->dt_)))
+              + (this->pu_*values[j+1]/(1+(spreadAdjustedRate[j+1]*this->dt_)));
 
         }
     }
