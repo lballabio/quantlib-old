@@ -169,22 +169,26 @@ namespace QuantLib {
         for (Size k=0; k<curve_->instruments_.size(); ++k) {
             boost::shared_ptr<FixedRateBond> bond =
                 curve_->instruments_[k]->fixedRateBond();
+            //boost::shared_ptr<Bond> bond =
+            //    fittingMethod_->curve_->instruments_[i]->bond();
+
             Leg leg = bond->cashflows();
             Real cleanPrice = curve_->instruments_[k]->quote()->value();
-            Rate ytm = BondFunctions::yield(*bond, cleanPrice,
-                                          bond->dayCounter(),
-                                          Compounded,
-                                          bond->frequency(),
-                                          today);
-            InterestRate r(ytm,
-                           bond->dayCounter(),
-                           Compounded,
-                           bond->frequency());
+            
+            // yield conventions
+            DayCounter dc = bond->dayCounter();
+            Frequency freq = bond->frequency();
+            //DayCounter dc = Actual365Fixed();
+            //Frequency freq = Annual;
+            Compounding comp = Compounded;
 
-            Date settlement = bond->settlementDate(today);
-            Time duration = CashFlows::duration(leg, r,
-                                                Duration::Modified,
-                                                false, settlement);
+            Rate ytm = BondFunctions::yield(*bond, cleanPrice,
+                                            dc, comp, freq,
+                                            today);
+
+            Time duration = BondFunctions::duration(*bond, ytm,
+                                                    dc, comp, freq,
+                                                    Duration::Modified);
             tempWeights[k] = 1.0/duration;
             squaredSum += tempWeights[k]*tempWeights[k];
         }
@@ -264,6 +268,8 @@ namespace QuantLib {
         for (Size i=0; i<numberOfBonds;++i) {
             boost::shared_ptr<FixedRateBond> bond =
                 fittingMethod_->curve_->instruments_[i]->fixedRateBond();
+            //boost::shared_ptr<Bond> bond =
+            //    fittingMethod_->curve_->instruments_[i]->bond();
             Real quotedPrice =
                 fittingMethod_->curve_->instruments_[i]->quote()->value();
 
@@ -271,6 +277,7 @@ namespace QuantLib {
             Real dirtyPrice = quotedPrice + bond->accruedAmount(settlement);
 
             const DayCounter& bondDayCount = bond->dayCounter();
+            //DayCounter bondDayCount = Actual365Fixed();
             Leg cf = bond->cashflows();
 
             // loop over cashFlows: P_j = sum( cf_i * d(t_i))
