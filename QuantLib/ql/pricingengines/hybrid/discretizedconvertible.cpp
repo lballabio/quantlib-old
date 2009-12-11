@@ -220,8 +220,11 @@ namespace QuantLib {
             Time dividendTime = dividendTimes_[i];
             if (dividendTime >= t || close(dividendTime,t)) {
                 const boost::shared_ptr<Dividend>& d = arguments_.dividends[i];
+                DiscountFactor dividendDiscount =
+                    process_->riskFreeRate()->discount(dividendTime) /
+                    process_->riskFreeRate()->discount(t);
                 for (Size j=0; j<grid.size(); j++)
-                    grid[j] += d->amount(grid[j]);
+                    grid[j] += d->amount(grid[j])*dividendDiscount;
             }
         }
         return grid;
