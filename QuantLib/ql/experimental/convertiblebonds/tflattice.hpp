@@ -26,7 +26,7 @@
 #define quantlib_lattices_tf_lattice_hpp
 
 #include <ql/methods/lattices/bsmlattice.hpp>
-#include <ql/pricingengines/hybrid/discretizedconvertible.hpp>
+#include <ql/experimental/convertiblebonds/discretizedconvertible.hpp>
 
 namespace QuantLib {
 

@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/pricingengines/hybrid/discretizedconvertible.hpp>
+#include <ql/experimental/convertiblebonds/discretizedconvertible.hpp>
 #include <ql/processes/blackscholesprocess.hpp>
 #include <ql/math/comparison.hpp>
 

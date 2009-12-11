@@ -603,10 +603,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\ql\methods\lattices\tflattice.hpp"
-					>
-				</File>
-				<File
 					RelativePath=".\ql\methods\lattices\tree.hpp"
 					>
 				</File>
@@ -1480,14 +1476,6 @@
 				</File>
 				<File
 					RelativePath=".\ql\instruments\bonds\cmsratebond.hpp"
-					>
-				</File>
-				<File
-					RelativePath=".\ql\instruments\bonds\convertiblebond.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\ql\instruments\bonds\convertiblebond.hpp"
 					>
 				</File>
 				<File
@@ -5020,26 +5008,6 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="hybrid"
-				>
-				<File
-					RelativePath=".\ql\pricingengines\hybrid\all.hpp"
-					>
-				</File>
-				<File
-					RelativePath=".\ql\pricingengines\hybrid\binomialconvertibleengine.hpp"
-					>
-				</File>
-				<File
-					RelativePath=".\ql\pricingengines\hybrid\discretizedconvertible.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\ql\pricingengines\hybrid\discretizedconvertible.hpp"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="lookback"
 				>
 				<File
@@ -6920,6 +6888,38 @@
 				</File>
 				<File
 					RelativePath=".\ql\experimental\barrieroption\perturbativebarrieroptionengine.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="convertiblebonds"
+				>
+				<File
+					RelativePath=".\ql\experimental\convertiblebonds\all.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\convertiblebonds\binomialconvertibleengine.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\convertiblebonds\convertiblebond.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\convertiblebonds\convertiblebond.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\convertiblebonds\discretizedconvertible.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\convertiblebonds\discretizedconvertible.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\convertiblebonds\tflattice.hpp"
 					>
 				</File>
 			</Filter>

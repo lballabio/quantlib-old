@@ -322,6 +322,7 @@ AC_CONFIG_FILES([
     ql/experimental/callablebonds/Makefile
     ql/experimental/commodities/Makefile
     ql/experimental/compoundoption/Makefile
+    ql/experimental/convertiblebonds/Makefile
     ql/experimental/coupons/Makefile
     ql/experimental/credit/Makefile
     ql/experimental/finitedifferences/Makefile
@@ -386,7 +387,6 @@ AC_CONFIG_FILES([
     ql/pricingengines/cliquet/Makefile
     ql/pricingengines/credit/Makefile
     ql/pricingengines/forward/Makefile
-    ql/pricingengines/hybrid/Makefile
     ql/pricingengines/inflation/Makefile
     ql/pricingengines/lookback/Makefile
     ql/pricingengines/quanto/Makefile

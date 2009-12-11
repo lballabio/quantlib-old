@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/instruments/bonds/convertiblebond.hpp>
+#include <ql/experimental/convertiblebonds/convertiblebond.hpp>
 #include <ql/instruments/payoffs.hpp>
 #include <ql/cashflows/iborcoupon.hpp>
 #include <ql/cashflows/fixedratecoupon.hpp>
