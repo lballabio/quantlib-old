@@ -24,6 +24,7 @@
 #include <ql/math/optimization/constraint.hpp>
 #include <ql/cashflows/cashflows.hpp>
 #include <ql/utilities/dataformatters.hpp>
+#include <ql/time/daycounters/simpledaycounter.hpp>
 
 namespace QuantLib {
 
@@ -170,7 +171,7 @@ namespace QuantLib {
             boost::shared_ptr<FixedRateBond> bond =
                 curve_->instruments_[k]->fixedRateBond();
             //boost::shared_ptr<Bond> bond =
-            //    fittingMethod_->curve_->instruments_[i]->bond();
+            //    curve_->instruments_[k]->bond();
 
             Leg leg = bond->cashflows();
             Real cleanPrice = curve_->instruments_[k]->quote()->value();
@@ -178,7 +179,7 @@ namespace QuantLib {
             // yield conventions
             DayCounter dc = bond->dayCounter();
             Frequency freq = bond->frequency();
-            //DayCounter dc = Actual365Fixed();
+            //DayCounter dc = SimpleDayCounter();
             //Frequency freq = Annual;
             Compounding comp = Compounded;
 
@@ -277,7 +278,7 @@ namespace QuantLib {
             Real dirtyPrice = quotedPrice + bond->accruedAmount(settlement);
 
             const DayCounter& bondDayCount = bond->dayCounter();
-            //DayCounter bondDayCount = Actual365Fixed();
+            //DayCounter bondDayCount = SimpleDayCounter();
             Leg cf = bond->cashflows();
 
             // loop over cashFlows: P_j = sum( cf_i * d(t_i))
