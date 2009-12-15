@@ -177,9 +177,9 @@ namespace QuantLib {
             Real cleanPrice = curve_->instruments_[k]->quote()->value();
             
             // yield conventions
-            DayCounter dc = bond->dayCounter();
+            //DayCounter dc = bond->dayCounter();
             Frequency freq = bond->frequency();
-            //DayCounter dc = SimpleDayCounter();
+            DayCounter dc = SimpleDayCounter();
             //Frequency freq = Annual;
             Compounding comp = Compounded;
 
@@ -266,30 +266,27 @@ namespace QuantLib {
         Array trialDirtyPrice(numberOfBonds,0.);
         Real squaredError = 0.0;
 
-        for (Size i=0; i<numberOfBonds;++i) {
-            boost::shared_ptr<FixedRateBond> bond =
-                fittingMethod_->curve_->instruments_[i]->fixedRateBond();
-            //boost::shared_ptr<Bond> bond =
-            //    fittingMethod_->curve_->instruments_[i]->bond();
+        for (Size i=0; i<numberOfBonds; ++i) {
+            boost::shared_ptr<Bond> bond =
+                fittingMethod_->curve_->instruments_[i]->bond();
             Real quotedPrice =
                 fittingMethod_->curve_->instruments_[i]->quote()->value();
 
             Date settlement = bond->settlementDate(today);
             Real dirtyPrice = quotedPrice + bond->accruedAmount(settlement);
 
-            const DayCounter& bondDayCount = bond->dayCounter();
-            //DayCounter bondDayCount = SimpleDayCounter();
+            const DayCounter& dc = fittingMethod_->curve_->dayCounter();
             Leg cf = bond->cashflows();
 
             // loop over cashFlows: P_j = sum( cf_i * d(t_i))
             for (Size k=startingCashFlowIndex_[i]; k<cf.size(); ++k) {
-                Time tenor = bondDayCount.yearFraction(today, cf[k]->date());
+                Time tenor = dc.yearFraction(today, cf[k]->date());
                 trialDirtyPrice[i] += cf[k]->amount() *
                                       fittingMethod_->discountFunction(x,tenor);
             }
             // adjust dirty price (NPV) for a forward settlement
             if (settlement != today ) {
-                Time tenor = bondDayCount.yearFraction(today, settlement);
+                Time tenor = dc.yearFraction(today, settlement);
                 trialDirtyPrice[i] = trialDirtyPrice[i]/
                                      fittingMethod_->discountFunction(x,tenor);
             }
