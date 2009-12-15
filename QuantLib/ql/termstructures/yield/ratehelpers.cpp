@@ -272,11 +272,11 @@ namespace QuantLib {
     : RelativeDateRateHelper(rate), periodToStart_(monthsToStart*Months) {
         // take fixing into account
         iborIndex_ = i->clone(termStructureHandle_);
-        // we register with the original instance to be notified
-        // of changes of fixings.  We do not register with our clone,
-        // since we don't want notifications from termStructureHandle_
-        // (they would interfere with bootstrapping.)
-        registerWith(i);
+        // We want to be notified of changes of fixings, but we don't
+        // want notifications from termStructureHandle_ (they would
+        // interfere with bootstrapping.)
+        iborIndex_->unregisterWith(termStructureHandle_);
+        registerWith(iborIndex_);
         initializeDates();
     }
 
@@ -287,7 +287,8 @@ namespace QuantLib {
         // take fixing into account
         iborIndex_ = i->clone(termStructureHandle_);
         // see above
-        registerWith(i);
+        iborIndex_->unregisterWith(termStructureHandle_);
+        registerWith(iborIndex_);
         initializeDates();
     }
 
@@ -338,7 +339,8 @@ namespace QuantLib {
         // take fixing into account
         iborIndex_ = i->clone(termStructureHandle_);
         // see above
-        registerWith(i);
+        iborIndex_->unregisterWith(termStructureHandle_);
+        registerWith(iborIndex_);
         initializeDates();
     }
 
@@ -349,7 +351,8 @@ namespace QuantLib {
         // take fixing into account
         iborIndex_ = i->clone(termStructureHandle_);
         // see above
-        registerWith(i);
+        iborIndex_->unregisterWith(termStructureHandle_);
+        registerWith(iborIndex_);
         initializeDates();
     }
 
@@ -402,11 +405,11 @@ namespace QuantLib {
       fwdStart_(fwdStart), discountHandle_(discount) {
         // take fixing into account
         iborIndex_ = swapIndex->iborIndex()->clone(termStructureHandle_);
-        // we register with the original instance to be notified
-        // of changes of fixings.  We do not register with our clone,
-        // since we don't want notifications from termStructureHandle_
-        // (they would interfere with bootstrapping.)
-        registerWith(swapIndex->iborIndex());
+        // We want to be notified of changes of fixings, but we don't
+        // want notifications from termStructureHandle_ (they would
+        // interfere with bootstrapping.)
+        iborIndex_->unregisterWith(termStructureHandle_);
+        registerWith(iborIndex_);
         registerWith(spread_);
         registerWith(discountHandle_);
         initializeDates();
@@ -432,7 +435,8 @@ namespace QuantLib {
         // take fixing into account
         iborIndex_ = iborIndex->clone(termStructureHandle_);
         // see above
-        registerWith(iborIndex);
+        iborIndex_->unregisterWith(termStructureHandle_);
+        registerWith(iborIndex_);
         registerWith(spread_);
         registerWith(discountHandle_);
         initializeDates();
@@ -458,7 +462,8 @@ namespace QuantLib {
         // take fixing into account
         iborIndex_ = iborIndex->clone(termStructureHandle_);
         // see above
-        registerWith(iborIndex);
+        iborIndex_->unregisterWith(termStructureHandle_);
+        registerWith(iborIndex_);
         registerWith(spread_);
         registerWith(discountHandle_);
         initializeDates();
@@ -479,7 +484,8 @@ namespace QuantLib {
         // take fixing into account
         iborIndex_ = swapIndex->iborIndex()->clone(termStructureHandle_);
         // see above
-        registerWith(swapIndex->iborIndex());
+        iborIndex_->unregisterWith(termStructureHandle_);
+        registerWith(iborIndex_);
         registerWith(spread_);
         registerWith(discountHandle_);
         initializeDates();
