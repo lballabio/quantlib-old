@@ -40,7 +40,6 @@ namespace QuantLib {
         Disposable<Array> values(const Array& x) const;
       private:
         FittedBondDiscountCurve::FittingMethod* fittingMethod_;
-        mutable Date refDate_;
         mutable vector<Integer> startingCashFlowIndex_;
     };
 
@@ -121,10 +120,15 @@ namespace QuantLib {
 
     void FittedBondDiscountCurve::FittingMethod::init() {
 
-        Array tempWeights(curve_->instruments_.size(), 0.0);
-        Date today  = curve_->referenceDate();
-        Real squaredSum = 0.0;
+        // set cost function related below
+        costFunction_ = shared_ptr<FittingCost>(new FittingCost(this));
+        costFunction_->startingCashFlowIndex_.clear();
 
+
+        Date today  = curve_->referenceDate();
+        Size n = curve_->instruments_.size();
+        weights_ = Array(n);
+        Real squaredSum = 0.0;
         for (Size k=0; k<curve_->instruments_.size(); ++k) {
             shared_ptr<FixedRateBond> bond =
                 curve_->instruments_[k]->fixedRateBond();
@@ -147,20 +151,11 @@ namespace QuantLib {
             Time dur = BondFunctions::duration(*bond, ytm,
                                                yieldDC, yieldComp, yieldFreq,
                                                Duration::Modified);
-            tempWeights[k] = 1.0/dur;
-            squaredSum += tempWeights[k]*tempWeights[k];
-        }
-        weights_ = tempWeights/std::sqrt(squaredSum);
+            weights_[k] = 1.0/dur;
+            squaredSum += weights_[k]*weights_[k];
 
-        // set cost function related below
-        costFunction_ = shared_ptr<FittingCost>(new FittingCost(this));
-        costFunction_->refDate_ = curve_->referenceDate();
-        costFunction_->startingCashFlowIndex_.clear();
-
-        for (Size i=0; i<curve_->instruments_.size(); ++i) {
-            shared_ptr<Bond> bond = curve_->instruments_[i]->bond();
             Date settlementDate = bond->settlementDate(today);
-            Leg cf = bond->cashflows();
+            const Leg& cf = bond->cashflows();
             for (Size k=0; k<cf.size(); ++k) {
                 if (!cf[k]->hasOccurred(settlementDate, false)) {
                     costFunction_->startingCashFlowIndex_.push_back(k);
@@ -168,6 +163,8 @@ namespace QuantLib {
                 }
             }
         }
+        weights_ /= std::sqrt(squaredSum);
+
     }
 
 
