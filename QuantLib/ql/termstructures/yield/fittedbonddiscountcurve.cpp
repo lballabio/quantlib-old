@@ -26,6 +26,9 @@
 #include <ql/utilities/dataformatters.hpp>
 #include <ql/time/daycounters/simpledaycounter.hpp>
 
+using boost::shared_ptr;
+using std::vector;
+
 namespace QuantLib {
 
     class FittedBondDiscountCurve::FittingMethod::FittingCost
@@ -38,15 +41,14 @@ namespace QuantLib {
       private:
         FittedBondDiscountCurve::FittingMethod* fittingMethod_;
         mutable Date refDate_;
-        mutable std::vector<Integer> startingCashFlowIndex_;
+        mutable vector<Integer> startingCashFlowIndex_;
     };
 
 
     FittedBondDiscountCurve::FittedBondDiscountCurve (
                  Natural settlementDays,
                  const Calendar& calendar,
-                 const std::vector<boost::shared_ptr<FixedRateBondHelper> >&
-                                                                  instruments,
+                 const vector<shared_ptr<FixedRateBondHelper> >& instruments,
                  const DayCounter& dayCounter,
                  const FittingMethod& fittingMethod,
                  Real accuracy,
@@ -68,8 +70,7 @@ namespace QuantLib {
 
     FittedBondDiscountCurve::FittedBondDiscountCurve (
                  const Date& referenceDate,
-                 const std::vector<boost::shared_ptr<FixedRateBondHelper> >&
-                                                                  instruments,
+                 const vector<shared_ptr<FixedRateBondHelper> >& instruments,
                  const DayCounter& dayCounter,
                  const FittingMethod& fittingMethod,
                  Real accuracy,
@@ -89,77 +90,34 @@ namespace QuantLib {
     }
 
 
-    Size FittedBondDiscountCurve::numberOfBonds() const {
-        return instruments_.size();
-    }
-
-    Date FittedBondDiscountCurve::maxDate() const {
-        calculate();
-        return maxDate_;
-    }
-
-    const FittedBondDiscountCurve::FittingMethod&
-    FittedBondDiscountCurve::fitResults() const {
-        calculate();
-        return *fittingMethod_;
-    }
-
-    void FittedBondDiscountCurve::update() {
-        TermStructure::update();
-        LazyObject::update();
-    }
-
-    void FittedBondDiscountCurve::setup() {
-        for (Size i=0; i<instruments_.size(); ++i)
-            registerWith(instruments_[i]);
-    }
-
     void FittedBondDiscountCurve::performCalculations() const {
 
         QL_REQUIRE(!instruments_.empty(), "no instruments given");
 
+        maxDate_ = Date::minDate();
+
         // double check bond quotes still valid and/or instruments not expired
         for (Size i=0; i<instruments_.size(); ++i) {
+            shared_ptr<Bond> bond = instruments_[i]->bond();
             QL_REQUIRE(instruments_[i]->quote()->isValid(),
-                       io::ordinal(i+1) << " instrument has an invalid quote");
+                       io::ordinal(i+1) << " instrument (maturity: " <<
+                       bond->maturityDate() << ") has an invalid quote");
             instruments_[i]->setTermStructure(
                                   const_cast<FittedBondDiscountCurve*>(this));
-            boost::shared_ptr<Bond> bond = instruments_[i]->bond();
             QL_REQUIRE(!bond->isExpired(),
-                       io::ordinal(i+1) << " bond is expired");
-        }
-
-        maxDate_ = Date::minDate();
-        for (Size i=0; i<instruments_.size(); ++i)
+                       io::ordinal(i+1) << " bond (maturity: " <<
+                       bond->maturityDate() << ") is expired");
             maxDate_ = std::max(maxDate_, instruments_[i]->latestDate());
+        }
 
         fittingMethod_->init();
         fittingMethod_->calculate();
     }
 
 
-    DiscountFactor FittedBondDiscountCurve::discountImpl(Time t) const {
-        calculate();
-        return fittingMethod_->discountFunction(fittingMethod_->solution_,t);
-    }
-
-
-
-
     FittedBondDiscountCurve::FittingMethod::FittingMethod(bool constrainAtZero)
     : constrainAtZero_(constrainAtZero) {}
 
-    Integer FittedBondDiscountCurve::FittingMethod::numberOfIterations() const {
-        return numberOfIterations_;
-    }
-
-    Real FittedBondDiscountCurve::FittingMethod::minimumCostValue() const {
-        return costValue_;
-    }
-
-    Array FittedBondDiscountCurve::FittingMethod::solution() const {
-        return solution_;
-    }
 
     void FittedBondDiscountCurve::FittingMethod::init() {
 
@@ -168,40 +126,39 @@ namespace QuantLib {
         Real squaredSum = 0.0;
 
         for (Size k=0; k<curve_->instruments_.size(); ++k) {
-            boost::shared_ptr<FixedRateBond> bond =
+            shared_ptr<FixedRateBond> bond =
                 curve_->instruments_[k]->fixedRateBond();
-            //boost::shared_ptr<Bond> bond =
-            //    curve_->instruments_[k]->bond();
+            //shared_ptr<Bond> bond = curve_->instruments_[k]->bond();
 
             Leg leg = bond->cashflows();
             Real cleanPrice = curve_->instruments_[k]->quote()->value();
             
             // yield conventions
-            //DayCounter dc = bond->dayCounter();
-            Frequency freq = bond->frequency();
-            DayCounter dc = SimpleDayCounter();
-            //Frequency freq = Annual;
-            Compounding comp = Compounded;
+            DayCounter yieldDC = bond->dayCounter();
+            Frequency yieldFreq = bond->frequency();
+            //DayCounter yieldDC = SimpleDayCounter();
+            //Frequency yieldFreq = Annual;
+            Compounding yieldComp = Compounded;
 
             Rate ytm = BondFunctions::yield(*bond, cleanPrice,
-                                            dc, comp, freq,
+                                            yieldDC, yieldComp, yieldFreq,
                                             today);
 
-            Time duration = BondFunctions::duration(*bond, ytm,
-                                                    dc, comp, freq,
-                                                    Duration::Modified);
-            tempWeights[k] = 1.0/duration;
+            Time dur = BondFunctions::duration(*bond, ytm,
+                                               yieldDC, yieldComp, yieldFreq,
+                                               Duration::Modified);
+            tempWeights[k] = 1.0/dur;
             squaredSum += tempWeights[k]*tempWeights[k];
         }
         weights_ = tempWeights/std::sqrt(squaredSum);
 
         // set cost function related below
-        costFunction_ = boost::shared_ptr<FittingCost>(new FittingCost(this));
-        costFunction_->refDate_  = curve_->referenceDate();
+        costFunction_ = shared_ptr<FittingCost>(new FittingCost(this));
+        costFunction_->refDate_ = curve_->referenceDate();
         costFunction_->startingCashFlowIndex_.clear();
 
         for (Size i=0; i<curve_->instruments_.size(); ++i) {
-            boost::shared_ptr<Bond> bond = curve_->instruments_[i]->bond();
+            shared_ptr<Bond> bond = curve_->instruments_[i]->bond();
             Date settlementDate = bond->settlementDate(today);
             Leg cf = bond->cashflows();
             for (Size k=0; k<cf.size(); ++k) {
@@ -212,6 +169,7 @@ namespace QuantLib {
             }
         }
     }
+
 
     void FittedBondDiscountCurve::FittingMethod::calculate() {
 
@@ -255,17 +213,17 @@ namespace QuantLib {
 
 
     Real FittedBondDiscountCurve::FittingMethod::FittingCost::value(
-                                                       const Array &x) const {
+                                                       const Array& x) const {
 
         Date today  = fittingMethod_->curve_->referenceDate();
         const DayCounter& dc = fittingMethod_->curve_->dayCounter();
 
         Real squaredError = 0.0;
-        Size numberOfBonds = fittingMethod_->curve_->instruments_.size();
-        for (Size i=0; i<numberOfBonds; ++i) {
+        Size n = fittingMethod_->curve_->instruments_.size();
+        for (Size i=0; i<n; ++i) {
 
-            boost::shared_ptr<Bond> bond =
-                fittingMethod_->curve_->instruments_[i]->bond();
+            shared_ptr<Bond> bond =
+                            fittingMethod_->curve_->instruments_[i]->bond();
             Date settlement = bond->settlementDate(today);
             Real modelPrice = - bond->accruedAmount(settlement);
             const Leg& cf = bond->cashflows();
@@ -274,12 +232,12 @@ namespace QuantLib {
             for (Size k=startingCashFlowIndex_[i]; k<cf.size(); ++k) {
                 Time tenor = dc.yearFraction(today, cf[k]->date());
                 modelPrice += cf[k]->amount() *
-                                      fittingMethod_->discountFunction(x,tenor);
+                                    fittingMethod_->discountFunction(x, tenor);
             }
             // adjust dirty price (NPV) for a forward settlement
             if (settlement != today ) {
                 Time tenor = dc.yearFraction(today, settlement);
-                modelPrice /= fittingMethod_->discountFunction(x,tenor);
+                modelPrice /= fittingMethod_->discountFunction(x, tenor);
             }
             Real marketPrice =
                 fittingMethod_->curve_->instruments_[i]->quote()->value();
@@ -299,4 +257,3 @@ namespace QuantLib {
     }
 
 }
-
