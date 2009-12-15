@@ -40,7 +40,7 @@ namespace QuantLib {
         Disposable<Array> values(const Array& x) const;
       private:
         FittedBondDiscountCurve::FittingMethod* fittingMethod_;
-        mutable vector<Integer> startingCashFlowIndex_;
+        mutable vector<Size> firstCashFlow_;
     };
 
 
@@ -120,22 +120,19 @@ namespace QuantLib {
 
     void FittedBondDiscountCurve::FittingMethod::init() {
 
-        // set cost function related below
-        costFunction_ = shared_ptr<FittingCost>(new FittingCost(this));
-        costFunction_->startingCashFlowIndex_.clear();
-
-
         Date today  = curve_->referenceDate();
         Size n = curve_->instruments_.size();
+        costFunction_ = shared_ptr<FittingCost>(new FittingCost(this));
+        costFunction_->firstCashFlow_.resize(n);
         weights_ = Array(n);
         Real squaredSum = 0.0;
-        for (Size k=0; k<curve_->instruments_.size(); ++k) {
+        for (Size i=0; i<curve_->instruments_.size(); ++i) {
             shared_ptr<FixedRateBond> bond =
-                curve_->instruments_[k]->fixedRateBond();
-            //shared_ptr<Bond> bond = curve_->instruments_[k]->bond();
+                curve_->instruments_[i]->fixedRateBond();
+            //shared_ptr<Bond> bond = curve_->instruments_[i]->bond();
 
             Leg leg = bond->cashflows();
-            Real cleanPrice = curve_->instruments_[k]->quote()->value();
+            Real cleanPrice = curve_->instruments_[i]->quote()->value();
             
             // yield conventions
             DayCounter yieldDC = bond->dayCounter();
@@ -151,14 +148,14 @@ namespace QuantLib {
             Time dur = BondFunctions::duration(*bond, ytm,
                                                yieldDC, yieldComp, yieldFreq,
                                                Duration::Modified);
-            weights_[k] = 1.0/dur;
-            squaredSum += weights_[k]*weights_[k];
+            weights_[i] = 1.0/dur;
+            squaredSum += weights_[i]*weights_[i];
 
             Date settlementDate = bond->settlementDate(today);
             const Leg& cf = bond->cashflows();
             for (Size k=0; k<cf.size(); ++k) {
                 if (!cf[k]->hasOccurred(settlementDate, false)) {
-                    costFunction_->startingCashFlowIndex_.push_back(k);
+                    costFunction_->firstCashFlow_[i] = k;
                     break;
                 }
             }
@@ -226,7 +223,7 @@ namespace QuantLib {
             const Leg& cf = bond->cashflows();
 
             // loop over cashFlows: P_j = sum( cf_i * d(t_i))
-            for (Size k=startingCashFlowIndex_[i]; k<cf.size(); ++k) {
+            for (Size k=firstCashFlow_[i]; k<cf.size(); ++k) {
                 Time tenor = dc.yearFraction(today, cf[k]->date());
                 modelPrice += cf[k]->amount() *
                                     fittingMethod_->discountFunction(x, tenor);
@@ -248,8 +245,7 @@ namespace QuantLib {
     Disposable<Array>
     FittedBondDiscountCurve::FittingMethod::FittingCost::values(
                                                        const Array &x) const {
-        Array y(1);
-        y[0] = value(x);
+        Array y(1, value(x));
         return y;
     }
 
