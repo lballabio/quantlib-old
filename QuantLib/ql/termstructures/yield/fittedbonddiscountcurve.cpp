@@ -263,7 +263,7 @@ namespace QuantLib {
         Size numberOfBonds = fittingMethod_->curve_->instruments_.size();
         Date today  = fittingMethod_->curve_->referenceDate();
 
-        Array trialDirtyPrice(numberOfBonds,0.);
+        Array trialCleanPrice(numberOfBonds, 0.);
         Real squaredError = 0.0;
 
         for (Size i=0; i<numberOfBonds; ++i) {
@@ -273,7 +273,6 @@ namespace QuantLib {
                 fittingMethod_->curve_->instruments_[i]->quote()->value();
 
             Date settlement = bond->settlementDate(today);
-            Real dirtyPrice = quotedPrice + bond->accruedAmount(settlement);
 
             const DayCounter& dc = fittingMethod_->curve_->dayCounter();
             Leg cf = bond->cashflows();
@@ -281,18 +280,19 @@ namespace QuantLib {
             // loop over cashFlows: P_j = sum( cf_i * d(t_i))
             for (Size k=startingCashFlowIndex_[i]; k<cf.size(); ++k) {
                 Time tenor = dc.yearFraction(today, cf[k]->date());
-                trialDirtyPrice[i] += cf[k]->amount() *
+                trialCleanPrice[i] += cf[k]->amount() *
                                       fittingMethod_->discountFunction(x,tenor);
             }
             // adjust dirty price (NPV) for a forward settlement
             if (settlement != today ) {
                 Time tenor = dc.yearFraction(today, settlement);
-                trialDirtyPrice[i] = trialDirtyPrice[i]/
+                trialCleanPrice[i] = trialCleanPrice[i]/
                                      fittingMethod_->discountFunction(x,tenor);
             }
-            squaredError = squaredError +
-                           std::pow(fittingMethod_->weights_[i]*
-                                    (trialDirtyPrice[i] - dirtyPrice),2);
+            trialCleanPrice[i] -= bond->accruedAmount(settlement);
+            Real error = fittingMethod_->weights_[i]*
+                                     (trialCleanPrice[i] - quotedPrice);
+            squaredError += error * error;
         }
         return squaredError;
 
