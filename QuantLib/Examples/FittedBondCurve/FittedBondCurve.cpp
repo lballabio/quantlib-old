@@ -108,12 +108,12 @@ int main(int, char* []) {
 
         Calendar calendar = NullCalendar();
         Date today = calendar.adjust(Date::todaysDate());
-        Date origToday = calendar.adjust(Date::todaysDate());
+        Date origToday = today;
         Settings::instance().evaluationDate() = today;
 
         cout << endl;
         cout << "Today's date: "
-             << origToday
+             << today
              << endl;
         cout << "Calculating fit for 15 bonds....."
              << endl
@@ -126,8 +126,12 @@ int main(int, char* []) {
                            0.0450, 0.0475, 0.0500, 0.0525, 0.0550 };
 
         Frequency frequency = Annual;
+        Frequency yieldFrequency = Annual;
         DayCounter bondDayCount = SimpleDayCounter();
-        BusinessDayConvention accrualConvention = Unadjusted;
+        //DayCounter curveDayCount = Actual365Fixed();
+        DayCounter curveDayCount = SimpleDayCounter();
+        DayCounter yieldDayCount = SimpleDayCounter();
+        BusinessDayConvention accrualConvention = ModifiedFollowing;
         BusinessDayConvention convention = ModifiedFollowing;
         Real redemption = 100.0;
 
@@ -141,8 +145,8 @@ int main(int, char* []) {
 
         for (Size j=0; j<LENGTH(lengths); j++) {
 
-            Date dated = origToday;
-            Date issue = origToday;
+            Date dated = today;
+            Date issue = today;
             Date maturity = calendar.advance(issue, lengths[j], Years);
 
             Schedule schedule(dated, maturity, Period(frequency), calendar,
@@ -183,7 +187,7 @@ int main(int, char* []) {
               new PiecewiseYieldCurve<Discount,LogLinear>(curveSettlementDays,
                                                           calendar,
                                                           instrumentsB,
-                                                          bondDayCount));
+                                                          curveDayCount));
 
 
         ExponentialSplinesFitting exponentialSplines(constrainAtZero);
@@ -192,7 +196,7 @@ int main(int, char* []) {
                   new FittedBondDiscountCurve(curveSettlementDays,
                                               calendar,
                                               instrumentsA,
-                                              bondDayCount,
+                                              curveDayCount,
                                               exponentialSplines,
                                               tolerance,
                                               max));
@@ -206,7 +210,7 @@ int main(int, char* []) {
                     new FittedBondDiscountCurve(curveSettlementDays,
                                                 calendar,
                                                 instrumentsA,
-                                                bondDayCount,
+                                                curveDayCount,
                                                 simplePolynomial,
                                                 tolerance,
                                                 max));
@@ -220,7 +224,7 @@ int main(int, char* []) {
                         new FittedBondDiscountCurve(curveSettlementDays,
                                                     calendar,
                                                     instrumentsA,
-                                                    bondDayCount,
+                                                    curveDayCount,
                                                     nelsonSiegel,
                                                     tolerance,
                                                     max));
@@ -245,7 +249,7 @@ int main(int, char* []) {
                        new FittedBondDiscountCurve(curveSettlementDays,
                                                    calendar,
                                                    instrumentsA,
-                                                   bondDayCount,
+                                                   curveDayCount,
                                                    cubicBSplines,
                                                    tolerance,
                                                    max));
@@ -315,7 +319,7 @@ int main(int, char* []) {
              << endl
              << endl;
 
-        today = calendar.advance(today,23,Months,convention);
+        today = calendar.advance(origToday,23,Months,convention);
         Settings::instance().evaluationDate() = today;
 
         printOutput("(a) exponential splines", ts1);
@@ -390,20 +394,20 @@ int main(int, char* []) {
         instrumentsB.erase(instrumentsB.begin(),
                            instrumentsB.begin()+1);
 
-        today = calendar.advance(today,1,Months,convention);
+        today = calendar.advance(origToday,24,Months,convention);
         Settings::instance().evaluationDate() = today;
 
         boost::shared_ptr<YieldTermStructure> ts00 (
               new PiecewiseYieldCurve<Discount,LogLinear>(curveSettlementDays,
                                                           calendar,
                                                           instrumentsB,
-                                                          bondDayCount));
+                                                          curveDayCount));
 
         boost::shared_ptr<FittedBondDiscountCurve> ts11 (
                   new FittedBondDiscountCurve(curveSettlementDays,
                                               calendar,
                                               instrumentsA,
-                                              bondDayCount,
+                                              curveDayCount,
                                               exponentialSplines,
                                               tolerance,
                                               max));
@@ -415,7 +419,7 @@ int main(int, char* []) {
                     new FittedBondDiscountCurve(curveSettlementDays,
                                                 calendar,
                                                 instrumentsA,
-                                                bondDayCount,
+                                                curveDayCount,
                                                 simplePolynomial,
                                                 tolerance,
                                                 max));
@@ -427,7 +431,7 @@ int main(int, char* []) {
                         new FittedBondDiscountCurve(curveSettlementDays,
                                                     calendar,
                                                     instrumentsA,
-                                                    bondDayCount,
+                                                    curveDayCount,
                                                     nelsonSiegel,
                                                     tolerance,
                                                     max));
@@ -439,7 +443,7 @@ int main(int, char* []) {
                        new FittedBondDiscountCurve(curveSettlementDays,
                                                    calendar,
                                                    instrumentsA,
-                                                   bondDayCount,
+                                                   curveDayCount,
                                                    cubicBSplines,
                                                    tolerance,
                                                    max));
@@ -505,28 +509,24 @@ int main(int, char* []) {
 
         for (Size k=0; k<LENGTH(lengths)-1; k++) {
 
-            std::vector<boost::shared_ptr<CashFlow> > leg =
-                instrumentsA[k]->bond()->cashflows();
+            Real P = instrumentsA[k]->quote()->value();
+            const Bond& b = *instrumentsA[k]->bond();
+            Rate ytm = BondFunctions::yield(b, P,
+                                            yieldDayCount,
+                                            Compounded,
+                                            yieldFrequency,
+                                            today);
+            Time dur = BondFunctions::duration(b, ytm,
+                                               yieldDayCount,
+                                               Compounded,
+                                               yieldFrequency,
+                                               Duration::Modified,
+                                               today);
 
-            Real quotePrice = instrumentsA[k]->quote()->value();
-            Rate ytm = instrumentsA[k]->bond()->yield(
-                                        quotePrice,
-                                        bondDayCount,
-                                        Compounded,
-                                        frequency,
-                                        today);
-            InterestRate r(ytm,
-                           bondDayCount,
-                           Compounded,
-                           frequency);
-            Time dur = CashFlows::duration(leg, r,
-                                           Duration::Modified,
-                                           false, today);
-
-            const Real BpsChange = 5.;
-            // dP = -dur*P * dY
-            Real deltaP = - dur*cleanPrice[k+1]*(BpsChange/10000.);
-            quote[k+1]->setValue(cleanPrice[k+1] + deltaP);
+            const Real bpsChange = 5.;
+            // dP = -dur * P * dY
+            Real deltaP = -dur * P * (bpsChange/10000.);
+            quote[k+1]->setValue(P + deltaP);
         }
 
 
