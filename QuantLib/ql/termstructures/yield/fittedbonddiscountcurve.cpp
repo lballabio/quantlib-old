@@ -1,6 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
+ Copyright (C) 2009 Ferdinando Ametrano
  Copyright (C) 2007 Allen Kuo
 
  This file is part of QuantLib, a free-software/open-source library
@@ -101,8 +102,6 @@ namespace QuantLib {
             QL_REQUIRE(instruments_[i]->quote()->isValid(),
                        io::ordinal(i+1) << " bond (maturity: " <<
                        bond->maturityDate() << ") has an invalid price quote");
-            instruments_[i]->setTermStructure(
-                                  const_cast<FittedBondDiscountCurve*>(this));
             Date bondSettlement = bond->settlementDate();
             QL_REQUIRE(bondSettlement>=referenceDate(),
                        io::ordinal(i+1) << " bond settlemente date (" <<
@@ -113,6 +112,8 @@ namespace QuantLib {
                        bondSettlement << " settlement date (maturity"
                        " being " << bond->maturityDate() << ")");
             maxDate_ = std::max(maxDate_, instruments_[i]->latestDate());
+            instruments_[i]->setTermStructure(
+                                  const_cast<FittedBondDiscountCurve*>(this));
         }
 
         fittingMethod_->init();
@@ -147,14 +148,15 @@ namespace QuantLib {
             //Frequency yieldFreq = Annual;
             Compounding yieldComp = Compounded;
 
-            Date bondSettlement = bond->settlementDate(refDate);
+            Date bondSettlement = bond->settlementDate();
             Rate ytm = BondFunctions::yield(*bond, cleanPrice,
                                             yieldDC, yieldComp, yieldFreq,
                                             bondSettlement);
 
             Time dur = BondFunctions::duration(*bond, ytm,
                                                yieldDC, yieldComp, yieldFreq,
-                                               Duration::Modified);
+                                               Duration::Modified,
+                                               bondSettlement);
             weights_[i] = 1.0/dur;
             squaredSum += weights_[i]*weights_[i];
 
@@ -215,7 +217,7 @@ namespace QuantLib {
     Real FittedBondDiscountCurve::FittingMethod::FittingCost::value(
                                                        const Array& x) const {
 
-        Date today  = fittingMethod_->curve_->referenceDate();
+        Date refDate  = fittingMethod_->curve_->referenceDate();
         const DayCounter& dc = fittingMethod_->curve_->dayCounter();
 
         Real squaredError = 0.0;
@@ -224,20 +226,20 @@ namespace QuantLib {
 
             shared_ptr<Bond> bond =
                             fittingMethod_->curve_->instruments_[i]->bond();
-            Date bondSettlement = bond->settlementDate(today);
+            Date bondSettlement = bond->settlementDate();
 
             // CleanPrice_i = sum( cf_k * d(t_k) ) - accruedAmount
             Real modelPrice = - bond->accruedAmount(bondSettlement);
             const Leg& cf = bond->cashflows();
             for (Size k=firstCashFlow_[i]; k<cf.size(); ++k) {
-                Time tenor = dc.yearFraction(today, cf[k]->date());
+                Time tenor = dc.yearFraction(refDate, cf[k]->date());
                 modelPrice += cf[k]->amount() *
                                     fittingMethod_->discountFunction(x, tenor);
             }
 
             // adjust price (NPV) for forward settlement
-            if (bondSettlement != today ) {
-                Time tenor = dc.yearFraction(today, bondSettlement);
+            if (bondSettlement != refDate ) {
+                Time tenor = dc.yearFraction(refDate, bondSettlement);
                 modelPrice /= fittingMethod_->discountFunction(x, tenor);
             }
             Real marketPrice =
