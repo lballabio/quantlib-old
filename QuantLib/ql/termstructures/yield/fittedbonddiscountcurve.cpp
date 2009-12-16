@@ -103,9 +103,10 @@ namespace QuantLib {
                        bond->maturityDate() << ") has an invalid quote");
             instruments_[i]->setTermStructure(
                                   const_cast<FittedBondDiscountCurve*>(this));
-            QL_REQUIRE(!bond->isExpired(),
-                       io::ordinal(i+1) << " bond (maturity: " <<
-                       bond->maturityDate() << ") is expired");
+            QL_REQUIRE(BondFunctions::isTradable(*bond),
+                       io::ordinal(i+1) << " bond non tradable at " <<
+                       bond->settlementDate() << " settlement date (maturity"
+                       " being " << bond->maturityDate() << ")");
             maxDate_ = std::max(maxDate_, instruments_[i]->latestDate());
         }
 
@@ -141,9 +142,10 @@ namespace QuantLib {
             //Frequency yieldFreq = Annual;
             Compounding yieldComp = Compounded;
 
+            Date bondSettlement = bond->settlementDate(today);
             Rate ytm = BondFunctions::yield(*bond, cleanPrice,
                                             yieldDC, yieldComp, yieldFreq,
-                                            today);
+                                            bondSettlement);
 
             Time dur = BondFunctions::duration(*bond, ytm,
                                                yieldDC, yieldComp, yieldFreq,
@@ -151,10 +153,9 @@ namespace QuantLib {
             weights_[i] = 1.0/dur;
             squaredSum += weights_[i]*weights_[i];
 
-            Date settlementDate = bond->settlementDate(today);
             const Leg& cf = bond->cashflows();
             for (Size k=0; k<cf.size(); ++k) {
-                if (!cf[k]->hasOccurred(settlementDate, false)) {
+                if (!cf[k]->hasOccurred(bondSettlement, false)) {
                     costFunction_->firstCashFlow_[i] = k;
                     break;
                 }
@@ -218,19 +219,20 @@ namespace QuantLib {
 
             shared_ptr<Bond> bond =
                             fittingMethod_->curve_->instruments_[i]->bond();
-            Date settlement = bond->settlementDate(today);
-            Real modelPrice = - bond->accruedAmount(settlement);
-            const Leg& cf = bond->cashflows();
+            Date bondSettlement = bond->settlementDate(today);
 
-            // loop over cashFlows: P_j = sum( cf_i * d(t_i))
+            // CleanPrice_i = sum( cf_k * d(t_k) ) - accruedAmount
+            Real modelPrice = - bond->accruedAmount(bondSettlement);
+            const Leg& cf = bond->cashflows();
             for (Size k=firstCashFlow_[i]; k<cf.size(); ++k) {
                 Time tenor = dc.yearFraction(today, cf[k]->date());
                 modelPrice += cf[k]->amount() *
                                     fittingMethod_->discountFunction(x, tenor);
             }
-            // adjust dirty price (NPV) for a forward settlement
-            if (settlement != today ) {
-                Time tenor = dc.yearFraction(today, settlement);
+
+            // adjust price (NPV) for forward settlement
+            if (bondSettlement != today ) {
+                Time tenor = dc.yearFraction(today, bondSettlement);
                 modelPrice /= fittingMethod_->discountFunction(x, tenor);
             }
             Real marketPrice =
