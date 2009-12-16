@@ -95,6 +95,7 @@ namespace QuantLib {
         QL_REQUIRE(!instruments_.empty(), "no instruments given");
 
         maxDate_ = Date::minDate();
+        Date refDate = referenceDate();
 
         // double check bond quotes still valid and/or instruments not expired
         for (Size i=0; i<instruments_.size(); ++i) {
@@ -103,10 +104,10 @@ namespace QuantLib {
                        io::ordinal(i+1) << " bond (maturity: " <<
                        bond->maturityDate() << ") has an invalid price quote");
             Date bondSettlement = bond->settlementDate();
-            QL_REQUIRE(bondSettlement>=referenceDate(),
+            QL_REQUIRE(bondSettlement>=refDate,
                        io::ordinal(i+1) << " bond settlemente date (" <<
                        bondSettlement << ") before curve reference date (" <<
-                       referenceDate() << ")");
+                       refDate << ")");
             QL_REQUIRE(BondFunctions::isTradable(*bond, bondSettlement),
                        io::ordinal(i+1) << " bond non tradable at " <<
                        bondSettlement << " settlement date (maturity"
@@ -128,26 +129,23 @@ namespace QuantLib {
     void FittedBondDiscountCurve::FittingMethod::init() {
 
         Date refDate  = curve_->referenceDate();
+
+        // yield conventions
+        DayCounter yieldDC = curve_->dayCounter();
+        Compounding yieldComp = Compounded;
+        Frequency yieldFreq = Annual;
+
         Size n = curve_->instruments_.size();
         costFunction_ = shared_ptr<FittingCost>(new FittingCost(this));
         costFunction_->firstCashFlow_.resize(n);
         weights_ = Array(n);
         Real squaredSum = 0.0;
         for (Size i=0; i<curve_->instruments_.size(); ++i) {
-            shared_ptr<FixedRateBond> bond =
-                curve_->instruments_[i]->fixedRateBond();
-            //shared_ptr<Bond> bond = curve_->instruments_[i]->bond();
+            shared_ptr<Bond> bond = curve_->instruments_[i]->bond();
 
             Leg leg = bond->cashflows();
             Real cleanPrice = curve_->instruments_[i]->quote()->value();
             
-            // yield conventions
-            DayCounter yieldDC = bond->dayCounter();
-            Frequency yieldFreq = bond->frequency();
-            //DayCounter yieldDC = SimpleDayCounter();
-            //Frequency yieldFreq = Annual;
-            Compounding yieldComp = Compounded;
-
             Date bondSettlement = bond->settlementDate();
             Rate ytm = BondFunctions::yield(*bond, cleanPrice,
                                             yieldDC, yieldComp, yieldFreq,
