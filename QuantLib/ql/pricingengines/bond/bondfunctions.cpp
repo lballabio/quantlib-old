@@ -173,7 +173,8 @@ namespace QuantLib {
 
         QL_REQUIRE(BondFunctions::isTradable(bond, settlement),
                    "non tradable at " << settlement <<
-                   " (maturity being " << bond.maturityDate() << ")");
+                   " settlement date (maturity being " <<
+                   bond.maturityDate() << ")");
 
         Real dirtyPrice = CashFlows::npv(bond.cashflows(), discountCurve,
                                          false, settlement) *
