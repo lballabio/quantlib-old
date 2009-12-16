@@ -99,13 +99,18 @@ namespace QuantLib {
         for (Size i=0; i<instruments_.size(); ++i) {
             shared_ptr<Bond> bond = instruments_[i]->bond();
             QL_REQUIRE(instruments_[i]->quote()->isValid(),
-                       io::ordinal(i+1) << " instrument (maturity: " <<
-                       bond->maturityDate() << ") has an invalid quote");
+                       io::ordinal(i+1) << " bond (maturity: " <<
+                       bond->maturityDate() << ") has an invalid price quote");
             instruments_[i]->setTermStructure(
                                   const_cast<FittedBondDiscountCurve*>(this));
-            QL_REQUIRE(BondFunctions::isTradable(*bond),
+            Date bondSettlement = bond->settlementDate();
+            QL_REQUIRE(bondSettlement>=referenceDate(),
+                       io::ordinal(i+1) << " bond settlemente date (" <<
+                       bondSettlement << ") before curve reference date (" <<
+                       referenceDate() << ")");
+            QL_REQUIRE(BondFunctions::isTradable(*bond, bondSettlement),
                        io::ordinal(i+1) << " bond non tradable at " <<
-                       bond->settlementDate() << " settlement date (maturity"
+                       bondSettlement << " settlement date (maturity"
                        " being " << bond->maturityDate() << ")");
             maxDate_ = std::max(maxDate_, instruments_[i]->latestDate());
         }
@@ -121,7 +126,7 @@ namespace QuantLib {
 
     void FittedBondDiscountCurve::FittingMethod::init() {
 
-        Date today  = curve_->referenceDate();
+        Date refDate  = curve_->referenceDate();
         Size n = curve_->instruments_.size();
         costFunction_ = shared_ptr<FittingCost>(new FittingCost(this));
         costFunction_->firstCashFlow_.resize(n);
@@ -142,7 +147,7 @@ namespace QuantLib {
             //Frequency yieldFreq = Annual;
             Compounding yieldComp = Compounded;
 
-            Date bondSettlement = bond->settlementDate(today);
+            Date bondSettlement = bond->settlementDate(refDate);
             Rate ytm = BondFunctions::yield(*bond, cleanPrice,
                                             yieldDC, yieldComp, yieldFreq,
                                             bondSettlement);

@@ -1,6 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
+ Copyright (C) 2009 Ferdinando Ametrano
  Copyright (C) 2007 Allen Kuo
 
  This file is part of QuantLib, a free-software/open-source library
@@ -28,7 +29,6 @@
 #include <ql/patterns/lazyobject.hpp>
 #include <ql/math/array.hpp>
 #include <ql/utilities/clone.hpp>
-#include <vector>
 
 namespace QuantLib {
 
