@@ -123,8 +123,8 @@ int main(int, char* []) {
         Date origToday = today;
         Settings::instance().evaluationDate() = today;
 
-        // changing settlementDays=3 increases calculation time of
-        // exponentialsplines fitting method considerably
+        // changing bondSettlementDays=3 increases calculation
+        // time of exponentialsplines fitting method
         Natural bondSettlementDays = 0;
         Natural curveSettlementDays = 0;
 
@@ -142,8 +142,8 @@ int main(int, char* []) {
 
             Date maturity = calendar.advance(bondSettlementDate, lengths[j]*Years);
 
-            Schedule schedule(today, maturity, Period(frequency), calendar,
-                              accrualConvention, accrualConvention,
+            Schedule schedule(bondSettlementDate, maturity, Period(frequency),
+                              calendar, accrualConvention, accrualConvention,
                               DateGeneration::Backward, false);
 
             boost::shared_ptr<FixedRateBondHelper> helperA(
@@ -179,7 +179,6 @@ int main(int, char* []) {
                                                           calendar,
                                                           instrumentsB,
                                                           dc));
-
 
         ExponentialSplinesFitting exponentialSplines(constrainAtZero);
 
@@ -269,10 +268,10 @@ int main(int, char* []) {
 
             Size cfSize = instrumentsA[i]->bond()->cashflows().size();
             std::vector<Date> keyDates;
-            keyDates.push_back(today);
+            keyDates.push_back(bondSettlementDate);
 
             for (Size j=0; j<cfSize-1; j++) {
-                if (!cfs[j]->hasOccurred(today)) {
+                if (!cfs[j]->hasOccurred(bondSettlementDate, false)) {
                     Date myDate =  cfs[j]->date();
                     keyDates.push_back(myDate);
                 }
@@ -312,6 +311,7 @@ int main(int, char* []) {
 
         today = calendar.advance(origToday,23,Months,convention);
         Settings::instance().evaluationDate() = today;
+        bondSettlementDate = calendar.advance(today, bondSettlementDays*Days);
 
         printOutput("(a) exponential splines", ts1);
 
@@ -340,10 +340,10 @@ int main(int, char* []) {
 
             Size cfSize = instrumentsA[i]->bond()->cashflows().size();
             std::vector<Date> keyDates;
-            keyDates.push_back(today);
+            keyDates.push_back(bondSettlementDate);
 
             for (Size j=0; j<cfSize-1; j++) {
-                if (!cfs[j]->hasOccurred(today)) {
+                if (!cfs[j]->hasOccurred(bondSettlementDate, false)) {
                     Date myDate =  cfs[j]->date();
                     keyDates.push_back(myDate);
                 }
@@ -386,6 +386,7 @@ int main(int, char* []) {
 
         today = calendar.advance(origToday,24,Months,convention);
         Settings::instance().evaluationDate() = today;
+        bondSettlementDate = calendar.advance(today, bondSettlementDays*Days);
 
         boost::shared_ptr<YieldTermStructure> ts00 (
               new PiecewiseYieldCurve<Discount,LogLinear>(curveSettlementDays,
@@ -456,10 +457,10 @@ int main(int, char* []) {
 
             Size cfSize = instrumentsA[i]->bond()->cashflows().size();
             std::vector<Date> keyDates;
-            keyDates.push_back(today);
+            keyDates.push_back(bondSettlementDate);
 
             for (Size j=0; j<cfSize-1; j++) {
-                if (!cfs[j]->hasOccurred(today)) {
+                if (!cfs[j]->hasOccurred(bondSettlementDate, false)) {
                     Date myDate =  cfs[j]->date();
                     keyDates.push_back(myDate);
                 }
@@ -501,14 +502,10 @@ int main(int, char* []) {
             Real P = instrumentsA[k]->quote()->value();
             const Bond& b = *instrumentsA[k]->bond();
             Rate ytm = BondFunctions::yield(b, P,
-                                            dc,
-                                            Compounded,
-                                            frequency,
+                                            dc, Compounded, frequency,
                                             today);
             Time dur = BondFunctions::duration(b, ytm,
-                                               dc,
-                                               Compounded,
-                                               frequency,
+                                               dc, Compounded, frequency,
                                                Duration::Modified,
                                                today);
 
@@ -534,10 +531,10 @@ int main(int, char* []) {
 
             Size cfSize = instrumentsA[i]->bond()->cashflows().size();
             std::vector<Date> keyDates;
-            keyDates.push_back(today);
+            keyDates.push_back(bondSettlementDate);
 
             for (Size j=0; j<cfSize-1; j++) {
-                if (!cfs[j]->hasOccurred(today)) {
+                if (!cfs[j]->hasOccurred(bondSettlementDate, false)) {
                     Date myDate =  cfs[j]->date();
                     keyDates.push_back(myDate);
                 }
