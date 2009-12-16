@@ -106,19 +106,6 @@ int main(int, char* []) {
             quoteHandle[i].linkTo(quote[i]);
         }
 
-        Calendar calendar = NullCalendar();
-        Date today = calendar.adjust(Date::todaysDate());
-        Date origToday = today;
-        Settings::instance().evaluationDate() = today;
-
-        cout << endl;
-        cout << "Today's date: "
-             << today
-             << endl;
-        cout << "Calculating fit for 15 bonds....."
-             << endl
-             << endl;
-
         Integer lengths[] = { 2, 4, 6, 8, 10, 12, 14, 16,
                               18, 20, 22, 24, 26, 28, 30 };
         Real coupons[] = { 0.0200, 0.0225, 0.0250, 0.0275, 0.0300,
@@ -126,54 +113,58 @@ int main(int, char* []) {
                            0.0450, 0.0475, 0.0500, 0.0525, 0.0550 };
 
         Frequency frequency = Annual;
-        Frequency yieldFrequency = Annual;
-        DayCounter bondDayCount = SimpleDayCounter();
-        //DayCounter curveDayCount = Actual365Fixed();
-        DayCounter curveDayCount = SimpleDayCounter();
-        DayCounter yieldDayCount = SimpleDayCounter();
+        DayCounter dc = SimpleDayCounter();
         BusinessDayConvention accrualConvention = ModifiedFollowing;
         BusinessDayConvention convention = ModifiedFollowing;
         Real redemption = 100.0;
 
+        Calendar calendar = NullCalendar();
+        Date today = calendar.adjust(Date::todaysDate());
+        Date origToday = today;
+        Settings::instance().evaluationDate() = today;
+
         // changing settlementDays=3 increases calculation time of
         // exponentialsplines fitting method considerably
-        Natural settlementDays = 0;
+        Natural bondSettlementDays = 0;
         Natural curveSettlementDays = 0;
+
+        Date bondSettlementDate = calendar.advance(today, bondSettlementDays*Days);
+
+        cout << endl;
+        cout << "Today's date: " << today << endl;
+        cout << "Bonds' settlement date: " << bondSettlementDate << endl;
+        cout << "Calculating fit for 15 bonds....." << endl << endl;
 
         std::vector<boost::shared_ptr<FixedRateBondHelper> > instrumentsA;
         std::vector<boost::shared_ptr<RateHelper> > instrumentsB;
 
         for (Size j=0; j<LENGTH(lengths); j++) {
 
-            Date dated = today;
-            Date issue = today;
-            Date maturity = calendar.advance(issue, lengths[j], Years);
+            Date maturity = calendar.advance(bondSettlementDate, lengths[j]*Years);
 
-            Schedule schedule(dated, maturity, Period(frequency), calendar,
+            Schedule schedule(today, maturity, Period(frequency), calendar,
                               accrualConvention, accrualConvention,
                               DateGeneration::Backward, false);
 
             boost::shared_ptr<FixedRateBondHelper> helperA(
                      new FixedRateBondHelper(quoteHandle[j],
-                                             settlementDays,
+                                             bondSettlementDays,
                                              100.0,
                                              schedule,
                                              std::vector<Rate>(1,coupons[j]),
-                                             bondDayCount,
+                                             dc,
                                              convention,
-                                             redemption,
-                                             issue));
+                                             redemption));
 
             boost::shared_ptr<RateHelper> helperB(
                      new FixedRateBondHelper(quoteHandle[j],
-                                             settlementDays,
+                                             bondSettlementDays,
                                              100.0,
                                              schedule,
                                              std::vector<Rate>(1, coupons[j]),
-                                             bondDayCount,
+                                             dc,
                                              convention,
-                                             redemption,
-                                             issue));
+                                             redemption));
             instrumentsA.push_back(helperA);
             instrumentsB.push_back(helperB);
         }
@@ -187,7 +178,7 @@ int main(int, char* []) {
               new PiecewiseYieldCurve<Discount,LogLinear>(curveSettlementDays,
                                                           calendar,
                                                           instrumentsB,
-                                                          curveDayCount));
+                                                          dc));
 
 
         ExponentialSplinesFitting exponentialSplines(constrainAtZero);
@@ -196,7 +187,7 @@ int main(int, char* []) {
                   new FittedBondDiscountCurve(curveSettlementDays,
                                               calendar,
                                               instrumentsA,
-                                              curveDayCount,
+                                              dc,
                                               exponentialSplines,
                                               tolerance,
                                               max));
@@ -210,7 +201,7 @@ int main(int, char* []) {
                     new FittedBondDiscountCurve(curveSettlementDays,
                                                 calendar,
                                                 instrumentsA,
-                                                curveDayCount,
+                                                dc,
                                                 simplePolynomial,
                                                 tolerance,
                                                 max));
@@ -224,7 +215,7 @@ int main(int, char* []) {
                         new FittedBondDiscountCurve(curveSettlementDays,
                                                     calendar,
                                                     instrumentsA,
-                                                    curveDayCount,
+                                                    dc,
                                                     nelsonSiegel,
                                                     tolerance,
                                                     max));
@@ -249,7 +240,7 @@ int main(int, char* []) {
                        new FittedBondDiscountCurve(curveSettlementDays,
                                                    calendar,
                                                    instrumentsA,
-                                                   curveDayCount,
+                                                   dc,
                                                    cubicBSplines,
                                                    tolerance,
                                                    max));
@@ -287,26 +278,26 @@ int main(int, char* []) {
                 }
             }
 
-            Real tenor=bondDayCount.yearFraction(today,cfs[cfSize-1]->date());
+            Real tenor = dc.yearFraction(today, cfs[cfSize-1]->date());
 
             cout << setw(6) << fixed << setprecision(3) << tenor << " | "
                  << setw(6) << fixed << setprecision(3)
                  << 100.*coupons[i] << " | "
                  // piecewise bootstrap
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts0,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts0,keyDates,dc) << " | "
                  // exponential splines
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts1,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts1,keyDates,dc) << " | "
                  // simple polynomial
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts2,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts2,keyDates,dc) << " | "
                  // nelson siegel
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts3,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts3,keyDates,dc) << " | "
                  // cubic bsplines
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts4,keyDates,bondDayCount) << endl;
+                 << 100.*parRate(*ts4,keyDates,dc) << endl;
         }
 
         cout << endl << endl << endl;
@@ -358,27 +349,26 @@ int main(int, char* []) {
                 }
             }
 
-            Real tenor =
-                bondDayCount.yearFraction(today,cfs[cfSize-1]->date());
+            Real tenor = dc.yearFraction(today, cfs[cfSize-1]->date());
 
             cout << setw(6) << fixed << setprecision(3) << tenor << " | "
                  << setw(6) << fixed << setprecision(3)
                  << 100.*coupons[i] << " | "
                  // piecewise bootstrap
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts0,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts0,keyDates,dc) << " | "
                  // exponential splines
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts1,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts1,keyDates,dc) << " | "
                  // simple polynomial
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts2,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts2,keyDates,dc) << " | "
                  // nelson siegel
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts3,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts3,keyDates,dc) << " | "
                  // cubic bsplines
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts4,keyDates,bondDayCount) << endl;
+                 << 100.*parRate(*ts4,keyDates,dc) << endl;
         }
 
         cout << endl << endl << endl;
@@ -401,13 +391,13 @@ int main(int, char* []) {
               new PiecewiseYieldCurve<Discount,LogLinear>(curveSettlementDays,
                                                           calendar,
                                                           instrumentsB,
-                                                          curveDayCount));
+                                                          dc));
 
         boost::shared_ptr<FittedBondDiscountCurve> ts11 (
                   new FittedBondDiscountCurve(curveSettlementDays,
                                               calendar,
                                               instrumentsA,
-                                              curveDayCount,
+                                              dc,
                                               exponentialSplines,
                                               tolerance,
                                               max));
@@ -419,7 +409,7 @@ int main(int, char* []) {
                     new FittedBondDiscountCurve(curveSettlementDays,
                                                 calendar,
                                                 instrumentsA,
-                                                curveDayCount,
+                                                dc,
                                                 simplePolynomial,
                                                 tolerance,
                                                 max));
@@ -431,7 +421,7 @@ int main(int, char* []) {
                         new FittedBondDiscountCurve(curveSettlementDays,
                                                     calendar,
                                                     instrumentsA,
-                                                    curveDayCount,
+                                                    dc,
                                                     nelsonSiegel,
                                                     tolerance,
                                                     max));
@@ -443,7 +433,7 @@ int main(int, char* []) {
                        new FittedBondDiscountCurve(curveSettlementDays,
                                                    calendar,
                                                    instrumentsA,
-                                                   curveDayCount,
+                                                   dc,
                                                    cubicBSplines,
                                                    tolerance,
                                                    max));
@@ -475,27 +465,26 @@ int main(int, char* []) {
                 }
             }
 
-            Real tenor =
-                bondDayCount.yearFraction(today,cfs[cfSize-1]->date());
+            Real tenor = dc.yearFraction(today, cfs[cfSize-1]->date());
 
             cout << setw(6) << fixed << setprecision(3) << tenor << " | "
                  << setw(6) << fixed << setprecision(3)
                  << 100.*coupons[i+1] << " | "
                  // piecewise bootstrap
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts00,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts00,keyDates,dc) << " | "
                  // exponential splines
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts11,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts11,keyDates,dc) << " | "
                  // simple polynomial
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts22,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts22,keyDates,dc) << " | "
                  // nelson siegel
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts33,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts33,keyDates,dc) << " | "
                  // cubic bsplines
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts44,keyDates,bondDayCount) << endl;
+                 << 100.*parRate(*ts44,keyDates,dc) << endl;
         }
 
 
@@ -512,14 +501,14 @@ int main(int, char* []) {
             Real P = instrumentsA[k]->quote()->value();
             const Bond& b = *instrumentsA[k]->bond();
             Rate ytm = BondFunctions::yield(b, P,
-                                            yieldDayCount,
+                                            dc,
                                             Compounded,
-                                            yieldFrequency,
+                                            frequency,
                                             today);
             Time dur = BondFunctions::duration(b, ytm,
-                                               yieldDayCount,
+                                               dc,
                                                Compounded,
-                                               yieldFrequency,
+                                               frequency,
                                                Duration::Modified,
                                                today);
 
@@ -554,27 +543,26 @@ int main(int, char* []) {
                 }
             }
 
-            Real tenor =
-                bondDayCount.yearFraction(today,cfs[cfSize-1]->date());
+            Real tenor = dc.yearFraction(today, cfs[cfSize-1]->date());
 
             cout << setw(6) << fixed << setprecision(3) << tenor << " | "
                  << setw(6) << fixed << setprecision(3)
                  << 100.*coupons[i+1] << " | "
                  // piecewise bootstrap
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts00,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts00,keyDates,dc) << " | "
                  // exponential splines
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts11,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts11,keyDates,dc) << " | "
                  // simple polynomial
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts22,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts22,keyDates,dc) << " | "
                  // nelson siegel
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts33,keyDates,bondDayCount) << " | "
+                 << 100.*parRate(*ts33,keyDates,dc) << " | "
                  // cubic bsplines
                  << setw(6) << fixed << setprecision(3)
-                 << 100.*parRate(*ts44,keyDates,bondDayCount) << endl;
+                 << 100.*parRate(*ts44,keyDates,dc) << endl;
         }
 
 
