@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2005, 2007 Klaus Spanderen
+ Copyright (C) 2005, 2007, 2009 Klaus Spanderen
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -46,7 +46,10 @@ namespace QuantLib {
     class HestonProcess : public StochasticProcess {
       public:
         enum Discretization { PartialTruncation, FullTruncation,
-                              Reflection, NonCentralChiSquareVariance };
+                              Reflection,
+                              NonCentralChiSquareVariance,
+                              QuadraticExponential,
+                              QuadraticExponentialMartingale};
 
         HestonProcess(const Handle<YieldTermStructure>& riskFreeRate,
                       const Handle<YieldTermStructure>& dividendYield,
