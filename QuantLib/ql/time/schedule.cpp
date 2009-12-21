@@ -197,9 +197,6 @@ namespace QuantLib {
                 }
             }
 
-            if (endOfMonth && calendar.isEndOfMonth(seed))
-                convention=Preceding;
-
             if (calendar.adjust(dates_.front(),convention)!=
                 calendar.adjust(effectiveDate,convention)) {
                 dates_.insert(dates_.begin(), effectiveDate);
@@ -271,9 +268,6 @@ namespace QuantLib {
                 }
             }
 
-            if (endOfMonth && calendar.isEndOfMonth(seed))
-                convention=Preceding;
-
             if (calendar.adjust(dates_.back(),terminationDateConvention)!=
                 calendar.adjust(terminationDate,terminationDateConvention)) {
                 if (rule_ == DateGeneration::Twentieth ||
@@ -300,22 +294,37 @@ namespace QuantLib {
                                              dates_[i].month(),
                                              dates_[i].year());
 
-        // first date not adjusted for CDS schedules
-        if (rule_ != DateGeneration::OldCDS)
-            dates_[0] = calendar.adjust(dates_[0], convention);
-        for (Size i=1; i<dates_.size()-1; ++i)
-            dates_[i] = calendar.adjust(dates_[i], convention);
+        if (endOfMonth && calendar.isEndOfMonth(seed)) {
+            // adjust to end of month
+            if (convention == Unadjusted) {
+                for (Size i=0; i<dates_.size()-1; ++i)
+                    dates_[i] = Date::endOfMonth(dates_[i]);
+            } else {
+                for (Size i=0; i<dates_.size()-1; ++i)
+                    dates_[i] = calendar.endOfMonth(dates_[i]);
+            }
+            if (terminationDateConvention == Unadjusted)
+                dates_.back() = Date::endOfMonth(dates_.back());
+            else
+                dates_.back() = calendar.endOfMonth(dates_.back());
+        } else {
+            // first date not adjusted for CDS schedules
+            if (rule_ != DateGeneration::OldCDS)
+                dates_[0] = calendar.adjust(dates_[0], convention);
+            for (Size i=1; i<dates_.size()-1; ++i)
+                dates_[i] = calendar.adjust(dates_[i], convention);
 
-        // termination date is NOT adjusted as per ISDA
-        // specifications, unless otherwise specified in the
-        // confirmation of the deal or unless we're creating a CDS
-        // schedule
-        if (terminationDateConvention != Unadjusted
-            || rule_ == DateGeneration::Twentieth
-            || rule_ == DateGeneration::TwentiethIMM
-            || rule_ == DateGeneration::OldCDS) {
-            dates_.back() = calendar.adjust(dates_.back(),
-                                            terminationDateConvention);
+            // termination date is NOT adjusted as per ISDA
+            // specifications, unless otherwise specified in the
+            // confirmation of the deal or unless we're creating a CDS
+            // schedule
+            if (terminationDateConvention != Unadjusted
+                || rule_ == DateGeneration::Twentieth
+                || rule_ == DateGeneration::TwentiethIMM
+                || rule_ == DateGeneration::OldCDS) {
+                dates_.back() = calendar.adjust(dates_.back(),
+                                                terminationDateConvention);
+            }
         }
     }
 
