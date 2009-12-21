@@ -1,1 +1,1 @@
-del /s *.mxl
+del /s *.xml
