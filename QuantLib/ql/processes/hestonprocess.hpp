@@ -56,7 +56,7 @@ namespace QuantLib {
                       const Handle<Quote>& s0,
                       Real v0, Real kappa,
                       Real theta, Real sigma, Real rho,
-                      Discretization d = FullTruncation);
+                      Discretization d = QuadraticExponentialMartingale);
 
         Size size() const;
         Disposable<Array> initialValues() const;
