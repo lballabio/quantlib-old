@@ -1,1 +1,2 @@
 del /s *.xml
+pause
