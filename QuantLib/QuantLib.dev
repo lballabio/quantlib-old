@@ -1,7 +1,7 @@
 [Project]
 FileName=QuantLib.dev
 Name=QuantLib
-UnitCount=1624
+UnitCount=1625
 Type=2
 Ver=1
 ObjFiles=
@@ -20,7 +20,7 @@ ObjectOutput=.\build\mingw
 OverrideOutput=1
 OverrideOutputName=libQuantLib-mgw.a
 HostApplication=
-Folders=cashflows,currencies,experimental,experimental/amortizingbonds,experimental/barrieroption,experimental/callablebonds,experimental/commodities,experimental/convertiblebonds,experimental/compoundoption,experimental/coupons,experimental/credit,experimental/finitedifferences,experimental/inflation,experimental/lattices,experimental/math,experimental/mcbasket,experimental/processes,experimental/risk,experimental/varianceoption,experimental/volatility,indexes,indexes/ibor,indexes/inflation,indexes/swap,instruments,instruments/bonds,legacy,legacy/libormarketmodels,math,math/copulas,math/distributions,math/integrals,math/interpolations,math/matrixutilities,math/optimization,math/randomnumbers,math/solvers1d,math/statistics,methods,methods/finitedifferences,methods/lattices,methods/montecarlo,models,models/equity,models/marketmodels,models/marketmodels/browniangenerators,models/marketmodels/callability,models/marketmodels/correlations,models/marketmodels/curvestates,models/marketmodels/driftcomputation,models/marketmodels/evolvers,models/marketmodels/evolvers/volprocesses,models/marketmodels/models,models/marketmodels/pathwisegreeks,models/marketmodels/products,models/marketmodels/products/multistep,models/marketmodels/products/onestep,models/marketmodels/products/pathwise,models/shortrate,models/shortrate/calibrationhelpers,models/shortrate/onefactormodels,models/shortrate/twofactormodels,models/volatility,patterns,pricingengines,pricingengines/asian,pricingengines/barrier,pricingengines/basket,pricingengines/bond,pricingengines/capfloor,pricingengines/cliquet,pricingengines/credit,pricingengines/forward,pricingengines/inflation,pricingengines/lookback,pricingengines/quanto,pricingengines/swap,pricingengines/swaption,pricingengines/vanilla,processes,quotes,termstructures,termstructures/credit,termstructures/inflation,termstructures/volatility,termstructures/volatility/capfloor,termstructures/volatility/equityfx,termstructures/volatility/inflation,termstructures/volatility/optionlet,termstructures/volatility/swaption,termstructures/yield,time,time/calendars,time/daycounters,utilities
+Folders=cashflows,currencies,experimental,experimental/amortizingbonds,experimental/barrieroption,experimental/callablebonds,experimental/commodities,experimental/convertiblebonds,experimental/compoundoption,experimental/coupons,experimental/credit,experimental/exoticoptions,experimental/finitedifferences,experimental/inflation,experimental/lattices,experimental/math,experimental/mcbasket,experimental/processes,experimental/risk,experimental/varianceoption,experimental/volatility,indexes,indexes/ibor,indexes/inflation,indexes/swap,instruments,instruments/bonds,legacy,legacy/libormarketmodels,math,math/copulas,math/distributions,math/integrals,math/interpolations,math/matrixutilities,math/optimization,math/randomnumbers,math/solvers1d,math/statistics,methods,methods/finitedifferences,methods/lattices,methods/montecarlo,models,models/equity,models/marketmodels,models/marketmodels/browniangenerators,models/marketmodels/callability,models/marketmodels/correlations,models/marketmodels/curvestates,models/marketmodels/driftcomputation,models/marketmodels/evolvers,models/marketmodels/evolvers/volprocesses,models/marketmodels/models,models/marketmodels/pathwisegreeks,models/marketmodels/products,models/marketmodels/products/multistep,models/marketmodels/products/onestep,models/marketmodels/products/pathwise,models/shortrate,models/shortrate/calibrationhelpers,models/shortrate/onefactormodels,models/shortrate/twofactormodels,models/volatility,patterns,pricingengines,pricingengines/asian,pricingengines/barrier,pricingengines/basket,pricingengines/bond,pricingengines/capfloor,pricingengines/cliquet,pricingengines/credit,pricingengines/forward,pricingengines/inflation,pricingengines/lookback,pricingengines/quanto,pricingengines/swap,pricingengines/swaption,pricingengines/vanilla,processes,quotes,termstructures,termstructures/credit,termstructures/inflation,termstructures/volatility,termstructures/volatility/capfloor,termstructures/volatility/equityfx,termstructures/volatility/inflation,termstructures/volatility/optionlet,termstructures/volatility/swaption,termstructures/yield,time,time/calendars,time/daycounters,utilities
 CommandLine=
 UseCustomMakefile=0
 CustomMakefile=Makefile.win
@@ -2090,9 +2090,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit207]
-FileName=ql\instruments\pagodaoption.cpp
+FileName=ql\experimental\exoticoptions\pagodaoption.cpp
 CompileCpp=1
-Folder=instruments
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -2100,9 +2100,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit208]
-FileName=ql\instruments\pagodaoption.hpp
+FileName=ql\experimental\exoticoptions\pagodaoption.hpp
 CompileCpp=1
-Folder=instruments
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -12268,9 +12268,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1223]
-FileName=ql\instruments\himalayaoption.hpp
+FileName=ql\experimental\exoticoptions\himalayaoption.hpp
 CompileCpp=1
-Folder=instruments
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -12298,9 +12298,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1226]
-FileName=ql\instruments\everestoption.cpp
+FileName=ql\experimental\exoticoptions\everestoption.cpp
 CompileCpp=1
-Folder=instruments
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -12308,9 +12308,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1227]
-FileName=ql\instruments\everestoption.hpp
+FileName=ql\experimental\exoticoptions\everestoption.hpp
 CompileCpp=1
-Folder=instruments
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -12318,9 +12318,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1228]
-FileName=ql\instruments\himalayaoption.cpp
+FileName=ql\experimental\exoticoptions\himalayaoption.cpp
 CompileCpp=1
-Folder=instruments
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -12578,9 +12578,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1254]
-FileName=ql\pricingengines\basket\mchimalayaengine.hpp
+FileName=ql\experimental\exoticoptions\mchimalayaengine.hpp
 CompileCpp=1
-Folder=pricingengines/basket
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -12588,9 +12588,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1255]
-FileName=ql\pricingengines\basket\mceverestengine.cpp
+FileName=ql\experimental\exoticoptions\mceverestengine.cpp
 CompileCpp=1
-Folder=pricingengines/basket
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -12598,9 +12598,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1256]
-FileName=ql\pricingengines\basket\mceverestengine.hpp
+FileName=ql\experimental\exoticoptions\mceverestengine.hpp
 CompileCpp=1
-Folder=pricingengines/basket
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -12608,9 +12608,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1257]
-FileName=ql\pricingengines\basket\mchimalayaengine.cpp
+FileName=ql\experimental\exoticoptions\mchimalayaengine.cpp
 CompileCpp=1
-Folder=pricingengines/basket
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -12738,9 +12738,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1270]
-FileName=ql\pricingengines\basket\mcpagodaengine.cpp
+FileName=ql\experimental\exoticoptions\mcpagodaengine.cpp
 CompileCpp=1
-Folder=pricingengines/basket
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -12748,9 +12748,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1271]
-FileName=ql\pricingengines\basket\mcpagodaengine.hpp
+FileName=ql\experimental\exoticoptions\mcpagodaengine.hpp
 CompileCpp=1
-Folder=pricingengines/basket
+Folder=experimental/exoticoptions
 Compile=1
 Link=1
 Priority=1000
@@ -16287,3 +16287,12 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+[Unit1625]
+FileName=ql\experimental\exoticoptions\all.hpp
+CompileCpp=1
+Folder=experimental/exoticoptions
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=

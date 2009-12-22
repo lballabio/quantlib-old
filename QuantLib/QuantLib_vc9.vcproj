@@ -1557,14 +1557,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ql\instruments\everestoption.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ql\instruments\everestoption.hpp"
-				>
-			</File>
-			<File
 				RelativePath=".\ql\instruments\fixedratebondforward.cpp"
 				>
 			</File>
@@ -1594,14 +1586,6 @@
 			</File>
 			<File
 				RelativePath=".\ql\instruments\forwardvanillaoption.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ql\instruments\himalayaoption.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ql\instruments\himalayaoption.hpp"
 				>
 			</File>
 			<File
@@ -1698,14 +1682,6 @@
 			</File>
 			<File
 				RelativePath=".\ql\instruments\overnightindexedswap.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ql\instruments\pagodaoption.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ql\instruments\pagodaoption.hpp"
 				>
 			</File>
 			<File
@@ -4956,30 +4932,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\ql\pricingengines\basket\mceverestengine.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\ql\pricingengines\basket\mceverestengine.hpp"
-					>
-				</File>
-				<File
-					RelativePath=".\ql\pricingengines\basket\mchimalayaengine.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\ql\pricingengines\basket\mchimalayaengine.hpp"
-					>
-				</File>
-				<File
-					RelativePath=".\ql\pricingengines\basket\mcpagodaengine.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\ql\pricingengines\basket\mcpagodaengine.hpp"
-					>
-				</File>
-				<File
 					RelativePath=".\ql\pricingengines\basket\stulzengine.cpp"
 					>
 				</File>
@@ -6293,6 +6245,62 @@
 				</File>
 				<File
 					RelativePath=".\ql\experimental\coupons\subperiodcoupons.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="exoticoptions"
+				>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\all.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\everestoption.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\everestoption.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\himalayaoption.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\himalayaoption.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\mceverestengine.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\mceverestengine.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\mchimalayaengine.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\mchimalayaengine.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\mcpagodaengine.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\mcpagodaengine.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\pagodaoption.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exoticoptions\pagodaoption.hpp"
 					>
 				</File>
 			</Filter>
