@@ -32,7 +32,8 @@ namespace QuantLib {
             if (result < d)
                 result += 1*Months;
             if (rule == DateGeneration::TwentiethIMM ||
-                rule == DateGeneration::OldCDS) {
+                rule == DateGeneration::OldCDS ||
+                rule == DateGeneration::CDS) {
                 Month m = result.month();
                 if (m % 3 != 0) { // not a main IMM nmonth
                     Integer skip = 3 - m%3;
@@ -42,6 +43,21 @@ namespace QuantLib {
             return result;
         }
 
+        Date previousTwentieth(const Date& d, DateGeneration::Rule rule) {
+            Date result = Date(20, d.month(), d.year());
+            if (result > d)
+                result -= 1*Months;
+            if (rule == DateGeneration::TwentiethIMM ||
+                rule == DateGeneration::OldCDS ||
+                rule == DateGeneration::CDS) {
+                Month m = result.month();
+                if (m % 3 != 0) { // not a main IMM nmonth
+                    Integer skip = m%3;
+                    result -= skip*Months;
+                }
+            }
+            return result;
+        }
     }
 
 
@@ -110,6 +126,7 @@ namespace QuantLib {
               case DateGeneration::Twentieth:
               case DateGeneration::TwentiethIMM:
               case DateGeneration::OldCDS:
+              case DateGeneration::CDS:
                 QL_FAIL("first date incompatible with " << rule_ <<
                         " date generation rule");
               default:
@@ -138,6 +155,7 @@ namespace QuantLib {
               case DateGeneration::Twentieth:
               case DateGeneration::TwentiethIMM:
               case DateGeneration::OldCDS:
+              case DateGeneration::CDS:
                 QL_FAIL("next to last date incompatible with " << rule_ <<
                         " date generation rule");
               default:
@@ -208,15 +226,21 @@ namespace QuantLib {
           case DateGeneration::TwentiethIMM:
           case DateGeneration::ThirdWednesday:
           case DateGeneration::OldCDS:
+          case DateGeneration::CDS:
             QL_REQUIRE(!endOfMonth,
                        "endOfMonth convention incompatible with " << rule_ <<
                        " date generation rule");
           // fall through
           case DateGeneration::Forward:
 
-            dates_.push_back(effectiveDate);
+            if (rule_ == DateGeneration::CDS) {
+                dates_.push_back(previousTwentieth(effectiveDate,
+                                                   DateGeneration::CDS));
+            } else {
+                dates_.push_back(effectiveDate);
+            }
 
-            seed = effectiveDate;
+            seed = dates_.back();
 
             if (firstDate!=Date()) {
                 dates_.push_back(firstDate);
@@ -229,7 +253,8 @@ namespace QuantLib {
                 seed = firstDate;
             } else if (rule_ == DateGeneration::Twentieth ||
                        rule_ == DateGeneration::TwentiethIMM ||
-                       rule_ == DateGeneration::OldCDS) {
+                       rule_ == DateGeneration::OldCDS ||
+                       rule_ == DateGeneration::CDS) {
                 Date next20th = nextTwentieth(effectiveDate, rule_);
                 if (rule_ == DateGeneration::OldCDS) {
                     // distance rule inforced in natural days
@@ -272,7 +297,8 @@ namespace QuantLib {
                 calendar.adjust(terminationDate,terminationDateConvention)) {
                 if (rule_ == DateGeneration::Twentieth ||
                     rule_ == DateGeneration::TwentiethIMM ||
-                    rule_ == DateGeneration::OldCDS) {
+                    rule_ == DateGeneration::OldCDS ||
+                    rule_ == DateGeneration::CDS) {
                     dates_.push_back(nextTwentieth(terminationDate, rule_));
                     isRegular_.push_back(true);
                 } else {
@@ -321,7 +347,8 @@ namespace QuantLib {
             if (terminationDateConvention != Unadjusted
                 || rule_ == DateGeneration::Twentieth
                 || rule_ == DateGeneration::TwentiethIMM
-                || rule_ == DateGeneration::OldCDS) {
+                || rule_ == DateGeneration::OldCDS
+                || rule_ == DateGeneration::CDS) {
                 dates_.back() = calendar.adjust(dates_.back(),
                                                 terminationDateConvention);
             }
