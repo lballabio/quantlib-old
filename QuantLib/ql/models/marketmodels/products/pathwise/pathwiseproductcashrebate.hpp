@@ -25,9 +25,9 @@
 #include <ql/models/marketmodels/pathwisemultiproduct.hpp>
 #include <ql/models/marketmodels/evolutiondescription.hpp>
 #include <ql/models/marketmodels/curvestates/lmmcurvestate.hpp>
+#include <ql/math/matrix.hpp>
 #include <vector>
 #include <memory>
-#include <ql/math/matrix.hpp>
 
 namespace QuantLib {
 
@@ -36,8 +36,8 @@ namespace QuantLib {
 
     /*!
     Swap for doing simple cash rebate. Fairly useless when used directly, but if we want to look a breakable swap
-    it becomes useful. 
-   
+    it becomes useful.
+
     */
     class MarketModelPathwiseCashRebate : public MarketModelPathwiseMultiProduct
 
@@ -61,7 +61,7 @@ namespace QuantLib {
         virtual bool nextTimeStep(const CurveState& currentState,
                                   std::vector<Size>& numberCashFlowsThisStep,
                                   std::vector<std::vector<MarketModelPathwiseMultiProduct::CashFlow> >& cashFlowsGenerated);
-        
+
         virtual std::auto_ptr<MarketModelPathwiseMultiProduct> clone() const;
 
       private:
