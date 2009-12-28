@@ -24,12 +24,12 @@ namespace QuantLib {
     but it is unsigned and 0 has exactly the same behaviour.
    */
   AdaptedPathPayoff::ValuationData::ValuationData(
-                                              const Matrix       & path, 
-                                    		  Array              & payments, 
-                                    		  Array              & exercises, 
-                                    		  std::vector<Array> & states) : 
-    path_(path), 
-    payments_(payments), exercises_(exercises), states_(states), 
+                                              const Matrix       & path,
+                                              Array              & payments,
+                                              Array              & exercises,
+                                              std::vector<Array> & states) :
+    path_(path),
+    payments_(payments), exercises_(exercises), states_(states),
     maximumTimeRead_(0)
   { }
 
@@ -46,25 +46,25 @@ namespace QuantLib {
 
     return path_[asset][time];
   }
-  
+
   void AdaptedPathPayoff::ValuationData::setPayoffValue(Size time, Real value) {
     /*
       This is to ensure the payoff is an adapted function.
       We prevent payments to depend on future fixings.
      */
-    QL_REQUIRE(time >= maximumTimeRead_, 
+    QL_REQUIRE(time >= maximumTimeRead_,
                "not adapted payoff: looking into the future");
 
     payments_[time] = value;
   }
-  
+
   void AdaptedPathPayoff::ValuationData::setExerciseData(
                                      Size time, Real exercise, Array & state) {
     /*
       This is to ensure the payoff is an adapted function.
       We prevent payments to depend on future fixings.
      */
-    QL_REQUIRE(time >= maximumTimeRead_, 
+    QL_REQUIRE(time >= maximumTimeRead_,
                "not adapted payoff: looking into the future");
 
     if (!exercises_.empty())
@@ -76,9 +76,9 @@ namespace QuantLib {
 
 
   void AdaptedPathPayoff::value(const Matrix       & path,
-				Array              & payments, 
-				Array              & exercises, 
-				std::vector<Array> & states) const {
+                                Array              & payments,
+                                Array              & exercises,
+                                std::vector<Array> & states) const {
     ValuationData data(path, payments, exercises, states);
 
     operator()(data);
