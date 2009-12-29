@@ -81,8 +81,8 @@ namespace QuantLib {
                        Real priceToMatch);
             Real operator()(Volatility guess) const;
           protected:
-            Rate K_;
             Real slope_;
+            Rate K_;
             Frequency frequency_;
             bool indexIsInterpolated_;
             std::vector<Time> tvec_;
