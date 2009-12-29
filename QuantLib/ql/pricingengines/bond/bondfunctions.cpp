@@ -151,6 +151,19 @@ namespace QuantLib {
                                          false, settlement);
     }
 
+    BigInteger BondFunctions::accrualDays(const Bond& bond,
+                                          Date settlement) {
+        if (settlement == Date())
+            settlement = bond.settlementDate();
+
+        QL_REQUIRE(BondFunctions::isTradable(bond, settlement),
+                   "non tradable at " << settlement <<
+                   " (maturity being " << bond.maturityDate() << ")");
+
+        return CashFlows::accrualDays(bond.cashflows(),
+                                      false, settlement);
+    }
+
     Real BondFunctions::accruedAmount(const Bond& bond,
                                       Date settlement) {
         if (settlement == Date())
