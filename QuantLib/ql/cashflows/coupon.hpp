@@ -65,7 +65,7 @@ namespace QuantLib {
         //! accrual period as fraction of year
         Time accrualPeriod() const;
         //! accrual period in days
-        Integer accrualDays() const;
+        BigInteger accrualDays() const;
         //! accrued rate
         virtual Rate rate() const = 0;
         //! day counter for accrual calculation

@@ -45,7 +45,7 @@ namespace QuantLib {
                                          refPeriodEnd_);
     }
 
-    Integer Coupon::accrualDays() const {
+    BigInteger Coupon::accrualDays() const {
         return dayCounter().dayCount(accrualStartDate_,
                                      accrualEndDate_);
     }
