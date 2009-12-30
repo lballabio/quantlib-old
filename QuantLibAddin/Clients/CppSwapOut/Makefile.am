@@ -1,7 +1,7 @@
  
-swap_out_CPPFLAGS = -I${top_srcdir}
+AM_CPPFLAGS = -I${top_srcdir}
+AM_LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem
 swap_out_LDADD = ../../qlo/libQuantLibAddin.la ../../Addins/Cpp/libQuantLibAddinCpp.la
-swap_out_LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem
 
 EXTRA_DIST = \
     ClientCppSwapOut_vc7.vcproj \

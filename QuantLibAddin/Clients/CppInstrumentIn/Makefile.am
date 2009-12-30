@@ -1,7 +1,7 @@
  
-instrument_in_CPPFLAGS = -I${top_srcdir}
+AM_CPPFLAGS = -I${top_srcdir}
+AM_LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem
 instrument_in_LDADD = ../../qlo/libQuantLibAddin.la ../../Addins/Cpp/libQuantLibAddinCpp.la
-instrument_in_LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem
 
 EXTRA_DIST = \
     CppInstrumentIn_vc7.vcproj \

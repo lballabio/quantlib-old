@@ -1,6 +1,6 @@
 
 /*  
- Copyright (C) 2007, 2008 Eric Ehlers
+ Copyright (C) 2007, 2008, 2009 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
 
  This file is part of QuantLib, a free-software/open-source library
@@ -23,7 +23,6 @@
 
 #include <qlo/serialization/register/serialization_register.hpp>
 
-//#include <boost/serialization/variant.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 
@@ -33,25 +32,21 @@ namespace QuantLibAddin {
 
         registerCreators();
 
-		ObjectHandler::ProcessorPtr processorRH(new RelinkableHandleProcessor());
-        ObjectHandler::ProcessorFactory::instance().storeProcessor("RelinkableHandleProcessor",
-            processorRH);
-        ObjectHandler::ProcessorPtr processorI(new InstrumentProcessor());
-        ObjectHandler::ProcessorFactory::instance().storeProcessor("InstrumentProcessor",
-            processorI);
-        ObjectHandler::ProcessorPtr processorP(new InstrumentProcessor());
-        ObjectHandler::ProcessorFactory::instance().storeProcessor("InstrumentProcessor",
-            processorP);
-        ObjectHandler::ProcessorPtr processorL(new LegProcessor());
-        ObjectHandler::ProcessorFactory::instance().storeProcessor("LegProcessor",
-            processorL);
-        ObjectHandler::ProcessorPtr processorIndex(new IndexProcessor());
-        ObjectHandler::ProcessorFactory::instance().storeProcessor("IndexProcessor",
-            processorIndex);
-        ObjectHandler::ProcessorPtr processorE(new ExtrapolatorProcessor());
-        ObjectHandler::ProcessorFactory::instance().storeProcessor("ExtrapolatorProcessor",
-            processorE);
-        
+		ObjectHandler::ProcessorPtr relinkableHandleProcessor(new RelinkableHandleProcessor());
+        ObjectHandler::ProcessorFactory::instance().storeProcessor(
+			"RelinkableHandleProcessor", relinkableHandleProcessor);
+        ObjectHandler::ProcessorPtr instrumentProcessor(new InstrumentProcessor());
+        ObjectHandler::ProcessorFactory::instance().storeProcessor(
+			"InstrumentProcessor", instrumentProcessor);
+        ObjectHandler::ProcessorPtr legProcessor(new LegProcessor());
+        ObjectHandler::ProcessorFactory::instance().storeProcessor(
+			"LegProcessor", legProcessor);
+        ObjectHandler::ProcessorPtr indexProcessor(new IndexProcessor());
+        ObjectHandler::ProcessorFactory::instance().storeProcessor(
+			"IndexProcessor", indexProcessor);
+        ObjectHandler::ProcessorPtr extrapolatorProcessor(new ExtrapolatorProcessor());
+        ObjectHandler::ProcessorFactory::instance().storeProcessor(
+			"ExtrapolatorProcessor", extrapolatorProcessor);
 
     }
 

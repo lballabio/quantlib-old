@@ -1,8 +1,9 @@
-/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
-/*
+/*  
  Copyright (C) 2006 Ferdinando Ametrano
-
+ Copyright (C) 2007 Marco Bianchetti
+ Copyright (C) 2006 Eric Ehlers
+ 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
 
@@ -17,23 +18,26 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#if defined(HAVE_CONFIG_H)
-    #include <qlo/config.hpp>
+// This file was generated automatically by gensrc.py.  If you edit this file
+// manually then your changes will be lost the next time gensrc runs.
+
+// This source code file was generated from the following stub:
+//      gensrc/gensrc/stubs/stub.calc.category
+
+#ifndef ql_calc_payoffs_hpp
+#define ql_calc_payoffs_hpp
+
+    STRING SAL_CALL qlStrikedTypePayoff(
+        const STRING &ObjectId,
+        const STRING &PayoffID,
+        const STRING &OptionType,
+        double Strike,
+        const ANY &ThirdParameter,
+        const ANY &Permanent,
+        const ANY &Trigger,
+        sal_Int32 Overwrite) throw(RuntimeException);
+
+
+
 #endif
-#include <qlo/getcovariance.hpp>
-
-namespace QuantLibAddin {
-
-    CovarianceDecomposition::CovarianceDecomposition(
-        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-        const QuantLib::Matrix& cov,
-        QuantLib::Real tol,
-        bool permanent)
-: ObjectHandler::LibraryObject<QuantLib::CovarianceDecomposition>(properties, permanent)
-    {
-        libraryObject_ =
-            boost::shared_ptr<QuantLib::CovarianceDecomposition>(new
-                QuantLib::CovarianceDecomposition(cov, tol));
-    }
-}
 
