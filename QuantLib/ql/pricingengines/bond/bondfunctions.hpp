@@ -80,8 +80,6 @@ namespace QuantLib {
                                        Date settlementDate = Date());
         static Rate nextCouponRate(const Bond& bond,
                                    Date settlementDate = Date());
-        static BigInteger accrualDays(const Bond& bond,
-                                Date settlementDate = Date());
         static Real accruedAmount(const Bond& bond,
                                   Date settlementDate = Date());
         //@}

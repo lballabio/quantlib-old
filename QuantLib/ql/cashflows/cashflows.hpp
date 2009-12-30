@@ -92,10 +92,6 @@ namespace QuantLib {
         nextCouponRate(const Leg& leg,
                        bool includeSettlementDateFlows,
                        Date settlementDate = Date());
-        static BigInteger
-        accrualDays(const Leg& leg,
-                    bool includeSettlementDateFlows,
-                    Date settlementDate = Date());
         static Real
         accruedAmount(const Leg& leg,
                       bool includeSettlementDateFlows,

@@ -220,23 +220,6 @@ namespace QuantLib {
         return aggregateRate(leg, cf);
     }
 
-    BigInteger CashFlows::accrualDays(const Leg& leg,
-                                      bool includeSettlementDateFlows,
-                                      Date settlementDate) {
-        Leg::const_iterator cf = nextCashFlow(leg,
-                                              includeSettlementDateFlows,
-                                              settlementDate);
-        if (cf==leg.end()) return 0;
-
-        Date paymentDate = (*cf)->date();
-        for (; cf<leg.end() && (*cf)->date()==paymentDate; ++cf) {
-            shared_ptr<Coupon> cp = dynamic_pointer_cast<Coupon>(*cf);
-            if (cp)
-                return cp->accrualDays();
-        }
-        return 0;
-    }
-
     Real CashFlows::accruedAmount(const Leg& leg,
                                   bool includeSettlementDateFlows,
                                   Date settlementDate) {
@@ -630,7 +613,7 @@ namespace QuantLib {
                         Date npvDate) {
         return npv(leg, InterestRate(yield, dc, comp, freq),
                    includeSettlementDateFlows,
-                   settlementDate, npvDate);  
+                   settlementDate, npvDate);
     }
 
     Real CashFlows::bps(const Leg& leg,
@@ -665,7 +648,7 @@ namespace QuantLib {
                         Date npvDate) {
         return bps(leg, InterestRate(yield, dc, comp, freq),
                    includeSettlementDateFlows,
-                   settlementDate, npvDate);  
+                   settlementDate, npvDate);
     }
 
     Rate CashFlows::yield(const Leg& leg,
@@ -808,7 +791,7 @@ namespace QuantLib {
                               Date npvDate) {
         return convexity(leg, InterestRate(yield, dc, comp, freq),
                          includeSettlementDateFlows,
-                         settlementDate, npvDate);  
+                         settlementDate, npvDate);
     }
 
     Real CashFlows::basisPointValue(const Leg& leg,
