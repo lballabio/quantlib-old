@@ -26,7 +26,7 @@
   (exit))
 
 ; current QuantLib version
-(define version "0.9.9")
+(define version "1.0b1")
 
 ; commands
 
@@ -74,7 +74,7 @@
     (let ((command (string-append c++-compiler " -shared "
                          "quantlib_wrap.o "
                          "-L/usr/local/lib "
-                         "-lQuantLib-" version " "
+                         "-lQuantLib "
                          "-o QuantLibc.so")))
       (display command) (newline)
       (system command))))

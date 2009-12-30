@@ -17,11 +17,47 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifdef SWIGPERL
+// Undefine symbols that are also used in quantlib
+
+#if defined(SWIGPYTHON)
 %{
-// Undefine perl symbols that are also used in quantlib
+#ifdef barrier
+#undef barrier
+#endif
+%}
+#endif
+
+#if defined(SWIGRUBY)
+%{
+#ifdef accept
+#undef accept
+#endif
+#ifdef close
+#undef close
+#endif
+#ifdef times
+#undef times
+#endif
+#ifdef Sleep
+#undef Sleep
+#endif
+#ifdef bind
+#undef bind
+#endif
+#ifdef ALLOC
+#undef ALLOC
+#endif
+%}
+#endif
+
+#if defined(SWIGPERL)
+%{
 #ifdef Null
 #undef Null
+#endif
+#ifdef Nullch
+#undef Nullch
+#define Nullch ((char*) NULL)
 #endif
 #ifdef Stat
 #undef Stat
@@ -35,7 +71,7 @@
 %{
 #include <ql/quantlib.hpp>
 
-#if QL_HEX_VERSION < 0x000909f0
+#if QL_HEX_VERSION < 0x010000b1
     #error using an old version of QuantLib, please update
 #endif
 
@@ -55,14 +91,6 @@
 #pragma warning(disable: 4786)
 #endif
 %}
-
-#ifdef SWIGPERL
-%{
-// Redefine the symbol Null which was undefined so that we can load in
-// perl headers
-#define Null(s) ((s) NULL)
-%}
-#endif
 
 #ifdef SWIGPYTHON
 %{

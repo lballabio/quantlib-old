@@ -33,7 +33,7 @@
 
 
 ; current QuantLib version
-(define version "0.9.9")
+(define version "1.0b1")
 
 ; utilities
 (define (string-split s c)
@@ -103,7 +103,7 @@
               (append
                (current-extension-linker-flags)
                (list "-L/usr/local/lib" "-lstdc++" "-lgcc"
-                     (string-append "-lQuantLib-" version))))))
+                     (string-append "-lQuantLib"))))))
           ((eqv? platform 'windows)
            (let ((ql-dir (getenv "QL_DIR")))
              (if ql-dir

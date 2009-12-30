@@ -6,34 +6,42 @@ use strict;
 my($todaysDate) = new QuantLib::Date(15, $QuantLib::May, 1998);
 QuantLib::Settings::instance()->setEvaluationDate($todaysDate);
 my($settlementDate) = new QuantLib::Date(17, $QuantLib::May, 1998);
-my($riskFreeRate) = new QuantLib::FlatForward($settlementDate,
-                                              0.05,
-                                              new QuantLib::Actual365Fixed);
 
-my($exercise) = new QuantLib::EuropeanExercise(
-                                 new QuantLib::Date(17,$QuantLib::May, 1999));
-my($payoff) = new QuantLib::PlainVanillaPayoff($QuantLib::Option::Put, 8.0);
+my($dayCount) = new QuantLib::Actual365Fixed;
 
 my($underlying) = new QuantLib::SimpleQuote(7.0);
-my($volatility) = new QuantLib::BlackConstantVol($todaysDate,
-                                                 new QuantLib::TARGET,
-                                                 0.10,
-                                                 new QuantLib::Actual365Fixed);
+
+my($riskFreeRate) = new QuantLib::FlatForward($settlementDate,
+                                              0.05,
+                                              $dayCount);
+
 my($dividendYield) = new QuantLib::FlatForward($settlementDate,
                                                0.05,
-                                               new QuantLib::Actual365Fixed);
+                                               $dayCount);
 
-my($process) = new QuantLib::BlackScholesMertonProcess(
-                      new QuantLib::QuoteHandle($underlying),
-                      new QuantLib::YieldTermStructureHandle($dividendYield),
-                      new QuantLib::YieldTermStructureHandle($riskFreeRate),
-                      new QuantLib::BlackVolTermStructureHandle($volatility));
+my($calendar) = new QuantLib::TARGET;
+my($volatility) = new QuantLib::BlackConstantVol($todaysDate,
+                                                 $calendar,
+                                                 0.10,
+                                                 $dayCount);
 
-my($option) = new QuantLib::VanillaOption($process, $payoff, $exercise);
+my($u) = new QuantLib::QuoteHandle($underlying);
+my($r) = new QuantLib::YieldTermStructureHandle($riskFreeRate);
+my($q) = new QuantLib::YieldTermStructureHandle($dividendYield);
+my($sigma) = new QuantLib::BlackVolTermStructureHandle($volatility);
+my($process) = new QuantLib::BlackScholesMertonProcess($u, $q, $r, $sigma);
 
-$option->setPricingEngine(new QuantLib::AnalyticEuropeanEngine);
+my($exerciseDate) = new QuantLib::Date(17,$QuantLib::May, 1999);
+my($exercise) = new QuantLib::EuropeanExercise($exerciseDate);
+my($payoff) = new QuantLib::PlainVanillaPayoff($QuantLib::Option::Put, 8.0);
+
+my($option) = new QuantLib::VanillaOption($payoff, $exercise);
+
+my($engine1) = new QuantLib::AnalyticEuropeanEngine($process);
+$option->setPricingEngine($engine1);
 print "analytic: ", $option->NPV(), "\n";
 
-$option->setPricingEngine(new QuantLib::IntegralEngine);
+my($engine2) = new QuantLib::IntegralEngine($process);
+$option->setPricingEngine($engine2);
 print "integral: ", $option->NPV(), "\n";
 

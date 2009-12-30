@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT([QuantLib-SWIG], [0.9.9],
+AC_INIT([QuantLib-SWIG], [1.0b1],
         [quantlib-dev@lists.sourceforge.net],
         [QuantLib-SWIG])
 AC_PREREQ(2.50)
@@ -85,10 +85,6 @@ if test [ -n "$ql_jdk_sys_include_path" ] ; then
    AC_SUBST([JDK_SYSTEM_INCLUDE],["-I${ql_jdk_sys_include_path}"])
 fi
 
-
-# Default compilation variables
-
-AC_SUBST([CXXFLAGS],[${CXXFLAGS='-g -O2 -Wall'}])
 
 # flags
 
