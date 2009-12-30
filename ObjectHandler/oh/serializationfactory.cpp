@@ -120,8 +120,6 @@ namespace ObjectHandler {
 		std::ostream& outputStream,
         const std::vector<boost::shared_ptr<Object> > objectList)
 	{
-        OH_REQUIRE(objectList.size(), "Object list is empty");
-
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
         std::set<std::string> seen;
         std::vector<boost::shared_ptr<ObjectHandler::Object> >::const_iterator i;
@@ -174,6 +172,8 @@ namespace ObjectHandler {
         const std::vector<boost::shared_ptr<ObjectHandler::Object> >& objectList,
         const std::string &path,
         bool forceOverwrite)  {
+
+        OH_REQUIRE(objectList.size(), "Object list is empty");
 
         // Create a boost path object from the char*.
         boost::filesystem::path boostPath(path);
@@ -304,6 +304,7 @@ namespace ObjectHandler {
         const std::vector<boost::shared_ptr<ObjectHandler::Object> > &objectList,
         bool forceOverwrite /* TODO : we need to remove this arg */) {
 
+        OH_REQUIRE(objectList.size(), "Object list is empty");
         std::ostringstream os;
 		saveObjectStream(os, objectList);
 		return os.str();
