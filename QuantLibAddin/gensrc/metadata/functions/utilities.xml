@@ -148,13 +148,13 @@
       </ReturnValue>
     </Procedure>-->
 
-    <Procedure name='qlIsInSubset'>
+    <!--<Procedure name='qlIsInSubset'>
       <description>Looks for elements of a set in a subset. Returns a vector of present/not present booleans, one for each element of the set.</description>
       <alias>QuantLib::isInSubset</alias>
       <SupportedPlatforms>
-        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        --><!--SupportedPlatform name='Excel' calcInWizard='false'/--><!--
         <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
+        --><!--SupportedPlatform name='Cpp'/--><!--
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -174,8 +174,7 @@
         <type>bool</type>
         <tensorRank>vector</tensorRank>
       </ReturnValue>
-    </Procedure>
+    </Procedure>-->
 
   </Functions>
 </Category>
-
