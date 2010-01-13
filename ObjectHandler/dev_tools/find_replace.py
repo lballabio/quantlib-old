@@ -87,10 +87,10 @@ SUBSTITUTIONS = (
 #    (re.compile(r'^import .*?$', re.M), toLower),
 
 #   frequently used
-    (re.compile(r'0_9_8'), '0_9_9'),
-    (re.compile(r'0\.9\.8'), '0.9.9'),
-    (re.compile(r'0x000908'), '0x000909'),
-    (re.compile(r'R000908f0'), 'R000909f0'),
+    (re.compile(r'1_0_0'), '1_0_0'),
+    (re.compile(r'0\.9\.9'), '1.0.0'),
+    (re.compile(r'0x010000'), '0x010000'),
+    (re.compile(r'R010000f0'), 'R010000f0'),
 #    (re.compile(r'Major=0\nMinor=9\nRelease=8'), 'Major=0\nMinor=9\nRelease=9'),
     (re.compile(r'0\.10\.0c'), '0.10.0d'),
 
