@@ -76,13 +76,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\ExampleXLLDynamic2-vc80-mt-gd-0_9_9.xll"
+				OutputFile="xll\ExampleXLLDynamic2-vc80-mt-gd-1_0_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-gd-0_9_9.pdb"
-				ImportLibrary=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-gd-0_9_9.lib"
+				ProgramDatabaseFile=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-gd-1_0_0.pdb"
+				ImportLibrary=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-gd-1_0_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -175,12 +175,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="xll\ExampleXLLDynamic2-vc80-mt-0_9_9.xll"
+				OutputFile="xll\ExampleXLLDynamic2-vc80-mt-1_0_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\xll"
-				ProgramDatabaseFile=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-0_9_9.pdb"
-				ImportLibrary=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-0_9_9.lib"
+				ProgramDatabaseFile=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-1_0_0.pdb"
+				ImportLibrary=".\buildXllDynamic2\vc80\$(ConfigurationName)\ExampleXLLDynamic2-vc80-mt-1_0_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
