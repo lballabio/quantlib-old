@@ -33,7 +33,7 @@
 #endif
 
 #include <ql/version.hpp>
-#if QL_HEX_VERSION < 0x010000f0
+#if QL_HEX_VERSION < 0x010000b2
     #error using an old version of QuantLib, please update.
 #endif
 
