@@ -11,15 +11,15 @@
   <FunctionMetadata>C:\Projects\trunk\QuantLibAddin\gensrc\metadata</FunctionMetadata>
   <AddinList>
     <!--<Addin>
-      <Path>C:\Projects\trunk\ObjectHandler\xll\ObjectHandler-xll-vc80-mt-0_9_9.xll</Path>
+      <Path>C:\Projects\trunk\ObjectHandler\xll\ObjectHandler-xll-vc80-mt-1_0_0.xll</Path>
       <DeliveredByLauncher>False</DeliveredByLauncher>
     </Addin>
     <Addin>
-      <Path>C:\Projects\trunk\QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-0_9_9.xll</Path>
+      <Path>C:\Projects\trunk\QuantLibXL\xll\QuantLibXLDynamic-vc80-mt-1_0_0.xll</Path>
       <DeliveredByLauncher>False</DeliveredByLauncher>
     </Addin>-->
     <Addin>
-      <Path>C:\Projects\trunk\QuantLibXL\xll\QuantLibXL-vc80-mt-s-0_9_9.xll</Path>
+      <Path>C:\Projects\trunk\QuantLibXL\xll\QuantLibXL-vc80-mt-s-1_0_0.xll</Path>
       <DeliveredByLauncher>False</DeliveredByLauncher>
     </Addin>
   </AddinList>
