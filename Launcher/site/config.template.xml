@@ -107,11 +107,11 @@
       <AddinList>
         <Addin>
           <DeliveredByLauncher>True</DeliveredByLauncher>
-          <Path>ObjectHandler-xll-vc80-mt-0_9_9.xll</Path>
+          <Path>ObjectHandler-xll-vc80-mt-1_0_0.xll</Path>
         </Addin>
         <Addin>
           <DeliveredByLauncher>True</DeliveredByLauncher>
-          <Path>QuantLibXLDynamic-vc80-mt-0_9_9.xll</Path>
+          <Path>QuantLibXLDynamic-vc80-mt-1_0_0.xll</Path>
         </Addin>
         <Addin>
           <DeliveredByLauncher>False</DeliveredByLauncher>
