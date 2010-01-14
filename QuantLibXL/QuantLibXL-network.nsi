@@ -13,8 +13,8 @@
 
 !define VER_NUMBER "1.0.0"
 !define VER_NUMBER_UNDERSCORE "1_0_0"
-!define REV_NUMBER "Rev16570"
-!define COMPILER "vc80"
+!define REV_NUMBER "Rev17019"
+!define COMPILER "vc90"
 
 ; General Attributes
 
@@ -84,7 +84,7 @@ Section
 
     SetOutPath "$INSTDIR\framework"
     File "framework\QuantLibXL.xla"
-    File "framework\QuantLibXLDeveloperTeam.cer"
+    File "framework\QuantLibXLA.cer"
 
     SetOutPath "$INSTDIR\metadata"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
