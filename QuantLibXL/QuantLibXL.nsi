@@ -50,7 +50,7 @@ SectionIn 1 2 3
 
     SetOutPath "$INSTDIR\framework"
     File "framework\QuantLibXL.xla"
-    File "framework\QuantLibXLDeveloperTeam.cer"
+    File "framework\QuantLibXLA.cer"
 
     SetOutPath "$INSTDIR\Data"
     File /r "Data\*.xls"

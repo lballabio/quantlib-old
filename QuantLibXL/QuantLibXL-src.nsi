@@ -139,7 +139,7 @@ SectionEnd
 
 #    SetOutPath "$INSTDIR\framework"
 #    File "framework\QuantLibXL.xla"
-#    File "framework\QuantLibXLDeveloperTeam.cer"
+#    File "framework\QuantLibXLA.cer"
 
 #    SetOutPath "$INSTDIR\Workbooks"
 #    File /r "Workbooks\*.xls"

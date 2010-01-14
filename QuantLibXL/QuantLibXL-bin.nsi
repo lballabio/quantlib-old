@@ -4,7 +4,7 @@
 !define APP "QuantLibXL"
 !define VER_NUMBER "1.0.0"
 !define VER_NUMBER_UNDERSCORE "1_0_0"
-!define COMPILER "vc80"
+!define COMPILER "vc90"
 
 # Compiler Flags
 
@@ -108,7 +108,7 @@ SectionEnd
 
 #    SetOutPath "$INSTDIR\framework"
 #    File "framework\QuantLibXL.xla"
-#    File "framework\QuantLibXLDeveloperTeam.cer"
+#    File "framework\QuantLibXLA.cer"
 #
 #    SetOutPath "$INSTDIR\Workbooks"
 #    File /r "Workbooks\*.xls"
