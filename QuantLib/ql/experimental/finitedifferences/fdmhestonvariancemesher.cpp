@@ -26,6 +26,7 @@
 #include <ql/experimental/finitedifferences/fdmhestonvariancemesher.hpp>
 
 #include <set>
+#include <algorithm>
 
 namespace QuantLib {
 
@@ -35,7 +36,7 @@ namespace QuantLib {
         Time maturity, Size tAvgSteps, Real epsilon)
         : Fdm1dMesher(size) {
 
-            std::vector<Real> vGrid(size, 0.0), pGrid(size, 0.0);
+        std::vector<Real> vGrid(size, 0.0), pGrid(size, 0.0);
         const Real df  = 4*process->theta()*process->kappa()/
                             square<Real>()(process->sigma());
         try {
@@ -70,7 +71,6 @@ namespace QuantLib {
 
                     const Real vx = std::max(vTmp+minVStep, tmp);
                     p = NonCentralChiSquareDistribution(df, ncp)(vx/k);
-                    
                     vTmp=vx;
                     grid.insert(std::pair<Real, Real>(vx, p));
                 }
@@ -79,7 +79,7 @@ namespace QuantLib {
                        "something wrong with the grid size");
             
             std::vector<std::pair<Real, Real> > tp(grid.begin(), grid.end());
-            
+
             for (Size i=0; i < size; ++i) {
                 const Size b = (i*tp.size())/size;
                 const Size e = ((i+1)*tp.size())/size;
@@ -107,6 +107,8 @@ namespace QuantLib {
 
         Real skewHint = ((process->kappa() != 0.0) 
                 ? std::max(1.0, process->sigma()/process->kappa()) : 1.0);
+
+        std::sort(pGrid.begin(), pGrid.end());
         volaEstimate_ = GaussLobattoIntegral(100000, 1e-4)(
             boost::function1<Real, Real>(
                 compose(std::ptr_fun<Real, Real>(std::sqrt),
