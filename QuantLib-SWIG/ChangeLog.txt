@@ -1,70 +1,496 @@
-2008-11-10 12:09  Luigi Ballabio
+2010-01-13 11:54  Luigi Ballabio
 
-	* [r15745] MzScheme/examples/swap.scm:
+	* [r16996] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
 	  
-	  Fix for name conflict in recent MzScheme versions
+	  Increased version number to 1.0b2.
 
-2008-11-10 09:27  Luigi Ballabio
+2009-12-09 18:43  Ferdinando Ametrano
 
-	* [r15743] MzScheme/setup.scm, Python/setup.py, Ruby/setup.rb:
-	  
-	  Fixed VC++ options
-
-2008-11-07 13:39  Luigi Ballabio
-
-	* [r15741] MzScheme/setup.scm:
-	  
-	  Update for recent MzScheme versions
-
-2008-11-07 11:49  Luigi Ballabio
-
-	* [r15740] CSharp/Makefile.am:
-	  
-	  Added new files to distribution
-
-2008-11-07 11:22  Luigi Ballabio
-
-	* [r15737] CSharp/QuantLib_vc9.sln,
-	  CSharp/cpp/QuantlibWrapper_vc9.vcproj,
-	  CSharp/csharp/NQuantLib_vc9.csproj,
-	  CSharp/examples/BermudanSwaption_vc9.csproj,
-	  CSharp/examples/EquityOption_vc9.csproj:
-	  
-	  Added VS9 support to C# bindings
-
-2008-11-07 11:12  Luigi Ballabio
-
-	* [r15735] CSharp/QuantLib_vc8.sln,
-	  CSharp/cpp/QuantlibWrapper_vc8.vcproj,
-	  CSharp/csharp/NQuantLib_vc8.csproj,
-	  CSharp/examples/BermudanSwaption_vc8.csproj,
-	  CSharp/examples/EquityOption_vc8.csproj:
-	  
-	  Added VS8 support to C# bindings
-
-2008-11-07 10:54  Luigi Ballabio
-
-	* [r15734] CSharp/QuantLib_vc7.sln, CSharp/cpp, CSharp/csharp,
-	  CSharp/csharp/NQuantLib.csproj, CSharp/csharp/NQuantLib_vc7.csproj:
-	  
-	  Upgraded VS7 projects
-
-2008-11-07 10:33  Luigi Ballabio
-
-	* [r15733] CSharp, CSharp/QuantLib.sln, CSharp/QuantLib_vc7.sln,
-	  CSharp/cpp, CSharp/cpp/QuantlibWrapper.vcproj,
+	* [r16884] ., CSharp/QuantLib_vc7.sln,
 	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
-	  CSharp/csharp/NQuantLib.csproj, CSharp/examples,
-	  CSharp/examples/BermudanSwaption.csproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
 	  CSharp/examples/BermudanSwaption_vc7.csproj:
 	  
-	  Upgraded VS7 projects
+	  merged r116727 through r16882 of quantlib/branches/R000909-branch
+	  into quantlib/branches/R01000x-branch respecting ancestry
 
-2008-10-31 15:59  Luigi Ballabio
+2009-12-01 13:48  Luigi Ballabio
 
-	* [r15716] :
+	* [r16848] Perl/README.txt, Perl/examples/european-option.pl:
 	  
-	  Created release branch for version 0.9.7
+	  Perl example now completes before crashing (thanks to Chuck Swiger.)
+
+2009-12-01 13:47  Luigi Ballabio
+
+	* [r16847] Guile/setup.scm, MzScheme/setup.scm:
+	  
+	  Fixed linked library name.
+
+2009-12-01 13:46  Luigi Ballabio
+
+	* [r16846] configure.ac:
+	  
+	  Reverted compilation flags to system-wide defaults.
+
+2009-12-01 13:45  Luigi Ballabio
+
+	* [r16845] SWIG/ql.i, SWIG/quantlib.i:
+	  
+	  Consolidated management of language-specific defines.
+
+2009-11-24 16:31  Luigi Ballabio
+
+	* [r16795] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number.
+
+2009-11-24 14:36  Luigi Ballabio
+
+	* [r16793]
+	  
+	  Created branch for 1.0.x releases.
+
+2009-11-10 09:06  Ferdinando Ametrano
+
+	* [r16726] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged up to r16724 of branches/R000909-branch into trunk,
+	  respecting ancestry
+
+2009-11-06 13:37  Ferdinando Ametrano
+
+	* [r16705] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, Java/Makefile.am:
+	  
+	  merged up to r16696 of branches/R000909-branch into trunk,
+	  respecting ancestry
+
+2009-11-04 14:38  Ferdinando Ametrano
+
+	* [r16690] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, News.txt,
+	  SWIG/indexes.i:
+	  
+	  merged r16643 through r16686 of branches/R000909-branch into trunk,
+	  respecting ancestry
+
+2009-10-23 10:20  Ferdinando Ametrano
+
+	* [r16645] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  Merging revisions 16636-16642 of
+	  https://quantlib.svn.sourceforge.net/svnroot/quantlib/branches/R000909-branch
+	  into C:\Projects\DevEnv\trunk, respecting ancestry
+
+2009-10-21 13:20  Luigi Ballabio
+
+	* [r16623] SWIG/indexes.i:
+	  
+	  Removed ambiguous termStructure() method from InterestRateIndex
+	  interface.
+	  
+	  The method was moved to derived classes and renamed to
+	  forwardingTermStructure.
+
+2009-10-20 08:49  Luigi Ballabio
+
+	* [r16609] CSharp/QuantLib_vc8.sln, CSharp/QuantLib_vc9.sln,
+	  CSharp/cpp/QuantlibWrapper_vc8.vcproj,
+	  CSharp/cpp/QuantlibWrapper_vc9.vcproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj,
+	  CSharp/examples/BermudanSwaption_vc8.csproj,
+	  CSharp/examples/BermudanSwaption_vc9.csproj,
+	  CSharp/examples/EquityOption_vc8.csproj,
+	  CSharp/examples/EquityOption_vc9.csproj,
+	  Python/examples/visualization/basketoption.py,
+	  Python/examples/visualization/eurooption.py,
+	  Python/examples/visualization/option.basket.py,
+	  Python/examples/visualization/option.mayavi.py,
+	  Python/examples/visualization/option.plotspace.py,
+	  Python/examples/visualization/plotspace.py:
+	  
+	  Fixed SVN properties
+
+2009-10-19 11:10  Luigi Ballabio
+
+	* [r16596] CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj, SWIG/compoundforward.i,
+	  SWIG/ql.i:
+	  
+	  Removed legacy term structures.
+
+2009-09-30 14:14  Luigi Ballabio
+
+	* [r16499] SWIG/scheduler.i:
+	  
+	  Added old (short/long coupon) CDS rule (thanks to Jose Aparicio.)
+	  
+	  Also, according to market conventions, termination date is now
+	  unadjusted
+	  for the CDS built inside the helpers.
+
+2009-09-30 12:46  Luigi Ballabio
+
+	* [r16497] SWIG/indexes.i:
+	  
+	  Exported methods to clear index histories.
+
+2009-09-29 09:10  Luigi Ballabio
+
+	* [r16492] Python/setup.py:
+	  
+	  Added required flag for compilation with VC++ 2008
+
+2009-09-22 16:25  Luigi Ballabio
+
+	* [r16489] SWIG/cashflows.i, SWIG/interestrate.i:
+	  
+	  Sync with new C++ interfaces.
+
+2009-09-11 07:44  Joseph Wang
+
+	* [r16460] Python/examples/visualization/README.txt,
+	  Python/examples/visualization/basketoption.py,
+	  Python/examples/visualization/eurooption.py,
+	  Python/examples/visualization/option.basket.py,
+	  Python/examples/visualization/option.mayavi.py,
+	  Python/examples/visualization/option.plotspace.py:
+	  
+	  change licenses from LGPL to BSD
+
+2009-09-07 13:19  Luigi Ballabio
+
+	* [r16452] CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  Updated C# projects.
+
+2009-09-04 12:37  Luigi Ballabio
+
+	* [r16444] LICENSE.TXT:
+	  
+	  Updated copyrights and contributor list.
+
+2009-09-01 15:11  Luigi Ballabio
+
+	* [r16430] SWIG/callability.i, SWIG/cashflows.i,
+	  SWIG/defaultprobability.i, SWIG/dividends.i, SWIG/marketelements.i,
+	  SWIG/ratehelpers.i, SWIG/shortratemodels.i,
+	  SWIG/stochasticprocess.i, SWIG/vectors.i:
+	  
+	  Upgraded to SWIG 1.3.40
+
+2009-09-01 14:38  Luigi Ballabio
+
+	* [r16429] SWIG/quantlib.i:
+	  
+	  Included version header
+
+2009-08-04 10:52  Luigi Ballabio
+
+	* [r16381] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number
+
+2009-08-04 10:47  Luigi Ballabio
+
+	* [r16380] SWIG/credit.i:
+	  
+	  Removed unused experimental features.
+
+2009-07-09 06:54  Luigi Ballabio
+
+	* [r16352] SWIG/settings.i:
+	  
+	  Exported methods to set cash-flow flags
+
+2009-07-07 16:51  Luigi Ballabio
+
+	* [r16348] SWIG/creditdefaultswap.i, SWIG/defaultprobability.i:
+	  
+	  Sync with C++
+
+2009-07-07 16:51  Luigi Ballabio
+
+	* [r16347] SWIG/null.i:
+	  
+	  Fixes for R typemaps
+
+2009-06-30 09:45  Luigi Ballabio
+
+	* [r16325] SWIG/shortratemodels.i:
+	  
+	  Sync with C++
+
+2009-06-07 19:47  Joseph Wang
+
+	* [r16267] Python/examples/visualization/README.txt,
+	  Python/examples/visualization/basketoption.py,
+	  Python/examples/visualization/eurooption.py,
+	  Python/examples/visualization/option.basket.py:
+	  
+	  add fixes
+
+2009-06-07 19:39  Joseph Wang
+
+	* [r16266] Python/examples/visualization/basketoption.py,
+	  Python/examples/visualization/eurooption.py,
+	  Python/examples/visualization/option.basket.py,
+	  Python/examples/visualization/option.mayavi.py,
+	  Python/examples/visualization/option.plotspace.py,
+	  Python/examples/visualization/plotspace.py:
+	  
+	  add new items
+
+2009-06-07 19:34  Joseph Wang
+
+	* [r16265] Python/examples/visualization,
+	  Python/examples/visualization/option.basket.py,
+	  Python/examples/visualization/option.mayavi.py,
+	  Python/examples/visualization/option.plotspace.py,
+	  Python/examples/visualization/plotspace.py:
+	  
+	  visualization examples
+
+2009-05-13 10:28  Luigi Ballabio
+
+	* [r16243] SWIG/cashflows.i:
+	  
+	  Fixed hard tabs
+
+2009-05-13 03:36  Joseph Wang
+
+	* [r16239] SWIG/cashflows.i:
+	  
+	  syncing SWIG to quantlib
+
+2009-05-13 02:56  Joseph Wang
+
+	* [r16238] SWIG/cashflows.i:
+	  
+	  sync with newest quantlib
+
+2009-04-27 15:24  Luigi Ballabio
+
+	* [r16218] Python/test/bonds.py, Python/test/ratehelpers.py,
+	  SWIG/bonds.i, SWIG/cashflows.i:
+	  
+	  Sync with C++
+
+2009-04-27 15:23  Luigi Ballabio
+
+	* [r16217] configure.ac:
+	  
+	  Checking additional alias for Mono compiler
+
+2009-04-27 15:22  Luigi Ballabio
+
+	* [r16216] Python/QuantLib/__init__.py:
+	  
+	  Fix for Python 2.6
+
+2009-04-03 14:30  Luigi Ballabio
+
+	* [r16106] SWIG/bonds.i:
+	  
+	  Sync with C++
+
+2009-03-31 12:39  Luigi Ballabio
+
+	* [r16097] SWIG/optimizers.i:
+	  
+	  Added BFGS optimizer (thanks to Frederic Degraeve)
+
+2009-03-27 11:44  Ferdinando Ametrano
+
+	* [r16084] SWIG/interpolation.i:
+	  
+	  - added (Log)CubicInterpolation convenience classes, with
+	  homogeneous nomenclature (borrowed from QuantLibXL)
+	  - switched from CubicNaturalSpline to MonotonicCubicNaturalSpline in
+	  FdmBlackScholesSolver to avoid possible spurious waviness
+
+2009-03-23 16:04  Luigi Ballabio
+
+	* [r16053] CSharp/Makefile.am, CSharp/swig.cmd, Guile/Makefile.am,
+	  Java/Makefile.am, MzScheme/Makefile.am, OCaml/Makefile.am,
+	  Perl/Makefile.am, Python/Makefile.am, R/Makefile.am,
+	  Ruby/Makefile.am:
+	  
+	  Upgraded to SWIG 1.3.39
+
+2009-03-23 13:47  Luigi Ballabio
+
+	* [r16052] Python/examples/basket-option.py, SWIG/forwardcurve.i,
+	  SWIG/zerocurve.i:
+	  
+	  Sync with C++
+
+2009-03-19 15:13  Luigi Ballabio
+
+	* [r16036] SWIG/defaultprobability.i:
+	  
+	  Sync with Rev16034
+
+2009-03-19 09:55  Ferdinando Ametrano
+
+	* [r16031] SWIG/cashflows.i:
+	  
+	  - partially reverted Rev16029 to have date, nominal order (as it is
+	  a less invasive change than switching to nominal, date)
+	  - also reverted Rev18030
+
+2009-03-19 09:10  Luigi Ballabio
+
+	* [r16030] SWIG/cashflows.i:
+	  
+	  Sync with changes in Rev16029
+
+2009-03-06 11:43  Luigi Ballabio
+
+	* [r15993] SWIG/options.i:
+	  
+	  Exported Asian options
+
+2009-03-06 11:42  Luigi Ballabio
+
+	* [r15992] SWIG/old_pricers.i, SWIG/ql.i:
+	  
+	  Removed old pricers
+
+2009-02-25 10:44  Luigi Ballabio
+
+	* [r15963] CSharp/examples/BermudanSwaption_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc8.csproj,
+	  CSharp/examples/BermudanSwaption_vc9.csproj,
+	  CSharp/examples/EquityOption_vc8.csproj,
+	  CSharp/examples/EquityOption_vc9.csproj:
+	  
+	  Fix for C# compilation.
+	  It worked on my machine, but problems have been reported with other
+	  configurations.
+	  When not needed, the fix is harmless.
+	  Thanks to Grant Birchmeier.
+
+2009-02-24 15:19  Luigi Ballabio
+
+	* [r15962] SWIG/credit.i, SWIG/creditdefaultswap.i:
+	  
+	  Removed broken Issuer abstraction from core library.
+	  
+	  The Issuer class failed to take into account the possibility of
+	  several
+	  default-probability curves and recovery rates for each issuer, based
+	  on
+	  seniority or currency.
+	  In most instrument and pricing engines, instances of Issuer were
+	  replaced
+	  by the data members it contained. The Issuer class itself was moved
+	  to
+	  ql/experimental/credit to support the SyntheticCDO class, which uses
+	  it
+	  for the Pool and Basket classes and might used as a case study for
+	  finding
+	  the correct abstraction.
+
+2009-02-24 14:41  Luigi Ballabio
+
+	* [r15961] CSharp/examples/EquityOption.cs,
+	  Guile/examples/european-option.scm,
+	  Java/examples/EquityOptions.java,
+	  MzScheme/examples/european-option.scm,
+	  Ruby/examples/european-option.rb:
+	  
+	  Sync with library changes in r15771
+
+2009-02-24 14:39  Luigi Ballabio
+
+	* [r15960] SWIG/options.i:
+	  
+	  Sync with library changes in r15933
+
+2009-02-03 08:45  Luigi Ballabio
+
+	* [r15877] Python/test/QuantLibTestSuite.py, Python/test/bonds.py,
+	  Python/test/ratehelpers.py, SWIG/bonds.i, SWIG/ratehelpers.i:
+	  
+	  Complete Bond and FixedRateBond SWIG bindings (thanks to Joe
+	  Malicki)
+
+2009-02-03 08:39  Luigi Ballabio
+
+	* [r15876] SWIG/ql.i:
+	  
+	  Avoided conflict with Perl macro
+
+2008-11-20 13:34  Luigi Ballabio
+
+	* [r15779] SWIG/basketoptions.i, SWIG/options.i:
+	  
+	  Added timeSteps parameter to a few MC engines besides the existing
+	  timeStepsPerYear
+
+2008-11-19 16:24  Luigi Ballabio
+
+	* [r15771] SWIG/basketoptions.i, SWIG/options.i:
+	  
+	  Removed unused control-variate switch
+
+2008-11-19 14:47  Luigi Ballabio
+
+	* [r15770] SWIG/basketoptions.i:
+	  
+	  Renamed engine to more-specific name
+
+2008-11-18 14:15  Luigi Ballabio
+
+	* [r15768] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number
+
+2008-11-18 12:04  Luigi Ballabio
+
+	* [r15767] ., CSharp, CSharp/Makefile.am, CSharp/QuantLib.sln,
+	  CSharp/QuantLib_vc7.sln, CSharp/QuantLib_vc8.sln,
+	  CSharp/QuantLib_vc9.sln, CSharp/cpp,
+	  CSharp/cpp/QuantlibWrapper.vcproj,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/cpp/QuantlibWrapper_vc8.vcproj,
+	  CSharp/cpp/QuantlibWrapper_vc9.vcproj, CSharp/csharp,
+	  CSharp/csharp/NQuantLib.csproj, CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj, CSharp/examples,
+	  CSharp/examples/BermudanSwaption.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc8.csproj,
+	  CSharp/examples/BermudanSwaption_vc9.csproj,
+	  CSharp/examples/EquityOption_vc8.csproj,
+	  CSharp/examples/EquityOption_vc9.csproj, ChangeLog.txt,
+	  MzScheme/examples/swap.scm, MzScheme/setup.scm, News.txt,
+	  Python/setup.py, Ruby/setup.rb:
+	  
+	  Merged 0.9.7 release (QuantLib, QuantLib-SWIG, and QuantLib-site
+	  modules)
 
 2008-10-23 15:40  Luigi Ballabio
 
