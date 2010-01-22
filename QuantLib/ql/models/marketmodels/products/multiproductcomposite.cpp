@@ -69,6 +69,10 @@ namespace QuantLib {
                 // finally, set done to false if this product isn't done
                 done = done && thisDone;
             }
+            else
+                for (Size j=0; j<i->product->numberOfProducts(); ++j)
+                    numberCashFlowsThisStep[j+offset] =0;
+
             // the offset is updated whether or not the product was evolved
             offset += i->product->numberOfProducts();
         }
