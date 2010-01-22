@@ -148,11 +148,6 @@ namespace QuantLibAddin {
                                         dc));
     }
 
-    StrippedOptionletBase::StrippedOptionletBase(
-                                const shared_ptr<ValueObject>& properties,
-                                bool permanent)
-    : LibraryObject<QuantLib::StrippedOptionletBase>(properties, permanent) {}
-
     OptionletStripper1::OptionletStripper1(
                         const shared_ptr<ValueObject>& properties,
                         const shared_ptr<QuantLib::CapFloorTermVolSurface>& s,

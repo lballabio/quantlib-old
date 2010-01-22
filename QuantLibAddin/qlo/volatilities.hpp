@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007 Ferdinando Ametrano
+ Copyright (C) 2007, 2010 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -40,8 +40,6 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    OH_LIB_CLASS(BlackVolTermStructure, QuantLib::BlackVolTermStructure);
-
     class BlackConstantVol : public BlackVolTermStructure {
       public:
         BlackConstantVol(
@@ -66,15 +64,6 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
-    OH_OBJ_CLASS(VolatilityTermStructure, TermStructure);
-
-    OH_OBJ_CLASS(BlackAtmVolCurve, VolatilityTermStructure);
-
- /*   class BlackAtmVolCurve : public VolatilityTermStructure {
-    public:
-        BlackAtmVolCurve() {};
-    }*/
-
     class AbcdAtmVolCurve: public BlackAtmVolCurve {
     public:
       AbcdAtmVolCurve(
@@ -88,10 +77,6 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dc,
             bool permanent);
     };
-
-    OH_OBJ_CLASS(BlackVolSurface, BlackAtmVolCurve);
-
-    OH_OBJ_CLASS(InterestRateVolSurface, BlackVolSurface);
 
     class SabrVolSurface : public InterestRateVolSurface {
       public:
@@ -117,4 +102,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

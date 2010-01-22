@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2010 Ferdinando Ametrano
  Copyright (C) 2006 Silvia Frasson
  Copyright (C) 2006 Mario Pucci
  Copyright (C) 2006, 2007 Giorgio Facchinetti
@@ -59,8 +59,6 @@ namespace QuantLibAddin {
             bool permanent);
     };
         
-    OH_OBJ_CLASS(SwaptionVolatilityDiscrete, SwaptionVolatilityStructure);
-
     class SwaptionVolatilityMatrix : public SwaptionVolatilityDiscrete {
       public:
         SwaptionVolatilityMatrix(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -74,8 +72,6 @@ namespace QuantLibAddin {
         std::vector<long> locate(const QuantLib::Date& d,
                                  const QuantLib::Period& p);
     };
-    
-    OH_OBJ_CLASS(SwaptionVolatilityCube, SwaptionVolatilityDiscrete);
     
     class SwaptionVolCube2 : public SwaptionVolatilityCube {
       public:
