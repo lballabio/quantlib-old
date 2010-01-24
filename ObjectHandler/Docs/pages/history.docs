@@ -23,6 +23,19 @@
 
 /*! \page history Version History
 
+<strong>Release 1.0.0 - ??? 2010</strong>
+
+FUNCTIONALITY
+
+- Support for serialization of Groups of objects (thanks to Plamen Neykov)
+- Support for serialization to/from a stream (thanks to Plamen Neykov)
+
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.10.0c
+- gensrc version 1.0.0
+
 <strong>Release 0.9.7 - November 2008</strong>
 
 FUNCTIONALITY

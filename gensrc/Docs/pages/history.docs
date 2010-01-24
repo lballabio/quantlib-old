@@ -23,6 +23,10 @@
 
 /*! \page history Version History
 
+<strong>Release 1.0.0 - ??? 2010</strong>
+
+- Maintenance release.
+
 <strong>Release 0.9.7 - November 2008</strong>
 
 - Fix bug in gensrc internal error handling
