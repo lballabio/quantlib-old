@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
- Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009, 2010 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -27,8 +27,6 @@
 
 namespace QuantLib {
 
-    class YieldTermStructure;
-
     class OptionletVolatilityStructure;
     class CapFloorTermVolatilityStructure;
 
@@ -37,23 +35,29 @@ namespace QuantLib {
     class DefaultProbabilityTermStructure;
 
     class InflationTermStructure;
+
+    class VolatilityTermStructure;
+
+    class YieldTermStructure;
+
 }
 
 namespace QuantLibAddin {
      
     OH_OBJ_CLASS(TermStructure, Extrapolator);
-
-    OH_OBJ_CLASS(YieldTermStructure, TermStructure);
-
-    OH_OBJ_CLASS(OptionletVolatilityStructure, TermStructure);
-    OH_OBJ_CLASS(CapFloorTermVolatilityStructure, TermStructure);
-
-    OH_OBJ_CLASS(SwaptionVolatilityStructure, TermStructure);
-
-    OH_OBJ_CLASS(DefaultProbabilityTermStructure, TermStructure);
-
-    OH_OBJ_CLASS(InflationTermStructure, TermStructure);
-
+        OH_OBJ_CLASS(YieldTermStructure,              TermStructure);
+        OH_OBJ_CLASS(DefaultProbabilityTermStructure, TermStructure);
+        OH_OBJ_CLASS(InflationTermStructure,          TermStructure);
+        OH_OBJ_CLASS(VolatilityTermStructure,         TermStructure);
+            OH_OBJ_CLASS(BlackAtmVolCurve,                VolatilityTermStructure);
+                OH_OBJ_CLASS(BlackVolSurface, BlackAtmVolCurve);
+                    OH_OBJ_CLASS(InterestRateVolSurface, BlackVolSurface);
+            OH_OBJ_CLASS(BlackVolTermStructure,           VolatilityTermStructure);
+            OH_OBJ_CLASS(SwaptionVolatilityStructure,     VolatilityTermStructure);
+                OH_OBJ_CLASS(SwaptionVolatilityDiscrete, SwaptionVolatilityStructure);
+                    OH_OBJ_CLASS(SwaptionVolatilityCube, SwaptionVolatilityDiscrete);
+            OH_OBJ_CLASS(OptionletVolatilityStructure,    VolatilityTermStructure);
+            OH_OBJ_CLASS(CapFloorTermVolatilityStructure, VolatilityTermStructure);
 }
 
 #endif
