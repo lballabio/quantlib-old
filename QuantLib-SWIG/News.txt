@@ -1,4 +1,8 @@
 
+Release 1.0 - February 2010
+Changes since Release 0.9.9:
+    - in sync with QuantLib 1.0
+
 Release 0.9.9 - November 2009
 Changes since Release 0.9.7:
     - in sync with QuantLib 0.9.9
