@@ -186,6 +186,7 @@
 %include termstructures.i
 %include timebasket.i
 %include timeseries.i
+%include tracing.i
 %include types.i
 %include volatilities.i
 %include volatilitymodels.i
