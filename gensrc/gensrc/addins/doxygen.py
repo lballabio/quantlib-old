@@ -152,7 +152,7 @@ class Doxygen(addin.Addin):
             'application' : environment.config().namespaceObjects(),
             'count' : len(allFuncs),
             'list' : bufList })
-        fileName = self.rootPath_ + 'all_functions.docs'
+        fileName = self.rootPath_ + 'allfunctions.docs'
         outputfile.OutputFile(self, fileName, self.copyright_, self.bufferHeader_)
 
     def generateDocs(self):

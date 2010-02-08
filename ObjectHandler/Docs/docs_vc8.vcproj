@@ -110,7 +110,7 @@
 			Name="auto.pages"
 			>
 			<File
-				RelativePath="auto.pages\all_functions.docs"
+				RelativePath="auto.pages\allfunctions.docs"
 				>
 			</File>
 			<File
