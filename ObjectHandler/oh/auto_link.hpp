@@ -21,6 +21,8 @@
 #ifndef oh_autolink_hpp
 #define oh_autolink_hpp
 
+#include <oh/ohdefines.hpp>
+
 // select toolset:
 #if (_MSC_VER < 1300)
 #  error "unsupported Microsoft compiler"

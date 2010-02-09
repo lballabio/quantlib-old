@@ -34,7 +34,7 @@ Section
     File "QuantLibAddin_vc7.sln"
     File "QuantLibAddin_vc8.sln"
     File "QuantLibAddin_vc9.sln"
-    File "QuantLibAddinCalc_vc7.sln"
+#    File "QuantLibAddinCalc_vc7.sln"
 
     File "*.txt"
     File "*.TXT"
@@ -56,8 +56,8 @@ Section
     File "gensrc\stubs\stub.*"
 
     SetOutPath "$INSTDIR\Addins\Calc"
-    File "Addins\Calc\Makefile.vc"
-    File "Addins\Calc\QuantLibAddinCalc.def"
+    File "Addins\Calc\Makefile"
+    #File "Addins\Calc\QuantLibAddinCalc.def"
     #File "Addins\Calc\QuantLibAddinCalc.idl"
 
     SetOutPath "$INSTDIR\Clients\Calc"

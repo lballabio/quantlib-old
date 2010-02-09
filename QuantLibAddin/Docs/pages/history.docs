@@ -35,6 +35,11 @@ FUNCTIONALITY
 
 - 75 new functions / 937 in total
 
+PLATFORMS
+
+- Calc addin migrated to latest OpenOffice.org architecture (Thanks to
+  Roland Lichters)
+
 <strong>Release 0.9.7 - November 2008</strong>
 
 REQUIRED PACKAGES

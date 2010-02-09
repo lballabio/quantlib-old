@@ -25,13 +25,13 @@ documentation of %QuantLibAddin/QuantLibXL functionality.
 Section <a href="manual.html">Manual</a> summarizes selected topics concerning
 end-user functionality of ObjectHandler, QuantLibAddin, and QuantLibXL.
 
-Section <a href="auto/all_functions.html">Functions</a> is an alphabetic list of links to
+Section <a href="allfunctions.html">Functions</a> is an alphabetic list of links to
 the documentation for all functions in %QuantLibAddin.
 
-Section <a href="auto/categories.html">Categories</a> is a list of links to
+Section <a href="categories.html">Categories</a> is a list of links to
 documentation of %QuantLibAddin functions by category.
 
-Section <a href="auto/enums.html">Enumerations</a> documents alphanumeric
+Section <a href="enums.html">Enumerations</a> documents alphanumeric
 codes which %QuantLibAddin recognizes to indicate minor or transient %QuantLib
 classes which are constructed as part of larger operations.
 

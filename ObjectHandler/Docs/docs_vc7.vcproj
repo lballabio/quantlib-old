@@ -81,7 +81,7 @@
 			Name="auto.pages"
 			Filter="">
 			<File
-				RelativePath="auto.pages\all_functions.docs">
+				RelativePath="auto.pages\allfunctions.docs">
 			</File>
 			<File
 				RelativePath="auto.pages\categories.docs">

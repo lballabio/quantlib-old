@@ -20,6 +20,8 @@
 #ifndef qla_autolink_hpp
 #define qla_autolink_hpp
 
+#include <qlo/qladdindefines.hpp>
+
 // select toolset:
 #if (_MSC_VER < 1300)
 #  error "unsupported Microsoft compiler"
