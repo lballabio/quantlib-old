@@ -171,7 +171,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackFormulaImpliedStdDev3'>
+    <Procedure name='qlBlackFormulaImpliedStdDev'>
       <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula with displacement.</description>
       <alias>QuantLib::blackFormulaImpliedStdDev</alias>
       <SupportedPlatforms>
@@ -444,7 +444,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBlackFormulaImpliedStdDev4'>
+    <Procedure name='qlBlackFormulaImpliedStdDev2'>
       <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula. It uses a PlainVanillaPayoff object as input.</description>
       <alias>QuantLib::blackFormulaImpliedStdDev</alias>
       <SupportedPlatforms>
