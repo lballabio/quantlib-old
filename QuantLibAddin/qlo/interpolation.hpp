@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009, 2010 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,9 +22,11 @@
 
 #include <qlo/extrapolator.hpp>
 
+#include <ql/math/interpolations/mixedinterpolation.hpp>
 #include <ql/math/interpolations/cubicinterpolation.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/math/interpolations/abcdinterpolation.hpp>
+
 #include <ql/patterns/lazyobject.hpp>
 #include <ql/quote.hpp>
 #include <ql/types.hpp>
@@ -86,6 +88,28 @@ namespace QuantLibAddin {
                       bool permanent);
     };
     
+    class MixedLinearCubicInterpolation : public Interpolation {
+      public:
+        MixedLinearCubicInterpolation(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Real>& x,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& y,
+            QuantLib::Size n,
+            QuantLib::CubicInterpolation::DerivativeApprox da,
+            bool monotonic,
+            QuantLib::CubicInterpolation::BoundaryCondition leftCondition,
+            QuantLib::Real leftConditionValue,
+            QuantLib::CubicInterpolation::BoundaryCondition rightCondition,
+            QuantLib::Real rightConditionValue,
+            bool permanent);
+        //QuantLib::Size switchIndex() const {
+        //    calculate();
+        //    return qlMixedLinearCubicInterpolation_->switchIndex();
+        //}
+      protected:
+        boost::shared_ptr<QuantLib::MixedLinearCubicInterpolation> qlMixedLinearCubicInterpolation_;
+    };
+
     class CubicInterpolation : public Interpolation {
       public:
         CubicInterpolation(

@@ -17,7 +17,7 @@
     <include>ql/math/interpolations/interpolation2d.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008, 2010 Ferdinando Ametrano
     Copyright (C) 2007 Eric Ehlers
   </copyright>
   <Functions>
@@ -247,6 +247,67 @@
             <superType>libToHandle</superType>
             <tensorRank>vector</tensorRank>
             <description>y array.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- MixedLinearCubicInterpolation constructor and interface -->
+
+    <Constructor name='qlMixedLinearCubicInterpolation'>
+      <libraryFunction>MixedLinearCubicInterpolation</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='XArray' exampleValue ='1.0,2.0,3.0,4.0,5.0' >
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>x array.</description>
+          </Parameter>
+          <Parameter name='YArray' exampleValue ='1.0,8.0,27.0,64.0,125.0' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>vector</tensorRank>
+            <description>y array.</description>
+          </Parameter>
+          <Parameter name='SwitchIndex'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>zero based knot index at which interpolation switches from linear to cubic.</description>
+          </Parameter>
+          <Parameter name='DerApprox' default='"Kruger"'>
+            <type>QuantLib::CubicInterpolation::DerivativeApprox</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Derivative Approximation ().</description>
+          </Parameter>
+          <Parameter name='Monotonic' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>monotonicity constraint flag.</description>
+          </Parameter>
+          <Parameter name='LeftConditionType' default='"SecondDerivative"'>
+            <type>QuantLib::CubicInterpolation::BoundaryCondition</type>
+            <tensorRank>scalar</tensorRank>
+            <description>left boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange).</description>
+          </Parameter>
+          <Parameter name='LeftConditionValue' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>left condition value.</description>
+          </Parameter>
+          <Parameter name='RightConditionType' default='"SecondDerivative"'>
+            <type>QuantLib::CubicInterpolation::BoundaryCondition</type>
+            <tensorRank>scalar</tensorRank>
+            <description>right boundary condition (NotAKnot, FirstDerivative, SecondDerivative, Periodic, Lagrange).</description>
+          </Parameter>
+          <Parameter name='RightConditionValue' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>right condition value.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

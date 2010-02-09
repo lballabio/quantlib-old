@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009, 2010 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -109,6 +109,33 @@ namespace QuantLibAddin {
             (type, x_.begin(), x_.end(), y_.begin());
         qlInterpolation_ = dynamic_pointer_cast<QuantLib::Interpolation>(
             libraryObject_);
+    }
+
+    MixedLinearCubicInterpolation::MixedLinearCubicInterpolation(
+        const shared_ptr<ValueObject>& properties,
+        const vector<Real>& x,
+        const vector<Handle<Quote> >& yh,
+        QuantLib::Size n,
+        QuantLib::CubicInterpolation::DerivativeApprox da,
+        bool monotonic,
+        QuantLib::CubicInterpolation::BoundaryCondition leftCondition,
+        Real leftValue,
+        QuantLib::CubicInterpolation::BoundaryCondition rightCondition,
+        Real rightValue,
+        bool permanent)
+    : Interpolation(properties, x, yh, permanent)
+    {
+        libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+            QuantLib::MixedLinearCubicInterpolation(
+                                                x_.begin(), x_.end(),
+                                                y_.begin(), n,
+                                                da, monotonic,
+                                                leftCondition, leftValue,
+                                                rightCondition, rightValue));
+        qlInterpolation_ =
+            dynamic_pointer_cast<QuantLib::Interpolation>(libraryObject_);
+        qlMixedLinearCubicInterpolation_ =
+            dynamic_pointer_cast<QuantLib::MixedLinearCubicInterpolation>(libraryObject_);
     }
 
     CubicInterpolation::CubicInterpolation(
