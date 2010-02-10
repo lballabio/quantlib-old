@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2006, 2007, 2008 Eric Ehlers
+ Copyright (C) 2009 Roland Lichters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,7 +24,7 @@
 #include <ql/time/date.hpp>
 #include <ql/time/calendar.hpp>
 #include <ql/math/matrix.hpp>
-#include <Addins/Calc/qldefs.hpp>
+#include <qldefs.hpp>
 #include <sal/types.h>
 #include <vector>
 
@@ -33,6 +34,8 @@
 void calcToScalar(QuantLib::Date &, const sal_Int32&);
 void calcToScalar(QuantLib::Date &, const ANY&);
 void calcToScalar(ObjectHandler::property_t &, const ANY&);
+// RL: added
+void calcToScalar(ObjectHandler::property_t &, const STRING&);
 void calcToScalar(QuantLib::Calendar &, const STRING &id);
 void calcToScalar(QuantLib::Period &, const STRING &id);
 void calcToVector(std::vector<QuantLib::Date> &, const SEQSEQ(sal_Int32) &);
@@ -45,6 +48,8 @@ void calcToVector(std::vector<boost::any> &, const SEQSEQ(ANY) &);
 QuantLib::Matrix calcToQlMatrix(const SEQSEQ(double) &);
 
 void scalarToCalc(sal_Int32 &, const QuantLib::Date &);
+// RL: added
+void scalarToCalc(STRING &, const QuantLib::Calendar &);
 
 // Function below required on 64-bit systems but on 32-bit systems it
 // conflicts with sal_Int32 override.

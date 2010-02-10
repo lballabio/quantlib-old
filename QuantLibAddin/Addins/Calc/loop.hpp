@@ -19,6 +19,8 @@
 #ifndef qla_calc_loop_hpp
 #define qla_calc_loop_hpp
 
+#include <calcaddins.hpp>
+
 namespace QuantLibAddin {
 
     template<class LoopFunction, class InputType, class OutputType>

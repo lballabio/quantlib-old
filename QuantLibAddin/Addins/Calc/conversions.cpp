@@ -17,8 +17,8 @@
 */
 
 #include <ql/utilities/dataparsers.hpp>
-#include <Addins/Calc/conversions.hpp>
-#include <Addins/Calc/calcutils.hpp>
+#include <conversions.hpp>
+#include <calcutils.hpp>
 //#include <qlo/calendar.hpp>
 #include <qlo/enumerations/factories/all.hpp>
 #include <oh/objecthandler.hpp>
@@ -54,6 +54,10 @@ void calcToScalar(ObjectHandler::property_t &ret, const ANY &value) {
     } else {
         OH_FAIL("unrecognized type: " << ouStringToStlString(t));
     }
+}
+
+void calcToScalar(ObjectHandler::property_t &ret, const STRING &id) {
+  ret = ObjectHandler::property_t(ouStringToStlString(id));
 }
 
 //void calcToScalar(QuantLib::Calendar &ret, const STRING &id2) {
@@ -138,6 +142,10 @@ void scalarToCalc(long &ret, const QuantLib::Date &in) {
 
 void scalarToCalc(double &ret, const QuantLib::Real &in) {
     ret = in;
+}
+
+void scalarToCalc(STRING &ret, const QuantLib::Calendar &in) {
+  ret = STRFROMASCII( in.name().c_str() );
 }
 
 void vectorToCalc(SEQSEQ(sal_Int32) &ret, const std::vector<QuantLib::Date> &v) {

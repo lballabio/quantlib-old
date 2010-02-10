@@ -17,8 +17,8 @@
 */
 
 #include <oh/objecthandler.hpp>
-#include <Addins/Calc/qldefs.hpp>
-#include <Addins/Calc/calcutils.hpp>
+#include <qldefs.hpp>
+#include <calcutils.hpp>
 #include <sstream>
 
 std::string ouStringToStlString(const STRING& s1) {

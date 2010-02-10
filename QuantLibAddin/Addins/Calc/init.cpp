@@ -16,7 +16,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <Addins/Calc/init.hpp>
+//#include <Addins/Calc/init.hpp>
+#include <init.hpp>
 #include <oh/repository.hpp>
 #include <oh/enumerations/enumregistry.hpp>
 #include <qlo/enumerations/register/register_all.hpp>
