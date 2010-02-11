@@ -13,8 +13,8 @@
 
 !define VER_NUMBER "1.0.0"
 !define VER_NUMBER_UNDERSCORE "1_0_0"
-!define REV_NUMBER "Rev17019"
-!define COMPILER "vc90"
+!define REV_NUMBER "Rev17097"
+!define COMPILER "vc80"
 
 ; General Attributes
 
