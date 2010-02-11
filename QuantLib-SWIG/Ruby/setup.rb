@@ -57,7 +57,7 @@ end
 
 
 # Current QuantLib version
-Version = "1.0"
+Version = "1.1"
 
 cfg = Config::MAKEFILE_CONFIG
 
