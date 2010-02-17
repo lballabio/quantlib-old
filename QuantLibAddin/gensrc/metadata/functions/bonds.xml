@@ -32,7 +32,7 @@
   </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Chiara Fornarola
-    Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008, 2009, 2010 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Walter Penschke
@@ -41,7 +41,155 @@
 
   <Functions>
 
-    <!-- QuantLib::Bond member functions and QuantLib::BondFunctions -->
+    <!-- QuantLib::Bond inspectors -->
+
+    <Member name='qlBondSettlementDays' type='QuantLib::Bond'>
+      <description>Returns the number of settlement days of the bond.</description>
+      <libraryFunction>settlementDays</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Natural</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondCalendar' type='QuantLib::Bond'>
+      <description>Returns the calendar of the bond, e.g. TARGET.</description>
+      <libraryFunction>calendar</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Calendar</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondNotionals' type='QuantLib::Bond'>
+      <description>Returns the notionals of the bond.</description>
+      <libraryFunction>notionals</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondNotional' type='QuantLib::Bond'>
+      <description>Returns the notional of the bond at a given date.</description>
+      <libraryFunction>notional</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondMaturityDate' type='QuantLib::Bond'>
+      <description>Returns the maturity date of the bond.</description>
+      <libraryFunction>maturityDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondIssueDate' type='QuantLib::Bond'>
+      <description>Returns the issue date of the bond.</description>
+      <libraryFunction>issueDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondIsTradable' type='QuantLib::Bond'>
+      <description>Returns TRUE if the given Bond is tradable at the given settlement date. The current bond settlement is used if no date is given.</description>
+      <libraryFunction>isTradable</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBondSettlementDate' type='QuantLib::Bond'>
+      <description>Returns the settlement date of the bond.</description>
+      <libraryFunction>settlementDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- QuantLib::BondFunctions Date inspectors -->
 
     <Procedure name='qlBondStartDate'>
       <description>Returns the start (i.e. first accrual) date for the given Bond object.</description>
@@ -66,21 +214,7 @@
       </ReturnValue>
     </Procedure>
 
-    <Member name='qlBondMaturityDate' type='QuantLib::Bond'>
-      <description>Returns the maturity date of the bond.</description>
-      <libraryFunction>maturityDate</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
+    <!-- QuantLib::BondFunctions CashFlow inspectors -->
 
     <Procedure name='qlBondPreviousCashFlowDate'>
       <description>Returns the previous cash flow date.</description>
@@ -140,7 +274,6 @@
       </ReturnValue>
     </Procedure>
 
-
     <Procedure name='qlBondPreviousCashFlowAmount'>
       <description>Returns the previous cash flow amount.</description>
       <alias>QuantLib::BondFunctions::previousCashFlowAmount</alias>
@@ -199,6 +332,7 @@
       </ReturnValue>
     </Procedure>
 
+    <!-- QuantLib::BondFunctions Coupon inspectors -->
 
     <Procedure name='qlBondPreviousCouponRate'>
       <description>Returns the previous coupon rate. Depending on (the Bond and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the last paid one.</description>
@@ -258,8 +392,240 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='qlBondAccrualStartDate'>
+      <description>Returns the accrual start date for the current coupon of the given bond.</description>
+      <alias>QuantLib::BondFunctions::accrualStartDate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBondAccrualEndDate'>
+      <description>Returns the accrual end date for the current coupon of the given bond.</description>
+      <alias>QuantLib::BondFunctions::accrualEndDate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBondReferencePeriodStart'>
+      <description>Returns the reference period start date for the current coupon of the given bond.</description>
+      <alias>QuantLib::BondFunctions::referencePeriodStart</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBondReferencePeriodEnd'>
+      <description>Returns the reference period end date for the current coupon of the given bond.</description>
+      <alias>QuantLib::BondFunctions::referencePeriodEnd</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBondAccrualPeriod'>
+      <description>Returns the total accrual period for the current coupon of the given bond. The current bond settlement is used if no date is given.</description>
+      <alias>QuantLib::BondFunctions::accrualPeriod</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBondAccrualDays'>
+      <description>Returns the total number of accrual days for the current coupon of the given bond. The current bond settlement is used if no date is given.</description>
+      <alias>QuantLib::BondFunctions::accrualDays</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBondAccruedPeriod'>
+      <description>Returns the accrued period for the current coupon of the given bond. The current bond settlement is used if no date is given.</description>
+      <alias>QuantLib::BondFunctions::accruedPeriod</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBondAccruedDays'>
+      <description>Returns the accrued days for the current coupon of the given bond. The current bond settlement is used if no date is given.</description>
+      <alias>QuantLib::BondFunctions::accruedDays</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
     <Procedure name='qlBondAccruedAmount'>
-      <description>Returns the accrued amount for the given bond. The bond settlement is used if no date is given.</description>
+      <description>Returns the accrued amount for the given bond. The current bond settlement is used if no date is given.</description>
       <alias>QuantLib::BondFunctions::accruedAmount</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -287,9 +653,11 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='qlBondAccrualDays'>
-      <description>Returns the current number of accrual days for the given bond. The bond settlement is used if no date is given.</description>
-      <alias>QuantLib::BondFunctions::accrualDays</alias>
+    <!-- QuantLib::BondFunctions YieldTermStructure functions -->
+
+    <Procedure name='qlBondCleanPriceFromYieldTermStructure'>
+      <description>Returns the bond clean price implied by the given YieldTermStructure and settlement date.</description>
+      <alias>QuantLib::BondFunctions::cleanPrice</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -303,24 +671,154 @@
             <tensorRank>scalar</tensorRank>
             <description>id of existing QuantLib::Bond object</description>
           </Parameter>
-          <!--<Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+          <Parameter name='YieldCurve' exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>The current bond settlement date is used if no specific date is given.</description>
-          </Parameter>-->
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
-        <type>long</type>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='qlBondBpsFromYieldTermStructure'>
+      <description>Returns the basis point sensitivity implied by the given YieldTermStructure and settlement date.</description>
+      <alias>QuantLib::BondFunctions::bps</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
 
+    <Procedure name='qlBondAtmRateFromYieldTermStructure'>
+      <description>Returns the ATM rate implied by the given YieldTermStructure, settlement date, and clean price.</description>
+      <alias>QuantLib::BondFunctions::atmRate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+          <Parameter name='CleanPrice' const='False' exampleValue='99.8'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>clean price.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <!-- QuantLib::BondFunctions Yield functions -->
 
     <Procedure name='qlBondCleanPriceFromYield'>
       <description>Returns the bond clean price implied by the given yield and settlement date.</description>
       <alias>QuantLib::BondFunctions::cleanPrice</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='Yield' const='False' exampleValue='4.00%'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond yield.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/Actual (ISDA)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Yield DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='Compounding' const='False' default='"Compounded"'>
+            <type>QuantLib::Compounding</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
+          </Parameter>
+          <Parameter name='Frequency' const='False' default='"Annual"'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBondBpsFromYield'>
+      <description>Returns the basis point sensitivity implied by the given yield and settlement date.</description>
+      <alias>QuantLib::BondFunctions::bps</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -431,6 +929,111 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='qlBondDurationFromYield'>
+      <description>Returns the duration implied by the given yield and settlement date.</description>
+      <alias>QuantLib::BondFunctions::duration</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='Yield' const='False' exampleValue='4.00%'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond yield.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/Actual (ISDA)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Yield DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='Compounding' const='False' default='"Compounded"'>
+            <type>QuantLib::Compounding</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
+          </Parameter>
+          <Parameter name='Frequency' const='False' default='"Annual"'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+          <Parameter name='DurationType' default='"Modified"'>
+            <type>QuantLib::Duration::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Duration type (Simple, Macaulay, or Modified).</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBondConvexityFromYield'>
+      <description>Returns the convexity implied by the given yield and settlement date.</description>
+      <alias>QuantLib::BondFunctions::convexity</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Bond</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Bond object</description>
+          </Parameter>
+          <Parameter name='Yield' const='False' exampleValue='4.00%'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bond yield.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/Actual (ISDA)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Yield DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='Compounding' const='False' default='"Compounded"'>
+            <type>QuantLib::Compounding</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
+          </Parameter>
+          <Parameter name='Frequency' const='False' default='"Annual"'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The current bond settlement date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <!-- QuantLib::BondFunctions Z-spread functions -->
+
     <Procedure name='qlBondCleanPriceFromZSpread'>
       <description>Returns the bond clean price implied by the given Z-Spread, discount curve, and settlement date.</description>
       <alias>QuantLib::BondFunctions::cleanPrice</alias>
@@ -528,11 +1131,13 @@
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
           </Parameter>
+          
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>The current bond settlement date is used if no specific date is given.</description>
           </Parameter>
+
           <Parameter name='Accuracy' default='1.0e-10'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
@@ -556,144 +1161,8 @@
       </ReturnValue>
     </Procedure>
 
-    <!-- QuantLib::Bond interface -->
-
-    <Member name='qlBondSettlementDays' type='QuantLib::Bond'>
-      <description>Returns the number of settlement days of the bond.</description>
-      <libraryFunction>settlementDays</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Natural</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondCalendar' type='QuantLib::Bond'>
-      <description>Returns the calendar of the bond, e.g. TARGET.</description>
-      <libraryFunction>calendar</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Calendar</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondNotionals' type='QuantLib::Bond'>
-      <description>Returns the notionals of the bond.</description>
-      <libraryFunction>notionals</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Real</type>
-        <tensorRank>vector</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondNotional' type='QuantLib::Bond'>
-      <description>Returns the notional of the bond at a given date.</description>
-      <libraryFunction>notional</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement date is used if no specific date is given.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Real</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondIssueDate' type='QuantLib::Bond'>
-      <description>Returns the issue date of the bond.</description>
-      <libraryFunction>issueDate</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlBondSettlementDate' type='QuantLib::Bond'>
-      <description>Returns the settlement date of the bond.</description>
-      <libraryFunction>settlementDate</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement date is used if no specific date is given.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Procedure name='qlBondIsTradable'>
-      <description>Returns TRUE is the Bond is tradable</description>
-      <alias>QuantLib::BondFunctions::isTradable</alias>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters>
-          <Parameter name='ObjectId'>
-            <type>QuantLib::Bond</type>
-            <superType>underlyingClass</superType>
-            <tensorRank>scalar</tensorRank>
-            <description>id of existing QuantLib::Bond object</description>
-          </Parameter>
-          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
-            <type>QuantLib::Date</type>
-            <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement date is used if no specific date is given.</description>
-          </Parameter>
-        </Parameters>
-      </ParameterList>
-      <ReturnValue>
-        <type>bool</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Procedure>
-
+    <!-- QuantLib::Bond Calculation -->
+    
     <Member name='qlBondCleanPrice' type='QuantLib::Bond'>
       <description>Returns the clean price for the given bond.</description>
       <libraryFunction>cleanPrice</libraryFunction>
@@ -1258,7 +1727,7 @@
           <Parameter name='LegID'>
             <type>QuantLibAddin::Leg</type>
             <tensorRank>scalar</tensorRank>
-            <description>leg object ID.</description>
+            <description>coupon vector Leg object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
