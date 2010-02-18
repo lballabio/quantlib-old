@@ -44,6 +44,14 @@
         <Parameters>
           <Parameter name='LegIDs'>
             <type>QuantLibAddin::Leg</type>
+            <!--
+            
+                it would be better to have support
+                for vector of underlyingClass
+                
+            <type>QuantLib::Leg</type>
+            <supertype>underlyingClass</supertype>
+          -->
             <tensorRank>vector</tensorRank>
             <description>leg object IDs.</description>
           </Parameter>

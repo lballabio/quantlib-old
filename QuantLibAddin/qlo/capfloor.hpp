@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2010 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -35,7 +35,7 @@ namespace QuantLibAddin {
       public:
         CapFloor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                  QuantLib::CapFloor::Type type,
-                 const boost::shared_ptr<Leg>& floatingLegWrapper,
+                 const QuantLib::Leg& floatingLeg,
                  const std::vector<QuantLib::Rate>& strikes,
                  bool permanent);
         // MakeCapFloor

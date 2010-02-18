@@ -69,14 +69,14 @@ namespace QuantLibAddin {
 
     RangeAccrualFloatersCoupon::RangeAccrualFloatersCoupon(
                 const shared_ptr<ValueObject>& properties,
-                const shared_ptr<Leg>& rangeAccrualLeg,
+                const QuantLib::Leg& rangeAccrualLeg,
                 QuantLib::Size i,
                 bool permanent)
     : LibraryObject<QuantLib::RangeAccrualFloatersCoupon>(properties, permanent)
     {
-        const QuantLib::Leg& leg = rangeAccrualLeg->getQuantLibLeg();
-        QL_REQUIRE(i<leg.size(), "i>=leg.size()");
-        libraryObject_ = boost::dynamic_pointer_cast<QuantLib::RangeAccrualFloatersCoupon>(leg[i]);
+        QL_REQUIRE(i<rangeAccrualLeg.size(), "i>=rangeAccrualLeg.size()");
+        libraryObject_ =
+            boost::dynamic_pointer_cast<QuantLib::RangeAccrualFloatersCoupon>(rangeAccrualLeg[i]);
     }
 
     RangeAccrualPricerByBgm::RangeAccrualPricerByBgm(

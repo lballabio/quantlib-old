@@ -122,8 +122,8 @@
       <ParameterList>
         <Parameters>
           <Parameter name='RangeAccrualLeg'>
-            <type>QuantLibAddin::Leg</type>
-            <superType>objectClass</superType>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>range accrual leg object ID.</description>
           </Parameter>

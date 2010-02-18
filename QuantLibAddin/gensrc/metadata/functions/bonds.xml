@@ -1725,7 +1725,8 @@
             <description>issue date: the bond can't be traded until then.</description>
           </Parameter>
           <Parameter name='LegID'>
-            <type>QuantLibAddin::Leg</type>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>coupon vector Leg object ID.</description>
           </Parameter>

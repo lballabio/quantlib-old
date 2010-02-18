@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2006, 2007 Chiara Fornarola
- Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009, 2010 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
@@ -66,7 +66,7 @@ namespace QuantLibAddin {
              QuantLib::Real faceAmount,
              const QuantLib::Date& maturityDate,
              const QuantLib::Date& issueDate,
-             const boost::shared_ptr<Leg>& leg,
+             const QuantLib::Leg& leg,
              bool permanent);
       protected:
         OH_OBJ_CTOR(Bond, Instrument);

@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2010 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -33,13 +33,12 @@ namespace QuantLibAddin {
     CapFloor::CapFloor(
                  const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                  QuantLib::CapFloor::Type type,
-                 const boost::shared_ptr<Leg>& floatingLeg,
+                 const QuantLib::Leg& floatingLeg,
                  const std::vector<QuantLib::Rate>& strikes,
                  bool permanent) : Instrument(properties, permanent)
     {
-        const QuantLib::Leg& leg = floatingLeg->getQuantLibLeg();
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
-            QuantLib::CapFloor(type, leg, strikes));
+            QuantLib::CapFloor(type, floatingLeg, strikes));
     }
 
     CapFloor::CapFloor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

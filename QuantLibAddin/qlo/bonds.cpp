@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2006, 2007 Chiara Fornarola
- Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009, 2010 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
@@ -98,7 +98,7 @@ namespace QuantLibAddin {
                QuantLib::Real faceAmount,
                const QuantLib::Date& maturityDate,
                const QuantLib::Date& issueDate,
-               const shared_ptr<Leg>& leg,
+               const QuantLib::Leg& leg,
                bool permanent) : Instrument(properties, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::Instrument>(new
@@ -107,7 +107,7 @@ namespace QuantLibAddin {
                            faceAmount,
                            maturityDate,
                            issueDate,
-                           leg->getQuantLibLeg()));
+                           leg));
     }
 
     ZeroCouponBond::ZeroCouponBond(
@@ -199,10 +199,8 @@ namespace QuantLibAddin {
     {
 		vector<QuantLib::InterestRate> couponRate(coupons.size());
 
-		for(QuantLib::Size couponIndex = 0; couponIndex < coupons.size(); couponIndex++)
-		{
-			couponRate[couponIndex] = *coupons[couponIndex];
-		}
+		for (QuantLib::Size i=0; i<coupons.size(); ++i)
+			couponRate[i] = *coupons[i];
 
         libraryObject_ = shared_ptr<QuantLib::Instrument>(new
             QuantLib::FixedRateBond(settlementDays, faceAmount,

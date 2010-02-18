@@ -12,7 +12,7 @@
     <include>ql/termstructures/yieldtermstructure.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2009, 2010 Ferdinando Ametrano
     Copyright (C) 2006, 2007 Cristina Duminuco
     Copyright (C) 2006, 2007 Giorgio Facchinetti
     Copyright (C) 2005 Aurelien Chanudet
@@ -20,48 +20,69 @@
 
   <Functions>
 
-    <!-- Leg interface -->
-    <Member name='qlLegStartDate' type='QuantLibAddin::Leg'>
+    <!-- Leg Date functions -->
+
+    <Procedure name='qlLegStartDate'>
       <description>Returns the start (i.e. first accrual) date for the given Leg object.</description>
-      <libraryFunction>startDate</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlLegMaturityDate' type='QuantLibAddin::Leg'>
-      <description>Returns the maturity (i.e. last payment) date for the given Leg object.</description>
-      <libraryFunction>startDate</libraryFunction>
-      <SupportedPlatforms>
-        <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Cpp'/-->
-      </SupportedPlatforms>
-      <ParameterList>
-        <Parameters/>
-      </ParameterList>
-      <ReturnValue>
-        <type>QuantLib::Date</type>
-        <tensorRank>scalar</tensorRank>
-      </ReturnValue>
-    </Member>
-
-    <Member name='qlLegIsExpired' type='QuantLibAddin::Leg'>
-      <description>Returns TRUE is the Leg is expired</description>
-      <libraryFunction>isExpired</libraryFunction>
+      <alias>QuantLib::CashFlows::startDate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlLegMaturityDate'>
+      <description>Returns the maturity (i.e. last payment) date for the given Leg object.</description>
+      <alias>QuantLib::CashFlows::startDate</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlLegIsExpired'>
+      <description>Returns TRUE is the Leg is expired</description>
+      <alias>QuantLib::CashFlows::isExpired</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='IncludeSettlDate' const='False' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
@@ -78,21 +99,25 @@
         <type>bool</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
+    <!-- Leg CashFlow functions -->
 
-
-
-
-    <Member name='qlLegPreviousCashFlowDate' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegPreviousCashFlowDate'>
       <description>Returns the previous cash flow date.</description>
-      <libraryFunction>previousCashFlowDate</libraryFunction>
+      <alias>QuantLib::CashFlows::previousCashFlowDate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='IncludeSettlDate' const='False' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
@@ -109,17 +134,23 @@
         <type>QuantLib::Date</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegNextCashFlowDate' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegNextCashFlowDate'>
       <description>Returns the next cash flow date.</description>
-      <libraryFunction>nextCashFlowDate</libraryFunction>
+      <alias>QuantLib::CashFlows::nextCashFlowDate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='IncludeSettlDate' const='False' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
@@ -136,17 +167,23 @@
         <type>QuantLib::Date</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegPreviousCashFlowAmount' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegPreviousCashFlowAmount'>
       <description>Returns the previous cash flow amount.</description>
-      <libraryFunction>previousCashFlowAmount</libraryFunction>
+      <alias>QuantLib::CashFlows::previousCashFlowAmount</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='IncludeSettlDate' const='False' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
@@ -163,17 +200,23 @@
         <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegnextCashFlowAmount' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegNextCashFlowAmount'>
       <description>Returns the next cash flow amount.</description>
-      <libraryFunction>nextCashFlowAmount</libraryFunction>
+      <alias>QuantLib::CashFlows::nextCashFlowAmount</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='IncludeSettlDate' const='False' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
@@ -190,19 +233,25 @@
         <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
+    <!-- Leg Coupon inspectors -->
 
-
-    <Member name='qlLegPreviousCouponRate' type='QuantLibAddin::Leg'>
-      <description>Returns the previous coupon. Depending on (the Leg and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the last paid one.</description>
-      <libraryFunction>previousCouponRate</libraryFunction>
+    <Procedure name='qlLegPreviousCouponRate'>
+      <description>Returns the previous coupon rate. Depending on (the Leg and) the given date it can be historic, deterministic or expected in a stochastic sense. When the current date is used the coupon is the last paid one.</description>
+      <alias>QuantLib::CashFlows::previousCouponRate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='IncludeSettlDate' const='False' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
@@ -219,17 +268,23 @@
         <type>QuantLib::Rate</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegNextCouponRate' type='QuantLibAddin::Leg'>
-      <description>Returns the next coupon. Depending on (the Leg and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the already-fixed not-yet-paid one.</description>
-      <libraryFunction>nextCouponRate</libraryFunction>
+    <Procedure name='qlLegNextCouponRate'>
+      <description>Returns the next coupon rate. Depending on (the Leg and) the given date it can be historic, deterministic or expected in a stochastic sense. When the current date is used the coupon is the already-fixed not-yet-paid one.</description>
+      <alias>QuantLib::CashFlows::nextCouponRate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='IncludeSettlDate' const='False' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
@@ -246,17 +301,287 @@
         <type>QuantLib::Rate</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegAccruedAmount' type='QuantLibAddin::Leg'>
-      <description>Returns the accrued amount. Depending on (the Leg and) the given date it can be historic, deterministic or expected in a stochastic sense. When the bond settlement date is used the coupon is the already-fixed not-yet-paid one.</description>
-      <libraryFunction>accruedAmount</libraryFunction>
+    <Procedure name='qlLegAccrualStartDate'>
+      <description>Returns the accrual start date for the current coupon of the given Leg.</description>
+      <alias>QuantLib::CashFlows::accrualStartDate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
+          <Parameter name='IncludeSettlDate' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if cashflows paid at the settlement date must be taken into account.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cashflows before this date are not taken into account.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlLegAccrualEndDate'>
+      <description>Returns the accrual end date for the current coupon of the given Leg.</description>
+      <alias>QuantLib::CashFlows::accrualEndDate</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
+          <Parameter name='IncludeSettlDate' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if cashflows paid at the settlement date must be taken into account.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cashflows before this date are not taken into account.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlLegReferencePeriodStart'>
+      <description>Returns the reference period start date for the current coupon of the given Leg.</description>
+      <alias>QuantLib::CashFlows::referencePeriodStart</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
+          <Parameter name='IncludeSettlDate' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if cashflows paid at the settlement date must be taken into account.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cashflows before this date are not taken into account.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlLegReferencePeriodEnd'>
+      <description>Returns the reference period end date for the current coupon of the given Leg.</description>
+      <alias>QuantLib::CashFlows::referencePeriodEnd</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
+          <Parameter name='IncludeSettlDate' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if cashflows paid at the settlement date must be taken into account.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cashflows before this date are not taken into account.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlLegAccrualPeriod'>
+      <description>Returns the total accrual period for the current coupon of the given Leg.</description>
+      <alias>QuantLib::CashFlows::accrualPeriod</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
+          <Parameter name='IncludeSettlDate' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if cashflows paid at the settlement date must be taken into account.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cashflows before this date are not taken into account.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlLegAccrualDays'>
+      <description>Returns the total number of accrual days for the current coupon of the given Leg.</description>
+      <alias>QuantLib::CashFlows::accrualDays</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
+          <Parameter name='IncludeSettlDate' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if cashflows paid at the settlement date must be taken into account.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cashflows before this date are not taken into account.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlLegAccruedPeriod'>
+      <description>Returns the accrued period for the current coupon of the given Leg.</description>
+      <alias>QuantLib::CashFlows::accrualPeriod</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
+          <Parameter name='IncludeSettlDate' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if cashflows paid at the settlement date must be taken into account.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cashflows before this date are not taken into account.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlLegAccruedDays'>
+      <description>Returns the accrued days for the current coupon of the given Leg.</description>
+      <alias>QuantLib::CashFlows::accrualDays</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
+          <Parameter name='IncludeSettlDate' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if cashflows paid at the settlement date must be taken into account.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cashflows before this date are not taken into account.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlLegAccruedAmount'>
+      <description>Returns the accrued amount for the given Leg.</description>
+      <alias>QuantLib::CashFlows::accruedAmount</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='IncludeSettlDate' const='False' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
@@ -273,15 +598,13 @@
         <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
+    <!-- Leg YieldTermStructure functions -->
 
-
-
-
-    <Member name='qlLegNPV' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegNPV'>
       <description>Returns the net present value for the given Leg object.</description>
-      <libraryFunction>npv</libraryFunction>
+      <alias>QuantLib::CashFlows::npv</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -289,6 +612,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='DiscountCurve' exampleValue='EURYC'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>underlyingClass</superType>
@@ -316,11 +645,11 @@
         <type>double</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegBPS' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegBPS'>
       <description>Returns the basis point sensitivity for the given Leg object.</description>
-      <libraryFunction>bps</libraryFunction>
+      <alias>QuantLib::CashFlows::bps</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -328,6 +657,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='DiscountCurve' exampleValue='EURYC'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>underlyingClass</superType>
@@ -355,11 +690,11 @@
         <type>double</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegAtmRate' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegAtmRate'>
       <description>Returns the at-the-money rate for the given Leg object, i.e. the fixed rate for which an equivalent vector of fixed-rate cash flows would have the same NPV.</description>
-      <libraryFunction>atmRate</libraryFunction>
+      <alias>QuantLib::CashFlows::atmRate</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -367,6 +702,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='DiscountCurve' exampleValue='EURYC'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>underlyingClass</superType>
@@ -399,14 +740,13 @@
         <type>QuantLib::Rate</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
+    <!-- Leg Yield functions -->
 
-
-
-    <Member name='qlLegNPVFromYield' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegNPVFromYield'>
       <description>Returns the net present value for the given Leg object.</description>
-      <libraryFunction>npv</libraryFunction>
+      <alias>QuantLib::CashFlows::npv</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -414,6 +754,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='Yield' exampleValue='0.03'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
@@ -455,11 +801,11 @@
         <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegBPSFromYield' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegBPSFromYield'>
       <description>Returns the basis point sensitivity for the given Leg object.</description>
-      <libraryFunction>bps</libraryFunction>
+      <alias>QuantLib::CashFlows::bps</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -467,6 +813,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='Yield' exampleValue='0.03'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
@@ -508,11 +860,11 @@
         <type>double</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegYield' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegYield'>
       <description>Returns the Internal rate of return for the given Leg object.</description>
-      <libraryFunction>yield</libraryFunction>
+      <alias>QuantLib::CashFlows::yield</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -520,6 +872,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='NPV' exampleValue='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
@@ -576,11 +934,11 @@
         <type>QuantLib::Rate</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegDuration' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegDuration'>
       <description>Returns the Cash-flow duration for the given Leg object.</description>
-      <libraryFunction>duration</libraryFunction>
+      <alias>QuantLib::CashFlows::duration</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -588,6 +946,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='Yield' exampleValue='0.03'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
@@ -611,7 +975,7 @@
           <Parameter name='DurationType' default='"Modified"'>
             <type>QuantLib::Duration::Type</type>
             <tensorRank>scalar</tensorRank>
-            <description>Duration type.</description>
+            <description>Duration type (Simple, Macaulay, or Modified).</description>
           </Parameter>
           <Parameter name='IncludeSettlDate' const='False' default='true'>
             <type>bool</type>
@@ -634,11 +998,11 @@
         <type>QuantLib::Time</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegConvexity' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegConvexity'>
       <description>Returns the Cash-flow convexity for the given Leg object.</description>
-      <libraryFunction>convexity</libraryFunction>
+      <alias>QuantLib::CashFlows::convexity</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -646,6 +1010,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='Yield' exampleValue='0.03'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
@@ -687,11 +1057,11 @@
         <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegBasisPointValue' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegBasisPointValue'>
       <description>Returns the basisPointValue for the given Leg object.</description>
-      <libraryFunction>basisPointValue</libraryFunction>
+      <alias>QuantLib::CashFlows::basisPointValue</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -699,6 +1069,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='Yield' exampleValue='0.03'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
@@ -740,11 +1116,11 @@
         <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegYieldValueBasisPoint' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegYieldValueBasisPoint'>
       <description>Returns the yieldValueBasisPoint for the given Leg object.</description>
-      <libraryFunction>yieldValueBasisPoint</libraryFunction>
+      <alias>QuantLib::CashFlows::yieldValueBasisPoint</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -752,6 +1128,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='Yield' exampleValue='0.03'>
             <type>QuantLib::Rate</type>
             <tensorRank>scalar</tensorRank>
@@ -793,16 +1175,13 @@
         <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
+    <!-- Leg Z-spread functions -->
 
-
-
-
-
-    <Member name='qlLegNPVFromZSpread' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegNPVFromZSpread'>
       <description>Returns the net present value for the given Leg object.</description>
-      <libraryFunction>npv</libraryFunction>
+      <alias>QuantLib::CashFlows::npv</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -810,6 +1189,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='DiscountCurve' exampleValue='EURYC'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libraryClass</superType>
@@ -857,11 +1242,11 @@
         <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-    <Member name='qlLegZSpread' type='QuantLibAddin::Leg'>
+    <Procedure name='qlLegZSpread'>
       <description>Returns the z-spread for the given Leg object.</description>
-      <libraryFunction>zSpread</libraryFunction>
+      <alias>QuantLib::CashFlows::zSpread</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -869,6 +1254,12 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
           <Parameter name='NPV' exampleValue='100.0'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
@@ -895,6 +1286,7 @@
             <tensorRank>scalar</tensorRank>
             <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
           </Parameter>
+
           <Parameter name='IncludeSettlDate' const='False' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
@@ -910,6 +1302,7 @@
             <tensorRank>scalar</tensorRank>
             <description>all cashflows are discounted to this date. If missing it is assumed equal to the settlement date</description>
           </Parameter>
+
           <Parameter name='Accuracy' default='1.0e-10'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
@@ -931,18 +1324,9 @@
         <type>QuantLib::Spread</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member>
+    </Procedure>
 
-
-
-
-
-
-
-
-
-
-
+    <!-- QuantLibAddin::Leg interface -->
 
     <Member name='qlLegAnalysis' type='QuantLibAddin::Leg'>
       <description>Returns the flow analysis for the given Leg object.</description>
@@ -983,6 +1367,8 @@
       </ReturnValue>
     </Member>
 
+    <!-- Leg constructors -->
+
     <Constructor name='qlMultiPhaseLeg'>
       <libraryFunction>MultiPhaseLeg</libraryFunction>
       <SupportedPlatforms>
@@ -994,6 +1380,14 @@
         <Parameters>
           <Parameter name='LegIDs'>
             <type>QuantLibAddin::Leg</type>
+            <!--
+            
+                it would be better to have support
+                for vector of underlyingClass
+                
+            <type>QuantLib::Leg</type>
+            <supertype>underlyingClass</supertype>
+          -->
             <tensorRank>vector</tensorRank>
             <description>leg object IDs, one for each phase.</description>
           </Parameter>
@@ -1006,7 +1400,10 @@
       </ParameterList>
     </Constructor>
 
-    
+    <!-- qlSimpleCashFlowVector constructor is in its own file -->
+
+    <!-- InterestRate interface and constructor -->
+
     <Member name='qlInterestRateRate' type='QuantLib::InterestRate' superType='libraryClass'>
       <description>Returns the rate in the given InterestRate object.</description>
       <libraryFunction>rate</libraryFunction>
@@ -1129,21 +1526,21 @@
             <description>compounding period start.</description>
           </Parameter>
           <Parameter name='EndDate' exampleValue='40100'>
-              <type>QuantLib::Date</type>
-              <tensorRank>scalar</tensorRank>
-              <description>compounding period end.</description>
-            </Parameter>
-            <Parameter name='RefPeriodStart' default='QuantLib::Date()'>
-              <type>QuantLib::Date</type>
-              <tensorRank>scalar</tensorRank>
-              <description>reference period start date needed by some daycounter.</description>
-            </Parameter>
-            <Parameter name='RefPeriodEnd' default='QuantLib::Date()'>
-              <type>QuantLib::Date</type>
-              <tensorRank>scalar</tensorRank>
-              <description>reference period end date needed by some daycounter.</description>
-            </Parameter>
-          </Parameters>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>compounding period end.</description>
+          </Parameter>
+          <Parameter name='RefPeriodStart' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>reference period start date needed by some daycounter.</description>
+          </Parameter>
+          <Parameter name='RefPeriodEnd' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>reference period end date needed by some daycounter.</description>
+          </Parameter>
+        </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Real</type>

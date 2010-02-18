@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005, 2006 Eric Ehlers
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2010 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2006 Katiuscia Manzoni
@@ -36,13 +36,26 @@ using boost::shared_ptr;
 namespace QuantLibAddin {
 
     Swap::Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-               const std::vector<boost::shared_ptr<Leg> >& legWrappers,
+               const std::vector<boost::shared_ptr<Leg> >& legPtrs,
                const std::vector<bool>& payer,
                bool permanent) : Instrument(properties, permanent) {
 
-        std::vector<QuantLib::Leg> legs(legWrappers.size());
-        for (QuantLib::Size i = 0; i<legWrappers.size(); ++i)
-            legs[i] = legWrappers[i]->getQuantLibLeg();
+        std::vector<QuantLib::Leg> legs(legPtrs.size());
+        boost::shared_ptr<QuantLib::Leg> qlLeg;
+        for (QuantLib::Size i=0; i<legPtrs.size(); ++i) {
+            legPtrs[i]->getLibraryObject(qlLeg);
+            legs[i] = *qlLeg;
+        }
+
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::Swap(legs, payer));
+    }
+
+    Swap::Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+               const std::vector<QuantLib::Leg>& legs,
+               const std::vector<bool>& payer,
+               bool permanent) : Instrument(properties, permanent) {
+
         libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
             QuantLib::Swap(legs, payer));
     }

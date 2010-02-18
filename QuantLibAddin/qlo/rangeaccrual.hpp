@@ -52,7 +52,7 @@ namespace QuantLibAddin {
                 bool permanent);
         RangeAccrualFloatersCoupon(
                 const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                const boost::shared_ptr<Leg>& rangeAccrualLeg,
+                const QuantLib::Leg& rangeAccrualLeg,
                 QuantLib::Size i,
                 bool permanent);
     };  

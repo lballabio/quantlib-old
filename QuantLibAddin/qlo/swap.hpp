@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Eric Ehlers
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2010 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005, 2008 Plamen Neykov
  Copyright (C) 2006 Katiuscia Manzoni
@@ -34,8 +34,14 @@ namespace QuantLibAddin {
     
     class Swap : public Instrument {
       public:
+        // obsolete constructor to be removed
         Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-             const std::vector<boost::shared_ptr<Leg> >& legWrappers,
+             const std::vector<boost::shared_ptr<Leg> >& legPtrs,
+             const std::vector<bool>& payer,
+             bool permanent);
+        // new constructor
+        Swap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+             const std::vector<QuantLib::Leg>& legs,
              const std::vector<bool>& payer,
              bool permanent);
         // MakeCms

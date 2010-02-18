@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2009, 2010 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2007 Cristina Duminuco
  Copyright (C) 2006 Eric Ehlers
@@ -54,8 +54,8 @@ namespace QuantLibAddin {
                                            bool perm)
     : LibraryObject<QuantLib::DigitalReplication>(p, perm)
     {
-            libraryObject_ = shared_ptr<QuantLib::DigitalReplication> (new
-                QuantLib::DigitalReplication(r, eps));
+        libraryObject_ = shared_ptr<QuantLib::DigitalReplication>(new
+            QuantLib::DigitalReplication(r, eps));
     }
 
     FixedRateLeg::FixedRateLeg(
@@ -68,10 +68,11 @@ namespace QuantLibAddin {
                     bool perm)
     : Leg(p, perm)
     {
-        leg_ = QuantLib::FixedRateLeg(*schedule)
-            .withNotionals(nominals)
-            .withCouponRates(couponRates, paymentDayCounter)
-            .withPaymentAdjustment(paymentConvention);
+        libraryObject_ = shared_ptr<QuantLib::Leg>(new
+            QuantLib::Leg(QuantLib::FixedRateLeg(*schedule)
+                            .withNotionals(nominals)
+                            .withCouponRates(couponRates, paymentDayCounter)
+                            .withPaymentAdjustment(paymentConvention)));
     }
 
     FixedRateLeg::FixedRateLeg(
@@ -85,15 +86,14 @@ namespace QuantLibAddin {
     {
 		vector<QuantLib::InterestRate> coupons(couponRates.size());
 
-		for(QuantLib::Size i = 0; i < couponRates.size(); i++)
-		{
+        for (QuantLib::Size i=0; i<couponRates.size(); ++i)
 			coupons[i] = *couponRates[i];
-		}
 
-		leg_ = QuantLib::FixedRateLeg(*schedule)
-            .withNotionals(nominals)
-            .withCouponRates(coupons)
-            .withPaymentAdjustment(paymentConvention);
+        libraryObject_ = shared_ptr<QuantLib::Leg>(new
+    		QuantLib::Leg(QuantLib::FixedRateLeg(*schedule)
+                                    .withNotionals(nominals)
+                                    .withCouponRates(coupons)
+                                    .withPaymentAdjustment(paymentConvention)));
     }
 
     IborLeg::IborLeg(const shared_ptr<ValueObject>& p,
@@ -111,7 +111,8 @@ namespace QuantLibAddin {
                      bool permanent)
     : Leg(p, permanent)
     {
-            leg_ = QuantLib::IborLeg(*schedule, index)
+        libraryObject_ = shared_ptr<QuantLib::Leg>(new
+            QuantLib::Leg(QuantLib::IborLeg(*schedule, index)
                 .withNotionals(nominals)
                 .withPaymentDayCounter(paymentDayCounter)
                 .withPaymentAdjustment(paymentConvention)
@@ -120,7 +121,7 @@ namespace QuantLibAddin {
                 .withSpreads(spreads)
                 .withCaps(caps)
                 .withFloors(floors)
-                .inArrears(isInArrears);
+                .inArrears(isInArrears)));
     }
 
     DigitalIborLeg::DigitalIborLeg(
@@ -213,23 +214,24 @@ namespace QuantLibAddin {
                 break;
         }
 
-        leg_ = QuantLib::DigitalIborLeg(*schedule, index)
-            .withNotionals(nominals)
-            .withPaymentDayCounter(paymentDayCounter)
-            .withPaymentAdjustment(paymentConvention)
-            .withFixingDays(fixingDays)
-            .withGearings(gearings)
-            .withSpreads(spreads)
-            .inArrears(isInArrears)
-            .withCallStrikes(callStrikes)
-            .withLongCallOption(callPosition)
-            .withCallATM(isCallATMIncluded)
-            .withCallPayoffs(callDigitalPayoffs)
-            .withPutStrikes(putStrikes)
-            .withLongPutOption(putPosition)
-            .withPutATM(isPutATMIncluded)
-            .withPutPayoffs(putDigitalPayoffs)
-            .withReplication(replication);
+        libraryObject_ = shared_ptr<QuantLib::Leg>(new
+            QuantLib::Leg(QuantLib::DigitalIborLeg(*schedule, index)
+                .withNotionals(nominals)
+                .withPaymentDayCounter(paymentDayCounter)
+                .withPaymentAdjustment(paymentConvention)
+                .withFixingDays(fixingDays)
+                .withGearings(gearings)
+                .withSpreads(spreads)
+                .inArrears(isInArrears)
+                .withCallStrikes(callStrikes)
+                .withLongCallOption(callPosition)
+                .withCallATM(isCallATMIncluded)
+                .withCallPayoffs(callDigitalPayoffs)
+                .withPutStrikes(putStrikes)
+                .withLongPutOption(putPosition)
+                .withPutATM(isPutATMIncluded)
+                .withPutPayoffs(putDigitalPayoffs)
+                .withReplication(replication)));
     }
 
     IborCouponPricer::IborCouponPricer(
@@ -239,8 +241,7 @@ namespace QuantLibAddin {
             bool permanent)
     : FloatingRateCouponPricer(properties, permanent)
     {
-        libraryObject_ =
-            Create<shared_ptr<QuantLib::IborCouponPricer> >()(t, v);
+        libraryObject_= Create<shared_ptr<QuantLib::IborCouponPricer> >()(t,v);
     }
 
     CmsLeg::CmsLeg(const shared_ptr<ValueObject>& properties,
@@ -258,16 +259,17 @@ namespace QuantLibAddin {
                    bool permanent)
     : Leg(properties, permanent)
     {
-        leg_ = QuantLib::CmsLeg(*schedule, index)
-            .withNotionals(nominals)
-            .withPaymentDayCounter(paymentDayCounter)
-            .withPaymentAdjustment(paymentConvention)
-            .withFixingDays(fixingDays)
-            .withGearings(gearings)
-            .withSpreads(spreads)
-            .withCaps(caps)
-            .withFloors(floors)
-            .inArrears(isInArrears);
+        libraryObject_ = shared_ptr<QuantLib::Leg>(new
+            QuantLib::Leg(QuantLib::CmsLeg(*schedule, index)
+                .withNotionals(nominals)
+                .withPaymentDayCounter(paymentDayCounter)
+                .withPaymentAdjustment(paymentConvention)
+                .withFixingDays(fixingDays)
+                .withGearings(gearings)
+                .withSpreads(spreads)
+                .withCaps(caps)
+                .withFloors(floors)
+                .inArrears(isInArrears)));
     }
 
     DigitalCmsLeg::DigitalCmsLeg(
@@ -360,7 +362,8 @@ namespace QuantLibAddin {
                 break;
         }
 
-        leg_ = QuantLib::DigitalCmsLeg(*schedule, index)
+        libraryObject_ = shared_ptr<QuantLib::Leg>(new
+            QuantLib::Leg(QuantLib::DigitalCmsLeg(*schedule, index)
             .withNotionals(nominals)
             .withPaymentDayCounter(paymentDayCounter)
             .withPaymentAdjustment(paymentConvention)
@@ -376,7 +379,7 @@ namespace QuantLibAddin {
             .withLongPutOption(putPosition)
             .withPutATM(isPutATMIncluded)
             .withPutPayoffs(putDigitalPayoffs)
-            .withReplication(replication);
+            .withReplication(replication)));
     }
 
     RangeAccrualLeg::RangeAccrualLeg(
@@ -396,17 +399,18 @@ namespace QuantLibAddin {
            bool permanent)
     : Leg(properties, permanent)
     {
-        leg_ = QuantLib::RangeAccrualLeg(*schedule, index)
-            .withNotionals(nominals)
-            .withPaymentDayCounter(paymentDayCounter)
-            .withPaymentAdjustment(paymentConvention)
-            .withFixingDays(fixingDays)
-            .withGearings(gearings)
-            .withSpreads(spreads)
-            .withLowerTriggers(lowerTriggers)
-            .withUpperTriggers(upperTriggers)
-            .withObservationTenor(observationTenor)
-            .withObservationConvention(observationConvention);
+        libraryObject_ = shared_ptr<QuantLib::Leg>(new
+            QuantLib::Leg(QuantLib::RangeAccrualLeg(*schedule, index)
+                .withNotionals(nominals)
+                .withPaymentDayCounter(paymentDayCounter)
+                .withPaymentAdjustment(paymentConvention)
+                .withFixingDays(fixingDays)
+                .withGearings(gearings)
+                .withSpreads(spreads)
+                .withLowerTriggers(lowerTriggers)
+                .withUpperTriggers(upperTriggers)
+                .withObservationTenor(observationTenor)
+                .withObservationConvention(observationConvention)));
     }
 
     CmsZeroLeg::CmsZeroLeg(
@@ -425,16 +429,17 @@ namespace QuantLibAddin {
                     bool permanent)
     : Leg(properties, permanent)
     {
-        leg_ = QuantLib::CmsLeg(*schedule, index)
-            .withNotionals(nominals)
-            .withPaymentDayCounter(paymentDayCounter)
-            .withPaymentAdjustment(paymentConvention)
-            .withFixingDays(fixingDays)
-            .withGearings(gearings)
-            .withSpreads(spreads)
-            .withCaps(caps)
-            .withFloors(floors)
-            .withZeroPayments();
+        libraryObject_ = shared_ptr<QuantLib::Leg>(new
+            QuantLib::Leg(QuantLib::CmsLeg(*schedule, index)
+                .withNotionals(nominals)
+                .withPaymentDayCounter(paymentDayCounter)
+                .withPaymentAdjustment(paymentConvention)
+                .withFixingDays(fixingDays)
+                .withGearings(gearings)
+                .withSpreads(spreads)
+                .withCaps(caps)
+                .withFloors(floors)
+                .withZeroPayments()));
     }
 
 }
