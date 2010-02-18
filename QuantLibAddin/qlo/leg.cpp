@@ -65,7 +65,8 @@ namespace QuantLibAddin {
         //           "Amounts vector must have at least one element");
 
         QL_REQUIRE(amounts.size() == dates.size(),
-                   "Dates and amounts vector must have the same size");
+                   "Dates (" << dates.size() << ") and amounts (" <<
+                   amounts.size() << ") must have the same size");
 
         libraryObject_ = shared_ptr<QuantLib::Leg>(new QuantLib::Leg());
 
