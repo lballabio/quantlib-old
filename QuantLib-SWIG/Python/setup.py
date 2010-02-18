@@ -207,7 +207,7 @@ if sys.version < '2.2.3':
     DistributionMetadata.download_url = None
 
 classifiers = [
-    'Development Status :: 4 - Beta',
+    'Development Status :: 5 - Production/Stable',
     'Environment :: Console',
     'Intended Audience :: Developers',
     'Intended Audience :: End Users/Desktop',
