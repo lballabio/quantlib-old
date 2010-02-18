@@ -40,13 +40,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc71-mt-sgd-1_0_0.xll"
+				OutputFile="xll\ExampleXLLStatic-vc71-mt-sgd-1_1_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-sgd-1_0_0.pdb"
-				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-sgd-1_0_0.lib"
+				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-sgd-1_1_0.pdb"
+				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-sgd-1_1_0.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -108,12 +108,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc71-mt-s-1_0_0.xll"
+				OutputFile="xll\ExampleXLLStatic-vc71-mt-s-1_1_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-s-1_0_0.pdb"
-				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-s-1_0_0.lib"
+				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-s-1_1_0.pdb"
+				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-s-1_1_0.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -175,12 +175,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc71-mt-1_0_0.xll"
+				OutputFile="xll\ExampleXLLStatic-vc71-mt-1_1_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
-				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-1_0_0.pdb"
-				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-1_0_0.lib"
+				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-1_1_0.pdb"
+				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-1_1_0.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -241,13 +241,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib"
-				OutputFile="xll\ExampleXLLStatic-vc71-mt-gd-1_0_0.xll"
+				OutputFile="xll\ExampleXLLStatic-vc71-mt-gd-1_1_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-gd-1_0_0.pdb"
-				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-gd-1_0_0.lib"
+				ProgramDatabaseFile=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-gd-1_1_0.pdb"
+				ImportLibrary=".\buildXllStatic\vc71\$(ConfigurationName)\ExampleXLLStatic-vc71-mt-gd-1_1_0.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"

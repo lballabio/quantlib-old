@@ -42,13 +42,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-1_0_0.xll"
+				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-1_1_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-1_0_0.pdb"
-				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-gd-1_0_0.lib"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-gd-1_1_0.pdb"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-gd-1_1_0.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -111,12 +111,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-1_0_0.xll"
+				OutputFile="..\..\xll\ObjectHandler-xll-vc71-mt-1_1_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\Lib"
-				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-1_0_0.pdb"
-				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-1_0_0.lib"
+				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc71-mt-1_1_0.pdb"
+				ImportLibrary="..\..\lib\ObjectHandler-xll-vc71-mt-1_1_0.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"

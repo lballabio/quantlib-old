@@ -114,7 +114,7 @@ DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
     // long name for the XLL. Any other value should result in the
     // return of a #VALUE! error.
     if (1 == xlReturn.val.w) {
-        ObjectHandler::scalarToOper(std::string("ObjectHandler 1.0.0"), xlLongName);
+        ObjectHandler::scalarToOper(std::string("ObjectHandler 1.1.0"), xlLongName);
     } else {
         xlLongName.xltype = xltypeErr;
         xlLongName.val.err = xlerrValue;

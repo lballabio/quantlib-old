@@ -39,7 +39,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc71-mt-gd-1_0_0.lib"
+				OutputFile="lib\AddinC-vc71-mt-gd-1_1_0.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -92,7 +92,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\AddinC-vc71-mt-1_0_0.lib"
+				OutputFile="lib\AddinC-vc71-mt-1_1_0.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>

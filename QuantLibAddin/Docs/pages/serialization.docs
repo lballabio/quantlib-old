@@ -79,7 +79,7 @@ the import.
 <tt>QuantLibXL\\Workbooks\\StandaloneExamples\\SerializationDemo\\Start.xla</tt>.
 The addin contains some startup code which should automatically load the following:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc80-mt-s-1_0_0.xll
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-1_1_0.xll
 QuantLibXL\Workbooks\StandaloneExamples\Addins\serialize_utils.xla
 \endverbatim
 \li Invoke menu item <tt>Serialization Demo | Load Model | Vanilla Swap</tt>.
@@ -104,7 +104,7 @@ QuantLibAddin\Clients\CppInstrumentIn\Models\VanillaSwap.xml
 <tt>QuantLibXL\\Workbooks\\StandaloneExamples\\SerializationDemo\\Start.xla</tt>.
 The addin contains some startup code which should automatically load the following:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc80-mt-s-1_0_0.xll
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-1_1_0.xll
 QuantLibXL\Workbooks\StandaloneExamples\Addins\serialize_utils.xla
 \endverbatim
 \li Set range <tt>[MarketData.xls]Summary!DataSource</tt> to <tt>Import</tt>
@@ -139,8 +139,8 @@ Invoke the executable. The output from the program should appear as follows:
 \verbatim
 QuantLibAddin\Clients\CppSwapOut\bin>SwapOut-vc80-mt.exe
 Begin example program.
-QuantLibAddin version = 1.0.0
-ObjectHandler version = 1.0.0
+QuantLibAddin version = 1.1.0
+ObjectHandler version = 1.1.0
 SWAP PV = 36120.9
 Example of serializing to/from a buffer:
 XML =
@@ -187,8 +187,8 @@ The output from the program should appear as follows:
 QuantLibAddin\Clients\CppInstrumentIn>InstrumentIn-vc80-mt.exe
 39573 VanillaSwap VanillaSwap.xml YieldCurves.xml
 Begin example program.
-QuantLibAddin version = 1.0.0
-ObjectHandler version = 1.0.0
+QuantLibAddin version = 1.1.0
+ObjectHandler version = 1.1.0
 Instrument PV = 52531.4
 End example program.
 \endverbatim
@@ -204,8 +204,8 @@ program <tt>swap_out</tt>.  The output from the program should appear similar
 to the following:
 \verbatim
 Begin example program.
-QuantLibAddin version = 1.0.0
-ObjectHandler version = 1.0.0
+QuantLibAddin version = 1.1.0
+ObjectHandler version = 1.1.0
 SWAP PV = 36120.9
 Example of serializing to/from a buffer:
 XML = 
@@ -250,8 +250,8 @@ QuantLibAddin/Clients/CppInstrumentIn/Models/VanillaSwap.xml
 The output from the program should appear as follows:
 \verbatim
 Begin example program.
-QuantLibAddin version = 1.0.0
-ObjectHandler version = 1.0.0
+QuantLibAddin version = 1.1.0
+ObjectHandler version = 1.1.0
 Instrument PV = 52531.4
 End example program.
 \endverbatim
