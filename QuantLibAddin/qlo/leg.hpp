@@ -153,7 +153,7 @@ namespace QuantLibAddin {
 
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLibAddin::FloatingRateCouponPricer> >& p);
 
-        std::vector<std::vector<ObjectHandler::property_t> > analysis() const;
+        std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis() const;
         const QuantLib::Leg& getQuantLibLeg();
       protected:
         OH_OBJ_CTOR(Leg, ObjectHandler::Object);

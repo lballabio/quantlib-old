@@ -284,8 +284,8 @@ namespace QuantLibAddin {
                                    accuracy, maxIterations, guess);
     }
 
-    vector<vector<ObjectHandler::property_t> > Leg::analysis() const {
-        return flowAnalysis(leg_);
+    vector<vector<ObjectHandler::property_t> > Leg::flowAnalysis() const {
+        return QuantLibAddin::flowAnalysis(leg_);
     }
 
     void Leg::setCouponPricers(

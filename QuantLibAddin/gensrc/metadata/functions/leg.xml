@@ -944,9 +944,9 @@
 
 
 
-    <Member name='qlLegAnalysis' type='QuantLibAddin::Leg'>
+    <Member name='qlLegFlowAnalysis' type='QuantLibAddin::Leg'>
       <description>Returns the flow analysis for the given Leg object.</description>
-      <libraryFunction>analysis</libraryFunction>
+      <libraryFunction>flowAnalysis</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
