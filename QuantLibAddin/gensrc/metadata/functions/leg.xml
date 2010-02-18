@@ -1328,9 +1328,9 @@
 
     <!-- QuantLibAddin::Leg interface -->
 
-    <Member name='qlLegAnalysis' type='QuantLibAddin::Leg'>
+    <Member name='qlLegFlowAnalysis' type='QuantLibAddin::Leg'>
       <description>Returns the flow analysis for the given Leg object.</description>
-      <libraryFunction>analysis</libraryFunction>
+      <libraryFunction>flowAnalysis</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -1369,6 +1369,29 @@
 
     <!-- Leg constructors -->
 
+    <Constructor name='qlLeg'>
+      <libraryFunction>Leg</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Amounts' exampleValue='1000000.0,500000.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>list of cash to be received/paid.</description>
+          </Parameter>
+          <Parameter name='Dates' exampleValue='40238,40330'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>payment dates corresponding to amounts.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <Constructor name='qlMultiPhaseLeg'>
       <libraryFunction>MultiPhaseLeg</libraryFunction>
       <SupportedPlatforms>
@@ -1399,8 +1422,6 @@
         </Parameters>
       </ParameterList>
     </Constructor>
-
-    <!-- qlSimpleCashFlowVector constructor is in its own file -->
 
     <!-- InterestRate interface and constructor -->
 

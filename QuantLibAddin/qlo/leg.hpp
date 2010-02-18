@@ -41,8 +41,12 @@ namespace QuantLibAddin {
 
     class Leg : public ObjectHandler::LibraryObject<QuantLib::Leg> {
       public:
+        Leg(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Real>& amounts,
+            const std::vector<QuantLib::Date>& dates,
+            bool permanent);
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLibAddin::FloatingRateCouponPricer> >& p);
-        std::vector<std::vector<ObjectHandler::property_t> > analysis() const;
+        std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis() const;
       protected:
         OH_LIB_CTOR(Leg, QuantLib::Leg)
     };
@@ -55,22 +59,14 @@ namespace QuantLibAddin {
                       bool permanent);
     };
 
-    class SimpleCashFlowVector : public Leg {
-      public:
-        SimpleCashFlowVector(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                             const std::vector<QuantLib::Real>& amounts,
-                             const std::vector<QuantLib::Date>& dates,
-                             bool permanent);
-    };
-
     class InterestRate : public ObjectHandler::LibraryObject<QuantLib::InterestRate> {
       public:
-      InterestRate(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                   QuantLib::Rate r,
-                   const QuantLib::DayCounter& dc,
-                   QuantLib::Compounding comp,
-                   QuantLib::Frequency freq,
-                   bool permanent);
+        InterestRate(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                     QuantLib::Rate r,
+                     const QuantLib::DayCounter& dc,
+                     QuantLib::Compounding comp,
+                     QuantLib::Frequency freq,
+                     bool permanent);
     };
 }
 

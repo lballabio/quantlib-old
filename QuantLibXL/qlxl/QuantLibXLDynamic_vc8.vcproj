@@ -421,10 +421,6 @@
 				>
 			</File>
 			<File
-				RelativePath="functions\simplecashflow.cpp"
-				>
-			</File>
-			<File
 				RelativePath="functions\smilesection.cpp"
 				>
 			</File>
@@ -670,10 +666,6 @@
 			</File>
 			<File
 				RelativePath="register\register_shortratemodels.cpp"
-				>
-			</File>
-			<File
-				RelativePath="register\register_simplecashflow.cpp"
 				>
 			</File>
 			<File

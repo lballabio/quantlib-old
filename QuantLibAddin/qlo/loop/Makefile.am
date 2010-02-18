@@ -7,6 +7,7 @@ include_HEADERS = \
     loop_capletvolstructure.hpp \
     loop_date.hpp \
     loop_daycounter.hpp \
+    loop_defaulttermstructures.hpp \
     loop_index.hpp \
     loop_interpolation.hpp \
     loop_swaptionvolstructure.hpp \

@@ -54,8 +54,25 @@ using boost::shared_ptr;
 
 namespace QuantLibAddin {
 
-    vector<vector<ObjectHandler::property_t> > Leg::analysis() const {
-        return flowAnalysis(*libraryObject_);
+    Leg::Leg(const shared_ptr<ValueObject>& p,
+             const vector<Real>& amounts,
+             const vector<Date>& dates,
+             bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::Leg>(p, permanent)
+    {
+        // allow for degenerate vector
+        //QL_REQUIRE(!amounts.empty(),
+        //           "Amounts vector must have at least one element");
+
+        QL_REQUIRE(amounts.size() == dates.size(),
+                   "Dates and amounts vector must have the same size");
+
+        libraryObject_ = shared_ptr<QuantLib::Leg>(new QuantLib::Leg());
+
+        for (QuantLib::Size i=0; i < amounts.size(); ++i) {
+            libraryObject_->push_back(shared_ptr<CashFlow>(new
+                QuantLib::SimpleCashFlow(amounts[i], dates[i])));
+        }
     }
 
     void Leg::setCouponPricers(
@@ -75,6 +92,10 @@ namespace QuantLibAddin {
         inst_properties->setProperty("UserLegIDs", ids);
     }
 
+    vector<vector<ObjectHandler::property_t> > Leg::flowAnalysis() const {
+        return QuantLibAddin::flowAnalysis(*libraryObject_);
+    }
+
     MultiPhaseLeg::MultiPhaseLeg(const shared_ptr<ValueObject>& p,
                                  const vector<shared_ptr<Leg> >& legs,
                                  bool toBeSorted,
@@ -92,29 +113,6 @@ namespace QuantLibAddin {
             std::stable_sort(libraryObject_->begin(), libraryObject_->end(),
                              earlier_than<shared_ptr<CashFlow> >());
     };
-
-
-    SimpleCashFlowVector::SimpleCashFlowVector(
-                                            const shared_ptr<ValueObject>& p,
-                                            const vector<Real>& amounts,
-                                            const vector<Date>& dates,
-                                            bool permanent)
-    : Leg(p, permanent) {
-
-        // allow for degenerate vector
-        //QL_REQUIRE(!amounts.empty(),
-        //           "Amounts vector must have at least one element");
-
-        QL_REQUIRE(amounts.size() == dates.size(),
-                   "Dates and amounts vector must have the same size");
-
-        libraryObject_ = shared_ptr<QuantLib::Leg>(new QuantLib::Leg());
-
-        for (QuantLib::Size i=0; i < amounts.size(); ++i) {
-            libraryObject_->push_back(shared_ptr<CashFlow>(new
-                QuantLib::SimpleCashFlow(amounts[i], dates[i])));
-        }
-    }
 
     InterestRate::InterestRate(const shared_ptr<ValueObject>& properties,
                                QuantLib::Rate r,

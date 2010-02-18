@@ -481,12 +481,6 @@
 			RelativePath="shortratemodels.hpp">
 		</File>
 		<File
-			RelativePath="simplecashflow.cpp">
-		</File>
-		<File
-			RelativePath="simplecashflow.hpp">
-		</File>
-		<File
 			RelativePath="smilesection.cpp">
 		</File>
 		<File

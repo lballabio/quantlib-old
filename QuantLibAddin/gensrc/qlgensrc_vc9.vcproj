@@ -240,10 +240,6 @@
 				>
 			</File>
 			<File
-				RelativePath="metadata\functions\simplecashflow.xml"
-				>
-			</File>
-			<File
 				RelativePath="metadata\functions\smilesection.xml"
 				>
 			</File>

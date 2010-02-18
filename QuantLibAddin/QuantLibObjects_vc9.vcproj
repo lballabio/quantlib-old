@@ -761,14 +761,6 @@
 				>
 			</File>
 			<File
-				RelativePath="qlo\valueobjects\vo_simplecashflow.cpp"
-				>
-			</File>
-			<File
-				RelativePath="qlo\valueobjects\vo_simplecashflow.hpp"
-				>
-			</File>
-			<File
 				RelativePath="qlo\valueobjects\vo_smilesection.cpp"
 				>
 			</File>
@@ -1174,10 +1166,6 @@
 			</File>
 			<File
 				RelativePath="qlo\rangeaccrual.hpp"
-				>
-			</File>
-			<File
-				RelativePath="qlo\simplecashflow.hpp"
 				>
 			</File>
 		</Filter>
@@ -1836,14 +1824,6 @@
 					>
 				</File>
 				<File
-					RelativePath="qlo\serialization\create\create_simplecashflow.cpp"
-					>
-				</File>
-				<File
-					RelativePath="qlo\serialization\create\create_simplecashflow.hpp"
-					>
-				</File>
-				<File
 					RelativePath="qlo\serialization\create\create_smilesection.cpp"
 					>
 				</File>
@@ -2261,14 +2241,6 @@
 				</File>
 				<File
 					RelativePath="qlo\serialization\register\serialization_shortratemodels.hpp"
-					>
-				</File>
-				<File
-					RelativePath="qlo\serialization\register\serialization_simplecashflow.cpp"
-					>
-				</File>
-				<File
-					RelativePath="qlo\serialization\register\serialization_simplecashflow.hpp"
 					>
 				</File>
 				<File
