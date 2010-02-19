@@ -1349,7 +1349,7 @@
           <Parameter name='Coupons' exampleValue='0.04'>
             <type>QuantLib::Rate</type>
             <tensorRank>vector</tensorRank>
-            <description>coupon fixed rates.</description>
+            <description>simple annual compounding coupon rates.</description>
           </Parameter>
           <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
             <type>QuantLib::DayCounter</type>
@@ -1418,7 +1418,7 @@
           <Parameter name='Coupons'>
             <type>QuantLib::InterestRate</type>
             <tensorRank>vector</tensorRank>
-            <description>coupon fixed rates.</description>
+            <description>coupon InterestRate IDs.</description>
           </Parameter>
           <Parameter name='PaymentBDC' default='"Following"'>
             <type>QuantLib::BusinessDayConvention</type>
