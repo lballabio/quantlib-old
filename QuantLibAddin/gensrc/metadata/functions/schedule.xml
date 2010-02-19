@@ -288,22 +288,22 @@
             <tensorRank>scalar</tensorRank>
             <description>tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).</description>
           </Parameter>
-          <Parameter name='Calendar' exampleValue='TARGET'>
+          <Parameter name='Calendar' default='"NullCalendar"'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET).</description>
           </Parameter>
-          <Parameter name='Convention' exampleValue='Following'>
+          <Parameter name='Convention' default='"Unadjusted"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>accrual dates business day convention.</description>
           </Parameter>
-          <Parameter name='TermDateConv' exampleValue='Following'>
+          <Parameter name='TermDateConv' default='"Unadjusted"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>termination date business day convention.</description>
           </Parameter>
-          <Parameter name='GenRule' exampleValue='Backward'>
+          <Parameter name='GenRule' default='"Backward"'>
             <type>QuantLib::DateGeneration::Rule</type>
             <tensorRank>scalar</tensorRank>
             <description>Date generation rule (Backward, Forward, ThirdWednesday, Twentieth, TwentiethIMM, Zero).</description>
