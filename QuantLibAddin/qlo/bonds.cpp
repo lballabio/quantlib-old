@@ -144,6 +144,7 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
+            const QuantLib::Calendar& ,
             bool permanent) : Bond(properties, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::Instrument>(new
@@ -159,42 +160,13 @@ namespace QuantLibAddin {
             const std::string& des,
             const QuantLib::Currency& cur,
             QuantLib::Natural settlementDays,
-            const QuantLib::Calendar& calendar,
-            QuantLib::Real faceAmount,
-            const QuantLib::Date& startDate,
-            const QuantLib::Date& maturityDate,
-            const QuantLib::Period& tenor,
-            const vector<QuantLib::Rate>& coupons,
-            const QuantLib::DayCounter& accrualDayCounter,
-            QuantLib::BusinessDayConvention accrualConvention,
-            QuantLib::BusinessDayConvention paymentConvention,
-            QuantLib::Real redemption,
-            const QuantLib::Date& issueDate,
-            const QuantLib::Date& stubDate,
-            QuantLib::DateGeneration::Rule rule,
-            bool permanent) : Bond(properties, permanent)
-    {
-        libraryObject_ = shared_ptr<QuantLib::Instrument>(new
-            QuantLib::FixedRateBond(settlementDays, calendar, faceAmount,
-                                    startDate, maturityDate, tenor,
-                                    coupons, accrualDayCounter,
-                                    accrualConvention, paymentConvention,
-                                    redemption,
-                                    issueDate, stubDate,
-                                    rule));
-    }
-
-    FixedRateBond::FixedRateBond(
-            const shared_ptr<ObjectHandler::ValueObject>& properties,
-            const std::string& des,
-            const QuantLib::Currency& cur,
-            QuantLib::Natural settlementDays,
             QuantLib::Real faceAmount,
             const shared_ptr<QuantLib::Schedule>& schedule,
             const std::vector<boost::shared_ptr<QuantLib::InterestRate> >& coupons,
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
+            const QuantLib::Calendar& ,
             bool permanent) : Bond(properties, permanent)
     {
 		vector<QuantLib::InterestRate> couponRate(coupons.size());
