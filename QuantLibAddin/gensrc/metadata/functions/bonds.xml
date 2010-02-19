@@ -1371,6 +1371,11 @@
             <tensorRank>scalar</tensorRank>
             <description>issue date: the bond can't be traded until then.</description>
           </Parameter>
+          <Parameter name='PaymentCalendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment holiday calendar (e.g. TARGET).</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -1429,6 +1434,11 @@
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>issue date: the bond can't be traded until then.</description>
+          </Parameter>
+          <Parameter name='PaymentCalendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment holiday calendar (e.g. TARGET).</description>
           </Parameter>
         </Parameters>
       </ParameterList>

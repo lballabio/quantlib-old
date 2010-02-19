@@ -102,25 +102,7 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
-            bool permanent);
-        FixedRateBond(
-            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const std::string& des,
-            const QuantLib::Currency& cur,
-            QuantLib::Natural settlementDays,
-            const QuantLib::Calendar& calendar,
-            QuantLib::Real faceAmount,
-            const QuantLib::Date& startDate,
-            const QuantLib::Date& maturityDate,
-            const QuantLib::Period& tenor,
-            const std::vector<QuantLib::Rate>& coupons,
-            const QuantLib::DayCounter& accrualDayCounter,
-            QuantLib::BusinessDayConvention accrualConvention,
-            QuantLib::BusinessDayConvention paymentConvention,
-            QuantLib::Real redemption,
-            const QuantLib::Date& issueDate,
-            const QuantLib::Date& stubDate,
-            QuantLib::DateGeneration::Rule rule,
+            const QuantLib::Calendar& paymentCalendar,
             bool permanent);
         FixedRateBond(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -133,6 +115,7 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
+            const QuantLib::Calendar& paymentCalendar,
             bool permanent);
     };
 

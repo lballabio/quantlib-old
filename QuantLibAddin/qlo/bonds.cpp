@@ -144,6 +144,7 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
+            const QuantLib::Calendar& paymentCalendar,
             bool permanent) : Bond(properties, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::Instrument>(new
@@ -151,37 +152,8 @@ namespace QuantLibAddin {
                                     *schedule,
                                     coupons, accrualDayCounter,
                                     paymentConvention,
-                                    redemption, issueDate));
-    }
-
-    FixedRateBond::FixedRateBond(
-            const shared_ptr<ObjectHandler::ValueObject>& properties,
-            const std::string& des,
-            const QuantLib::Currency& cur,
-            QuantLib::Natural settlementDays,
-            const QuantLib::Calendar& calendar,
-            QuantLib::Real faceAmount,
-            const QuantLib::Date& startDate,
-            const QuantLib::Date& maturityDate,
-            const QuantLib::Period& tenor,
-            const vector<QuantLib::Rate>& coupons,
-            const QuantLib::DayCounter& accrualDayCounter,
-            QuantLib::BusinessDayConvention accrualConvention,
-            QuantLib::BusinessDayConvention paymentConvention,
-            QuantLib::Real redemption,
-            const QuantLib::Date& issueDate,
-            const QuantLib::Date& stubDate,
-            QuantLib::DateGeneration::Rule rule,
-            bool permanent) : Bond(properties, permanent)
-    {
-        libraryObject_ = shared_ptr<QuantLib::Instrument>(new
-            QuantLib::FixedRateBond(settlementDays, calendar, faceAmount,
-                                    startDate, maturityDate, tenor,
-                                    coupons, accrualDayCounter,
-                                    accrualConvention, paymentConvention,
-                                    redemption,
-                                    issueDate, stubDate,
-                                    rule));
+                                    redemption, issueDate,
+                                    paymentCalendar));
     }
 
     FixedRateBond::FixedRateBond(
@@ -195,7 +167,9 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
-            bool permanent) : Bond(properties, permanent)
+            const QuantLib::Calendar& paymentCalendar,
+            bool permanent)
+    : Bond(properties, permanent)
     {
 		vector<QuantLib::InterestRate> couponRate(coupons.size());
 
@@ -208,7 +182,8 @@ namespace QuantLibAddin {
                                     couponRate,
                                     paymentConvention,
 									redemption,
-                                    issueDate));
+                                    issueDate,
+                                    paymentCalendar));
     }
 
     FloatingRateBond::FloatingRateBond(
@@ -229,7 +204,8 @@ namespace QuantLibAddin {
             const vector<QuantLib::Rate>& caps,
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
-            bool permanent) : Bond(properties, permanent)
+            bool permanent)
+    : Bond(properties, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::Instrument>(new
             QuantLib::FloatingRateBond(settlementDays, faceAmount, *schedule,
