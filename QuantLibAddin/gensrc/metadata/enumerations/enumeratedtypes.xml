@@ -799,6 +799,14 @@
       <constructor>false</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
+          <string>Null</string>
+          <value>QuantLib::Currency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>NullCurrency</string>
+          <value>QuantLib::Currency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>EUR</string>
           <value>QuantLib::EURCurrency()</value>
         </EnumeratedType>
