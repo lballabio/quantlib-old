@@ -1704,17 +1704,17 @@
             <tensorRank>scalar</tensorRank>
             <description>bond description string.</description>
           </Parameter>
-          <Parameter name='Currency'>
+          <Parameter name='Currency' default='"NullCurrency"'>
             <type>QuantLib::Currency</type>
             <tensorRank>scalar</tensorRank>
             <description>bond Currency.</description>
           </Parameter>
-          <Parameter name='SettlementDays' exampleValue='3'>
+          <Parameter name='SettlementDays' default='3'>
             <type>QuantLib::Size</type>
             <tensorRank>scalar</tensorRank>
             <description>settlement days.</description>
           </Parameter>
-          <Parameter name='Calendar' exampleValue='TARGET'>
+          <Parameter name='Calendar' default='"NullCalendar"'>
             <type>QuantLib::Calendar</type>
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET).</description>
