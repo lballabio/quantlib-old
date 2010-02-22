@@ -1,0 +1,5653 @@
+2010-01-13 11:54  Luigi Ballabio
+
+	* [r16996] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number to 1.0b2.
+
+2009-12-09 18:43  Ferdinando Ametrano
+
+	* [r16884] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged r116727 through r16882 of quantlib/branches/R000909-branch
+	  into quantlib/branches/R01000x-branch respecting ancestry
+
+2009-12-01 13:48  Luigi Ballabio
+
+	* [r16848] Perl/README.txt, Perl/examples/european-option.pl:
+	  
+	  Perl example now completes before crashing (thanks to Chuck Swiger.)
+
+2009-12-01 13:47  Luigi Ballabio
+
+	* [r16847] Guile/setup.scm, MzScheme/setup.scm:
+	  
+	  Fixed linked library name.
+
+2009-12-01 13:46  Luigi Ballabio
+
+	* [r16846] configure.ac:
+	  
+	  Reverted compilation flags to system-wide defaults.
+
+2009-12-01 13:45  Luigi Ballabio
+
+	* [r16845] SWIG/ql.i, SWIG/quantlib.i:
+	  
+	  Consolidated management of language-specific defines.
+
+2009-11-24 16:31  Luigi Ballabio
+
+	* [r16795] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number.
+
+2009-11-24 14:36  Luigi Ballabio
+
+	* [r16793]
+	  
+	  Created branch for 1.0.x releases.
+
+2009-11-10 09:06  Ferdinando Ametrano
+
+	* [r16726] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged up to r16724 of branches/R000909-branch into trunk,
+	  respecting ancestry
+
+2009-11-06 13:37  Ferdinando Ametrano
+
+	* [r16705] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, Java/Makefile.am:
+	  
+	  merged up to r16696 of branches/R000909-branch into trunk,
+	  respecting ancestry
+
+2009-11-04 14:38  Ferdinando Ametrano
+
+	* [r16690] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, News.txt,
+	  SWIG/indexes.i:
+	  
+	  merged r16643 through r16686 of branches/R000909-branch into trunk,
+	  respecting ancestry
+
+2009-10-23 10:20  Ferdinando Ametrano
+
+	* [r16645] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  Merging revisions 16636-16642 of
+	  https://quantlib.svn.sourceforge.net/svnroot/quantlib/branches/R000909-branch
+	  into C:\Projects\DevEnv\trunk, respecting ancestry
+
+2009-10-21 13:20  Luigi Ballabio
+
+	* [r16623] SWIG/indexes.i:
+	  
+	  Removed ambiguous termStructure() method from InterestRateIndex
+	  interface.
+	  
+	  The method was moved to derived classes and renamed to
+	  forwardingTermStructure.
+
+2009-10-20 08:49  Luigi Ballabio
+
+	* [r16609] CSharp/QuantLib_vc8.sln, CSharp/QuantLib_vc9.sln,
+	  CSharp/cpp/QuantlibWrapper_vc8.vcproj,
+	  CSharp/cpp/QuantlibWrapper_vc9.vcproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj,
+	  CSharp/examples/BermudanSwaption_vc8.csproj,
+	  CSharp/examples/BermudanSwaption_vc9.csproj,
+	  CSharp/examples/EquityOption_vc8.csproj,
+	  CSharp/examples/EquityOption_vc9.csproj,
+	  Python/examples/visualization/basketoption.py,
+	  Python/examples/visualization/eurooption.py,
+	  Python/examples/visualization/option.basket.py,
+	  Python/examples/visualization/option.mayavi.py,
+	  Python/examples/visualization/option.plotspace.py,
+	  Python/examples/visualization/plotspace.py:
+	  
+	  Fixed SVN properties
+
+2009-10-19 11:10  Luigi Ballabio
+
+	* [r16596] CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj, SWIG/compoundforward.i,
+	  SWIG/ql.i:
+	  
+	  Removed legacy term structures.
+
+2009-09-30 14:14  Luigi Ballabio
+
+	* [r16499] SWIG/scheduler.i:
+	  
+	  Added old (short/long coupon) CDS rule (thanks to Jose Aparicio.)
+	  
+	  Also, according to market conventions, termination date is now
+	  unadjusted
+	  for the CDS built inside the helpers.
+
+2009-09-30 12:46  Luigi Ballabio
+
+	* [r16497] SWIG/indexes.i:
+	  
+	  Exported methods to clear index histories.
+
+2009-09-29 09:10  Luigi Ballabio
+
+	* [r16492] Python/setup.py:
+	  
+	  Added required flag for compilation with VC++ 2008
+
+2009-09-22 16:25  Luigi Ballabio
+
+	* [r16489] SWIG/cashflows.i, SWIG/interestrate.i:
+	  
+	  Sync with new C++ interfaces.
+
+2009-09-11 07:44  Joseph Wang
+
+	* [r16460] Python/examples/visualization/README.txt,
+	  Python/examples/visualization/basketoption.py,
+	  Python/examples/visualization/eurooption.py,
+	  Python/examples/visualization/option.basket.py,
+	  Python/examples/visualization/option.mayavi.py,
+	  Python/examples/visualization/option.plotspace.py:
+	  
+	  change licenses from LGPL to BSD
+
+2009-09-07 13:19  Luigi Ballabio
+
+	* [r16452] CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  Updated C# projects.
+
+2009-09-04 12:37  Luigi Ballabio
+
+	* [r16444] LICENSE.TXT:
+	  
+	  Updated copyrights and contributor list.
+
+2009-09-01 15:11  Luigi Ballabio
+
+	* [r16430] SWIG/callability.i, SWIG/cashflows.i,
+	  SWIG/defaultprobability.i, SWIG/dividends.i, SWIG/marketelements.i,
+	  SWIG/ratehelpers.i, SWIG/shortratemodels.i,
+	  SWIG/stochasticprocess.i, SWIG/vectors.i:
+	  
+	  Upgraded to SWIG 1.3.40
+
+2009-09-01 14:38  Luigi Ballabio
+
+	* [r16429] SWIG/quantlib.i:
+	  
+	  Included version header
+
+2009-08-04 10:52  Luigi Ballabio
+
+	* [r16381] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number
+
+2009-08-04 10:47  Luigi Ballabio
+
+	* [r16380] SWIG/credit.i:
+	  
+	  Removed unused experimental features.
+
+2009-07-09 06:54  Luigi Ballabio
+
+	* [r16352] SWIG/settings.i:
+	  
+	  Exported methods to set cash-flow flags
+
+2009-07-07 16:51  Luigi Ballabio
+
+	* [r16348] SWIG/creditdefaultswap.i, SWIG/defaultprobability.i:
+	  
+	  Sync with C++
+
+2009-07-07 16:51  Luigi Ballabio
+
+	* [r16347] SWIG/null.i:
+	  
+	  Fixes for R typemaps
+
+2009-06-30 09:45  Luigi Ballabio
+
+	* [r16325] SWIG/shortratemodels.i:
+	  
+	  Sync with C++
+
+2009-06-07 19:47  Joseph Wang
+
+	* [r16267] Python/examples/visualization/README.txt,
+	  Python/examples/visualization/basketoption.py,
+	  Python/examples/visualization/eurooption.py,
+	  Python/examples/visualization/option.basket.py:
+	  
+	  add fixes
+
+2009-06-07 19:39  Joseph Wang
+
+	* [r16266] Python/examples/visualization/basketoption.py,
+	  Python/examples/visualization/eurooption.py,
+	  Python/examples/visualization/option.basket.py,
+	  Python/examples/visualization/option.mayavi.py,
+	  Python/examples/visualization/option.plotspace.py,
+	  Python/examples/visualization/plotspace.py:
+	  
+	  add new items
+
+2009-06-07 19:34  Joseph Wang
+
+	* [r16265] Python/examples/visualization,
+	  Python/examples/visualization/option.basket.py,
+	  Python/examples/visualization/option.mayavi.py,
+	  Python/examples/visualization/option.plotspace.py,
+	  Python/examples/visualization/plotspace.py:
+	  
+	  visualization examples
+
+2009-05-13 10:28  Luigi Ballabio
+
+	* [r16243] SWIG/cashflows.i:
+	  
+	  Fixed hard tabs
+
+2009-05-13 03:36  Joseph Wang
+
+	* [r16239] SWIG/cashflows.i:
+	  
+	  syncing SWIG to quantlib
+
+2009-05-13 02:56  Joseph Wang
+
+	* [r16238] SWIG/cashflows.i:
+	  
+	  sync with newest quantlib
+
+2009-04-27 15:24  Luigi Ballabio
+
+	* [r16218] Python/test/bonds.py, Python/test/ratehelpers.py,
+	  SWIG/bonds.i, SWIG/cashflows.i:
+	  
+	  Sync with C++
+
+2009-04-27 15:23  Luigi Ballabio
+
+	* [r16217] configure.ac:
+	  
+	  Checking additional alias for Mono compiler
+
+2009-04-27 15:22  Luigi Ballabio
+
+	* [r16216] Python/QuantLib/__init__.py:
+	  
+	  Fix for Python 2.6
+
+2009-04-03 14:30  Luigi Ballabio
+
+	* [r16106] SWIG/bonds.i:
+	  
+	  Sync with C++
+
+2009-03-31 12:39  Luigi Ballabio
+
+	* [r16097] SWIG/optimizers.i:
+	  
+	  Added BFGS optimizer (thanks to Frederic Degraeve)
+
+2009-03-27 11:44  Ferdinando Ametrano
+
+	* [r16084] SWIG/interpolation.i:
+	  
+	  - added (Log)CubicInterpolation convenience classes, with
+	  homogeneous nomenclature (borrowed from QuantLibXL)
+	  - switched from CubicNaturalSpline to MonotonicCubicNaturalSpline in
+	  FdmBlackScholesSolver to avoid possible spurious waviness
+
+2009-03-23 16:04  Luigi Ballabio
+
+	* [r16053] CSharp/Makefile.am, CSharp/swig.cmd, Guile/Makefile.am,
+	  Java/Makefile.am, MzScheme/Makefile.am, OCaml/Makefile.am,
+	  Perl/Makefile.am, Python/Makefile.am, R/Makefile.am,
+	  Ruby/Makefile.am:
+	  
+	  Upgraded to SWIG 1.3.39
+
+2009-03-23 13:47  Luigi Ballabio
+
+	* [r16052] Python/examples/basket-option.py, SWIG/forwardcurve.i,
+	  SWIG/zerocurve.i:
+	  
+	  Sync with C++
+
+2009-03-19 15:13  Luigi Ballabio
+
+	* [r16036] SWIG/defaultprobability.i:
+	  
+	  Sync with Rev16034
+
+2009-03-19 09:55  Ferdinando Ametrano
+
+	* [r16031] SWIG/cashflows.i:
+	  
+	  - partially reverted Rev16029 to have date, nominal order (as it is
+	  a less invasive change than switching to nominal, date)
+	  - also reverted Rev18030
+
+2009-03-19 09:10  Luigi Ballabio
+
+	* [r16030] SWIG/cashflows.i:
+	  
+	  Sync with changes in Rev16029
+
+2009-03-06 11:43  Luigi Ballabio
+
+	* [r15993] SWIG/options.i:
+	  
+	  Exported Asian options
+
+2009-03-06 11:42  Luigi Ballabio
+
+	* [r15992] SWIG/old_pricers.i, SWIG/ql.i:
+	  
+	  Removed old pricers
+
+2009-02-25 10:44  Luigi Ballabio
+
+	* [r15963] CSharp/examples/BermudanSwaption_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc8.csproj,
+	  CSharp/examples/BermudanSwaption_vc9.csproj,
+	  CSharp/examples/EquityOption_vc8.csproj,
+	  CSharp/examples/EquityOption_vc9.csproj:
+	  
+	  Fix for C# compilation.
+	  It worked on my machine, but problems have been reported with other
+	  configurations.
+	  When not needed, the fix is harmless.
+	  Thanks to Grant Birchmeier.
+
+2009-02-24 15:19  Luigi Ballabio
+
+	* [r15962] SWIG/credit.i, SWIG/creditdefaultswap.i:
+	  
+	  Removed broken Issuer abstraction from core library.
+	  
+	  The Issuer class failed to take into account the possibility of
+	  several
+	  default-probability curves and recovery rates for each issuer, based
+	  on
+	  seniority or currency.
+	  In most instrument and pricing engines, instances of Issuer were
+	  replaced
+	  by the data members it contained. The Issuer class itself was moved
+	  to
+	  ql/experimental/credit to support the SyntheticCDO class, which uses
+	  it
+	  for the Pool and Basket classes and might used as a case study for
+	  finding
+	  the correct abstraction.
+
+2009-02-24 14:41  Luigi Ballabio
+
+	* [r15961] CSharp/examples/EquityOption.cs,
+	  Guile/examples/european-option.scm,
+	  Java/examples/EquityOptions.java,
+	  MzScheme/examples/european-option.scm,
+	  Ruby/examples/european-option.rb:
+	  
+	  Sync with library changes in r15771
+
+2009-02-24 14:39  Luigi Ballabio
+
+	* [r15960] SWIG/options.i:
+	  
+	  Sync with library changes in r15933
+
+2009-02-03 08:45  Luigi Ballabio
+
+	* [r15877] Python/test/QuantLibTestSuite.py, Python/test/bonds.py,
+	  Python/test/ratehelpers.py, SWIG/bonds.i, SWIG/ratehelpers.i:
+	  
+	  Complete Bond and FixedRateBond SWIG bindings (thanks to Joe
+	  Malicki)
+
+2009-02-03 08:39  Luigi Ballabio
+
+	* [r15876] SWIG/ql.i:
+	  
+	  Avoided conflict with Perl macro
+
+2008-11-20 13:34  Luigi Ballabio
+
+	* [r15779] SWIG/basketoptions.i, SWIG/options.i:
+	  
+	  Added timeSteps parameter to a few MC engines besides the existing
+	  timeStepsPerYear
+
+2008-11-19 16:24  Luigi Ballabio
+
+	* [r15771] SWIG/basketoptions.i, SWIG/options.i:
+	  
+	  Removed unused control-variate switch
+
+2008-11-19 14:47  Luigi Ballabio
+
+	* [r15770] SWIG/basketoptions.i:
+	  
+	  Renamed engine to more-specific name
+
+2008-11-18 14:15  Luigi Ballabio
+
+	* [r15768] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number
+
+2008-11-18 12:04  Luigi Ballabio
+
+	* [r15767] ., CSharp, CSharp/Makefile.am, CSharp/QuantLib.sln,
+	  CSharp/QuantLib_vc7.sln, CSharp/QuantLib_vc8.sln,
+	  CSharp/QuantLib_vc9.sln, CSharp/cpp,
+	  CSharp/cpp/QuantlibWrapper.vcproj,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/cpp/QuantlibWrapper_vc8.vcproj,
+	  CSharp/cpp/QuantlibWrapper_vc9.vcproj, CSharp/csharp,
+	  CSharp/csharp/NQuantLib.csproj, CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj, CSharp/examples,
+	  CSharp/examples/BermudanSwaption.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc8.csproj,
+	  CSharp/examples/BermudanSwaption_vc9.csproj,
+	  CSharp/examples/EquityOption_vc8.csproj,
+	  CSharp/examples/EquityOption_vc9.csproj, ChangeLog.txt,
+	  MzScheme/examples/swap.scm, MzScheme/setup.scm, News.txt,
+	  Python/setup.py, Ruby/setup.rb:
+	  
+	  Merged 0.9.7 release (QuantLib, QuantLib-SWIG, and QuantLib-site
+	  modules)
+
+2008-10-23 15:40  Luigi Ballabio
+
+	* [r15684] SWIG/credit.i:
+	  
+	  Enabled keyword args
+
+2008-10-23 15:39  Luigi Ballabio
+
+	* [r15683] SWIG/vectors.i:
+	  
+	  Added unsigned int specialization
+
+2008-10-23 15:39  Luigi Ballabio
+
+	* [r15682] SWIG/indexes.i:
+	  
+	  Exported missing index
+
+2008-10-23 15:38  Luigi Ballabio
+
+	* [r15681] SWIG/defaultprobability.i:
+	  
+	  Added vector declaration; fixed macro call
+
+2008-09-24 09:09  Luigi Ballabio
+
+	* [r15585] SWIG/indexes.i:
+	  
+	  Sync with C++
+
+2008-09-10 15:10  Luigi Ballabio
+
+	* [r15534] SWIG/credit.i:
+	  
+	  Enforced uniform naming
+
+2008-09-09 16:00  Luigi Ballabio
+
+	* [r15532] CSharp/cpp/QuantlibWrapper.vcproj,
+	  CSharp/csharp/NQuantLib.csproj:
+	  
+	  Updated projects
+
+2008-09-04 09:28  Luigi Ballabio
+
+	* [r15502] SWIG/credit.i:
+	  
+	  More descriptive names for Seniority and Restructuring enumerations
+
+2008-09-02 09:50  Luigi Ballabio
+
+	* [r15490] SWIG/date.i:
+	  
+	  Added OtherFrequency to Frequency enum; conversion from Frequency to
+	  Period no longer fails, so that it should be now possible to create
+	  bonds with unusual coupon tenors (thanks to Slava Mazur)
+
+2008-08-20 15:25  Luigi Ballabio
+
+	* [r15405] SWIG/stochasticprocess.i:
+	  
+	  Exported GeometricBrownianMotionProcess (thanks to Tito Ingargiola)
+
+2008-08-11 14:00  Luigi Ballabio
+
+	* [r15357] SWIG/old_pricers.i:
+	  
+	  Ported Monte Carlo average-strike pricer to pricing-engine framework
+	  (thanks to the IMAFA students at Polytech'Nice Sophia)
+
+2008-08-06 13:01  Luigi Ballabio
+
+	* [r15339] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number to 0.9.7
+
+2008-08-01 14:15  Luigi Ballabio
+
+	* [r15317] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number to 0.9.6
+
+2008-08-01 10:03  Luigi Ballabio
+
+	* [r15315] SWIG/old_volatility.i, SWIG/volatilities.i:
+	  
+	  Formatting
+
+2008-08-01 09:41  Luigi Ballabio
+
+	* [r15314] SWIG/stochasticprocess.i:
+	  
+	  Exported GeneralizedBlackScholesProcess inspectors
+
+2008-08-01 09:40  Luigi Ballabio
+
+	* [r15313] SWIG/daycounters.i:
+	  
+	  Exported Business/252 day counter
+
+2008-08-01 09:39  Luigi Ballabio
+
+	* [r15312] SWIG/volatilities.i:
+	  
+	  Exported BlackVarianceCurve class
+
+2008-07-31 15:25  Luigi Ballabio
+
+	* [r15308] SWIG/date.i:
+	  
+	  Added 4-week frequency
+
+2008-07-31 09:52  Luigi Ballabio
+
+	* [r15303] Guile/Makefile.am, Java/examples/DiscreteHedging.java,
+	  LICENSE.TXT, MzScheme/Makefile.am, Perl/Makefile.am,
+	  Python/Makefile.am, Ruby/Makefile.am, acinclude.m4, configure.ac:
+	  
+	  Merged R000905-branch up to revision 15285 (QuantLib, QuantLib-SWIG,
+	  and QuantLib-site modules only)
+
+2008-07-16 04:34  Joseph Wang
+
+	* [r15241] R/Makefile.am:
+	  
+	  make quantlib config a variable that can be overridden
+
+2008-07-16 03:29  Joseph Wang
+
+	* [r15240] Python/Makefile.am, R/Makefile.am, Ruby/Makefile.am:
+	  
+	  remove setting path in makefiles. This can probably be done better
+	  externally
+
+2008-07-13 05:49  Joseph Wang
+
+	* [r15231] Ruby/Makefile.am:
+	  
+	  Add path so that ruby is configured by the quantlib-config that is
+	  in
+	  the configure script
+
+2008-07-13 05:28  Joseph Wang
+
+	* [r15230] R/Makefile.am:
+	  
+	  change calling procedure to R so that you can get the config
+	  arguments
+	  from the install directory
+
+2008-07-12 22:57  Joseph Wang
+
+	* [r15223] SWIG/common.i:
+	  
+	  Work around iterator range error in boost 1.35 with GCC 4
+
+2008-07-12 22:38  Joseph Wang
+
+	* [r15222] SWIG/common.i:
+	  
+	  Put in a NDEBUG define which is necessary for linux boost 1.35
+
+2008-07-12 19:56  Joseph Wang
+
+	* [r15221] Python/Makefile.am:
+	  
+	  pull in quantlib-config from install directory even if it is not
+	  part
+	  of the path
+
+2008-07-02 15:52  Luigi Ballabio
+
+	* [r15154] CSharp/csharp/NQuantLib.csproj:
+	  
+	  Updated VC# project
+
+2008-07-01 08:08  Luigi Ballabio
+
+	* [r15146] configure.ac:
+	  
+	  Removed outdated RPM specification files from distributed tarballs
+
+2008-06-27 14:57  Luigi Ballabio
+
+	* [r15132] SWIG/defaultprobability.i:
+	  
+	  Added choice of date-generation rule to CDS helpers
+
+2008-06-27 13:24  Luigi Ballabio
+
+	* [r15131] SWIG/scheduler.i:
+	  
+	  Added date-generation rules for CDS schedules
+
+2008-06-24 12:55  Luigi Ballabio
+
+	* [r15116] SWIG/basketoptions.i, SWIG/old_pricers.i,
+	  SWIG/piecewiseyieldcurve.i:
+	  
+	  Sync with C++
+
+2008-04-30 14:37  Luigi Ballabio
+
+	* [r14817] SWIG/defaultprobability.i:
+	  
+	  Added piecewise default-probability curve
+
+2008-04-24 12:37  Luigi Ballabio
+
+	* [r14792] SWIG/credit.i, SWIG/creditdefaultswap.i,
+	  SWIG/defaultprobability.i, SWIG/ql.i, SWIG/types.i:
+	  
+	  Exported default curves and CDS
+
+2008-04-22 08:13  Luigi Ballabio
+
+	* [r14769] SWIG/calendars.i:
+	  
+	  Fixes for South Korea calendar (thanks to Charles Chongseok Hyun)
+
+2008-04-21 13:22  Luigi Ballabio
+
+	* [r14766] SWIG/cashflows.i:
+	  
+	  Added overload for term-structure handles
+
+2008-04-21 09:54  Luigi Ballabio
+
+	* [r14760] SWIG/cashflows.i:
+	  
+	  Adapted YieldTermStructure references to shared_ptr
+
+2008-04-21 09:39  Luigi Ballabio
+
+	* [r14759] SWIG/interpolation.i:
+	  
+	  Sync with C++
+
+2008-03-11 15:57  Luigi Ballabio
+
+	* [r14559] Java/Makefile.am, Java/examples/DiscreteHedging.java,
+	  SWIG/montecarlo.i, SWIG/options.i:
+	  
+	  Added DiscreteHedging example to Java module (thanks to Tito
+	  Ingargiola)
+
+2008-02-29 15:26  Luigi Ballabio
+
+	* [r14523] SWIG/interpolation.i:
+	  
+	  Sync with C++ changes
+
+2008-02-19 16:36  Luigi Ballabio
+
+	* [r14365] SWIG/piecewiseyieldcurve.i:
+	  
+	  Sync with C++ library
+
+2008-02-13 04:21  Joseph Wang
+
+	* [r14339] SWIG/old_volatility.i, SWIG/piecewiseyieldcurve.i,
+	  SWIG/volatilities.i:
+	  
+	  Sync with current QuantLib
+
+2008-02-01 09:44  Luigi Ballabio
+
+	* [r14235] Guile/examples/swap.scm, Guile/test/termstructures.scm,
+	  MzScheme/examples/swap.scm, MzScheme/test/termstructures.scm,
+	  Python/examples/swap.py, Python/test/termstructures.py,
+	  Ruby/examples/swap.rb, Ruby/test/termstructures.rb:
+	  
+	  Sync with C++ library
+
+2008-02-01 08:27  Luigi Ballabio
+
+	* [r14234] SWIG/currencies.i:
+	  
+	  Added syntactic sugar to Python module
+
+2008-01-30 15:04  Luigi Ballabio
+
+	* [r14217] SWIG/currencies.i:
+	  
+	  Added Peruvian currency
+
+2008-01-25 10:37  Luigi Ballabio
+
+	* [r14181] SWIG/capfloor.i, SWIG/ratehelpers.i, SWIG/volatilities.i:
+	  
+	  Sync with C++ library
+
+2008-01-18 12:56  Luigi Ballabio
+
+	* [r14137] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number
+
+2008-01-05 08:05  Joseph Wang
+
+	* [r14020] SWIG/volatilities.i:
+	  
+	  sync with newest quantlib
+
+2007-12-19 20:03  Ferdinando Ametrano
+
+	* [r13855] ChangeLog.txt, LICENSE.TXT, Makefile.am, News.txt,
+	  SWIG/piecewiseflatforward.i, SWIG/ql.i, SWIG/vectors.i:
+	  
+	  merged changeset 13573:13852 from branches\R000900-branch into trunk
+
+2007-11-29 06:26  Joseph Wang
+
+	* [r13600] R/README.txt, R/examples/european-option.R,
+	  R/examples/fd-option.R, R/examples/graph.R, R/examples/scatter.R,
+	  R/examples/wireframe.R:
+	  
+	  Fix to new calling conventions
+
+2007-11-27 11:24  Luigi Ballabio
+
+	* [r13568] CSharp/cpp/QuantlibWrapper.vcproj,
+	  CSharp/csharp/NQuantLib.csproj:
+	  
+	  VC#7 catching up
+
+2007-11-26 15:31  Luigi Ballabio
+
+	* [r13541] CSharp/examples/EquityOption.cs,
+	  Java/examples/EquityOptions.java:
+	  
+	  Fixed SVN properties
+
+2007-11-26 10:28  Luigi Ballabio
+
+	* [r13533] CSharp/examples/BermudanSwaption.cs,
+	  Guile/examples/bermudan-swaption.scm, Guile/examples/swap.scm,
+	  MzScheme/examples/bermudan-swaption.scm, MzScheme/examples/swap.scm,
+	  Python/examples/bermudan-swaption.py, Python/examples/swap.py,
+	  Ruby/examples/bermudan-swaption.rb, Ruby/examples/swap.rb,
+	  SWIG/quantlib.i, SWIG/scheduler.i:
+	  
+	  Sync with C++ library
+
+2007-11-23 10:06  Luigi Ballabio
+
+	* [r13506] MzScheme/setup.scm:
+	  
+	  Removed gcc warnings
+
+2007-11-23 09:50  Luigi Ballabio
+
+	* [r13505] Guile/examples/swap.scm, Guile/test/termstructures.scm,
+	  MzScheme/examples/swap.scm, MzScheme/test/termstructures.scm,
+	  Python/examples/swap.py, Python/test/termstructures.py,
+	  Ruby/examples/swap.rb, Ruby/test/termstructures.rb,
+	  SWIG/ratehelpers.i:
+	  
+	  Sync with C++ library
+
+2007-11-22 13:54  Luigi Ballabio
+
+	* [r13489] CSharp/examples/EquityOption.cs,
+	  Guile/examples/american-option.scm,
+	  Guile/examples/european-option.scm,
+	  Java/examples/EquityOptions.java,
+	  MzScheme/examples/american-option.scm,
+	  MzScheme/examples/european-option.scm,
+	  Python/examples/american-option.py,
+	  Python/examples/basket-option.py,
+	  Python/examples/european-option.py,
+	  Ruby/examples/american-option.rb, Ruby/examples/european-option.rb,
+	  SWIG/basketoptions.i, SWIG/convertiblebonds.i, SWIG/options.i,
+	  SWIG/stochasticprocess.i:
+	  
+	  Merged engine-refactoring branch (moved underlying process from
+	  options to engines)
+
+2007-11-21 13:54  Luigi Ballabio
+
+	* [r13474] Python/setup.py:
+	  
+	  Fixes for revision 13473
+
+2007-11-21 13:28  Luigi Ballabio
+
+	* [r13473] Python/setup.py:
+	  
+	  Tentative fix for Cygwin/MSYS compilation
+
+2007-11-16 13:28  Luigi Ballabio
+
+	* [r13392] Perl/Makefile.am, SWIG/quantlib.i:
+	  
+	  Upgraded to SWIG 1.3.32
+
+2007-11-16 01:47  Joseph Wang
+
+	* [r13387] R/Makefile.am:
+	  
+	  Sync with swig 1.3.32
+
+2007-11-15 11:38  Luigi Ballabio
+
+	* [r13384] SWIG/indexes.i:
+	  
+	  Made forecastFixing protected (fixing(d,true) does the same job)
+
+2007-11-12 04:17  Joseph Wang
+
+	* [r13359] R/Makefile.am, R/README.txt, R/examples/european-option.R,
+	  R/examples/graph.R, R/examples/scatter.R, R/examples/wireframe.R,
+	  R/makeRData.R:
+	  
+	  Update to upcoming swig 1.3.32
+
+2007-11-09 14:19  Luigi Ballabio
+
+	* [r13350] Java/Makefile.am:
+	  
+	  Fixed dependencies
+
+2007-11-06 12:06  Luigi Ballabio
+
+	* [r13324] SWIG/calendars.i:
+	  
+	  Sync with C++
+
+2007-11-02 12:11  Luigi Ballabio
+
+	* [r13284] SWIG/common.i, SWIG/interpolation.i:
+	  
+	  Sync with C++ library
+
+2007-10-26 12:18  Luigi Ballabio
+
+	* [r13201] SWIG/capfloor.i, SWIG/shortratemodels.i:
+	  
+	  Merged revisions 13187 and 13200 from engine-refactoring branch
+
+2007-10-25 13:14  Luigi Ballabio
+
+	* [r13182] SWIG/linearalgebra.i:
+	  
+	  Added get and set methods to Matrix and Array in C-sharp and Java
+	  (thanks to Paul Gentry)
+
+2007-10-25 12:32  Luigi Ballabio
+
+	* [r13179] SWIG/capfloor.i, SWIG/ratehelpers.i, SWIG/swaption.i:
+	  
+	  Sync with C++ library
+
+2007-10-24 11:08  Ferdinando Ametrano
+
+	* [r13148] CSharp/examples/BermudanSwaption.cs,
+	  CSharp/examples/EquityOption.cs, Guile/examples/american-option.scm,
+	  Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/european-option.scm, Guile/examples/swap.scm,
+	  Java/examples/EquityOptions.java,
+	  MzScheme/examples/american-option.scm,
+	  MzScheme/examples/bermudan-swaption.scm,
+	  MzScheme/examples/european-option.scm, MzScheme/examples/swap.scm,
+	  Perl/examples/european-option.pl,
+	  Python/examples/american-option.py,
+	  Python/examples/basket-option.py,
+	  Python/examples/bermudan-swaption.py,
+	  Python/examples/european-option.py, Python/examples/swap.py,
+	  Ruby/examples/american-option.rb,
+	  Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/european-option.rb, Ruby/examples/swap.rb,
+	  SWIG/capfloor.i, SWIG/swap.i:
+	  
+	  merged engines-refactoring into trunk
+
+2007-10-03 11:10  Luigi Ballabio
+
+	* [r12957] SWIG/old_pricers.i:
+	  
+	  Removed obsolete pricer
+
+2007-09-25 05:15  Joseph Wang
+
+	* [r12854] SWIG/cashflows.i, SWIG/old_volatility.i,
+	  SWIG/volatilities.i:
+	  
+	  sync with quantlib
+
+2007-09-24 15:06  Luigi Ballabio
+
+	* [r12845] SWIG/cashflows.i:
+	  
+	  Reorganized cash-flow vector builders:
+	  - implemented as helper classes to ease skipping default parameters
+	  and single/multiple inputs
+	  - moved together with the corresponding coupon classes
+
+2007-09-20 12:59  Luigi Ballabio
+
+	* [r12746] SWIG/shortratemodels.i:
+	  
+	  Exported Vasicek model and more methods (thanks to Luis Cota)
+
+2007-09-20 11:30  Luigi Ballabio
+
+	* [r12745] CSharp/Makefile.am, CSharp/examples/EquityOption.cs,
+	  SWIG/date.i, SWIG/ql.i:
+	  
+	  Added equity-option example in C# (thanks to Eric Jensen)
+
+2007-09-20 11:24  Luigi Ballabio
+
+	* [r12744] CSharp/examples/BermudanSwaption.cs:
+	  
+	  Added timing
+
+2007-09-20 10:49  Luigi Ballabio
+
+	* [r12743] Java/Makefile.am, Java/examples,
+	  Java/examples/EquityOptions.java, Java/test:
+	  
+	  Moved Java example from tests to examples directory
+
+2007-09-20 10:20  Luigi Ballabio
+
+	* [r12742] CSharp/Makefile.am, CSharp/examples,
+	  CSharp/examples/BermudanSwaption.cs:
+	  
+	  Using existing C# example in make check
+
+2007-09-20 09:14  Luigi Ballabio
+
+	* [r12739] SWIG/common.i, SWIG/functions.i, SWIG/linearalgebra.i,
+	  SWIG/types.i:
+	  
+	  Hidden disposables in target language
+
+2007-09-20 09:13  Luigi Ballabio
+
+	* [r12738] SWIG/basketoptions.i:
+	  
+	  Restored case-insensitive tags
+
+2007-09-18 12:50  Luigi Ballabio
+
+	* [r12686] SWIG/grid.i, SWIG/linearalgebra.i, SWIG/montecarlo.i,
+	  SWIG/scheduler.i:
+	  
+	  Dropped CodeWarrior support
+
+2007-09-18 12:50  Luigi Ballabio
+
+	* [r12685] SWIG/capfloor.i, SWIG/old_volatility.i,
+	  SWIG/volatilities.i:
+	  
+	  Sync with library changes
+
+2007-09-13 10:08  Luigi Ballabio
+
+	* [r12608] SWIG/bonds.i:
+	  
+	  Exported discunting bond engine
+
+2007-09-13 09:54  Luigi Ballabio
+
+	* [r12604] Python/setup.py:
+	  
+	  Fixed indentation
+
+2007-09-13 09:27  Luigi Ballabio
+
+	* [r12602] Python/setup.py:
+	  
+	  Removed legacy support for Borland free compiler; added support for
+	  INCLUDE and LIB environment variables
+
+2007-09-13 08:58  Luigi Ballabio
+
+	* [r12601] SWIG/old_volatility.i:
+	  
+	  Exported extrapolator methods for cap volatility
+
+2007-09-12 13:01  Luigi Ballabio
+
+	* [r12585] SWIG/calendars.i:
+	  
+	  Added Brazilian exchange calendar (thanks to Richard Gomes)
+
+2007-09-12 10:36  Luigi Ballabio
+
+	* [r12580] Java/Makefile.am, Java/test/EquityOptions.java,
+	  Java/test/Hello.java:
+	  
+	  Added equity-option example for Java (thanks to Richard Gomes and
+	  Tito Ingargiola)
+
+2007-09-12 10:35  Luigi Ballabio
+
+	* [r12579] SWIG/options.i:
+	  
+	  Added binomial-Joshi and FD-bermudan engines (thanks to Richard
+	  Gomes and Tito Ingargiola)
+
+2007-09-11 15:10  Luigi Ballabio
+
+	* [r12569] SWIG/old_volatility.i:
+	  
+	  In sync with current C++ interface
+
+2007-08-24 09:56  Luigi Ballabio
+
+	* [r12396] Python/setup.py, SWIG/bonds.i, SWIG/callability.i,
+	  SWIG/common.i, SWIG/convertiblebonds.i, SWIG/date.i,
+	  SWIG/distributions.i, SWIG/dividends.i, SWIG/indexes.i,
+	  SWIG/linearalgebra.i, SWIG/operators.i, SWIG/options.i,
+	  SWIG/piecewiseyieldcurve.i, SWIG/shortratemodels.i, SWIG/swap.i,
+	  SWIG/swaption.i:
+	  
+	  Catch-up with the library, plus a few fixes
+
+2007-08-18 02:45  Ferdinando Ametrano
+
+	* [r12311] ., CSharp, CSharp/cpp, CSharp/csharp, CSharp/examples,
+	  Guile, Guile/examples, Guile/test, Java, Java/test, MzScheme,
+	  MzScheme/examples, MzScheme/quantlib, MzScheme/test, OCaml, Perl,
+	  Perl/examples, Python, Python/QuantLib, Python/examples,
+	  Python/test, R, R/examples, Ruby, Ruby/examples, Ruby/test, SWIG,
+	  dev_tools:
+	  
+	  set tsvn:projectlanguage property equal to 1033 (US English)
+
+2007-08-13 03:26  Joseph Wang
+
+	* [r12261] Python/examples/bermudan-swaption.py:
+	  
+	  Fix python to sync with new swig interfaces
+
+2007-08-13 00:13  Joseph Wang
+
+	* [r12260] SWIG/bonds.i, SWIG/indexes.i, SWIG/swaption.i:
+	  
+	  sync with quantlib changes
+
+2007-08-08 05:15  Joseph Wang
+
+	* [r12197] Python/test/integrals.py:
+	  
+	  Fix sample file to match new quantlib args
+
+2007-07-23 09:29  Luigi Ballabio
+
+	* [r11964] autogen.sh, dev_tools/windistmzscheme.bat,
+	  dev_tools/windistpython.bat, dev_tools/windistruby.bat:
+	  
+	  Fixed svn properties
+
+2007-07-20 05:16  Joseph Wang
+
+	* [r11957] SWIG/cashflows.i:
+	  
+	  Sync SWIG with current quantlib
+
+2007-07-13 08:03  Luigi Ballabio
+
+	* [r11905] SWIG/timeseries.i:
+	  
+	  Added missing inclusion
+
+2007-06-28 15:52  Luigi Ballabio
+
+	* [r11741] CSharp/Makefile.am, CSharp/QuantLib.sln,
+	  CSharp/cpp/QuantlibWrapper.vcproj, CSharp/csharp/NQuantLib.csproj,
+	  CSharp/examples/BermudanSwaption.csproj, CSharp/swig.cmd,
+	  Guile/Makefile.am, Java/Makefile.am, Makefile.am,
+	  MzScheme/Makefile.am, OCaml/Makefile.am, Perl/Makefile.am,
+	  Python/Makefile.am, Python/QuantLib-Python.spec.in, R/Makefile.am,
+	  Ruby/Makefile.am, Ruby/QuantLib-Ruby.spec.in, configure.ac:
+	  
+	  Fixed eol-style properties
+
+2007-06-15 02:27  Joseph Wang
+
+	* [r11477] SWIG/cashflows.i:
+	  
+	  sync with latest quantlib library
+
+2007-06-08 14:29  Luigi Ballabio
+
+	* [r11283] SWIG/stochasticprocess.i:
+	  
+	  Fixed typo in exported name
+
+2007-06-06 00:35  Joseph Wang
+
+	* [r11196] SWIG/linearalgebra.i:
+	  
+	  fix conversion to print out sampled curve
+
+2007-06-05 04:52  Joseph Wang
+
+	* [r11154] SWIG/integrals.i:
+	  
+	  fix integral wrappers
+
+2007-06-04 21:25  Eric Ehlers
+
+	* [r11146] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increment version number from 0.8.0/0.8.1 to 0.9.0
+
+2007-06-04 04:42  Joseph Wang
+
+	* [r11117] R/examples/european-option.R, R/examples/fd-option.R,
+	  R/examples/graph.R, R/examples/scatter.R, R/examples/wireframe.R:
+	  
+	  update examples to latest quantlib version
+
+2007-06-04 04:12  Joseph Wang
+
+	* [r11115] R/README.txt:
+	  
+	  change readme to reflect actual files
+
+2007-05-30 15:57  Luigi Ballabio
+
+	* [r11052] CSharp/csharp/NQuantLib.csproj,
+	  CSharp/examples/BermudanSwaption.cs, ChangeLog.txt,
+	  Guile/examples/american-option.scm,
+	  Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/european-option.scm, Guile/examples/swap.scm,
+	  Guile/setup.scm, Guile/test/common.scm, Guile/test/instruments.scm,
+	  Guile/test/integrals.scm, Guile/test/marketelements.scm,
+	  Guile/test/quantlib-test-suite.scm, Guile/test/solvers1d.scm,
+	  Guile/test/termstructures.scm, Guile/test/unittest.scm,
+	  Guile/test/utilities.scm, LICENSE.TXT,
+	  MzScheme/examples/american-option.scm,
+	  MzScheme/examples/bermudan-swaption.scm,
+	  MzScheme/examples/european-option.scm, MzScheme/examples/swap.scm,
+	  MzScheme/quantlib/ql-init.ss, MzScheme/quantlib/quantlib.ss,
+	  MzScheme/setup.scm, MzScheme/test/common.scm,
+	  MzScheme/test/instruments.scm, MzScheme/test/integrals.scm,
+	  MzScheme/test/marketelements.scm,
+	  MzScheme/test/quantlib-test-suite.scm, MzScheme/test/solvers1d.scm,
+	  MzScheme/test/termstructures.scm, MzScheme/test/unittest.scm,
+	  MzScheme/test/utilities.scm, News.txt, Python/QuantLib/__init__.py,
+	  Python/examples/american-option.py,
+	  Python/examples/basket-option.py,
+	  Python/examples/bermudan-swaption.py,
+	  Python/examples/european-option.py, Python/examples/swap.py,
+	  Python/setup.py, Python/test/QuantLibTestSuite.py,
+	  Python/test/date.py, Python/test/instruments.py,
+	  Python/test/integrals.py, Python/test/marketelements.py,
+	  Python/test/solvers1d.py, Python/test/termstructures.py,
+	  Ruby/QuantLib.rb, Ruby/examples/american-option.rb,
+	  Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/european-option.rb, Ruby/examples/swap.rb,
+	  Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb, Ruby/test/dates.rb,
+	  Ruby/test/instruments.rb, Ruby/test/integrals.rb,
+	  Ruby/test/marketelements.rb, Ruby/test/solvers1d.rb,
+	  Ruby/test/termstructures.rb, SWIG/basketoptions.i, SWIG/bonds.i,
+	  SWIG/calendars.i, SWIG/callability.i, SWIG/capfloor.i,
+	  SWIG/cashflows.i, SWIG/common.i, SWIG/compoundforward.i,
+	  SWIG/convertiblebonds.i, SWIG/currencies.i, SWIG/date.i,
+	  SWIG/daycounters.i, SWIG/discountcurve.i, SWIG/distributions.i,
+	  SWIG/dividends.i, SWIG/exchangerates.i, SWIG/exercise.i,
+	  SWIG/forwardcurve.i, SWIG/functions.i, SWIG/grid.i, SWIG/indexes.i,
+	  SWIG/instruments.i, SWIG/integrals.i, SWIG/interestrate.i,
+	  SWIG/interpolation.i, SWIG/linearalgebra.i, SWIG/marketelements.i,
+	  SWIG/money.i, SWIG/montecarlo.i, SWIG/null.i, SWIG/observer.i,
+	  SWIG/old_pricers.i, SWIG/old_volatility.i, SWIG/operators.i,
+	  SWIG/optimizers.i, SWIG/options.i, SWIG/payoffs.i,
+	  SWIG/piecewiseflatforward.i, SWIG/piecewiseyieldcurve.i, SWIG/ql.i,
+	  SWIG/quantlib.i, SWIG/randomnumbers.i, SWIG/ratehelpers.i,
+	  SWIG/rounding.i, SWIG/sampledcurve.i, SWIG/scheduler.i,
+	  SWIG/settings.i, SWIG/shortratemodels.i, SWIG/statistics.i,
+	  SWIG/stochasticprocess.i, SWIG/surface.i, SWIG/swap.i,
+	  SWIG/swaption.i, SWIG/termstructures.i, SWIG/timebasket.i,
+	  SWIG/timeseries.i, SWIG/types.i, SWIG/vectors.i,
+	  SWIG/volatilities.i, SWIG/volatilitymodels.i, SWIG/zerocurve.i,
+	  configure.ac, dev_tools/developers:
+	  
+	  Merged R000800-branch into the trunk up to revision 11030
+
+2007-05-04 03:04  Joseph Wang
+
+	* [r10582] SWIG/date.i, SWIG/indexes.i:
+	  
+	  sync with quantlib
+
+2007-04-27 12:37  Luigi Ballabio
+
+	* [r10404] Python/test/integrals.py, SWIG/functions.i,
+	  SWIG/integrals.i:
+	  
+	  Sync with library
+
+2007-04-10 16:01  Luigi Ballabio
+
+	* [r10052] SWIG/calendars.i:
+	  
+	  Exported missing Brazilian calendar
+
+2007-04-03 13:58  Luigi Ballabio
+
+	* [r9967] R:
+	  
+	  Added compiled library to svn:ignore list
+
+2007-04-03 13:56  Luigi Ballabio
+
+	* [r9966] Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/swap.scm, Guile/test/termstructures.scm,
+	  MzScheme/examples/bermudan-swaption.scm, MzScheme/examples/swap.scm,
+	  MzScheme/test/termstructures.scm,
+	  Python/examples/bermudan-swaption.py, Python/examples/swap.py,
+	  Python/test/termstructures.py, Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/swap.rb, Ruby/test/termstructures.rb,
+	  SWIG/functions.i:
+	  
+	  Tests and examples are now in sync in all languages
+
+2007-04-02 20:30  Joseph Wang
+
+	* [r9954] SWIG/optimizers.i:
+	  
+	  sync with quantlib
+
+2007-03-30 19:38  Luigi Ballabio
+
+	* [r9924] .cvsignore, CSharp/.cvsignore, CSharp/cpp/.cvsignore,
+	  CSharp/csharp/.cvsignore, CSharp/examples/.cvsignore,
+	  Guile/.cvsignore, Java/.cvsignore, Java/test/.cvsignore,
+	  MzScheme/.cvsignore, MzScheme/quantlib/.cvsignore, OCaml/.cvsignore,
+	  Perl/.cvsignore, Python/.cvsignore, Python/QuantLib/.cvsignore,
+	  Python/test/.cvsignore, R/.cvsignore, Ruby/.cvsignore:
+	  
+	  Removed obsolete .cvsignore files
+
+2007-03-26 12:04  Luigi Ballabio
+
+	* [r9829] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Changed version number
+
+2007-03-21 20:41  Joseph Wang
+
+	* [r9797] SWIG/common.i, SWIG/functions.i, SWIG/linearalgebra.i,
+	  SWIG/optimizers.i, SWIG/types.i:
+	  
+	  synch with quantlib
+
+2007-03-14 00:09  Joseph Wang
+
+	* [r9665] Python/examples/basket-option.py, SWIG/basketoptions.i:
+	  
+	  sync with basket option
+
+2007-03-09 05:14  Joseph Wang
+
+	* [r9597] Python/examples/basket-option.py:
+	  
+	  add basket option example
+
+2007-03-09 04:39  Joseph Wang
+
+	* [r9596] SWIG/basketoptions.i, SWIG/options.i, SWIG/ratehelpers.i,
+	  SWIG/stochasticprocess.i:
+	  
+	  add basket options. change stochastic process to match cash flow
+	  interface
+
+2007-03-07 23:16  Joseph Wang
+
+	* [r9569] Python/examples/swap.py:
+	  
+	  fix rate helpers to run with current SWIG
+
+2007-03-07 15:05  Joseph Wang
+
+	* [r9562] SWIG/basketoptions.i, SWIG/options.i, SWIG/ql.i:
+	  
+	  add basket options
+
+2007-03-07 14:21  Joseph Wang
+
+	* [r9559] SWIG/calendars.i:
+	  
+	  sync calendars
+
+2007-03-07 03:56  Joseph Wang
+
+	* [r9543] SWIG/bonds.i, SWIG/cashflows.i, SWIG/ratehelpers.i:
+	  
+	  sync with name library
+
+2007-03-05 02:28  Joseph Wang
+
+	* [r9473] SWIG/ratehelpers.i:
+	  
+	  sync with quantlib changes
+
+2007-03-01 15:44  Luigi Ballabio
+
+	* [r9436] SWIG/bonds.i:
+	  
+	  floating-rate bond reborn
+
+2007-02-28 22:14  Joseph Wang
+
+	* [r9412] SWIG/bonds.i:
+	  
+	  sync with quantlib
+
+2007-02-26 22:28  Joseph Wang
+
+	* [r9344] SWIG/instruments.i:
+	  
+	  remove isExpired from composite since it is already in instrument
+
+2007-02-24 09:28  Joseph Wang
+
+	* [r9324] SWIG/options.i:
+	  
+	  add more engines
+
+2007-02-24 04:40  Joseph Wang
+
+	* [r9323] SWIG/instruments.i, SWIG/options.i:
+	  
+	  add new instruments to SWIG
+
+2007-02-22 09:51  Luigi Ballabio
+
+	* [r9272] Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/swap.scm, Guile/test/instruments.scm,
+	  Guile/test/marketelements.scm, Guile/test/termstructures.scm,
+	  MzScheme/examples/bermudan-swaption.scm, MzScheme/examples/swap.scm,
+	  MzScheme/test/instruments.scm, MzScheme/test/marketelements.scm,
+	  MzScheme/test/termstructures.scm,
+	  Python/examples/bermudan-swaption.py, Python/examples/swap.py,
+	  Python/test/instruments.py, Python/test/marketelements.py,
+	  Python/test/termstructures.py, Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/swap.rb, Ruby/test/instruments.rb,
+	  Ruby/test/marketelements.rb, Ruby/test/termstructures.rb,
+	  SWIG/common.i, SWIG/marketelements.i, SWIG/old_volatility.i,
+	  SWIG/termstructures.i, SWIG/volatilities.i:
+	  
+	  Given equal rights to Handle and RelinkableHandle
+
+2007-02-22 05:44  Joseph Wang
+
+	* [r9270] SWIG/marketelements.i, SWIG/old_volatility.i,
+	  SWIG/termstructures.i, SWIG/volatilities.i:
+	  
+	  fix handles
+
+2007-02-21 23:56  Joseph Wang
+
+	* [r9269] SWIG/common.i, SWIG/marketelements.i, SWIG/termstructures.i,
+	  SWIG/volatilities.i:
+	  
+	  add relinkable handles and make these the default so that we
+	  can get linkto functionality
+
+2007-02-21 23:20  Joseph Wang
+
+	* [r9268] Python/examples/bermudan-swaption.py:
+	  
+	  change linkTo to straight handle
+
+2007-02-21 19:09  Joseph Wang
+
+	* [r9264] SWIG/common.i, SWIG/randomnumbers.i:
+	  
+	  sync with new quantlib
+
+2007-02-21 10:42  Luigi Ballabio
+
+	* [r9243] Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/swap.scm, MzScheme/examples/bermudan-swaption.scm,
+	  MzScheme/examples/swap.scm, Python/examples/bermudan-swaption.py,
+	  Python/examples/swap.py, Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/swap.rb, SWIG/swap.i:
+	  
+	  Inserted Payer/Receiver into VanillaSwap namespace
+
+2007-02-21 10:41  Luigi Ballabio
+
+	* [r9242] SWIG/surface.i:
+	  
+	  *** empty log message ***
+
+2007-02-21 10:03  Luigi Ballabio
+
+	* [r9236] CSharp/csharp/NQuantLib.csproj,
+	  CSharp/examples/BermudanSwaption.cs, ChangeLog.txt,
+	  Guile/examples/bermudan-swaption.scm, Guile/examples/swap.scm,
+	  Java/Makefile.am, Java/README.txt, Java/examples, Java/test,
+	  Java/test/.cvsignore, Java/test/Hello.java, Makefile.am,
+	  MzScheme/examples/bermudan-swaption.scm, MzScheme/examples/swap.scm,
+	  News.txt, Python/README.txt, Python/examples/bermudan-swaption.py,
+	  Python/examples/swap.py, Python/setup.py,
+	  Ruby/examples/bermudan-swaption.rb, Ruby/examples/swap.rb,
+	  SWIG/bonds.i, SWIG/ql.i, configure.ac:
+	  
+	  Merged 0.4.0 branch
+
+2007-02-16 23:13  Joseph Wang
+
+	* [r9177] SWIG/currencies.i, SWIG/optimizers.i:
+	  
+	  sync with quantlib changes
+
+2007-02-16 07:14  Joseph Wang
+
+	* [r9145] SWIG/optimizers.i:
+	  
+	  sync with quantlib
+
+2007-02-10 16:15  Joseph Wang
+
+	* [r9028] Python/examples/bermudan-swaption.py,
+	  Python/examples/swap.py:
+	  
+	  fix so that it works with new interfaces
+
+2007-02-09 06:47  Joseph Wang
+
+	* [r8994] SWIG/optimizers.i:
+	  
+	  modify with new optimization framework
+
+2007-02-09 03:03  Joseph Wang
+
+	* [r8992] SWIG/cashflows.i, SWIG/optimizers.i:
+	  
+	  sync with new quantlib cash flow interfaces. I've removed the old
+	  cash flow
+	  interfaces, but haven't had time to write the new ones.
+
+2007-02-05 23:46  Joseph Wang
+
+	* [r8908] SWIG/optimizers.i, SWIG/shortratemodels.i:
+	  
+	  update with current quantlib
+
+2007-02-01 13:40  Luigi Ballabio
+
+	* [r8846] Java/Makefile.am, Java/examples/Hello.java:
+	  
+	  *** empty log message ***
+
+2007-02-01 13:30  Luigi Ballabio
+
+	* [r8845] Java, Java/.cvsignore, Java/Makefile.am, Java/README.txt,
+	  SWIG/options.i, configure.ac:
+	  
+	  *** empty log message ***
+
+2007-02-01 04:54  Joseph Wang
+
+	* [r8835] Java/examples, Java/examples/Hello.java:
+	  
+	  add simple hello world program
+
+2007-02-01 04:49  Joseph Wang
+
+	* [r8834] Java/Makefile.am, configure.ac:
+	  
+	  fix java build from patches by Toli Kuznets <toli@marketcetera.com>
+
+2007-02-01 04:21  Joseph Wang
+
+	* [r8833] SWIG/options.i:
+	  
+	  reversed put/call enums from quantlib
+
+2007-01-30 02:50  Joseph Wang
+
+	* [r8766] SWIG/cashflows.i:
+	  
+	  get rid of typo
+
+2007-01-30 02:43  Joseph Wang
+
+	* [r8765] SWIG/cashflows.i:
+	  
+	  update with new leg interface
+
+2007-01-29 14:16  Joseph Wang
+
+	* [r8740] Python/examples/bermudan-swaption.py:
+	  
+	  fix with new interfaces
+
+2007-01-29 04:31  Joseph Wang
+
+	* [r8717] SWIG/swap.i:
+	  
+	  much more elegant wrapper of VanillaSwap::Type
+
+2007-01-29 03:19  Joseph Wang
+
+	* [r8716] SWIG/swap.i:
+	  
+	  use translation function to convert enums
+
+2007-01-29 02:25  Joseph Wang
+
+	* [r8715] SWIG/swap.i:
+	  
+	  get the VanillaSwap::Type wrapper working
+
+2007-01-26 04:58  Joseph Wang
+
+	* [r8693] SWIG/swap.i:
+	  
+	  revert VanillaSwap::Type until I can figure out how to put it in
+
+2007-01-26 04:52  Joseph Wang
+
+	* [r8692] SWIG/swap.i:
+	  
+	  try another thing to make VanillaSwap::Type work
+
+2007-01-26 04:09  Joseph Wang
+
+	* [r8691] SWIG/swap.i:
+	  
+	  include vanilla swap type
+
+2007-01-24 22:45  Joseph Wang
+
+	* [r8664] SWIG/cashflows.i:
+	  
+	  uncomment in arrears indexed coupon vector now that the constructor
+	  in ql
+	  has been fixed
+
+2007-01-24 06:19  Joseph Wang
+
+	* [r8639] SWIG/calendars.i:
+	  
+	  add export modified following
+
+2007-01-23 23:57  Joseph Wang
+
+	* [r8638] SWIG/surface.i:
+	  
+	  add surface.i wrapper
+
+2007-01-23 00:29  Joseph Wang
+
+	* [r8627] SWIG/cashflows.i, SWIG/convertiblebonds.i, SWIG/options.i,
+	  SWIG/swap.i, SWIG/volatilities.i:
+	  
+	  sync to latest quantlib
+
+2007-01-22 05:38  Joseph Wang
+
+	* [r8617] SWIG/bonds.i, SWIG/calendars.i, SWIG/cashflows.i,
+	  SWIG/convertiblebonds.i, SWIG/indexes.i, SWIG/ql.i,
+	  SWIG/ratehelpers.i, SWIG/shortratemodels.i, SWIG/swap.i:
+	  
+	  partial fix to swig - main change is Xibor -> IborIndex
+
+2007-01-17 15:28  Luigi Ballabio
+
+	* [r8550] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number
+
+2006-12-04 11:45  Luigi Ballabio
+
+	* [r8264] Guile/README.txt, MzScheme/README.txt, News.txt,
+	  Python/README.txt, R/Makefile.am, R/README.txt, Ruby/README.txt,
+	  SWIG/discountcurve.i, SWIG/forwardcurve.i, SWIG/optimizers.i,
+	  SWIG/piecewiseyieldcurve.i, SWIG/vectors.i, SWIG/zerocurve.i,
+	  configure.ac:
+	  
+	  Upgraded to SWIG 1.3.31
+
+2006-11-25 03:10  Joseph Wang
+
+	* [r8221] SWIG/volatilities.i:
+	  
+	  match the items to the new quantlib method calls for swaption
+	  volatilities
+
+2006-11-07 12:16  Luigi Ballabio
+
+	* [r8111] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Incremented version number
+
+2006-11-07 09:29  Luigi Ballabio
+
+	* [r8107] CSharp/csharp/NQuantLib.csproj,
+	  CSharp/examples/BermudanSwaption.cs,
+	  Guile/examples/american-option.scm,
+	  Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/european-option.scm, Guile/examples/swap.scm,
+	  MzScheme/examples/american-option.scm,
+	  MzScheme/examples/bermudan-swaption.scm,
+	  MzScheme/examples/european-option.scm, MzScheme/examples/swap.scm,
+	  MzScheme/quantlib/ql-init.ss, News.txt,
+	  Perl/examples/european-option.pl,
+	  Python/examples/american-option.py,
+	  Python/examples/bermudan-swaption.py,
+	  Python/examples/european-option.py, Python/examples/swap.py,
+	  R/Makefile.am, Ruby/QuantLib.rb, Ruby/examples/american-option.rb,
+	  Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/european-option.rb, Ruby/examples/swap.rb,
+	  SWIG/date.i, SWIG/indexes.i, SWIG/quantlib.i:
+	  
+	  Merged 0.3.14 branch
+
+2006-10-19 21:07  Joseph Wang
+
+	* [r7954] SWIG/options.i:
+	  
+	  insert enum values which are now in quantlib
+
+2006-10-18 11:22  Joseph Wang
+
+	* [r7938] SWIG/bonds.i, SWIG/cashflows.i, SWIG/indexes.i,
+	  SWIG/scheduler.i, SWIG/shortratemodels.i, SWIG/stochasticprocess.i,
+	  SWIG/swap.i:
+	  
+	  update to new API
+
+2006-09-21 22:23  Joseph Wang
+
+	* [r7767] SWIG/indexes.i:
+	  
+	  fixed capitalization
+
+2006-09-13 17:50  Joseph Wang
+
+	* [r7704] SWIG/indexes.i:
+	  
+	  change to match eurlibor capitalization
+
+2006-09-11 07:40  Luigi Ballabio
+
+	* [r7662] Guile/test/termstructures.scm,
+	  MzScheme/test/termstructures.scm, Python/test/termstructures.py, R,
+	  R/.cvsignore, Ruby/test/termstructures.rb, SWIG/indexes.i,
+	  SWIG/timeseries.i:
+	  
+	  *** empty log message ***
+
+2006-08-26 23:37  Joseph Wang
+
+	* [r7488] SWIG/date.i:
+	  
+	  insert comparison operators for dates for swig r
+
+2006-08-25 03:36  Joseph Wang
+
+	* [r7466] SWIG/statistics.i:
+	  
+	  update to match renaming of template
+
+2006-08-24 09:40  Luigi Ballabio
+
+	* [r7448] Guile/examples/american-option.scm,
+	  Guile/examples/european-option.scm,
+	  MzScheme/examples/american-option.scm,
+	  MzScheme/examples/european-option.scm,
+	  Python/examples/american-option.py,
+	  Python/examples/european-option.py,
+	  Ruby/examples/american-option.rb, Ruby/examples/european-option.rb,
+	  SWIG/options.i:
+	  
+	  Correctly renamed binomial vanilla engine
+
+2006-08-23 12:14  Luigi Ballabio
+
+	* [r7443] SWIG/currencies.i:
+	  
+	  Added Romanian new lev
+
+2006-08-02 09:06  Luigi Ballabio
+
+	* [r7323] SWIG/blackmodel.i, SWIG/bonds.i, SWIG/callability.i,
+	  SWIG/capfloor.i, SWIG/cashflows.i, SWIG/history.i, SWIG/indexes.i,
+	  SWIG/old_volatility.i, SWIG/operators.i, SWIG/ql.i,
+	  SWIG/ratehelpers.i, SWIG/stochasticprocess.i, SWIG/swap.i,
+	  SWIG/swaption.i, SWIG/volatilities.i:
+	  
+	  Removed deprecated features
+
+2006-07-31 14:14  Luigi Ballabio
+
+	* [r7308] CSharp/csharp/NQuantLib.csproj, ChangeLog.txt,
+	  Guile/README.txt, LICENSE.TXT, MzScheme/README.txt, News.txt,
+	  Perl/Makefile.am, Python/README.txt, R/Makefile.am, R/README.txt,
+	  Ruby/README.txt, SWIG/calendars.i, SWIG/callability.i,
+	  SWIG/cashflows.i, SWIG/currencies.i, SWIG/date.i,
+	  SWIG/daycounters.i, SWIG/discountcurve.i, SWIG/distributions.i,
+	  SWIG/exchangerates.i, SWIG/forwardcurve.i, SWIG/history.i,
+	  SWIG/indexes.i, SWIG/interpolation.i, SWIG/linearalgebra.i,
+	  SWIG/marketelements.i, SWIG/money.i, SWIG/montecarlo.i, SWIG/null.i,
+	  SWIG/optimizers.i, SWIG/options.i, SWIG/piecewiseflatforward.i,
+	  SWIG/piecewiseyieldcurve.i, SWIG/ql.i, SWIG/quantlib.i,
+	  SWIG/ratehelpers.i, SWIG/shortratemodels.i, SWIG/termstructures.i,
+	  SWIG/timeseries.i, SWIG/vectors.i, SWIG/zerocurve.i,
+	  dev_tools/developers:
+	  
+	  Merged 0.3.13 branch
+
+2006-07-31 09:34  Luigi Ballabio
+
+	* [r7305] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Incremented version number
+
+2006-07-30 06:24  Joseph Wang
+
+	* [r7303] SWIG/optimizers.i:
+	  
+	  sync with new quantlib
+
+2006-06-29 03:10  Joseph Wang
+
+	* [r7090] R/Makefile.am, R/README.txt:
+	  
+	  Change to reflect fact that R interface has been committed to the
+	  SWIG
+	  development tree.
+
+2006-06-26 18:05  Joseph Wang
+
+	* [r7084] SWIG/timeseries.i:
+	  
+	  change to reflect changes in main quantlib library
+
+2006-06-23 21:58  Joseph Wang
+
+	* [r7081] SWIG/callability.i, SWIG/dividends.i, SWIG/indexes.i,
+	  SWIG/ratehelpers.i, SWIG/timeseries.i:
+	  
+	  sync with most recent ql check-ins
+
+2006-06-16 21:48  Joseph Wang
+
+	* [r7030] R/Makefile.am:
+	  
+	  refactor makefiles
+
+2006-06-15 02:00  Joseph Wang
+
+	* [r7004] SWIG/timeseries.i:
+	  
+	  add entry that defines time series vector
+
+2006-05-24 06:51  Luigi Ballabio
+
+	* [r6939] CSharp/examples/BermudanSwaption.cs, SWIG/swaption.i:
+	  
+	  *** empty log message ***
+
+2006-05-19 06:45  Luigi Ballabio
+
+	* [r6919] SWIG/callability.i, SWIG/exercise.i, SWIG/old_pricers.i,
+	  SWIG/operators.i, SWIG/volatilities.i:
+	  
+	  Fixes for C#/Java
+
+2006-05-19 06:45  Luigi Ballabio
+
+	* [r6918] SWIG/calendars.i, SWIG/daycounters.i:
+	  
+	  Sync with C++
+
+2006-05-17 13:58  Luigi Ballabio
+
+	* [r6904] R, R/.cvsignore, R/Makefile.am:
+	  
+	  Upgraded to latest R-SWIG patch
+
+2006-05-15 09:14  Luigi Ballabio
+
+	* [r6867] R/Makefile.am, SWIG/calendars.i, SWIG/common.i,
+	  SWIG/exercise.i, SWIG/operators.i, SWIG/quantlib.i,
+	  SWIG/volatilities.i, configure.ac:
+	  
+	  Upgraded to SWIG 1.3.29
+
+2006-05-13 05:49  Joseph Wang
+
+	* [r6855] SWIG/volatilitymodels.i:
+	  
+	  add garman klass estimators
+
+2006-05-07 04:57  Joseph Wang
+
+	* [r6846] SWIG/timeseries.i:
+	  
+	  Some more functions involving interval prices
+
+2006-05-07 01:51  Joseph Wang
+
+	* [r6844] SWIG/timeseries.i:
+	  
+	  add new items to handle interval price time series
+
+2006-04-30 20:46  Joseph Wang
+
+	* [r6790] SWIG/volatilitymodels.i:
+	  
+	  sync with changes just made in main QuantLib
+
+2006-04-30 09:46  Joseph Wang
+
+	* [r6781] SWIG/volatilitymodels.i:
+	  
+	  Reflect changes in Quantlib libraries re volatility models
+
+2006-04-27 13:25  Luigi Ballabio
+
+	* [r6752] SWIG/options.i:
+	  
+	  Added thetaPerDay to exported VanillaOption interface (thanks to Ken
+	  Anderson)
+
+2006-04-27 09:47  Luigi Ballabio
+
+	* [r6750] Python, Python/.cvsignore, Python/README.txt,
+	  Python/setup.py:
+	  
+	  Added --vc6 option to "setup.py wrap"
+
+2006-04-27 07:20  Luigi Ballabio
+
+	* [r6745] Guile/test/termstructures.scm,
+	  MzScheme/test/termstructures.scm, Python/test/termstructures.py, R,
+	  R/.cvsignore, Ruby/test/termstructures.rb, SWIG/calendars.i,
+	  SWIG/ratehelpers.i:
+	  
+	  *** empty log message ***
+
+2006-04-19 05:51  Joseph Wang
+
+	* [r6691] SWIG/common.i, SWIG/date.i, SWIG/timeseries.i,
+	  SWIG/volatilitymodels.i:
+	  
+	  more changes to get timeseries to coerce to data frames
+
+2006-04-17 02:31  Joseph Wang
+
+	* [r6685] R/makeRData.R:
+	  
+	  add quit SAVE="no" so that I don't end up with an .RData file
+
+2006-04-17 02:03  Joseph Wang
+
+	* [r6684] R/Makefile.am:
+	  
+	  Change makefile to remove QuantLib_wrap.RData
+
+2006-04-17 01:59  Joseph Wang
+
+	* [r6683] R/Makefile.am, R/README.txt, R/makeRData.R:
+	  
+	  Changed convention from QuantLib.so to QuantLib_wrap.so
+
+2006-04-14 01:45  Joseph Wang
+
+	* [r6671] SWIG/common.i:
+	  
+	  change implementation of list type converters
+
+2006-04-13 01:42  Joseph Wang
+
+	* [r6668] SWIG/linearalgebra.i:
+	  
+	  Change show to print for sampled curve.
+
+2006-04-12 18:42  Joseph Wang
+
+	* [r6667] R/Makefile.am, R/README.txt:
+	  
+	  Change instructions to prefer compiled directory
+
+2006-04-11 07:05  Joseph Wang
+
+	* [r6666] R/README.txt, SWIG/common.i, SWIG/date.i,
+	  SWIG/instruments.i, SWIG/linearalgebra.i, SWIG/options.i:
+	  
+	  Replace S4 workaround code in SWIG with instructions in README.txt
+	  that describe the actual issue.
+
+2006-04-06 16:34  Joseph Wang
+
+	* [r6652] SWIG/date.i, SWIG/timeseries.i, SWIG/volatilitymodels.i:
+	  
+	  add date syntactic sugar
+	  add timeseries.i and volatilitymodels.i
+
+2006-04-06 01:51  Joseph Wang
+
+	* [r6643] SWIG/ql.i:
+	  
+	  add time basket, time series, and vol model to ql.i
+
+2006-04-05 07:42  Joseph Wang
+
+	* [r6631] R/Makefile.am, R/README.txt, R/makeRData.R:
+	  
+	  Add compilation for RData file
+
+2006-04-05 05:11  Joseph Wang
+
+	* [r6630] R/Makefile.am:
+	  
+	  Fix Makefile.am to use .R suffix rather than .S
+
+2006-04-05 02:38  Joseph Wang
+
+	* [r6627] SWIG/common.i, SWIG/linearalgebra.i, SWIG/null.i,
+	  SWIG/vectors.i:
+	  
+	  improve R-Swig type conversions
+	  include null types
+	  add convertions between R lists and vectors
+
+2006-04-05 02:37  Joseph Wang
+
+	* [r6626] SWIG/shortratemodels.i, SWIG/swap.i:
+	  
+	  more argument cleanups
+
+2006-04-05 02:36  Joseph Wang
+
+	* [r6625] SWIG/date.i, SWIG/operators.i, SWIG/swaption.i:
+	  
+	  update with current arguments
+
+2006-04-05 02:33  Joseph Wang
+
+	* [r6624] SWIG/calendars.i:
+	  
+	  remove obselete calls
+
+2006-04-05 02:32  Joseph Wang
+
+	* [r6623] SWIG/ratehelpers.i:
+	  
+	  match current CVS quantlib arguments
+
+2006-04-05 02:31  Joseph Wang
+
+	* [r6622] SWIG/bonds.i:
+	  
+	  fix calling conventions to match quantlib CVS
+
+2006-03-28 08:04  Luigi Ballabio
+
+	* [r6610] SWIG/linearalgebra.i, SWIG/ql.i, SWIG/sampledcurve.i:
+	  
+	  *** empty log message ***
+
+2006-03-28 07:49  Luigi Ballabio
+
+	* [r6609] CSharp/Makefile.am, CSharp/csharp/NQuantLib.csproj,
+	  Guile/Makefile.am, Guile/setup.scm, Makefile.am,
+	  MzScheme/Makefile.am, MzScheme/setup.scm, News.txt, OCaml,
+	  OCaml/.cvsignore, OCaml/Makefile.am, Perl/Makefile.PL,
+	  Perl/Makefile.am, Python/Makefile.am, Python/README.txt,
+	  Python/setup.py, R, R/.cvsignore, R/Makefile.am, Ruby/Makefile.am,
+	  Ruby/setup.rb, SWIG/callability.i, SWIG/cashflows.i,
+	  SWIG/currencies.i, SWIG/discountcurve.i, SWIG/dividends.i,
+	  SWIG/forwardcurve.i, SWIG/piecewiseyieldcurve.i, SWIG/ql.i,
+	  SWIG/quantlib.i, SWIG/types.i, SWIG/zerocurve.i, configure.ac:
+	  
+	  Merged 0.3.12 branch; increased version number
+
+2006-03-18 22:36  Joseph Wang
+
+	* [r6596] R/README.txt:
+	  
+	  Add some more readme
+
+2006-03-15 07:06  Joseph Wang
+
+	* [r6581] SWIG/date.i:
+	  
+	  Add wrapper for fromIsoDate
+
+2006-03-13 06:40  Joseph Wang
+
+	* [r6572] R/examples/scatter.R:
+	  
+	  add another example
+
+2006-02-27 19:26  Joseph Wang
+
+	* [r6543] R/README.txt:
+	  
+	  Merge in more detailed instructions
+
+2006-02-27 07:47  Joseph Wang
+
+	* [r6539] SWIG/old_pricers.i, SWIG/volatilities.i:
+	  
+	  Add some declarations so that R-SWIG can load without warnings
+
+2006-02-27 06:31  Joseph Wang
+
+	* [r6538] SWIG/callability.i:
+	  
+	  Insert section which marks callability has having no default
+	  constructor so
+	  that vectors are created correctly in R frontend.
+
+2006-02-27 05:59  Joseph Wang
+
+	* [r6537] R/Makefile.am:
+	  
+	  Use .R suffix and not .S suffix in Makefile
+
+2006-02-27 05:56  Joseph Wang
+
+	* [r6536] SWIG/instruments.i, SWIG/linearalgebra.i, SWIG/options.i:
+	  
+	  Change RSwig calls to use S3 print dispatching so that they don't
+	  get lost
+	  on save
+
+2006-02-26 05:41  Joseph Wang
+
+	* [r6535] R/examples/wireframe.R:
+	  
+	  Replace with quote handles
+
+2006-02-26 05:40  Joseph Wang
+
+	* [r6534] SWIG/date.i, SWIG/instruments.i, SWIG/options.i:
+	  
+	  Add summary and print functions for options
+
+2006-02-22 03:53  Joseph Wang
+
+	* [r6525] R/examples/european-option.R, R/examples/european-option.S,
+	  R/examples/fd-option.R, R/examples/fd-option.S, R/examples/graph.R,
+	  R/examples/graph.S, R/examples/wireframe.R, R/examples/wireframe.S:
+	  
+	  Change .S to .R
+
+2006-02-21 07:50  Joseph Wang
+
+	* [r6522] R/examples/wireframe.S:
+	  
+	  wireframe example
+
+2006-02-20 06:53  Joseph Wang
+
+	* [r6520] R/examples/wireframe.S:
+	  
+	  make wireframe fancier
+
+2006-02-20 05:19  Joseph Wang
+
+	* [r6519] SWIG/date.i, SWIG/linearalgebra.i:
+	  
+	  Move character conversions into superclass.
+	  Fix typo in command.
+
+2006-02-18 07:37  Joseph Wang
+
+	* [r6518] SWIG/date.i, SWIG/linearalgebra.i:
+	  
+	  more R related changes
+
+2006-02-18 07:37  Joseph Wang
+
+	* [r6517] R/examples/fd-option.S, R/examples/graph.S,
+	  R/examples/wireframe.S:
+	  
+	  Add new examples.
+
+2006-02-17 02:37  Joseph Wang
+
+	* [r6516] SWIG/linearalgebra.i:
+	  
+	  Create separate __getitem__ and __setitem__ for R since the
+	  convention
+	  for negative indicies is different.
+
+2006-02-16 17:26  Joseph Wang
+
+	* [r6515] SWIG/linearalgebra.i, SWIG/options.i:
+	  
+	  Add in SampledCurve interfaces
+
+2006-02-16 05:08  Joseph Wang
+
+	* [r6513] R/examples/graph.S:
+	  
+	  add graph
+
+2006-02-16 04:14  Joseph Wang
+
+	* [r6512] R/examples, R/examples/european-option.S:
+	  
+	  Add R swig examples
+
+2006-02-14 17:15  Luigi Ballabio
+
+	* [r6501] OCaml/Makefile.am, OCaml/README.txt, R/Makefile.am,
+	  R/README, R/README.txt, configure.ac:
+	  
+	  *** empty log message ***
+
+2006-02-14 17:07  Luigi Ballabio
+
+	* [r6500] SWIG/calendars.i, SWIG/callability.i,
+	  SWIG/convertiblebonds.i, SWIG/dividends.i, SWIG/ql.i:
+	  
+	  Exported convertible bonds
+
+2006-02-13 08:35  Luigi Ballabio
+
+	* [r6491] OCaml, OCaml/.cvsignore, R, R/.cvsignore:
+	  
+	  *** empty log message ***
+
+2006-02-12 04:38  Joseph Wang
+
+	* [r6487] R/README:
+	  
+	  more to README
+
+2006-02-12 04:36  Joseph Wang
+
+	* [r6486] R/Makefile.am, R/README:
+	  
+	  Add README.
+
+2006-02-04 17:08  Joseph Wang
+
+	* [r6467] R/Makefile.am:
+	  
+	  Make some changes
+
+2006-02-04 06:19  Joseph Wang
+
+	* [r6466] R/Makefile.am:
+	  
+	  Add R changes
+
+2006-02-02 05:54  Joseph Wang
+
+	* [r6459] SWIG/common.i:
+	  
+	  include code for the R-SWIG module.
+
+2006-01-30 22:05  Joseph Wang
+
+	* [r6439] OCaml, OCaml/Makefile.am, R, R/Makefile.am, configure.ac:
+	  
+	  Add in experimental OCaml and R Makefile.am. These don't quite yet
+	  work, and
+	  so aren't included in SUBDIRS.
+
+2006-01-09 08:08  Luigi Ballabio
+
+	* [r6386] SWIG/options.i:
+	  
+	  *** empty log message ***
+
+2006-01-05 10:23  Luigi Ballabio
+
+	* [r6380] MzScheme/setup.scm, Python/setup.py, Ruby/setup.rb:
+	  
+	  If QL_DIR not defined, continue assuming QuantLib is in the default
+	  compiler paths
+
+2006-01-05 10:21  Luigi Ballabio
+
+	* [r6379] CSharp/README.txt, Guile/README.txt, MzScheme/README.txt,
+	  Python/README.txt, Ruby/README.txt:
+	  
+	  Added info on QL_DIR to readme files
+
+2005-12-30 08:20  Luigi Ballabio
+
+	* [r6366] SWIG/calendars.i, SWIG/currencies.i, SWIG/discountcurve.i,
+	  SWIG/forwardcurve.i, SWIG/interpolation.i,
+	  SWIG/piecewiseflatforward.i, SWIG/piecewiseyieldcurve.i, SWIG/ql.i,
+	  SWIG/ratehelpers.i, SWIG/zerocurve.i:
+	  
+	  *** empty log message ***
+
+2005-11-29 10:05  Luigi Ballabio
+
+	* [r6286] SWIG/history.i:
+	  
+	  Fix for zero values
+
+2005-11-04 09:02  Luigi Ballabio
+
+	* [r6229] SWIG/cashflows.i, SWIG/options.i:
+	  
+	  More classes and shorter names
+
+2005-10-29 03:02  Joseph Wang
+
+	* [r6210] SWIG/cashflows.i:
+	  
+	  add in more items
+
+2005-10-28 08:01  Joseph Wang
+
+	* [r6207] SWIG/capfloor.i, SWIG/cashflows.i, SWIG/compoundforward.i,
+	  SWIG/payoffs.i, SWIG/volatilities.i:
+	  
+	  Add interfaces to deal with issues raised on quantlib list.
+
+2005-10-27 18:23  Joseph Wang
+
+	* [r6206] SWIG/montecarlo.i, SWIG/options.i, SWIG/stochasticprocess.i:
+	  
+	  Changes to make this compile with current CVS
+
+2005-10-21 08:11  Luigi Ballabio
+
+	* [r6162] CSharp, CSharp/.cvsignore, CSharp/Makefile.am,
+	  CSharp/QuantLib.sln, CSharp/README.txt, CSharp/cpp,
+	  CSharp/cpp/.cvsignore, CSharp/cpp/QuantlibWrapper.cpp,
+	  CSharp/cpp/QuantlibWrapper.h, CSharp/cpp/QuantlibWrapper.vcproj,
+	  CSharp/cpp/stdafx.h, CSharp/csharp, CSharp/csharp/.cvsignore,
+	  CSharp/csharp/NQuantLib.csproj, CSharp/examples,
+	  CSharp/examples/.cvsignore, CSharp/examples/BermudanSwaption.csproj,
+	  CSharp/swig.cmd, Java/Makefile.am, News.txt, Perl/Makefile.am,
+	  Perl/README.txt, Ruby/setup.rb, SWIG/distributions.i,
+	  SWIG/indexes.i, SWIG/interpolation.i, SWIG/optimizers.i,
+	  SWIG/options.i, SWIG/quantlib.i, SWIG/rounding.i, SWIG/types.i:
+	  
+	  Merged 0.3.11 branch
+
+2005-10-21 07:47  Luigi Ballabio
+
+	* [r6161] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Bumped version number to 0.3.12
+
+2005-10-03 15:07  Luigi Ballabio
+
+	* [r6047] Perl/Makefile.am:
+	  
+	  *** empty log message ***
+
+2005-10-03 08:00  Luigi Ballabio
+
+	* [r6040] Perl/examples/european-option.pl:
+	  
+	  *** empty log message ***
+
+2005-09-30 23:44  Joseph Wang
+
+	* [r6037] Perl/examples/european-option.pl:
+	  
+	  add constants
+
+2005-09-30 23:28  Joseph Wang
+
+	* [r6036] Perl/examples/european-option.pl:
+	  
+	  Some fixes
+
+2005-09-30 09:16  Luigi Ballabio
+
+	* [r6033] SWIG/null.i:
+	  
+	  *** empty log message ***
+
+2005-09-30 07:06  Luigi Ballabio
+
+	* [r6032] Perl, Perl/.cvsignore, SWIG/indexes.i:
+	  
+	  *** empty log message ***
+
+2005-09-30 01:53  Joseph Wang
+
+	* [r6031] Perl/examples, Perl/examples/european-option.pl:
+	  
+	  Add one example.
+
+2005-09-30 00:46  Joseph Wang
+
+	* [r6030] Perl/Makefile.PL, Perl/Makefile.am:
+	  
+	  improve Makefiles
+
+2005-09-29 12:53  Joseph Wang
+
+	* [r6029] SWIG/ql.i:
+	  
+	  add in code to get perl to compile
+
+2005-09-29 12:03  Luigi Ballabio
+
+	* [r6028] Perl, Perl/.cvsignore, Perl/Makefile.am:
+	  
+	  *** empty log message ***
+
+2005-09-29 09:19  Joseph Wang
+
+	* [r6027] Makefile.am, Perl, Perl/Makefile.PL, Perl/Makefile.am,
+	  Perl/README.txt, configure.ac:
+	  
+	  Add perl interface to quantlib
+
+2005-09-27 07:20  Luigi Ballabio
+
+	* [r6021] SWIG/currencies.i:
+	  
+	  New Turkish lira added
+
+2005-09-26 12:47  Luigi Ballabio
+
+	* [r6019] ., .cvsignore, CSharp, CSharp/.cvsignore, Guile,
+	  Guile/.cvsignore, Guile/Makefile.am, Java, Java/.cvsignore,
+	  Makefile.am, MzScheme, MzScheme/.cvsignore, MzScheme/Makefile.am,
+	  Python, Python/.cvsignore, Python/Makefile.am, Ruby,
+	  Ruby/.cvsignore, Ruby/Makefile.am:
+	  
+	  *** empty log message ***
+
+2005-09-16 10:08  Luigi Ballabio
+
+	* [r5997] CSharp, CSharp/.cvsignore, CSharp/Makefile.am,
+	  SWIG/quantlib.i:
+	  
+	  *** empty log message ***
+
+2005-09-15 15:17  Luigi Ballabio
+
+	* [r5996] CSharp, CSharp/.cvsignore, CSharp/Makefile.am,
+	  CSharp/examples/BermudanSwaption.cs, SWIG/quantlib.i,
+	  SWIG/stochasticprocess.i, configure.ac:
+	  
+	  Added makefile rules for compiling C# under Mono
+
+2005-09-15 07:19  Luigi Ballabio
+
+	* [r5994] SWIG/distributions.i, SWIG/interpolation.i,
+	  SWIG/optimizers.i, SWIG/options.i, SWIG/rounding.i:
+	  
+	  Fixes for operator() in C#
+
+2005-09-12 13:32  Luigi Ballabio
+
+	* [r5986] CSharp, CSharp/.cvsignore, CSharp/Makefile.am,
+	  CSharp/README.txt, CSharp/examples,
+	  CSharp/examples/BermudanSwaption.cs, Java/Makefile.am, LICENSE.TXT,
+	  SWIG/cashflows.i, SWIG/linearalgebra.i, SWIG/marketelements.i,
+	  SWIG/piecewiseflatforward.i, SWIG/quantlib.i,
+	  SWIG/shortratemodels.i, configure.ac:
+	  
+	  Initial C# port (thanks to Dominic Thuillier)
+
+2005-09-12 09:54  Luigi Ballabio
+
+	* [r5985] Java, Java/.cvsignore, Java/Makefile.am, SWIG/quantlib.i:
+	  
+	  *** empty log message ***
+
+2005-09-08 14:42  Luigi Ballabio
+
+	* [r5980] SWIG/bonds.i:
+	  
+	  Exported more bond methods
+
+2005-09-06 11:08  Luigi Ballabio
+
+	* [r5977] ., .cvsignore, ChangeLog.txt, Guile, Guile/.cvsignore,
+	  Guile/Authors.txt, Guile/ChangeLog.txt, Guile/Contributors.txt,
+	  Guile/LICENSE.TXT, Guile/News.txt, Guile/setup.scm, Java,
+	  Java/.cvsignore, Java/Makefile.am, Java/README.txt, LICENSE.TXT,
+	  MzScheme, MzScheme/.cvsignore, MzScheme/Authors.txt,
+	  MzScheme/ChangeLog.txt, MzScheme/Contributors.txt,
+	  MzScheme/LICENSE.TXT, MzScheme/News.txt, MzScheme/quantlib,
+	  MzScheme/quantlib/.cvsignore, MzScheme/setup.scm, News.txt, Python,
+	  Python/.cvsignore, Python/Authors.txt, Python/BUGS.txt,
+	  Python/ChangeLog.txt, Python/Contributors.txt, Python/LICENSE.TXT,
+	  Python/MANIFEST.in, Python/News.txt, Python/QuantLib-Python.spec,
+	  Python/QuantLib-Python.spec.in, Python/QuantLib/LICENSE.TXT,
+	  Python/TODO.txt, Python/setup.py, Readme.txt, Ruby, Ruby/.cvsignore,
+	  Ruby/Authors.txt, Ruby/BUGS.txt, Ruby/ChangeLog.txt,
+	  Ruby/Contributors.txt, Ruby/LICENSE.TXT, Ruby/News.txt,
+	  Ruby/QuantLib-Ruby.spec, Ruby/QuantLib-Ruby.spec.in, Ruby/setup.rb,
+	  autogen.sh, configure.ac, dev_tools/developers:
+	  
+	  Partly autoconfiscated
+
+2005-07-25 14:45  Luigi Ballabio
+
+	* [r5902] SWIG/calendars.i, SWIG/currencies.i, SWIG/date.i,
+	  SWIG/daycounters.i, SWIG/functions.i, SWIG/grid.i, SWIG/indexes.i,
+	  SWIG/interestrate.i, SWIG/linearalgebra.i, SWIG/money.i,
+	  SWIG/montecarlo.i, SWIG/observer.i, SWIG/ql.i,
+	  SWIG/stochasticprocess.i:
+	  
+	  Added (untested) mods for Java (thanks to Johan Witters)
+
+2005-07-14 09:38  Luigi Ballabio
+
+	* [r5854] Guile/News.txt, MzScheme/News.txt, Python/News.txt,
+	  Ruby/News.txt:
+	  
+	  *** empty log message ***
+
+2005-07-07 12:48  Luigi Ballabio
+
+	* [r5829] Guile/examples/american-option.scm,
+	  Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/european-option.scm, Guile/examples/swap.scm,
+	  Guile/test/termstructures.scm,
+	  MzScheme/examples/american-option.scm,
+	  MzScheme/examples/bermudan-swaption.scm,
+	  MzScheme/examples/european-option.scm, MzScheme/examples/swap.scm,
+	  MzScheme/test/termstructures.scm,
+	  Python/examples/american-option.py,
+	  Python/examples/bermudan-swaption.py,
+	  Python/examples/european-option.py, Python/examples/swap.py,
+	  Python/test/termstructures.py, Ruby/examples/american-option.rb,
+	  Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/european-option.rb, Ruby/examples/swap.rb,
+	  Ruby/test/termstructures.rb, SWIG/calendars.i, SWIG/cashflows.i,
+	  SWIG/common.i, SWIG/date.i, SWIG/interestrate.i,
+	  SWIG/linearalgebra.i, SWIG/old_pricers.i, SWIG/options.i,
+	  SWIG/payoffs.i, SWIG/types.i:
+	  
+	  Exported a few enumerations as such
+
+2005-07-07 09:44  Luigi Ballabio
+
+	* [r5828] Guile/News.txt, Guile/README.txt, Guile/setup.scm,
+	  MzScheme/News.txt, MzScheme/README.txt, Python/News.txt,
+	  Python/README.txt, Ruby/News.txt, Ruby/README.txt, SWIG/calendars.i,
+	  SWIG/history.i, SWIG/linearalgebra.i, SWIG/montecarlo.i,
+	  SWIG/options.i, SWIG/quantlib.i, SWIG/scheduler.i:
+	  
+	  Merged 0.3.10 branch
+
+2005-06-24 07:53  Luigi Ballabio
+
+	* [r5808] SWIG/calendars.i:
+	  
+	  Bombay and Taipei calendars added
+
+2005-05-31 12:21  Luigi Ballabio
+
+	* [r5743] Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/european-option.scm, Guile/setup.scm,
+	  MzScheme/examples/bermudan-swaption.scm, MzScheme/setup.scm,
+	  Python/QuantLib-Python.spec, Python/examples/bermudan-swaption.py,
+	  Python/setup.py, Ruby/QuantLib-Ruby.spec,
+	  Ruby/examples/bermudan-swaption.rb, Ruby/setup.rb, SWIG/indexes.i,
+	  SWIG/montecarlo.i, SWIG/options.i, SWIG/ql.i,
+	  SWIG/shortratemodels.i:
+	  
+	  Sync with C++
+
+2005-05-25 13:06  Luigi Ballabio
+
+	* [r5730] MzScheme/examples/european-option.scm, MzScheme/setup.scm,
+	  Ruby/examples/european-option.rb, SWIG/options.i:
+	  
+	  *** empty log message ***
+
+2005-05-23 15:16  Luigi Ballabio
+
+	* [r5713] SWIG/cashflows.i:
+	  
+	  *** empty log message ***
+
+2005-05-12 13:04  Luigi Ballabio
+
+	* [r5687] SWIG/montecarlo.i, SWIG/options.i, SWIG/stochasticprocess.i:
+	  
+	  Sync with C++
+
+2005-05-02 15:28  Luigi Ballabio
+
+	* [r5672] Guile/News.txt, Guile/setup.scm, MzScheme/News.txt,
+	  MzScheme/setup.scm, Python/News.txt, Ruby/News.txt:
+	  
+	  Merged latest changes from 0.3.9
+
+2005-04-12 13:58  Luigi Ballabio
+
+	* [r5648] Python/setup.py:
+	  
+	  *** empty log message ***
+
+2005-04-11 14:59  Luigi Ballabio
+
+	* [r5644] Guile/History.txt, Guile/News.txt, Guile/setup.scm,
+	  MzScheme/History.txt, MzScheme/News.txt, MzScheme/setup.scm,
+	  Python/History.txt, Python/News.txt, Python/setup.py,
+	  Ruby/History.txt, Ruby/News.txt, Ruby/setup.rb, SWIG/date.i,
+	  SWIG/indexes.i, SWIG/termstructures.i:
+	  
+	  Merged 0.3.9 branch
+
+2005-03-20 15:19  Luigi Ballabio
+
+	* [r5560] Python/test/termstructures.py, SWIG/settings.i:
+	  
+	  *** empty log message ***
+
+2005-03-09 14:42  Luigi Ballabio
+
+	* [r5542] Guile/setup.scm, MzScheme/setup.scm,
+	  Python/QuantLib-Python.spec, Python/setup.py,
+	  Ruby/QuantLib-Ruby.spec, Ruby/setup.rb, SWIG/bonds.i,
+	  SWIG/old_pricers.i, SWIG/piecewiseflatforward.i, SWIG/ql.i:
+	  
+	  Updated version number; removed deprecated features
+
+2005-03-01 14:09  Luigi Ballabio
+
+	* [r5525] SWIG/options.i:
+	  
+	  *** empty log message ***
+
+2005-02-25 09:24  Luigi Ballabio
+
+	* [r5511] Guile/test/termstructures.scm:
+	  
+	  *** empty log message ***
+
+2005-02-23 16:18  Luigi Ballabio
+
+	* [r5510] Guile/examples/american-option.scm,
+	  Guile/examples/european-option.scm,
+	  MzScheme/examples/american-option.scm,
+	  MzScheme/examples/european-option.scm,
+	  Python/examples/american-option.py,
+	  Python/examples/european-option.py,
+	  Ruby/examples/american-option.rb, Ruby/examples/european-option.rb,
+	  SWIG/options.i:
+	  
+	  Exported FD engines
+
+2005-02-17 16:44  Luigi Ballabio
+
+	* [r5477] SWIG/calendars.i:
+	  
+	  *** empty log message ***
+
+2005-02-16 11:35  Luigi Ballabio
+
+	* [r5468] SWIG/interpolation.i:
+	  
+	  *** empty log message ***
+
+2005-02-14 17:33  Luigi Ballabio
+
+	* [r5456] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py:
+	  
+	  Added missing files to distribution
+
+2005-02-14 17:33  Luigi Ballabio
+
+	* [r5455] Ruby/setup.rb:
+	  
+	  Fixed freeze with Ruby 1.8
+
+2005-02-14 12:10  Luigi Ballabio
+
+	* [r5453] SWIG/bonds.i, SWIG/termstructures.i:
+	  
+	  *** empty log message ***
+
+2005-02-04 13:08  Luigi Ballabio
+
+	* [r5410] SWIG/calendars.i, SWIG/common.i, SWIG/date.i,
+	  SWIG/exercise.i, SWIG/interestrate.i, SWIG/linearalgebra.i,
+	  SWIG/money.i, SWIG/operators.i, SWIG/options.i, SWIG/volatilities.i:
+	  
+	  Using manipulators instead of formatters
+
+2005-01-17 09:02  Luigi Ballabio
+
+	* [r5305] SWIG/linearalgebra.i:
+	  
+	  *** empty log message ***
+
+2004-12-09 11:14  Luigi Ballabio
+
+	* [r5152] Guile/ChangeLog.txt, Guile/News.txt,
+	  Guile/examples/american-option.scm,
+	  Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/european-option.scm, Guile/setup.scm,
+	  Guile/test/termstructures.scm, MzScheme/ChangeLog.txt,
+	  MzScheme/News.txt, MzScheme/examples/american-option.scm,
+	  MzScheme/examples/bermudan-swaption.scm,
+	  MzScheme/examples/european-option.scm, MzScheme/quantlib,
+	  MzScheme/quantlib/.cvsignore, MzScheme/setup.scm,
+	  MzScheme/test/termstructures.scm, Python, Python/.cvsignore,
+	  Python/ChangeLog.txt, Python/News.txt, Python/README.txt,
+	  Python/examples/american-option.py,
+	  Python/examples/bermudan-swaption.py,
+	  Python/examples/european-option.py, Python/setup.py,
+	  Python/test/termstructures.py, Ruby, Ruby/.cvsignore,
+	  Ruby/ChangeLog.txt, Ruby/News.txt, Ruby/QuantLib.rb,
+	  Ruby/examples/american-option.rb,
+	  Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/european-option.rb, Ruby/examples/swap.rb,
+	  Ruby/setup.rb, Ruby/test/termstructures.rb, SWIG/bonds.i,
+	  SWIG/cashflows.i, SWIG/common.i, SWIG/compoundforward.i,
+	  SWIG/currencies.i, SWIG/date.i, SWIG/daycounters.i,
+	  SWIG/discountcurve.i, SWIG/indexes.i, SWIG/interestrate.i,
+	  SWIG/linearalgebra.i, SWIG/montecarlo.i, SWIG/old_pricers.i,
+	  SWIG/old_volatility.i, SWIG/options.i, SWIG/piecewiseflatforward.i,
+	  SWIG/ql.i, SWIG/quantlib.i, SWIG/randomnumbers.i,
+	  SWIG/termstructures.i, SWIG/volatilities.i, dev_tools,
+	  dev_tools/windistmzscheme.bat, dev_tools/windistpython.bat,
+	  dev_tools/windistruby.bat, dev_tools/windistswig:
+	  
+	  Merged 0.3.8 branch
+
+2004-10-27 10:36  Luigi Ballabio
+
+	* [r4987] Guile/setup.scm, MzScheme/setup.scm,
+	  Python/QuantLib-Python.spec, Python/setup.py,
+	  Ruby/QuantLib-Ruby.spec, Ruby/setup.rb, SWIG/ql.i:
+	  
+	  Bumped version number
+
+2004-10-25 15:47  Luigi Ballabio
+
+	* [r4956] Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/swap.scm, MzScheme/examples/bermudan-swaption.scm,
+	  MzScheme/examples/swap.scm, Python/examples/bermudan-swaption.py,
+	  Python/examples/swap.py, Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/swap.rb, SWIG/discountcurve.i, SWIG/old_volatility.i,
+	  SWIG/piecewiseflatforward.i:
+	  
+	  Sync with C++
+
+2004-10-14 14:06  Luigi Ballabio
+
+	* [r4910] SWIG/interestrate.i:
+	  
+	  Sync with C++
+
+2004-10-14 14:04  Luigi Ballabio
+
+	* [r4909] Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/european-option.scm, Guile/setup.scm,
+	  MzScheme/examples/bermudan-swaption.scm,
+	  MzScheme/examples/european-option.scm, MzScheme/setup.scm,
+	  Python/examples/bermudan-swaption.py, Python/examples/swap.py,
+	  Python/setup.py, Ruby/QuantLib.rb,
+	  Ruby/examples/bermudan-swaption.rb, Ruby/examples/swap.rb,
+	  Ruby/setup.rb, SWIG/date.i, SWIG/daycounters.i,
+	  SWIG/discountcurve.i, SWIG/interestrate.i, SWIG/money.i,
+	  SWIG/old_volatility.i, SWIG/piecewiseflatforward.i, SWIG/ql.i,
+	  SWIG/termstructures.i:
+	  
+	  Sync with C++
+
+2004-10-14 14:04  Luigi Ballabio
+
+	* [r4908] Guile/examples/swap.scm, MzScheme/examples/swap.scm:
+	  
+	  Completed Scheme examples
+
+2004-10-05 14:48  Luigi Ballabio
+
+	* [r4841] Guile/examples, Guile/examples/american-option.scm,
+	  Guile/examples/bermudan-swaption.scm,
+	  Guile/examples/european-option.scm, Guile/examples/tabulate.scm,
+	  Guile/setup.scm, MzScheme/examples,
+	  MzScheme/examples/american-option.scm,
+	  MzScheme/examples/bermudan-swaption.scm,
+	  MzScheme/examples/european-option.scm,
+	  MzScheme/examples/tabulate.scm, MzScheme/quantlib/ql-init.ss,
+	  MzScheme/setup.scm, MzScheme/test/termstructures.scm,
+	  SWIG/instruments.i, SWIG/options.i, SWIG/settings.i,
+	  SWIG/shortratemodels.i, SWIG/termstructures.i:
+	  
+	  Adding Scheme examples
+
+2004-09-23 11:33  Luigi Ballabio
+
+	* [r4796] Guile/setup.scm, MzScheme/quantlib/ql-init.ss,
+	  MzScheme/setup.scm, Python/README.txt,
+	  Python/examples/american-option.py,
+	  Python/examples/bermudan-swaption.py,
+	  Python/examples/european-option.py, Python/examples/swap.py,
+	  Python/setup.py, Ruby/QuantLib.rb, Ruby/examples/american-option.rb,
+	  Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/european-option.rb, Ruby/examples/swap.rb,
+	  Ruby/setup.rb, SWIG/blackmodel.i, SWIG/capfloor.i,
+	  SWIG/compoundforward.i, SWIG/discountcurve.i, SWIG/indexes.i,
+	  SWIG/old_pricers.i, SWIG/old_volatility.i, SWIG/options.i,
+	  SWIG/piecewiseflatforward.i, SWIG/ql.i, SWIG/randomnumbers.i,
+	  SWIG/settings.i, SWIG/shortratemodels.i, SWIG/stochasticprocess.i,
+	  SWIG/swap.i, SWIG/swaption.i, SWIG/termstructures.i,
+	  SWIG/volatilities.i:
+	  
+	  Sync with C++
+
+2004-08-23 09:15  Luigi Ballabio
+
+	* [r4648] SWIG/blackmodel.i, SWIG/capfloor.i, SWIG/common.i,
+	  SWIG/indexes.i, SWIG/instruments.i, SWIG/marketelements.i,
+	  SWIG/old_pricers.i, SWIG/old_volatility.i,
+	  SWIG/piecewiseflatforward.i, SWIG/shortratemodels.i,
+	  SWIG/stochasticprocess.i, SWIG/swap.i, SWIG/swaption.i,
+	  SWIG/termstructures.i, SWIG/volatilities.i:
+	  
+	  Replaced deprecated RelinkableHandle with Handle
+
+2004-08-20 14:10  Luigi Ballabio
+
+	* [r4644] Python/examples/bermudan-swaption.py,
+	  Python/examples/swap.py, Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/swap.rb, SWIG/indexes.i:
+	  
+	  Exported Xibor children as proper classes
+
+2004-08-20 14:10  Luigi Ballabio
+
+	* [r4643] SWIG/currencies.i:
+	  
+	  Added forgotten currency
+
+2004-08-17 10:07  Luigi Ballabio
+
+	* [r4612] SWIG/calendars.i, SWIG/common.i, SWIG/date.i,
+	  SWIG/daycounters.i, SWIG/exchangerates.i, SWIG/indexes.i,
+	  SWIG/money.i, SWIG/ql.i, SWIG/vectors.i:
+	  
+	  Sync with C++ (including new classes)
+
+2004-07-21 14:21  Luigi Ballabio
+
+	* [r4581] Guile/test/termstructures.scm,
+	  MzScheme/test/termstructures.scm,
+	  Python/examples/bermudan-swaption.py, Python/examples/swap.py,
+	  Python/test/termstructures.py, Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/swap.rb, Ruby/test/termstructures.rb,
+	  SWIG/calendars.i, SWIG/daycounters.i:
+	  
+	  Exported derived calendars as classes
+
+2004-07-21 12:40  Luigi Ballabio
+
+	* [r4580] Guile/test/termstructures.scm,
+	  MzScheme/test/termstructures.scm,
+	  Python/examples/american-option.py,
+	  Python/examples/bermudan-swaption.py,
+	  Python/examples/european-option.py, Python/examples/swap.py,
+	  Python/test/termstructures.py, Ruby/examples/american-option.rb,
+	  Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/european-option.rb, Ruby/examples/swap.rb,
+	  Ruby/test/termstructures.rb, SWIG/compoundforward.i,
+	  SWIG/daycounters.i, SWIG/discountcurve.i,
+	  SWIG/piecewiseflatforward.i, SWIG/termstructures.i,
+	  SWIG/volatilities.i:
+	  
+	  Exported derived day counters as classes
+
+2004-07-21 09:18  Luigi Ballabio
+
+	* [r4579] Python/examples/bermudan-swaption.py,
+	  Python/examples/swap.py, Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/swap.rb:
+	  
+	  *** empty log message ***
+
+2004-07-20 15:46  Luigi Ballabio
+
+	* [r4575] SWIG/linearalgebra.i:
+	  
+	  *** empty log message ***
+
+2004-07-19 16:00  Luigi Ballabio
+
+	* [r4572] SWIG/currencies.i:
+	  
+	  More currencies added
+
+2004-07-16 15:55  Luigi Ballabio
+
+	* [r4570] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/currencies.i, SWIG/ql.i, SWIG/quantlib.i,
+	  SWIG/rounding.i:
+	  
+	  Exported currency classes
+
+2004-07-07 17:45  Luigi Ballabio
+
+	* [r4556] Python/BUGS.txt, Python/QuantLib,
+	  Python/QuantLib/.cvsignore, Python/setup.py, Ruby, Ruby/.cvsignore,
+	  Ruby/BUGS.txt, Ruby/test/instruments.rb,
+	  Ruby/test/marketelements.rb, Ruby/test/termstructures.rb,
+	  SWIG/stochasticprocess.i:
+	  
+	  Merged 0.3.7 branch
+
+2004-07-05 07:47  Luigi Ballabio
+
+	* [r4528] MzScheme/quantlib/ql-init.ss, Ruby/QuantLib.rb,
+	  SWIG/stochasticprocess.i:
+	  
+	  *** empty log message ***
+
+2004-06-10 14:33  Luigi Ballabio
+
+	* [r4501] Guile/setup.scm, Guile/test/termstructures.scm,
+	  MzScheme/setup.scm, MzScheme/test/termstructures.scm,
+	  Python/QuantLib-Python.spec, Python/setup.py,
+	  Python/test/termstructures.py, Ruby/QuantLib-Ruby.spec,
+	  Ruby/setup.rb, Ruby/test/termstructures.rb, SWIG/calendars.i,
+	  SWIG/cashflows.i, SWIG/indexes.i, SWIG/old_pricers.i,
+	  SWIG/options.i, SWIG/piecewiseflatforward.i, SWIG/ql.i,
+	  SWIG/scheduler.i, SWIG/swap.i:
+	  
+	  Sync with C++
+
+2004-06-10 10:05  Luigi Ballabio
+
+	* [r4499] SWIG/ql.i:
+	  
+	  *** empty log message ***
+
+2004-06-08 07:12  Luigi Ballabio
+
+	* [r4487] SWIG/calendars.i:
+	  
+	  *** empty log message ***
+
+2004-05-27 12:13  Luigi Ballabio
+
+	* [r4453] SWIG/calendars.i, SWIG/compoundforward.i, SWIG/currencies.i,
+	  SWIG/discountcurve.i, SWIG/indexes.i, SWIG/piecewiseflatforward.i,
+	  SWIG/scheduler.i, SWIG/swap.i:
+	  
+	  Sync with C++
+
+2004-05-26 15:29  Luigi Ballabio
+
+	* [r4450] Ruby/setup.rb:
+	  
+	  Correct installation location
+
+2004-05-21 14:44  Luigi Ballabio
+
+	* [r4429] SWIG/shortratemodels.i:
+	  
+	  Exported missing calibration engine
+
+2004-05-21 12:04  Luigi Ballabio
+
+	* [r4428] SWIG/calendars.i:
+	  
+	  Sync with C++
+
+2004-05-19 11:48  Luigi Ballabio
+
+	* [r4419] SWIG/capfloor.i, SWIG/old_pricers.i, SWIG/shortratemodels.i,
+	  SWIG/swaption.i:
+	  
+	  Sync with C++
+
+2004-05-14 07:30  Luigi Ballabio
+
+	* [r4394] SWIG/types.i:
+	  
+	  *** empty log message ***
+
+2004-05-12 07:47  Luigi Ballabio
+
+	* [r4382] SWIG/calendars.i, SWIG/capfloor.i, SWIG/cashflows.i,
+	  SWIG/common.i, SWIG/compoundforward.i, SWIG/date.i,
+	  SWIG/daycounters.i, SWIG/discountcurve.i, SWIG/distributions.i,
+	  SWIG/functions.i, SWIG/grid.i, SWIG/history.i, SWIG/indexes.i,
+	  SWIG/instruments.i, SWIG/integrals.i, SWIG/interpolation.i,
+	  SWIG/linearalgebra.i, SWIG/marketelements.i, SWIG/montecarlo.i,
+	  SWIG/old_pricers.i, SWIG/old_volatility.i, SWIG/operators.i,
+	  SWIG/optimizers.i, SWIG/options.i, SWIG/payoffs.i,
+	  SWIG/piecewiseflatforward.i, SWIG/randomnumbers.i, SWIG/scheduler.i,
+	  SWIG/shortratemodels.i, SWIG/statistics.i, SWIG/swap.i,
+	  SWIG/termstructures.i, SWIG/timebasket.i, SWIG/types.i,
+	  SWIG/volatilities.i:
+	  
+	  Using typedefs
+
+2004-05-06 14:25  Luigi Ballabio
+
+	* [r4369] MzScheme/setup.scm:
+	  
+	  *** empty log message ***
+
+2004-05-05 08:07  Luigi Ballabio
+
+	* [r4364] Python/examples/swap.py, Ruby/QuantLib.rb, Ruby/examples,
+	  Ruby/examples/american-option.rb,
+	  Ruby/examples/bermudan-swaption.rb,
+	  Ruby/examples/european-option.rb, Ruby/examples/swap.rb,
+	  Ruby/setup.rb, SWIG/optimizers.i, SWIG/swap.i:
+	  
+	  Added Ruby examples
+
+2004-05-04 13:17  Luigi Ballabio
+
+	* [r4361] SWIG/calendars.i:
+	  
+	  Fixes for VC++6
+
+2004-05-04 13:15  Luigi Ballabio
+
+	* [r4360] Ruby/test/QuantLibTestSuite.rb:
+	  
+	  *** empty log message ***
+
+2004-05-04 10:22  Luigi Ballabio
+
+	* [r4358] SWIG/instruments.i, SWIG/stochasticprocess.i:
+	  
+	  *** empty log message ***
+
+2004-05-04 09:33  Luigi Ballabio
+
+	* [r4357] Python/examples/bermudan-swaption.py,
+	  Python/examples/swap.py, SWIG/date.i, SWIG/grid.i,
+	  SWIG/interpolation.i, SWIG/optimizers.i, SWIG/ql.i,
+	  SWIG/shortratemodels.i:
+	  
+	  Bermudan swaption example
+
+2004-04-30 08:21  Luigi Ballabio
+
+	* [r4347] SWIG/calendars.i:
+	  
+	  Sync with C++ (new calendars)
+
+2004-04-26 15:53  Luigi Ballabio
+
+	* [r4339] SWIG/calendars.i:
+	  
+	  Sync with C++ (new calendar)
+
+2004-04-23 09:13  Luigi Ballabio
+
+	* [r4336] SWIG/calendars.i:
+	  
+	  Sync with C++ (new calendars)
+
+2004-04-22 13:25  Luigi Ballabio
+
+	* [r4331] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/diffusionprocess.i, SWIG/montecarlo.i,
+	  SWIG/options.i, SWIG/ql.i, SWIG/stochasticprocess.i:
+	  
+	  Sync with C++
+
+2004-04-22 08:44  Luigi Ballabio
+
+	* [r4328] SWIG/interpolation.i, SWIG/termstructures.i,
+	  SWIG/volatilities.i:
+	  
+	  Sync with C++
+
+2004-04-19 17:06  Luigi Ballabio
+
+	* [r4296] Guile/setup.scm, MzScheme/setup.scm,
+	  Python/examples/american-option.py,
+	  Python/examples/european-option.py, Python/setup.py, Ruby/setup.rb,
+	  SWIG/compoundforward.i, SWIG/diffusionprocess.i, SWIG/options.i,
+	  SWIG/ql.i, SWIG/stochasticprocess.i, SWIG/timebasket.i:
+	  
+	  Sync with C++
+
+2004-04-15 12:08  Luigi Ballabio
+
+	* [r4289] Guile/History.txt, Guile/News.txt, Guile/setup.scm,
+	  MzScheme/History.txt, MzScheme/News.txt, MzScheme/setup.scm,
+	  Python/History.txt, Python/News.txt, Python/QuantLib-Python.spec,
+	  Python/setup.py, Ruby/History.txt, Ruby/News.txt,
+	  Ruby/QuantLib-Ruby.spec, Ruby/setup.rb, SWIG/ql.i:
+	  
+	  Bumped version number
+
+2004-04-09 14:46  Luigi Ballabio
+
+	* [r4264] MzScheme/setup.scm, Ruby/setup.rb:
+	  
+	  *** empty log message ***
+
+2004-04-09 14:35  Ferdinando Ametrano
+
+	* [r4263] Python/setup.py:
+	  
+	  catching up
+
+2004-04-09 14:11  Luigi Ballabio
+
+	* [r4261] SWIG/calendars.i, SWIG/currencies.i, SWIG/date.i,
+	  SWIG/daycounters.i, SWIG/exercise.i, SWIG/functions.i,
+	  SWIG/history.i, SWIG/indexes.i, SWIG/linearalgebra.i,
+	  SWIG/montecarlo.i, SWIG/observer.i, SWIG/old_pricers.i,
+	  SWIG/operators.i, SWIG/options.i, SWIG/quantlib.i, SWIG/scheduler.i,
+	  SWIG/shortratemodels.i, SWIG/swaption.i, SWIG/volatilities.i:
+	  
+	  Sync with C++
+
+2004-04-08 13:01  Luigi Ballabio
+
+	* [r4256] SWIG/options.i:
+	  
+	  Added EuropeanOption (a vanilla option with a default engine)
+
+2004-04-07 09:27  Luigi Ballabio
+
+	* [r4243] SWIG/old_pricers.i:
+	  
+	  *** empty log message ***
+
+2004-04-07 07:32  Luigi Ballabio
+
+	* [r4240] SWIG/montecarlo.i, SWIG/randomnumbers.i:
+	  
+	  Deprecated RNG and MC typedefs
+
+2004-04-06 15:03  Luigi Ballabio
+
+	* [r4234] SWIG/old_pricers.i:
+	  
+	  Sync with C++
+
+2004-04-06 08:00  Luigi Ballabio
+
+	* [r4226] Ruby/setup.rb:
+	  
+	  Patch for Darwin
+
+2004-04-01 10:16  Luigi Ballabio
+
+	* [r4183] SWIG/diffusionprocess.i, SWIG/montecarlo.i,
+	  SWIG/old_pricers.i:
+	  
+	  Sync with C++
+
+2004-04-01 10:15  Luigi Ballabio
+
+	* [r4182] Python/setup.py:
+	  
+	  Patched for Darwin
+
+2004-03-31 12:27  Ferdinando Ametrano
+
+	* [r4174] Guile/setup.scm:
+	  
+	  typo fixed
+
+2004-03-31 11:39  Luigi Ballabio
+
+	* [r4173] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb:
+	  
+	  Updated file list
+
+2004-03-31 11:02  Luigi Ballabio
+
+	* [r4171] SWIG/diffusionprocess.i, SWIG/montecarlo.i,
+	  SWIG/old_pricers.i, SWIG/ql.i:
+	  
+	  Sync with C++
+
+2004-03-30 15:47  Luigi Ballabio
+
+	* [r4167] SWIG/old_pricers.i, SWIG/randomnumbers.i:
+	  
+	  Sync with C++
+
+2004-03-30 09:59  Ferdinando Ametrano
+
+	* [r4157] Guile/History.txt, Guile/News.txt, MzScheme/History.txt,
+	  MzScheme/News.txt, Python/History.txt, Python/News.txt,
+	  Ruby/History.txt, Ruby/News.txt:
+	  
+	  updated
+
+2004-03-26 13:28  Luigi Ballabio
+
+	* [r4143] SWIG/blackmodel.i, SWIG/capfloor.i, SWIG/cashflows.i,
+	  SWIG/common.i, SWIG/compoundforward.i, SWIG/discountcurve.i,
+	  SWIG/exercise.i, SWIG/indexes.i, SWIG/instruments.i,
+	  SWIG/marketelements.i, SWIG/observer.i, SWIG/old_volatility.i,
+	  SWIG/operators.i, SWIG/options.i, SWIG/payoffs.i,
+	  SWIG/piecewiseflatforward.i, SWIG/shortratemodels.i,
+	  SWIG/stochasticprocess.i, SWIG/swap.i, SWIG/swaption.i,
+	  SWIG/termstructures.i, SWIG/volatilities.i:
+	  
+	  boost::shared_ptr used throughout instead of Handle
+
+2004-03-26 09:58  Luigi Ballabio
+
+	* [r4141] Python/QuantLib-Python.spec, Ruby/QuantLib-Ruby.spec:
+	  
+	  Bumped version number
+
+2004-03-24 10:58  Luigi Ballabio
+
+	* [r4136] SWIG/cashflows.i, SWIG/common.i, SWIG/compoundforward.i,
+	  SWIG/discountcurve.i, SWIG/indexes.i, SWIG/linearalgebra.i,
+	  SWIG/marketelements.i, SWIG/montecarlo.i, SWIG/options.i,
+	  SWIG/piecewiseflatforward.i, SWIG/shortratemodels.i, SWIG/swap.i,
+	  SWIG/swaption.i:
+	  
+	  Boost is now mandatory
+
+2004-03-23 15:58  Luigi Ballabio
+
+	* [r4131] Guile/ChangeLog.txt, MzScheme/ChangeLog.txt,
+	  MzScheme/setup.scm, Python/ChangeLog.txt, Python/QuantLibPython.dsp,
+	  Python/QuantLibPython.mak, Python/examples/american-option.py,
+	  Ruby/ChangeLog.txt, SWIG/ChangeLog.txt, SWIG/interpolation.i:
+	  
+	  Merged 0.3.5 branch
+
+2004-03-22 09:45  Ferdinando Ametrano
+
+	* [r4127] SWIG/ql.i:
+	  
+	  bump up version number
+
+2004-03-11 12:02  Luigi Ballabio
+
+	* [r4015] Python/setup.py:
+	  
+	  Extended compiler heap
+
+2004-03-11 11:48  Luigi Ballabio
+
+	* [r4014] Guile/setup.scm, MzScheme/setup.scm,
+	  Python/examples/american-option.py, Python/setup.py, Ruby/setup.rb,
+	  SWIG/common.i, SWIG/options.i, SWIG/ql.i:
+	  
+	  Preparing for branch
+
+2004-03-09 12:40  Luigi Ballabio
+
+	* [r4006] SWIG/interpolation.i:
+	  
+	  Sync with C++
+
+2004-03-08 16:12  Luigi Ballabio
+
+	* [r4002] SWIG/interpolation.i:
+	  
+	  Sync with C++
+
+2004-02-23 11:34  Luigi Ballabio
+
+	* [r3947] SWIG/linearalgebra.i:
+	  
+	  Some work on SVD
+
+2004-02-20 16:35  Luigi Ballabio
+
+	* [r3943] SWIG/linearalgebra.i:
+	  
+	  SVD exported
+
+2004-02-16 18:14  Luigi Ballabio
+
+	* [r3940] Python/examples/american-option.py, SWIG/options.i:
+	  
+	  Exported American engines
+
+2004-02-16 17:05  Luigi Ballabio
+
+	* [r3938] Python/examples/swap.py:
+	  
+	  *** empty log message ***
+
+2004-02-16 14:05  Luigi Ballabio
+
+	* [r3937] Python/setup.py:
+	  
+	  Enabled optimizations with VC++
+
+2004-02-16 14:03  Luigi Ballabio
+
+	* [r3936] Python/examples/swap.py:
+	  
+	  Typo
+
+2004-02-16 13:58  Luigi Ballabio
+
+	* [r3935] Python/examples/swap.py, SWIG/instruments.i, SWIG/options.i:
+	  
+	  *** empty log message ***
+
+2004-02-16 11:31  Luigi Ballabio
+
+	* [r3932] Python/MANIFEST.in, Python/QuantLib/test, Python/setup.py,
+	  Python/test, Python/test/.cvsignore,
+	  Python/test/QuantLibTestSuite.py, Python/test/date.py,
+	  Python/test/instruments.py, Python/test/integrals.py,
+	  Python/test/marketelements.py, Python/test/solvers1d.py,
+	  Python/test/termstructures.py:
+	  
+	  Moved some stuff around
+
+2004-02-16 11:20  Luigi Ballabio
+
+	* [r3931] Python/MANIFEST.in, Python/examples,
+	  Python/examples/european-option.py:
+	  
+	  *** empty log message ***
+
+2004-02-06 13:55  Luigi Ballabio
+
+	* [r3926] SWIG/instruments.i, SWIG/swap.i:
+	  
+	  Removed unused baggage from Instrument class
+
+2004-01-21 09:16  Luigi Ballabio
+
+	* [r3879] Ruby/README.txt, Ruby/test/QuantLibTestSuite.rb:
+	  
+	  *** empty log message ***
+
+2004-01-13 12:26  Luigi Ballabio
+
+	* [r3862] Python/README.txt, Python/setup.py:
+	  
+	  Fixes for SWIG 1.3.21
+
+2004-01-08 12:44  Luigi Ballabio
+
+	* [r3840] SWIG/stochasticprocess.i:
+	  
+	  *** empty log message ***
+
+2004-01-05 11:14  Luigi Ballabio
+
+	* [r3821] SWIG/swaption.i:
+	  
+	  Sync with C++
+
+2004-01-05 09:40  Luigi Ballabio
+
+	* [r3814] SWIG/stochasticprocess.i:
+	  
+	  Sync with C++
+
+2004-01-03 16:44  Luigi Ballabio
+
+	* [r3796] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/options.i, SWIG/ql.i, SWIG/stochasticprocess.i,
+	  SWIG/swaption.i:
+	  
+	  Sync with C++
+
+2003-12-23 10:04  Luigi Ballabio
+
+	* [r3753] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/exercise.i, SWIG/options.i, SWIG/payoffs.i,
+	  SWIG/ql.i:
+	  
+	  Sync with C++
+
+2003-12-22 10:56  Luigi Ballabio
+
+	* [r3743] SWIG/options.i:
+	  
+	  *** empty log message ***
+
+2003-12-11 17:37  Luigi Ballabio
+
+	* [r3688] Ruby/setup.rb:
+	  
+	  *** empty log message ***
+
+2003-12-11 12:41  Luigi Ballabio
+
+	* [r3685] SWIG/instruments.i, SWIG/options.i:
+	  
+	  Moved PricingEngine to instruments.i
+	  Exported Payoff
+
+2003-12-10 13:17  Marco Marchioro
+
+	* [r3665] SWIG/calendars.i:
+	  
+	  Added calendar for Copenhagen
+
+2003-12-03 13:06  Luigi Ballabio
+
+	* [r3658] Guile/README.txt, Guile/setup.scm,
+	  Guile/test/instruments.scm, Guile/test/integrals.scm,
+	  Guile/test/marketelements.scm, Guile/test/solvers1d.scm,
+	  Guile/test/termstructures.scm, SWIG/linearalgebra.i, SWIG/ql.i:
+	  
+	  Guile ready for SWIG 1.3.20
+
+2003-12-03 11:59  Luigi Ballabio
+
+	* [r3657] MzScheme/README.txt, MzScheme/quantlib/ql-init.ss,
+	  MzScheme/test/instruments.scm, MzScheme/test/integrals.scm,
+	  MzScheme/test/marketelements.scm, MzScheme/test/solvers1d.scm,
+	  MzScheme/test/termstructures.scm, SWIG/history.i,
+	  SWIG/linearalgebra.i, SWIG/montecarlo.i, SWIG/scheduler.i:
+	  
+	  MzScheme ready for SWIG 1.3.20
+
+2003-12-01 12:46  Luigi Ballabio
+
+	* [r3654] SWIG/marketelements.i:
+	  
+	  *** empty log message ***
+
+2003-12-01 10:41  Luigi Ballabio
+
+	* [r3652] Python/QuantLib/test/instruments.py,
+	  Python/QuantLib/test/marketelements.py,
+	  Python/QuantLib/test/termstructures.py, Ruby/QuantLib.rb,
+	  SWIG/blackmodel.i, SWIG/instruments.i, SWIG/marketelements.i,
+	  SWIG/options.i, SWIG/piecewiseflatforward.i, SWIG/scheduler.i,
+	  SWIG/shortratemodels.i, SWIG/termstructures.i, SWIG/volatilities.i:
+	  
+	  Sync with C++
+
+2003-11-27 13:00  Luigi Ballabio
+
+	* [r3642] SWIG/common.i:
+	  
+	  Visual fails Koenig lookup (I guess)
+
+2003-11-27 10:47  Luigi Ballabio
+
+	* [r3639] SWIG/cashflows.i, SWIG/common.i, SWIG/compoundforward.i,
+	  SWIG/discountcurve.i, SWIG/indexes.i, SWIG/instruments.i,
+	  SWIG/marketelements.i, SWIG/options.i, SWIG/piecewiseflatforward.i,
+	  SWIG/shortratemodels.i, SWIG/swap.i, SWIG/swaption.i:
+	  
+	  Sync with C++
+
+2003-11-24 11:02  Luigi Ballabio
+
+	* [r3636] SWIG/optimizers.i, SWIG/shortratemodels.i:
+	  
+	  *** empty log message ***
+
+2003-11-21 16:33  Ferdinando Ametrano
+
+	* [r3627] Guile/setup.scm, MzScheme/setup.scm:
+	  
+	  added missing file
+
+2003-11-20 17:59  Ferdinando Ametrano
+
+	* [r3622] SWIG/statistics.i:
+	  
+	  The already deprecated MultivariateAccumulator is gone.
+	  Use SequenceStatistics instead
+
+2003-11-20 17:07  Luigi Ballabio
+
+	* [r3619] Python/MANIFEST.in, Python/QuantLib-Python.spec,
+	  Ruby/QuantLib-Ruby.spec, Ruby/setup.rb:
+	  
+	  Added Liguo's spec file for RPM
+
+2003-11-18 20:12  Ferdinando Ametrano
+
+	* [r3605] Guile/setup.scm, MzScheme/setup.scm, Ruby/setup.rb:
+	  
+	  R000304f0-branch-merge1 merged into trunk
+
+2003-11-12 10:11  Luigi Ballabio
+
+	* [r3584] MzScheme/test/quantlib-test-suite.scm,
+	  Ruby/test/QuantLibTestSuite.rb:
+	  
+	  *** empty log message ***
+
+2003-11-11 16:27  Luigi Ballabio
+
+	* [r3581] SWIG/compoundforward.i, SWIG/discountcurve.i,
+	  SWIG/functions.i, SWIG/old_volatility.i, SWIG/optimizers.i,
+	  SWIG/piecewiseflatforward.i, SWIG/termstructures.i,
+	  SWIG/volatilities.i:
+	  
+	  *** empty log message ***
+
+2003-11-11 11:22  Luigi Ballabio
+
+	* [r3579] SWIG/optimizers.i, SWIG/randomnumbers.i,
+	  SWIG/shortratemodels.i:
+	  
+	  *** empty log message ***
+
+2003-11-10 13:12  Luigi Ballabio
+
+	* [r3576] SWIG/capfloor.i, SWIG/montecarlo.i, SWIG/observer.i,
+	  SWIG/old_pricers.i, SWIG/options.i, SWIG/randomnumbers.i,
+	  SWIG/shortratemodels.i, SWIG/swaption.i:
+	  
+	  *** empty log message ***
+
+2003-11-07 17:21  Luigi Ballabio
+
+	* [r3573] SWIG/distributions.i, SWIG/integrals.i,
+	  SWIG/interpolation.i, SWIG/linearalgebra.i, SWIG/operators.i,
+	  SWIG/statistics.i:
+	  
+	  *** empty log message ***
+
+2003-11-07 13:06  Luigi Ballabio
+
+	* [r3568] SWIG/capfloor.i, SWIG/instruments.i, SWIG/options.i,
+	  SWIG/swap.i, SWIG/swaption.i:
+	  
+	  *** empty log message ***
+
+2003-11-07 12:33  Luigi Ballabio
+
+	* [r3566] SWIG/indexes.i:
+	  
+	  *** empty log message ***
+
+2003-11-07 09:39  Luigi Ballabio
+
+	* [r3563] SWIG/cashflows.i, SWIG/daycounters.i, SWIG/operators.i,
+	  SWIG/timebasket.i:
+	  
+	  *** empty log message ***
+
+2003-11-06 12:32  Luigi Ballabio
+
+	* [r3557] SWIG/calendars.i:
+	  
+	  *** empty log message ***
+
+2003-11-06 11:41  Luigi Ballabio
+
+	* [r3556] SWIG/cashflows.i:
+	  
+	  *** empty log message ***
+
+2003-11-04 17:54  Luigi Ballabio
+
+	* [r3545] SWIG/old_pricers.i:
+	  
+	  *** empty log message ***
+
+2003-11-03 16:41  Luigi Ballabio
+
+	* [r3535] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/ql.i:
+	  
+	  Bumped version number
+
+2003-11-03 16:21  Luigi Ballabio
+
+	* [r3532] Guile/setup.scm, MzScheme/setup.scm, Python/setup.py,
+	  Ruby/setup.rb, SWIG/ql.i:
+	  
+	  Bumped version number
+
+2003-11-03 15:04  Ferdinando Ametrano
+
+	* [r3529] Guile/News.txt, MzScheme/News.txt, Python/News.txt,
+	  Ruby/News.txt:
+	  
+	  initial doc update
+
+2003-11-03 14:59  Ferdinando Ametrano
+
+	* [r3528] Guile/History.txt, Guile/News.txt, MzScheme/History.txt,
+	  MzScheme/News.txt, Python/History.txt, Python/News.txt,
+	  Ruby/History.txt, Ruby/News.txt:
+	  
+	  let's try for November 21th, QuantLib 3rd anniversary :)
+
+2003-11-03 14:51  Ferdinando Ametrano
+
+	* [r3527] Guile/ChangeLog.txt, MzScheme/ChangeLog.txt,
+	  Ruby/ChangeLog.txt, SWIG/ChangeLog.txt:
+	  
+	  updated
+
+2003-11-03 14:00  Ferdinando Ametrano
+
+	* [r3525] Guile/setup.scm, Guile/test/common.scm,
+	  Guile/test/instruments.scm, Guile/test/integrals.scm,
+	  Guile/test/marketelements.scm, Guile/test/quantlib-test-suite.scm,
+	  Guile/test/solvers1d.scm, Guile/test/termstructures.scm,
+	  Guile/test/unittest.scm, Guile/test/utilities.scm,
+	  MzScheme/quantlib/ql-init.ss, MzScheme/quantlib/quantlib.ss,
+	  MzScheme/setup.scm, MzScheme/test/common.scm,
+	  MzScheme/test/instruments.scm, MzScheme/test/integrals.scm,
+	  MzScheme/test/marketelements.scm,
+	  MzScheme/test/quantlib-test-suite.scm, MzScheme/test/solvers1d.scm,
+	  MzScheme/test/termstructures.scm, MzScheme/test/unittest.scm,
+	  MzScheme/test/utilities.scm, Python/Authors.txt,
+	  Python/QuantLib/__init__.py,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/date.py, Python/QuantLib/test/instruments.py,
+	  Python/QuantLib/test/integrals.py,
+	  Python/QuantLib/test/marketelements.py,
+	  Python/QuantLib/test/solvers1d.py,
+	  Python/QuantLib/test/termstructures.py, Python/setup.py,
+	  Ruby/QuantLib.rb, Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/dates.rb, Ruby/test/instruments.rb,
+	  Ruby/test/integrals.rb, Ruby/test/marketelements.rb,
+	  Ruby/test/solvers1d.rb, Ruby/test/termstructures.rb,
+	  SWIG/blackmodel.i, SWIG/calendars.i, SWIG/capfloor.i,
+	  SWIG/cashflows.i, SWIG/common.i, SWIG/compoundforward.i,
+	  SWIG/currencies.i, SWIG/date.i, SWIG/daycounters.i,
+	  SWIG/discountcurve.i, SWIG/distributions.i, SWIG/functions.i,
+	  SWIG/history.i, SWIG/indexes.i, SWIG/instruments.i,
+	  SWIG/integrals.i, SWIG/interpolation.i, SWIG/linearalgebra.i,
+	  SWIG/marketelements.i, SWIG/montecarlo.i, SWIG/null.i,
+	  SWIG/observer.i, SWIG/old_pricers.i, SWIG/old_volatility.i,
+	  SWIG/operators.i, SWIG/optimizers.i, SWIG/options.i,
+	  SWIG/piecewiseflatforward.i, SWIG/ql.i, SWIG/quantlib.i,
+	  SWIG/randomnumbers.i, SWIG/scheduler.i, SWIG/shortratemodels.i,
+	  SWIG/statistics.i, SWIG/swap.i, SWIG/swaption.i,
+	  SWIG/termstructures.i, SWIG/timebasket.i, SWIG/types.i,
+	  SWIG/vectors.i, SWIG/volatilities.i:
+	  
+	  ferdinando@ametrano.net replaced by quantlib-dev@lists.sf.net
+
+2003-11-03 12:18  Ferdinando Ametrano
+
+	* [r3520] Guile/ChangeLog.txt, MzScheme/ChangeLog.txt,
+	  Python/ChangeLog.txt, Ruby/ChangeLog.txt, SWIG/ChangeLog.txt:
+	  
+	  updated
+
+2003-11-03 12:04  Ferdinando Ametrano
+
+	* [r3519] SWIG/ChangeLog.txt:
+	  
+	  updated
+
+2003-11-01 13:20  Luigi Ballabio
+
+	* [r3516] Ruby/setup.rb:
+	  
+	  *** empty log message ***
+
+2003-10-31 08:25  Luigi Ballabio
+
+	* [r3513] Guile/README.txt, MzScheme/README.txt, Python/README.txt,
+	  Ruby/README.txt:
+	  
+	  Typos and other small stuff
+
+2003-10-29 15:43  Luigi Ballabio
+
+	* [r3506] Guile, Guile/.cvsignore, Guile/README.txt, Guile/setup.scm,
+	  Guile/test/instruments.scm, Guile/test/integrals.scm,
+	  Guile/test/marketelements.scm, Guile/test/quantlib-test-suite.scm,
+	  Guile/test/solvers1d.scm, Guile/test/termstructures.scm,
+	  Guile/test/unittest.scm:
+	  
+	  Unit tests moved to the Greg framework
+
+2003-10-29 13:25  Luigi Ballabio
+
+	* [r3505] MzScheme/test/utilities.scm:
+	  
+	  *** empty log message ***
+
+2003-10-24 15:37  Luigi Ballabio
+
+	* [r3503] Guile/setup.scm, Guile/test/integrals.scm,
+	  Guile/test/quantlib-test-suite.scm, Guile/test/segmentintegral.scm,
+	  MzScheme/setup.scm, MzScheme/test/integrals.scm,
+	  MzScheme/test/quantlib-test-suite.scm,
+	  MzScheme/test/segmentintegral.scm,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/integrals.py,
+	  Python/QuantLib/test/segmentintegral.py, Python/setup.py,
+	  Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/integrals.rb, Ruby/test/segmentintegral.rb,
+	  SWIG/integrals.i, SWIG/ql.i, SWIG/segmentintegral.i:
+	  
+	  Sync with C++
+
+2003-10-23 16:18  Luigi Ballabio
+
+	* [r3498] Python/setup.py, SWIG/timebasket.i:
+	  
+	  *** empty log message ***
+
+2003-10-23 16:16  Luigi Ballabio
+
+	* [r3497] Python/setup.py:
+	  
+	  Allow compiling with either Multithreaded or Multithreaded-DLL code
+	  generation
+
+2003-10-23 14:44  Luigi Ballabio
+
+	* [r3495] SWIG/swap.i, SWIG/timebasket.i:
+	  
+	  Sync with C++
+
+2003-10-17 15:03  Luigi Ballabio
+
+	* [r3480] Guile/setup.scm, Guile/test/calendars.scm,
+	  Guile/test/capfloor.scm, Guile/test/covariance.scm,
+	  Guile/test/date.scm, Guile/test/daycounters.scm,
+	  Guile/test/distributions.scm, Guile/test/europeanoption.scm,
+	  Guile/test/marketelements.scm, Guile/test/old_pricers.scm,
+	  Guile/test/operators.scm, Guile/test/piecewiseflatforward.scm,
+	  Guile/test/quantlib-test-suite.scm, Guile/test/riskstatistics.scm,
+	  Guile/test/simpleswap.scm, Guile/test/statistics.scm,
+	  Guile/test/swaption.scm, Guile/test/termstructures.scm:
+	  
+	  Removed tests duplicating C++ tests. The Guile test-suite now tests
+	  Guile-specific features only.
+
+2003-10-17 14:56  Luigi Ballabio
+
+	* [r3479] MzScheme/setup.scm, MzScheme/test/calendars.scm,
+	  MzScheme/test/capfloor.scm, MzScheme/test/covariance.scm,
+	  MzScheme/test/date.scm, MzScheme/test/daycounters.scm,
+	  MzScheme/test/distributions.scm, MzScheme/test/europeanoption.scm,
+	  MzScheme/test/marketelements.scm, MzScheme/test/old_pricers.scm,
+	  MzScheme/test/operators.scm, MzScheme/test/piecewiseflatforward.scm,
+	  MzScheme/test/quantlib-test-suite.scm,
+	  MzScheme/test/riskstatistics.scm, MzScheme/test/simpleswap.scm,
+	  MzScheme/test/statistics.scm, MzScheme/test/swaption.scm,
+	  MzScheme/test/termstructures.scm:
+	  
+	  Removed tests duplicating C++ tests. The MzScheme test-suite now
+	  tests MzScheme-specific features only.
+
+2003-10-17 14:54  Luigi Ballabio
+
+	* [r3478] Ruby/test/dates.rb, Ruby/test/termstructures.rb:
+	  
+	  *** empty log message ***
+
+2003-10-17 14:35  Luigi Ballabio
+
+	* [r3477] Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/calendars.rb, Ruby/test/capfloor.rb,
+	  Ruby/test/covariance.rb, Ruby/test/dates.rb,
+	  Ruby/test/daycounters.rb, Ruby/test/distributions.rb,
+	  Ruby/test/europeanoption.rb, Ruby/test/old_pricers.rb,
+	  Ruby/test/operators.rb, Ruby/test/piecewiseflatforward.rb,
+	  Ruby/test/riskstatistics.rb, Ruby/test/simpleswap.rb,
+	  Ruby/test/statistics.rb, Ruby/test/swaption.rb:
+	  
+	  Removed tests duplicating C++ tests. The Ruby test-suite now tests
+	  Ruby-specific features only.
+
+2003-10-17 14:18  Luigi Ballabio
+
+	* [r3476] Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/calendars.py, Python/QuantLib/test/capfloor.py,
+	  Python/QuantLib/test/covariance.py, Python/QuantLib/test/date.py,
+	  Python/QuantLib/test/daycounters.py,
+	  Python/QuantLib/test/distributions.py,
+	  Python/QuantLib/test/europeanoption.py,
+	  Python/QuantLib/test/marketelements.py,
+	  Python/QuantLib/test/old_pricers.py,
+	  Python/QuantLib/test/operators.py,
+	  Python/QuantLib/test/piecewiseflatforward.py,
+	  Python/QuantLib/test/riskstatistics.py,
+	  Python/QuantLib/test/simpleswap.py,
+	  Python/QuantLib/test/statistics.py,
+	  Python/QuantLib/test/swaption.py,
+	  Python/QuantLib/test/termstructures.py, Python/setup.py:
+	  
+	  Removed tests duplicating C++ tests. The Python test-suite now tests
+	  Python-specific features only.
+
+2003-10-17 13:45  Luigi Ballabio
+
+	* [r3475] Python, Python/.cvsignore:
+	  
+	  *** empty log message ***
+
+2003-10-14 09:14  Luigi Ballabio
+
+	* [r3452] SWIG/interpolation.i, SWIG/swap.i, SWIG/volatilities.i:
+	  
+	  Sync with C++
+
+2003-10-10 13:14  Luigi Ballabio
+
+	* [r3435] MzScheme/README.txt:
+	  
+	  *** empty log message ***
+
+2003-10-10 13:10  Luigi Ballabio
+
+	* [r3434] Guile, Guile/.cvsignore, Guile/Authors.txt,
+	  Guile/ChangeLog.txt, Guile/Contributors.txt, Guile/History.txt,
+	  Guile/LICENSE.TXT, Guile/News.txt, Guile/README.txt,
+	  Guile/setup.scm, Guile/test, Guile/test/calendars.scm,
+	  Guile/test/capfloor.scm, Guile/test/common.scm,
+	  Guile/test/covariance.scm, Guile/test/date.scm,
+	  Guile/test/daycounters.scm, Guile/test/distributions.scm,
+	  Guile/test/europeanoption.scm, Guile/test/instruments.scm,
+	  Guile/test/marketelements.scm, Guile/test/old_pricers.scm,
+	  Guile/test/operators.scm, Guile/test/piecewiseflatforward.scm,
+	  Guile/test/quantlib-test-suite.scm, Guile/test/riskstatistics.scm,
+	  Guile/test/segmentintegral.scm, Guile/test/simpleswap.scm,
+	  Guile/test/solvers1d.scm, Guile/test/statistics.scm,
+	  Guile/test/swaption.scm, Guile/test/termstructures.scm,
+	  Guile/test/unittest.scm, Guile/test/utilities.scm, Scheme:
+	  
+	  Detached Guile from MzScheme
+
+2003-10-10 12:37  Luigi Ballabio
+
+	* [r3433] Scheme/MzScheme:
+	  
+	  *** empty log message ***
+
+2003-10-10 12:36  Luigi Ballabio
+
+	* [r3432] MzScheme, MzScheme/.cvsignore, MzScheme/Authors.txt,
+	  MzScheme/ChangeLog.txt, MzScheme/Contributors.txt,
+	  MzScheme/History.txt, MzScheme/LICENSE.TXT, MzScheme/News.txt,
+	  MzScheme/README.txt, MzScheme/quantlib,
+	  MzScheme/quantlib/ql-init.ss, MzScheme/quantlib/quantlib.ss,
+	  MzScheme/setup.scm, MzScheme/test, MzScheme/test/calendars.scm,
+	  MzScheme/test/capfloor.scm, MzScheme/test/common.scm,
+	  MzScheme/test/covariance.scm, MzScheme/test/date.scm,
+	  MzScheme/test/daycounters.scm, MzScheme/test/distributions.scm,
+	  MzScheme/test/europeanoption.scm, MzScheme/test/instruments.scm,
+	  MzScheme/test/marketelements.scm, MzScheme/test/old_pricers.scm,
+	  MzScheme/test/operators.scm, MzScheme/test/piecewiseflatforward.scm,
+	  MzScheme/test/quantlib-test-suite.scm,
+	  MzScheme/test/riskstatistics.scm, MzScheme/test/segmentintegral.scm,
+	  MzScheme/test/simpleswap.scm, MzScheme/test/solvers1d.scm,
+	  MzScheme/test/statistics.scm, MzScheme/test/swaption.scm,
+	  MzScheme/test/termstructures.scm, MzScheme/test/unittest.scm,
+	  MzScheme/test/utilities.scm, Scheme/MzScheme/Authors.txt,
+	  Scheme/MzScheme/ChangeLog.txt, Scheme/MzScheme/Contributors.txt,
+	  Scheme/MzScheme/History.txt, Scheme/MzScheme/LICENSE.TXT,
+	  Scheme/MzScheme/News.txt, Scheme/MzScheme/README.txt,
+	  Scheme/MzScheme/quantlib, Scheme/MzScheme/setup.scm,
+	  Scheme/MzScheme/test:
+	  
+	  Moved tests from in-house framework to Schemeunit
+
+2003-10-10 08:14  Luigi Ballabio
+
+	* [r3431] Python/QuantLib/test/swaption.py, Ruby/test/swaption.rb,
+	  Scheme/test/swaption.scm:
+	  
+	  *** empty log message ***
+
+2003-10-03 12:08  Luigi Ballabio
+
+	* [r3407] Ruby/test/capfloor.rb, SWIG/capfloor.i,
+	  Scheme/test/capfloor.scm:
+	  
+	  Applied the Foo::arguments and Foo::results naming scheme
+
+2003-09-29 08:24  Luigi Ballabio
+
+	* [r3393] SWIG/calendars.i, SWIG/daycounters.i:
+	  
+	  Null calendar and simple day counter
+
+2003-09-26 16:27  Luigi Ballabio
+
+	* [r3391] Python/QuantLib/test/capfloor.py:
+	  
+	  *** empty log message ***
+
+2003-09-23 15:51  Luigi Ballabio
+
+	* [r3381] SWIG/old_pricers.i:
+	  
+	  Synch with C++
+
+2003-09-19 13:08  Luigi Ballabio
+
+	* [r3371] SWIG/cashflows.i, SWIG/scheduler.i, SWIG/swap.i:
+	  
+	  Updated for new Schedule stuff
+
+2003-09-09 10:48  Luigi Ballabio
+
+	* [r3356] Python/setup.py:
+	  
+	  Added PyPI metadata
+
+2003-09-01 14:22  Luigi Ballabio
+
+	* [r3326] Ruby/setup.rb, Scheme/Guile/setup.scm,
+	  Scheme/MzScheme/setup.scm:
+	  
+	  Final merge from 0.3.3 branch
+
+2003-08-28 15:56  Luigi Ballabio
+
+	* [r3319] Python/ChangeLog.txt, Python/History.txt, Python/News.txt,
+	  Python/QuantLib/__init__.py, Python/setup.py, Ruby/ChangeLog.txt,
+	  Ruby/History.txt, Ruby/News.txt, Ruby/setup.rb, SWIG/cashflows.i,
+	  SWIG/date.i, SWIG/discountcurve.i, SWIG/linearalgebra.i,
+	  SWIG/marketelements.i, SWIG/swap.i, Scheme/Guile/ChangeLog.txt,
+	  Scheme/Guile/History.txt, Scheme/Guile/News.txt,
+	  Scheme/MzScheme/ChangeLog.txt, Scheme/MzScheme/History.txt,
+	  Scheme/MzScheme/News.txt:
+	  
+	  Merged 0.3.3 branch
+
+2003-07-25 11:05  Luigi Ballabio
+
+	* [r3256] Python/setup.py, Ruby/setup.rb, SWIG/ql.i,
+	  Scheme/Guile/setup.scm, Scheme/MzScheme/setup.scm:
+	  
+	  Bumped version number after branching
+
+2003-07-25 10:51  Luigi Ballabio
+
+	* [r3254] Python/setup.py, Ruby/setup.rb, SWIG/ql.i,
+	  Scheme/Guile/setup.scm, Scheme/MzScheme/setup.scm:
+	  
+	  Bumped version number
+
+2003-07-24 07:43  Luigi Ballabio
+
+	* [r3228] Python/setup.py, Ruby/setup.rb, Scheme/Guile/setup.scm,
+	  Scheme/MzScheme/setup.scm:
+	  
+	  Added new files to setup
+
+2003-07-23 13:21  Marco Marchioro
+
+	* [r3220] SWIG/compoundforward.i:
+	  
+	  somebosy forgot a commit
+
+2003-07-22 16:01  Marco Marchioro
+
+	* [r3213] SWIG/interpolation.i:
+	  
+	  Added first and second derivatives to CubicSpline
+
+2003-07-22 15:35  Ferdinando Ametrano
+
+	* [r3208] Python/ChangeLog.txt, Ruby/ChangeLog.txt,
+	  SWIG/ChangeLog.txt, Scheme/Guile/ChangeLog.txt,
+	  Scheme/MzScheme/ChangeLog.txt:
+	  
+	  updated
+
+2003-07-22 14:25  Luigi Ballabio
+
+	* [r3207] SWIG/cashflows.i, SWIG/swap.i:
+	  
+	  Trust me...
+
+2003-07-22 12:10  andrelouw
+
+	* [r3206] SWIG/timebasket.i:
+	  
+	  Time Baske SWIG interface file.
+
+2003-07-22 12:06  andrelouw
+
+	* [r3205] SWIG/ql.i:
+	  
+	  Added compoundforward.i
+
+2003-07-22 12:00  andrelouw
+
+	* [r3204] SWIG/termstructures.i:
+	  
+	  Added compound forward and zero coupon rates.
+
+2003-07-22 11:59  andrelouw
+
+	* [r3203] SWIG/swap.i:
+	  
+	  Construct simpleswap to specified maturity. Ability to generate
+	  dates from end.
+
+2003-07-22 11:56  andrelouw
+
+	* [r3202] SWIG/scheduler.i:
+	  
+	  Added functionality to generate dates from end.
+
+2003-07-22 11:55  andrelouw
+
+	* [r3201] SWIG/piecewiseflatforward.i:
+	  
+	  Added Future with specified maturity date, construct termstructure
+	  from input vector of dates and rates.
+
+2003-07-22 11:53  andrelouw
+
+	* [r3200] SWIG/discountcurve.i:
+	  
+	  Change to parameters passed in.
+
+2003-07-22 11:52  andrelouw
+
+	* [r3199] SWIG/date.i:
+	  
+	  Added input string parsing as well as __repr__ of period.
+
+2003-07-22 11:50  andrelouw
+
+	* [r3198] SWIG/compoundforward.i:
+	  
+	  Compound Forward termstructure implementation
+
+2003-07-22 11:48  andrelouw
+
+	* [r3197] SWIG/cashflows.i:
+	  
+	  Added parameters to do with generating from the end.
+
+2003-07-22 11:41  andrelouw
+
+	* [r3196] SWIG/calendars.i:
+	  
+	  Added MonthEndReference convention
+
+2003-07-16 13:17  Marco Marchioro
+
+	* [r3176] Python/setup.py:
+	  
+	  'QL_DEBUG' problem fixed
+
+2003-07-14 11:36  Luigi Ballabio
+
+	* [r3170] Python/setup.py:
+	  
+	  Don't ask---I don't know
+
+2003-06-26 09:24  Luigi Ballabio
+
+	* [r3163] Python/setup.py, Ruby/setup.rb:
+	  
+	  *** empty log message ***
+
+2003-06-11 15:06  Luigi Ballabio
+
+	* [r3152] Python/setup.py, Ruby/setup.rb, SWIG/ql.i,
+	  Scheme/Guile/setup.scm, Scheme/MzScheme/setup.scm:
+	  
+	  Bumped version number
+
+2003-05-30 09:52  Luigi Ballabio
+
+	* [r3145] Python/setup.py, Ruby/setup.rb, SWIG/ql.i,
+	  SWIG/shortratemodels.i, Scheme/Guile/setup.scm,
+	  Scheme/MzScheme/setup.scm:
+	  
+	  Short rate models exported
+
+2003-05-22 15:30  Luigi Ballabio
+
+	* [r3139] Python/QuantLib/test/solvers1d.py, Ruby/test/solvers1d.rb,
+	  SWIG/functions.i, SWIG/optimizers.i, Scheme/test/solvers1d.scm:
+	  
+	  Synch with C++
+
+2003-05-20 08:07  Luigi Ballabio
+
+	* [r3135] Python/setup.py, Ruby/setup.rb, Scheme/Guile/setup.scm:
+	  
+	  *** empty log message ***
+
+2003-05-16 16:16  Luigi Ballabio
+
+	* [r3133] Python/QuantLib/__init__.py,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/calendars.py, Python/QuantLib/test/capfloor.py,
+	  Python/QuantLib/test/covariance.py, Python/QuantLib/test/date.py,
+	  Python/QuantLib/test/daycounters.py,
+	  Python/QuantLib/test/distributions.py,
+	  Python/QuantLib/test/europeanoption.py,
+	  Python/QuantLib/test/instruments.py,
+	  Python/QuantLib/test/marketelements.py,
+	  Python/QuantLib/test/old_pricers.py,
+	  Python/QuantLib/test/operators.py,
+	  Python/QuantLib/test/piecewiseflatforward.py,
+	  Python/QuantLib/test/riskstatistics.py,
+	  Python/QuantLib/test/segmentintegral.py,
+	  Python/QuantLib/test/simpleswap.py,
+	  Python/QuantLib/test/solvers1d.py,
+	  Python/QuantLib/test/statistics.py,
+	  Python/QuantLib/test/swaption.py,
+	  Python/QuantLib/test/termstructures.py, Python/setup.py,
+	  Ruby/QuantLib.rb, Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/calendars.rb, Ruby/test/capfloor.rb,
+	  Ruby/test/covariance.rb, Ruby/test/dates.rb,
+	  Ruby/test/daycounters.rb, Ruby/test/distributions.rb,
+	  Ruby/test/europeanoption.rb, Ruby/test/instruments.rb,
+	  Ruby/test/marketelements.rb, Ruby/test/old_pricers.rb,
+	  Ruby/test/operators.rb, Ruby/test/piecewiseflatforward.rb,
+	  Ruby/test/riskstatistics.rb, Ruby/test/segmentintegral.rb,
+	  Ruby/test/simpleswap.rb, Ruby/test/solvers1d.rb,
+	  Ruby/test/statistics.rb, Ruby/test/swaption.rb,
+	  Ruby/test/termstructures.rb, SWIG/blackmodel.i, SWIG/calendars.i,
+	  SWIG/capfloor.i, SWIG/cashflows.i, SWIG/common.i, SWIG/currencies.i,
+	  SWIG/date.i, SWIG/daycounters.i, SWIG/discountcurve.i,
+	  SWIG/distributions.i, SWIG/functions.i, SWIG/history.i,
+	  SWIG/indexes.i, SWIG/instruments.i, SWIG/interpolation.i,
+	  SWIG/linearalgebra.i, SWIG/marketelements.i, SWIG/montecarlo.i,
+	  SWIG/null.i, SWIG/observer.i, SWIG/old_pricers.i,
+	  SWIG/old_volatility.i, SWIG/operators.i, SWIG/optimizers.i,
+	  SWIG/options.i, SWIG/piecewiseflatforward.i, SWIG/ql.i,
+	  SWIG/quantlib.i, SWIG/randomnumbers.i, SWIG/scheduler.i,
+	  SWIG/segmentintegral.i, SWIG/statistics.i, SWIG/swap.i,
+	  SWIG/swaption.i, SWIG/termstructures.i, SWIG/types.i,
+	  SWIG/vectors.i, SWIG/volatilities.i, Scheme/Guile/setup.scm,
+	  Scheme/Guile/test/quantlib-test-suite.scm,
+	  Scheme/Guile/test/unittest.scm, Scheme/Guile/test/utilities.scm,
+	  Scheme/MzScheme/quantlib/ql-init.ss,
+	  Scheme/MzScheme/quantlib/quantlib.ss, Scheme/MzScheme/setup.scm,
+	  Scheme/MzScheme/test/quantlib-test-suite.scm,
+	  Scheme/MzScheme/test/unittest.scm,
+	  Scheme/MzScheme/test/utilities.scm, Scheme/test/calendars.scm,
+	  Scheme/test/capfloor.scm, Scheme/test/common.scm,
+	  Scheme/test/covariance.scm, Scheme/test/date.scm,
+	  Scheme/test/daycounters.scm, Scheme/test/distributions.scm,
+	  Scheme/test/europeanoption.scm, Scheme/test/instruments.scm,
+	  Scheme/test/marketelements.scm, Scheme/test/old_pricers.scm,
+	  Scheme/test/operators.scm, Scheme/test/piecewiseflatforward.scm,
+	  Scheme/test/riskstatistics.scm, Scheme/test/segmentintegral.scm,
+	  Scheme/test/simpleswap.scm, Scheme/test/solvers1d.scm,
+	  Scheme/test/statistics.scm, Scheme/test/swaption.scm,
+	  Scheme/test/termstructures.scm:
+	  
+	  First tag-free commit. Drink and be merry.
+
+2003-05-12 13:12  Luigi Ballabio
+
+	* [r3127] Scheme/MzScheme/setup.scm:
+	  
+	  *** empty log message ***
+
+2003-05-09 11:24  Luigi Ballabio
+
+	* [r3122] Python/setup.py, Ruby/setup.rb, SWIG/ql.i,
+	  SWIG/randomnumbers.i, Scheme/Guile/setup.scm,
+	  Scheme/MzScheme/setup.scm:
+	  
+	  Synch with C++
+
+2003-05-06 16:57  Ferdinando Ametrano
+
+	* [r3114] Python/QuantLibPython.dsp, Python/QuantLibPython.mak:
+	  
+	  VC project catching up
+
+2003-05-06 14:52  Luigi Ballabio
+
+	* [r3111] Python/setup.py:
+	  
+	  Fixed Win installation paths
+
+2003-05-06 14:46  Luigi Ballabio
+
+	* [r3110] SWIG/interpolation.i:
+	  
+	  Made interpolation palatable to VC++
+
+2003-05-06 11:37  Luigi Ballabio
+
+	* [r3109] Python/QuantLib/test/riskstatistics.py,
+	  Python/QuantLib/test/statistics.py, Python/setup.py,
+	  Ruby/test/covariance.rb, Ruby/test/riskstatistics.rb,
+	  Ruby/test/statistics.rb, SWIG/ql.i, SWIG/riskstatistics.i,
+	  SWIG/statistics.i, Scheme/test/riskstatistics.scm,
+	  Scheme/test/statistics.scm:
+	  
+	  Synch with C++ needed
+
+2003-04-22 14:57  Ferdinando Ametrano
+
+	* [r3062] Python/ChangeLog.txt, Ruby/ChangeLog.txt,
+	  SWIG/ChangeLog.txt, Scheme/Guile/ChangeLog.txt,
+	  Scheme/MzScheme/ChangeLog.txt:
+	  
+	  updated
+
+2003-04-22 14:40  Ferdinando Ametrano
+
+	* [r3060] Python/ChangeLog.txt, Ruby/ChangeLog.txt,
+	  SWIG/ChangeLog.txt, Scheme/Guile/ChangeLog.txt,
+	  Scheme/MzScheme/ChangeLog.txt:
+	  
+	  updated
+
+2003-04-22 14:07  Ferdinando Ametrano
+
+	* [r3058] Python/QuantLibPython.dsp, Python/QuantLibPython.mak:
+	  
+	  removed 'which' which is not supposed to be available on all
+	  Win32/VC++
+	  machines
+
+2003-04-22 13:17  Luigi Ballabio
+
+	* [r3056] Python/QuantLib/test/covariance.py,
+	  Python/QuantLib/test/old_pricers.py, Ruby/test/covariance.rb,
+	  Ruby/test/old_pricers.rb, SWIG/linearalgebra.i, SWIG/montecarlo.i,
+	  Scheme/test/covariance.scm, Scheme/test/old_pricers.scm:
+	  
+	  Synch with C++
+
+2003-04-17 10:12  Luigi Ballabio
+
+	* [r3038] Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/statistics.py, Python/setup.py,
+	  Ruby/test/QuantLibTestSuite.rb, Ruby/test/statistics.rb,
+	  SWIG/riskstatistics.i:
+	  
+	  More indiscriminated greps :)
+
+2003-04-17 09:36  Ferdinando Ametrano
+
+	* [r3037] SWIG/statistics.i:
+	  
+	  no message
+
+2003-04-15 15:33  Ferdinando Ametrano
+
+	* [r3026] Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/riskstatistics.py,
+	  Python/QuantLib/test/statistics.py, Python/setup.py, Ruby/setup.rb,
+	  Ruby/test/QuantLibTestSuite.rb, Ruby/test/riskstatistics.rb,
+	  Ruby/test/statistics.rb, SWIG/riskstatistics.i, SWIG/statistics.i:
+	  
+	  Statistics renamed GaussianStatistics and replaced by the former
+	  HStatistics
+
+2003-04-13 08:31  Ferdinando Ametrano
+
+	* [r3009] Python/QuantLibPython.dsp, Python/QuantLibPython.mak:
+	  
+	  it does work with Visual Studio, Python 2.2 and swig 1.3.19
+
+2003-04-13 08:14  Ferdinando Ametrano
+
+	* [r3008] Python/QuantLibPython.dsp, Python/QuantLibPython.mak:
+	  
+	  it should now work with Visual Studio, Python 2.2 and swig 1.3.19
+
+2003-04-12 18:35  Ferdinando Ametrano
+
+	* [r3005] Python/QuantLibPython.dsp, Python/QuantLibPython.mak:
+	  
+	  more verbose wrapping generation (to help detect problems)
+
+2003-04-10 16:39  Luigi Ballabio
+
+	* [r2996] Python/QuantLib/test/riskstatistics.py,
+	  Python/QuantLib/test/statistics.py, Python/setup.py, Ruby/setup.rb,
+	  Ruby/test/QuantLibTestSuite.rb, Ruby/test/riskstatistics.rb,
+	  Ruby/test/statistics.rb, SWIG/riskstatistics.i, SWIG/statistics.i:
+	  
+	  GRUMPF
+
+2003-04-10 16:34  Luigi Ballabio
+
+	* [r2995] Python/QuantLib/test/QuantLibTestSuite.py:
+	  
+	  Grumpf
+
+2003-04-10 11:47  Ferdinando Ametrano
+
+	* [r2992] Python/ChangeLog.txt,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/riskstatistics.py,
+	  Python/QuantLib/test/statistics.py, Python/setup.py,
+	  Ruby/ChangeLog.txt, Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/riskstatistics.rb, Ruby/test/statistics.rb,
+	  SWIG/ChangeLog.txt, SWIG/riskstatistics.i, SWIG/statistics.i:
+	  
+	  grammar rules: back to Statistics, with the final s
+
+2003-04-09 12:59  Luigi Ballabio
+
+	* [r2981] SWIG/statistics.i:
+	  
+	  *** empty log message ***
+
+2003-04-08 10:34  Ferdinando Ametrano
+
+	* [r2974] Python/setup.py:
+	  
+	  switched from Multithread DLL to Multithread
+
+2003-04-08 07:57  Luigi Ballabio
+
+	* [r2973] SWIG/randomnumbers.i:
+	  
+	  *** empty log message ***
+
+2003-04-04 17:16  Ferdinando Ametrano
+
+	* [r2957] Python/QuantLibPython.dsp, Python/QuantLibPython.mak:
+	  
+	  VC++ moved from (Debug) Multithread DLL to (Debug) Multithread
+
+2003-03-28 17:33  Luigi Ballabio
+
+	* [r2946] Python/QuantLib/test/old_pricers.py, Python/README.txt,
+	  Ruby/README.txt, Ruby/test/old_pricers.rb, SWIG/montecarlo.i,
+	  SWIG/old_pricers.i, SWIG/randomnumbers.i, Scheme/Guile/README.txt,
+	  Scheme/MzScheme/README.txt, Scheme/test/old_pricers.scm:
+	  
+	  *** empty log message ***
+
+2003-03-28 17:32  Luigi Ballabio
+
+	* [r2945] Python/setup.py:
+	  
+	  Reduced the signal/noise ratio
+
+2003-03-28 10:21  Ferdinando Ametrano
+
+	* [r2942] SWIG/old_pricers.i:
+	  
+	  using std::vector instead of Array
+
+2003-03-24 23:39  Ferdinando Ametrano
+
+	* [r2936] Python/QuantLib/test, Python/QuantLib/test/.cvsignore:
+	  
+	  no message
+
+2003-03-19 17:40  Ferdinando Ametrano
+
+	* [r2885] SWIG/montecarlo.i:
+	  
+	  old PathPricer(s), PathGenerators, etc are available with a trailing
+	  _old
+
+2003-03-19 17:37  Ferdinando Ametrano
+
+	* [r2884] Python/QuantLibPython.dsp, Python/QuantLibPython.mak:
+	  
+	  updated
+
+2003-03-18 17:23  Ferdinando Ametrano
+
+	* [r2867] SWIG/randomnumbers.i:
+	  
+	  more generators exported
+
+2003-03-18 17:21  Luigi Ballabio
+
+	* [r2866] SWIG/options.i:
+	  
+	  *** empty log message ***
+
+2003-03-18 17:00  Ferdinando Ametrano
+
+	* [r2865] SWIG/randomnumbers.i:
+	  
+	  more generators exported
+
+2003-03-18 16:59  Ferdinando Ametrano
+
+	* [r2864] SWIG/distributions.i:
+	  
+	  Moro Inverse Cumulative algorithm exported
+
+2003-03-18 16:59  Ferdinando Ametrano
+
+	* [r2863] Python/setup.py:
+	  
+	  verbose wrapper generation
+
+2003-03-17 10:10  Luigi Ballabio
+
+	* [r2832] Python/QuantLib/test/capfloor.py,
+	  Python/QuantLib/test/old_pricers.py,
+	  Python/QuantLib/test/swaption.py, Ruby/test/capfloor.rb,
+	  Ruby/test/old_pricers.rb, Ruby/test/swaption.rb, SWIG/options.i,
+	  Scheme/test/capfloor.scm, Scheme/test/old_pricers.scm,
+	  Scheme/test/swaption.scm:
+	  
+	  Works on gcc + errorEstimate() and misc
+
+2003-03-16 02:01  Ferdinando Ametrano
+
+	* [r2829] Python/QuantLib/test/distributions.py,
+	  Ruby/test/distributions.rb, Scheme/test/distributions.scm:
+	  
+	  improved Cumulative and Inverse Cumulative Normal Distribution
+	  functions
+
+2003-03-15 23:02  Ferdinando Ametrano
+
+	* [r2827] Python/QuantLib/test/distributions.py,
+	  Ruby/test/distributions.rb, Scheme/test/distributions.scm:
+	  
+	  old bug fixed
+
+2003-03-15 20:24  Ferdinando Ametrano
+
+	* [r2824] Python/QuantLib/test/distributions.py,
+	  Ruby/test/distributions.rb, SWIG/distributions.i,
+	  SWIG/randomnumbers.i, Scheme/test/distributions.scm:
+	  
+	  1) InvCumulativeNormalDistribution renamed to
+	  InverseCumulativeNormal.
+	  2) Acklam's approximation for inverse cumulative normal distribution
+	  function
+	  replaced Moro's algorithm.
+
+2003-03-14 09:30  Ferdinando Ametrano
+
+	* [r2819] Python/ChangeLog.txt, Ruby/ChangeLog.txt,
+	  SWIG/ChangeLog.txt, Scheme/Guile/ChangeLog.txt,
+	  Scheme/MzScheme/ChangeLog.txt:
+	  
+	  updated
+
+2003-03-11 17:34  Luigi Ballabio
+
+	* [r2810] SWIG/history.i, SWIG/montecarlo.i, SWIG/scheduler.i,
+	  Scheme/MzScheme/quantlib/ql-init.ss:
+	  
+	  *** empty log message ***
+
+2003-03-11 12:01  Luigi Ballabio
+
+	* [r2807] SWIG/interpolation.i:
+	  
+	  Bicubic interpolation
+
+2003-03-10 13:28  Luigi Ballabio
+
+	* [r2794] Python/setup.py, Ruby/setup.rb:
+	  
+	  Cleaned up installation
+
+2003-03-10 12:06  Luigi Ballabio
+
+	* [r2793] Python/QuantLib/test/europeanoption.py,
+	  Ruby/test/europeanoption.rb, SWIG/options.i, SWIG/volatilities.i,
+	  Scheme/test/europeanoption.scm:
+	  
+	  Synch with C++
+
+2003-02-25 13:17  Luigi Ballabio
+
+	* [r2735] Python/QuantLib/test/europeanoption.py,
+	  Ruby/test/europeanoption.rb, Scheme/test/europeanoption.scm:
+	  
+	  *** empty log message ***
+
+2003-02-25 10:24  Luigi Ballabio
+
+	* [r2734] Python/QuantLib/test/instruments.py,
+	  Ruby/test/instruments.rb, SWIG/instruments.i,
+	  Scheme/test/instruments.scm:
+	  
+	  Test for frozen instrument
+
+2003-02-20 12:12  Luigi Ballabio
+
+	* [r2715] SWIG/options.i:
+	  
+	  Synch with C++
+
+2003-02-20 11:01  Luigi Ballabio
+
+	* [r2714] SWIG/calendars.i, SWIG/cashflows.i, SWIG/common.i,
+	  SWIG/date.i, SWIG/daycounters.i, SWIG/linearalgebra.i,
+	  SWIG/montecarlo.i, SWIG/operators.i, SWIG/piecewiseflatforward.i,
+	  SWIG/randomnumbers.i:
+	  
+	  Workarounds no longer needed
+
+2003-02-18 15:58  Luigi Ballabio
+
+	* [r2708] SWIG/piecewiseflatforward.i:
+	  
+	  *** empty log message ***
+
+2003-02-17 08:16  Luigi Ballabio
+
+	* [r2704] Python/QuantLib/test/capfloor.py,
+	  Python/QuantLib/test/piecewiseflatforward.py,
+	  Python/QuantLib/test/termstructures.py, Ruby/test/capfloor.rb,
+	  Ruby/test/piecewiseflatforward.rb, Ruby/test/termstructures.rb,
+	  Scheme/test/capfloor.scm, Scheme/test/piecewiseflatforward.scm,
+	  Scheme/test/termstructures.scm:
+	  
+	  Had tests work on Sundays
+
+2003-02-16 12:44  Luigi Ballabio
+
+	* [r2701] Python/QuantLib/test/europeanoption.py,
+	  Ruby/test/europeanoption.rb, SWIG/options.i,
+	  Scheme/test/europeanoption.scm:
+	  
+	  Synch with C++
+
+2003-02-14 16:47  Luigi Ballabio
+
+	* [r2695] SWIG/cashflows.i:
+	  
+	  Par coupon named as such (so sue me)
+
+2003-02-13 16:28  Luigi Ballabio
+
+	* [r2690] Ruby/README.txt, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/calendars.rb, Ruby/test/capfloor.rb,
+	  Ruby/test/covariance.rb, Ruby/test/dates.rb,
+	  Ruby/test/daycounters.rb, Ruby/test/distributions.rb,
+	  Ruby/test/europeanoption.rb, Ruby/test/instruments.rb,
+	  Ruby/test/marketelements.rb, Ruby/test/old_pricers.rb,
+	  Ruby/test/operators.rb, Ruby/test/piecewiseflatforward.rb,
+	  Ruby/test/riskstatistics.rb, Ruby/test/segmentintegral.rb,
+	  Ruby/test/simpleswap.rb, Ruby/test/solvers1d.rb,
+	  Ruby/test/statistics.rb, Ruby/test/swaption.rb,
+	  Ruby/test/termstructures.rb:
+	  
+	  Updated for Test::Unit 0.1.8
+
+2003-02-13 13:51  Luigi Ballabio
+
+	* [r2689] SWIG/common.i:
+	  
+	  Handle conversions throw on failure
+
+2003-02-13 09:32  Ferdinando Ametrano
+
+	* [r2685] Python, Python/.cvsignore:
+	  
+	  updated
+
+2003-02-11 18:22  Ferdinando Ametrano
+
+	* [r2673] Python/QuantLibPython.mak:
+	  
+	  updated
+
+2003-02-06 16:35  Luigi Ballabio
+
+	* [r2657] Python/QuantLib/test/europeanoption.py,
+	  Ruby/test/europeanoption.rb, SWIG/options.i,
+	  Scheme/test/europeanoption.scm:
+	  
+	  Synch with C++
+
+2003-02-04 17:48  Luigi Ballabio
+
+	* [r2635] Python/QuantLib/test/date.py, Ruby/test/dates.rb,
+	  SWIG/date.i:
+	  
+	  *** empty log message ***
+
+2003-02-03 14:22  Ferdinando Ametrano
+
+	* [r2623] Python/News.txt, Python/README.txt, Ruby/News.txt,
+	  Ruby/README.txt, Scheme/Guile/README.txt,
+	  Scheme/MzScheme/README.txt:
+	  
+	  improved documentation details
+
+2003-02-03 11:47  Ferdinando Ametrano
+
+	* [r2622] Python/News.txt, Ruby/News.txt:
+	  
+	  adding news.txt details
+	  Luigi: fill in other details if you like, and I'll publish them for
+	  the 0.3.1 release
+
+2003-02-03 11:43  Ferdinando Ametrano
+
+	* [r2621] Python/History.txt, Python/News.txt, Ruby/History.txt,
+	  Ruby/News.txt, Scheme/Guile/History.txt, Scheme/Guile/News.txt,
+	  Scheme/MzScheme/History.txt, Scheme/MzScheme/News.txt:
+	  
+	  date of release 0.3.1
+
+2003-01-31 10:45  Sadruddin Rejeb
+
+	* [r2612] SWIG/daycounters.i:
+	  
+	  Fixed 'act/act (Bond)' --> 'act/act (bond)' (reference must be
+	  lowercase)
+
+2003-01-28 17:23  Luigi Ballabio
+
+	* [r2601] Python/ChangeLog.txt, Python/LICENSE.TXT,
+	  Python/QuantLib/LICENSE.TXT, Python/QuantLib/__init__.py,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/capfloor.py,
+	  Python/QuantLib/test/covariance.py, Python/QuantLib/test/date.py,
+	  Python/QuantLib/test/daycounters.py,
+	  Python/QuantLib/test/distributions.py,
+	  Python/QuantLib/test/europeanoption.py,
+	  Python/QuantLib/test/instruments.py,
+	  Python/QuantLib/test/marketelements.py,
+	  Python/QuantLib/test/old_pricers.py,
+	  Python/QuantLib/test/operators.py,
+	  Python/QuantLib/test/piecewiseflatforward.py,
+	  Python/QuantLib/test/riskstatistics.py,
+	  Python/QuantLib/test/segmentintegral.py,
+	  Python/QuantLib/test/simpleswap.py,
+	  Python/QuantLib/test/solvers1d.py,
+	  Python/QuantLib/test/statistics.py,
+	  Python/QuantLib/test/swaption.py,
+	  Python/QuantLib/test/termstructures.py, Python/setup.py,
+	  Ruby/ChangeLog.txt, Ruby/LICENSE.TXT, Ruby/QuantLib.rb,
+	  Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/capfloor.rb, Ruby/test/covariance.rb, Ruby/test/dates.rb,
+	  Ruby/test/daycounters.rb, Ruby/test/distributions.rb,
+	  Ruby/test/europeanoption.rb, Ruby/test/instruments.rb,
+	  Ruby/test/marketelements.rb, Ruby/test/old_pricers.rb,
+	  Ruby/test/operators.rb, Ruby/test/piecewiseflatforward.rb,
+	  Ruby/test/riskstatistics.rb, Ruby/test/segmentintegral.rb,
+	  Ruby/test/simpleswap.rb, Ruby/test/solvers1d.rb,
+	  Ruby/test/statistics.rb, Ruby/test/swaption.rb,
+	  Ruby/test/termstructures.rb, SWIG/ChangeLog.txt, SWIG/blackmodel.i,
+	  SWIG/calendars.i, SWIG/capfloor.i, SWIG/cashflows.i, SWIG/common.i,
+	  SWIG/currencies.i, SWIG/date.i, SWIG/daycounters.i,
+	  SWIG/discountcurve.i, SWIG/distributions.i, SWIG/functions.i,
+	  SWIG/history.i, SWIG/indexes.i, SWIG/instruments.i,
+	  SWIG/interpolation.i, SWIG/linearalgebra.i, SWIG/marketelements.i,
+	  SWIG/montecarlo.i, SWIG/null.i, SWIG/observer.i, SWIG/old_pricers.i,
+	  SWIG/old_volatility.i, SWIG/operators.i, SWIG/optimizers.i,
+	  SWIG/options.i, SWIG/piecewiseflatforward.i, SWIG/ql.i,
+	  SWIG/quantlib.i, SWIG/randomnumbers.i, SWIG/riskstatistics.i,
+	  SWIG/scheduler.i, SWIG/segmentintegral.i, SWIG/statistics.i,
+	  SWIG/swap.i, SWIG/swaption.i, SWIG/termstructures.i, SWIG/types.i,
+	  SWIG/vectors.i, SWIG/volatilities.i, Scheme/Guile/ChangeLog.txt,
+	  Scheme/Guile/LICENSE.TXT, Scheme/Guile/setup.scm,
+	  Scheme/Guile/test/quantlib-test-suite.scm,
+	  Scheme/Guile/test/unittest.scm, Scheme/Guile/test/utilities.scm,
+	  Scheme/MzScheme/ChangeLog.txt, Scheme/MzScheme/LICENSE.TXT,
+	  Scheme/MzScheme/quantlib/ql-init.ss,
+	  Scheme/MzScheme/quantlib/quantlib.ss, Scheme/MzScheme/setup.scm,
+	  Scheme/MzScheme/test/quantlib-test-suite.scm,
+	  Scheme/MzScheme/test/unittest.scm,
+	  Scheme/MzScheme/test/utilities.scm, Scheme/test/capfloor.scm,
+	  Scheme/test/common.scm, Scheme/test/covariance.scm,
+	  Scheme/test/date.scm, Scheme/test/daycounters.scm,
+	  Scheme/test/distributions.scm, Scheme/test/europeanoption.scm,
+	  Scheme/test/instruments.scm, Scheme/test/marketelements.scm,
+	  Scheme/test/old_pricers.scm, Scheme/test/operators.scm,
+	  Scheme/test/piecewiseflatforward.scm,
+	  Scheme/test/riskstatistics.scm, Scheme/test/segmentintegral.scm,
+	  Scheme/test/simpleswap.scm, Scheme/test/solvers1d.scm,
+	  Scheme/test/statistics.scm, Scheme/test/swaption.scm,
+	  Scheme/test/termstructures.scm:
+	  
+	  Merged changes made on 0.3.1 branch
+
+2003-01-28 08:29  Luigi Ballabio
+
+	* [r2596] Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/calendars.py, Python/setup.py, Ruby/setup.rb,
+	  Ruby/test/QuantLibTestSuite.rb, Ruby/test/calendars.rb,
+	  SWIG/calendars.i, Scheme/Guile/setup.scm,
+	  Scheme/Guile/test/quantlib-test-suite.scm,
+	  Scheme/MzScheme/setup.scm,
+	  Scheme/MzScheme/test/quantlib-test-suite.scm,
+	  Scheme/test/calendars.scm:
+	  
+	  Joint calendars and stuff
+
+2003-01-24 16:32  Luigi Ballabio
+
+	* [r2591] Python/setup.py, Ruby/setup.rb, SWIG/history.i, SWIG/ql.i,
+	  Scheme/Guile/setup.scm, Scheme/MzScheme/setup.scm:
+	  
+	  *** empty log message ***
+
+2003-01-17 11:10  Luigi Ballabio
+
+	* [r2586] Ruby/README.txt, Ruby/setup.rb,
+	  Ruby/test/QuantLibTestSuite.rb, Ruby/test/capfloor.rb,
+	  Ruby/test/covariance.rb, Ruby/test/dates.rb,
+	  Ruby/test/daycounters.rb, Ruby/test/distributions.rb,
+	  Ruby/test/europeanoption.rb, Ruby/test/instruments.rb,
+	  Ruby/test/marketelements.rb, Ruby/test/old_pricers.rb,
+	  Ruby/test/operators.rb, Ruby/test/piecewiseflatforward.rb,
+	  Ruby/test/riskstatistics.rb, Ruby/test/segmentintegral.rb,
+	  Ruby/test/simpleswap.rb, Ruby/test/solvers1d.rb,
+	  Ruby/test/statistics.rb, Ruby/test/swaption.rb,
+	  Ruby/test/termstructures.rb:
+	  
+	  Migrated to Test::Unit
+
+2003-01-03 11:22  Luigi Ballabio
+
+	* [r2563] Python/setup.py:
+	  
+	  *** empty log message ***
+
+2002-12-19 17:18  Luigi Ballabio
+
+	* [r2551] Python/setup.py, Ruby/setup.rb, Scheme/Guile/setup.scm,
+	  Scheme/MzScheme/setup.scm:
+	  
+	  Updated version
+
+2002-12-19 12:51  Luigi Ballabio
+
+	* [r2547] Python/QuantLib/test/QuantLibTestSuite.py:
+	  
+	  *** empty log message ***
+
+2002-12-16 11:37  Ferdinando Ametrano
+
+	* [r2543] Ruby/ChangeLog.txt:
+	  
+	  updated
+
+2002-12-16 11:37  Ferdinando Ametrano
+
+	* [r2542] Ruby/ChangeLog.txt:
+	  
+	  updated
+
+2002-12-16 11:37  Ferdinando Ametrano
+
+	* [r2541] Python/ChangeLog.txt, Ruby/ChangeLog.txt,
+	  SWIG/ChangeLog.txt:
+	  
+	  updated
+
+2002-12-16 11:36  Ferdinando Ametrano
+
+	* [r2540] Python/ChangeLog.txt, Ruby/ChangeLog.txt,
+	  SWIG/ChangeLog.txt, Scheme/Guile/ChangeLog.txt,
+	  Scheme/MzScheme/ChangeLog.txt:
+	  
+	  updated
+
+2002-12-16 10:38  Luigi Ballabio
+
+	* [r2539] Scheme/Guile/setup.scm, Scheme/MzScheme/setup.scm:
+	  
+	  *** empty log message ***
+
+2002-12-11 13:46  Luigi Ballabio
+
+	* [r2535] Python/QuantLib/test/capfloor.py,
+	  Python/QuantLib/test/piecewiseflatforward.py,
+	  Python/QuantLib/test/termstructures.py, Ruby/test/capfloor.rb,
+	  Ruby/test/piecewiseflatforward.rb, Ruby/test/termstructures.rb,
+	  SWIG/piecewiseflatforward.i, SWIG/termstructures.i,
+	  Scheme/test/capfloor.scm, Scheme/test/piecewiseflatforward.scm,
+	  Scheme/test/termstructures.scm:
+	  
+	  Term structure and index fixing cleanup
+
+2002-12-09 13:28  Luigi Ballabio
+
+	* [r2529] SWIG/volatilities.i:
+	  
+	  Fixed local volatility interface
+
+2002-12-06 14:37  Luigi Ballabio
+
+	* [r2528] Python, Python/.cvsignore, Ruby/setup.rb,
+	  Scheme/Guile/setup.scm, Scheme/MzScheme/setup.scm:
+	  
+	  *** empty log message ***
+
+2002-11-29 10:21  Marco Marchioro
+
+	* [r2517] SWIG/currencies.i:
+	  
+	  added new currencies
+
+2002-11-27 12:35  Marco Marchioro
+
+	* [r2512] Python/QuantLibPython.mak:
+	  
+	  no message
+
+2002-11-27 12:33  Marco Marchioro
+
+	* [r2511] SWIG/calendars.i:
+	  
+	  Added calendars for Budapest, Oslo, Stockholm, and Warsaw
+
+2002-11-22 14:25  Marco Marchioro
+
+	* [r2509] SWIG/date.i:
+	  
+	  Introduced Format { Long, Short, ISO };
+
+2002-11-20 14:38  Luigi Ballabio
+
+	* [r2506] SWIG/date.i:
+	  
+	  Exported overloaded Date::operator-
+
+2002-11-20 13:59  Luigi Ballabio
+
+	* [r2505] Python/setup.py, Ruby/setup.rb, SWIG/discountcurve.i,
+	  SWIG/ql.i, Scheme/Guile/setup.scm, Scheme/MzScheme/setup.scm:
+	  
+	  Exported DiscountCurve
+
+2002-11-20 10:05  Luigi Ballabio
+
+	* [r2503] SWIG/volatilities.i:
+	  
+	  Constant Black vol exported
+
+2002-11-14 12:36  Luigi Ballabio
+
+	* [r2502] SWIG/common.i, Scheme/MzScheme/setup.scm:
+	  
+	  Win32 fixes
+
+2002-11-12 16:36  Marco Marchioro
+
+	* [r2501] SWIG/date.i:
+	  
+	  default constructor added
+
+2002-11-12 13:21  Marco Marchioro
+
+	* [r2500] Python/QuantLibPython.dsp, Python/QuantLibPython.mak:
+	  
+	  Using _QuantLib instead of QuantLibc
+
+2002-11-12 10:59  Marco Marchioro
+
+	* [r2498] Python/QuantLibPython.dsp, Python/QuantLibPython.mak:
+	  
+	  The includepath and libpath for python should be specified in the
+	  options of VC++
+
+2002-11-12 08:33  Luigi Ballabio
+
+	* [r2494] Python/wrap.bat, SWIG/calendars.i, SWIG/daycounters.i:
+	  
+	  *** empty log message ***
+
+2002-11-11 13:46  Marco Marchioro
+
+	* [r2492] SWIG/ql.i:
+	  
+	  VC++ regenerate wrappers automatically
+
+2002-11-11 11:02  Marco Marchioro
+
+	* [r2490] Python/QuantLibPython.dsp, Python/QuantLibPython.mak,
+	  Python/wrap.bat:
+	  
+	  VC++ compiles
+
+2002-11-08 15:38  Luigi Ballabio
+
+	* [r2489] Ruby/setup.rb, Scheme/Guile/setup.scm,
+	  Scheme/MzScheme/setup.scm:
+	  
+	  s/CC/CXX/
+
+2002-11-08 15:09  Enrico Sirola
+
+	* [r2488] Python/setup.py:
+	  
+	  os.environ['CC'] --> os.environ['CXX'] (unix-like OSes)
+
+2002-11-08 12:57  Luigi Ballabio
+
+	* [r2487] Python/QuantLib/test/old_pricers.py:
+	  
+	  *** empty log message ***
+
+2002-11-05 16:07  Luigi Ballabio
+
+	* [r2483] Python/setup.py:
+	  
+	  *** empty log message ***
+
+2002-11-05 15:43  Luigi Ballabio
+
+	* [r2482] Python/setup.py:
+	  
+	  *** empty log message ***
+
+2002-11-05 14:58  Luigi Ballabio
+
+	* [r2480] Python/QuantLib/test/old_pricers.py,
+	  Ruby/test/old_pricers.rb, SWIG/old_pricers.i,
+	  Scheme/Guile/test/quantlib-test-suite.scm,
+	  Scheme/MzScheme/test/quantlib-test-suite.scm,
+	  Scheme/test/common.scm, Scheme/test/old_pricers.scm:
+	  
+	  Almost there
+
+2002-10-27 13:06  Luigi Ballabio
+
+	* [r2476] SWIG/operators.i:
+	  
+	  Implemented QuEP 2
+
+2002-10-03 16:46  Luigi Ballabio
+
+	* [r2458] Python/setup.py, Ruby/setup.rb, SWIG/ql.i,
+	  SWIG/volatilities.i, Scheme/Guile/setup.scm,
+	  Scheme/MzScheme/setup.scm:
+	  
+	  A few new-style vol term structures
+
+2002-09-24 14:25  Luigi Ballabio
+
+	* [r2443] Python/setup.py, Ruby/setup.rb, SWIG/functions.i,
+	  SWIG/optimizers.i, SWIG/ql.i, SWIG/solvers1d.i,
+	  Scheme/Guile/setup.scm, Scheme/MzScheme/setup.scm:
+	  
+	  A look at the optimizers (nothing major)
+
+2002-09-12 12:50  Luigi Ballabio
+
+	* [r2436] Python/QuantLib/test/capfloor.py,
+	  Python/QuantLib/test/europeanoption.py,
+	  Python/QuantLib/test/piecewiseflatforward.py,
+	  Python/QuantLib/test/simpleswap.py,
+	  Python/QuantLib/test/swaption.py,
+	  Python/QuantLib/test/termstructures.py, Python/README.txt,
+	  Ruby/QuantLib.rb, Ruby/README.txt, Ruby/test/capfloor.rb,
+	  Ruby/test/europeanoption.rb, Ruby/test/piecewiseflatforward.rb,
+	  Ruby/test/simpleswap.rb, Ruby/test/swaption.rb,
+	  Ruby/test/termstructures.rb, SWIG/calendars.i, SWIG/cashflows.i,
+	  SWIG/common.i, SWIG/date.i, SWIG/history.i, SWIG/indexes.i,
+	  SWIG/instruments.i, SWIG/linearalgebra.i, SWIG/montecarlo.i,
+	  SWIG/null.i, SWIG/old_volatility.i, SWIG/piecewiseflatforward.i,
+	  SWIG/riskstatistics.i, SWIG/scheduler.i, SWIG/statistics.i,
+	  SWIG/termstructures.i, Scheme/Guile/README.txt,
+	  Scheme/MzScheme/README.txt, Scheme/MzScheme/quantlib/ql-init.ss,
+	  Scheme/test/capfloor.scm, Scheme/test/europeanoption.scm,
+	  Scheme/test/piecewiseflatforward.scm, Scheme/test/simpleswap.scm,
+	  Scheme/test/swaption.scm, Scheme/test/termstructures.scm:
+	  
+	  Synch with QuantLib
+
+2002-09-01 15:15  Luigi Ballabio
+
+	* [r2434] Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/capfloor.py,
+	  Python/QuantLib/test/old_pricers.py,
+	  Python/QuantLib/test/swaption.py, Python/setup.py, Ruby/QuantLib.rb,
+	  Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/capfloor.rb, Ruby/test/old_pricers.rb,
+	  Ruby/test/swaption.rb, SWIG/blackmodel.i, SWIG/capfloor.i,
+	  SWIG/cashflows.i, SWIG/date.i, SWIG/history.i, SWIG/montecarlo.i,
+	  SWIG/old_pricers.i, SWIG/old_volatility.i, SWIG/options.i,
+	  SWIG/ql.i, SWIG/scheduler.i, SWIG/swaption.i, SWIG/vectors.i,
+	  Scheme/Guile/setup.scm, Scheme/Guile/test/quantlib-test-suite.scm,
+	  Scheme/Guile/test/unittest.scm, Scheme/Guile/test/utilities.scm,
+	  Scheme/MzScheme/quantlib/ql-init.ss, Scheme/MzScheme/setup.scm,
+	  Scheme/MzScheme/test/quantlib-test-suite.scm,
+	  Scheme/MzScheme/test/unittest.scm,
+	  Scheme/MzScheme/test/utilities.scm, Scheme/test/capfloor.scm,
+	  Scheme/test/date.scm, Scheme/test/daycounters.scm,
+	  Scheme/test/distributions.scm, Scheme/test/europeanoption.scm,
+	  Scheme/test/marketelements.scm, Scheme/test/old_pricers.scm,
+	  Scheme/test/operators.scm, Scheme/test/riskstatistics.scm,
+	  Scheme/test/simpleswap.scm, Scheme/test/solvers1d.scm,
+	  Scheme/test/swaption.scm, Scheme/test/termstructures.scm:
+	  
+	  Almost there
+
+2002-08-08 08:15  Luigi Ballabio
+
+	* [r2433] SWIG/calendars.i, SWIG/date.i, SWIG/daycounters.i,
+	  SWIG/linearalgebra.i, SWIG/operators.i,
+	  Scheme/MzScheme/quantlib/ql-init.ss, Scheme/test/operators.scm:
+	  
+	  *** empty log message ***
+
+2002-08-07 16:46  Luigi Ballabio
+
+	* [r2432] Python/QuantLib/test/date.py, Python/README.txt,
+	  Ruby/test/dates.rb, SWIG/calendars.i, SWIG/common.i, SWIG/date.i,
+	  SWIG/linearalgebra.i, SWIG/null.i, SWIG/operators.i,
+	  SWIG/riskstatistics.i, SWIG/statistics.i, SWIG/termstructures.i,
+	  Scheme/MzScheme/README.txt, Scheme/MzScheme/quantlib/ql-init.ss,
+	  Scheme/test/date.scm:
+	  
+	  Catching up with SWIG
+
+2002-08-07 14:01  Luigi Ballabio
+
+	* [r2431] SWIG/ql.i, Scheme/Guile/setup.scm,
+	  Scheme/Guile/test/quantlib-test-suite.scm,
+	  Scheme/Guile/test/unittest.scm, Scheme/Guile/test/utilities.scm,
+	  Scheme/MzScheme/quantlib/ql-init.ss,
+	  Scheme/MzScheme/quantlib/quantlib.ss, Scheme/MzScheme/setup.scm,
+	  Scheme/MzScheme/test/quantlib-test-suite.scm,
+	  Scheme/MzScheme/test/unittest.scm,
+	  Scheme/MzScheme/test/utilities.scm, Scheme/test/common.scm,
+	  Scheme/test/covariance.scm, Scheme/test/date.scm,
+	  Scheme/test/daycounters.scm, Scheme/test/distributions.scm,
+	  Scheme/test/europeanoption.scm, Scheme/test/instruments.scm,
+	  Scheme/test/marketelements.scm, Scheme/test/operators.scm,
+	  Scheme/test/piecewiseflatforward.scm,
+	  Scheme/test/riskstatistics.scm, Scheme/test/segmentintegral.scm,
+	  Scheme/test/simpleswap.scm, Scheme/test/solvers1d.scm,
+	  Scheme/test/statistics.scm, Scheme/test/termstructures.scm:
+	  
+	  Catching up with MzScheme
+
+2002-08-06 17:12  Luigi Ballabio
+
+	* [r2430] Python/QuantLib/test/piecewiseflatforward.py,
+	  Python/QuantLib/test/termstructures.py,
+	  Ruby/test/piecewiseflatforward.rb, Ruby/test/termstructures.rb,
+	  SWIG/observer.i, SWIG/piecewiseflatforward.i,
+	  Scheme/test/piecewiseflatforward.scm,
+	  Scheme/test/termstructures.scm:
+	  
+	  Catching up with QuantLib
+
+2002-08-06 13:41  Luigi Ballabio
+
+	* [r2424] Scheme/MzScheme/quantlib/quantlib.ss:
+	  
+	  Catching up with SWIG
+
+2002-08-06 13:37  Luigi Ballabio
+
+	* [r2423] Python/QuantLib/__init__.py, Python/QuantLib/defaults.py,
+	  Python/setup.py, Ruby/QuantLib.rb, SWIG/common.i, SWIG/history.i,
+	  SWIG/linearalgebra.i, SWIG/marketelements.i, SWIG/observer.i,
+	  SWIG/termstructures.i, Scheme/MzScheme/quantlib/quantlib.ss:
+	  
+	  Catching up with SWIG
+
+2002-08-05 17:50  Luigi Ballabio
+
+	* [r2422] SWIG/solvers1d.i:
+	  
+	  Catching up with SWIG
+
+2002-08-05 17:32  Luigi Ballabio
+
+	* [r2421] Python/QuantLib/defaults.py, Ruby/QuantLib.rb,
+	  SWIG/calendars.i, SWIG/cashflows.i, SWIG/common.i, SWIG/date.i,
+	  SWIG/daycounters.i, SWIG/distributions.i, SWIG/history.i,
+	  SWIG/indexes.i, SWIG/instruments.i, SWIG/interpolation.i,
+	  SWIG/linearalgebra.i, SWIG/marketelements.i, SWIG/montecarlo.i,
+	  SWIG/observer.i, SWIG/operators.i, SWIG/options.i,
+	  SWIG/piecewiseflatforward.i, SWIG/riskstatistics.i,
+	  SWIG/segmentintegral.i, SWIG/solvers1d.i, SWIG/statistics.i,
+	  SWIG/swap.i, SWIG/termstructures.i:
+	  
+	  Catching up with SWIG
+
+2002-08-03 16:16  Luigi Ballabio
+
+	* [r2420] Python/QuantLib/__init__.py, Python/QuantLib/defaults.py,
+	  Python/QuantLib/test/europeanoption.py,
+	  Python/QuantLib/test/piecewiseflatforward.py,
+	  Python/QuantLib/test/simpleswap.py,
+	  Python/QuantLib/test/termstructures.py, Python/README.txt,
+	  Python/setup.py, Ruby/QuantLib.rb, Ruby/README.txt,
+	  Ruby/test/QuantLibTestSuite.rb, Ruby/test/europeanoption.rb,
+	  Ruby/test/piecewiseflatforward.rb, Ruby/test/simpleswap.rb,
+	  Ruby/test/termstructures.rb, SWIG/calendars.i, SWIG/common.i,
+	  SWIG/piecewiseflatforward.i, SWIG/riskstatistics.i,
+	  SWIG/statistics.i, SWIG/termstructures.i, SWIG/vectors.i,
+	  Scheme/Guile/README.txt, Scheme/MzScheme/README.txt,
+	  Scheme/MzScheme/quantlib/quantlib.ss,
+	  Scheme/test/europeanoption.scm,
+	  Scheme/test/piecewiseflatforward.scm, Scheme/test/simpleswap.scm,
+	  Scheme/test/termstructures.scm:
+	  
+	  Keeping up with SWIG
+
+2002-07-22 10:05  Luigi Ballabio
+
+	* [r2406] Python/QuantLib/defaults.py,
+	  Python/QuantLib/test/instruments.py,
+	  Python/QuantLib/test/marketelements.py,
+	  Python/QuantLib/test/termstructures.py, Ruby/QuantLib.rb,
+	  Ruby/test/instruments.rb, Ruby/test/marketelements.rb,
+	  Ruby/test/termstructures.rb, SWIG/linearalgebra.i,
+	  Scheme/Guile/test/quantlib-test-suite.scm,
+	  Scheme/Guile/test/unittest.scm,
+	  Scheme/MzScheme/test/quantlib-test-suite.scm,
+	  Scheme/test/covariance.scm, Scheme/test/date.scm,
+	  Scheme/test/daycounters.scm, Scheme/test/distributions.scm,
+	  Scheme/test/europeanoption.scm, Scheme/test/instruments.scm,
+	  Scheme/test/marketelements.scm, Scheme/test/operators.scm,
+	  Scheme/test/piecewiseflatforward.scm,
+	  Scheme/test/riskstatistics.scm, Scheme/test/segmentintegral.scm,
+	  Scheme/test/simpleswap.scm, Scheme/test/solvers1d.scm,
+	  Scheme/test/statistics.scm, Scheme/test/termstructures.scm:
+	  
+	  Last couple of weeks
+
+2002-07-11 15:27  Luigi Ballabio
+
+	* [r2402] Python/QuantLib/test/riskstatistics.py,
+	  Python/QuantLib/test/statistics.py, Ruby/QuantLib.rb,
+	  Ruby/test/riskstatistics.rb, Ruby/test/statistics.rb,
+	  SWIG/linearalgebra.i, SWIG/montecarlo.i, SWIG/randomnumbers.i,
+	  SWIG/riskstatistics.i, SWIG/statistics.i,
+	  Scheme/MzScheme/quantlib/quantlib.ss,
+	  Scheme/test/riskstatistics.scm, Scheme/test/statistics.scm:
+	  
+	  Last couple of weeks
+
+2002-07-11 15:26  Luigi Ballabio
+
+	* [r2401] Scheme/MzScheme, Scheme/MzScheme/.cvsignore:
+	  
+	  Some more .cvsignore
+
+2002-07-11 15:21  Luigi Ballabio
+
+	* [r2400] Python, Python/.cvsignore, Python/QuantLib,
+	  Python/QuantLib/.cvsignore, Ruby, Ruby/.cvsignore, Scheme/Guile,
+	  Scheme/Guile/.cvsignore:
+	  
+	  Some more .cvsignore
+
+2002-06-28 13:34  Luigi Ballabio
+
+	* [r2393] Python/QuantLib/test/termstructures.py,
+	  Ruby/test/piecewiseflatforward.rb, Ruby/test/termstructures.rb,
+	  SWIG/termstructures.i, Scheme/test/termstructures.scm:
+	  
+	  Improved term structure test
+
+2002-06-27 17:28  Luigi Ballabio
+
+	* [r2391] Python/QuantLib/defaults.py,
+	  Python/QuantLib/test/distributions.py,
+	  Python/QuantLib/test/europeanoption.py,
+	  Python/QuantLib/test/piecewiseflatforward.py,
+	  Python/QuantLib/test/simpleswap.py,
+	  Python/QuantLib/test/termstructures.py, Python/setup.py,
+	  Ruby/QuantLib.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/distributions.rb, Ruby/test/europeanoption.rb,
+	  Ruby/test/piecewiseflatforward.rb, Ruby/test/simpleswap.rb,
+	  Ruby/test/termstructures.rb, SWIG/calendars.i, SWIG/common.i,
+	  SWIG/date.i, SWIG/daycounters.i, SWIG/distributions.i,
+	  SWIG/history.i, SWIG/indexes.i, SWIG/instruments.i,
+	  SWIG/interpolation.i, SWIG/linearalgebra.i, SWIG/marketelements.i,
+	  SWIG/observer.i, SWIG/operators.i, SWIG/options.i,
+	  SWIG/piecewiseflatforward.i, SWIG/randomnumbers.i,
+	  SWIG/riskstatistics.i, SWIG/solvers1d.i, SWIG/statistics.i,
+	  SWIG/swap.i, SWIG/termstructures.i, Scheme/Guile/test/unittest.scm,
+	  Scheme/MzScheme/quantlib/quantlib.ss,
+	  Scheme/MzScheme/test/unittest.scm, Scheme/test/distributions.scm,
+	  Scheme/test/europeanoption.scm,
+	  Scheme/test/piecewiseflatforward.scm, Scheme/test/simpleswap.scm,
+	  Scheme/test/termstructures.scm:
+	  
+	  Saved from laptop crash (phew...)
+
+2002-06-24 07:29  Luigi Ballabio
+
+	* [r2379] Python/QuantLib/defaults.py,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/covariance.py, Python/QuantLib/test/date.py,
+	  Python/QuantLib/test/daycounters.py,
+	  Python/QuantLib/test/distributions.py,
+	  Python/QuantLib/test/europeanoption.py,
+	  Python/QuantLib/test/operators.py,
+	  Python/QuantLib/test/piecewiseflatforward.py,
+	  Python/QuantLib/test/riskstatistics.py,
+	  Python/QuantLib/test/segmentintegral.py,
+	  Python/QuantLib/test/simpleswap.py,
+	  Python/QuantLib/test/solvers1d.py,
+	  Python/QuantLib/test/statistics.py, Python/setup.py,
+	  Ruby/QuantLib.rb, Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/covariance.rb, Ruby/test/piecewiseflatforward.rb,
+	  Ruby/test/simpleswap.rb, SWIG/cashflows.i, SWIG/common.i,
+	  SWIG/date.i, SWIG/daycounters.i, SWIG/instruments.i,
+	  SWIG/interpolation.i, SWIG/linearalgebra.i, SWIG/matrix.i,
+	  SWIG/montecarlo.i, SWIG/operators.i, SWIG/options.i,
+	  SWIG/piecewiseflatforward.i, SWIG/ql.i, SWIG/qlarray.i,
+	  SWIG/statistics.i, SWIG/swap.i, Scheme/Guile/setup.scm,
+	  Scheme/Guile/test/quantlib-test-suite.scm,
+	  Scheme/MzScheme/quantlib/quantlib.ss, Scheme/MzScheme/setup.scm,
+	  Scheme/MzScheme/test/quantlib-test-suite.scm,
+	  Scheme/test/common.scm, Scheme/test/covariance.scm,
+	  Scheme/test/piecewiseflatforward.scm, Scheme/test/simpleswap.scm:
+	  
+	  a couple of weeks' worth
+
+2002-06-11 15:40  Luigi Ballabio
+
+	* [r2360] Python/QuantLib/test/europeanoption.py, Python/README.txt,
+	  Ruby/README.txt, Ruby/test/europeanoption.rb, SWIG/cashflows.i,
+	  SWIG/options.i, SWIG/ql.i, Scheme/Guile/README.txt,
+	  Scheme/Guile/test/quantlib-test-suite.scm,
+	  Scheme/MzScheme/README.txt,
+	  Scheme/MzScheme/test/quantlib-test-suite.scm,
+	  Scheme/test/europeanoption.scm:
+	  
+	  Synch with QuantLib
+
+2002-06-03 10:29  Luigi Ballabio
+
+	* [r2348] Python/QuantLib/test/europeanoption.py,
+	  Ruby/test/europeanoption.rb, SWIG/options.i,
+	  Scheme/test/europeanoption.scm:
+	  
+	  Synch with ql
+
+2002-06-03 08:24  Luigi Ballabio
+
+	* [r2347] Scheme/Guile/test/quantlib-test-suite.scm,
+	  Scheme/Guile/test/unittest.scm, Scheme/MzScheme/setup.scm,
+	  Scheme/MzScheme/test/quantlib-test-suite.scm,
+	  Scheme/MzScheme/test/unittest.scm, Scheme/test/common.scm,
+	  Scheme/test/date.scm, Scheme/test/daycounters.scm,
+	  Scheme/test/distributions.scm, Scheme/test/europeanoption.scm,
+	  Scheme/test/marketelements.scm, Scheme/test/operators.scm,
+	  Scheme/test/riskstatistics.scm, Scheme/test/segmentintegral.scm,
+	  Scheme/test/solvers1d.scm, Scheme/test/statistics.scm,
+	  Scheme/test/termstructures.scm:
+	  
+	  unified tests for MzScheme and Guile
+
+2002-05-31 15:35  Luigi Ballabio
+
+	* [r2338] MzScheme, Scheme/MzScheme/setup.scm,
+	  Scheme/MzScheme/test/quantlib-test-suite.scm:
+	  
+	  Compacting MzScheme and Guile
+
+2002-05-31 15:29  Luigi Ballabio
+
+	* [r2337] Scheme/MzScheme, Scheme/MzScheme/Authors.txt,
+	  Scheme/MzScheme/ChangeLog.txt, Scheme/MzScheme/Contributors.txt,
+	  Scheme/MzScheme/History.txt, Scheme/MzScheme/LICENSE.TXT,
+	  Scheme/MzScheme/README.txt, Scheme/MzScheme/quantlib,
+	  Scheme/MzScheme/quantlib/quantlib.ss, Scheme/MzScheme/setup.scm,
+	  Scheme/MzScheme/test, Scheme/MzScheme/test/quantlib-test-suite.scm,
+	  Scheme/MzScheme/test/unittest.scm:
+	  
+	  Compacting MzScheme and Guile
+
+2002-05-31 15:23  Luigi Ballabio
+
+	* [r2336] Guile, MzScheme/test/quantlib-test-suite.scm,
+	  Python/QuantLib/test/termstructures.py, Ruby/test/termstructures.rb,
+	  Scheme/Guile/setup.scm, Scheme/Guile/test/quantlib-test-suite.scm:
+	  
+	  Compacting MzScheme and Guile
+
+2002-05-31 15:16  Luigi Ballabio
+
+	* [r2335] Scheme, Scheme/Guile, Scheme/Guile/Authors.txt,
+	  Scheme/Guile/ChangeLog.txt, Scheme/Guile/Contributors.txt,
+	  Scheme/Guile/History.txt, Scheme/Guile/LICENSE.TXT,
+	  Scheme/Guile/README.txt, Scheme/Guile/setup.scm, Scheme/Guile/test,
+	  Scheme/Guile/test/quantlib-test-suite.scm,
+	  Scheme/Guile/test/unittest.scm, Scheme/test, Scheme/test/common.scm,
+	  Scheme/test/date.scm, Scheme/test/daycounters.scm,
+	  Scheme/test/distributions.scm, Scheme/test/europeanoption.scm,
+	  Scheme/test/instruments.scm, Scheme/test/marketelements.scm,
+	  Scheme/test/operators.scm, Scheme/test/riskstatistics.scm,
+	  Scheme/test/segmentintegral.scm, Scheme/test/solvers1d.scm,
+	  Scheme/test/statistics.scm, Scheme/test/termstructures.scm:
+	  
+	  Compacting MzScheme and Guile
+
+2002-05-30 08:21  Luigi Ballabio
+
+	* [r2331] Guile/setup.scm, Guile/test/common.scm, Guile/test/date.scm,
+	  Guile/test/daycounters.scm, Guile/test/distributions.scm,
+	  Guile/test/europeanoption.scm, Guile/test/instruments.scm,
+	  Guile/test/marketelements.scm, Guile/test/operators.scm,
+	  Guile/test/quantlib-test-suite.scm, Guile/test/riskstatistics.scm,
+	  Guile/test/segmentintegral.scm, Guile/test/solvers1d.scm,
+	  Guile/test/statistics.scm, Guile/test/termstructures.scm,
+	  MzScheme/quantlib/quantlib.ss, MzScheme/setup.scm,
+	  MzScheme/test/common.scm, MzScheme/test/date.scm,
+	  MzScheme/test/daycounters.scm, MzScheme/test/distributions.scm,
+	  MzScheme/test/europeanoption.scm, MzScheme/test/instruments.scm,
+	  MzScheme/test/marketelements.scm, MzScheme/test/operators.scm,
+	  MzScheme/test/quantlib-test-suite.scm,
+	  MzScheme/test/riskstatistics.scm, MzScheme/test/segmentintegral.scm,
+	  MzScheme/test/solvers1d.scm, MzScheme/test/statistics.scm,
+	  MzScheme/test/termstructures.scm, MzScheme/test/unittest.scm,
+	  Python/QuantLib/defaults.py,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/europeanoption.py,
+	  Python/QuantLib/test/solvers1d.py,
+	  Python/QuantLib/test/statistics.py,
+	  Python/QuantLib/test/termstructures.py, Python/setup.py,
+	  Ruby/QuantLib.rb, Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/dates.rb, Ruby/test/daycounters.rb,
+	  Ruby/test/distributions.rb, Ruby/test/europeanoption.rb,
+	  Ruby/test/operators.rb, Ruby/test/riskstatistics.rb,
+	  Ruby/test/solvers1d.rb, Ruby/test/statistics.rb, SWIG/calendars.i,
+	  SWIG/date.i, SWIG/indexes.i, SWIG/options.i, SWIG/ql.i,
+	  SWIG/termstructures.i:
+	  
+	  Biweekly commit
+
+2002-05-17 16:07  Luigi Ballabio
+
+	* [r2319] Guile/test/common.scm, Guile/test/distributions.scm,
+	  Guile/test/operators.scm, Guile/test/quantlib-test-suite.scm,
+	  Guile/test/riskstatistics.scm, Guile/test/termstructures.scm,
+	  Guile/test/unittest.scm, MzScheme/quantlib/quantlib.ss,
+	  MzScheme/test/common.scm, MzScheme/test/distributions.scm,
+	  MzScheme/test/operators.scm, MzScheme/test/quantlib-test-suite.scm,
+	  MzScheme/test/riskstatistics.scm, MzScheme/test/termstructures.scm,
+	  Python/QuantLib/defaults.py,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/operators.py,
+	  Python/QuantLib/test/termstructures.py, Python/setup.py,
+	  Ruby/QuantLib.rb, Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/operators.rb, Ruby/test/termstructures.rb,
+	  SWIG/calendars.i, SWIG/daycounters.i, SWIG/history.i,
+	  SWIG/marketelements.i, SWIG/operators.i, SWIG/ql.i, SWIG/qlarray.i,
+	  SWIG/randomnumbers.i, SWIG/termstructures.i:
+	  
+	  Weekly payload
+
+2002-05-16 14:28  Ferdinando Ametrano
+
+	* [r2317] SWIG/randomnumbers.i:
+	  
+	  removed InvCumulative2
+
+2002-05-13 16:04  Luigi Ballabio
+
+	* [r2312] Python/setup.py, Ruby/setup.rb:
+	  
+	  Allow passing CXXFLAGS
+
+2002-05-13 08:38  Luigi Ballabio
+
+	* [r2309] Guile/README.txt, Guile/setup.scm, Guile/test/common.scm,
+	  Guile/test/quantlib-test-suite.scm, Guile/test/riskstatistics.scm,
+	  Guile/test/segmentintegral.scm, Guile/test/statistics.scm,
+	  MzScheme/README.txt, MzScheme/setup.scm, MzScheme/test/common.scm,
+	  MzScheme/test/quantlib-test-suite.scm,
+	  MzScheme/test/riskstatistics.scm, MzScheme/test/segmentintegral.scm,
+	  MzScheme/test/statistics.scm,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/segmentintegral.py,
+	  Python/QuantLib/test/statistics.py, Python/README.txt,
+	  Ruby/README.txt, Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/segmentintegral.rb, Ruby/test/statistics.rb,
+	  SWIG/calendars.i, SWIG/common.i, SWIG/date.i, SWIG/daycounters.i,
+	  SWIG/functions.i, SWIG/history.i, SWIG/instruments.i,
+	  SWIG/interpolation.i, SWIG/marketelements.i, SWIG/matrix.i,
+	  SWIG/observer.i, SWIG/ql.i, SWIG/qlarray.i, SWIG/riskstatistics.i,
+	  SWIG/segmentintegral.i, SWIG/solvers1d.i, SWIG/statistics.i:
+	  
+	  Weekly payload
+
+2002-05-03 12:46  Luigi Ballabio
+
+	* [r2284] Python/makewrappers.py, Python/setup.py, Ruby/setup.rb:
+	  
+	  More fixes in setup scripts
+
+2002-05-03 11:30  Luigi Ballabio
+
+	* [r2283] Guile/Authors.txt, Guile/ChangeLog.txt,
+	  Guile/Contributors.txt, Guile/History.txt, Guile/LICENSE.TXT,
+	  Guile/build.scm, Guile/install.scm, Guile/setup.scm, Guile/test.scm,
+	  MzScheme/setup.scm, Python/makewrappers.py, Ruby/setup.rb:
+	  
+	  More fixes in setup scripts
+
+2002-05-03 11:06  Luigi Ballabio
+
+	* [r2282] MzScheme/build.scm, MzScheme/install.scm,
+	  MzScheme/setup.scm, MzScheme/test.scm, Python/makewrappers.py,
+	  Python/setup.py, Ruby/setup.rb, SWIG/calendars.i, SWIG/date.i,
+	  SWIG/daycounters.i:
+	  
+	  Fixed setup files
+
+2002-05-02 07:50  Luigi Ballabio
+
+	* [r2274] Guile/test/instruments.scm, Guile/test/marketelements.scm,
+	  Guile/test/quantlib-test-suite.scm, MzScheme/quantlib/quantlib.ss,
+	  MzScheme/test/instruments.scm, MzScheme/test/marketelements.scm,
+	  MzScheme/test/quantlib-test-suite.scm, Python/QuantLib/defaults.py,
+	  Python/QuantLib/test/instruments.py,
+	  Python/QuantLib/test/marketelements.py, Ruby/QuantLib.rb,
+	  Ruby/test/QuantLibTestSuite.rb, Ruby/test/instruments.rb,
+	  Ruby/test/marketelements.rb, SWIG/common.i, SWIG/instruments.i,
+	  SWIG/marketelements.i, SWIG/observer.i:
+	  
+	  Handles to base classes are templates, not typedefs
+
+2002-04-29 15:24  Luigi Ballabio
+
+	* [r2261] Guile/test/instruments.scm,
+	  Guile/test/quantlib-test-suite.scm, MzScheme/test/instruments.scm,
+	  MzScheme/test/quantlib-test-suite.scm, Python/QuantLib/defaults.py,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/instruments.py, Python/setup.py,
+	  Ruby/QuantLib.rb, Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/instruments.rb, SWIG/calendars.i, SWIG/instruments.i,
+	  SWIG/marketelements.i, SWIG/ql.i:
+	  
+	  Migrated instruments.i
+
+2002-04-26 07:57  Luigi Ballabio
+
+	* [r2250] Guile/test/distributions.scm, Guile/test/marketelements.scm,
+	  Guile/test/quantlib-test-suite.scm, Guile/test/riskstatistics.scm,
+	  Guile/test/unittest.scm, MzScheme/quantlib/quantlib.ss,
+	  MzScheme/test/date.scm, MzScheme/test/distributions.scm,
+	  MzScheme/test/marketelements.scm,
+	  MzScheme/test/quantlib-test-suite.scm,
+	  MzScheme/test/riskstatistics.scm, Python/QuantLib/defaults.py,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/date.py, Python/QuantLib/test/distributions.py,
+	  Python/QuantLib/test/marketelements.py,
+	  Python/QuantLib/test/riskstatistics.py, Python/setup.py,
+	  Ruby/QuantLib.rb, Ruby/setup.rb, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/dates.rb, Ruby/test/daycounters.rb,
+	  Ruby/test/distributions.rb, Ruby/test/marketelements.rb,
+	  Ruby/test/riskstatistics.rb, Ruby/test/solvers1d.rb,
+	  SWIG/calendars.i, SWIG/common.i, SWIG/date.i, SWIG/functions.i,
+	  SWIG/history.i, SWIG/marketelements.i, SWIG/observer.i, SWIG/ql.i,
+	  SWIG/riskstatistics.i, SWIG/vectors.i:
+	  
+	  Migrated risk statistics and market elements
+
+2002-04-22 14:35  Luigi Ballabio
+
+	* [r2236] Guile/test/quantlib-test-suite.scm,
+	  Guile/test/solvers1d.scm, MzScheme/test/quantlib-test-suite.scm,
+	  MzScheme/test/solvers1d.scm,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/solvers1d.py, Python/setup.py, Ruby/setup.rb,
+	  Ruby/test/QuantLibTestSuite.rb, Ruby/test/solvers1d.rb,
+	  SWIG/calendars.i, SWIG/date.i, SWIG/daycounters.i, SWIG/functions.i,
+	  SWIG/history.i, SWIG/null.i, SWIG/observer.i, SWIG/ql.i,
+	  SWIG/qlarray.i, SWIG/solvers1d.i:
+	  
+	  Renamed Solver1D::lowBound and hiBound
+
+2002-04-21 20:38  Ferdinando Ametrano
+
+	* [r2223] Python/setup.py, Ruby/setup.rb, SWIG/ql.i:
+	  
+	  version number up
+
+2002-04-21 19:35  Ferdinando Ametrano
+
+	* [r2221] Guile/ChangeLog.txt, MzScheme/ChangeLog.txt,
+	  Python/ChangeLog.txt, Ruby/ChangeLog.txt, SWIG/ChangeLog.txt:
+	  
+	  updated
+
+2002-04-18 11:37  Luigi Ballabio
+
+	* [r2218] MzScheme/quantlib/quantlib.ss, Python/QuantLib/defaults.py,
+	  Python/setup.py, Ruby/QuantLib.rb, Ruby/setup.rb, SWIG/calendars.i,
+	  SWIG/date.i, SWIG/daycounters.i, SWIG/history.i, SWIG/null.i,
+	  SWIG/observer.i, SWIG/ql.i, SWIG/randomnumbers.i:
+	  
+	  History.i migrated
+
+2002-04-16 22:05  Ferdinando Ametrano
+
+	* [r2212] Guile/ChangeLog.txt, MzScheme/ChangeLog.txt,
+	  Python/ChangeLog.txt, Ruby/ChangeLog.txt, SWIG/ChangeLog.txt:
+	  
+	  updated
+
+2002-04-16 21:53  Ferdinando Ametrano
+
+	* [r2211] Guile/ChangeLog.txt:
+	  
+	  added ChangeLog
+
+2002-04-16 13:30  Luigi Ballabio
+
+	* [r2208] Guile, Guile/build.scm, Guile/install.scm, Guile/test,
+	  Guile/test.scm, Guile/test/date.scm, Guile/test/daycounters.scm,
+	  Guile/test/distributions.scm, Guile/test/quantlib-test-suite.scm,
+	  Guile/test/unittest.scm, MzScheme/quantlib/quantlib.ss,
+	  SWIG/calendars.i, SWIG/common.i, SWIG/date.i, SWIG/daycounters.i,
+	  SWIG/distributions.i, SWIG/qlarray.i, SWIG/quantlib.i,
+	  SWIG/randomnumbers.i:
+	  
+	  Got a language for free
+
+2002-04-15 16:26  Luigi Ballabio
+
+	* [r2206] MzScheme/quantlib/quantlib.ss, MzScheme/test/date.scm,
+	  SWIG/calendars.i, SWIG/date.i, SWIG/daycounters.i, SWIG/qlarray.i,
+	  SWIG/quantlib.i:
+	  
+	  *** empty log message ***
+
+2002-04-10 15:38  Luigi Ballabio
+
+	* [r2195] Python/setup.py, Ruby/setup.rb, SWIG/calendars.i,
+	  SWIG/common.i, SWIG/currencies.i, SWIG/date.i, SWIG/daycounters.i,
+	  SWIG/distributions.i, SWIG/null.i, SWIG/observer.i, SWIG/ql.i,
+	  SWIG/qlarray.i, SWIG/quantlib.i, SWIG/randomnumbers.i,
+	  SWIG/string.i, SWIG/vector.i:
+	  
+	  Towards SWIG 1.3.12
+
+2002-04-10 09:54  Ferdinando Ametrano
+
+	* [r2192] Python/setup.py, Ruby/setup.rb, SWIG/ql.i:
+	  
+	  version number up
+
+2002-04-09 12:30  Ferdinando Ametrano
+
+	* [r2190] Ruby/setup.rb:
+	  
+	  supporting also zip distribution for Win32
+
+2002-04-09 11:05  Ferdinando Ametrano
+
+	* [r2189] Ruby/setup.rb:
+	  
+	  supporting also zip distribution for Win32
+
+2002-04-09 09:16  Ferdinando Ametrano
+
+	* [r2187] MzScheme/ChangeLog.txt, Python/ChangeLog.txt,
+	  Ruby/ChangeLog.txt, SWIG/ChangeLog.txt:
+	  
+	  updated
+
+2002-04-08 08:14  Ferdinando Ametrano
+
+	* [r2184] MzScheme/ChangeLog.txt, Python/ChangeLog.txt,
+	  Ruby/ChangeLog.txt, SWIG/ChangeLog.txt:
+	  
+	  updated
+
+2002-04-08 08:02  Ferdinando Ametrano
+
+	* [r2183] MzScheme/ChangeLog.txt, Python/ChangeLog.txt,
+	  Ruby/ChangeLog.txt:
+	  
+	  updated
+
+2002-04-08 07:51  Ferdinando Ametrano
+
+	* [r2182] SWIG/ChangeLog.txt:
+	  
+	  added ChangeLog
+
+2002-04-05 14:34  Luigi Ballabio
+
+	* [r2179] Python/README.txt, Ruby/README.txt, SWIG/calendars.i,
+	  SWIG/currencies.i, SWIG/date.i, SWIG/daycounters.i, SWIG/qlarray.i,
+	  SWIG/string.i, SWIG/vector.i:
+	  
+	  engaged the time machine and switched to SWIG 1.3.12
+
+2002-04-05 12:33  Luigi Ballabio
+
+	* [r2178] Ruby/README.txt, Ruby/setup.rb, SWIG/qlarray.i:
+	  
+	  QuantLib-Ruby now works on Win32
+
+2002-04-05 09:39  Luigi Ballabio
+
+	* [r2177] SWIG/vector.i:
+	  
+	  vector.i migrated
+
+2002-04-05 09:37  Luigi Ballabio
+
+	* [r2176] SWIG/common.i, SWIG/string.i, SWIG/vector.i:
+	  
+	  vector.i migrated
+
+2002-04-04 15:01  Luigi Ballabio
+
+	* [r2175] Python/setup.py, Ruby/QuantLib.rb, Ruby/setup.rb, SWIG/ql.i,
+	  SWIG/qlarray.i, SWIG/vector.i:
+	  
+	  vector.i half migrated
+
+2002-04-04 10:14  Luigi Ballabio
+
+	* [r2174] MzScheme/build.scm, Python/setup.py, Ruby/setup.rb,
+	  SWIG/common.i, SWIG/observer.i, SWIG/ql.i:
+	  
+	  observer.i migrated
+
+2002-04-03 13:57  Luigi Ballabio
+
+	* [r2172] MzScheme/quantlib/quantlib.ss, Python/setup.py,
+	  Ruby/setup.rb, SWIG/common.i, SWIG/ql.i, SWIG/qlarray.i,
+	  SWIG/randomnumbers.i, SWIG/types.i:
+	  
+	  Array migrated
+
+2002-04-02 15:30  Luigi Ballabio
+
+	* [r2163] ., MzScheme, MzScheme/Authors.txt, MzScheme/ChangeLog.txt,
+	  MzScheme/Contributors.txt, MzScheme/History.txt,
+	  MzScheme/LICENSE.TXT, MzScheme/build.scm, MzScheme/install.scm,
+	  MzScheme/quantlib, MzScheme/quantlib/quantlib.ss, MzScheme/test,
+	  MzScheme/test.scm, MzScheme/test/date.scm,
+	  MzScheme/test/daycounters.scm, MzScheme/test/distributions.scm,
+	  MzScheme/test/quantlib-test-suite.scm, MzScheme/test/unittest.scm,
+	  Python, Python/Authors.txt, Python/ChangeLog.txt,
+	  Python/Contributors.txt, Python/History.txt, Python/LICENSE.TXT,
+	  Python/MANIFEST.in, Python/News.txt, Python/QuantLib,
+	  Python/QuantLib/LICENSE.TXT, Python/QuantLib/__init__.py,
+	  Python/QuantLib/defaults.py, Python/QuantLib/test,
+	  Python/QuantLib/test/QuantLibTestSuite.py,
+	  Python/QuantLib/test/date.py, Python/QuantLib/test/daycounters.py,
+	  Python/QuantLib/test/distributions.py, Python/QuantLibPython.dsp,
+	  Python/QuantLibPython.mak, Python/README.txt, Python/TODO.txt,
+	  Python/makewrappers.py, Python/setup.py, Ruby, Ruby/Authors.txt,
+	  Ruby/ChangeLog.txt, Ruby/Contributors.txt, Ruby/History.txt,
+	  Ruby/LICENSE.TXT, Ruby/News.txt, Ruby/QuantLib.rb, Ruby/README.txt,
+	  Ruby/setup.rb, Ruby/test, Ruby/test/QuantLibTestSuite.rb,
+	  Ruby/test/dates.rb, Ruby/test/daycounters.rb,
+	  Ruby/test/distributions.rb, SWIG, SWIG/calendars.i, SWIG/common.i,
+	  SWIG/currencies.i, SWIG/date.i, SWIG/daycounters.i,
+	  SWIG/distributions.i, SWIG/null.i, SWIG/ql.i, SWIG/quantlib.i,
+	  SWIG/randomnumbers.i, SWIG/string.i, SWIG/types.i:
+	  
+	  Initial revision
+
