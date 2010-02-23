@@ -1,3 +1,29 @@
+2010-02-11 10:43  Luigi Ballabio
+
+	* [r17094] Python/setup.py:
+	  
+	  Updated module metadata.
+
+2010-02-10 09:09  Luigi Ballabio
+
+	* [r17086] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number to 1.0.
+
+2010-01-27 13:00  Luigi Ballabio
+
+	* [r17048] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number to 1.0b3.
+
+2010-01-21 15:32  Luigi Ballabio
+
+	* [r17021] ChangeLog.txt, News.txt:
+	  
+	  Updated ChangeLog and News
+
 2010-01-13 11:54  Luigi Ballabio
 
 	* [r16996] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
