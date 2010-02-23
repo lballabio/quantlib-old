@@ -46,6 +46,7 @@ using QuantLib::Real;
 using QuantLib::Time;
 using QuantLib::Rate;
 using QuantLib::Spread;
+using QuantLib::Null;
 using QuantLib::YieldTermStructure;
 
 using std::vector;
@@ -60,19 +61,19 @@ namespace QuantLibAddin {
              bool permanent)
     : ObjectHandler::LibraryObject<QuantLib::Leg>(p, permanent)
     {
-        // allow for degenerate vector
-        //QL_REQUIRE(!amounts.empty(),
-        //           "Amounts vector must have at least one element");
-
         QL_REQUIRE(amounts.size() == dates.size(),
                    "Dates (" << dates.size() << ") and amounts (" <<
                    amounts.size() << ") must have the same size");
 
         libraryObject_ = shared_ptr<QuantLib::Leg>(new QuantLib::Leg());
 
-        for (QuantLib::Size i=0; i < amounts.size(); ++i) {
-            libraryObject_->push_back(shared_ptr<CashFlow>(new
-                QuantLib::SimpleCashFlow(amounts[i], dates[i])));
+        for (QuantLib::Size i=0; i<amounts.size(); ++i) {
+            if (dates[i]!=Date())
+                libraryObject_->push_back(shared_ptr<CashFlow>(new
+                    QuantLib::SimpleCashFlow(amounts[i], dates[i])));
+            else
+                QL_REQUIRE(amounts[i]==0 || amounts[i]==Null<Real>(),
+                           "non-null amount (" << amounts[i] << ") on null date");
         }
     }
 
@@ -108,7 +109,8 @@ namespace QuantLibAddin {
         shared_ptr<QuantLib::Leg> leg;
         for (QuantLib::Size i=0; i<legs.size(); ++i) {
             legs[i]->getLibraryObject(leg);
-            libraryObject_->insert(libraryObject_->end(), leg->begin(), leg->end());
+            libraryObject_->insert(libraryObject_->end(),
+                                   leg->begin(), leg->end());
         }
         if (toBeSorted)
             std::stable_sort(libraryObject_->begin(), libraryObject_->end(),
