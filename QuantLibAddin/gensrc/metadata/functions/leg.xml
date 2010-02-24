@@ -1388,6 +1388,11 @@
             <tensorRank>vector</tensorRank>
             <description>payment dates corresponding to amounts.</description>
           </Parameter>
+          <Parameter name='ToBeSorted' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the CashFlows must be sorted by ascending dates.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -1417,7 +1422,7 @@
           <Parameter name='ToBeSorted' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the CashFlows in the merged Leg must be sorted according to date/amount.</description>
+            <description>TRUE if the CashFlows must be sorted by ascending dates.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

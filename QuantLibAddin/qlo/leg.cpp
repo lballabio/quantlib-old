@@ -58,6 +58,7 @@ namespace QuantLibAddin {
     Leg::Leg(const shared_ptr<ValueObject>& p,
              const vector<Real>& amounts,
              const vector<Date>& dates,
+             bool toBeSorted,
              bool permanent)
     : ObjectHandler::LibraryObject<QuantLib::Leg>(p, permanent)
     {
@@ -75,6 +76,10 @@ namespace QuantLibAddin {
                 QL_REQUIRE(amounts[i]==0 || amounts[i]==Null<Real>(),
                            "non-null amount (" << amounts[i] << ") on null date");
         }
+
+        if (toBeSorted)
+            std::stable_sort(libraryObject_->begin(), libraryObject_->end(),
+                             earlier_than<shared_ptr<CashFlow> >());
     }
 
     void Leg::setCouponPricers(
