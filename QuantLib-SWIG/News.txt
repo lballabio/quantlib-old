@@ -1,0 +1,172 @@
+
+Release 1.0 - February 2010
+Changes since Release 0.9.9:
+    - in sync with QuantLib 1.0
+
+Release 0.9.9 - November 2009
+Changes since Release 0.9.7:
+    - in sync with QuantLib 0.9.9
+    - migrated to SWIG 1.3.40
+    - added complete Bond and FixedRateBond bindings (thanks to Joe Malicki)
+    - exported Asian options
+    - fix for C# compilation (thanks to Grant Birchmeier)
+    - fixes for Python 2.6 compilation
+
+Release 0.9.7 - November 2008
+Changes since Release 0.9.6:
+    - in sync with QuantLib 0.9.7
+    - added C# projects for Visual Studio 8 and 9
+    - Exported GeometricBrownianMotionProcess (thanks to Tito Ingargiola)
+
+Release 0.9.6 - August 2008
+Changes since Release 0.9.5:
+    - in sync with QuantLib 0.9.6
+
+Release 0.9.5 - July 2008
+Changes since Release 0.9.0:
+    - in sync with QuantLib 0.9.5
+    - migrated to SWIG 1.3.36
+    - added DiscreteHedging example to Java module (thanks
+      to Tito Ingargiola)
+
+Release 0.9.0 - December 2007
+Changes since Release 0.8.0:
+    - in sync with QuantLib 0.9.0
+    - migrated to SWIG 1.3.33
+    - added binomial-Joshi and FD-bermudan engines (thanks to Richard
+      Gomes and Tito Ingargiola)
+    - added equity-option example for Java (thanks to Richard Gomes
+      and Tito Ingargiola)
+    - added Brazilian exchange calendar (thanks to Richard Gomes)
+    - added equity-option example in C# (thanks to Eric Jensen)
+    - exported Vasicek model and more methods (thanks to Luis Cota)
+    - added get and set methods to Matrix and Array in C# and Java
+      (thanks to Paul Gentry)
+
+Release 0.8.0 - May 2007
+Changes since Release 0.4.0:
+    - in sync with QuantLib 0.8.0
+
+Release 0.4.0 - February 20th, 2007
+Changes since Release 0.3.14:
+    - in sync with QuantLib 0.4.0
+    - migrated to SWIG 1.3.31
+
+Release 0.3.14 - November 6th, 2006
+Changes since Release 0.3.13:
+    - in sync with QuantLib 0.3.14
+
+Release 0.3.13 - July 31st, 2006
+Changes since Release 0.3.12:
+    - in sync with QuantLib 0.3.13
+    - migrated to SWIG 1.3.29
+
+Release 0.3.12 - March 27th, 2006
+Experimental version of the R and Objective Caml modules (thanks to
+Joseph Wang)
+Changes since Release 0.3.11:
+    - in sync with QuantLib 0.3.12
+
+Release 0.3.11 - October 20th, 2005
+First version of the C#, Java, and Perl modules (thanks to Dominic
+Thuiller, Johan Witters, and Joseph Wang, respectively.)
+Changes since Release 0.3.10:
+    - in sync with QuantLib 0.3.11
+    - migrated to SWIG 1.3.27
+
+Release 0.3.10 - July 14th, 2005
+Changes since Release 0.3.9:
+    - in sync with QuantLib 0.3.10
+    - migrated to SWIG 1.3.25
+
+Release 0.3.9 - May 2nd, 2005
+Changes since Release 0.3.8:
+    - in sync with QuantLib 0.3.9
+
+Release 0.3.8 - December 22nd, 2004
+Changes since Release 0.3.7:
+    - in sync with QuantLib 0.3.8
+
+Release 0.3.7 - July 23rd, 2004
+Changes since Release 0.3.6:
+    - in sync with QuantLib 0.3.7
+
+Release 0.3.6 - April 15th, 2004
+Changes since Release 0.3.5:
+    - in sync with QuantLib 0.3.6
+
+Release 0.3.5 - March 31st, 2004
+Changes since Release 0.3.4:
+    - in sync with QuantLib 0.3.5
+    - migrated to SWIG 1.3.21
+
+Release 0.3.4 - November 21th, 2003
+Changes since Release 0.3.3:
+    - in sync with QuantLib 0.3.4
+    - Removed tests duplicating C++ tests. The test-suites now test
+      language-specific features only.
+    - Added PyPI metadata
+    - Moved MzScheme tests from in-house framework to Schemeunit
+    - Moved Guile tests from in-house framework to Greg
+
+Release 0.3.3 - September 3rd, 2003
+Changes since Release 0.3.1:
+    - in sync with QuantLib 0.3.3
+    - Migrated to SWIG 1.3.19
+
+Release 0.3.1 - February 4th, 2003
+First version of the MzScheme and Guile modules.
+Changes since Release 0.3.0:
+    - in sync with QuantLib 0.3.1
+    - Migrated to SWIG 1.3.17
+    - merged under a global QuantLib-SWIG project
+    - bug fixing
+
+Release 0.3.0 - May 6th, 2002
+Changes since Release 0.2.1:
+    - in sync with QuantLib 0.3.0
+    - more info on the tested library
+    - using old version of the library forbidden
+    - Using unittest methods for signaling failures
+    - bug fixing
+    - Exported derived and composite market element
+    - Extended Monte Carlo tests
+
+Release 0.2.1 - December 3rd, 2001
+First version of the Ruby module.
+Changes since Release 0.2.0:
+    - in sync with QuantLib 0.2.1
+    - Upgraded to SWIG 1.3.9
+    - changed iterator behavior in Python module
+    - added __version__ and __hexversion__ export of C++ QL_VERSION and
+      QL_HEX_VERSION
+    - added 'testing QuantLib x.x.x' message to tests
+    - updated and expanded test suite
+
+Release 0.2.0 - September 18th, 2001
+Changes since Release 0.1.9:
+  - added Actual/Actual classes
+  - added day counter test
+  - compiles with Borland free C++ compiler
+  - Added more aliases for option types and rolling conventions
+  - installation folders changed (for win32 and unixes)
+  - improved default arguments
+  - added many currencies
+  - Added swaps to piecewise flat forward
+  - clean compilation (no warnings)
+  - added dividend-Rho greek
+  - First implementation of segment integral (to be redesigned)
+  - Knuth random generator
+  - Cash flows, scheduler, and swap (both generic and simple) added
+  - added ICGaussian random generator
+  - generic bug fixes
+  - Debian packages available
+
+Release 0.1.9 - May 31st, 2001
+QuantLib-Python has been enucleated from QuantLib (QuantLib-Python 0.1.1 was
+included in QuantLib 0.1.1)
+Changes since release 0.1.1:
+  - in sync with the QuantLib 0.1.9 release.
+  - written test suite using the pyUnit framework
+  - distutils is now used for installation and source/binaries distributions
+
