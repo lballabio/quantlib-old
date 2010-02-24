@@ -155,6 +155,11 @@ namespace QuantLibAddin {
 
         std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis() const;
         const QuantLib::Leg& getQuantLibLeg();
+        Leg(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::vector<QuantLib::Real>& amounts,
+            const std::vector<QuantLib::Date>& dates,
+            bool toBeSorted,
+            bool permanent);
       protected:
         OH_OBJ_CTOR(Leg, ObjectHandler::Object);
         // copy or shared_ptr?
@@ -169,13 +174,14 @@ namespace QuantLibAddin {
                       bool permanent);
     };
 
-    class SimpleCashFlowVector : public Leg {
-      public:
-        SimpleCashFlowVector(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-                             const std::vector<QuantLib::Real>& amounts,
-                             const std::vector<QuantLib::Date>& dates,
-                             bool permanent);
-    };
+    //class SimpleCashFlowVector : public Leg {
+    //  public:
+    //    SimpleCashFlowVector(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+    //                         const std::vector<QuantLib::Real>& amounts,
+    //                         const std::vector<QuantLib::Date>& dates,
+    //                         bool toBeSorted,
+    //                         bool permanent);
+    //};
 
     class InterestRate : public ObjectHandler::LibraryObject<QuantLib::InterestRate> {
       public:

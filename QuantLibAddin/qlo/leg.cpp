@@ -323,12 +323,12 @@ namespace QuantLibAddin {
                              earlier_than<shared_ptr<CashFlow> >());
     };
 
-    SimpleCashFlowVector::SimpleCashFlowVector(
-                                            const shared_ptr<ValueObject>& p,
-                                            const vector<Real>& amounts,
-                                            const vector<Date>& dates,
-                                            bool permanent)
-    : Leg(p, permanent) {
+    Leg::Leg(const shared_ptr<ValueObject>& p,
+             const vector<Real>& amounts,
+             const vector<Date>& dates,
+             bool toBeSorted,
+             bool permanent)
+    : ObjectHandler::Object(p, permanent) {
         QL_REQUIRE(!amounts.empty(),
                    "Amounts vector must have at least one element");
         QL_REQUIRE(amounts.size() == dates.size(),
@@ -337,6 +337,9 @@ namespace QuantLibAddin {
             leg_.push_back(shared_ptr<CashFlow>(new
                 QuantLib::SimpleCashFlow(amounts[i], dates[i])));
         }
+        if (toBeSorted)
+            std::stable_sort(leg_.begin(), leg_.end(),
+                             earlier_than<shared_ptr<CashFlow> >());
     }
 
     InterestRate::InterestRate(const shared_ptr<ValueObject>& properties,

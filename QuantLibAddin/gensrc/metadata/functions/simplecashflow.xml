@@ -15,7 +15,7 @@
   <Functions>
 
     <Constructor name='qlLeg'>
-      <libraryFunction>SimpleCashFlowVector</libraryFunction>
+      <libraryFunction>Leg</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
@@ -32,6 +32,11 @@
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
             <description>payment dates corresponding to amounts.</description>
+          </Parameter>
+          <Parameter name='ToBeSorted' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the CashFlows in the merged Leg must be sorted by ascending date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -1000,7 +1000,7 @@
           <Parameter name='ToBeSorted' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the CashFlows in the merged Leg must be sorted according to date/amount.</description>
+            <description>TRUE if the CashFlows in the merged Leg must be sorted by ascending date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
