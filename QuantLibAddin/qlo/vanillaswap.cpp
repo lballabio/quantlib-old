@@ -72,6 +72,7 @@ namespace QuantLibAddin {
             const QuantLib::Period& fwdStart,
             const QuantLib::DayCounter& fixDayCounter,
             QuantLib::Spread floatingLegSpread,
+            std::string,
             bool permanent)
     : Swap(properties, permanent)
     {
@@ -90,6 +91,7 @@ namespace QuantLibAddin {
             const QuantLib::Date& immDate,
             const QuantLib::DayCounter& fixDayCounter,
             QuantLib::Spread floatingLegSpread,
+            std::string,
             bool permanent)
     : Swap(properties, permanent)
     {

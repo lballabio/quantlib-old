@@ -54,6 +54,7 @@ namespace QuantLibAddin {
             const QuantLib::Period& forwardStart,
             const QuantLib::DayCounter& fixLegDayCounter,
             QuantLib::Spread floatingLegSpread,
+            std::string dummy,
             bool permanent);
         VanillaSwap( // MakeIMMSwap
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -63,6 +64,7 @@ namespace QuantLibAddin {
             const QuantLib::Date& immDate,
             const QuantLib::DayCounter& fixLegDayCounter,
             QuantLib::Spread floatingLegSpread,
+            std::string dummy,
             bool permanent);
         VanillaSwap( // SwapIndex->underlyingSwap()
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

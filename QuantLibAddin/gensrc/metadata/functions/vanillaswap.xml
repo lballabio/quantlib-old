@@ -139,6 +139,12 @@
             <tensorRank>scalar</tensorRank>
             <description>floating leg spread.</description>
           </Parameter>
+          <!--<Parameter name='PricingEngineID' default='boost::shared_ptr&lt;QuantLib::PricingEngine&gt;()'>-->
+          <Parameter name='PricingEngineID' default='"NotUsedYet"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>PricingEngine object ID. Not used yet</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -181,6 +187,12 @@
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>floating leg spread.</description>
+          </Parameter>
+          <!--<Parameter name='PricingEngineID' default='boost::shared_ptr&lt;QuantLib::PricingEngine&gt;()'>-->
+          <Parameter name='PricingEngineID' default='"NotUsedYet"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>PricingEngine object ID. Not used yet</description>
           </Parameter>
         </Parameters>
       </ParameterList>
