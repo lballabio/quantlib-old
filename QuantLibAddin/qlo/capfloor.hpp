@@ -22,8 +22,8 @@
 #define qla_capfloor_hpp
 
 #include <qlo/baseinstruments.hpp>
-#include <ql/instruments/capfloor.hpp>
 
+#include <ql/instruments/capfloor.hpp>
 
 namespace QuantLib {
     class IborIndex;
