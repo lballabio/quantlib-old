@@ -26,40 +26,45 @@
 #include <qlo/capfloor.hpp>
 #include <qlo/flowanalysis.hpp>
 #include <qlo/couponvectors.hpp>
+
 #include <ql/instruments/makecapfloor.hpp>
+
+using boost::shared_ptr;
+using ObjectHandler::ValueObject;
+using std::vector;
 
 namespace QuantLibAddin {
 
-    CapFloor::CapFloor(
-                 const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+    CapFloor::CapFloor(const shared_ptr<ValueObject>& properties,
                  QuantLib::CapFloor::Type type,
                  const QuantLib::Leg& floatingLeg,
-                 const std::vector<QuantLib::Rate>& strikes,
-                 bool permanent) : Instrument(properties, permanent)
+                 const vector<QuantLib::Rate>& strikes,
+                 bool permanent)
+    : Instrument(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+        libraryObject_ = shared_ptr<QuantLib::Instrument>(new
             QuantLib::CapFloor(type, floatingLeg, strikes));
     }
 
-    CapFloor::CapFloor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+    CapFloor::CapFloor(const shared_ptr<ValueObject>& properties,
                        QuantLib::CapFloor::Type capFloorType,
                        const QuantLib::Period& capFloorTenor,
-                       const boost::shared_ptr<QuantLib::IborIndex>& index,
+                       const shared_ptr<QuantLib::IborIndex>& index,
                        QuantLib::Rate strike,
                        const QuantLib::Period& forwardStart,
-                       const boost::shared_ptr<QuantLib::PricingEngine>& engine,
+                       const shared_ptr<QuantLib::PricingEngine>& engine,
                        bool permanent)
     : Instrument(properties, permanent)
     {
         libraryObject_ = QuantLib::MakeCapFloor(capFloorType, capFloorTenor,
                                                 index, strike, forwardStart)
                          .withPricingEngine(engine)
-                         .operator boost::shared_ptr<QuantLib::CapFloor>();
+                         .operator shared_ptr<QuantLib::CapFloor>();
     }
 
-    std::vector<std::vector<ObjectHandler::property_t> > CapFloor::legAnalysis()
+    vector<vector<ObjectHandler::property_t> > CapFloor::legAnalysis()
     {
-        boost::shared_ptr<QuantLib::CapFloor> temp;
+        shared_ptr<QuantLib::CapFloor> temp;
         getLibraryObject(temp);
         const QuantLib::Leg& cashflows = temp->floatingLeg();
         return flowAnalysis(cashflows);
