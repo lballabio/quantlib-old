@@ -23,6 +23,7 @@
 #define qla_simpleswap_hpp
 
 #include <qlo/swap.hpp>
+
 #include <ql/instruments/vanillaswap.hpp>
 
 namespace QuantLib {
@@ -54,6 +55,7 @@ namespace QuantLibAddin {
             const QuantLib::Period& forwardStart,
             const QuantLib::DayCounter& fixLegDayCounter,
             QuantLib::Spread floatingLegSpread,
+            const boost::shared_ptr<QuantLib::PricingEngine>& engine,
             bool permanent);
         VanillaSwap( // MakeIMMSwap
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -63,6 +65,7 @@ namespace QuantLibAddin {
             const QuantLib::Date& immDate,
             const QuantLib::DayCounter& fixLegDayCounter,
             QuantLib::Spread floatingLegSpread,
+            const boost::shared_ptr<QuantLib::PricingEngine>& engine,
             bool permanent);
         VanillaSwap( // SwapIndex->underlyingSwap()
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
