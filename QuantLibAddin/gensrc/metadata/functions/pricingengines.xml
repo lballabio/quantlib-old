@@ -931,7 +931,7 @@
       </ReturnValue>
     </Member>
 
-    <Constructor name='qlBlackCalculator'>
+    <Constructor name='qlBlackCalculator2'>
       <libraryFunction>BlackCalculator</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -1059,7 +1059,7 @@
       </ReturnValue>
     </Member>
 
-    <Constructor name='qlBlackScholesCalculator'>
+    <Constructor name='qlBlackScholesCalculator2'>
       <libraryFunction>BlackScholesCalculator</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
