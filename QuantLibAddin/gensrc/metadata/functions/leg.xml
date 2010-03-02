@@ -4,11 +4,14 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
     <include>qlo/couponvectors.hpp</include>
+    <include>qlo/capfloor.hpp</include>
   </serializationIncludes>
   <addinIncludes>
     <include>qlo/couponvectors.hpp</include>
     <include>qlo/conundrumpricer.hpp</include>
     <include>qlo/termstructures.hpp</include>
+    <include>qlo/capfloor.hpp</include>
+
     <include>ql/termstructures/yieldtermstructure.hpp</include>
   </addinIncludes>
   <copyright>
@@ -1392,6 +1395,24 @@
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if the CashFlows must be sorted by ascending dates.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlLegFromCapFloor'>
+      <libraryFunction>Leg</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CapFloor'>
+            <type>QuantLib::CapFloor</type>
+            <tensorRank>scalar</tensorRank>
+            <description>CapFloor object ID.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

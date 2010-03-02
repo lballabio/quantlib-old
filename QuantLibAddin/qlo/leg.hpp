@@ -31,6 +31,7 @@
 
 namespace QuantLib {
     class FloatingRateCouponPricer;
+    class CapFloor;
 }
 
 namespace QuantLibAddin {
@@ -45,6 +46,9 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Real>& amounts,
             const std::vector<QuantLib::Date>& dates,
             bool toBeSorted,
+            bool permanent);
+        Leg(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::CapFloor>& capFloor,
             bool permanent);
         void setCouponPricers(const std::vector<boost::shared_ptr<QuantLibAddin::FloatingRateCouponPricer> >& p);
         std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis() const;

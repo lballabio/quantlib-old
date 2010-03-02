@@ -30,6 +30,7 @@
 #include <qlo/enumerations/factories/iborcouponpricersfactory.hpp>
 #include <qlo/couponvectors.hpp>
 
+#include <ql/instruments/capfloor.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
 #include <ql/cashflows/simplecashflow.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
@@ -80,6 +81,15 @@ namespace QuantLibAddin {
         if (toBeSorted)
             std::stable_sort(libraryObject_->begin(), libraryObject_->end(),
                              earlier_than<shared_ptr<CashFlow> >());
+    }
+
+    Leg::Leg(const shared_ptr<ValueObject>& p,
+             const boost::shared_ptr<QuantLib::CapFloor>& capFloor,
+             bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::Leg>(p, permanent)
+    {
+        libraryObject_ = shared_ptr<QuantLib::Leg>(new QuantLib::Leg());
+        *libraryObject_ = capFloor->floatingLeg();
     }
 
     void Leg::setCouponPricers(
