@@ -24,7 +24,7 @@
 
 #include <oh/libraryobject.hpp>
 
-#include <ql/types.hpp>
+#include <ql/option.hpp>
 
 namespace QuantLib {
     class Date;
@@ -124,18 +124,34 @@ namespace QuantLibAddin {
       public:
         BlackCalculator(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Option::Type optionType,
+            QuantLib::Real strike,
+            QuantLib::Real forward,
+            QuantLib::Real variance,
+            QuantLib::DiscountFactor discount,
+            bool permanent);
+        BlackCalculator(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
             QuantLib::Real forward,
             QuantLib::Real variance,
             QuantLib::DiscountFactor discount,
             bool permanent);
       protected:
-        //BlackCalculator() {}
         OH_LIB_CTOR(BlackCalculator, QuantLib::BlackCalculator);
     };
 
     class BlackScholesCalculator : public BlackCalculator {
       public:
+        BlackScholesCalculator(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Option::Type optionType,
+            QuantLib::Real strike,
+            QuantLib::Real spot,
+            QuantLib::DiscountFactor growth,
+            QuantLib::Real variance,
+            QuantLib::DiscountFactor discount,
+            bool permanent);
         BlackScholesCalculator(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
@@ -156,4 +172,3 @@ namespace QuantLibAddin {
 }
 
 #endif
-

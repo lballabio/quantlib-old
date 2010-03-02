@@ -931,7 +931,7 @@
       </ReturnValue>
     </Member>
 
-    <Constructor name='qlBlackCalculator'>
+    <Constructor name='qlBlackCalculator2'>
       <libraryFunction>BlackCalculator</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -943,7 +943,45 @@
           <Parameter name='PayoffID'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>payoff ID.</description>
+            <description>StrikedTypePayoff ID.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBlackCalculator'>
+      <libraryFunction>BlackCalculator</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionType'>
+            <type>QuantLib::Option::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option type (i.e. Call or Put).</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
           </Parameter>
           <Parameter name='AtmForwardValue' exampleValue='100.0'>
             <type>QuantLib::Real</type>
@@ -1059,7 +1097,7 @@
       </ReturnValue>
     </Member>
 
-    <Constructor name='qlBlackScholesCalculator'>
+    <Constructor name='qlBlackScholesCalculator2'>
       <libraryFunction>BlackScholesCalculator</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -1071,7 +1109,50 @@
           <Parameter name='PayoffID'>
             <type>QuantLib::StrikedTypePayoff</type>
             <tensorRank>scalar</tensorRank>
-            <description>payoff ID.</description>
+            <description>StrikedTypePayoff ID.</description>
+          </Parameter>
+          <Parameter name='Spot' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spot value.</description>
+          </Parameter>
+          <Parameter name='Growth' default='1.0'>
+            <type>QuantLib::DiscountFactor</type>
+            <tensorRank>scalar</tensorRank>
+            <description>growth discount factor.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBlackScholesCalculator'>
+      <libraryFunction>BlackScholesCalculator</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionType'>
+            <type>QuantLib::Option::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option type (i.e. Call or Put).</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
           </Parameter>
           <Parameter name='Spot' exampleValue='100.0'>
             <type>QuantLib::Real</type>

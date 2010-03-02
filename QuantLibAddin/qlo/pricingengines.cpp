@@ -118,6 +118,20 @@ namespace QuantLibAddin {
 
     BlackCalculator::BlackCalculator(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+        QuantLib::Option::Type optionType,
+        QuantLib::Real strike,
+        QuantLib::Real forward,
+        QuantLib::Real stdDev,
+        QuantLib::DiscountFactor discount,
+        bool permanent)
+        : ObjectHandler::LibraryObject<QuantLib::BlackCalculator>(properties, permanent) {
+        libraryObject_ = boost::shared_ptr<QuantLib::BlackCalculator>(new
+            QuantLib::BlackCalculator(optionType, strike,
+                                      forward, stdDev, discount));
+    }
+
+    BlackCalculator::BlackCalculator(
+        const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const boost::shared_ptr<QuantLib::StrikedTypePayoff>& payoff,
         QuantLib::Real forward,
         QuantLib::Real stdDev,
@@ -125,7 +139,23 @@ namespace QuantLibAddin {
         bool permanent)
         : ObjectHandler::LibraryObject<QuantLib::BlackCalculator>(properties, permanent) {
         libraryObject_ = boost::shared_ptr<QuantLib::BlackCalculator>(new
-            QuantLib::BlackCalculator(payoff, forward, stdDev, discount));
+            QuantLib::BlackCalculator(payoff,
+                                      forward, stdDev, discount));
+    }
+
+    BlackScholesCalculator::BlackScholesCalculator(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Option::Type optionType,
+            QuantLib::Real strike,
+            QuantLib::Real spot,
+            QuantLib::DiscountFactor growth,
+            QuantLib::Real stdDev,
+            QuantLib::DiscountFactor discount,
+            bool permanent) : BlackCalculator(properties, permanent)
+    {
+        libraryObject_ = boost::shared_ptr<QuantLib::BlackCalculator>(new
+            QuantLib::BlackScholesCalculator(optionType, strike,
+                                             spot, growth, stdDev, discount));
     }
 
     BlackScholesCalculator::BlackScholesCalculator(
@@ -138,8 +168,8 @@ namespace QuantLibAddin {
             bool permanent) : BlackCalculator(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::BlackCalculator>(new
-            QuantLib::BlackScholesCalculator(payoff, spot, growth, stdDev,
-                                             discount));
+            QuantLib::BlackScholesCalculator(payoff,
+                                             spot, growth, stdDev, discount));
     }
 
     BondEngine::BondEngine(
