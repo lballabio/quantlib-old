@@ -62,7 +62,6 @@ GENSRC_METADATA :=  metadata/addins/calc.xml \
                     metadata/functions/sequencestatistics.xml \
                     metadata/functions/settings.xml \
                     metadata/functions/shortratemodels.xml \
-                    metadata/functions/simplecashflow.xml \
                     metadata/functions/smilesection.xml \
                     metadata/functions/statistics.xml \
                     metadata/functions/swaptionvolstructure.xml \
