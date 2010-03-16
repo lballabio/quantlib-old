@@ -1,6 +1,12 @@
     boost::shared_ptr<ObjectHandler::Object> create_%(functionName)s(
         const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject) {
 %(cppConversions)s%(libraryConversions)s%(enumConversions)s%(objectConversions)s%(referenceConversions)s
+        // update value object precedent IDs (if any)
+
+%(populateObjectIDs)s
+
+        // construct and return the object
+
         boost::shared_ptr<ObjectHandler::Object> object(
             new %(namespaceObjects)s::%(libraryFunction)s(
                 valueObject,%(libraryCall)s));

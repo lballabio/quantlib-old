@@ -115,6 +115,22 @@ namespace ObjectHandler {
         virtual std::string processorName()  { return "DefaultProcessor"; }
         //@}
 
+        /*! \name Precedent Object IDs
+            Functions used in managing the list of precedent Objects.
+
+            If any of the precedent Objects changes then the Object associated
+            with this ValueObject must also be recreated.
+        */
+        //@{
+        //! Store the object ID in the list of precedents.
+        void processPrecedentID(const std::string& precedentID);
+        //! Extract the Object ID from the property_t and pass it to processPrecedentID()
+        void processVariant(property_t variantID);
+        //! Extract the Object IDs from the property_t vector and pass them to processPrecedentID()
+        void processVariant(const std::vector<property_t>& vecVariantID);
+        //! Extract the Object IDs from the property_t matrix and pass them to processPrecedentID()
+        void processVariant(const std::vector<std::vector<property_t> >& vecVariantIDs);
+        //@}
     protected:
         //! ID of the Object associated with this ValueObject.
         std::string objectId_;
@@ -125,25 +141,8 @@ namespace ObjectHandler {
         bool permanent_;
         //! Name/Value pair map representing the user defined properties.
         std::map<std::string, property_t> userProperties;
-
-        /*! \name Precedent Object IDs
-            Functions used in managing the list of precedent Objects.
-
-            If any of the precedent Objects changes then the Object associated
-            with this ValueObject must also be recreated.
-        */
-        //@{
         //! List of precedent Object IDs
         std::set<std::string> precedentIDs_;
-        //! Store the object ID in the list of precedents.
-        void processPrecedentID(const std::string& precedentID);
-        //! Extract the Object ID from the property_t and pass it to processPrecedentID()
-        void processVariant(property_t variantID);
-        //! Extract the Object IDs from the property_t vector and pass them to processPrecedentID()
-        void processVariant(const std::vector<property_t>& vecVariantID);
-        //! Extract the Object IDs from the property_t matrix and pass them to processPrecedentID()
-        void processVariant(const std::vector<std::vector<property_t> >& vecVariantIDs);
-        //@}
     };
 
     inline void ValueObject::processPrecedentID(const std::string& precedentID) {

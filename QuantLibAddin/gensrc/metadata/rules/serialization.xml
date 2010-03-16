@@ -102,6 +102,40 @@
       </Rules>
     </RuleGroup>
 
+    <RuleGroup name='populateObjectIDs' indent='0' delimiter='&#10;'>
+      <Wrap/>
+      <Rules>
+        <Rule type='QuantLib::Quote' superType='objectClass' codeID='code68b'/>
+        <Rule type='QuantLib::Quote' superType='objectQuote' codeID='code68b'/>
+        <Rule type='QuantLib::Quote' superType='objectTermStructure' codeID='code68b'/>
+        <Rule type='QuantLib::Quote' superType='libraryClass' codeID='code68b'/>
+        <Rule type='QuantLib::Quote' superType='handleToLib' codeID='code68b'/>
+        <Rule type='QuantLib::Quote' superType='libraryQuote' codeID='code68b'/>
+        <Rule type='QuantLib::Quote' superType='libraryTermStructure' codeID='code68b'/>
+        <Rule type='QuantLib::Quote' superType='underlyingClass' codeID='code68b'/>
+        <Rule type='QuantLib::Quote' superType='libToHandle' codeID='code68b'/>
+        <Rule tensorRank='scalar' superType='objectClass' codeID='code69b'/>
+        <Rule tensorRank='scalar' superType='objectQuote' codeID='code69b'/>
+        <Rule tensorRank='scalar' superType='objectTermStructure' codeID='code69b'/>
+        <Rule tensorRank='scalar' superType='libraryClass' codeID='code69b'/>
+        <Rule tensorRank='scalar' superType='handleToLib' codeID='code69b'/>
+        <Rule tensorRank='scalar' superType='libraryQuote' codeID='code69b'/>
+        <Rule tensorRank='scalar' superType='libraryTermStructure' codeID='code69b'/>
+        <Rule tensorRank='scalar' superType='underlyingClass' codeID='code69b'/>
+        <Rule tensorRank='scalar' superType='libToHandle' codeID='code69b'/>
+        <Rule tensorRank='scalar' superType='handlePredecessor' codeID='code69b'/>
+        <Rule tensorRank='vector' superType='objectClass' codeID='code70b'/>
+        <Rule tensorRank='vector' superType='objectQuote' codeID='code70b'/>
+        <Rule tensorRank='vector' superType='objectTermStructure' codeID='code70b'/>
+        <Rule tensorRank='vector' superType='libraryClass' codeID='code70b'/>
+        <Rule tensorRank='vector' superType='handleToLib' codeID='code70b'/>
+        <Rule tensorRank='vector' superType='libraryQuote' codeID='code70b'/>
+        <Rule tensorRank='vector' superType='libraryTermStructure' codeID='code70b'/>
+        <Rule tensorRank='vector' superType='underlyingClass' codeID='code70b'/>
+        <Rule tensorRank='vector' superType='libToHandle' codeID='code70b'/>
+      </Rules>
+    </RuleGroup>
+
   </RuleGroups>
 
 </root>

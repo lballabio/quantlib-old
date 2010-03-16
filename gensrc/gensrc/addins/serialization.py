@@ -123,7 +123,9 @@ class Serialization(addin.Addin):
                         self.objectConversions_),
                     'namespaceObjects' : environment.config().namespaceObjects(),
                     'referenceConversions' : func.parameterList().generate(
-                        self.referenceConversions_) })
+                        self.referenceConversions_),
+                    'populateObjectIDs' : func.parameterList().generate(
+                        self.populateObjectIDs_) })
 
             self.bufferHeader_.set({
                 'categoryName' : cat.name(),

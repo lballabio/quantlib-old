@@ -590,6 +590,18 @@ code70 = '''\
                     i != %(name)s.end(); ++i)
                 processPrecedentID(*i);'''
 
+code68b = '''\
+        valueObject->processVariant(%(name)s);'''
+
+code69b = '''\
+        valueObject->processPrecedentID(%(name)s);'''
+
+code70b = '''\
+        for (std::vector<std::string>::const_iterator i = %(name)s.begin();
+                i != %(name)s.end(); ++i)
+            valueObject->processPrecedentID(*i);'''
+
+
 ##########################################################################
 # code for Serialization
 ##########################################################################
