@@ -56,7 +56,7 @@
     </Constructor>
 
     <!-- AccountingEngine class interfaces -->
-    <!--Member name='qlAccountingEngineMultiplePathValues' type='QuantLib::AccountingEngine'>
+    <Member name='qlAccountingEngineMultiplePathValues' type='QuantLib::AccountingEngine'>
       <description>return multiple path values.</description>
       <libraryFunction>multiplePathValues</libraryFunction>
       <SupportedPlatforms>
@@ -65,7 +65,7 @@
       <ParameterList>
         <Parameters>
           <Parameter name='SequenceStats'>
-            <type>QuantLib::SequenceStatistics</type>
+            <type>QuantLib::SequenceStatisticsInc</type>
             <superType>underlyingClass</superType>
             <tensorRank>scalar</tensorRank>
             <description>Sequence Statistics object ID.</description>
@@ -81,7 +81,7 @@
         <type>void</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
-    </Member-->
+    </Member>
 
   </Functions>
 </Category>
