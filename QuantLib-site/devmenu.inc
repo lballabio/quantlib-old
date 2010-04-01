@@ -7,8 +7,6 @@
 
 <li class="navlink"><a href="/reference/index.html">Reference Manual</a></li>
 
-<li class="navlink"><a href="/quep.shtml">Enhancement Proposals</a></li>
-
 <li class="navlink"><a href="/svn.shtml">Subversion</a></li>
 
 <li class="navlink"><a href=
