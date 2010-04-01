@@ -1,0 +1,37 @@
+<!--
+ $Id$
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="qlmeta.inc"-->
+<meta name="author" content="StatPro Italia srl">
+<meta name="copyright" content="StatPro Italia srl (c) 2004">
+<meta name="description" content="QuantLib Documentation">
+<title>QuantLib - page removed</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="header.inc"-->
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
+<h2 class="center">Sorry, the page you requested does no longer exist.</h2>
+
+You can look for the content you need by perusing the links on the
+right or by using the Google search form below the links to perform a
+search on this site.  You might also want to notify the owner of the
+referring page to remove all references to this address.
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>

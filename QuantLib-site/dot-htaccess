@@ -3,6 +3,7 @@ RewriteCond %{HTTP_HOST} ^www\.quantlib\.org$ [NC]
 RewriteRule ^(.*)$ http://quantlib.org/$1 [R=301,L]
 
 ErrorDocument 404 /notfound.shtml
+ErrorDocument 410 /gone.shtml
 
 Redirect 301 /index.html http://quantlib.org/index.shtml
 Redirect 301 /books.html http://quantlib.org/books.shtml
@@ -28,3 +29,9 @@ Redirect 301 /index.shtm http://quantlib.org/index.shtml
 Redirect 301 /) http://quantlib.org/index.shtml
 Redirect 301 /Documentation http://quantlib.org/docs.shtml
 Redirect 301 /</a> http://quantlib.org/index.shtml
+
+Redirect gone /gm/
+Redirect gone /gm
+Redirect gone /prerelease/
+Redirect gone /prerelease
+Redirect gone /snapshot.html
