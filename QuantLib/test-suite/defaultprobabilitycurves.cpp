@@ -146,7 +146,7 @@ namespace {
 
         Date today = Settings::instance().evaluationDate();
 
-        Integer settlementDays = 0;
+        Integer settlementDays = 1;
 
         std::vector<Real> quote;
         quote.push_back(0.005);
@@ -203,7 +203,8 @@ namespace {
                               convention, Unadjusted, rule, false);
 
             CreditDefaultSwap cds(Protection::Buyer, notional, quote[i],
-                                  schedule, convention, dayCounter);
+                                  schedule, convention, dayCounter,
+                                  true, true, protectionStart);
             cds.setPricingEngine(boost::shared_ptr<PricingEngine>(
                            new MidPointCdsEngine(piecewiseCurve, recoveryRate,
                                                  discountCurve)));
@@ -289,7 +290,8 @@ namespace {
 
             CreditDefaultSwap cds(Protection::Buyer, notional,
                                   quote[i], fixedRate,
-                                  schedule, convention, dayCounter);
+                                  schedule, convention, dayCounter,
+                                  true, true, protectionStart);
             cds.setPricingEngine(boost::shared_ptr<PricingEngine>(
                            new MidPointCdsEngine(piecewiseCurve, recoveryRate,
                                                  discountCurve, true)));

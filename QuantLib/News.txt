@@ -22,3 +22,12 @@ Changes for QuantLib 1.0.1:
   day counters (e.g., ActualActual::Bond) the null dates caused an
   exception instead.
 
+- Bug fix: properly account for CDS protection-start date.
+  During bootstrap of the default-probability curve, the
+  protection-start date was taken into account when calculating the
+  coupon schedule of the underlying CDS but not when calculating its
+  value (a few days of protection could be lost.)
+  Also, sometimes the protection-start date was compared incorrectly
+  to the accrual-start date leading to false positives when checking
+  requirements.
+
