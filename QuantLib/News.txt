@@ -31,3 +31,9 @@ Changes for QuantLib 1.0.1:
   to the accrual-start date leading to false positives when checking
   requirements.
 
+- Bug fix: coupon pricers now properly check for the result of the
+  dynamic_cast they perform.
+  Previously, setting a pricer to a coupon of the wrong type would
+  cause an access violation by dereferencing the null pointer
+  returned by the failed cast.
+
