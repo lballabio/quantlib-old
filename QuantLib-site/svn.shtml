@@ -83,6 +83,13 @@ e.g.,</p>
 svn checkout https://quantlib.svn.sourceforge.net/svnroot/quantlib/trunk/QuantLib
 </pre>
 
+<p>If you have <a href="http://tortoisesvn.net/about">TortoiseSVN</a> (for
+Windows) installed, with just one click you can check out the <a href=
+"tsvn:https://quantlib.svn.sourceforge.net/svnroot/quantlib/trunk/">whole
+sourcecode</a> or the <a href=
+"tsvn:https://quantlib.svn.sourceforge.net/svnroot/quantlib/trunk/QuantLib/">core
+library</a>.</p>
+
 <p>Also, it is possible to <a href=
 "http://quantlib.svn.sourceforge.net/viewvc/quantlib/">browse the
 Subversion repository</a>: this gives you a view into the current
