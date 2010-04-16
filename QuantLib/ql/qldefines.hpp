@@ -77,9 +77,13 @@
 #endif
 
 
+// ensure that needed math constants are defined
+#include <ql/mathconstants.hpp>
+
+
 // import global functions into std namespace
-#include <cmath>
 #if defined(BOOST_NO_STDC_NAMESPACE)
+    #include <cmath>
     namespace std {
         using ::sqrt; using ::abs; using ::fabs;
         using ::exp; using ::log; using ::pow;

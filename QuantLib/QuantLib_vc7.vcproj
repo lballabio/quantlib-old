@@ -5569,6 +5569,9 @@
 			RelativePath=".\ql\interestrate.hpp">
 		</File>
 		<File
+			RelativePath=".\ql\mathconstants.hpp">
+		</File>
+		<File
 			RelativePath=".\ql\money.cpp">
 		</File>
 		<File

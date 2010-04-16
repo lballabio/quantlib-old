@@ -23,14 +23,5 @@
 
 #include <ql/userconfig.hpp>
 
-/*******************************************
-   System configuration section:
-   do not modify the following definitions.
- *******************************************/
-
-#define M_SQRT_2    0.7071067811865475244008443621048490392848359376887
-#define M_1_SQRTPI  0.564189583547756286948
-#define M_SQRTPI    1.77245385090551602792981
-
 
 #endif
