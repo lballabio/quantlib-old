@@ -113,7 +113,7 @@ quantlib.hpp: Makefile.am
 	echo "#endif" >> $@
 	echo >> $@
 	for i in $(filter-out auto_link.hpp config.hpp quantlib.hpp \
-                          qldefines.hpp mathdefines.hpp version.hpp, \
+                          qldefines.hpp mathconstants.hpp version.hpp, \
 	           $(this_include_HEADERS)); do \
 		echo "#include <${subdir}/$$i>" >> $@; \
 	done
