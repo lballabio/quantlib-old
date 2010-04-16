@@ -99,6 +99,7 @@ EXTRA_DIST= \
 	config.ansi.hpp \
 	config.msvc.hpp \
 	config.mingw.hpp \
+	config.sun.hpp \
 	userconfig.hpp
 
 quantlib.hpp: Makefile.am

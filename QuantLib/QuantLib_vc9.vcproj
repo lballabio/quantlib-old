@@ -7402,6 +7402,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\ql\config.sun.hpp"
+			>
+		</File>
+		<File
 			RelativePath=".\ql\currency.cpp"
 			>
 		</File>

@@ -1,7 +1,7 @@
 [Project]
 FileName=QuantLib.dev
 Name=QuantLib
-UnitCount=1626
+UnitCount=1627
 Type=2
 Ver=1
 ObjFiles=
@@ -16299,6 +16299,16 @@ BuildCmd=
 
 [Unit1626]
 FileName=ql\mathconstants.hpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit1627]
+FileName=ql\config.sun.hpp
 CompileCpp=1
 Folder=
 Compile=1
