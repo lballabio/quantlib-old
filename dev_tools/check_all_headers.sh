@@ -3,6 +3,7 @@
 # execute this script from the root QuantLib directory
 
 find ./ql -name *.hpp \
-| grep -v '/all\.hpp$' | grep -v '/auto_link\.hpp$' | grep -v 'config' \
+| grep -v '/all\.hpp$' | grep -v '/auto_link\.hpp$' \
+| grep -v 'config' | grep -v '/mathconstants\.hpp$'\
 | xargs -n 1 ../dev_tools/check_header.py
 
