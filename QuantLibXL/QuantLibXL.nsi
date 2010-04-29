@@ -1,29 +1,34 @@
 
+; QuantLibXL full installer
 # to be used with NSIS 2.0 and up
 
 #SetCompressor /SOLID lzma
 
+!define APP "QuantLibXL"
 !define VER_NUMBER "1.1.0"
 !define VER_NUMBER_UNDERSCORE "1_1_0"
 !define COMPILER "vc90"
+
+!define REV_NUMBER "-Rev17291"
 !define /date NOW "%Y%m%d-%H_%M"
 
 # HEADER CONFIGURATION COMMANDS
-Name "QuantLibXL"
-Caption "QuantLibXL - Setup"
+Name "${APP}"
+Caption "${APP} - Setup"
 
-OutFile "..\QuantLibXL-${VER_NUMBER}-${NOW}.exe"
+#OutFile "..\${APP}-${VER_NUMBER}-${REV_NUMBER}-${NOW}.exe"
+OutFile "..\${APP}-${VER_NUMBER}.exe"
 
 
-ComponentText "This will install QuantLibXL ${VER_NUMBER} on your computer"
+ComponentText "This will install ${APP} ${VER_NUMBER} on your computer"
 
 SilentInstall normal
 CRCCheck on
 LicenseText "You must agree with the following license before installing:"
 LicenseData "LICENSE.TXT"
-DirText "Please select a location to install QuantLibXL-${VER_NUMBER} (or use the default):"
-InstallDir $PROGRAMFILES\QuantLibXL-${VER_NUMBER}
-InstallDirRegKey HKEY_LOCAL_MACHINE "SOFTWARE\QuantLibXL-${VER_NUMBER}" "Install_Dir"
+DirText "Please select a location to install ${APP}-${VER_NUMBER} (or use the default):"
+InstallDir $PROGRAMFILES\${APP}-${VER_NUMBER}
+InstallDirRegKey HKEY_LOCAL_MACHINE "SOFTWARE\${APP}-${VER_NUMBER}" "Install_Dir"
 Icon "Docs\images\favicon.ico"
 UninstallIcon "Docs\images\favicon.ico"
 AutoCloseWindow false
@@ -40,7 +45,7 @@ InstType "Minimal (Addin Only)"
 Section "-QuantLibXL"
 SectionIn 1 2 3
     # this directory must be created first, or the CreateShortCut will not work
-    CreateDirectory "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}"
+    CreateDirectory "$SMPROGRAMS\${APP}-${VER_NUMBER}"
     SetOutPath "$INSTDIR"
     File "Authors.txt"
     File "Contributors.txt"
@@ -49,8 +54,10 @@ SectionIn 1 2 3
     File "README.txt"
 
     SetOutPath "$INSTDIR\framework"
+    File "framework\QuantLibXL.xml"
     File "framework\QuantLibXL.xla"
     File "framework\QuantLibXLA.cer"
+    File "framework\readme.txt"
 
     SetOutPath "$INSTDIR\Data"
     File /r "Data\*.xls"
@@ -71,39 +78,44 @@ SectionIn 1 2 3
     File "QuantLibXL-src.nsi"
 
     SetOutPath "$INSTDIR\xll"
-    File "xll\QuantLibXLDynamic-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    File "..\ObjectHandler\xll\ObjectHandler-xll-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    # runtime libraries needed
+    #File "xll\QuantLibXLDynamic-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    #File "..\ObjectHandler\xll\ObjectHandler-xll-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "xll\QuantLibXL-${COMPILER}-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-${VER_NUMBER}" \
-                "DisplayName" "QuantLibXL ${VER_NUMBER} (remove only)"
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP}-${VER_NUMBER}" \
+                "DisplayName" "${APP} ${VER_NUMBER} (remove only)"
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-${VER_NUMBER}" \
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP}-${VER_NUMBER}" \
                 "UninstallString" '"QuantLibXLUninstall.exe"'
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "SOFTWARE\QuantLibXL-${VER_NUMBER}" \
+                "SOFTWARE\${APP}-${VER_NUMBER}" \
                 "Install_Dir" "$INSTDIR"
     WriteRegStr HKEY_CURRENT_USER "Environment" "QUANTLIBXL_DIR" "$INSTDIR"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Uninstall QuantLibXL.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-${VER_NUMBER}\Uninstall QuantLibXL.lnk" \
                    "$INSTDIR\QuantLibXLUninstall.exe" "" \
                    "$INSTDIR\QuantLibXLUninstall.exe" 0
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-${VER_NUMBER}\QuantLibXL.xla.lnk" \
                    "$INSTDIR\framework\QuantLibXL.xla"
     CreateShortCut "$DESKTOP\QuantLibXL.xla.lnk" \
                    "$INSTDIR\framework\QuantLibXL.xla"
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\README.txt.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-${VER_NUMBER}\README.txt.lnk" \
                    "$INSTDIR\README.txt"
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\LICENSE.txt.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-${VER_NUMBER}\LICENSE.txt.lnk" \
                    "$INSTDIR\LICENSE.txt"
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\What's new.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-${VER_NUMBER}\What's new.lnk" \
                    "$INSTDIR\News.txt"
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL Directory.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-${VER_NUMBER}\QuantLibXL Directory.lnk" \
                    "$INSTDIR"
 
-    WriteINIStr "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLib Home Page.url" \
+    WriteINIStr "$SMPROGRAMS\${APP}-${VER_NUMBER}\QuantLib Home Page.url" \
                 "InternetShortcut" "URL" "http://quantlib.org/"
 
+    WriteINIStr "$SMPROGRAMS\${APP}-${VER_NUMBER}\QuantLibXL Home Page.url" \
+                "InternetShortcut" "URL" "http://www.quantlibxl.org/"
+                
     WriteUninstaller "QuantLibXLUninstall.exe"
 SectionEnd
 
@@ -112,7 +124,7 @@ SectionIn 1
   SetOutPath "$INSTDIR\Docs"
   File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
   IfFileExists "$INSTDIR\Docs\html\quantlibxl.chm" 0 NoWinHelpDoc
-      CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Documentation (WinHelp).lnk" \
+      CreateShortCut "$SMPROGRAMS\${APP}-${VER_NUMBER}\Documentation (WinHelp).lnk" \
                      "$INSTDIR\Docs\html\quantlibxl.chm"
   NoWinHelpDoc:
 SectionEnd
@@ -123,7 +135,7 @@ SectionIn 1 2
     File /r /x Drafts "Workbooks\*.xls"
     File /r /x Drafts "Workbooks\*.kof"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\Example workbooks.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-${VER_NUMBER}\Example workbooks.lnk" \
                    "$INSTDIR\Workbooks"
 
 SectionEnd
@@ -133,7 +145,7 @@ Function .onInit
 ;function that will detect whether your software is already installed and,
 ;if so, allows the user to uninstall it first.
 
-    ReadRegStr $R0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-${VER_NUMBER}" \
+    ReadRegStr $R0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP}-${VER_NUMBER}" \
     "Uninstall"
     StrCmp $R0 "" done
 
@@ -157,12 +169,12 @@ done:
  Delete $TEMP\spltmp.bmp
 FunctionEnd
 
-UninstallText "This will uninstall QuantLibXL-${VER_NUMBER}. Hit next to continue."
+UninstallText "This will uninstall ${APP}-${VER_NUMBER}. Hit next to continue."
 
 Section "Uninstall"
     DeleteRegKey HKEY_LOCAL_MACHINE \
-        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-${VER_NUMBER}"
-    DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\QuantLibXL-${VER_NUMBER}"
+        "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP}-${VER_NUMBER}"
+    DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\${APP}-${VER_NUMBER}"
     DeleteRegValue HKEY_CURRENT_USER  "Environment" "QUANTLIBXL_DIR"
 
     #!execute 'unList.exe /DATE=1 /INSTDIR="Clients\Excel" /FILTER="*.xls" \
@@ -175,8 +187,9 @@ Section "Uninstall"
     #!include "qla2.log"
     #RMDir "$INSTDIR\framework"
 
-    Delete "$INSTDIR\xll\QuantLibXLDynamic-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
-    Delete "$INSTDIR\xll\ObjectHandler-xll-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    #Delete "$INSTDIR\xll\QuantLibXLDynamic-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    #Delete "$INSTDIR\xll\ObjectHandler-xll-vc*-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    Delete "$INSTDIR\xll\QuantLibXL-${COMPILER}-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
     RMDir "$INSTDIR\xll"
 
     Delete "$INSTDIR\Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
@@ -188,8 +201,8 @@ Section "Uninstall"
     Delete "$INSTDIR\QuantLibXLUninstall.exe"
     RMDir "$INSTDIR"
 
-    RMDir "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}"
-    #RMDir /r "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}"
+    RMDir "$SMPROGRAMS\${APP}-${VER_NUMBER}"
+    #RMDir /r "$SMPROGRAMS\${APP}-${VER_NUMBER}"
 
 SectionEnd
 

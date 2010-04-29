@@ -11,17 +11,23 @@
 
 ; Constants
 
+!define APP "QuantLibXL"
 !define VER_NUMBER "1.1.0"
 !define VER_NUMBER_UNDERSCORE "1_1_0"
-!define REV_NUMBER "Rev17291"
 !define COMPILER "vc90"
+
+!define REV_NUMBER "Rev17291"
+!define /date NOW "%Y%m%d-%H_%M"
+
+
+# Compiler Flags
+
+SetCompressor lzma
 
 ; General Attributes
 
-!define /date NOW "%Y%m%d-%H_%M"
-
-Name "QuantLibXL Network Distribution"
-OutFile "..\QuantLibXL-${VER_NUMBER}-${REV_NUMBER}-${NOW}-network.exe"
+Name "${APP} - Network Distribution"
+OutFile "..\${APP}-${VER_NUMBER}-${REV_NUMBER}-${NOW}-network.exe"
 InstallDir "X:\Apps\Appsscript\CabotoXL\${REV_NUMBER}"
 
 ; Interface Settings
@@ -31,7 +37,7 @@ InstallDir "X:\Apps\Appsscript\CabotoXL\${REV_NUMBER}"
 !define MUI_ABORTWARNING
 
 !define MUI_DIRECTORYPAGE_TEXT_TOP \
-"Specify the root folder for the QuantLibXL network installation:$\n\
+"Specify the root folder for the ${APP} network installation:$\n\
 ROOT_FOLDER\xll - the XLL addin$\n\
 ROOT_FOLDER\framework - the VBA addin$\n\
 ROOT_FOLDER\Workbooks - the workbooks$\n\
@@ -39,7 +45,7 @@ ROOT_FOLDER\metadata - the XML metadata$\n\
 ROOT_FOLDER\Data - the xls/xml data serialization files$\n\
 ROOT_FOLDER\Docs - the chm documentation file"
 
-!define MUI_DIRECTORYPAGE_TEXT_DESTINATION "Root folder for QuantLibXL Network installation"
+!define MUI_DIRECTORYPAGE_TEXT_DESTINATION "Root folder for ${APP} Network installation"
 
 ; Pages
 
@@ -58,7 +64,7 @@ Function deletePrevious
     ; Uninstall the previous network installation of QLXL
 
     MessageBox MB_YESNO \
-'You are about to overwrite the installation of QuantLibXL$\n\
+'You are about to overwrite the installation of ${APP}$\n\
 (if any) which currently resides at$\n\
 $INSTDIR$\n\
 Are you certain that this is what you want to do?' IDYES +2
@@ -101,7 +107,7 @@ Section
 
     SetOutPath "$INSTDIR"
     File "QuantLibXL.nsi"
-    File "QuantLibXL-bin.nsi"
+    File "${APP}-bin.nsi"
     File "QuantLibXL-network.nsi"
     File "QuantLibXL-src.nsi"
 

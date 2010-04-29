@@ -1,5 +1,10 @@
 
-# !defines
+; QuantLibXL binary distribution
+
+; Use this script to create an installer with just the QuantLibXL binary
+; and some additional stuff
+
+; Constants
 
 !define APP "QuantLibXL"
 !define VER_NUMBER "1.1.0"
@@ -10,7 +15,7 @@
 
 SetCompressor lzma
 
-# Installer Attributes
+; General Attributes
 
 Caption "${APP} - Setup"
 DirText "Please select a location to install ${APP} (or use the default):"
@@ -20,6 +25,7 @@ LicenseData "LICENSE.TXT"
 LicenseText "${APP} is released under the following license:"
 Name "${APP}"
 OutFile "..\${APP}-bin-${VER_NUMBER}.exe"
+
 UninstallIcon "Docs\images\favicon.ico"
 UninstallText "This will uninstall ${APP}. Hit next to continue."
 
@@ -40,6 +46,9 @@ Section
     File "LICENSE.TXT"
     File "NEWS.txt"
     File "README.txt"
+
+    SetOutPath "$INSTDIR\Docs"
+    File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
 
     SetOutPath "$INSTDIR\xll"
     #File "xll\QuantLibXLDynamic-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
@@ -62,77 +71,79 @@ Section
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"
 
-    SetOutPath "$INSTDIR\Docs"
-    File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
+    WriteRegStr HKEY_LOCAL_MACHINE \
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP}-bin-${VER_NUMBER}" \
+                "DisplayName" "${APP}-bin ${VER_NUMBER} (remove only)"
 
     WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-bin-${VER_NUMBER}" \
-                "DisplayName" "QuantLibXL-bin ${VER_NUMBER} (remove only)"
-
-    WriteRegStr HKEY_LOCAL_MACHINE \
-                "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-bin-${VER_NUMBER}" \
+                "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP}-bin-${VER_NUMBER}" \
                 "UninstallString" '"$INSTDIR\QuantLibXLUninstall.exe"'
 
-    CreateDirectory "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}"
+    CreateDirectory "$SMPROGRAMS\${APP}-bin-${VER_NUMBER}"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\Uninstall QuantLibXL.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-bin-${VER_NUMBER}\Uninstall QuantLibXL.lnk" \
                    "$INSTDIR\QuantLibXLUninstall.exe" "" \
                    "$INSTDIR\QuantLibXLUninstall.exe" 0
 
-    #CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
-    #               "$INSTDIR\framework\QuantLibXL.xla"
-
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\README.txt.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-bin-${VER_NUMBER}\README.txt.lnk" \
                    "$INSTDIR\README.txt"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\LICENSE.txt.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-bin-${VER_NUMBER}\LICENSE.txt.lnk" \
                    "$INSTDIR\LICENSE.txt"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\QuantLibXL Directory.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-bin-${VER_NUMBER}\QuantLibXL Directory.lnk" \
                    "$INSTDIR"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\Example workbooks.lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-bin-${VER_NUMBER}\Example workbooks.lnk" \
                    "$INSTDIR\Workbooks"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\Documentation (WinHelp).lnk" \
+    CreateShortCut "$SMPROGRAMS\${APP}-bin-${VER_NUMBER}\Documentation (WinHelp).lnk" \
         "$INSTDIR\Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
 
-    WriteINIStr "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}\QuantLibXL Home Page.url" \
+    WriteINIStr "$SMPROGRAMS\${APP}-bin-${VER_NUMBER}\QuantLib Home Page.url" \
+                "InternetShortcut" "URL" "http://www.quantlib.org/"
+
+    WriteINIStr "$SMPROGRAMS\${APP}-bin-${VER_NUMBER}\QuantLibXL Home Page.url" \
                 "InternetShortcut" "URL" "http://www.quantlibxl.org/"
 
     WriteUninstaller "QuantLibXLUninstall.exe"
 
 SectionEnd
 
-#Section /o Framework
+Section /o Framework
 
-#    SetOutPath "$INSTDIR\framework"
-#    File "framework\QuantLibXL.xla"
-#    File "framework\QuantLibXLA.cer"
-#
-#    SetOutPath "$INSTDIR\Workbooks"
-#    File /r "Workbooks\*.xls"
+    SetOutPath "$INSTDIR\framework"
+    File "framework\QuantLibXL.xml"
+    File "framework\QuantLibXL.xla"
+    File "framework\QuantLibXLA.cer"
+    File "framework\readme.txt"
 
-#    SetOutPath "$INSTDIR\Data"
-#    File /r "Data\*.xls"
-#    File /r "Data\*.xml"
+    SetOutPath "$INSTDIR\Workbooks"
+    File /r "Workbooks\*.xls"
 
-#    SetOutPath "$INSTDIR\metadata"
-#    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
+    SetOutPath "$INSTDIR\Data"
+    File /r "Data\*.xls"
+    File /r "Data\*.xml"
 
-#    # ObjectBuilder crashes if it can't find the icon
-#    SetOutPath "$INSTDIR\Docs\images"
-#    File "Docs\images\favicon.bmp"
+    SetOutPath "$INSTDIR\metadata"
+    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
 
-#SectionEnd
+    # ObjectBuilder crashes if it can't find the icon
+    SetOutPath "$INSTDIR\Docs\images"
+    File "Docs\images\favicon.bmp"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
+                   "$INSTDIR\framework\QuantLibXL.xla"
+
+SectionEnd
 
 Section "Uninstall"
 
     RMDir /r "$INSTDIR"
-    RMDir /r "$SMPROGRAMS\QuantLibXL-bin-${VER_NUMBER}"
+    RMDir /r "$SMPROGRAMS\${APP}-bin-${VER_NUMBER}"
 
     DeleteRegKey HKEY_LOCAL_MACHINE \
-        "Software\Microsoft\Windows\CurrentVersion\Uninstall\QuantLibXL-bin-${VER_NUMBER}"
+        "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP}-bin-${VER_NUMBER}"
 
 SectionEnd
 

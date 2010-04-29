@@ -4,8 +4,8 @@
 !define APP "QuantLibXL"
 !define VER_NUMBER "1.1.0"
 !define VER_NUMBER_UNDERSCORE "1_1_0"
-!define COMPILER "vc80"
-!define DEFAULT_PATH "c:\build_ql_1_1_0\${APP}"
+!define COMPILER "vc90"
+#!define DEFAULT_PATH "c:\build_ql_1_1_0\${APP}"
 
 # Compiler Flags
 
@@ -16,7 +16,8 @@ SetCompressor lzma
 Caption "${APP} - Setup"
 DirText "Please select a location to install ${APP} (or use the default):"
 Icon "Docs\images\favicon.ico"
-InstallDir "${DEFAULT_PATH}"
+#InstallDir "${DEFAULT_PATH}"
+InstallDir $PROGRAMFILES\${APP}-${VER_NUMBER}
 LicenseData "LICENSE.TXT"
 LicenseText "${APP} is released under the following license:"
 Name "${APP}"
@@ -33,17 +34,18 @@ UninstallText "This will uninstall ${APP}. Hit next to continue."
 Section
 
     SetOutPath "$INSTDIR"
+    
     File "Authors.txt"
     File "Contributors.txt"
     File "LICENSE.TXT"
     File "NEWS.txt"
     File "README.txt"
-    File "*.sln"
 
+    File "*.sln"
     File "*.txt"
     File "*.TXT"
     File "QuantLibXL.nsi"
-    File "QuantLibXL-bin.nsi"
+    File "${APP}-bin.nsi"
     File "QuantLibXL-network.nsi"
     File "QuantLibXL-src.nsi"
     File /r "*.vcproj"
@@ -52,6 +54,7 @@ Section
 
     SetOutPath "$INSTDIR\Docs"
     File "Docs\QuantLibXL-docs-${VER_NUMBER}.chm"
+
     File "Docs\*.doxy"
     File "Docs\*.html"
     File "Docs\Makefile.vc"
@@ -122,6 +125,9 @@ Section
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-src-${VER_NUMBER}\Example workbooks.lnk" \
                    "$INSTDIR\Workbooks"
+
+    WriteINIStr "$SMPROGRAMS\${APP}-bin-${VER_NUMBER}\QuantLib Home Page.url" \
+                "InternetShortcut" "URL" "http://www.quantlib.org/"
 
     WriteINIStr "$SMPROGRAMS\QuantLibXL-src-${VER_NUMBER}\QuantLibXL Home Page.url" \
                 "InternetShortcut" "URL" "http://www.quantlibxl.org/"
