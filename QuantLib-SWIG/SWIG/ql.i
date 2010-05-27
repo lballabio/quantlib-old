@@ -156,6 +156,7 @@
 %include functions.i
 %include grid.i
 %include indexes.i
+%include inflation.i
 %include instruments.i
 %include integrals.i
 %include interestrate.i
