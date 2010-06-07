@@ -1,5 +1,6 @@
 /*
- Copyright (C) 2000-2010 RiskMap srl
+ Copyright (C) 2010 Joseph Wang
+ Copyright (C) 2010 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,59 +19,69 @@
 #ifndef quantlib_inflation_i
 #define quantlib_inflation_i
 
-%include options.i
-%include marketelements.i
 %include termstructures.i
-%include cashflows.i
-%include volatilities.i
 
 %{
   using QuantLib::Seasonality;
   using QuantLib::MultiplicativePriceSeasonality;
-  using QuantLib::InflationTermStructure;
-  using QuantLib::YoYInflationTermStructure;
+  typedef boost::shared_ptr<Seasonality> MultiplicativePriceSeasonalityPtr;
 %}
 
+%ignore Seasonality;
 class Seasonality {
- public:
-  virtual Rate correctZeroRate(const Date &d, const Rate r,
-		       const InflationTermStructure& iTS) const = 0;
-  virtual Rate correctYoYRate(const Date &d, const Rate r,
-		      const InflationTermStructure& iTS) const = 0;
-  virtual bool isConsistent(const InflationTermStructure& iTS);
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("correct-zero-rate") correctZeroRate;
+    %rename("correct-yoy-rate")  correctYoYRate;
+    %rename("is-consistent")     isConsistent;
+    #endif
+  public:
+    virtual Rate correctZeroRate(const Date &d, const Rate r,
+                                 const InflationTermStructure& iTS) const = 0;
+    virtual Rate correctYoYRate(const Date &d, const Rate r,
+                                const InflationTermStructure& iTS) const = 0;
+    virtual bool isConsistent(const InflationTermStructure& iTS);
 };
 
-class  MultiplicativePriceSeasonality : public Seasonality {
- public:
-  MultiplicativePriceSeasonality();
+%template(Seasonality) boost::shared_ptr<Seasonality>;
 
-  MultiplicativePriceSeasonality(const Date& seasonalityBaseDate,
-				 const Frequency frequency,
-				 const std::vector<Rate> seasonalityFactors);
-
-  void set(const Date& seasonalityBaseDate, const Frequency frequency,
-	   const std::vector<Rate> seasonalityFactors);
-  
-  Date seasonalityBaseDate() const;
-  Frequency frequency() const;
-  std::vector<Rate> seasonalityFactors() const;
-  //! The factor returned is NOT normalized relative to ANYTHING.
-  Rate seasonalityFactor(const Date &d) const;
+class MultiplicativePriceSeasonalityPtr
+    : public boost::shared_ptr<Seasonality> {
+  public:
+    %extend {
+        MultiplicativePriceSeasonalityPtr(
+                                const Date& seasonalityBaseDate,
+                                Frequency frequency,
+                                const std::vector<Rate>& seasonalityFactors) {
+            return new MultiplicativePriceSeasonalityPtr(
+                       new MultiplicativePriceSeasonality(seasonalityBaseDate,
+                                                          frequency,
+                                                          seasonalityFactors));
+        }
+    }
 };
 
 %{
+  using QuantLib::InflationTermStructure;
+  using QuantLib::YoYInflationTermStructure;
+  using QuantLib::ZeroInflationTermStructure;
 %}
+
 
 %ignore InflationTermStructure;
 class InflationTermStructure : public Extrapolator {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
-    %rename("observation-lag")     observationLag;
-    %rename("frequency") frequency;
-    %rename("index-is-interpolated")   indexIsInterpolated;
-    %rename("max-time")        baseRate;
-    %rename("zero-rate")       nominalTermStructure;
-    %rename("base-date")    baseDate;
-    %rename("has-seasonality")    hasSeasonality;
+    #if defined(SWIGRUBY)
+    %rename("indexIsInterpolated?")   indexIsInterpolated;
+    %rename("setSeasonality!")        setSeasonality;
+    %rename("hasSeasonality?")        hasSeasonality;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("observation-lag")        observationLag;
+    %rename("frequency")              frequency;
+    %rename("index-is-interpolated?") indexIsInterpolated;
+    %rename("base-rate")              baseRate;
+    %rename("nominal-term-structure") nominalTermStructure;
+    %rename("base-date")              baseDate;
+    %rename("seasonality-set!")       setSeasonality;
+    %rename("has-seasonality?")       hasSeasonality;
     #endif
   public:
     virtual Period observationLag() const;
@@ -79,16 +90,52 @@ class InflationTermStructure : public Extrapolator {
     virtual Rate baseRate() const;
     virtual Handle<YieldTermStructure> nominalTermStructure() const;
     virtual Date baseDate() const = 0;
-    virtual bool hasSeasonality() const;
+    void setSeasonality(const boost::shared_ptr<Seasonality>& seasonality =
+                                            boost::shared_ptr<Seasonality>());
+    boost::shared_ptr<Seasonality> seasonality() const;
+    bool hasSeasonality() const;
 };
 
-%template(InflationTermStructure) boost::shared_ptr<InflationTermStructure>;
-IsObservable(boost::shared_ptr<InflationTermStructure>);
+%ignore YoYInflationTermStructure;
+class YoYInflationTermStructure : public InflationTermStructure {
+  public:
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("yoy-rate") yoyRate;
+    #endif
+    Rate yoyRate(const Date &d, const Period& instObsLag = Period(-1,Days),
+                 bool forceLinearInterpolation = false,
+                 bool extrapolate = false) const;
+};
 
-%template(InflationTermStructureHandle) Handle<InflationTermStructure>;
-IsObservable(Handle<InflationTermStructure>);
-%template(RelinkableInflationTermStructureHandle)
-RelinkableHandle<InflationTermStructure>;
+%template(YoYInflationTermStructure)
+    boost::shared_ptr<YoYInflationTermStructure>;
+IsObservable(boost::shared_ptr<YoYInflationTermStructure>);
+
+%template(YoYInflationTermStructureHandle) Handle<YoYInflationTermStructure>;
+IsObservable(Handle<YoYInflationTermStructure>);
+%template(RelinkableYoYInflationTermStructureHandle)
+    RelinkableHandle<YoYInflationTermStructure>;
+
+
+%ignore ZeroInflationTermStructure;
+class ZeroInflationTermStructure : public InflationTermStructure {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("zero-rate") zeroRate;
+    #endif
+  public:
+    Rate zeroRate(const Date &d, const Period& instObsLag = Period(-1,Days),
+                  bool forceLinearInterpolation = false,
+                  bool extrapolate = false) const;
+};
+
+%template(ZeroInflationTermStructure)
+    boost::shared_ptr<ZeroInflationTermStructure>;
+IsObservable(boost::shared_ptr<ZeroInflationTermStructure>);
+
+%template(ZeroInflationTermStructureHandle) Handle<ZeroInflationTermStructure>;
+IsObservable(Handle<ZeroInflationTermStructure>);
+%template(RelinkableZeroInflationTermStructureHandle)
+    RelinkableHandle<ZeroInflationTermStructure>;
 
 
 %{
@@ -110,28 +157,28 @@ class YoYInflationCapFloorPtr : public boost::shared_ptr<Instrument> {
     #endif
   public:
      %extend {
-        Volatility impliedVolatility(Real price,
-                                     const Handle<YoYInflationTermStructure>& curve,
-                                     Volatility guess,
-                                     Real accuracy = 1.0e-4,
-                                     Size maxEvaluations = 100,
-                                     Volatility minVol = 1.0e-7,
-                                     Volatility maxVol = 4.0) const {
-            return boost::dynamic_pointer_cast<YoYInflationCapFloor>(*self)->
-                impliedVolatility(price, curve, guess, accuracy,
-                                  maxEvaluations, minVol, maxVol);
-        }
-    }
+         Volatility impliedVolatility(
+                               Real price,
+                               const Handle<YoYInflationTermStructure>& curve,
+                               Volatility guess,
+                               Real accuracy = 1.0e-4,
+                               Size maxEvaluations = 100,
+                               Volatility minVol = 1.0e-7,
+                               Volatility maxVol = 4.0) const {
+             return boost::dynamic_pointer_cast<YoYInflationCapFloor>(*self)->
+                 impliedVolatility(price, curve, guess, accuracy,
+                                   maxEvaluations, minVol, maxVol);
+         }
+     }
 };
-
-
 
 %rename(YoYInflationCap) YoYInflationCapPtr;
 class YoYInflationCapPtr : public YoYInflationCapFloorPtr {
   public:
     %extend {
-        YoYInflationCapPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
-               const std::vector<Rate>& capRates) {
+        YoYInflationCapPtr(
+                const std::vector<boost::shared_ptr<CashFlow> >& leg,
+                const std::vector<Rate>& capRates) {
             return new YoYInflationCapPtr(new YoYInflationCap(leg,capRates));
         }
     }
@@ -141,9 +188,11 @@ class YoYInflationCapPtr : public YoYInflationCapFloorPtr {
 class YoYInflationFloorPtr : public YoYInflationCapFloorPtr {
   public:
     %extend {
-        YoYInflationFloorPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
-                 const std::vector<Rate>& floorRates) {
-            return new YoYInflationFloorPtr(new YoYInflationFloor(leg,floorRates));
+        YoYInflationFloorPtr(
+                const std::vector<boost::shared_ptr<CashFlow> >& leg,
+                const std::vector<Rate>& floorRates) {
+            return new YoYInflationFloorPtr(
+                                       new YoYInflationFloor(leg,floorRates));
         }
     }
 };
@@ -152,11 +201,14 @@ class YoYInflationFloorPtr : public YoYInflationCapFloorPtr {
 class YoYInflationCollarPtr : public YoYInflationCapFloorPtr {
   public:
     %extend {
-        YoYInflationCollarPtr(const std::vector<boost::shared_ptr<CashFlow> >& leg,
-                  const std::vector<Rate>& capRates,
-                  const std::vector<Rate>& floorRates) {
-            return new YoYInflationCollarPtr(new YoYInflationCollar(leg,capRates,floorRates));
+        YoYInflationCollarPtr(
+                const std::vector<boost::shared_ptr<CashFlow> >& leg,
+                const std::vector<Rate>& capRates,
+                const std::vector<Rate>& floorRates) {
+            return new YoYInflationCollarPtr(
+                             new YoYInflationCollar(leg,capRates,floorRates));
         }
     }
 };
+
 #endif
