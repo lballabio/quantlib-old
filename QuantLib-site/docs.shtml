@@ -30,6 +30,20 @@ page</a>.
 
 <h1 class="center">Other information</h1>
 
+<h2 class="center">Unofficial wiki</h2>
+<ul>
+<li>An unofficial QuantLib wiki is up at
+<a href= "http://quantlib.referata.com/">http://quantlib.referata.com/</a>.<br>
+Contributions are welcome.</li>
+</ul>
+
+<h2 class="center">Books</h2>
+<ul>
+<li><strong>Implementing QuantLib</strong> (in progress) [<a href=
+"http://sites.google.com/site/luigiballabio/qlbook">web page</a>]<br>
+Ballabio, L.</li>
+</ul>
+
 <h2 class="center">Papers</h2>
 <ul>
 <li><strong>Option Engine: A Grid-Enabled Software Package to Evaluate
@@ -50,13 +64,6 @@ Ferdinando Ametrano, Mark S. Joshi (2008)</li>
 <li><strong>Why Use QuantLib?</strong> [<a href=
 "http://www.quantlib.co.uk/publications/quantlib.pdf">PDF</a>]<br>
 Firth, N.P. (2004)</li>
-</ul>
-
-<h2 class="center">Books</h2>
-<ul>
-<li><strong>Implementing QuantLib</strong> (in progress) [<a href=
-"http://sites.google.com/site/luigiballabio/qlbook">web page</a>]<br>
-Ballabio, L.</li>
 </ul>
 
 <h2 class="center">Press</h2>
