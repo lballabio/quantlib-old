@@ -33,6 +33,7 @@ namespace QuantLib {
     class Calendar;
     class DayCounter;
     class YieldTermStructure;
+    class IborIndex;
 
     template <class T>
     class Handle;
@@ -70,6 +71,25 @@ namespace QuantLibAddin {
             bool permanent);
       protected:
         OH_OBJ_CTOR(OvernightIndex, IborIndex);
+    };
+
+    class ProxyIbor : public IborIndex {
+      public:
+        ProxyIbor(const boost::shared_ptr<ObjectHandler::ValueObject>& prop,
+                  const std::string& familyName,
+                  const QuantLib::Period& tenor,
+                  QuantLib::Natural settlementDays,
+                  const QuantLib::Currency& currency,
+                  const QuantLib::Calendar& fixingCalendar,
+                  QuantLib::BusinessDayConvention convention,
+                  bool endOfMonth,
+                  const QuantLib::DayCounter& dayCounter,
+                  QuantLib::Real gearing,
+                  const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
+                  QuantLib::Spread spread,
+                  bool permanent);
+      protected:
+        OH_OBJ_CTOR(ProxyIbor, IborIndex);
     };
 
 }
