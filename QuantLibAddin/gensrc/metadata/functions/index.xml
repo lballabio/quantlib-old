@@ -11,8 +11,9 @@
     <include>qlo/indexes/swap/isdafixaswap.hpp</include>
     <include>qlo/termstructures.hpp</include>
 
-    <include>ql/indexes/iborindex.hpp</include>
     <include>ql/termstructures/yieldtermstructure.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/experimental/coupons/proxyibor.hpp</include>
   </serializationIncludes>
   <addinIncludes>
     <include>qlo/indexes/bmaindex.hpp</include>
@@ -22,14 +23,16 @@
     <include>qlo/indexes/swap/liborswap.hpp</include>
     <include>qlo/indexes/swap/isdafixaswap.hpp</include>
     <include>qlo/termstructures.hpp</include>
+    <include>qlo/handleimpl.hpp</include>
+    <include>qlo/timeseries.hpp</include>
 
     <include>ql/termstructures/yieldtermstructure.hpp</include>
-    <include>qlo/timeseries.hpp</include>
     <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/experimental/coupons/proxyibor.hpp</include>
     <include>ql/indexes/swapindex.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008, 2009, 2010 Ferdinando Ametrano
     Copyright (C) 2006 Katiuscia Manzoni
     Copyright (C) 2005, 2007 Eric Ehlers
     Copyright (C) 2005 Plamen Neykov
@@ -908,8 +911,9 @@
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID.</description>
           </Parameter>
-          <Parameter name='Gearing' default='1.0'>
-            <type>double</type>
+          <Parameter name='Gearing' exampleValue='1.0'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>gearing.</description>
           </Parameter>
@@ -918,8 +922,9 @@
             <tensorRank>scalar</tensorRank>
             <description>floating rate index.</description>
           </Parameter>
-          <Parameter name='Spread' example='0.005'>
-            <type>QuantLib::Spread</type>
+          <Parameter name='Spread' exampleValue='0.005'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>floating rate spread.</description>
           </Parameter>

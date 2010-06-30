@@ -79,9 +79,9 @@ namespace QuantLibAddin {
                  QuantLib::BusinessDayConvention convention,
                  bool endOfMonth,
                  const QuantLib::DayCounter& dayCounter,
-                 QuantLib::Real gearing,
+                 const QuantLib::Handle<QuantLib::Quote>& gearing,
                  const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
-                 QuantLib::Spread spread,
+                 const QuantLib::Handle<QuantLib::Quote>& spread,
                  bool permanent)
     : IborIndex(properties, permanent)
     {
