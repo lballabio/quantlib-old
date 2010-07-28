@@ -25,11 +25,11 @@ QuantLibXL -> Load -> Test, this should load the XLL and a test workbook.
 Creating a shortcut (link, icon)
 ================================
 
-Start an empty Excel session and load create_shortcut.xla.  A dialog is
-displayed, accept the defaults and click OK.  This should create file
-QuantLibXL.lnk in the application root directory (the same directory that
-contains this ReadMe.txt file).  Now you can use the shortcut to launch a new
-standalone Excel session into which the VBA environment is automatically loaded.
+Do QuantLibXL -> Development -> Create Shortcut.  A dialog is displayed, accept
+the defaults and click OK.  This should create file QuantLibXL.lnk in the
+application root directory.  Now you can use the shortcut to launch a new
+standalone Excel session into which the VBA environment is automatically
+loaded.  The shortcut file can be copied elsewhere.
 
 Context sensitive menus
 =======================
