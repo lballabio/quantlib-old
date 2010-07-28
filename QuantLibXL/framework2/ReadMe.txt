@@ -35,7 +35,7 @@ Context sensitive menus
 =======================
 
 The Framework adds a QuantLibXL menu to Excel's main menu bar and also to the
-menu which appears when the user right-clicks in a cell.  The contents of these
+menu which appears when the user right-clicks in a cell.  The content of these
 menus changes depending on which book, sheet, and range is active.
 
 Start the application and load the demo.  Activate book Demo.xls, this workbook
@@ -45,11 +45,13 @@ Workbook Design
 ===============
 
 To add a new worksheet that is owned and recognized by the application, do
-QuantLibXL -> Development -> Insert New Worksheet.  Formatting of your new sheet
+QuantLibXL -> Development -> Insert New Worksheet.  Formatting of the new sheet
 is controlled with styles.  Excel's style dropdown is hidden by default - right
 click on a toolbar, select "Customize...", select "Format", locate the Style
 dropdown and drag it onto a toolbar.  All of the styles recognized by the
-Framework are present in the template worksheet.
+Framework are present in the template worksheet.  Styles could be used to
+configure selected ranges as readonly or read/write but this feature is
+presently disabled.
 
 Each sheet contains hidden ("program") rows and columns where
 application-specific calculations may be implemented, hit Ctrl-Shift-H to
@@ -82,4 +84,12 @@ Code Comments
 
 Each VBA addin includes a comment block in the ThisWorkbook object summarizing
 the module's purpose.
+
+Templates
+=========
+
+Template worksheets are designed to support the required functionality for
+market data, analytics, etc.  These sheets can be mixed and matched as desired
+into production workbooks for use by end users.  Unfortunately at the moment
+there are no template sheets available for release under the QuantLib license.
 
