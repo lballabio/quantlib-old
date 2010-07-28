@@ -34,7 +34,7 @@ standalone Excel session into which the VBA environment is automatically loaded.
 Context sensitive menus
 =======================
 
-The framework adds a QuantLibXL menu to Excel's main menu bar and also to the
+The Framework adds a QuantLibXL menu to Excel's main menu bar and also to the
 menu which appears when the user right-clicks in a cell.  The contents of these
 menus changes depending on which book, sheet, and range is active.
 
@@ -45,13 +45,19 @@ Workbook Design
 ===============
 
 To add a new worksheet that is owned and recognized by the application, do
-QuantLibXL -> Development -> Insert New Worksheet.  The new worksheet includes
-all supported styles.  Each sheet contains hidden rows and columns where
+QuantLibXL -> Development -> Insert New Worksheet.  Formatting of your new sheet
+is controlled with styles.  Excel's style dropdown is hidden by default - right
+click on a toolbar, select "Customize...", select "Format", locate the Style
+dropdown and drag it onto a toolbar.  All of the styles recognized by the
+Framework are present in the template worksheet.
+
+Each sheet contains hidden ("program") rows and columns where
 application-specific calculations may be implemented, hit Ctrl-Shift-H to
-hide/unhide these ranges.  The application's ownership of books and sheets is
-controlled with names, do QuantLibXL -> Development -> Manage Names to configure
-these values.  Edit Menu.xla to control which menu items are visible for a given
-sheet or book.
+hide/unhide these ranges.
+
+The application's ownership of books and sheets is controlled with names, do
+QuantLibXL -> Development -> Manage Names to configure these values.  Edit
+Menu.xla to control which menu items are visible for a given sheet or book.
 
 Loader
 ======
@@ -65,11 +71,11 @@ Keyboard Shortcuts
 
 These are configured in Keyboard.xla:
 
+Ctrl-Shft-E : display the error message, if any, that is associated with the
+              active range.
 Ctrl-Shft-H : hide/unhide program columns and rows
 Ctrl-Shft-R : reset the application.  Stopping  the app in the debugger
               disables the menus and this keystroke combination restarts them.
-Ctrl-Shft-E : display the error message, if any, that is associated with the
-              active range.
 
 Code Comments
 =============
