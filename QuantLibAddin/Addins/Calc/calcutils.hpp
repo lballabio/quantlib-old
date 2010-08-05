@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2004, 2005, 2006 Eric Ehlers
+ Copyright (C) 2010 Roland Lichters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,6 +21,11 @@
 #define qla_calc_calcutils_hpp
 
 #include <boost/any.hpp>
+
+#include <ql/types.hpp>
+#include <ql/time/date.hpp>
+
+#include <iostream>
 
 std::string ouStringToStlString(const STRING &s);
 ANY stlStringToCalcAny(const std::string &s);
@@ -65,15 +71,22 @@ void calcToScalar(T &ret, const T &value) {
 }
 
 void calcToScalar(bool &ret, const sal_Int32 &value);
+//void calcToScalar(QuantLib::Integer &ret, sal_Int32 &value);
+void calcToScalar(QuantLib::Natural &ret, sal_Int32 &value);
+void calcToScalar(QuantLib::Size &ret, sal_Int32 &value);
+void calcToScalar(int &ret, sal_Int32 &value);
 void calcToScalar(boost::any &ret, const ANY &value);
 void calcToScalar(long &ret, const ANY &value, const long &defaultValue = 0);
+void calcToScalar(QuantLib::Natural &ret, const ANY &value);
+void calcToScalar(QuantLib::Size &ret, const ANY &value);
 void calcToScalar(double &ret, const ANY &value, const double &defaultValue = 0);
 void calcToScalar(bool &ret, const ANY &value, const bool &defaultValue = false);
 void calcToScalar(std::string &ret, const ANY &value, const std::string &defaultValue = "");
 
 template < class T >
 void calcToVector(std::vector < T > &ret, const ANY &value) {
-    STRING t = value.getValueTypeName();
+  std::cout << "template calcToVector any to vector<T> called" << std::endl;
+  STRING t = value.getValueTypeName();
     if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
         SEQSEQ( ANY ) ss;
         value >>= ss;
@@ -93,6 +106,7 @@ void calcToVector(std::vector < T > &ret, const ANY &value) {
 
 template < class T_FROM, class T_TO >
 void calcToVector(std::vector < T_TO > &ret, const SEQSEQ( T_FROM )& ss) {
+  std::cout << "template calcToVector seqseq(FROM) to vector<TO> called" << std::endl;
     for (int i=0; i<ss.getLength(); ++i) {
         for (int j=0; j<ss[i].getLength(); ++j) {
             T_TO temp;

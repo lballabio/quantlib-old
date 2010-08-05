@@ -172,6 +172,7 @@
       <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::OptionletVolatilityStructure, QuantLib::OptionletVolatilityStructure&gt;</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <processorName>RelinkableHandleProcessor</processorName>
@@ -194,6 +195,7 @@
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

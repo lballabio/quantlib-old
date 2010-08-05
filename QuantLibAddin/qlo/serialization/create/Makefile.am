@@ -56,7 +56,8 @@ include_HEADERS = \
     create_timeseries.hpp \
     create_vanillaswap.hpp \
     create_volatilities.hpp \
-    create_volatility.hpp
+    create_volatility.hpp \
+    create_credit.hpp
 
 libCreate_la_SOURCES = \
     create_abcd.cpp \
@@ -109,5 +110,5 @@ libCreate_la_SOURCES = \
     create_timeseries.cpp \
     create_vanillaswap.cpp \
     create_volatilities.cpp \
-    create_volatility.cpp
-
+    create_volatility.cpp \
+    create_credit.cpp

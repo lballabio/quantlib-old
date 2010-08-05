@@ -21,6 +21,7 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -48,6 +49,7 @@
       <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::DefaultProbabilityTermStructure, QuantLib::DefaultProbabilityTermStructure&gt;</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
+	<!--SupportedPlatform name='Calc'/-->
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <processorName>RelinkableHandleProcessor</processorName>
@@ -69,6 +71,7 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>

@@ -3,6 +3,7 @@
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2009 Roland Lichters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -37,7 +38,7 @@ MAPLINE = """    %s[ STRFROMANSI( "%s" ) ]
 PARMLINE = '    %s[ STRFROMANSI( "%s" ) ].push_back( STRFROMANSI( "%s" ) );\n'
 LOOP_INCLUDES = '''\
 #include <%s/loop/loop_%s.hpp>
-#include <Addins/Calc/loop.hpp>'''
+#include <loop.hpp>'''
 
 class CalcAddin(addin.Addin):
     """Generate source code for Calc addin."""
@@ -81,36 +82,52 @@ class CalcAddin(addin.Addin):
                     buf += PARMLINE % ('argName', func.name(), param.name())
                     buf += PARMLINE % ('argDesc', func.name(), param.description())
                 buf += '\n'
-        buf2 = self.bufferMap_.text() % { 
-            'prefix' : environment.config().prefix(),
-            'addinClassName' : 'QLAddin',
-            'buffer' : buf }
+# replaced
+#        buf2 =''
+#        buf2 = self.bufferMap_.text() % { 
+#            'prefix' : environment.config().prefix(),
+#            'addinClassName' : 'QLAddin',
+#            'buffer' : buf }
+#        fileName = self.rootPath_ + MAPFILE
+#        outputfile.OutputFile(self, fileName, self.copyright_, buf2, True)
+# by
+        self.bufferMap_.set({
+                'prefix' : environment.config().prefix(),
+                'addinClassName' : 'CalcAddins_impl',
+                'buffer' : buf })
         fileName = self.rootPath_ + MAPFILE
-        outputfile.OutputFile(self, fileName, self.copyright_, buf2, True)
-
+        outputfile.OutputFile(self, fileName, self.copyright_, self.bufferMap_, True)
+        
     def generateAutoHeader(self):
         """Generate header file that lists all other headers."""
         bufHeader = ''
         for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_):
-            bufHeader += '#include <Addins/Calc/%s.hpp>\n' % cat.name()
-        buf = self.bufferHeader_.text() % { 
+            bufHeader += '#include <%s.hpp>\n' % cat.name()
+# replaced
+#        buf = self.bufferHeader_.text() % { 
+#            'prefix' : environment.config().prefix(),
+#            'buffer' : bufHeader }
+#        fileName = self.rootPath_ + environment.config().libRootDirectory() + '_all.hpp'
+#        outputfile.OutputFile(self, fileName, self.copyright_, buf, True)
+# by
+        self.bufferHeader_.set({ 
             'prefix' : environment.config().prefix(),
-            'buffer' : bufHeader }
+            'buffer' : bufHeader })
         fileName = self.rootPath_ + environment.config().libRootDirectory() + '_all.hpp'
-        outputfile.OutputFile(self, fileName, self.copyright_, buf, True)
+        outputfile.OutputFile(self, fileName, self.copyright_, self.bufferHeader_, True)
 
     def generateHeader(self, func, declaration = True):
         """Generate implementation for given function."""
         functionReturnType = self.functionReturnType_.apply(func.returnValue())
         if declaration:
-            prototype = '    virtual %s SAL_CALL %s(' % (functionReturnType, func.name())
+            prototype = '    %s SAL_CALL %s(' % (functionReturnType, func.name())
             suffix = ';\n\n'
         else:
-            prototype = '%s SAL_CALL %s::%s('  % (functionReturnType, 'QLAddin', func.name())
+            prototype = '%s SAL_CALL %s::%s('  % (functionReturnType, 'CalcAddins_impl', func.name())
             suffix = ' {'
         ret = prototype
         ret += func.parameterList().generate(self.functionDeclaration_)
-        ret += ') THROWDEF_RTE_IAE%s' % suffix
+        ret += ') throw(RuntimeException)%s' % suffix
         return ret
 
     def generateHeaders(self):
@@ -119,12 +136,20 @@ class CalcAddin(addin.Addin):
             buf = ''
             for func in cat.functions(self.name_, supportedplatform.MANUAL): 
                 buf += self.generateHeader(func)
-            buf2 = self.bufferCategory_.text() % {
+# replaced
+#            buf2 = self.bufferCategory_.text() % {
+#                'prefix' : environment.config().prefix(),
+#                'categoryName' : cat.name(),
+#                'buffer' : buf }
+#            fileName = self.rootPath_ + cat.name() + '.hpp'
+#            outputfile.OutputFile(self, fileName, cat.copyright(), buf2, True)
+# by
+            self.bufferCategory_.set({
                 'prefix' : environment.config().prefix(),
                 'categoryName' : cat.name(),
-                'buffer' : buf }
+                'buffer' : buf })
             fileName = self.rootPath_ + cat.name() + '.hpp'
-            outputfile.OutputFile(self, fileName, cat.copyright(), buf2, True)
+            outputfile.OutputFile(self, fileName, cat.copyright(), self.bufferCategory_, True)
 
     def generateFunction(self, func):
         """Generate source code for a given function"""
@@ -132,17 +157,34 @@ class CalcAddin(addin.Addin):
             convertReturnType = 8 * ' ' + 'return returnValue;'
         else:
             convertReturnType = self.convertReturnType_.apply(func.returnValue())
-        return self.bufferFunction_.text() % {
+# replaced
+#        return self.bufferFunction_.text() % {
+#            'convertReturnType' : convertReturnType,
+#            'cppConversions' : func.parameterList().generate(self.cppConversions_),
+#            'enumConversions' : func.parameterList().generate(self.enumConversions_),
+#            'functionBody' : func.generateBody(self),
+#            'functionName' : func.name(),
+#            #'functionValueObject' : func.generateVO(self),
+#            'functionValueObject' : '',
+#            'header' : self.generateHeader(func, False),
+#            'libraryConversions' : func.parameterList().generate(self.libraryConversions_),
+#            'referenceConversions' : func.parameterList().generate(self.referenceConversions_) }
+# by
+        return self.bufferFunction_.set({
             'convertReturnType' : convertReturnType,
             'cppConversions' : func.parameterList().generate(self.cppConversions_),
             'enumConversions' : func.parameterList().generate(self.enumConversions_),
             'functionBody' : func.generateBody(self),
+            'functionDeclaration' : func.parameterList().generate(self.functionDeclaration_),
             'functionName' : func.name(),
+            'functionReturnType' : self.functionReturnType_.apply(func.returnValue()),
             #'functionValueObject' : func.generateVO(self),
             'functionValueObject' : '',
             'header' : self.generateHeader(func, False),
             'libraryConversions' : func.parameterList().generate(self.libraryConversions_),
-            'referenceConversions' : func.parameterList().generate(self.referenceConversions_) }
+            'objectConversions' : func.parameterList().generate(self.objectConversions_),
+            'referenceConversions' : func.parameterList().generate(self.referenceConversions_)
+})
 
     def generateFunctions(self):
         """Generate source for function implementations."""
@@ -151,13 +193,22 @@ class CalcAddin(addin.Addin):
             for func in cat.functions(self.name_): 
                 buf += self.generateFunction(func)
             categoryIncludes = cat.includeList(LOOP_INCLUDES)
-            buf2 = self.bufferIncludes_.text() % {
+# replaced
+#            buf2 = self.bufferIncludes_.text() % {
+#                'categoryIncludes' : categoryIncludes,
+#                'prefix' : environment.config().prefix(),
+#                'libRoot' : environment.config().libRootDirectory(),
+#                'buffer' : buf }
+#            fileName = self.rootPath_ + cat.name() + '.cpp'
+#            outputfile.OutputFile(self, fileName, cat.copyright(), buf2, True)
+# by
+            self.bufferIncludes_.set({
                 'categoryIncludes' : categoryIncludes,
                 'prefix' : environment.config().prefix(),
                 'libRoot' : environment.config().libRootDirectory(),
-                'buffer' : buf }
+                'buffer' : buf })
             fileName = self.rootPath_ + cat.name() + '.cpp'
-            outputfile.OutputFile(self, fileName, cat.copyright(), buf2, True)
+            outputfile.OutputFile(self, fileName, cat.copyright(), self.bufferIncludes_, True)
     
     def generateIDL(self):
         """Generate the IDL file for the addin."""
@@ -167,12 +218,21 @@ class CalcAddin(addin.Addin):
             for func in cat.functions(self.name_, supportedplatform.MANUAL): 
                 parameterList = func.parameterList().generate(self.ruleIDL_)
                 returnTypeIDL = self.returnTypeIDL_.apply(func.returnValue())
-                buf += self.bufferIdlFunction_.text() % (returnTypeIDL, 
-                    func.name(), parameterList)
-        buf2 = self.bufferIdlHeader_.text() % { 'buffer' : buf }
+# replaced
+#                buf += self.bufferIdlFunction_.text() % (returnTypeIDL, 
+#                    func.name(), parameterList)
+# by
+                buf += '                ' + returnTypeIDL + ' ' + func.name() + '(' + parameterList + ');\n\n' 
+# replaced
+#        buf2 = self.bufferIdlHeader_.text() % { 'buffer' : buf }
+#        idlFile = environment.config().namespaceLibrary() + 'AddinCalc.idl'
+#        fileName = self.rootPath_ + idlFile
+#        outputfile.OutputFile(self, fileName, self.copyright_, buf2, True)
+# by
+        self.bufferIdlHeader_.set({ 'buffer' : buf })
         idlFile = environment.config().namespaceLibrary() + 'AddinCalc.idl'
         fileName = self.rootPath_ + idlFile
-        outputfile.OutputFile(self, fileName, self.copyright_, buf2, True)
+        outputfile.OutputFile(self, fileName, self.copyright_, self.bufferIdlHeader_, True)
 
     #############################################
     # serializer interface
@@ -183,3 +243,7 @@ class CalcAddin(addin.Addin):
         super(CalcAddin, self).serialize(serializer)
         serializer.serializeAttribute(self, 'addinClassName')
 
+    def loopName(self, param):
+        """Return the name of the given parameter as required for loop code - in
+        this case no conversion is performed."""
+        return param.name()

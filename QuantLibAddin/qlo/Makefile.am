@@ -87,7 +87,8 @@ include_HEADERS = \
     vcconfig.hpp \
     volatilities.hpp \
     volatility.hpp \
-    yieldtermstructures.hpp
+    yieldtermstructures.hpp \
+    credit.hpp
 
 libQuantLibAddin_la_SOURCES = \
     abcd.cpp \
@@ -157,7 +158,8 @@ libQuantLibAddin_la_SOURCES = \
     vanillaswap.cpp \
     volatilities.cpp \
     volatility.cpp \
-    yieldtermstructures.cpp
+    yieldtermstructures.cpp \
+    credit.cpp
 
 libQuantLibAddin_la_LIBADD = \
     conversions/libConversions.la \

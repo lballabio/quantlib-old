@@ -79,6 +79,7 @@
 #include <qlo/vanillaswap.hpp>
 #include <qlo/vcconfig.hpp>
 #include <qlo/volatilities.hpp>
+#include <qlo/credit.hpp>
 
 #include <qlo/valueobjects/vo_all.hpp>
 #include <qlo/enumerations/register/register_all.hpp>
