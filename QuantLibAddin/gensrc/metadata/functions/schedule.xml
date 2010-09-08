@@ -273,7 +273,7 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='EffectiveDate' exampleValue='2M'>
+          <Parameter name='EffectiveDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>effective date.</description>
