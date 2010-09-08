@@ -29,11 +29,11 @@ namespace QuantLibAddin {
         const QuantLib::Matrix& cov,
         QuantLib::Real tol,
         bool permanent)
-: ObjectHandler::LibraryObject<QuantLib::CovarianceDecomposition>(properties, permanent)
+    : ObjectHandler::LibraryObject<QuantLib::CovarianceDecomposition>(properties, permanent)
     {
         libraryObject_ =
             boost::shared_ptr<QuantLib::CovarianceDecomposition>(new
                 QuantLib::CovarianceDecomposition(cov, tol));
     }
-}
 
+}
