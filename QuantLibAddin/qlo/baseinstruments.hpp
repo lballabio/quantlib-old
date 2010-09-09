@@ -32,11 +32,10 @@ namespace QuantLibAddin {
     
     //OH_LIB_CLASS(Instrument, QuantLib::Instrument);
     class Instrument : public ObjectHandler::LibraryObject<QuantLib::Instrument> {
-    protected:
-        OH_LIB_CTOR(Instrument, QuantLib::Instrument)
-
-    public:
+      public:
         void setPricingEngine(boost::shared_ptr<PricingEngine>& e) const;
+      protected:
+        OH_LIB_CTOR(Instrument, QuantLib::Instrument)
     };
 
     OH_OBJ_CLASS(OneAssetOption, Instrument);
