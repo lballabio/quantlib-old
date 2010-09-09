@@ -112,6 +112,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\functions\btp.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\functions\calendar.xml"
 				>
 			</File>

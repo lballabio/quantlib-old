@@ -57,6 +57,9 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::BlackSwaptionEngine</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::BlackVolTermStructure</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Bond</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::BTP</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::RendistatoBasket</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::RendistatoCalculator</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CMSwapCurveState</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CTSMMCapletAlphaFormCalibration</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CTSMMCapletCalibration</DataType>
@@ -90,6 +93,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::HistoricalForwardRatesAnalysis</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::HistoricalRatesAnalysis</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::IborIndex</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::Euribor</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Index</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Instrument</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::InterestRateIndex</DataType>
@@ -180,6 +184,9 @@
     <DataType defaultSuperType='objectClass'>ObjectHandler::Object</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::AssetSwap</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Bond</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::BTP</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::RendistatoBasket</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::RendistatoCalculator</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::CMSMMDriftCalculator</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::CapFloor</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::CmsMarket</DataType>

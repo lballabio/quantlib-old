@@ -345,6 +345,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\btp.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\btp.hpp"
+			>
+		</File>
+		<File
 			RelativePath="capfloor.cpp"
 			>
 		</File>

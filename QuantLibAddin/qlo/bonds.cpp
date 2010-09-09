@@ -112,8 +112,8 @@ namespace QuantLibAddin {
 
     ZeroCouponBond::ZeroCouponBond(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
-            const std::string& des,
-            const QuantLib::Currency& cur,
+            const std::string&,
+            const QuantLib::Currency&,
             QuantLib::Natural settlementDays,
             const QuantLib::Calendar& calendar,
             QuantLib::Real faceAmount,
@@ -134,8 +134,8 @@ namespace QuantLibAddin {
 
     FixedRateBond::FixedRateBond(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
-            const std::string& des,
-            const QuantLib::Currency& cur,
+            const std::string&,
+            const QuantLib::Currency&,
             QuantLib::Natural settlementDays,
             QuantLib::Real faceAmount,
             const shared_ptr<QuantLib::Schedule>& schedule,
@@ -158,8 +158,8 @@ namespace QuantLibAddin {
 
     FixedRateBond::FixedRateBond(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
-            const std::string& des,
-            const QuantLib::Currency& cur,
+            const std::string&,
+            const QuantLib::Currency&,
             QuantLib::Natural settlementDays,
             QuantLib::Real faceAmount,
             const shared_ptr<QuantLib::Schedule>& schedule,

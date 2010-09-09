@@ -117,6 +117,8 @@ namespace QuantLibAddin {
             const QuantLib::Date& issueDate,
             const QuantLib::Calendar& paymentCalendar,
             bool permanent);
+      protected:
+        OH_OBJ_CTOR(FixedRateBond, Bond);
     };
 
     class FloatingRateBond : public Bond {

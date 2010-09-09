@@ -481,6 +481,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\valueobjects\vo_btp.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\valueobjects\vo_btp.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\valueobjects\vo_capfloor.cpp"
 				>
 			</File>
@@ -986,6 +994,14 @@
 			</File>
 			<File
 				RelativePath="qlo\bonds.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\btp.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\btp.hpp"
 				>
 			</File>
 			<File
@@ -1552,6 +1568,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\qlo\serialization\create\create_btp.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\create\create_btp.hpp"
+					>
+				</File>
+				<File
 					RelativePath="qlo\serialization\create\create_capfloor.cpp"
 					>
 				</File>
@@ -1957,6 +1981,14 @@
 				</File>
 				<File
 					RelativePath="qlo\serialization\register\serialization_browniangenerators.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_btp.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_btp.hpp"
 					>
 				</File>
 				<File

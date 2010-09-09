@@ -71,6 +71,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\btp.docs"
+				>
+			</File>
+			<File
 				RelativePath="..\..\quantlibaddin\docs\auto.pages\calendar.docs"
 				>
 			</File>

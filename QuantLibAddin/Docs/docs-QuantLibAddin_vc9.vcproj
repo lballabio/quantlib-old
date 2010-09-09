@@ -176,6 +176,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\auto.pages\btp.docs"
+				>
+			</File>
+			<File
 				RelativePath="auto.pages\calendar.docs"
 				>
 			</File>
