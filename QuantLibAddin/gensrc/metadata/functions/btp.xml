@@ -164,7 +164,7 @@
       </ParameterList>
     </Constructor>
 
-    <Member name='qlRendistatoYield' type='QuantLib::RendistatoCalculator'>
+    <Member name='qlRendistatoCalculatorYield' type='QuantLib::RendistatoCalculator'>
       <description>Returns RendistatoCalculator's yield.</description>
       <libraryFunction>yield</libraryFunction>
       <SupportedPlatforms>
@@ -180,7 +180,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlRendistatoDuration' type='QuantLib::RendistatoCalculator'>
+    <Member name='qlRendistatoCalculatorDuration' type='QuantLib::RendistatoCalculator'>
       <description>Returns RendistatoCalculator's duration.</description>
       <libraryFunction>duration</libraryFunction>
       <SupportedPlatforms>
@@ -196,7 +196,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlRendistatoYields' type='QuantLib::RendistatoCalculator'>
+    <Member name='qlRendistatoCalculatorYields' type='QuantLib::RendistatoCalculator'>
       <description>Returns the yields of the BTPs in the RendistatoCalculator's underlying basket.</description>
       <libraryFunction>yields</libraryFunction>
       <SupportedPlatforms>
@@ -212,7 +212,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlRendistatoDurations' type='QuantLib::RendistatoCalculator'>
+    <Member name='qlRendistatoCalculatorDurations' type='QuantLib::RendistatoCalculator'>
       <description>Returns the durations of the BTPs in the RendistatoCalculator's underlying basket.</description>
       <libraryFunction>durations</libraryFunction>
       <SupportedPlatforms>
@@ -228,7 +228,119 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlRendistatoEquivalentSwapSpread' type='QuantLib::RendistatoCalculator'>
+    <Member name='qlRendistatoCalculatorSwapLengths' type='QuantLib::RendistatoCalculator'>
+      <description>Returns RendistatoCalculator's equivalent swaps' lengths.</description>
+      <libraryFunction>swapLengths</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRendistatoCalculatorSwapRates' type='QuantLib::RendistatoCalculator'>
+      <description>Returns RendistatoCalculator's equivalent swaps' rates.</description>
+      <libraryFunction>swapRates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRendistatoCalculatorSwapYields' type='QuantLib::RendistatoCalculator'>
+      <description>Returns RendistatoCalculator's equivalent swaps' yields.</description>
+      <libraryFunction>swapYields</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRendistatoCalculatorSwapDurations' type='QuantLib::RendistatoCalculator'>
+      <description>Returns RendistatoCalculator's equivalent swaps' durations.</description>
+      <libraryFunction>swapDurations</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRendistatoCalculatorEquivalentSwapRate' type='QuantLib::RendistatoCalculator'>
+      <description>Returns RendistatoCalculator's equivalent swap rate.</description>
+      <libraryFunction>equivalentSwapRate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRendistatoCalculatorEquivalentSwapYield' type='QuantLib::RendistatoCalculator'>
+      <description>Returns RendistatoCalculator's equivalent swap yield.</description>
+      <libraryFunction>equivalentSwapYield</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRendistatoCalculatorEquivalentSwapDuration' type='QuantLib::RendistatoCalculator'>
+      <description>Returns RendistatoCalculator's equivalent swap duration.</description>
+      <libraryFunction>equivalentSwapDuration</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRendistatoCalculatorEquivalentSwapSpread' type='QuantLib::RendistatoCalculator'>
       <description>Returns RendistatoCalculator's equivalent swap spread.</description>
       <libraryFunction>equivalentSwapSpread</libraryFunction>
       <SupportedPlatforms>
@@ -244,7 +356,7 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlRendistatoEquivalentSwapLength' type='QuantLib::RendistatoCalculator'>
+    <Member name='qlRendistatoCalculatorEquivalentSwapLength' type='QuantLib::RendistatoCalculator'>
       <description>Returns RendistatoCalculator's equivalent swap lenght in years.</description>
       <libraryFunction>equivalentSwapLength</libraryFunction>
       <SupportedPlatforms>
@@ -260,7 +372,7 @@
       </ReturnValue>
     </Member>
 
-    <Constructor name='qlRendistato'>
+    <Constructor name='qlRendistatoCalculator'>
       <libraryFunction>RendistatoCalculator</libraryFunction>
       <SupportedPlatforms>
         SupportedPlatform name='Excel' calcInWizard='false'/
