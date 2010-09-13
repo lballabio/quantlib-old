@@ -138,6 +138,23 @@ namespace QuantLibAddin {
                    QuantLib::Real shift,
                    QuantLib::SensitivityAnalysis type);
 
+    inline std::vector<QuantLib::Real>
+    bucketAnalysisDelta(const QuantLib::Handle<QuantLib::SimpleQuote>& quote,
+                        const std::vector<QuantLib::Handle<QuantLib::Quote> >& parameters,
+                        QuantLib::Real shift,
+                        QuantLib::SensitivityAnalysis type) {
+        std::vector<QuantLib::Real> deltaVector;
+        std::vector<QuantLib::Real> gammaVector;
+        QuantLib::bucketAnalysis(deltaVector, gammaVector,
+                                 quote, parameters, shift, type);
+        return deltaVector;
+    }
+
+    std::vector<std::vector<QuantLib::Real> >
+    bucketAnalysisDelta2(const std::vector<QuantLib::Handle<QuantLib::Quote> >& quotes,
+                         const std::vector<QuantLib::Handle<QuantLib::Quote> >& parameters,
+                         QuantLib::Real shift,
+                         QuantLib::SensitivityAnalysis type);
 }
 
 #endif

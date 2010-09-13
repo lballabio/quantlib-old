@@ -198,6 +198,83 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='qlBucketAnalysisDelta'>
+      <description></description>
+      <alias>QuantLibAddin::bucketAnalysisDelta</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SimpleQuote'>
+            <type>QuantLib::SimpleQuote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>simple quote.</description>
+          </Parameter>
+          <Parameter name='Parameters'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>vector</tensorRank>
+            <description>parameters vector.</description>
+          </Parameter>
+          <Parameter name='Shift' default ='0.0001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>shift.</description>
+          </Parameter>
+          <Parameter name='SensitivityAnalysis' default='"Centered"'>
+            <type>QuantLib::SensitivityAnalysis</type>
+            <tensorRank>scalar</tensorRank>
+            <description>SensitivityAnalysis type.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBucketAnalysisDelta2'>
+      <description></description>
+      <alias>QuantLibAddin::bucketAnalysisDelta2</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SimpleQuote'>
+            <type>QuantLib::Quote</type>
+            <!--<type>QuantLib::SimpleQuote</type>-->
+            <superType>libToHandle</superType>
+            <tensorRank>vector</tensorRank>
+            <description>simple quote.</description>
+          </Parameter>
+          <Parameter name='Parameters'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>vector</tensorRank>
+            <description>parameters vector.</description>
+          </Parameter>
+          <Parameter name='Shift' default ='0.0001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>shift.</description>
+          </Parameter>
+          <Parameter name='SensitivityAnalysis' default='"Centered"'>
+            <type>QuantLib::SensitivityAnalysis</type>
+            <tensorRank>scalar</tensorRank>
+            <description>SensitivityAnalysis type.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
     <Constructor name='qlSimpleQuote'>
       <libraryFunction>SimpleQuote</libraryFunction>
       <SupportedPlatforms>
