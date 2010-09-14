@@ -145,7 +145,8 @@ namespace QuantLibAddin {
                         QuantLib::SensitivityAnalysis type) {
         std::vector<QuantLib::Real> deltaVector;
         std::vector<QuantLib::Real> gammaVector;
-        QuantLib::bucketAnalysis(deltaVector, gammaVector,
+        std::vector<QuantLib::Real> refVals;
+        QuantLib::bucketAnalysis(deltaVector, gammaVector, refVals,
                                  quote, parameters, shift, type);
         return deltaVector;
     }
