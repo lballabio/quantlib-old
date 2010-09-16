@@ -18,7 +18,7 @@
 */
 
 #include <qlo/qladdindefines.hpp>
-#include <qlo/ext_credit.hpp>
+#include <qlo/credit.hpp>
 #include <qlo/enumerations/factories/termstructuresfactory.hpp>
 
 #include <ql/instruments/stock.hpp>
