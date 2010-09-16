@@ -2458,6 +2458,14 @@
 			Name="credit"
 			>
 			<File
+				RelativePath=".\qlo\credit.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\credit.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\defaulttermstructures.cpp"
 				>
 			</File>

@@ -74,6 +74,9 @@
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\couponvectors.docs">
 			</File>
 			<File
+				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\credit.docs">
+			</File>
+			<File
 				RelativePath="..\..\QuantLibAddin\Docs\auto.pages\ctsmmcapletcalibration.docs">
 			</File>
 			<File
