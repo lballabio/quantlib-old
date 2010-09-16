@@ -45,7 +45,7 @@ import re
 import getopt
 import shutil
 
-ROOT_DIR = '/usr/local/erik/projects/trunk/QuantLibXL'
+ROOT_DIR = '/home/erik/projects/R01000x-branch/QuantLibXL'
 
 # callback functions - called from regexes which require multiple passes
 
@@ -91,8 +91,8 @@ SUBSTITUTIONS = (
     (re.compile(r'1\.0\.0'), '1.0.1'),
     (re.compile(r'0x010000'), '0x010001'),
     (re.compile(r'R010000f0'), 'R010001f0'),
-#    (re.compile(r'Major=1\nMinor=0\nRelease=0'), 'Major=1\nMinor=0\nRelease=1'),
     (re.compile(r'0\.10\.0c'), '0.10.0d'),
+#    (re.compile(r'Major=1\nMinor=0\nRelease=0'), 'Major=1\nMinor=0\nRelease=1'),
 
 )
 
