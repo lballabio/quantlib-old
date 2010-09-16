@@ -33,6 +33,8 @@
     <DataType defaultSuperType='enumeration'>QuantLibAddin::SwapIndex::FixingType</DataType>
     <DataType defaultSuperType='enumeration'>QuantLibAddin::InterpolatedYieldCurve::Interpolator</DataType>
     <DataType defaultSuperType='enumeration'>QuantLibAddin::InterpolatedYieldCurve::Traits</DataType>
+    <!--RL ADD 2010-07-22-->
+    <DataType defaultSuperType='enumeration'>QuantLib::Protection::Side</DataType>
     
     <DataType defaultSuperType='handleToLib'>QuantLib::OptionletVolatilityStructure</DataType>
     
@@ -150,6 +152,12 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::OvernightIndexedSwap</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::VanillaSwap</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::VolatilityTermStructure</DataType>
+    <!--RL ADD 2010-07-22-->
+    <DataType defaultSuperType='libraryClass'>QuantLib::DefaultProbabilityHelper</DataType>
+    <!--RL ADD 2010-07-22-->
+    <DataType defaultSuperType='libraryClass'>QuantLib::SpreadCdsHelper</DataType>
+    <!--RL ADD 2010-07-22-->
+    <DataType defaultSuperType='libraryClass'>QuantLib::UpfrontCdsHelper</DataType>
 
     <DataType defaultSuperType='libraryQuote'>QuantLib::FuturesConvAdjustmentQuote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::Quote</DataType>
@@ -158,6 +166,7 @@
 
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::TermStructure</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::YieldTermStructure</DataType>
+    <!--RL ADD 2010-07-22-->
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::DefaultProbabilityTermStructure</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityStructure</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityDiscrete</DataType>
@@ -206,6 +215,10 @@
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Leg</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::NumericHaganPricer</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::PiecewiseYieldCurve</DataType>
+    <!--RL ADD 2010-07-22-->
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::PiecewiseFlatForwardCurve</DataType>
+    <!--RL ADD 2010-07-22-->
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::PiecewiseFlatHazardRateCurve</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::RandomSequenceGenerator</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::RateHelper</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::RelinkableHandle</DataType>
@@ -214,6 +227,10 @@
     <DataType defaultSuperType='objectClass'>QuantLibAddin::StrikedTypePayoff</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Swap</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::TimeSeriesDef</DataType>
+    <!--RL ADD 2010-07-22-->
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::SpreadCdsHelper</DataType>
+    <!--RL ADD 2010-07-22-->
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::UpfrontCdsHelper</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::OvernightIndexedSwap</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::VanillaSwap</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::PricingEngine</DataType>

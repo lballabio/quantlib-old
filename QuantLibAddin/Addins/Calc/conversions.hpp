@@ -1,3 +1,4 @@
+/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
  Copyright (C) 2006, 2007, 2008 Eric Ehlers
@@ -39,6 +40,11 @@ void calcToScalar(ObjectHandler::property_t &, const STRING&);
 void calcToScalar(QuantLib::Calendar &, const STRING &id);
 void calcToScalar(QuantLib::Period &, const STRING &id);
 void calcToVector(std::vector<QuantLib::Date> &, const SEQSEQ(sal_Int32) &);
+// RL: added
+void calcToVector(std::vector<QuantLib::Date> &, const SEQSEQ(ANY) &);
+// RL: added
+void calcToVector(std::vector<ObjectHandler::property_t> &ret, 
+		  const SEQSEQ(ANY) &in);
 void calcToVector(QuantLib::Array &, const SEQSEQ(double) &);
 void calcToVector(std::vector<std::string> &, const SEQSEQ(ANY) &);
 void calcToVector(std::vector<long> &, const SEQSEQ(sal_Int32) &);

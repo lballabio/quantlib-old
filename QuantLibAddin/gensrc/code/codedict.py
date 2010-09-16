@@ -510,13 +510,29 @@ code92 = '''\
         %(tensorRank)sToCalc(returnValueCalc, returnValue);
         return returnValueCalc;\n'''
 
+#code93 = '''\
+#        OH_GET_OBJECT(%(name)sCoerce, %(name)sTemp, ObjectHandler::Object)
+#        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
+#            %(namespaceObjects)s::CoerceHandle<
+#                %(namespaceObjects)s::%(classname)s,
+#                %(namespaceLibrary)s::%(classname)s>()(
+#                    %(name)sCoerce);\n'''
+# RL: amended (Temp->Cpp)
 code93 = '''\
-        OH_GET_OBJECT(%(name)sCoerce, %(name)sTemp, ObjectHandler::Object)
+        OH_GET_OBJECT(%(name)sCoerce, %(name)sCpp, ObjectHandler::Object)
         %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
             %(namespaceObjects)s::CoerceHandle<
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sCoerce);\n'''
+
+code93a = '''\
+        OH_GET_OBJECT_DEFAULT(%(name)sCoerce, %(name)sCpp, ObjectHandler::Object)
+        %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
+            %(namespaceObjects)s::CoerceHandle<
+                %(namespaceObjects)s::%(classname)s,
+                %(namespaceLibrary)s::%(classname)s>()(
+                    %(name)sCoerce, %(namespaceLibrary)s::Handle<%(namespaceLibrary)s::%(classname)s>());\n'''
 
 code94 = '''\
         %(type)s %(nameConverted)s = calcToQlMatrix(%(name)s);\n'''
@@ -530,6 +546,45 @@ code95 = '''\
 code96 = '''\
         %(type)s %(nameConverted)s;
         calcToScalar(%(nameConverted)s, %(name)s);\n'''
+
+code100 = '''\
+        OH_GET_OBJECT(%(nameConverted)s, %(name)s, %(type)s)\n'''
+
+code100b = '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)sCpp, ObjectHandler::Object)
+        boost::shared_ptr<%(type)s> %(nameConverted)s =
+            %(namespaceObjects)s::CoerceQuoteObject<%(type)s>()(
+                %(name)sTemp);\n'''
+
+code100c = '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)sCpp, ObjectHandler::Object)
+        boost::shared_ptr<%(type)s> %(nameConverted)s =
+            %(namespaceObjects)s::CoerceTermStructureObject<%(type)s>()(
+                %(name)sTemp);\n'''
+
+code101 = '''\
+        std::vector<boost::shared_ptr<%(namespaceObjects)s::%(classname)s> > %(nameConverted)s =
+            ObjectHandler::getObjectVector<%(namespaceObjects)s::%(classname)s>(%(name)sCpp);\n'''
+
+codeCalc45c = '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)sCpp, ObjectHandler::Object)
+        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
+            %(namespaceObjects)s::CoerceQuote<
+                %(namespaceObjects)s::%(classname)s,
+                %(namespaceLibrary)s::%(classname)s>()(
+                    %(name)sTemp);\n'''
+
+codeCalc46 = '''\
+        OH_GET_OBJECT(%(name)sTemp, %(name)sCpp, ObjectHandler::Object)
+        boost::shared_ptr<%(namespaceLibrary)s::%(classname)s> %(nameConverted)s =
+            %(namespaceObjects)s::CoerceTermStructure<
+                %(namespaceObjects)s::%(classname)s,
+                %(namespaceLibrary)s::%(classname)s>()(
+                    %(name)sTemp);\n'''
+
+codeCalc218 = '''\
+        std::vector<QuantLib::Handle<QuantLib::Quote> > %(nameConverted)s =
+            ObjectHandler::vector::convert2<QuantLib::Handle<QuantLib::Quote> >(%(name)sCpp, "%(name)s");\n'''
 
 ##########################################################################
 # code for ValueObjects

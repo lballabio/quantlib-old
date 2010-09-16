@@ -541,6 +541,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\register\register_credit.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\register\register_ctsmmcapletcalibration.cpp"
 				>
 			</File>

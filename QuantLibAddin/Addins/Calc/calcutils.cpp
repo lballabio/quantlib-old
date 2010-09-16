@@ -239,6 +239,31 @@ void scalarToCalc(ANY &ret, const boost::any &value) {
 void calcToScalar(bool &ret, const sal_Int32 &value) {
     ret = value != 0;
 }
+
+void calcToScalar(QuantLib::Natural &ret, sal_Int32 &value) {
+  long temp;
+  value >>= temp;
+  ret = temp;
+}
+
+// void calcToScalar(QuantLib::Integer &ret, sal_Int32 &value) {
+//   long temp;
+//   value >>= temp;
+//   ret = temp;
+// }
+
+void calcToScalar(int &ret, sal_Int32 &value) {
+  long temp;
+  value >>= temp;
+  ret = temp;
+}
+
+void calcToScalar(QuantLib::Size &ret, sal_Int32 &value) {
+  long temp;
+  value >>= temp;
+  ret = temp;
+}
+
 void calcToScalar(long &ret, const ANY &value, const long &defaultValue) {
     STRING typeName = value.getValueTypeName();
     if (typeName.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
@@ -247,6 +272,58 @@ void calcToScalar(long &ret, const ANY &value, const long &defaultValue) {
         ret = static_cast < long > (temp);
     } else
         ret = defaultValue;
+}
+
+void calcToScalar(QuantLib::Natural &ret, const ANY &value) {
+    STRING typeName = value.getValueTypeName();
+    if (typeName.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        double temp;
+        value >>= temp;
+        ret = static_cast < QuantLib::Natural > (temp);
+    } else if (typeName.equalsIgnoreAsciiCase(STRFROMANSI("LONG"))) {
+        long temp;
+        value >>= temp;
+        ret = temp;
+    } else {
+        std::ostringstream msg;
+        msg << "unrecognized type: " << ouStringToStlString(typeName);
+        throw ObjectHandler::Exception(msg.str());
+    }
+}
+
+
+void calcToScalar(QuantLib::Integer &ret, const ANY &value) {
+    STRING typeName = value.getValueTypeName();
+    if (typeName.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        double temp;
+        value >>= temp;
+        ret = static_cast < QuantLib::Integer > (temp);
+    } else if (typeName.equalsIgnoreAsciiCase(STRFROMANSI("LONG"))) {
+        long temp;
+        value >>= temp;
+        ret = temp;
+    } else {
+        std::ostringstream msg;
+        msg << "unrecognized type: " << ouStringToStlString(typeName);
+        throw ObjectHandler::Exception(msg.str());
+    }
+}
+
+void calcToScalar(QuantLib::Size &ret, const ANY &value) {
+    STRING typeName = value.getValueTypeName();
+    if (typeName.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        double temp;
+        value >>= temp;
+        ret = static_cast < QuantLib::Size > (temp);
+    } else if (typeName.equalsIgnoreAsciiCase(STRFROMANSI("LONG"))) {
+        long temp;
+        value >>= temp;
+        ret = temp;
+    } else {
+        std::ostringstream msg;
+        msg << "unrecognized type: " << ouStringToStlString(typeName);
+        throw ObjectHandler::Exception(msg.str());
+    }
 }
 
 void calcToScalar(double &ret, const ANY &value, const double &defaultValue) {

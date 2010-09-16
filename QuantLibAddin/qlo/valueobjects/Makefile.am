@@ -58,7 +58,8 @@ include_HEADERS = \
     vo_timeseries.hpp \
     vo_vanillaswap.hpp \
     vo_volatilities.hpp \
-    vo_volatility.hpp
+    vo_volatility.hpp \
+    vo_credit.hpp
 
 libValueObjects_la_SOURCES = \
     vo_abcd.cpp \
@@ -111,5 +112,5 @@ libValueObjects_la_SOURCES = \
     vo_timeseries.cpp \
     vo_vanillaswap.cpp \
     vo_volatilities.cpp \
-    vo_volatility.cpp
-
+    vo_volatility.cpp \
+    vo_credit.cpp

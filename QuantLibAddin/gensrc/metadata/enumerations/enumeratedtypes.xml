@@ -1217,6 +1217,22 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
+    <!--RL ADD 2010-07-15-->
+    <EnumeratedTypeGroup type='QuantLib::Protection::Side'>
+      <includeFile>oh/enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Buyer</string>
+          <value>QuantLib::Protection::Buyer</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Seller</string>
+          <value>QuantLib::Protection::Seller</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
     <EnumeratedTypeGroup type='QuantLib::OvernightIndexedSwap::Type'>
       <includeFile>oh/enumerations/typefactory.hpp</includeFile>
       <constructor>true</constructor>

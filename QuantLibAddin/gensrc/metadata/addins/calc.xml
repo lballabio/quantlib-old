@@ -1,13 +1,14 @@
 
 <Addin name='Calc'>
   
-  <addinClassName>QLAddin::QLAddin</addinClassName>
+  <addinClassName>CalcAddins_iml::CalcAddins_impl</addinClassName>
   <rootDirectory>Addins/Calc</rootDirectory>
   <coreCategories>true</coreCategories>
   <addinCategories>true</addinCategories>
 
   <copyright>
     Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
+    Copyright (C) 2009 Roland Lichters
   </copyright>
 
   <Buffers>

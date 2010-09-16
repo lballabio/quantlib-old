@@ -537,6 +537,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\valueobjects\vo_credit.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\valueobjects\vo_credit.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\valueobjects\vo_ctsmmcapletcalibration.cpp"
 				>
 			</File>
@@ -1624,6 +1632,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\qlo\serialization\create\create_credit.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\create\create_credit.hpp"
+					>
+				</File>
+				<File
 					RelativePath="qlo\serialization\create\create_ctsmmcapletcalibration.cpp"
 					>
 				</File>
@@ -2040,6 +2056,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\qlo\serialization\register\serialization_credit.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_credit.hpp"
+					>
+				</File>
+				<File
 					RelativePath="qlo\serialization\register\serialization_ctsmmcapletcalibration.cpp"
 					>
 				</File>
@@ -2440,6 +2464,14 @@
 		<Filter
 			Name="credit"
 			>
+			<File
+				RelativePath=".\qlo\credit.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\credit.hpp"
+				>
+			</File>
 			<File
 				RelativePath=".\qlo\defaulttermstructures.cpp"
 				>

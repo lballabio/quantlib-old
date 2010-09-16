@@ -1,3 +1,4 @@
+/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
  Copyright (C) 2006, 2007, 2008 Eric Ehlers
@@ -22,6 +23,7 @@
 //#include <qlo/calendar.hpp>
 #include <qlo/enumerations/factories/all.hpp>
 #include <oh/objecthandler.hpp>
+#include <iostream>
 
 void calcToScalar(QuantLib::Date &ret, const sal_Int32 &date) {
     ret = QuantLib::Date(date);
@@ -30,22 +32,31 @@ void calcToScalar(QuantLib::Date &ret, const sal_Int32 &date) {
 void calcToScalar(QuantLib::Date &ret, const ANY &date) {
     long dateLong;
     calcToScalar(dateLong, date);
-    ret = QuantLib::Date(dateLong);
+    // FIXME 
+    if (dateLong == 0)
+      ret = QuantLib::Date();
+    else
+      ret = QuantLib::Date(dateLong);
 }
 
 void calcToScalar(ObjectHandler::property_t &ret, const ANY &value) {
     STRING t = value.getValueTypeName();
+    //std::cout << "calcToScalar ANY to property_t called" << std::endl;
     if (t.equalsIgnoreAsciiCase(STRFROMANSI("VOID"))) {
+        //std::cout << "ANY value type VOID" << std::endl;
         ret = ObjectHandler::property_t();
     } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("LONG"))) {
+        //std::cout << "ANY value type LONG" << std::endl;
         long temp;
         value >>= temp;
         ret = ObjectHandler::property_t(temp);
     } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        //std::cout << "ANY value type DOUBLE" << std::endl;
         double temp;
         value >>= temp;
         ret = ObjectHandler::property_t(temp);
     } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("STRING"))) {
+        //std::cout << "ANY value type STRING" << std::endl;
         STRING temp;
         value >>= temp;
         ret = ObjectHandler::property_t(ouStringToStlString(temp));
@@ -77,17 +88,48 @@ void calcToScalar(QuantLib::Period &ret, const STRING &id) {
 }
 
 void calcToVector(std::vector<QuantLib::Date> &ret, 
-        const SEQSEQ(sal_Int32) &in) {
-    for (int i=0; i<in.getLength(); ++i)
-        for (int j=0; j<in[i].getLength(); ++j)
-            ret.push_back(QuantLib::Date(in[i][j]));
+		  const SEQSEQ(sal_Int32) &in) {
+    //std::cout << "calcToVector seqseq(int) to date vector called" << std::endl;
+  for (int i=0; i<in.getLength(); ++i) {
+    for (int j=0; j<in[i].getLength(); ++j) {
+      ret.push_back(QuantLib::Date(in[i][j]));
+    }
+  }
+}
 
+void calcToVector(std::vector<QuantLib::Date> &ret, const SEQSEQ(ANY) &in) {
+    //std::cout << "calcToVector seqseq(any) to date vector called" << std::endl;
+  for (int i=0; i<in.getLength(); ++i) {
+    for (int j=0; j<in[i].getLength(); ++j) {
+      QuantLib::Date date;
+      calcToScalar(date, in[i][j]);
+      // FIXME: SEQSEQ has one element though actually blank in Calc 
+      if (date != QuantLib::Date()) 
+	ret.push_back(date);
+    }
+  }
+}
+
+void calcToVector(std::vector<ObjectHandler::property_t> &ret, 
+		  const SEQSEQ(ANY) &in) {
+  //std::cout << "calcToVector seqseq(any) to property_t vector called" 
+  //       << std::endl;
+  for (int i=0; i<in.getLength(); ++i) {
+    for (int j=0; j<in[i].getLength(); ++j) {
+      ObjectHandler::property_t prop;
+      calcToScalar(prop, in[i][j]);
+      if (!prop.missing())
+	ret.push_back(prop);
+    }
+  }
 }
 
 void calcToVector(QuantLib::Array &ret, const SEQSEQ(double) &in) {
+    //std::cout << "calcToVector seqseq(double) to array called" << std::endl;
 }
 
 void calcToVector(std::vector<std::string> &ret, const SEQSEQ(ANY) &in) {
+    //std::cout << "calcToVector seqseq(any) to string vector called" << std::endl;
     for (int i=0; i<in.getLength(); ++i) {
         for (int j=0; j<in[i].getLength(); ++j) {
             std::string s;
@@ -98,15 +140,19 @@ void calcToVector(std::vector<std::string> &ret, const SEQSEQ(ANY) &in) {
 }
 
 void calcToVector(std::vector<long> &ret, const SEQSEQ(sal_Int32) &in) {
+    //std::cout << "calcToVector seqseq(int) to long vector called" << std::endl;
 }
 
 void calcToVector(std::vector<bool> &ret, const SEQSEQ(sal_Int32) &in) {
+    //std::cout << "calcToVector seqseq(int) to bool vector called" << std::endl;
 }
 
 void calcToVector(std::vector<QuantLib::Period> &ret, const SEQSEQ(ANY) &in) {
+    //std::cout << "calcToVector seqseq(any) to period vector called" << std::endl;
 }
 
 void calcToVector(std::vector<boost::any> &, const SEQSEQ(ANY) &) {
+    //std::cout << "calcToVector seqseq(any) to boost::any vector called" << std::endl;
 }
 
 QuantLib::Matrix calcToQlMatrix(const SEQSEQ(double) &in) {

@@ -58,7 +58,8 @@ noinst_HEADERS = \
     serialization_timeseries.hpp \
     serialization_vanillaswap.hpp \
     serialization_volatilities.hpp \
-    serialization_volatility.hpp
+    serialization_volatility.hpp \
+    serialization_credit.hpp
 
 libRegister_la_SOURCES = \
     serialization_abcd.cpp \
@@ -112,5 +113,5 @@ libRegister_la_SOURCES = \
     serialization_timeseries.cpp \
     serialization_vanillaswap.cpp \
     serialization_volatilities.cpp \
-    serialization_volatility.cpp
-
+    serialization_volatility.cpp \
+    serialization_credit.cpp
