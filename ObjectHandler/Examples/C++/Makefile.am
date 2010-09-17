@@ -3,7 +3,7 @@ AM_CPPFLAGS = -I${top_srcdir} -I${top_srcdir}/Examples
 
 LDADD = ../ExampleObjects/libExampleObjects.la \
         ../../oh/libObjectHandler.la
-LDFLAGS = -lboost_filesystem
+LDFLAGS = -lboost_filesystem -lboost_serialization -lboost_regex -lboost_system
 
 EXTRA_DIST = \
     ExampleCpp_vc7.vcproj \
