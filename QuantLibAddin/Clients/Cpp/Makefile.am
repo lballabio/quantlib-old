@@ -1,6 +1,6 @@
  
 AM_CPPFLAGS = -I${top_srcdir}
-AM_LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem
+AM_LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem -lboost_serialization -lboost_system -lboost_regex
 QLADemo_LDADD = ../../qlo/libQuantLibAddin.la ../../Addins/Cpp/libQuantLibAddinCpp.la
 
 EXTRA_DIST = \
