@@ -23,7 +23,7 @@
 
 /*! \page history Version History
 
-<strong>Release 1.0.0 - ??? 2010</strong>
+<strong>Release 1.0.1 - ??? 2010</strong>
 
 FUNCTIONALITY
 
@@ -33,8 +33,8 @@ FUNCTIONALITY
 REQUIRED PACKAGES
 
 - Boost version 1.34.1 or later
-- log4cxx version 0.10.0c
-- gensrc version 1.0.0
+- log4cxx version 0.10.0d
+- gensrc version 1.0.1
 
 <strong>Release 0.9.7 - November 2008</strong>
 
