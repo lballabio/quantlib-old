@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="/qlmeta.inc"-->
+<meta name="author" content="Jack Harvard">
+<meta name="copyright" content=
+"Jack Harvard (c) 2010">
+<meta name="description" content="QuantLib Installation on Mac OS X">
+<title>QuantLib installation on Mac OS X</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="/header.inc"-->
+<div id="menu">
+<!--#include virtual="/usermenu.inc"-->
+</div>
+<div id="content">
+
+<h1 class="center">QuantLib installation on Mac OS X</h1>
+<h4 class="center">Jack Harvard</h4>
+
+<h2>Boost Installation</h2>
+
+<p>First, get MacPorts (<a href="http://www.macports.org/">http://www.macports.org/</a>). Optionally, Porticus (<a href="http://porticus.alittledrop.com/">http://porticus.alittledrop.com/</a>) is a nice gui to use.</p>
+
+<p>To install boost, run in Terminal:
+<pre>
+sudo port install boost
+</pre>
+Boost should install in /opt/local by default.</p>
+
+<h2>QuantLib Installation</h2>
+
+<p>Download QuantLib from its download page on SourceForge, located
+at <a href="http://sourceforge.net/projects/quantlib/files/">http://sourceforge.net/projects/quantlib/files/</a>.
+You want to download the tar.gz package (at the time of this writing,
+1.0.1 is the latest version) and extract it by running
+<pre>
+tar xzvf QuantLib-1.0.1.tar.gz
+</pre>
+in Terminal.  To install QuantLib, enter the folder you just created:
+<pre>
+cd QuantLib-1.0.1
+</pre>
+and run:
+<pre>
+./configure --enable-static --with-boost-include=/opt/local/include/ \
+            --with-boost-lib=/opt/local/lib/ --prefix=/opt/local/
+</pre>
+(mind the backslash on the end of the first line; it tells the
+terminal to continue on the next line.  You might also discard the
+backslash and write the whole command on a single line.)</p>
+<p>Finally, run:</p>
+<pre>
+make && sudo make install
+</pre>
+and then try to compile the examples. For example,
+<pre>
+g++ -I/opt/local/include/ -I/opt/local/include/boost BermudanSwaption.cpp \
+    -o bermudanswaption -L/opt/local/lib/ -lQuantLib
+</pre>
+</p>
+
+<p>The whole process takes two hours if installing both Boost and QuantLib.</p>
+
+<h2>Appendix: Boost Configuration</h2>
+
+<p>If you want to make the Boost headers and libraries available to
+all C++ projects, edit ~/.bash_profile and add the following lines
+into the file:
+<pre>
+export CPLUS_INCLUDE_PATH=/opt/local/include
+export C_INCLUDE_PATH=/opt/local/include
+export DYLD_LIBRARY_PATH=/opt/local/lib
+</pre>
+When this is done, restart the terminal.  After this, no include (-I)
+or link (-L) directory needs to be specified when compiling with g++.</p>
+
+</div>
+
+<div class="footer">
+<!--#include virtual="/footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>
