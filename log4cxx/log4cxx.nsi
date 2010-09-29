@@ -149,4 +149,3 @@ Section "Uninstall"
         "Software\Microsoft\Windows\CurrentVersion\Uninstall\log4cxx-${VER_NUMBER}"
 
 SectionEnd
-
