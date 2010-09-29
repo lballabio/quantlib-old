@@ -92,16 +92,6 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Traits'>
-            <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
-            <tensorRank>scalar</tensorRank>
-            <description>traits.</description>
-          </Parameter>
-          <Parameter name='Interpolator'>
-            <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
-            <tensorRank>scalar</tensorRank>
-            <description>interpolator.</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -118,16 +108,6 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Traits'>
-            <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
-            <tensorRank>scalar</tensorRank>
-            <description>traits.</description>
-          </Parameter>
-          <Parameter name='Interpolator'>
-            <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
-            <tensorRank>scalar</tensorRank>
-            <description>interpolator.</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -144,16 +124,6 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Traits'>
-            <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
-            <tensorRank>scalar</tensorRank>
-            <description>traits.</description>
-          </Parameter>
-          <Parameter name='Interpolator'>
-            <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
-            <tensorRank>scalar</tensorRank>
-            <description>interpolator.</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -170,16 +140,6 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Traits'>
-            <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
-            <tensorRank>scalar</tensorRank>
-            <description>traits.</description>
-          </Parameter>
-          <Parameter name='Interpolator'>
-            <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
-            <tensorRank>scalar</tensorRank>
-            <description>interpolator.</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -196,16 +156,6 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='Traits'>
-            <type>QuantLibAddin::InterpolatedYieldCurve::Traits</type>
-            <tensorRank>scalar</tensorRank>
-            <description>traits.</description>
-          </Parameter>
-          <Parameter name='Interpolator'>
-            <type>QuantLibAddin::InterpolatedYieldCurve::Interpolator</type>
-            <tensorRank>scalar</tensorRank>
-            <description>interpolator.</description>
-          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>

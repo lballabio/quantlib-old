@@ -30,6 +30,7 @@ GENSRC_METADATA :=  metadata/addins/calc.xml \
                     metadata/functions/cmsmarket.xml \
                     metadata/functions/correlation.xml \
                     metadata/functions/couponvectors.xml \
+                    metadata/functions/credit.xml \
                     metadata/functions/ctsmmcapletcalibration.xml \
                     metadata/functions/curvestate.xml \
                     metadata/functions/date.xml \

@@ -43,17 +43,11 @@ namespace QuantLibAddin {
             const std::string& traitsID,
             const std::string& interpolatorID,
             bool permanent);
-        const std::vector<QuantLib::Time>& times(
-            InterpolatedYieldCurve::Traits traits,
-            InterpolatedYieldCurve::Interpolator interpolator) const;
+        const std::vector<QuantLib::Time>& times() const;
 
-        const std::vector<QuantLib::Date>& dates(
-            InterpolatedYieldCurve::Traits traits,
-            InterpolatedYieldCurve::Interpolator interpolator) const;
+        const std::vector<QuantLib::Date>& dates() const;
 
-        const std::vector<QuantLib::Real>& data(
-            InterpolatedYieldCurve::Traits traits,
-            InterpolatedYieldCurve::Interpolator interpolator) const;
+        const std::vector<QuantLib::Real>& data() const;
 
         //const std::vector<QuantLib::Real>& improvements(
         //    InterpolatedYieldCurve::Traits traits,
@@ -63,13 +57,12 @@ namespace QuantLibAddin {
         //    InterpolatedYieldCurve::Traits traits,
         //    InterpolatedYieldCurve::Interpolator interpolator) const;
 
-        const std::vector<QuantLib::Time>& jumpTimes(
-            InterpolatedYieldCurve::Traits traits,
-            InterpolatedYieldCurve::Interpolator interpolator) const;
+        const std::vector<QuantLib::Time>& jumpTimes() const;
 
-        const std::vector<QuantLib::Date>& jumpDates(
-            InterpolatedYieldCurve::Traits traits,
-            InterpolatedYieldCurve::Interpolator interpolator) const;
+        const std::vector<QuantLib::Date>& jumpDates() const;
+
+	private:
+		InterpolatedYieldCurvePair pair_;
 
     };
 

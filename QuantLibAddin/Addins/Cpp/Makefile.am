@@ -29,6 +29,7 @@ include_HEADERS = \
     cmsmarket.hpp \
     correlation.hpp \
     couponvectors.hpp \
+    credit.hpp \
     ctsmmcapletcalibration.hpp \
     curvestate.hpp \
     defaulttermstructures.hpp \
@@ -92,6 +93,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     cmsmarket.cpp \
     correlation.cpp \
     couponvectors.cpp \
+    credit.cpp \
     ctsmmcapletcalibration.cpp \
     curvestate.cpp \
     defaulttermstructures.cpp \

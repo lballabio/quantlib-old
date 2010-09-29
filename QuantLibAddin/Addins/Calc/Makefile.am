@@ -1,62 +1,63 @@
 
 EXTRA_DIST = \
 	calcaddins.cpp \
+	calcaddins.hpp \
 	calcutils.cpp \
-	conversions.cpp \
-	init.cpp \
+	calcutils.hpp \
+	calendar.cpp \
+	calendar.hpp \
 	capfloor.cpp \
+	capfloor.hpp \
 	capletvolstructure.cpp \
+	capletvolstructure.hpp \
+	conversions.cpp \
+	conversions.hpp \
+	credit_fix.cpp \
 	defaulttermstructures.cpp \
+	defaulttermstructures.hpp \
 	exercise.cpp \
 	funcdef.cpp \
 	handles.cpp \
+	handles.hpp \
 	index.cpp \
+	index.hpp \
+	init.cpp \
+	init.hpp \
 	instruments.cpp \
 	logging.cpp \
+	loop.hpp \
 	options.cpp \
-	overnightindexedswap.cpp \
-	payoffs.cpp \
-	piecewiseyieldcurve.cpp \
-	pricingengines.cpp \
-	processes.cpp \
-	quotes.cpp \
-	ratehelpers.cpp \
-	schedule.cpp \
-	settings.cpp \
-	swaption.cpp \
-	swaptionvolstructure.cpp \
-	termstructures.cpp \
-	utilities.cpp \
-	vanillaswap.cpp \
-	volatilities.cpp \
-	credit.cpp \
-	calcaddins.hpp \
-	calcutils.hpp \
-	conversions.hpp \
-	init.hpp \
-	capfloor.hpp \
-	capletvolstructure.hpp \
-	defaulttermstructures.hpp \
-	exercise.hpp \
-	funcdef.hpp \
-	handles.hpp \
-	index.hpp \
-	instruments.hpp \
-	logging.hpp \
 	options.hpp \
-	overnightindexedswap.hpp \
+	payoffs.cpp \
 	payoffs.hpp \
-	piecewiseyieldcurve.hpp \
+	piecewiseyieldcurve_fix.cpp \
+	pricingengines.cpp \
 	pricingengines.hpp \
+	processes.cpp \
 	processes.hpp \
+	qldefs.hpp \
+	qlo_all.hpp \
+	quotes.cpp \
 	quotes.hpp \
+	ratehelpers.cpp \
 	ratehelpers.hpp \
+	schedule.cpp \
 	schedule.hpp \
+	settings.cpp \
 	settings.hpp \
+	swap.cpp \
+	swap.hpp \
+	swaption.cpp \
 	swaption.hpp \
+	swaptionvolstructure.cpp \
 	swaptionvolstructure.hpp \
+	termstructures.cpp \
+	termstructures_fix.cpp \
 	termstructures.hpp \
+	utilities.cpp \
 	utilities.hpp \
+	vanillaswap.cpp \
 	vanillaswap.hpp \
-	volatilities.hpp \
-	credit.hpp
+	volatilities.cpp \
+	volatilities.hpp
+

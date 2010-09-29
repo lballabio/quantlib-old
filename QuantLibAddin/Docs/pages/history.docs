@@ -23,17 +23,17 @@
 
 /*! \page history Version History
 
-<strong>Release 1.0.0 - ??? 2010</strong>
+<strong>Release 1.0.1 - ??? 2010</strong>
 
 REQUIRED PACKAGES
 
-- %QuantLib version 0.1.0
-- ObjectHandler version 0.1.0
-- gensrc version 0.1.0
+- %QuantLib version 1.0.0 or 1.0.1
+- ObjectHandler version 1.0.1
+- gensrc version 1.0.1
 
 FUNCTIONALITY
 
-- 75 new functions / 937 in total
+- 86 new functions / 948 in total
 
 PLATFORMS
 

@@ -1031,6 +1031,10 @@
           <value>QuantLib::TRLCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>TRY</string>
+          <value>QuantLib::TRYCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>TTD</string>
           <value>QuantLib::TTDCurrency()</value>
         </EnumeratedType>
