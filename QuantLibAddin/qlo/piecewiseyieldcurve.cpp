@@ -57,6 +57,14 @@ namespace QuantLibAddin {
                                               jumps,
                                               jumpDates,
                                               accuracy);
+
+		// convert input strings to enumerated datatypes
+		InterpolatedYieldCurve::Traits traits =
+            ObjectHandler::Create<InterpolatedYieldCurve::Traits>()(traitsID);
+		InterpolatedYieldCurve::Interpolator interpolator=
+			ObjectHandler::Create<InterpolatedYieldCurve::Interpolator>()(interpolatorID);
+
+		pair_ = InterpolatedYieldCurvePair(traits, interpolator);
     }
 
     // Before implementing the member functions it is necessary to provide some logic to wrap
@@ -237,40 +245,33 @@ namespace QuantLibAddin {
     // passed off to the CallerFactory which hides the details of the template class.
 
 #define CALL(FUNC) \
-Call::callerFactory().getCaller(InterpolatedYieldCurvePair(traits, interpolator))->FUNC(libraryObject_.get())
+Call::callerFactory().getCaller(pair_)->FUNC(libraryObject_.get())
 
-    const std::vector<QuantLib::Time>& PiecewiseYieldCurve::times(
-        InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
-        return CALL(times);
+    const std::vector<QuantLib::Time>& PiecewiseYieldCurve::times() const {
+		return CALL(times);
     }
 
-    const std::vector<QuantLib::Date>& PiecewiseYieldCurve::dates(
-        InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
+    const std::vector<QuantLib::Date>& PiecewiseYieldCurve::dates() const {
         return CALL(dates);
     }
 
-    const std::vector<QuantLib::Real>& PiecewiseYieldCurve::data(
-        InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
+    const std::vector<QuantLib::Real>& PiecewiseYieldCurve::data() const {
         return CALL(data);
     }
 
-    //const std::vector<QuantLib::Real>& PiecewiseYieldCurve::improvements(
-    //    InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
+    //const std::vector<QuantLib::Real>& PiecewiseYieldCurve::improvements() const {
     //    return CALL(improvements);
     //}
 
-    //QuantLib::Size PiecewiseYieldCurve::iterations(
-    //    InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
+    //QuantLib::Size PiecewiseYieldCurve::iterations() const {
     //    return CALL(iterations);
     //}
 
-    const std::vector<QuantLib::Time>& PiecewiseYieldCurve::jumpTimes(
-        InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
+    const std::vector<QuantLib::Time>& PiecewiseYieldCurve::jumpTimes() const {
         return CALL(jumpTimes);
     }
 
-    const std::vector<QuantLib::Date>& PiecewiseYieldCurve::jumpDates(
-        InterpolatedYieldCurve::Traits traits, InterpolatedYieldCurve::Interpolator interpolator) const {
+    const std::vector<QuantLib::Date>& PiecewiseYieldCurve::jumpDates() const {
         return CALL(jumpDates);
     }
 
