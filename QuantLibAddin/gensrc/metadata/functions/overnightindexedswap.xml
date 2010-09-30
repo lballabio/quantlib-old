@@ -42,8 +42,8 @@
             <description>PAYER to pay the fixed rate, RECEIVER to receive it.</description>
           </Parameter>
           <Parameter name='Nominal' default='100'>
-            <type>double</type>
-            <tensorRank>scalar</tensorRank>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
             <description>Notional Amount.</description>
           </Parameter>
           <Parameter name='Schedule' exampleValue='OisSchedule'>

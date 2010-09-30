@@ -23,7 +23,6 @@
 
 #include <qlo/overnightindexedswap.hpp>
 #include <ql/instruments/makeois.hpp>
-//#include <ql/indexes/swapindex.hpp>
 #include <ql/termstructures/yield/oisratehelper.hpp>
 #include <ql/time/ecb.hpp>
 
@@ -38,7 +37,7 @@ namespace QuantLibAddin {
     OvernightIndexedSwap::OvernightIndexedSwap(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::OvernightIndexedSwap::Type type,
-            QuantLib::Real nominal,
+            std::vector<QuantLib::Real> nominals,
             const shared_ptr<QuantLib::Schedule>& schedule,
             QuantLib::Rate fixedRate,
             const QuantLib::DayCounter& fixedDC,
@@ -48,7 +47,7 @@ namespace QuantLibAddin {
     : Swap(properties, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::Instrument>(new
-            QuantLib::OvernightIndexedSwap(type, nominal,
+            QuantLib::OvernightIndexedSwap(type, nominals,
                                            *schedule,
                                            fixedRate, fixedDC,
                                            overnightIndex, overnightSpread));

@@ -34,7 +34,7 @@ namespace QuantLibAddin {
         OvernightIndexedSwap(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::OvernightIndexedSwap::Type type,
-            QuantLib::Real nominal,
+            std::vector<QuantLib::Real> nominals,
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
             QuantLib::Rate fixedRate,
             const QuantLib::DayCounter& fixedDC,
