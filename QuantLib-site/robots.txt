@@ -10,6 +10,7 @@ Disallow: /objecthandler
 Disallow: /quantlibaddin
 Disallow: /quantlibxl
 Disallow: /notfound.shtml
+Disallow: /books.shtml
 Disallow: /cvs.shtml
 Disallow: /developerFAQ.shtml
 Disallow: *.inc
