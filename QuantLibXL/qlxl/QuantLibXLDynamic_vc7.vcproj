@@ -190,6 +190,9 @@
 				RelativePath="register\register_browniangenerators.cpp">
 			</File>
 			<File
+				RelativePath="register\register_btp.cpp">
+			</File>
+			<File
 				RelativePath="register\register_calendar.cpp">
 			</File>
 			<File
@@ -369,6 +372,9 @@
 			</File>
 			<File
 				RelativePath="functions\browniangenerators.cpp">
+			</File>
+			<File
+				RelativePath="functions\btp.cpp">
 			</File>
 			<File
 				RelativePath="functions\calendar.cpp">
