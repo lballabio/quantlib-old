@@ -1,0 +1,98 @@
+
+/*
+ Copyright (C) 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page references References, Permanent Objects and Triggers
+
+<div align="center"><small><a href="manual.html">back to reference manual index</a></small></div> 
+
+\section ref_overview Overview
+
+\li On the Excel platform, one object may refer to another either by a cell
+reference, or by the raw string representing the object's ID.  The use of raw
+strings allows objects to be referenced even if the workbook which instantiated
+them is closed.
+\li It may be useful for objects referenced in this way to be declared
+"permanent" so that they are not deleted by functions ohObjectDelete() and
+ohCollectGarbage().
+\li Referencing objects by raw strings circumvents Excel's dependency tracking
+mechanism.  Triggers can be used to force Excel to reestablish dependencies
+between cells.
+
+\section ref_references References
+
+Consider the case where cell A1 constructs an object called "my_object" which
+is used as an input value to a formula in cell A2.  A2's dependence on A1 may
+be established in one of two ways:
+\li The excel cell range A1 may be specified as the value for the given
+argument of the function in A2
+\li The literal string "my_object" may be passed as the value to the function
+in A2
+
+The usual approach is to use cell references.  This exploits Excel's dependency
+tree, e.g. Excel ensures that cell A1 is calculated before A2.  When raw
+strings are used, Excel cannot see that cell A2 depends on cell A1.  In this
+trivial example there would be no advantage in using raw strings.
+
+In more sophisticated applications, the use of raw strings may provide
+additional flexibility, at the cost of some manual overhead on the part of the
+spreadsheet designer.  For example, during initialization a collection of known
+objects may be instantiated on a workbook which is then closed.  For the
+duration of this Excel session these objects may be referenced by their names,
+without the need for the referencing workbook to hold a link to the
+initialization book where the objects were instantiated.
+
+When an object is created with an ID such as "my_object", the addin
+automatically appends an update counter to the ID and the value returned to the
+cell appears in the format "my_object#9999".  Either form may be used to
+reference the object.
+
+\section ref_permanent Permanent Objects
+
+The last argument of every constructor is a flag called "permanent".  This is a
+flag indicating whether the object is to be permanent or not. It's a boolean
+but is implemented as datatype \c any so that it can be omitted (default =
+false).
+
+Permanent objects are not deleted by functions ohAllObjectDelete() /
+ohCollectGarbage(), allowing finer granularity in managing the objects in the
+repository.  For example in the scenario described above where global objects
+are initialized at startup on a workbook which is then closed, these objects
+might be declared permanent, so that functions ohAllObjectDelete() /
+ohCollectGarbage() delete only objects that the user can see. Functions
+ohAllObjectDelete() / ohCollectGarbage() accept a parameter called
+"deletePermanent", which defaults to False. Setting deletePermanent = True
+overrides the default behavior, deleting all objects including those that were
+declared permanent.
+
+\section ref_triggers Triggers
+
+Referencing objects by raw strings rather than Excel references circumvents
+Excel's dependency tree. Triggers provide a mechanism for forcing dependencies
+that Excel would otherwise not know about.
+
+Addin functions may be implemented with a dummy "trigger" parameter which can
+be used for this purpose.  The %ObjectHandler function ohTrigger() can be
+supplied as the value to the trigger parameter.
+
+*/
+

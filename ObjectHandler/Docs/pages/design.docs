@@ -1,0 +1,348 @@
+
+/*
+ Copyright (C) 2005, 2006 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page design Design
+
+<table border="1" bgcolor="lightsteelblue">
+<tr>
+<td><b>NB:</b> This document is out of date.  The %ObjectHandler implementation
+still reflects the high-level ideas in this document but many of the details
+have changed.  For further information please refer to the %ObjectHandler source
+code or send email to quantlib-users@lists.sf.net.</td>
+</tr>
+</table>
+
+\section sec_00 Abstract
+\par
+QuantLib integration into spreadsheets and other end user tools requires a new standalone <strong>%ObjectHandler</strong> component, a repository allowing objects to be stored, shared, updated, interrogated, and destroyed.
+\section sec_01 Contents
+<dl>
+<dt>\ref sec_1</dt>
+<dd><dl>
+<dt>\ref sec_1_1</dt>
+<dd><dl>
+<dt>\ref sec_1_1_1</dt>
+<dt>\ref sec_1_1_2</dt>
+<dt>\ref sec_1_1_3</dt>
+<dt>\ref sec_1_1_4</dt>
+<dt>\ref sec_1_1_5</dt>
+</dl></dd>
+<dt>\ref sec_1_2</dt>
+<dd><dl>
+<dt>\ref sec_1_2_1</dt>
+<dt>\ref sec_1_2_2</dt>
+</dl></dd>
+</dl></dd>
+<dt>\ref sec_2</dt>
+<dd><dl>
+<dt>\ref sec_2_1</dt>
+<dd><dl>
+<dt>\ref sec_2_1_1</dt>
+<dt>\ref sec_2_1_2</dt>
+</dl></dd>
+<dt>\ref sec_2_2</dt>
+<dd><dl>
+<dt>\ref sec_2_2_1</dt>
+<dt>\ref sec_2_2_2</dt>
+</dl></dd>
+</dl></dd>
+<dt>\ref sec_3</dt>
+<dt>\ref sec_4</dt>
+</dl>
+\section sec_1 1. Design
+<div class="center"><img src="images/quep011a.png"></div>
+\section sec_1_1 1.1 ObjectHandler
+\par
+%ObjectHandler maintains a repository of objects, each identified by a unique <tt>Handle</tt> provided by the client. %ObjectHandler facilitates:
+<ul>
+<li><b>persistence</b>: Objects can be maintained and modified throughout the life of the client application.</li>
+<li><b>sharing</b>: Each client application instantiates a single global instance of %ObjectHandler.  Objects created in one area of the application can be accessed in another - for example, in a spreadsheet, one sheet can refer to objects instantiated on another.</li>
+</ul>
+\section sec_1_1_1 1.1.1 Object
+\par
+Abstract base class <tt>Object</tt> implements the interface required by ObjectHander for managing <tt>Object</tt>s - constructor, copy constructor, assignment operator, destructor.
+\par
+Client objects retained in the %ObjectHandler repository are represented by classes derived from <tt>Object</tt>.  Typically the constructor of the derived <tt>Object</tt> class invokes the constructor of the corresponding client class, and the resulting client object is retained in a member variable of the derived <tt>Object</tt> class.  The derived <tt>Object</tt> class may also wrap member functions of the client class.
+\par
+The <tt>Object</tt> class supports two interfaces for the client application to interrogate the stored object:
+<ul>
+<li><b>high-level</b> access implemented by member functions which allow the client to query the object at run-time with no prior knowledge of its implementation.</li>
+<li><b>low-level</b> access implemented by a member function which returns a const reference to the underlying client object stored within the derived <tt>Object</tt>.</li>
+</ul>
+\section sec_1_1_2 1.1.2 ObjectHandler
+\par
+A single global instance of class <tt>%ObjectHandler</tt> implements the interface required by the client to store and retrieve objects in the repository. Global scope is achieved by deriving <tt>%ObjectHandler</tt> from <tt>Singleton</tt>.
+\section sec_1_1_3 1.1.3 boost::any
+\par
+%ObjectHandler uses Boost class <tt>boost::any</tt> to represent a scalar, vector, or matrix of native datatypes, <tt>Object</tt>s, or other <tt>boost::any</tt>s.  Class <tt>boost::any</tt> serves as a proxy for similar constructs in target client environments (uno::Any in Calc, XLOPER in Excel, etc.)
+\section sec_1_1_4 1.1.4 Property
+\par
+Object properties are implemented as a vector of template class <tt>Property</tt> (Daniel Duffy, <em>Financial Instrument Pricing Using C++</em>) which stores attributes as key/value pairs.  Use of the <tt>Property</tt> vector allows derived <tt>Object</tt>s to maintain their attributes dynamically, while the client interrogates objects through the standard interface in the base class.
+\section sec_1_1_5 1.1.5 Factory
+\par
+A class template implements function \c makeObject which instantiates an \c Object in \c %ObjectHandler given a classname and handle.  Function \c makeObject accepts an argument list, implemented as <tt>stack < any ></tt>, which is passed to the \c Object's constructor. Where the constructor of one \c Object requires access to another existing \c Object, the Handle of the existing \c Object can be pushed onto the argument stack, allowing the new \c Object to retrieve the existing one from the \c %ObjectHandler repository.
+\section sec_1_2 1.2 Client
+\par
+A Client application using %ObjectHandler implements the components described below.
+\section sec_1_2_1 1.2.1 Object
+\par
+Classes of Client objects to be stored in %ObjectHandler are wrapped in classes derived from <tt>Object</tt>. The derived <tt>Object</tt> class overrides the base <tt>Object</tt> class's member functions as appropriate for the corresponding Client class:
+<ul>
+<li><b>constructor</b> constructs the corresponding Client object, which is retained as a member variable of the <tt>Object</tt>.</li>
+<li><b>copy constructor, assignment operator, destructor</b> are customized for the particulars of the derived class.</li>
+<li><b>member functions</b> call corresponding member functions of the underlying Client object.  The state of the Client object stored in the derived <tt>Object</tt> may change accordingly.</li>
+<li><b>high- and low-level interrogation</b> methods are supported appropriately for the derived class.</li>
+</ul>
+\section sec_1_2_2 1.2.2 Factory
+\par
+The client application makes calls to the Factory function in order to instantiate \c Objects in \c %ObjectHandler.  Additional \c %ObjectHandler functions allow the client to delete selected \c Objects, or to empty the entire repository.
+\par
+Class <tt>Object</tt> supports interfaces for high- and low-level interrogation.  For expediency, the return value of function \c makeObject is the Property vector of the corresponding <tt>Object</tt>.  Rather than interrogate a newly constructed <tt>Object</tt>, the client application can simply grab the Property vector from the return value of the factory function.  For example, in a spreadsheet, a formula array invokes the factory function which instantiates an <tt>Object</tt> in %ObjectHandler, and the return value of the factory function - attributes of the <tt>Object</tt> - are displayed across a range of cells in the spreadsheet.
+\section sec_2 2 Implementation
+\par
+Pseudocode is provided for %ObjectHandler and for an example Client application. A complete copy of the latest code can be checked out from the <a href="http://quantlib.org/cvs.shtml">QuantLib CVS</a> (module %ObjectHandler), or browsed <a href="http://cvs.sourceforge.net/viewcvs.py/quantlib/ObjectHandler/">on line</a>.
+\section sec_2_1 2.1 ObjectHandler
+\section sec_2_1_1 2.1.1 Object
+\par object.hpp
+\code
+typedef boost::shared_ptr<boost::any> any_ptr;
+typedef Property<string, any_ptr> ObjectProperty;
+typedef vector<ObjectProperty> Properties;
+
+class Object {
+public:
+   // constructor, destructor, copy constructor, assignment operator
+   // high-level interrogation
+   const Properties &getProperties() const;
+   // low-level interrogation
+   virtual boost::shared_ptr<void> getReference() const = 0;
+   // future enhancements
+   //Coerce();
+   //Load();
+   //Unload();
+   //Serialize();
+   //Deserialize();
+   //Compress();
+   //Uncompress();
+protected:
+   Properties properties_;
+};
+\endcode
+\par object.cpp
+\code
+#include "object.hpp"
+
+const Properties &Object::getProperties() const {
+   return properties_;
+}
+\endcode
+\section sec_2_1_2 2.1.2 ObjectHandler
+\par objecthandler.hpp
+\code
+#include "object.hpp"
+
+typedef boost::shared_ptr<Object> obj_ptr;
+typedef map<string, obj_ptr> ObjectList;
+
+class ObjectHandler {
+public:
+   // constructor, destructor
+   void storeObject(const Handle &handle, const obj_ptr &object);
+   obj_ptr retrieveObject(const Handle &handle);
+   void deleteObject(const std::string &handle);
+   void deleteAllObjects();
+   std::vector < std::string >getHandles();
+   void dump(std::ostream&);
+private:
+   ObjectList objectList_;   // repository of objects
+};
+\endcode
+\par objecthandler.cpp
+\code
+#include "objecthandler.hpp"
+
+void ObjectHandler::storeObject(
+        const Handle &handle,
+        const obj_ptr &object) {
+    objectList_[handle] = object;
+}
+
+obj_ptr ObjectHandler::retrieveObject(const Handle &handle) {
+   ObjectList::const_iterator result = objectList_.find(handle);
+   if (result!=objectList_.end())
+      return result->second;
+   else
+      return obj_ptr();
+}
+\endcode
+\section sec_2_2 2.2 Client
+\par
+The native client object which is to be stored in %ObjectHandler:
+\par foo.hpp
+\code
+class Foo {
+public:
+   Foo(const string &s, const int &i) : s_(s), i_(i) {};
+   void update(const string &s, const int &i) {
+      s_ = s;
+      i_ = i;
+   }
+   string s() { return s_; };
+   int i() { return i_; };
+private:
+   string s_;
+   int i_;
+};
+\endcode
+\section sec_2_2_1 2.2.1 Object
+\par
+Implementation of the <tt>Object</tt> corresponding to the Foo class:
+\par objectfoo.hpp
+\code
+class ObjectFoo : public Object {
+public:
+   ObjectFoo(ArgStack &args);
+   virtual boost::shared_ptr<void> getReference() const;
+   void update(const string &s, const int &i);
+private:
+   boost::shared_ptr<Foo> foo_;
+};
+\endcode
+\par objectfoo.cpp
+\code
+ObjectFoo::ObjectFoo(ArgStack &args) {
+   // get arguments from argument stack
+   int i = Args<int>::popArg(args);
+   std::string s = Args<std::string>::popArg(args);
+   // construct foo object
+   foo_ = boost::shared_ptr<Foo>(new Foo(s, i));
+   // populate base class Property vector
+   any_ptr anyString(new boost::any(foo_->s()));
+   any_ptr anyInt(new boost::any(foo_->i()));
+   ObjectProperty propString(PROPERTY_STR, anyString);
+   ObjectProperty propInt(PROPERTY_INT, anyInt);
+   properties_.push_back(propString);
+   properties_.push_back(propInt);
+}
+
+// wrapper for underlying member function
+void ObjectFoo::update(const string &s, const int &i) {
+   foo_->update(s, i);
+   // update Property vector
+   *properties_[IDX_STR]() = s;
+   *properties_[IDX_INT]() = i;
+}
+
+boost::shared_ptr<void> ObjectFoo::getReference() const {
+   return boost::static_pointer_cast<void>(foo_);
+}
+\endcode
+\section sec_2_2_2 2.2.2 Application
+\par example.cpp
+The syntax of certain calls to %ObjectHandler has been simplified 
+with <tt>defines</tt> as documented in file \ref utilities.hpp.
+\code
+int main() {
+    try {
+        // specify log file
+        OH_LOGFILE("example.log");
+        // also direct log messages to stdout
+        OH_CONSOLE(1);
+        OH_LOG_MESSAGE("begin example program");
+
+        // construct some objects and store them in the object handler
+        ArgumentStack foo1Arguments;
+        foo1Arguments.push(string("abc"));
+        foo1Arguments.push(123);
+        Properties foo1Properties = 
+            OH_MAKE_OBJECT(ObjectFoo, "foo1", foo1Arguments);
+
+        ArgumentStack foo2Arguments;
+        foo2Arguments.push(string("def"));
+        foo2Arguments.push(456);
+        Properties foo2Properties = 
+            OH_MAKE_OBJECT(ObjectFoo, "foo2", foo2Arguments);
+
+        // high level interrogation
+        OH_LOG_MESSAGE("high level interrogation - after constructor");
+        OH_LOG_OBJECT("foo2");
+
+        // update an object
+        FOO_UPDATE("foo2", "ghi", 789);
+
+        // high level interrogation
+        OH_LOG_MESSAGE("high level interrogation - after update");
+        OH_LOG_OBJECT("foo2");
+
+        // low-level interrogation
+        OH_LOG_MESSAGE("low-level interrogation - after FOO_UPDATE");
+        boost::shared_ptr<ObjectFoo> const objectFoo =
+            OH_GET_OBJECT(ObjectFoo, "foo2");
+        boost::shared_ptr<Foo> foo = 
+            OH_GET_REFERENCE(Foo, objectFoo);
+        OH_LOG_MESSAGE("value of property s() of underlying foo = "
+            + foo->s());
+
+        OH_DELETE_OBJECT("foo2");
+        OH_LOG_MESSAGE("log all objects after deleting foo2:");
+        OH_LOG_ALL_OBJECTS();
+
+        OH_LOG_MESSAGE("end example program");
+
+        return 0;
+    } catch (const exception &e) {
+        ostringstream s;
+        s << "Error: " << e.what();
+        OH_LOG_MESSAGE(s.str(), 1);
+        return 1;
+    } catch (...) {
+        OH_LOG_MESSAGE("Error", 1);
+        return 1;
+    }
+}
+\endcode
+<div class="center"><img src="images/quep011b.png"></div>
+\section sec_3 3 Proposed Enhancements
+\subsection sec_3_1 3.1 ohMethodValue
+
+Function ohMethodValue would be a generic call to any method of the underlying
+object e.g. the Excel function might appear as
+\code
+ohMethodValue(handle, "methodName", parameterArray)
+\endcode
+And the corresponding C++ source code would be
+\code
+returnValue = objectPointer->getObject().methodName(parameterArray)
+\endcode
+If returnValue is an object the handle is returned.
+
+Implementation would require some kind of message map which would associate
+strings with member functions.  (Unfortunately this is not a straightforward
+task in C++ compared to many other programming languages.).  The code to
+initialize this container might be generated by srcgen based on metadata.
+
+\section sec_4 4 Feedback
+\par
+Feedback on this proposal should be posted to the <a href="mailto:quantlib-users@lists.sourceforge.net">QuantLib users</a> mailing list.
+*/
+

@@ -1,0 +1,17 @@
+
+<Addin name='Loop'>
+
+  <rootDirectory>oh/loop</rootDirectory>
+  <coreCategories>true</coreCategories>
+  <addinCategories>false</addinCategories>
+
+  <copyright>
+    Copyright (C) 2006 Eric Ehlers
+  </copyright>
+
+  <Buffers>
+    <Buffer name='bufferFile' fileName='stub.loop.file'/>
+  </Buffers>
+
+</Addin>
+

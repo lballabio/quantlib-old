@@ -1,0 +1,107 @@
+
+/*
+ Copyright (C) 2008 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, send email to <quantlib-dev@lists.sf.net>
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>.
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page conventions Conventions
+
+This document summarizes various naming conventions used for the project.
+
+\section conv_vernum Version Numbers
+
+The convention for version numbers is xx.yy.zzsn where:
+
+xx is the major number \n
+yy is the minor number \n
+zz is the minor-minor number \n
+s  is a letter indicating the status of the release - a(lpha), b(eta), or f(inal) \n
+n  is an ordinal number \n
+
+For example, the number identifying the latest version of %ObjectHandler is
+1.0.1f0.
+
+The corresponding release my be referred to in the format Rxxyyzzsn, where R
+stands for release.  For example, the release corresponding to version 1.0.1f0
+is R010001f0.
+
+\section conv_binaries Binary Names
+
+Binary files that are output by the project - lib files, XLLs, executables -
+are named according to the conventions specified by the boost project:
+
+<a href="http://www.boost.org/more/getting_started/windows.html#library-naming">http://www.boost.org/more/getting_started/windows.html#library-naming</a>
+
+For example, when you compile %ObjectHandler version 1.0.1 using VC8 solution
+file ObjectHandler_vc8.sln, project ohlib, configuration Release (static runtime), the output
+file is ObjectHandler\lib\ObjectHandler-vc80-mt-s-1_0_1.lib.
+
+\section conv_vc Visual C++ Versions and Files
+
+The table below summarizes the supported versions of Visual C++, the
+abbreviation given to each version, and the names used for solution and project
+files corresponding to that version:
+
+<table>
+<tr><td><b>Version</b></td><td><b>Abbreviation</b></td><td><b>Solution Files<br>Project Files</b></td></tr>
+<tr><td><b>Visual C++ 2003</b></td><td><b>VC7</b></td><td><b>xxx_vc7.sln<br>xxx_vc7.vcproj</b></td></tr>
+<tr><td><b>Visual C++ 2005</b></td><td><b>VC8</b></td><td><b>xxx_vc8.sln<br>xxx_vc8.vcproj</b></td></tr>
+<tr><td><b>Visual C++ 2008</b></td><td><b>VC9</b></td><td><b>xxx_vc9.sln<br>xxx_vc9.vcproj</b></td></tr>
+</table>
+
+Be sure to open the files that correspond to the version of Visual C++ that you
+are using.  If by mistake you open the files for an older version of VC, the
+project will be upgraded, but the dependencies will be wrong and the build will
+fail.
+
+In the installation instructions, solution files may be referred to as
+xxx_vc?.sln, where ? corresponds to 7, 8 or 9 depending on the version of
+Visual C++ that you are using.
+
+\section conv_vc Visual C++ Runtime Libraries
+
+The runtime library is a setting in Visual C++, found under Project Properties /
+Configuration Properties / C/C++ / Code Generation / Runtime Library:
+
+<img src="images/runtime_library.jpg">
+
+The project files provide a separate configuration corresponding to each
+version of the runtime library.  The table below summarizes the available
+configurations.
+
+<table>
+<tr><td><b>Configuration</b></td><td><b>Runtime Library</b></td><td><b>Compiler Flag</b></td></tr>
+<tr><td>Release</td><td>Multi-threaded DLL</td><td>/MD</td></tr>
+<tr><td>Release (static runtime)</td><td>Multi-threaded</td><td>/MT</td></tr>
+<tr><td>Debug</td><td>Multi-threaded Debug DLL</td><td>/MDd</td></tr>
+<tr><td>Debug (static runtime)</td><td>Multi-threaded Debug</td><td>/MTd</td></tr>
+</table>
+
+All of the lib files linked into a given binary (.exe, .dll, .xll) must be compiled
+against the same runtime library.
+
+If you compile your project against the DLL version of the runtime library
+then the resulting binary will have a dependency on the Microsoft runtime DLLs.
+
+If you are using multiple XLLs linked dynamically at runtime, these must be compiled
+against a DLL version of the runtime library e.g. Release.
+
+*/
+

@@ -1,0 +1,312 @@
+<Category name='ohutils'>
+  <description>objecthandler utilities.</description>
+  <displayName>ObjectHandler Utilities</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>oh/utilities.hpp</include>
+  </addinIncludes>
+
+  <copyright>
+    Copyright (C) 2004, 2005, 2006, 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
+    Copyright (C) 2005, 2006 Plamen Neykov
+    Copyright (C) 2004 StatPro Italia srl
+  </copyright>
+
+  <Functions>
+
+    <Procedure name='ohTrigger' dependencyTrigger='false'>
+      <description>forces a dependency between multiple ranges and returns the update counter.</description>
+      <alias>ObjectHandler::dependsOn</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dummy0' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy1' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy2' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy3' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy4' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy5' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy6' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy7' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy8' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy9' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy10' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy11' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy12' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+          <Parameter name='Dummy13' ignore='true'>
+            <type>any</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dummy range reference (ignored).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohFunctionCount'>
+      <description>returns the number of functions in this addin.</description>
+      <alias>ObjectHandler::version</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohPack'>
+      <description>trim error/null/empty values from bottom/right of matrix/vector.</description>
+      <alias>ObjectHandler::RepositoryXL::instance().packMatrix</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='InputRange'>
+            <type>any</type>
+            <tensorRank>matrix</tensorRank>
+            <description>scalar/vector/matrix of values to be packed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohStringSplit' dependencyTrigger='False'>
+      <description>Split a string into substrings using the given delimiter.</description>
+      <alias>ObjectHandler::split</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='String'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>string to be parsed.</description>
+          </Parameter>
+          <Parameter name='Delimiters'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>delimiter characters.</description>
+          </Parameter>
+          <Parameter name='ConcatenateDelim' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>specifies if multiple adjacent delimiters are to be considered as one (TRUE) or not (FALSE).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohStringConcatenate' dependencyTrigger='False'>
+      <description>Concatenate substrings into a single string using the given delimiter.</description>
+      <alias>ObjectHandler::concatenate</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Substrings'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>string to be parsed.</description>
+          </Parameter>
+          <Parameter name='Delimiter'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>delimiter string.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohFilter' dependencyTrigger='False'>
+      <description>Filters the first vector using the second one as boolean inclusion flags.</description>
+      <alias>ObjectHandler::filter</alias>
+      <xlWizardRecalc>true</xlWizardRecalc>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Input'>
+            <type>any</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector to be filtered.</description>
+          </Parameter>
+          <Parameter name='Flags'>
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector to inclusion flags.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRangeRetrieveError' dependencyTrigger='false'>
+      <description>Retrieve the error message if any that is associated with the given range.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual' xlMacro='false'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Range'>
+            <type>reference</type>
+            <tensorRank>scalar</tensorRank>
+            <description>range to query.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>reference</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRetrieveErrorImpl' dependencyTrigger='false' visible='false'>
+      <description>Concrete implementation of ohRangeRetrieveError().  This function is hidden.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Range'>
+            <type>reference</type>
+            <tensorRank>scalar</tensorRank>
+            <description>range to query.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohVbaError'>
+      <description>Retrieve error message associated with VBA code.</description>
+      <alias>ObjectHandler::RepositoryXL::instance().vbaError</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohBoostVersion'>
+      <description>returns the version number of Boost.</description>
+      <alias>ObjectHandler::boostVersion</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohVersion'>
+      <description>returns the version number of ObjectHandler.</description>
+      <alias>ObjectHandler::version</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+
+</Category>

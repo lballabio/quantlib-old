@@ -1,0 +1,155 @@
+
+<Category name='logging'>
+  <description>logging functions.</description>
+  <displayName>Logging Functions</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>oh/utilities.hpp</include>
+  </addinIncludes>
+
+  <copyright>
+    Copyright (C) 2004, 2005 Ferdinando Ametrano
+    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+    Copyright (C) 2005, 2006 Plamen Neykov
+    Copyright (C) 2004 StatPro Italia srl
+  </copyright>
+
+  <Functions>
+
+    <Procedure name='ohLogWriteMessage'>
+      <description>log a message.</description>
+      <alias>ObjectHandler::logWriteMessage</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LogMessage'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>message to be logged.</description>
+          </Parameter>
+          <Parameter name='LogLevel' default='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohLogSetFile'>
+      <description>begin logging to named file.</description>
+      <alias>ObjectHandler::logSetFile</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LogFileName'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>path and name of log file.</description>
+          </Parameter>
+          <Parameter name='LogLevel' default='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohLogSetLevel'>
+      <description>set threshold for log messages.</description>
+      <alias>ObjectHandler::logSetLevel</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LogLevel'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+        <description>returns new logging threshold.</description>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohLogSetConsole'>
+      <description>fork output to stdout.</description>
+      <alias>ObjectHandler::logSetConsole</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Console'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>1 (enable) / 0 (disable).</description>
+          </Parameter>
+          <Parameter name='LogLevel' default='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>threshold for log messages.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohLogFile'>
+      <description>get log file.</description>
+      <alias>ObjectHandler::logFile</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+        <description>returns log file name.</description>
+      </ReturnValue>
+    </Procedure>
+    
+    <Procedure name='ohLogLevel'>
+      <description>get log level.</description>
+      <alias>ObjectHandler::logLevel</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+        <description>returns log level value.</description>
+      </ReturnValue>
+    </Procedure>
+  </Functions>
+
+</Category>
