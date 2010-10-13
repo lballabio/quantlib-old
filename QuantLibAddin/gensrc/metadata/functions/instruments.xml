@@ -1,0 +1,137 @@
+<Category name='instruments'>
+  <description>functions to construct and use Instrument objects.</description>
+  <displayName>Instruments</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>qlo/baseinstruments.hpp</include>
+    <include>qlo/pricingengines.hpp</include>
+    <include>ql/instrument.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2005 Walter Penschke
+  </copyright>
+
+  <Functions>
+
+    <Member name='qlInstrumentNPV' type='QuantLib::Instrument'>
+      <description>Returns the NPV for the given Instrument object.</description>
+      <libraryFunction>NPV</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInstrumentErrorEstimate' type='QuantLib::Instrument'>
+      <description>Returns the NPV error estimation (for e.g. Monte Carlo simulation) for the given Instrument object.</description>
+      <libraryFunction>errorEstimate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInstrumentValuationDate' type='QuantLib::Instrument'>
+      <description>Returns the NPV for the given Instrument object.</description>
+      <libraryFunction>valuationDate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInstrumentResults' type='QuantLib::Instrument'>
+      <description>Returns the required result (if available) for the given Instrument object.</description>
+      <libraryFunction>result&lt;QuantLib::Real&gt;</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ResultType' exampleValue='vega'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>result type (e.g. 'vega').</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInstrumentIsExpired' type='QuantLib::Instrument'>
+      <description>Returns TRUE if the given Instrument object is expired.</description>
+      <libraryFunction>isExpired</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInstrumentSetPricingEngine' type='QuantLibAddin::Instrument'>
+      <description>Sets a new pricing engine to the given Instrument pbject.</description>
+      <libraryFunction>setPricingEngine</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='PricingEngine' exampleValue='PricingEngineID'>
+            <type>QuantLibAddin::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>PricingEngine object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

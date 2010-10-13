@@ -1,0 +1,71 @@
+<Category name='handles'>
+  <description>handles.</description>
+  <displayName>Handles</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes/>
+  <addinIncludes/>
+  <copyright>
+    Copyright (C) 2006, 2007 Eric Ehlers
+  </copyright>
+  <Functions>
+
+    <Member name='qlHandleCurrentLink' type='QuantLibAddin::Handle'>
+      <description>ID of object to which this handle is linked - empty string if none.</description>
+      <libraryFunction>currentLink</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHandleEmpty' type='QuantLibAddin::Handle'>
+      <description>True if handle is empty, False if not.</description>
+      <libraryFunction>empty</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRelinkableHandleLinkTo' type='QuantLibAddin::RelinkableHandle'>
+      <description>Relink the RelinkableHandle to the given object.</description>
+      <libraryFunction>linkTo</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurrentLink' default='""'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of Object to which the RelinkableHandle should be relinked, or empty string for null object.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>
+

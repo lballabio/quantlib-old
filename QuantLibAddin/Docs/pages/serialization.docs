@@ -1,0 +1,262 @@
+
+/*
+ Copyright (C) 2007, 2008 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page serialization Serialization Demo
+
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
+
+This document explains how to build an environment supporting export/import
+from/to Excel/C++ on Windows/Linux.
+
+For the Excel portions of this tutorial you can use either the QuantLibXL Addin
+that was delivered by the binary installer, or one that you compile
+yourself using the tutorial \ref build_qlxl.
+
+For the C++ portions of this tutorial you must compile the %QuantLibAddin C++
+environment as described in tutorial \ref build_cpp.
+
+Different versions of Boost create serialization files in different formats.
+If the application that imports the XML is compiled against a different version
+of Boost than the application that exported the XML, then the import fails with
+<tt>stream error</tt>.  The export files created for this demo were generated
+from binaries that were compiled against Boost 1.35.0.  The binary release of
+QuantLibXL was compiled against Boost 1.35.0.  If you're using a different
+version of Boost then you need to re-export the demo files before attempting
+the import.
+
+<dl>
+<dt>\ref serialization_windows</dt>
+<dd><dl>
+<dt>\ref serialization_win_excel</dt>
+<dd><dl>
+<dt>\ref serialization_win_excel_export</dt>
+<dt>\ref serialization_win_excel_import</dt>
+</dl></dd>
+<dt>\ref serialization_win_cpp</dt>
+<dd><dl>
+<dt>\ref serialization_win_cpp_export</dt>
+<dt>\ref serialization_win_cpp_import</dt>
+</dl></dd>
+</dl></dd>
+<dt>\ref serialization_linux</dt>
+<dd><dl>
+<dt>\ref serialization_linux_cpp</dt>
+<dd><dl>
+<dt>\ref serialization_linux_cpp_export</dt>
+<dt>\ref serialization_linux_cpp_import</dt>
+</dl></dd>
+</dl></dd>
+</dl>
+
+\section serialization_windows 1 Windows
+
+\subsection serialization_win_excel 1.1 Excel
+
+\subsubsection serialization_win_excel_export 1.1.1 Export
+
+\li Start Excel
+\li Load VBA addin
+<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\SerializationDemo\\Start.xla</tt>.
+The addin contains some startup code which should automatically load the following:
+\verbatim
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-1_0_1.xll
+QuantLibXL\Workbooks\StandaloneExamples\Addins\serialize_utils.xla
+\endverbatim
+\li Invoke menu item <tt>Serialization Demo | Load Model | Vanilla Swap</tt>.
+This loads the following:
+\verbatim
+QuantLibXL\Workbooks\StandaloneExamples\Models\MarketData\YieldCurves.xls
+QuantLibXL\Workbooks\StandaloneExamples\Models\VanillaSwap.xls
+\endverbatim
+\li Hit <tt>Ctrl-Alt-F9</tt>
+\li Confirm that a PV (on my machine, 52,531.44) is showing in cell <tt>'[VanillaSwap.xls]Vanilla Swap'!C33</tt>
+\li Invoke menu item <tt>Serialization Demo | Export</tt>
+\li The following 2 files are produced:
+\verbatim
+QuantLibAddin\Clients\CppInstrumentIn\MarketData\YieldCurves.xml
+QuantLibAddin\Clients\CppInstrumentIn\Models\VanillaSwap.xml
+\endverbatim
+
+\subsubsection serialization_win_excel_import 1.1.2 Import
+
+\li Start Excel
+\li Load VBA addin
+<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\SerializationDemo\\Start.xla</tt>.
+The addin contains some startup code which should automatically load the following:
+\verbatim
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-1_0_1.xll
+QuantLibXL\Workbooks\StandaloneExamples\Addins\serialize_utils.xla
+\endverbatim
+\li Set range <tt>[MarketData.xls]Summary!DataSource</tt> to <tt>Import</tt>
+\li Invoke menu item <tt>Serialization Demo | Load Model | Vanilla Swap</tt>.
+    This loads the following:
+\verbatim
+QuantLibXL\Workbooks\StandaloneExamples\Models\MarketData\YieldCurves.xls
+QuantLibXL\Workbooks\StandaloneExamples\Models\VanillaSwap.xls
+\endverbatim
+\li Invoke menu item <tt>Serialization Demo | Import</tt>
+\li The following 2 files are loaded:
+\verbatim
+QuantLibAddin\Clients\CppInstrumentIn\MarketData\YieldCurves.xml
+QuantLibAddin\Clients\CppInstrumentIn\Models\VanillaSwap.xml
+\endverbatim
+\li Hit <tt>Ctrl-Alt-F9</tt>
+\li Confirm that a PV (on my machine, 52,531.44) is showing in cell
+    <tt>'[VanillaSwap.xls]Vanilla Swap'!C33</tt>
+
+If switching back and forth between import and export during a single Excel
+session you can use the command <tt>Serialization Demo | Delete All
+Objects</tt> to ensure that the ObjectHandler repository is empty.  You can
+confirm this by ensuring that function \c ohObjectCount() returns zero.
+
+\subsection serialization_win_cpp 1.2 C++
+
+\subsubsection serialization_win_cpp_export 1.2.1 Export
+
+Open a DOS prompt in directory
+<tt>%QuantLibAddin\\Clients\\CppSwapOut</tt>.
+Invoke the executable. The output from the program should appear as follows:
+\verbatim
+QuantLibAddin\Clients\CppSwapOut\bin>SwapOut-vc80-mt.exe
+Begin example program.
+QuantLibAddin version = 1.0.1
+ObjectHandler version = 1.0.1
+SWAP PV = 36120.9
+Example of serializing to/from a buffer:
+XML =
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+    <count>1</count>
+    <item_version>1</item_version>
+    <item class_id="0" tracking_level="0" version="1">
+        <px class_id="140" tracking_level="1" version="0" object_id="_1">
+            <ObjectId>quote1</ObjectId>
+            <ClassName>qlSimpleQuote</ClassName>
+            <Value>1.23</Value>
+            <TickValue>0</TickValue>
+            <Permanent>0</Permanent>
+            <UserProperties class_id="203" tracking_level="0" version="0">
+                <count>0</count>
+                <item_version>0</item_version>
+            </UserProperties>
+        </px>
+    </item>
+</object_list>
+</boost_serialization>
+
+End example program.
+\endverbatim
+
+The program generates the XML export files <tt>VanillaSwap.xml</tt>
+and <tt>YieldCurves.xml</tt> in the current directory.
+
+\subsubsection serialization_win_cpp_import 1.2.2 Import
+
+Open a DOS prompt in directory
+<tt>%QuantLibAddin\\Clients\\CppInstrumentIn</tt>.
+Invoke batch file <tt>price_VanillaSwap.bat</tt>.
+The program loads the following 2 files:
+\verbatim
+QuantLibAddin\Clients\CppInstrumentIn\MarketData\YieldCurves.xml
+QuantLibAddin\Clients\CppInstrumentIn\Models\VanillaSwap.xml
+\endverbatim
+The output from the program should appear as follows:
+\verbatim
+QuantLibAddin\Clients\CppInstrumentIn>InstrumentIn-vc80-mt.exe
+39573 VanillaSwap VanillaSwap.xml YieldCurves.xml
+Begin example program.
+QuantLibAddin version = 1.0.1
+ObjectHandler version = 1.0.1
+Instrument PV = 52531.4
+End example program.
+\endverbatim
+
+\section serialization_linux 2 Linux
+
+\subsection serialization_linux_cpp 2.1 C++
+
+\subsubsection serialization_linux_cpp_export 2.1.1 Export
+
+\c cd to directory  <tt>QuantLibAddin/Clients/CppSwapOut</tt> and execute
+program <tt>swap_out</tt>.  The output from the program should appear similar
+to the following:
+\verbatim
+Begin example program.
+QuantLibAddin version = 1.0.1
+ObjectHandler version = 1.0.1
+SWAP PV = 36120.9
+Example of serializing to/from a buffer:
+XML = 
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+    <count>1</count>
+    <item_version>1</item_version>
+    <item class_id="0" tracking_level="0" version="1">
+        <px class_id="140" tracking_level="1" version="0" object_id="_1">
+            <ObjectId>quote1</ObjectId>
+            <ClassName>qlSimpleQuote</ClassName>
+            <Value>1.23</Value>
+            <TickValue>0</TickValue>
+            <Permanent>0</Permanent>
+            <UserProperties class_id="203" tracking_level="0" version="0">
+                <count>0</count>
+                <item_version>0</item_version>
+            </UserProperties>
+        </px>
+    </item>
+</object_list>
+</boost_serialization>
+
+End example program.
+\endverbatim
+
+The program generates the XML export files <tt>VanillaSwap.xml</tt>
+and <tt>YieldCurves.xml</tt> in the current directory.
+
+\subsubsection serialization_linux_cpp_import 2.1.2 Import
+
+cd to directory
+<tt>%QuantLibAddin/Clients/CppInstrumentIn</tt>.
+Invoke shell script <tt>price_VanillaSwap.sh</tt>.
+The program loads the following 2 files:
+\verbatim
+QuantLibAddin/Clients/CppInstrumentIn/MarketData/YieldCurves.xml
+QuantLibAddin/Clients/CppInstrumentIn/Models/VanillaSwap.xml
+\endverbatim
+The output from the program should appear as follows:
+\verbatim
+Begin example program.
+QuantLibAddin version = 1.0.1
+ObjectHandler version = 1.0.1
+Instrument PV = 52531.4
+End example program.
+\endverbatim
+
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
+
+*/
+

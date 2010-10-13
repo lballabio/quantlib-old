@@ -1,0 +1,650 @@
+<Category name='sequencestatistics'>
+  <description>QuantLib statistics analysis of N-dimensional (sequence) data.</description>
+  <displayName>SequenceStatistics</displayName>
+  <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>qlo/sequencestatistics.hpp</include>
+    <include>ql/math/statistics/sequencestatistics.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2006, 2007 Cristina Duminuco
+  </copyright>
+
+  <Functions>
+
+    <!-- SequenceStatistics methods:  1-D inspectors lifted from underlying statistics class -->
+
+    <Member name='qlSequenceStatisticsSamples' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the number of samples collected for the given SequenceStatistics object.</description>
+      <libraryFunction>samples</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsWeightSum' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the sum of data weights for the given SequenceStatistics object.</description>
+      <libraryFunction>weightSum</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- SequenceStatistics methods:  N-D inspectors lifted from underlying statistics class -->
+
+    <Member name='qlSequenceStatisticsMean' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the mean for the given SequenceStatistics object.</description>
+      <libraryFunction>mean</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsVariance' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the variance for the given SequenceStatistics object.</description>
+      <libraryFunction>variance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsStandardDeviation' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the the standard deviation for the given SequenceStatistics object.</description>
+      <libraryFunction>standardDeviation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsDownsideVariance' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the variance of observations below zero for the given SequenceStatistics object.</description>
+      <libraryFunction>downsideVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsDownsideDeviation' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the square root of the downside variance for the given SequenceStatistics object.</description>
+      <libraryFunction>downsideDeviation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsSemiVariance' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the variance of observations below the mean for the given SequenceStatistics object.</description>
+      <libraryFunction>semiVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsSemiDeviation' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the square root of the semivariance for the given SequenceStatistics object.</description>
+      <libraryFunction>semiDeviation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsErrorEstimate' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the error estimate on the mean value for the given SequenceStatistics object.</description>
+      <libraryFunction>errorEstimate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsSkewness' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the skewness for the given SequenceStatistics object.</description>
+      <libraryFunction>skewness</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsKurtosis' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the excess kurtosis for the given SequenceStatistics object.</description>
+      <libraryFunction>kurtosis</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsMin' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the minimum sample value for the given SequenceStatistics object.</description>
+      <libraryFunction>min</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsMax' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the maximum sample value for the given SequenceStatistics object.</description>
+      <libraryFunction>max</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsGaussianPercentile' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the x-th percentile for the given SequenceStatistics object.</description>
+      <libraryFunction>gaussianPercentile</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='X' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Must be in the range (0,1].</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsPercentile' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the x-th percentile for the given SequenceStatistics object.</description>
+      <libraryFunction>percentile</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='X' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Must be in the range (0,1].</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsGaussianPotentialUpside' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the reciprocal of VAR at a given percentile for the given SequenceStatistics object.</description>
+      <libraryFunction>gaussianPotentialUpside</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsPotentialUpside' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the reciprocal of VAR at a given percentile for the given SequenceStatistics object.</description>
+      <libraryFunction>potentialUpside</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Centile' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the centile.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsGaussianValueAtRisk' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the value-at-risk at a given percentile for the given SequenceStatistics object.</description>
+      <libraryFunction>gaussianValueAtRisk</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsValueAtRisk' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the value-at-risk at a given percentile for the given SequenceStatistics object.</description>
+      <libraryFunction>valueAtRisk</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsRegret' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the variance of observations below target for the given SequenceStatistics object.</description>
+      <libraryFunction>regret</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsGaussianShortfall' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the probability of missing the given target for the given SequenceStatistics object.</description>
+      <libraryFunction>gaussianShortfall</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsShortfall' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the probability of missing the given target for the given SequenceStatistics object.</description>
+      <libraryFunction>shortfall</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsGaussianAverageShortfall' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the averaged shortfallness for the given SequenceStatistics object.</description>
+      <libraryFunction>gaussianAverageShortfall</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsAverageShortfall' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the averaged shortfallness for the given SequenceStatistics object.</description>
+      <libraryFunction>averageShortfall</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- SequenceStatistics methods:  N-D inspectors -->
+
+    <Member name='qlSequenceStatisticsSize' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the size (sample dimensionality) for the given SequenceStatistics object.</description>
+      <libraryFunction>size</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsCovariance' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the covariance Matrix for the given SequenceStatistics object.</description>
+      <libraryFunction>covariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSequenceStatisticsCorrelation' type='QuantLib::SequenceStatistics' superType='libraryClass'>
+      <description>Returns the correlation Matrix for the given SequenceStatistics object.</description>
+      <libraryFunction>correlation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- constructor -->
+
+    <Constructor name='qlSequenceStatistics'>
+      <description>Statistics analysis of N-dimensional (sequence) data.</description>
+      <libraryFunction>SequenceStatistics</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dimension' default='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>sample dimensionality.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSequenceStatistics2'>
+      <description>Statistics analysis of N-dimensional (sequence) data.</description>
+      <libraryFunction>SequenceStatistics</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dimension' default='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>sample dimensionality.</description>
+          </Parameter>
+          <!--<Parameter name='Values' default='QuantLib::Matrix()'>-->
+          <Parameter name='Values'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Sampled values. If omitted, an empty statistics is created.</description>
+          </Parameter>
+          <Parameter name='Weights' default='std::vector&lt;QuantLib::Real&gt;()'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>If omitted, all sampled values have the same weight.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- constructor -->
+
+    <Constructor name='qlSequenceStatisticsInc'>
+      <description>Statistics analysis of N-dimensional (sequence) data.</description>
+      <libraryFunction>SequenceStatisticsInc</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dimension' default='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>sample dimensionality.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSequenceStatisticsInc2'>
+      <description>Statistics analysis of N-dimensional (sequence) data.</description>
+      <libraryFunction>SequenceStatisticsInc</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dimension' default='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>sample dimensionality.</description>
+          </Parameter>
+          <!--<Parameter name='Values' default='QuantLib::Matrix()'>-->
+          <Parameter name='Values'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Sampled values. If omitted, an empty statistics is created.</description>
+          </Parameter>
+          <Parameter name='Weights' default='std::vector&lt;QuantLib::Real&gt;()'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>If omitted, all sampled values have the same weight.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

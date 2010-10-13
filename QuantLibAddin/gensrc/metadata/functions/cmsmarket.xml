@@ -1,0 +1,100 @@
+<Category name='cmsmarket'>
+  <description>functions to construct and use CmsMarket objects.</description>
+  <displayName>Cms Market</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/quote.hpp</include>
+    <include>qlo/cmsmarket.hpp</include>
+    <include>qlo/conundrumpricer.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/quote.hpp</include>
+    <include>qlo/cmsmarket.hpp</include>
+    <include>qlo/conundrumpricer.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2007 Ferdinando Ametrano
+    Copyright (C) 2006 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+
+    <!-- CmsMarket constructors -->
+
+    <Constructor name='qlCmsMarket'>
+      <libraryFunction>CmsMarket</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwapLengths' exampleValue='2Y,5Y,10Y,20Y,30Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of swap lengths.</description>
+          </Parameter>
+          <Parameter name='SwapIndexes' exampleValue='EuriborSwapIsdaFixA2Y,EuriborSwapIsdaFixA5Y,EuriborSwapIsdaFixA10Y,EuriborSwapIsdaFixA20Y,EuriborSwapIsdaFixA30Y'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of SwapIndex object IDs.</description>
+          </Parameter>
+          <Parameter name='IborIndex' exampleValue='Euribor3M'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>IborIndex object ID.</description>
+          </Parameter>
+          <Parameter name='BidAskSpreads'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>matrix</tensorRank>
+            <description>matrix of bid/ask cms quotes (spread over ibor leg).</description>
+          </Parameter>
+          <Parameter name='CmsCouponPricers'>
+            <type>QuantLib::CmsCouponPricer</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of HaganPricer object IDs.</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlBrowseCmsMarket' type='QuantLibAddin::CmsMarket'>
+      <description>return the market and implied spreads matrix.</description>
+      <libraryFunction>getCmsMarket</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

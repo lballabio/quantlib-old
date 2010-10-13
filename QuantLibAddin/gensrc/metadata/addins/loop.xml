@@ -1,0 +1,17 @@
+
+<Addin name='Loop'>
+  
+  <rootDirectory>qlo/loop</rootDirectory>
+  <coreCategories>false</coreCategories>
+  <addinCategories>true</addinCategories>
+
+  <copyright>
+    Copyright (C) 2006, 2007 Eric Ehlers
+  </copyright>
+
+  <Buffers>
+    <Buffer name='bufferFile' fileName='stub.loop.file'/>
+  </Buffers>
+
+</Addin>
+

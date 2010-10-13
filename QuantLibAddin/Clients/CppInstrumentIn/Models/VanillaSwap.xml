@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>4</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="156" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>sched_fix</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate class_id="204" tracking_level="0" version="0">
+				<which>4</which>
+				<value>39575</value>
+			</EffectiveDate>
+			<TerminationDate>
+				<which>4</which>
+				<value>42793</value>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>Target</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Modified Following</TermDateConv>
+			<GenRule>Backward</GenRule>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<which>0</which>
+				<value class_id="205" tracking_level="0" version="0"></value>
+			</FirstDate>
+			<NextToLastDate>
+				<which>0</which>
+				<value></value>
+			</NextToLastDate>
+			<Permanent>0</Permanent>
+			<UserProperties class_id="206" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="156" object_id="_2">
+			<ObjectId>sched_flt</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<which>4</which>
+				<value>39575</value>
+			</EffectiveDate>
+			<TerminationDate>
+				<which>4</which>
+				<value>42793</value>
+			</TerminationDate>
+			<Tenor>6M</Tenor>
+			<Calendar>Target</Calendar>
+			<Convention>Modified Following</Convention>
+			<TermDateConv>Modified Following</TermDateConv>
+			<GenRule>Backward</GenRule>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<which>0</which>
+				<value></value>
+			</FirstDate>
+			<NextToLastDate>
+				<which>0</which>
+				<value></value>
+			</NextToLastDate>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="123" tracking_level="1" version="0" object_id="_3">
+			<ObjectId>engine</ObjectId>
+			<ClassName>qlDiscountingSwapEngine</ClassName>
+			<YieldCurve>_EURYC6M</YieldCurve>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="195" tracking_level="1" version="0" object_id="_4">
+			<ObjectId>VanillaSwap</ObjectId>
+			<ClassName>qlVanillaSwap</ClassName>
+			<PayerReceiver>Payer</PayerReceiver>
+			<Nominal>1000000</Nominal>
+			<FixedLegSchedule>sched_fix</FixedLegSchedule>
+			<FixedRate>0.042490062211088024</FixedRate>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<FloatingLegSchedule>sched_flt</FloatingLegSchedule>
+			<IborIndex>Euribor6M</IborIndex>
+			<FloatingLegSpread>0</FloatingLegSpread>
+			<FloatingLegDayCounter>Actual/360</FloatingLegDayCounter>
+			<PaymentConvention>Following</PaymentConvention>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item class_id="207" tracking_level="0" version="0">
+					<first>EngineID</first>
+					<second>
+						<which>2</which>
+						<value>engine</value>
+					</second>
+				</item>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>

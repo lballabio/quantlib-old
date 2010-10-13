@@ -1,0 +1,361 @@
+<root>
+
+  <enumeratedClassCopyright>
+    Copyright (C) 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2005, 2006, 2007 Eric Ehlers
+    Copyright (C) 2006 Giorgio Facchinetti
+    Copyright (C) 2006 Chiara Fornarola
+    Copyright (C) 2006 Katiuscia Manzoni
+    Copyright (C) 2005 Plamen Neykov
+  </enumeratedClassCopyright>
+
+  <EnumeratedClassGroups>
+
+    <EnumeratedClassGroup class='QuantLib::Interpolation'>
+      <includeFile>qlo/enumerations/factories/interpolationsfactory.hpp</includeFile>
+      <EnumeratedClasses>
+        <EnumeratedClass>
+          <string>BackwardFlat</string>
+          <value>BACKWARDFLAT_Interpolation</value>
+          <libraryClass>QuantLib::BackwardFlatInterpolation</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>ForwardFlat</string>
+          <value>FORWARDFLAT_Interpolation</value>
+          <libraryClass>QuantLib::ForwardFlatInterpolation</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>Linear</string>
+          <value>LINEAR_Interpolation</value>
+          <libraryClass>QuantLib::LinearInterpolation</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>LogLinear</string>
+          <value>LOGLINEAR_Interpolation</value>
+          <libraryClass>QuantLib::LogLinearInterpolation</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>CubicNaturalSpline</string>
+          <value>CUBICNATURALSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::CubicNaturalSpline</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>LogCubicNaturalSpline</string>
+          <value>LOGCUBICNATURALSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::LogCubicNaturalSpline</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>MonotonicCubicNaturalSpline</string>
+          <value>MONOTONICCUBICNATURALSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::MonotonicCubicNaturalSpline</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>MonotonicLogCubicNaturalSpline</string>
+          <value>MONOTONICLOGCUBICNATURALSPLINE_Interpolation</value>
+          <libraryClass>QuantLib::MonotonicLogCubicNaturalSpline</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>KrugerCubic</string>
+          <value>KrugerCubic_Interpolation</value>
+          <libraryClass>QuantLib::KrugerCubic</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>KrugerLogCubic</string>
+          <value>KrugerLogCubic_Interpolation</value>
+          <libraryClass>QuantLib::KrugerLogCubic</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>FritschButlandCubic</string>
+          <value>FritschButlandCubic_Interpolation</value>
+          <libraryClass>QuantLib::FritschButlandCubic</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>FritschButlandLogCubic</string>
+          <value>FritschButlandLogCubic_Interpolation</value>
+          <libraryClass>QuantLib::FritschButlandLogCubic</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>Parabolic</string>
+          <value>Parabolic_Interpolation</value>
+          <libraryClass>QuantLib::Parabolic</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>LogParabolic</string>
+          <value>LogParabolic_Interpolation</value>
+          <libraryClass>QuantLib::LogParabolic</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>MonotonicParabolic</string>
+          <value>MonotonicParabolic_Interpolation</value>
+          <libraryClass>QuantLib::MonotonicParabolic</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>MonotonicLogParabolic</string>
+          <value>MonotonicLogParabolic_Interpolation</value>
+          <libraryClass>QuantLib::MonotonicLogParabolic</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>Abcd</string>
+          <value>ABCD_Interpolation</value>
+          <libraryClass>QuantLib::AbcdInterpolation</libraryClass>
+        </EnumeratedClass>
+
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
+
+    <EnumeratedClassGroup class='QuantLib::IborCouponPricer'>
+      <includeFile>qlo/enumerations/factories/iborcouponpricersfactory.hpp</includeFile>
+      <EnumeratedClasses>
+        <EnumeratedClass>
+          <string>IborByBlack</string>
+          <value>IBOR_BY_BLACK_Pricer</value>
+          <libraryClass>QuantLib::BlackIborCouponPricer</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>DummyIborByBlack</string>
+          <value>IBOR_BY_BLACK_Pricer</value>
+          <libraryClass>QuantLib::BlackIborCouponPricer</libraryClass>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
+
+    <EnumeratedClassGroup class='QuantLib::CmsCouponPricer'>
+      <includeFile>qlo/enumerations/factories/conundrumpricerfactory.hpp</includeFile>
+      <EnumeratedClasses>
+        <EnumeratedClass>
+          <string>ConundrumByNumericalIntegration</string>
+          <value>CONUNDRUM_BY_NUMERICAL_INTEGRATION_Pricer</value>
+          <libraryClass>QuantLib::NumericHaganPricer</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>ConundrumByBlack</string>
+          <value>CONUNDRUM_BY_BLACK_Pricer</value>
+          <libraryClass>QuantLib::AnalyticHaganPricer</libraryClass>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
+
+    <EnumeratedClassGroup class='QuantLib::Interpolation2D'>
+      <includeFile>qlo/enumerations/factories/interpolationsfactory.hpp</includeFile>
+      <EnumeratedClasses>
+        <EnumeratedClass>
+          <string>BiLinear</string>
+          <value>BILINEAR_Interpolation</value>
+          <libraryClass>QuantLib::BilinearInterpolation</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>BiCubic</string>
+          <value>BICUBICSPLINE</value>
+          <libraryClass>QuantLib::BicubicSpline</libraryClass>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
+
+    <!-- PricingEngines without timesteps -->
+    <EnumeratedClassGroup class='ObjectHandler::PricingEngineConstructor1' need_ptr='False'>
+      <includeFile>qlo/enumerations/factories/pricingenginesfactory.hpp</includeFile>
+      <EnumeratedClasses>
+        <EnumeratedClass>
+          <string>AB</string>
+          <value>AB_Engine</value>
+          <libraryClass>QuantLib::AnalyticBarrierEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>AC</string>
+          <value>AC_Engine</value>
+          <libraryClass>QuantLib::AnalyticCliquetEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>ACGAPA</string>
+          <value>ACGAPA_Engine</value>
+          <libraryClass>QuantLib::AnalyticContinuousGeometricAveragePriceAsianEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>ADA</string>
+          <value>ADA_Engine</value>
+          <libraryClass>QuantLib::AnalyticDigitalAmericanEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>ADE</string>
+          <value>ADE_Engine</value>
+          <libraryClass>QuantLib::AnalyticDividendEuropeanEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>ADGAPA</string>
+          <value>ADGAPA_Engine</value>
+          <libraryClass>QuantLib::AnalyticDiscreteGeometricAveragePriceAsianEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>AE</string>
+          <value>AE_Engine</value>
+          <libraryClass>QuantLib::AnalyticEuropeanEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>AP</string>
+          <value>AP_Engine</value>
+          <libraryClass>QuantLib::AnalyticPerformanceEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>BAWA</string>
+          <value>BAWA_Engine</value>
+          <libraryClass>QuantLib::BaroneAdesiWhaleyApproximationEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>BSA</string>
+          <value>BSA_Engine</value>
+          <libraryClass>QuantLib::BjerksundStenslandApproximationEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>I</string>
+          <value>I_Engine</value>
+          <libraryClass>QuantLib::IntegralEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>PE</string>
+          <value>PE_Engine</value>
+          <libraryClass>QuantLib::PricingEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>SE</string>
+          <value>SE_Engine</value>
+          <libraryClass>QuantLib::StulzEngine</libraryClass>
+        </EnumeratedClass>
+        <!--<EnumeratedClass>
+          <string>FE</string>
+          <value>FE_Engine</value>
+          <libraryClass>QuantLib::ForwardEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>FPE</string>
+          <value>FPE_Engine</value>
+          <libraryClass>QuantLib::ForwardPerformanceEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>QE</string>
+          <value>QE_Engine</value>
+          <libraryClass>QuantLib::QuantoEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>QFE</string>
+          <value>QFE_Engine</value>
+          <libraryClass>QuantLib::QuantoForwardEngine</libraryClass>
+        </EnumeratedClass>-->
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
+
+    <!-- PricingEngines with timesteps -->
+    <EnumeratedClassGroup class='ObjectHandler::PricingEngineConstructor2' need_ptr='False'>
+      <includeFile>qlo/enumerations/factories/pricingenginesfactory.hpp</includeFile>
+      <EnumeratedClasses>
+        <EnumeratedClass>
+          <string>AEQPB</string>
+          <value>AEQPB_Engine</value>
+          <libraryClass>QuantLib::AdditiveEQPBinomialTree</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>CRR</string>
+          <value>CRR_Engine</value>
+          <libraryClass>QuantLib::CoxRossRubinstein</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>FDA</string>
+          <value>FDA_Engine</value>
+          <libraryClass>QuantLib::FDAmericanEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>FDB</string>
+          <value>FDB_Engine</value>
+          <libraryClass>QuantLib::FDBermudanEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>FDE</string>
+          <value>FDE_Engine</value>
+          <libraryClass>QuantLib::FDEuropeanEngine</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>JOSHI</string>
+          <value>JOSHI_Engine</value>
+          <libraryClass>QuantLib::Joshi4</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>JR</string>
+          <value>JR_Engine</value>
+          <libraryClass>QuantLib::JarrowRudd</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>LR</string>
+          <value>LR_Engine</value>
+          <libraryClass>QuantLib::LeisenReimer</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>TIAN</string>
+          <value>TIAN_Engine</value>
+          <libraryClass>QuantLib::Tian</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>TRI</string>
+          <value>TRI_Engine</value>
+          <libraryClass>QuantLib::Trigeorgis</libraryClass>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
+
+    <EnumeratedClassGroup class='QuantLib::Payoff'>
+      <includeFile>qlo/enumerations/factories/payoffsfactory.hpp</includeFile>
+      <EnumeratedClasses>
+        <EnumeratedClass>
+          <string>Vanilla</string>
+          <value>VANILLA_Payoff</value>
+          <libraryClass>QuantLib::PlainVanillaPayoff</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>PlainVanilla</string>
+          <value>VANILLA_Payoff</value>
+          <libraryClass>QuantLib::PlainVanillaPayoff</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>PercentageStrike</string>
+          <value>PERCENTAGESTRIKE_Payoff</value>
+          <libraryClass>QuantLib::PercentageStrikePayoff</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>AssetOrNothing</string>
+          <value>ASSETORNOTHING_Payoff</value>
+          <libraryClass>QuantLib::AssetOrNothingPayoff</libraryClass>
+        </EnumeratedClass>
+
+        <EnumeratedClass>
+          <string>CashOrNothing</string>
+          <value>CASHORNOTHING_Payoff</value>
+          <libraryClass>QuantLib::CashOrNothingPayoff</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>Gap</string>
+          <value>GAP_Payoff</value>
+          <libraryClass>QuantLib::GapPayoff</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>SuperFund</string>
+          <value>SUPERFUND_Payoff</value>
+          <libraryClass>QuantLib::SuperFundPayoff</libraryClass>
+        </EnumeratedClass>
+        <EnumeratedClass>
+          <string>SuperShare</string>
+          <value>SUPERSHARE_Payoff</value>
+          <libraryClass>QuantLib::SuperSharePayoff</libraryClass>
+        </EnumeratedClass>
+      </EnumeratedClasses>
+    </EnumeratedClassGroup>
+
+  </EnumeratedClassGroups>
+
+</root>

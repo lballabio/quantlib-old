@@ -1,0 +1,16 @@
+
+<Config>
+
+  <relativePath>gensrc</relativePath>
+
+  <prefix>ql</prefix>
+  <prefixExcel>qlxl</prefixExcel>
+  <libRootDirectory>qlo</libRootDirectory>
+  <usingEnumerations>true</usingEnumerations>
+  <usingSerialization>true</usingSerialization>
+  <namespaceLibrary>QuantLib</namespaceLibrary>
+  <namespaceObjects>QuantLibAddin</namespaceObjects>
+  <coreConfigPath>gensrc</coreConfigPath>
+
+</Config>
+

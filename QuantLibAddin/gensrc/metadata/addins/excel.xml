@@ -1,0 +1,26 @@
+
+<Addin name='Excel'>
+  
+  <relativePath>qlxl</relativePath>
+  <rootDirectory>../QuantLibXL/qlxl</rootDirectory>
+  <exportSymbols>false</exportSymbols>
+  <namespaceAddin>QuantLibXL</namespaceAddin>
+  <coreCategories>false</coreCategories>
+  <addinCategories>true</addinCategories>
+
+  <copyright>
+    Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
+  </copyright>
+
+  <Buffers>
+    <Buffer name='bufferFunction' fileName='stub.excel.function'/>
+    <Buffer name='bufferIncludes' fileName='stub.excel.includes' local='true'/>
+    <Buffer name='bufferLoop' fileName='stub.excel.loop'/>
+    <Buffer name='bufferNumFunc' fileName='stub.excel.numfunc'/>
+    <Buffer name='bufferRegisterCall' fileName='stub.excel.register.call'/>
+    <Buffer name='bufferRegisterFile' fileName='stub.excel.register.file'/>
+    <Buffer name='bufferRegisterFunction' fileName='stub.excel.register.function'/>
+  </Buffers>
+
+</Addin>
+

@@ -1,0 +1,149 @@
+<root>
+  <RuleGroups>
+
+    <RuleGroup name='cppConversions' indent='2' delimiter='&#10;'>
+      <Wrap codeID='wrap1'/>
+      <Rules>
+    <Rule>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <string>%(indent)sstd::string %(name)s = GetChop&lt;std::string&gt;::scalar(x);</string>
+            <any>%(indent)sObjectHandler::property_t %(name)s = GetChop&lt;ObjectHandler::property_t&gt;::scalar(x);</any>
+            <other>%(indent)s%(type)s %(name)s = GetChop&lt;%(type)s&gt;::scalar(x);</other>
+          </DataTypes>
+    </Rule>
+    <Rule>
+          <tensorRanks>
+            <tensorRank>vector</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <string>%(indent)sstd::vector&lt;std::string&gt; %(name)s = GetChop&lt;std::string&gt;::vector(x);</string>
+            <any>%(indent)sstd::vector&lt;ObjectHandler::property_t&gt; %(name)s = GetChop&lt;ObjectHandler::property_t&gt;::vector(x);</any>
+            <other>%(indent)sstd::vector&lt;%(type)s&gt; %(name)s = GetChop&lt;%(type)s&gt;::vector(x);</other>
+          </DataTypes>
+    </Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='libraryConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
+      <Wrap codeID='wrap2'/>
+      <Rules>
+    <Rule>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <libraryType codeID='code69'/>
+          </DataTypes>
+    </Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='returnConversion' indent='2'>
+      <Wrap codeID='wrap5'/>
+      <Rules>
+    <Rule>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <libraryType>Nat2Scm&lt;std::string&gt;::scalar(ObjectHandler::property_t(returnValue.serialNumber()))</libraryType>
+            <string>Nat2Scm&lt;std::string&gt;::scalar(ObjectHandler::property_t(returnValue))</string>
+            <any>Nat2Scm&lt;ObjectHandler::property_t&gt;::scalar(ObjectHandler::property_t(returnValue))</any>
+            <void>Nat2Scm&lt;bool&gt;::scalar(true)</void>
+            <other>Nat2Scm&lt;%(type)s&gt;::scalar(ObjectHandler::property_t(returnValue))</other>
+          </DataTypes>
+    </Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='libraryCall' checkParameterIgnore='true' checkSkipFirst='true' indent='3' delimiter=',&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+    <Rule>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+            <tensorRank>vector</tensorRank>
+            <tensorRank>matrix</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <libraryType>%(indent)s%(name)sLib</libraryType>
+            <libraryClass>%(indent)s%(name)sLibObj</libraryClass>
+            <enumeration>%(indent)s%(name)sEnum</enumeration>
+            <other>%(indent)s%(name)s</other>
+          </DataTypes>
+    </Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='libraryReturnType' delimiter='&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+    <Rule>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <libraryType>%(libraryType)s returnValue = </libraryType>
+            <void/>
+            <string>std::string returnValue = </string>
+            <any>ObjectHandler::property_t returnValue = </any>
+            <other>%(type)s returnValue = </other>
+          </DataTypes>
+    </Rule>
+    <Rule>
+          <tensorRanks>
+            <tensorRank>vector</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <string>std::vector&lt;std::string&gt; returnValue = </string>
+            <string>std::vector&lt;ObjectHandler::property_t&gt; returnValue = </string>
+            <other>std::vector&lt;%(type)s&gt; returnValue = </other>
+          </DataTypes>
+    </Rule>
+    <Rule>
+          <tensorRanks>
+            <tensorRank>matrix</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <string>std::vector&lt;std::vector&lt;std::string&gt; &gt; returnValue = </string>
+            <string>std::vector&lt;std::vector&lt;ObjectHandler::property_t&gt; &gt; returnValue = </string>
+            <other>std::vector&lt;std::vector&lt;%(type)s&gt; &gt; returnValue = </other>
+          </DataTypes>
+    </Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='referenceConversions' indent='2' delimiter='&#10;'>
+      <Wrap codeID='wrap6'/>
+      <Rules>
+    <Rule>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <libraryClass codeID='code67'/>
+          </DataTypes>
+    </Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='enumConversions' indent='2' checkParameterIgnore='true' delimiter='&#10;'>
+      <Wrap codeID='wrap3'/>
+      <Rules>
+    <Rule>
+          <tensorRanks>
+            <tensorRank>scalar</tensorRank>
+          </tensorRanks>
+          <DataTypes>
+            <enumeration codeID='code68'/>
+          </DataTypes>
+    </Rule>
+      </Rules>
+    </RuleGroup>
+
+  </RuleGroups>
+
+</root>

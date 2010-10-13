@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="4">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>6</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="156" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>sched</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate class_id="204" tracking_level="0" version="0">
+				<which>4</which>
+				<value>39576</value>
+			</EffectiveDate>
+			<TerminationDate>
+				<which>4</which>
+				<value>41402</value>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Unadjusted</Convention>
+			<TermDateConv>Unadjusted</TermDateConv>
+			<GenRule>Backward</GenRule>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<which>0</which>
+				<value class_id="205" tracking_level="0" version="0"></value>
+			</FirstDate>
+			<NextToLastDate>
+				<which>0</which>
+				<value></value>
+			</NextToLastDate>
+			<Permanent>0</Permanent>
+			<UserProperties class_id="206" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="122" tracking_level="1" version="0" object_id="_2">
+			<ObjectId>EngineBond</ObjectId>
+			<ClassName>qlBondEngine</ClassName>
+			<YieldCurve>_EURYC6M</YieldCurve>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="11" tracking_level="1" version="0" object_id="_3">
+			<ObjectId>fixedBond</ObjectId>
+			<ClassName>qlFixedRateBond</ClassName>
+			<Description>Fixed</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<FaceAmount>100</FaceAmount>
+			<ScheduleID>sched</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item>0.050000000000000003</item>
+			</Coupons>
+			<DayCounter>Actual/Actual (ISMA)</DayCounter>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<which>4</which>
+				<value>39576</value>
+			</IssueDate>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item class_id="208" tracking_level="0" version="0">
+					<first>EngineID</first>
+					<second>
+						<which>2</which>
+						<value>EngineBond</value>
+					</second>
+				</item>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="156" object_id="_4">
+			<ObjectId>legSch1</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<which>4</which>
+				<value>39576</value>
+			</EffectiveDate>
+			<TerminationDate>
+				<which>4</which>
+				<value>41402</value>
+			</TerminationDate>
+			<Tenor>6M</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Modified Following</Convention>
+			<TermDateConv>Modified Following</TermDateConv>
+			<GenRule>Backward</GenRule>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<which>0</which>
+				<value></value>
+			</FirstDate>
+			<NextToLastDate>
+				<which>0</which>
+				<value></value>
+			</NextToLastDate>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="123" tracking_level="1" version="0" object_id="_5">
+			<ObjectId>engine2</ObjectId>
+			<ClassName>qlDiscountingSwapEngine</ClassName>
+			<YieldCurve>_EURYC6M</YieldCurve>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="9" tracking_level="1" version="0" object_id="_6">
+			<ObjectId>AssetSwap</ObjectId>
+			<ClassName>qlAssetSwap</ClassName>
+			<PayBondCoupon>1</PayBondCoupon>
+			<UnderlyingBond>fixedBond</UnderlyingBond>
+			<BondCleanPrice>99.463800000000006</BondCleanPrice>
+			<IborIndex>Euribor6M</IborIndex>
+			<FloatingLegSpread>0.029999999999999999</FloatingLegSpread>
+			<YieldCurve>_EURYC6M</YieldCurve>
+			<FloatingLegSchedule>legSch1</FloatingLegSchedule>
+			<FloatingLegDayCounter>Actual/360</FloatingLegDayCounter>
+			<ParAssetSwap>1</ParAssetSwap>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>
+					<first>EngineID</first>
+					<second>
+						<which>2</which>
+						<value>engine2</value>
+					</second>
+				</item>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>

@@ -1,0 +1,73 @@
+
+/*
+ Copyright (C) 2007, 2008 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page coercion Coercion
+
+<div align="center"><small><a href="manual.html">back to reference manual index</a></small></div> 
+
+\section coercion_overview Overview
+
+QuantLibXL supports a feature called Coercion in which the arguments to a
+function may be automatically converted from one datatype to another.  For
+example, wherever a QuantLibXL function expects a quote, any of the
+following may be supplied:
+\li The ID of a quote object that was previously constructed with a call to
+qlSimpleQuote().
+\li The ID of a quote handle object that was previously constructed with a call
+to qlHandleQuote().
+\li A number, which the coercion feature will use to automatically create
+a temporary quote object on the fly.
+
+\section coercion_supported Supported Coercions
+
+The table below summarizes the automatic coercions supported by QuantLibXL:
+
+<table>
+
+<tr><td><b>Value Required</b></td><td><b>Supported Inputs</b></td></tr>
+<tr><td>Quote</td>
+<td>
+\li ID of a Quote object as returned by qlSimpleQuote()
+\li ID of a Quote handle object as returned by qlHandleQuote()
+\li number representing quote value
+\li this logic is applied to the following Quote classes: FuturesConvAdjustmentQuote, Quote, SimpleQuote</td></tr>
+<tr><td>Date</td>
+<td>
+\li An integer representing the offset in days since 1 January 1970.  This is the format passed by Excel.
+\li A period, to be used as the offset from the current evaluation date.  For example, where a function expects a date, and the current evaluation date is 6 July 2005, and the user supplies the string "2Y", then the function receives the date value 6 July 2007.
+\li An IMM code such as Z7, which maps to Wed, 20-Dec-2017, i.e. to the corresponding IMM date in the forward decade starting from the current evaluation date.</td></tr>
+<tr><td>TermStructure</td>
+<td>
+\li ID of a TermStructure object as returned by a function such as qlPiecewiseYieldCurve ()
+\li ID of a TermStructure handle object as returned by qlRelinkableHandleYieldTermStructure()
+\li this logic is applied to the following TermStructure classes: SwaptionVolatilityCube, SwaptionVolatilityDiscrete, SwaptionVolatilityMatrix, SwaptionVolatilityStructure, SwaptionVolCube1, TermStructure, YieldTermStructure</td></tr>
+</table>
+
+\section coercion_lists Lists
+
+Functions which expect a list of values accept input in either of the following two forms:
+\li A reference to an Excel range of values
+\li A string comprising a semicolon-delimited list of values
+
+*/
+

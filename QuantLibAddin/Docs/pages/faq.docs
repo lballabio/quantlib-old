@@ -1,0 +1,338 @@
+
+/*
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page faq Frequently Asked Questions
+
+This is the FAQ for %QuantLibAddin and QuantLibXL, which are subprojects of
+%QuantLib.  Please see also the
+<a href="http://quantlib.org/faq.shtml">general QuantLib FAQ</a>
+and the
+<a href="http://quantlib.org/developerFAQ.shtml">QuantLib developer FAQ</a>.
+
+<dl>
+<dt>\ref faq_section_general</dt>
+<dd><dl>
+<dt>\ref faq_item_whats_qla</dt>
+<dt>\ref faq_item_whats_qlxl</dt>
+<dt>\ref faq_item_help</dt>
+</dl></dd>
+<dt>\ref faq_sec_installation</dt>
+<dd><dl>
+<dt>\ref faq_item_installation</dt>
+</dl></dd>
+<dt>\ref faq_sec_compilation</dt>
+<dd><dl>
+<dt>\ref faq_item_winheader</dt>
+</dl></dd>
+<dt>\ref faq_sec_usage</dt>
+<dd><dl>
+<dt>\ref faq_item_start</dt>
+<dt>\ref faq_item_vba</dt>
+<dt>\ref faq_item_numparams</dt>
+</dl></dd>
+<dt>\ref faq_sec_troubleshooting</dt>
+<dd><dl>
+<dt>\ref faq_item_startup</dt>
+<dt>\ref faq_item_wizard</dt>
+</dl></dd>
+<dt>\ref faq_sec_debugging</dt>
+<dd><dl>
+<dt>\ref faq_item_debugexcel</dt>
+<dt>\ref faq_item_debuglinux</dt>
+</dl></dd>
+</dl>
+
+\section faq_section_general 1. General
+
+\subsection faq_item_whats_qla 1.1 What is QuantLibAddin?
+
+%QuantLibAddin is an interface allowing
+<a href="http://quantlib.org">QuantLib</a> (an open source analytics library
+for quantitative finance) to be deployed to end user environments such as
+spreadsheets.
+
+<h3>QuantLib</h3>
+
+%QuantLib is a static library of classes.  Before it can be deployed to an end
+user, it must be wrapped in an application layer - a command line executable, a
+spreadsheet addin, a webserver application.
+
+<h3>ObjectHandler</h3>
+
+A function of the application layer is to provide a mechanism for storing
+%QuantLib objects once they are created.  Spreadsheets do not provide such
+a mechanism so one must be implemented by the addin.
+%QuantLibAddin uses <a href="http://www.objecthandler.org">ObjectHandler</a>
+as its object repository.  The core of %QuantLibAddin is a library called
+QuantLibObjects, which wraps %QuantLib objects in a form that allows them to be
+stored in the ObjectHandler repository.
+
+<h3>QuantLibAddin</h3>
+
+Additionally %QuantLibAddin implements an interface, a library of functions,
+which the end user invokes to access the underlying %QuantLib objects.  For
+example on a spreadsheet when the user enters formula qlPiecewiseYieldCurve()
+into a cell, a %QuantLib yield curve is instantiated in the ObjectHandler
+repository and a reference to that object is returned to the calling cell.
+%QuantLibAddin supports this interface on a variety of end user platforms such
+as Microsoft Excel and OpenOffice.org Calc.
+
+\subsection faq_item_whats_qlxl 1.2 What is QuantLibXL?
+
+QuantLibXL is the Excel implementation of the %QuantLibAddin interface.
+QuantLibXL is an Excel Addin, a C++ binary in the XLL format, allowing
+%QuantLib functions to be accessed from cell formulas.
+
+\subsection faq_item_help 1.3 Where do I go for help?
+
+The mailing list for this project is
+<a href="https://lists.sourceforge.net/lists/listinfo/quantlib-users">quantlib-users@lists.sf.net</a>.
+The list archives may be searched
+<a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">here</a>.
+
+%QuantLibAddin is the product of collaboration from many volunteers.  Not all
+of them follow the mailing list and some questions go unanswered, sorry about
+that.  Try writing in Italian ;-)
+
+\section faq_sec_installation 2. Installation
+
+\subsection faq_item_installation 2.1 How do I compile and/or install QuantLibAddin/QuantLibXL?
+
+\li If you want an installer delivering a compiled QuantLibXL Addin and
+documentation for use with Microsoft Excel, visit
+<a href="http://www.quantlibxl.org">www.quantlibxl.org</a>.
+\li If you want to compile %QuantLibAddin/QuantLibXL from source code for Excel
+or other platforms, visit
+<a href="http://www.quantlibaddin.org/tutorials.html">http://www.quantlibaddin.org/tutorials.html</a>.
+
+\section faq_sec_compilation 3. Compilation
+
+\subsection faq_item_winheader 3.1 Why does my compilation fail with an error message about windows.h?
+
+\verbatim
+fatal error C1083: Cannot open include file: 'windows.h':
+    No such file or directory
+\endverbatim
+
+You need to install the Platform SDK as explained in the documentation for
+Visual Studio Express.
+
+\section faq_sec_usage 4. Usage
+
+\subsection faq_item_start 4.1 How do I start QuantLibXL?
+
+See <a href="http://www.quantlibxl.org/installation.html">http://www.quantlibxl.org/installation.html</a>.
+
+\subsection faq_item_vba 4.2 How do I call QuantLibXL functions from Excel VBA?
+
+QuantLibXL can be invoked from VBA using Application.Run().  For example, below
+is a subroutine which calculates the price of an option.  This code mimics the
+behavior of example spreadsheet
+<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\Options.xls</tt>.
+
+\verbatim
+Sub priceEuropeanOption()
+
+On Error GoTo Catch
+
+    Dim blackVolId As String
+    Dim blackScholesId As String
+    Dim exerciseId As String
+    Dim payoffId As String
+    Dim engineId As String
+    Dim optionId As String
+    Dim npv As Double
+
+    Call Application.Run("qlSettingsSetEvaluationDate", 35930)
+
+    blackVolId = Application.Run("qlBlackConstantVol", _
+        "blackConstantVol", 35932, "Target", 0.2, "Actual/365 (Fixed)")
+    blackScholesId = Application.Run( _
+        "qlGeneralizedBlackScholesProcess", "blackScholes", _
+        blackVolId, 36, "Actual/365 (Fixed)", 35932, 0.06, 0)
+    exerciseId = Application.Run("qlEuropeanExercise", _
+        "europeanExercise", 36297)
+    payoffId = Application.Run("qlStrikedTypePayoff", _
+        "strikedTypePayoff", "Vanilla", "Put", 40)
+    engineId = Application.Run("qlPricingEngine", _
+        "pricingEngine", "AE", blackScholesId)
+    optionId = Application.Run("qlVanillaOption", _
+        "vanillaOption", payoffId, exerciseId)
+
+    Call Application.Run("qlInstrumentSetPricingEngine", _
+        optionId, engineId)
+    npv = Application.Run("qlInstrumentNPV", optionId)
+
+    Debug.Print "NPV = " & npv
+
+    Exit Sub
+
+Catch:
+
+Debug.Print "QuantLibXL Error: " + Err.Description
+MsgBox Err.Description, vbCritical, "QuantLibXL Error"
+
+End Sub
+\endverbatim
+
+\subsection faq_item_numparams 4.3 What is the maximum number of arguments for a QuantLibXL function?
+
+Twenty.
+
+Excel versions up to and including 2003 have a limit of 30 function arguments.
+But there is an effective limit of 20 arguments for user defined functions.
+This is because the function is registered with a call to xlfRegister, which is
+itself limited to 30 arguments. xlfRegister uses 10 of its arguments to
+register the function, leaving 20 slots for the descriptions of the arguments
+to your addin function.
+
+It is in fact possible to register a user defined function with up to 30
+arguments, by omitting descriptions for arguments beyond the 20th. The 21st and
+later arguments are valid but appear in the Function Wizard with no
+descriptions. An attempt was made to support this trick in QuantLibXL but at
+present the implementation is not functional because of a bug.
+
+Excel 2007 introduces support for user defined functions with up to 255
+arguments but QuantLibXL has not yet been upgraded to take advantage of this.
+
+\section faq_sec_troubleshooting 5. Troubleshooting
+
+\subsection faq_item_startup 5.1 Why does Excel display an error message when I load QuantLibXL?
+
+When you try to load an XLL into Excel, you may get a warning message
+such as "This file is not in a recognizable format" or "XYZ.XLL is
+not a valid add-in".  Excel may attempt to load the XLL as a text file.
+These errors indicate that the XLL has a runtime dependency which is
+not satisfied.
+
+If you compiled your XLL on one machine, and are trying to use it on another,
+ensure that the runtime library is present on the target machine.  For
+example an XLL compiled in VC8 using configuration <tt>Release</tt>
+has a runtime dependency on files \c MSVCP80.DLL and \c MSVCR80.DLL.
+
+If you used <tt>QuantLibAllDynamic_vc?.sln</tt> to compile ObjectHandler and
+QuantLibXL as separate, dynamically linked XLLs, note that the ObjectHandler
+XLL must be loaded into Excel before QuantLibXL.
+
+Microsoft Visual C++ includes the utility \c DEPENDS.EXE which can be used
+to identify the runtime dependencies of a binary.
+
+\subsection faq_item_wizard 5.2 Why does Excel crash when I use the Function Wizard?
+
+The Function Wizard (launched by clicking the \c fx button next to the Formula
+Bar) allows the user to specify function inputs by clicking in selected cell
+ranges.  The Function Wizard calls the underlying cell formula repeatedly every
+time the inputs change - so the formula will get invoked repeatedly with
+incomplete or nonsensical inputs.  Any bug in the validation of the inputs may
+cause the formula to malfunction or crash.  Try calling the function without
+using the Function Wizard - for example, format the call to the function in
+Notepad, and paste the formula directly into a cell.
+
+It is possible for an Excel Addin function to detect whether it has been called
+from the Function Wizard.  Certain QuantLibXL functions perform this test,
+exiting immediately with a return value of null if the Function Wizard is
+detected.  Such functions are configured with tag <tt>calcInWizard='false'</tt>
+in the XML metadata (<tt>%QuantLibAddin\\gensrc\\metadata\\functions</tt>).  The
+test is expensive and its use is discouraged.  Unfortunately QuantLibXL may
+contain functions which do not perform the test and which crash when invoked
+from the Function Wizard.
+
+\section faq_sec_debugging 6. Debugging
+
+\subsection faq_item_debugexcel 6.1 How do I debug QuantLibXL?
+
+\li compile QuantLibXL with the Debug configuration
+\li start Excel and load QuantLibXL and a client worksheet
+\li Go into Microsoft Visual Studio
+\li do <tt>Build | Debug | Attach to Process</tt>
+\li Select Excel from the list of processes.
+\li From VC, open up a file containing the source code you'd like to debug -
+for example file
+<tt>%QuantLibXL\\qlxl\\Functions\\volatilities.cpp</tt>
+\li Identify a function you'd like to debug, for example \c qlBlackConstantVol().
+Put the cursor on a line in the function and hit F9 to set a breakpoint on the
+line
+\li Back in Excel, trigger the breakpoint - select the cell containing the
+relevant formula, e.g. \c qlBlackConstantVol(), hit F2 to force the cell to
+recalc
+\li Back in VC, execution should now be stopped on the breakpoint and you can
+debug from there, e.g.\n F10 - advance a line\n F11 - step into a function\n
+F5 - run until the next breakpoint or until completion\n etc.
+
+\subsection faq_item_debuglinux 6.2 How do I debug a QuantLibAddin Linux executable at the command line?
+
+This section describes how to debug a standalone C++ %QuantLibAddin client
+linux program with the \c gdb command line debugger, using program \c
+%QuantLibAddin/Clients/C++/QLADemo as an example.
+
+<h3>Compiling for Debug</h3>
+
+By default %QuantLibAddin compiles with flags <tt>-g -O2</tt>
+which is good for general purpose use but does not give ideal results
+in gdb:
+\li certain variables get optimized away - so you're looking at a line
+in the source code, but it's invisible to the debugger
+\li the debugger may step into the source code of the Standard Template
+Library, even if you try to tell it not to
+
+gdb performs better when run against programs which are compiled with flag
+\c -gdwarf-2.  So before debugging the %QuantLibAddin executable, it's
+best to first reconfigure and recompile all relevant binaries - QuantLib,
+log4cxx, ObjectHandler, and %QuantLibAddin.  cd to the top level directory
+for each project and run configure with the appropriate flag:
+\verbatim
+./configure CXXFLAGS=-gdwarf-2
+\endverbatim
+Then recompile.
+
+<h3>The Executable</h3>
+
+The program we want to debug is QLADemo.  File
+<tt>%QuantLibAddin/Clients/C++/QLADemo</tt> is a shell script wrapper for the
+underlying executable <tt>%QuantLibAddin/Clients/C++/.libs/lt-QLADemo</tt>
+which is created the first time the wrapper is invoked.  So run the wrapper
+once to create the executable, then cd into the .libs directory.
+
+(Or maybe you can do
+\code
+libtool --mode=execute gdb QLADemo
+\endcode
+?)
+
+<h3>Debugging</h3>
+
+Now you can debug the program in the usual way e.g.
+
+\li <tt>gdb lt-QLADemo</tt> - to start the debugger
+\li <tt>b(reak) main</tt> - to set a breakpoint in function <tt>main</tt>
+\li <tt>r(un)</tt> - to start the program
+\li <tt>l(ist)</tt> - to list lines of code surrounding the breakpoint
+\li <tt>n(ext)</tt> - to advance to the next line
+\li <tt>s(tep)</tt> - to step into a function
+\li <tt>c(ontinue)</tt> - to continue to another breakpoint
+\li <tt>p(rint)</tt> - to display a variable's value
+
+etc.
+
+*/
+

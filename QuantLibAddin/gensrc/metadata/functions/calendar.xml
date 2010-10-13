@@ -1,0 +1,314 @@
+<Category name='calendar'>
+  <description>Calendar related functions.</description>
+  <displayName>Calendar</displayName>
+  <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>ql/time/date.hpp</include>
+    <include>ql/time/calendar.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006 Eric Ehlers
+  </copyright>
+
+  <Functions>
+
+    <EnumerationMember name='qlCalendarName' type='QuantLib::Calendar'>
+      <description>Returns the name of the given calendar.</description>
+      <libraryFunction>name</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <EnumerationMember name='qlCalendarIsBusinessDay' type='QuantLib::Calendar' loopParameter='Date'>
+      <description>Returns TRUE if the date is a business day for the given calendar.</description>
+      <libraryFunction>isBusinessDay</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <EnumerationMember name='qlCalendarIsHoliday' type='QuantLib::Calendar' loopParameter='Date'>
+      <description>returns TRUE if the date is a holiday for the given calendar.</description>
+      <libraryFunction>isHoliday</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <EnumerationMember name='qlCalendarIsEndOfMonth' type='QuantLib::Calendar' loopParameter='Date'>
+      <description>returns TRUE if the date is last business day for the month in the given calendar.</description>
+      <libraryFunction>isEndOfMonth</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <EnumerationMember name='qlCalendarEndOfMonth' type='QuantLib::Calendar' loopParameter='Date'>
+      <description>returns the last business day in the given calendar of the month to which the given date belongs.</description>
+      <libraryFunction>endOfMonth</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' const='True'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <!--<EnumerationMember name='qlCalendarAddHoliday' type='QuantLib::Calendar' loopParameter='Date'>-->
+    <EnumerationMember name='qlCalendarAddHoliday' type='QuantLib::Calendar'>
+      <description>adds an holiday to the given calendar.</description>
+      <libraryFunction>addHoliday</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <!--<EnumerationMember name='qlCalendarRemoveHoliday' type='QuantLib::Calendar' loopParameter='Date'>-->
+    <EnumerationMember name='qlCalendarRemoveHoliday' type='QuantLib::Calendar'>
+      <description>removes an holiday from the given calendar.</description>
+      <libraryFunction>removeHoliday</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <Procedure name='qlCalendarHolidayList'>
+      <description>returns the holidays in a period between two dates according to a given holiday calendar.</description>
+      <alias>QuantLib::Calendar::holidayList</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Calendar' exampleValue ='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Calendar to use for holiday determination.</description>
+          </Parameter>
+          <Parameter name='FromDate' exampleValue ='01-Jan-2005'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>first date of the period.</description>
+          </Parameter>
+          <Parameter name='ToDate' exampleValue ='01-Jan-2007'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>last date of the period.</description>
+          </Parameter>
+          <Parameter name='IncludeWeekEnds' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>include week-end as holidays.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <EnumerationMember name='qlCalendarAdjust' type='QuantLib::Calendar' loopParameter='Date'>
+      <description>Adjusts a non-business day to the appropriate near business day according to a given calendar with respect to the given convention.</description>
+      <libraryFunction>adjust</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date to be adjusted.</description>
+          </Parameter>
+          <Parameter name='BusinessDayConvention' const='False' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rolling convention.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <EnumerationMember name='qlCalendarAdvance' type='QuantLib::Calendar' loopParameter='Period'>
+      <description>advances a date according to a given calendar.</description>
+      <libraryFunction>advance</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='StartDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start date to be advanced.</description>
+          </Parameter>
+          <Parameter name='Period'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>period(s) to advance (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).</description>
+          </Parameter>
+          <Parameter name='BusinessDayConvention' const='False' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rolling convention.</description>
+          </Parameter>
+          <Parameter name='EndOfMonth' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>flag to enforce end of month convention.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <EnumerationMember name='qlCalendarBusinessDaysBetween' type='QuantLib::Calendar' loopParameter='FirstDate'>
+      <description>Returns the number of business days between two dates.</description>
+      <libraryFunction>businessDaysBetween</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FirstDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>first date of the period.</description>
+          </Parameter>
+          <Parameter name='LastDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>last date of the period.</description>
+          </Parameter>
+          <Parameter name='IncludeFirst' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>include the first date when counting business days.</description>
+          </Parameter>
+          <Parameter name='IncludeLast' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>include the last date when counting business days.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+  </Functions>
+</Category>

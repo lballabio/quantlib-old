@@ -1,0 +1,225 @@
+/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+
+/*
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+#include <ql/utilities/dataparsers.hpp>
+#include <conversions.hpp>
+#include <calcutils.hpp>
+//#include <qlo/calendar.hpp>
+#include <qlo/enumerations/factories/all.hpp>
+#include <oh/objecthandler.hpp>
+#include <iostream>
+
+void calcToScalar(QuantLib::Date &ret, const sal_Int32 &date) {
+    ret = QuantLib::Date(date);
+}
+
+void calcToScalar(QuantLib::Date &ret, const ANY &date) {
+    long dateLong;
+    calcToScalar(dateLong, date);
+    // FIXME 
+    if (dateLong == 0)
+      ret = QuantLib::Date();
+    else
+      ret = QuantLib::Date(dateLong);
+}
+
+void calcToScalar(ObjectHandler::property_t &ret, const ANY &value) {
+    STRING t = value.getValueTypeName();
+    //std::cout << "calcToScalar ANY to property_t called" << std::endl;
+    if (t.equalsIgnoreAsciiCase(STRFROMANSI("VOID"))) {
+        //std::cout << "ANY value type VOID" << std::endl;
+        ret = ObjectHandler::property_t();
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("LONG"))) {
+        //std::cout << "ANY value type LONG" << std::endl;
+        long temp;
+        value >>= temp;
+        ret = ObjectHandler::property_t(temp);
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("DOUBLE"))) {
+        //std::cout << "ANY value type DOUBLE" << std::endl;
+        double temp;
+        value >>= temp;
+        ret = ObjectHandler::property_t(temp);
+    } else if (t.equalsIgnoreAsciiCase(STRFROMANSI("STRING"))) {
+        //std::cout << "ANY value type STRING" << std::endl;
+        STRING temp;
+        value >>= temp;
+        ret = ObjectHandler::property_t(ouStringToStlString(temp));
+    /*} else if (t.equalsIgnoreAsciiCase(STRFROMANSI("[][]ANY"))) {
+        ret = std::string("<MATRIX>");*/
+    } else {
+        OH_FAIL("unrecognized type: " << ouStringToStlString(t));
+    }
+}
+
+void calcToScalar(ObjectHandler::property_t &ret, const STRING &id) {
+  ret = ObjectHandler::property_t(ouStringToStlString(id));
+}
+
+//void calcToScalar(QuantLib::Calendar &ret, const STRING &id2) {
+//    std::string id = ouStringToStlString(id2);
+//    if (QuantLibAddin::Create<QuantLib::Calendar>().checkType(id)) {
+//        ret = QuantLibAddin::Create<QuantLib::Calendar>()(id);
+//    } else {
+//        OH_GET_REFERENCE(calendarPointer, id,
+//            QuantLibAddin::JointCalendar, QuantLib::Calendar)
+//        ret = *calendarPointer.get();
+//    }
+//}
+
+void calcToScalar(QuantLib::Period &ret, const STRING &id) {
+    std::string idCpp = ouStringToStlString(id);
+    ret = QuantLib::PeriodParser::parse(idCpp);
+}
+
+void calcToVector(std::vector<QuantLib::Date> &ret, 
+		  const SEQSEQ(sal_Int32) &in) {
+    //std::cout << "calcToVector seqseq(int) to date vector called" << std::endl;
+  for (int i=0; i<in.getLength(); ++i) {
+    for (int j=0; j<in[i].getLength(); ++j) {
+      ret.push_back(QuantLib::Date(in[i][j]));
+    }
+  }
+}
+
+void calcToVector(std::vector<QuantLib::Date> &ret, const SEQSEQ(ANY) &in) {
+    //std::cout << "calcToVector seqseq(any) to date vector called" << std::endl;
+  for (int i=0; i<in.getLength(); ++i) {
+    for (int j=0; j<in[i].getLength(); ++j) {
+      QuantLib::Date date;
+      calcToScalar(date, in[i][j]);
+      // FIXME: SEQSEQ has one element though actually blank in Calc 
+      if (date != QuantLib::Date()) 
+	ret.push_back(date);
+    }
+  }
+}
+
+void calcToVector(std::vector<ObjectHandler::property_t> &ret, 
+		  const SEQSEQ(ANY) &in) {
+  //std::cout << "calcToVector seqseq(any) to property_t vector called" 
+  //       << std::endl;
+  for (int i=0; i<in.getLength(); ++i) {
+    for (int j=0; j<in[i].getLength(); ++j) {
+      ObjectHandler::property_t prop;
+      calcToScalar(prop, in[i][j]);
+      if (!prop.missing())
+	ret.push_back(prop);
+    }
+  }
+}
+
+void calcToVector(QuantLib::Array &ret, const SEQSEQ(double) &in) {
+    //std::cout << "calcToVector seqseq(double) to array called" << std::endl;
+}
+
+void calcToVector(std::vector<std::string> &ret, const SEQSEQ(ANY) &in) {
+    //std::cout << "calcToVector seqseq(any) to string vector called" << std::endl;
+    for (int i=0; i<in.getLength(); ++i) {
+        for (int j=0; j<in[i].getLength(); ++j) {
+            std::string s;
+            calcToScalar(s, in[i][j]);
+            ret.push_back(s);
+        }
+    }
+}
+
+void calcToVector(std::vector<long> &ret, const SEQSEQ(sal_Int32) &in) {
+    //std::cout << "calcToVector seqseq(int) to long vector called" << std::endl;
+}
+
+void calcToVector(std::vector<bool> &ret, const SEQSEQ(sal_Int32) &in) {
+    //std::cout << "calcToVector seqseq(int) to bool vector called" << std::endl;
+}
+
+void calcToVector(std::vector<QuantLib::Period> &ret, const SEQSEQ(ANY) &in) {
+    //std::cout << "calcToVector seqseq(any) to period vector called" << std::endl;
+}
+
+void calcToVector(std::vector<boost::any> &, const SEQSEQ(ANY) &) {
+    //std::cout << "calcToVector seqseq(any) to boost::any vector called" << std::endl;
+}
+
+QuantLib::Matrix calcToQlMatrix(const SEQSEQ(double) &in) {
+    int rows = in.getLength();
+    int cols;
+    if (rows)
+        cols = in[0].getLength();
+    else
+        cols = 0;
+    QuantLib::Matrix m(rows, cols);
+    for (int i=0; i<rows; ++i) {
+        SEQ(double) row = in[i];
+        for (int j=0; j<cols; ++j) {
+            m[i][j] = row[j];
+        }
+    }
+    return m;
+}
+
+
+void scalarToCalc(sal_Int32 &ret, const QuantLib::Date &in) {
+    ret = in.serialNumber();
+}
+
+// Function below required on 64-bit systems but on 32-bit systems it
+// conflicts with sal_Int32 override.
+// FIXME Need a #define that specifically distinguishes 32/64-bit
+#if defined(__GNUC__) && defined(__x86_64__)
+void scalarToCalc(long &ret, const QuantLib::Date &in) {
+    ret = in.serialNumber();
+}
+#endif
+
+void scalarToCalc(double &ret, const QuantLib::Real &in) {
+    ret = in;
+}
+
+void scalarToCalc(STRING &ret, const QuantLib::Calendar &in) {
+  ret = STRFROMASCII( in.name().c_str() );
+}
+
+void vectorToCalc(SEQSEQ(sal_Int32) &ret, const std::vector<QuantLib::Date> &v) {
+    ret.realloc(v.size());
+    for (unsigned int i=0; i<v.size(); ++i) {
+        SEQ(sal_Int32) s(1);
+        s[0] = v[i].serialNumber();
+        ret[i] = s;
+    }
+}
+
+void vectorToCalc(SEQSEQ(double) &ret, const QuantLib::Array &in) {
+    ret.realloc(in.size());
+    for (unsigned int i=0; i<in.size(); ++i) {
+        SEQ(double) s(1);
+        s[0] = in[i];
+        ret[i] = s;
+    }
+}
+
+void matrixToCalc(SEQSEQ(double) &ret, const QuantLib::Matrix &in) {
+    ret.realloc(in.rows());
+    for (unsigned int i=0; i<in.rows(); ++i) {
+        SEQ(double) s(in.columns());
+        for (unsigned int j=0; j<in.columns(); ++j) {
+            s[j] = in[i][j];
+        }
+        ret[i] = s;
+    }
+}
+
