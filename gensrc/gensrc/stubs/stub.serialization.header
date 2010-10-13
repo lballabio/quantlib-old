@@ -1,0 +1,13 @@
+#ifndef %(libRootDirectory)s_create_%(categoryName)s_hpp
+#define %(libRootDirectory)s_create_%(categoryName)s_hpp
+
+#include <oh/ohdefines.hpp>
+#include <oh/object.hpp>
+#include <oh/valueobject.hpp>
+
+namespace %(namespaceObjects)s {
+
+%(bufferDeclarations)s}
+
+#endif
+

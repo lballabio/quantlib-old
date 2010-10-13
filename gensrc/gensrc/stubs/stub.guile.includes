@@ -1,0 +1,11 @@
+#include <%(libRoot)s/%(prefix)saddindefines.hpp>
+#include <%(libRoot)s/typefactory.hpp>
+%(includes)s
+#include <Addins/Guile/guileutils.hpp>
+#include <Addins/Guile/conversions.hpp>
+extern "C" {
+#include <Addins/Guile/%(categoryName)s.h>
+}
+
+%(code)s
+

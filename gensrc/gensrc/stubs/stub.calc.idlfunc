@@ -1,0 +1,3 @@
+                %s %s(%s)
+                    raises( com::sun::star::lang::IllegalArgumentException );
+

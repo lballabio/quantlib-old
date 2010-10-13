@@ -1,0 +1,28 @@
+XLL_DEC %(functionReturnType)s%(functionName)s(%(functionDeclaration)s) {
+
+    // declare a shared pointer to the Function Call object
+
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+
+    try {
+
+        // instantiate the Function Call object
+
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>(
+            new ObjectHandler::FunctionCall("%(functionName)s"));
+%(xlWizardCheck)s%(xlTrigger)s
+
+        // initialize the session ID (if enabled)
+
+        SET_SESSION_ID
+%(cppConversions)s%(libConversions)s%(enumConversions)s%(objectConversions)s%(refConversions)s%(functionBody)s%(returnConversion)s
+
+    } catch (const std::exception &e) {
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
+        return 0;
+    } catch (...) {
+        ObjectHandler::RepositoryXL::instance().logError("unkown error type", functionCall);
+        return 0;
+    }
+
+}

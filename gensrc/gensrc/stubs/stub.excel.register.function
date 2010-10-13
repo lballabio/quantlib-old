@@ -1,0 +1,20 @@
+        Excel(xlfRegister, 0, %(numParams)d, &xDll,
+            // function code name
+            TempStrNoSize("\x%(functionNameLen)02X""%(functionName)s"),
+            // parameter codes
+            TempStrNoSize("\x%(paramStrLen)02X""%(paramStr)s"),
+            // function display name
+            TempStrNoSize("\x%(functionNameLen)02X""%(functionName)s"),
+            // comma-delimited list of parameter names
+            TempStrNoSize("\x%(paramNamesLen)02X""%(paramNames)s"),
+            // function type (0 = hidden, 1 = worksheet)
+            TempStrNoSize("\x01""%(functionType)d"),
+            // function category
+            TempStrNoSize("\x%(categoryLen)02X""%(category)s"),
+            // shortcut text (command macros only)
+            TempStrNoSize("\x00"""),
+            // path to help file
+            TempStrNoSize("\x00"""),
+            // function description
+            TempStrNoSize("\x%(funcDescLen)02X""%(funcDesc)s")%(delim)s%(parameterList)s);
+%(unregister)s

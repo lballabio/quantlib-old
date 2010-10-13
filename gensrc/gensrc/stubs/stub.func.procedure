@@ -1,0 +1,7 @@
+
+        // invoke the utility function
+
+        %(libraryReturnType)s%(alias)s(%(parameterList)s);
+
+        // convert and return the return value
+

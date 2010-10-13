@@ -1,0 +1,7 @@
+
+#include <boost/bind.hpp>
+
+namespace %(namespace)s {
+%(buffer)s
+}
+

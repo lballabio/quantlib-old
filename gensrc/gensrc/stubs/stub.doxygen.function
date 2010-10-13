@@ -1,0 +1,19 @@
+\anchor %(functionName)s \b %(functionName)s
+\code
+
+%(retCode)s
+
+%(functionName)s(%(functionDoc)s)
+
+\endcode
+\par Description:
+
+%(functionLongDesc)s
+
+\par Supported Platforms:
+
+%(supportedPlatforms)s
+
+%(paramDoc)s
+
+
