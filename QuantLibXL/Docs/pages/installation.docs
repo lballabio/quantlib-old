@@ -1,0 +1,66 @@
+
+/*
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page installation Installation
+
+Download QuantLibXL-bin-1.0.1.exe from the 
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=260244">Downloads page</a>.
+
+Run the installer to install QuantLibXL to your system.  You are given the
+option to install the \ref framework if desired.
+
+\section qlxl_install_usage Usage
+
+To use QuantLibXL:
+\li Start Excel
+\li Load the addin:
+\verbatim
+QuantLibXL\xll\QuantLibXL-vc80-mt-s-1_0_1.xll
+\endverbatim
+\li Load the example workbooks:
+\verbatim
+QuantLibXL\Workbooks\StandaloneExamples\YieldCurveBootstrapping.xls
+QuantLibXL\Workbooks\StandaloneExamples\InterestRateDerivatives.xls
+\endverbatim
+\li Hit <tt>Ctrl-Alt-F9</tt> to force a full recalculation
+
+If you want to have QuantLibXL loaded every time you start Excel,
+you can accomplish this as follows:
+\li Start Excel
+\li Ensure that at least one workbook is loaded - creating a new empty workbook if necessary
+\li Do <tt>Tools | Add-Ins</tt>, and click the Browse button
+\li Browse your way to the QuantLibXL XLL and click OK
+
+\section qlxl_install_directories Directories
+
+The SerializationDemo directory contains a VBA application which implements a
+demo serialization environment as described in the following document:
+
+<a href="http://www.quantlibaddin.org/serialization.html">http://www.quantlibaddin.org/serialization.html</a>
+
+Apart from the StandaloneExamples directory, other subdirectories of the
+Workbooks directory contain workbooks that belong to the \ref framework
+application.
+
+*/
+

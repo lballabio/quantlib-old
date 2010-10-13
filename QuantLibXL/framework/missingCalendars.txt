@@ -1,0 +1,9 @@
+    & ",Argentina::Merval,Australia,Brazil,Canada,China" _
+    & ",CzechRepublic::PSE,Denmark,Finland,Germany::Eurex" _
+    & ",Germany::FrankfurtStockExchange,Germany::Settlement,Germany::Xetra" _
+    & ",HongKong::HKEx,Hungary,Iceland::ICEX,India::NSE" _
+    & ",Indonesia::BEJ,Italy::Exchange,Italy::Settlement" _
+    & ",Mexico::BMV,NewZealand,Norway,NullCalendar,Poland,SaudiArabia" _
+    & ",Singapore::SGX,Slovakia::BSSE,SouthAfrica" _
+    & ",SouthKorea::KRX,Sweden,Taiwan::TSEC,Turkey" _
+    & ",Ukraine::USE"

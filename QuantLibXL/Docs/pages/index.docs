@@ -1,0 +1,63 @@
+
+/*
+ Copyright (C) 2006, 2007, 2008 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \mainpage QuantLibXL
+
+\section idx_overview Overview
+
+%QuantLibXL exports the functionality of the
+<a href="http://quantlib.org">QuantLib</a> C++ analytics library to Microsoft
+Excel.
+
+\htmlonly
+<div id="download"><a class="imglink" id="imghover" href="http://downloads.sourceforge.net/quantlib/QuantLibXL-bin-1.0.1.exe"><img src="images/download_qlxl.jpg" border=0/></a></div>
+\endhtmlonly
+
+The project comprises
+\li A compiled Excel Addin (an XLL)
+\li End user documentation
+\li Example workbooks
+
+The addin implements 855 functions in support of market data and
+pricing for a variety of instruments including bonds, options, swaps,
+swaptions, and caps/floors.
+
+<div class="center"><img src="images/screenshot.jpg"></div>
+
+%QuantLibXL is the Excel implementation of
+<a href="http://www.quantlibaddin.org">QuantLibAddin</a>
+which supports the same interface on a variety of other platforms.
+QuantLibAddin includes downloads and tutorials for compiling addins from source
+code for all environments including %QuantLibXL.
+
+\section idx_quantlib QuantLib
+
+%QuantLibXL is a subproject of %QuantLib and shares the %QuantLib project
+structure with regard to distribution and licensing.  The mailing list for
+%QuantLibXL is
+<a href="https://lists.sourceforge.net/lists/listinfo/quantlib-users">quantlib-users@lists.sf.net</a>.
+The list archives may be searched
+<a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">here</a>.
+
+*/
+
