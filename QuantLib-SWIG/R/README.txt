@@ -29,7 +29,8 @@ You can also load the uncompiled wrapper file
 
 Please contact 
 
-Joseph Wang - joe@gnacademy.org 
+Joseph Wang - joequant@gmail.org
+
 
 if you have any comments or additions.
 
