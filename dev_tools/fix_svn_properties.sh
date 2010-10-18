@@ -19,7 +19,7 @@ find . -name '*.a[cm]' -o -name '*.m4' -o -name '*.in' \
  | xargs -n 1 svn propset svn:eol-style LF
 # these should have Windows eol, even when extracted from a .tar.gz
 find . -name '*.dev' -o -name '*.sln' \
-    -o -name '*.vcproj' -o -name '*.csproj' \
+    -o -name '*.vcproj' -o -name '*.vcxproj' -o -name '*.csproj' \
     -o -name '*.vc' -o -name '*.cmd' -o -name '*.bat' \
     -o -name '*.dsw' -o -name '*.dsp' \
  | xargs -n 1 svn propset svn:eol-style CRLF
