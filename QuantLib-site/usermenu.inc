@@ -39,6 +39,10 @@
 </ul>
 
 <hr>
+<h3 class="navbartitle"><a href="http://www.statpro.com/quantlib_forum">First QuantLib Forum</a></h3>
+<div class="center"><strong>London, January 18th 2011</strong></div>
+
+<hr>
 <h3 class="navbartitle">Quantitative Finance Resources</h3>
 
 <ul class="navbarlist">
