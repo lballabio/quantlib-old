@@ -78,6 +78,16 @@ namespace QuantLibAddin {
 
         try {
             result = simpleQuote_->setValue(value);
+        } catch (std::exception& e) {
+            // In the event of an exception, ensure that the ValueObject remains in synch with
+            // the simpleQuote_ before rethrowing.
+            // If QuantLib::SimpleQuote::isValid() is false then QuantLib::SimpleQuote::value() throws,
+            // which here in the catch clause would cause the app to crash, so test for that case.
+            if (simpleQuote_->isValid())
+                properties()->setProperty("Value", simpleQuote_->value());
+            else
+                properties()->setProperty("Value", static_cast<double>(QuantLib::Null<Real>()));
+            throw e;
         } catch (...) {
             // In the event of an exception, ensure that the ValueObject remains in synch with
             // the simpleQuote_ before rethrowing.
