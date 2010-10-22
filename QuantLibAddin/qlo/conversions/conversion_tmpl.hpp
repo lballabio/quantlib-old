@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2008 Plamen Neykov
+ Copyright (C) 2010 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,11 +29,21 @@
 namespace ObjectHandler {
 
     template<class container_t>
+    bool is_numeric(const container_t& c, double& d)
+    {
+        try {
+            d = c.operator double();
+            return true;
+        } catch(...) {
+            return false;
+        }
+    }
+
+    template<class container_t>
     QuantLib::Date convertDate(const container_t& c) {
-        if(c.type() == typeid(long))
-            return QuantLib::Date(c.operator long());
-        else if(c.type() == typeid(double))
-            return QuantLib::Date(static_cast<QuantLib::BigInteger>(c.operator double()));
+        double d;
+        if(is_numeric(c, d))
+            return QuantLib::Date(static_cast<QuantLib::BigInteger>(d));
         else if(c.type() == typeid(std::string)) {
             std::string str = c.operator std::string();
             if (QuantLib::IMM::isIMMcode(str, false))
@@ -58,9 +69,10 @@ namespace ObjectHandler {
 
     template<class container_t>
     boost::shared_ptr<QuantLib::Quote> convertQuote(const container_t& c) {
-        if(c.type() == typeid(double)) {
-            return boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(c.operator double()));
-        } else if(c.type() == typeid(std::string)) {
+        double d;
+        if(is_numeric(c, d))
+            return boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(d));
+        else if(c.type() == typeid(std::string)) {
             std::string sId = c.operator std::string();
             OH_GET_OBJECT(temp, sId, ObjectHandler::Object)
             return QuantLibAddin::CoerceObject<QuantLibAddin::Quote, QuantLib::Quote, QuantLib::Quote>()(temp);
@@ -70,11 +82,10 @@ namespace ObjectHandler {
     }
 
     template<class container_t>
-    QuantLib::Handle<QuantLib::Quote> convertQH(const container_t& c) {
-        if(c.type() == typeid(long))
-            return QuantLib::Handle<QuantLib::Quote>(boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(c.operator long())));
-        else if(c.type() == typeid(double))
-            return QuantLib::Handle<QuantLib::Quote>(boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(c.operator double())));
+    QuantLib::Handle<QuantLib::Quote> convertQuoteHandle(const container_t& c) {
+        double d;
+        if(is_numeric(c, d))
+            return QuantLib::Handle<QuantLib::Quote>(boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(d)));
         else if(c.type() == typeid(std::string)) {
             OH_GET_OBJECT(object, c.operator std::string(), ObjectHandler::Object)
             return QuantLibAddin::CoerceHandle<QuantLibAddin::Quote, QuantLib::Quote>()(object);

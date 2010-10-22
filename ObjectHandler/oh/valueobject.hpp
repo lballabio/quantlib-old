@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2006, 2008 Plamen Neykov
- Copyright (C) 2007, 2008 Eric Ehlers
+ Copyright (C) 2007, 2008, 2010 Eric Ehlers
  Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
@@ -32,6 +32,7 @@
 #include <set>
 #include <algorithm>
 #include <oh/property.hpp>
+#include <oh/utilities.hpp>
 #include <boost/serialization/access.hpp>
 
 namespace ObjectHandler {
@@ -153,7 +154,8 @@ namespace ObjectHandler {
     // FIXME This function should take a const ref:
     //inline void ValueObject::processVariant(const property_t& variantID){
     inline void ValueObject::processVariant(property_t variantID){
-        if (std::string *objectID = boost::get<std::string>(&variantID))
+        std::string *objectID;
+        if ((objectID = boost::get<std::string>(&variantID)) && !isNumeric(*objectID))
             processPrecedentID(*objectID);
     }
 

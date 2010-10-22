@@ -145,7 +145,7 @@ namespace ObjectHandler {
 
     template<>
     QuantLib::Handle<QuantLib::Quote> convert2<QuantLib::Handle<QuantLib::Quote>, property_t>(const property_t& c) {
-        return convertQH(c);
+        return convertQuoteHandle(c);
     }
 
     template<> 
@@ -171,7 +171,7 @@ namespace ObjectHandler {
 
     template<>
     QuantLib::Handle<QuantLib::Quote> convert2<QuantLib::Handle<QuantLib::Quote>, ConvertOper>(const ConvertOper& c) {
-        return convertQH(c);
+        return convertQuoteHandle(c);
     }
     */
 

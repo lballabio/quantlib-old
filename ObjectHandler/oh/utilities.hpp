@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
+ Copyright (C) 2004, 2005, 2006, 2007, 2010 Eric Ehlers
  Copyright (C) 2006 Plamen Neykov
  Copyright (C) 2007, 2008 Ferdinando Ametrano
  Copyright (C) 2008 Nazcatech sprl Belgium
@@ -31,6 +31,7 @@
 #include <oh/exception.hpp>
 #include <string>
 #include <vector>
+#include <boost/lexical_cast.hpp>
 
 namespace ObjectHandler {
 
@@ -95,6 +96,15 @@ namespace ObjectHandler {
     //! Concatenate substrings into a single string using the given delimiter.
     std::string concatenate(const std::vector<std::string>& symbols,
                             const std::string& delim);
+
+    inline bool isNumeric(const std::string &s) {
+        try{
+            boost::lexical_cast<double>(s);
+            return true;
+        } catch(...){
+            return false;
+        }
+    }
     //@}
 
     //! \name Time
