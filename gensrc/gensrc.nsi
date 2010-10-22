@@ -43,7 +43,7 @@ Section
 
     SetOutPath $INSTDIR\gensrc
     File /r "gensrc\*.py"
-    File /r "gensrc\stub.*"
+    File /r /x .svn "gensrc\stub.*"
 
     SetOutPath "$INSTDIR\Docs"
     File "Docs\gensrc-docs-${VER_NUMBER}.chm"

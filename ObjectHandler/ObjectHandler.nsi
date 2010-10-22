@@ -52,7 +52,7 @@ Section
     File "gensrc\Makefile.vc"
     File /r "gensrc\*.xml"
     File /r "gensrc\*.py"
-    File /r "gensrc\stub.*"
+    File /r /x .svn "gensrc\stub.*"
 
     SetOutPath "$INSTDIR\Docs"
     File "Docs\ObjectHandler-docs-${VER_NUMBER}.chm"
