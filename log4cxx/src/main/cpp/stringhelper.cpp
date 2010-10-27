@@ -21,6 +21,7 @@
 #include <log4cxx/helpers/transcoder.h>
 #include <algorithm>
 #include <vector>
+#include <iterator>
 #include <apr_strings.h>
 #include <log4cxx/helpers/pool.h>
 #if !defined(LOG4CXX)

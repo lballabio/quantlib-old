@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug (static runtime)|Win32">
+      <Configuration>Debug (static runtime)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release (static runtime)|Win32">
+      <Configuration>Release (static runtime)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>aprutil</ProjectName>
+    <ProjectGuid>{0082D6A9-8051-4946-888B-4E52C17BF98E}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">aprutil-vc100-mt-0_10_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">aprutil-vc100-mt-gd-0_10_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">aprutil-vc100-mt-sgd-0_10_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">aprutil-vc100-mt-s-0_10_0</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\src\apr\include;..\src\apr\include\arch\win32;..\src\apr-util\include\private\win32;..\src\apr-util\include;..\src\apr-util\include\private;..\src\apr-util\xml\expat\lib;..\src\apr-util\xml\expat;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\vc100.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\src\apr\include;..\src\apr\include\arch\win32;..\src\apr-util\include\private\win32;..\src\apr-util\include;..\src\apr-util\include\private;..\src\apr-util\xml\expat\lib;..\src\apr-util\xml\expat;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\vc100.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\src\apr\include;..\src\apr\include\arch\win32;..\src\apr-util\include\private\win32;..\src\apr-util\include;..\src\apr-util\include\private;..\src\apr-util\xml\expat\lib;..\src\apr-util\xml\expat;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\vc100.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\src\apr\include;..\src\apr\include\arch\win32;..\src\apr-util\include\private\win32;..\src\apr-util\include;..\src\apr-util\include\private;..\src\apr-util\xml\expat\lib;..\src\apr-util\xml\expat;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;APU_DECLARE_STATIC;APR_DECLARE_STATIC;XMLPARSEAPI= ;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\vc100.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\apr-util\encoding\apr_base64.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_brigade.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets_alloc.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets_eos.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets_file.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets_flush.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets_heap.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets_mmap.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets_pipe.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets_pool.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets_refcount.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets_simple.c" />
+    <ClCompile Include="..\src\apr-util\buckets\apr_buckets_socket.c" />
+    <ClCompile Include="..\src\apr-util\misc\apr_date.c" />
+    <ClCompile Include="..\src\apr-util\dbd\apr_dbd.c" />
+    <ClCompile Include="..\src\apr-util\dbd\apr_dbd_mysql.c" />
+    <ClCompile Include="..\src\apr-util\dbd\apr_dbd_pgsql.c" />
+    <ClCompile Include="..\src\apr-util\dbd\apr_dbd_sqlite2.c" />
+    <ClCompile Include="..\src\apr-util\dbd\apr_dbd_sqlite3.c" />
+    <ClCompile Include="..\src\apr-util\dbm\apr_dbm.c" />
+    <ClCompile Include="..\src\apr-util\dbm\apr_dbm_berkeleydb.c" />
+    <ClCompile Include="..\src\apr-util\dbm\apr_dbm_gdbm.c" />
+    <ClCompile Include="..\src\apr-util\dbm\apr_dbm_ndbm.c" />
+    <ClCompile Include="..\src\apr-util\dbm\apr_dbm_sdbm.c" />
+    <ClCompile Include="..\src\apr-util\hooks\apr_hooks.c" />
+    <ClCompile Include="..\src\apr-util\crypto\apr_md4.c" />
+    <ClCompile Include="..\src\apr-util\crypto\apr_md5.c" />
+    <ClCompile Include="..\src\apr-util\misc\apr_queue.c" />
+    <ClCompile Include="..\src\apr-util\misc\apr_reslist.c" />
+    <ClCompile Include="..\src\apr-util\misc\apr_rmm.c" />
+    <ClCompile Include="..\src\apr-util\crypto\apr_sha1.c" />
+    <ClCompile Include="..\src\apr-util\strmatch\apr_strmatch.c" />
+    <ClCompile Include="..\src\apr-util\uri\apr_uri.c" />
+    <ClCompile Include="..\src\apr-util\xml\apr_xml.c" />
+    <ClCompile Include="..\src\apr-util\misc\apu_version.c" />
+    <ClCompile Include="..\src\apr-util\crypto\getuuid.c" />
+    <ClCompile Include="..\src\apr-util\dbm\sdbm\sdbm.c" />
+    <ClCompile Include="..\src\apr-util\dbm\sdbm\sdbm_hash.c" />
+    <ClCompile Include="..\src\apr-util\dbm\sdbm\sdbm_lock.c" />
+    <ClCompile Include="..\src\apr-util\dbm\sdbm\sdbm_pair.c" />
+    <ClCompile Include="..\src\apr-util\crypto\uuid.c" />
+    <ClCompile Include="..\src\apr-util\xlate\xlate.c" />
+    <ClCompile Include="..\src\apr-util\include\private\win32\xmlparse.c" />
+    <ClCompile Include="..\src\apr-util\xml\expat\lib\xmlrole.c" />
+    <ClCompile Include="..\src\apr-util\xml\expat\lib\xmltok.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\apr-util\xml\expat\acconfig.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_anylock.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_base64.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_buckets.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_date.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_dbd.h" />
+    <ClInclude Include="..\src\apr-util\include\private\apr_dbd_internal.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_dbm.h" />
+    <ClInclude Include="..\src\apr-util\include\private\apr_dbm_private.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_hooks.h" />
+    <ClInclude Include="..\src\apr-util\include\private\win32\apr_ldap.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_ldap_init.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_ldap_option.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_ldap_url.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_md4.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_md5.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_optional.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_optional_hooks.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_queue.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_reslist.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_rmm.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_sdbm.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_sha1.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_strmatch.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_uri.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_uuid.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_xlate.h" />
+    <ClInclude Include="..\src\apr-util\include\apr_xml.h" />
+    <ClInclude Include="..\src\apr-util\include\private\win32\apu.h" />
+    <ClInclude Include="..\src\apr-util\include\private\win32\apu_config.h" />
+    <ClInclude Include="..\src\apr-util\include\private\win32\apu_select_dbm.h" />
+    <ClInclude Include="..\src\apr-util\include\apu_version.h" />
+    <ClInclude Include="..\src\apr-util\include\private\win32\apu_want.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\ascii.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\asciitab.h" />
+    <ClInclude Include="..\src\apr-util\include\private\win32\config.h" />
+    <ClInclude Include="..\src\apr-util\include\private\win32\expat.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\iasciitab.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\latin1tab.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\map_osd_ebcdic_df04_1.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\nametab.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\osd_ebcdic_df04_1.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\utf8tab.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\winconfig.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\xmlrole.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\xmltok.h" />
+    <ClInclude Include="..\src\apr-util\xml\expat\lib\xmltok_impl.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

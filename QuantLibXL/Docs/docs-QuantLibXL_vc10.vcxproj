@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="All|Win32">
+      <Configuration>All</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>docs-QuantLibXL</ProjectName>
+    <ProjectGuid>{A7768A12-75ED-480C-825A-BC70105281BC}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='All|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='All|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='All|Win32'">build\vc\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='All|Win32'">build\vc\</IntDir>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc /a</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc clean</NMakeCleanCommandLine>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='All|Win32'" />
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='All|Win32'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\abcd.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\accountingengines.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\allfunctions.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\alphaform.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\assetswap.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\bonds.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\browniangenerators.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\btp.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\calendar.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\capfloor.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\capletvolstructure.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\categories.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\cmsmarket.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\cmsmarketcalibration.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\correlation.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\couponvectors.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\credit.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\ctsmmcapletcalibration.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\curvestate.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\date.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\daycounter.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\defaulttermstructures.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\driftcalculators.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\enumerations.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\enums.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\evolutiondescription.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\exercise.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\forwardrateagreement.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\garbagecollection.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\group.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\handles.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\index.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\instruments.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\interpolation.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\leg.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\logging.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\marketmodelevolvers.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\marketmodels.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\mathf.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\objects.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\ohutils.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\optimization.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\options.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\overnightindexedswap.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\payoffs.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\piecewiseyieldcurve.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\prices.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\pricingengines.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\processes.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\products.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\quotes.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\randomsequencegenerator.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\range.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\rangeaccrual.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\ratehelpers.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\schedule.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\sequencestatistics.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\serialization.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\settings.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\shortratemodels.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\smilesection.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\statistics.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\swap.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\swaption.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\swaptionvolstructure.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\termstructures.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\timeseries.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\utilities.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\valueobjects.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\vanillaswap.docs" />
+    <None Include="..\..\quantlibaddin\docs\auto.pages\volatilities.docs" />
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\volatility.docs" />
+    <None Include="pages\framework.docs" />
+    <None Include="pages\functional.docs" />
+    <None Include="pages\history.docs" />
+    <None Include="pages\index.docs" />
+    <None Include="pages\installation.docs" />
+    <None Include="pages\license.docs" />
+    <None Include="pages\people.docs" />
+    <None Include="doxygen.css" />
+    <None Include="Makefile.vc" />
+    <None Include="ql.css" />
+    <None Include="qlxl_footer.html" />
+    <None Include="qlxl_header.html" />
+    <None Include="qlxl_headeronline.html" />
+    <None Include="quantlibxl.doxy" />
+    <None Include="tabs.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\QuantLibAddin\gensrc\qlgensrc_vc10.vcxproj">
+      <Project>{c8a6bb98-75ca-4eb9-a750-8ba3b3aa5969}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

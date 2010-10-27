@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="pages">
+      <UniqueIdentifier>{88975a05-d338-493a-90b1-3f095a9f419e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="auto.pages">
+      <UniqueIdentifier>{e09232e4-ee47-47de-9d19-01b9ff6550f5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pages\boost.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\conventions.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\design.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\examples.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\excelbinding.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\functional.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\garbage_collection.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\history.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\index.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\installation.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\license.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\log_messages.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\manual.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\people.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\references.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\technical.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="auto.pages\allfunctions.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\categories.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\enumerations.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\garbagecollection.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\group.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\logging.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\objects.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\ohutils.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\range.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\serialization.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\valueobjects.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="doxygen.css" />
+    <None Include="Makefile.vc" />
+    <None Include="objecthandler.doxy" />
+    <None Include="oh_footer.html" />
+    <None Include="oh_header.html" />
+    <None Include="oh_headeronline.html" />
+    <None Include="ql.css" />
+    <None Include="tabs.css" />
+  </ItemGroup>
+</Project>

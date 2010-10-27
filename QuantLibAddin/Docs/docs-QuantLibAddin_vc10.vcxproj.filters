@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="pages">
+      <UniqueIdentifier>{487ddd70-ada5-4980-bbc0-6288c8dcf704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="auto.pages">
+      <UniqueIdentifier>{95cc2d7c-c8a4-44e7-a988-471a176f8a0b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pages\build_calc.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\build_cpp.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\build_qlxl.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\calc.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\coercion.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\design.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\evaluationdate.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\examples.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\extend.tutorial.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\extending.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\faq.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\functional.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\history.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\index.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\installation.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\license.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\loops.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\manual.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\observer.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\people.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\serialization.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\srcgen.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\technical.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\troubleshooting.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\tutorials.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="auto.pages\abcd.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\accountingengines.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\allfunctions.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\alphaform.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\assetswap.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\bonds.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\browniangenerators.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\btp.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\calendar.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\capfloor.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\capletvolstructure.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\categories.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\cmsmarket.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\cmsmarketcalibration.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\correlation.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\couponvectors.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\credit.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\ctsmmcapletcalibration.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\curvestate.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\date.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\daycounter.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\driftcalculators.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\enumerations.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\enums.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\evolutiondescription.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\exercise.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\forwardrateagreement.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\garbagecollection.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\group.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\handles.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\index.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\instruments.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\interpolation.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\leg.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\logging.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\marketmodelevolvers.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\marketmodels.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\mathf.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\objects.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\ohutils.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\optimization.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\options.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\overnightindexedswap.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\payoffs.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\piecewiseyieldcurve.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\prices.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\pricingengines.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\processes.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\products.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\quotes.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\randomsequencegenerator.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\range.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\rangeaccrual.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\ratehelpers.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\schedule.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\sequencestatistics.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\serialization.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\settings.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\shortratemodels.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\smilesection.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\statistics.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\swap.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\swaption.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\swaptionvolstructure.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\termstructures.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\timeseries.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\utilities.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\valueobjects.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\vanillaswap.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\volatilities.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="auto.pages\volatility.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="doxygen.css" />
+    <None Include="Makefile.vc" />
+    <None Include="ql.css" />
+    <None Include="qla_footer.html" />
+    <None Include="qla_header.html" />
+    <None Include="qla_headeronline.html" />
+    <None Include="quantlibaddin.doxy" />
+    <None Include="tabs.css" />
+  </ItemGroup>
+</Project>

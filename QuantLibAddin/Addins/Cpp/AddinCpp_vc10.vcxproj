@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug (static runtime)|Win32">
+      <Configuration>Debug (static runtime)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release (static runtime)|Win32">
+      <Configuration>Release (static runtime)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>AddinCpp</ProjectName>
+    <ProjectGuid>{E5C1A173-2885-4BAB-905B-F9521ACB8E31}</ProjectGuid>
+    <RootNamespace>AddinCpp</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\build\vc100\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\build\vc100\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\build\vc100\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\build\vc100\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AddinCpp-vc100-mt-1_1_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AddinCpp-vc100-mt-gd-1_1_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">AddinCpp-vc100-mt-sgd-1_1_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">AddinCpp-vc100-mt-s-1_1_0</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../..;../../../ObjectHandler;../../../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../..;../../../ObjectHandler;../../../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../..;../../../ObjectHandler;../../../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../..;../../../ObjectHandler;../../../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="loop.hpp" />
+    <ClInclude Include="abcd.hpp" />
+    <ClInclude Include="accountingengines.hpp" />
+    <ClInclude Include="addincpp.hpp" />
+    <ClInclude Include="addincppdefines.hpp" />
+    <ClInclude Include="alphaform.hpp" />
+    <ClInclude Include="assetswap.hpp" />
+    <ClInclude Include="bonds.hpp" />
+    <ClInclude Include="browniangenerators.hpp" />
+    <ClInclude Include="btp.hpp" />
+    <ClInclude Include="capfloor.hpp" />
+    <ClInclude Include="capletvolstructure.hpp" />
+    <ClInclude Include="cmsmarket.hpp" />
+    <ClInclude Include="correlation.hpp" />
+    <ClInclude Include="couponvectors.hpp" />
+    <ClInclude Include="ctsmmcapletcalibration.hpp" />
+    <ClInclude Include="curvestate.hpp" />
+    <ClInclude Include="evolutiondescription.hpp" />
+    <ClInclude Include="exercise.hpp" />
+    <ClInclude Include="forwardrateagreement.hpp" />
+    <ClInclude Include="garbagecollection.hpp" />
+    <ClInclude Include="handles.hpp" />
+    <ClInclude Include="index.hpp" />
+    <ClInclude Include="init.hpp" />
+    <ClInclude Include="instruments.hpp" />
+    <ClInclude Include="interpolation.hpp" />
+    <ClInclude Include="leg.hpp" />
+    <ClInclude Include="logging.hpp" />
+    <ClInclude Include="marketmodelevolvers.hpp" />
+    <ClInclude Include="marketmodels.hpp" />
+    <ClInclude Include="ohutils.hpp" />
+    <ClInclude Include="optimization.hpp" />
+    <ClInclude Include="options.hpp" />
+    <ClInclude Include="payoffs.hpp" />
+    <ClInclude Include="piecewiseyieldcurve.hpp" />
+    <ClInclude Include="pricingengines.hpp" />
+    <ClInclude Include="processes.hpp" />
+    <ClInclude Include="products.hpp" />
+    <ClInclude Include="quotes.hpp" />
+    <ClInclude Include="randomsequencegenerator.hpp" />
+    <ClInclude Include="rangeaccrual.hpp" />
+    <ClInclude Include="ratehelpers.hpp" />
+    <ClInclude Include="schedule.hpp" />
+    <ClInclude Include="sequencestatistics.hpp" />
+    <ClInclude Include="serialization.hpp" />
+    <ClInclude Include="settings.hpp" />
+    <ClInclude Include="shortratemodels.hpp" />
+    <ClInclude Include="smilesection.hpp" />
+    <ClInclude Include="statistics.hpp" />
+    <ClInclude Include="swap.hpp" />
+    <ClInclude Include="swaption.hpp" />
+    <ClInclude Include="swaptionvolstructure.hpp" />
+    <ClInclude Include="termstructures.hpp" />
+    <ClInclude Include="timeseries.hpp" />
+    <ClInclude Include="utilities.hpp" />
+    <ClInclude Include="valueobjects.hpp" />
+    <ClInclude Include="vanillaswap.hpp" />
+    <ClInclude Include="volatilities.hpp" />
+    <ClInclude Include="volatility.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="abcd.cpp" />
+    <ClCompile Include="accountingengines.cpp" />
+    <ClCompile Include="alphaform.cpp" />
+    <ClCompile Include="assetswap.cpp" />
+    <ClCompile Include="bonds.cpp" />
+    <ClCompile Include="browniangenerators.cpp" />
+    <ClCompile Include="btp.cpp" />
+    <ClCompile Include="capfloor.cpp" />
+    <ClCompile Include="capletvolstructure.cpp" />
+    <ClCompile Include="cmsmarket.cpp" />
+    <ClCompile Include="correlation.cpp" />
+    <ClCompile Include="couponvectors.cpp" />
+    <ClCompile Include="ctsmmcapletcalibration.cpp" />
+    <ClCompile Include="curvestate.cpp" />
+    <ClCompile Include="evolutiondescription.cpp" />
+    <ClCompile Include="exercise.cpp" />
+    <ClCompile Include="forwardrateagreement.cpp" />
+    <ClCompile Include="garbagecollection.cpp" />
+    <ClCompile Include="handles.cpp" />
+    <ClCompile Include="index.cpp" />
+    <ClCompile Include="init.cpp" />
+    <ClCompile Include="instruments.cpp" />
+    <ClCompile Include="interpolation.cpp" />
+    <ClCompile Include="leg.cpp" />
+    <ClCompile Include="logging.cpp" />
+    <ClCompile Include="marketmodelevolvers.cpp" />
+    <ClCompile Include="marketmodels.cpp" />
+    <ClCompile Include="ohutils.cpp" />
+    <ClCompile Include="optimization.cpp" />
+    <ClCompile Include="options.cpp" />
+    <ClCompile Include="payoffs.cpp" />
+    <ClCompile Include="piecewiseyieldcurve.cpp" />
+    <ClCompile Include="pricingengines.cpp" />
+    <ClCompile Include="processes.cpp" />
+    <ClCompile Include="products.cpp" />
+    <ClCompile Include="quotes.cpp" />
+    <ClCompile Include="randomsequencegenerator.cpp" />
+    <ClCompile Include="rangeaccrual.cpp" />
+    <ClCompile Include="ratehelpers.cpp" />
+    <ClCompile Include="schedule.cpp" />
+    <ClCompile Include="sequencestatistics.cpp" />
+    <ClCompile Include="serialization.cpp" />
+    <ClCompile Include="settings.cpp" />
+    <ClCompile Include="shortratemodels.cpp" />
+    <ClCompile Include="smilesection.cpp" />
+    <ClCompile Include="statistics.cpp" />
+    <ClCompile Include="swap.cpp" />
+    <ClCompile Include="swaption.cpp" />
+    <ClCompile Include="swaptionvolstructure.cpp" />
+    <ClCompile Include="termstructures.cpp" />
+    <ClCompile Include="timeseries.cpp" />
+    <ClCompile Include="utilities.cpp" />
+    <ClCompile Include="valueobjects.cpp" />
+    <ClCompile Include="vanillaswap.cpp" />
+    <ClCompile Include="volatilities.cpp" />
+    <ClCompile Include="volatility.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\QuantLibObjects_vc10.vcxproj">
+      <Project>{cab8330c-6424-4455-9285-3654587ef71f}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

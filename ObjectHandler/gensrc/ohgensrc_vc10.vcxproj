@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="All|Win32">
+      <Configuration>All</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>ohgensrc</ProjectName>
+    <ProjectGuid>{88BE5568-6E55-41C5-A251-670FAFB44336}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='All|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='All|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='All|Win32'">build\vc\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='All|Win32'">build\vc\</IntDir>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc /a</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc clean</NMakeCleanCommandLine>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='All|Win32'" />
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='All|Win32'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="metadata\addins\doxygen.xml" />
+    <None Include="metadata\addins\excel.xml" />
+    <None Include="metadata\addins\loop.xml" />
+    <None Include="metadata\addins\valueobjects.xml" />
+    <None Include="metadata\functions\enumerations.xml" />
+    <None Include="metadata\functions\garbagecollection.xml" />
+    <None Include="metadata\functions\group.xml" />
+    <None Include="metadata\functions\logging.xml" />
+    <None Include="metadata\functions\objects.xml" />
+    <None Include="metadata\functions\ohutils.xml" />
+    <None Include="metadata\functions\range.xml" />
+    <None Include="metadata\functions\serialization.xml" />
+    <None Include="metadata\functions\valueobjects.xml" />
+    <None Include="metadata\rules\doxygen.xml" />
+    <None Include="metadata\rules\excel.xml" />
+    <None Include="metadata\rules\loop.xml" />
+    <None Include="metadata\rules\valueobjects.xml" />
+    <None Include="metadata\types\supertypes.xml" />
+    <None Include="metadata\types\types.xml" />
+    <None Include="code\codedict.py" />
+    <None Include="config\categories.xml" />
+    <None Include="config\config.xml" />
+    <None Include="stubs\stub.copyright" />
+    <None Include="stubs\stub.excel.exports" />
+    <None Include="stubs\stub.excel.includes" />
+    <None Include="Makefile.vc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

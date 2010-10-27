@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="All|Win32">
+      <Configuration>All</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>docs-QuantLibAddin</ProjectName>
+    <ProjectGuid>{3A1AC508-8F57-4318-AC89-EE55513FE506}</ProjectGuid>
+    <RootNamespace>docs-QuantLibAddin</RootNamespace>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='All|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='All|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='All|Win32'">build\vc\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='All|Win32'">build\vc\</IntDir>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc /a</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc clean</NMakeCleanCommandLine>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='All|Win32'" />
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='All|Win32'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="pages\build_calc.docs" />
+    <None Include="pages\build_cpp.docs" />
+    <None Include="pages\build_qlxl.docs" />
+    <None Include="pages\calc.docs" />
+    <None Include="pages\coercion.docs" />
+    <None Include="pages\design.docs" />
+    <None Include="pages\evaluationdate.docs" />
+    <None Include="pages\examples.docs" />
+    <None Include="pages\extend.tutorial.docs" />
+    <None Include="pages\extending.docs" />
+    <None Include="pages\faq.docs" />
+    <None Include="pages\functional.docs" />
+    <None Include="pages\history.docs" />
+    <None Include="pages\index.docs" />
+    <None Include="pages\installation.docs" />
+    <None Include="pages\license.docs" />
+    <None Include="pages\loops.docs" />
+    <None Include="pages\manual.docs" />
+    <None Include="pages\observer.docs" />
+    <None Include="pages\people.docs" />
+    <None Include="pages\serialization.docs" />
+    <None Include="pages\srcgen.docs" />
+    <None Include="pages\technical.docs" />
+    <None Include="pages\troubleshooting.docs" />
+    <None Include="pages\tutorials.docs" />
+    <None Include="auto.pages\abcd.docs" />
+    <None Include="auto.pages\accountingengines.docs" />
+    <None Include="auto.pages\allfunctions.docs" />
+    <None Include="auto.pages\alphaform.docs" />
+    <None Include="auto.pages\assetswap.docs" />
+    <None Include="auto.pages\bonds.docs" />
+    <None Include="auto.pages\browniangenerators.docs" />
+    <None Include="auto.pages\btp.docs" />
+    <None Include="auto.pages\calendar.docs" />
+    <None Include="auto.pages\capfloor.docs" />
+    <None Include="auto.pages\capletvolstructure.docs" />
+    <None Include="auto.pages\categories.docs" />
+    <None Include="auto.pages\cmsmarket.docs" />
+    <None Include="auto.pages\cmsmarketcalibration.docs" />
+    <None Include="auto.pages\correlation.docs" />
+    <None Include="auto.pages\couponvectors.docs" />
+    <None Include="auto.pages\credit.docs" />
+    <None Include="auto.pages\ctsmmcapletcalibration.docs" />
+    <None Include="auto.pages\curvestate.docs" />
+    <None Include="auto.pages\date.docs" />
+    <None Include="auto.pages\daycounter.docs" />
+    <None Include="auto.pages\driftcalculators.docs" />
+    <None Include="auto.pages\enumerations.docs" />
+    <None Include="auto.pages\enums.docs" />
+    <None Include="auto.pages\evolutiondescription.docs" />
+    <None Include="auto.pages\exercise.docs" />
+    <None Include="auto.pages\forwardrateagreement.docs" />
+    <None Include="auto.pages\garbagecollection.docs" />
+    <None Include="auto.pages\group.docs" />
+    <None Include="auto.pages\handles.docs" />
+    <None Include="auto.pages\index.docs" />
+    <None Include="auto.pages\instruments.docs" />
+    <None Include="auto.pages\interpolation.docs" />
+    <None Include="auto.pages\leg.docs" />
+    <None Include="auto.pages\logging.docs" />
+    <None Include="auto.pages\marketmodelevolvers.docs" />
+    <None Include="auto.pages\marketmodels.docs" />
+    <None Include="auto.pages\mathf.docs" />
+    <None Include="auto.pages\objects.docs" />
+    <None Include="auto.pages\ohutils.docs" />
+    <None Include="auto.pages\optimization.docs" />
+    <None Include="auto.pages\options.docs" />
+    <None Include="auto.pages\overnightindexedswap.docs" />
+    <None Include="auto.pages\payoffs.docs" />
+    <None Include="auto.pages\piecewiseyieldcurve.docs" />
+    <None Include="auto.pages\prices.docs" />
+    <None Include="auto.pages\pricingengines.docs" />
+    <None Include="auto.pages\processes.docs" />
+    <None Include="auto.pages\products.docs" />
+    <None Include="auto.pages\quotes.docs" />
+    <None Include="auto.pages\randomsequencegenerator.docs" />
+    <None Include="auto.pages\range.docs" />
+    <None Include="auto.pages\rangeaccrual.docs" />
+    <None Include="auto.pages\ratehelpers.docs" />
+    <None Include="auto.pages\schedule.docs" />
+    <None Include="auto.pages\sequencestatistics.docs" />
+    <None Include="auto.pages\serialization.docs" />
+    <None Include="auto.pages\settings.docs" />
+    <None Include="auto.pages\shortratemodels.docs" />
+    <None Include="auto.pages\smilesection.docs" />
+    <None Include="auto.pages\statistics.docs" />
+    <None Include="auto.pages\swap.docs" />
+    <None Include="auto.pages\swaption.docs" />
+    <None Include="auto.pages\swaptionvolstructure.docs" />
+    <None Include="auto.pages\termstructures.docs" />
+    <None Include="auto.pages\timeseries.docs" />
+    <None Include="auto.pages\utilities.docs" />
+    <None Include="auto.pages\valueobjects.docs" />
+    <None Include="auto.pages\vanillaswap.docs" />
+    <None Include="auto.pages\volatilities.docs" />
+    <None Include="auto.pages\volatility.docs" />
+    <None Include="doxygen.css" />
+    <None Include="Makefile.vc" />
+    <None Include="ql.css" />
+    <None Include="qla_footer.html" />
+    <None Include="qla_header.html" />
+    <None Include="qla_headeronline.html" />
+    <None Include="quantlibaddin.doxy" />
+    <None Include="tabs.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ObjectHandler\gensrc\ohgensrc_vc10.vcxproj">
+      <Project>{88be5568-6e55-41c5-a251-670fafb44336}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\gensrc\qlgensrc_vc10.vcxproj">
+      <Project>{c8a6bb98-75ca-4eb9-a750-8ba3b3aa5969}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
