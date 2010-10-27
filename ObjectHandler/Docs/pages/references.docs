@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2010 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -32,8 +32,8 @@ reference, or by the raw string representing the object's ID.  The use of raw
 strings allows objects to be referenced even if the workbook which instantiated
 them is closed.
 \li It may be useful for objects referenced in this way to be declared
-"permanent" so that they are not deleted by functions ohObjectDelete() and
-ohCollectGarbage().
+"permanent" so that they are not deleted by functions \ref ohRepositoryDeleteObject and
+\ref ohRepositoryCollectGarbage.
 \li Referencing objects by raw strings circumvents Excel's dependency tracking
 mechanism.  Triggers can be used to force Excel to reestablish dependencies
 between cells.
@@ -73,16 +73,16 @@ flag indicating whether the object is to be permanent or not. It's a boolean
 but is implemented as datatype \c any so that it can be omitted (default =
 false).
 
-Permanent objects are not deleted by functions ohAllObjectDelete() /
-ohCollectGarbage(), allowing finer granularity in managing the objects in the
-repository.  For example in the scenario described above where global objects
-are initialized at startup on a workbook which is then closed, these objects
-might be declared permanent, so that functions ohAllObjectDelete() /
-ohCollectGarbage() delete only objects that the user can see. Functions
-ohAllObjectDelete() / ohCollectGarbage() accept a parameter called
-"deletePermanent", which defaults to False. Setting deletePermanent = True
-overrides the default behavior, deleting all objects including those that were
-declared permanent.
+Permanent objects are not deleted by functions \ref ohRepositoryDeleteAllObjects
+/ \ref ohRepositoryCollectGarbage, allowing finer
+granularity in managing the objects in the repository.  For example in the
+scenario described above where global objects are initialized at startup on a
+workbook which is then closed, these objects might be declared permanent, so
+that functions \ref ohRepositoryDeleteAllObjects / \ref ohRepositoryCollectGarbage
+delete only objects that the user can see. These two functions accept a
+parameter called "deletePermanent", which defaults to False.  Setting
+deletePermanent = True overrides the default behavior, deleting all objects
+including those that were declared permanent.
 
 \section ref_triggers Triggers
 
@@ -91,7 +91,7 @@ Excel's dependency tree. Triggers provide a mechanism for forcing dependencies
 that Excel would otherwise not know about.
 
 Addin functions may be implemented with a dummy "trigger" parameter which can
-be used for this purpose.  The %ObjectHandler function ohTrigger() can be
+be used for this purpose.  The %ObjectHandler function \ref ohTrigger can be
 supplied as the value to the trigger parameter.
 
 */
