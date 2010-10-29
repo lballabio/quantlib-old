@@ -246,16 +246,6 @@
     <ClCompile Include="oh\utilities.cpp" />
     <ClCompile Include="oh\enumerations\enumregistry.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\log4cxx\msvc\log4cxx_vc10.vcxproj">
-      <Project>{fa6eb34e-6be0-46f5-aa4c-704b49be63d2}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="gensrc\ohgensrc_vc10.vcxproj">
-      <Project>{88be5568-6e55-41c5-a251-670fafb44336}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

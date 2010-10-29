@@ -303,24 +303,6 @@
     <ClInclude Include="..\..\QuantLibAddin\qlo\serialization\serializationfactory.hpp" />
     <ClInclude Include="session.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ObjectHandler\ohxl\ohxll\ohxll_vc10.vcxproj">
-      <Project>{04d7369f-47bc-46b0-a374-41635a9656d8}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ObjectHandler\xlsdk\xlsdk_vc10.vcxproj">
-      <Project>{4bd77a1e-aae9-47a4-81fe-2308e5a460af}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\QuantLibAddin\QuantLibObjects_vc10.vcxproj">
-      <Project>{cab8330c-6424-4455-9285-3654587ef71f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\QuantLib\QuantLib_vc10.vcxproj">
-      <Project>{ad0a27da-91da-46a2-acbd-296c419ed3aa}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

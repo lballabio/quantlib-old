@@ -263,16 +263,6 @@
   <ItemGroup>
     <ClCompile Include="swap_out.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Addins\Cpp\AddinCpp_vc10.vcxproj">
-      <Project>{e5c1a173-2885-4bab-905b-f9521acb8e31}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\QuantLibObjects_vc10.vcxproj">
-      <Project>{cab8330c-6424-4455-9285-3654587ef71f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -8,18 +8,35 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qlgensrc", "..\QuantLibAddin\gensrc\qlgensrc_vc10.vcxproj", "{C8A6BB98-75CA-4EB9-A750-8BA3B3AA5969}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibObjects", "..\QuantLibAddin\QuantLibObjects_vc10.vcxproj", "{CAB8330C-6424-4455-9285-3654587EF71F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C8A6BB98-75CA-4EB9-A750-8BA3B3AA5969} = {C8A6BB98-75CA-4EB9-A750-8BA3B3AA5969}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibXLStatic", "qlxl\QuantLibXLStatic_vc10.vcxproj", "{DADFEC4C-A850-4312-8146-FB9BCC19CE92}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CAB8330C-6424-4455-9285-3654587EF71F} = {CAB8330C-6424-4455-9285-3654587EF71F}
+		{4BD77A1E-AAE9-47A4-81FE-2308E5A460AF} = {4BD77A1E-AAE9-47A4-81FE-2308E5A460AF}
+		{66021664-4359-442C-ACC7-7C82F51C9D5A} = {66021664-4359-442C-ACC7-7C82F51C9D5A}
+		{AD0A27DA-91DA-46A2-ACBD-296C419ED3AA} = {AD0A27DA-91DA-46A2-ACBD-296C419ED3AA}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xlsdk", "..\ObjectHandler\xlsdk\xlsdk_vc10.vcxproj", "{4BD77A1E-AAE9-47A4-81FE-2308E5A460AF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ohxllib", "..\ObjectHandler\ohxl\ohxllib\ohxllib_vc10.vcxproj", "{66021664-4359-442C-ACC7-7C82F51C9D5A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FA6EB34E-6BE0-46F5-AA4C-704B49BE63D2} = {FA6EB34E-6BE0-46F5-AA4C-704B49BE63D2}
+		{88BE5568-6E55-41C5-A251-670FAFB44336} = {88BE5568-6E55-41C5-A251-670FAFB44336}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "apr", "..\log4cxx\msvc\apr_vc10.vcxproj", "{A5EEE6C6-C626-4F88-B0BD-551BE9C577C5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aprutil", "..\log4cxx\msvc\aprutil_vc10.vcxproj", "{0082D6A9-8051-4946-888B-4E52C17BF98E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "log4cxx", "..\log4cxx\msvc\log4cxx_vc10.vcxproj", "{FA6EB34E-6BE0-46F5-AA4C-704B49BE63D2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0082D6A9-8051-4946-888B-4E52C17BF98E} = {0082D6A9-8051-4946-888B-4E52C17BF98E}
+		{A5EEE6C6-C626-4F88-B0BD-551BE9C577C5} = {A5EEE6C6-C626-4F88-B0BD-551BE9C577C5}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

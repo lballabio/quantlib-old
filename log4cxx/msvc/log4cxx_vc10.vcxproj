@@ -509,16 +509,6 @@
   <ItemGroup>
     <ResourceCompile Include="..\src\main\resources\log4cxx.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="aprutil_vc10.vcxproj">
-      <Project>{0082d6a9-8051-4946-888b-4e52c17bf98e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="apr_vc10.vcxproj">
-      <Project>{a5eee6c6-c626-4f88-b0bd-551be9c577c5}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

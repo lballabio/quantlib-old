@@ -145,16 +145,6 @@
     <None Include="quantlibaddin.doxy" />
     <None Include="tabs.css" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ObjectHandler\gensrc\ohgensrc_vc10.vcxproj">
-      <Project>{88be5568-6e55-41c5-a251-670fafb44336}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\gensrc\qlgensrc_vc10.vcxproj">
-      <Project>{c8a6bb98-75ca-4eb9-a750-8ba3b3aa5969}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -264,16 +264,6 @@
   <ItemGroup>
     <ClCompile Include="example.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ohlib_vc10.vcxproj">
-      <Project>{cd623fe5-3b3e-4511-80a9-a99d893349a4}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\ExampleObjects\ExampleObjects_vc10.vcxproj">
-      <Project>{548c1a2b-e5e8-417f-b9e2-bd2d72757fbc}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -116,20 +116,6 @@
   <ItemGroup>
     <ClInclude Include="..\ExampleObjects\Serialization\serializationfactory.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ohxl\ohxll\ohxll_vc10.vcxproj">
-      <Project>{04d7369f-47bc-46b0-a374-41635a9656d8}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\xlsdk\xlsdk_vc10.vcxproj">
-      <Project>{4bd77a1e-aae9-47a4-81fe-2308e5a460af}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\ExampleObjects\ExampleObjects_vc10.vcxproj">
-      <Project>{548c1a2b-e5e8-417f-b9e2-bd2d72757fbc}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

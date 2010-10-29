@@ -263,12 +263,6 @@
     <ClCompile Include="volatilities.cpp" />
     <ClCompile Include="volatility.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\QuantLibObjects_vc10.vcxproj">
-      <Project>{cab8330c-6424-4455-9285-3654587ef71f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

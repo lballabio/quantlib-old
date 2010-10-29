@@ -283,20 +283,6 @@
   <ItemGroup>
     <ClCompile Include="addinstatic.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ohxl\ohxllib\ohxllib_vc10.vcxproj">
-      <Project>{66021664-4359-442c-acc7-7c82f51c9d5a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\xlsdk\xlsdk_vc10.vcxproj">
-      <Project>{4bd77a1e-aae9-47a4-81fe-2308e5a460af}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\ExampleObjects\ExampleObjects_vc10.vcxproj">
-      <Project>{548c1a2b-e5e8-417f-b9e2-bd2d72757fbc}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

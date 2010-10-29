@@ -755,20 +755,6 @@
     <ClInclude Include="qlo\utilities.hpp" />
     <ClInclude Include="qlo\vcconfig.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ObjectHandler\ohlib_vc10.vcxproj">
-      <Project>{cd623fe5-3b3e-4511-80a9-a99d893349a4}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\QuantLib\QuantLib_vc10.vcxproj">
-      <Project>{ad0a27da-91da-46a2-acbd-296c419ed3aa}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="gensrc\qlgensrc_vc10.vcxproj">
-      <Project>{c8a6bb98-75ca-4eb9-a750-8ba3b3aa5969}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
