@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual C++ Express 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gensrc", "gensrc_vc8.vcproj", "{726E6D95-B2FD-4703-8B58-6EE0335D6E10}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gensrc", "gensrc_vc9.vcproj", "{726E6D95-B2FD-4703-8B58-6EE0335D6E10}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs", "Docs\docs_vc8.vcproj", "{E0021E93-694F-4F28-888A-5DEB00DD93FD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs", "Docs\docs_vc9.vcproj", "{E0021E93-694F-4F28-888A-5DEB00DD93FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

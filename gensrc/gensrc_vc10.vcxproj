@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug (static runtime)|Win32">
+      <Configuration>Debug (static runtime)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release (static runtime)|Win32">
+      <Configuration>Release (static runtime)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>gensrc</ProjectName>
+    <ProjectGuid>{726E6D95-B2FD-4703-8B58-6EE0335D6E10}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">
+    <Link>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
+    <Link>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="gensrc\addins\addin.py" />
+    <None Include="gensrc\addins\addinlist.py" />
+    <None Include="gensrc\addins\c.py" />
+    <None Include="gensrc\addins\calc.py" />
+    <None Include="gensrc\addins\cpp.py" />
+    <None Include="gensrc\addins\cppexceptions.py" />
+    <None Include="gensrc\addins\doxygen.py" />
+    <None Include="gensrc\addins\enumerations.py" />
+    <None Include="gensrc\addins\excel.py" />
+    <None Include="gensrc\addins\excelexceptions.py" />
+    <None Include="gensrc\addins\guile.py" />
+    <None Include="gensrc\addins\loop.py" />
+    <None Include="gensrc\addins\serialization.py" />
+    <None Include="gensrc\addins\serializationexceptions.py" />
+    <None Include="gensrc\addins\valueobjects.py" />
+    <None Include="gensrc\categories\category.py" />
+    <None Include="gensrc\categories\categorylist.py" />
+    <None Include="gensrc\categories\exceptions.py" />
+    <None Include="gensrc\configuration\configuration.py" />
+    <None Include="gensrc\configuration\environment.py" />
+    <None Include="gensrc\configuration\exceptions.py" />
+    <None Include="gensrc\configuration\initialization.py" />
+    <None Include="gensrc\enumerations\enumeratedclasses.py" />
+    <None Include="gensrc\enumerations\enumeratedpairs.py" />
+    <None Include="gensrc\enumerations\enumeratedtypes.py" />
+    <None Include="gensrc\enumerations\enumerationlist.py" />
+    <None Include="gensrc\exceptions\excepthook.py" />
+    <None Include="gensrc\exceptions\exceptions.py" />
+    <None Include="gensrc\functions\behavior.py" />
+    <None Include="gensrc\functions\behaviorloop.py" />
+    <None Include="gensrc\functions\constructor.py" />
+    <None Include="gensrc\functions\enumerationmember.py" />
+    <None Include="gensrc\functions\exceptions.py" />
+    <None Include="gensrc\functions\function.py" />
+    <None Include="gensrc\functions\member.py" />
+    <None Include="gensrc\functions\procedure.py" />
+    <None Include="gensrc\functions\supportedplatform.py" />
+    <None Include="gensrc\parameters\exceptions.py" />
+    <None Include="gensrc\parameters\parameter.py" />
+    <None Include="gensrc\parameters\parameterlist.py" />
+    <None Include="gensrc\patterns\exceptions.py" />
+    <None Include="gensrc\patterns\singleton.py" />
+    <None Include="gensrc\rules\exceptions.py" />
+    <None Include="gensrc\rules\rule.py" />
+    <None Include="gensrc\serialization\exceptions.py" />
+    <None Include="gensrc\serialization\factory.py" />
+    <None Include="gensrc\serialization\serializable.py" />
+    <None Include="gensrc\serialization\serializer.py" />
+    <None Include="gensrc\serialization\xmlreader.py" />
+    <None Include="gensrc\types\datatype.py" />
+    <None Include="gensrc\types\exceptions.py" />
+    <None Include="gensrc\types\fulltype.py" />
+    <None Include="gensrc\types\supertype.py" />
+    <None Include="gensrc\types\typelist.py" />
+    <None Include="gensrc\utilities\buffer.py" />
+    <None Include="gensrc\utilities\common.py" />
+    <None Include="gensrc\utilities\exceptions.py" />
+    <None Include="gensrc\utilities\log.py" />
+    <None Include="gensrc\utilities\outputfile.py" />
+    <None Include="gensrc\utilities\utilities.py" />
+    <None Include="gensrc\stubs\stub.c.function" />
+    <None Include="gensrc\stubs\stub.c.header" />
+    <None Include="gensrc\stubs\stub.c.includes" />
+    <None Include="gensrc\stubs\stub.calc.category" />
+    <None Include="gensrc\stubs\stub.calc.function" />
+    <None Include="gensrc\stubs\stub.calc.header" />
+    <None Include="gensrc\stubs\stub.calc.idlfunc" />
+    <None Include="gensrc\stubs\stub.calc.idlhead" />
+    <None Include="gensrc\stubs\stub.calc.includes" />
+    <None Include="gensrc\stubs\stub.calc.loop" />
+    <None Include="gensrc\stubs\stub.calc.map" />
+    <None Include="gensrc\stubs\stub.cpp.all" />
+    <None Include="gensrc\stubs\stub.cpp.declaration" />
+    <None Include="gensrc\stubs\stub.cpp.function" />
+    <None Include="gensrc\stubs\stub.cpp.header" />
+    <None Include="gensrc\stubs\stub.cpp.loop" />
+    <None Include="gensrc\stubs\stub.doxygen.categories" />
+    <None Include="gensrc\stubs\stub.doxygen.file" />
+    <None Include="gensrc\stubs\stub.doxygen.function" />
+    <None Include="gensrc\stubs\stub.doxygen.header" />
+    <None Include="gensrc\stubs\stub.excel.function" />
+    <None Include="gensrc\stubs\stub.excel.loop" />
+    <None Include="gensrc\stubs\stub.excel.numfunc" />
+    <None Include="gensrc\stubs\stub.excel.register.call" />
+    <None Include="gensrc\stubs\stub.excel.register.file" />
+    <None Include="gensrc\stubs\stub.excel.register.function" />
+    <None Include="gensrc\stubs\stub.func.constructor" />
+    <None Include="gensrc\stubs\stub.func.member" />
+    <None Include="gensrc\stubs\stub.func.procedure" />
+    <None Include="gensrc\stubs\stub.guile.function" />
+    <None Include="gensrc\stubs\stub.guile.header" />
+    <None Include="gensrc\stubs\stub.guile.includes" />
+    <None Include="gensrc\stubs\stub.guile.initfunc" />
+    <None Include="gensrc\stubs\stub.loop.file" />
+    <None Include="gensrc\stubs\stub.serialization.all" />
+    <None Include="gensrc\stubs\stub.serialization.body" />
+    <None Include="gensrc\stubs\stub.serialization.creator" />
+    <None Include="gensrc\stubs\stub.serialization.declaration" />
+    <None Include="gensrc\stubs\stub.serialization.factory" />
+    <None Include="gensrc\stubs\stub.serialization.header" />
+    <None Include="gensrc\stubs\stub.serialization.register" />
+    <None Include="gensrc\stubs\stub.serialization.registerall" />
+    <None Include="gensrc\stubs\stub.vo.all" />
+    <None Include="gensrc\stubs\stub.vo.class.body" />
+    <None Include="gensrc\stubs\stub.vo.class.body.inline" />
+    <None Include="gensrc\stubs\stub.vo.class.decl" />
+    <None Include="gensrc\stubs\stub.vo.class.decl.inline" />
+    <None Include="gensrc\stubs\stub.vo.includes.body" />
+    <None Include="gensrc\stubs\stub.vo.includes.decl" />
+    <None Include="gensrc\stubs\stub.vo.includes.inline" />
+    <None Include="dependencies.vc" />
+    <None Include="gensrc.py" />
+    <None Include="readme_vc.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
