@@ -1,7 +1,7 @@
  
-AM_CPPFLAGS = -I${top_srcdir}
-AM_LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem -lboost_serialization -lboost_system -lboost_regex
+QLADemo_CPPFLAGS = -I${top_srcdir}
 QLADemo_LDADD = ../../qlo/libQuantLibAddin.la ../../Addins/Cpp/libQuantLibAddinCpp.la
+QLADemo_LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem -lboost_serialization -lboost_system -lboost_regex
 
 EXTRA_DIST = \
     ClientCppDemo_vc7.vcproj \

@@ -45,6 +45,7 @@ class Serialization(addin.Addin):
     REGISTER_CALL = '''\
         // class ID %(classID)d in the boost serialization framework
         ar.register_type<%(namespaceObjects)s::ValueObjects::%(functionName)s>();\n'''
+    REGISTER_CLASS = 'BOOST_CLASS_EXPORT(%(namespaceObjects)s::ValueObjects::%(functionName)s)\n'
     INCLUDE_CREATOR = '''\
 #include <%(libRootDirectory)s/serialization/create/create_%(categoryName)s.hpp>\n'''
     REGISTER_INCLUDE = '''\
@@ -187,6 +188,7 @@ class Serialization(addin.Addin):
                     self.rootPath_, cat.name() )
             outputfile.OutputFile(self, headerFile, self.copyright_, self.bufferSerializeDeclaration_)
 
+            export_stm = ''
             for func in cat.functions('*'):
                 if not func.generateVOs(): continue
 
@@ -194,7 +196,10 @@ class Serialization(addin.Addin):
                     'classID' : classID,
                     'functionName' : func.name(),
                     'namespaceObjects' : environment.config().namespaceObjects() }
-
+                export_stm += Serialization.REGISTER_CLASS % {
+                    'classID' : classID,
+                    'functionName' : func.name(),
+                    'namespaceObjects' : environment.config().namespaceObjects() }
                 idMap[func.name()] = classID
                 classID += 1
 
@@ -203,7 +208,8 @@ class Serialization(addin.Addin):
                 'bufferCpp' : bufferCpp,
                 'categoryName' : cat.name(),
                 'libRootDirectory' : environment.config().libRootDirectory(),
-                'namespaceAddin' : environment.config().namespaceObjects() })
+                'namespaceAddin' : environment.config().namespaceObjects(),
+                'export_stm': export_stm})
             cppFile = '%sregister/serialization_%s.cpp' % ( self.rootPath_, cat.name() )
             outputfile.OutputFile(self, cppFile, self.copyright_, self.bufferSerializeBody_)
 

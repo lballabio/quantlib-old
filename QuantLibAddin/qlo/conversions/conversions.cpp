@@ -29,6 +29,16 @@
 #include <ql/timeseries.hpp>
 #include <qlo/timeseries.hpp>
 
+#include <oh/objecthandler.hpp>
+#include <qlo/conversions/coercehandle.hpp>
+#include <qlo/conversions/coerceobject.hpp>
+#include <qlo/conversions/varianttoquotehandle.hpp>
+#include <qlo/conversions/varianttodate.hpp>
+#include <qlo/conversions/varianttoquote.hpp>
+#include <qlo/conversions/varianttoperiod.hpp>
+#include <qlo/conversions/varianttosize.hpp>
+#include <qlo/conversions/conversion_tmpl.hpp>
+
 namespace QuantLibAddin {
 
     double libraryToScalar(const QuantLib::InterestRate &i) {
@@ -111,15 +121,8 @@ namespace QuantLibAddin {
     }
 
 }
-#include <oh/objecthandler.hpp>
-#include <qlo/conversions/coercehandle.hpp>
-#include <qlo/conversions/coerceobject.hpp>
-#include <qlo/conversions/varianttoquotehandle.hpp>
-#include <qlo/conversions/varianttodate.hpp>
-#include <qlo/conversions/varianttoquote.hpp>
-#include <qlo/conversions/varianttoperiod.hpp>
-#include <qlo/conversions/varianttosize.hpp>
-#include <qlo/conversions/conversion_tmpl.hpp>
+
+
 
 namespace ObjectHandler {
 

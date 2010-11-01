@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="xlsdk"
 	ProjectGUID="{4BD77A1E-AAE9-47A4-81FE-2308E5A460AF}"
+	RootNamespace="xlsdk"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>

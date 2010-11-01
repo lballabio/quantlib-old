@@ -39,6 +39,7 @@
         <Rule tensorRank='vector' nativeType='any'>std::vector&lt;ObjectHandler::property_t&gt;</Rule>
         <Rule tensorRank='vector'>std::vector&lt;%(nativeType)s&gt;</Rule>
         <Rule tensorRank='matrix' nativeType='string'>std::vector&lt;std::vector&lt;std::string&gt; &gt;</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>std::vector&lt;std::vector&lt;ObjectHandler::property_t&gt; &gt;</Rule>
         <Rule tensorRank='matrix'>std::vector&lt;std::vector&lt;%(nativeType)s&gt; &gt;</Rule>
       </Rules>
     </RuleGroup>

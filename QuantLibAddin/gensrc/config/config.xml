@@ -5,6 +5,7 @@
 
   <prefix>ql</prefix>
   <prefixExcel>qlxl</prefixExcel>
+  <prefixCpp>qlcpp</prefixCpp>
   <libRootDirectory>qlo</libRootDirectory>
   <usingEnumerations>true</usingEnumerations>
   <usingSerialization>true</usingSerialization>

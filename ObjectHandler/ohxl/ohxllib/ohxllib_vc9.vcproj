@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="ohxllib"
 	ProjectGUID="{66021664-4359-442C-ACC7-7C82F51C9D5A}"
+	RootNamespace="ohxllib"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
