@@ -1,3 +1,6 @@
+#ifndef %(addinDirectory)s_serialization_register_hpp
+#define %(addinDirectory)s_serialization_register_hpp
+
 #include <%(addinDirectory)s/serialization/register/serialization_all.hpp>
 
 namespace %(namespaceAddin)s {
@@ -13,3 +16,4 @@ namespace %(namespaceAddin)s {
 
 }
 
+#endif
