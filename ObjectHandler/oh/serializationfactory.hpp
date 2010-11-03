@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2010 Eric Ehlers
  Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
@@ -131,10 +131,13 @@ namespace ObjectHandler {
         /*virtual std::string processObject(
             const boost::shared_ptr<ObjectHandler::ValueObject> &valueObject,
             bool overwriteExisting);*/
+
+        /*  Not required if we use BOOST_CLASS_EXPORT
         virtual void register_out(boost::archive::xml_oarchive &ar,
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) = 0;
         virtual void register_in(boost::archive::xml_iarchive &ar,
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects) = 0;
+        */
 
         //! A pointer to the SerializationFactory instance, used to support the Singleton pattern.
         static SerializationFactory *instance_;

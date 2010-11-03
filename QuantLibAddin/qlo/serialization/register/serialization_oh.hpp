@@ -16,6 +16,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+/*  Not required if we use BOOST_CLASS_EXPORT
 #ifndef qlo_serialization_oh_hpp
 #define qlo_serialization_oh_hpp
 
@@ -26,8 +27,8 @@ namespace QuantLibAddin {
 
     void register_oh(boost::archive::xml_oarchive &ar);
     void register_oh(boost::archive::xml_iarchive &ar);
-    
 }
 
 #endif
+*/    
 

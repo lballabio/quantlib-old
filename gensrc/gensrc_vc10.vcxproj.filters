@@ -330,6 +330,9 @@
     <None Include="gensrc\stubs\stub.serialization.body">
       <Filter>stubs</Filter>
     </None>
+    <None Include="gensrc\stubs\stub.serialization.classexports">
+      <Filter>stubs</Filter>
+    </None>
     <None Include="gensrc\stubs\stub.serialization.creator">
       <Filter>stubs</Filter>
     </None>

@@ -23,6 +23,12 @@
 
 /*! \page history Version History
 
+<strong>Release 1.1.0 - ??? 2010</strong>
+
+- Autogenerate code to correspond with ObjectHandler change to use
+  BOOST_CLASS_EXPORT instead of boost::archive::register_type (thanks to Plamen
+  Neykov)
+
 <strong>Release 1.0.1 - October 2010</strong>
 
 - Maintenance release.

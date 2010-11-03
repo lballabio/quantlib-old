@@ -42,6 +42,9 @@ class Serialization(addin.Addin):
     REGISTER_TYPE = '''\
         // %(categoryDisplayName)s\n
         register_%(categoryName)s(ar);\n\n'''
+    REGISTER_TYPE2 = '''\
+        // %(categoryDisplayName)s\n
+        register_%(categoryName)s();\n\n'''
     REGISTER_CALL = '''\
         // class ID %(classID)d in the boost serialization framework
         ar.register_type<%(namespaceObjects)s::ValueObjects::%(functionName)s>();\n'''
@@ -151,9 +154,13 @@ class Serialization(addin.Addin):
 
     def generateRegister(self):
         """Generate source code for serialization factory."""
+        #NB If we decide to stick with the new BOOST_CLASS_EXPORT code then
+        # much of this function will become redundant including the whole
+        # issue of keeping track of class IDs.
 
         allIncludes = ''
         bufferRegister = ''
+        bufferRegister2 = ''
 
         # Keep track of the ID assigned to each Addin class by
         # the boost serialization framework.  This number is initialized to 4
@@ -177,6 +184,10 @@ class Serialization(addin.Addin):
                 'addinDirectory' : environment.config().libRootDirectory() }
 
             bufferRegister += Serialization.REGISTER_TYPE % {
+                'categoryDisplayName' : cat.displayName(),
+                'categoryName' : cat.name() }
+
+            bufferRegister2 += Serialization.REGISTER_TYPE2 % {
                 'categoryDisplayName' : cat.displayName(),
                 'categoryName' : cat.name() }
 
@@ -226,6 +237,13 @@ class Serialization(addin.Addin):
             'namespaceAddin' : environment.config().namespaceObjects() })
         factoryFile = self.rootPath_ + 'register/serialization_register.hpp'
         outputfile.OutputFile(self, factoryFile, self.copyright_, self.bufferSerializeRegister_)
+
+        self.bufferClassExports_.set({
+            'libRootDirectory' : environment.config().libRootDirectory(),
+            'bufferRegister2' : bufferRegister2,
+            'namespaceObjects' : environment.config().namespaceObjects() })
+        exportsFile = self.rootPath_ + 'class_exports.cpp'
+        outputfile.OutputFile(self, exportsFile, self.copyright_, self.bufferClassExports_)
 
     #############################################
     # serializer interface

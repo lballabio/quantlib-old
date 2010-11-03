@@ -1,0 +1,11 @@
+#include <%(libRootDirectory)s/serialization/serializationfactory.hpp>
+#include <%(libRootDirectory)s/serialization/register/serialization_all.hpp>
+
+namespace %(namespaceObjects)s {
+
+    void SerializationFactory::registerClassExports() {
+
+%(bufferRegister2)s    }
+
+}
+

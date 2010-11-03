@@ -329,6 +329,7 @@
     <ClCompile Include="qlo\volatility.cpp" />
     <ClCompile Include="qlo\conversions\conversions.cpp" />
     <ClCompile Include="qlo\optimization.cpp" />
+    <ClCompile Include="qlo\serialization\class_exports.cpp" />
     <ClCompile Include="qlo\serialization\processor.cpp" />
     <ClCompile Include="qlo\serialization\register_creators.cpp" />
     <ClCompile Include="qlo\serialization\serializationfactory.cpp" />

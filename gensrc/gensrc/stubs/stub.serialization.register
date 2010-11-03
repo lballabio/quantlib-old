@@ -1,6 +1,7 @@
 #ifndef %(addinDirectory)s_serialization_register_hpp
 #define %(addinDirectory)s_serialization_register_hpp
 
+/*  Not required if we use BOOST_CLASS_EXPORT
 #include <%(addinDirectory)s/serialization/register/serialization_all.hpp>
 
 namespace %(namespaceAddin)s {
@@ -15,5 +16,6 @@ namespace %(namespaceAddin)s {
 %(bufferRegister)s    }
 
 }
+*/
 
 #endif

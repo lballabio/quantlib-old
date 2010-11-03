@@ -152,6 +152,7 @@
     <None Include="gensrc\stubs\stub.serialization.all" />
     <None Include="gensrc\stubs\stub.serialization.body" />
     <None Include="gensrc\stubs\stub.serialization.creator" />
+    <None Include="gensrc\stubs\stub.serialization.classexports" />
     <None Include="gensrc\stubs\stub.serialization.declaration" />
     <None Include="gensrc\stubs\stub.serialization.factory" />
     <None Include="gensrc\stubs\stub.serialization.header" />

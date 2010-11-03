@@ -31,25 +31,35 @@ namespace QuantLibAddin {
     SerializationFactory::SerializationFactory() {    
 
         registerCreators();
+        registerClassExports();
 
-		ObjectHandler::ProcessorPtr relinkableHandleProcessor(new RelinkableHandleProcessor());
+		ObjectHandler::ProcessorPtr relinkableHandleProcessor(
+            new RelinkableHandleProcessor());
         ObjectHandler::ProcessorFactory::instance().storeProcessor(
 			"RelinkableHandleProcessor", relinkableHandleProcessor);
-        ObjectHandler::ProcessorPtr instrumentProcessor(new InstrumentProcessor());
+
+        ObjectHandler::ProcessorPtr instrumentProcessor(
+            new InstrumentProcessor());
         ObjectHandler::ProcessorFactory::instance().storeProcessor(
 			"InstrumentProcessor", instrumentProcessor);
-        ObjectHandler::ProcessorPtr legProcessor(new LegProcessor());
+
+        ObjectHandler::ProcessorPtr legProcessor(
+            new LegProcessor());
         ObjectHandler::ProcessorFactory::instance().storeProcessor(
 			"LegProcessor", legProcessor);
-        ObjectHandler::ProcessorPtr indexProcessor(new IndexProcessor());
+
+        ObjectHandler::ProcessorPtr indexProcessor(
+            new IndexProcessor());
         ObjectHandler::ProcessorFactory::instance().storeProcessor(
 			"IndexProcessor", indexProcessor);
-        ObjectHandler::ProcessorPtr extrapolatorProcessor(new ExtrapolatorProcessor());
+
+        ObjectHandler::ProcessorPtr extrapolatorProcessor(
+            new ExtrapolatorProcessor());
         ObjectHandler::ProcessorFactory::instance().storeProcessor(
 			"ExtrapolatorProcessor", extrapolatorProcessor);
-
     }
 
+    /*  Not required if we use BOOST_CLASS_EXPORT
     void SerializationFactory::register_out(boost::archive::xml_oarchive &ar,
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects){
 
@@ -64,7 +74,7 @@ namespace QuantLibAddin {
             tpl_register_classes(ar);
             ar >> boost::serialization::make_nvp("object_list", valueObjects);
     }
-
+    */
 
 }
 

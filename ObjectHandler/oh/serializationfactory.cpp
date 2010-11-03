@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2010 Eric Ehlers
  Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
@@ -141,7 +141,9 @@ namespace ObjectHandler {
         //std::stable_sort(valueObjects.begin(), valueObjects.end(), compareCategory);
 
         boost::archive::xml_oarchive oa(outputStream);
-        register_out(oa, valueObjects);
+        //  Not required if we use BOOST_CLASS_EXPORT
+        //register_out(oa, valueObjects);
+        oa << boost::serialization::make_nvp("object_list", valueObjects);
         return valueObjects.size();
 	}
 
@@ -230,7 +232,9 @@ namespace ObjectHandler {
             boost::archive::xml_iarchive ia(ifs);
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
 
-            register_in(ia, valueObjects);
+            //  Not required if we use BOOST_CLASS_EXPORT
+            //register_in(ia, valueObjects);
+            ia >> boost::serialization::make_nvp("object_list", valueObjects);
 
             OH_REQUIRE(valueObjects.size(), "Object list is empty");
 
@@ -291,7 +295,7 @@ namespace ObjectHandler {
         OH_REQUIRE(fileFound, "Found no files matching pattern '" << pattern << "' in directory '"
             << directory << "' with recursion = " << std::boolalpha << recurse);
 
-        // processPath() will already have thrown if empty files were detected
+        // processPath() will already have been thrown if empty files were detected
         // so the following is a redundant sanity check.
         OH_REQUIRE(!returnValue.empty(), "No objects loaded from directory : " << directory);
 
@@ -327,7 +331,9 @@ namespace ObjectHandler {
             boost::archive::xml_iarchive ia(xmlStream);
 
             std::vector<boost::shared_ptr<ObjectHandler::ValueObject> > valueObjects;
-            register_in(ia, valueObjects);
+            //  Not required if we use BOOST_CLASS_EXPORT
+            //register_in(ia, valueObjects);
+            ia >> boost::serialization::make_nvp("object_list", valueObjects);
 
             OH_REQUIRE(valueObjects.size(), "Object list is empty");
 

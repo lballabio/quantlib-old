@@ -22,6 +22,8 @@
 //#pragma warning(disable : 4267)
 //#endif
 
+/*  Not required if we use BOOST_CLASS_EXPORT
+
 #include <qlo/serialization/register/serialization_oh.hpp>
 #include <oh/valueobject.hpp>
 #include <oh/valueobjects/vo_group.hpp>
@@ -30,22 +32,20 @@
 #include <boost/serialization/variant.hpp>
 #include <boost/serialization/vector.hpp>
 
-/*
-Register ObjectHandler classes with boost serialization framework ("BSF" below).
-
-- At present four classes are registered, this value 4 is hard-coded
-  into gensrc script gensrc/addins/serialization.py so if you add new classes
-  here you also need to change the script.  gensrc uses the value to keep
-  track of the IDs which the BSF assigns to each addin class.
-
-- Here we explicitly register
-    boost::shared_ptr<ObjectHandler::ValueObject>
-    std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >
-  This isn't strictly necessary because if we neglect to register these classes
-  then the BSF will do so automatically on our behalf the first time we attempt
-  to serialize them.  We register them explicitly in order to retain control
-  over all ID numbers assigned by the BSF to our classes.
-*/
+//Register ObjectHandler classes with boost serialization framework ("BSF" below).
+//
+//- At present four classes are registered, this value 4 is hard-coded
+//  into gensrc script gensrc/addins/serialization.py so if you add new classes
+//  here you also need to change the script.  gensrc uses the value to keep
+//  track of the IDs which the BSF assigns to each addin class.
+//
+//- Here we explicitly register
+//    boost::shared_ptr<ObjectHandler::ValueObject>
+//    std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >
+//  This isn't strictly necessary because if we neglect to register these classes
+//  then the BSF will do so automatically on our behalf the first time we attempt
+//  to serialize them.  We register them explicitly in order to retain control
+//  over all ID numbers assigned by the BSF to our classes.
 
 namespace QuantLibAddin {
 
@@ -76,4 +76,5 @@ namespace QuantLibAddin {
     }
     
 }
+*/
 

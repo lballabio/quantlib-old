@@ -432,6 +432,9 @@
     <ClCompile Include="qlo\optimization.cpp">
       <Filter>Optimization</Filter>
     </ClCompile>
+    <ClCompile Include="qlo\serialization\class_exports.cpp">
+      <Filter>serialization</Filter>
+    </ClCompile>
     <ClCompile Include="qlo\serialization\processor.cpp">
       <Filter>serialization</Filter>
     </ClCompile>

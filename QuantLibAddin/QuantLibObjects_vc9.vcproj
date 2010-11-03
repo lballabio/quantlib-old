@@ -1501,6 +1501,10 @@
 			Name="serialization"
 			>
 			<File
+				RelativePath="qlo\serialization\class_exports.cpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\serialization\processor.cpp"
 				>
 			</File>
