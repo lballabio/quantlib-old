@@ -228,6 +228,24 @@ class GeometricBrownianMotionProcessPtr : public StochasticProcess1DPtr {
     }
 };
 
+%{
+using QuantLib::VarianceGammaProcess;
+typedef boost::shared_ptr<StochasticProcess> VarianceGammaProcessPtr;
+%}
+
+%rename(VarianceGammaProcess) VarianceGammaProcessPtr;
+class VarianceGammaProcessPtr : public StochasticProcess1DPtr {
+  public:
+    %extend {
+      VarianceGammaProcessPtr(const Handle<Quote>& s0,
+            const Handle<YieldTermStructure>& dividendYield,
+            const Handle<YieldTermStructure>& riskFreeRate,
+            Real sigma, Real nu, Real theta) {
+          return new VarianceGammaProcessPtr(
+                 new VarianceGammaProcess(s0,dividendYield,riskFreeRate,sigma,nu,theta));
+      }
+    }
+};
 
 // allow use of diffusion process vectors
 #if defined(SWIGCSHARP)

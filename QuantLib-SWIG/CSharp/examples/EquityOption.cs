@@ -173,6 +173,24 @@ namespace EquityOptionTest
                 Console.WriteLine(e.ToString());
             }
 
+            //Variance Gamma
+            try
+            {
+                VarianceGammaProcess vgProcess = new VarianceGammaProcess(underlyingQuoteH,
+                                              flatDividendTSH,
+                                              flatRateTSH,
+                                              volatility, 0.01, 0.0
+                                              );
+                europeanOption.setPricingEngine(
+                               new VarianceGammaEngine(vgProcess));
+                ReportResults("Variance-Gamma",
+                              europeanOption.NPV(), null, null);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
             #endregion Analytic Formulas
 
             #region Binomial Methods

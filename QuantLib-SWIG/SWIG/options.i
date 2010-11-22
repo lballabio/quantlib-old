@@ -1314,4 +1314,58 @@ class MCDiscreteGeometricAPEnginePtr
     }
 };
 
+%{
+using QuantLib::VarianceGammaEngine;
+typedef boost::shared_ptr<PricingEngine>
+    VarianceGammaEnginePtr;
+%}
+
+%rename(VarianceGammaEngine)
+        VarianceGammaEnginePtr;
+class VarianceGammaEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        VarianceGammaEnginePtr(const VarianceGammaProcessPtr& process) {
+            boost::shared_ptr<VarianceGammaProcess> vgProcess =
+				boost::dynamic_pointer_cast<VarianceGammaProcess>(process);
+            QL_REQUIRE(vgProcess, "Variance-Gamma process required");
+            return new VarianceGammaEnginePtr(new VarianceGammaEngine(vgProcess));
+        }
+    }
+};
+
+%{
+using QuantLib::FFTVarianceGammaEngine;
+typedef boost::shared_ptr<PricingEngine>
+    FFTVarianceGammaEnginePtr;
+%}
+
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_ENHANCED( boost::shared_ptr<Instrument> )
+#endif
+namespace std {
+    %template(OptionList) vector<boost::shared_ptr<Instrument> >;
+}
+
+%rename(FFTVarianceGammaEngine)
+        FFTVarianceGammaEnginePtr;
+class FFTVarianceGammaEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        FFTVarianceGammaEnginePtr(const VarianceGammaProcessPtr& process, Real logStrikeSpacing = 0.001) {
+            boost::shared_ptr<VarianceGammaProcess> vgProcess =
+				boost::dynamic_pointer_cast<VarianceGammaProcess>(process);
+            QL_REQUIRE(vgProcess, "Variance Gamma process required");
+            return new FFTVarianceGammaEnginePtr(new FFTVarianceGammaEngine(vgProcess, logStrikeSpacing));
+        }
+        void precalculate(const std::vector<boost::shared_ptr<Instrument> >& optionList)
+        {
+			boost::dynamic_pointer_cast<FFTVarianceGammaEngine>(*self)->precalculate(optionList);
+        }
+    }
+};
+
+
 #endif
