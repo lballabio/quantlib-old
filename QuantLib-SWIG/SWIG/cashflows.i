@@ -45,6 +45,12 @@ class CashFlow {
 %template(CashFlow) boost::shared_ptr<CashFlow>;
 IsObservable(boost::shared_ptr<CashFlow>);
 
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_ENHANCED( boost::shared_ptr<CashFlow> )
+#endif
+%template(Leg) std::vector<boost::shared_ptr<CashFlow> >;
+typedef std::vector<boost::shared_ptr<CashFlow> > Leg;
+
 
 // implementations
 
@@ -139,12 +145,6 @@ class IborCouponPtr : public FloatingRateCouponPtr {
     }
 };
 
-
-#if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_ENHANCED( boost::shared_ptr<CashFlow> )
-#endif
-%template(Leg) std::vector<boost::shared_ptr<CashFlow> >;
-typedef std::vector<boost::shared_ptr<CashFlow> > Leg;
 
 
 // cash flow vector builders
