@@ -88,37 +88,6 @@ class FixedRateCouponPtr : public boost::shared_ptr<CashFlow> {
     }
 };
 
-%rename(IborCoupon) IborCouponPtr;
-class IborCouponPtr : public boost::shared_ptr<CashFlow> {
-  public:
-    %extend {
-        IborCouponPtr(const Date& paymentDate, Real nominal,
-                      const Date& startDate, const Date& endDate,
-                      Integer fixingDays, InterestRateIndexPtr& index,
-                      Real gearing = 1.0, Spread spread = 0.0,
-                      const Date& refPeriodStart = Date(),
-                      const Date& refPeriodEnd = Date(),
-                      const DayCounter& dayCounter = DayCounter()) {
-            const boost::shared_ptr<IborIndex> iri =
-                boost::dynamic_pointer_cast<IborIndex>(index);
-            return new IborCouponPtr(
-                new IborCoupon(paymentDate, nominal, startDate, endDate,
-                               fixingDays, iri, gearing, spread,
-                               refPeriodStart, refPeriodEnd, dayCounter));
-        }
-        Rate rate() {
-            return boost::dynamic_pointer_cast<IborCoupon>(*self)->rate();
-        }
-        Rate indexFixing() {
-            return boost::dynamic_pointer_cast<IborCoupon>(*self)
-                ->indexFixing();
-        }
-        Real nominal() {
-            return boost::dynamic_pointer_cast<IborCoupon>(*self)->nominal();
-        }
-    }
-};
-
 %rename(FloatingRateCoupon) FloatingRateCouponPtr;
 class FloatingRateCouponPtr : public boost::shared_ptr<CashFlow> {
   public:
@@ -142,6 +111,30 @@ class FloatingRateCouponPtr : public boost::shared_ptr<CashFlow> {
         Date fixingDate() {
             return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
                 ->fixingDate();
+        }
+        Real nominal() {
+            return boost::dynamic_pointer_cast<IborCoupon>(*self)->nominal();
+        }
+    }
+};
+
+%rename(IborCoupon) IborCouponPtr;
+class IborCouponPtr : public FloatingRateCouponPtr {
+  public:
+    %extend {
+        IborCouponPtr(const Date& paymentDate, Real nominal,
+                      const Date& startDate, const Date& endDate,
+                      Integer fixingDays, InterestRateIndexPtr& index,
+                      Real gearing = 1.0, Spread spread = 0.0,
+                      const Date& refPeriodStart = Date(),
+                      const Date& refPeriodEnd = Date(),
+                      const DayCounter& dayCounter = DayCounter()) {
+            const boost::shared_ptr<IborIndex> iri =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new IborCouponPtr(
+                new IborCoupon(paymentDate, nominal, startDate, endDate,
+                               fixingDays, iri, gearing, spread,
+                               refPeriodStart, refPeriodEnd, dayCounter));
         }
     }
 };
