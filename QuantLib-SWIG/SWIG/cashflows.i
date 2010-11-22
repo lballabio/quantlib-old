@@ -3,6 +3,7 @@
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
+ Copyright (C) 2010 Lluis Pujol Bajador
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -145,6 +146,37 @@ class IborCouponPtr : public FloatingRateCouponPtr {
     }
 };
 
+
+%{
+using QuantLib::IborCouponPricer;
+using QuantLib::BlackIborCouponPricer;
+
+typedef boost::shared_ptr<IborCouponPricer> BlackIborCouponPricerPtr;
+%}
+
+%ignore IborCouponPricer;
+class IborCouponPricer {
+  public:
+    Handle<OptionletVolatilityStructure> capletVolatility() const;
+    void setCapletVolatility(const Handle<OptionletVolatilityStructure>& v =
+                                      Handle<OptionletVolatilityStructure>());
+};
+
+%template(IborCouponPricer) boost::shared_ptr<IborCouponPricer>;
+
+void setCouponPricer(const Leg&, const boost::shared_ptr<IborCouponPricer>&);
+
+
+%rename(BlackIborCouponPricer) BlackIborCouponPricerPtr;
+class BlackIborCouponPricerPtr : public boost::shared_ptr<IborCouponPricer> {
+  public:
+	%extend {
+        BlackIborCouponPricerPtr(const Handle<OptionletVolatilityStructure>& v =
+                                     Handle<OptionletVolatilityStructure>()) {
+            return new BlackIborCouponPricerPtr(new BlackIborCouponPricer(v));
+        }
+    }
+};
 
 
 // cash flow vector builders
