@@ -63,9 +63,10 @@ Mathematica project <a href=
 grid-computing platform. Details are
 available <a href="http://www.ceri.uniroma1.it/ceri/zirilli/w5/">here</a>.</p>
 
-<p>There is a strong interest in having QuantLib available as
-extension for different platforms. Interested developers can post on
-the QuantLib-dev <a href="mailinglists.shtml">mailing list</a>.</p>
+<p>Finally,
+the <a href="http://www.dsource.org/projects/quantlibd/">QuantLibD</a>
+project is a port of QuantLib in the D programming language.  The
+project is looking for developers.</p>
 
 </div>
 
