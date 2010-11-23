@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
@@ -151,6 +151,7 @@
     <Compile Include="BlackCalculator.cs" />
     <Compile Include="BlackCapFloorEngine.cs" />
     <Compile Include="BlackConstantVol.cs" />
+    <Compile Include="BlackIborCouponPricer.cs" />
     <Compile Include="BlackKarasinski.cs" />
     <Compile Include="BlackProcess.cs" />
     <Compile Include="BlackScholesMertonProcess.cs" />
@@ -383,6 +384,7 @@
     <Compile Include="HullWhite.cs" />
     <Compile Include="Hungary.cs" />
     <Compile Include="IborCoupon.cs" />
+    <Compile Include="IborCouponPricer.cs" />
     <Compile Include="IborIndex.cs" />
     <Compile Include="Iceland.cs" />
     <Compile Include="IEPCurrency.cs" />
@@ -479,6 +481,7 @@
     <Compile Include="MultiAssetOption.cs" />
     <Compile Include="MultiPath.cs" />
     <Compile Include="MultipleStatistics.cs" />
+    <Compile Include="MultiplicativePriceSeasonalityPtr.cs" />
     <Compile Include="MXNCurrency.cs" />
     <Compile Include="NeumannBC.cs" />
     <Compile Include="NewZealand.cs" />
@@ -546,6 +549,8 @@
     <Compile Include="RelinkableShortRateModelHandle.cs" />
     <Compile Include="RelinkableSwaptionVolatilityStructureHandle.cs" />
     <Compile Include="RelinkableYieldTermStructureHandle.cs" />
+    <Compile Include="RelinkableYoYInflationTermStructureHandle.cs" />
+    <Compile Include="RelinkableZeroInflationTermStructureHandle.cs" />
     <Compile Include="Ridder.cs" />
     <Compile Include="RiskStatistics.cs" />
     <Compile Include="ROLCurrency.cs" />
@@ -561,6 +566,7 @@
     <Compile Include="SARCurrency.cs" />
     <Compile Include="SaudiArabia.cs" />
     <Compile Include="Schedule.cs" />
+    <Compile Include="Seasonality.cs" />
     <Compile Include="Secant.cs" />
     <Compile Include="SegmentIntegral.cs" />
     <Compile Include="SEKCurrency.cs" />
@@ -614,7 +620,9 @@
     <Compile Include="SWIGTYPE_p_DefaultProbabilityTermStructure.cs" />
     <Compile Include="SWIGTYPE_p_Dividend.cs" />
     <Compile Include="SWIGTYPE_p_EndCriteria__Type.cs" />
+    <Compile Include="SWIGTYPE_p_IborCouponPricer.cs" />
     <Compile Include="SWIGTYPE_p_Index.cs" />
+    <Compile Include="SWIGTYPE_p_InflationTermStructure.cs" />
     <Compile Include="SWIGTYPE_p_Instrument.cs" />
     <Compile Include="SWIGTYPE_p_LocalVolTermStructure.cs" />
     <Compile Include="SWIGTYPE_p_Observable.cs" />
@@ -623,12 +631,15 @@
     <Compile Include="SWIGTYPE_p_PricingEngine.cs" />
     <Compile Include="SWIGTYPE_p_Quote.cs" />
     <Compile Include="SWIGTYPE_p_RateHelper.cs" />
+    <Compile Include="SWIGTYPE_p_Seasonality.cs" />
     <Compile Include="SWIGTYPE_p_ShortRateModel.cs" />
     <Compile Include="SWIGTYPE_p_std__size_t.cs" />
     <Compile Include="SWIGTYPE_p_StochasticProcess.cs" />
     <Compile Include="SWIGTYPE_p_Surface.cs" />
     <Compile Include="SWIGTYPE_p_SwaptionVolatilityStructure.cs" />
     <Compile Include="SWIGTYPE_p_YieldTermStructure.cs" />
+    <Compile Include="SWIGTYPE_p_YoYInflationTermStructure.cs" />
+    <Compile Include="SWIGTYPE_p_ZeroInflationTermStructure.cs" />
     <Compile Include="Switzerland.cs" />
     <Compile Include="Taiwan.cs" />
     <Compile Include="TARGET.cs" />
@@ -670,9 +681,17 @@
     <Compile Include="Weekday.cs" />
     <Compile Include="YieldTermStructure.cs" />
     <Compile Include="YieldTermStructureHandle.cs" />
+    <Compile Include="YoYInflationCap.cs" />
+    <Compile Include="YoYInflationCapFloor.cs" />
+    <Compile Include="YoYInflationCollar.cs" />
+    <Compile Include="YoYInflationFloor.cs" />
+    <Compile Include="YoYInflationTermStructure.cs" />
+    <Compile Include="YoYInflationTermStructureHandle.cs" />
     <Compile Include="ZARCurrency.cs" />
     <Compile Include="ZeroCouponBond.cs" />
     <Compile Include="ZeroCurve.cs" />
+    <Compile Include="ZeroInflationTermStructure.cs" />
+    <Compile Include="ZeroInflationTermStructureHandle.cs" />
     <Compile Include="ZeroSpreadedTermStructure.cs" />
     <Compile Include="ZeroYield.cs" />
     <Compile Include="Zibor.cs" />

@@ -329,6 +329,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "BlackIborCouponPricer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "BlackKarasinski.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -1189,6 +1194,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "FFTVarianceGammaEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "FIMCurrency.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -1480,6 +1490,11 @@
                 />
                 <File
                     RelPath = "IborCoupon.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "IborCouponPricer.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -1964,6 +1979,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "MultiplicativePriceSeasonalityPtr.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "MXNCurrency.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2075,6 +2095,11 @@
                 />
                 <File
                     RelPath = "OptionletVolatilityStructureHandle.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "OptionList.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2294,6 +2319,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "RelinkableYoYInflationTermStructureHandle.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "RelinkableZeroInflationTermStructureHandle.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Ridder.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2365,6 +2400,11 @@
                 />
                 <File
                     RelPath = "Schedule.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Seasonality.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2634,7 +2674,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "SWIGTYPE_p_IborCouponPricer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "SWIGTYPE_p_Index.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SWIGTYPE_p_InflationTermStructure.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2679,6 +2729,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "SWIGTYPE_p_Seasonality.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "SWIGTYPE_p_ShortRateModel.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2705,6 +2760,16 @@
                 />
                 <File
                     RelPath = "SWIGTYPE_p_YieldTermStructure.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SWIGTYPE_p_YoYInflationTermStructure.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SWIGTYPE_p_ZeroInflationTermStructure.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2879,6 +2944,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "VarianceGammaEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "VarianceGammaProcess.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Vasicek.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2904,6 +2979,36 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "YoYInflationCap.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YoYInflationCapFloor.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YoYInflationCollar.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YoYInflationFloor.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YoYInflationTermStructure.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YoYInflationTermStructureHandle.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ZARCurrency.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2915,6 +3020,16 @@
                 />
                 <File
                     RelPath = "ZeroCurve.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ZeroInflationTermStructure.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ZeroInflationTermStructureHandle.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
