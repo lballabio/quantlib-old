@@ -204,6 +204,7 @@ namespace QuantLib {
     class NewZealand : public Calendar {};
     class Norway : public Calendar {};
     class Poland : public Calendar {};
+    class Russia : public Calendar {};
 
     class SaudiArabia : public Calendar {
       public:
