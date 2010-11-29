@@ -129,6 +129,10 @@ class CreditDefaultSwapPtr : public boost::shared_ptr<Instrument> {
                 ->impliedHazardRate(targetNPV, discountCurve, dayCounter,
                                     recoveryRate, accuracy);
         }
+        std::vector<boost::shared_ptr<CashFlow> > coupons() {
+            return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
+                ->coupons();
+        }
     }
 };
 
