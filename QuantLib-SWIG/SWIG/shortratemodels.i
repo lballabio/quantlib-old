@@ -311,6 +311,14 @@ class TreeSwaptionEnginePtr : public boost::shared_ptr<PricingEngine> {
             return new TreeSwaptionEnginePtr(
                             new TreeSwaptionEngine(model,grid,termStructure));
         }
+        TreeSwaptionEnginePtr(
+                         const Handle<ShortRateModel>& model,
+                         Size timeSteps,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
+            return new TreeSwaptionEnginePtr(
+                       new TreeSwaptionEngine(model,timeSteps,termStructure));
+        }
     }
 };
 
