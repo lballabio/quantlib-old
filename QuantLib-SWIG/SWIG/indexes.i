@@ -252,12 +252,12 @@ class SwapIndexPtr : public InterestRateIndexPtr {
   public:
     %extend {
         SwapIndexPtr(const std::string& familyName,
-               const Period& tenor,
-               Integer settlementDays,
-               Currency& currency,
-                           const Calendar& calendar,
-               const Period& fixedLegTenor,
-               BusinessDayConvention fixedLegConvention,
+                     const Period& tenor,
+                     Integer settlementDays,
+                     Currency& currency,
+                     const Calendar& calendar,
+                     const Period& fixedLegTenor,
+                     BusinessDayConvention fixedLegConvention,
                      const DayCounter& fixedLegDayCounter,
                      const IborIndexPtr& iborIndex) {
             boost::shared_ptr<IborIndex> xibor =
@@ -269,6 +269,26 @@ class SwapIndexPtr : public InterestRateIndexPtr {
                                                   fixedLegConvention,
                                                   fixedLegDayCounter,
                                                   xibor));
+        }
+        SwapIndexPtr(const std::string& familyName,
+                     const Period& tenor,
+                     Integer settlementDays,
+                     Currency& currency,
+                     const Calendar& calendar,
+                     const Period& fixedLegTenor,
+                     BusinessDayConvention fixedLegConvention,
+                     const DayCounter& fixedLegDayCounter,
+                     const IborIndexPtr& iborIndex,
+                     const Handle<YieldTermStructure>& discountCurve) {
+            boost::shared_ptr<IborIndex> xibor =
+                boost::dynamic_pointer_cast<IborIndex>(iborIndex);
+            return new SwapIndexPtr(new SwapIndex(familyName,
+                                                  tenor, settlementDays,
+                                                  currency, calendar,
+                                                  fixedLegTenor,
+                                                  fixedLegConvention,
+                                                  fixedLegDayCounter,
+                                                  xibor, discountCurve));
         }
         Period fixedLegTenor() {
             return boost::dynamic_pointer_cast<SwapIndex>(*self)
