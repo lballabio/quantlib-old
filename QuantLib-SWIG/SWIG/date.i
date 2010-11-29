@@ -184,6 +184,9 @@ class Period {
             return *self*n;
         }
         #endif
+        bool __eq__(const Period& other) {
+            return *self == other;
+        }
         int __cmp__(const Period& other) {
             return *self < other  ? -1 :
                    *self == other ?  0 :
@@ -306,6 +309,9 @@ class Date {
         #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGR)
         BigInteger operator-(const Date& other) {
             return *self - other;
+        }
+        bool __eq__(const Date& other) {
+            return *self == other;
         }
         int __cmp__(const Date& other) {
             if (*self < other)
