@@ -176,10 +176,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+          <Parameter name='EvaluationDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>The current bond settlement date is used if no specific date is given.</description>
+            <description>The current global Settings::EvaluationDate is used if no specific date is given.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
