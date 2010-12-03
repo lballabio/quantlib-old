@@ -237,6 +237,8 @@
     <Compile Include="EndCriteria.cs" />
     <Compile Include="ESPCurrency.cs" />
     <Compile Include="EURCurrency.cs" />
+    <Compile Include="EUHICP.cs" />
+    <Compile Include="EUHICPXT.cs" />
     <Compile Include="Euribor.cs" />
     <Compile Include="Euribor10M.cs" />
     <Compile Include="Euribor11M.cs" />
@@ -327,6 +329,7 @@
     <Compile Include="FraRateHelper.cs" />
     <Compile Include="Frequency.cs" />
     <Compile Include="FRFCurrency.cs" />
+    <Compile Include="FRHICP.cs" />
     <Compile Include="FritschButlandCubic.cs" />
     <Compile Include="FritschButlandLogCubic.cs" />
     <Compile Include="FuturesRateHelper.cs" />
@@ -498,6 +501,8 @@
     <Compile Include="PeriodVector.cs" />
     <Compile Include="PiecewiseFlatForward.cs" />
     <Compile Include="PiecewiseFlatHazardRate.cs" />
+    <Compile Include="PiecewiseYoYInflation.cs" />
+    <Compile Include="PiecewiseZeroInflation.cs" />
     <Compile Include="PKRCurrency.cs" />
     <Compile Include="PlainVanillaPayoff.cs" />
     <Compile Include="PLNCurrency.cs" />
@@ -535,6 +540,7 @@
     <Compile Include="ROLCurrency.cs" />
     <Compile Include="RONCurrency.cs" />
     <Compile Include="Rounding.cs" />
+    <Compile Include="Russia.cs" />
     <Compile Include="SalvagingAlgorithm.cs" />
     <Compile Include="SampleArray.cs" />
     <Compile Include="SampledCurve.cs" />
@@ -617,7 +623,9 @@
     <Compile Include="SWIGTYPE_p_Surface.cs" />
     <Compile Include="SWIGTYPE_p_SwaptionVolatilityStructure.cs" />
     <Compile Include="SWIGTYPE_p_YieldTermStructure.cs" />
+    <Compile Include="SWIGTYPE_p_YoYHelper.cs" />
     <Compile Include="SWIGTYPE_p_YoYInflationTermStructure.cs" />
+    <Compile Include="SWIGTYPE_p_ZeroHelper.cs" />
     <Compile Include="SWIGTYPE_p_ZeroInflationTermStructure.cs" />
     <Compile Include="Switzerland.cs" />
     <Compile Include="Taiwan.cs" />
@@ -641,6 +649,7 @@
     <Compile Include="Turkey.cs" />
     <Compile Include="TWDCurrency.cs" />
     <Compile Include="Ukraine.cs" />
+    <Compile Include="UKRPI.cs" />
     <Compile Include="UniformLowDiscrepancySequenceGenerator.cs" />
     <Compile Include="UniformRandomGenerator.cs" />
     <Compile Include="UniformRandomSequenceGenerator.cs" />
@@ -649,6 +658,7 @@
     <Compile Include="UnsignedIntVector.cs" />
     <Compile Include="UpfrontCdsHelper.cs" />
     <Compile Include="UpRounding.cs" />
+    <Compile Include="USCPI.cs" />
     <Compile Include="USDCurrency.cs" />
     <Compile Include="USDLibor.cs" />
     <Compile Include="VanillaOption.cs" />
@@ -658,17 +668,32 @@
     <Compile Include="Vasicek.cs" />
     <Compile Include="VEBCurrency.cs" />
     <Compile Include="Weekday.cs" />
+    <Compile Include="YearOnYearInflationSwap.cs" />
+    <Compile Include="YearOnYearInflationSwapHelper.cs" />
     <Compile Include="YieldTermStructure.cs" />
     <Compile Include="YieldTermStructureHandle.cs" />
+    <Compile Include="YoYHelper.cs" />
+    <Compile Include="YoYHelperVector.cs" />
     <Compile Include="YoYInflationCap.cs" />
     <Compile Include="YoYInflationCapFloor.cs" />
     <Compile Include="YoYInflationCollar.cs" />
     <Compile Include="YoYInflationFloor.cs" />
+    <Compile Include="YoYInflationIndex.cs" />
     <Compile Include="YoYInflationTermStructure.cs" />
     <Compile Include="YoYInflationTermStructureHandle.cs" />
+    <Compile Include="YYEUHICP.cs" />
+    <Compile Include="YYEUHICPXT.cs" />
+    <Compile Include="YYFRHICP.cs" />
+    <Compile Include="YYUKRPI.cs" />
+    <Compile Include="YYUSCPI.cs" />
     <Compile Include="ZARCurrency.cs" />
     <Compile Include="ZeroCouponBond.cs" />
+    <Compile Include="ZeroCouponInflationSwap.cs" />
+    <Compile Include="ZeroCouponInflationSwapHelper.cs" />
     <Compile Include="ZeroCurve.cs" />
+    <Compile Include="ZeroHelper.cs" />
+    <Compile Include="ZeroHelperVector.cs" />
+    <Compile Include="ZeroInflationIndex.cs" />
     <Compile Include="ZeroInflationTermStructure.cs" />
     <Compile Include="ZeroInflationTermStructureHandle.cs" />
     <Compile Include="ZeroSpreadedTermStructure.cs" />
@@ -680,6 +705,8 @@
     <Compile Include="_Callability.cs" />
     <Compile Include="_Exercise.cs" />
     <Compile Include="_VanillaSwap.cs" />
+    <Compile Include="_YearOnYearInflationSwap.cs" />
+    <Compile Include="_ZeroCouponInflationSwap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

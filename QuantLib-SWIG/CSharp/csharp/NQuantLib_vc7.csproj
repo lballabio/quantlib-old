@@ -114,6 +114,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "_YearOnYearInflationSwap.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "_ZeroCouponInflationSwap.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Actual360.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -859,6 +869,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "EUHICP.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "EUHICPXT.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "EURCurrency.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -1310,6 +1330,11 @@
                 />
                 <File
                     RelPath = "FRFCurrency.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "FRHICP.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2169,6 +2194,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "PiecewiseYoYInflation.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PiecewiseZeroInflation.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "PKRCurrency.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2350,6 +2385,11 @@
                 />
                 <File
                     RelPath = "Rounding.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Russia.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2764,12 +2804,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "SWIGTYPE_p_YoYHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "SWIGTYPE_p_YoYInflationTermStructure.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "SWIGTYPE_p_ZeroInflationTermStructure.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SWIGTYPE_p_ZeroHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2884,6 +2934,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "UKRPI.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "UniformLowDiscrepancySequenceGenerator.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -2920,6 +2975,11 @@
                 />
                 <File
                     RelPath = "UpRounding.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "USCPI.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2969,12 +3029,32 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "YearOnYearInflationSwap.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YearOnYearInflationSwapHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "YieldTermStructure.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "YieldTermStructureHandle.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YoYHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YoYHelperVector.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2999,12 +3079,42 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "YoYInflationIndex.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "YoYInflationTermStructure.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "YoYInflationTermStructureHandle.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YYEUHICP.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YYEUHICPXT.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YYFRHICP.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YYUKRPI.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "YYUSCPI.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -3019,7 +3129,32 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ZeroCouponInflationSwap.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ZeroCouponInflationSwapHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ZeroCurve.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ZeroHelper.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ZeroHelperVector.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ZeroInflationIndex.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
