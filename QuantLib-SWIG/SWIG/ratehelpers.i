@@ -43,6 +43,16 @@ typedef boost::shared_ptr<RateHelper> SwapRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> FixedRateBondHelperPtr;
 %}
 
+%ignore RateHelper;
+class RateHelper {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("latest-date") latestDate;
+    #endif
+  public:
+    Handle<Quote> quote() const;
+    Date latestDate() const;
+};
+
 // rate helpers for curve bootstrapping
 %template(RateHelper) boost::shared_ptr<RateHelper>;
 
