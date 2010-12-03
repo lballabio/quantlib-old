@@ -27,6 +27,7 @@
 %include marketelements.i
 %include types.i
 %include vectors.i
+%include swap.i
 
 %{
 using QuantLib::RateHelper;
@@ -183,6 +184,9 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                    fixedFrequency, fixedConvention,
                                    fixedDayCount, libor,
                                    spread, fwdStart));
+        }
+        VanillaSwapPtr swap() {
+            return boost::dynamic_pointer_cast<SwapRateHelper>(*self)->swap();
         }
     }
 };
