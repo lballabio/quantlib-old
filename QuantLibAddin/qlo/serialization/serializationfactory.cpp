@@ -31,7 +31,6 @@ namespace QuantLibAddin {
     SerializationFactory::SerializationFactory() {    
 
         registerCreators();
-        registerClassExports();
 
 		ObjectHandler::ProcessorPtr relinkableHandleProcessor(
             new RelinkableHandleProcessor());
@@ -59,7 +58,6 @@ namespace QuantLibAddin {
 			"ExtrapolatorProcessor", extrapolatorProcessor);
     }
 
-    /*  Not required if we use BOOST_CLASS_EXPORT
     void SerializationFactory::register_out(boost::archive::xml_oarchive &ar,
         std::vector<boost::shared_ptr<ObjectHandler::ValueObject> >& valueObjects){
 
@@ -74,7 +72,7 @@ namespace QuantLibAddin {
             tpl_register_classes(ar);
             ar >> boost::serialization::make_nvp("object_list", valueObjects);
     }
-    */
+
 
 }
 

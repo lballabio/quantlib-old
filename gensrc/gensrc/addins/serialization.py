@@ -42,13 +42,9 @@ class Serialization(addin.Addin):
     REGISTER_TYPE = '''\
         // %(categoryDisplayName)s\n
         register_%(categoryName)s(ar);\n\n'''
-    REGISTER_TYPE2 = '''\
-        // %(categoryDisplayName)s\n
-        register_%(categoryName)s();\n\n'''
     REGISTER_CALL = '''\
         // class ID %(classID)d in the boost serialization framework
         ar.register_type<%(namespaceObjects)s::ValueObjects::%(functionName)s>();\n'''
-    REGISTER_CLASS = 'BOOST_CLASS_EXPORT(%(namespaceObjects)s::ValueObjects::%(functionName)s)\n'
     INCLUDE_CREATOR = '''\
 #include <%(libRootDirectory)s/serialization/create/create_%(categoryName)s.hpp>\n'''
     REGISTER_INCLUDE = '''\
@@ -154,13 +150,9 @@ class Serialization(addin.Addin):
 
     def generateRegister(self):
         """Generate source code for serialization factory."""
-        #NB If we decide to stick with the new BOOST_CLASS_EXPORT code then
-        # much of this function will become redundant including the whole
-        # issue of keeping track of class IDs.
 
         allIncludes = ''
         bufferRegister = ''
-        bufferRegister2 = ''
 
         # Keep track of the ID assigned to each Addin class by
         # the boost serialization framework.  This number is initialized to 4
@@ -187,10 +179,6 @@ class Serialization(addin.Addin):
                 'categoryDisplayName' : cat.displayName(),
                 'categoryName' : cat.name() }
 
-            bufferRegister2 += Serialization.REGISTER_TYPE2 % {
-                'categoryDisplayName' : cat.displayName(),
-                'categoryName' : cat.name() }
-
             self.bufferSerializeDeclaration_.set({
                 'addinDirectory' : environment.config().libRootDirectory(),
                 'categoryName' : cat.name(),
@@ -199,7 +187,6 @@ class Serialization(addin.Addin):
                     self.rootPath_, cat.name() )
             outputfile.OutputFile(self, headerFile, self.copyright_, self.bufferSerializeDeclaration_)
 
-            export_stm = ''
             for func in cat.functions('*'):
                 if not func.generateVOs(): continue
 
@@ -207,10 +194,7 @@ class Serialization(addin.Addin):
                     'classID' : classID,
                     'functionName' : func.name(),
                     'namespaceObjects' : environment.config().namespaceObjects() }
-                export_stm += Serialization.REGISTER_CLASS % {
-                    'classID' : classID,
-                    'functionName' : func.name(),
-                    'namespaceObjects' : environment.config().namespaceObjects() }
+
                 idMap[func.name()] = classID
                 classID += 1
 
@@ -219,8 +203,7 @@ class Serialization(addin.Addin):
                 'bufferCpp' : bufferCpp,
                 'categoryName' : cat.name(),
                 'libRootDirectory' : environment.config().libRootDirectory(),
-                'namespaceAddin' : environment.config().namespaceObjects(),
-                'export_stm': export_stm})
+                'namespaceAddin' : environment.config().namespaceObjects() })
             cppFile = '%sregister/serialization_%s.cpp' % ( self.rootPath_, cat.name() )
             outputfile.OutputFile(self, cppFile, self.copyright_, self.bufferSerializeBody_)
 
@@ -237,13 +220,6 @@ class Serialization(addin.Addin):
             'namespaceAddin' : environment.config().namespaceObjects() })
         factoryFile = self.rootPath_ + 'register/serialization_register.hpp'
         outputfile.OutputFile(self, factoryFile, self.copyright_, self.bufferSerializeRegister_)
-
-        self.bufferClassExports_.set({
-            'libRootDirectory' : environment.config().libRootDirectory(),
-            'bufferRegister2' : bufferRegister2,
-            'namespaceObjects' : environment.config().namespaceObjects() })
-        exportsFile = self.rootPath_ + 'class_exports.cpp'
-        outputfile.OutputFile(self, exportsFile, self.copyright_, self.bufferClassExports_)
 
     #############################################
     # serializer interface

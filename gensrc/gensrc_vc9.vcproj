@@ -570,10 +570,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\gensrc\stubs\stub.serialization.classexports"
-				>
-			</File>
-			<File
 				RelativePath=".\gensrc\stubs\stub.serialization.creator"
 				>
 			</File>

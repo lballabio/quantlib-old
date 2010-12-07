@@ -6,12 +6,9 @@
 
 namespace %(namespaceAddin)s {
 
-    void register_%(categoryName)s();
-
-/*  Not required if we use BOOST_CLASS_EXPORT
     void register_%(categoryName)s(boost::archive::xml_oarchive &ar);
     void register_%(categoryName)s(boost::archive::xml_iarchive &ar);
-*/    
+    
 }
 
 #endif

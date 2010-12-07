@@ -4,15 +4,10 @@
 #include <boost/serialization/shared_ptr.hpp>
 #include <boost/serialization/variant.hpp>
 #include <boost/serialization/vector.hpp>
-#include <boost/serialization/export.hpp>
 
-%(export_stm)s
+
 namespace %(namespaceAddin)s {
 
-    // Dummy function to force static initialization of this compilation unit
-    void register_%(categoryName)s() {}
-
-/*  Not required if we use BOOST_CLASS_EXPORT
     void register_%(categoryName)s(boost::archive::xml_oarchive &ar) {
     
 %(bufferCpp)s
@@ -22,6 +17,6 @@ namespace %(namespaceAddin)s {
     
 %(bufferCpp)s
     }
-*/    
+    
 }
 

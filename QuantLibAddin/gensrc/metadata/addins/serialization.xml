@@ -6,8 +6,8 @@
   <addinCategories>true</addinCategories>
 
   <copyright>
-    Copyright (C) 2006, 2010 Plamen Neykov
-    Copyright (C) 2007, 2008, 2010 Eric Ehlers
+    Copyright (C) 2007, 2008 Eric Ehlers
+    Copyright (C) 2006 Plamen Neykov
   </copyright>
 
   <Buffers>
@@ -20,7 +20,6 @@
     <Buffer name='bufferSerializeBody' fileName='stub.serialization.body'/>
     <Buffer name='bufferSerializeRegister' fileName='stub.serialization.register'/>
     <Buffer name='bufferSerializeDeclaration' fileName='stub.serialization.declaration'/>
-    <Buffer name='bufferClassExports' fileName='stub.serialization.classexports'/>
   </Buffers>
 
 </Addin>

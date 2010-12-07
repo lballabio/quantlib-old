@@ -9,7 +9,6 @@ include_HEADERS = \
     serializationfactory.hpp
 
 libSerialization_la_SOURCES = \
-    class_exports.cpp \
     processor.cpp \
     register_creators.cpp \
     serializationfactory.cpp

@@ -40,7 +40,6 @@ namespace ObjectHandler {
 
     //! Placeholder for a null value
     struct empty_property_tag {
-		empty_property_tag(){}
         //! Serialize this value to/from an archive
         template<class Archive>
         void serialize(Archive &ar, const unsigned int) {}
