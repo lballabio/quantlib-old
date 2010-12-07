@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2004, 2005, 2007, 2008 StatPro Italia srl
+ Copyright (C) 2010 Klaus Spanderen
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -43,7 +44,6 @@ class StochasticProcess1DPtr
   private:
     StochasticProcess1DPtr();
 };
-
 
 
 %{
@@ -246,6 +246,66 @@ class VarianceGammaProcessPtr : public StochasticProcess1DPtr {
       }
     }
 };
+
+
+%{
+using QuantLib::HestonProcess;
+typedef boost::shared_ptr<StochasticProcess> HestonProcessPtr;
+%}
+
+%rename(HestonProcess) HestonProcessPtr;
+class HestonProcessPtr : public boost::shared_ptr<StochasticProcess> {
+  public:
+    %extend {
+      HestonProcessPtr(const Handle<YieldTermStructure>& riskFreeTS,
+					   const Handle<YieldTermStructure>& dividendTS,
+					   const Handle<Quote>& s0,
+					   Real v0, Real kappa,
+                       Real theta, Real sigma, Real rho) {
+		return new HestonProcessPtr(
+			new HestonProcess(riskFreeTS, dividendTS, s0, v0, 
+						      kappa, theta, sigma, rho));	
+      }
+                       
+      Handle<Quote> s0() {
+          return boost::dynamic_pointer_cast<
+                      HestonProcess>(*self)->s0();
+      }
+      Handle<YieldTermStructure> dividendYield() {
+          return boost::dynamic_pointer_cast<
+                      HestonProcess>(*self)->dividendYield();
+      }
+      Handle<YieldTermStructure> riskFreeRate() {
+          return boost::dynamic_pointer_cast<
+                      HestonProcess>(*self)->riskFreeRate();
+      }
+    }
+};
+
+%{
+using QuantLib::BatesProcess;
+typedef boost::shared_ptr<StochasticProcess> BatesProcessPtr;
+%}
+
+%rename(BatesProcess) BatesProcessPtr;
+class BatesProcessPtr : public HestonProcessPtr {
+  public:
+    %extend {
+      BatesProcessPtr(const Handle<YieldTermStructure>& riskFreeRate,
+                      const Handle<YieldTermStructure>& dividendYield,
+                      const Handle<Quote>& s0,
+                      Real v0, Real kappa,
+                      Real theta, Real sigma, Real rho,
+                      Real lambda, Real nu, Real delta) {
+		return new BatesProcessPtr(
+			new BatesProcess(riskFreeRate, dividendYield, s0, v0, 
+							 kappa, theta, sigma, rho, 
+							 lambda, nu, delta));
+	  }
+    }
+};
+
+
 
 // allow use of diffusion process vectors
 #if defined(SWIGCSHARP)

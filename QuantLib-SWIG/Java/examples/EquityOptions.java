@@ -23,7 +23,11 @@ import org.quantlib.QuantLib;
 import org.quantlib.Actual365Fixed;
 import org.quantlib.AmericanExercise;
 import org.quantlib.AnalyticEuropeanEngine;
+import org.quantlib.AnalyticHestonEngine;
 import org.quantlib.BaroneAdesiWhaleyEngine;
+import org.quantlib.BatesEngine;
+import org.quantlib.BatesModel;
+import org.quantlib.BatesProcess;
 import org.quantlib.BermudanExercise;
 import org.quantlib.BinomialVanillaEngine;
 import org.quantlib.BjerksundStenslandEngine;
@@ -40,6 +44,8 @@ import org.quantlib.Exercise;
 import org.quantlib.FDAmericanEngine;
 import org.quantlib.FDBermudanEngine;
 import org.quantlib.FDEuropeanEngine;
+import org.quantlib.HestonModel;
+import org.quantlib.HestonProcess;
 import org.quantlib.FlatForward;
 import org.quantlib.IntegralEngine;
 import org.quantlib.MCEuropeanEngine;
@@ -153,6 +159,44 @@ public class EquityOptions {
         String method = "Black-Scholes";
         europeanOption.setPricingEngine(
                                new AnalyticEuropeanEngine(stochasticProcess));
+        System.out.printf(fmt, new Object[] { method,
+                                              europeanOption.NPV(),
+                                              Double.NaN,
+                                              Double.NaN } );
+
+
+		// Heston
+        method = "Heston Semi-Analytic";
+        HestonProcess hestonProcess =
+            new HestonProcess(flatTermStructure,
+							  flatDividendYield,
+							  underlyingH, 
+							  volatility*volatility,
+							  1.0,
+							  volatility*volatility,
+							  0.001,
+							  0.0);
+		HestonModel hestonModel = new HestonModel(hestonProcess);
+		europeanOption.setPricingEngine(new AnalyticHestonEngine(hestonModel));
+        System.out.printf(fmt, new Object[] { method,
+                                              europeanOption.NPV(),
+                                              Double.NaN,
+                                              Double.NaN } );
+
+		// Bates
+        method = "Bates Semi-Analytic";
+        BatesProcess batesProcess =
+            new BatesProcess(flatTermStructure,
+							 flatDividendYield,
+							 underlyingH, 
+							 volatility*volatility,
+							 1.0,
+							 volatility*volatility,
+							 0.001,
+							 0.0,
+							 1e-14, 1e-14, 1e-14);
+		BatesModel batesModel = new BatesModel(batesProcess);
+		europeanOption.setPricingEngine(new BatesEngine(batesModel));
         System.out.printf(fmt, new Object[] { method,
                                               europeanOption.NPV(),
                                               Double.NaN,

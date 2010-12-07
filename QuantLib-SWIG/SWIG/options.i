@@ -4,6 +4,7 @@
  Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
  Copyright (C) 2008 Tito Ingargiola
+ Copyright (C) 2010 Klaus Spanderen
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -332,6 +333,116 @@ class AnalyticEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
             QL_REQUIRE(bsProcess, "Black-Scholes process required");
             return new AnalyticEuropeanEnginePtr(
                                        new AnalyticEuropeanEngine(bsProcess));
+        }
+    }
+};
+
+
+%{
+using QuantLib::CalibratedModel;
+using QuantLib::HestonModel;
+typedef boost::shared_ptr<CalibratedModel> HestonModelPtr;
+%}
+
+%template(CalibratedModel) boost::shared_ptr<CalibratedModel>;
+%rename(HestonModel) HestonModelPtr;
+class HestonModelPtr : public boost::shared_ptr<CalibratedModel> {
+  public:
+    %extend {
+        HestonModelPtr(const HestonProcessPtr&  process) {
+
+            boost::shared_ptr<HestonProcess> hProcess =
+                 boost::dynamic_pointer_cast<HestonProcess>(process);
+            QL_REQUIRE(hProcess, "Heston process required");
+
+            return new HestonModelPtr(new HestonModel(hProcess));
+        }
+    }
+};
+
+
+%{
+using QuantLib::AnalyticHestonEngine;
+typedef boost::shared_ptr<PricingEngine> AnalyticHestonEnginePtr;
+%}
+
+%rename(AnalyticHestonEngine) AnalyticHestonEnginePtr;
+class AnalyticHestonEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticHestonEnginePtr(const HestonModelPtr& model, 
+								Size integrationOrder = 144) {
+            boost::shared_ptr<HestonModel> hModel =
+                 boost::dynamic_pointer_cast<HestonModel>(model);
+            QL_REQUIRE(hModel, "Heston model required");
+
+            return new AnalyticHestonEnginePtr(
+				new AnalyticHestonEngine(hModel, integrationOrder));
+        }
+
+        AnalyticHestonEnginePtr(const HestonModelPtr& model, 
+								Real relTolerance,
+								Size maxEvaluations) {
+            boost::shared_ptr<HestonModel> hModel =
+                 boost::dynamic_pointer_cast<HestonModel>(model);
+            QL_REQUIRE(hModel, "Heston model required");
+
+            return new AnalyticHestonEnginePtr(
+				new AnalyticHestonEngine(hModel, relTolerance,maxEvaluations));
+        }
+    }
+};
+
+
+%{
+using QuantLib::BatesModel;
+typedef boost::shared_ptr<CalibratedModel> BatesModelPtr;
+%}
+
+%rename(BatesModel) BatesModelPtr;
+class BatesModelPtr : public boost::shared_ptr<CalibratedModel> {
+  public:
+    %extend {
+        BatesModelPtr(const BatesProcessPtr&  process) {
+
+            boost::shared_ptr<BatesProcess> bProcess =
+                 boost::dynamic_pointer_cast<BatesProcess>(process);
+            QL_REQUIRE(bProcess, "Bates process required");
+
+            return new BatesModelPtr(new BatesModel(bProcess));
+        }
+    }
+};
+
+
+%{
+using QuantLib::BatesEngine;
+typedef boost::shared_ptr<PricingEngine> BatesEnginePtr;
+%}
+
+%rename(BatesEngine) BatesEnginePtr;
+class BatesEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        BatesEnginePtr(const BatesModelPtr& model, 
+					   Size integrationOrder = 144) {
+            boost::shared_ptr<BatesModel> bModel =
+                 boost::dynamic_pointer_cast<BatesModel>(model);
+            QL_REQUIRE(bModel, "Bates model required");
+
+            return new BatesEnginePtr(
+				new BatesEngine(bModel, integrationOrder));
+        }
+
+        BatesEnginePtr(const BatesModelPtr& model, 
+					   Real relTolerance,
+					   Size maxEvaluations) {
+            boost::shared_ptr<BatesModel> bModel =
+                 boost::dynamic_pointer_cast<BatesModel>(model);
+            QL_REQUIRE(bModel, "Bates model required");
+
+            return new BatesEnginePtr(
+				new BatesEngine(bModel, relTolerance,maxEvaluations));
         }
     }
 };
