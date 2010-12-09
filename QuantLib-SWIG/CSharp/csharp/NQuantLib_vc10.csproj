@@ -120,6 +120,7 @@
     <Compile Include="AnalyticDiscreteGeometricAverageStrikeAsianEngine.cs" />
     <Compile Include="AnalyticDividendEuropeanEngine.cs" />
     <Compile Include="AnalyticEuropeanEngine.cs" />
+    <Compile Include="AnalyticHestonEngine.cs" />
     <Compile Include="Argentina.cs" />
     <Compile Include="ARSCurrency.cs" />
     <Compile Include="AssetOrNothingPayoff.cs" />
@@ -136,6 +137,9 @@
     <Compile Include="BarrierOption.cs" />
     <Compile Include="BasketOption.cs" />
     <Compile Include="BasketPayoff.cs" />
+    <Compile Include="BatesEngine.cs" />
+    <Compile Include="BatesModel.cs" />
+    <Compile Include="BatesProcess.cs" />
     <Compile Include="BDTCurrency.cs" />
     <Compile Include="BEFCurrency.cs" />
     <Compile Include="BermudanExercise.cs" />
@@ -176,6 +180,7 @@
     <Compile Include="CADCurrency.cs" />
     <Compile Include="CADLibor.cs" />
     <Compile Include="Calendar.cs" />
+    <Compile Include="CalibratedModel.cs" />
     <Compile Include="CalibrationHelper.cs" />
     <Compile Include="CalibrationHelperVector.cs" />
     <Compile Include="Callability.cs" />
@@ -380,6 +385,8 @@
     <Compile Include="HaltonRsg.cs" />
     <Compile Include="HazardRate.cs" />
     <Compile Include="HazardRateCurve.cs" />
+    <Compile Include="HestonModel.cs" />
+    <Compile Include="HestonProcess.cs" />
     <Compile Include="HimalayaOption.cs" />
     <Compile Include="HKDCurrency.cs" />
     <Compile Include="HongKong.cs" />
@@ -620,6 +627,7 @@
     <Compile Include="Sweden.cs" />
     <Compile Include="SWIGTYPE_p_BlackVolTermStructure.cs" />
     <Compile Include="SWIGTYPE_p_boost__shared_ptrT_Domain_t.cs" />
+    <Compile Include="SWIGTYPE_p_CalibratedModel.cs" />
     <Compile Include="SWIGTYPE_p_CapFloorTermVolatilityStructure.cs" />
     <Compile Include="SWIGTYPE_p_CashFlow.cs" />
     <Compile Include="SWIGTYPE_p_DefaultProbabilityHelper.cs" />

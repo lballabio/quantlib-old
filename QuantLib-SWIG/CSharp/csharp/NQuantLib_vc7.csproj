@@ -184,6 +184,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "AnalyticHestonEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Argentina.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -260,6 +265,21 @@
                 />
                 <File
                     RelPath = "BasketPayoff.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BatesEngine.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BatesModel.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BatesProcess.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -460,6 +480,11 @@
                 />
                 <File
                     RelPath = "Calendar.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "CalibratedModel.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -1480,6 +1505,16 @@
                 />
                 <File
                     RelPath = "HazardRateCurve.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "HestonModel.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "HestonProcess.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2680,6 +2715,11 @@
                 />
                 <File
                     RelPath = "SWIGTYPE_p_boost__shared_ptrT_Domain_t.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SWIGTYPE_p_CalibratedModel.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
