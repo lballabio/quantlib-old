@@ -18,6 +18,13 @@
 
 /*! \page framework Framework
 
+<table border="1" bgcolor="lightsteelblue">
+<tr>
+<td><b>NB:</b> The Framework was not included in the 1.0.1 release of QuantLibXL.  The
+last release of QuantLibXL to include the Framework was 0.9.6.</td>
+</tr>
+</table>
+
 \section fw_overview Overview
 
 The QuantLibXL Framework is an application layer written in Excel VBA which
