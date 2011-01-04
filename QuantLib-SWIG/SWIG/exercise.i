@@ -48,7 +48,17 @@ class Exercise {
     static const Exercise::Type American = Exercise::American;
     static const Exercise::Type Bermudan = Exercise::Bermudan;
     static const Exercise::Type European = Exercise::European;
+
+	%ignore type;
+	Exercise::Type exerciseType() { 
+		return boost::dynamic_pointer_cast<Exercise>(*self)->type(); 
+	}
+	%ignore dates;
+	std::vector<Date> dates() {
+		return boost::dynamic_pointer_cast<Exercise>(*self)->dates(); 
+    }
 }
+
 
 %{
 using QuantLib::EuropeanExercise;
@@ -66,7 +76,7 @@ class EuropeanExercisePtr : public boost::shared_ptr<Exercise> {
         EuropeanExercisePtr(const Date& date) {
             return new EuropeanExercisePtr(new EuropeanExercise(date));
         }
-    }
+	}
 };
 
 %rename(AmericanExercise) AmericanExercisePtr;
@@ -80,6 +90,7 @@ class AmericanExercisePtr : public boost::shared_ptr<Exercise> {
                                         new AmericanExercise(earliestDate,
                                                              latestDate,
                                                              payoffAtExpiry));
+
         }
     }
 };

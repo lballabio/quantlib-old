@@ -47,6 +47,16 @@ class PlainVanillaPayoffPtr : public boost::shared_ptr<Payoff> {
             return new PlainVanillaPayoffPtr(
                                         new PlainVanillaPayoff(type, strike));
         }
+
+		Option::Type optionType() {
+          	return boost::dynamic_pointer_cast<
+									PlainVanillaPayoff>(*self)->optionType();
+		}
+
+		Real strike() {
+          	return boost::dynamic_pointer_cast<
+									PlainVanillaPayoff>(*self)->strike();
+		}
     }
 };
 
