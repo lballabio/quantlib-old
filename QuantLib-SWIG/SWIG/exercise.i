@@ -49,14 +49,9 @@ class Exercise {
     static const Exercise::Type Bermudan = Exercise::Bermudan;
     static const Exercise::Type European = Exercise::European;
 
-	%ignore type;
 	Exercise::Type exerciseType() { 
 		return boost::dynamic_pointer_cast<Exercise>(*self)->type(); 
 	}
-	%ignore dates;
-	std::vector<Date> dates() {
-		return boost::dynamic_pointer_cast<Exercise>(*self)->dates(); 
-    }
 }
 
 
