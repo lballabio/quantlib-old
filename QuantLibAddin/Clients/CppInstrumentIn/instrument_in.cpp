@@ -47,7 +47,8 @@ int main(int argc, char** argv) {
             return -1;
         }
 
-        long lEvaldate = atol(argv[1]);
+        //long lEvaldate = atol(argv[1]);
+        double lEvaldate = atol(argv[1]);
         std::string tradeID = argv[2];
         std::string tradeFile = argv[3];
         std::vector<std::string> vecMaketfiles;
@@ -55,14 +56,14 @@ int main(int argc, char** argv) {
         for(int i = 4; i < argc; i += 1) {
             vecMaketfiles.push_back(argv[i]);
         }
-        /*
+        
         //print the information of the command line
         std::cout<< "evaldate = " << lEvaldate<<"\n tradeid is" << tradeID 
             << "\n trade file" << tradeFile;
         int i = 0;
         for(int i = 0; i < vecMaketfiles.size(); ++i)
             std::cout<<"\nmarket file" << (i+1) <<" is "<<vecMaketfiles[i];
-        */
+        
 
         // Initialize the environment
 
