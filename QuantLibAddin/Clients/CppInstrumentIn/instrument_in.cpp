@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2008 Eric Ehlers
+ Copyright (C) 2008, 2011 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -58,12 +58,11 @@ int main(int argc, char** argv) {
         }
         
         //print the information of the command line
-        std::cout<< "evaldate = " << lEvaldate<<"\n tradeid is" << tradeID 
-            << "\n trade file" << tradeFile;
-        int i = 0;
-        for(int i = 0; i < vecMaketfiles.size(); ++i)
-            std::cout<<"\nmarket file" << (i+1) <<" is "<<vecMaketfiles[i];
-        
+        //std::cout<< "evaldate = " << lEvaldate<<"\ntradeid is " << tradeID 
+        //    << "\ntrade file is " << tradeFile << "\n";
+        //int i = 0;
+        //for(unsigned int i = 0; i < vecMaketfiles.size(); ++i)
+        //    std::cout<<"market file (" << (i+1) <<") is " << vecMaketfiles[i] << "\n";
 
         // Initialize the environment
 
