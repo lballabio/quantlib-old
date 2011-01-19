@@ -48,6 +48,8 @@
     <None Include="pages\design.docs" />
     <None Include="pages\evaluationdate.docs" />
     <None Include="pages\examples.docs" />
+    <None Include="pages\extend.enum.tutorial.docs" />
+    <None Include="pages\extend.template.tutorial.docs" />
     <None Include="pages\extend.tutorial.docs" />
     <None Include="pages\extending.docs" />
     <None Include="pages\faq.docs" />

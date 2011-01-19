@@ -75,6 +75,14 @@
 				>
 			</File>
 			<File
+				RelativePath="pages\extend.enum.tutorial.docs"
+				>
+			</File>
+			<File
+				RelativePath="pages\extend.template.tutorial.docs"
+				>
+			</File>
+			<File
 				RelativePath="pages\extend.tutorial.docs"
 				>
 			</File>
