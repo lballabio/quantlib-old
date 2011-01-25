@@ -44,9 +44,9 @@ Dirk Eddelbuettel.</p>
 at <a href="http://www.qlnet.org/">QLNet</a> and is looking
 for developers.</p>
 
-<p>Another project has started
-at <a href="http://www.jquantlib.org/">JQuantLib</a> aiming at a
-native Java port.</p>
+<p>The <a href="http://www.jquantlib.org/">JQuantLib</a> project aims
+at a 100% Java port. At this time, it provides about 65% of QuantLib
+0.9.7.</p>
 
 <p>Two other project aim at ports in a functional language.
 <a href="http://sourceforge.net/projects/quanthas/">QuantHas</a>
