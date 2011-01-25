@@ -2,7 +2,7 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="5">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>6</count>
+	<count>5</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
 		<px class_id="214" tracking_level="1" version="0" object_id="_1">
@@ -44,16 +44,29 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="186" tracking_level="1" version="0" object_id="_3">
+		<px class_id="80" tracking_level="1" version="0" object_id="_3">
+			<ObjectId>Euribor</ObjectId>
+			<ClassName>qlEuribor</ClassName>
+			<Tenor>6M</Tenor>
+			<YieldCurve>FlatForward</YieldCurve>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="186" tracking_level="1" version="0" object_id="_4">
 			<ObjectId>Schedule1</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
 				<which>4</which>
-				<value>40548</value>
+				<value>40570</value>
 			</EffectiveDate>
 			<TerminationDate>
 				<which>4</which>
-				<value>44201</value>
+				<value>44223</value>
 			</TerminationDate>
 			<Tenor>1Y</Tenor>
 			<Calendar>TARGET</Calendar>
@@ -77,16 +90,16 @@
 		</px>
 	</item>
 	<item>
-		<px class_id_reference="186" object_id="_4">
+		<px class_id_reference="186" object_id="_5">
 			<ObjectId>Schedule2</ObjectId>
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
 				<which>4</which>
-				<value>40548</value>
+				<value>40570</value>
 			</EffectiveDate>
 			<TerminationDate>
 				<which>4</which>
-				<value>44201</value>
+				<value>44223</value>
 			</TerminationDate>
 			<Tenor>6M</Tenor>
 			<Calendar>TARGET</Calendar>
@@ -102,40 +115,6 @@
 				<which>0</which>
 				<value></value>
 			</NextToLastDate>
-			<Permanent>0</Permanent>
-			<UserProperties>
-				<count>0</count>
-				<item_version>0</item_version>
-			</UserProperties>
-		</px>
-	</item>
-	<item>
-		<px class_id="151" tracking_level="1" version="0" object_id="_5">
-			<ObjectId>DiscountingSwapEngine</ObjectId>
-			<ClassName>qlDiscountingSwapEngine</ClassName>
-			<YieldCurve>FlatForward</YieldCurve>
-			<IncludeSettlDate>1</IncludeSettlDate>
-			<SettlementDate>
-				<which>0</which>
-				<value></value>
-			</SettlementDate>
-			<NpvDate>
-				<which>0</which>
-				<value></value>
-			</NpvDate>
-			<Permanent>0</Permanent>
-			<UserProperties>
-				<count>0</count>
-				<item_version>0</item_version>
-			</UserProperties>
-		</px>
-	</item>
-	<item>
-		<px class_id="80" tracking_level="1" version="0" object_id="_6">
-			<ObjectId>Euribor</ObjectId>
-			<ClassName>qlEuribor</ClassName>
-			<Tenor>6M</Tenor>
-			<YieldCurve>FlatForward</YieldCurve>
 			<Permanent>0</Permanent>
 			<UserProperties>
 				<count>0</count>

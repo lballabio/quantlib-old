@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2008 Plamen Neykov
- Copyright (C) 2010 Eric Ehlers
+ Copyright (C) 2010, 2011 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,11 +28,9 @@
 
 namespace ObjectHandler {
 
-    template<class container_t>
-    bool is_numeric(const container_t& c, double& d)
-    {
+    inline bool is_numeric(const std::string &s, double &d) {
         try {
-            d = c.operator double();
+            d = boost::lexical_cast<double>(s);
             return true;
         } catch(...) {
             return false;
@@ -41,16 +39,20 @@ namespace ObjectHandler {
 
     template<class container_t>
     QuantLib::Date convertDate(const container_t& c) {
-        double d;
-        if(is_numeric(c, d))
-            return QuantLib::Date(static_cast<QuantLib::BigInteger>(d));
+        if(c.type() == typeid(long))
+            return QuantLib::Date(c.operator long());
+        else if(c.type() == typeid(double))
+            return QuantLib::Date(static_cast<QuantLib::BigInteger>(c.operator double()));
         else if(c.type() == typeid(std::string)) {
-            std::string str = c.operator std::string();
-            if (QuantLib::IMM::isIMMcode(str, false))
-                return QuantLib::IMM::date(str);
-            QuantLib::Period p = QuantLib::PeriodParser::parse(str);
-            QuantLib::Date d = QuantLib::Settings::instance().evaluationDate();
-            return d + p;
+            std::string s = c.operator std::string();
+            double d;
+            if (is_numeric(s, d))
+                return QuantLib::Date(static_cast<QuantLib::BigInteger>(d));
+            if (QuantLib::IMM::isIMMcode(s, false))
+                return QuantLib::IMM::date(s);
+            QuantLib::Period p = QuantLib::PeriodParser::parse(s);
+            QuantLib::Date d2 = QuantLib::Settings::instance().evaluationDate();
+            return d2 + p;
         }
         else {
             OH_FAIL("unable to convert type '" << c.type().name() << "' to type 'QuantLib::Date'");
@@ -69,12 +71,14 @@ namespace ObjectHandler {
 
     template<class container_t>
     boost::shared_ptr<QuantLib::Quote> convertQuote(const container_t& c) {
-        double d;
-        if(is_numeric(c, d))
-            return boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(d));
+        if(c.type() == typeid(double))
+            return boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(c.operator double()));
         else if(c.type() == typeid(std::string)) {
-            std::string sId = c.operator std::string();
-            OH_GET_OBJECT(temp, sId, ObjectHandler::Object)
+            std::string s = c.operator std::string();
+            double d;
+            if (is_numeric(s, d))
+                return boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(d));
+            OH_GET_OBJECT(temp, s, ObjectHandler::Object)
             return QuantLibAddin::CoerceObject<QuantLibAddin::Quote, QuantLib::Quote, QuantLib::Quote>()(temp);
         } else {
             OH_FAIL("unable to convert type '" << c.type().name() << "' to type 'QuantLib::Quote'");
@@ -83,11 +87,16 @@ namespace ObjectHandler {
 
     template<class container_t>
     QuantLib::Handle<QuantLib::Quote> convertQuoteHandle(const container_t& c) {
-        double d;
-        if(is_numeric(c, d))
-            return QuantLib::Handle<QuantLib::Quote>(boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(d)));
+        if(c.type() == typeid(long))
+            return QuantLib::Handle<QuantLib::Quote>(boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(c.operator long())));
+        else if(c.type() == typeid(double))
+            return QuantLib::Handle<QuantLib::Quote>(boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(c.operator double())));
         else if(c.type() == typeid(std::string)) {
-            OH_GET_OBJECT(object, c.operator std::string(), ObjectHandler::Object)
+            std::string s = c.operator std::string();
+            double d;
+            if (is_numeric(s, d))
+                return QuantLib::Handle<QuantLib::Quote>(boost::shared_ptr<QuantLib::Quote>(new QuantLib::SimpleQuote(d)));
+            OH_GET_OBJECT(object, s, ObjectHandler::Object)
             return QuantLibAddin::CoerceHandle<QuantLibAddin::Quote, QuantLib::Quote>()(object);
         }
         else
@@ -97,7 +106,8 @@ namespace ObjectHandler {
     template<class container_t>
     QuantLib::TimeSeriesDef convertTimeSeriesDef(const container_t& c) {
         if(c.type() == typeid(std::string)) {
-            OH_GET_UNDERLYING(temp, c.operator std::string(), QuantLibAddin::TimeSeriesDef, QuantLib::TimeSeriesDef)
+            std::string s = c.operator std::string();
+            OH_GET_UNDERLYING(temp, s, QuantLibAddin::TimeSeriesDef, QuantLib::TimeSeriesDef)
             return temp;
         } else {
             OH_FAIL("unable to convert type '" << c.type().name() << "' to type 'QuantLib::TimeSeriesDef'");

@@ -24,6 +24,8 @@
 #endif
 #include <iostream>
 
+#define OH_NULL ObjectHandler::property_t()
+
 #ifdef LOG_MESSAGE
 #undef LOG_MESSAGE
 #endif
@@ -31,8 +33,7 @@
 #undef LOG_ERROR
 #endif
 
-#define OH_NULL ObjectHandler::property_t()
-#define LOG_MESSAGE(msg) std::cerr << msg << std::endl
+#define LOG_MESSAGE(msg) std::cout << msg << std::endl
 #define LOG_ERROR(msg) std::cerr << msg << std::endl
 
 using namespace QuantLibAddinCpp;

@@ -2,10 +2,31 @@
 <!DOCTYPE boost_serialization>
 <boost_serialization signature="serialization::archive" version="5">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-	<count>3</count>
+	<count>4</count>
 	<item_version>1</item_version>
 	<item class_id="0" tracking_level="0" version="1">
-		<px class_id="51" tracking_level="1" version="0" object_id="_1">
+		<px class_id="151" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>DiscountingSwapEngine</ObjectId>
+			<ClassName>qlDiscountingSwapEngine</ClassName>
+			<YieldCurve>FlatForward</YieldCurve>
+			<IncludeSettlDate>1</IncludeSettlDate>
+			<SettlementDate class_id="234" tracking_level="0" version="0">
+				<which>0</which>
+				<value class_id="235" tracking_level="0" version="0"></value>
+			</SettlementDate>
+			<NpvDate>
+				<which>0</which>
+				<value></value>
+			</NpvDate>
+			<Permanent>0</Permanent>
+			<UserProperties class_id="236" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="51" tracking_level="1" version="0" object_id="_2">
 			<ObjectId>IborLeg</ObjectId>
 			<ClassName>qlIborLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -39,14 +60,14 @@
 				<item_version>0</item_version>
 			</Caps>
 			<Permanent>0</Permanent>
-			<UserProperties class_id="236" tracking_level="0" version="0">
+			<UserProperties>
 				<count>0</count>
 				<item_version>0</item_version>
 			</UserProperties>
 		</px>
 	</item>
 	<item>
-		<px class_id="48" tracking_level="1" version="0" object_id="_2">
+		<px class_id="48" tracking_level="1" version="0" object_id="_3">
 			<ObjectId>FixedRateLeg</ObjectId>
 			<ClassName>qlFixedRateLeg</ClassName>
 			<PaymentBDC>Following</PaymentBDC>
@@ -70,7 +91,7 @@
 		</px>
 	</item>
 	<item>
-		<px class_id="225" tracking_level="1" version="0" object_id="_3">
+		<px class_id="225" tracking_level="1" version="0" object_id="_4">
 			<ObjectId>VanillaSwap</ObjectId>
 			<ClassName>qlVanillaSwap</ClassName>
 			<PayerReceiver>Payer</PayerReceiver>
@@ -87,9 +108,9 @@
 			<UserProperties>
 				<count>1</count>
 				<item_version>0</item_version>
-				<item class_id="237" tracking_level="0" version="0">
+				<item class_id="239" tracking_level="0" version="0">
 					<first>EngineID</first>
-					<second class_id="238" tracking_level="0" version="0">
+					<second>
 						<which>2</which>
 						<value>DiscountingSwapEngine</value>
 					</second>
