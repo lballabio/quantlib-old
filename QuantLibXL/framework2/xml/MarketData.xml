@@ -62,11 +62,11 @@
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
 				<which>4</which>
-				<value>40570</value>
+				<value>40548</value>
 			</EffectiveDate>
 			<TerminationDate>
 				<which>4</which>
-				<value>44223</value>
+				<value>44201</value>
 			</TerminationDate>
 			<Tenor>1Y</Tenor>
 			<Calendar>TARGET</Calendar>
@@ -95,11 +95,11 @@
 			<ClassName>qlSchedule</ClassName>
 			<EffectiveDate>
 				<which>4</which>
-				<value>40570</value>
+				<value>40548</value>
 			</EffectiveDate>
 			<TerminationDate>
 				<which>4</which>
-				<value>44223</value>
+				<value>44201</value>
 			</TerminationDate>
 			<Tenor>6M</Tenor>
 			<Calendar>TARGET</Calendar>
