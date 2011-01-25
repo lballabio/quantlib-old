@@ -139,9 +139,22 @@ int main() {
             false, OH_NULL, false);
         tradeObjects.push_back(engine);
 
-        std::vector<double> emptyVector;
+        std::vector<double> coupons;
+        coupons.push_back(0.05);
         std::vector<double> nominals;
         nominals.push_back(1000000);
+
+        std::string fixedRateLeg = qlFixedRateLeg(
+            "FixedRateLeg",
+            "Following",
+            nominals,
+            schedule1,
+            coupons,
+            "30/360 (Bond Basis)",
+            false, OH_NULL, false);
+        tradeObjects.push_back(fixedRateLeg);
+
+        std::vector<double> emptyVector;
         std::vector<long> fixingDays;
 
         std::string iborLeg = qlIborLeg(
@@ -160,51 +173,33 @@ int main() {
             false, OH_NULL, false);
         tradeObjects.push_back(iborLeg);
 
-        std::vector<double> coupons;
-        coupons.push_back(0.05);
+        std::vector<std::string> legIDs;
+        legIDs.push_back(fixedRateLeg);
+        legIDs.push_back(iborLeg);
 
-        std::string fixedRateLeg = qlFixedRateLeg(
-            "FixedRateLeg",
-            "Following",
-            nominals,
-            schedule1,
-            coupons,
-            "30/360 (Bond Basis)",
-            false, OH_NULL, false);
-        tradeObjects.push_back(fixedRateLeg);
+        std::vector<bool> payer;
+        payer.push_back(true);
+        payer.push_back(false);
 
-        std::string vanillaSwap = qlVanillaSwap(
-            "VanillaSwap",
-            "Payer",
-            1000000.0,
-            schedule1,
-            0.05,
-            "30/360 (Bond Basis)",
-            schedule2,
-            euribor,
-            OH_NULL,
-            "Actual/360",
-            OH_NULL,
+        std::string swap = qlSwap(
+            "Swap",
+            legIDs,
+            payer,
             false, OH_NULL, false);
-        tradeObjects.push_back(vanillaSwap);
+        tradeObjects.push_back(swap);
 
         // Set the pricing engine
 
-        qlInstrumentSetPricingEngine(vanillaSwap, engine, OH_NULL);
-
-        // Enable extrapolation for the yield curve
-
-        //qlExtrapolatorEnableExtrapolation(flatForward, true, OH_NULL);
-        //qlExtrapolatorEnableExtrapolation(swaptionVTSConstant, true, OH_NULL);
+        qlInstrumentSetPricingEngine(swap, engine, OH_NULL);
 
         // Output the PV of the deal
 
-        LOG_MESSAGE("SWAP PV = " << qlInstrumentNPV(vanillaSwap, OH_NULL));
+        LOG_MESSAGE("SWAP PV = " << qlInstrumentNPV(swap, OH_NULL));
 
         // Serialize the objects
 
         ohObjectSave(marketObjects, "MarketData.xml", true, OH_NULL, true);
-        ohObjectSave(tradeObjects, "VanillaSwap.xml", true, OH_NULL, true);
+        ohObjectSave(tradeObjects, "Swap.xml", true, OH_NULL, true);
 
         // Example of serializing to/from a buffer
 

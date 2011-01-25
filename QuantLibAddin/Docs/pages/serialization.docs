@@ -89,12 +89,12 @@ QuantLibXL\framework2\workbooks\SerializationDemo.xls
 \endverbatim
 \li Hit <tt>Ctrl-Alt-F9</tt>
 \li Confirm that a PV (on my machine, -39,396.95) is showing in cell
-    <tt>[SerializationDemo.xls]VanillaSwap!$F$21</tt>
+    <tt>[SerializationDemo.xls]Swap!$F$14</tt>
 \li Activate sheet Serialization and invoke menu item <tt>QuantLibXL | Serialization Demo | Export</tt>
 \li The following 2 files are produced:
 \verbatim
 QuantLibXL\framework2\xml\MarketData.xml
-QuantLibXL\framework2\xml\VanillaSwap.xml
+QuantLibXL\framework2\xml\Swap.xml
 \endverbatim
 
 \subsubsection serialization_win_excel_import 1.1.2 Import
@@ -117,11 +117,11 @@ QuantLibXL\framework2\workbooks\SerializationDemo.xls
 \li The following 2 files are loaded:
 \verbatim
 QuantLibXL\framework2\xml\MarketData.xml
-QuantLibXL\framework2\xml\VanillaSwap.xml
+QuantLibXL\framework2\xml\Swap.xml
 \endverbatim
 \li Hit <tt>Ctrl-Alt-F9</tt>
 \li Confirm that a PV (on my machine, -39,396.95) is showing in cell
-    <tt>[SerializationDemo.xls]VanillaSwap!$F$21</tt>
+    <tt>[SerializationDemo.xls]Swap!$F$14</tt>
 
 If switching back and forth between import and export during a single Excel
 session you can use the command <tt>QuantLibXL | ObjectHandler | Delete All
@@ -177,22 +177,22 @@ Permanent = false
 End example program.
 \endverbatim
 
-The program generates the XML export files <tt>VanillaSwap.xml</tt>
+The program generates the XML export files <tt>Swap.xml</tt>
 and <tt>MarketData.xml</tt> in the current directory.
 
 \subsubsection serialization_win_cpp_import 1.2.2 Import
 
 Open a DOS prompt in directory
 <tt>%QuantLibAddin\\Clients\\CppInstrumentIn</tt>.
-Invoke batch file <tt>price_VanillaSwap.bat</tt>.
+Invoke batch file <tt>price_Swap.bat</tt>.
 The program loads the following 2 files:
 \verbatim
 QuantLibAddin\Clients\CppInstrumentIn\MarketData\MarketData.xml
-QuantLibAddin\Clients\CppInstrumentIn\Models\VanillaSwap.xml
+QuantLibAddin\Clients\CppInstrumentIn\Models\Swap.xml
 \endverbatim
 The output from the program should appear as follows:
 \verbatim
-QuantLibAddin\Clients\CppInstrumentIn>InstrumentIn-vc90-mt.exe 40546 VanillaSwap VanillaSwap.xml MarketData.xml
+QuantLibAddin\Clients\CppInstrumentIn>InstrumentIn-vc90-mt.exe 40546 Swap Swap.xml MarketData.xml
 Begin example program.
 QuantLibAddin version = 1.1.0
 ObjectHandler version = 1.1.0
@@ -240,18 +240,18 @@ XML =
 End example program.
 \endverbatim
 
-The program generates the XML export files <tt>VanillaSwap.xml</tt>
+The program generates the XML export files <tt>Swap.xml</tt>
 and <tt>MarketData.xml</tt> in the current directory.
 
 \subsubsection serialization_linux_cpp_import 2.1.2 Import
 
 cd to directory
 <tt>%QuantLibAddin/Clients/CppInstrumentIn</tt>.
-Invoke shell script <tt>price_VanillaSwap.sh</tt>.
+Invoke shell script <tt>price_Swap.sh</tt>.
 The program loads the following 2 files:
 \verbatim
 QuantLibAddin/Clients/CppInstrumentIn/MarketData/MarketData.xml
-QuantLibAddin/Clients/CppInstrumentIn/Models/VanillaSwap.xml
+QuantLibAddin/Clients/CppInstrumentIn/Models/Swap.xml
 \endverbatim
 The output from the program should appear as follows:
 \verbatim
