@@ -114,12 +114,18 @@ class VanillaSwapPtr : public SwapPtr {
 
 %rename(DiscountingSwapEngine) DiscountingSwapEnginePtr;
 class DiscountingSwapEnginePtr : public boost::shared_ptr<PricingEngine> {
+    %feature("kwargs") DiscountingSwapEnginePtr;
   public:
     %extend {
         DiscountingSwapEnginePtr(
-                            const Handle<YieldTermStructure>& discountCurve) {
+                            const Handle<YieldTermStructure>& discountCurve,
+                            const Date& settlementDate = Date(),
+                            const Date& npvDate = Date()) {
             return new DiscountingSwapEnginePtr(
-                                    new DiscountingSwapEngine(discountCurve));
+                                    new DiscountingSwapEngine(discountCurve,
+                                                              boost::none,
+                                                              settlementDate,
+                                                              npvDate));
         }
     }
 };
