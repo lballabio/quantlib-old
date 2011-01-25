@@ -38,7 +38,7 @@ class FixedRateBondTest(unittest.TestCase):
                                            QuantLib.Following, self.redemption,
                                            self.issue_date)
 
-        self.flat_forward = QuantLib.FlatForward(self.issue_date+self.settlement_days*QuantLib.Days,
+        self.flat_forward = QuantLib.FlatForward(self.issue_date,
                                             self.coupons[0], self.day_counter,
                                             QuantLib.Compounded, QuantLib.Semiannual)
         self.term_structure_handle = QuantLib.RelinkableYieldTermStructureHandle(self.flat_forward)
@@ -101,45 +101,39 @@ class FixedRateBondTest(unittest.TestCase):
     def testCleanPrice(self):
         """ Testing FixedRateBond clean price. """
         self.assertEqual(round(self.bond.cleanPrice(0.05, self.day_counter, QuantLib.Compounded,
-                                                    QuantLib.Semiannual, self.issue_date +
-                                                    self.settlement_days*QuantLib.Days), 4),
+                                                    QuantLib.Semiannual, self.issue_date), 4),
                          100.0)
         self.assertEqual(round(self.bond.cleanPrice(0.05, self.day_counter, QuantLib.Compounded,
                                                     QuantLib.Semiannual, self.issue_date +
-                                                    self.settlement_days*QuantLib.Days +
-                                                    1*QuantLib.Months), 4),
-                         99.9997)
+                                                    QuantLib.Period(1, QuantLib.Months)), 4),
+                         99.9956)
 
         self.assertEqual(round(self.bond.cleanPrice(0.06, self.day_counter, QuantLib.Compounded,
                                                     QuantLib.Semiannual, self.issue_date +
-                                                    self.settlement_days*QuantLib.Days +
-                                                    1*QuantLib.Months), 4),
-                         92.5639)
+                                                    QuantLib.Period(1,QuantLib.Months)), 4),
+                         92.6026)
 
 
     def testDirtyPrice(self):
         """ Testing FixedRateBond dirty price. """
         self.assertEqual(round(self.bond.dirtyPrice(0.05, self.day_counter, QuantLib.Compounded,
-                                                    QuantLib.Semiannual, self.issue_date +
-                                                    self.settlement_days*QuantLib.Days), 4),
+                                                    QuantLib.Semiannual, self.issue_date), 4),
                          100.0)
         self.assertEqual(round(self.bond.dirtyPrice(0.05, self.day_counter, QuantLib.Compounded,
                                                     QuantLib.Semiannual, self.issue_date +
-                                                    self.settlement_days*QuantLib.Days +
-                                                    1*QuantLib.Months), 4),
-                         100.0271)
+                                                    QuantLib.Period(1,QuantLib.Months)), 4),
+                         100.4215)
         self.assertEqual(round(self.bond.dirtyPrice(0.06, self.day_counter, QuantLib.Compounded,
                                                     QuantLib.Semiannual, self.issue_date +
-                                                    self.settlement_days*QuantLib.Days +
-                                                    1*QuantLib.Months), 4),
-                         92.5913)
+                                                    QuantLib.Period(1,QuantLib.Months)), 4),
+                         93.0285)
 
     def testCleanPriceFromZSpread(self):
         """ Testing FixedRateBond clean price derived from Z-spread. """
         self.assertEqual(round(QuantLib.cleanPriceFromZSpread(
                     self.bond, self.flat_forward, 0.01,
                     self.day_counter, QuantLib.Compounded, QuantLib.Semiannual,
-                    self.issue_date + 1 * QuantLib.Months), 4), 92.5637)
+                    self.issue_date + QuantLib.Period(1,QuantLib.Months)), 4), 92.5926)
 
 if __name__ == '__main__':
     print 'testing QuantLib', QuantLib.__version__
