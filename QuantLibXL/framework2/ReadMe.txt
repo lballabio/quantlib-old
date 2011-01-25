@@ -14,13 +14,13 @@ Ideally the two projects should be merged at some point.
 Prerequisites
 =============
 
-This demo requires Excel 2003.
+This demo requires Excel 2003 or later.
 
 Starting the application
 ========================
 
 Start an empty Excel session and load QuantLibXL.xla.  Invoke menu item
-QuantLibXL -> Load -> Test, this should load the XLL and a test workbook.
+QuantLibXL -> Load -> Menu Demo, this should load the XLL and a test workbook.
 
 Creating a shortcut (link, icon)
 ================================
