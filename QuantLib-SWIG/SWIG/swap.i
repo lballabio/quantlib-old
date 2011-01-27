@@ -114,7 +114,9 @@ class VanillaSwapPtr : public SwapPtr {
 
 %rename(DiscountingSwapEngine) DiscountingSwapEnginePtr;
 class DiscountingSwapEnginePtr : public boost::shared_ptr<PricingEngine> {
+    #if defined(SWIGPYTHON)
     %feature("kwargs") DiscountingSwapEnginePtr;
+    #endif
   public:
     %extend {
         DiscountingSwapEnginePtr(
