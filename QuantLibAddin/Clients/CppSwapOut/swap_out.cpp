@@ -154,7 +154,6 @@ int main() {
             false, OH_NULL, false);
         tradeObjects.push_back(fixedRateLeg);
 
-        std::vector<double> emptyVector;
         std::vector<long> fixingDays;
 
         std::string iborLeg = qlIborLeg(
@@ -165,11 +164,11 @@ int main() {
             fixingDays,
             OH_NULL,
             "Actual/360",
-            emptyVector,
-            emptyVector,
+            std::vector<double>(),
+            std::vector<double>(),
             euribor,
-            emptyVector,
-            emptyVector,
+            std::vector<double>(),
+            std::vector<double>(),
             false, OH_NULL, false);
         tradeObjects.push_back(iborLeg);
 
