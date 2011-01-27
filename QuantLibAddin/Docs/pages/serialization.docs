@@ -156,7 +156,8 @@ XML =
                         <Value>1.23</Value>
                         <TickValue>0</TickValue>
                         <Permanent>0</Permanent>
-                        <UserProperties class_id="234" tracking_level="0" version="0">
+                        <UserProperties class_id="234" tracking_level="0"
+                            version="0">
                                 <count>0</count>
                                 <item_version>0</item_version>
                         </UserProperties>
@@ -192,7 +193,8 @@ QuantLibAddin\Clients\CppInstrumentIn\Models\Swap.xml
 \endverbatim
 The output from the program should appear as follows:
 \verbatim
-QuantLibAddin\Clients\CppInstrumentIn>InstrumentIn-vc90-mt.exe 40546 Swap Swap.xml MarketData.xml
+QuantLibAddin\Clients\CppInstrumentIn>InstrumentIn-vc90-mt.exe
+    40546 Swap Swap.xml MarketData.xml
 Begin example program.
 QuantLibAddin version = 1.1.0
 ObjectHandler version = 1.1.0
@@ -212,30 +214,40 @@ program <tt>swap_out</tt>.  The output from the program should appear as follows
 Begin example program.
 QuantLibAddin version = 1.1.0
 ObjectHandler version = 1.1.0
-SWAP PV = 36120.9
+SWAP PV = -39396.9
 Example of serializing to/from a buffer:
-XML = 
+XML =
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE boost_serialization>
-<boost_serialization signature="serialization::archive" version="4">
+<boost_serialization signature="serialization::archive" version="5">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-    <count>1</count>
-    <item_version>1</item_version>
-    <item class_id="0" tracking_level="0" version="1">
-        <px class_id="140" tracking_level="1" version="0" object_id="_1">
-            <ObjectId>quote1</ObjectId>
-            <ClassName>qlSimpleQuote</ClassName>
-            <Value>1.23</Value>
-            <TickValue>0</TickValue>
-            <Permanent>0</Permanent>
-            <UserProperties class_id="203" tracking_level="0" version="0">
-                <count>0</count>
-                <item_version>0</item_version>
-            </UserProperties>
-        </px>
-    </item>
+        <count>1</count>
+        <item_version>1</item_version>
+        <item class_id="0" tracking_level="0" version="1">
+                <px class_id="166" tracking_level="1" version="0" object_id="_1">
+                        <ObjectId>quote1</ObjectId>
+                        <ClassName>qlSimpleQuote</ClassName>
+                        <Value>1.23</Value>
+                        <TickValue>0</TickValue>
+                        <Permanent>0</Permanent>
+                        <UserProperties class_id="234" tracking_level="0"
+                            version="0">
+                                <count>0</count>
+                                <item_version>0</item_version>
+                        </UserProperties>
+                </px>
+        </item>
 </object_list>
 </boost_serialization>
+
+
+INFO - log dump of object with ID = quote1
+
+property = Permanent            value = 0
+property = TickValue            value = 0
+property = Value                value = 1.23
+Permanent = false
+
 
 End example program.
 \endverbatim
@@ -255,10 +267,12 @@ QuantLibAddin/Clients/CppInstrumentIn/Models/Swap.xml
 \endverbatim
 The output from the program should appear as follows:
 \verbatim
+QuantLibAddin\Clients\CppInstrumentIn>./instrument_in
+    40546 Swap Swap.xml MarketData.xml
 Begin example program.
 QuantLibAddin version = 1.1.0
 ObjectHandler version = 1.1.0
-Instrument PV = 52531.4
+Instrument PV = -39396.9
 End example program.
 \endverbatim
 
