@@ -1,82 +1,430 @@
-2010-02-11 10:43  Luigi Ballabio
+2011-01-25 12:23  Luigi Ballabio
 
-	* [r17094] Python/setup.py:
+	* [r17589] Python/test/bonds.py:
 	  
-	  Updated module metadata.
+	  Fixed date algebra.
 
-2010-02-10 09:09  Luigi Ballabio
+2010-12-17 12:31  Luigi Ballabio
 
-	* [r17086] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
-	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	* [r17558] CSharp/Makefile.am:
 	  
-	  Increased version number to 1.0.
+	  Added VC10 projects to distribution.
 
-2010-01-27 13:00  Luigi Ballabio
+2010-12-10 10:58  Luigi Ballabio
 
-	* [r17048] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
-	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	* [r17542]
 	  
-	  Increased version number to 1.0b3.
+	  Release branch for the 1.1.x series.
 
-2010-01-21 15:32  Luigi Ballabio
+2010-12-10 10:49  Luigi Ballabio
 
-	* [r17021] ChangeLog.txt, News.txt:
+	* [r17541] CSharp/QuantLib_vc10.sln,
+	  CSharp/cpp/QuantlibWrapper_vc10.vcxproj,
+	  CSharp/csharp/NQuantLib_vc10.csproj,
+	  CSharp/examples/BermudanSwaption_vc10.csproj,
+	  CSharp/examples/EquityOption_vc10.csproj, SWIG/inflation.i:
 	  
-	  Updated ChangeLog and News
+	  Fixed SVN properties
 
-2010-01-13 11:54  Luigi Ballabio
+2010-12-09 16:32  Luigi Ballabio
 
-	* [r16996] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
-	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	* [r17540] CSharp/csharp/NQuantLib_vc10.csproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj:
 	  
-	  Increased version number to 1.0b2.
+	  Updated C# projects
 
-2009-12-09 18:43  Ferdinando Ametrano
+2010-12-07 16:35  Klaus Spanderen
 
-	* [r16884] ., CSharp/QuantLib_vc7.sln,
+	* [r17539] Java/examples/EquityOptions.java, SWIG/options.i,
+	  SWIG/stochasticprocess.i:
+	  
+	  added Heston and Bates engines
+
+2010-12-03 16:39  Luigi Ballabio
+
+	* [r17537] CSharp/csharp/NQuantLib_vc10.csproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj:
+	  
+	  Updated C# projects
+
+2010-12-03 16:39  Luigi Ballabio
+
+	* [r17536] SWIG/ratehelpers.i:
+	  
+	  Exported minimal RateHelper interface.
+
+2010-12-03 16:38  Luigi Ballabio
+
+	* [r17535] SWIG/ratehelpers.i:
+	  
+	  Exported swap() method from swap-rate helper (thanks to Ahmad
+	  Mahomed.)
+
+2010-12-03 16:38  Luigi Ballabio
+
+	* [r17534] SWIG/ratehelpers.i:
+	  
+	  Added default arguments to constructor.
+
+2010-11-29 14:59  Luigi Ballabio
+
+	* [r17523] SWIG/inflation.i:
+	  
+	  Exported inflation indexes, piecewise curves, and swaps.
+
+2010-11-29 14:58  Luigi Ballabio
+
+	* [r17522] SWIG/indexes.i:
+	  
+	  Exported additional SwapIndex constructor taking a discount curve.
+
+2010-11-29 14:58  Luigi Ballabio
+
+	* [r17521] SWIG/date.i:
+	  
+	  Exported __eq__ operators for Period and Date.
+
+2010-11-29 14:58  Luigi Ballabio
+
+	* [r17520] SWIG/creditdefaultswap.i:
+	  
+	  Exported coupons method.
+
+2010-11-29 14:56  Luigi Ballabio
+
+	* [r17518] SWIG/shortratemodels.i:
+	  
+	  Added constructor taking a Handle to a model.
+
+2010-11-29 14:55  Luigi Ballabio
+
+	* [r17513] SWIG/calendars.i:
+	  
+	  Added Russian calendar.
+
+2010-11-23 15:01  Luigi Ballabio
+
+	* [r17511] CSharp/csharp/NQuantLib_vc10.csproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj,
+	  CSharp/examples/BermudanSwaption_vc10.csproj,
+	  CSharp/examples/EquityOption_vc10.csproj:
+	  
+	  Updated VC# projects.
+
+2010-11-22 15:10  Luigi Ballabio
+
+	* [r17502] Python/examples/bonds.py:
+	  
+	  Added bond example in Python (thanks to Lluis Pujol Bajador.)
+
+2010-11-22 15:10  Luigi Ballabio
+
+	* [r17501] SWIG/ratehelpers.i:
+	  
+	  Added missing arguments to SwapRateHelper constructor.
+
+2010-11-22 15:10  Luigi Ballabio
+
+	* [r17500] SWIG/cashflows.i:
+	  
+	  Exported IborCoupon pricers (thanks to Lluis Pujol Bajador.)
+
+2010-11-22 15:09  Luigi Ballabio
+
+	* [r17499] SWIG/cashflows.i:
+	  
+	  Moved Leg declaration closer to CashFlow.
+
+2010-11-22 15:09  Luigi Ballabio
+
+	* [r17498] SWIG/cashflows.i:
+	  
+	  Inherited IborCoupon from FloatingRateCoupon in wrappers.
+
+2010-11-22 12:01  Luigi Ballabio
+
+	* [r17497] CSharp/examples/EquityOption.cs, SWIG/options.i,
+	  SWIG/stochasticprocess.i:
+	  
+	  Exported variance-gamma vanilla engines (thanks to Adrian O'Neill.)
+
+2010-11-22 12:00  Luigi Ballabio
+
+	* [r17496] CSharp, CSharp/QuantLib_vc10.sln,
+	  CSharp/cpp/QuantlibWrapper_vc10.vcxproj,
+	  CSharp/cpp/QuantlibWrapper_vc10.vcxproj.filters,
+	  CSharp/csharp/NQuantLib_vc10.csproj, CSharp/examples,
+	  CSharp/examples/BermudanSwaption_vc10.csproj,
+	  CSharp/examples/EquityOption_vc10.csproj:
+	  
+	  Added VC10 projects for C# wrappers (thanks to Adrian O'Neill.)
+
+2010-11-17 10:21  Ferdinando Ametrano
+
+	* [r17480] ., CSharp/QuantLib_vc7.sln,
 	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
 	  CSharp/csharp/NQuantLib_vc7.csproj,
 	  CSharp/examples/BermudanSwaption_vc7.csproj:
 	  
-	  merged r116727 through r16882 of quantlib/branches/R000909-branch
-	  into quantlib/branches/R01000x-branch respecting ancestry
+	  merged branches/R01000x-branch into trunk, respecting ancestry
 
-2009-12-01 13:48  Luigi Ballabio
+2010-10-22 12:34  Ferdinando Ametrano
 
-	* [r16848] Perl/README.txt, Perl/examples/european-option.pl:
+	* [r17440] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
 	  
-	  Perl example now completes before crashing (thanks to Chuck Swiger.)
+	  merged branches/R01000x-branch into trunk, respecting ancestry
 
-2009-12-01 13:47  Luigi Ballabio
+2010-10-17 02:37  Joseph Wang
 
-	* [r16847] Guile/setup.scm, MzScheme/setup.scm:
+	* [r17426] R/README.txt:
 	  
-	  Fixed linked library name.
+	  Change contact information
 
-2009-12-01 13:46  Luigi Ballabio
+2010-10-06 10:43  Ferdinando Ametrano
 
-	* [r16846] configure.ac:
+	* [r17415] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
 	  
-	  Reverted compilation flags to system-wide defaults.
+	  merged branches/R01000x-branch into trunk, respecting ancestry
 
-2009-12-01 13:45  Luigi Ballabio
+2010-09-29 09:21  Ferdinando Ametrano
 
-	* [r16845] SWIG/ql.i, SWIG/quantlib.i:
+	* [r17408] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
 	  
-	  Consolidated management of language-specific defines.
+	  merged branches/R01000x-branch into trunk, respecting ancestry
 
-2009-11-24 16:31  Luigi Ballabio
+2010-09-17 15:22  Ferdinando Ametrano
 
-	* [r16795] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	* [r17394] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-09-17 12:56  Ferdinando Ametrano
+
+	* [r17393] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-09-16 14:28  Ferdinando Ametrano
+
+	* [r17387] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-09-16 13:54  Ferdinando Ametrano
+
+	* [r17384] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-06-07 12:56  Luigi Ballabio
+
+	* [r17308] SWIG/inflation.i:
+	  
+	  Interface improvements
+
+2010-05-27 13:05  Joseph Wang
+
+	* [r17304] SWIG/inflation.i, SWIG/ql.i:
+	  
+	  add inflation bindings
+
+2010-04-27 14:15  Ferdinando Ametrano
+
+	* [r17272] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-04-20 18:08  Ferdinando Ametrano
+
+	* [r17261] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-04-19 09:41  Ferdinando Ametrano
+
+	* [r17255] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-03-02 19:35  Ferdinando Ametrano
+
+	* [r17198] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-02-24 11:58  Ferdinando Ametrano
+
+	* [r17173] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, ChangeLog.txt:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-02-18 16:10  Ferdinando Ametrano
+
+	* [r17121] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, Python/setup.py:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-02-11 11:31  Luigi Ballabio
+
+	* [r17095] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
 	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
 	  
-	  Increased version number.
+	  Increased version number to 1.1.
 
-2009-11-24 14:36  Luigi Ballabio
+2010-02-10 14:03  Ferdinando Ametrano
 
-	* [r16793]
+	* [r17088] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, Guile/setup.scm,
+	  MzScheme/setup.scm, Perl/Makefile.PL, Python/setup.py,
+	  Ruby/setup.rb, SWIG/ql.i, configure.ac:
 	  
-	  Created branch for 1.0.x releases.
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-02-09 16:47  Ferdinando Ametrano
+
+	* [r17083] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-02-03 16:54  Ferdinando Ametrano
+
+	* [r17061] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-02-02 18:02  Luigi Ballabio
+
+	* [r17059] SWIG/ql.i, SWIG/tracing.i:
+	  
+	  Exposed functions to enable/disable tracing (thanks to Andrea
+	  Odetti.)
+
+2010-01-28 09:17  Ferdinando Ametrano
+
+	* [r17053] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, Guile/setup.scm,
+	  MzScheme/setup.scm, Perl/Makefile.PL, Python/setup.py,
+	  Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-01-26 14:08  Ferdinando Ametrano
+
+	* [r17043] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-01-25 11:44  Ferdinando Ametrano
+
+	* [r17034] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, ChangeLog.txt,
+	  News.txt:
+	  
+	  merged branches/R01000x-branch into trunk, respecting ancestry
+
+2010-01-13 18:13  Ferdinando Ametrano
+
+	* [r17007] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  merged up to r17006 of branches/R01000x-branch into trunk,
+	  respecting ancestry
+
+2010-01-13 17:43  Ferdinando Ametrano
+
+	* [r17001] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, Guile/setup.scm,
+	  MzScheme/setup.scm, Perl/Makefile.PL, Python/setup.py,
+	  Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  merged up to r16999 of branches/R01000x-branch into trunk,
+	  respecting ancestry
+
+2010-01-07 16:59  Ferdinando Ametrano
+
+	* [r16987] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj:
+	  
+	  
+
+2009-12-30 11:08  Ferdinando Ametrano
+
+	* [r16963] ., CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, Guile/setup.scm,
+	  MzScheme/setup.scm, Perl/Makefile.PL, Perl/README.txt,
+	  Perl/examples/european-option.pl, Python/setup.py, Ruby/setup.rb,
+	  SWIG/ql.i, SWIG/quantlib.i, configure.ac:
+	  
+	  merged changeset up to Rev16952 from branches/R01000x-branch to
+	  trunk
 
 2009-11-10 09:06  Ferdinando Ametrano
 
