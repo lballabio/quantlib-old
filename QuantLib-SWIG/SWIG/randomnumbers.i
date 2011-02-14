@@ -82,12 +82,14 @@ class LecuyerUniformRng {
 };
 
 class KnuthUniformRng {
+  public:
     KnuthUniformRng(BigInteger seed=0);
     Sample<Real> next() const;
 };
 
 class MersenneTwisterUniformRng {
-    MersenneTwisterUniformRng(BigInteger seed=0);
+  public:
+    MersenneTwisterUniformRng(BigInteger seed = 0);
     Sample<Real> next() const;
 };
 
