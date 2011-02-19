@@ -97,6 +97,13 @@ class UniformRandomGenerator {
   public:
     UniformRandomGenerator(BigInteger seed=0);
     Sample<Real> next() const;
+
+	%extend {
+		// improve performance for direct accessfaster version
+		Real nextValue() const {
+			return (*self).next().value;
+		}
+	}    
 };
 
 
@@ -149,6 +156,13 @@ class GaussianRandomGenerator {
   public:
     GaussianRandomGenerator(const UniformRandomGenerator& rng);
     Sample<Real> next() const;
+
+	%extend {
+		// improve performance for direct accessfaster version
+		Real nextValue() const {
+			return (*self).next().value;
+		}
+	}    
 };
 
 /************* Uniform sequence generators *************/

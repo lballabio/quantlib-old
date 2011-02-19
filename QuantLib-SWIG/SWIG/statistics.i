@@ -26,6 +26,7 @@
 
 %{
 using QuantLib::Statistics;
+using QuantLib::IncrementalStatistics;
 using QuantLib::RiskStatistics;
 using QuantLib::GenericSequenceStatistics;
 %}
@@ -63,6 +64,42 @@ class Statistics {
         }
     }
 };
+
+
+class IncrementalStatistics {
+    #if defined(SWIGRUBY)
+    %rename("reset!")                reset;
+    #elif defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("weight-sum")            weightSum;
+    %rename("standard-deviation")    standardDeviation;
+    %rename("error-estimate")        errorEstimate;
+    %rename("reset!")                reset;
+    #endif
+  public:
+    Size samples() const;
+    Real weightSum() const;
+    Real mean() const;
+    Real variance() const;
+    Real standardDeviation() const;
+    Real errorEstimate() const;
+    Real skewness() const;
+    Real kurtosis() const;
+    Real min() const;
+    Real max() const;
+    // Modifiers
+    void reset();
+    void add(Real value, Real weight = 1.0);
+    %extend {
+        void add(const std::vector<Real>& values) {
+            self->addSequence(values.begin(), values.end());
+        }
+        void add(const std::vector<Real>& values, 
+                 const std::vector<Real>& weights) {
+            self->addSequence(values.begin(), values.end(), weights.begin());
+        }
+    }
+};
+
 
 class RiskStatistics : public Statistics {
     #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
@@ -121,6 +158,9 @@ class GenericSequenceStatistics {
 
 %template(MultipleStatistics) GenericSequenceStatistics<Statistics>;
 %template(SequenceStatistics) GenericSequenceStatistics<RiskStatistics>;
+
+%template(MultipleIncrementalStatistics)
+						GenericSequenceStatistics<IncrementalStatistics>;
 
 
 #endif
