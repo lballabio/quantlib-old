@@ -44,6 +44,19 @@ Contributions are welcome.</li>
 Ballabio, L.</li>
 </ul>
 
+<h2 class="center">Slides</h2>
+<ul>
+<li>Dimitri Reiswich contributed the slides he used during a course he
+taught:<br>
+<strong>Boost introduction</strong>
+[<a href="slides/dima-boost-intro.pdf">PDF</a>]<br>
+<strong>QuantLib introduction, part I</strong>
+[<a href="slides/dima-ql-intro-1.pdf">PDF</a>]<br>
+<strong>QuantLib introduction, part II</strong>
+[<a href="slides/dima-ql-intro-2.pdf">PDF</a>]<br>
+</li>
+</ul>
+
 <h2 class="center">Papers</h2>
 <ul>
 <li><strong>Option Engine: A Grid-Enabled Software Package to Evaluate
