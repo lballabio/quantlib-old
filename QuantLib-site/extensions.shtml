@@ -57,7 +57,11 @@ is written in F#. They are looking for developers.
 
 <p>Niels Elken S&oslash;nderby has a page for the tentative
 Mathematica project <a href=
-"http://www.nielses.dk/quantlib/mma/">QuantLibMma</a>.</p>
+"http://www.nielses.dk/quantlib/mma/">QuantLibMma</a>.  Another
+unrelated Mathematica extension wrapping QuantLib functionality can be
+found at the <a href=
+"http://www.weber-und-partner.com/QuantLib/mma/">Weber und Partner</a>
+site.</p>
 
 <p>A few QuantLib functions have been ported to the Symphony
 grid-computing platform. Details are
