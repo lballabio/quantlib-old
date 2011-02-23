@@ -54,9 +54,7 @@ quantlib-announce if appropriate.<br>
 Archives</a>, <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-announce">Subscribe/Unsubscribe/Preferences</a>)<br>
 Also available
-at <a href="http://www.nabble.com/quantlib-announce-f18377.html">Nabble.com</a>
-and as an <a href="http://mailbucket.org/quantlib-announce.xml">RSS
-feed</a> at <a href="http://mailbucket.org">Mailbucket.org</a>.</li>
+at <a href="http://www.nabble.com/quantlib-announce-f18377.html">Nabble.com</a>.</li>
 <li><strong>QuantLib-jobs</strong>:<br> Jobs list for supply and
 demand of quantitative finance jobs. You can post here: 1) job offers,
 2) links to job offers, 3) your resume.<br> Plain text, HTML, and PDF
@@ -66,10 +64,7 @@ later browsing: please state how long your message is valid.<br> (go
 to <a href=
 "http://sourceforge.net/mailarchive/forum.php?forum_name=quantlib-jobs">Archives</a>,
 <a href=
-"http://lists.sourceforge.net/mailman/listinfo/quantlib-jobs">Subscribe/Unsubscribe/Preferences</a>)<br>
-Also available at Mailbucket.org as
-an <a href="http://mailbucket.org/quantlib-jobs.xml">RSS
-feed</a>.</li>
+"http://lists.sourceforge.net/mailman/listinfo/quantlib-jobs">Subscribe/Unsubscribe/Preferences</a>).</li>
 <li><strong>QuantLib-cvs</strong>:<br> High-traffic list for automated
 QuantLib <a href= "svn.shtml">Subversion</a> check-in messages. Every
 time a change is submitted to the QuantLib code repository, an email
@@ -82,9 +77,7 @@ the <a href="http://cia.navi.cx/stats/project/quantlib">QuantLib
 page</a> at
 <a href="http://cia.navi.cx">cia.navi.cx</a>. The feed carries the
 commit messages only; no difference between revisions is
-provided. <a href="http://mailbucket.org/quantlib-cvs.xml">Another
-feed</a> carrying the full differences is available from
-Mailbucket.org.</li>
+provided.</li>
 </ol>
 
 </div>
