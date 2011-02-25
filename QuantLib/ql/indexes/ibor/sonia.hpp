@@ -1,10 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
- Copyright (C) 2006 Katiuscia Manzoni
- Copyright (C) 2005 Eric Ehlers
- Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2011 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,27 +17,22 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_libor_hpp
-#define qla_libor_hpp
+/*! \file eonia.hpp
+    \brief %Eonia index
+*/
 
-#include <qlo/indexes/iborindex.hpp>
+#ifndef quantlib_sonia_hpp
+#define quantlib_sonia_hpp
 
-namespace QuantLibAddin {
+#include <ql/indexes/iborindex.hpp>
 
-    class Libor : public IborIndex {
-      public:
-        Libor(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-              const QuantLib::Currency& currency,
-              const std::string& p,
-              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-              bool permanent);
-    };
+namespace QuantLib {
 
+    //! %Sonia (Sterling Overnight Index Average) rate.
     class Sonia : public OvernightIndex {
       public:
-        Sonia(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
-              bool permanent);
+        Sonia(const Handle<YieldTermStructure>& h =
+                                    Handle<YieldTermStructure>());
     };
 
 }

@@ -78,8 +78,7 @@ namespace QuantLibAddin {
                  bool permanent)
     : OvernightIndex(properties, permanent)
     {
-        libraryObject_ = boost::shared_ptr<QuantLib::Eonia>(new
-            QuantLib::Eonia(h));
+        libraryObject_ = shared_ptr<QuantLib::Eonia>(new QuantLib::Eonia(h));
     }
 
 }
