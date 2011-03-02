@@ -89,6 +89,16 @@
       <includeFile>oh/enumerations/typefactory.hpp</includeFile>
       <constructor>true</constructor>
       <EnumeratedTypes>
+
+        <EnumeratedType>
+          <string>Frequency</string>
+          <value>QuantLib::NoFrequency</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>NoFrequency</string>
+          <value>QuantLib::NoFrequency</value>
+        </EnumeratedType>
+
         <EnumeratedType>
           <string>Annual</string>
           <value>QuantLib::Annual</value>
@@ -137,10 +147,6 @@
           <string>OtherFrequency</string>
           <value>QuantLib::OtherFrequency</value>
         </EnumeratedType>
-        <EnumeratedType>
-          <string>NoFrequency</string>
-          <value>QuantLib::NoFrequency</value>
-        </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
@@ -148,6 +154,26 @@
       <includeFile>qlo/enumerations/factories/calendarfactory.hpp</includeFile>
       <constructor>false</constructor>
       <EnumeratedTypes>
+        
+        <EnumeratedType>
+          <string>Calendar</string>
+          <value>QuantLib::Calendar()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>NoCalendar</string>
+          <value>QuantLib::Calendar()</value>
+        </EnumeratedType>
+
+        <!--too bad NullCalendar is actually a calendar-->
+        <EnumeratedType>
+          <string>Null</string>
+          <value>QuantLib::NullCalendar()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>NullCalendar</string>
+          <value>QuantLib::NullCalendar()</value>
+        </EnumeratedType>
+
         <EnumeratedType>
           <string>TARGET</string>
           <value>QuantLib::TARGET()</value>
@@ -257,14 +283,6 @@
           <value>QuantLib::Norway()</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>Null</string>
-          <value>QuantLib::NullCalendar()</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <string>NullCalendar</string>
-          <value>QuantLib::NullCalendar()</value>
-        </EnumeratedType>
-        <EnumeratedType>
           <string>Poland</string>
           <value>QuantLib::Poland()</value>
         </EnumeratedType>
@@ -363,6 +381,15 @@
       <includeFile>oh/enumerations/typefactory.hpp</includeFile>
       <constructor>false</constructor>
       <EnumeratedTypes>
+
+        <EnumeratedType>
+          <string>DayCounter</string>
+          <value>QuantLib::DayCounter()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>NoDayCounter</string>
+          <value>QuantLib::DayCounter()</value>
+        </EnumeratedType>
 
         <!-- ISDA 2000 Definition Annex Article 4 Section 4.16 (b) -->
         <EnumeratedType>
@@ -798,14 +825,16 @@
       <includeFile>oh/enumerations/typefactory.hpp</includeFile>
       <constructor>false</constructor>
       <EnumeratedTypes>
+
         <EnumeratedType>
-          <string>Null</string>
+          <string>Currency</string>
           <value>QuantLib::Currency()</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>NullCurrency</string>
+          <string>NoCurrency</string>
           <value>QuantLib::Currency()</value>
         </EnumeratedType>
+
         <EnumeratedType>
           <string>EUR</string>
           <value>QuantLib::EURCurrency()</value>
