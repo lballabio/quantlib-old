@@ -639,7 +639,7 @@
             <tensorRank>scalar</tensorRank>
             <description>IborIndex object ID.</description>
           </Parameter>
-          <Parameter name='ConvexityAdjQuote' default='0.0'>
+          <Parameter name='ConvexityAdjQuote' exampleValue='0.0'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
