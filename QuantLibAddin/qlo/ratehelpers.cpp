@@ -110,6 +110,23 @@ namespace QuantLibAddin {
                                         convAdj));
     }
 
+    FuturesRateHelper::FuturesRateHelper(
+            const shared_ptr<ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::Quote>& price,
+            const QuantLib::Date& immDate,
+            const QuantLib::Date& endDate,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& convAdj,
+            bool permanent)
+    : RateHelper(properties, permanent) {
+        libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
+            QuantLib::FuturesRateHelper(price,
+                                        immDate,
+                                        endDate,
+                                        dayCounter,
+                                        convAdj));
+    }
+
     SwapRateHelper::SwapRateHelper(
             const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,

@@ -634,12 +634,12 @@
             <tensorRank>scalar</tensorRank>
             <description>IMM date (or code).</description>
           </Parameter>
-          <Parameter name='IborIndex' exampleValue='Euribor3M'>
+          <Parameter name='IborIndex' default='"Euribor3M"'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
             <description>IborIndex object ID.</description>
           </Parameter>
-          <Parameter name='ConvexityAdjQuote' exampleValue='0.0'>
+          <Parameter name='ConvexityAdjQuote' default='0.0'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -670,7 +670,7 @@
             <tensorRank>scalar</tensorRank>
             <description>IMM date (or code).</description>
           </Parameter>
-          <Parameter name='LengthInMonths' exampleValue='3'>
+          <Parameter name='LengthInMonths' default='3'>
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>future contract length in months.</description>
@@ -680,17 +680,58 @@
             <tensorRank>scalar</tensorRank>
             <description>holiday calendar (e.g. TARGET).</description>
           </Parameter>
-          <Parameter name='Convention' exampleValue='Modified Following'>
+          <Parameter name='Convention' default='"Modified Following"'>
             <type>QuantLib::BusinessDayConvention</type>
             <tensorRank>scalar</tensorRank>
             <description>business day convention (e.g. Modified Following).</description>
           </Parameter>
-          <Parameter name='EndOfMonth' exampleValue='true'>
+          <Parameter name='EndOfMonth' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>End of Month rule (TRUE for end of month to end of month termination date, FALSE otherwise).</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='Actual/360'>
+          <Parameter name='DayCounter' default='"Actual/360"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='ConvexityAdjQuote' exampleValue='0.0'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>convexity adjustment quote (i.e. Forward rate = Futures rate - convexity adjustment).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlFuturesRateHelper3'>
+      <libraryFunction>FuturesRateHelper</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Price' exampleValue='95.9285'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>price quote.</description>
+          </Parameter>
+          <Parameter name='IMM' exampleValue='H2'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>IMM date (or code).</description>
+          </Parameter>
+          <Parameter name='EndDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end date.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/360"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID.</description>

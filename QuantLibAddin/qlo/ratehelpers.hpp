@@ -104,6 +104,14 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& convAdj,
             bool permanent);
+        FuturesRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::Quote>& price,
+            const QuantLib::Date& immDate,
+            const QuantLib::Date& endDate,
+            const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Handle<QuantLib::Quote>& convAdj,
+            bool permanent);
     };
 
     class SwapRateHelper : public RateHelper {
