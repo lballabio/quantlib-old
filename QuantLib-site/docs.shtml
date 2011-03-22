@@ -47,13 +47,15 @@ Ballabio, L.</li>
 <h2 class="center">Slides</h2>
 <ul>
 <li>Dimitri Reiswich contributed the slides he used during a course he
-taught:<br>
+taught, along with the corresponding code:<br>
 <strong>Boost introduction</strong>
 [<a href="slides/dima-boost-intro.pdf">PDF</a>]<br>
 <strong>QuantLib introduction, part I</strong>
 [<a href="slides/dima-ql-intro-1.pdf">PDF</a>]<br>
 <strong>QuantLib introduction, part II</strong>
 [<a href="slides/dima-ql-intro-2.pdf">PDF</a>]<br>
+<strong>code samples</strong>
+[<a href="slides/dima-code.zip">ZIP</a>]<br>
 </li>
 </ul>
 
