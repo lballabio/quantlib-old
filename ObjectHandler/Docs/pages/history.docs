@@ -23,7 +23,7 @@
 
 /*! \page history Version History
 
-<strong>Release 1.1.0 - ??? 2010</strong>
+<strong>Release 1.1.0 - ??? 2011</strong>
 
 REQUIRED PACKAGES
 
@@ -37,6 +37,9 @@ FUNCTIONALITY
 
 - Support for serialization of Groups of objects (thanks to Plamen Neykov)
 - Support for serialization to/from a stream (thanks to Plamen Neykov)
+- New function ohPack2() which removes all error rows from anywhere in
+  input range, in contrast to existing function ohPack() which trims
+  error rows/columns from bottom/right of input range.
 
 REQUIRED PACKAGES
 

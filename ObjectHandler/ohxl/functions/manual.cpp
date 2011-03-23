@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /* 
- Copyright (C) 2006, 2007 Eric Ehlers
+ Copyright (C) 2006, 2007, 2011 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -164,6 +164,80 @@ XLL_DEC OPER *ohPack(OPER *xInputRange) {
         }
 
         return &xRet;
+    } catch (const std::exception &e) {
+
+        // free any memory that may have been allocated
+
+        if (xRet.xltype & xltypeMulti && xRet.val.array.lparray) {
+            for (int i=0; i<xRet.val.array.columns * xRet.val.array.rows; ++i) {
+                if (xRet.val.array.lparray[i].xltype & xltypeStr && xRet.val.array.lparray[i].val.str)
+                    delete [] xRet.val.array.lparray[i].val.str;
+            }
+            delete [] xRet.val.array.lparray;
+        }
+
+        // log the exception and return a null pointer (#NUM!) to Excel
+
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
+        return 0;
+    }
+}
+
+bool rowIsValid(const OPER &xMulti, int i) {
+    for (int j=0; j<xMulti.val.array.columns; ++j) {
+        int index = i * xMulti.val.array.columns + j;
+        if (xMulti.val.array.lparray[index].xltype & (xltypeErr | xltypeNil))
+            return false;
+    }
+    return true;
+}
+
+int countValidRows2(const OPER &xMulti) {
+    int ret = 0;
+    for (int i=0; i<xMulti.val.array.rows; ++i)
+        ret += rowIsValid(xMulti, i);
+    return ret;
+}
+
+XLL_DEC OPER *ohPack2(OPER *xInputRange) {
+
+    // initialize Function Call object
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+
+    ObjectHandler::Xloper xMulti;
+    static OPER xRet;
+    xRet.val.array.lparray = 0;
+
+    try {
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("ohPack2"));
+
+        Excel(xlCoerce, &xMulti, 2, xInputRange, TempInt(xltypeMulti));
+
+        int numValidRows = countValidRows2(xMulti());
+        if (!numValidRows) return 0;
+        int numCols = xMulti->val.array.columns;
+
+        xRet.val.array.rows = numValidRows;
+        xRet.val.array.columns = numCols;
+        xRet.val.array.lparray = new OPER[numValidRows * numCols]; 
+        xRet.xltype = xltypeMulti | xlbitDLLFree;
+
+        int i2 = 0;
+        for (int i=0; i<xMulti->val.array.rows; ++i) {
+            if (rowIsValid(xMulti(), i)) {
+                for (int j=0; j<numCols; ++j) {
+                    int indexSource = i * numCols + j;
+                    int indexTarget = i2 * numCols + j;
+                    operToOper(&xRet.val.array.lparray[indexTarget], 
+                        &xMulti->val.array.lparray[indexSource]);
+                }
+                i2++;
+            }
+        }
+
+        return &xRet;
+
     } catch (const std::exception &e) {
 
         // free any memory that may have been allocated
