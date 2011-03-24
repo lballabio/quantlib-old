@@ -136,8 +136,28 @@
       </ReturnValue>
     </Procedure>
 
-    <Procedure name='ohPack2'>
+    <Procedure name='ohRemoveInvalidRows'>
       <description>trim error/null/empty rows from matrix/vector.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='InputRange'>
+            <type>any</type>
+            <tensorRank>matrix</tensorRank>
+            <description>scalar/vector/matrix of values to be packed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRemoveInvalidColumns'>
+      <description>trim error/null/empty columns from matrix/vector.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>

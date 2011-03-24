@@ -25,6 +25,11 @@
 
 <strong>Release 1.1.0 - ??? 2011</strong>
 
+FUNCTIONALITY
+
+- New functions ohRemoveInvalidRows() and ohRemoveInvalidColumns()
+  which process an input range as indicated.
+
 REQUIRED PACKAGES
 
 - Boost version 1.34.1 or later
@@ -37,9 +42,6 @@ FUNCTIONALITY
 
 - Support for serialization of Groups of objects (thanks to Plamen Neykov)
 - Support for serialization to/from a stream (thanks to Plamen Neykov)
-- New function ohPack2() which removes all error rows from anywhere in
-  input range, in contrast to existing function ohPack() which trims
-  error rows/columns from bottom/right of input range.
 
 REQUIRED PACKAGES
 

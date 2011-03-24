@@ -199,7 +199,7 @@ int countValidRows2(const OPER &xMulti) {
     return ret;
 }
 
-XLL_DEC OPER *ohPack2(OPER *xInputRange) {
+XLL_DEC OPER *ohRemoveInvalidRows(OPER *xInputRange) {
 
     // initialize Function Call object
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
@@ -210,7 +210,7 @@ XLL_DEC OPER *ohPack2(OPER *xInputRange) {
 
     try {
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
-            (new ObjectHandler::FunctionCall("ohPack2"));
+            (new ObjectHandler::FunctionCall("ohRemoveInvalidRows"));
 
         Excel(xlCoerce, &xMulti, 2, xInputRange, TempInt(xltypeMulti));
 
@@ -233,6 +233,80 @@ XLL_DEC OPER *ohPack2(OPER *xInputRange) {
                         &xMulti->val.array.lparray[indexSource]);
                 }
                 i2++;
+            }
+        }
+
+        return &xRet;
+
+    } catch (const std::exception &e) {
+
+        // free any memory that may have been allocated
+
+        if (xRet.xltype & xltypeMulti && xRet.val.array.lparray) {
+            for (int i=0; i<xRet.val.array.columns * xRet.val.array.rows; ++i) {
+                if (xRet.val.array.lparray[i].xltype & xltypeStr && xRet.val.array.lparray[i].val.str)
+                    delete [] xRet.val.array.lparray[i].val.str;
+            }
+            delete [] xRet.val.array.lparray;
+        }
+
+        // log the exception and return a null pointer (#NUM!) to Excel
+
+        ObjectHandler::RepositoryXL::instance().logError(e.what(), functionCall);
+        return 0;
+    }
+}
+
+bool columnIsValid(const OPER &xMulti, int j) {
+    for (int i=0; i<xMulti.val.array.rows; ++i) {
+        int index = i * xMulti.val.array.columns + j;
+        if (xMulti.val.array.lparray[index].xltype & (xltypeErr | xltypeNil))
+            return false;
+    }
+    return true;
+}
+
+int countValidColumns(const OPER &xMulti) {
+    int ret = 0;
+    for (int j=0; j<xMulti.val.array.columns; ++j)
+        ret += columnIsValid(xMulti, j);
+    return ret;
+}
+
+XLL_DEC OPER *ohRemoveInvalidColumns(OPER *xInputRange) {
+
+    // initialize Function Call object
+    boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
+
+    ObjectHandler::Xloper xMulti;
+    static OPER xRet;
+    xRet.val.array.lparray = 0;
+
+    try {
+        functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
+            (new ObjectHandler::FunctionCall("ohRemoveInvalidColumns"));
+
+        Excel(xlCoerce, &xMulti, 2, xInputRange, TempInt(xltypeMulti));
+
+        int numValidCols = countValidColumns(xMulti());
+        if (!numValidCols) return 0;
+        int numRows = xMulti->val.array.rows;
+
+        xRet.val.array.rows = numRows;
+        xRet.val.array.columns = numValidCols;
+        xRet.val.array.lparray = new OPER[numRows * numValidCols]; 
+        xRet.xltype = xltypeMulti | xlbitDLLFree;
+
+        for (int i=0; i<xMulti->val.array.rows; ++i) {
+			int j2 = 0;
+            for (int j=0; j<xMulti->val.array.columns; ++j) {
+				if (columnIsValid(xMulti(), j)) {
+					int indexSource = i * xMulti->val.array.columns + j;
+					int indexTarget = i * numValidCols + j2;
+					operToOper(&xRet.val.array.lparray[indexTarget], 
+						&xMulti->val.array.lparray[indexSource]);
+					j2++;
+				}
             }
         }
 
