@@ -48,11 +48,13 @@ for developers.</p>
 at a 100% Java port. At this time, it provides about 65% of QuantLib
 0.9.7.</p>
 
-<p>Two other project aim at ports in a functional language.
+<p>Other projects aim at ports in a functional language.
 <a href="http://sourceforge.net/projects/quanthas/">QuantHas</a>
 targets the Haskell
 language; <a href="http://sourceforge.net/projects/quantifa/">Quantifa</a>
-is written in F#. They are looking for developers.
+is written in F#. They are looking for
+developers. <a href="http://code.google.com/p/hquantlib/">HQuantLib</a>
+is another Haskell port.
 </p>
 
 <p>Niels Elken S&oslash;nderby has a page for the tentative
