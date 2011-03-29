@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{07765942-2F0A-437C-A9DD-23BF88630B8F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>launcher.My.MyApplication</StartupObject>
+    <RootNamespace>launcher</RootNamespace>
+    <AssemblyName>QuantLibXL_Launcher_2008</AssemblyName>
+    <MyType>WindowsForms</MyType>
+    <ManifestCertificateThumbprint>570D64021768E7BBCF8756B04BC54F6AFE43007C</ManifestCertificateThumbprint>
+    <ManifestKeyFile>launcher_vc9_1_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>images\favicon.ico</ApplicationIcon>
+    <TargetZone>LocalIntranet</TargetZone>
+    <SignAssembly>false</SignAssembly>
+    <PublishUrl>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Launcher\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <SupportUrl>http://quantlibxl.org</SupportUrl>
+    <ProductName>QuantLibXL Launcher 2008</ProductName>
+    <PublisherName>QuantLib Developer Team</PublisherName>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationVersion>11.3.23.2</ApplicationVersion>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>QuantLibXL Launcher 2008.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>QuantLibXL Launcher 2008.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Environments\Addin.vb" />
+    <Compile Include="Environments\AddinList.vb" />
+    <Compile Include="Environments\Configuration.vb" />
+    <Compile Include="Environments\Environment.vb" />
+    <Compile Include="Environments\EnvironmentList.vb" />
+    <Compile Include="Environments\StartupActions.vb" />
+    <Compile Include="Environments\StartupActionsList.vb" />
+    <Compile Include="Environments\Variable.vb" />
+    <Compile Include="Environments\VariableList.vb" />
+    <Compile Include="Interface\FormMainAddins.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interface\FormMainEnvironments.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interface\FormMainFeeds.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interface\FormMainPaths.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interface\FormMainVariables.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interface\FormMain.Designer.vb">
+      <DependentUpon>FormMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\FormMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interface\FormVariableEdit.Designer.vb">
+      <DependentUpon>FormVariableEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\FormVariableEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Serialization\Factory.vb" />
+    <Compile Include="Serialization\ISerializable.vb" />
+    <Compile Include="Serialization\ISerializer.vb" />
+    <Compile Include="Serialization\RegistryReader.vb" />
+    <Compile Include="Serialization\RegistrySerializer.vb" />
+    <Compile Include="Serialization\RegistryWriter.vb" />
+    <Compile Include="Serialization\XmlWriter.vb" />
+    <Compile Include="Users\Domain.vb" />
+    <Compile Include="Users\DomainList.vb" />
+    <Compile Include="Users\User.vb" />
+    <Compile Include="Users\UserList.vb" />
+    <Compile Include="Utilities\RegistryEditor.vb" />
+    <Compile Include="Utilities\Upgrade.vb" />
+    <Compile Include="Utilities\Utilities.vb" />
+    <Compile Include="Serialization\XmlReader.vb" />
+    <Compile Include="Utilities\Volume.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Interface\FormMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interface\FormVariableEdit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormVariableEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\down.bmp" />
+    <None Include="images\excel.ico" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\up.bmp" />
+    <Content Include="site\config.template.xml" />
+    <Content Include="site\data\config.xml" />
+    <Content Include="site\README.TXT" />
+    <Content Include="site\users.template.xml" />
+    <None Include="images\rename.bmp" />
+    <None Include="images\clear.bmp" />
+    <None Include="images\create.bmp" />
+    <None Include="images\save.bmp" />
+    <None Include="images\load.bmp" />
+    <None Include="images\launch.bmp" />
+    <None Include="images\delete.bmp" />
+    <None Include="images\copy.bmp" />
+    <None Include="launcher_vc9_1_TemporaryKey.pfx" />
+    <BaseApplicationManifest Include="My Project\app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="QuantLibXL_Launcher_2008.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="site\config.template.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="site\README.TXT">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="site\users.template.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
