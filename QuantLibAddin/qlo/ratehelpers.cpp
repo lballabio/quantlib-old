@@ -366,22 +366,28 @@ namespace QuantLibAddin {
         QuantLib::Date evalDate = QuantLib::Settings::instance().evaluationDate();
         std::vector<RateHelperItem> rhs, rhsDepo;
 
-        // FIXME: the number 2 must not be hard coded, but asked to the index
-        long actualFrontFuturesRollingDays = 2+frontFuturesRollingDays;
-
         // Look for the front Futures, if any
-        QuantLib::Date frontFuturesEarliestDate, frontFuturesLatestDate;
         bool thereAreFutures = false;
-        QuantLib::Size j=0;
-        while (j<nInstruments) {
-            if ((rhsAll[j].isImmFutures || rhsAll[j].isSerialFutures) &&
-                    (rhsAll[j].earliestDate-actualFrontFuturesRollingDays >= evalDate)) {
-                thereAreFutures = true;
-                frontFuturesEarliestDate = rhsAll[j].earliestDate;
-                frontFuturesLatestDate = rhsAll[j].latestDate;
-                break;
+        QuantLib::Date frontFuturesEarliestDate, frontFuturesLatestDate;
+        if (nImmFutures>0 || nSerialFutures>0) {
+            QuantLib::Size j=0;
+            while (j<nInstruments) {
+                if (nImmFutures>0 && rhsAll[j].isImmFutures &&
+                        (rhsAll[j].earliestDate-frontFuturesRollingDays >= evalDate)) {
+                    thereAreFutures = true;
+                    frontFuturesEarliestDate = rhsAll[j].earliestDate;
+                    frontFuturesLatestDate = rhsAll[j].latestDate;
+                    break;
+                }
+                if (nSerialFutures>0 && rhsAll[j].isSerialFutures &&
+                        (rhsAll[j].earliestDate-frontFuturesRollingDays >= evalDate)) {
+                    thereAreFutures = true;
+                    frontFuturesEarliestDate = rhsAll[j].earliestDate;
+                    frontFuturesLatestDate = rhsAll[j].latestDate;
+                    break;
+                }
+                ++j;
             }
-            ++j;
         }
 
         // If there are NOT Futures, include all Depos
@@ -427,13 +433,13 @@ namespace QuantLibAddin {
                     }
                 } else if (rhsAll[i].isSerialFutures) {       // Check Serial Futures conditions
                     if (serialFuturesCounter<nSerialFutures &&
-                           (rhsAll[i].earliestDate-actualFrontFuturesRollingDays >= evalDate)) {
+                           (rhsAll[i].earliestDate-frontFuturesRollingDays >= evalDate)) {
                         ++serialFuturesCounter;
                         rhs.push_back(rhsAll[i]);
                     }
                 } else if (rhsAll[i].isImmFutures) {       // Check IMM Futures conditions
                     if (immFuturesCounter<nImmFutures &&
-                           (rhsAll[i].earliestDate-actualFrontFuturesRollingDays >= evalDate)) {
+                           (rhsAll[i].earliestDate-frontFuturesRollingDays >= evalDate)) {
                         ++immFuturesCounter;
                         rhs.push_back(rhsAll[i]);
                     }
@@ -451,9 +457,10 @@ namespace QuantLibAddin {
 
             // remove RateHelpers with near latestDate
             k = rhs.begin();
+            QuantLib::Natural distance, minDistance;
             while (k != rhs.end()-1) {
-                QuantLib::Natural distance = static_cast<QuantLib::Natural>((k+1)->latestDate - k->latestDate);
-                QuantLib::Natural minDistance = std::max(k->minDist, (k+1)->minDist);
+                distance = static_cast<QuantLib::Natural>((k+1)->latestDate - k->latestDate);
+                minDistance = std::max(k->minDist, (k+1)->minDist);
                 if ( distance < minDistance) {
                     if (k->priority <= (k+1)->priority)
                         k = rhs.erase(k);
