@@ -13,5 +13,7 @@ libExampleObjects_la_LIBADD = \
 
 EXTRA_DIST = \
     ExampleObjects_vc7.vcproj \
-	ExampleObjects_vc8.vcproj
+    ExampleObjects_vc8.vcproj \
+    ExampleObjects_vc9.vcproj \
+    ExampleObjects_vc10.vcxproj
 

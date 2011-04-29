@@ -104,8 +104,10 @@ GENSRC_INPUTS = $(GENSRC_METADATA) $(GENSRC_STUBS) $(GENSRC_CODE) $(GENSRC_CONF)
 # This should prevent running from a distributed tarball
 
 EXTRA_DIST = .time-stamp \
-             qlgensrc_vc8.vcproj \
              qlgensrc_vc7.vcproj \
+             qlgensrc_vc8.vcproj \
+             qlgensrc_vc9.vcproj \
+             qlgensrc_vc10.vcxproj \
              Makefile.vc \
              $(GENSRC_INPUTS)
 

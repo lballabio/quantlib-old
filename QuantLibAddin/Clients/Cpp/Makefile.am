@@ -6,7 +6,8 @@ QLADemo_LDFLAGS = -lObjectHandler -lQuantLib -lboost_filesystem -lboost_serializ
 EXTRA_DIST = \
     ClientCppDemo_vc7.vcproj \
     ClientCppDemo_vc8.vcproj \
-    ClientCppDemo_vc9.vcproj
+    ClientCppDemo_vc9.vcproj \
+    ClientCppDemo_vc10.vcxproj
 
 QLADemo_SOURCES = qlademo.cpp
 

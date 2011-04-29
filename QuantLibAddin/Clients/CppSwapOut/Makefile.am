@@ -7,8 +7,7 @@ EXTRA_DIST = \
     ClientCppSwapOut_vc7.vcproj \
     ClientCppSwapOut_vc8.vcproj \
     ClientCppSwapOut_vc9.vcproj \
-    YieldCurves.xml \
-    VanillaSwap.xml
+    ClientCppSwapOut_vc10.vcxproj
 
 swap_out_SOURCES = swap_out.cpp
 

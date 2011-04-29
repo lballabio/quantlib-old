@@ -29,9 +29,11 @@ EXTRA_DIST = \
     ObjectHandler_vc7.sln \
     ObjectHandler_vc8.sln \
     ObjectHandler_vc9.sln \
+    ObjectHandler_vc10.sln \
     ohlib_vc7.vcproj \
     ohlib_vc8.vcproj \
     ohlib_vc9.vcproj \
+    ohlib_vc10.vcxproj \
     README.txt \
     TODO.txt
 
