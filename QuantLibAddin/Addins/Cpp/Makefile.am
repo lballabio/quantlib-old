@@ -24,6 +24,7 @@ include_HEADERS = \
     assetswap.hpp \
     bonds.hpp \
     browniangenerators.hpp \
+    btp.hpp \
     capfloor.hpp \
     capletvolstructure.hpp \
     cmsmarket.hpp \
@@ -65,7 +66,6 @@ include_HEADERS = \
     serialization.hpp \
     settings.hpp \
     shortratemodels.hpp \
-    simplecashflow.hpp \
     smilesection.hpp \
     statistics.hpp \
     swap.hpp \
@@ -88,6 +88,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     assetswap.cpp \
     bonds.cpp \
     browniangenerators.cpp \
+    btp.cpp \
     capfloor.cpp \
     capletvolstructure.cpp \
     cmsmarket.cpp \
@@ -128,7 +129,6 @@ libQuantLibAddinCpp_la_SOURCES = \
     serialization.cpp \
     settings.cpp \
     shortratemodels.cpp \
-    simplecashflow.cpp \
     smilesection.cpp \
     statistics.cpp \
     swap.cpp \

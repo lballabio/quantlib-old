@@ -18,6 +18,7 @@ include_HEADERS = \
     baseinstruments.hpp \
     bonds.hpp \
     browniangenerators.hpp \
+    btp.hpp \
     capfloor.hpp \
     capletvolstructure.hpp \
     cliquetoption.hpp \
@@ -27,6 +28,7 @@ include_HEADERS = \
     conundrumpricer.hpp \
     correlation.hpp \
     couponvectors.hpp \
+    credit.hpp \
     ctsmmcapletcalibration.hpp \
     curvestate.hpp \
     date.hpp \
@@ -71,7 +73,6 @@ include_HEADERS = \
     sequencestatistics.hpp \
     settings.hpp \
     shortratemodels.hpp \
-    simplecashflow.hpp \
     smilesection.hpp \
     statistics.hpp \
     stickyratchet.hpp \
@@ -87,8 +88,7 @@ include_HEADERS = \
     vcconfig.hpp \
     volatilities.hpp \
     volatility.hpp \
-    yieldtermstructures.hpp \
-    credit.hpp
+    yieldtermstructures.hpp
 
 libQuantLibAddin_la_SOURCES = \
     abcd.cpp \
@@ -100,6 +100,7 @@ libQuantLibAddin_la_SOURCES = \
     baseinstruments.cpp \
     bonds.cpp \
     browniangenerators.cpp \
+    btp.cpp \
     capfloor.cpp \
     capletvolstructure.cpp \
     cliquetoption.cpp \
@@ -108,6 +109,7 @@ libQuantLibAddin_la_SOURCES = \
     conundrumpricer.cpp \
     correlation.cpp \
     couponvectors.cpp \
+    credit.cpp \
     ctsmmcapletcalibration.cpp \
     curvestate.cpp \
     date.cpp \
@@ -158,8 +160,7 @@ libQuantLibAddin_la_SOURCES = \
     vanillaswap.cpp \
     volatilities.cpp \
     volatility.cpp \
-    yieldtermstructures.cpp \
-    credit.cpp
+    yieldtermstructures.cpp
 
 libQuantLibAddin_la_LIBADD = \
     conversions/libConversions.la \

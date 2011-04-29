@@ -12,12 +12,14 @@ include_HEADERS = \
     create_assetswap.hpp \
     create_bonds.hpp \
     create_browniangenerators.hpp \
+    create_btp.hpp \
     create_capfloor.hpp \
     create_capletvolstructure.hpp \
-    create_cmsmarket.hpp \
     create_cmsmarketcalibration.hpp \
+    create_cmsmarket.hpp \
     create_correlation.hpp \
     create_couponvectors.hpp \
+    create_credit.hpp \
     create_ctsmmcapletcalibration.hpp \
     create_curvestate.hpp \
     create_defaulttermstructures.hpp \
@@ -46,7 +48,6 @@ include_HEADERS = \
     create_schedule.hpp \
     create_sequencestatistics.hpp \
     create_shortratemodels.hpp \
-    create_simplecashflow.hpp \
     create_smilesection.hpp \
     create_statistics.hpp \
     create_swap.hpp \
@@ -56,8 +57,7 @@ include_HEADERS = \
     create_timeseries.hpp \
     create_vanillaswap.hpp \
     create_volatilities.hpp \
-    create_volatility.hpp \
-    create_credit.hpp
+    create_volatility.hpp
 
 libCreate_la_SOURCES = \
     create_abcd.cpp \
@@ -66,12 +66,14 @@ libCreate_la_SOURCES = \
     create_assetswap.cpp \
     create_bonds.cpp \
     create_browniangenerators.cpp \
+    create_btp.cpp \
     create_capfloor.cpp \
     create_capletvolstructure.cpp \
-    create_cmsmarket.cpp \
     create_cmsmarketcalibration.cpp \
+    create_cmsmarket.cpp \
     create_correlation.cpp \
     create_couponvectors.cpp \
+    create_credit.cpp \
     create_ctsmmcapletcalibration.cpp \
     create_curvestate.cpp \
     create_defaulttermstructures.cpp \
@@ -100,7 +102,6 @@ libCreate_la_SOURCES = \
     create_schedule.cpp \
     create_sequencestatistics.cpp \
     create_shortratemodels.cpp \
-    create_simplecashflow.cpp \
     create_smilesection.cpp \
     create_statistics.cpp \
     create_swap.cpp \
@@ -110,5 +111,5 @@ libCreate_la_SOURCES = \
     create_timeseries.cpp \
     create_vanillaswap.cpp \
     create_volatilities.cpp \
-    create_volatility.cpp \
-    create_credit.cpp
+    create_volatility.cpp
+
