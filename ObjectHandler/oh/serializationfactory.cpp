@@ -38,6 +38,9 @@
 
 #include <fstream>
 
+// fix for boost 1.46.1+
+#define BOOST_FILESYSTEM_VERSION 2
+
 namespace ObjectHandler {
 
     boost::shared_ptr<Object> createRange(const boost::shared_ptr<ValueObject> &valueObject) 
