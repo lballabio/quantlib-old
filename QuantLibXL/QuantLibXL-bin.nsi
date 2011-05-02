@@ -29,11 +29,11 @@ OutFile "..\${APP}-bin-${VER_NUMBER}.exe"
 UninstallIcon "Docs\images\favicon.ico"
 UninstallText "This will uninstall ${APP}. Hit next to continue."
 
-#ComponentText \
-#"By default the installer will install the QuantLibXL Addin (XLL) and basic example workbooks." \
-#"Optional components:" \
-#"The QuantLibXL Framework is a business application layer written in Excel VBA, \
-#including template workbooks for market data and interest rate derivates."
+ComponentText \
+"By default the installer will install the QuantLibXL Addin (XLL) and basic example workbooks." \
+"Optional components:" \
+"The QuantLibXL Framework is a business application layer written in Excel VBA, \
+including template workbooks for market data and interest rate derivates."
 
 # Installer Instructions
 
@@ -63,10 +63,6 @@ Section
 
     SetOutPath "$INSTDIR\Workbooks\StandaloneExamples"
     File /r "Workbooks\StandaloneExamples\*.xls"
-    File /r "Workbooks\StandaloneExamples\*.xla"
-
-    SetOutPath "$INSTDIR\Workbooks\StandaloneExamples\SerializationDemo"
-    File "Workbooks\StandaloneExamples\SerializationDemo\README.TXT"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"

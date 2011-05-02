@@ -33,6 +33,7 @@ Section
     File "ObjectHandler_vc7.sln"
     File "ObjectHandler_vc8.sln"
     File "ObjectHandler_vc9.sln"
+    File "ObjectHandler_vc10.sln"
 
     File "*.txt"
     File "*.TXT"
@@ -107,6 +108,9 @@ Section
 
     CreateShortCut "$SMPROGRAMS\ObjectHandler-${VER_NUMBER}\ObjectHandler VC 9 project workspace.lnk" \
                    "$INSTDIR\ObjectHandler_vc9.sln"
+
+    CreateShortCut "$SMPROGRAMS\ObjectHandler-${VER_NUMBER}\ObjectHandler VC 10 project workspace.lnk" \
+                   "$INSTDIR\ObjectHandler_vc10.sln"
 
     CreateShortCut "$SMPROGRAMS\ObjectHandler-${VER_NUMBER}\ObjectHandler Folder.lnk" \
                    "$INSTDIR"

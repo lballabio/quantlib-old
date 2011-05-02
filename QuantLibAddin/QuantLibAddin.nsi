@@ -34,6 +34,7 @@ Section
     File "QuantLibAddin_vc7.sln"
     File "QuantLibAddin_vc8.sln"
     File "QuantLibAddin_vc9.sln"
+    File "QuantLibAddin_vc10.sln"
 #    File "QuantLibAddinCalc_vc7.sln"
 
     File "*.txt"
@@ -55,13 +56,13 @@ Section
     SetOutPath "$INSTDIR\gensrc\stubs"
     File "gensrc\stubs\stub.*"
 
-    SetOutPath "$INSTDIR\Addins\Calc"
-    File "Addins\Calc\Makefile"
+    #SetOutPath "$INSTDIR\Addins\Calc"
+    #File "Addins\Calc\Makefile"
     #File "Addins\Calc\QuantLibAddinCalc.def"
     #File "Addins\Calc\QuantLibAddinCalc.idl"
 
-    SetOutPath "$INSTDIR\Clients\Calc"
-    File /r "Clients\Calc\*.ods"
+    #SetOutPath "$INSTDIR\Clients\Calc"
+    #File /r "Clients\Calc\*.ods"
 
     SetOutPath "$INSTDIR\Docs"
     File "Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
@@ -111,6 +112,9 @@ Section
 
     CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\QuantLibAddin VC 9 project workspace.lnk" \
                    "$INSTDIR\QuantLibAddin_vc9.sln"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\QuantLibAddin VC 10 project workspace.lnk" \
+                   "$INSTDIR\QuantLibAddin_vc10.sln"
 
     CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\Documentation (WinHelp).lnk" \
                    "$INSTDIR\Docs\QuantLibAddin-docs-${VER_NUMBER}.chm"
