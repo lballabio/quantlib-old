@@ -41,6 +41,8 @@ Section
     File "*.TXT"
     File "QuantLibAddin.nsi"
     File /r "*.vcproj"
+    File /r "*.vcxproj"
+    File /r "*.vcxproj.filters"
     File /r "*.hpp"
     File /r "*.cpp"
     File /r "*.h"

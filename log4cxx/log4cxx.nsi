@@ -38,6 +38,8 @@ Section
 
     SetOutPath $INSTDIR\msvc
     File "msvc\*.vcproj"
+    File "msvc\*.vcxproj"
+    File "msvc\*.vcxproj.filters"
     File "msvc\*.sln"
 
     SetOutPath $INSTDIR\src

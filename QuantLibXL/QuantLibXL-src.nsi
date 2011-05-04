@@ -49,6 +49,8 @@ Section
     #File "QuantLibXL-network.nsi"
     File "QuantLibXL-src.nsi"
     File /r "*.vcproj"
+    File /r "*.vcxproj"
+    File /r "*.vcxproj.filters"
     File /r "*.hpp"
     File /r "*.cpp"
 

@@ -39,6 +39,8 @@ Section
     File "*.TXT"
     File "ObjectHandler.nsi"
     File /r "*.vcproj"
+    File /r "*.vcxproj"
+    File /r "*.vcxproj.filters"
     File /r "*.hpp"
     File /r "*.cpp"
 
