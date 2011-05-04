@@ -29,17 +29,16 @@
 #include <oh/repository.hpp>
 #include <oh/conversions/getobjectvector.hpp>
 
+// fix for boost 1.46.1+
+#define BOOST_FILESYSTEM_VERSION 2
+
 #include <boost/regex.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/serialization/variant.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 
 #include <fstream>
-
-// fix for boost 1.46.1+
-#define BOOST_FILESYSTEM_VERSION 2
 
 namespace ObjectHandler {
 
