@@ -1,7 +1,7 @@
 
 QuantLibAddin is
 
-    Copyright (C) 2004, 2005, 2006, 2007, 2008, 2009, 2010 Eric Ehlers
+    Copyright (C) 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011 Eric Ehlers
     Copyright (C) 2004, 2005, 2006, 2007, 2008, 2009, 2010 Ferdinando Ametrano
 
     Copyright (C) 2004, 2006 StatPro Italia srl
@@ -20,6 +20,7 @@ QuantLibAddin is
     Copyright (C) 2007 Luigi Ballabio
     Copyright (C) 2008 Nazcatech sprl Belgium
     Copyright (C) 2009 Piter Dias
+    Copyright (C) 2009, 2010 Roland Lichters
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
