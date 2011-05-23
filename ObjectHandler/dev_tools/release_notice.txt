@@ -1,10 +1,10 @@
 quantlib-users@lists.sourceforge.net, quantlib-announce@lists.sourceforge.net
 
-QuantLibXL / ObjectHandler 0.9.7 Released
+QuantLibXL / ObjectHandler 1.1.0 Released
 
 QuantLibXL, QuantLibAddin, ObjectHandler, and gensrc version
-0.9.7 have been released and are available for download:
-http://sourceforge.net/project/showfiles.php?group_id=12740
+1.1.0 have been released and are available for download:
+http://sourceforge.net/projects/quantlib/files/
 
 QuantLibAddin
 http://www.quantlibaddin.org
