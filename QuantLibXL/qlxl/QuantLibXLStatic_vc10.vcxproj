@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug (static runtime)|Win32">
+      <Configuration>Debug (static runtime)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release (static runtime)|Win32">
+      <Configuration>Release (static runtime)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>QuantLibXLStatic</ProjectName>
+    <ProjectGuid>{DADFEC4C-A850-4312-8146-FB9BCC19CE92}</ProjectGuid>
+    <RootNamespace>QuantLibXLStatic</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">..\xll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\buildStatic\vc100\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\xll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\buildStatic\vc100\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">..\xll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\buildStatic\vc100\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\xll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\buildStatic\vc100\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibXL-vc100-mt-1_1_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibXL-vc100-mt-gd-1_1_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibXL-vc100-mt-sgd-1_1_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibXL-vc100-mt-s-1_1_0</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.xll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.xll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.xll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.xll</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc100\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc100\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc100\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-sgd-1_1_0.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-sgd-1_1_0.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc100\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc100\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc100\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-gd-1_1_0.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-gd-1_1_0.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc100\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc100\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc100\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-s-1_1_0.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-s-1_1_0.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc100\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc100\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc100\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-1_1_0.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-1_1_0.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="register\addin.cpp" />
+    <ClCompile Include="register\register_abcd.cpp" />
+    <ClCompile Include="register\register_accountingengines.cpp" />
+    <ClCompile Include="register\register_all.cpp" />
+    <ClCompile Include="register\register_alphaform.cpp" />
+    <ClCompile Include="register\register_assetswap.cpp" />
+    <ClCompile Include="register\register_bonds.cpp" />
+    <ClCompile Include="register\register_browniangenerators.cpp" />
+    <ClCompile Include="register\register_btp.cpp" />
+    <ClCompile Include="register\register_calendar.cpp" />
+    <ClCompile Include="register\register_capfloor.cpp" />
+    <ClCompile Include="register\register_capletvolstructure.cpp" />
+    <ClCompile Include="register\register_cmsmarket.cpp" />
+    <ClCompile Include="register\register_cmsmarketcalibration.cpp" />
+    <ClCompile Include="register\register_correlation.cpp" />
+    <ClCompile Include="register\register_couponvectors.cpp" />
+    <ClCompile Include="register\register_credit.cpp" />
+    <ClCompile Include="register\register_ctsmmcapletcalibration.cpp" />
+    <ClCompile Include="register\register_curvestate.cpp" />
+    <ClCompile Include="register\register_date.cpp" />
+    <ClCompile Include="register\register_daycounter.cpp" />
+    <ClCompile Include="register\register_defaulttermstructures.cpp" />
+    <ClCompile Include="register\register_driftcalculators.cpp" />
+    <ClCompile Include="register\register_evolutiondescription.cpp" />
+    <ClCompile Include="register\register_exercise.cpp" />
+    <ClCompile Include="register\register_forwardrateagreement.cpp" />
+    <ClCompile Include="register\register_handles.cpp" />
+    <ClCompile Include="register\register_index.cpp" />
+    <ClCompile Include="register\register_instruments.cpp" />
+    <ClCompile Include="register\register_interpolation.cpp" />
+    <ClCompile Include="register\register_leg.cpp" />
+    <ClCompile Include="register\register_marketmodelevolvers.cpp" />
+    <ClCompile Include="register\register_marketmodels.cpp" />
+    <ClCompile Include="register\register_mathf.cpp" />
+    <ClCompile Include="register\register_optimization.cpp" />
+    <ClCompile Include="register\register_options.cpp" />
+    <ClCompile Include="register\register_overnightindexedswap.cpp" />
+    <ClCompile Include="register\register_payoffs.cpp" />
+    <ClCompile Include="register\register_piecewiseyieldcurve.cpp" />
+    <ClCompile Include="register\register_prices.cpp" />
+    <ClCompile Include="register\register_pricingengines.cpp" />
+    <ClCompile Include="register\register_processes.cpp" />
+    <ClCompile Include="register\register_products.cpp" />
+    <ClCompile Include="register\register_quotes.cpp" />
+    <ClCompile Include="register\register_randomsequencegenerator.cpp" />
+    <ClCompile Include="register\register_rangeaccrual.cpp" />
+    <ClCompile Include="register\register_ratehelpers.cpp" />
+    <ClCompile Include="register\register_schedule.cpp" />
+    <ClCompile Include="register\register_sequencestatistics.cpp" />
+    <ClCompile Include="register\register_settings.cpp" />
+    <ClCompile Include="register\register_shortratemodels.cpp" />
+    <ClCompile Include="register\register_smilesection.cpp" />
+    <ClCompile Include="register\register_statistics.cpp" />
+    <ClCompile Include="register\register_swap.cpp" />
+    <ClCompile Include="register\register_swaption.cpp" />
+    <ClCompile Include="register\register_swaptionvolstructure.cpp" />
+    <ClCompile Include="register\register_termstructures.cpp" />
+    <ClCompile Include="register\register_timeseries.cpp" />
+    <ClCompile Include="register\register_utilities.cpp" />
+    <ClCompile Include="register\register_vanillaswap.cpp" />
+    <ClCompile Include="register\register_volatilities.cpp" />
+    <ClCompile Include="register\register_volatility.cpp" />
+    <ClCompile Include="functions\abcd.cpp" />
+    <ClCompile Include="functions\accountingengines.cpp" />
+    <ClCompile Include="functions\alphaform.cpp" />
+    <ClCompile Include="functions\assetswap.cpp" />
+    <ClCompile Include="functions\bonds.cpp" />
+    <ClCompile Include="functions\browniangenerators.cpp" />
+    <ClCompile Include="functions\btp.cpp" />
+    <ClCompile Include="functions\calendar.cpp" />
+    <ClCompile Include="functions\capfloor.cpp" />
+    <ClCompile Include="functions\capletvolstructure.cpp" />
+    <ClCompile Include="functions\cmsmarket.cpp" />
+    <ClCompile Include="functions\cmsmarketcalibration.cpp" />
+    <ClCompile Include="functions\correlation.cpp" />
+    <ClCompile Include="functions\couponvectors.cpp" />
+    <ClCompile Include="functions\ctsmmcapletcalibration.cpp" />
+    <ClCompile Include="functions\curvestate.cpp" />
+    <ClCompile Include="functions\date.cpp" />
+    <ClCompile Include="functions\daycounter.cpp" />
+    <ClCompile Include="functions\defaulttermstructures.cpp" />
+    <ClCompile Include="functions\driftcalculators.cpp" />
+    <ClCompile Include="functions\evolutiondescription.cpp" />
+    <ClCompile Include="functions\exercise.cpp" />
+    <ClCompile Include="functions\forwardrateagreement.cpp" />
+    <ClCompile Include="functions\handles.cpp" />
+    <ClCompile Include="functions\index.cpp" />
+    <ClCompile Include="functions\instruments.cpp" />
+    <ClCompile Include="functions\interpolation.cpp" />
+    <ClCompile Include="functions\leg.cpp" />
+    <ClCompile Include="functions\manual.cpp" />
+    <ClCompile Include="functions\marketmodelevolvers.cpp" />
+    <ClCompile Include="functions\marketmodels.cpp" />
+    <ClCompile Include="functions\mathf.cpp" />
+    <ClCompile Include="functions\optimization.cpp" />
+    <ClCompile Include="functions\options.cpp" />
+    <ClCompile Include="functions\overnightindexedswap.cpp" />
+    <ClCompile Include="functions\payoffs.cpp" />
+    <ClCompile Include="functions\piecewiseyieldcurve.cpp" />
+    <ClCompile Include="functions\prices.cpp" />
+    <ClCompile Include="functions\pricingengines.cpp" />
+    <ClCompile Include="functions\processes.cpp" />
+    <ClCompile Include="functions\products.cpp" />
+    <ClCompile Include="functions\quotes.cpp" />
+    <ClCompile Include="functions\randomsequencegenerator.cpp" />
+    <ClCompile Include="functions\rangeaccrual.cpp" />
+    <ClCompile Include="functions\ratehelpers.cpp" />
+    <ClCompile Include="functions\schedule.cpp" />
+    <ClCompile Include="functions\sequencestatistics.cpp" />
+    <ClCompile Include="functions\settings.cpp" />
+    <ClCompile Include="functions\shortratemodels.cpp" />
+    <ClCompile Include="functions\smilesection.cpp" />
+    <ClCompile Include="functions\statistics.cpp" />
+    <ClCompile Include="functions\swap.cpp" />
+    <ClCompile Include="functions\swaption.cpp" />
+    <ClCompile Include="functions\swaptionvolstructure.cpp" />
+    <ClCompile Include="functions\termstructures.cpp" />
+    <ClCompile Include="functions\timeseries.cpp" />
+    <ClCompile Include="functions\utilities.cpp" />
+    <ClCompile Include="functions\vanillaswap.cpp" />
+    <ClCompile Include="functions\volatilities.cpp" />
+    <ClCompile Include="functions\volatility.cpp" />
+    <ClCompile Include="conversions\matrixtooper.cpp" />
+    <ClCompile Include="conversions\opertomatrix.cpp" />
+    <ClCompile Include="conversions\opertovector.cpp" />
+    <ClCompile Include="conversions\scalartooper.cpp" />
+    <ClCompile Include="session.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="register\register_all.hpp" />
+    <ClInclude Include="functions\functioncount.hpp" />
+    <ClInclude Include="conversions\all.hpp" />
+    <ClInclude Include="conversions\matrixtooper.hpp" />
+    <ClInclude Include="conversions\opertomatrix.hpp" />
+    <ClInclude Include="conversions\opertovector.hpp" />
+    <ClInclude Include="conversions\scalartooper.hpp" />
+    <ClInclude Include="conversions\vectortooper.hpp" />
+    <ClInclude Include="session.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

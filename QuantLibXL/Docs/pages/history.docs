@@ -1,0 +1,98 @@
+
+/*
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page history Version History
+
+This document summarizes updates specific to QuantLibXL, the Excel
+implementation of QuantLibAddin.  For a summary of updates to the core
+QuantLibAddin project, please refer to
+<a href="http://www.quantlibaddin.org/history.html">http://www.quantlibaddin.org/history.html</a>
+
+<strong>Release 1.1.0 - May 2011</strong>
+
+- 56 new functions / 1004 in total
+- New documentation for enumeration and template classes, thanks to Andrew
+  Downes
+- The VBA Framework has been updated for this release
+
+<strong>Release 1.0.1 - October 2010</strong>
+
+- 86 new functions / 948 in total
+- Example workbooks updated
+- The VBA Framework has not been updated for this release
+
+<strong>Release 0.9.7 - November 2008</strong>
+
+- 7 new functions / 862 in total
+- The VBA Framework has not been updated for this release
+
+<strong>Release 0.9.6 - September 2008</strong>
+
+- 22 new functions / 855 in total
+
+<strong>Release 0.9.0 - January 2008</strong>
+
+- 193 new functions / 833 in total
+- New function categories: Abcd, Accounting Engines, AlphaForm, Brownian
+  Generator, Cms Market Calibration, Correlation, Ctsmmcapletcalibration,
+  CurveState, Driftcalculators, Enumerations, Evolution Description, Garbage
+  Collection, Group, Handles, Leg, Logging Functions, Market Model Evolvers,
+  Market Model Volatility, Piecewise Yield Curves, Range, Serialization,
+  TimeSeries, Value Objects 
+
+<strong>Release 0.8.0 - May 2007</strong>
+
+- Orders of magnitude increase in performance due to a redesign of ObjectHandler
+- 78 new functions / 640 in total
+- Release of the Framework, an Excel VBA application providing a layer of
+  business logic around the QuantLibXL XLL, including more than 100 new
+  workbooks in support of market data and instruments
+- New function category Range Accrual
+- "Topics" page of documentation renamed to "Manual" and updated to provide
+  overview of major design features
+- FAQ rewritten
+
+<strong>Release 0.4.0 - February 2007</strong>
+
+- 117 new functions / 562 in total
+- New categories: Simple Cash Flow,  Smile Section Structures
+- Consolidated build process.
+- Added additional example workbooks.
+
+<strong>Release 0.3.14 - December 2006</strong>
+
+- 218 new functions / 445 in total
+- New categories: Asset Swap, Caplet Volatility Term Structures, CMS Market,
+  Market Models, Sequence Statistics, Statistics
+- Resolved problem of VC8 build running slowly.
+
+<strong>Release 0.3.13 - August 2006</strong>
+
+- 146 new functions / 227 in total
+- Separated QuantLibXL out of QuantLibAddin into standalone project.
+
+Previous incarnations of QuantLibXL were bundled with QuantLibAddin
+releases 0.3.10 - 0.3.12.
+
+*/
+

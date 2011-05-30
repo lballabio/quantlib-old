@@ -1,0 +1,43 @@
+<!--
+  If this file is missing QuantLib.xla defaults to its own
+  hard-coded default values.
+  Modify the paths to fit your installation. 
+-->
+
+<Environment name="Local">
+  <FrameworkVersion>10</FrameworkVersion>
+  <Workbooks>C:\Program Files\QuantLibXL-1.1.0\Workbooks</Workbooks>
+  <HelpFile>C:\Program Files\QuantLibXL-1.1.0\Docs</HelpFile>
+  <FunctionMetadata>C:\Program Files\QuantLibXL-1.1.0\metadata</FunctionMetadata>
+  <AddinList>
+    <!--<Addin>
+      <Path>C:\Projects\trunk\ObjectHandler\xll\ObjectHandler-xll-vc90-mt-1_1_0.xll</Path>
+      <DeliveredByLauncher>False</DeliveredByLauncher>
+    </Addin>
+    <Addin>
+      <Path>C:\Projects\trunk\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_1_0.xll</Path>
+      <DeliveredByLauncher>False</DeliveredByLauncher>
+    </Addin>-->
+    <Addin>
+      <Path>C:\Program Files\QuantLibXL-1.1.0\xll\QuantLibXL-vc90-mt-s-1_1_0.xll</Path>
+      <DeliveredByLauncher>False</DeliveredByLauncher>
+    </Addin>
+  </AddinList>
+  <FeedUse>Reuters</FeedUse>
+  <StartupActions>
+    <SetEvaluationDate>False</SetEvaluationDate>
+    <EvaluationDate>0</EvaluationDate>
+    <YieldCurveBootstrap>False</YieldCurveBootstrap>
+    <CapVolBootstrap>False</CapVolBootstrap>
+    <SwapSmileBootstrap>False</SwapSmileBootstrap>
+    <CalibrateCMS>False</CalibrateCMS>
+    <FitCMS>False</FitCMS>
+    <IndexesTimeSeries>False</IndexesTimeSeries>
+    <LoadBonds>False</LoadBonds>
+    <MainChecks>True</MainChecks>
+    <StaticData>False</StaticData>
+    <!-- should not be in StartUpActions --> 
+    <InitSource>Excel</InitSource>
+  </StartupActions>
+  <Variables />
+</Environment>

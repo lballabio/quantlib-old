@@ -1,0 +1,10 @@
+
+todo.txt for QuantLibXL
+=======================
+
+to see a summary of recent activity on this project please visit
+http://www.quantlibxl.org/history.html
+
+if you're interested in contributing to the project or need
+further information please send email to
+quantlib-users@lists.sf.net
