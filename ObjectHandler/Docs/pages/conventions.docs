@@ -59,11 +59,12 @@ The table below summarizes the supported versions of Visual C++, the
 abbreviation given to each version, and the names used for solution and project
 files corresponding to that version:
 
-<table>
+<table border="1">
 <tr><td><b>Version</b></td><td><b>Abbreviation</b></td><td><b>Solution Files<br>Project Files</b></td></tr>
 <tr><td><b>Visual C++ 2003</b></td><td><b>VC7</b></td><td><b>xxx_vc7.sln<br>xxx_vc7.vcproj</b></td></tr>
 <tr><td><b>Visual C++ 2005</b></td><td><b>VC8</b></td><td><b>xxx_vc8.sln<br>xxx_vc8.vcproj</b></td></tr>
 <tr><td><b>Visual C++ 2008</b></td><td><b>VC9</b></td><td><b>xxx_vc9.sln<br>xxx_vc9.vcproj</b></td></tr>
+<tr><td><b>Visual C++ 2010</b></td><td><b>VC10</b></td><td><b>xxx_vc10.sln<br>xxx_vc10.vcxproj</b></td></tr>
 </table>
 
 Be sure to open the files that correspond to the version of Visual C++ that you
@@ -72,7 +73,7 @@ project will be upgraded, but the dependencies will be wrong and the build will
 fail.
 
 In the installation instructions, solution files may be referred to as
-xxx_vc?.sln, where ? corresponds to 7, 8 or 9 depending on the version of
+xxx_vc?.sln, where ? corresponds to 7, 8, 9 or 10 depending on the version of
 Visual C++ that you are using.
 
 \section conv_vc Visual C++ Runtime Libraries
@@ -86,7 +87,7 @@ The project files provide a separate configuration corresponding to each
 version of the runtime library.  The table below summarizes the available
 configurations.
 
-<table>
+<table border="1">
 <tr><td><b>Configuration</b></td><td><b>Runtime Library</b></td><td><b>Compiler Flag</b></td></tr>
 <tr><td>Release</td><td>Multi-threaded DLL</td><td>/MD</td></tr>
 <tr><td>Release (static runtime)</td><td>Multi-threaded</td><td>/MT</td></tr>
