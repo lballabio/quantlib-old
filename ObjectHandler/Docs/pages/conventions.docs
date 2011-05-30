@@ -61,10 +61,10 @@ files corresponding to that version:
 
 <table border="1">
 <tr><td><b>Version</b></td><td><b>Abbreviation</b></td><td><b>Solution Files<br>Project Files</b></td></tr>
-<tr><td><b>Visual C++ 2003</b></td><td><b>VC7</b></td><td><b>xxx_vc7.sln<br>xxx_vc7.vcproj</b></td></tr>
-<tr><td><b>Visual C++ 2005</b></td><td><b>VC8</b></td><td><b>xxx_vc8.sln<br>xxx_vc8.vcproj</b></td></tr>
-<tr><td><b>Visual C++ 2008</b></td><td><b>VC9</b></td><td><b>xxx_vc9.sln<br>xxx_vc9.vcproj</b></td></tr>
-<tr><td><b>Visual C++ 2010</b></td><td><b>VC10</b></td><td><b>xxx_vc10.sln<br>xxx_vc10.vcxproj</b></td></tr>
+<tr><td>Visual C++ 2003</td><td>VC7</td><td>xxx_vc7.sln<br>xxx_vc7.vcproj</td></tr>
+<tr><td>Visual C++ 2005</td><td>VC8</td><td>xxx_vc8.sln<br>xxx_vc8.vcproj</td></tr>
+<tr><td>Visual C++ 2008</td><td>VC9</td><td>xxx_vc9.sln<br>xxx_vc9.vcproj</td></tr>
+<tr><td>Visual C++ 2010</td><td>VC10</td><td>xxx_vc10.sln<br>xxx_vc10.vcxproj</td></tr>
 </table>
 
 Be sure to open the files that correspond to the version of Visual C++ that you
