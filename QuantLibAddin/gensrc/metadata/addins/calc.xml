@@ -1,0 +1,26 @@
+
+<Addin name='Calc'>
+  
+  <addinClassName>CalcAddins_iml::CalcAddins_impl</addinClassName>
+  <rootDirectory>Addins/Calc</rootDirectory>
+  <coreCategories>true</coreCategories>
+  <addinCategories>true</addinCategories>
+
+  <copyright>
+    Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
+    Copyright (C) 2009 Roland Lichters
+  </copyright>
+
+  <Buffers>
+    <Buffer name='bufferFunction' fileName='stub.calc.function'/>
+    <Buffer name='bufferIdlFunction' fileName='stub.calc.idlfunc'/>
+    <Buffer name='bufferIdlHeader' fileName='stub.calc.idlhead'/>
+    <Buffer name='bufferIncludes' fileName='stub.calc.includes'/>
+    <Buffer name='bufferMap' fileName='stub.calc.map'/>
+    <Buffer name='bufferHeader' fileName='stub.calc.header'/>
+    <Buffer name='bufferCategory' fileName='stub.calc.category'/>
+    <Buffer name='bufferLoop' fileName='stub.calc.loop'/>
+  </Buffers>
+
+</Addin>
+

@@ -1,0 +1,46 @@
+#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
+    #include <qlo/config.hpp>
+#endif
+
+#include <qlo/qladdindefines.hpp>
+#include <qlo/interpolation.hpp>
+#include <qlo/interpolation2D.hpp>
+#include <qlo/ratehelpers.hpp>
+#include <qlo/piecewiseyieldcurve.hpp>
+#include <qlo/indexes/swapindex.hpp>
+
+#include <ql/cashflows/cashflows.hpp>
+#include <ql/cashflows/conundrumpricer.hpp>
+#include <ql/cashflows/digitalcoupon.hpp>
+#include <ql/currencies/all.hpp>
+#include <ql/experimental/risk/sensitivityanalysis.hpp>
+#include <ql/instruments/asianoption.hpp>
+#include <ql/instruments/barrieroption.hpp>
+#include <ql/instruments/capfloor.hpp>
+#include <ql/instruments/forward.hpp>
+#include <ql/instruments/overnightindexedswap.hpp>
+#include <ql/instruments/swaption.hpp>
+#include <ql/math/interpolations/cubicinterpolation.hpp>
+#include <ql/math/matrixutilities/pseudosqrt.hpp>
+#include <ql/math/optimization/endcriteria.hpp>
+#include <ql/termstructures/volatility/swaption/cmsmarketcalibration.hpp>
+#include <ql/time/calendars/all.hpp>
+#include <ql/time/daycounters/all.hpp>
+#include <ql/prices.hpp>
+#include <ql/default.hpp> // RL ADD 2010-07-15
+
+#include <oh/enumerations/typefactory.hpp>
+
+namespace QuantLibAddin {
+
+    void registerEnumeratedTypes() {
+    
+%(codeRegister)s    }
+
+    void unregisterEnumeratedTypes() {
+    
+%(codeUnregister)s    
+    }
+
+}
+

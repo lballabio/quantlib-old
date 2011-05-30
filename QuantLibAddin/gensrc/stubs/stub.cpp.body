@@ -1,0 +1,9 @@
+#include <qlo/qladdindefines.hpp>
+#include <qlo/handle.hpp>
+%(categoryIncludes)s
+#include <qlo/conversions/all.hpp>
+#include <oh/property.hpp>
+
+namespace QuantLibAddinCpp {
+%(bufferCpp)s}
+

@@ -1,0 +1,37 @@
+<Category name='browniangenerators'>
+  <description>functions to construct and use Brownian Generators objects.</description>
+  <displayName>Brownian Generator</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>qlo/browniangenerators.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2007 Chiara Fornarola
+    Copyright (C) 2006, 2007 Marco Bianchetti
+    Copyright (C) 2006, 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+
+    <!-- BrownianGeneratorFactory derived classes constructor  -->
+    <Constructor name='qlMTBrownianGeneratorFactory'>
+      <libraryFunction>MTBrownianGeneratorFactory</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Seed' default='0'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>seed for random sequence generator.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

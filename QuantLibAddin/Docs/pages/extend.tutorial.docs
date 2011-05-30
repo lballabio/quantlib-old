@@ -1,0 +1,285 @@
+
+/*
+ Copyright (C) 2005, 2006, 2007, 2008, 2011 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page extend_tutorial Expose QuantLib Classes to QuantLibXL
+
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
+
+This document explains how to expose additional %QuantLib classes to
+Excel.  As a prerequisite it is assumed that you have already compiled
+QuantLibXL from source code using the Full build documented in the tutorial
+\ref build_qlxl.
+
+In this example, the %QuantLib class \c Stock is exposed to Excel.  The Visual
+C++ solution for this tuturial is <tt>QuantLibXL\\QuantLibXL_full_vc?.sln</tt>.
+
+\ref extend_wrap \n
+\ref extend_category \n
+\ref extend_autogenerate \n
+\ref extend_build \n
+\ref extend_test \n
+\ref extend_notes \n
+
+\section extend_wrap 1 Wrap the QuantLib Class in a QuantLibAddin Class
+
+In order to store a reference to a \c QuantLib::Stock in the ObjectHandler
+repository, we implement class \c QuantLibAddin::Stock which derives from
+\c ObjectHandler::Object and holds a pointer to \c QuantLib::Stock.  In fact, rather
+than inherit directly from \c ObjectHandler::Object, we derive our
+\c QuantLibAddin::Stock class from \c QuantLibAddin::Instrument.  This allows us to
+invoke the \c Instrument interface on objects of class \c Stock.
+
+<img src="images/stock.jpg">
+
+Create the following two new files:
+\verbatim
+QuantLibAddin\qlo\stock.hpp
+QuantLibAddin\qlo\stock.cpp
+\endverbatim
+
+Here is the code for the files:
+
+stock.hpp:
+\verbatim
+#ifndef qla_stock_hpp
+#define qla_stock_hpp
+
+#include <qlo/baseinstruments.hpp>
+#include <ql/handle.hpp>
+
+namespace QuantLib {
+    class Stock;
+    class Quote;
+}
+
+namespace QuantLibAddin {
+
+    class Stock : public Instrument {
+        public:
+            Stock(
+                const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                const QuantLib::Handle<QuantLib::Quote>& quote,
+                bool permanent);
+    };
+
+}
+
+#endif
+\endverbatim
+
+stock.cpp:
+\verbatim
+#include <qlo/qladdindefines.hpp>
+#include <qlo/stock.hpp>
+#include <ql/instruments/stock.hpp>
+#include <ql/quote.hpp>
+
+namespace QuantLibAddin {
+
+    Stock::Stock(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::Quote>& quote,
+            bool permanent) : Instrument(properties, permanent) {
+        libraryObject_ = boost::shared_ptr<QuantLib::Stock>(
+            new QuantLib::Stock(quote));
+    }
+
+}
+\endverbatim
+
+Add the files to project QuantLibObjects, under folder Instruments.
+
+\section extend_category 2 Create a New Function Category
+
+%QuantLibAddin functions are grouped into Categories.  Here we create a new
+category called Stock.
+
+Edit file %QuantLibAddin\\gensrc\\config\\categories.xml and add the new
+category stock:
+
+<tt><root>
+
+&nbsp;&nbsp;<addinCategoryNames><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>abcd</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>accountingengines</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>assetswap</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>statistics</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><categoryName>stock</categoryName></b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>swap</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>volatilities</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>volatility</categoryName><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<categoryName>quotes</categoryName><br>
+&nbsp;&nbsp;</addinCategoryNames><br>
+
+</root></tt>
+
+Create the following new file:
+\verbatim
+QuantLibAddin\gensrc\metadata\Functions\stock.xml
+\endverbatim
+
+Here are the contents of the file:
+
+\verbatim
+<Category name='stock'>
+  <description>functions to construct and use Stock objects</description>
+  <displayName>Stock</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <includes>
+    <include>qlo/stock.hpp</include>
+  </includes>
+  <copyright>
+    Copyright (C) 2008 Eric Ehlers
+  </copyright>
+
+  <Functions>
+
+    <Constructor name='qlStock'>
+      <libraryFunction>Stock</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Quote'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>quote object IDs</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+
+</Category>
+\endverbatim
+
+Add the file to project \c qlgensrc, under folder \c functions.
+
+Above we have configured a single constructor.  There is also support for
+member and utility functions, refer to the other XML files for examples.  The
+tag \c superType determines the type of reference which is passed to the
+underlying %QuantLib code, in this case \c libToHandle reflects the fact that
+<tt>Handle<Quote></tt> is expected.  For a summary of supported supertypes refer to the
+comments in file <tt>%QuantLibAddin\\gensrc\\metadata\\types\\supertypes.xml</tt>.
+
+\section extend_autogenerate 3 Autogenerate New Source Code Files
+
+Now we run gensrc to autogenerate the new source code corresponding to the
+contents of stock.xml.  Build project qlgensrc.  In the gensrc output, notice
+that 9 new files are created (irrelevant output omitted):
+
+\verbatim
+1>C:\..\QuantLibXL\qlxl\register\register_stock.cpp:                       created
+1>C:\..\QuantLibXL\qlxl\functions\stock.cpp:                               created
+1>C:\..\QuantLibAddin\qlo\valueobjects\vo_stock.hpp:                       created
+1>C:\..\QuantLibAddin\qlo\valueobjects\vo_stock.cpp:                       created
+1>C:\..\QuantLibAddin\qlo\serialization\create\create_stock.hpp:           created
+1>C:\..\QuantLibAddin\qlo\serialization\create\create_stock.cpp:           created
+1>C:\..\QuantLibAddin\qlo\serialization\register\serialization_stock.hpp:  created
+1>C:\..\QuantLibAddin\qlo\serialization\register\serialization_stock.cpp:  created
+1>C:\..\QuantLibAddin\Docs\auto.pages\stock.docs:                          created
+1>
+1>addin           unchanged   updated     created     total
+1>=============== =========== =========== =========== ===========
+1>Excel                   114           2           2         118
+1>Calc                     23           0           0          23
+1>Cpp                     111           0           0         111
+1>ValueObjects             98           1           2         101
+1>Enumerations              3           0           0           3
+1>Loop                     11           0           0          11
+1>Serialization           188          12           4         204
+1>Doxygen                  67           2           1          70
+1>=============== =========== =========== =========== ===========
+1>total                   615          17           9         641
+\endverbatim
+
+For purposes of this tutorial we ignore the new file for Doxygen.  The other 8
+files need to be added to the relevant projects as shown below:
+
+<table>
+<tr><td><b>Add file(s) ...</b></td><td><b>To project ...</b></td><td><b>In folder ...</b></td></tr>
+<tr><td>QuantLibXL/qlxl/register/register_stock.cpp</td><td>QuantLibXLStatic</td><td>register</td></tr>
+<tr><td>QuantLibXL/qlxl/functions/stock.cpp</td><td>QuantLibXLStatic</td><td>functions</td></tr>
+<tr><td>QuantLibAddin/qlo/valueobjects/vo_stock.*pp</td><td>QuantLibObjects</td><td>valueobjects</td></tr>
+<tr><td>QuantLibAddin/qlo/serialization/create/create_stock.*pp</td><td>QuantLibObjects</td><td>serialization/create</td></tr>
+<tr><td>QuantLibAddin/qlo/serialization/register/serialization_stock.*pp</td><td>QuantLibObjects</td><td>serialization/register</td></tr>
+</table>
+
+\section extend_build 4 Build QuantLibXL
+
+Build solution <tt>QuantLibXL_full_vc?.sln</tt>, configuration
+<tt>Release (static runtime)</tt>.  The new source code files in %QuantLibAddin and QuantLibXL
+are compiled and the binaries are linked.
+
+The build process creates the %QuantLibAddin XLL file
+<tt>QuantLibXL\\xll\\QuantLibXL-vc??-mt-s-1_1_0.xll</tt>.
+
+\section extend_test 5 Test the New Functions
+
+Start Excel and load the XLL.  Enter the new constructor into cell A1:
+
+\verbatim
+=qlStock("my_stock",1.23)
+\endverbatim
+
+This should return the ID of the newly created object.  Try invoking a member
+function on the object.  In cell A2, enter:
+
+\verbatim
+=qlInstrumentNPV(A1)
+\endverbatim
+
+This should return the value 1.23.
+
+\section extend_notes 6 Notes
+
+\li See also project \c ExampleXllStatic in solution
+<tt>ObjectHandler\\ObjectHandler_vc?.sln</tt>.  This is a hello world XLL using
+ObjectHandler to export an object-oriented interface (constructors and member
+functions) to Excel.  All of the source code is hand-written, as opposed to the
+QuantLibXL code which is autogenerated by gensrc.  \c ExampleXllStatic relies
+on an example library called \c ExampleObjects which could be replaced by
+%QuantLib or some third-party library.
+
+\li If you're going to rerun gensrc often, and if you're only interested in the
+Excel addin, then you can speed gensrc up by opening file
+\verbatim
+QuantLibAddin/gensrc/Makefile.vc
+\endverbatim
+and editing line 28:
+\verbatim
+    #$(GENSRC_DIR)\gensrc.py -a --oh_dir=$(OH_DIR)
+    $(GENSRC_DIR)\gensrc.py -xvels --oh_dir=$(OH_DIR)
+\endverbatim
+This restricts the gensrc output from "all" (including C++ and Calc) to only
+the modules required for QuantLibXL.
+
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
+
+*/
+

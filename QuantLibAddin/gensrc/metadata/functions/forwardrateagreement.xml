@@ -1,0 +1,123 @@
+<Category name='forwardrateagreement'>
+  <description>Functions to construct and use ForwardRateAgreement objects.</description>
+  <displayName>Forward Rate Agreement</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/forwardrateagreement.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/forwardrateagreement.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006 Katiuscia Manzoni
+    Copyright (C) 2006 Ferdinando Ametrano
+  </copyright>
+  <Functions>
+
+
+    <Constructor name='qlFRA'>
+      <libraryFunction>ForwardRateAgreement</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>InstrumentProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ValueDate' exampleValue='3M'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Value date.</description>
+          </Parameter>
+          <Parameter name='MaturityDate' exampleValue='6M'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Maturity date.</description>
+          </Parameter>
+          <Parameter name='Position' exampleValue='Long'>
+            <type>QuantLib::Position::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Instrument position (Long = purchase, Short = sale).</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue='0.02'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Strike rate.</description>
+          </Parameter>
+          <Parameter name='Notional' exampleValue='1000000'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Notional amount.</description>
+          </Parameter>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Underlying index object ID.</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlFRAforwardRate' type='QuantLib::ForwardRateAgreement'>
+      <description>Returns the relevant forward rate associated with the FRA term.</description>
+      <libraryFunction>forwardRate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFRAforwardValue' type='QuantLib::ForwardRateAgreement'>
+      <description>Returns the forward value of the FRA.</description>
+      <libraryFunction>forwardValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFRAspotValue' type='QuantLib::ForwardRateAgreement'>
+      <description>Returns the spot value of the FRA.</description>
+      <libraryFunction>spotValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

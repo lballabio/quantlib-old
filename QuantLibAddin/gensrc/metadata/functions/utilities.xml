@@ -1,0 +1,180 @@
+<Category name='utilities'>
+  <description>diagnostic and utility functions.</description>
+  <displayName>Utilities</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>qlo/utilities.hpp</include>
+    <include>ql/models/marketmodels/utilities.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2005 Plamen Neykov
+    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+  </copyright>
+  <Functions>
+
+    <Procedure name='qlxlVersion'>
+      <description>returns the version number of QuantLibXL.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Verbose' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE to get the verbose version string.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlAddinVersion'>
+      <description>returns the version number of QuantLibAddin (a.k.a QuantLibObject).</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlVersion'>
+      <description>returns the version number of QuantLib.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlFunctionCount'>
+      <description>returns the number of functions in this Addin.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <!--<Procedure name='qlInfoHighestRevisionNumber'>
+      <description>returns the highest commit revision in the source code working copy used to build the addin.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+        -->
+    <!--SupportedPlatform name='Cpp'/-->
+    <!--
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlInfoTimeStamp'>
+      <description>returns the commit date/time (yyyy-mm-dd hh:mm:ss) of the highest commit revision in the source code working copy used to build the addin.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+        -->
+    <!--SupportedPlatform name='Cpp'/-->
+    <!--
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlInfoRevisionRange'>
+      <description>returns the update revision range in the source code used to build the addin.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+        -->
+    <!--SupportedPlatform name='Cpp'/-->
+    <!--
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlInfoLocalModifications'>
+      <description>returns TRUE if there were local modifications in the source code used to build the addin.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+        -->
+    <!--SupportedPlatform name='Cpp'/-->
+    <!--
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>-->
+
+    <!--<Procedure name='qlIsInSubset'>
+      <description>Looks for elements of a set in a subset. Returns a vector of present/not present booleans, one for each element of the set.</description>
+      <alias>QuantLib::isInSubset</alias>
+      <SupportedPlatforms>
+        --><!--SupportedPlatform name='Excel' calcInWizard='false'/--><!--
+        <SupportedPlatform name='Excel'/>
+        --><!--SupportedPlatform name='Cpp'/--><!--
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Set' exampleValue='0,1,2,3,4,5,6,7,8,9'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>set.</description>
+          </Parameter>
+          <Parameter name='Subset' exampleValue='1,3,5,7,9'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>subset.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>-->
+
+  </Functions>
+</Category>

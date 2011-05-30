@@ -1,0 +1,195 @@
+
+/*
+ Copyright (C) 2011 Andrew Downes
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at http://quantlib.org/license.html
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page extend_enum_tutorial Expose QuantLib Enumerations to QuantLibXL
+
+<div align="center"><small>&copy; 2011 Andrew Downes</small></div>
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
+
+This document explains how to expose additional %QuantLib
+enumerated types to Excel.  As a prerequisite it is assumed that you have already compiled
+QuantLibXL from source code using the Full build documented in the tutorial
+\ref build_qlxl.
+
+\ref extend2_enum \n
+\ref extend2_enum_add \n
+\ref extend2_enum_use \n
+\ref extend2_enum_flag \n
+
+\section extend2_enum 1 The Enumeration
+
+In this example we use a new, trivial, example of an enumerated type.
+We assume the code for the enumeration is contained in the %file:
+
+\verbatim
+QuantLib\ql\newfiles\newenums.hpp
+\endverbatim
+
+This file is added to the root directory of the %QuantLib project. The
+code for the enumeration is below:
+
+\verbatim
+#ifndef new_enums_h
+#define new_enums_h
+namespace QuantLib {
+enum NewEnumeration {
+NO_NEW_ENUMERATION,
+ENUM_VALUE_1,
+ENUM_VALUE_2
+};
+} // namespace
+#endif
+\endverbatim
+
+\section extend2_enum_add 2 Adding the Enumeration to QuantLibXL
+
+Open the %file:
+
+\verbatim
+QuantLibAddin\gensrc\metadata\enumerations\enumeratedtypes.xml
+\endverbatim
+
+Between <EnumeratedTypeGroups> and </EnumeratedTypeGroups> add the
+code:
+
+\verbatim
+<EnumeratedTypeGroup type='QuantLib::NewEnumeration'>
+<includeFile>oh/enumerations/typefactory.hpp</includeFile>
+<constructor>true</constructor>
+<EnumeratedTypes>
+<EnumeratedType>
+<string>NO_NEW_ENUMERATION</string>
+<value>QuantLib::NO_NEW_ENUMERATION</value>
+</EnumeratedType>
+<EnumeratedType>
+<string>ENUM_VALUE_1</string>
+<value>QuantLib::ENUM_VALUE_1</value>
+</EnumeratedType>
+<EnumeratedType>
+<string>ENUM_VALUE_2</string>
+<value>QuantLib::ENUM_VALUE_2</value>
+</EnumeratedType>
+</EnumeratedTypes>
+</EnumeratedTypeGroup>
+\endverbatim
+
+The line <constructor>true</constructor> will be discussed in more
+detail in the final section, for all QuantLib enumerations that you wish
+to expose to Excel the line should remain as above.
+Edit the file
+
+\verbatim
+QuantLibAddin\gensrc\metadata\types\types.xml
+\endverbatim
+
+and add the new data type NewEnumeration:
+
+\verbatim
+<root>
+<DataTypes>
+<DataType defaultSuperType='enumeration'>QuantLib::Average::Type</DataType>
+...
+<DataType defaultSuperType='enumeration'>QuantLib::NewEnumeration</DataType>
+...
+<DataType defaultSuperType='underlyingClass'>QuantLib::Leg</DataType>
+</DataTypes>
+</root>
+\endverbatim
+
+Edit the file
+\verbatim
+QuantLibAddin\gensrc\stubs\stub.enum.types
+\endverbatim
+and add the
+file containing the new enumeration:
+
+\verbatim
+#include <qlo/qladdindefines.hpp>
+...
+#include <ql/newfiles/newenums.hpp>
+\endverbatim
+
+\section extend2_enum_use 3 Using the Enumeration in QuantLibXL
+
+To use this enumeration in a function/constructor call from excel, add
+the parameter to the function/constructor in the appropriate .xml file
+by using:
+
+\verbatim
+<Member name='qlMyFunction' type='QuantLib::MyClass'>
+<description>function description</description>
+<libraryFunction>myFunction</libraryFunction>
+<SupportedPlatforms>
+<SupportedPlatform name='Excel' calcInWizard='false'/>
+</SupportedPlatforms>
+<ParameterList>
+<Parameters>
+<Parameter name='NewEnum' exampleValue='ENUM_VALUE_1'>
+<type>QuantLib::NewEnumeration</type>
+<tensorRank>scalar</tensorRank>
+<description>new enumeration</description>
+</Parameter>
+</Parameters>
+</ParameterList>
+<ReturnValue>
+<type>double</type>
+<tensorRank>scalar</tensorRank>
+</ReturnValue>
+</Member>
+\endverbatim
+
+The enumeration can now be used in excel by entering a string. For
+the above example we write:
+
+\verbatim
+=qlMyFunction(ENUM_VALUE_1)
+\endverbatim
+
+\section extend2_enum_flag 4 The Constructor Flag
+
+As mentioned, for all %QuantLib enumerated types that you wish to
+expose to Excel the <constructor> tag should remain set to true. This
+associates the string “ENUM_VALUE_1” in Excel with the QuantLib type
+
+\verbatim
+QuantLib::NewEnumeration(QuantLib::ENUM_VALUE_1)
+\endverbatim
+
+However, you may wish to associate a string in Excel directly with a
+%QuantLib class. An example of this is given by currency inputs to
+functions, which can be written simply as (for example) “AUD”, rather
+than going through the process of constructing an Australian dollar
+currency class.
+
+To achieve a similar result, set the <constructor> tag to false. In the
+above example, this would associate the string “ENUM_VALUE_1” in Excel
+with the %QuantLib type QuantLib::ENUM_VALUE_1 – the string in the
+<string> tag is replaced directly with the type in the value tag.
+Hence, as in the currency example, if you wanted the string AUD to
+give an AUDCurrency class, we would set the <constructor> tag to
+false, set the <string> tag to AUD and the value tag to QuantLib::AUDCurrency().
+
+<div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
+
+*/
+

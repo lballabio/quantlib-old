@@ -1,0 +1,18 @@
+<Addin name='Guile'>
+
+  <rootDirectory>Addins/Guile</rootDirectory>
+
+  <copyright>
+    Copyright (C) 2005, 2006 Eric Ehlers
+    Copyright (C) 2005 Plamen Neykov
+    Copyright (C) 2005 Aurelien Chanudet
+  </copyright>
+
+  <Buffers>
+    <Buffer name='bufferFunction' fileName='stub.guile.function'/>
+    <Buffer name='bufferIncludes' fileName='stub.guile.includes'/>
+    <Buffer name='bufferInitFunc' fileName='stub.guile.initfunc'/>
+    <Buffer name='bufferHeader' fileName='stub.guile.header'/>
+  </Buffers>
+
+</Addin>

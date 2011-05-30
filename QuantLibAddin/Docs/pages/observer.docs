@@ -1,0 +1,62 @@
+
+/*
+ Copyright (C) 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page observer Observer/Observable Design Pattern
+
+<div align="center"><small><a href="manual.html">back to reference manual index</a></small></div> 
+
+\section observer_overview Overview
+
+QuantLib implements a mechanism called the Observer/Observable Design Pattern
+in which Observer objects hold references to Observable objects, and the
+Observables automatically notify Observers of changes.  QuantLibXL workbooks may be
+designed to exploit this feature so that updates are made behind the scenes,
+independent of Excel's recalculation mechanism, resulting in improved performance.
+The technique is dependent upon ObjectHandler's concepts of \ref references.
+
+\section observer_implementation Implementation
+
+A YieldTermStructure observes its associated RateHelper objects, such that
+changes to rates are automatically communicated to the term structure.  The
+update is "lazy": when referenced, the YTS asks its RHs if they have changed,
+if so the YTS re-bootstraps itself.
+
+QuantLibXL workbooks can use the following technique:
+\li create a sheet to instantiate the RH objects, then close it
+\li create a sheet to receive the live data feed, updating the existing RHs non-destructively by calling their setQuote() methods. Keep this sheet open.
+\li create a sheet to instantiate the YTS, then close it
+
+With the above environment, the sheets which instantiated the RHs and YTS are
+closed, meaning that Excel cannot invoke recalculation of those cells. Only the
+data feed is active, updating the state of the RHs non-destructively. Because
+of QL's Observer/Observable pattern, changes in the state of the RHs are
+reflected in that of the YTS, invisible to Excel and without triggering the
+recalculation of any cells.  Now an instrument may be priced based on the YTS.
+
+The YTS refers to the RHs with raw strings rather than Excel cell references.
+The same is true of the link from the Instrument to the YTS.  The YTS and RH
+objects are created as permanent objects.  Triggers are used to force a
+dependency between the Instrument and the live data feed.
+
+*/
+

@@ -1,0 +1,65 @@
+<Category name='processes'>
+  <description>functions to construct and use Process objects.</description>
+  <displayName>Processes</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/processes.hpp</include>
+    <include>qlo/volatilities.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/processes.hpp</include>
+    <include>qlo/volatilities.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2004, 2005 Eric Ehlers
+  </copyright>
+  <Functions>
+
+    <Constructor name='qlGeneralizedBlackScholesProcess'>
+      <libraryFunction>GeneralizedBlackScholesProcess</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='BlackVolID'>
+            <type>QuantLib::BlackVolTermStructure</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Black Vol Term Structure.</description>
+          </Parameter>
+          <Parameter name='Underlying'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='SettlementDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date.</description>
+          </Parameter>
+          <Parameter name='RiskFreeRate'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>risk free rate.</description>
+          </Parameter>
+          <Parameter name='DividendYield'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dividend yield.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="5">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>4</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="151" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>DiscountingSwapEngine</ObjectId>
+			<ClassName>qlDiscountingSwapEngine</ClassName>
+			<YieldCurve>FlatForward</YieldCurve>
+			<IncludeSettlDate>0</IncludeSettlDate>
+			<SettlementDate class_id="234" tracking_level="0" version="0">
+				<which>0</which>
+				<value class_id="235" tracking_level="0" version="0"></value>
+			</SettlementDate>
+			<NpvDate>
+				<which>0</which>
+				<value></value>
+			</NpvDate>
+			<Permanent>0</Permanent>
+			<UserProperties class_id="236" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="48" tracking_level="1" version="0" object_id="_2">
+			<ObjectId>FixedRateLeg</ObjectId>
+			<ClassName>qlFixedRateLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>1000000</item>
+			</Nominals>
+			<ScheduleID>Schedule1</ScheduleID>
+			<Coupons>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>0.050000000000000003</item>
+			</Coupons>
+			<DayCounter>30/360 (Bond Basis)</DayCounter>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="51" tracking_level="1" version="0" object_id="_3">
+			<ObjectId>IborLeg</ObjectId>
+			<ClassName>qlIborLeg</ClassName>
+			<PaymentBDC>Following</PaymentBDC>
+			<Nominals>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item>1000000</item>
+			</Nominals>
+			<ScheduleID>Schedule2</ScheduleID>
+			<FixingDays>
+				<count>0</count>
+				<item_version>0</item_version>
+			</FixingDays>
+			<IsInArrears>0</IsInArrears>
+			<DayCounter>Actual/360</DayCounter>
+			<Floors>
+				<count>0</count>
+				<item_version>0</item_version>
+			</Floors>
+			<Gearings>
+				<count>0</count>
+				<item_version>0</item_version>
+			</Gearings>
+			<IborIndex>Euribor</IborIndex>
+			<Spreads>
+				<count>0</count>
+				<item_version>0</item_version>
+			</Spreads>
+			<Caps>
+				<count>0</count>
+				<item_version>0</item_version>
+			</Caps>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="202" tracking_level="1" version="0" object_id="_4">
+			<ObjectId>Swap</ObjectId>
+			<ClassName>qlSwap</ClassName>
+			<LegIDs class_id="239" tracking_level="0" version="0">
+				<count>2</count>
+				<item_version>0</item_version>
+				<item>FixedRateLeg</item>
+				<item>IborLeg</item>
+			</LegIDs>
+			<Payer>
+				<count>2</count>
+				<item>1</item>
+				<item>0</item>
+			</Payer>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>1</count>
+				<item_version>0</item_version>
+				<item class_id="241" tracking_level="0" version="0">
+					<first>EngineID</first>
+					<second>
+						<which>2</which>
+						<value>DiscountingSwapEngine</value>
+					</second>
+				</item>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+

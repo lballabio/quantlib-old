@@ -1,0 +1,109 @@
+<Category name='alphaform'>
+  <description>functions to construct and use AlphaForm objects.</description>
+  <displayName>AlphaForm</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>ql/models/marketmodels/models/alphaform.hpp</include>
+    <include>ql/models/marketmodels/models/alphaformconcrete.hpp</include>
+    <include>qlo/alphaform.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2007 Marco Bianchetti
+  </copyright>
+  <Functions>
+
+    <!-- AlphaForm base class interfaces -->
+    <Member name='qlAlphaFormOperator' type='QuantLib::AlphaForm' superType='libraryClass'>
+      <description>returns the Alpha Form value at time i.</description>
+      <libraryFunction>operator()</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Time' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>integer corresponding to i-th time.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAlphaFormSetAlpha' type='QuantLib::AlphaForm' superType='libraryClass'>
+      <description>set the Alpha parameter value to Alpha Form.</description>
+      <libraryFunction>setAlpha</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Alpha' exampleValue ='1'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Alpha parameter value for Alpha Form.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- AlphaFormInverseLinear derived class constructor -->
+    <Constructor name='qlAlphaFormInverseLinear'>
+      <libraryFunction>AlphaFormInverseLinear</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times.</description>
+          </Parameter>
+          <Parameter name='Alpha' exampleValue ='5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha coefficient.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- AlphaFormLinearHyperbolic derived class constructor -->
+    <Constructor name='qlAlphaFormLinearHyperbolic'>
+      <libraryFunction>AlphaFormLinearHyperbolic</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times.</description>
+          </Parameter>
+          <Parameter name='Alpha' exampleValue ='5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha coefficient.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

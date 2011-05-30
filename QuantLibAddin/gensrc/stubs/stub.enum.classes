@@ -1,0 +1,19 @@
+#if defined(HAVE_CONFIG_H)     // Dynamically created by configure
+    #include <qlo/config.hpp>
+#endif
+
+#include <qlo/enumerations/constructors/enumeratedclasses.hpp>
+#include <qlo/enumerations/factories/conundrumpricerfactory.hpp>
+#include <qlo/enumerations/factories/iborcouponpricersfactory.hpp>
+#include <qlo/enumerations/factories/interpolationsfactory.hpp>
+#include <qlo/enumerations/factories/payoffsfactory.hpp>
+#include <qlo/enumerations/factories/pricingenginesfactory.hpp>
+
+namespace QuantLibAddin {
+
+    void registerEnumeratedClasses() {
+    
+%(buffer)s    }
+
+}
+

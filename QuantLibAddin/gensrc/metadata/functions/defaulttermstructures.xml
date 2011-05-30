@@ -1,0 +1,105 @@
+<Category name='defaulttermstructures'>
+  <description>functions to construct and use DefaultProbabilityTermStructure objects.</description>
+  <displayName>Default Probability Term Structures</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/conversions/coercetermstructure.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/handleimpl.hpp</include>
+    <include>qlo/conversions/coercetermstructure.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2009 Ferdinando Ametrano
+  </copyright>
+  <Functions>
+
+    <!-- DefaultTermStructure interface -->
+    <Member name='qlDefaultTSDefaultProbability' type='QuantLib::DefaultProbabilityTermStructure' superType='libraryTermStructure' loopParameter='Dates'>
+      <description>Returns the probability of default between the reference date and the given date from the given DefaultProbabilityTermStructure object.</description>
+      <libraryFunction>defaultProbability</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dates' exampleValue ="'1Y,2Y,3Y,4Y,5Y">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of dates.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE allows extrapolation.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Probability</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- RelinkableHandle<DefaultProbabilityTermStructure> -->
+    <Constructor name='qlRelinkableHandleDefaultProbabilityTermStructure'>
+      <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::DefaultProbabilityTermStructure, QuantLib::DefaultProbabilityTermStructure&gt;</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+	<!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>RelinkableHandleProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurrentLink' default='""'>
+            <type>string</type>
+            <superType>handlePredecessor</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>DefaultProbabilityTermStructure object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- YieldTermStructure constructors -->
+    <Constructor name='qlFlatHazardRate'>
+      <libraryFunction>FlatHazardRate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='NDays' default='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0.</description>
+          </Parameter>
+          <Parameter name='Calendar' default ='"NullCalendar"'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate.</description>
+          </Parameter>
+          <Parameter name='Rate' exampleValue='0.044'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>the curve level.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

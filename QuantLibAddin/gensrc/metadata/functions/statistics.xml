@@ -1,0 +1,1023 @@
+<Category name='statistics'>
+  <description>functions to construct and use Statistics objects.</description>
+  <displayName>Statistics</displayName>
+  <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>qlo/statistics.hpp</include>
+    <include>ql/math/statistics/statistics.hpp</include>
+    <include>ql/math/statistics/incrementalstatistics.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2006 Cristina Duminuco
+  </copyright>
+
+  <Functions>
+
+    <!-- GeneralStatistics methods -->
+
+    <Member name='qlStatisticsSamples' type='QuantLib::Statistics'>
+      <description>Returns the number of samples collected for the given Statistics object.</description>
+      <libraryFunction>samples</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsWeightSum' type='QuantLib::Statistics'>
+      <description>Returns the sum of data weights for the given Statistics object.</description>
+      <libraryFunction>weightSum</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsMean' type='QuantLib::Statistics'>
+      <description>Returns the mean for the given Statistics object.</description>
+      <libraryFunction>mean</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsVariance' type='QuantLib::Statistics'>
+      <description>Returns the variance for the given Statistics object.</description>
+      <libraryFunction>variance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsStandardDeviation' type='QuantLib::Statistics'>
+      <description>Returns the the standard deviation for the given Statistics object.</description>
+      <libraryFunction>standardDeviation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsErrorEstimate' type='QuantLib::Statistics'>
+      <description>Returns the error estimate on the mean value for the given Statistics object.</description>
+      <libraryFunction>errorEstimate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsSkewness' type='QuantLib::Statistics'>
+      <description>Returns the skewness for the given Statistics object.</description>
+      <libraryFunction>skewness</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsKurtosis' type='QuantLib::Statistics'>
+      <description>Returns the excess kurtosis for the given Statistics object.</description>
+      <libraryFunction>kurtosis</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsMin' type='QuantLib::Statistics'>
+      <description>Returns the minimum sample value for the given Statistics object.</description>
+      <libraryFunction>min</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsMax' type='QuantLib::Statistics'>
+      <description>Returns the maximum sample value for the given Statistics object.</description>
+      <libraryFunction>max</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsPercentile' type='QuantLib::Statistics'>
+      <description>Returns the x-th percentile for the given Statistics object.</description>
+      <libraryFunction>percentile</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='X' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Must be in the range (0,1].</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsTopPercentile' type='QuantLib::Statistics'>
+      <description>Returns the x-th top percentile for the given Statistics object.</description>
+      <libraryFunction>topPercentile</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='X' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Must be in the range (0,1].</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- GaussianStatistics methods -->
+
+    <Member name='qlStatisticsGaussianDownsideVariance' type='QuantLib::Statistics'>
+      <description>Returns the variance of observations below zero for the given Statistics object.</description>
+      <libraryFunction>gaussianDownsideVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsGaussianDownsideDeviation' type='QuantLib::Statistics'>
+      <description>Returns the square root of the downside variance for the given Statistics object.</description>
+      <libraryFunction>gaussianDownsideDeviation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsGaussianRegret' type='QuantLib::Statistics'>
+      <description>Returns the variance of observations below the target for the given Statistics object.</description>
+      <libraryFunction>gaussianRegret</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsGaussianPercentile' type='QuantLib::Statistics'>
+      <description>Returns the x-th percentile for the given Statistics object.</description>
+      <libraryFunction>gaussianPercentile</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='X' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Must be in the range (0,1].</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsGaussianTopPercentile' type='QuantLib::Statistics'>
+      <description>Returns the x-th top percentile for the given Statistics object.</description>
+      <libraryFunction>gaussianTopPercentile</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='X' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Must be in the range (0,1].</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsGaussianPotentialUpside' type='QuantLib::Statistics'>
+      <description>Returns the reciprocal of VAR at a given percentile for the given Statistics object.</description>
+      <libraryFunction>gaussianPotentialUpside</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsGaussianValueAtRisk' type='QuantLib::Statistics'>
+      <description>Returns the value-at-risk at a given percentile for the given Statistics object.</description>
+      <libraryFunction>gaussianValueAtRisk</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsGaussianExpectedShortfall' type='QuantLib::Statistics'>
+      <description>Returns the expected loss in case that the loss exceeded a VaR threshold for the given Statistics object.</description>
+      <libraryFunction>gaussianExpectedShortfall</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsGaussianShortfall' type='QuantLib::Statistics'>
+      <description>Returns the probability of missing the given target for the given Statistics object.</description>
+      <libraryFunction>gaussianShortfall</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsGaussianAverageShortfall' type='QuantLib::Statistics'>
+      <description>Returns the averaged shortfallness for the given Statistics object.</description>
+      <libraryFunction>gaussianAverageShortfall</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- GenericRiskStatistics methods -->
+
+    <Member name='qlStatisticsSemiVariance' type='QuantLib::Statistics'>
+      <description>Returns the variance of observations below the mean for the given Statistics object.</description>
+      <libraryFunction>semiVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsSemiDeviation' type='QuantLib::Statistics'>
+      <description>Returns the square root of the semivariance for the given Statistics object.</description>
+      <libraryFunction>semiDeviation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsDownsideVariance' type='QuantLib::Statistics'>
+      <description>Returns the variance of observations below zero for the given Statistics object.</description>
+      <libraryFunction>downsideVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsDownsideDeviation' type='QuantLib::Statistics'>
+      <description>Returns the square root of the downside variance for the given Statistics object.</description>
+      <libraryFunction>downsideDeviation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsRegret' type='QuantLib::Statistics'>
+      <description>Returns the variance of observations below target for the given Statistics object.</description>
+      <libraryFunction>regret</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsPotentialUpside' type='QuantLib::Statistics'>
+      <description>Returns the reciprocal of VAR at a given percentile for the given Statistics object.</description>
+      <libraryFunction>potentialUpside</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Centile' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the centile.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsValueAtRisk' type='QuantLib::Statistics'>
+      <description>Returns the value-at-risk at a given percentile for the given Statistics object.</description>
+      <libraryFunction>valueAtRisk</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsExpectedShortfall' type='QuantLib::Statistics'>
+      <description>Returns the expected loss in case that the loss exceeded a VaR threshold for the given Statistics object.</description>
+      <libraryFunction>expectedShortfall</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Centile' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the centile.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsShortfall' type='QuantLib::Statistics'>
+      <description>Returns the probability of missing the given target for the given Statistics object.</description>
+      <libraryFunction>shortfall</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlStatisticsAverageShortfall' type='QuantLib::Statistics'>
+      <description>Returns the averaged shortfallness for the given Statistics object.</description>
+      <libraryFunction>averageShortfall</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- constructor -->
+
+    <Constructor name='qlStatistics'>
+      <description>Statistics and risk measures tool.</description>
+      <libraryFunction>Statistics</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Values' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.5,2.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>Sampled values. If omitted, an empty statistics is created.</description>
+          </Parameter>
+          <Parameter name='Weights' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.0,1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>Weights. If omitted, all sampled values have the same weight.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- constructor -->
+
+    <Constructor name='qlIncrementalStatistics'>
+      <description>Statistics and risk measures tool.</description>
+      <libraryFunction>IncrementalStatistics</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Values' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.5,2.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>Sampled values. If omitted, an empty statistics is created.</description>
+          </Parameter>
+          <Parameter name='Weights' default='std::vector&lt;QuantLib::Real&gt;()' exampleValue='1.0,1.0,1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>Weights. If omitted, all sampled values have the same weight.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+    <!-- GaussianStatistics functions -->
+
+    <Procedure name='qlGaussianDownsideVariance'>
+      <description>Returns the variance of observations below zero.</description>
+      <alias>QuantLibAddin::gaussianDownsideVariance</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Mean' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the mean of the gaussian distribution.</description>
+          </Parameter>
+          <Parameter name='StdDev' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation of the gaussian distribution.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlGaussianDownsideDeviation'>
+      <description>Returns the square root of the downside variance.</description>
+      <alias>QuantLibAddin::gaussianDownsideDeviation</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Mean' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>mean of the gaussian distribution.</description>
+          </Parameter>
+          <Parameter name='StdDev' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation of the gaussian distribution.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlGaussianRegret'>
+      <description>Returns the variance of observations below target.</description>
+      <alias>QuantLibAddin::gaussianRegret</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+          <Parameter name='Mean' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>mean of the gaussian distribution.</description>
+          </Parameter>
+          <Parameter name='StdDev' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation of the gaussian distribution.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlGaussianPercentile'>
+      <description>Returns the x-th percentile.</description>
+      <alias>QuantLibAddin::gaussianPercentile</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='X' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+          <Parameter name='Mean' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>mean of the gaussian distribution.</description>
+          </Parameter>
+          <Parameter name='StdDev' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation of the gaussian distribution.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlGaussianTopPercentile'>
+      <description>Returns the x-th top percentile.</description>
+      <alias>QuantLibAddin::gaussianTopPercentile</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='X' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+          <Parameter name='Mean' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The mean of the gaussian distribution.</description>
+          </Parameter>
+          <Parameter name='StdDev' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The standard deviation of the gaussian distribution.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlGaussianPotentialUpside'>
+      <description>Returns the reciprocal of VAR at a given percentile.</description>
+      <alias>QuantLibAddin::gaussianPotentialUpside</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+          <Parameter name='Mean' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The mean of the gaussian distribution.</description>
+          </Parameter>
+          <Parameter name='StdDev' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The standard deviation of the gaussian distribution.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlGaussianValueAtRisk'>
+      <description>Returns the value-at-risk at a given percentile.</description>
+      <alias>QuantLibAddin::gaussianValueAtRisk</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+          <Parameter name='Mean' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The mean of the gaussian distribution.</description>
+          </Parameter>
+          <Parameter name='StdDev' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The standard deviation of the gaussian distribution.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlGaussianExpectedShortfall'>
+      <description>Returns the expected loss in case that the loss exceeded a VaR threshold.</description>
+      <alias>QuantLibAddin::gaussianExpectedShortfall</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the percentile.</description>
+          </Parameter>
+          <Parameter name='Mean' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The mean of the gaussian distribution.</description>
+          </Parameter>
+          <Parameter name='StdDev' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The standard deviation of the gaussian distribution.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlGaussianShortfall'>
+      <description>Returns the probability of missing the given target.</description>
+      <alias>QuantLibAddin::gaussianShortfall</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+          <Parameter name='Mean' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The mean of the gaussian distribution.</description>
+          </Parameter>
+          <Parameter name='StdDev' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The standard deviation of the gaussian distribution.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlGaussianAverageShortfall'>
+      <description>Returns the averaged shortfallness.</description>
+      <alias>QuantLibAddin::gaussianAverageShortfall</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Target' exampleValue='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the target.</description>
+          </Parameter>
+          <Parameter name='Mean' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The mean of the gaussian distribution.</description>
+          </Parameter>
+          <Parameter name='StdDev' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The standard deviation of the gaussian distribution.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+</Category>

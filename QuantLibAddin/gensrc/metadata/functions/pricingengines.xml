@@ -1,0 +1,1427 @@
+<Category name='pricingengines'>
+  <description>functions to construct and use PricingEngine objects.</description>
+  <displayName>Pricing Engines</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/pricingengines.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/shortratemodels.hpp</include>
+    <include>qlo/payoffs.hpp</include>
+    <include>qlo/marketmodels.hpp</include>
+    <include>qlo/processes.hpp</include>
+    <include>ql/pricingengines/blackformula.hpp</include>
+    <include>ql/pricingengines/blackscholescalculator.hpp</include>
+    <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/termstructures/volatility/swaption/swaptionvolstructure.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/pricingengines.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/shortratemodels.hpp</include>
+    <include>qlo/payoffs.hpp</include>
+    <include>qlo/marketmodels.hpp</include>
+    <include>qlo/processes.hpp</include>
+    <include>ql/pricingengines/blackformula.hpp</include>
+    <include>ql/pricingengines/blackscholescalculator.hpp</include>
+    <include>ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp</include>
+    <include>ql/termstructures/volatility/swaption/swaptionvolstructure.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2007 Eric Ehlers
+  </copyright>
+  <Functions>
+
+    <Procedure name='qlBlackFormula'>
+      <description>Black 1976 formula for option pricing, using displacement.</description>
+      <alias>QuantLib::blackFormula</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionType'>
+            <type>QuantLib::Option::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option type (i.e. Call or Put).</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBlackFormulaCashItmProbability'>
+      <description>Black 1976 probability of being in the money (in the bond martingale measure), i.e. N(d2). It is a risk-neutral probability, not the real world one.</description>
+      <alias>QuantLib::blackFormulaCashItmProbability</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionType'>
+            <type>QuantLib::Option::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option type (i.e. Call or Put).</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBlackFormulaImpliedStdDevApproximation'>
+      <description>Approximation for the standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula.</description>
+      <alias>QuantLib::blackFormulaImpliedStdDevApproximation</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionType'>
+            <type>QuantLib::Option::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option type (i.e. Call or Put).</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='OptionPrice' exampleValue='7.97'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option price.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBlackFormulaImpliedStdDev'>
+      <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula with displacement.</description>
+      <alias>QuantLib::blackFormulaImpliedStdDev</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionType'>
+            <type>QuantLib::Option::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option type (i.e. Call or Put).</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='OptionPrice' exampleValue='7.97'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option price.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model.</description>
+          </Parameter>
+          <Parameter name='Guess' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation guess.</description>
+          </Parameter>
+          <Parameter name='Accuracy' default='1.0e-6'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>solver accuracy.</description>
+          </Parameter>
+          <Parameter name='MaxIter' default='100'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>solver max iterations.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBlackFormulaStdDevDerivative'>
+      <description>Black 1976 formula for the derivative with respect to the standard deviation (annualized percentage volatility times the square root of time to option expiry), with displacement.</description>
+      <alias>QuantLib::blackFormulaStdDevDerivative</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBachelierBlackFormula'>
+      <description>Black style formula when forward is normal rather than log-normal, i.e. essentially the model of Bachelier.</description>
+      <alias>QuantLib::bachelierBlackFormula</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionType'>
+            <type>QuantLib::Option::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option type (i.e. Call or Put).</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='20.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized ABSOLUTE volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBlackFormula2'>
+      <description>Black 1976 formula for option pricing with displacement. It uses a PlainVanillaPayoff object as input.</description>
+      <alias>QuantLib::blackFormula</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Payoff'>
+            <type>QuantLib::PlainVanillaPayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>PlainVanillaPayoff object ID.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBlackFormulaCashItmProbability2'>
+      <description>Black 1976 probability of being in the money (in the bond martingale measure), i.e. N(d2). It is a risk-neutral probability, not the real world one. It uses a PlainVanillaPayoff object as input.</description>
+      <alias>QuantLib::blackFormulaCashItmProbability</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Payoff'>
+            <type>QuantLib::PlainVanillaPayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>PlainVanillaPayoff  object ID.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBlackFormulaImpliedStdDevApproximation2'>
+      <description>Approximation for the standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula. It uses a PlainVanillaPayoff object as input.</description>
+      <alias>QuantLib::blackFormulaImpliedStdDevApproximation</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Payoff'>
+            <type>QuantLib::PlainVanillaPayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>PlainVanillaPayoff object ID.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='OptionPrice' exampleValue='7.97'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option price.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBlackFormulaImpliedStdDev2'>
+      <description>Standard deviation (annualized percentage volatility times the square root of time to option expiry) implied by the Black 1976 formula. It uses a PlainVanillaPayoff object as input.</description>
+      <alias>QuantLib::blackFormulaImpliedStdDev</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='PayoffID'>
+            <type>QuantLib::PlainVanillaPayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>PlainVanillaPayoff object ID.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='OptionPrice' exampleValue='7.97'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option price.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model.</description>
+          </Parameter>
+          <Parameter name='Guess' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation guess.</description>
+          </Parameter>
+          <Parameter name='Accuracy' default='1.0e-6'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation accuracy.</description>
+          </Parameter>
+          <Parameter name='MaxIter' default='100'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>solver max iterations.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBlackFormulaStdDevDerivative2'>
+      <description>Black 1976 formula for the derivative with respect to the standard deviation (annualized percentage volatility times the square root of time to option expiry). It uses a PlainVanillaPayoff object as input.</description>
+      <alias>QuantLib::blackFormulaStdDevDerivative</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='PayoffID'>
+            <type>QuantLib::PlainVanillaPayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>PlainVanillaPayoff object ID.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBachelierBlackFormula2'>
+      <description>Black style formula when forward is normal rather than log-normal, i.e. essentially the model of Bachelier. It uses a PlainVanillaPayoff object as input.</description>
+      <alias>QuantLib::bachelierBlackFormula</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Payoff'>
+            <type>QuantLib::PlainVanillaPayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>PlainVanillaPayoff object ID.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='20.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized ABSOLUTE volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <!-- BlackCalculator interface and constructor -->
+    <Member name='qlBlackCalculatorValue' type='QuantLib::BlackCalculator'>
+      <description>returns the option value for the given BlackCalculator object.</description>
+      <libraryFunction>value</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorDeltaForward' type='QuantLib::BlackCalculator'>
+      <description>returns the sensitivity to change in the underlying forward price for the given BlackCalculator object.</description>
+      <libraryFunction>deltaForward</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorDelta' type='QuantLib::BlackCalculator'>
+      <description>returns the sensitivity to change in the underlying spot price for the given BlackCalculator object.</description>
+      <libraryFunction>delta</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Spot'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spot value.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorElasticityForward' type='QuantLib::BlackCalculator'>
+      <description>returns the sensitivity in percent to a percent change in the underlying forward price for the given BlackCalculator object.</description>
+      <libraryFunction>elasticityForward</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorElasticity' type='QuantLib::BlackCalculator'>
+      <description>returns the sensitivity in percent to a percent change in the underlying spot price for the given BlackCalculator object.</description>
+      <libraryFunction>elasticity</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Spot'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spot value.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorGammaForward' type='QuantLib::BlackCalculator'>
+      <description>returns the second order derivative with respect to change in the underlying forward price for the given BlackCalculator object.</description>
+      <libraryFunction>gammaForward</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorGamma' type='QuantLib::BlackCalculator'>
+      <description>returns the second order derivative with respect to change in the underlying spot price for the given BlackCalculator object.</description>
+      <libraryFunction>gamma</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Spot'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spot value.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorTheta' type='QuantLib::BlackCalculator'>
+      <description>returns the sensitivity to time to maturity for the given BlackCalculator object.</description>
+      <libraryFunction>theta</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Spot'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spot value.</description>
+          </Parameter>
+          <Parameter name='TimeToMaturity'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time to maturity in years.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorThetaPerDay' type='QuantLib::BlackCalculator'>
+      <description>returns the sensitivity to time to maturity per day, assuming 365 days per year, for the given BlackCalculator object.</description>
+      <libraryFunction>thetaPerDay</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Spot'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spot value.</description>
+          </Parameter>
+          <Parameter name='TimeToMaturity'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time to maturity in years.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorVega' type='QuantLib::BlackCalculator'>
+      <description>returns the sensitivity to volatility for the given BlackCalculator object.</description>
+      <libraryFunction>vega</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TimeToMaturity'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time to maturity in years.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorRho' type='QuantLib::BlackCalculator'>
+      <description>returns the sensitivity to discounting rate for the given BlackCalculator object.</description>
+      <libraryFunction>rho</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TimeToMaturity'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time to maturity in years.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorDividendRho' type='QuantLib::BlackCalculator'>
+      <description>returns the sensitivity to dividend/growth rate for the given BlackCalculator object.</description>
+      <libraryFunction>dividendRho</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TimeToMaturity'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time to maturity in years.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorItmCashProbability' type='QuantLib::BlackCalculator'>
+      <description>returns the probability of being in the money in the bond martingale measure for the given BlackCalculator object. It is a risk-neutral probability, not the real world probability.</description>
+      <libraryFunction>itmCashProbability</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorItmAssetProbability' type='QuantLib::BlackCalculator'>
+      <description>returns the probability of being in the money in the asset martingale measure for the given BlackCalculator object. It is a risk-neutral probability, not the real world probability.</description>
+      <libraryFunction>itmAssetProbability</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorStrikeSensitivity' type='QuantLib::BlackCalculator'>
+      <description>returns the sensitivity to strike for the given BlackCalculator object.</description>
+      <libraryFunction>strikeSensitivity</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorAlpha' type='QuantLib::BlackCalculator'>
+      <description>returns the alpha of the internal formulation of the given BlackCalculator object.</description>
+      <libraryFunction>alpha</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackCalculatorBeta' type='QuantLib::BlackCalculator'>
+      <description>returns the beta of the internal formulation of the given BlackCalculator object.</description>
+      <libraryFunction>beta</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlBlackCalculator2'>
+      <libraryFunction>BlackCalculator</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='PayoffID'>
+            <type>QuantLib::StrikedTypePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>StrikedTypePayoff ID.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBlackCalculator'>
+      <libraryFunction>BlackCalculator</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionType'>
+            <type>QuantLib::Option::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option type (i.e. Call or Put).</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- BlackScholesCalculator interface and constructor -->
+    <Member name='qlBlackScholesCalculatorDelta' type='QuantLib::BlackScholesCalculator'>
+      <description>returns the sensitivity to change in the underlying spot price for the given BlackScholesCalculator object.</description>
+      <libraryFunction>delta</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackScholesCalculatorElasticity' type='QuantLib::BlackScholesCalculator'>
+      <description>returns the sensitivity in percent to a percent change in the underlying spot price for the given BlackScholesCalculator object.</description>
+      <libraryFunction>elasticity</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackScholesCalculatorGamma' type='QuantLib::BlackScholesCalculator'>
+      <description>returns the second order derivative with respect to change in the underlying spot price for the given BlackScholesCalculator object.</description>
+      <libraryFunction>gamma</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackScholesCalculatorTheta' type='QuantLib::BlackScholesCalculator'>
+      <description>returns the sensitivity to time to maturity for the given BlackScholesCalculator object.</description>
+      <libraryFunction>theta</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TimeToMaturity'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time to maturity in years.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackScholesCalculatorThetaPerDay' type='QuantLib::BlackScholesCalculator'>
+      <description>returns the sensitivity to time to maturity per day, assuming 365 days per year, for the given BlackScholesCalculator object.</description>
+      <libraryFunction>thetaPerDay</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TimeToMaturity'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time to maturity in years.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlBlackScholesCalculator2'>
+      <libraryFunction>BlackScholesCalculator</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='PayoffID'>
+            <type>QuantLib::StrikedTypePayoff</type>
+            <tensorRank>scalar</tensorRank>
+            <description>StrikedTypePayoff ID.</description>
+          </Parameter>
+          <Parameter name='Spot' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spot value.</description>
+          </Parameter>
+          <Parameter name='Growth' default='1.0'>
+            <type>QuantLib::DiscountFactor</type>
+            <tensorRank>scalar</tensorRank>
+            <description>growth discount factor.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBlackScholesCalculator'>
+      <libraryFunction>BlackScholesCalculator</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionType'>
+            <type>QuantLib::Option::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option type (i.e. Call or Put).</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
+          </Parameter>
+          <Parameter name='Spot' exampleValue='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spot value.</description>
+          </Parameter>
+          <Parameter name='Growth' default='1.0'>
+            <type>QuantLib::DiscountFactor</type>
+            <tensorRank>scalar</tensorRank>
+            <description>growth discount factor.</description>
+          </Parameter>
+          <Parameter name='StdDev' exampleValue='0.20'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation, i.e. annualized percentage volatility times the square root of time to option expiry.</description>
+          </Parameter>
+          <Parameter name='Deflator' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Deflator (usually the discount factor, or the annuity, etc.).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- Pricing Engines -->
+    <Constructor name='qlPricingEngine'>
+      <libraryFunction>PricingEngine</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EngineID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>engine type.</description>
+          </Parameter>
+          <Parameter name='ProcessID' >
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlDiscountingSwapEngine'>
+      <libraryFunction>DiscountingSwapEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID.</description>
+          </Parameter>
+          <Parameter name='IncludeSettlDate' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if cashflows paid at the settlement date must be taken into account.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cashflows before this date are not taken into account. If missing it is assumed equal to the discounting yield term structure's reference date.</description>
+          </Parameter>
+          <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>all cashflows are discounted to this date. If missing it is assumed equal to the discounting yield term structure's reference date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBinomialPricingEngine'>
+      <libraryFunction>PricingEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+	<SupportedPlatform name='Calc'/>
+	<SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EngineID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>engine type.</description>
+          </Parameter>
+          <Parameter name='ProcessID'>
+            <type>QuantLib::GeneralizedBlackScholesProcess</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>GeneralizedBlackScholesProcess object ID.</description>
+          </Parameter>
+          <Parameter name='TimeSteps'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>#/time steps.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBlackSwaptionEngine'>
+      <libraryFunction>BlackSwaptionEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+	<SupportedPlatform name='Calc'/>
+	<SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID.</description>
+          </Parameter>
+          <Parameter name='VolTS'>
+            <type>QuantLib::SwaptionVolatilityStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>SwaptionVolatilityStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBlackSwaptionEngine2'>
+      <libraryFunction>BlackSwaptionEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+	<SupportedPlatform name='Calc'/>
+	<SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID.</description>
+          </Parameter>
+          <Parameter name='Vol'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>cap/floor term volatility.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBlackCapFloorEngine'>
+      <libraryFunction>BlackCapFloorEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+	<SupportedPlatform name='Calc'/>
+	<SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='VolTS' exampleValue='EUROptionlet6M'>
+            <type>QuantLib::OptionletVolatilityStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>OptionletVolatilityStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBlackCapFloorEngine2'>
+      <libraryFunction>BlackCapFloorEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+	<SupportedPlatform name='Calc'/>
+	<SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='Vol'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Term (i.e. flat) volatility.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlAnalyticCapFloorEngine'>
+      <libraryFunction>AnalyticCapFloorEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+	<SupportedPlatform name='Excel'/>
+	<SupportedPlatform name='Calc'/>
+	<SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='HandleModel'>
+            <type>QuantLib::AffineModel</type>
+            <tensorRank>scalar</tensorRank>
+            <description>affine model (providing a discount bond option pricing formula) object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBondEngine'>
+      <libraryFunction>BondEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+	<SupportedPlatform name='Calc'/>
+	<SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

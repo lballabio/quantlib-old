@@ -1,0 +1,773 @@
+<Category name='marketmodels'>
+  <description>functions to construct and use Market Models related objects.</description>
+  <displayName>MarketModels</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/marketmodels.hpp</include>
+    <include>qlo/curvestate.hpp</include>
+    <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/correlation.hpp</include>
+    <include>qlo/ctsmmcapletcalibration.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>ql/models/marketmodels/models/fwdperiodadapter.hpp</include>
+    <include>ql/models/marketmodels/swapforwardmappings.hpp</include>
+    <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/marketmodels.hpp</include>
+    <include>qlo/curvestate.hpp</include>
+    <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/correlation.hpp</include>
+    <include>qlo/ctsmmcapletcalibration.hpp</include>
+    <include>qlo/yieldtermstructures.hpp</include>
+    <include>ql/models/marketmodels/models/fwdperiodadapter.hpp</include>
+    <include>ql/models/marketmodels/swapforwardmappings.hpp</include>
+    <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+  </addinIncludes>
+
+  <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2007 Chiara Fornarola
+    Copyright (C) 2006, 2007 Marco Bianchetti
+    Copyright (C) 2006, 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
+  </copyright>
+
+  <Functions>
+
+    <!-- MarketModel base class interfaces -->
+    <Member name='qlMarketModelInitialRates' type='QuantLib::MarketModel' superType='libraryClass'>
+      <description>initial rates for the MarketModel object.</description>
+      <libraryFunction>initialRates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelDisplacements' type='QuantLib::MarketModel' superType='libraryClass'>
+      <description>rates' displacemets for the MarketModel object.</description>
+      <libraryFunction>displacements</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Spread</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelNumberOfRates' type='QuantLib::MarketModel' superType='libraryClass'>
+      <description>number of rates for the MarketModel object.</description>
+      <libraryFunction>numberOfRates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelNumberOfFactors' type='QuantLib::MarketModel' superType='libraryClass'>
+      <description>number of factors for the MarketModel object.</description>
+      <libraryFunction>numberOfFactors</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelNumberOfSteps' type='QuantLib::MarketModel' superType='libraryClass'>
+      <description>number of steps for the MarketModel object.</description>
+      <libraryFunction>numberOfSteps</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelPseudoRoot' type='QuantLib::MarketModel' superType='libraryClass'>
+      <description>Returns the pseudo root for the i-th step.</description>
+      <libraryFunction>pseudoRoot</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Index' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>evolution step index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelCovariance' type='QuantLib::MarketModel' superType='libraryClass'>
+      <description>Returns the covariance matrix for the i-th step.</description>
+      <libraryFunction>covariance</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Index' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>evolution step index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelTotalCovariance' type='QuantLib::MarketModel' superType='libraryClass'>
+      <description>Returns the covariance matrix from start up to the i-th step.</description>
+      <libraryFunction>totalCovariance</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Index' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>evolution step index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlMarketModelTimeDependentVolatility' type='QuantLib::MarketModel' superType='libraryClass'>
+      <description>Returns the time dependent vol for rate i.</description>
+      <libraryFunction>timeDependentVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Index' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rate index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- MarketModel derived class constructors -->
+    <Constructor name='qlFlatVol'>
+      <libraryFunction>FlatVol</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Volatilities' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>vector</tensorRank>
+            <description>volatilities.</description>
+          </Parameter>
+          <Parameter name='Correlations'>
+            <type>QuantLib::PiecewiseConstantCorrelation</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>PiecewiseConstantCorrelation object ID.</description>
+          </Parameter>
+          <Parameter name='EvolutionDescription' >
+            <type>QuantLib::EvolutionDescription</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>EvolutionDescription object.</description>
+          </Parameter>
+          <Parameter name='Factors' exampleValue ='5'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of factors to be retained in the simulation.</description>
+          </Parameter>
+          <Parameter name='InitialRates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>initial rates.</description>
+          </Parameter>
+          <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>vector</tensorRank>
+            <description>displacements.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlAbcdVol'>
+      <libraryFunction>AbcdVol</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='A' exampleValue ='-0.06'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the a coefficient in the abcd vol parametrization.</description>
+          </Parameter>
+          <Parameter name='B' exampleValue ='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the b coefficient in the abcd vol parametrization.</description>
+          </Parameter>
+          <Parameter name='C' exampleValue ='0.54'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the c coefficient in the abcd vol parametrization.</description>
+          </Parameter>
+          <Parameter name='D' exampleValue ='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the d coefficient in the abcd vol parametrization.</description>
+          </Parameter>
+          <Parameter name='Ks' exampleValue ='1.0,1.0,1.0,1.0,1.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>K_i adjustment factors in the abcd vol parametrization.</description>
+          </Parameter>
+          <Parameter name='Correlations'>
+            <type>QuantLib::PiecewiseConstantCorrelation</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>PiecewiseConstantCorrelation object ID.</description>
+          </Parameter>
+          <Parameter name='EvolutionDescription' >
+            <type>QuantLib::EvolutionDescription</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>EvolutionDescription object.</description>
+          </Parameter>
+          <Parameter name='Factors' exampleValue ='5'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of factors to be retained in the simulation.</description>
+          </Parameter>
+          <Parameter name='InitialRates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>initial rates.</description>
+          </Parameter>
+          <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>vector</tensorRank>
+            <description>displacements.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlPseudoRootFacade'>
+      <libraryFunction>PseudoRootFacade</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Calibrator'>
+            <type>QuantLib::CTSMMCapletCalibration</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CTSMMCapletCalibration ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlCotSwapToFwdAdapter'>
+      <libraryFunction>CotSwapToFwdAdapter</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CoterminalModel'>
+            <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CoTerminal Swap Market Model ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlFwdPeriodAdapter'>
+      <libraryFunction>FwdPeriodAdapter</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LargeModel'>
+            <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>large MarketModel ID.</description>
+          </Parameter>
+          <Parameter name='Period' exampleValue ='2'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>target period (e.g. 2 if going from semiannual LMM to annual LMM).</description>
+          </Parameter>
+          <Parameter name='Offset' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rate index offset, in order to pin down swaption coterminal to the last rate time.</description>
+          </Parameter>
+          <Parameter name='Displacements' exampleValue ='0.0,0.0,0.0,0.0,0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>vector</tensorRank>
+            <description>displacements.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlFwdToCotSwapAdapter'>
+      <libraryFunction>FwdToCotSwapAdapter</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ForwardModel'>
+            <type>QuantLib::MarketModel</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Forward Rate Market Model ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- MarketModelFactory derived class constructors -->
+    <Constructor name='qlFlatVolFactory'>
+      <libraryFunction>FlatVolFactory</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LongTermCorr' exampleValue ='0.5'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation L in rho=L+(1-L)*exp(-beta*abs(Ti-Tj)).</description>
+          </Parameter>
+          <Parameter name='Beta' exampleValue ='0.2'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta in rho=L+(1-L)*exp(-beta*abs(Ti-Tj)).</description>
+          </Parameter>
+          <Parameter name='Times' exampleValue ='0.1,0.2,0.3,0.4,0.5'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>times.</description>
+          </Parameter>
+          <Parameter name='Volatilities' exampleValue ='0.2,0.2,0.2,0.2,0.2'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>vector</tensorRank>
+            <description>volatilities.</description>
+          </Parameter>
+          <Parameter name='YieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID.</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- Forward Libor Market Model <-> Coterminal Swap Market Model -->
+
+    <Procedure name='qlCoterminalSwapForwardJacobian'>
+      <description>Returns the jacobian between coterminal swap rates and forward rates.</description>
+      <alias>QuantLib::SwapForwardMappings::coterminalSwapForwardJacobian</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlCoterminalSwapZedMatrix'>
+      <description>Returns the Z matrix to switch base from forward to coterminal swap rates.</description>
+      <alias>QuantLib::SwapForwardMappings::coterminalSwapZedMatrix</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID.</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlCoinitialSwapForwardJacobian'>
+      <description>Returns the jacobian between coinitial swap rates and forward rates.</description>
+      <alias>QuantLib::SwapForwardMappings::coinitialSwapForwardJacobian</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlCoinitialSwapZedMatrix'>
+      <description>Returns the Z matrix to switch base from forward to coinitial swap rates.</description>
+      <alias>QuantLib::SwapForwardMappings::coinitialSwapZedMatrix</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID.</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlCmSwapForwardJacobian'>
+      <description>Returns the jacobian between constant maturity swap rates and forward rates.</description>
+      <alias>QuantLib::SwapForwardMappings::cmSwapForwardJacobian</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID.</description>
+          </Parameter>
+          <Parameter name='SpanningForwards' exampleValue ='4'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of forwards underlying the CMS.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlCmSwapZedMatrix'>
+      <description>Returns the Z matrix to switch base from forward to constant maturity swap rates.</description>
+      <alias>QuantLib::SwapForwardMappings::cmSwapZedMatrix</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID.</description>
+          </Parameter>
+          <Parameter name='SpanningForwards' exampleValue ='4'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of forwards underlying the CMS.</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlAnnuity'>
+      <description>returns annuity of arbitrary swap-rate.</description>
+      <alias>QuantLib::SwapForwardMappings::annuity</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID.</description>
+          </Parameter>
+          <Parameter name='StartIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start index.</description>
+          </Parameter>
+          <Parameter name='EndIndex' exampleValue ='4'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end index.</description>
+          </Parameter>
+          <Parameter name='NumeraireIndex' default='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>numeraire index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlSwapDerivative'>
+      <description>returns derivative of swap-rate to underlying forward rate.</description>
+      <alias>QuantLib::SwapForwardMappings::swapDerivative</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveState' >
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID.</description>
+          </Parameter>
+          <Parameter name='StartIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start index.</description>
+          </Parameter>
+          <Parameter name='EndIndex' exampleValue ='4'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end index.</description>
+          </Parameter>
+          <Parameter name='FwdRateIndex' default='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forward rate index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlRateVolDifferences'>
+      <description>Compute the differences between all implied forwards volatilities.</description>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='MarketModel1' >
+            <type>QuantLib::MarketModel</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>First Market Model.</description>
+          </Parameter>
+          <Parameter name='MarketModel2'>
+            <type>QuantLib::MarketModel</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Second Market Model.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlRateInstVolDifferences'>
+      <description>Compute the differences between volatilities at each evolution step.</description>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='MarketModel1' >
+            <type>QuantLib::MarketModel</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>First Market Model.</description>
+          </Parameter>
+          <Parameter name='MarketModel2'>
+            <type>QuantLib::MarketModel</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Second Market Model.</description>
+          </Parameter>
+          <Parameter name='Index' exampleValue='2'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Forward Rate index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+</Category>

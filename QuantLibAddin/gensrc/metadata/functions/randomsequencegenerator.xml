@@ -1,0 +1,162 @@
+<Category name='randomsequencegenerator'>
+  <description>functions to construct and use random sequences generators.</description>
+  <displayName>Random Sequence Generator</displayName>
+  <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006 Aurelien Chanudet
+  </copyright>
+
+  <Functions>
+
+    <Procedure name='qlRand'>
+      <description>returns a random number between 0 and 1.</description>
+      <alias>QuantLibAddin::rand</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlRandomize'>
+      <description>initialize with the given seed the random number generator used by qlRand().</description>
+      <alias>QuantLibAddin::randomize</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Seed' exampleValue ='2'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the seed used to initialize the random number generator.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Member name='qlVariates' type='QuantLibAddin::RandomSequenceGenerator'>
+      <description>generate variates.</description>
+      <libraryFunction>variates</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Samples' exampleValue ='5'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of samples.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlMersenneTwisterRsg'>
+      <libraryFunction>MersenneTwisterRsg</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dimension' exampleValue ='3'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dimension.</description>
+          </Parameter>
+          <Parameter name='Seed' exampleValue ='2'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>seed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlFaureRsg'>
+      <libraryFunction>FaureRsg</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dimension' exampleValue ='2'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dimension.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlHaltonRsg'>
+      <libraryFunction>HaltonRsg</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dimension' exampleValue ='2'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dimension.</description>
+          </Parameter>
+          <Parameter name='Seed' exampleValue ='2'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>seed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSobolRsg'>
+      <libraryFunction>SobolRsg</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dimension' exampleValue ='3'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>dimension.</description>
+          </Parameter>
+          <Parameter name='Seed' exampleValue ='2'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>seed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

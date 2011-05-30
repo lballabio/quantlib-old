@@ -1,0 +1,428 @@
+<Category name='mathf'>
+  <description>Math utility functions.</description>
+  <displayName>Math</displayName>
+  <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/mathf.hpp</include>
+    <include>ql/math/primenumbers.hpp</include>
+    <include>ql/math/matrixutilities/pseudosqrt.hpp</include>
+    <include>ql/math/matrixutilities/choleskydecomposition.hpp</include>
+    <include>qlo/symmetricschurdecomposition.hpp</include>
+    <include>qlo/getcovariance.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>ql/math/primenumbers.hpp</include>
+    <include>ql/math/matrixutilities/pseudosqrt.hpp</include>
+    <include>ql/math/matrixutilities/choleskydecomposition.hpp</include>
+    <include>qlo/symmetricschurdecomposition.hpp</include>
+    <include>qlo/getcovariance.hpp</include>
+    <include>qlo/mathf.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+  </copyright>
+
+  <Functions>
+
+    <Procedure name='qlPrimeNumber' >
+      <description>returns the N-th prime number.</description>
+      <alias>QuantLib::PrimeNumbers::get</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='N' exampleValue ='2'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index of the prime number (e.g N=2 returns 3).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name="qlNormDist">
+      <description>Returns the normal cumulative distribution for the specified mean and standard deviation.</description>
+      <alias>QuantLibAddin::normDist</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='X' exampleValue ='0.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>is the value for which you want the distribution.</description>
+          </Parameter>
+          <Parameter name='Mean' default="0.0">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>is the arithmetic mean of the distribution.</description>
+          </Parameter>
+          <Parameter name='Standard_dev' default="1.0">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>is the standard deviation of the distribution, a positive number.</description>
+          </Parameter>
+          <Parameter name='Cumulative' default="TRUE">
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>is a logical value: for the cumulative distribution function, use TRUE; for the probability mass function, use FALSE.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name="qlNormSDist">
+      <description>Returns the standard normal cumulative distribution (has a mean of zero and standard deviation of one).</description>
+      <alias>QuantLibAddin::normSDist</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Z' exampleValue ='0.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>is the value for which you want the distribution.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name="qlNormInv">
+      <description>Returns the inverse of the normal cumulative distribution for the specified mean and standard deviation.</description>
+      <alias>QuantLibAddin::normInv</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Probability' exampleValue ='0.5'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive.</description>
+          </Parameter>
+          <Parameter name='Mean' default="0.0">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>is the arithmetic mean of the distribution.</description>
+          </Parameter>
+          <Parameter name='Standard_dev' default="1.0">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>is the standard deviation of the distribution, a positive number.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name="qlNormSInv">
+      <description>Returns the inverse of the standard normal cumulative distribution (has a mean of zero and standard deviation of one).</description>
+      <alias>QuantLibAddin::normSInv</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Probability' exampleValue ='0.5'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>is a probability corresponding to the normal distribution, a number between 0 and 1 inclusive.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <!-- SymmetricSchurDecomposition interface -->
+
+    <Member name='qlSymmetricSchurDecompositionEigenvalues' type='QuantLib::SymmetricSchurDecomposition'>
+      <description>Returns the eigenvalues for the given SymmetricSchurDecomposition object.</description>
+      <libraryFunction>eigenvalues</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Array</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSymmetricSchurDecompositionEigenvectors' type='QuantLib::SymmetricSchurDecomposition'>
+      <description>Returns the eigenvectors  for the given SymmetricSchurDecomposition object. Eigenvectors are returned columnwise.</description>
+      <libraryFunction>eigenvectors</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- SymmetricSchurDecomposition constructor -->
+
+    <Constructor name='qlSymmetricSchurDecomposition'>
+      <libraryFunction>SymmetricSchurDecomposition</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SymmetricMatrix'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Symmetrix matrix to be decomposed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- Matrix functions -->
+
+    <Procedure name="qlCholeskyDecomposition">
+      <description>Returns the Cholesky decomposition of a real symmetric matrix.</description>
+      <alias>QuantLib::CholeskyDecomposition</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Matrix'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>symmetric matrix (hopefully positive semi-definite at least).</description>
+          </Parameter>
+          <Parameter name='Flexible' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>If TRUE it returns a result also for positive semi-definite matrix.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name="qlPseudoSqrt">
+      <description>Returns the pseudo square root of a real symmetric matrix.</description>
+      <alias>QuantLib::pseudoSqrt</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Matrix'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>symmetric matrix (hopefully positive semi-definite at least).</description>
+          </Parameter>
+          <Parameter name='SalvagingAlgorithm'>
+            <type>QuantLib::SalvagingAlgorithm::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Salvaging algorithm for symmetric matrix not positive semi-definite (None, Spectral).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name="qlRankReducedSqrt">
+      <description>Returns the rank reduced pseudo square root of a real symmetric matrix.</description>
+      <alias>QuantLib::rankReducedSqrt</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Matrix'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>symmetric matrix (hopefully positive semi-definite at least).</description>
+          </Parameter>
+          <Parameter name='MaxRank' exampleValue ='10'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of principal components retained, i.e. max rank for the result matrix.</description>
+          </Parameter>
+          <Parameter name='ComponentPercentage'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>principal components retained as percentage of eigenvalues' sum.</description>
+          </Parameter>
+          <Parameter name='SalvagingAlgorithm'>
+            <type>QuantLib::SalvagingAlgorithm::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Salvaging algorithm for symmetric matrix not positive semi-definite (None, Spectral).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name="qlGetCovariance">
+      <description>Returns the covariance matrix generated using the correlation matrix and the standard deviation (i.e. volatility times square root of time) array.</description>
+      <alias>getCovariance</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Vols' vectorIterator='beginAndEnd'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>volatility vector.</description>
+          </Parameter>
+          <Parameter name='Matrix'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>symmetric matrix (hopefully positive semi-definite at least).</description>
+          </Parameter>
+          <Parameter name='Tolerance' default='1.0e12'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>numerical tolerance for non symmetric matrix.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <!-- CovarianceDecomposition interface -->
+
+    <Member name='qlCovarianceDecompositionVariances' type='QuantLib::CovarianceDecomposition'>
+      <description>Returns the variance vector for the given CovarianceDecomposition object.</description>
+      <libraryFunction>variances</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Array</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCovarianceDecompositionStandardDeviations' type='QuantLib::CovarianceDecomposition'>
+      <description>Returns the standard deviation (i.e. volatility times square root of time) vector for the given CovarianceDecomposition object.</description>
+      <libraryFunction>standardDeviations</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Array</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCovarianceDecompositionCorrelationMatrix' type='QuantLib::CovarianceDecomposition'>
+      <description>Returns the correlation matrix for the given CovarianceDecomposition object.</description>
+      <libraryFunction>correlationMatrix</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- CovarianceDecomposition constructor -->
+
+    <Constructor name='qlCovarianceDecomposition'>
+      <libraryFunction>CovarianceDecomposition</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SymmetricMatrix'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Symmetrix covariance matrix to be decomposed.</description>
+          </Parameter>
+          <Parameter name='Tolerance' default='1.0e12'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>numerical tolerance for non symmetric matrix.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+
+</Category>

@@ -1,0 +1,967 @@
+<Category name='index'>
+  <description>functions to construct and use Index objects.</description>
+  <displayName>Indices</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/indexes/bmaindex.hpp</include>
+    <include>qlo/indexes/ibor/euribor.hpp</include>
+    <include>qlo/indexes/ibor/libor.hpp</include>
+    <include>qlo/indexes/swap/euriborswap.hpp</include>
+    <include>qlo/indexes/swap/liborswap.hpp</include>
+    <include>qlo/indexes/swap/isdafixaswap.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/experimental/coupons/proxyibor.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/indexes/bmaindex.hpp</include>
+    <include>qlo/indexes/ibor/euribor.hpp</include>
+    <include>qlo/indexes/ibor/libor.hpp</include>
+    <include>qlo/indexes/swap/euriborswap.hpp</include>
+    <include>qlo/indexes/swap/liborswap.hpp</include>
+    <include>qlo/indexes/swap/isdafixaswap.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/handleimpl.hpp</include>
+    <include>qlo/timeseries.hpp</include>
+
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/experimental/coupons/proxyibor.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006, 2007, 2008, 2009, 2010 Ferdinando Ametrano
+    Copyright (C) 2006 Katiuscia Manzoni
+    Copyright (C) 2005, 2007 Eric Ehlers
+    Copyright (C) 2005 Plamen Neykov
+  </copyright>
+  <Functions>
+
+    <!-- Index interface -->
+
+    <Member name='qlIndexName' type='QuantLib::Index'>
+      <description>Returns the name for the given Index object.</description>
+      <libraryFunction>name</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIndexFixingCalendar' type='QuantLib::Index'>
+      <description>Returns the calendar (e.g. TARGET) for the given Index object.</description>
+      <libraryFunction>fixingCalendar</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Calendar</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIndexIsValidFixingDate' type='QuantLib::Index' loopParameter='FixingDate'>
+      <description>Returns TRUE if the fixing date is a valid one for the given Index object.</description>
+      <libraryFunction>isValidFixingDate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FixingDate' exampleValue='10-Feb-2007'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing date(s).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIndexFixing' type='QuantLib::Index' loopParameter='FixingDate'>
+      <description>Returns the fixing for the given Index object. The fixing is retrieved from the time series if available, otherways it is forecasted.</description>
+      <libraryFunction>fixing</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FixingDate' exampleValue='02-Jan-2007'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing date(s).</description>
+          </Parameter>
+          <Parameter name='ForecastToday' default='false' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>If set to TRUE it forces the forecasting of today's fixing even if the actual fixing is already available in the time series.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIndexAddFixings' type='QuantLibAddin::Index'>
+      <description>Adds fixings for the given Index object.</description>
+      <libraryFunction>addFixings</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FixingDates' libraryType='QuantLib::Date'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing dates.</description>
+          </Parameter>
+          <Parameter name='FixingValues' libraryType='QuantLib::Real'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing values.</description>
+          </Parameter>
+          <Parameter name='ForceOverwrite' default='false' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Set to TRUE to force overwriting of existing fixings, if any.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIndexAddFixings2' type='QuantLib::Index' loopParameter='TimeSeriesID' const='false'>
+      <description>Adds fixings for the given Index object.</description>
+      <libraryFunction>addFixings</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TimeSeriesID'>
+            <type>QuantLib::TimeSeriesDef</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>vector</tensorRank>
+            <description>TimeSeries object ID.</description>
+          </Parameter>
+          <Parameter name='ForceOverwrite' default='false' const='False'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Set to TRUE to force overwriting of existing fixings, if any.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIndexClearFixings' type='QuantLib::Index'>
+      <description>Clear all fixings for the given Index object.</description>
+      <libraryFunction>clearFixings</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- InterestRateIndex interface -->
+
+    <Member name='qlInterestRateIndexFamilyName' type='QuantLib::InterestRateIndex'>
+      <description>Returns the family name (e.g. EURIBOR) for the given InterestRateIndex object.</description>
+      <libraryFunction>familyName</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexTenor' type='QuantLib::InterestRateIndex'>
+      <description>Returns the tenor (i.e. length, e.g. 6M, 10Y) for the given InterestRateIndex object.</description>
+      <libraryFunction>tenor</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexFixingDays' type='QuantLib::InterestRateIndex'>
+      <description>Returns the fixing days (e.g. 2) for the given InterestRateIndex object.</description>
+      <libraryFunction>fixingDays</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Natural</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexCurrency' type='QuantLib::InterestRateIndex'>
+      <description>Returns the currency (e.g. EUR) for the given InterestRateIndex object.</description>
+      <libraryFunction>currency</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Currency</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexDayCounter' type='QuantLib::InterestRateIndex'>
+      <description>Returns the DayCounter (e.g. Actual/360) for the given InterestRateIndex object.</description>
+      <libraryFunction>dayCounter</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::DayCounter</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexValueDate' type='QuantLib::InterestRateIndex' loopParameter='FixingDate'>
+      <description>Returns the value date for the given fixing date for the given InterestRateIndex object.</description>
+      <libraryFunction>valueDate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FixingDate' exampleValue='02-Jan-2007'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>fixing date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexFixingDate' type='QuantLib::InterestRateIndex' loopParameter='ValueDate'>
+      <description>Returns the fixing date for the given value date for the given InterestRateIndex object.</description>
+      <libraryFunction>fixingDate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ValueDate' exampleValue='02-Jan-2007'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>value date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterestRateIndexMaturity' type='QuantLib::InterestRateIndex' loopParameter='ValueDate'>
+      <description>Returns the maturity date for the given value date for the given InterestRateIndex object.</description>
+      <libraryFunction>maturityDate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ValueDate' exampleValue='02-Jan-2007'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>value date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- IborIndex interface -->
+
+    <Member name='qlIborIndexBusinessDayConv' type='QuantLib::IborIndex'>
+      <description>Returns the business day convention (e.g. Modified Following) for the given IborIndex object.</description>
+      <libraryFunction>businessDayConvention</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::BusinessDayConvention</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIborIndexEndOfMonth' type='QuantLib::IborIndex'>
+      <description>Returns TRUE if the given IborIndex object follows the 'end of month' convention.</description>
+      <libraryFunction>endOfMonth</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!--<Member name='qlIborIndexTermStructure' type='QuantLib::IborIndex'>
+      <description>Returns the term structure for the given IborIndex (e.g. EURYC).</description>
+      <libraryFunction>termStructure</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>-->
+
+    <!-- IborIndex constructor -->
+
+    <Constructor name='qlIborIndex'>
+      <libraryFunction>IborIndex</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FamilyName' exampleValue='Euribor'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index family name.</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='6M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).</description>
+          </Parameter>
+          <Parameter name='FixingDays' exampleValue='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 2).</description>
+          </Parameter>
+          <Parameter name='Currency' exampleValue='EUR'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index Currency.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='BDayConvention' exampleValue='Modified Following'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business day convention (e.g. Modified Following).</description>
+          </Parameter>
+          <Parameter name='EndOfMonth' exampleValue='TRUE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the index follow the 'end of month' convention.</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='FwdCurve' exampleValue='EURYC6M' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forwarding YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlOvernightIndex'>
+      <libraryFunction>OvernightIndex</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FamilyName' exampleValue='Eonia'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index family name.</description>
+          </Parameter>
+          <Parameter name='FixingDays' exampleValue='0'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 0).</description>
+          </Parameter>
+          <Parameter name='Currency' exampleValue='EUR'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index Currency.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEuribor'>
+      <libraryFunction>Euribor</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Tenor' exampleValue='6M'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor: SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEuribor365'>
+      <libraryFunction>Euribor365</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Tenor' exampleValue='6M'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor: SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEonia'>
+      <libraryFunction>Eonia</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlLibor'>
+      <libraryFunction>Libor</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Currency'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Libor index currency.</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='6M'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor: ON (1D), SW (1W), 2W, 3W, 1M, 2M, 3M, 4M, 5M, 6M, 7M, 8M, 9M, 10M, 11M, 12M (1Y).</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSonia'>
+      <libraryFunction>Sonia</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- SwapIndex interface -->
+
+    <Member name='qlSwapIndexFixedLegTenor' type='QuantLib::SwapIndex'>
+      <description>Returns the fixed leg tenor (e.g. 1Y) for the given SwapIndex object.</description>
+      <libraryFunction>fixedLegTenor</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwapIndexFixedLegBDC' type='QuantLib::SwapIndex'>
+      <description>Returns the business day convention (e.g. Modified Following) for the given SwapIndex object.</description>
+      <libraryFunction>fixedLegConvention</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::BusinessDayConvention</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!--<Member name='qlSwapIndexUnderlyingIndex' type='QuantLib::SwapIndex'>
+      <description>Returns the underlying IborIndex for the given SwapIndex object (e.g. EURIBOR6M).</description>
+      <libraryFunction>iborIndex</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::BusinessDayConvention</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>-->
+
+    <!-- fixedRateSchedule -->
+
+    <!-- underlyingSwap -->
+
+    <!-- SwapIndex constructor -->
+
+    <Constructor name='qlSwapIndex'>
+      <libraryFunction>SwapIndex</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FamilyName' exampleValue='EuriborSwapIsdaFixA10Y'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index name.</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor (e.g. 2D for two days, 3W for three weeks, 6M for six months, 1Y for one year).</description>
+          </Parameter>
+          <Parameter name='FixingDays' exampleValue='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap rate fixing days (e.g. 2).</description>
+          </Parameter>
+          <Parameter name='Currency' exampleValue='EUR'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index Currency.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='FixedLegTenor' exampleValue='1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tenor of the underlying swap's fixed leg (e.g. 6M, 1Y, 3M).</description>
+          </Parameter>
+          <Parameter name='FixedLegBDC' exampleValue='Unadjusted'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business day convention of the underlying swap's fixed leg (e.g. ModifiedFollowing).</description>
+          </Parameter>
+          <Parameter name='FixedLegDayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter of the underlying swap's fixed leg (e.g. 30/360::BondBasis).</description>
+          </Parameter>
+          <Parameter name='IborIndex' exampleValue='Euribor6M'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap's floating ibor index object ID.</description>
+          </Parameter>
+          <Parameter name='DiscCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEuriborSwap'>
+      <libraryFunction>EuriborSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FixingType' default='"Default"'>
+            <type>QuantLibAddin::SwapIndex::FixingType</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Swap index fixing type (e.g. IsdaFixA, IsdaFixB, IfrFix, IsdaFixAm, IsdaFixPm).</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor (e.g. 1Y for one year).</description>
+          </Parameter>
+          <Parameter name='FwdCurve' exampleValue='EURYC6M' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forwarding YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='DiscCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlLiborSwap'>
+      <libraryFunction>LiborSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Currency'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Libor swap index currency.</description>
+          </Parameter>
+          <Parameter name='FixingType' default='"Default"'>
+            <type>QuantLibAddin::SwapIndex::FixingType</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Swap index fixing type (e.g. IsdaFixA, IsdaFixB, IfrFix, IsdaFixAm, IsdaFixPm).</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor (e.g. 1Y for one year).</description>
+          </Parameter>
+          <Parameter name='FwdCurve' exampleValue='EURYC6M' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forwarding YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='DiscCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEuriborSwapIsdaFixA'>
+      <libraryFunction>EuriborSwapIsdaFixA</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Tenor' exampleValue='10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor (e.g. 1Y for one year)</description>
+          </Parameter>
+          <Parameter name='FwdCurve' exampleValue='EURYC6M' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forwarding YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='DiscCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- BMAIndex constructor -->
+
+    <Constructor name='qlBMAIndex'>
+      <libraryFunction>BMAIndex</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve' exampleValue='USDYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forecasting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- ProxyIbor constructor -->
+
+    <Constructor name='qlProxyIbor'>
+      <libraryFunction>ProxyIbor</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>IndexProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FamilyName' exampleValue='Euribor'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index family name.</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='6M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index tenor (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).</description>
+          </Parameter>
+          <Parameter name='FixingDays' exampleValue='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 2).</description>
+          </Parameter>
+          <Parameter name='Currency' exampleValue='EUR'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index Currency.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='BDayConvention' exampleValue='Modified Following'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business day convention (e.g. Modified Following).</description>
+          </Parameter>
+          <Parameter name='EndOfMonth' exampleValue='TRUE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the index follow the 'end of month' convention.</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='Gearing' exampleValue='1.0'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing.</description>
+          </Parameter>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating rate index.</description>
+          </Parameter>
+          <Parameter name='Spread' exampleValue='0.005'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>floating rate spread.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

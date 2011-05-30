@@ -1,0 +1,87 @@
+<Category name='accountingengines'>
+  <description>functions to construct and use Accounting Engines objects.</description>
+  <displayName>Accounting Engines</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/accountingengines.hpp</include>
+    <include>qlo/marketmodelevolvers.hpp</include>
+    <include>qlo/products.hpp</include>
+    <include>qlo/sequencestatistics.hpp</include>
+    <include>ql/models/marketmodels/accountingengine.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/accountingengines.hpp</include>
+    <include>qlo/marketmodelevolvers.hpp</include>
+    <include>qlo/products.hpp</include>
+    <include>qlo/sequencestatistics.hpp</include>
+    <include>ql/models/marketmodels/accountingengine.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2007 Chiara Fornarola
+    Copyright (C) 2006, 2007 Marco Bianchetti
+    Copyright (C) 2006, 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+
+    <!-- AccountingEngine class constructor -->
+    <Constructor name='qlAccountingEngine'>
+      <libraryFunction>AccountingEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='MarketModelEvolver'>
+            <type>QuantLib::MarketModelEvolver</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MarketModelEvolver object ID.</description>
+          </Parameter>
+          <Parameter name='Product' >
+            <type>QuantLib::MarketModelMultiProduct</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>MarketModelMultiProduct object ID.</description>
+          </Parameter>
+          <Parameter name='InitialNumeraireValue'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial numeraire value.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- AccountingEngine class interfaces -->
+    <Member name='qlAccountingEngineMultiplePathValues' type='QuantLib::AccountingEngine'>
+      <description>return multiple path values.</description>
+      <libraryFunction>multiplePathValues</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SequenceStats'>
+            <type>QuantLib::SequenceStatisticsInc</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Sequence Statistics object ID.</description>
+          </Parameter>
+          <Parameter name='Paths' exampleValue ='8191'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of paths.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

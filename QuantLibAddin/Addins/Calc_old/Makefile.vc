@@ -1,0 +1,129 @@
+# Makefile for Calc Addin
+# This makefile supports only one build environment:
+# VC7 (Visual Studio 2003), configuration "Release CRTDLL"
+# For further info: http://www.quantlibaddin.org/calc.html
+
+QL_DIR=..\..\..\QuantLib
+OH_DIR=..\..\..\ObjectHandler
+LOG4CXX_DIR=..\..\..\log4cxx
+OFFICE_PROGRAM_PATH=C:\Program Files\OpenOffice.org 2.4\program
+OFFICE_SDK_PATH=C:\Program Files\OpenOffice.org_2.4_SDK
+
+COMPONENT_NAME=QuantLibAddinCalc
+DLL_NAME=$(COMPONENT_NAME)-vc71-mt-1_1_0
+DLL_DIR=dll
+INT_DIR=build\vc71\ReleaseCRTDLL
+IDL_DIR="$(OFFICE_SDK_PATH)\idl"
+TYP_FILE="$(OFFICE_PROGRAM_PATH)\types.rdb"
+URD_FILE=$(COMPONENT_NAME).urd
+RDB_FILE=$(DLL_NAME).rdb
+DLL_FILE=$(DLL_NAME).dll
+
+FLAG1=$(INT_DIR)\$(COMPONENT_NAME).flag1
+FLAG2=$(INT_DIR)\$(COMPONENT_NAME).flag2
+FLAG3=$(INT_DIR)\$(COMPONENT_NAME).flag3
+FLAG4=$(INT_DIR)\$(COMPONENT_NAME).flag4
+FLAG5=$(INT_DIR)\$(COMPONENT_NAME).flag5
+FLAG6=$(INT_DIR)\$(COMPONENT_NAME).flag6
+
+CC_INCLUDES=-I. -I..\.. \
+    -I"$(QL_DIR)" \
+    -I"$(OH_DIR)" \
+    -I"$(OFFICE_SDK_PATH)\include"
+
+CC_FLAGS=/c /nologo /MD /GX /GR \
+/wd4251 /wd4275 /wd4290 /wd4675 /wd4786 /wd4800 \
+/DWIN32 /DWNT /DCPPU_ENV=msci /Fo"$(INT_DIR)\\"
+
+OBJECTS= \
+    "$(INT_DIR)\calcutils.obj" \
+    "$(INT_DIR)\conversions.obj" \
+    "$(INT_DIR)\exercise.obj" \
+    "$(INT_DIR)\funcdef.obj" \
+    "$(INT_DIR)\init.obj" \
+    "$(INT_DIR)\instruments.obj" \
+    "$(INT_DIR)\logging.obj" \
+    "$(INT_DIR)\manual.obj" \
+    "$(INT_DIR)\options.obj" \
+    "$(INT_DIR)\payoffs.obj" \
+    "$(INT_DIR)\pricingengines.obj" \
+    "$(INT_DIR)\processes.obj" \
+    "$(INT_DIR)\qladdin.obj" \
+    "$(INT_DIR)\session.obj" \
+    "$(INT_DIR)\settings.obj" \
+    "$(INT_DIR)\utilities.obj" \
+    "$(INT_DIR)\volatilities.obj"
+	
+LFLAGS=/nologo /dll /out:$(DLL_FILE) \
+/def:.\$(COMPONENT_NAME).def \
+/libpath:. /libpath:..\..\lib \
+/libpath:"$(OFFICE_SDK_PATH)\windows\lib" \
+/libpath:"$(QL_DIR)\lib" \
+/libpath:"$(OH_DIR)\lib" \
+/libpath:"$(LOG4CXX_DIR)\msvc\lib" \
+kernel32.lib wsock32.lib advapi32.lib \
+oldnames.lib netapi32.lib advapi32.lib gdi32.lib comdlg32.lib \
+comctl32.lib user32.lib winspool.lib shell32.lib ole32.lib \
+oleaut32.lib uuid.lib odbc32.lib odbccp32.lib \
+icppuhelper.lib icppu.lib isal.lib \
+msvcrt.lib msvcprt.lib WS2_32.lib
+
+TYPES = -Tcom.sun.star.sheet.XAddIn \
+        -Tcom.sun.star.lang.XServiceName \
+        -Tcom.sun.star.lang.XServiceInfo \
+        -Tcom.sun.star.uno.XWeak \
+        -Tcom.sun.star.lang.XSingleServiceFactory \
+        -Tcom.sun.star.lang.XMultiServiceFactory \
+        -Tcom.sun.star.uno.XAggregation \
+        -Tcom.sun.star.lang.XTypeProvider \
+        -Tcom.sun.star.uno.XComponentContext \
+        -Tcom.sun.star.lang.XSingleComponentFactory \
+        -Tcom.sun.star.registry.XRegistryKey \
+        -Tcom.sun.star.sheet.addin.XQL
+
+ALL : $(FLAG6)
+    
+$(URD_FILE) : $(COMPONENT_NAME).idl
+    IDLC -I$(IDL_DIR) $(COMPONENT_NAME).idl
+
+"$(INT_DIR)" :
+    if not exist "$(INT_DIR)" mkdir "$(INT_DIR)"
+
+"$(DLL_DIR)" :
+    if not exist "$(DLL_DIR)" mkdir "$(DLL_DIR)"
+
+$(FLAG1) : $(URD_FILE) $(INT_DIR)
+    REGMERGE $(RDB_FILE) /UCR $(URD_FILE)
+    echo flagged > $@
+
+$(FLAG2) : $(FLAG1)
+    CPPUMAKER -BUCR $(TYPES) $(TYP_FILE) $(RDB_FILE)
+    echo flagged > $@
+
+$(OBJECTS) : $(FLAG2)
+
+.cpp{$(INT_DIR)}.obj:
+   CL $(CC_FLAGS) $(CC_INCLUDES) $<
+
+$(FLAG3) : $(FLAG1) $(OBJECTS)
+    LINK $(LFLAGS) $(OBJECTS)
+    echo flagged > $@
+
+$(FLAG4) : $(FLAG3)
+    REGCOMP -register -r $(RDB_FILE) -c $(DLL_FILE)
+    echo flagged > $@
+
+$(FLAG5) : $(FLAG4) $(DLL_DIR)
+    move $(DLL_NAME).* $(DLL_DIR)
+    echo flagged > $@
+
+$(FLAG6) : $(FLAG5)
+    copy $(DLL_DIR)\$(RDB_FILE) "$(OFFICE_PROGRAM_PATH)"
+    copy $(DLL_DIR)\$(DLL_FILE) "$(OFFICE_PROGRAM_PATH)"
+    echo flagged > $@
+
+CLEAN :
+    -@ if EXIST "$(INT_DIR)\*"	del /f /q "$(INT_DIR)\*"
+    -@ if EXIST "$(DLL_DIR)\*"  del /f /q "$(DLL_DIR)\*"
+    -@ if EXIST "$(URD_FILE)"   del /f /q "$(URD_FILE)"
+    -@ if EXIST com             rmdir /q /s com

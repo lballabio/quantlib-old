@@ -1,0 +1,600 @@
+<Category name='payoffs'>
+  <description>functions to construct and use StrikedTypePayoff and DoubleStickyRatchetPayoff objects.</description>
+  <displayName>Payoffs</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/payoffs.hpp</include>
+    <include>qlo/stickyratchet.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/stickyratchet.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2007 Marco Bianchetti
+    Copyright (C) 2006 Eric Ehlers
+  </copyright>
+
+  <Functions>
+
+    <Member name='qlPayoffName' type='QuantLib::Payoff'>
+      <description>returns the type (e.g. Vanilla, CashOrNothing, etc.) for the given Payoff object.</description>
+      <libraryFunction>name</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPayoffDescription' type='QuantLib::Payoff'>
+      <description>returns the description (e.g. CashOrNothing, strike 32.2, cash payoff 2.5) for the given Payoff object.</description>
+      <libraryFunction>description</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPayoffValue' type='QuantLib::Payoff'>
+      <description>returns the payoff value given an underlying reference level for the given Payoff object.</description>
+      <libraryFunction>operator()</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Underlying' exampleValue ='0.01'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying reference level.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPayoffOptionType' type='QuantLib::TypePayoff'>
+      <description>returns the option-type (e.g. Call, Put) for the given Payoff object.</description>
+      <libraryFunction>optionType</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Option::Type</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPayoffStrike' type='QuantLib::StrikedTypePayoff'>
+      <description>returns the strike for the given Payoff object.</description>
+      <libraryFunction>strike</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!--<Member name='qlPayoffCashPayoff' type='QuantLib::CashOrNothingPayoff'>
+      <description>returns the cash payoff of the given CashOrNothingPayoff object.</description>
+      <libraryFunction>cashPayoff</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPayoffStrikePayoff' type='QuantLib::GapPayoff'>
+      <description>returns the strike payoff of the given GapPayoff object.</description>
+      <libraryFunction>strikePayoff</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPayoffStrikeIncrement' type='QuantLib::SuperSharePayoff'>
+      <description>returns the strike increment of the given SuperSharePayoff object.</description>
+      <libraryFunction>strikeIncrement</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>-->
+
+    <Member name='qlPayoffThirdParameter' type='QuantLibAddin::StrikedTypePayoff'>
+      <description>returns the third parameter of a StrikedType payoff.</description>
+      <libraryFunction>thirdParameter</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlStrikedTypePayoff'>
+      <libraryFunction>StrikedTypePayoff</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='PayoffID'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payoff ID (e.g. Vanilla, PercentageStrike, AssetOrNothing, CashOrNothing, Gap, SuperShare).</description>
+          </Parameter>
+          <Parameter name='OptionType' exampleValue ='Call'>
+            <type>QuantLib::Option::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option type.</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue ='100.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>strike.</description>
+          </Parameter>
+          <Parameter name='ThirdParameter' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the 3rd paramenter for the payoff definition of CashOrNothing (cash), Gap (determines the size of the payoff), SuperFund (second strike).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- DoubleStickyRatchet payoffs interface -->
+    <Constructor name='qlDoubleStickyRatchetPayoff'>
+      <libraryFunction>DoubleStickyRatchetPayoff</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Type1' exampleValue ='-1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description> Sticky (type1=1) or Ratchet (type1=-1) payoff .</description>
+          </Parameter>
+          <Parameter name='Type2' exampleValue ='-1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description> Strike type (type2=1 for Min, type2=-1 for Max, type2=0 for single sticky/ratchet) .</description>
+          </Parameter>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Gearing3' exampleValue ='1.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 3 (for forward rate 3).</description>
+          </Parameter>
+          <Parameter name='Spread1' exampleValue ='0.001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Spread2' exampleValue ='0.002'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Spread3' exampleValue ='0.003'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 3 (for forward rate 3).</description>
+          </Parameter>
+          <Parameter name='InitialValue1' exampleValue ='0.02'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike 1 (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='InitialValue2' exampleValue ='0.03'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike 2 (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>accrual factor.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlRatchetPayoff'>
+      <libraryFunction>RatchetPayoff</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Spread1' exampleValue ='0.001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Spread2' exampleValue ='0.002'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='InitialValue' exampleValue ='0.02'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>accrual factor.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlStickyPayoff'>
+      <libraryFunction>StickyPayoff</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Spread1' exampleValue ='0.001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Spread2' exampleValue ='0.002'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='InitialValue' exampleValue ='0.02'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>accrual factor.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlRatchetMaxPayoff'>
+      <libraryFunction>RatchetMaxPayoff</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Gearing3' exampleValue ='1.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 3 (for forward rate 3).</description>
+          </Parameter>
+          <Parameter name='Spread1' exampleValue ='0.001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Spread2' exampleValue ='0.002'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Spread3' exampleValue ='0.003'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 3 (for forward rate 3).</description>
+          </Parameter>
+          <Parameter name='InitialValue1' exampleValue ='0.02'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike 1 (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='InitialValue2' exampleValue ='0.03'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike 2 (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>accrual factor.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlRatchetMinPayoff'>
+      <libraryFunction>RatchetMinPayoff</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Gearing3' exampleValue ='1.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 3 (for forward rate 3).</description>
+          </Parameter>
+          <Parameter name='Spread1' exampleValue ='0.001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Spread2' exampleValue ='0.002'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Spread3' exampleValue ='0.003'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 3 (for forward rate 3).</description>
+          </Parameter>
+          <Parameter name='InitialValue1' exampleValue ='0.02'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike 1 (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='InitialValue2' exampleValue ='0.03'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike 2 (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>accrual factor.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlStickyMaxPayoff'>
+      <libraryFunction>StickyMaxPayoff</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Gearing3' exampleValue ='1.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 3 (for forward rate 3).</description>
+          </Parameter>
+          <Parameter name='Spread1' exampleValue ='0.001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Spread2' exampleValue ='0.002'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Spread3' exampleValue ='0.003'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 3 (for forward rate 3).</description>
+          </Parameter>
+          <Parameter name='InitialValue1' exampleValue ='0.02'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike 1 (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='InitialValue2' exampleValue ='0.03'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike 2 (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>accrual factor.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlStickyMinPayoff'>
+      <libraryFunction>StickyMinPayoff</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Gearing1' exampleValue ='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Gearing2' exampleValue ='1.1'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Gearing3' exampleValue ='1.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing 3 (for forward rate 3).</description>
+          </Parameter>
+          <Parameter name='Spread1' exampleValue ='0.001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 1 (for strike 1).</description>
+          </Parameter>
+          <Parameter name='Spread2' exampleValue ='0.002'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 2 (for strike 2).</description>
+          </Parameter>
+          <Parameter name='Spread3' exampleValue ='0.003'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread 3 (for forward rate 3).</description>
+          </Parameter>
+          <Parameter name='InitialValue1' exampleValue ='0.02'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike 1 (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='InitialValue2' exampleValue ='0.03'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initial value for strike 2 (forward rate or coupon/accrualFactor).</description>
+          </Parameter>
+          <Parameter name='AccrualFactor' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>accrual factor.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>
