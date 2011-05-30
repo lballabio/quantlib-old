@@ -1,0 +1,35 @@
+
+/*
+ Copyright (C) 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+/*! \page functional Functional Documentation
+
+\section func_overview Overview
+This section of the documentation provides end-user, platform-independent
+documentation of %ObjectHandler functionality.
+
+Section <a href="manual.html">Manual</a> summarizes selected topics concerning
+end-user functionality of ObjectHandler.
+
+Section <a href="allfunctions.html">Functions</a> is an alphabetic list of links to
+the documentation for all functions in %ObjectHandler.
+
+Section <a href="categories.html">Categories</a> is a list of links to
+documentation of %ObjectHandler functions by category.
+
+*/
+

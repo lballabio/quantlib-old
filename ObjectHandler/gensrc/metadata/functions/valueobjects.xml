@@ -1,0 +1,77 @@
+
+<Category name='valueobjects'>
+  <description>value objects.</description>
+  <displayName>Value Objects</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <addinIncludes/>
+
+  <copyright>
+    Copyright (C) 2004, 2005 Ferdinando Ametrano
+    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+    Copyright (C) 2005, 2006 Plamen Neykov
+    Copyright (C) 2004 StatPro Italia srl
+  </copyright>
+
+  <Functions>
+
+    <Member name='ohObjectPropertyNames' type='ObjectHandler::Object'>
+      <description>retrieve the property names of a given object.</description>
+      <libraryFunction>propertyNamesVector</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='ohObjectPropertyValues' type='ObjectHandler::Object' loopParameter='PropertyName'>
+      <description>retrieve the value(s) of one or more named properties.</description>
+      <libraryFunction>propertyValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='PropertyName'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>property name(s) to be queried.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='ohObjectPropertyValues2' type='ObjectHandler::Object'>
+      <description>Duplicate of ohObjectPropertyValues for C++ platform where looping functions are not supported.</description>
+      <libraryFunction>propertyValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='PropertyName'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>property name to be queried.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+
+</Category>
+

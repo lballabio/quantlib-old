@@ -1,0 +1,20 @@
+
+<Addin name='Doxygen'>
+
+  <rootDirectory>Docs/auto.pages</rootDirectory>
+  <coreCategories>true</coreCategories>
+  <addinCategories>false</addinCategories>
+
+  <copyright>
+    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+  </copyright>
+
+  <Buffers>
+    <Buffer name='bufferCategories' fileName='stub.doxygen.categories'/>
+    <Buffer name='bufferHeader' fileName='stub.doxygen.header'/>
+    <Buffer name='bufferFile' fileName='stub.doxygen.file'/>
+    <Buffer name='bufferFunction' fileName='stub.doxygen.function'/>
+  </Buffers>
+
+</Addin>
+

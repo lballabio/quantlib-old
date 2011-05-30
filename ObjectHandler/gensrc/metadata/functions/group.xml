@@ -1,0 +1,65 @@
+
+<Category name='group'>
+  <description>group.</description>
+  <displayName>Group</displayName>
+  <xlFunctionWizardCategory>ObjectHandler</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>oh/group.hpp</include>
+  </addinIncludes>
+  <serializationIncludes/>
+
+  <copyright>
+    Copyright (C) 2007 Eric Ehlers
+  </copyright>
+
+  <Functions>
+
+    <Constructor name='ohGroup'>
+      <libraryFunction>Group</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectIdList'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>a list of object IDs.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='ohGroupList' type='ObjectHandler::Group'>
+      <description>Return the list of object IDs contained in a Group object.</description>
+      <libraryFunction>list</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='ohGroupSize' type='ObjectHandler::Group'>
+      <description>Return the number of object IDs contained in a Group object.</description>
+      <libraryFunction>size</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+
+</Category>

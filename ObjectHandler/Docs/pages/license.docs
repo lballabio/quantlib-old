@@ -1,0 +1,86 @@
+
+/*
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page license Copyright and License
+
+\section copyright Copyright
+\verbatim
+ObjectHandler is
+    Copyright (C) 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011 Eric Ehlers
+    Copyright (C) 2004, 2005, 2006, 2007, 2008 Ferdinando Ametrano
+
+    Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+    Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
+    Copyright (C) 2005, 2006, 2008 Plamen Neykov
+    Copyright (C) 2008 Luigi Ballabio
+    Copyright (C) 2008 Nazcatech sprl Belgium
+\endverbatim
+
+\section license2 License
+%ObjectHandler is released under the QuantLib license:
+\verbatim
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+- Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+- Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+- Neither the names of the copyright holders nor the names of the QuantLib
+Group and its contributors may be used to endorse or promote products derived
+from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+\endverbatim
+
+\htmlonly
+<!--
+Workaround for a glitch in Microsoft Compiled HTML Help (*.chm) files.
+
+When the chm file is compiled, the only images that are detected are those that
+appear in html.  Images that appear only in css files are excluded from the chm
+file.
+
+This file explicitly lists images required by file ql.css, forcing their
+inclusion in the chm file.
+-->
+<img height="0" width="0" src="images/background.jpg">
+<img height="0" width="0" src="images/footer.jpg">
+<img height="0" width="0" src="images/header.jpg">
+<img height="0" width="0" src="images/menu_header.jpg">
+\endhtmlonly
+
+*/
+

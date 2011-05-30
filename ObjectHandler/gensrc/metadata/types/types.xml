@@ -1,0 +1,19 @@
+
+<root>
+
+  <DataTypes>
+
+    <DataType defaultSuperType='native' nativeType='any'>any</DataType>
+    <DataType defaultSuperType='native' nativeType='bool'>bool</DataType>
+    <DataType defaultSuperType='native' nativeType='double'>double</DataType>
+    <DataType defaultSuperType='native' nativeType='long'>long</DataType>
+    <DataType defaultSuperType='native' nativeType='reference'>reference</DataType>
+    <DataType defaultSuperType='native' nativeType='string'>string</DataType>
+    <DataType defaultSuperType='native' nativeType='void'>void</DataType>
+    <DataType defaultSuperType='objectClass'>ObjectHandler::Group</DataType>
+    <DataType defaultSuperType='objectClass'>ObjectHandler::Object</DataType>
+
+  </DataTypes>
+
+</root>
+

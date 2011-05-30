@@ -1,0 +1,224 @@
+<root>
+
+  <RuleGroups>
+
+    <RuleGroup name='functionDeclaration' indent='2' delimiter=',&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule default='true'>%(indent)sOPER *%(name)s</Rule>
+        <Rule loop='true'>%(indent)sOPER *%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)sOPER *%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='reference'>%(indent)sXLOPER *%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>%(indent)schar *%(name)s</Rule>
+        <Rule tensorRank='scalar'>%(indent)s%(nativeType)s *%(name)s</Rule>
+        <Rule tensorRank='vector'>%(indent)sOPER *%(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='long'>%(indent)sFP *%(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='double'>%(indent)sFP *%(name)s</Rule>
+        <Rule tensorRank='matrix'>%(indent)sOPER *%(name)s</Rule>
+        <Rule>%(indent)sOPER *%(name)s</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='functionReturnType'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule default='true'>OPER *</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>short int *</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>char *</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>OPER *</Rule>
+        <Rule tensorRank='scalar' nativeType='void'>bool *</Rule>
+        <Rule tensorRank='scalar'>%(nativeType)s *</Rule>
+        <Rule>OPER *</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='xlRegisterParam'>
+      <Wrap/>
+      <Rules>
+        <Rule default='true'>P</Rule>
+        <Rule loop='true'>P</Rule>
+        <Rule tensorRank='scalar' nativeType='long'>N</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>C</Rule>
+        <Rule tensorRank='scalar' nativeType='double'>E</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>L</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>P</Rule>
+        <Rule tensorRank='scalar' nativeType='reference'>R</Rule>
+        <Rule tensorRank='matrix' nativeType='long'>K</Rule>
+        <Rule tensorRank='matrix' nativeType='double'>K</Rule>
+        <Rule>P</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='xlRegisterReturn'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule tensorRank='scalar' nativeType='long'>N</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>C</Rule>
+        <Rule tensorRank='scalar' nativeType='double'>E</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>L</Rule>
+        <Rule tensorRank='scalar' nativeType='reference'>R</Rule>
+        <Rule tensorRank='scalar' nativeType='void'>L</Rule>
+        <Rule>P</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='parameterList' delimiter=','>
+      <Wrap/>
+      <Rules>
+        <Rule>%(name)s</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='registerParameters' indent='3' delimiter=',&#10;' padLastParamDesc='true'>
+      <Wrap>&#10;            // parameter descriptions&#10;%s</Wrap>
+      <Rules>
+        <Rule>%(indent)sTempStrNoSize("\x%(descLen)02X""%(description)s")</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='cppConversions' indent='2' checkParameterIgnore='false' delimiter='&#10;'>
+      <Wrap codeID='wrap1'/>
+      <Rules>
+        <Rule loop='true'/>
+        <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code11'/>
+        <Rule tensorRank='scalar' default='true' codeID='code12'/>
+        <Rule tensorRank='scalar'/>
+        <Rule tensorRank='vector' default='true' codeID='code13'/>
+        <Rule tensorRank='vector' nativeType='long' codeID='code14'/>
+        <Rule tensorRank='vector' nativeType='double' codeID='code15'/>
+        <Rule tensorRank='vector' nativeType='string' codeID='code16'/>
+        <Rule tensorRank='vector' nativeType='any' codeID='code17'/>
+        <Rule tensorRank='vector' codeID='code13'/>
+        <Rule tensorRank='matrix' default='true' codeID='code18'/>
+        <Rule tensorRank='matrix' nativeType='long' codeID='code19'/>
+        <Rule tensorRank='matrix' nativeType='double' codeID='code20'/>
+        <Rule tensorRank='matrix' nativeType='string' codeID='code21a'/>
+        <Rule tensorRank='matrix' nativeType='any' codeID='code21b'/>
+        <Rule tensorRank='matrix' codeID='code18'/>
+      </Rules>
+    </RuleGroup>
+
+
+    <RuleGroup name='libraryConversions'>
+      <Wrap/>
+      <Rules/>
+    </RuleGroup>
+
+    <RuleGroup name='enumConversions'>
+      <Wrap/>
+      <Rules/>
+    </RuleGroup>
+
+    <RuleGroup name='objectConversions' indent='2' delimiter='&#10;'>
+      <Wrap codeID='wrap4'/>
+      <Rules>
+        <Rule tensorRank='scalar' superType='objectClass' codeID='code36a'/>
+        <Rule tensorRank='vector' superType='objectClass' codeID='code37'/>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='referenceConversions'>
+      <Wrap/>
+      <Rules/>
+    </RuleGroup>
+
+    <RuleGroup name='libraryReturnType'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule tensorRank='scalar' nativeType='bool'>static short int returnValue;&#10;        returnValue = </Rule>
+        <Rule tensorRank='scalar' nativeType='long'>static long returnValue;&#10;        returnValue = </Rule>
+        <Rule tensorRank='scalar' nativeType='double'>static double returnValue;&#10;        returnValue = </Rule>
+        <Rule tensorRank='scalar' nativeType='string'>std::string returnValue = </Rule>
+        <Rule tensorRank='scalar' nativeType='void'>static bool returnValue = true;&#10;        </Rule>
+        <Rule tensorRank='scalar' nativeType='any'>boost::any returnValue = </Rule>
+        <Rule tensorRank='vector' superType='objectClass'>std::vector&lt;boost::shared_ptr&lt;%(type)s&gt; &gt; returnValue = </Rule>
+        <Rule tensorRank='vector' nativeType='string'>std::vector&lt;std::string&gt; returnValue = </Rule>
+        <Rule tensorRank='vector' nativeType='any'>std::vector&lt;boost::any&gt; returnValue = </Rule>
+        <Rule tensorRank='vector'>std::vector&lt;%(nativeType)s&gt; returnValue = </Rule>
+        <Rule tensorRank='matrix' nativeType='string' codeID='code51'/>
+        <Rule tensorRank='matrix' nativeType='any' codeID='code53'/>
+        <Rule tensorRank='matrix' codeID='code52'/>
+      </Rules>
+    </RuleGroup>
+
+      <RuleGroup name='libraryCall' checkParameterIgnore='true' checkSkipFirst='true' indent='4' delimiter=',&#10;'>
+        <Wrap>&#10;%s</Wrap>
+        <Rules>
+          <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sObj</Rule>
+          <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+          <Rule tensorRank='scalar' nativeType='long'>%(indent)s*%(name)s</Rule>
+          <Rule tensorRank='scalar' nativeType='double'>%(indent)s*%(name)s</Rule>
+          <Rule tensorRank='scalar' nativeType='bool'>%(indent)s*%(name)s</Rule>
+          <Rule tensorRank='scalar' nativeType='any'>%(indent)s%(name)sCpp</Rule>
+          <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
+          <Rule superType='objectClass'>%(indent)s%(name)sObj</Rule>
+          <Rule vectorIterator='begin'>%(indent)s%(name)sCpp.begin()</Rule>
+          <Rule vectorIterator='end'>%(indent)s%(name)sCpp.end()</Rule>
+          <Rule vectorIterator='beginAndEnd' codeID='code55'/>
+          <Rule>%(indent)s%(name)sCpp</Rule>
+        </Rules>
+      </RuleGroup>
+
+      <RuleGroup name='voCall' checkParameterIgnore='true' checkSkipFirst='true' indent='4' delimiter=',&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule tensorRank='scalar' default='true' nativeType='string'>%(indent)s""</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sStrip</Rule>
+        <Rule tensorRank='scalar'>%(indent)s*%(name)s</Rule>
+        <Rule>%(indent)s%(name)sCpp</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='idStrip' checkParameterIgnore='false' indent='4' delimiter='&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule tensorRank='scalar' superType='objectClass' codeID='code65'/>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='returnConversion' indent='2'>
+      <Wrap codeID='wrap6'/>
+      <Rules>
+        <Rule loop='true' codeID='code60'/>
+        <Rule tensorRank='scalar' nativeType='string' codeID='code58'/>
+        <Rule tensorRank='scalar' nativeType='any' codeID='code59'/>
+        <Rule tensorRank='scalar' codeID='code60'/>
+        <Rule tensorRank='vector' codeID='code64'/>
+        <Rule tensorRank='matrix' codeID='code65'/>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='loopInputs' indent='4' delimiter=',&#10;' checkParameterIgnore='true'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>%(indent)s*%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='double'>%(indent)s*%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>%(indent)sstd::string(%(name)s)</Rule>
+        <Rule tensorRank='vector' loop='true'>%(indent)s_1</Rule>
+        <Rule>%(indent)s%(name)s</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='loopReturnType'>
+      <Wrap/>
+      <Rules>
+        <Rule nativeType='string'>std::string</Rule>
+        <Rule nativeType='any'>ObjectHandler::property_t</Rule>
+        <Rule>%(nativeType)s</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='loopDatatype' delimiter='&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule>%(type)s</Rule>
+      </Rules>
+    </RuleGroup>
+
+  </RuleGroups>
+
+</root>

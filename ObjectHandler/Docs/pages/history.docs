@@ -1,0 +1,378 @@
+
+/*
+ Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page history Version History
+
+<strong>Release 1.1.0 - May 2011</strong>
+
+FUNCTIONALITY
+
+- New functions ohRemoveInvalidRows() and ohRemoveInvalidColumns()
+  which process an input range as indicated.
+
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.10.0d
+- gensrc version 1.1.0
+
+<strong>Release 1.0.1 - October 2010</strong>
+
+FUNCTIONALITY
+
+- Support for serialization of Groups of objects (thanks to Plamen Neykov)
+- Support for serialization to/from a stream (thanks to Plamen Neykov)
+
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.10.0d
+- gensrc version 1.0.1
+
+<strong>Release 0.9.7 - November 2008</strong>
+
+FUNCTIONALITY
+
+Bugfixes:
+
+- Fixed bug in which function ObjectWrapper::reset() neglected to update the
+  dirty_ flag
+
+Renamed Addin Functions:
+
+The convention for naming addin functions is that an addin function which
+wraps Foo::Bar() should be called ohFooBar().  Selected functions have been
+renamed as noted below to conform to this convention:
+
+- ohCollectGarbage   -> ohRepositoryCollectGarbage
+- ohConcatenate      -> ohStringConcatenate
+- ohDeleteAllObjects -> ohRepositoryDeleteAllObjects
+- ohDeleteObject     -> ohRepositoryDeleteObject
+- ohListObjectIDs    -> ohRepositoryListObjectIDs
+- ohLogAllObjects    -> ohRepositoryLogAllObjects
+- ohLogMessage       -> ohLogWriteMessage
+- ohLogObject        -> ohRepositoryLogObject
+- ohObjectCount      -> ohRepositoryObjectCount
+- ohPropertyNames    -> ohObjectPropertyNames
+- ohPropertyValue    -> ohObjectPropertyValues
+- ohRetrieveError    -> ohRangeRetrieveError
+- ohSetLogFile       -> ohLogSetFile
+- ohSetLogLevel      -> ohLogSetLevel
+- ohSplit            -> ohStringSplit
+
+New Addin Functions:
+
+- ohLogFile
+- ohLogLevel
+- ohObjectClassName
+- ohObjectIsOrphan
+- ohObjectIsPermanent
+- ohObjectUpdateCounter
+
+Enhanced Addin Functions:
+
+- ohObjectPropertyNames - Modified to suppress ObjectId, ClassName from return
+  value and to list values in the sequence in which they appear in the
+  constructor of the corresponding class.
+- ohObjectCreationTime, ohObjectUpdateTime - Implemented as loop functions.
+
+Renamed C++ Functions:
+
+Within the C++ code, some functions are renamed as well to conform to project
+standards (http://quantlib.org/style.shtml).  These changes are transparent to
+end users.
+
+<table>
+<tr><td><b>Class</b></td><td><b>Member - Old Name</b></td><td><b>Member - New Name</b></td></tr>
+<tr><td>ObjectWrapper</td><td>reCreate()</td><td>recreate()</td></tr>
+<tr><td>Repository</td><td>formateID()</td><td>formatID()</td></tr>
+<tr><td>Repository</td><td>exists()</td><td>objectExists()</td></tr>
+<tr><td>Repository</td><td>isObjectExists()</td><td>objectExists()</td></tr>
+<tr><td>SerializationFactory</td><td>NewObject()</td><td>recreateObject()</td></tr>
+<tr><td>SerializationFactory</td><td>createObject()</td><td>restoreObject()</td></tr>
+<tr><td>ValueObject</td><td>getRelationObs()</td><td>getPrecedentObjects()</td></tr>
+<tr><td>ValueObject</td><td>processRelatedID()</td><td>processPrecedentID()</td></tr>
+</table>
+
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.10.0b
+- gensrc version 0.9.7
+
+<strong>Release 0.9.6 - September 2008</strong>
+
+DESIGN
+
+- Type boost::any is replaced with boost::variant as the latter offers
+  native support for boost::serialization (thanks to Plamen Neykov)
+- New class Processor facilitates stateful serialization of Objects
+  (thanks to Plamen Neykov)
+- Additional logic to ensure that, when an Object is retrieved from the
+  Repository, if the Object is older than any of its precedents then
+  it is recreated before being returned to the client application
+- New functions ohObjectCreationTime(), ohObjectUpdateTime(),
+  ohObjectPrecedentIDs(), ohConcatenate()
+- Class SerializationFactory cleaned up and consolidated
+
+BUILD
+
+- Introduce support for VC9.  Drop the SingleThread configurations from the VC7
+  build as these are no longer supported by log4cxx.
+- When compiling under Linux, rather than using relative paths to locate
+  gensrc, the path is now specified with a mandatory argument to the configure
+  script:
+\verbatim
+./configure --with-gensrc=/path/to/gensrc
+\endverbatim
+
+DOCUMENTATION
+
+- Installation document revised and expanded
+- Fixed bug which caused chm files to hang
+
+LOG4CXX
+
+- Migrate from log4cxx 0.9.7 to log4cxx 0.10.0
+- A customized build of log4cxx 0.10.0 is packaged for use with
+  %ObjectHandler and released as version 0.10.0a.  The convention for log4cxx
+  version numbers is explained below in the notes for %ObjectHandler version
+  0.1.4.
+- log4cxx now relies on the apr and apr-utils applications, which are included
+  with the log4cxx 0.10.0a package.
+
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.10.0a
+- gensrc version 0.9.6
+
+<strong>Release 0.9.0 - January 2008</strong>
+
+DESIGN
+
+- Support for serialization
+- Port Enumeration Registry from QuantLibAddin to %ObjectHandler, allowing a
+  single global registry to be shared by multiple client applications
+- Instantiate instances of class Object with a single call to the ctor.
+  Previously, objects were initialized in 3 steps - a call to the constructor,
+  followed by 2 additional calls to set various object properties.
+- Implement new parameter Overwrite for all constructors, a boolean flag
+  allowing user to specify that new object should overwrite old one
+- Extend ohDeleteObject() to accept a list of object IDs
+- Introduce new class Group which stores a list of object IDs
+- ohObjectCallerAddress(), ohObjectCallerKey() - accept/return vector<string>
+  instead of string
+- Optimize error handling for looping functions.  Previously, an exception in a
+  loop with many iterations caused a big performance hit.
+- Introduce basic support for caching of error messages originating from VBA
+  addins.
+
+LOG4CXX
+
+- A couple of minor fixes to makefiles
+- Repackaged as version 0.9.7e.  The convention for log4cxx version numbers is
+  explained below in the notes for %ObjectHandler version 0.1.4.
+
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.9.7e
+- gensrc version 0.9.0
+
+<strong>Release 0.8.0 - May 2007</strong>
+
+%ObjectHandler has been rewritten for release 0.8.0.  The chief benefit
+is an orders-of-magnitude increase in performance.  See below for a summary
+of other changes.
+
+DESIGN
+
+- Every line of code reworked, many algorithms improved
+- Renamed class %ObjectHandler to Repository
+- Renamed namespace ObjHandler to %ObjectHandler
+- New class ObjectXL customizes the base Object class for the Excel platform
+- New class Xloper performs RAII for Excel's XLOPER datatype
+
+EXCEL
+
+- New functions ohObjectCallerAddress(), ohObjectCallerKey(), ohRetrieveError()
+- Fixed problem of error handling malfunctioning for non-English versions
+  of Excel.  Error handling is based on range references in R1C1 format,
+  %ObjectHandler now caters for versions of Excel which abbreviate "R"ow
+  and "C"olumn differently.
+- Removed restriction that %ObjectHandler functions could not be nested
+  inside non-%ObjectHandler functions.
+- Fixed bug whereby %ObjectHandler functions could malfunction if
+  the text length of the cell formula exceeded a certain length.  This problem
+  was traced to a glitch in the Excel C API and a workaround was identified.
+- For function expecting a scalar, allow user to pass in a vector
+  containing one element and convert it automatically.
+
+DOCUMENTATION
+
+- The comments in the code have been brought completely up to date.  As a
+  result the  doxygen-generated documentation of classes and code is also up to date.
+  Much of the other hand-written documentation still requires an update.
+- \c Topics page of documentation renamed to \c Manual and updated to provide
+  overview of major design features
+
+LOG4CXX
+
+- A couple of minor fixes to makefiles
+- Repackaged as version 0.9.7d.  The convention for log4cxx version numbers is
+  explained below in the notes for %ObjectHandler version 0.1.4.
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7d
+- gensrc version 0.8.0
+
+<strong>Release 0.2.0 - February 2007</strong>
+
+DESIGN
+
+- Multiple minor enhancements to design
+
+LOG4CXX
+
+- A couple of minor fixes to makefiles
+- Repackaged as version 0.9.7c.  The convention for log4cxx version numbers is
+  explained below in the notes for %ObjectHandler version 0.1.4.
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7c
+- gensrc version 0.2.0
+
+<strong>Release 0.1.5 - December 2006</strong>
+
+EXCEL
+
+- New function ohRetrieveError() returns whatever error message
+  is associated with the active range
+
+LOG4CXX
+
+- A couple of minor fixes to makefiles
+- Repackaged as version 0.9.7b.  The convention for log4cxx version numbers is
+  explained below in the notes for %ObjectHandler version 0.1.4.
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7b
+- gensrc version 0.1.5
+
+<strong>Release 0.1.4 - August 2006</strong>
+
+EXCEL
+
+- Support for permanent objects not deleted by garbage collection
+- Use gensrc where possible to generate source code for %ObjectHandler
+
+LOG4CXX
+
+Created package "log4cxx 0.9.7a" which is a customization of log4cxx0.9.7,
+providing better support for VC, boost-format version numbers for lib files,
+etc.  log4cxx 0.9.7a is available from the %ObjectHandler section of the
+QuantLib downloads page.
+
+REQUIRED PACKAGES
+
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7a
+- gensrc version 0.1.4
+
+<strong>Release 0.1.3 - March 2006</strong>
+
+CORE
+
+- Documentation revised and extended
+
+EXCEL
+
+- Unregister functions when XLL unloaded (Lars Schouw)
+- Consolidated export of Excel functions
+- Increased granularity and clarity of runtime exceptions
+- Improved memory management (automatic deletion of temp variables)
+- Clarified code in example XLLs
+
+LOG4CXX
+
+- Link to log4cxx statically rather than dynamically.  The use of log4cxx.dll,
+  introduced in %ObjectHandler version 0.1.2, was found to destabilize
+  %ObjectHandler and so the static link to log4cxx, used in %ObjectHandler
+  version 0.1.1, has been reintroduced.
+- We now provide a zip file for log4cxx, comprising a complete copy of log4cxx
+  plus some customizations to clarify the build process and other minor bug
+  fixes.
+
+<strong>Release 0.1.2 - October 2005</strong>
+
+EXCEL
+
+Excel binding ported from QuantLibAddin to %ObjectHandler
+and enhanced:
+
+- %ObjectHandler core functionality and the Excel binding can be
+  linked statically into a single client XLL, or built as a standalone
+  XLL comprising a global repository shared by multiple client XLLs
+- Garbage collection of objects orphaned by the deletion of the
+  calling cell
+- Conversion to/from all Excel types and native C++ types
+- Greater granularity of datatypes - XLOPER replaced by OPER, FP
+
+LOG4CXX
+
+- Link to log4cxx dynamically rather than statically
+
+<strong>Release 0.1.1 - July 2005</strong>
+
+REQUIRED PACKAGES
+- Boost version 1.31.0 or later
+- log4cxx version 0.9.7
+
+CHANGES SINCE RELEASE 0.1.0
+- Interface layer replaced with factory function (thanks to Walter Penschke)
+- Logging implemented with log4cxx framework from Apache project
+- Additional functions deleteObject, deleteAllObjects
+- Output manipulators for Object and %ObjectHandler classes
+- Utility functions consolidated
+
+<strong>Release 0.1.0 - February 2005</strong>
+
+REQUIRED PACKAGES
+- Boost version 1.31.0 or later
+
+OVERVIEW
+
+Initial release consisting of prototype framework:
+
+- Instantiate an Object in the %ObjectHandler, from where it
+  can be interrogated, altered, and destroyed.
+
+*/
+

@@ -1,0 +1,32 @@
+# ObjectHandler\gensrc\Makefile.vc
+
+GENSRC_DIR=..\..\gensrc
+OH_DIR=..
+BUILD_DIR=build\vc
+BUILDFLAG=$(BUILD_DIR)\buildflag
+MAKEFILE=Makefile.vc
+
+!INCLUDE $(GENSRC_DIR)\dependencies.vc
+
+CODE=code\*.py
+CONFIG=config\*.xml
+METADATA=   metadata\Addins\*.xml \
+            metadata\functions\*.xml \
+            metadata\Rules\*.xml \
+            metadata\types\*.xml
+STUBS=stubs\stub.*
+
+INPUTS = $(MAKEFILE) $(CORE_DEPENDENCIES) $(CODE) $(CONFIG) $(METADATA) $(STUBS)
+
+ALL : $(BUILDFLAG)
+
+$(BUILD_DIR) :
+    if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
+
+$(BUILDFLAG) : $(INPUTS) $(BUILD_DIR)
+	$(GENSRC_DIR)\gensrc.py -xdlv --oh_dir=$(OH_DIR)
+	echo flagged > $@
+
+CLEAN :
+	-@ if EXIST $(BUILD_DIR)\* del /f /q $(BUILD_DIR)\*
+

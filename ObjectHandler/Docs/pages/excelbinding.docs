@@ -1,0 +1,48 @@
+
+/*
+ Copyright (C) 2005, 2006, 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! 
+
+\page excelbinding Excel Binding
+
+<div align="center"><small><a href="manual.html">back to reference manual index</a></small></div> 
+
+\section xlbind_overview Overview
+
+%ObjectHandler comprises a core C++ library supplemented with additional
+bindings in support of functionality for Microsoft Excel.  %ObjectHandler
+functions are exported as spreadsheet functions, and additional utilities
+are provided to the developer such as conversion of native C++ datatypes
+to/from Excel datatypes (e.g. XLOPER).  
+
+The excel bindings are available in two configurations:
+<ul>
+<li><b>static</b> - core %ObjectHandler is bundled with the Excel binding
+into a library which is statically linked into a single client XLL</li>
+<li><b>dynamic</b> - %ObjectHandler and the Excel binding are compiled into a
+standalone XLL providing a global repository shared by any other XLLs 
+in the Excel session</li>
+</ul>
+
+*/
+
