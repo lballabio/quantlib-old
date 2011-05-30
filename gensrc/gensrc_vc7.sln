@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gensrc", "gensrc_vc7.vcproj", "{60305422-EE7F-4030-93B0-AF87A14E84D6}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs", "Docs\docs_vc7.vcproj", "{C6CFCB7E-025A-4606-A464-D9BA3CEC68C4}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		All = All
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{60305422-EE7F-4030-93B0-AF87A14E84D6}.All.ActiveCfg = All|Win32
+		{60305422-EE7F-4030-93B0-AF87A14E84D6}.All.Build.0 = All|Win32
+		{C6CFCB7E-025A-4606-A464-D9BA3CEC68C4}.All.ActiveCfg = All|Win32
+		{C6CFCB7E-025A-4606-A464-D9BA3CEC68C4}.All.Build.0 = All|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

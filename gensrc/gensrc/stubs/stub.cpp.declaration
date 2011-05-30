@@ -1,0 +1,3 @@
+
+    %(functionReturnType)s %(functionName)s(%(functionDeclaration)s);
+

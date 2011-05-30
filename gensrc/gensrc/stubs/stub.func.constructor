@@ -1,0 +1,20 @@
+%(idStrip)s
+        // Construct the Value Object
+
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
+            new %(namespaceObjects)s::ValueObjects::%(functionName)s(
+                ObjectId%(idSuffix)s,%(voParameters)s));
+
+        // Construct the Object
+        
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new %(namespaceObjects)s::%(libraryFunction)s(
+                valueObject,%(libraryParameters)s));
+
+        // Store the Object in the Repository
+
+        std::string returnValue =
+            ObjectHandler::%(repositoryClass)s::instance().storeObject(ObjectId%(idSuffix)s, object, %(overwriteVariable)s);
+
+        // Convert and return the return value
+

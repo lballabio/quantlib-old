@@ -1,0 +1,12 @@
+
+    try {
+%(libraryConversions)s%(referenceConversions)s%(enumConversions)s%(body)s
+%(returnCommand)s
+        return SUCCESS;
+    } catch (const std::exception &e) {
+        ObjectHandler::logMessage("%(name)s Error: " + std::string(e.what()));
+        result = 0;
+        return FAIL;
+    }
+}
+

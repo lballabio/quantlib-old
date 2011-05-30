@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="addins">
+      <UniqueIdentifier>{3e05931a-c876-48f5-b1f6-f20a821ab3f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="categories">
+      <UniqueIdentifier>{de565953-1f21-4877-ba8e-ce061da446e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="configuration">
+      <UniqueIdentifier>{4cde7887-4032-4c8d-89ae-594ecdb6aa99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="enumerations">
+      <UniqueIdentifier>{3cad7dfc-ad61-4db2-971a-a398c14a4786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exceptions">
+      <UniqueIdentifier>{522a2d6c-45f2-42ae-9aa8-decf72b368cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="functions">
+      <UniqueIdentifier>{f0440284-994e-49de-9093-8f7e8585ca28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="parameters">
+      <UniqueIdentifier>{790cf4fd-d8e3-4cc6-b86d-2dd564b837a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="patterns">
+      <UniqueIdentifier>{b0b0f845-6fb3-4638-9260-0fdf9c156f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rules">
+      <UniqueIdentifier>{d35b6a06-695e-4171-9991-c407029e729c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="serialization">
+      <UniqueIdentifier>{a5c1ff6c-932f-45bc-8dd0-eaddf6c5ef61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="types">
+      <UniqueIdentifier>{d3158fef-dfc5-4287-b78c-b8862ded4d8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities">
+      <UniqueIdentifier>{ebc5a364-b799-446b-a5ed-357abf416584}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs">
+      <UniqueIdentifier>{44fe47bd-2c7f-4be4-a2de-f416544289e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gensrc\addins\addin.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\addinlist.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\c.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\calc.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\cpp.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\cppexceptions.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\doxygen.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\enumerations.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\excel.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\excelexceptions.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\guile.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\loop.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\serialization.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\serializationexceptions.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\addins\valueobjects.py">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="gensrc\categories\category.py">
+      <Filter>categories</Filter>
+    </None>
+    <None Include="gensrc\categories\categorylist.py">
+      <Filter>categories</Filter>
+    </None>
+    <None Include="gensrc\categories\exceptions.py">
+      <Filter>categories</Filter>
+    </None>
+    <None Include="gensrc\configuration\configuration.py">
+      <Filter>configuration</Filter>
+    </None>
+    <None Include="gensrc\configuration\environment.py">
+      <Filter>configuration</Filter>
+    </None>
+    <None Include="gensrc\configuration\exceptions.py">
+      <Filter>configuration</Filter>
+    </None>
+    <None Include="gensrc\configuration\initialization.py">
+      <Filter>configuration</Filter>
+    </None>
+    <None Include="gensrc\enumerations\enumeratedclasses.py">
+      <Filter>enumerations</Filter>
+    </None>
+    <None Include="gensrc\enumerations\enumeratedpairs.py">
+      <Filter>enumerations</Filter>
+    </None>
+    <None Include="gensrc\enumerations\enumeratedtypes.py">
+      <Filter>enumerations</Filter>
+    </None>
+    <None Include="gensrc\enumerations\enumerationlist.py">
+      <Filter>enumerations</Filter>
+    </None>
+    <None Include="gensrc\exceptions\excepthook.py">
+      <Filter>exceptions</Filter>
+    </None>
+    <None Include="gensrc\exceptions\exceptions.py">
+      <Filter>exceptions</Filter>
+    </None>
+    <None Include="gensrc\functions\behavior.py">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="gensrc\functions\behaviorloop.py">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="gensrc\functions\constructor.py">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="gensrc\functions\enumerationmember.py">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="gensrc\functions\exceptions.py">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="gensrc\functions\function.py">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="gensrc\functions\member.py">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="gensrc\functions\procedure.py">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="gensrc\functions\supportedplatform.py">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="gensrc\parameters\exceptions.py">
+      <Filter>parameters</Filter>
+    </None>
+    <None Include="gensrc\parameters\parameter.py">
+      <Filter>parameters</Filter>
+    </None>
+    <None Include="gensrc\parameters\parameterlist.py">
+      <Filter>parameters</Filter>
+    </None>
+    <None Include="gensrc\patterns\exceptions.py">
+      <Filter>patterns</Filter>
+    </None>
+    <None Include="gensrc\patterns\singleton.py">
+      <Filter>patterns</Filter>
+    </None>
+    <None Include="gensrc\rules\exceptions.py">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="gensrc\rules\rule.py">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="gensrc\serialization\exceptions.py">
+      <Filter>serialization</Filter>
+    </None>
+    <None Include="gensrc\serialization\factory.py">
+      <Filter>serialization</Filter>
+    </None>
+    <None Include="gensrc\serialization\serializable.py">
+      <Filter>serialization</Filter>
+    </None>
+    <None Include="gensrc\serialization\serializer.py">
+      <Filter>serialization</Filter>
+    </None>
+    <None Include="gensrc\serialization\xmlreader.py">
+      <Filter>serialization</Filter>
+    </None>
+    <None Include="gensrc\types\datatype.py">
+      <Filter>types</Filter>
+    </None>
+    <None Include="gensrc\types\exceptions.py">
+      <Filter>types</Filter>
+    </None>
+    <None Include="gensrc\types\fulltype.py">
+      <Filter>types</Filter>
+    </None>
+    <None Include="gensrc\types\supertype.py">
+      <Filter>types</Filter>
+    </None>
+    <None Include="gensrc\types\typelist.py">
+      <Filter>types</Filter>
+    </None>
+    <None Include="gensrc\utilities\buffer.py">
+      <Filter>utilities</Filter>
+    </None>
+    <None Include="gensrc\utilities\common.py">
+      <Filter>utilities</Filter>
+    </None>
+    <None Include="gensrc\utilities\exceptions.py">
+      <Filter>utilities</Filter>
+    </None>
+    <None Include="gensrc\utilities\log.py">
+      <Filter>utilities</Filter>
+    </None>
+    <None Include="gensrc\utilities\outputfile.py">
+      <Filter>utilities</Filter>
+    </None>
+    <None Include="gensrc\utilities\utilities.py">
+      <Filter>utilities</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.c.function">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.c.header">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.c.includes">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.calc.category">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.calc.function">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.calc.header">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.calc.idlfunc">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.calc.idlhead">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.calc.includes">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.calc.loop">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.calc.map">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.cpp.all">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.cpp.declaration">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.cpp.function">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.cpp.header">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.cpp.loop">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.doxygen.categories">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.doxygen.file">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.doxygen.function">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.doxygen.header">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.excel.function">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.excel.loop">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.excel.numfunc">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.excel.register.call">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.excel.register.file">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.excel.register.function">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.func.constructor">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.func.member">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.func.procedure">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.guile.function">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.guile.header">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.guile.includes">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.guile.initfunc">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.loop.file">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.serialization.all">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.serialization.body">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.serialization.creator">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.serialization.declaration">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.serialization.factory">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.serialization.header">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.serialization.register">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.serialization.registerall">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.vo.all">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.vo.class.body">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.vo.class.body.inline">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.vo.class.decl">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.vo.class.decl.inline">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.vo.includes.body">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.vo.includes.decl">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="gensrc\stubs\stub.vo.includes.inline">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="dependencies.vc" />
+    <None Include="gensrc.py" />
+    <None Include="readme_vc.txt" />
+  </ItemGroup>
+</Project>

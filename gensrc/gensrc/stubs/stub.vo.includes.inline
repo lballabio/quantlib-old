@@ -1,0 +1,20 @@
+#ifndef %(libRoot)s_vo_%(categoryName)s_hpp
+#define %(libRoot)s_vo_%(categoryName)s_hpp
+
+#include <oh/valueobject.hpp>
+#include <string>
+#include <vector>
+#include <set>
+#include <boost/serialization/map.hpp>
+#include <boost/algorithm/string/case_conv.hpp>
+
+namespace %(namespaceObjects)s { namespace ValueObjects {
+
+%(headers)s
+
+%(functions)s
+
+} }
+
+#endif
+

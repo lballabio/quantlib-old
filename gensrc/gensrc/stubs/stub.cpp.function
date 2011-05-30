@@ -1,0 +1,11 @@
+
+    %(functionReturnType)s %(functionName)s(%(functionDeclaration)s) {
+
+        try {
+%(cppConversions)s%(libConversions)s%(enumConversions)s%(objectConversions)s%(refConversions)s%(functionBody)s%(returnConversion)s
+
+        } catch (const std::exception &e) {
+            OH_FAIL("Error in function %(functionName)s : " << e.what());
+        }
+    }
+

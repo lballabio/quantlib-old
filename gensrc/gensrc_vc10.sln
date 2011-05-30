@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gensrc", "gensrc_vc10.vcxproj", "{726E6D95-B2FD-4703-8B58-6EE0335D6E10}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "docs", "Docs\docs_vc10.vcxproj", "{E0021E93-694F-4F28-888A-5DEB00DD93FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Win32 = All|Win32
+		Debug (static runtime)|Win32 = Debug (static runtime)|Win32
+		Release (static runtime)|Win32 = Release (static runtime)|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{726E6D95-B2FD-4703-8B58-6EE0335D6E10}.All|Win32.ActiveCfg = Release (static runtime)|Win32
+		{726E6D95-B2FD-4703-8B58-6EE0335D6E10}.All|Win32.Build.0 = Release (static runtime)|Win32
+		{726E6D95-B2FD-4703-8B58-6EE0335D6E10}.Debug (static runtime)|Win32.ActiveCfg = Debug (static runtime)|Win32
+		{726E6D95-B2FD-4703-8B58-6EE0335D6E10}.Debug (static runtime)|Win32.Build.0 = Debug (static runtime)|Win32
+		{726E6D95-B2FD-4703-8B58-6EE0335D6E10}.Release (static runtime)|Win32.ActiveCfg = Release (static runtime)|Win32
+		{726E6D95-B2FD-4703-8B58-6EE0335D6E10}.Release (static runtime)|Win32.Build.0 = Release (static runtime)|Win32
+		{E0021E93-694F-4F28-888A-5DEB00DD93FD}.All|Win32.ActiveCfg = All|Win32
+		{E0021E93-694F-4F28-888A-5DEB00DD93FD}.All|Win32.Build.0 = All|Win32
+		{E0021E93-694F-4F28-888A-5DEB00DD93FD}.Debug (static runtime)|Win32.ActiveCfg = All|Win32
+		{E0021E93-694F-4F28-888A-5DEB00DD93FD}.Debug (static runtime)|Win32.Build.0 = All|Win32
+		{E0021E93-694F-4F28-888A-5DEB00DD93FD}.Release (static runtime)|Win32.ActiveCfg = All|Win32
+		{E0021E93-694F-4F28-888A-5DEB00DD93FD}.Release (static runtime)|Win32.Build.0 = All|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,69 @@
+
+/*
+ Copyright (C) 2006, 2007 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*!
+
+\page installation Installation
+
+\section inst_download Download
+
+Download gensrc from the 
+<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=141162">QuantLib downloads page on sourceforge</a>
+
+\section inst_installation Installation
+
+To install gensrc simply uncompress the files.  Previous versions of gensrc
+required certain environment variables to be set at run time, this is no longer
+the case.  gensrc is now delivered as a Python package, and the top level
+directory contains the main \c gensrc.py script which automatically loads the
+package from subdirectories.
+
+\section inst_usage Usage
+
+To use gensrc, you must configure XML metadata for the required components of
+your project - functions, enumerations, etc.  You then invoke \c gensrc.py as
+follows:
+
+\verbatim
+$python path/to/gensrc/gensrc.py -[flags]
+    where [flags] specify that source code is to be generated for any of:
+        x - Excel addin
+        o - OpenOffice.org Calc addin
+        g - Guile addin
+        c - C addin
+        v - ValueObjects code
+        e - Enumerations
+        l - Loop typedefs
+        d - Doxygen documentation files
+    or
+        a - All of the above
+    or
+        h - display this help message
+\endverbatim
+
+gensrc usage has not yet been documented in further detail. 
+Examples of gensrc usage can be found in the ObjectHandler
+and QuantLibAddin projects.
+
+*/
+

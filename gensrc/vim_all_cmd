@@ -1,0 +1,2 @@
+X=$(find . -name "*py" | grep -v __init__.py)
+vi $X

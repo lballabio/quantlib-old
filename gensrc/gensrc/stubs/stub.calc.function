@@ -1,0 +1,11 @@
+%(header)s
+    try {
+%(cppConversions)s%(libraryConversions)s%(referenceConversions)s%(enumConversions)s%(functionBody)s
+%(functionValueObject)s
+%(convertReturnType)s
+    } catch (const std::exception &e) {
+        OH_LOG_MESSAGE("ERROR: %(functionName)s: " << e.what());
+        THROW_RTE;
+    }
+}
+

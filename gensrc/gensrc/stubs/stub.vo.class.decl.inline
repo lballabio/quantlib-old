@@ -1,0 +1,24 @@
+    class %(functionName)s : public ObjectHandler::ValueObject {
+        friend class boost::serialization::access;
+    public:
+        %(functionName)s() {}
+        %(functionName)s(%(constructorDeclaration)s);
+
+        const std::set<std::string>& getSystemPropertyNames() const;
+        std::vector<std::string> getPropertyNamesVector() const;
+        ObjectHandler::property_t getSystemProperty(const std::string&) const;
+        void setSystemProperty(const std::string& name, const ObjectHandler::property_t& value);
+
+    protected:
+%(memberDeclaration)s;
+%(processorName)s
+        
+        template<class Archive>
+        void serialize(Archive& ar, const unsigned int) {
+        boost::serialization::void_cast_register<%(functionName)s, ObjectHandler::ValueObject>(this, this);
+            ar  & boost::serialization::make_nvp("ObjectId", objectId_)
+                & boost::serialization::make_nvp("ClassName", className_)
+%(serializeMembers)s
+                & boost::serialization::make_nvp("UserProperties", userProperties);
+        }
+    };

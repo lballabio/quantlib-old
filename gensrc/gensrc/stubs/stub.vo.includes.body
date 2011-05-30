@@ -1,0 +1,8 @@
+#include <oh/ohdefines.hpp>
+#include <%(libRoot)s/%(categoryName)s.hpp>
+#include <%(libRoot)s/valueobjects/vo_%(categoryName)s.hpp>
+#include <string>
+
+namespace %(namespaceObjects)s { namespace ValueObjects {
+
+%(functions)s } }

@@ -1,0 +1,10 @@
+
+        // loop on the input parameter and populate the return vector
+
+        %(functionName)sBind bindObject = 
+            boost::bind(%(functionSignature)s
+                &%(functionCodeName)s,%(objectName)s%(inputList)s);
+        std::vector<%(returnType)s> returnValue =
+            loop<%(functionName)sBind, %(inputType)s, %(returnType)s>
+            (bindObject, %(inputParam)s);
+
