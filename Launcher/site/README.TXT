@@ -14,5 +14,5 @@ To:
 And edit the file to reflect the parameters for your site.
 
 You also have to edit Launcher\site\users.template.xml and include the users
-of your site. This file will have to be pointed in confign.xml by the element
+of your site. This file will have to be pointed in config.xml by the element
 <UserConfigurationFile>\\servername\path\to\users.xml</UserConfigurationFile>

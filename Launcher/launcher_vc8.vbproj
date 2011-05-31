@@ -33,7 +33,7 @@
     <ProductName>QuantLibXL Launcher 2008</ProductName>
     <PublisherName>QuantLib Developer Team</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationVersion>10.9.13.2</ApplicationVersion>
+    <ApplicationVersion>11.4.18.4</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

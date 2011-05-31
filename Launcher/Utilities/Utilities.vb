@@ -19,6 +19,7 @@ Module Utilities
     Private Const QUANTLIBXL_CONFIG_PATH As String = "QUANTLIBXL_CONFIG_PATH"
     Private Const EXCEL_10_PATH As String = "C:\Program Files\Microsoft Office\OFFICE10\EXCEL.EXE"
     Private Const EXCEL_11_PATH As String = "C:\Program Files\Microsoft Office\OFFICE11\EXCEL.EXE"
+    Private Const EXCEL_12_PATH As String = "C:\Program Files\Microsoft Office\OFFICE12\EXCEL.EXE"
 
     Function fileExists(ByVal PathName As String) As Boolean
 
@@ -73,7 +74,9 @@ Module Utilities
 
     Function deriveDefaultExcelPath() As String
 
-        If fileExists(EXCEL_11_PATH) Then
+        If fileExists(EXCEL_12_PATH) Then
+            deriveDefaultExcelPath = EXCEL_12_PATH
+        ElseIf fileExists(EXCEL_11_PATH) Then
             deriveDefaultExcelPath = EXCEL_11_PATH
         ElseIf fileExists(EXCEL_10_PATH) Then
             deriveDefaultExcelPath = EXCEL_10_PATH
