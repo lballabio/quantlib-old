@@ -5,7 +5,7 @@
 !define VER_NUMBER "1.1.0"
 !define VER_NUMBER_UNDERSCORE "1_1_0"
 !define COMPILER "vc90"
-#!define DEFAULT_PATH "c:\build_ql_1_1_0\${APP}"
+!define DEFAULT_PATH "c:\build_ql_1_1_0\${APP}"
 
 # Compiler Flags
 
@@ -16,8 +16,8 @@ SetCompressor lzma
 Caption "${APP} - Setup"
 DirText "Please select a location to install ${APP} (or use the default):"
 Icon "Docs\images\favicon.ico"
-#InstallDir "${DEFAULT_PATH}"
-InstallDir $PROGRAMFILES\${APP}-${VER_NUMBER}
+InstallDir "${DEFAULT_PATH}"
+#InstallDir $PROGRAMFILES\${APP}-${VER_NUMBER}
 LicenseData "LICENSE.TXT"
 LicenseText "${APP} is released under the following license:"
 Name "${APP}"
@@ -25,11 +25,11 @@ OutFile "..\${APP}-src-${VER_NUMBER}.exe"
 UninstallIcon "Docs\images\favicon.ico"
 UninstallText "This will uninstall ${APP}. Hit next to continue."
 
-#ComponentText \
-#"By default the installer will install the QuantLibXL source code and basic example workbooks." \
-#"Optional components:" \
-#"The QuantLibXL Framework is a business application layer written in Excel VBA, \
-#including template workbooks for market data and interest rate derivates."
+ComponentText \
+"By default the installer will install the QuantLibXL source code and basic example workbooks." \
+"Optional components:" \
+"The QuantLibXL Framework is a business application layer written in Excel VBA, \
+including template workbooks for market data and interest rate derivates."
 
 Section
 
@@ -46,9 +46,11 @@ Section
     File "*.TXT"
     File "QuantLibXL.nsi"
     File "${APP}-bin.nsi"
-    File "QuantLibXL-network.nsi"
+    #File "QuantLibXL-network.nsi"
     File "QuantLibXL-src.nsi"
     File /r "*.vcproj"
+    File /r "*.vcxproj"
+    File /r "*.vcxproj.filters"
     File /r "*.hpp"
     File /r "*.cpp"
 
@@ -78,10 +80,6 @@ Section
 
     SetOutPath "$INSTDIR\Workbooks\StandaloneExamples"
     File /r "Workbooks\StandaloneExamples\*.xls"
-    File /r "Workbooks\StandaloneExamples\*.xla"
-
-    SetOutPath "$INSTDIR\Workbooks\StandaloneExamples\SerializationDemo"
-    File "Workbooks\StandaloneExamples\SerializationDemo\README.TXT"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"
@@ -107,6 +105,9 @@ Section
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 9 project workspace.lnk" \
                    "$INSTDIR\QuantLibXL_basic_vc9.sln"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 10 project workspace.lnk" \
+                   "$INSTDIR\QuantLibXL_basic_vc10.sln"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
                    "$INSTDIR\framework\QuantLibXL.xla"
@@ -136,29 +137,36 @@ Section
 
 SectionEnd
 
-#Section /o Framework
+Section /o Framework
 
-#    SetOutPath "$INSTDIR\xll"
-#    #File "xll\QuantLibXLDynamic-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
-#    #File "..\ObjectHandler\xll\ObjectHandler-xll-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
-#    File "xll\QuantLibXL-${COMPILER}-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
+    SetOutPath "$INSTDIR\xll"
+    #File "xll\QuantLibXLDynamic-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    #File "..\ObjectHandler\xll\ObjectHandler-xll-${COMPILER}-mt-${VER_NUMBER_UNDERSCORE}.xll"
+    File "xll\QuantLibXL-${COMPILER}-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 
-#    SetOutPath "$INSTDIR\framework"
-#    File "framework\QuantLibXL.xla"
-#    File "framework\QuantLibXLA.cer"
+    SetOutPath "$INSTDIR\framework"
+    File "framework\QuantLibXL.xla"
+    File "framework\QuantLibXLA.cer"
 
-#    SetOutPath "$INSTDIR\Workbooks"
-#    File /r "Workbooks\*.xls"
+    SetOutPath "$INSTDIR\Workbooks"
+    File /r "Workbooks\*.xls"
 
-#    SetOutPath "$INSTDIR\Data"
-#    File /r "Data\*.xls"
-#    File /r "Data\*.xml"
+    SetOutPath "$INSTDIR\Data"
+    File /r "Data\*.xls"
+    File /r "Data\*.xml"
 
-#    # ObjectBuilder crashes if it can't find the icon
-#    SetOutPath "$INSTDIR\Docs\images"
-#    File "Docs\images\favicon.bmp"
+    SetOutPath "$INSTDIR\framework2"
+    File /r "framework2\*.txt"
+    File /r "framework2\*.xla"
+    File /r "framework2\*.xlam"
+    File /r "framework2\*.xls"
+    File /r "framework2\*.xml"
 
-#SectionEnd
+    # ObjectBuilder crashes if it can't find the icon
+    SetOutPath "$INSTDIR\Docs\images"
+    File "Docs\images\favicon.bmp"
+
+SectionEnd
 
 Section "Uninstall"
 

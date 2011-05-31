@@ -29,11 +29,11 @@ OutFile "..\${APP}-bin-${VER_NUMBER}.exe"
 UninstallIcon "Docs\images\favicon.ico"
 UninstallText "This will uninstall ${APP}. Hit next to continue."
 
-#ComponentText \
-#"By default the installer will install the QuantLibXL Addin (XLL) and basic example workbooks." \
-#"Optional components:" \
-#"The QuantLibXL Framework is a business application layer written in Excel VBA, \
-#including template workbooks for market data and interest rate derivates."
+ComponentText \
+"By default the installer will install the QuantLibXL Addin (XLL) and basic example workbooks." \
+"Optional components:" \
+"The QuantLibXL Framework is a business application layer written in Excel VBA, \
+including template workbooks for market data and interest rate derivates."
 
 # Installer Instructions
 
@@ -63,10 +63,6 @@ Section
 
     SetOutPath "$INSTDIR\Workbooks\StandaloneExamples"
     File /r "Workbooks\StandaloneExamples\*.xls"
-    File /r "Workbooks\StandaloneExamples\*.xla"
-
-    SetOutPath "$INSTDIR\Workbooks\StandaloneExamples\SerializationDemo"
-    File "Workbooks\StandaloneExamples\SerializationDemo\README.TXT"
 
     SetOutPath "$INSTDIR\Workbooks\Utilities"
     File "Workbooks\Utilities\*.xls"
@@ -131,6 +127,13 @@ Section /o Framework
     # ObjectBuilder crashes if it can't find the icon
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\favicon.bmp"
+
+    SetOutPath "$INSTDIR\framework2"
+    File /r "framework2\*.txt"
+    File /r "framework2\*.xla"
+    File /r "framework2\*.xlam"
+    File /r "framework2\*.xls"
+    File /r "framework2\*.xml"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
                    "$INSTDIR\framework\QuantLibXL.xla"

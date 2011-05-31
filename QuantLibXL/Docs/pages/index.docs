@@ -38,7 +38,7 @@ The project comprises
 \li End user documentation
 \li Example workbooks
 
-The addin implements 855 functions in support of market data and
+The addin implements 1004 functions in support of market data and
 pricing for a variety of instruments including bonds, options, swaps,
 swaptions, and caps/floors.
 

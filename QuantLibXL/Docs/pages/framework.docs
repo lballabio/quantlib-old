@@ -71,5 +71,12 @@ or by calling ohRetrieveError() on the relevant cell).
 The right click menu provides additional functions to create/remove various drop
 down menus in the chosen cell and to reformat the cell.
 
+\section fw_alternate Alternate Framework
+
+An alternate implementation of the QuantLibXL VBA Framework is under
+development, this build is at an experimental stage.  More information may be
+found at <tt>QuantLibXL\\framework2\\ReadMe.txt</tt>.  The two projects may be
+merged at some point.
+
 */
 
