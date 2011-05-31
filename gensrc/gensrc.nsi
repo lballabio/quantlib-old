@@ -34,9 +34,12 @@ Section
     File "gensrc_vc7.sln"
     File "gensrc_vc8.sln"
     File "gensrc_vc9.sln"
+    File "gensrc_vc10.sln"
     File "gensrc_vc7.vcproj"
     File "gensrc_vc8.vcproj"
     File "gensrc_vc9.vcproj"
+    File "gensrc_vc10.vcxproj"
+    File "gensrc_vc10.vcxproj.filters"
     File "dependencies.vc"
     File "gensrc.py"
     File "gensrc.nsi"
@@ -49,6 +52,9 @@ Section
     File "Docs\gensrc-docs-${VER_NUMBER}.chm"
     File "Docs\docs_vc7.vcproj"
     File "Docs\docs_vc8.vcproj"
+    File "Docs\docs_vc9.vcproj"
+    File "Docs\docs_vc10.vcxproj"
+    File "Docs\docs_vc10.vcxproj.filters"
     File "Docs\gensrc.doxy"
     File "Docs\gs_footer.html"
     File "Docs\gs_header.html"
@@ -97,6 +103,9 @@ Section
 
     CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc VC 9 project workspace.lnk" \
                    "$INSTDIR\gensrc_vc9.sln"
+
+    CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc VC 10 project workspace.lnk" \
+                   "$INSTDIR\gensrc_vc10.sln"
 
     CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc Folder.lnk" \
                    "$INSTDIR"

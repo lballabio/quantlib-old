@@ -8,7 +8,7 @@
 
   <copyright>
     Copyright (C) 2004, 2005, 2006, 2007, 2008 Ferdinando Ametrano
-    Copyright (C) 2004, 2005, 2006, 2007 Eric Ehlers
+    Copyright (C) 2004, 2005, 2006, 2007, 2011 Eric Ehlers
     Copyright (C) 2005, 2006 Plamen Neykov
     Copyright (C) 2004 StatPro Italia srl
   </copyright>
@@ -118,7 +118,46 @@
 
     <Procedure name='ohPack'>
       <description>trim error/null/empty values from bottom/right of matrix/vector.</description>
-      <alias>ObjectHandler::RepositoryXL::instance().packMatrix</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='InputRange'>
+            <type>any</type>
+            <tensorRank>matrix</tensorRank>
+            <description>scalar/vector/matrix of values to be packed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRemoveInvalidRows'>
+      <description>trim error/null/empty rows from matrix/vector.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='InputRange'>
+            <type>any</type>
+            <tensorRank>matrix</tensorRank>
+            <description>scalar/vector/matrix of values to be packed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='ohRemoveInvalidColumns'>
+      <description>trim error/null/empty columns from matrix/vector.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' implementation='manual'/>
       </SupportedPlatforms>

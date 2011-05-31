@@ -38,6 +38,8 @@ Section
 
     SetOutPath $INSTDIR\msvc
     File "msvc\*.vcproj"
+    File "msvc\*.vcxproj"
+    File "msvc\*.vcxproj.filters"
     File "msvc\*.sln"
 
     SetOutPath $INSTDIR\src
@@ -126,6 +128,9 @@ Section
 
     CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx VC 9 project workspace.lnk" \
                    "$INSTDIR\msvc\log4cxx_vc9.sln"
+
+    CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx VC 10 project workspace.lnk" \
+                   "$INSTDIR\msvc\log4cxx_vc10.sln"
 
     CreateShortCut "$SMPROGRAMS\log4cxx-${VER_NUMBER}\log4cxx Folder.lnk" \
                    "$INSTDIR"

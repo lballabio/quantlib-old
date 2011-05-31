@@ -23,7 +23,12 @@
 
 /*! \page history Version History
 
-<strong>Release 1.1.0 - ??? 2010</strong>
+<strong>Release 1.1.0 - May 2011</strong>
+
+FUNCTIONALITY
+
+- New functions ohRemoveInvalidRows() and ohRemoveInvalidColumns()
+  which process an input range as indicated.
 
 REQUIRED PACKAGES
 

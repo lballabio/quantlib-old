@@ -27,12 +27,12 @@ The main Boost website <a href="http://www.boost.org">http://www.boost.org</a>
 includes instructions for downloading Boost and building the package from
 source code.  However it's easier to use the installer from the following link
 on the Boost Consulting website:
-<a href="http://www.boost-consulting.com/products/free">http://www.boost-consulting.com/products/free</a>
+<a href="http://www.boostpro.com/download/">http://www.boostpro.com/download/</a>
 
 The installer prompts you to select the variants you require.  The choice
 depends on the project configurations you intend to use:
 
-<table>
+<table border="1">
 <tr><td><b>Project Configuration</b></td><td><b>Boost Variant</b></td></tr>
 <tr><td>Release</td><td>Multithread</td></tr>
 <tr><td>Release (static runtime)</td><td>Multithread, static runtime</td></tr>
@@ -52,19 +52,20 @@ concern, just select everything.
 The next dialog asks you which components you need, retain the default setting
 which is to install everything.  Finish the installation.
 
-Configure VC with the location of the Boost header files.  Under <tt>Tools |
-Options | Projects and Solutions | VC++ Directories</tt>, select <tt>Include
-files</tt> and specify the path to the top level directory containing the Boost
-header files
-<tt>C:\\Program Files\\boost\\boost_1_35_0</tt>:
+Configure VC with the location of the Boost header and lib files.
+
+\li <b>VC9 and earlier</b>: Go to <tt>Tools | Options | Projects and Solutions | VC++ Directories</tt>
+\li <b>VC10</b>: Under Property Manager, select the project and configuration you want to change, and right click on Microsoft.Cpp.Win32.user:
+
+<img src="images/boost_VC10_path.jpg">
+
+Select <tt>Include files</tt> and specify the path to the top level directory
+containing the Boost header files <tt>C:\\Program Files\\boost\\boost_1_35_0</tt>:
 
 <img src="images/boost_include_path.jpg">
 
-Configure VC with the location of the Boost lib files.  Under <tt>Tools |
-Options | Projects and Solutions | VC++ Directories</tt>, select <tt>Library
-files</tt> and specify the path to the top level directory containing the Boost
-lib files
-<tt>C:\\Program Files\\boost\\boost_1_35_0\\lib</tt>:
+Select <tt>Library files</tt> and specify the path to the top level directory
+containing the Boost lib files <tt>C:\\Program Files\\boost\\boost_1_35_0\\lib</tt>:
 
 <img src="images/boost_lib_path.jpg">
 

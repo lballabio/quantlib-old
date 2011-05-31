@@ -15,6 +15,8 @@ EXTRA_DIST = \
     gensrc_vc8.vcproj \
     gensrc_vc9.sln \
     gensrc_vc9.vcproj \
+    gensrc_vc10.sln \
+    gensrc_vc10.vcxproj \
     LICENSE.TXT \
     NEWS.txt \
     README.txt \
