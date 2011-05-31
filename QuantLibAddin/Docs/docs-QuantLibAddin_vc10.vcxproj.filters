@@ -33,6 +33,12 @@
     <None Include="pages\examples.docs">
       <Filter>pages</Filter>
     </None>
+    <None Include="pages\extend.enum.tutorial.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\extend.template.tutorial.docs">
+      <Filter>pages</Filter>
+    </None>
     <None Include="pages\extend.tutorial.docs">
       <Filter>pages</Filter>
     </None>

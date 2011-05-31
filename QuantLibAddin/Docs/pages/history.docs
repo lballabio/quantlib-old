@@ -23,6 +23,24 @@
 
 /*! \page history Version History
 
+<strong>Release 1.1.0 - May 2011</strong>
+
+DOCUMENTATION
+
+- New documentation for enumeration and template classes, thanks to Andrew
+  Downes
+- Tutorial for Serialization Demo updated.
+
+REQUIRED PACKAGES
+
+- %QuantLib version 1.1.0
+- ObjectHandler version 1.1.0
+- gensrc version 1.1.0
+
+FUNCTIONALITY
+
+- 56 new functions / 1001 in total
+
 <strong>Release 1.0.1 - October 2010</strong>
 
 REQUIRED PACKAGES

@@ -6,7 +6,8 @@ includedir = $(prefix)/include/qlo/Addins/Cpp
 EXTRA_DIST = \
 	AddinCpp_vc7.vcproj \
     AddinCpp_vc8.vcproj \
-    AddinCpp_vc9.vcproj
+    AddinCpp_vc9.vcproj \
+    AddinCpp_vc10.vcxproj
 
 if BUILD_CPP
 lib_LTLIBRARIES = libQuantLibAddinCpp.la
@@ -24,6 +25,7 @@ include_HEADERS = \
     assetswap.hpp \
     bonds.hpp \
     browniangenerators.hpp \
+    btp.hpp \
     capfloor.hpp \
     capletvolstructure.hpp \
     cmsmarket.hpp \
@@ -65,7 +67,6 @@ include_HEADERS = \
     serialization.hpp \
     settings.hpp \
     shortratemodels.hpp \
-    simplecashflow.hpp \
     smilesection.hpp \
     statistics.hpp \
     swap.hpp \
@@ -88,6 +89,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     assetswap.cpp \
     bonds.cpp \
     browniangenerators.cpp \
+    btp.cpp \
     capfloor.cpp \
     capletvolstructure.cpp \
     cmsmarket.cpp \
@@ -128,7 +130,6 @@ libQuantLibAddinCpp_la_SOURCES = \
     serialization.cpp \
     settings.cpp \
     shortratemodels.cpp \
-    simplecashflow.cpp \
     smilesection.cpp \
     statistics.cpp \
     swap.cpp \

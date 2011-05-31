@@ -36,6 +36,13 @@ namespace QuantLibAddin {
               bool permanent);
     };
 
+    class Sonia : public OvernightIndex {
+      public:
+        Sonia(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+              const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
+              bool permanent);
+    };
+
 }
 
 #endif

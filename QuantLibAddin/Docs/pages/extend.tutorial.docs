@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
+ Copyright (C) 2005, 2006, 2007, 2008, 2011 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,11 +21,11 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page extend_tutorial Expose Additional QuantLib Functionality to QuantLibXL
+/*! \page extend_tutorial Expose QuantLib Classes to QuantLibXL
 
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
 
-This document explains how to expose additional %QuantLib functionality to
+This document explains how to expose additional %QuantLib classes to
 Excel.  As a prerequisite it is assumed that you have already compiled
 QuantLibXL from source code using the Full build documented in the tutorial
 \ref build_qlxl.

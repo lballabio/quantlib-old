@@ -3,6 +3,7 @@ EXTRA_DIST = \
     docs-QuantLibAddin_vc7.vcproj \
     docs-QuantLibAddin_vc8.vcproj \
     docs-QuantLibAddin_vc9.vcproj \
+    docs-QuantLibAddin_vc10.vcxproj \
     Makefile.vc \
     quantlibaddin.doxy \
     qla_footer.html \

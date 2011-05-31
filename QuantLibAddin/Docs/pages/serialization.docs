@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2007, 2008 Eric Ehlers
+ Copyright (C) 2007, 2008, 2011 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -76,58 +76,58 @@ the import.
 
 \li Start Excel
 \li Load VBA addin
-<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\SerializationDemo\\Start.xla</tt>.
+<tt>QuantLibXL\\framework2\\QuantLibXL.xla</tt>.
 The addin contains some startup code which should automatically load the following:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc80-mt-s-1_1_0.xll
-QuantLibXL\Workbooks\StandaloneExamples\Addins\serialize_utils.xla
+QuantLibXL\xll\QuantLibXL-vc90-mt-1_1_0.xll
+QuantLibXL\framework2\addin\*.xla
 \endverbatim
-\li Invoke menu item <tt>Serialization Demo | Load Model | Vanilla Swap</tt>.
+\li Invoke menu item <tt>QuantLibXL | Load | Serialization Demo</tt>.
 This loads the following:
 \verbatim
-QuantLibXL\Workbooks\StandaloneExamples\Models\MarketData\YieldCurves.xls
-QuantLibXL\Workbooks\StandaloneExamples\Models\VanillaSwap.xls
+QuantLibXL\framework2\workbooks\SerializationDemo.xls
 \endverbatim
 \li Hit <tt>Ctrl-Alt-F9</tt>
-\li Confirm that a PV (on my machine, 52,531.44) is showing in cell <tt>'[VanillaSwap.xls]Vanilla Swap'!C33</tt>
-\li Invoke menu item <tt>Serialization Demo | Export</tt>
+\li Confirm that a PV (on my machine, -39,396.95) is showing in cell
+    <tt>[SerializationDemo.xls]Swap!$F$14</tt>
+\li Activate sheet Serialization and invoke menu item <tt>QuantLibXL | Serialization Demo | Export</tt>
 \li The following 2 files are produced:
 \verbatim
-QuantLibAddin\Clients\CppInstrumentIn\MarketData\YieldCurves.xml
-QuantLibAddin\Clients\CppInstrumentIn\Models\VanillaSwap.xml
+QuantLibXL\framework2\xml\MarketData.xml
+QuantLibXL\framework2\xml\Swap.xml
 \endverbatim
 
 \subsubsection serialization_win_excel_import 1.1.2 Import
 
 \li Start Excel
 \li Load VBA addin
-<tt>QuantLibXL\\Workbooks\\StandaloneExamples\\SerializationDemo\\Start.xla</tt>.
+<tt>QuantLibXL\\framework2\\QuantLibXL.xla</tt>.
 The addin contains some startup code which should automatically load the following:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc80-mt-s-1_1_0.xll
-QuantLibXL\Workbooks\StandaloneExamples\Addins\serialize_utils.xla
+QuantLibXL\xll\QuantLibXL-vc90-mt-1_1_0.xll
+QuantLibXL\framework2\addin\*.xla
 \endverbatim
-\li Set range <tt>[MarketData.xls]Summary!DataSource</tt> to <tt>Import</tt>
-\li Invoke menu item <tt>Serialization Demo | Load Model | Vanilla Swap</tt>.
-    This loads the following:
+\li Invoke menu item <tt>QuantLibXL | Load | Serialization Demo</tt>.
+This loads the following:
 \verbatim
-QuantLibXL\Workbooks\StandaloneExamples\Models\MarketData\YieldCurves.xls
-QuantLibXL\Workbooks\StandaloneExamples\Models\VanillaSwap.xls
+QuantLibXL\framework2\workbooks\SerializationDemo.xls
 \endverbatim
-\li Invoke menu item <tt>Serialization Demo | Import</tt>
+\li Set range <tt>[SerializationDemo.xls]Settings!$H$15</tt> to <tt>Import</tt>
+\li Activate sheet Serialization and invoke menu item <tt>QuantLibXL | Serialization Demo | Import</tt>
 \li The following 2 files are loaded:
 \verbatim
-QuantLibAddin\Clients\CppInstrumentIn\MarketData\YieldCurves.xml
-QuantLibAddin\Clients\CppInstrumentIn\Models\VanillaSwap.xml
+QuantLibXL\framework2\xml\MarketData.xml
+QuantLibXL\framework2\xml\Swap.xml
 \endverbatim
 \li Hit <tt>Ctrl-Alt-F9</tt>
-\li Confirm that a PV (on my machine, 52,531.44) is showing in cell
-    <tt>'[VanillaSwap.xls]Vanilla Swap'!C33</tt>
+\li Confirm that a PV (on my machine, -39,396.95) is showing in cell
+    <tt>[SerializationDemo.xls]Swap!$F$14</tt>
 
 If switching back and forth between import and export during a single Excel
-session you can use the command <tt>Serialization Demo | Delete All
+session you can use the command <tt>QuantLibXL | ObjectHandler | Delete All
 Objects</tt> to ensure that the ObjectHandler repository is empty.  You can
-confirm this by ensuring that function \c ohObjectCount() returns zero.
+confirm this by ensuring that command <tt>QuantLibXL | ObjectHandler | Object
+Count</tt> returns zero.
 
 \subsection serialization_win_cpp 1.2 C++
 
@@ -137,59 +137,68 @@ Open a DOS prompt in directory
 <tt>%QuantLibAddin\\Clients\\CppSwapOut</tt>.
 Invoke the executable. The output from the program should appear as follows:
 \verbatim
-QuantLibAddin\Clients\CppSwapOut\bin>SwapOut-vc80-mt.exe
 Begin example program.
 QuantLibAddin version = 1.1.0
 ObjectHandler version = 1.1.0
-SWAP PV = 36120.9
+SWAP PV = -39396.9
 Example of serializing to/from a buffer:
 XML =
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE boost_serialization>
-<boost_serialization signature="serialization::archive" version="4">
+<boost_serialization signature="serialization::archive" version="5">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-    <count>1</count>
-    <item_version>1</item_version>
-    <item class_id="0" tracking_level="0" version="1">
-        <px class_id="140" tracking_level="1" version="0" object_id="_1">
-            <ObjectId>quote1</ObjectId>
-            <ClassName>qlSimpleQuote</ClassName>
-            <Value>1.23</Value>
-            <TickValue>0</TickValue>
-            <Permanent>0</Permanent>
-            <UserProperties class_id="203" tracking_level="0" version="0">
-                <count>0</count>
-                <item_version>0</item_version>
-            </UserProperties>
-        </px>
-    </item>
+        <count>1</count>
+        <item_version>1</item_version>
+        <item class_id="0" tracking_level="0" version="1">
+                <px class_id="166" tracking_level="1" version="0" object_id="_1">
+                        <ObjectId>quote1</ObjectId>
+                        <ClassName>qlSimpleQuote</ClassName>
+                        <Value>1.23</Value>
+                        <TickValue>0</TickValue>
+                        <Permanent>0</Permanent>
+                        <UserProperties class_id="234" tracking_level="0"
+                            version="0">
+                                <count>0</count>
+                                <item_version>0</item_version>
+                        </UserProperties>
+                </px>
+        </item>
 </object_list>
 </boost_serialization>
+
+
+INFO - log dump of object with ID = quote1
+
+property = Permanent            value = 0
+property = TickValue            value = 0
+property = Value                value = 1.23
+Permanent = false
+
 
 End example program.
 \endverbatim
 
-The program generates the XML export files <tt>VanillaSwap.xml</tt>
-and <tt>YieldCurves.xml</tt> in the current directory.
+The program generates the XML export files <tt>Swap.xml</tt>
+and <tt>MarketData.xml</tt> in the current directory.
 
 \subsubsection serialization_win_cpp_import 1.2.2 Import
 
 Open a DOS prompt in directory
 <tt>%QuantLibAddin\\Clients\\CppInstrumentIn</tt>.
-Invoke batch file <tt>price_VanillaSwap.bat</tt>.
+Invoke batch file <tt>price_Swap.bat</tt>.
 The program loads the following 2 files:
 \verbatim
-QuantLibAddin\Clients\CppInstrumentIn\MarketData\YieldCurves.xml
-QuantLibAddin\Clients\CppInstrumentIn\Models\VanillaSwap.xml
+QuantLibAddin\Clients\CppInstrumentIn\MarketData\MarketData.xml
+QuantLibAddin\Clients\CppInstrumentIn\Models\Swap.xml
 \endverbatim
 The output from the program should appear as follows:
 \verbatim
-QuantLibAddin\Clients\CppInstrumentIn>InstrumentIn-vc80-mt.exe
-39573 VanillaSwap VanillaSwap.xml YieldCurves.xml
+QuantLibAddin\Clients\CppInstrumentIn>InstrumentIn-vc90-mt.exe
+    40546 Swap Swap.xml MarketData.xml
 Begin example program.
 QuantLibAddin version = 1.1.0
 ObjectHandler version = 1.1.0
-Instrument PV = 52531.4
+Instrument PV = -39396.9
 End example program.
 \endverbatim
 
@@ -200,59 +209,70 @@ End example program.
 \subsubsection serialization_linux_cpp_export 2.1.1 Export
 
 \c cd to directory  <tt>QuantLibAddin/Clients/CppSwapOut</tt> and execute
-program <tt>swap_out</tt>.  The output from the program should appear similar
-to the following:
+program <tt>swap_out</tt>.  The output from the program should appear as follows:
 \verbatim
 Begin example program.
 QuantLibAddin version = 1.1.0
 ObjectHandler version = 1.1.0
-SWAP PV = 36120.9
+SWAP PV = -39396.9
 Example of serializing to/from a buffer:
-XML = 
+XML =
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!DOCTYPE boost_serialization>
-<boost_serialization signature="serialization::archive" version="4">
+<boost_serialization signature="serialization::archive" version="5">
 <object_list class_id="1" tracking_level="1" version="0" object_id="_0">
-    <count>1</count>
-    <item_version>1</item_version>
-    <item class_id="0" tracking_level="0" version="1">
-        <px class_id="140" tracking_level="1" version="0" object_id="_1">
-            <ObjectId>quote1</ObjectId>
-            <ClassName>qlSimpleQuote</ClassName>
-            <Value>1.23</Value>
-            <TickValue>0</TickValue>
-            <Permanent>0</Permanent>
-            <UserProperties class_id="203" tracking_level="0" version="0">
-                <count>0</count>
-                <item_version>0</item_version>
-            </UserProperties>
-        </px>
-    </item>
+        <count>1</count>
+        <item_version>1</item_version>
+        <item class_id="0" tracking_level="0" version="1">
+                <px class_id="166" tracking_level="1" version="0" object_id="_1">
+                        <ObjectId>quote1</ObjectId>
+                        <ClassName>qlSimpleQuote</ClassName>
+                        <Value>1.23</Value>
+                        <TickValue>0</TickValue>
+                        <Permanent>0</Permanent>
+                        <UserProperties class_id="234" tracking_level="0"
+                            version="0">
+                                <count>0</count>
+                                <item_version>0</item_version>
+                        </UserProperties>
+                </px>
+        </item>
 </object_list>
 </boost_serialization>
+
+
+INFO - log dump of object with ID = quote1
+
+property = Permanent            value = 0
+property = TickValue            value = 0
+property = Value                value = 1.23
+Permanent = false
+
 
 End example program.
 \endverbatim
 
-The program generates the XML export files <tt>VanillaSwap.xml</tt>
-and <tt>YieldCurves.xml</tt> in the current directory.
+The program generates the XML export files <tt>Swap.xml</tt>
+and <tt>MarketData.xml</tt> in the current directory.
 
 \subsubsection serialization_linux_cpp_import 2.1.2 Import
 
 cd to directory
 <tt>%QuantLibAddin/Clients/CppInstrumentIn</tt>.
-Invoke shell script <tt>price_VanillaSwap.sh</tt>.
+Invoke shell script <tt>price_Swap.sh</tt>.
 The program loads the following 2 files:
 \verbatim
-QuantLibAddin/Clients/CppInstrumentIn/MarketData/YieldCurves.xml
-QuantLibAddin/Clients/CppInstrumentIn/Models/VanillaSwap.xml
+QuantLibAddin/Clients/CppInstrumentIn/MarketData/MarketData.xml
+QuantLibAddin/Clients/CppInstrumentIn/Models/Swap.xml
 \endverbatim
 The output from the program should appear as follows:
 \verbatim
+QuantLibAddin\Clients\CppInstrumentIn>./instrument_in
+    40546 Swap Swap.xml MarketData.xml
 Begin example program.
 QuantLibAddin version = 1.1.0
 ObjectHandler version = 1.1.0
-Instrument PV = 52531.4
+Instrument PV = -39396.9
 End example program.
 \endverbatim
 

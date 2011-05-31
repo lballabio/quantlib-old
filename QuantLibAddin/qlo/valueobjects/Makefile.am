@@ -12,12 +12,14 @@ include_HEADERS = \
     vo_assetswap.hpp \
     vo_bonds.hpp \
     vo_browniangenerators.hpp \
+    vo_btp.hpp \
     vo_capfloor.hpp \
     vo_capletvolstructure.hpp \
-    vo_cmsmarket.hpp \
     vo_cmsmarketcalibration.hpp \
+    vo_cmsmarket.hpp \
     vo_correlation.hpp \
     vo_couponvectors.hpp \
+    vo_credit.hpp \
     vo_ctsmmcapletcalibration.hpp \
     vo_curvestate.hpp \
     vo_defaulttermstructures.hpp \
@@ -42,13 +44,12 @@ include_HEADERS = \
     vo_products.hpp \
     vo_quotes.hpp \
     vo_randomsequencegenerator.hpp \
-    vo_range.hpp \
     vo_rangeaccrual.hpp \
+    vo_range.hpp \
     vo_ratehelpers.hpp \
     vo_schedule.hpp \
     vo_sequencestatistics.hpp \
     vo_shortratemodels.hpp \
-    vo_simplecashflow.hpp \
     vo_smilesection.hpp \
     vo_statistics.hpp \
     vo_swap.hpp \
@@ -58,8 +59,7 @@ include_HEADERS = \
     vo_timeseries.hpp \
     vo_vanillaswap.hpp \
     vo_volatilities.hpp \
-    vo_volatility.hpp \
-    vo_credit.hpp
+    vo_volatility.hpp
 
 libValueObjects_la_SOURCES = \
     vo_abcd.cpp \
@@ -68,12 +68,14 @@ libValueObjects_la_SOURCES = \
     vo_assetswap.cpp \
     vo_bonds.cpp \
     vo_browniangenerators.cpp \
+    vo_btp.cpp \
     vo_capfloor.cpp \
     vo_capletvolstructure.cpp \
-    vo_cmsmarket.cpp \
     vo_cmsmarketcalibration.cpp \
+    vo_cmsmarket.cpp \
     vo_correlation.cpp \
     vo_couponvectors.cpp \
+    vo_credit.cpp \
     vo_ctsmmcapletcalibration.cpp \
     vo_curvestate.cpp \
     vo_defaulttermstructures.cpp \
@@ -102,7 +104,6 @@ libValueObjects_la_SOURCES = \
     vo_schedule.cpp \
     vo_sequencestatistics.cpp \
     vo_shortratemodels.cpp \
-    vo_simplecashflow.cpp \
     vo_smilesection.cpp \
     vo_statistics.cpp \
     vo_swap.cpp \
@@ -112,5 +113,5 @@ libValueObjects_la_SOURCES = \
     vo_timeseries.cpp \
     vo_vanillaswap.cpp \
     vo_volatilities.cpp \
-    vo_volatility.cpp \
-    vo_credit.cpp
+    vo_volatility.cpp
+

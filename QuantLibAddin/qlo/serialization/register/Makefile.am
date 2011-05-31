@@ -12,12 +12,14 @@ noinst_HEADERS = \
     serialization_assetswap.hpp \
     serialization_bonds.hpp \
     serialization_browniangenerators.hpp \
+    serialization_btp.hpp \
     serialization_capfloor.hpp \
     serialization_capletvolstructure.hpp \
     serialization_cmsmarketcalibration.hpp \
     serialization_cmsmarket.hpp \
     serialization_correlation.hpp \
     serialization_couponvectors.hpp \
+    serialization_credit.hpp \
     serialization_ctsmmcapletcalibration.hpp \
     serialization_curvestate.hpp \
     serialization_defaulttermstructures.hpp \
@@ -48,7 +50,6 @@ noinst_HEADERS = \
     serialization_schedule.hpp \
     serialization_sequencestatistics.hpp \
     serialization_shortratemodels.hpp \
-    serialization_simplecashflow.hpp \
     serialization_smilesection.hpp \
     serialization_statistics.hpp \
     serialization_swap.hpp \
@@ -58,8 +59,7 @@ noinst_HEADERS = \
     serialization_timeseries.hpp \
     serialization_vanillaswap.hpp \
     serialization_volatilities.hpp \
-    serialization_volatility.hpp \
-    serialization_credit.hpp
+    serialization_volatility.hpp
 
 libRegister_la_SOURCES = \
     serialization_abcd.cpp \
@@ -68,12 +68,14 @@ libRegister_la_SOURCES = \
     serialization_assetswap.cpp \
     serialization_bonds.cpp \
     serialization_browniangenerators.cpp \
+    serialization_btp.cpp \
     serialization_capfloor.cpp \
     serialization_capletvolstructure.cpp \
     serialization_cmsmarketcalibration.cpp \
     serialization_cmsmarket.cpp \
     serialization_correlation.cpp \
     serialization_couponvectors.cpp \
+    serialization_credit.cpp \
     serialization_ctsmmcapletcalibration.cpp \
     serialization_curvestate.cpp \
     serialization_defaulttermstructures.cpp \
@@ -103,7 +105,6 @@ libRegister_la_SOURCES = \
     serialization_schedule.cpp \
     serialization_sequencestatistics.cpp \
     serialization_shortratemodels.cpp \
-    serialization_simplecashflow.cpp \
     serialization_smilesection.cpp \
     serialization_statistics.cpp \
     serialization_swap.cpp \
@@ -113,5 +114,5 @@ libRegister_la_SOURCES = \
     serialization_timeseries.cpp \
     serialization_vanillaswap.cpp \
     serialization_volatilities.cpp \
-    serialization_volatility.cpp \
-    serialization_credit.cpp
+    serialization_volatility.cpp
+

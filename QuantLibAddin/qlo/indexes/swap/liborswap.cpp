@@ -67,11 +67,11 @@ namespace QuantLibAddin {
             switch (fixingType) {
               case IsdaFixAm:
                 libraryObject_ = boost::shared_ptr<QuantLib::UsdLiborSwapIsdaFixAm>(new
-                    QuantLib::UsdLiborSwapIsdaFixAm(p, f));
+                    QuantLib::UsdLiborSwapIsdaFixAm(p, f, d));
                 break;
               case IsdaFixPm:
                 libraryObject_ = boost::shared_ptr<QuantLib::UsdLiborSwapIsdaFixPm>(new
-                    QuantLib::UsdLiborSwapIsdaFixPm(p, f));
+                    QuantLib::UsdLiborSwapIsdaFixPm(p, f, d));
                 break;
               default:
                   QL_FAIL(currency << " Libor Swap " << fixingType << " is not defined");
@@ -81,7 +81,7 @@ namespace QuantLibAddin {
             switch (fixingType) {
               case Isda:
                 libraryObject_ = boost::shared_ptr<QuantLib::GbpLiborSwapIsdaFix>(new
-                    QuantLib::GbpLiborSwapIsdaFix(p, f));
+                    QuantLib::GbpLiborSwapIsdaFix(p, f, d));
                 break;
               default:
                   QL_FAIL(currency << " Libor Swap " << fixingType << " is not defined");
@@ -91,7 +91,7 @@ namespace QuantLibAddin {
             switch (fixingType) {
               case Isda:
                 libraryObject_ = boost::shared_ptr<QuantLib::ChfLiborSwapIsdaFix>(new
-                    QuantLib::ChfLiborSwapIsdaFix(p, f));
+                    QuantLib::ChfLiborSwapIsdaFix(p, f, d));
                 break;
               default:
                   QL_FAIL(currency << " Libor Swap " << fixingType << " is not defined");
@@ -101,11 +101,11 @@ namespace QuantLibAddin {
             switch (fixingType) {
               case IsdaFixAm:
                 libraryObject_ = boost::shared_ptr<QuantLib::JpyLiborSwapIsdaFixAm>(new
-                    QuantLib::JpyLiborSwapIsdaFixAm(p, f));
+                    QuantLib::JpyLiborSwapIsdaFixAm(p, f, d));
                 break;
               case IsdaFixPm:
                 libraryObject_ = boost::shared_ptr<QuantLib::JpyLiborSwapIsdaFixPm>(new
-                    QuantLib::JpyLiborSwapIsdaFixPm(p, f));
+                    QuantLib::JpyLiborSwapIsdaFixPm(p, f, d));
                 break;
               default:
                   QL_FAIL(currency << " Libor Swap " << fixingType << " is not defined");

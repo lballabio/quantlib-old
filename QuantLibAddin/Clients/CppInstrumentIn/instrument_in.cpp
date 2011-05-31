@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2008 Eric Ehlers
+ Copyright (C) 2008, 2011 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,6 +24,8 @@
 #endif
 #include <iostream>
 
+#define OH_NULL ObjectHandler::property_t()
+
 #ifdef LOG_MESSAGE
 #undef LOG_MESSAGE
 #endif
@@ -31,8 +33,7 @@
 #undef LOG_ERROR
 #endif
 
-#define OH_NULL ObjectHandler::property_t()
-#define LOG_MESSAGE(msg) std::cerr << msg << std::endl
+#define LOG_MESSAGE(msg) std::cout << msg << std::endl
 #define LOG_ERROR(msg) std::cerr << msg << std::endl
 
 using namespace QuantLibAddinCpp;
@@ -47,7 +48,8 @@ int main(int argc, char** argv) {
             return -1;
         }
 
-        long lEvaldate = atol(argv[1]);
+        //long lEvaldate = atol(argv[1]);
+        double lEvaldate = atol(argv[1]);
         std::string tradeID = argv[2];
         std::string tradeFile = argv[3];
         std::vector<std::string> vecMaketfiles;
@@ -55,14 +57,13 @@ int main(int argc, char** argv) {
         for(int i = 4; i < argc; i += 1) {
             vecMaketfiles.push_back(argv[i]);
         }
-        /*
+        
         //print the information of the command line
-        std::cout<< "evaldate = " << lEvaldate<<"\n tradeid is" << tradeID 
-            << "\n trade file" << tradeFile;
-        int i = 0;
-        for(int i = 0; i < vecMaketfiles.size(); ++i)
-            std::cout<<"\nmarket file" << (i+1) <<" is "<<vecMaketfiles[i];
-        */
+        //std::cout<< "evaldate = " << lEvaldate<<"\ntradeid is " << tradeID 
+        //    << "\ntrade file is " << tradeFile << "\n";
+        //int i = 0;
+        //for(unsigned int i = 0; i < vecMaketfiles.size(); ++i)
+        //    std::cout<<"market file (" << (i+1) <<") is " << vecMaketfiles[i] << "\n";
 
         // Initialize the environment
 

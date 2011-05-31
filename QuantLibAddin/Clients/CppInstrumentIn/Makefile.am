@@ -7,22 +7,9 @@ EXTRA_DIST = \
     CppInstrumentIn_vc7.vcproj \
     CppInstrumentIn_vc8.vcproj \
     CppInstrumentIn_vc9.vcproj \
-    price_ConstantMaturitySwap.bat \
-    price_ConstantMaturitySwap.sh \
-    price_ForwardRateAgreement.bat \
-    price_ForwardRateAgreement.sh \
-    price_MultiLegSwap.bat \
-    price_MultiLegSwap.sh \
+    CppInstrumentIn_vc10.vcxproj \
     price_Swap.bat \
-    price_Swap.sh \
-    price_Swaption.bat \
-    price_Swaption.sh \
-    price_VanillaSwap.bat \
-    price_VanillaSwap.sh \
-    price_AssetSwap.bat \
-    price_AssetSwap.sh \
-    price_CapFloor.bat \
-    price_CapFloor.sh 
+    price_Swap.sh
 
 instrument_in_SOURCES = instrument_in.cpp
 

@@ -133,8 +133,8 @@
             <tensorRank>scalar</tensorRank>
             <description>forward start period.</description>
           </Parameter>
-          <Parameter name='FixDayCounter' default='"30/360 (Bond Basis)"'>
-            <type>QuantLib::DayCounter</type>
+          <Parameter name='FixDayCounter' default='"DayCounter"'>
+              <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>fixed leg day counter.</description>
           </Parameter>
