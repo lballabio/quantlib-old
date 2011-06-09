@@ -74,10 +74,10 @@ namespace QuantLibAddin {
     // platform-independent processing of value Null<Real>.
     Real SimpleQuote::setValue(Real value) {
 
-        Real result;
+        Real change;
 
         try {
-            result = simpleQuote_->setValue(value);
+            change = simpleQuote_->setValue(value);
         } catch (...) {
             // In the event of an exception, ensure that the ValueObject remains in synch with
             // the simpleQuote_ before rethrowing.
@@ -90,9 +90,10 @@ namespace QuantLibAddin {
             throw;
         }
 
-        properties()->setProperty("Value", value);
-        return result;
+        if (change!=0.0)
+            properties()->setProperty("Value", value);
 
+        return change;
     }
 
 
