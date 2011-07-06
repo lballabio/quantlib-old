@@ -3,7 +3,7 @@
   <displayName>Settings</displayName>
   <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
   <copyright>
-    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2011 Ferdinando Ametrano
   </copyright>
   <Functions>
 
@@ -39,10 +39,10 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='EvalDate' exampleValue='13-Feb-2007'>
+          <Parameter name='EvalDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>new value for the evaluation date.</description>
+            <description>new value for the evaluation date. If a null date is provided the current date wiil be used and midnight date change will be detected.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
