@@ -41,8 +41,8 @@ and OpenOffice.org Calc.</p>
 Dirk Eddelbuettel.</p>
 
 <p>A project for porting QuantLib to C# has started
-at <a href="http://www.qlnet.org/">QLNet</a> and is looking
-for developers.</p>
+at <a href="http://sourceforge.net/projects/qlnet/">QLNet</a> and is
+looking for developers.</p>
 
 <p>The <a href="http://www.jquantlib.org/">JQuantLib</a> project aims
 at a 100% Java port. At this time, it provides about 65% of QuantLib
