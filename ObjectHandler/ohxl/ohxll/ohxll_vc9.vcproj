@@ -61,7 +61,7 @@
 				ProgramDataBaseFileName="..\..\build\vc90\ohxll\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -162,6 +162,7 @@
 				ProgramDataBaseFileName="..\..\build\vc90\ohxll\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -182,6 +183,7 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
+				GenerateDebugInformation="true"
 				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc90-mt-1_1_0.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"

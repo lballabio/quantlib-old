@@ -56,7 +56,7 @@
 				ProgramDataBaseFileName="..\..\build\vc90\ohxllib\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -136,6 +136,7 @@
 				ProgramDataBaseFileName="..\..\build\vc90\ohxllib\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -215,6 +216,7 @@
 				ProgramDataBaseFileName="..\..\build\vc90\ohxllib\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -292,7 +294,7 @@
 				ProgramDataBaseFileName="..\..\build\vc90\ohxllib\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool

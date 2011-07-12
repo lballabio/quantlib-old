@@ -62,7 +62,7 @@
 				ProgramDataBaseFileName=".\buildStatic\vc90\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -162,7 +162,7 @@
 				ProgramDataBaseFileName=".\buildStatic\vc90\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -264,6 +264,7 @@
 				ProgramDataBaseFileName=".\buildStatic\vc90\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -285,6 +286,7 @@
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
+				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\buildStatic\vc90\$(ConfigurationName)/QuantLibAddinStatic-vc90-mt-s-1_1_0.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -364,6 +366,7 @@
 				ProgramDataBaseFileName=".\buildStatic\vc90\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -385,6 +388,7 @@
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
+				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\buildStatic\vc90\$(ConfigurationName)/QuantLibAddinStatic-vc90-mt-1_1_0.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"

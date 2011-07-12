@@ -58,6 +58,7 @@
 				ProgramDataBaseFileName="..\build\vc90\xlsdk\Release (static runtime)\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -135,7 +136,7 @@
 				ProgramDataBaseFileName="..\build\vc90\xlsdk\Debug (static runtime)\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -215,6 +216,7 @@
 				ProgramDataBaseFileName="..\build\vc90\xlsdk\Release\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -292,7 +294,7 @@
 				ProgramDataBaseFileName="..\build\vc90\xlsdk\Debug\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool

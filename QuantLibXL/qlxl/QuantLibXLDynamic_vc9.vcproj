@@ -65,7 +65,7 @@
 				ProgramDataBaseFileName=".\buildDynamic\vc90\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -169,6 +169,7 @@
 				ProgramDataBaseFileName=".\buildDynamic\vc90\$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -189,6 +190,7 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
+				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-1_1_0.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
