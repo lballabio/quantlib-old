@@ -26,7 +26,7 @@
   <FeedUse>Reuters</FeedUse>
   <StartupActions>
     <SetEvaluationDate>False</SetEvaluationDate>
-    <EvaluationDate>0</EvaluationDate>
+    <EvaluationDate>40736</EvaluationDate>
     <YieldCurveBootstrap>False</YieldCurveBootstrap>
     <CapVolBootstrap>False</CapVolBootstrap>
     <SwapSmileBootstrap>False</SwapSmileBootstrap>
