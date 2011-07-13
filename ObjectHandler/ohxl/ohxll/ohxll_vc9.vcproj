@@ -185,6 +185,7 @@
 				AdditionalLibraryDirectories="..\..\lib,..\..\..\log4cxx\msvc\lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="..\..\xll\ObjectHandler-xll-vc90-mt-1_1_0.pdb"
+				OptimizeReferences="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				ImportLibrary="..\..\lib\ObjectHandler-xll-vc90-mt-1_1_0.lib"

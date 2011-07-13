@@ -192,6 +192,7 @@
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_1_0..pdb"
+				OptimizeReferences="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-1_1_0.lib"
