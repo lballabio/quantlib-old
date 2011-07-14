@@ -1,6 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
+ Copyright (C) 2011 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -52,6 +53,11 @@ namespace QuantLibAddin {
         Schedule(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::vector<QuantLib::Date>& dates,
+            bool permanent);
+        Schedule(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::Schedule>& originalSchedule,
+            const QuantLib::Date& truncationDate,
             bool permanent);
     };
 
