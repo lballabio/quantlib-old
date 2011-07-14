@@ -86,7 +86,7 @@
       <ObjectFileName>.\build\vc100\$(Configuration)\apr\apr_obj\</ObjectFileName>
       <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\apr\apr_obj\vc100.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Lib>
@@ -136,7 +136,7 @@
       <ObjectFileName>.\build\vc100\$(Configuration)\apr\apr_obj\</ObjectFileName>
       <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\apr\apr_obj\vc100.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Lib>

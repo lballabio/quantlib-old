@@ -86,7 +86,7 @@
       <ObjectFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
       <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\vc100.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Lib>
@@ -133,7 +133,7 @@
       <ObjectFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
       <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\aprutil\aprutil_obj\vc100.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
