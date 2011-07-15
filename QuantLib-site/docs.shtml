@@ -59,6 +59,16 @@ taught, along with the corresponding code:<br>
 </li>
 </ul>
 
+<h2 class="center">Blogs</h2>
+<ul>
+<li>Useful QuantLib-related posts appeared in a few blogs, such as:<br>
+<strong>Klaus Spanderen's</strong> [<a href="http://hpcquantlib.wordpress.com/">blog</a>]<br>
+<strong>Bojan Nikolic's</strong> [<a href="http://www.bnikolic.co.uk/blog/">blog</a>]<br>
+<strong>&Eacute;douard Tallent's</strong> [<a href="http://quantcorner.wordpress.com/">blog</a>]<br>
+</li>
+</ul>
+
+
 <h2 class="center">Papers</h2>
 <ul>
 <li><strong>Option Engine: A Grid-Enabled Software Package to Evaluate
