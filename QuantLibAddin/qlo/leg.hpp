@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2010 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2010, 2011 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2006, 2007 Cristina Duminuco
  Copyright (C) 2006 Giorgio Facchinetti
@@ -50,8 +50,10 @@ namespace QuantLibAddin {
         Leg(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::CapFloor>& capFloor,
             bool permanent);
-        void setCouponPricers(const std::vector<boost::shared_ptr<QuantLibAddin::FloatingRateCouponPricer> >& p);
-        std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis() const;
+        void setCouponPricers(
+            const std::vector<boost::shared_ptr<QuantLibAddin::FloatingRateCouponPricer> >&);
+        std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis(
+                                            const QuantLib::Date& d) const;
       protected:
         OH_LIB_CTOR(Leg, QuantLib::Leg)
     };

@@ -32,7 +32,7 @@
   </addinIncludes>
   <copyright>
     Copyright (C) 2006, 2007 Chiara Fornarola
-    Copyright (C) 2006, 2007, 2008, 2009, 2010 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Walter Penschke
@@ -1255,7 +1255,13 @@
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
-        <Parameters/>
+        <Parameters>
+          <Parameter name='AfterDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Shows only cashflows after given date</description>
+          </Parameter>
+        </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>any</type>

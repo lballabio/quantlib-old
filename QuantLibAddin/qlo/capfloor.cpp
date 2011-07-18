@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2010 Ferdinando Ametrano
+ Copyright (C) 2006, 2010, 2011 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
 
@@ -31,6 +31,7 @@
 
 using boost::shared_ptr;
 using ObjectHandler::ValueObject;
+using ObjectHandler::property_t;
 using std::vector;
 
 namespace QuantLibAddin {
@@ -62,12 +63,12 @@ namespace QuantLibAddin {
                          .operator shared_ptr<QuantLib::CapFloor>();
     }
 
-    vector<vector<ObjectHandler::property_t> > CapFloor::legAnalysis()
+    vector<vector<property_t> > CapFloor::legAnalysis(const QuantLib::Date& d)
     {
         shared_ptr<QuantLib::CapFloor> temp;
         getLibraryObject(temp);
         const QuantLib::Leg& cashflows = temp->floatingLeg();
-        return flowAnalysis(cashflows);
+        return flowAnalysis(cashflows, d);
     }
 
 }

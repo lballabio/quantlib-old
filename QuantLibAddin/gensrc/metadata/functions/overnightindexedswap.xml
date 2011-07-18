@@ -21,7 +21,7 @@
     <include>ql/termstructures/yield/oisratehelper.hpp</include>
   </serializationIncludes>
   <copyright>
-    Copyright (C) 2009 Ferdinando Ametrano
+    Copyright (C) 2009, 2011 Ferdinando Ametrano
   </copyright>
   <Functions>
 
@@ -389,7 +389,13 @@
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
-        <Parameters></Parameters>
+        <Parameters>
+          <Parameter name='AfterDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Shows only cashflows after given date</description>
+          </Parameter>
+        </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>any</type>
@@ -406,7 +412,13 @@
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
-        <Parameters />
+        <Parameters>
+          <Parameter name='AfterDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Shows only cashflows after given date</description>
+          </Parameter>
+        </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>any</type>

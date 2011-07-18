@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2011 Ferdinando Ametrano
  Copyright (C) 2006 Giorgio Facchinetti
 
  This file is part of QuantLib, a free-software/open-source library
@@ -27,12 +27,15 @@
 
 namespace QuantLib {
     class CashFlow;
+    class Date;
     typedef std::vector<boost::shared_ptr<CashFlow> > Leg;
 }
 
 namespace QuantLibAddin {
 
-    std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis(const QuantLib::Leg& );
+    std::vector<std::vector<ObjectHandler::property_t> >
+    flowAnalysis(const QuantLib::Leg& leg,
+                 const QuantLib::Date& d);
 
 }
 

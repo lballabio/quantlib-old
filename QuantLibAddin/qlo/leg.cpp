@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2010 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2010, 2011 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2007 Cristina Duminuco
  Copyright (C) 2006 Eric Ehlers
@@ -38,6 +38,7 @@
 
 using ObjectHandler::ValueObject;
 using ObjectHandler::LibraryObject;
+using ObjectHandler::property_t;
 
 using QuantLib::earlier_than;
 using QuantLib::CashFlow;
@@ -109,8 +110,9 @@ namespace QuantLibAddin {
         inst_properties->setProperty("UserLegIDs", ids);
     }
 
-    vector<vector<ObjectHandler::property_t> > Leg::flowAnalysis() const {
-        return QuantLibAddin::flowAnalysis(*libraryObject_);
+    vector<vector<property_t> >
+    Leg::flowAnalysis(const QuantLib::Date& d) const {
+        return QuantLibAddin::flowAnalysis(*libraryObject_, d);
     }
 
     MultiPhaseLeg::MultiPhaseLeg(const shared_ptr<ValueObject>& p,

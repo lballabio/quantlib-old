@@ -21,7 +21,7 @@
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2009 Ferdinando Ametrano
+    Copyright (C) 2009, 2011 Ferdinando Ametrano
     Copyright (C) 2006, 2007, Chiara Fornarola
   </copyright>
   <Functions>
@@ -96,6 +96,11 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='AfterDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Shows only cashflows after given date</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
@@ -113,7 +118,13 @@
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
-        <Parameters/>
+        <Parameters>
+          <Parameter name='AfterDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Shows only cashflows after given date</description>
+          </Parameter>
+        </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>any</type>

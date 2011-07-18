@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2010 Ferdinando Ametrano
+ Copyright (C) 2006, 2010, 2011 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
 
  This file is part of QuantLib, a free-software/open-source library
@@ -47,7 +47,8 @@ namespace QuantLibAddin {
                  const QuantLib::Period& forwardStart,
                  const boost::shared_ptr<QuantLib::PricingEngine>& engine,
                  bool permanent);
-        std::vector<std::vector<ObjectHandler::property_t> > legAnalysis();
+        std::vector<std::vector<ObjectHandler::property_t> > legAnalysis(
+                const QuantLib::Date& d);
     };
 
 }

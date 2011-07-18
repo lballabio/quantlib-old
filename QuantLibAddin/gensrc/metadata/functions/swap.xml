@@ -25,7 +25,7 @@
   </addinIncludes>
   <copyright>
     Copyright (C) 2005 Eric Ehlers
-    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2011 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2006 Katiuscia Manzoni
@@ -200,6 +200,11 @@
             <type>long</type>
             <tensorRank>scalar</tensorRank>
             <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.).</description>
+          </Parameter>
+          <Parameter name='AfterDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Shows only cashflows after given date</description>
           </Parameter>
         </Parameters>
       </ParameterList>

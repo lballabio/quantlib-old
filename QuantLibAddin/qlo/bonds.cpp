@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2006, 2007 Chiara Fornarola
- Copyright (C) 2006, 2007, 2008, 2009, 2010 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Walter Penschke
@@ -40,16 +40,17 @@
 
 using std::vector;
 using boost::shared_ptr;
+using ObjectHandler::property_t;
 
 namespace QuantLibAddin {
 
-    vector<vector<ObjectHandler::property_t> > Bond::flowAnalysis()
+    vector<vector<property_t> > Bond::flowAnalysis(const QuantLib::Date& d)
     {
         shared_ptr<QuantLib::Bond> temp;
         getLibraryObject(temp);
         const QuantLib::Leg& cashflows = temp->cashflows();
 
-        return QuantLibAddin::flowAnalysis(cashflows);
+        return QuantLibAddin::flowAnalysis(cashflows, d);
     }
 
     QuantLib::Real Bond::redemptionAmount() {

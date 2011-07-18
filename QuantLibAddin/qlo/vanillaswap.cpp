@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2005, 2006 Eric Ehlers
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2011 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2006 Katiuscia Manzoni
@@ -32,8 +32,10 @@
 #include <ql/time/imm.hpp>
 
 using QuantLib::MakeVanillaSwap;
+using std::vector;
 using boost::shared_ptr;
 using ObjectHandler::ValueObject;
+using ObjectHandler::property_t;
 
 namespace QuantLibAddin {
 
@@ -133,12 +135,14 @@ namespace QuantLibAddin {
     }
 
 
-    std::vector<std::vector<ObjectHandler::property_t> > VanillaSwap::fixedLegAnalysis() {
-        return Swap::legAnalysis(0);
+    vector<vector<property_t> > VanillaSwap::fixedLegAnalysis(
+                                                    const QuantLib::Date& d) {
+        return Swap::legAnalysis(0, d);
     }
 
-    std::vector<std::vector<ObjectHandler::property_t> > VanillaSwap::floatingLegAnalysis() {
-        return Swap::legAnalysis(1);
+    vector<vector<property_t> > VanillaSwap::floatingLegAnalysis(
+                                                    const QuantLib::Date& d) {
+        return Swap::legAnalysis(1, d);
     }
 
 }

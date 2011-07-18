@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005, 2006 Eric Ehlers
- Copyright (C) 2006, 2007, 2010 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2010, 2011 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2006 Katiuscia Manzoni
@@ -32,6 +32,8 @@
 #include <ql/cashflows/couponpricer.hpp>
 
 using boost::shared_ptr;
+using std::vector;
+using ObjectHandler::property_t;
 
 namespace QuantLibAddin {
 
@@ -78,11 +80,12 @@ namespace QuantLibAddin {
                          .operator boost::shared_ptr<QuantLib::Swap>();
     }
 
-    std::vector<std::vector<ObjectHandler::property_t> > Swap::legAnalysis(QuantLib::Size i)
+    vector<vector<property_t> > Swap::legAnalysis(QuantLib::Size i,
+                                                  const QuantLib::Date& d)
     {
         boost::shared_ptr<QuantLib::Swap> temp;
         getLibraryObject(temp);
-        return flowAnalysis(temp->leg(i));
+        return flowAnalysis(temp->leg(i), d);
     }
 
 }

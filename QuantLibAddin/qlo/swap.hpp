@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2005 Eric Ehlers
- Copyright (C) 2006, 2007, 2010 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2010, 2011 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005, 2008 Plamen Neykov
  Copyright (C) 2006 Katiuscia Manzoni
@@ -54,7 +54,9 @@ namespace QuantLibAddin {
              const boost::shared_ptr<QuantLib::CmsCouponPricer>& pricer,
              bool permanent);
 
-        std::vector<std::vector<ObjectHandler::property_t> > legAnalysis(QuantLib::Size i);
+        std::vector<std::vector<ObjectHandler::property_t> > legAnalysis(
+            QuantLib::Size i,
+            const QuantLib::Date& d);
 
       protected:
         OH_OBJ_CTOR(Swap, Instrument);

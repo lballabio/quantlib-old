@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2009 Ferdinando Ametrano
+ Copyright (C) 2009, 2011 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -118,12 +118,14 @@ namespace QuantLibAddin {
         libraryObject_ = swapRH->swap();
     }
 
-    vector<vector<property_t> > OvernightIndexedSwap::fixedLegAnalysis() {
-        return Swap::legAnalysis(0);
+    vector<vector<property_t> > OvernightIndexedSwap::fixedLegAnalysis(
+                                                    const QuantLib::Date& d) {
+        return Swap::legAnalysis(0, d);
     }
 
-    vector<vector<property_t> > OvernightIndexedSwap::overnightLegAnalysis() {
-        return Swap::legAnalysis(1);
+    vector<vector<property_t> > OvernightIndexedSwap::overnightLegAnalysis(
+                                                    const QuantLib::Date& d) {
+        return Swap::legAnalysis(1, d);
     }
 
 }

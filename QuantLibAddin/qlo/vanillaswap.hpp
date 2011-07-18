@@ -4,6 +4,7 @@
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2011 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -76,8 +77,10 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::SwapRateHelper>& swapRH,
             bool permanent);
-        std::vector<std::vector<ObjectHandler::property_t> > fixedLegAnalysis();
-        std::vector<std::vector<ObjectHandler::property_t> > floatingLegAnalysis();
+        std::vector<std::vector<ObjectHandler::property_t> >
+                                    fixedLegAnalysis(const QuantLib::Date& d);
+        std::vector<std::vector<ObjectHandler::property_t> >
+                                    floatingLegAnalysis(const QuantLib::Date&);
     };
 
 }

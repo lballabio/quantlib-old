@@ -1,6 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
+ Copyright (C) 2011 Ferdinando Ametrano
  Copyright (C) 2006 Chiara Fornarola
 
  This file is part of QuantLib, a free-software/open-source library
@@ -42,16 +43,17 @@ namespace QuantLibAddin {
                   bool parSwap,
                   bool permanent);
                                       
-        std::vector<std::vector<ObjectHandler::property_t> > bondLeg() {
-            return Swap::legAnalysis(0);
+        std::vector<std::vector<ObjectHandler::property_t> > bondLeg(
+                                                    const QuantLib::Date& d) {
+            return Swap::legAnalysis(0, d);
         }
 
-        std::vector<std::vector<ObjectHandler::property_t> > floatingLeg() {
-            return Swap::legAnalysis(1);
+        std::vector<std::vector<ObjectHandler::property_t> > floatingLeg(
+                                                    const QuantLib::Date& d) {
+            return Swap::legAnalysis(1, d);
         }
 
     };
 }
 
 #endif
-
