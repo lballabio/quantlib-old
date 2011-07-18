@@ -70,7 +70,7 @@ namespace QuantLibAddin {
     : ObjectHandler::LibraryObject<QuantLib::Schedule>(p, permanent) {
     
         libraryObject_ = boost::shared_ptr<QuantLib::Schedule>(new
-            QuantLib::Schedule(*from, truncationDate));
+            QuantLib::Schedule(from->until(truncationDate)));
     }
 
 }
