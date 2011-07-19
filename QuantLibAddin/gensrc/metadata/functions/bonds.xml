@@ -1750,5 +1750,78 @@
       </ParameterList>
     </Constructor>
 
+    <Procedure name='qlBondAlive'>
+      <description>filters the Bond object IDs of the still alive Bonds.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Bonds'>
+            <type>QuantLibAddin::Bond</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of Bond IDs.</description>
+          </Parameter>
+          <Parameter name='RefDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>reference date at which evaluate alive bonds. The current evaluation date is used if no specific date is given.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLibAddin::Bond</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBondMaturityLookup'>
+      <description>returns the first maturity-matching Bond object ID.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Bonds'>
+            <type>QuantLibAddin::Bond</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of Bond IDs.</description>
+          </Parameter>
+          <Parameter name='Maturity' example='45678'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>maturity date to look up Bonds for.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLibAddin::Bond</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBondMaturitySort'>
+      <description>sorts the Bond object IDs by maturity.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Bonds'>
+            <type>QuantLibAddin::Bond</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of Bond IDs.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLibAddin::Bond</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
   </Functions>
 </Category>

@@ -172,6 +172,17 @@ namespace QuantLibAddin {
         // add constructor without schedule
     };
 
+    std::vector<std::string> qlBondAlive(
+                        const std::vector<boost::shared_ptr<Bond> >& bonds,
+                        QuantLib::Date& refDate);
+
+    std::string qlBondMaturityLookup(
+                        const std::vector<boost::shared_ptr<Bond> >& bonds,
+                        const QuantLib::Date& maturity);
+
+    std::vector<std::string> qlBondMaturitySort(
+                        const std::vector<boost::shared_ptr<Bond> >& bonds);
+
 }
 
 #endif
