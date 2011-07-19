@@ -30,6 +30,22 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='ohGroupMerge'>
+      <libraryFunction>Group</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='GroupIDs'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>a list of Group object IDs.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <Member name='ohGroupList' type='ObjectHandler::Group'>
       <description>Return the list of object IDs contained in a Group object.</description>
       <libraryFunction>list</libraryFunction>
