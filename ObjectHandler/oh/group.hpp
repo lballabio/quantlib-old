@@ -31,32 +31,31 @@
 namespace ObjectHandler {
 
     //! A collection of Objects.
-    /*! This class was implemented to facilitate serialization of a collection
-        of Objects.  In practice this functionality has not proved necessary so
-        this class is not fully implemented.
+    /*! This class was implemented to facilitate serialization and handling of
+        a collection of Objects.
     */
     class Group : public Object {
     public:
         Group(const boost::shared_ptr<ValueObject>& properties,
-              const std::vector<std::string> &list,
+              const std::vector<std::string>& list,
               bool permanent)
         : Object(properties, permanent), list_(list)
         {
             OH_REQUIRE(!list.empty(), "Input list is empty");
         }
         Group(const boost::shared_ptr<ValueObject>& properties,
-              const std::vector<boost::shared_ptr<ObjectHandler::Group> > &groups,
+              const std::vector<boost::shared_ptr<ObjectHandler::Group> >& g,
               bool permanent)
         : Object(properties, permanent)
         {
-            OH_REQUIRE(!groups.empty(), "Group list is empty");
-            list_ = groups[0]->list();
-            for (size_t i=1; i<groups.size(); ++i) {
-                const std::vector<std::string> & newList = groups[i]->list();
+            OH_REQUIRE(!g.empty(), "Group list is empty");
+            list_ = g[0]->list();
+            for (size_t i=1; i<g.size(); ++i) {
+                const std::vector<std::string>& newList = g[i]->list();
                 list_.insert(list_.end(), newList.begin(), newList.end());
             }
         }
-        const std::vector<std::string> &list() { return list_; }
+        const std::vector<std::string>& list() { return list_; }
         size_t size() { return list_.size(); }
     private:
         std::vector<std::string> list_;
