@@ -10,6 +10,7 @@
 
   <copyright>
     Copyright (C) 2007 Eric Ehlers
+    Copyright (C) 2011 Ferdinando Ametrano
   </copyright>
 
   <Functions>
@@ -30,7 +31,7 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='ohGroupMerge'>
+    <!--<Constructor name='ohGroupMerge'>
       <libraryFunction>Group</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -38,13 +39,13 @@
       <ParameterList>
         <Parameters>
           <Parameter name='GroupIDs'>
-            <type>string</type>
+            <type>ObjectHandler::Group</type>
             <tensorRank>vector</tensorRank>
             <description>a list of Group object IDs.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
-    </Constructor>
+    </Constructor>-->
 
     <Member name='ohGroupList' type='ObjectHandler::Group'>
       <description>Return the list of object IDs contained in a Group object.</description>
