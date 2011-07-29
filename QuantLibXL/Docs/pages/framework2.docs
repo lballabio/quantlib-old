@@ -1,0 +1,276 @@
+
+/*
+ Copyright (C) 2011 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+/*! \page framework2 Framework2
+
+QuantLibXL version 0.9.6 shipped with an Excel VBA \ref framework, which was
+further revised for the 1.1.0 release.
+
+"Framework2" is an alternative implementation of an Excel VBA application for
+QuantLibXL.  The relative strengths of the two projects are:
+
+\li <b>Framework</b>: More mature, more business functionality.
+\li <b>Framework2</b>: More modular design.
+
+The intention is to merge the 2 projects at some point.
+
+<a name="tag_contents"><h2>Contents</h2>
+<dl>
+<dt>\ref fw2_sec_1</dt>
+<dt>\ref fw2_sec_2</dt>
+<dt>\ref fw2_sec_3</dt>
+<dt>\ref fw2_sec_4</dt>
+<dt>\ref fw2_sec_5</dt>
+<dt>\ref fw2_sec_6</dt>
+<dt>\ref fw2_sec_7</dt>
+<dt>\ref fw2_sec_8</dt>
+<dt>\ref fw2_sec_9</dt>
+<dt>\ref fw2_sec_10</dt>
+<dt>\ref fw2_sec_11</dt>
+<dd><dl>
+<dt>\ref fw2_sec_11_1</dt>
+<dt>\ref fw2_sec_11_2</dt>
+<dt>\ref fw2_sec_11_3</dt>
+<dt>\ref fw2_sec_11_4</dt>
+<dt>\ref fw2_sec_11_5</dt>
+</dl></dd>
+<dt>\ref fw2_sec_12</dt>
+<dd><dl>
+<dt>\ref fw2_sec_12_1</dt>
+<dt>\ref fw2_sec_12_2</dt>
+<dt>\ref fw2_sec_12_3</dt>
+<dt>\ref fw2_sec_12_4</dt>
+<dt>\ref fw2_sec_12_5</dt>
+</dl></dd>
+</dl>
+
+\section fw2_sec_1 1. Overview
+
+The QuantLibXL Framework is an application layer written in Excel VBA which
+wraps the QuantLibXL Addin with additional functionality in support of market
+data feeds, creation of instruments, etc.
+
+\section fw2_sec_2 2. Prerequisites
+
+Excel 2003 or later.
+
+\section fw2_sec_3 3. Starting The Application
+
+Start an empty Excel session and load QuantLibXL\\framework2\\QuantLibXL.xla.
+Invoke menu item QuantLibXL -> Load -> Menu Demo, this should load the XLL
+and a test workbook.
+
+\section fw2_sec_4 4. Creating a Shortcut
+
+To create a shortcut (link, icon) to the application: do QuantLibXL ->
+Development -> Create Shortcut.  A dialog is displayed, accept the defaults and
+click OK.  This should create file QuantLibXL.lnk in the application root
+directory.  Now you can use the shortcut to launch a new standalone Excel
+session into which the VBA environment is automatically loaded.  The shortcut
+file can be copied elsewhere.
+
+\section fw2_sec_5 5. Context Sensitive Menus
+
+The Framework adds a QuantLibXL menu to Excel's main menu bar and also to the
+menu which appears when the user right-clicks in a cell.  The content of these
+menus changes depending on which book, sheet, and range is active.
+
+Start the application and load the demo.  Activate book Demo.xls, this workbook
+provides an example of context sensitive menus.
+
+\section fw2_sec_6 6. Workbook Design
+
+To add a new worksheet that is owned and recognized by the application, do
+QuantLibXL -> Development -> Insert New Worksheet.  Formatting of the new sheet
+is controlled with styles.  Excel's style dropdown is hidden by default - right
+click on a toolbar, select "Customize...", select "Format", locate the Style
+dropdown and drag it onto a toolbar.  All of the styles recognized by the
+Framework are present in the template worksheet.  Styles could be used to
+configure selected ranges as readonly or read/write but this feature is
+presently disabled.
+
+Each sheet contains hidden ("program") rows and columns where
+application-specific calculations may be implemented, hit Ctrl-Shift-H to
+hide/unhide these ranges.
+
+The application's ownership of books and sheets is controlled with names, do
+QuantLibXL -> Development -> Manage Names to configure these values.  Edit
+Menu.xla to control which menu items are visible for a given sheet or book.
+
+\section fw2_sec_7 7. Loader
+
+The application allows different environments to be configured, the files
+required by each environment can be specified and dependencies are supported.
+This is implemented in Loader.xla.
+
+\section fw2_sec_8 8. Keyboard Shortcuts
+
+These are configured in Keyboard.xla:
+
+\li <b>Ctrl-Shft-E</b>: Display the error message, if any, that is associated
+with the active range.
+\li <b>Ctrl-Shft-H</b>: Hide/unhide program columns and rows.
+\li <b>Ctrl-Shft-R</b>: Reset the application.  Stopping  the app in the
+debugger disables the menus and this keystroke combination restarts them.
+
+\section fw2_sec_9 9. Code Comments
+
+Each VBA addin includes a comment block in the ThisWorkbook object summarizing
+the module's purpose.
+
+\section fw2_sec_10 10. Templates
+
+Template worksheets are designed to support the required functionality for
+market data, analytics, etc.  These sheets can be mixed and matched as desired
+into production workbooks for use by end users.  Unfortunately at the moment
+there are no template sheets available for release under the QuantLib license.
+
+\section fw2_sec_11 11. Tutorial : Creating a New Load Environment
+
+This tutorial explains how to create a new environment and how to configure
+the application to load this new environment.
+
+\subsection fw2_sec_11_1 11.1 Create New Workbook
+
+Create a new workbook called QuantLibXL\\framework2\\workbooks\\Tutorial1.xls.
+
+\subsection fw2_sec_11_2 11.2 Configure The Loader
+
+Open QuantLibXL\\framework2\\config\\Loader.xls.
+
+In between columns E and F, insert a new column F.  Set the value of cell F1 to
+Tutorial 1.
+
+<div class="center"><img src="images/fw2_tut1_loader1.jpg"></div>
+
+At the bottom of the workbook, just below the last populated row, type in a new
+row.  For purposes of this text we assume that your new row is row number 25,
+the exact row number depends on how many entries are already there.
+
+Populate the new row as follows:
+
+\li <b>Cell A25 - ID</b>: Enter a literal value one greater than the cell
+above.  In this example the value is 24.  Do not enter a cell formula such as
+<code>=A24+1</code>, doing so will cause Excel to unnecessarily prompt the user
+to save changes.
+\li <b>Cell B25 - Path</b>: workbooks.
+\li <b>Cell C25 - Component</b>: Tutorial1.xls.
+\li <b>Cell D25 - Prerequisites</b>: The purpose of this cell is to indicate
+to the loader any prerequisites for the given component.  Prerequisites are
+identified as a comma delimited list of component IDs (from column A).  In this
+example, our new workbook Tutorial1.xls has no prerequisites, so leave this
+cell blank.
+\li <b>Cell F25 - Tutorial 1</b>: Place an X here to indicate that the new
+component (Tutorial1.xls, cell C25) belongs to the new environment (Tutorial
+1, cell F1).
+
+<div class="center"><img src="images/fw2_tut1_loader2.jpg"></div>
+
+\subsection fw2_sec_11_3 11.3 Create Menu Function
+
+In addin Loader.xla, module MenuItems, create a new subroutine to load the
+new component.
+
+<div class="center"><img src="images/fw2_tut1_menu1.jpg"></div>
+
+<b>Important</b>: To save your changes to Loader.xla, do not use the
+usual method of executing the Save command from the Excel VBA menu.
+Instead, go into module Loader and execute subroutine saveThisWorkbook.
+
+\subsection fw2_sec_11_4 11.4 Create Menu Item
+
+Open QuantLibXL\\framework2\\config\\Menu.xls.
+
+Under the menu item for Load, enter a subitem for the new Tutorial 1
+environment.
+
+<div class="center"><img src="images/fw2_tut1_menu2.jpg"></div>
+
+\subsection fw2_sec_11_5 11.5 Test The New Environment
+
+Close Excel, then relaunch the app by clicking on the
+QuantLibXL\\framework2\\QuantLibXL.lnk shortcut that you created
+earlier.
+
+Invoke your new menu item QuantLibXL -> Load -> Tutorial 1.
+
+<div class="center"><img src="images/fw2_tut1_menu3.jpg"></div>
+
+If all goes well then workbook 
+QuantLibXL\\framework2\\workbooks\\Tutorial1.xls is loaded.
+
+\section fw2_sec_12 12. Tutorial : Configuring Menus
+
+\subsection fw2_sec_12_1 12.1 Create New Worksheet
+
+Start the app and do QuantLibXL -> Load -> Tutorial 1.  Do QuantLibXL ->
+Development -> Insert New Worksheet.  Change the name of the worksheet from
+StyleTemplate to Tutorial.  Delete the other worksheets.
+
+<div class="center"><img src="images/fw2_tut2_menu1.jpg"></div>
+
+\subsection fw2_sec_12_2 12.2 Configure Names
+
+This step creates hidden names within the workbook and worksheet which the app
+uses to identify the book/sheet when creating context sensitive menus.
+
+Do QuantLibXL -> Development -> Manage Names.  Set the name of the workbook to
+TutorialBook.  Set the type of the worksheet to TutorialSheet.  Thanks to poor
+design of this dialog, you have to format the values with ="xxx" as shown.
+
+<div class="center"><img src="images/fw2_tut2_names.jpg"></div>
+
+\subsection fw2_sec_12_3 12.3 Create Functions
+
+At this point you would usually create the functions required to process your
+workbook.  Typically you would create a new VBA addin file containing the new
+functionality.
+
+For purposes of this tutorial we are going to borrow a couple of functions which 
+are already there.  In addin Calculate.xla, module Demo, we will use functions
+processBook and processSheet.
+
+<div class="center"><img src="images/fw2_tut2_func.jpg"></div>
+
+\subsection fw2_sec_12_4 12.4 Configure Book Menu
+
+Open QuantLibXL\\framework2\\config\\Menu.xls.  Somewhere under the [Workbook]
+section, insert 2 new rows with the values shown below.
+
+<div class="center"><img src="images/fw2_tut2_menu2.jpg"></div>
+
+\subsection fw2_sec_12_5 12.5 Configure Sheet Menu
+
+Somewhere under the [Worksheet] section, insert 2 new rows with the values
+shown below.
+
+<div class="center"><img src="images/fw2_tut2_menu3.jpg"></div>
+
+\subsection fw2_sec_12_5 12.6 Test The New Environment
+
+Save all the changes you made above, close Excel, then relaunch the app.
+
+Invoke your new menu item QuantLibXL -> Load -> Tutorial 1.
+
+If all goes well then your new menus should appear when the book/sheet is
+active.
+
+<div class="center"><img src="images/fw2_tut2_menu4.jpg"></div>
+
+*/
+
