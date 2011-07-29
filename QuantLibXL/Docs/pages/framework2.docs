@@ -56,6 +56,7 @@ The intention is to merge the 2 projects at some point.
 <dt>\ref fw2_sec_12_3</dt>
 <dt>\ref fw2_sec_12_4</dt>
 <dt>\ref fw2_sec_12_5</dt>
+<dt>\ref fw2_sec_12_6</dt>
 </dl></dd>
 </dl>
 
@@ -261,7 +262,7 @@ shown below.
 
 <div class="center"><img src="images/fw2_tut2_menu3.jpg"></div>
 
-\subsection fw2_sec_12_5 12.6 Test The New Environment
+\subsection fw2_sec_12_6 12.6 Test The New Environment
 
 Save all the changes you made above, close Excel, then relaunch the app.
 
