@@ -1,4 +1,3 @@
-
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009 StatPro Italia srl
@@ -57,12 +56,14 @@ typedef std::vector<boost::shared_ptr<CashFlow> > Leg;
 
 %{
 using QuantLib::SimpleCashFlow;
+using QuantLib::Coupon;
 using QuantLib::FixedRateCoupon;
 using QuantLib::IborCoupon;
 using QuantLib::Leg;
 using QuantLib::FloatingRateCoupon;
 
 typedef boost::shared_ptr<CashFlow> SimpleCashFlowPtr;
+typedef boost::shared_ptr<CashFlow> CouponPtr;
 typedef boost::shared_ptr<CashFlow> IborCouponPtr;
 typedef boost::shared_ptr<CashFlow> FixedRateCouponPtr;
 typedef boost::shared_ptr<CashFlow> FloatingRateCouponPtr;
@@ -78,8 +79,62 @@ class SimpleCashFlowPtr : public boost::shared_ptr<CashFlow> {
     }
 };
 
+%rename(Coupon) CouponPtr;
+class CouponPtr : public boost::shared_ptr<CashFlow> {
+  private:
+    CouponPtr();
+  public:
+    %extend {
+        Real nominal() {
+            return boost::dynamic_pointer_cast<Coupon>(*self)->nominal();
+        }
+        Date accrualStartDate() {
+            return boost::dynamic_pointer_cast<Coupon>(*self)
+                ->accrualStartDate();
+        }
+        Date accrualEndDate() {
+            return boost::dynamic_pointer_cast<Coupon>(*self)
+                ->accrualEndDate();
+        }
+        Date referencePeriodStart() {
+            return boost::dynamic_pointer_cast<Coupon>(*self)
+                ->referencePeriodStart();
+        }
+        Date referencePeriodEnd() {
+            return boost::dynamic_pointer_cast<Coupon>(*self)
+                ->referencePeriodEnd();
+        }
+        Real rate() {
+            return boost::dynamic_pointer_cast<Coupon>(*self)->rate();
+        }
+        Time accrualPeriod() {
+            return boost::dynamic_pointer_cast<Coupon>(*self)
+                ->accrualPeriod();
+        }
+        BigInteger accrualDays() {
+            return boost::dynamic_pointer_cast<Coupon>(*self)
+                ->accrualDays();
+        }
+        DayCounter dayCounter() const {
+            return boost::dynamic_pointer_cast<Coupon>(*self)
+                ->dayCounter();
+        }
+        Real accruedAmount(const Date& date) {
+            return boost::dynamic_pointer_cast<Coupon>(*self)
+                ->accruedAmount(date);
+        }
+    }
+};
+
+%inline %{
+    CouponPtr as_coupon(const boost::shared_ptr<CashFlow>& cf) {
+        return boost::dynamic_pointer_cast<Coupon>(cf);
+    }
+%}
+
+
 %rename(FixedRateCoupon) FixedRateCouponPtr;
-class FixedRateCouponPtr : public boost::shared_ptr<CashFlow> {
+class FixedRateCouponPtr : public CouponPtr {
   public:
     %extend {
         FixedRateCouponPtr(const Date& paymentDate, Real nominal,
@@ -92,20 +147,42 @@ class FixedRateCouponPtr : public boost::shared_ptr<CashFlow> {
                                     dayCounter, startDate, endDate,
                                     refPeriodStart, refPeriodEnd));
         }
+        InterestRate interestRate() {
+            return boost::dynamic_pointer_cast<FixedRateCoupon>(*self)
+                ->interestRate();
+        }
     }
 };
 
+%inline %{
+    FixedRateCouponPtr as_fixed_rate_coupon(
+                                      const boost::shared_ptr<CashFlow>& cf) {
+        return boost::dynamic_pointer_cast<FixedRateCoupon>(cf);
+    }
+%}
+
+
 %rename(FloatingRateCoupon) FloatingRateCouponPtr;
-class FloatingRateCouponPtr : public boost::shared_ptr<CashFlow> {
+class FloatingRateCouponPtr : public CouponPtr {
+  private:
+    FloatingRateCouponPtr();
   public:
     %extend {
-        Rate rate() {
+        Date fixingDate() {
             return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
-                ->rate();
+                ->fixingDate();
         }
         Integer fixingDays() {
             return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
                 ->fixingDays();
+        }
+        bool isInArrears() {
+            return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
+                ->isInArrears();
+        }
+        Real gearing() {
+            return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
+                ->gearing();
         }
         Rate spread() {
             return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
@@ -115,15 +192,32 @@ class FloatingRateCouponPtr : public boost::shared_ptr<CashFlow> {
             return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
                 ->indexFixing();
         }
-        Date fixingDate() {
+        Rate adjustedFixing() {
             return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
-                ->fixingDate();
+                ->adjustedFixing();
         }
-        Real nominal() {
-            return boost::dynamic_pointer_cast<IborCoupon>(*self)->nominal();
+        Rate convexityAdjustment() {
+            return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
+                ->convexityAdjustment();
+        }
+        Real price(const Handle<YieldTermStructure>& discountCurve) {
+            return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
+                ->price(discountCurve);
+        }
+        InterestRateIndexPtr index() const {
+            return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
+                ->index();
         }
     }
 };
+
+%inline %{
+    FloatingRateCouponPtr as_floating_rate_coupon(
+                                      const boost::shared_ptr<CashFlow>& cf) {
+        return boost::dynamic_pointer_cast<FloatingRateCoupon>(cf);
+    }
+%}
+
 
 %rename(IborCoupon) IborCouponPtr;
 class IborCouponPtr : public FloatingRateCouponPtr {
