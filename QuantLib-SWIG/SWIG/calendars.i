@@ -75,7 +75,6 @@ class Calendar {
   protected:
     Calendar();
   public:
-    // constructor redefined below as string-based factory
     bool isBusinessDay(const Date&);
     bool isHoliday(const Date&);
     bool isEndOfMonth(const Date&);
@@ -84,18 +83,16 @@ class Calendar {
     Date adjust(const Date& d,
                 BusinessDayConvention convention = QuantLib::Following);
     Date advance(const Date& d, Integer n, TimeUnit unit,
-                 BusinessDayConvention convention =
-         QuantLib::Following,
-         bool endOfMonth = false);
+                 BusinessDayConvention convention = QuantLib::Following,
+                 bool endOfMonth = false);
     Date advance(const Date& d, const Period& period,
-                 BusinessDayConvention convention =
-         QuantLib::Following,
-         bool endOfMonth = false);
+                 BusinessDayConvention convention = QuantLib::Following,
+                 bool endOfMonth = false);
     BigInteger businessDaysBetween(const Date& from,
-                 const Date& to,
-                 bool includeFirst = true,
-                 bool includeLast = false);
-
+                                   const Date& to,
+                                   bool includeFirst = true,
+                                   bool includeLast = false);
+    std::string name();
     %extend {
         std::string __str__() {
             return self->name()+" calendar";
@@ -275,6 +272,12 @@ namespace QuantLib {
         JointCalendar(const Calendar&, const Calendar&,
                       const Calendar&, const Calendar&,
                       JointCalendarRule rule = QuantLib::JoinHolidays);
+    };
+
+    class BespokeCalendar : public Calendar {
+      public:
+        BespokeCalendar(const std::string& name);
+        void addWeekend(Weekday);
     };
 
 }
