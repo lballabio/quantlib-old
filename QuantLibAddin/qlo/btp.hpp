@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2010 Ferdinando Ametrano
+ Copyright (C) 2010, 2011 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -35,11 +35,28 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
+    class CCTEU : public FloatingRateBond {
+      public:
+        CCTEU(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string&,
+            const QuantLib::Date& maturityDate,
+            QuantLib::Spread spread,
+            const QuantLib::Date& startDate,
+            const QuantLib::Date& issueDate,
+            bool permanent);
+    };
+
     class BTP : public FixedRateBond {
       public:
         BTP(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const std::string&,
-            const QuantLib::Currency&,
+            const QuantLib::Date& maturityDate,
+            QuantLib::Rate fixedRate,
+            const QuantLib::Date& startDate,
+            const QuantLib::Date& issueDate,
+            bool permanent);
+        BTP(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string&,
             const QuantLib::Date& maturityDate,
             QuantLib::Rate fixedRate,
             QuantLib::Real redemption,

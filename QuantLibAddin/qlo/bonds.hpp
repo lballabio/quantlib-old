@@ -28,14 +28,12 @@
 #include <qlo/baseinstruments.hpp>
 #include <qlo/leg.hpp>
 
-#include <ql/time/businessdayconvention.hpp>
-#include <ql/time/dategenerationrule.hpp>
-#include <ql/types.hpp>
+#include <ql/currency.hpp>
+#include <ql/instruments/bond.hpp>
 
 #include <string>
 
 namespace QuantLib {
-    class Currency;
     class FloatingRateCouponPricer;
     class SwapIndex;
     class IborIndex;
@@ -50,8 +48,8 @@ namespace QuantLibAddin {
 
     class Bond : public Instrument {
       public:
-        std::string description();
-        std::string currency();
+        const std::string& description();
+        std::string currency() { return currency_.code(); }
         //QuantLib::Currency currency();
         QuantLib::Real redemptionAmount();
         QuantLib::Date redemptionDate();
@@ -62,8 +60,8 @@ namespace QuantLibAddin {
         std::vector<std::vector<ObjectHandler::property_t> > flowAnalysis(
                                                     const QuantLib::Date& d);
         Bond(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-             const std::string& des,
-             const QuantLib::Currency& cur,
+             const std::string& description,
+             const QuantLib::Currency& currency,
              QuantLib::Natural settlementDays,
              const QuantLib::Calendar& calendar,
              QuantLib::Real faceAmount,
@@ -72,7 +70,13 @@ namespace QuantLibAddin {
              const QuantLib::Leg& leg,
              bool permanent);
       protected:
-        OH_OBJ_CTOR(Bond, Instrument);
+        Bond(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+             const std::string& description,
+             const QuantLib::Currency& currency,
+             bool permanent);
+        std::string description_;
+        QuantLib::Currency currency_;
+        boost::shared_ptr<QuantLib::Bond> qlBondObject_;
     };
 
     class ZeroCouponBond : public Bond {
@@ -121,7 +125,11 @@ namespace QuantLibAddin {
             const QuantLib::Calendar& paymentCalendar,
             bool permanent);
       protected:
-        OH_OBJ_CTOR(FixedRateBond, Bond);
+        FixedRateBond(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string& description,
+            const QuantLib::Currency& currency,
+            bool permanent);
     };
 
     class FloatingRateBond : public Bond {
@@ -146,6 +154,12 @@ namespace QuantLibAddin {
             const QuantLib::Date& issueDate,
             bool permanent);
         // add constructor without schedule
+      protected:
+        FloatingRateBond(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string& description,
+            const QuantLib::Currency& currency,
+            bool permanent);
     };
 
     class CmsRateBond : public Bond {

@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2010 Ferdinando Ametrano
+ Copyright (C) 2010, 2011 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -24,26 +24,77 @@
 #include <qlo/btp.hpp>
 
 #include <ql/instruments/bonds/btp.hpp>
+#include <ql/currencies/europe.hpp>
+#include <ql/utilities/dataformatters.hpp>
 
 using std::vector;
 using boost::shared_ptr;
 
 namespace QuantLibAddin {
 
+    CCTEU::CCTEU(const shared_ptr<ObjectHandler::ValueObject>& properties,
+                 const std::string& des,
+                 const QuantLib::Date& maturityDate,
+                 QuantLib::Spread spread,
+                 const QuantLib::Date& startDate,
+                 const QuantLib::Date& issueDate,
+                 bool permanent)
+    : FloatingRateBond(properties, des, QuantLib::EURCurrency(), permanent)
+    {
+        qlBondObject_ = shared_ptr<QuantLib::CCTEU>(new
+            QuantLib::CCTEU(maturityDate, spread, startDate, issueDate));
+        libraryObject_ = qlBondObject_;
+        if (description_.empty()) {
+            std::ostringstream temp;
+            temp << "CCTEU ";
+            temp << QuantLib::io::iso_date(qlBondObject_->maturityDate());
+            temp << " " << spread*10000 << "bp";
+            description_ = temp.str();
+        }
+    }
+
     BTP::BTP(const shared_ptr<ObjectHandler::ValueObject>& properties,
-             const std::string&,
-             const QuantLib::Currency&,
+             const std::string& des,
+             const QuantLib::Date& maturityDate,
+             QuantLib::Rate fixedRate,
+             const QuantLib::Date& startDate,
+             const QuantLib::Date& issueDate,
+             bool permanent)
+    : FixedRateBond(properties, des, QuantLib::EURCurrency(), permanent)
+    {
+        qlBondObject_ = shared_ptr<QuantLib::BTP>(new
+            QuantLib::BTP(maturityDate, fixedRate, startDate, issueDate));
+        libraryObject_ = qlBondObject_;
+        if (description_.empty()) {
+            std::ostringstream temp;
+            temp << "BTP ";
+            temp << QuantLib::io::iso_date(qlBondObject_->maturityDate());
+            temp << " " << fixedRate*100.0 << "%";
+            description_ = temp.str();
+        }
+    }
+
+    BTP::BTP(const shared_ptr<ObjectHandler::ValueObject>& properties,
+             const std::string& des,
              const QuantLib::Date& maturityDate,
              QuantLib::Rate fixedRate,
              QuantLib::Real redemption,
              const QuantLib::Date& startDate,
              const QuantLib::Date& issueDate,
              bool permanent)
-    : FixedRateBond(properties, permanent)
+    : FixedRateBond(properties, des, QuantLib::EURCurrency(), permanent)
     {
-        libraryObject_ = shared_ptr<QuantLib::Instrument>(new
+        qlBondObject_ = shared_ptr<QuantLib::BTP>(new
             QuantLib::BTP(maturityDate, fixedRate,
                           redemption, startDate, issueDate));
+        libraryObject_ = qlBondObject_;
+        if (description_.empty()) {
+            std::ostringstream temp;
+            temp << "BTP ";
+            temp << QuantLib::io::iso_date(qlBondObject_->maturityDate());
+            temp << " " << fixedRate*100.0 << "%";
+            description_ = temp.str();
+        }
     }
 
     RendistatoBasket::RendistatoBasket(
