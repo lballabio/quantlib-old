@@ -140,11 +140,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\functions\credit.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\functions\date.xml"
 				>
 			</File>
 			<File
 				RelativePath="metadata\functions\daycounter.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\metadata\functions\defaulttermstructures.xml"
 				>
 			</File>
 			<File

@@ -286,6 +286,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\functions\credit.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\functions\ctsmmcapletcalibration.cpp"
 				>
 			</File>

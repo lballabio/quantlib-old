@@ -302,7 +302,7 @@
             <description>discounting YieldTermStructure object ID.</description>
           </Parameter>
           <Parameter name='UpfrontSettlementDays'>
-            <type>QuantLib::Integer</type>
+            <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>upfront settlement days</description>
           </Parameter>
