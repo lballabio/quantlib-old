@@ -160,6 +160,7 @@ enable-auto-props = yes
 *.vcproj = svn:eol-style=CRLF
 *.xhtml = svn:eol-style=native
 *.xla = svn:mime-type=application/vnd.ms-excel;svn:needs-lock
+*.xlam = svn:mime-type=application/vnd.ms-excel;svn:needs-lock
 *.xll = svn:mime-type=application/vnd.ms-excel;svn:needs-lock
 *.xls = svn:mime-type=application/vnd.ms-excel;svn:needs-lock
 *.xlsx = svn:mime-type=application/vnd.ms-excel;svn:needs-lock
