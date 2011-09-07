@@ -1,7 +1,7 @@
-
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2008 StatPro Italia srl
+ Copyright (C) 2011 Lluis Pujol Bajador
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,6 +28,8 @@
 %include observer.i
 %include marketelements.i
 %include interpolation.i
+%include indexes.i
+%include optimizers.i
 
 %{
 using QuantLib::BlackVolTermStructure;
@@ -451,8 +453,97 @@ class SwaptionVolatilityMatrixPtr
                 new SwaptionVolatilityMatrix(referenceDate,dates,lengths,
                                              vols,dayCounter));
         }
+        SwaptionVolatilityMatrixPtr(
+                        const Calendar& calendar,
+                        BusinessDayConvention bdc,
+                        const std::vector<Period>& optionTenors,
+                        const std::vector<Period>& swapTenors,
+                        const std::vector<std::vector<Handle<Quote> > >& vols,
+                        const DayCounter& dayCounter) {
+            return new SwaptionVolatilityMatrixPtr(
+                new SwaptionVolatilityMatrix(calendar,bdc,optionTenors,
+                                             swapTenors,vols,dayCounter));
+        }
+        SwaptionVolatilityMatrixPtr(const Calendar& calendar,
+                                    BusinessDayConvention bdc,
+                                    const std::vector<Period>& optionTenors,
+                                    const std::vector<Period>& swapTenors,
+                                    const Matrix& vols,
+                                    const DayCounter& dayCounter) {
+            return new SwaptionVolatilityMatrixPtr(
+                new SwaptionVolatilityMatrix(calendar,bdc,optionTenors,
+                                             swapTenors,vols,dayCounter));
+        }
     }
 };
 
+%{
+using QuantLib::SwaptionVolCube1;
+using QuantLib::SwaptionVolCube2;
+typedef boost::shared_ptr<SwaptionVolatilityStructure> SwaptionVolCube1Ptr;
+typedef boost::shared_ptr<SwaptionVolatilityStructure> SwaptionVolCube2Ptr;
+%}
+
+%rename(SwaptionVolCube1) SwaptionVolCube1Ptr;
+class SwaptionVolCube1Ptr
+    : public boost::shared_ptr<SwaptionVolatilityStructure> {
+  public:
+    %extend {
+        SwaptionVolCube1Ptr(
+             const Handle<SwaptionVolatilityStructure>& atmVolStructure,
+             const std::vector<Period>& optionTenors,
+             const std::vector<Period>& swapTenors,
+             const std::vector<Spread>& strikeSpreads,
+             const std::vector<std::vector<Handle<Quote> > >& volSpreads,
+             const SwapIndexPtr& swapIndexBase,
+             const SwapIndexPtr& shortSwapIndexBase,
+             bool vegaWeightedSmileFit,
+             const std::vector<std::vector<Handle<Quote> > >& parametersGuess,
+             const std::vector<bool>& isParameterFixed,
+             bool isAtmCalibrated,
+             const boost::shared_ptr<EndCriteria>& endCriteria
+                                           = boost::shared_ptr<EndCriteria>(),
+             Real maxErrorTolerance = Null<Real>(),
+             const boost::shared_ptr<OptimizationMethod>& optMethod
+                                  = boost::shared_ptr<OptimizationMethod>()) {
+            const boost::shared_ptr<SwapIndex> swi =
+                boost::dynamic_pointer_cast<SwapIndex>(swapIndexBase);
+            const boost::shared_ptr<SwapIndex> shortSwi =
+                boost::dynamic_pointer_cast<SwapIndex>(shortSwapIndexBase);
+            return new SwaptionVolCube1Ptr(
+                new SwaptionVolCube1(
+                    atmVolStructure,optionTenors,swapTenors, strikeSpreads,
+                    volSpreads, swi, shortSwi, vegaWeightedSmileFit,
+                    parametersGuess,isParameterFixed,isAtmCalibrated,
+                    endCriteria,maxErrorTolerance,optMethod));
+        }
+    }
+};
+
+%rename(SwaptionVolCube2) SwaptionVolCube2Ptr;
+class SwaptionVolCube2Ptr
+    : public boost::shared_ptr<SwaptionVolatilityStructure> {
+  public:
+    %extend {
+        SwaptionVolCube2Ptr(
+                   const Handle<SwaptionVolatilityStructure>& atmVolStructure,
+                   const std::vector<Period>& optionTenors,
+                   const std::vector<Period>& swapTenors,
+                   const std::vector<Spread>& strikeSpreads,
+                   const std::vector<std::vector<Handle<Quote> > >& volSpreads,
+                   const SwapIndexPtr& swapIndexBase,
+                   const SwapIndexPtr& shortSwapIndexBase,
+                   bool vegaWeightedSmileFit) {
+            const boost::shared_ptr<SwapIndex> swi =
+                boost::dynamic_pointer_cast<SwapIndex>(swapIndexBase);
+            const boost::shared_ptr<SwapIndex> shortSwi =
+                boost::dynamic_pointer_cast<SwapIndex>(shortSwapIndexBase);
+            return new SwaptionVolCube2Ptr(
+                new SwaptionVolCube2(
+                    atmVolStructure,optionTenors,swapTenors,strikeSpreads,
+                    volSpreads, swi, shortSwi, vegaWeightedSmileFit));
+        }
+    }
+};
 
 #endif

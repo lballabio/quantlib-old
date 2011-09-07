@@ -2,7 +2,7 @@
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
- Copyright (C) 2010 Lluis Pujol Bajador
+ Copyright (C) 2010, 2011 Lluis Pujol Bajador
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -162,6 +162,18 @@ class FixedRateCouponPtr : public CouponPtr {
 %}
 
 
+%{
+using QuantLib::FloatingRateCouponPricer;
+%}
+
+%ignore FloatingRateCouponPricer;
+class FloatingRateCouponPricer {};
+
+%template(FloatingRateCouponPricer) boost::shared_ptr<FloatingRateCouponPricer>;
+
+void setCouponPricer(const Leg&,
+                     const boost::shared_ptr<FloatingRateCouponPricer>&);
+
 %rename(FloatingRateCoupon) FloatingRateCouponPtr;
 class FloatingRateCouponPtr : public CouponPtr {
   private:
@@ -208,6 +220,10 @@ class FloatingRateCouponPtr : public CouponPtr {
             return boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
                 ->index();
         }
+        void setPricer(const boost::shared_ptr<FloatingRateCouponPricer>& p) {
+            boost::dynamic_pointer_cast<FloatingRateCoupon>(*self)
+                ->setPricer(p);
+        }
     }
 };
 
@@ -218,6 +234,57 @@ class FloatingRateCouponPtr : public CouponPtr {
     }
 %}
 
+
+%{
+using QuantLib::CappedFlooredCoupon;
+typedef boost::shared_ptr<CashFlow> CappedFlooredCouponPtr;
+%}
+
+%rename(CappedFlooredCoupon) CappedFlooredCouponPtr;
+class CappedFlooredCouponPtr : public FloatingRateCouponPtr {
+  public:
+    %extend {
+        CappedFlooredCouponPtr(const FloatingRateCouponPtr& underlying,
+                               Rate cap = Null<Rate>(),
+                               Rate floor = Null<Rate>()) {
+            boost::shared_ptr<FloatingRateCoupon> u =
+                boost::dynamic_pointer_cast<FloatingRateCoupon>(underlying);
+            return new CappedFlooredCouponPtr(
+                new CappedFlooredCoupon(u,cap,floor));
+        }
+        Rate cap() {
+           return boost::dynamic_pointer_cast<CappedFlooredCoupon>(*self)
+                ->cap();
+        }
+        Rate floor() {
+           return boost::dynamic_pointer_cast<CappedFlooredCoupon>(*self)
+                ->floor();
+        }
+        Rate effectiveCap() {
+           return boost::dynamic_pointer_cast<CappedFlooredCoupon>(*self)
+                ->effectiveCap();
+        }
+        Rate effectiveFloor() {
+           return boost::dynamic_pointer_cast<CappedFlooredCoupon>(*self)
+                ->effectiveFloor();
+        }
+        bool isCapped() {
+           return boost::dynamic_pointer_cast<CappedFlooredCoupon>(*self)
+                ->isCapped();
+        }
+        bool isFloored() {
+           return boost::dynamic_pointer_cast<CappedFlooredCoupon>(*self)
+                ->isFloored();
+        }
+        void setPricer(const boost::shared_ptr<FloatingRateCouponPricer>& p) {
+            boost::dynamic_pointer_cast<CappedFlooredCoupon>(*self)
+                ->setPricer(p);
+        }
+    }
+};
+
+
+// specialized floating-rate coupons
 
 %rename(IborCoupon) IborCouponPtr;
 class IborCouponPtr : public FloatingRateCouponPtr {
@@ -244,30 +311,160 @@ class IborCouponPtr : public FloatingRateCouponPtr {
 %{
 using QuantLib::IborCouponPricer;
 using QuantLib::BlackIborCouponPricer;
-
-typedef boost::shared_ptr<IborCouponPricer> BlackIborCouponPricerPtr;
+typedef boost::shared_ptr<FloatingRateCouponPricer> IborCouponPricerPtr;
+typedef boost::shared_ptr<FloatingRateCouponPricer> BlackIborCouponPricerPtr;
 %}
 
-%ignore IborCouponPricer;
-class IborCouponPricer {
+%rename(IborCouponPricer) IborCouponPricerPtr;
+class IborCouponPricerPtr : public boost::shared_ptr<FloatingRateCouponPricer> {
+  private:
+    IborCouponPricerPtr();
   public:
-    Handle<OptionletVolatilityStructure> capletVolatility() const;
-    void setCapletVolatility(const Handle<OptionletVolatilityStructure>& v =
-                                      Handle<OptionletVolatilityStructure>());
+    %extend {
+        Handle<OptionletVolatilityStructure> capletVolatility() {
+            return boost::dynamic_pointer_cast<IborCouponPricer>(*self)
+                ->capletVolatility();
+        }
+        void setCapletVolatility(const Handle<OptionletVolatilityStructure>& v =
+                                     Handle<OptionletVolatilityStructure>()) {
+            boost::dynamic_pointer_cast<IborCouponPricer>(*self)
+                ->setCapletVolatility(v);
+        }
+    }
 };
 
-%template(IborCouponPricer) boost::shared_ptr<IborCouponPricer>;
-
-void setCouponPricer(const Leg&, const boost::shared_ptr<IborCouponPricer>&);
-
-
 %rename(BlackIborCouponPricer) BlackIborCouponPricerPtr;
-class BlackIborCouponPricerPtr : public boost::shared_ptr<IborCouponPricer> {
+class BlackIborCouponPricerPtr : public IborCouponPricerPtr {
   public:
-	%extend {
+    %extend {
         BlackIborCouponPricerPtr(const Handle<OptionletVolatilityStructure>& v =
                                      Handle<OptionletVolatilityStructure>()) {
             return new BlackIborCouponPricerPtr(new BlackIborCouponPricer(v));
+        }
+    }
+};
+
+%{
+using QuantLib::CmsCoupon;
+using QuantLib::CappedFlooredCmsCoupon;
+typedef boost::shared_ptr<CashFlow> CmsCouponPtr;
+typedef boost::shared_ptr<CashFlow> CappedFlooredCmsCouponPtr;
+%}
+
+%rename(CmsCoupon) CmsCouponPtr;
+class CmsCouponPtr : public FloatingRateCouponPtr {
+  public:
+    %extend {
+        CmsCouponPtr(const Date& paymentDate, Real nominal,
+                     const Date& startDate, const Date& endDate,
+                     Integer fixingDays, const SwapIndexPtr& index,
+                     Real gearing = 1.0, Spread spread = 0.0,
+                     const Date& refPeriodStart = Date(),
+                     const Date& refPeriodEnd = Date(),
+                     const DayCounter& dayCounter = DayCounter(),
+                     bool isInArrears = false) {
+            const boost::shared_ptr<SwapIndex> swi =
+                boost::dynamic_pointer_cast<SwapIndex>(index);
+            return new CmsCouponPtr(
+                new CmsCoupon(paymentDate,nominal,startDate,endDate,
+                              fixingDays,swi,gearing,spread,
+                              refPeriodStart,refPeriodEnd,
+                              dayCounter,isInArrears));
+        }
+    }
+};
+
+%{
+using QuantLib::CmsCouponPricer;
+using QuantLib::AnalyticHaganPricer;
+using QuantLib::NumericHaganPricer;
+using QuantLib::GFunctionFactory;
+typedef boost::shared_ptr<FloatingRateCouponPricer> CmsCouponPricerPtr;
+typedef boost::shared_ptr<FloatingRateCouponPricer> AnalyticHaganPricerPtr;
+typedef boost::shared_ptr<FloatingRateCouponPricer> NumericHaganPricerPtr;
+%}
+
+%rename(CmsCouponPricer) CmsCouponPricerPtr;
+class CmsCouponPricerPtr : public boost::shared_ptr<FloatingRateCouponPricer> {
+  private:
+    CmsCouponPricerPtr();
+  public:
+    %extend {
+        Handle<SwaptionVolatilityStructure> swaptionVolatility() {
+            return boost::dynamic_pointer_cast<CmsCouponPricer>(*self)
+                ->swaptionVolatility();
+        }
+        void setSwaptionVolatility(
+                                const Handle<SwaptionVolatilityStructure>& v =
+                                      Handle<SwaptionVolatilityStructure>()) {
+            boost::dynamic_pointer_cast<CmsCouponPricer>(*self)
+                ->setSwaptionVolatility(v);
+        }
+    }
+};
+
+class GFunctionFactory {
+  private:
+    GFunctionFactory();
+  public:
+    enum YieldCurveModel { Standard,
+                           ExactYield,
+                           ParallelShifts,
+                           NonParallelShifts };
+};
+
+%rename(AnalyticHaganPricer) AnalyticHaganPricerPtr;
+class AnalyticHaganPricerPtr : public CmsCouponPricerPtr {
+  public:
+    %extend {
+        AnalyticHaganPricerPtr(const Handle<SwaptionVolatilityStructure>& v,
+                               GFunctionFactory::YieldCurveModel model,
+                               const Handle<Quote>& meanReversion) {
+            return new AnalyticHaganPricerPtr(
+                            new AnalyticHaganPricer(v, model, meanReversion));
+        }
+    }
+};
+
+%rename(NumericHaganPricer) NumericHaganPricerPtr;
+class NumericHaganPricerPtr : public CmsCouponPricerPtr {
+  public:
+    %extend {
+        NumericHaganPricerPtr(const Handle<SwaptionVolatilityStructure>& v,
+                              GFunctionFactory::YieldCurveModel model,
+                              const Handle<Quote>& meanReversion,
+                              Rate lowerLimit = 0.0,
+                              Rate upperLimit = 1.0,
+                              Real precision = 1.0e-6) {
+             return new NumericHaganPricerPtr(
+                 new NumericHaganPricer(v, model, meanReversion,
+                                        lowerLimit, upperLimit, precision));
+        }
+    }
+};
+
+%rename(CappedFlooredCmsCoupon) CappedFlooredCmsCouponPtr;
+class CappedFlooredCmsCouponPtr: public CappedFlooredCouponPtr {
+  public:
+    %extend {
+        CappedFlooredCmsCouponPtr(
+                  const Date& paymentDate, Real nominal,
+                  const Date& startDate, const Date& endDate,
+                  Natural fixingDays, const SwapIndexPtr& index,
+                  Real gearing = 1.0, Spread spread = 0.0,
+                  const Rate cap = Null<Rate>(),
+                  const Rate floor = Null<Rate>(),
+                  const Date& refPeriodStart = Date(),
+                  const Date& refPeriodEnd = Date(),
+                  const DayCounter& dayCounter = DayCounter(),
+                  bool isInArrears = false) {
+            const boost::shared_ptr<SwapIndex> swi =
+                boost::dynamic_pointer_cast<SwapIndex>(index);
+            return new CappedFlooredCmsCouponPtr(
+                new CappedFlooredCmsCoupon(
+                      paymentDate, nominal, startDate, endDate, fixingDays,
+                      swi, gearing, spread, cap, floor, refPeriodStart,
+                      refPeriodEnd, dayCounter, isInArrears));
         }
     }
 };

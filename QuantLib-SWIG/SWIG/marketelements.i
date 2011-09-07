@@ -129,8 +129,12 @@ SWIG_STD_VECTOR_ENHANCED( RelinkableHandle<Quote> )
 #endif
 namespace std {
     %template(QuoteVector) vector<boost::shared_ptr<Quote> >;
+    %template(QuoteVectorVector) vector<vector<boost::shared_ptr<Quote> > >;
     %template(QuoteHandleVector) vector<Handle<Quote> >;
+    %template(QuoteHandleVectorVector) vector<vector<Handle<Quote> > >;
     %template(RelinkableQuoteHandleVector) vector<RelinkableHandle<Quote> >;
+    %template(RelinkableQuoteHandleVectorVector)
+                                  vector<vector<RelinkableHandle<Quote> > >;
 }
 
 

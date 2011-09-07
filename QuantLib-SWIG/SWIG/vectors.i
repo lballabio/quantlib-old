@@ -33,6 +33,7 @@ namespace std {
     %template(UnsignedIntVector) vector<unsigned int>;
     %template(DoubleVector) vector<double>;
     %template(StrVector) vector<std::string>;
+    %template(BoolVector) vector<bool>;
 
 #if !defined(SWIGR) && !defined(SWIGGUILE) && !defined(SWIGMZSCHEME)
     %template(NodePair) pair<Date,double>;

@@ -27,6 +27,7 @@ from solvers1d import Solver1DTest
 from termstructures import TermStructureTest
 from bonds import FixedRateBondTest
 from ratehelpers import FixedRateBondHelperTest
+from cms import CmsTest
 
 def test():
     import QuantLib
@@ -42,6 +43,7 @@ def test():
     suite.addTest(unittest.makeSuite(TermStructureTest,'test'))
     suite.addTest(unittest.makeSuite(FixedRateBondTest, 'test'))
     suite.addTest(unittest.makeSuite(FixedRateBondHelperTest, 'test'))
+    suite.addTest(unittest.makeSuite(CmsTest, 'test'))
 
     result = unittest.TextTestRunner(verbosity=2).run(suite)
 
