@@ -1,7 +1,7 @@
-
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2007 StatPro Italia srl
+ Copyright (C) 2011 Lluis Pujol Bajador
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -114,9 +114,6 @@ class VanillaSwapPtr : public SwapPtr {
 
 %rename(DiscountingSwapEngine) DiscountingSwapEnginePtr;
 class DiscountingSwapEnginePtr : public boost::shared_ptr<PricingEngine> {
-    #if defined(SWIGPYTHON)
-    %feature("kwargs") DiscountingSwapEnginePtr;
-    #endif
   public:
     %extend {
         DiscountingSwapEnginePtr(
@@ -129,9 +126,57 @@ class DiscountingSwapEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                               settlementDate,
                                                               npvDate));
         }
+        DiscountingSwapEnginePtr(
+                            const Handle<YieldTermStructure>& discountCurve,
+                            bool includeSettlementDateFlows,
+                            const Date& settlementDate = Date(),
+                            const Date& npvDate = Date()) {
+            return new DiscountingSwapEnginePtr(
+                         new DiscountingSwapEngine(discountCurve,
+                                                   includeSettlementDateFlows,
+                                                   settlementDate,
+                                                   npvDate));
+        }
     }
 };
 
+
+%{
+using QuantLib::AssetSwap;
+typedef boost::shared_ptr<Instrument> AssetSwapPtr;
+%}
+
+%rename(AssetSwap) AssetSwapPtr;
+class AssetSwapPtr : public SwapPtr {
+    %feature("kwargs") AssetSwapPtr;
+  public:
+    %extend {
+        AssetSwapPtr(bool payFixedRate,
+                     const BondPtr& bond,
+                     Real bondCleanPrice,
+                     const InterestRateIndexPtr& index,
+                     Spread spread,
+                     const Schedule& floatSchedule = Schedule(),
+                     const DayCounter& floatingDayCount = DayCounter(),
+                     bool parAssetSwap = true) {
+            const boost::shared_ptr<Bond> b =
+                boost::dynamic_pointer_cast<Bond>(bond);
+            const boost::shared_ptr<IborIndex> i =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new AssetSwapPtr(
+                new AssetSwap(payFixedRate,b,bondCleanPrice,i,spread,
+                              floatSchedule,floatingDayCount,parAssetSwap));
+        }
+        Real fairCleanPrice() {
+            return boost::dynamic_pointer_cast<AssetSwap>(*self)
+                ->fairCleanPrice();
+        }
+        Spread fairSpread() {
+            return boost::dynamic_pointer_cast<AssetSwap>(*self)
+                ->fairSpread();
+        }
+    }
+};
 
 
 #endif

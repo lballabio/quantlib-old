@@ -1,7 +1,7 @@
-
 /*
  Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
  Copyright (C) 2009 Joseph Malicki
+ Copyright (C) 2011 Lluis Pujol Bajador
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -57,10 +57,21 @@ class BondPtr : public boost::shared_ptr<Instrument> {
     %rename("settlement-value")      settlementValue;
     %rename("accrued-amount")        accruedAmount;
     #endif
-  protected:
-    BondPtr();
   public:
     %extend {
+        BondPtr(Natural settlementDays,
+                const Calendar& calendar,
+                Real faceAmount,
+                const Date& maturityDate,
+                const Date& issueDate = Date(),
+                const Leg& cashflows = Leg()) {
+            return new BondPtr(new Bond(settlementDays,
+                                        calendar,
+                                        faceAmount,
+                                        maturityDate,
+                                        issueDate,
+                                        cashflows));
+        }
         // public functions
         Rate nextCouponRate(const Date& d = Date()) {
             return boost::dynamic_pointer_cast<Bond>(*self)
@@ -276,6 +287,52 @@ class FloatingRateBondPtr : public BondPtr {
                                      inArrears,
                                      redemption,
                                      issueDate));
+        }
+    }
+};
+
+
+%{
+using QuantLib::CmsRateBond;
+typedef boost::shared_ptr<Instrument> CmsRateBondPtr;
+%}
+
+%rename(CmsRateBond) CmsRateBondPtr;
+class CmsRateBondPtr : public BondPtr {
+    %feature("kwargs") CmsRateBondPtr;
+  public:
+    %extend {
+        CmsRateBondPtr(Size settlementDays,
+                       Real faceAmount,
+                       const Schedule& schedule,
+                       const SwapIndexPtr& index,
+                       const DayCounter& paymentDayCounter,
+                       BusinessDayConvention paymentConvention,
+                       Natural fixingDays,
+                       const std::vector<Real>& gearings,
+                       const std::vector<Spread>& spreads,
+                       const std::vector<Rate>& caps,
+                       const std::vector<Rate>& floors,
+                       bool inArrears = false,
+                       Real redemption = 100.0,
+                       const Date& issueDate = Date()) {
+            boost::shared_ptr<SwapIndex> swap =
+                boost::dynamic_pointer_cast<SwapIndex>(index);
+            return new CmsRateBondPtr(
+                new CmsRateBond(settlementDays,
+                                faceAmount,
+                                schedule,
+                                swap,
+                                paymentDayCounter,
+                                paymentConvention,
+                                fixingDays,
+                                gearings,
+                                spreads,
+                                caps,
+                                floors,
+                                inArrears,
+                                redemption,
+                                issueDate));
         }
     }
 };

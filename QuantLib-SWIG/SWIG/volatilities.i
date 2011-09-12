@@ -434,6 +434,56 @@ class ConstantOptionletVolatilityPtr
 
 
 %{
+using QuantLib::ConstantSwaptionVolatility;
+typedef boost::shared_ptr<SwaptionVolatilityStructure>
+    ConstantSwaptionVolatilityPtr;
+%}
+
+%rename(ConstantSwaptionVolatility) ConstantSwaptionVolatilityPtr;
+class ConstantSwaptionVolatilityPtr
+    : public boost::shared_ptr<SwaptionVolatilityStructure> {
+  public:
+    %extend {
+        ConstantSwaptionVolatilityPtr(Natural settlementDays,
+                                      const Calendar& cal,
+                                      BusinessDayConvention bdc,
+                                      const Handle<Quote>& volatility,
+                                      const DayCounter& dc) {
+            return new ConstantSwaptionVolatilityPtr(
+                new ConstantSwaptionVolatility(settlementDays, cal, bdc,
+                                               volatility, dc));
+        }
+        ConstantSwaptionVolatilityPtr(const Date& referenceDate,
+                                      const Calendar& cal,
+                                      BusinessDayConvention bdc,
+                                      const Handle<Quote>& volatility,
+                                      const DayCounter& dc) {
+            return new ConstantSwaptionVolatilityPtr(
+                new ConstantSwaptionVolatility(referenceDate, cal, bdc,
+                                               volatility, dc));
+        }
+        ConstantSwaptionVolatilityPtr(Natural settlementDays,
+                                      const Calendar& cal,
+                                      BusinessDayConvention bdc,
+                                      Volatility volatility,
+                                      const DayCounter& dc) {
+            return new ConstantSwaptionVolatilityPtr(
+                new ConstantSwaptionVolatility(settlementDays, cal, bdc,
+                                               volatility, dc));
+        }
+        ConstantSwaptionVolatilityPtr(const Date& referenceDate,
+                                      const Calendar& cal,
+                                      BusinessDayConvention bdc,
+                                      Volatility volatility,
+                                      const DayCounter& dc) {
+            return new ConstantSwaptionVolatilityPtr(
+                new ConstantSwaptionVolatility(referenceDate, cal, bdc,
+                                               volatility, dc));
+        }
+    }
+};
+
+%{
 using QuantLib::SwaptionVolatilityMatrix;
 typedef boost::shared_ptr<SwaptionVolatilityStructure>
     SwaptionVolatilityMatrixPtr;

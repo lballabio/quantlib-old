@@ -63,6 +63,7 @@ class Schedule {
              bool endOfMonth,
              const Date& firstDate = Date(),
              const Date& nextToLastDate = Date());
+    Schedule();
     Size size() const;
     Date date(Size i) const;
     bool isRegular(Size i) const;
