@@ -39,14 +39,17 @@ class DayCounter {
   protected:
     DayCounter();
   public:
-    BigInteger dayCount(const Date& d1, const Date& d2);
+    BigInteger dayCount(const Date& d1, const Date& d2) const;
     Time yearFraction(const Date& d1, const Date& d2,
                       const Date& startRef = Date(),
-                      const Date& endRef = Date());
+                      const Date& endRef = Date()) const;
+    std::string name() const;
     %extend {
+        #if !defined(SWIGPERL)
         std::string __str__() {
             return self->name()+" day counter";
         }
+        #endif
         #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA)
         bool __eq__(const DayCounter& other) {
             return (*self) == other;

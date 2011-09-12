@@ -56,9 +56,11 @@ class Currency {
     bool empty() const;
     const Currency& triangulationCurrency() const;
     %extend {
+        #if !defined(SWIGPERL)
         std::string __str__() {
             return self->name();
         }
+        #endif
         #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA)
         bool __eq__(const Currency& other) {
             return (*self) == other;

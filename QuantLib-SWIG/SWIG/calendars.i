@@ -94,9 +94,11 @@ class Calendar {
                                    bool includeLast = false);
     std::string name();
     %extend {
+        #if !defined(SWIGPERL)
         std::string __str__() {
             return self->name()+" calendar";
         }
+        #endif
         #if defined(SWIGPYTHON) || defined(SWIGRUBY) || defined(SWIGJAVA)
         bool __eq__(const Calendar& other) {
             return (*self) == other;

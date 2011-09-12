@@ -116,6 +116,8 @@
 // common name mappings
 #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
 %rename(">string")       __str__;
+#elif defined(SWIGPERL)
+%rename("to_string")     __str__;
 #elif defined(SWIGJAVA)
 %rename(add)           operator+;
 %rename(add)           __add__;

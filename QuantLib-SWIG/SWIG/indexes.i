@@ -91,12 +91,14 @@ class Index {
         (*self)->addFixings(fixingDates.begin(),fixingDates.end(),
                             fixings.begin());
     }
+    #if !defined(SWIGPERL)
     std::string __str__() {
         if (*self)
             return (*self)->name()+" index";
         else
             return "Null index";
     }
+    #endif
 }
 IsObservable(boost::shared_ptr<Index>);
 
