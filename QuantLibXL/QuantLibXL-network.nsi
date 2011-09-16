@@ -16,7 +16,7 @@
 !define VER_NUMBER_UNDERSCORE "1_1_0"
 !define COMPILER "vc90"
 
-!define REV_NUMBER "Rev17718"
+!define REV_NUMBER "Rev17994"
 !define /date NOW "%Y%m%d-%H_%M"
 
 
@@ -28,7 +28,7 @@ SetCompressor lzma
 
 Name "${APP} - Network Distribution"
 OutFile "..\${APP}-${VER_NUMBER}-${REV_NUMBER}-${NOW}-network.exe"
-InstallDir "X:\Apps\Appsscript\CabotoXL\${REV_NUMBER}"
+InstallDir "\\srv0001\Risorse\WorkGroup\IMI_Workbooks\${REV_NUMBER}"
 
 ; Interface Settings
 
@@ -39,7 +39,7 @@ InstallDir "X:\Apps\Appsscript\CabotoXL\${REV_NUMBER}"
 !define MUI_DIRECTORYPAGE_TEXT_TOP \
 "Specify the root folder for the ${APP} network installation:$\n\
 ROOT_FOLDER\xll - the XLL addin$\n\
-ROOT_FOLDER\framework - the VBA addin$\n\
+ROOT_FOLDER\framework2 - the VBA addin$\n\
 ROOT_FOLDER\Workbooks - the workbooks$\n\
 ROOT_FOLDER\metadata - the XML metadata$\n\
 ROOT_FOLDER\Data - the xls/xml data serialization files$\n\
@@ -88,9 +88,12 @@ Section
     File "NEWS.txt"
     File "README.txt"
 
-    SetOutPath "$INSTDIR\framework"
-    File "framework\QuantLibXL.xla"
-    File "framework\QuantLibXLA.cer"
+    SetOutPath "$INSTDIR\framework2"
+    File /r "framework2\*.xla"
+    File "framework2\QuantLibXLA.cer"
+
+    SetOutPath "$INSTDIR\framework2\config"
+    File "framework2\config\*.xls"
 
     SetOutPath "$INSTDIR\metadata"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
