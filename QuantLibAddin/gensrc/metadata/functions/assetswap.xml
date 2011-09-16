@@ -238,6 +238,22 @@
       </ReturnValue>
     </Member>
 
+    <Member name='qlAssetSwapFairNonParRepayment' type='QuantLib::AssetSwap'>
+      <description>the fair non par repayment of the bond in the asset swap.</description>
+      <libraryFunction>fairNonParRepayment</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Member name='qlAssetSwapParSwap' type='QuantLib::AssetSwap'>
       <description>Returns TRUE if par swap</description>
       <libraryFunction>parSwap</libraryFunction>
