@@ -53,7 +53,7 @@
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
-            <description>floating leg Index object ID.</description>
+            <description>floating leg IborIndex object ID.</description>
           </Parameter>
           <Parameter name='Spread' default='0.0'>
             <type>QuantLib::Spread</type>
@@ -81,6 +81,64 @@
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE for par asset swap, FALSE for market asset swap.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlAssetSwap2'>
+      <libraryFunction>AssetSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ParAssetSwap' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for par asset swap, FALSE for market asset swap.</description>
+          </Parameter>
+          <Parameter name='Bond' exampleValue='DE0003088704'>
+            <type>QuantLib::Bond</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying bond object ID.</description>
+          </Parameter>
+          <Parameter name='CleanPrice' exampleValue='99.16'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>market price of the underlying bond.</description>
+          </Parameter>
+          <Parameter name='NonParRepayment' exampleValue='101.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>non par repayment on deal maturity date.</description>
+          </Parameter>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg IborIndex object ID.</description>
+          </Parameter>
+          <Parameter name='Spread' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Floating leg spread.</description>
+          </Parameter>
+          <Parameter name='FloatingLegDayCounter' default='"QuantLib::DayCounter()"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <Parameter name='DealMaturity' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>deal maturity (bond maturity if missing).</description>
+          </Parameter>
+          <Parameter name='PayBondCoupon' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE to pay the bond's coupons and receive floating.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

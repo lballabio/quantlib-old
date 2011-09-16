@@ -32,13 +32,14 @@ namespace QuantLibAddin {
                 bool payFixedRate,
                 const boost::shared_ptr<QuantLib::Bond>& bond,
                 const QuantLib::Real bondCleanPrice,
-                const boost::shared_ptr<QuantLib::IborIndex>& index,
+                const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
                 QuantLib::Spread spread,
                 //const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                 const boost::shared_ptr<QuantLib::Schedule>& floatSchedule,
-                const QuantLib::DayCounter& floatingDayCount,
+                const QuantLib::DayCounter& floatingDayCounter,
                 bool parSwap,
-                bool permanent) : Swap(properties, permanent)
+                bool permanent)
+    : Swap(properties, permanent)
     {
         boost::shared_ptr<QuantLib::Schedule> actualFloatSchedule;
         if (floatSchedule.get()==NULL)
@@ -51,11 +52,47 @@ namespace QuantLibAddin {
             QuantLib::AssetSwap(payFixedRate,
                                 bond,
                                 bondCleanPrice,
-                                index,
+                                iborIndex,
                                 spread,
                                 *actualFloatSchedule,
-                                floatingDayCount,
+                                floatingDayCounter,
                                 parSwap));
+
+       //boost::shared_ptr<QuantLib::PricingEngine> swapEngine(new
+       //    QuantLib::DiscountingSwapEngine(hYTS, false,
+       //                                    bond->settlementDate()));
+       //
+       //libraryObject_->setPricingEngine(swapEngine);
+
+    }
+
+    AssetSwap::AssetSwap(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            bool parAssetSwap,
+            const boost::shared_ptr<QuantLib::Bond>& bond,
+            QuantLib::Real bondCleanPrice,
+            QuantLib::Real nonParRepayment,
+            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
+            QuantLib::Spread spread,
+            const QuantLib::DayCounter& floatingDayCounter,
+            const QuantLib::Date& dealMaturity,
+            bool payFixedRate,
+            bool permanent)
+    : Swap(properties, permanent)
+    {
+        boost::shared_ptr<QuantLib::Schedule> actualFloatSchedule(new
+            QuantLib::Schedule);
+
+        libraryObject_ = boost::shared_ptr<QuantLib::Instrument>(new
+            QuantLib::AssetSwap(parAssetSwap,
+                                bond,
+                                bondCleanPrice,
+                                nonParRepayment,
+                                iborIndex,
+                                spread,
+                                floatingDayCounter,
+                                dealMaturity,
+                                payFixedRate));
 
        //boost::shared_ptr<QuantLib::PricingEngine> swapEngine(new
        //    QuantLib::DiscountingSwapEngine(hYTS, false,

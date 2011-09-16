@@ -34,13 +34,23 @@ namespace QuantLibAddin {
         AssetSwap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
                   bool payFixedRate,
                   const boost::shared_ptr<QuantLib::Bond>& bond,
-                  const QuantLib::Real bondCleanPrice,
-                  const boost::shared_ptr<QuantLib::IborIndex>& index,
+                  QuantLib::Real bondCleanPrice,
+                  const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
                   QuantLib::Spread spread,
-                  //const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
                   const boost::shared_ptr<QuantLib::Schedule>& floatSchedule,
-                  const QuantLib::DayCounter& floatingDayCount,
+                  const QuantLib::DayCounter& floatingDayCounter,
                   bool parSwap,
+                  bool permanent);
+        AssetSwap(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                  bool parAssetSwap,
+                  const boost::shared_ptr<QuantLib::Bond>& bond,
+                  QuantLib::Real bondCleanPrice,
+                  QuantLib::Real nonParRepayment,
+                  const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
+                  QuantLib::Spread spread,
+                  const QuantLib::DayCounter& floatingDayCounter,
+                  const QuantLib::Date& dealMaturity,
+                  bool payFixedRate,
                   bool permanent);
                                       
         std::vector<std::vector<ObjectHandler::property_t> > bondLeg(
