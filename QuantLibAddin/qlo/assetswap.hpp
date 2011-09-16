@@ -46,6 +46,7 @@ namespace QuantLibAddin {
                   const boost::shared_ptr<QuantLib::Bond>& bond,
                   QuantLib::Real bondCleanPrice,
                   QuantLib::Real nonParRepayment,
+                  QuantLib::Real gearing,
                   const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
                   QuantLib::Spread spread,
                   const QuantLib::DayCounter& floatingDayCounter,

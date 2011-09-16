@@ -115,6 +115,11 @@
             <tensorRank>scalar</tensorRank>
             <description>non par repayment on deal maturity date.</description>
           </Parameter>
+          <Parameter name='Gearing' default='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing.</description>
+          </Parameter>
           <Parameter name='IborIndex'>
             <type>QuantLib::IborIndex</type>
             <tensorRank>scalar</tensorRank>
