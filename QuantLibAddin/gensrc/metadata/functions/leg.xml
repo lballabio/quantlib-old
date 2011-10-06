@@ -94,7 +94,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -129,7 +129,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -162,7 +162,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -195,7 +195,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -228,7 +228,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -263,7 +263,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -296,12 +296,45 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlLegNominal'>
+      <description>Returns the nominal for the current coupon of the given Leg.</description>
+      <alias>QuantLib::CashFlows::nominal</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ObjectId'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>id of existing QuantLib::Leg object</description>
+          </Parameter>
+          <Parameter name='IncludeSettlDate' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if cashflows paid at the settlement date must be taken into account.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
         <tensorRank>scalar</tensorRank>
       </ReturnValue>
     </Procedure>
@@ -329,7 +362,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -362,7 +395,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -395,7 +428,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -428,7 +461,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -461,7 +494,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -494,7 +527,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -527,7 +560,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -560,7 +593,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -593,7 +626,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -635,7 +668,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -680,7 +713,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -725,7 +758,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -791,7 +824,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -850,7 +883,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -909,7 +942,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -988,7 +1021,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -1047,7 +1080,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -1106,7 +1139,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -1165,7 +1198,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -1209,10 +1242,10 @@
             <tensorRank>scalar</tensorRank>
             <description>Z-spread.</description>
           </Parameter>
-          <Parameter name='DayCounter' default='"Actual/Actual (ISDA)"'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Yield DayCounter ID.</description>
+            <description>Not Used: DiscountCurve's DayCounter used instead.</description>
           </Parameter>
           <Parameter name='Compounding' const='False' default='"Compounded"'>
             <type>QuantLib::Compounding</type>
@@ -1232,7 +1265,7 @@
           <Parameter name='SettlementDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>cashflows before this date are not taken into account.</description>
+            <description>cashflows before this date are not taken into account. If missing the current EvaluationDate is used.</description>
           </Parameter>
           <Parameter name='NpvDate' const='False' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
@@ -1274,10 +1307,10 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting YieldTermStructure object ID.</description>
           </Parameter>
-          <Parameter name='DayCounter' exampleValue='Actual/Actual (ISMA)'>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
-            <description>Irr DayCounter ID.</description>
+            <description>Not Used: DiscountCurve's DayCounter used instead.</description>
           </Parameter>
           <Parameter name='Compounding' default='"Continuous"'>
             <type>QuantLib::Compounding</type>
