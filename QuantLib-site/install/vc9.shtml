@@ -5,8 +5,8 @@
 <meta name="author" content="Dimitri Reiswich">
 <meta name="copyright" content=
 "Dimitri Reiswich (c) 2009">
-<meta name="description" content="QuantLib Installation in Visual C++">
-<title>QuantLib Installation in Visual C++</title>
+<meta name="description" content="QuantLib Installation in Visual C++ 2008">
+<title>QuantLib Installation in Visual C++ 2008</title>
 </head>
 <body>
 <div id="container">
@@ -16,7 +16,7 @@
 </div>
 <div id="content">
 
-<h1 class="center">QuantLib Installation in Visual C++</h1>
+<h1 class="center">QuantLib Installation in VC++ 2008</h1>
 <h4 class="center">Dimitri Reiswich</h4>
 
 <p>These are step-by-step instructions to install QuantLib on the

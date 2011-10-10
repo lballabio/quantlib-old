@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="/qlmeta.inc"-->
+<meta name="author" content="Dominik Holenstein">
+<meta name="copyright" content=
+"Dominik Holenstein (c) 2011">
+<meta name="description" content="QuantLib Installation in Visual C++ 2010">
+<title>QuantLib Installation in Visual C++ 2010</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="/header.inc"-->
+<div id="menu">
+<!--#include virtual="/usermenu.inc"-->
+</div>
+<div id="content">
+
+<h1 class="center">QuantLib Installation in VC++ 2010</h1>
+<h4 class="center">Dominik Holenstein</h4>
+
+<h6 class="center">Based on the VC++ 2008 instructions by Dimitri Reiswich</h4>
+
+<p>These are step-by-step instructions to install QuantLib and Boost on the
+Microsoft Visual C++ 2010 IDE (you can download the free Express edition 
+at <a href="http://www.microsoft.com/express/vc/">http://www.microsoft.com/express/vc/</a>.)
+I tried to include almost every step in the installation
+procedure. Something that is obvious to one person might not be
+obvious to someone else. The only thing that I assume you have on
+your computer is the Visual C++ 2010 IDE (VC10).</p>
+
+<p>These instructions are for MS Visual C++ 2010 only. If you have
+earlier versions of this IDE (2008, 2005...) then have a look
+at <a href="vc9.shtml">this page</a>.</p>
+
+<p>Before using QuantLib you need to install the Boost library on your
+computer. Detailed instructions follow in the next section.</p>
+
+<h2>Boost Installation</h2>
+<p>We use the installer provided by BoostPro
+Computing, that can be downloaded
+at <a href="http://www.boostpro.com/download">http://www.boostpro.com/download</a>.</p>
+
+<p>At the time of this writing, the current version is the
+executable <tt>boost_1_47_setup.exe</tt> and can be downloaded for
+free in just a few seconds. Double clicking the installer yields the
+screen shown below. Select the download mirror of your choice or
+"Nearest SourceForge Mirror" (recommended).</p>
+
+<p class="center"><img src="pics/vc10/boost01.png" alt="Mirror selection"></p>
+
+<p>The next step asks you to select the binaries to download. Since we
+are using Visual Studio 2010, we will select this version in the left
+panel. In the right panel, select Multithreaded, Multithreaded Debug,
+Multithreaded static runtime, and Multithreaded Debug static
+runtime. The others are not needed by QuantLib, but you might want to
+download them anyway. The resulting screen is shown below.</p>
+
+<p class="center"><img src="pics/vc10/boost02.png" alt="Version selection"></p>
+
+<p>The next window asks you which libraries you'd like to install. You
+can add any library that you want besides the ones selected by
+default; the one needed for a complete QuantLib build is the unit test
+framework, which can be found at the end of the list.  Here is the
+corresponding screen.</p>
+
+<p class="center"><img src="pics/vc10/boost03.png" alt="Default library selection"></p>
+
+<p>Choose the VC10.0 to include the unit test framework. You can also
+open the VC10.0 list and select specific build versions.</p>
+
+<p class="center"><img src="pics/vc10/boost04.png" alt="Library selection"></p>
+
+<p>The next step asks for a destination folder. I will install
+everything in the folder <tt>C:\Program
+Files\boost\boost_1_47</tt>. Feel free to choose your own folder.</p>
+
+<p class="center"><img src="pics/vc10/boost05.png" alt="Install location"></p>
+
+<p>Clicking Install starts the download, which takes a while. After
+finishing, the final screen should say:</p>
+
+<p class="center"><img src="pics/vc10/boost06.png" alt="Boost installed"></p>
+
+<h2>Boost and QuantLib Installation</h2>
+
+<p>If you go to the <i>Tools/Options</i> page in VC10 to set the necessary VC++ directories, you get this confusing screen:</p>
+
+<p class="center"><img src="pics/vc10/ql01.png" alt="VC options"></p>
+
+<p>VC++ Directories are no longer supported in VC10 through
+the <i>Tools/Options</i> page. Instead, VC10 introduces the user
+settings file <tt>Microsoft.cpp.&lt;Platform&gt;.users.props</tt> to control
+global settings including the global search path. These files are
+located in
+the <tt>$(USERPROFILE)\appdata\local\microsoft\msbuild\v4.0</tt>
+directory.</p>
+
+<p>These changes require a different workflow regarding the
+installation of QuantLib in connection with Boost compared to VC9 and
+older.</p>
+
+<p>Here are the steps to change the settings file accordingly:</p>
+
+<p>1. Open VC10 and make sure you have activated the expert
+settings. Go to <i>Tools/Settings</i> and make sure "Expert Settings"
+is checked.</p>
+
+<p>2. If you haven't downloaded QuantLib yet, go to its download page
+on SourceForge, located
+at <a href="http://sourceforge.net/projects/quantlib/files/QuantLib">
+http://sourceforge.net/projects/quantlib/files/QuantLib</a></p>
+
+<p>3. Open the QuantLib tree, find the latest version (at the time of
+this writing the current version is 1.1, but this might have changed
+when you read this) and download the zip archive to your local
+drive. This is illustrated in the screenshot below. Unzip the file
+wherever you want; in the following, we'll assume that the QuantLib
+directory is <tt>C:\Program Files\QuantLib</tt>.</p>
+
+<p class="center"><img src="pics/vc10/ql02.png" alt="Download
+QuantLib"></p>
+
+<p>4. Open the QuantLib folder, then open the Visual Studio solution
+called <tt>QuantLib_vc10.sln</tt> by double
+clicking. Choose <i>Release</i> from the configuration menu in the
+toolbar.</p>
+
+<p>5. Open the Property Manager by clicking on <i>View/Property
+Manager</i> and activate it.  Expand the project node of QuantLib in
+the Property Manager and then the <i>Configuration/Platform</i> nodes
+(see screenshot below). You will see
+a <tt>Microsoft.cpp.&lt;Platform&gt;.users</tt> file for
+each <i>Configuration/Platform</i> folder. These are the files for the
+global settings, similar to the old <i>Tools/Options/VC++
+Directories</i> settings.  Select any of them (or multi-select them
+all), right-click, and select <i>Properties</i> to bring up the
+property page window.</p>
+
+<p class="center"><img src="pics/vc10/ql03.png" alt="Property
+Pages"></p>
+
+<p>6. In the property page window, click on <i>VC++ Directories</i> on
+the left pane and add the paths for the Boost directories
+in <i>Include Directories</i> and <i>Library Directories</i> in the
+right pane. If you installed Boost in <tt>C:\Program
+Files\boost\boost_1_47</tt>, you'll have to add <tt>C:\Program
+Files\boost\boost_1_47</tt> to the include directories
+and <tt>C:\Program Files\boost\boost_1_47\lib</tt> to the library
+directories.  Click the OK button to set your changes.</p>
+
+<p class="center"><img src="pics/vc10/ql04.png" alt="Directories
+Dialog"></p>
+
+<p>7. Switch back to the <i>Solutions Explorer</i>, right-click on the
+solution icon and choose <i>Build Solution</i> to build all
+projects. Besides QuantLib, this will build the examples and run the
+test suite. The process takes a while (it took 1h and 7 minutes to
+build QuantLib and run the tests on a three-years old WinXP notebook
+with 3 GB RAM and a 2 GHz Intel dual core processor).</p>
+
+<p class="center"><img src="pics/vc10/ql06.png" alt="Build
+Solution"></p>
+
+<p>After finishing, the output should show no errors:
+<pre>
+14>  Test suite "Master Test Suite" passed with:
+14>    1703 assertions out of 1703 passed
+14>    460 test cases out of 460 passed
+14>  
+14>   
+14>  Tests completed in 29 m 8 s
+14>  
+========== Build: 15 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+</pre>
+</p>
+
+<p>You are done with building QuantLib. If you want, you can build the
+Debug version in the same way by choosing <i>Debug</i> from the
+configuration menu as shown below. This will allow you to debug your
+application later.</p>
+
+<p class="center"><img src="pics/vc10/ql07.png" alt="Debug
+Configuration"></p>
+
+<h2>Quantlib Usage</h2>
+
+<p>As an example of QuantLib usage, I create
+a <tt>QuantLibTest </tt>folder in the <tt>C:\Program
+Files\QuantLib</tt> folder and set up a Win32 Console Application in
+Visual Studio by clicking <i>File/New Project/Win32 Console
+Application</i>.</p>
+
+<p class="center"><img src="pics/vc10/ql08.png" alt="New Project"></p>
+
+<p>I've chosen the project name <tt>TestingQuantLib</tt>, then I
+clicked on OK.  Click on the <i>Next</i> button on the Win32
+Application Wizard.  Choose "Console application" as application type
+and check "Empty project" in the additional options. Click
+on <i>Finish</i>.</p>
+
+<p class="center"><img src="pics/vc10/ql09.png" alt="Application
+Wizard"></p>
+
+<p> Choose, for example, the Release mode for that project.  Note that
+very often, users don't setup a project correctly since they build
+QuantLib in one mode and try to call it from a test program which runs
+in some other mode.  If you built QuantLib in release mode, you should
+build your project in release mode. If you build your project in debug
+mode without ever building QuantLib in debug mode, you'll have link
+errors.</p>
+
+<p>To tell your project where to find QuantLib, open the project
+properties by right-clicking on the project icon in the IDE.</p>
+
+<p class="center"><img src="pics/vc10/ql10.png" alt="Open Project
+Properties"></p>
+
+<p>Go to <i>VC++ Directories</i>. You can see that the Boost folders
+are already there, so you don't have to do anything to configure
+them.</p>
+
+<p class="center"><img src="pics/vc10/ql11.png" alt="Project
+Properties"></p>
+
+<p>Add the QuantLib path (<tt>C:\Program Files\QuantLib</tt> in this
+example) to the include directories. The result should be as shown
+below.</p>
+
+<p class="center"><img src="pics/vc10/ql12.png" alt="QuantLib include directory"></p>
+
+<p>Finally, you can add the QuantLib library
+path <tt>C:\QuantLib\QuantLib-0.9.7\lib</tt> to the library
+directories, or you can go to <i>Configuration
+Properties/Linker/General</i> and add it to <i>Additional Library
+Directories</i>. Click <i>OK</i>.</p>
+
+<p class="center"><img src="pics/vc10/ql13.png" alt="QuantLib library dir"></p>
+
+<p>To test if the setup works, add the following program to
+the <tt>TestingQuantLib</tt> project. The program tests some Date and
+Calendar classes.</p>
+
+<pre>
+#include &lt;ql/quantlib.hpp&gt;
+#include &lt;iostream&gt;
+
+int main()
+{
+        QuantLib::Calendar myCal=QuantLib::UnitedKingdom();
+        QuantLib::Date newYearsEve(31,QuantLib::Dec,2008);
+
+        std::cout << "Name: "                       << myCal.name()<< std::endl;
+        std::cout << "New Year is Holiday: "        << myCal.isHoliday(newYearsEve)<< std::endl;
+        std::cout << "New Year is Business Day: "   << myCal.isBusinessDay(newYearsEve)<< std::endl;
+
+        std::cout << "--------------- Date Counter --------------------" << std::endl;
+
+        QuantLib::Date date1(28,QuantLib::Dec,2008);
+        QuantLib::Date date2(04,QuantLib::Jan,2009);
+
+        std::cout << "First Date: "            << date1 << std::endl;
+        std::cout << "Second Date: "           << date2 << std::endl;
+        std::cout << "Business Days Betweeen: "<< myCal.businessDaysBetween(date1,date2) << std::endl;
+        std::cout << "End of Month 1. Date: "  << myCal.endOfMonth(date1) << std::endl;
+        std::cout << "End of Month 2. Date: "  << myCal.endOfMonth(date2) << std::endl;
+
+        double tmp;
+        std::cin >> tmp;
+
+        return 0;
+}
+</pre>
+
+<p>Hit F5 to run the program. The output of the program should be:</p>
+
+<p class="center"><img src="pics/vc10/ql14.png" alt="Program output"></p>
+
+<p>One last thing: If you see some warnings after building, to get rid
+of them open the project properties again, go to <i>Configuration
+Properties/C/C++/Preprocessor/Preprocessor Definitions</i> and
+add <tt>_SCL_SECURE_NO_DEPRECATE</tt> and <tt>_CRT_SECURE_NO_DEPRECATE</tt>
+ to the definitions, as shown here:</p>
+
+<p class="center"><img src="pics/vc10/ql15.png" alt="Preprocessor defs"></p>
+
+<p>Now, building the TestingQuantLib project again shouldn't show you
+any warnings anymore, just as in the Output window below.</p>
+
+<p class="center"><img src="pics/vc10/ql16.png" alt="Test output"></p>
+
+<p>We're done!</p>
+
+</div>
+
+<div class="footer">
+<!--#include virtual="/footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>
