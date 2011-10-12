@@ -275,9 +275,9 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlAssetSwapPayFixedRate' type='QuantLib::AssetSwap'>
-      <description>Returns TRUE if it is a fixed rate payer swap</description>
-      <libraryFunction>payFixedRate</libraryFunction>
+    <Member name='qlAssetSwapPayBondCoupon' type='QuantLib::AssetSwap'>
+      <description>Returns TRUE if it is a bond coupon payer swap</description>
+      <libraryFunction>payBondCoupon</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
