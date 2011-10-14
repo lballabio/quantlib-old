@@ -1,0 +1,25 @@
+<Framework name="QuantLibXLBond">
+
+  <GroupBoxes>
+
+    <GroupBox text="test">
+      <StartupParameters>
+        <CheckBox text="Update Indexes Time Series" checked="False" enabled="True" />
+        <CheckBox text="Load Indexes Time Series" checked="False" enabled="True" />
+        <CheckBox text="Load Bonds" checked="False" enabled="True" />
+        <CheckBox text="BTP Analysis" checked="False" enabled="True" />
+        <CheckBox text="Bootstrap Yield Curves2" checked="False" enabled="True" />
+        <CheckBox text="Bootstrap Bond Curve" checked="False" enabled="True" />
+        <CheckBox text="Open Main Checks" checked="True" enabled="True" />
+      </StartupParameters>
+    </GroupBox>
+
+  </GroupBoxes>
+
+  <Components>
+    <Component path="C:\Projects\QuantLib\trunk\QuantLibXL\framework2\Bond.xla" />
+  </Components>
+
+  <EnvironmentVariables />
+
+</Framework>
