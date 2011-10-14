@@ -98,7 +98,7 @@
              (current-extension-compiler-flags
                   (append
                    (current-extension-compiler-flags)
-                   (list "-Wno-return-type")))
+                   (list "-Wno-return-type" "-fpermissive")))
              (current-extension-linker-flags
               (append
                (current-extension-linker-flags)
