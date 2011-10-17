@@ -13,6 +13,7 @@ regex = re.compile('^#include.*<(.*)>')
 ql_headers = []
 boost_headers = []
 std_headers = []
+experimental_headers = []
 source = open(filename)
 for n, line in enumerate(source):
     match = regex.search(line)
@@ -21,6 +22,8 @@ for n, line in enumerate(source):
         line_num = n+1
         if header.startswith('ql/'):
             ql_headers.append((header,line_num))
+            if header.startswith('ql/experimental'):
+                experimental_headers.append((header,line_num))
         elif header.startswith('boost/'):
             boost_headers.append((header,line_num))
         else:
@@ -32,6 +35,13 @@ source.close()
 if not ql_headers:
     print "./%s:1: error: no QuantLib header included" % filename
     sys.exit(1)
+
+if 'ql/experimental' not in filename:
+    # files in core library can't include stuff in experimental
+    if experimental_headers:
+        for f,n in experimental_headers:
+            print "./%s:%d: error: experimental header '%s' included" % (filename, n, f)
+        sys.exit(1)
 
 # All Boost headers must be included after QuantLib ones
 last_ql_header = max([ n for _,n in ql_headers])
