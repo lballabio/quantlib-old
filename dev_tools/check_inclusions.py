@@ -22,7 +22,7 @@ for n, line in enumerate(source):
         line_num = n+1
         if header.startswith('ql/'):
             ql_headers.append((header,line_num))
-            if header.startswith('ql/experimental'):
+            if header.startswith('ql/experimental') and 'internal' not in line:
                 experimental_headers.append((header,line_num))
         elif header.startswith('boost/'):
             boost_headers.append((header,line_num))
