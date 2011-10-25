@@ -28,6 +28,7 @@ from termstructures import TermStructureTest
 from bonds import FixedRateBondTest
 from ratehelpers import FixedRateBondHelperTest
 from cms import CmsTest
+from assetswap import AssetSwapTest
 
 def test():
     import QuantLib
@@ -44,6 +45,7 @@ def test():
     suite.addTest(unittest.makeSuite(FixedRateBondTest, 'test'))
     suite.addTest(unittest.makeSuite(FixedRateBondHelperTest, 'test'))
     suite.addTest(unittest.makeSuite(CmsTest, 'test'))
+    suite.addTest(unittest.makeSuite(AssetSwapTest, 'test'))
 
     result = unittest.TextTestRunner(verbosity=2).run(suite)
 
