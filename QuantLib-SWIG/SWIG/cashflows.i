@@ -135,6 +135,7 @@ class CouponPtr : public boost::shared_ptr<CashFlow> {
 
 %rename(FixedRateCoupon) FixedRateCouponPtr;
 class FixedRateCouponPtr : public CouponPtr {
+    %feature("kwargs") FixedRateCouponPtr;
   public:
     %extend {
         FixedRateCouponPtr(const Date& paymentDate, Real nominal,
@@ -242,6 +243,7 @@ typedef boost::shared_ptr<CashFlow> CappedFlooredCouponPtr;
 
 %rename(CappedFlooredCoupon) CappedFlooredCouponPtr;
 class CappedFlooredCouponPtr : public FloatingRateCouponPtr {
+    %feature("kwargs") CappedFlooredCouponPtr;
   public:
     %extend {
         CappedFlooredCouponPtr(const FloatingRateCouponPtr& underlying,
@@ -288,6 +290,7 @@ class CappedFlooredCouponPtr : public FloatingRateCouponPtr {
 
 %rename(IborCoupon) IborCouponPtr;
 class IborCouponPtr : public FloatingRateCouponPtr {
+    %feature("kwargs") IborCouponPtr;
   public:
     %extend {
         IborCouponPtr(const Date& paymentDate, Real nominal,
@@ -353,6 +356,7 @@ typedef boost::shared_ptr<CashFlow> CappedFlooredCmsCouponPtr;
 
 %rename(CmsCoupon) CmsCouponPtr;
 class CmsCouponPtr : public FloatingRateCouponPtr {
+    %feature("kwargs") CmsCouponPtr;
   public:
     %extend {
         CmsCouponPtr(const Date& paymentDate, Real nominal,
@@ -445,6 +449,7 @@ class NumericHaganPricerPtr : public CmsCouponPricerPtr {
 
 %rename(CappedFlooredCmsCoupon) CappedFlooredCmsCouponPtr;
 class CappedFlooredCmsCouponPtr: public CappedFlooredCouponPtr {
+    %feature("kwargs") CappedFlooredCouponPtr;
   public:
     %extend {
         CappedFlooredCmsCouponPtr(
