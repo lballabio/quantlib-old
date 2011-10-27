@@ -265,6 +265,8 @@ namespace QuantLib {
 
     class NullCalendar : public Calendar {};
 
+    class WeekendsOnly : public Calendar {};
+
     class JointCalendar : public Calendar {
       public:
         JointCalendar(const Calendar&, const Calendar&,
