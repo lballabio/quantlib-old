@@ -1,6 +1,6 @@
 /*
  Copyright (C) 2010 Joseph Wang
- Copyright (C) 2010 StatPro Italia srl
+ Copyright (C) 2010, 2011 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -151,20 +151,47 @@ IsObservable(Handle<ZeroInflationTermStructure>);
 // inflation indexes
 
 %{
+using QuantLib::InflationIndex;
 using QuantLib::ZeroInflationIndex;
 using QuantLib::YoYInflationIndex;
+typedef boost::shared_ptr<Index> InflationIndexPtr;
 typedef boost::shared_ptr<Index> ZeroInflationIndexPtr;
 typedef boost::shared_ptr<Index> YoYInflationIndexPtr;
 %}
 
+%rename(InflationIndex) InflationIndexPtr;
+class InflationIndexPtr : public boost::shared_ptr<Index> {
+  protected:
+    InflationIndexPtr();
+  public:
+    %extend {
+        bool interpolated() const {
+            return boost::dynamic_pointer_cast<InflationIndex>(*self)
+                ->interpolated();
+        }
+        Frequency frequency() const {
+            return boost::dynamic_pointer_cast<InflationIndex>(*self)
+                ->frequency();
+        }
+        Period availabilityLag() const {
+            return boost::dynamic_pointer_cast<InflationIndex>(*self)
+                ->availabilityLag();
+        }
+        Currency currency() const {
+            return boost::dynamic_pointer_cast<InflationIndex>(*self)
+                ->currency();
+        }
+    }
+};
+
 %rename(ZeroInflationIndex) ZeroInflationIndexPtr;
-class ZeroInflationIndexPtr : public boost::shared_ptr<Index> {
+class ZeroInflationIndexPtr : public InflationIndexPtr {
   protected:
     ZeroInflationIndexPtr();
 };
 
 %rename(YoYInflationIndex) YoYInflationIndexPtr;
-class YoYInflationIndexPtr : public boost::shared_ptr<Index> {
+class YoYInflationIndexPtr : public InflationIndexPtr {
   protected:
     YoYInflationIndexPtr();
 };
