@@ -50,6 +50,7 @@ class BondPtr : public boost::shared_ptr<Instrument> {
     %rename("previous-coupon-rate")  previousCouponRate;
     %rename("settlement-days")       settlementDays;
     %rename("settlement-date")       settlementDate;
+    %rename("start-date")            startDate;
     %rename("maturity-date")         maturityDate;
     %rename("issue-date")            issueDate;
     %rename("clean-price")           cleanPrice;
@@ -88,6 +89,9 @@ class BondPtr : public boost::shared_ptr<Instrument> {
         }
         Date settlementDate() {
             return boost::dynamic_pointer_cast<Bond>(*self)->settlementDate();
+        }
+        Date startDate() const {
+            return boost::dynamic_pointer_cast<Bond>(*self)->startDate();
         }
         Date maturityDate() const {
             return boost::dynamic_pointer_cast<Bond>(*self)->maturityDate();
