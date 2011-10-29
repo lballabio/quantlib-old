@@ -21,7 +21,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"NAZCATECH_DIR", "X:\Apps\Appsscript\CabotoXL\SensitivityAnalysis"}, -1)
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"EXAMPLE_DIR", "C:\Example\Dir"}, -1)
         Me.btnLaunch = New System.Windows.Forms.Button
         Me.cmVariables = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.miVariableInsert = New System.Windows.Forms.ToolStripMenuItem
