@@ -671,7 +671,7 @@ IMAGE_PATH             =
 # ignored.
 
 #INPUT_FILTER           = "gawk -f ../vbfilter.awk"
-INPUT_FILTER           = /home/erik/projects/XL-Launcher/Docs/doxyvb/vbfilter.sh
+INPUT_FILTER           = /home/erik/projects/trunk/XL-Launcher/Docs/doxyvb/vbfilter.sh
 
 # The FILTER_PATTERNS tag can be used to specify filters on a per file pattern
 # basis.
