@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("XL-Launcher")> 
 <Assembly: AssemblyDescription("Front End to Microsoft Excel")> 
-<Assembly: AssemblyCompany("Banca IMI")> 
+<Assembly: AssemblyCompany("QuantLib Group")> 
 <Assembly: AssemblyProduct("XL-Launcher")> 
-<Assembly: AssemblyCopyright("Copyright © 2011 Banca IMI")> 
+<Assembly: AssemblyCopyright("Copyright © 2011 QuantLib Group")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
