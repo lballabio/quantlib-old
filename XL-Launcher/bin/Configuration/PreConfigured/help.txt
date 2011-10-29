@@ -1,0 +1,3 @@
+The XL-Launcher application serves as a front end to Excel and allows
+various aspects of the Excel session to be configured, such as addins
+to be loaded and startup parameters to be passed to the addins.

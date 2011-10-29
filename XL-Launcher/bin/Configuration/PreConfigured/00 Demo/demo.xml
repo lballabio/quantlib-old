@@ -1,0 +1,36 @@
+
+<Framework name="demo" displayName="framework 1">
+ <Components>
+  <Component path="C:\erik\projects\XL-Launcher\bin\Demo\Framework1\Framework1.xla" />
+ </Components>
+ <StartupParameters>
+  <GroupBox text="Group Box 0">
+   <KeyValuePair name="startup parameter 0" value="abc" />
+   <CheckBox text="startup parameter 1" enabled="false" />
+   <CheckBox text="startup parameter 2" checked="true" />
+   <TextBox label="startup parameter 3" />
+   <TextBox label="startup parameter 4" text="abc" />
+   <ComboBox label="startup parameter 5" >
+    <Items>
+     <Item>item 1</Item>
+     <Item>item 2</Item>
+     <Item>item 3</Item>
+    </Items>
+   </ComboBox>
+  </GroupBox>
+  <GroupBox text="Group Box 1">
+   <ComboBox label="startup parameter 6" selectedItem="item 2">
+    <Items>
+     <Item>item 1</Item>
+     <Item>item 2</Item>
+     <Item>item 3</Item>
+    </Items>
+   </ComboBox>
+   <DateTimePicker label="startup parameter 7" />
+   <DateTimePicker label="startup parameter 8" value="22-APR-1968" />
+  </GroupBox>
+ </StartupParameters>
+ <EnvironmentVariables>
+  <EnvironmentVariable name="FOO" value = "BAR" />
+ </EnvironmentVariables>
+</Framework>

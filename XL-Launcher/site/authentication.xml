@@ -1,0 +1,19 @@
+
+<Authentication>
+    <Domains>
+        <Domain name="xxx">
+            <Users>
+                <User name="xxx"/>
+            </Users>
+        </Domain>
+        <Domain name="*">
+            <Users>
+                <User name="*">
+                    <Machines>
+                        <Machine name="xxx"/>
+                    </Machines>
+                </User>
+            </Users>
+        </Domain>
+    </Domains>
+</Authentication>

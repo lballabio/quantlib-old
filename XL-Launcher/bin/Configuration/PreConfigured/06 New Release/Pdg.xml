@@ -1,0 +1,8 @@
+<Framework>
+  <Components>
+    <Component path="\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev17718\framework\Win32Api.xla" />
+    <Component path="\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev17718\framework\FinDB.xla" />
+    <Component path="\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev17718\framework\CVAframework.xla" />
+    <Component path="\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\Rev17718\xll\PDGLib.xll" />
+  </Components>
+</Framework>
