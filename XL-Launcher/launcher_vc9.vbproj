@@ -24,7 +24,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
-    <PublishUrl>\\server1\nazcatech\XL-Launcher\</PublishUrl>
+    <PublishUrl>\\server1\XL-Launcher\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -34,9 +34,9 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <SupportUrl>http://www.nazcatech.be</SupportUrl>
+    <SupportUrl>http://www.quantlibxl.org</SupportUrl>
     <ProductName>XL-Launcher</ProductName>
-    <PublisherName>Banca IMI</PublisherName>
+    <PublisherName>QuantLib Group</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>11.10.13.%2a</ApplicationVersion>
