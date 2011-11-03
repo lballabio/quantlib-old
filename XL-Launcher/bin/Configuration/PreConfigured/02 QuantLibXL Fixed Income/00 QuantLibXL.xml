@@ -28,13 +28,8 @@
       <CheckBox text="Update Indexes Time Series" checked="False" enabled="True" />
       <CheckBox text="Load Indexes Time Series" checked="False" enabled="True" />
     </GroupBox>
-    <GroupBox text="Bonds">
-      <CheckBox text="Load Bonds" checked="False" enabled="True" />
-      <CheckBox text="BTP Analysis" checked="False" enabled="True" />
-    </GroupBox>
     <GroupBox text="Curves">
       <CheckBox text="Bootstrap Yield Curves" checked="False" enabled="True" />
-      <CheckBox text="Bootstrap Bond Curve" checked="False" enabled="True" />
     </GroupBox>
     <GroupBox text="RealTime Data">
       <CheckBox text="Switch to Static Market Data" checked="False" enabled="True" />
@@ -51,7 +46,5 @@
     <Component path="C:\Projects\QuantLib\trunk\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_1_0.xll" />
     <Component path="C:\Projects\QuantLib\trunk\QuantLibXL\framework2\QuantLibXL.xla" />
   </Components>
-  <EnvironmentVariables>
-    <EnvironmentVariable name="notUsed" value="test" />
-  </EnvironmentVariables>
+  <EnvironmentVariables />
 </Framework>

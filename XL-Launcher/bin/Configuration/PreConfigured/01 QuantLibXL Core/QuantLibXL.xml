@@ -1,5 +1,5 @@
 <Framework>
   <Components>
-    <Component path="C:\erik\projects\ql\trunk\QuantLibXL\framework2\QuantLibXL.xla" />
+    <Component path="C:\Projects\QuantLib\trunk\QuantLibXL\framework\QuantLibXL.xla" />
   </Components>
 </Framework>

@@ -1,5 +1,2 @@
-
-<EnvironmentConfig>
-  <AuthenticationFile>C:\erik\projects\XL-Launcher\site\data\authentication.xml</AuthenticationFile>
+<EnvironmentConfig name="Demo Environment">
 </EnvironmentConfig>
-
