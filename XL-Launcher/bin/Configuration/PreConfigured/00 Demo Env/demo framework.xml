@@ -1,7 +1,7 @@
 
-<Framework name="demo" displayName="framework 1">
+<Framework name="demo" displayName="Framework1">
  <Components>
-  <Component path="C:\erik\projects\XL-Launcher\bin\Demo\Framework1\Framework1.xla" />
+  <Component path="C:\Projects\QuantLib\trunk\XL-Launcher\bin\Demo\Framework1\Framework1.xla" />
  </Components>
  <StartupParameters>
   <GroupBox text="Group Box 0">
