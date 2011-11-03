@@ -1,5 +1,6 @@
 
 <Paths>
-  <PreConfiguredDirectory>\\server1\XL-Launcher\PreConfigured</PreConfiguredDirectory>
+  <!--<PreConfiguredDirectory>\\srv0001\risorse\WorkGroup\IMI_Workbooks\PreConfiguredEnv</PreConfiguredDirectory>-->
+  <PreConfiguredDirectory>C:\Projects\QuantLib\trunk\XL-Launcher\bin\Configuration\PreConfigured</PreConfiguredDirectory>
 </Paths>
 
