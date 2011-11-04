@@ -22,7 +22,6 @@
 
   <Functions>
 
-
     <Constructor name='qlCCTEU'>
       <libraryFunction>CCTEU</libraryFunction>
       <SupportedPlatforms>
@@ -46,6 +45,12 @@
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>spread over Euribor6M.</description>
+          </Parameter>
+          <Parameter name='FwdCurve' exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Forwarding YieldTermStructure object ID.</description>
           </Parameter>
           <Parameter name='StartDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>

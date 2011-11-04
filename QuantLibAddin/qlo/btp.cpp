@@ -26,6 +26,7 @@
 #include <ql/instruments/bonds/btp.hpp>
 #include <ql/currencies/europe.hpp>
 #include <ql/utilities/dataformatters.hpp>
+#include <ql/indexes/ibor/euribor.hpp>
 
 using std::vector;
 using boost::shared_ptr;
@@ -36,14 +37,16 @@ namespace QuantLibAddin {
                  const std::string& des,
                  const QuantLib::Date& maturityDate,
                  QuantLib::Spread spread,
+                 const QuantLib::Handle<QuantLib::YieldTermStructure>& fwdCurve,
                  const QuantLib::Date& startDate,
                  const QuantLib::Date& issueDate,
                  bool permanent)
     : FloatingRateBond(properties, des, QuantLib::EURCurrency(), permanent)
     {
         qlBondObject_ = shared_ptr<QuantLib::CCTEU>(new
-            QuantLib::CCTEU(maturityDate, spread, startDate, issueDate));
+            QuantLib::CCTEU(maturityDate, spread, fwdCurve, startDate, issueDate));
         libraryObject_ = qlBondObject_;
+
         if (description_.empty()) {
             std::ostringstream temp;
             temp << "CCTEU ";

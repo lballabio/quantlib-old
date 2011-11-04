@@ -38,12 +38,13 @@ namespace QuantLibAddin {
     class CCTEU : public FloatingRateBond {
       public:
         CCTEU(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const std::string&,
-            const QuantLib::Date& maturityDate,
-            QuantLib::Spread spread,
-            const QuantLib::Date& startDate,
-            const QuantLib::Date& issueDate,
-            bool permanent);
+              const std::string&,
+              const QuantLib::Date& maturityDate,
+              QuantLib::Spread spread,
+              const QuantLib::Handle<QuantLib::YieldTermStructure>& fwdCurve,
+              const QuantLib::Date& startDate,
+              const QuantLib::Date& issueDate,
+              bool permanent);
     };
 
     class BTP : public FixedRateBond {
