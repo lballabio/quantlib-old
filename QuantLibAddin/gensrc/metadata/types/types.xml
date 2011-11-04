@@ -88,6 +88,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::Exercise</DataType>
     <!--DataType defaultSuperType='libraryClass'>QuantLib::Extrapolator</DataType-->
     <DataType defaultSuperType='libraryClass'>QuantLib::FixedRateBond</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::FloatingRateBond</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::FloatingRateCouponPricer</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::ForwardRateAgreement</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::FuturesRateHelper</DataType>
@@ -194,6 +195,7 @@
     <DataType defaultSuperType='objectClass'>QuantLibAddin::AssetSwap</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Bond</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::BTP</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::FloatingRateBond</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::RendistatoBasket</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::RendistatoCalculator</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::CMSMMDriftCalculator</DataType>
