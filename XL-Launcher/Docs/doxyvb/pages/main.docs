@@ -6,3 +6,58 @@
 ' \author Eric Ehlers
 ' \version 11.10.13.8
 ' \date    21.10.2011
+'
+' \image html xl-launcher-uml.png
+' \image latex xl-launcher-uml.eps
+'
+' \section sec_main Main Form
+'
+' The Main Form encapsulates all of the user interface as well as the core
+' functionality of the application.  Environments are loaded from disk and
+' displayed to the user who is prompted to select and launch the desired
+' environment.
+'
+' \section sec_environment Environment
+'
+' An environment comprises a collection of Frameworks that are loaded into a
+' given instance of Excel.  When an Environment is launched, XL-Launcher
+' generates the session file containing all of the information pertaining to
+' that environment, and then spawns an Excel subprocess.  Excel loads
+' Launcher.xla which consumes the session file and loads the indicated
+' Frameworks.
+'
+' \section sec_framework Framework
+'
+' A Framework is a collection of related Components to be loaded into an Excel
+' session.  Typically a Framework corresponds to an Excel application.  A
+' Framework may include a list of Startup Parameters which allow the user to set
+' values in the XL-Launcher UI which dictate aspects of the Framework's behavior.
+' A Framework may also include Environment Variables.
+'
+' \section sec_component Component
+'
+' A Component is an object or file which can be loaded into Excel, such as a
+' workbook (XLS), an Excel VBA Addin (XLA), or a C/C++ Addin (XLL).
+'
+' \section sec_startup_parameter Startup Parameter
+'
+' A Startup Parameter is a key/value pair, a name which identifies a value which
+' the XL-Launcher passes to Excel for use within a Framework.  A Startup Parameter
+' may be associated with a Windows control such as a Text Box which is used to
+' display the parameter in the XL-Laucher UI when prompting the user for the
+' associated value.
+'
+' \section sec_environment_variable Environment Variable
+'
+' An Environment Variable is a Windows environment variable which the
+' XL-Launcher sets before spawning the Excel subprocess.  The definition of a
+' Framework lists all of the Environment Variables recognized or required by that
+' application.
+'
+' \section sec_message Message
+'
+' The Message object converts an Environment into an XML stream which is written
+' by the XL-Launcher to the session file which is passed to the Excel subprocess.
+' The Message object serializes the Environment object and all related objects,
+' including Framework, Component, Startup Parameter, and Environment Variable.
+'
