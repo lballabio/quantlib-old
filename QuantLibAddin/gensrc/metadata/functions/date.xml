@@ -512,7 +512,7 @@
 
     <Procedure name='qlECBAddDate'>
       <description>add an ECB date to the list of known ECB dates.</description>
-      <alias>QuantLib::ECB::nextDate</alias>
+      <alias>QuantLib::ECB::addDate</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
