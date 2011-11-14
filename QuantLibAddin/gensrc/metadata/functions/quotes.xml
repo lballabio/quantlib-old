@@ -203,7 +203,7 @@
     </Procedure>
 
     <Procedure name='qlBucketAnalysisDelta'>
-      <description></description>
+      <description>bucket analysis delta</description>
       <alias>QuantLibAddin::bucketAnalysisDelta</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -241,7 +241,7 @@
     </Procedure>
 
     <Procedure name='qlBucketAnalysisDelta2'>
-      <description></description>
+      <description>bucket analysis delta</description>
       <alias>QuantLibAddin::bucketAnalysisDelta2</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
