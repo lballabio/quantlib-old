@@ -151,6 +151,19 @@ Namespace XL_Launcher
 
         End Function
 
+        Public Function displayNameToFramework(ByVal frameworkDisplayName As String) As Framework
+
+            For Each f As Framework In frameworkList_
+                If frameworkDisplayName = f.DisplayName Then
+                    displayNameToFramework = f
+                    Exit Function
+                End If
+            Next f
+
+            Throw New Exception("No framework with display name '" & frameworkDisplayName & "'")
+
+        End Function
+
         Public Function nameInUse(ByVal frameworkName As String) As Boolean
 
             nameInUse = frameworkList_.Contains(frameworkName)

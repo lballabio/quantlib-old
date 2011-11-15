@@ -339,9 +339,9 @@ Public Class FormMain
 
         End If
 
-        If lstFrameworks.Items.Contains(e.SelectedFrameworkName) Then
+        If lstFrameworks.Items.Contains(e.SelectedFrameworkDisplayName) Then
 
-            lstFrameworks.SelectedIndex = lstFrameworks.Items.IndexOf(e.SelectedFrameworkName)
+            lstFrameworks.SelectedIndex = lstFrameworks.Items.IndexOf(e.SelectedFrameworkDisplayName)
 
         End If
 
@@ -696,7 +696,7 @@ Public Class FormMain
             lstFrameworks.Items.Clear()
             SelectedEnvironment = envPreconfigured_.nameToEnvironment(lstPreconfigured.Text)
             For Each f As XL_Launcher.Framework In SelectedEnvironment.Frameworks
-                lstFrameworks.Items.Add(f.Name)
+                lstFrameworks.Items.Add(f.DisplayName)
             Next f
             If lstFrameworks.Items.Count > 0 Then lstFrameworks.SelectedIndex = 0
             txtAuthenticationFile.Text = SelectedEnvironment.AuthenticationFile
@@ -719,7 +719,7 @@ Public Class FormMain
             lstFrameworks.Items.Clear()
             SelectedEnvironment = envUserconfigured_.nameToEnvironment(lstUserConfigured.Text)
             For Each f As XL_Launcher.Framework In SelectedEnvironment.Frameworks
-                lstFrameworks.Items.Add(f.Name)
+                lstFrameworks.Items.Add(f.DisplayName)
             Next f
             If lstFrameworks.Items.Count > 0 Then lstFrameworks.SelectedIndex = 0
             txtAuthenticationFile.Text = SelectedEnvironment.AuthenticationFile
@@ -738,8 +738,8 @@ Public Class FormMain
             selectedFramework_ = Nothing
             Exit Sub
         End If
-        SelectedFramework = SelectedEnvironment.nameToFramework(lstFrameworks.Text)
-        envPreconfigured_.SelectedFrameworkName = lstFrameworks.Text
+        SelectedFramework = SelectedEnvironment.displayNameToFramework(lstFrameworks.Text)
+        envPreconfigured_.SelectedFrameworkDisplayName = lstFrameworks.Text
 
         Dim y As Integer = 0
         For Each g As XL_Launcher.GroupBox In SelectedFramework.GroupBoxes

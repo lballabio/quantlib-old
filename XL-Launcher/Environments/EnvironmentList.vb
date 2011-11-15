@@ -24,7 +24,7 @@ Namespace XL_Launcher
         Private globalAddins_ As Collection = New Collection
         Private selectedEnvironmentType_ As String = Nothing
         Private selectedEnvironmentName_ As String = Nothing
-        Private selectedFrameworkName_ As String = Nothing
+        Private selectedFrameworkDisplayName_ As String = Nothing
         Private environmentTabIndex_ As Integer = -1
         Private frameworkTabIndex_ As Integer = -1
         Private loadError_ As Boolean = False
@@ -104,14 +104,14 @@ Namespace XL_Launcher
 
         End Property
 
-        Public Property SelectedFrameworkName() As String
+        Public Property SelectedFrameworkDisplayName() As String
 
             Get
-                SelectedFrameworkName = selectedFrameworkName_
+                SelectedFrameworkDisplayName = selectedFrameworkDisplayName_
             End Get
 
             Set(ByVal value As String)
-                selectedFrameworkName_ = value
+                selectedFrameworkDisplayName_ = value
             End Set
 
         End Property
@@ -157,7 +157,7 @@ Namespace XL_Launcher
             serializer.serializeProperty(excelPath_, "ExcelPath")
             serializer.serializeProperty(selectedEnvironmentType_, "SelectedEnvironmentType", "")
             serializer.serializeProperty(selectedEnvironmentName_, "SelectedEnvironmentName", "")
-            serializer.serializeProperty(selectedFrameworkName_, "SelectedFrameworkName", "")
+            serializer.serializeProperty(selectedFrameworkDisplayName_, "SelectedFrameworkName", "")
             serializer.serializeProperty(environmentTabIndex_, "EnvironmentTabIndex", "0")
             serializer.serializeProperty(frameworkTabIndex_, "FrameworkTabIndex", "0")
             serializer.serializeObjectCollection(globalAddins_, "GlobalAddin", versionNumber, False)
