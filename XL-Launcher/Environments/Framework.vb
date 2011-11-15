@@ -152,7 +152,7 @@ Namespace XL_Launcher
 
                 For Each s As StartupParameter In g.StartupParameterList
 
-                    startupParameterList_.Add(s)
+                    startupParameterList_.Add(s, s.parameterName)
 
                 Next s
 
