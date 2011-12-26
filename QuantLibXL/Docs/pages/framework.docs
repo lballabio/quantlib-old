@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008, 2009, 2010, 2011, 2012 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,27 +18,73 @@
 
 /*! \page framework Framework
 
-\section fw_overview Overview
-
 The QuantLibXL Framework is an application layer written in Excel VBA which
 wraps the QuantLibXL Addin with additional functionality in support of market
 data feeds, creation of instruments, etc.
 
-\section fw_prerequisites Prerequisites
+<dl>
+<dt>\ref fw_overview</dt>
+<dd><dl>
+<dt>\ref fw_prerequisites</dt>
+<dt>\ref fw_installation</dt>
+<dt>\ref fw_startup</dt>
+<dt>\ref fw_ui</dt>
+</dl></dd>
+<dt>\ref fw_demos</dt>
+<dd><dl>
+<dt>\ref fw_demo_menu</dt>
+<dt>\ref fw_demo_xml1</dt>
+<dt>\ref fw_demo_xml2</dt>
+<dt>\ref fw_demo_swap</dt>
+</dl></dd>
+<dt>\ref fw_fi</dt>
+<dt>\ref fw_code</dt>
+<dd><dl>
+<dt>\ref fw_code_main</dt>
+<dt>\ref fw_code_errors</dt>
+<dt>\ref fw_code_utils</dt>
+<dt>\ref fw_code_config</dt>
+<dt>\ref fw_code_loader</dt>
+<dt>\ref fw_code_events</dt>
+<dt>\ref fw_code_keyboard</dt>
+<dt>\ref fw_code_shortcut</dt>
+<dt>\ref fw_code_menu</dt>
+<dt>\ref fw_code_cell_menu</dt>
+<dt>\ref fw_code_xml</dt>
+</dl></dd>
+</dl>
+
+\section fw_overview 1 Overview
+
+\subsection fw_prerequisites 1.1 Prerequisites
 
 The Framework has been developed and tested under Excel 2002.  Limited testing
 under Excel 2003 has not highlighted any problems.  The application hasn't been
 tested under versions of Excel prior to 2002 nor on Excel 2007.
 
-\section fw_installation Installation
+\subsection fw_installation 1.2 Installation
 
 Installation of the QuantLibXL Framework appears as an option for the installer
 as described in the standard \ref installation document.
 
-\section fw_startup Startup
+\subsection fw_startup 1.3 Startup
 
 To load the Framework into Excel, double click on file
 QuantLibXL\\framework\\QuantLibXL.xla.
+
+\subsection fw_ui 1.4 User Interface
+
+\section fw_demos 2 Demos
+
+\subsection fw_demo_menu 2.1 Menu
+
+\subsection fw_demo_xml1 2.2 Boost Serialization
+
+\subsection fw_demo_xml2 2.3 MSXML Serialization
+
+\subsection fw_demo_swap 2.4 Swap Portfolio
+
+\section fw_fi 3 Fixed Income
 
 Bootstrap the yield curve by invoking menu item QuantLibXL / Actions / Bootstrap
 QuantLib Yield Curve.
@@ -58,7 +104,7 @@ market data is taken from cells updated manually.
 Template instrument workbooks are found in directory
 QuantLibXL\\Workbooks\\InterestRateDerivatives.
 
-\section fw_rightclick Right Click Menu
+*** not sure where to put this yet ***
 
 Right clicking in a cell brings up a QuantLibXL menu.
 
@@ -71,12 +117,29 @@ or by calling ohRetrieveError() on the relevant cell).
 The right click menu provides additional functions to create/remove various drop
 down menus in the chosen cell and to reformat the cell.
 
-\section fw_alternate Alternate Framework
+\section fw_code 4 Code
 
-An alternate implementation of the QuantLibXL VBA Framework is under
-development, this build is at an experimental stage.  More information may be
-found at <tt>QuantLibXL\\framework2\\ReadMe.txt</tt>.  The two projects may be
-merged at some point.
+\subsection fw_code_main 4.1 Main
+
+\subsection fw_code_errors 4.2 Errors
+
+\subsection fw_code_utils 4.3 Utilities
+
+\subsection fw_code_config 4.4 Configuration
+
+\subsection fw_code_loader 4.5 Loader
+
+\subsection fw_code_events 4.6 Events
+
+\subsection fw_code_keyboard 4.7 Keyboard
+
+\subsection fw_code_shortcut 4.8 Shortcut
+
+\subsection fw_code_menu 4.9 Main Menu
+
+\subsection fw_code_cell_menu 4.10 Cell Menu
+
+\subsection fw_code_xml 4.11 Serialization
 
 */
 
