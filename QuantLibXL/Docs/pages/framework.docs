@@ -101,6 +101,11 @@ workbook, worksheet, or range is active, or which addins are loaded.
 The functionality and configuration of context sensitive menus are described in
 greater detail in the demos below.
 
+If the application is reset - for example if there is an unhandled exception,
+and the user clicks on the Reset (Stop) button in the VBA editor - then the
+Framework state is lost.  In particular the menus are lost.  Clicking
+Ctrl-Shift-R reinitializes the Framework configuration.
+
 \section fw_demos 2 Demos
 
 These demos provide examples for various aspects of Framework configuration and
@@ -207,27 +212,103 @@ QuantLibXL\\Workbooks\\InterestRateDerivatives.
 
 \section fw_code 4 Code
 
-\subsection fw_code_main 4.1 Main
+QuantLibXL.xla resides in the framework directory and all of the other Excel VBA
+code resides in xla files in the addin subdirectory.
 
-\subsection fw_code_errors 4.2 Errors
+A comment block is provided for every addin (xla) file in the ThisWorkbook
+module.
 
-\subsection fw_code_utils 4.3 Utilities
+Every addin is given a project name in the format qlxlXxx.  Naming every project
+with the qlxl prefix causes the addins to appear together in the project window
+in the Excel VBA editor.
 
-\subsection fw_code_config 4.4 Configuration
+\subsection fw_code_main 4.1 QuantLibXL.xla
 
-\subsection fw_code_loader 4.5 Loader
+QuantLibXL.xla is the entry point for the application.  The Workbook_Open event
+loads some additional modules which are essential for minimum functionality:
+Errors.xla, Utilities.xla, Configuration.xla, Loader.xla
 
-\subsection fw_code_events 4.6 Events
+\subsection fw_code_errors 4.2 Errors.xla
 
-\subsection fw_code_keyboard 4.7 Keyboard
+Errors.xla provides a central implementation for all error handling for the
+application.  Errors.xla implements three functions in support of error
+handling:
 
-\subsection fw_code_shortcut 4.8 Shortcut
+raiseError: To be called at the point where an error is detected.
 
-\subsection fw_code_menu 4.9 Main Menu
+propagateError: May be called at an intermediate frame in the stack - above
+where the error is detected and below where it is handled.  Appends additional
+information to the error.
 
-\subsection fw_code_cell_menu 4.10 Cell Menu
+displayError: Displays the error message to the user.  All entry points into the
+Excel VBA code must be wrapped in On Error Goto / Catch, and the Catch must call
+displayError.
 
-\subsection fw_code_xml 4.11 Serialization
+\subsection fw_code_utils 4.3 Utilities.xla
+
+Implements various utility functions for the application, including access to
+the file system, processing for ranges/sheets/books, etc.
+
+\subsection fw_code_config 4.4 Configuration.xla
+
+Configuration.xla implements a global singleton object which encapsulates
+various information related to the running instance of the Framework
+application.  The configuration object is accessed via wrapper function Config,
+e.g:
+
+Debug.Print "root dir = " & Config().rootDirectory
+
+\subsection fw_code_loader 4.5 Loader.xla
+
+Loader.xla implements a facility for loading components required by a given
+instance of the Framework.  A component can comprise any item which may be
+loaded or utilitzed from Excel, e.g. worksheets, addins (VBA, C++, etc), DLLs.
+
+The loader allows dependencies between components to be defined.  When a request
+is made to load a given component, the loader checks whether that component's
+prerequisites are present and loads them if not.
+
+The environments recognized by the loader are configured in workbook
+QuantLibXL\framework\config\Loader.xls.  Loader.xla imports Loader.xls at
+startup.
+
+To load a given environment, call loadEnvironment("xxx") where xxx is a column
+in Loader.xls.
+
+\subsection fw_code_events 4.6 Events.xla
+
+Events.xla implements an event listener which intercepts various Excel events,
+such as the activation of a workbook.  These event handlers are used to call
+various Framework functionality, such as recreating menu items in response to a
+change in context.
+
+\subsection fw_code_keyboard 4.7 Keyboard.xla
+
+Keyboard.xla implements a few keyboard shortcuts for the application.
+
+\subsection fw_code_shortcut 4.8 Shortcut.xla
+
+Shortcut.xla is a small utility addin which can be used to create a shortcut
+(icon, link) for the Framework application.  For example, after installing the
+Framework to a network drive, you can use Shortcut.xla to generate a .lnk file
+that anyone can use to invoke the application from the server.
+
+\subsection fw_code_menu 4.9 Menu.xla
+
+Menu.xla creates the QuantLibXL menu on the main Excel toolbar.
+
+\subsection fw_code_cell_menu 4.10 CellMenu.xla
+
+CellMenu.xla creates the QuantLibXL entry on the menu which appears when the
+user right clicks on a cell or range.
+
+\subsection fw_code_xml 4.11 Serialization.xla
+
+Serialization.xla implements support for serialization.  This implementation
+relies on the fact that the QuantLibAddin C++ layer implements
+boost::serialization for all of the classes in the QuantLib library.
+Serialization.xla can be used to export/import a hierarchy of objects from/to a
+workbook.
 
 */
 
