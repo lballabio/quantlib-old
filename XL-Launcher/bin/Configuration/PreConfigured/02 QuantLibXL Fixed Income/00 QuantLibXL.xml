@@ -2,9 +2,9 @@
   <StartupParameters>
     <GroupBox text="Settings">
       <KeyValuePair name="Environment" value="Fixed Income" />
-      <KeyValuePair name="Workbook Path" value="C:\Projects\QuantLib\trunk\QuantLibXL\Workbooks" />
-      <KeyValuePair name="Help File Path" value="C:\Projects\QuantLib\trunk\QuantLibXL\Docs" />
-      <KeyValuePair name="Metadata Path" value="C:\Projects\QuantLib\trunk\QuantLibAddin\gensrc\metadata" />
+      <KeyValuePair name="Workbook Path" value="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\Workbooks" />
+      <KeyValuePair name="Help File Path" value="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\Docs" />
+      <KeyValuePair name="Metadata Path" value="C:\Projects\QuantLib\R01020x-branch\QuantLibAddin\gensrc\metadata" />
       <CheckBox text="Set Evaluation Date" checked="False" enabled="True" />
       <DateTimePicker label="Evaluation Date" value="10/12/2011" enabled="True" />
       <ComboBox label="Default Currency" selectedItem="EUR" enabled="True">
@@ -42,9 +42,9 @@
     </GroupBox>
   </StartupParameters>
   <Components>
-    <Component path="C:\Projects\QuantLib\trunk\ObjectHandler\xll\ObjectHandler-xll-vc90-mt-1_1_0.xll" />
-    <Component path="C:\Projects\QuantLib\trunk\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_1_0.xll" />
-    <Component path="C:\Projects\QuantLib\trunk\QuantLibXL\framework\QuantLibXL.xla" />
+    <Component path="C:\Projects\QuantLib\R01020x-branch\ObjectHandler\xll\ObjectHandler-xll-vc90-mt-1_1_0.xll" />
+    <Component path="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_1_0.xll" />
+    <Component path="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\framework\QuantLibXL.xla" />
   </Components>
   <EnvironmentVariables />
 </Framework>
