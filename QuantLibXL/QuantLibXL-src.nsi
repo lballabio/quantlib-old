@@ -155,12 +155,12 @@ Section /o Framework
     File /r "Data\*.xls"
     File /r "Data\*.xml"
 
-    SetOutPath "$INSTDIR\framework2"
-    File /r "framework2\*.txt"
-    File /r "framework2\*.xla"
-    File /r "framework2\*.xlam"
-    File /r "framework2\*.xls"
-    File /r "framework2\*.xml"
+    SetOutPath "$INSTDIR\framework"
+    File /r "framework\*.txt"
+    File /r "framework\*.xla"
+    File /r "framework\*.xlam"
+    File /r "framework\*.xls"
+    File /r "framework\*.xml"
 
     # ObjectBuilder crashes if it can't find the icon
     SetOutPath "$INSTDIR\Docs\images"

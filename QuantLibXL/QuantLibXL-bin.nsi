@@ -128,12 +128,12 @@ Section /o Framework
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\favicon.bmp"
 
-    SetOutPath "$INSTDIR\framework2"
-    File /r "framework2\*.txt"
-    File /r "framework2\*.xla"
-    File /r "framework2\*.xlam"
-    File /r "framework2\*.xls"
-    File /r "framework2\*.xml"
+    SetOutPath "$INSTDIR\framework"
+    File /r "framework\*.txt"
+    File /r "framework\*.xla"
+    File /r "framework\*.xlam"
+    File /r "framework\*.xls"
+    File /r "framework\*.xml"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
                    "$INSTDIR\framework\QuantLibXL.xla"

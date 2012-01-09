@@ -16,7 +16,7 @@
 !define VER_NUMBER_UNDERSCORE "1_1_0"
 !define COMPILER "vc90"
 
-!define REV_NUMBER "Rev17994"
+!define REV_NUMBER "Rev18150"
 !define /date NOW "%Y%m%d-%H_%M"
 
 
@@ -88,12 +88,12 @@ Section
     File "NEWS.txt"
     File "README.txt"
 
-    SetOutPath "$INSTDIR\framework2"
-    File /r "framework2\*.xla"
-    File "framework2\QuantLibXLA.cer"
+    SetOutPath "$INSTDIR\framework"
+    File /r "framework\*.xla"
+    File "framework\QuantLibXLA.cer"
 
-    SetOutPath "$INSTDIR\framework2\config"
-    File "framework2\config\*.xls"
+    SetOutPath "$INSTDIR\framework\config"
+    File "framework\config\*.xls"
 
     SetOutPath "$INSTDIR\metadata"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
