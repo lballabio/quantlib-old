@@ -1,4 +1,4 @@
-<Framework name="QuantLibXLBond">
+<Framework name="QuantLibXLBond" displayName="QuantLibXL Bonds">
   <StartupParameters>
     <GroupBox text="Bonds">
       <CheckBox text="Load Bonds" checked="False" enabled="True" />

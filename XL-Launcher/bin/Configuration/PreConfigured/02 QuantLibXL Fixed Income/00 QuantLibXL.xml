@@ -1,4 +1,4 @@
-<Framework name="QuantLibXL">
+<Framework name="QuantLibXL" displayName="QuantLibXL Rates - Base">
   <StartupParameters>
     <GroupBox text="Settings">
       <KeyValuePair name="Environment" value="Fixed Income" />

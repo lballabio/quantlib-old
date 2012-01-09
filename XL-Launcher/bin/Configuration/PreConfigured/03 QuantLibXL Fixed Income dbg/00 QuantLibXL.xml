@@ -1,4 +1,4 @@
-<Framework name="QuantLibXL">
+<Framework name="QuantLibXL" displayName="QuantLibXL Rates - Base">
   <StartupParameters>
     <GroupBox text="Settings">
       <KeyValuePair name="Environment" value="Fixed Income" />
@@ -42,8 +42,8 @@
     </GroupBox>
   </StartupParameters>
   <Components>
-    <Component path="C:\Projects\QuantLib\R01020x-branch\ObjectHandler\xll\ObjectHandler-xll-vc90-mt-1_1_0.xll" />
-    <Component path="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_1_0.xll" />
+    <Component path="C:\Projects\QuantLib\R01020x-branch\ObjectHandler\xll\ObjectHandler-xll-vc90-mt-gd-1_1_0.xll" />
+    <Component path="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-gd-1_1_0.xll" />
     <Component path="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\framework\QuantLibXL.xla" />
   </Components>
   <EnvironmentVariables />
