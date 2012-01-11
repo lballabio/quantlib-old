@@ -49,13 +49,13 @@ namespace QuantLibAddin {
 
         const std::vector<QuantLib::Real>& data() const;
 
-        //const std::vector<QuantLib::Real>& improvements(
-        //    InterpolatedYieldCurve::Traits traits,
-        //    InterpolatedYieldCurve::Interpolator interpolator) const;
+        //const std::vector<QuantLib::Real>& improvements() const;
 
-        //QuantLib::Size iterations(
-        //    InterpolatedYieldCurve::Traits traits,
-        //    InterpolatedYieldCurve::Interpolator interpolator) const;
+        //QuantLib::Size iterations() const;
+
+        InterpolatedYieldCurvePair interpolatedYieldCurvePair() const {
+            return pair_;
+        }
 
         const std::vector<QuantLib::Time>& jumpTimes() const;
 
