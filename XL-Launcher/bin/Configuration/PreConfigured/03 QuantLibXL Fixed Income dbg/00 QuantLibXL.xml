@@ -25,20 +25,21 @@
       <CheckBox text="Open Main Checks" checked="False" enabled="True" />
     </GroupBox>
     <GroupBox text="Index Fixings">
-      <CheckBox text="Update Indexes Time Series" checked="False" enabled="True" />
-      <CheckBox text="Load Indexes Time Series" checked="False" enabled="True" />
+      <CheckBox text="Update Euribor YTD Time Series (xls)" checked="False" enabled="True" />
+      <CheckBox text="Update Index YTD Time Series (xls)" checked="False" enabled="True" />
+      <CheckBox text="Load Index YTD Time Series (xml)" checked="False" enabled="True" />
     </GroupBox>
     <GroupBox text="Curves">
       <CheckBox text="Bootstrap Yield Curves" checked="False" enabled="True" />
     </GroupBox>
     <GroupBox text="RealTime Data">
-      <CheckBox text="Switch to Static Market Data" checked="False" enabled="True" />
-      <ComboBox label="Feed Use" selectedItem="Reuters" enabled="True">
+      <ComboBox label="Real Time Feed" selectedItem="Reuters" enabled="True">
         <Items>
           <Item>Reuters</Item>
           <Item>Bloomberg</Item>
         </Items>
       </ComboBox>
+      <CheckBox text="Use Static Market Data" checked="False" enabled="True" />
     </GroupBox>
   </StartupParameters>
   <Components>
