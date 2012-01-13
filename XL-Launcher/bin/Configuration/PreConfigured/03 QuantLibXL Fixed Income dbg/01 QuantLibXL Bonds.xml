@@ -1,11 +1,11 @@
-<Framework name="QuantLibXLBond" displayName="QuantLibXL Bonds">
+<Framework name="QuantLibXLBonds" displayName="QuantLibXL Bonds">
   <StartupParameters>
     <GroupBox text="Bonds">
       <CheckBox text="Load Bonds" checked="False" enabled="True" />
       <CheckBox text="BTP Analysis" checked="False" enabled="True" />
     </GroupBox>
     <GroupBox text="Curves">
-      <CheckBox text="Bootstrap Bond Curve" checked="False" enabled="True" />
+      <CheckBox text="Bootstrap Bond Curves" checked="False" enabled="True" />
     </GroupBox>
   </StartupParameters>
   <Components>
