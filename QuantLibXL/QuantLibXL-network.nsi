@@ -16,7 +16,7 @@
 !define VER_NUMBER_UNDERSCORE "1_1_0"
 !define COMPILER "vc90"
 
-!define REV_NUMBER "Rev18150"
+!define REV_NUMBER "R01020x-branch"
 !define /date NOW "%Y%m%d-%H_%M"
 
 
