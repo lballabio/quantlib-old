@@ -61,35 +61,42 @@ namespace QuantLibAddin {
                                  const vector<Real>& x,
                                  const vector<Handle<Quote> >& yh,
                                  bool permanent)
-    : Extrapolator(prop, permanent), n_(x.size()), x_(n_), y_(n_), yh_(n_)
+    : Extrapolator(prop, permanent)
     {
         QL_REQUIRE(!x.empty(), "empty x vector");
-        QL_REQUIRE(n_==yh.size(),
-                   "unmatched size between x (" << n_ << ") and y(" <<
+        Size n = x.size();
+        QL_REQUIRE(n==yh.size(),
+                   "unmatched size between x (" << n << ") and y(" <<
                    yh.size() << ")");
-        vector<pair<Real, Handle<Quote> > > pairs(n_);
-        for (Size i=0; i<n_; ++i)
+        x_.reserve(n);
+        yh_.reserve(n);
+        y_.reserve(n);
+
+        vector<pair<Real, Handle<Quote> > > pairs(n);
+        for (Size i=0; i<n; ++i)
             pairs[i] = std::make_pair<Real, Handle<Quote> >(x[i], yh[i]);
         std::sort(pairs.begin(), pairs.end(), QuoteHandleSorter());
 
-        x_[0] = pairs[0].first;
-        yh_[0] = pairs[0].second;
-        registerWith(yh_[0]);
-        vector<pair<Real, Handle<Quote> > >::iterator j = pairs.begin()+1;
-        for (Size i=1; i<n_; ++i, ++j) {
-            QL_REQUIRE(x_[i-1] != j->first,
-                       "duplicated x value: " << j->first);
-            x_[i] = j->first;
-            yh_[i] = j->second;
-            registerWith(yh_[i]);
+        vector<pair<Real, Handle<Quote> > >::iterator j=pairs.begin();
+        x_.push_back(j->first);
+        yh_.push_back(j->second);
+        registerWith(yh_.back());
+        yh_.back()->isValid() ? y_.push_back(yh_.back()->value())
+                              : y_.push_back(1.0);
+        for (j=pairs.begin()+1; j<pairs.end(); ++j) {
+            if (x_.back() == j->first) {
+                QL_ENSURE(yh_.back() == j->second,
+                          "duplicated x value (" << j->first <<
+                          ") with different y values");
+            } else {
+                x_.push_back(j->first);
+                yh_.push_back(j->second);
+                registerWith(yh_.back());
+                yh_.back()->isValid() ? y_.push_back(yh_.back()->value())
+                                      : y_.push_back(1.0);
+            }
         }
-        // temporary patch
-        for (Size i=0; i<n_; ++i) {
-            if (yh_[i]->isValid())
-                y_[i] = yh_[i]->value();
-            else 
-                y_[i] = 1.0;
-        }
+        n_ = x_.size();
     }
 
     void Interpolation::performCalculations() const {
