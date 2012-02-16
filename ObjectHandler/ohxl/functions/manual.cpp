@@ -46,6 +46,10 @@ void operToOper(OPER *xTarget, const OPER *xSource) {
         if (len)
             strncpy(xTarget->val.str + 1, xSource->val.str + 1, len);
         return;
+    } else if (xSource->xltype == xltypeBool) {
+        xTarget->xltype = xltypeBool;
+        xTarget->val.boolean = xSource->val.boolean;
+        return;
     } else if (xSource->xltype == xltypeErr) {
         xTarget->xltype = xltypeErr;
         xTarget->val.err = xSource->val.err;
