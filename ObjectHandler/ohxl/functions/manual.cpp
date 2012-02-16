@@ -57,6 +57,10 @@ void operToOper(OPER *xTarget, const OPER *xSource) {
     } else if (xSource->xltype == xltypeNil) {
         xTarget->xltype = xltypeNil;
         return;
+    } else if (xSource->xltype == xltypeInt) {
+        xTarget->xltype = xltypeInt;
+        xTarget->val.w = xSource->val.w;
+        return;
     } else {
         OH_FAIL("operToOper: unexpected OPER type: " << xSource->xltype);
     }
