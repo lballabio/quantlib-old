@@ -1,17 +1,17 @@
 
-Release 1.1 - February 2011
-Notable changes since release 1.0:
-- in sync with QuantLib 1.1;
-- migrated to SWIG 2.0.1;
-- exported Heston and Bates engines for vanilla options;
-- exported minimal RateHelper interface;
-- exported swap() method from swap-rate helper (thanks to Ahmad Mahomed;)
-- exported inflation indexes, piecewise curves, and swaps;
-- exported additional SwapIndex constructor taking a discount curve;
-- exported coupons() method from CreditDefaultSwap;
-- exported Russian calendar;
-- exported IborCoupon pricers (thanks to Lluis Pujol Bajador;)
-- exported variance-gamma vanilla engines (thanks to Adrian O'Neill;)
-- exported functions to enable/disable tracing (thanks to Andrea Odetti;)
-- added bond example in Python (thanks to Lluis Pujol Bajador;)
-- added VS2010 projects for C# wrappers (thanks to Adrian O'Neill.)
+Release 1.2 - March 2012
+Notable changes since release 1.1:
+- in sync with QuantLib 1.2;
+- migrated to SWIG 2.0.4;
+- prevented segmentation faults in Perl module;
+- exported missing constructors for MersenneTwisterUniformRng
+  and KnuthUniformRng;
+- exported IncrementalStatistics;
+- exported bespoke calendar (thanks to Henner Heck);
+- exported weekend-only calendar;
+- exported more coupon methods (thanks to Henner Heck);
+- exported more distributions (thanks to Tawanda Gwena);
+- exported CMS coupons (thanks to Lluis Pujol Bajador);
+- exported asset-swap functionality (thanks to Lluis Pujol Bajador);
+- exported a few InflationIndex methods;
+- added keyword arguments to a few Python constructors.
