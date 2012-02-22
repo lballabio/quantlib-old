@@ -1,0 +1,17 @@
+
+Release 1.2 - March 2012
+Notable changes since release 1.1:
+- in sync with QuantLib 1.2;
+- migrated to SWIG 2.0.4;
+- prevented segmentation faults in Perl module;
+- exported missing constructors for MersenneTwisterUniformRng
+  and KnuthUniformRng;
+- exported IncrementalStatistics;
+- exported bespoke calendar (thanks to Henner Heck);
+- exported weekend-only calendar;
+- exported more coupon methods (thanks to Henner Heck);
+- exported more distributions (thanks to Tawanda Gwena);
+- exported CMS coupons (thanks to Lluis Pujol Bajador);
+- exported asset-swap functionality (thanks to Lluis Pujol Bajador);
+- exported a few InflationIndex methods;
+- added keyword arguments to a few Python constructors.
