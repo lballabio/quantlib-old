@@ -1,20 +1,178 @@
-2011-01-25 12:23  Luigi Ballabio
+2011-12-02 14:22  Luigi Ballabio
 
-	* [r17589] Python/test/bonds.py:
+	* [r18126] CSharp/csharp/NQuantLib_vc10.csproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/csharp/NQuantLib_vc8.csproj,
+	  CSharp/csharp/NQuantLib_vc9.csproj:
 	  
-	  Fixed date algebra.
+	  Updated C# projects
 
-2010-12-17 12:31  Luigi Ballabio
+2011-12-01 10:19  Luigi Ballabio
 
-	* [r17558] CSharp/Makefile.am:
+	* [r18125]
 	  
-	  Added VC10 projects to distribution.
+	  Release branch for QuantLib 1.2.x
 
-2010-12-10 10:58  Luigi Ballabio
+2011-10-27 14:55  Luigi Ballabio
 
-	* [r17542]
+	* [r18067] Scala/README.txt:
 	  
-	  Release branch for the 1.1.x series.
+	  Fixed svn properties
+
+2011-10-27 12:52  Luigi Ballabio
+
+	* [r18066] SWIG/inflation.i:
+	  
+	  Exported a few InflationIndex methods.
+
+2011-10-27 12:52  Luigi Ballabio
+
+	* [r18064] SWIG/indexes.i:
+	  
+	  Fixed constness of constructor argument.
+
+2011-10-27 12:51  Luigi Ballabio
+
+	* [r18063] SWIG/calendars.i:
+	  
+	  Exported weekend-only calendar.
+
+2011-10-27 12:51  Luigi Ballabio
+
+	* [r18062] SWIG/cashflows.i:
+	  
+	  Added keyword arguments to a few Python constructors.
+
+2011-10-27 12:51  Luigi Ballabio
+
+	* [r18061] SWIG/bonds.i:
+	  
+	  Added startDate() inspector to Bond class.
+
+2011-10-25 14:49  Luigi Ballabio
+
+	* [r18059] Python/test/QuantLibTestSuite.py, Python/test/assetswap.py:
+	  
+	  Added asset-swap tests for Python (thanks to Lluis Pujol Bajador).
+
+2011-10-14 13:51  Luigi Ballabio
+
+	* [r18043] MzScheme/setup.scm:
+	  
+	  Avoid errors on recent gcc versions.
+
+2011-09-12 16:13  Luigi Ballabio
+
+	* [r17976] SWIG/bonds.i, SWIG/scheduler.i, SWIG/swap.i,
+	  SWIG/volatilities.i:
+	  
+	  Exported asset-swap functionality (thanks to Lluis Pujol Bajador.)
+
+2011-09-12 09:21  Luigi Ballabio
+
+	* [r17964] SWIG/calendars.i, SWIG/currencies.i, SWIG/daycounters.i,
+	  SWIG/indexes.i, SWIG/ql.i:
+	  
+	  Prevent Perl wrappers from overriding stringification.
+	  
+	  This could lead to segmemtation faults in some cases, and
+	  might interfere with the inner workings of the wrappers.
+
+2011-09-12 09:21  Luigi Ballabio
+
+	* [r17963] SWIG/ql.i:
+	  
+	  Undefine more macros that might be added by Perl implementations.
+
+2011-09-07 15:48  Luigi Ballabio
+
+	* [r17948] Python/test/QuantLibTestSuite.py, Python/test/cms.py,
+	  SWIG/cashflows.i, SWIG/marketelements.i, SWIG/vectors.i,
+	  SWIG/volatilities.i:
+	  
+	  Exported CMS coupons (thanks to Lluis Pujol Bajador.)
+
+2011-09-07 15:47  Luigi Ballabio
+
+	* [r17947] SWIG/distributions.i:
+	  
+	  Exported more distributions (thanks to Tawanda Gwena.)
+
+2011-08-03 09:45  Luigi Ballabio
+
+	* [r17919] SWIG/cashflows.i:
+	  
+	  Exported more coupon methods (thanks to Henner Heck.)
+
+2011-08-03 09:45  Luigi Ballabio
+
+	* [r17918] SWIG/calendars.i:
+	  
+	  Exported bespoke calendar (thanks to Henner Heck.)
+
+2011-05-31 15:09  Ferdinando Ametrano
+
+	* [r17758] ., CSharp/Makefile.am, CSharp/QuantLib_vc7.sln,
+	  CSharp/cpp/QuantlibWrapper_vc7.vcproj,
+	  CSharp/csharp/NQuantLib_vc7.csproj,
+	  CSharp/examples/BermudanSwaption_vc7.csproj, ChangeLog.txt,
+	  News.txt, Python/test/bonds.py:
+	  
+	  Merged revisions 1-HEAD of
+	  https://quantlib.svn.sourceforge.net/svnroot/quantlib/branches/R01010x-branch
+	  into C:\Projects\QuantLib\trunk, respecting ancestry
+
+2011-03-13 13:09  Klaus Spanderen
+
+	* [r17671] Scala/examples/RandomNumbers.scala:
+	  
+	  added Scala random numbers example
+
+2011-02-19 11:22  Klaus Spanderen
+
+	* [r17623] SWIG/randomnumbers.i, SWIG/statistics.i:
+	  
+	  added IncrementalStatistics
+
+2011-02-14 23:53  Klaus Spanderen
+
+	* [r17619] SWIG/randomnumbers.i:
+	  
+	  expose constructors for MersenneTwisterUniformRng and
+	  KnuthUniformRng
+
+2011-01-27 15:04  Luigi Ballabio
+
+	* [r17606] SWIG/swap.i:
+	  
+	  Restricted kwargs feature to Python
+
+2011-01-25 12:22  Luigi Ballabio
+
+	* [r17588] SWIG/swap.i:
+	  
+	  Added optional dates to interface.
+
+2011-01-25 12:22  Luigi Ballabio
+
+	* [r17586] Guile/setup.scm, MzScheme/setup.scm, Perl/Makefile.PL,
+	  Python/setup.py, Ruby/setup.rb, SWIG/ql.i, configure.ac:
+	  
+	  Increased version number to 1.2.
+
+2011-01-12 10:58  Klaus Spanderen
+
+	* [r17572] SWIG/exercise.i:
+	  
+	  removed useless ignore and redefinition statement
+
+2011-01-04 12:39  Klaus Spanderen
+
+	* [r17570] SWIG/exercise.i, SWIG/payoffs.i, Scala, Scala/README.txt,
+	  Scala/examples, Scala/examples/EquityOptions.scala:
+	  
+	  added example for QuantLib-Scala module (and some minor interface
+	  extensions)
 
 2010-12-10 10:49  Luigi Ballabio
 
