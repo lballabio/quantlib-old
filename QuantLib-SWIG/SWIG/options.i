@@ -4,7 +4,7 @@
  Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
  Copyright (C) 2008 Tito Ingargiola
- Copyright (C) 2010 Klaus Spanderen
+ Copyright (C) 2010, 2012 Klaus Spanderen
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -344,6 +344,22 @@ using QuantLib::HestonModel;
 typedef boost::shared_ptr<CalibratedModel> HestonModelPtr;
 %}
 
+%ignore CalibratedModel;
+class CalibratedModel {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGRUBY)
+    %rename("calibrate!") calibrate;
+    #elif defined(SWIGCSHARP)
+    %rename("parameters") params;
+    #endif
+  public:
+    Array params() const;
+    void calibrate(
+        const std::vector<boost::shared_ptr<CalibrationHelper> >&,
+        OptimizationMethod&, const EndCriteria &,
+        const Constraint& constraint = Constraint(),
+        const std::vector<Real>& weights = std::vector<Real>());
+};
+
 %template(CalibratedModel) boost::shared_ptr<CalibratedModel>;
 %rename(HestonModel) HestonModelPtr;
 class HestonModelPtr : public boost::shared_ptr<CalibratedModel> {
@@ -357,9 +373,8 @@ class HestonModelPtr : public boost::shared_ptr<CalibratedModel> {
 
             return new HestonModelPtr(new HestonModel(hProcess));
         }
-    }
+	}
 };
-
 
 %{
 using QuantLib::AnalyticHestonEngine;

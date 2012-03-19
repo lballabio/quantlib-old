@@ -39,8 +39,10 @@
 using QuantLib::CalibrationHelper;
 using QuantLib::SwaptionHelper;
 using QuantLib::CapHelper;
+using QuantLib::HestonModelHelper;
 typedef boost::shared_ptr<CalibrationHelper> SwaptionHelperPtr;
 typedef boost::shared_ptr<CalibrationHelper> CapHelperPtr;
+typedef boost::shared_ptr<CalibrationHelper> HestonModelHelperPtr;
 %}
 
 // calibration helpers
@@ -67,6 +69,7 @@ class CalibrationHelper {
     void setPricingEngine(const boost::shared_ptr<PricingEngine>& engine);
     Real marketValue() const;
     Real modelValue() const;
+	Real calibrationError();
     Volatility impliedVolatility(Real targetValue,
                                  Real accuracy, Size maxEvaluations,
                                  Volatility minVol, Volatility maxVol) const;
@@ -145,6 +148,26 @@ class CapHelperPtr : public boost::shared_ptr<CalibrationHelper> {
     }
 };
 
+%rename(HestonModelHelper) HestonModelHelperPtr;
+class HestonModelHelperPtr : public boost::shared_ptr<CalibrationHelper> {
+  public:
+	%extend {
+		HestonModelHelperPtr(const Period& maturity,
+                             const Calendar& calendar,
+                             const Real s0,
+                             const Real strikePrice,
+                             const Handle<Quote>& volatility,
+                             const Handle<YieldTermStructure>& riskFreeRate,
+                             const Handle<YieldTermStructure>& dividendYield,
+                             CalibrationHelper::CalibrationErrorType errorType
+								 = CalibrationHelper::RelativePriceError) {
+			return new HestonModelHelperPtr(
+				new HestonModelHelper(maturity, calendar, s0, strikePrice,
+									  volatility, riskFreeRate, dividendYield,
+									  errorType)); 
+		}
+	}
+};
 
 // allow use of CalibrationHelper vectors
 #if defined(SWIGCSHARP)

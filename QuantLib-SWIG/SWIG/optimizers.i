@@ -200,6 +200,7 @@ using QuantLib::ConjugateGradient;
 using QuantLib::Simplex;
 using QuantLib::SteepestDescent;
 using QuantLib::BFGS;
+using QuantLib::LevenbergMarquardt;
 %}
 
 class OptimizationMethod {
@@ -226,6 +227,13 @@ class SteepestDescent : public OptimizationMethod {
 class BFGS : public OptimizationMethod {
   public:
     BFGS();
+};
+
+class LevenbergMarquardt : public OptimizationMethod {
+  public:
+	LevenbergMarquardt(Real epsfcn = 1.0e-8,
+	                   Real xtol = 1.0e-8,
+    	               Real gtol = 1.0e-8);
 };
 
 
