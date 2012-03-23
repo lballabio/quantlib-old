@@ -36,7 +36,7 @@ procedural interface to a number of platforms including Microsoft
 Excel (see the <a href="http://quantlibxl.org">QuantLibXL</a> site)
 and OpenOffice.org Calc.</p>
 
-<p>Initial GNU R support is provided by means of <a href=
+<p>GNU R support is provided by means of <a href=
 "http://dirk.eddelbuettel.com/code/rquantlib.html">RQuantLib</a> by
 Dirk Eddelbuettel.</p>
 
@@ -47,6 +47,10 @@ looking for developers.</p>
 <p>The <a href="http://www.jquantlib.org/">JQuantLib</a> project aims
 at a 100% Java port. At this time, it provides about 65% of QuantLib
 0.9.7.</p>
+
+<p>An alternative set of Python wrappers is provided in
+the <a href="https://github.com/enthought/pyql">PyQL</a> project by
+Didrik Pinte and Patrick Henaff.</p>
 
 <p>Other projects aim at ports in a functional language.
 <a href="http://sourceforge.net/projects/quanthas/">QuantHas</a>
