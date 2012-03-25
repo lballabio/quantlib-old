@@ -99,7 +99,7 @@ class UniformRandomGenerator {
     Sample<Real> next() const;
 
 	%extend {
-		// improve performance for direct accessfaster version
+		// improve performance for direct access. faster version
 		Real nextValue() const {
 			return (*self).next().value;
 		}
@@ -158,7 +158,7 @@ class GaussianRandomGenerator {
     Sample<Real> next() const;
 
 	%extend {
-		// improve performance for direct accessfaster version
+		// improve performance for direct access, faster version
 		Real nextValue() const {
 			return (*self).next().value;
 		}

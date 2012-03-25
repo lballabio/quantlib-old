@@ -161,6 +161,8 @@ class MultiPath {
   public:
     Size pathSize() const;
     Size assetNumber() const;
+	Path& at(Size j);
+
     %extend {
         #if defined(SWIGPYTHON) || defined(SWIGRUBY)
         const Path& __getitem__(Integer i) {
@@ -259,6 +261,7 @@ class GaussianMultiPathGenerator {
       }
     }
     Sample<MultiPath> next() const;
+	Sample<MultiPath> antithetic() const;
 };
 
 
