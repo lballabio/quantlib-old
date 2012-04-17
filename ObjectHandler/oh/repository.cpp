@@ -109,6 +109,8 @@ namespace ObjectHandler {
 
     void Repository::registerObserver(shared_ptr<ObjectWrapper> objWrapper) {
 
+        objWrapper->unregisterAllWith();
+
         const set<string>& relationObs =
             objWrapper->object()->properties()->getPrecedentObjects();
         set<string>::const_iterator iter = relationObs.begin();
