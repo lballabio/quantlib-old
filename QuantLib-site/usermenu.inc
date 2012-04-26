@@ -39,6 +39,12 @@
 </ul>
 
 <hr>
+<div class="center">
+<div class="g-plusone" data-size="medium"></div>
+<div class="g-plus" data-action="share" data-annotation="bubble"></div>
+</div>
+
+<hr>
 <h3 class="navbartitle"><a href="http://www.statpro.com/quantlib_forum">First QuantLib Forum</a></h3>
 <div class="center"><strong>London, January 18th 2011</strong></div>
 <ul class="navbarlist">
@@ -105,3 +111,13 @@ height="33" border="0" alt="StatPro Logo"></a></div>
 <input type="hidden" value="quantlib.org" name="sitesearch">
 </div>
 </form>
+
+<script type="text/javascript">
+  window.___gcfg = {parsetags: 'onload'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
