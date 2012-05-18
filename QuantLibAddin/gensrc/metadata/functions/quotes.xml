@@ -160,7 +160,7 @@
     </Member>
 
     <Procedure name='qlBucketAnalysis'>
-      <description>bucket sensitivity analysis for a (single/vector/matrix) SimpleQuote.</description>
+      <description>delta NPV bucket sensitivity analysis for a (single/vector/matrix) SimpleQuote.</description>
       <alias>QuantLibAddin::bucketAnalysis</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -203,7 +203,7 @@
     </Procedure>
 
     <Procedure name='qlBucketAnalysisDelta'>
-      <description>bucket analysis delta</description>
+      <description>Parameters' bucket analysis delta for a single SimpleQuote.</description>
       <alias>QuantLibAddin::bucketAnalysisDelta</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -241,7 +241,7 @@
     </Procedure>
 
     <Procedure name='qlBucketAnalysisDelta2'>
-      <description>bucket analysis delta</description>
+      <description>Parameters' bucket analysis delta for a SimpleQuote vector.</description>
       <alias>QuantLibAddin::bucketAnalysisDelta2</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
