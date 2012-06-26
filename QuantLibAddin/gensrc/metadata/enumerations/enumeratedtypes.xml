@@ -287,6 +287,10 @@
           <value>QuantLib::Poland()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>Russia</string>
+          <value>QuantLib::Russia()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SaudiArabia::Tadawul</string>
           <value>QuantLib::SaudiArabia(QuantLib::SaudiArabia::Tadawul)</value>
         </EnumeratedType>
