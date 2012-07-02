@@ -2,8 +2,8 @@
 # !defines
 
 !define APP "gensrc"
-!define VER_NUMBER "1.1.0"
-!define DEFAULT_PATH "C:\build_ql_1_1_0"
+!define VER_NUMBER "1.2.0"
+!define DEFAULT_PATH "C:\build_ql_1_2_0"
 
 # Compiler Flags
 
@@ -49,7 +49,7 @@ Section
     File /r /x .svn "gensrc\stub.*"
 
     SetOutPath "$INSTDIR\Docs"
-    File "Docs\gensrc-docs-${VER_NUMBER}.chm"
+    #File "Docs\gensrc-docs-${VER_NUMBER}.chm"
     File "Docs\docs_vc7.vcproj"
     File "Docs\docs_vc8.vcproj"
     File "Docs\docs_vc9.vcproj"
@@ -82,8 +82,8 @@ Section
 
     CreateDirectory "$SMPROGRAMS\${APP}-${VER_NUMBER}"
 
-    CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\Documentation (WinHelp).lnk" \
-                   "$INSTDIR\Docs\gensrc-docs-${VER_NUMBER}.chm"
+    #CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\Documentation (WinHelp).lnk" \
+    #               "$INSTDIR\Docs\gensrc-docs-${VER_NUMBER}.chm"
 
     CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\Uninstall gensrc.lnk" \
                    "$INSTDIR\gensrcUninstall.exe" "" \

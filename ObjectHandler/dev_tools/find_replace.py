@@ -15,9 +15,8 @@
 #
 # Settings within this script:
 #
-# ROOT_DIR
-# The root folder of the source tree from which you want the find/replace
-# to begin.
+# ROOT_DIRS
+# The list of root folders from which you want the find/replace to begin.
 #
 # SUBSTITUTIONS
 # A list of one or more regexes to be performed on each file.
@@ -41,10 +40,16 @@ import re
 import getopt
 import shutil
 
-# ROOT_DIR - The root folder of the source tree from which you want the
-# find/replace to begin.
-#ROOT_DIR = 'C:/erik/projects/trunk/QuantLibXL'
-ROOT_DIR = '/usr/local/erik/projects/trunk/QuantLibXL'
+# ROOT_DIRS - The list of root folders from which
+# you want the find/replace to begin.
+ROOT_DIRS = (
+#    '/usr/local/erik/projects/trunk/QuantLibXL',
+    #'C:/erik/ql/R01020x-branch/gensrc',
+    'C:/erik/ql/R01020x-branch/log4cxx',
+    #'C:/erik/ql/R01020x-branch/ObjectHandler',
+    #'C:/erik/ql/R01020x-branch/QuantLibAddin',
+    #'C:/erik/ql/R01020x-branch/QuantLibXL'
+)
 
 # CALLBACK FUNCTIONS - Called from regexes which require multiple passes
 
@@ -91,10 +96,10 @@ SUBSTITUTIONS = (
 #   (re.compile('abcDEFghi'), toLower),
 
 ##  Frequently used
-    (re.compile('1_0_1'), '1_1_0'),
-    (re.compile('1\.0\.1'), '1.1.0'),
-    (re.compile('0x010001'), '0x010100'),
-    (re.compile('R010001f0'), 'R010100f0'),
+    (re.compile('1_1_0'), '1_2_0'),
+    (re.compile('1\.1\.0'), '1.2.0'),
+    (re.compile('0x010100'), '0x010200'),
+    (re.compile('R010101f0'), 'R010200f0'),
 #   (re.compile('0\.10\.0c'), '0.10.0d'),
 )
 
@@ -243,9 +248,6 @@ def processDir(ignore, dirPath, nameList):
             prompt_exit('unknown file type: ' + fullPath)
         i -= 1
 
-if not os.path.isdir(ROOT_DIR):
-    prompt_exit('invalid directory: ' + ROOT_DIR)
-
 try:
     opts, args = getopt.getopt(sys.argv[1:], 'dsvh', 'help' )
 except getopt.GetoptError:
@@ -265,6 +267,12 @@ for o, a in opts:
 if execSub == -1:
     usage()
 
-os.path.walk(ROOT_DIR, processDir, None)
+for rootDir in ROOT_DIRS:
+
+    if not os.path.isdir(rootDir):
+        prompt_exit('invalid directory: ' + rootDir)
+
+    os.path.walk(rootDir, processDir, None)
+
 prompt_exit()
 
