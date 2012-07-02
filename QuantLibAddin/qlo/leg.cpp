@@ -31,6 +31,7 @@
 #include <qlo/couponvectors.hpp>
 
 #include <ql/instruments/capfloor.hpp>
+#include <ql/instruments/swap.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
 #include <ql/cashflows/simplecashflow.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
@@ -84,13 +85,23 @@ namespace QuantLibAddin {
                              earlier_than<shared_ptr<CashFlow> >());
     }
 
-    Leg::Leg(const shared_ptr<ValueObject>& p,
-             const boost::shared_ptr<QuantLib::CapFloor>& capFloor,
+    Leg::Leg(const shared_ptr<ValueObject>& prop,
+             const shared_ptr<QuantLib::CapFloor>& capFloor,
              bool permanent)
-    : ObjectHandler::LibraryObject<QuantLib::Leg>(p, permanent)
+    : ObjectHandler::LibraryObject<QuantLib::Leg>(prop, permanent)
     {
         libraryObject_ = shared_ptr<QuantLib::Leg>(new QuantLib::Leg());
         *libraryObject_ = capFloor->floatingLeg();
+    }
+
+    Leg::Leg(const shared_ptr<ObjectHandler::ValueObject>& prop,
+             const shared_ptr<QuantLib::Swap>& swap,
+             QuantLib::Size i,
+             bool permanent)
+    : ObjectHandler::LibraryObject<QuantLib::Leg>(prop, permanent)
+    {
+        libraryObject_ = shared_ptr<QuantLib::Leg>(new QuantLib::Leg());
+        *libraryObject_ = swap->leg(i);
     }
 
     void Leg::setCouponPricers(
