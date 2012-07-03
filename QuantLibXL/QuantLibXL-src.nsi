@@ -109,9 +109,6 @@ Section
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 10 project workspace.lnk" \
                    "$INSTDIR\QuantLibXL_basic_vc10.sln"
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
-                   "$INSTDIR\framework\QuantLibXL.xla"
-
     CreateShortCut "$SMPROGRAMS\QuantLibXL-src-${VER_NUMBER}\README.txt.lnk" \
                    "$INSTDIR\README.txt"
 
@@ -145,26 +142,34 @@ Section /o Framework
     File "xll\QuantLibXL-${COMPILER}-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 
     SetOutPath "$INSTDIR\framework"
+    #File "framework\QuantLibXL.xml"
     File "framework\QuantLibXL.xla"
     File "framework\QuantLibXLA.cer"
+    File "framework\ReadMe.txt"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r "Workbooks\*.xls"
 
     SetOutPath "$INSTDIR\Data"
     File /r "Data\*.xls"
-    File /r "Data\*.xml"
+    #File /r "Data\*.xml"
 
-    SetOutPath "$INSTDIR\framework"
-    File /r "framework\*.txt"
-    File /r "framework\*.xla"
-    File /r "framework\*.xlam"
-    File /r "framework\*.xls"
-    File /r "framework\*.xml"
+    SetOutPath "$INSTDIR\metadata"
+    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
 
     # ObjectBuilder crashes if it can't find the icon
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\favicon.bmp"
+
+    SetOutPath "$INSTDIR\framework"
+    File /r "framework\*.txt"
+    File /r "framework\*.xla"
+    #File /r "framework\*.xlam"
+    File /r "framework\*.xls"
+    File /r "framework\*.xml"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
+                   "$INSTDIR\framework\QuantLibXL.xla"
 
 SectionEnd
 

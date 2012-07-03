@@ -109,17 +109,17 @@ SectionEnd
 Section /o Framework
 
     SetOutPath "$INSTDIR\framework"
-    File "framework\QuantLibXL.xml"
+    #File "framework\QuantLibXL.xml"
     File "framework\QuantLibXL.xla"
     File "framework\QuantLibXLA.cer"
-    File "framework\readme.txt"
+    File "framework\ReadMe.txt"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r "Workbooks\*.xls"
 
     SetOutPath "$INSTDIR\Data"
     File /r "Data\*.xls"
-    File /r "Data\*.xml"
+    #File /r "Data\*.xml"
 
     SetOutPath "$INSTDIR\metadata"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
@@ -131,7 +131,7 @@ Section /o Framework
     SetOutPath "$INSTDIR\framework"
     File /r "framework\*.txt"
     File /r "framework\*.xla"
-    File /r "framework\*.xlam"
+    #File /r "framework\*.xlam"
     File /r "framework\*.xls"
     File /r "framework\*.xml"
 
