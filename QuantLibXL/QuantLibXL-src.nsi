@@ -152,7 +152,7 @@ Section /o Framework
 
     SetOutPath "$INSTDIR\Data"
     File /r "Data\*.xls"
-    #File /r "Data\*.xml"
+    File /r "Data\*.xml"
 
     SetOutPath "$INSTDIR\metadata"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
