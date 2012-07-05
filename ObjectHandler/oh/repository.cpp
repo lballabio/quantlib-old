@@ -109,7 +109,7 @@ namespace ObjectHandler {
 
     void Repository::registerObserver(shared_ptr<ObjectWrapper> objWrapper) {
 
-        objWrapper->unregisterAllWith();
+        objWrapper->unregisterWithAll();
 
         const set<string>& relationObs =
             objWrapper->object()->properties()->getPrecedentObjects();
