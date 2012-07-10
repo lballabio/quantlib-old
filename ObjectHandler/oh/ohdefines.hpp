@@ -28,14 +28,8 @@
 #include <boost/config.hpp>
 #include <boost/version.hpp>
 
-#if BOOST_VERSION < 103401
-    #error using an old version of Boost, please update to 1.34.1 or higher.
-#endif
-
-// Workaround for problem with boost 1.34.1 + gcc 4.3.2 (or all 4.3.x?) for
-// #include <boost/serialization/vector.hpp>
-#if (BOOST_VERSION == 103401 && __GNUC__ == 4 && __GNUC_MINOR__ == 3) // && __GNUC_PATCHLEVEL__ == 2
-#define BOOST_NO_INTRINSIC_INT64_T
+#if BOOST_VERSION < 103600
+    #error using an old version of Boost, please update to 1.36.0 or higher.
 #endif
 
 //! Version string.
@@ -172,4 +166,3 @@ OH_LIB_CTOR(derived_class, base_class) \
 }
 
 #endif
-

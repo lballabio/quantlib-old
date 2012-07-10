@@ -29,8 +29,11 @@
 #include <oh/repository.hpp>
 #include <oh/conversions/getobjectvector.hpp>
 
-// fix for boost 1.46.1+
-#define BOOST_FILESYSTEM_VERSION 2
+//#if BOOST_VERSION > 105000
+    //#define BOOST_FILESYSTEM_VERSION 3
+#if BOOST_VERSION > 104601 & BOOST_VERSION < 105000
+    #define BOOST_FILESYSTEM_VERSION 2
+#endif
 
 #include <boost/regex.hpp>
 #include <boost/filesystem.hpp>
@@ -181,19 +184,21 @@ namespace ObjectHandler {
         boost::filesystem::path boostPath(path);
 
         // If a parent directory has been specified then ensure it exists.
-        if ( !boostPath.branch_path().empty() ) {
+        if ( !boostPath.parent_path().empty() ) {
             OH_REQUIRE(boost::filesystem::exists(boostPath.branch_path()),
                        "Invalid parent path : " << path);
         }
-        // deprecated branch_path() observer has been used above for boost 1.35
-        // backward compatibility. It should be replaced by parent_path()
 
         // If the file itself exists then ensure we can overwrite it.
         if (boost::filesystem::exists(boostPath)) {
             if (forceOverwrite) {
                 try {
                     boost::filesystem::remove(boostPath);
+#if BOOST_VERSION < 105000
                 } catch (const boost::filesystem::basic_filesystem_error<boost::filesystem::path>&) {
+#else
+                } catch (const boost::filesystem::filesystem_error&) {
+#endif
                     OH_FAIL("Overwrite=TRUE but overwrite failed for existing file: " << path);
                 }
             } else {
@@ -272,7 +277,12 @@ namespace ObjectHandler {
 
             for (boost::filesystem::recursive_directory_iterator itr(boostPath);
                 itr != boost::filesystem::recursive_directory_iterator(); ++itr) {
-                    if (regex_match(itr->path().leaf(), r) && boost::filesystem::is_regular(itr->status())) {
+#if BOOST_VERSION < 105000
+                    if (regex_match(itr->path().leaf(), r) &&
+#else
+                    if (regex_match(itr->path().leaf().string(), r) &&
+#endif
+                                    boost::filesystem::is_regular(itr->status())) {
                         fileFound = true;
                         processPath(itr->path().string(), overwriteExisting, returnValue);
                     }
@@ -282,7 +292,12 @@ namespace ObjectHandler {
 
             for (boost::filesystem::directory_iterator itr(boostPath);
                 itr != boost::filesystem::directory_iterator(); ++itr) {
-                    if (regex_match(itr->path().leaf(), r) && boost::filesystem::is_regular(itr->status())) {
+#if BOOST_VERSION < 105000
+                    if (regex_match(itr->path().leaf(), r) &&
+#else
+                    if (regex_match(itr->path().leaf().string(), r) &&
+#endif
+                                    boost::filesystem::is_regular(itr->status())) {
                         fileFound = true;
                         processPath(itr->path().string(), overwriteExisting, returnValue);
                     }
