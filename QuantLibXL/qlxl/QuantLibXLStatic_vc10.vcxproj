@@ -364,6 +364,7 @@
     <ClCompile Include="functions\cmsmarketcalibration.cpp" />
     <ClCompile Include="functions\correlation.cpp" />
     <ClCompile Include="functions\couponvectors.cpp" />
+    <ClCompile Include="functions\credit.cpp" />
     <ClCompile Include="functions\ctsmmcapletcalibration.cpp" />
     <ClCompile Include="functions\curvestate.cpp" />
     <ClCompile Include="functions\date.cpp" />
