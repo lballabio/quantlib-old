@@ -1,0 +1,393 @@
+<Category name='credit'>
+  <description>QuantLib Credit</description>
+  <displayName>QuantLib Credit</displayName>
+  <xlFunctionWizardCategory>QuantLib Credit</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>qlo/credit.hpp</include>
+    <include>qlo/pricingengines.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/handleimpl.hpp</include>
+    <include>qlo/conversions/coercetermstructure.hpp</include>
+    <include>qlo/ratehelpers.hpp</include>
+
+    <include>ql/termstructures/credit/defaultprobabilityhelpers.hpp</include>
+    <include>ql/pricingengines/credit/midpointcdsengine.hpp</include>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/credit.hpp</include>
+    <include>qlo/pricingengines.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/conversions/coercetermstructure.hpp</include>
+    <include>qlo/ratehelpers.hpp</include>
+
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+    <include>ql/termstructures/defaulttermstructure.hpp</include>
+    <include>ql/time/daycounter.hpp</include>
+  </serializationIncludes>
+  <copyright>
+    Copyright (C) 2010 Roland Lichters
+  </copyright>
+
+  <Functions>
+
+    <Constructor name='qlCreditDefaultSwap'>
+      <libraryFunction>CreditDefaultSwap</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+	<SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='BuyerSeller' default='"Buyer"'>
+            <type>QuantLib::Protection::Side</type>
+            <tensorRank>scalar</tensorRank>
+            <description>BUYER for bought, SELLER for sold protection.</description>
+          </Parameter>
+          <Parameter name='Notional'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Nominal amount</description>
+          </Parameter>
+          <Parameter name='Upfront'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>upfront in fractional units</description>
+          </Parameter>
+          <Parameter name='Spread'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>running spread in fractional units</description>
+          </Parameter>
+          <Parameter name='PremiumSchedule'>
+            <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>premium leg Schedule object ID.</description>
+          </Parameter>
+          <Parameter name='PaymentConvention' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment dates' business day convention.</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>premium leg day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <Parameter name='SettlesAccrual' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE ensures settlement of accural.</description>
+          </Parameter>
+          <Parameter name='PayAtDefault' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE ensures payment at default time</description>
+          </Parameter>
+          <Parameter name='ProtectionStart' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>protection start date.</description>
+          </Parameter>
+          <Parameter name='UpfrontDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>upfront date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlMidPointCdsEngine'>
+      <libraryFunction>MidPointCdsEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='DefaultCurve'>
+            <type>QuantLib::DefaultProbabilityTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>default term structure object ID.</description>
+          </Parameter>
+          <Parameter name='RecoveryRate'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>constant recovery rate</description>
+          </Parameter>
+          <Parameter name='YieldCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlHazardRateCurve'>
+      <libraryFunction>HazardRateCurve</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveDates' exampleValue ="'2M,3M,4M,5M,6M">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>dates of the curve.</description>
+          </Parameter>
+          <Parameter name='CurveRates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>hazard rates for the above dates.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSpreadCdsHelper'>
+      <libraryFunction>SpreadCdsHelper</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RunningSpread' exampleValue='0.042322'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>quote.</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>CDS length (e.g. 5Y for five years).</description>
+          </Parameter>
+          <Parameter name='SettlementDays' default='0'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement days</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='Frequency' exampleValue='Annual'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+          <Parameter name='PaymentConvention' exampleValue='ModifiedFollowing'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment leg convention (e.g. Unadjusted).</description>
+          </Parameter>
+          <Parameter name='GenRule' exampleValue='Backward'>
+            <type>QuantLib::DateGeneration::Rule</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Date generation rule (Backward, Forward, ThirdWednesday, Twentieth, TwentiethIMM, Zero).</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <Parameter name='RecoveryRate'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>recovery rate</description>
+          </Parameter>
+          <Parameter name='DiscountingCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='SettleAccrual' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE ensures settlement of accural.</description>
+          </Parameter>
+          <Parameter name='PayAtDefault' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE ensures payment at default time</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlUpfrontCdsHelper'>
+      <libraryFunction>UpfrontCdsHelper</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='UpfrontSpread' exampleValue='0.042322'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>upfront spread quote.</description>
+          </Parameter>
+          <Parameter name='RunningSpread' exampleValue='0.042322'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>running spread.</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>CDS length (e.g. 5Y for five years).</description>
+          </Parameter>
+          <Parameter name='SettlementDays' default='0'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement days</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='Frequency' exampleValue='Annual'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+          <Parameter name='PaymentConvention' exampleValue='ModifiedFollowing'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment leg convention (e.g. Unadjusted).</description>
+          </Parameter>
+          <Parameter name='GenRule' exampleValue='Backward'>
+            <type>QuantLib::DateGeneration::Rule</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Date generation rule (Backward, Forward, ThirdWednesday, Twentieth, TwentiethIMM, Zero).</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='30/360 (Bond Basis)'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <Parameter name='RecoveryRate'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>recovery rate</description>
+          </Parameter>
+          <Parameter name='DiscountingCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='UpfrontSettlementDays'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>upfront settlement days</description>
+          </Parameter>
+          <Parameter name='SettleAccrual' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE ensures settlement of accural.</description>
+          </Parameter>
+          <Parameter name='PayAtDefault' const='False' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE ensures payment at default time</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlPiecewiseFlatHazardRateCurve'>
+      <libraryFunction>PiecewiseFlatHazardRateCurve</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+	<SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ReferenceDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>term structure reference date.</description>
+          </Parameter>
+          <Parameter name='Helpers' exampleValue ='CDS1Y, CDS5Y, CDS10Y'>
+            <type>QuantLib::DefaultProbabilityHelper</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of default probability helpers.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='Accuracy' default='1.0e-12'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Bootstrapping accuracy.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlPiecewiseFlatForwardCurve'>
+      <libraryFunction>PiecewiseFlatForwardCurve</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+	<SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ReferenceDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>term structure reference date.</description>
+          </Parameter>
+          <Parameter name='RateHelpers' exampleValue ='EUROND,EURTND,EURSND,EURSWD,EUR2WD'>
+            <type>QuantLib::RateHelper</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of rate-helpers.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='Accuracy' default='1.0e-12'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Bootstrapping accuracy.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+
+</Category>

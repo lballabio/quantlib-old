@@ -1,0 +1,800 @@
+<Category name='date'>
+  <description>Date- and Period-related QuantLib functions.</description>
+  <displayName>Date</displayName>
+  <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>qlo/date.hpp</include>
+    <include>ql/time/date.hpp</include>
+    <include>ql/time/imm.hpp</include>
+    <include>ql/time/ecb.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006, 2009 Ferdinando Ametrano
+  </copyright>
+  <Functions>
+
+    <!-- to be deprecated in favour of coercion -->
+    <Procedure name='qlPeriodFromFrequency'>
+      <description>returns a Period from a given Frequency (e.g. 6M from SemiAnnual).</description>
+      <alias>QuantLibAddin::periodFromFrequency</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Frequency' exampleValue='Annual'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <!-- to be deprecated in favour of coercion -->
+    <Procedure name='qlFrequencyFromPeriod' loopParameter='Period'>
+      <description>returns a Frequency from a given Period (e.g. SemiAnnual from 6M).</description>
+      <alias>QuantLibAddin::frequencyFromPeriod</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Period' exampleValue='1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>period(s) to advance (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Frequency</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlPeriodLessThan'>
+      <description>Returns TRUE if the first period is less than the second.</description>
+      <alias>QuantLib::operator&lt;</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Period1' exampleValue='1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>left hand side.</description>
+          </Parameter>
+          <Parameter name='Period2' exampleValue='2Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>right hand side.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlPeriodEquivalent'>
+      <description>Returns the period equivalent to the input (e.g. 11M for 1Y-1M).</description>
+      <alias>QuantLibAddin::periodEquivalent</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Period' exampleValue='1Y-1M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>input period (e.g. 1Y-1M).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlDateMinDate'>
+      <description>returns the earliest date allowed in QuantLib.</description>
+      <alias>QuantLib::Date::minDate</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlDateMaxDate'>
+      <description>returns the latest date allowed in QuantLib.</description>
+      <alias>QuantLib::Date::maxDate</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlDateIsLeap' loopParameter='Year'>
+      <description>returns TRUE if a year is leap.</description>
+      <alias>QuantLib::Date::isLeap</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Year' exampleValue='2007'>
+            <type>long</type>
+            <tensorRank>vector</tensorRank>
+            <description>year (e.g. 2006).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlDateEndOfMonth' loopParameter='Date'>
+      <description>returns the last day of the month to which the given date belongs.</description>
+      <alias>QuantLib::Date::endOfMonth</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' exampleValue='15-Feb-2007'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlDateIsEndOfMonth' loopParameter='Date'>
+      <description>returns TRUE if a date is the last day of its month.</description>
+      <alias>QuantLib::Date::isEndOfMonth</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' exampleValue='28-Feb-2007'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlDateNextWeekday' loopParameter='Date'>
+      <description>Returns the next given weekday following or equal to the given date (e.g., the Friday following Tuesday, January 15th, 2002 was January 18th, 2002).</description>
+      <alias>QuantLib::Date::nextWeekday</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' exampleValue='09-Feb-2007'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+          <Parameter name='Weekday' exampleValue='Monday' const='False'>
+            <type>QuantLib::Weekday</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Weekday (e.g. Wednesday, or Wed).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <!-- doesn't work in the wizard -->
+    <Procedure name='qlDateNthWeekday'>
+      <description>Returns the n-th given weekday in the given month and year (e.g., the 4th Thursday of March, 1998 was March 26th, 1998).</description>
+      <alias>QuantLib::Date::nthWeekday</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Nth' exampleValue='2'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ordinal number (greater than zero, less than 6).</description>
+          </Parameter>
+          <Parameter name='Weekday' exampleValue='Monday'>
+            <type>QuantLib::Weekday</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Weekday (e.g. Wednesday, or Wed).</description>
+          </Parameter>
+          <Parameter name='Month' exampleValue='Jan'>
+            <type>QuantLib::Month</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Month (e.g. January, or Jan, or '1').</description>
+          </Parameter>
+          <Parameter name='Year' exampleValue='2007'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>year (e.g. 2007).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIMMIsIMMdate' loopParameter='Date'>
+      <description>returns whether or not the given date is an IMM date.</description>
+      <alias>QuantLib::IMM::isIMMdate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' exampleValue='38791'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='true' const='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIMMIsIMMcode' loopParameter='Code'>
+      <description>returns whether or not the given code is an IMM code.</description>
+      <alias>QuantLib::IMM::isIMMcode</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Code' exampleValue='H6'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>2 letter string (e.g. H6).</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='true' const='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIMMcode' loopParameter='IMMdate'>
+      <description>returns the code corresponding to a given IMM date (e.g. H6 for Wednesday, March 15th, 2006). It fails if the input date is not an IMM date.</description>
+      <alias>QuantLib::IMM::code</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='IMMdate' exampleValue='38791'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>IMM date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIMMNextCode'>
+      <description>returns the code for the first contract listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
+      <alias>QuantLib::IMM::nextCode</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='true' const='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIMMNextCodes'>
+      <description>returns the codes for the next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIMMdate' loopParameter='IMMcode'>
+      <description>returns the IMM date corresponding to the given IMM code (e.g. Wednesday, March 15th, 2006 for H6).</description>
+      <alias>QuantLib::IMM::date</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='IMMcode' exampleValue='H6'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>2 letter IMM code (e.g. H6).</description>
+          </Parameter>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIMMNextDate'>
+      <description>returns the delivery date for the first contract listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
+      <alias>QuantLib::IMM::nextDate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='true' const='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlIMMNextDates'>
+      <description>returns the delivery dates for the next contracts listed in the International Money Market section of the Chicago Mercantile Exchange.</description>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+
+    <Procedure name='qlECBKnownDates'>
+      <description>returns all the known ECB maintenance period start dates.</description>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBAddDate'>
+      <description>add an ECB date to the list of known ECB dates.</description>
+      <alias>QuantLib::ECB::addDate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' example='40198'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>to be added to the list of known ECB dates.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBRemoveDate'>
+      <description>remove an ECB date from the list of known ECB dates.</description>
+      <alias>QuantLib::ECB::removeDate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' example='40198'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>to be removed from the list of known ECB dates.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBdate2'>
+      <description>returns the ECB maintenance period start date in the given month/year.</description>
+      <alias>QuantLib::ECB::date</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Month' exampleValue='Jan'>
+            <type>QuantLib::Month</type>
+            <tensorRank>scalar</tensorRank>
+            <description>month (e.g. January, or Jan, or '1').</description>
+          </Parameter>
+          <Parameter name='Year' exampleValue='2010'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>year (e.g. 2010).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBdate'>
+      <description>returns the ECB maintenance period start date for the given ECB code.</description>
+      <alias>QuantLib::ECB::date</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ECBcode' exampleValue='MAR10'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>5 letter ECB code (e.g. MAR10).</description>
+          </Parameter>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBcode'>
+      <description>returns the code corresponding to a given ECB date (e.g. MAR10 for Wednesday, March xxth, 2010). It fails if the input date is not an ECB date.</description>
+      <alias>QuantLib::ECB::code</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ECBdate' exampleValue='38791'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ECB date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBNextDate'>
+      <description>returns the next ECB maintenance period start date following the given date.</description>
+      <alias>QuantLib::ECB::nextDate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBNextDate2'>
+      <description>returns the next ECB maintenance period start date following the given date.</description>
+      <alias>QuantLib::ECB::nextDate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Code' exampleValue='MAR10'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>5 letter ECB code (e.g. MAR10).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBNextDates'>
+      <description>returns all the known ECB maintenance period start dates following the given date.</description>
+      <alias>QuantLib::ECB::nextDates</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBIsECBdate' loopParameter='Date'>
+      <description>returns whether or not the given date is an ECB maintenance period start date.</description>
+      <alias>QuantLib::ECB::isECBdate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' exampleValue='38791'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBIsECBcode' loopParameter='Code'>
+      <description>returns whether or not the given code is an ECB code.</description>
+      <alias>QuantLib::ECB::isECBcode</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Code' exampleValue='MAR10'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>5 letter ECB code (e.g. MAR10).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBNextCode'>
+      <description>returns the code for the first ECB date.</description>
+      <alias>QuantLib::ECB::nextCode</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlECBNextCode2'>
+      <description>returns the code for the next ECB date.</description>
+      <alias>QuantLib::ECB::nextCode</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Code' exampleValue='MAR10'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>5 letter ECB code (e.g. MAR10).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+</Category>

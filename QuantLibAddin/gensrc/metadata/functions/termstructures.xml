@@ -1,0 +1,646 @@
+<Category name='termstructures'>
+  <description>functions to construct and use YieldTermStructure objects.</description>
+  <displayName>Yield Term Structures</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/conversions/coercetermstructure.hpp</include>
+    
+    <include>qlo/ratehelpers.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/handleimpl.hpp</include>
+    <include>qlo/conversions/coercetermstructure.hpp</include>
+    
+    <include>qlo/ratehelpers.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2005, 2006 Eric Ehlers
+    Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
+    Copyright (C) 2005 Plamen Neykov
+    Copyright (C) 2005 Aurelien Chanudet
+  </copyright>
+  <Functions>
+
+    <!-- TermStructure interface -->
+    <Member name='qlTermStructureDayCounter' type='QuantLib::TermStructure' superType='libraryTermStructure'>
+      <description>Returns the DayCounter used by the given TermStructure object.</description>
+      <libraryFunction>dayCounter</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::DayCounter</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTermStructureMaxDate' type='QuantLib::TermStructure' superType='libraryTermStructure'>
+      <description>Returns the max date for the given TermStructure object.</description>
+      <libraryFunction>maxDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTermStructureReferenceDate' type='QuantLib::TermStructure' superType='libraryTermStructure'>
+      <description>Returns the reference date for the given TermStructure object.</description>
+      <libraryFunction>referenceDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTermStructureTimeFromReference' type='QuantLib::TermStructure' superType='libraryTermStructure' loopParameter='Date'>
+      <description>Returns the time from the reference date for the given TermStructure object.</description>
+      <libraryFunction>timeFromReference</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!-- This function does not compile on 64-bit Linux so temporarily excluding from C++ addin -->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' exampleValue ="1Y">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of dates.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTermStructureCalendar' type='QuantLib::TermStructure' superType='libraryTermStructure'>
+      <description>Returns the calendar used by the given TermStructure object.</description>
+      <libraryFunction>calendar</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Calendar</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTermStructureSettlementDays' type='QuantLib::TermStructure' superType='libraryTermStructure'>
+      <description>Returns the number of settlement days for the given TermStructure object.</description>
+      <libraryFunction>settlementDays</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Natural</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- YieldTermStructure interface -->
+    <Member name='qlYieldTSDiscount' type='QuantLib::YieldTermStructure' superType='libraryTermStructure' loopParameter='DfDates'>
+      <description>Returns a discount factor from the given YieldTermStructure object.</description>
+      <libraryFunction>discount</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='DfDates' exampleValue ="'1Y,2Y,3Y,4Y,5Y">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of dates.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE allows extrapolation.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::DiscountFactor</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlYieldTSForwardRate' type='QuantLib::YieldTermStructure' superType='libraryTermStructure' loopParameter='D2'>
+      <description>Returns the forward interest rate from the given YieldTermStructure object.</description>
+      <libraryFunction>forwardRate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='D1' exampleValue ='1M'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>first date.</description>
+          </Parameter>
+          <Parameter name='D2' exampleValue ="'2M,3M,4M,5M,6M">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>second date.</description>
+          </Parameter>
+          <Parameter name='ResultDayCounter'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>result DayCounter.</description>
+          </Parameter>
+          <Parameter name='Compounding' default='"Simple"' const='False'>
+            <type>QuantLib::Compounding</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Interest rate compounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
+          </Parameter>
+          <Parameter name='Frequency' default='"Annual"' const='False'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE allows extrapolation.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::InterestRate</type>
+        <superType>libraryType</superType>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlYieldTSForwardRate2' type='QuantLib::YieldTermStructure' superType='libraryTermStructure' loopParameter='Date'>
+      <description>Returns the forward interest rate from the given YieldTermStructure object.</description>
+      <libraryFunction>forwardRate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' exampleValue ="'2M,3M,4M,5M,6M">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>first date.</description>
+          </Parameter>
+          <Parameter name='Period' exampleValue ='1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Period (e.g. '7D', '3M', '1Y', etc).</description>
+          </Parameter>
+          <Parameter name='ResultDayCounter'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>result DayCounter.</description>
+          </Parameter>
+          <Parameter name='Compounding' default='"Simple"' const='False'>
+            <type>QuantLib::Compounding</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Interest rate compounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
+          </Parameter>
+          <Parameter name='Frequency' default='"Annual"' const='False'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE allows extrapolation.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::InterestRate</type>
+        <superType>libraryType</superType>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlYieldTSZeroRate' type='QuantLib::YieldTermStructure' superType='libraryTermStructure' loopParameter='Dates'>
+      <description>Returns the zero interest rate from the given YieldTermStructure object.</description>
+      <libraryFunction>zeroRate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+	<!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dates' exampleValue ="'2M,3M,4M,5M,6M">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+          <Parameter name='ResultDayCounter'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>resultDayCounter.</description>
+          </Parameter>
+          <Parameter name='Compounding' default='"Continuous"' const='False'>
+            <type>QuantLib::Compounding</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
+          </Parameter>
+          <Parameter name='Frequency' default='"Annual"' const='False'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE allows extrapolation.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::InterestRate</type>
+        <superType>libraryType</superType>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- RelinkableHandle<YieldTermStructure> -->
+    <Constructor name='qlRelinkableHandleYieldTermStructure'>
+      <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::YieldTermStructure, QuantLib::YieldTermStructure&gt;</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>RelinkableHandleProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurrentLink' default='""'>
+            <type>string</type>
+            <superType>handlePredecessor</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>YieldTermStructure object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- YieldTermStructure constructors -->
+    <Constructor name='qlDiscountCurve'>
+      <libraryFunction>DiscountCurve</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveDates' exampleValue ="'2M,3M,4M,5M,6M">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>dates of the curve.</description>
+          </Parameter>
+          <Parameter name='CurveDiscounts' exampleValue ='1.0,0.95,0.9,0.85,0.8'>
+            <type>QuantLib::DiscountFactor</type>
+            <tensorRank>vector</tensorRank>
+            <description>discount factors for the above dates.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlZeroCurve'>
+      <libraryFunction>ZeroCurve</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveDates' exampleValue ="'2M,3M,4M,5M,6M">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>dates of the curve.</description>
+          </Parameter>
+          <Parameter name='CurveYields' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>zero rates for the above dates.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlForwardCurve'>
+      <libraryFunction>ForwardCurve</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurveDates' exampleValue ="'2M,3M,4M,5M,6M">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>dates of the curve.</description>
+          </Parameter>
+          <Parameter name='ForwardYields' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>vector</tensorRank>
+            <description>forwards rates for the above dates.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlFlatForward'>
+      <libraryFunction>FlatForward</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='NDays' default='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of days to advance from EvaluationDate (usually zero or two): it fixes the date at which the discount factor = 1.0.</description>
+          </Parameter>
+          <Parameter name='Calendar' default ='"NullCalendar"'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate.</description>
+          </Parameter>
+          <Parameter name='Rate' exampleValue='0.044'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>the curve level.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='Compounding' default ='"Continuous"'>
+            <type>QuantLib::Compounding</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Interest rate coumpounding rule (Simple:1+rt, Compounded:(1+r)^t, Continuous:e^{rt}).</description>
+          </Parameter>
+          <Parameter name='Frequency' default='"Annual"'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>frequency (e.g. Annual, Semiannual, Every4Month, Quarterly, Bimonthly, Monthly).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlForwardSpreadedTermStructure'>
+      <libraryFunction>ForwardSpreadedTermStructure</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='BaseYieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Base YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='Spread' exampleValue='0.0'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>spread.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlImpliedTermStructure'>
+      <libraryFunction>ImpliedTermStructure</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='BaseYieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Base YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='ReferenceDate' exampleValue ='1D'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the reference date the base YieldTermStructure should be shifted to.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+    <Constructor name='qlInterpolatedYieldCurve'>
+      <libraryFunction>InterpolatedYieldCurve</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+	<!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dates' exampleValue ='0D,1M,3M,6M,1Y,2Y,3Y,5Y,10Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>vector of dates, the first one being the one at which discount factor = 1.0</description>
+          </Parameter>
+          <Parameter name='Data' exampleValue ='1.0,0.99,0.96,0.94,0.9,0.8,0.7,0.6,0.4'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>data vector. Each element should be of the type selected by TraitsID</description>
+          </Parameter>
+          <Parameter name='Calendar'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET) to advance from global EvaluationDate.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='Jumps' exampleValue='1.0'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>vector</tensorRank>
+            <description>Jump quotes vector.</description>
+          </Parameter>
+          <Parameter name='JumpDates' exampleValue='1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>Jump dates vector.</description>
+          </Parameter>
+          <Parameter name='TraitsID' default='"Discount"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Discount, ZeroYield, or ForwardRate.</description>
+          </Parameter>
+          <Parameter name='InterpolatorID' default='"MonotonicLogCubicNaturalSpline"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>BackwardFlat, ForwardFlat, Linear, LogLinear, LogParabolic, KrugerLogCubic, etc.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlInterpolatedYieldCurveTimes' type='QuantLibAddin::InterpolatedYieldCurve' superType='objectClass'>
+      <description>Retrieve list of Times for the given InterpolatedYieldCurve.</description>
+      <libraryFunction>times</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolatedYieldCurveDates' type='QuantLibAddin::InterpolatedYieldCurve' superType='objectClass'>
+      <description>Retrieve list of Dates for the given InterpolatedYieldCurve.</description>
+      <libraryFunction>dates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolatedYieldCurveData' type='QuantLibAddin::InterpolatedYieldCurve' superType='objectClass'>
+      <description>Retrieve Data for the given InterpolatedYieldCurve.</description>
+      <libraryFunction>data</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolatedYieldCurveJumpTimes' type='QuantLibAddin::InterpolatedYieldCurve' superType='objectClass'>
+      <description>Retrieve list of jump times for the given InterpolatedYieldCurve.</description>
+      <libraryFunction>jumpTimes</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlInterpolatedYieldCurveJumpDates' type='QuantLibAddin::InterpolatedYieldCurve' superType='objectClass'>
+      <description>Retrieve list of jump dates for the given InterpolatedYieldCurve.</description>
+      <libraryFunction>jumpDates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

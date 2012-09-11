@@ -1,0 +1,247 @@
+<Category name='volatility'>
+  <description>functions to construct and use Market Model Volatility objects.</description>
+  <displayName>Market Model Volatility</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>qlo/volatility.hpp</include>
+    <include>ql/models/marketmodels/models/piecewiseconstantabcdvariance.hpp</include>
+  </addinIncludes>
+
+  <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2007 Chiara Fornarola
+    Copyright (C) 2006, 2007 Marco Bianchetti
+    Copyright (C) 2006, 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+
+    <!-- PiecewiseConstantAbcdVariance methods -->
+    <Member name='qlPiecewiseConstantVarianceVariances' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the piecewise constant variances.</description>
+      <libraryFunction>variances</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantVarianceVolatilities' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the piecewise constant volatilities.</description>
+      <libraryFunction>volatilities</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantVarianceRateTimes' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the rate time of the PiecewiseConstantVariance object.</description>
+      <libraryFunction>rateTimes</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantVarianceVariance' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the piecewise constant variance at a given time index.</description>
+      <libraryFunction>variance</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TimeIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantVarianceVolatility' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the piecewise constant volatility at a given time index.</description>
+      <libraryFunction>volatility</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TimeIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantVarianceTotalVariance' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the total variance at a given time index of the PiecewiseConstantVariance object.</description>
+      <libraryFunction>totalVariance</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TimeIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantVarianceTotalVolatility' type='QuantLib::PiecewiseConstantVariance'>
+      <description>Returns the total variance at a given time index of the PiecewiseConstantVariance object.</description>
+      <libraryFunction>totalVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TimeIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- PiecewiseConstantAbcdVariance constructor  -->
+    <Constructor name='qlPiecewiseConstantAbcdVariance'>
+      <libraryFunction>PiecewiseConstantAbcdVariance</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='A' default='-0.06'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>coefficient in abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='B' default='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='C' default='0.54'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='D' default='0.17'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>coefficient in the abcd vol parametrization. Used as guess if the object is later calibrated.</description>
+          </Parameter>
+          <Parameter name='ResetIndex' exampleValue='0'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index that defines the reset time of rate.</description>
+          </Parameter>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- LmExtLinearExponentialVolModel constructor  -->
+    <Constructor name='qlMarketModelLmExtLinearExponentialVolModel'>
+      <libraryFunction>LmExtLinearExponentialVolModel</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FixingTimes' libraryType='QuantLib::Time' exampleValue ='0.0,1.0,2.0,3.0,4.0,5.0'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times.</description>
+          </Parameter>
+          <Parameter name='A' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>a parameter.</description>
+          </Parameter>
+          <Parameter name='B' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>b parameter.</description>
+          </Parameter>
+          <Parameter name='C' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>c parameter.</description>
+          </Parameter>
+          <Parameter name='D' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>d parameter.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

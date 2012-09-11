@@ -1,0 +1,644 @@
+<Category name='quotes'>
+  <description>quotes objects.</description>
+  <displayName>Quotes</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/quotes.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
+    <include>qlo/capletvolstructure.hpp</include>
+    <include>qlo/conversions/coercequote.hpp</include>
+    <include>ql/quotes/simplequote.hpp</include>
+    <include>ql/quotes/derivedquote.hpp</include>
+    <include>ql/quotes/eurodollarfuturesquote.hpp</include>
+    <include>ql/quotes/forwardvaluequote.hpp</include>
+    <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
+    <include>ql/quotes/impliedstddevquote.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/quotes.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
+    <include>qlo/handleimpl.hpp</include>
+    <include>qlo/conversions/coercequote.hpp</include>
+    <include>ql/quotes/simplequote.hpp</include>
+    <include>ql/quotes/derivedquote.hpp</include>
+    <include>ql/quotes/eurodollarfuturesquote.hpp</include>
+    <include>ql/quotes/forwardvaluequote.hpp</include>
+    <include>ql/quotes/futuresconvadjustmentquote.hpp</include>
+    <include>ql/quotes/lastfixingquote.hpp</include>
+    <include>ql/quotes/impliedstddevquote.hpp</include>
+    <include>ql/experimental/risk/sensitivityanalysis.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+    <include>qlo/capletvolstructure.hpp</include>
+    <include>qlo/baseinstruments.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2007 Eric Ehlers
+    Copyright (C) 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2006 Francois du Vignaud
+    Copyright (C) 2006 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+
+    <!-- Quote base class interface -->
+    <Member name='qlQuoteValue' type='QuantLib::Quote' superType='libraryQuote'>
+      <description>Returns the current value of the given Quote object.</description>
+      <libraryFunction>value</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlQuoteIsValid' type='QuantLib::Quote' superType='libraryQuote'>
+      <description>Returns TRUE if the given Quote object has a valid value.</description>
+      <libraryFunction>isValid</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+	<!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- SimpleQuote interface and constructor -->
+    <Member name='qlSimpleQuoteReset' type='QuantLib::SimpleQuote' superType='libraryQuote'>
+      <description>resets the given SimpleQuote object to the uninitialized state.</description>
+      <libraryFunction>reset</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- Use a QuantLibAddin::SimpleQuote rather than a QuantLib::SimpleQuote.
+         Note that if necessary the required reference is extracted automatically
+         from a Handle<Quote>.-->
+    <Member name='qlSimpleQuoteSetValue' type='QuantLibAddin::SimpleQuote' superType='objectQuote'>
+      <description>sets a new value to the given SimpleQuote object and returns the difference with the previous value.</description>
+      <libraryFunction>setValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Value' default='QuantLib::Null&lt;QuantLib::Real&gt;()' errorValue='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the new value.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimpleQuoteSetTickValue' type='QuantLibAddin::SimpleQuote' superType='objectQuote'>
+      <description>sets the tick value of the given SimpleQuote object.</description>
+      <libraryFunction>setTickValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Value' exampleValue='0.0001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the new tick value.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimpleQuoteTickValue' type='QuantLibAddin::SimpleQuote' superType='objectQuote'>
+      <description>returns the tick value of the given SimpleQuote object.</description>
+      <libraryFunction>tickValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Procedure name='qlBucketAnalysis'>
+      <description>delta NPV bucket sensitivity analysis for a (single/vector/matrix) SimpleQuote.</description>
+      <alias>QuantLibAddin::bucketAnalysis</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SimpleQuote'>
+            <type>QuantLib::Quote</type>
+            <!--<type>QuantLib::SimpleQuote</type>-->
+            <superType>libToHandle</superType>
+            <tensorRank>matrix</tensorRank>
+            <description>simple quotes.</description>
+          </Parameter>
+          <Parameter name='Instruments'>
+            <type>QuantLib::Instrument</type>
+            <tensorRank>vector</tensorRank>
+            <description>instruments.</description>
+          </Parameter>
+          <Parameter name='Quantities'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>quantities.</description>
+          </Parameter>
+          <Parameter name='Shift' default ='0.0001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>shift.</description>
+          </Parameter>
+          <Parameter name='SensitivityAnalysis' default='"Centered"'>
+            <type>QuantLib::SensitivityAnalysis</type>
+            <tensorRank>scalar</tensorRank>
+            <description>SensitivityAnalysis type.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBucketAnalysisDelta'>
+      <description>Parameters' bucket analysis delta for a single SimpleQuote.</description>
+      <alias>QuantLibAddin::bucketAnalysisDelta</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SimpleQuote'>
+            <type>QuantLib::SimpleQuote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>simple quote.</description>
+          </Parameter>
+          <Parameter name='Parameters'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>vector</tensorRank>
+            <description>parameters vector.</description>
+          </Parameter>
+          <Parameter name='Shift' default ='0.0001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>shift.</description>
+          </Parameter>
+          <Parameter name='SensitivityAnalysis' default='"Centered"'>
+            <type>QuantLib::SensitivityAnalysis</type>
+            <tensorRank>scalar</tensorRank>
+            <description>SensitivityAnalysis type.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlBucketAnalysisDelta2'>
+      <description>Parameters' bucket analysis delta for a SimpleQuote vector.</description>
+      <alias>QuantLibAddin::bucketAnalysisDelta2</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SimpleQuote'>
+            <type>QuantLib::Quote</type>
+            <!--<type>QuantLib::SimpleQuote</type>-->
+            <superType>libToHandle</superType>
+            <tensorRank>vector</tensorRank>
+            <description>simple quote.</description>
+          </Parameter>
+          <Parameter name='Parameters'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>vector</tensorRank>
+            <description>parameters vector.</description>
+          </Parameter>
+          <Parameter name='Shift' default ='0.0001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>shift.</description>
+          </Parameter>
+          <Parameter name='SensitivityAnalysis' default='"Centered"'>
+            <type>QuantLib::SensitivityAnalysis</type>
+            <tensorRank>scalar</tensorRank>
+            <description>SensitivityAnalysis type.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Constructor name='qlSimpleQuote'>
+      <libraryFunction>SimpleQuote</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Value' default='QuantLib::Null&lt;QuantLib::Real&gt;()'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>quote.</description>
+          </Parameter>
+          <Parameter name='TickValue' exampleValue='0.0001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tick value used for sensitivity analysis.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- other Quote constructors -->
+
+    <Constructor name='qlForwardValueQuote'>
+      <libraryFunction>ForwardValueQuote</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating IborIndex object ID.</description>
+          </Parameter>
+          <Parameter name='FixingDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Fixing Date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlForwardSwapQuote'>
+      <libraryFunction>ForwardSwapQuote</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwapIndex'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating SwapIndex object ID.</description>
+          </Parameter>
+          <Parameter name='Spread' exampleValue='0.0'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg spread.</description>
+          </Parameter>
+          <Parameter name='ForwardStart' exampleValue='"0D"'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forward start period.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlImpliedStdDevQuote'>
+      <libraryFunction>ImpliedStdDevQuote</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionType'>
+            <type>QuantLib::Option::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option type (i.e. Call or Put).</description>
+          </Parameter>
+          <Parameter name='AtmForwardValue' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='OptionPrice' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>option price.</description>
+          </Parameter>
+          <Parameter name='Strike'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
+          </Parameter>
+          <Parameter name='Guess' default="QuantLib::Null&lt;QuantLib::Real&gt;()">
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>implied volatility guess.</description>
+          </Parameter>
+          <Parameter name='Accuracy' default="1e-6">
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>iv accuracy.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEurodollarFuturesImpliedStdDevQuote'>
+      <libraryFunction>EurodollarFuturesImpliedStdDevQuote</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='AtmForwardValue' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying asset at-the-money forward value.</description>
+          </Parameter>
+          <Parameter name='CallPrice' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>call option price.</description>
+          </Parameter>
+          <Parameter name='PutPrice' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>put option price.</description>
+          </Parameter>
+          <Parameter name='Strike'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
+          </Parameter>
+          <Parameter name='Guess' default="QuantLib::Null&lt;QuantLib::Real&gt;()">
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>implied volatility guess.</description>
+          </Parameter>
+          <Parameter name='Accuracy' default="1e-6">
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>standard deviation accuracy.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlCompositeQuote'>
+      <libraryFunction>CompositeQuote</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Element1' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>the first, i.e. x, value in the f(x,y) expression.</description>
+          </Parameter>
+          <Parameter name='Element2' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>the second, i.e. y, value in the f(x,y) expression.</description>
+          </Parameter>
+          <Parameter name='Operator' >
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the operator to be applied, e.g. ""+"" or ""-"".</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- FuturesConvAdjustmentQuote interface and constructor -->
+    <Constructor name='qlFuturesConvAdjustmentQuote'>
+      <libraryFunction>FuturesConvAdjustmentQuote</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating IborIndex object ID.</description>
+          </Parameter>
+          <Parameter name='ImmCode'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>futures IMM code (e.g. H9).</description>
+          </Parameter>
+          <Parameter name='FuturesQuote' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>futures quote.</description>
+          </Parameter>
+          <Parameter name='Volatility' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>HullWhite volatility.</description>
+          </Parameter>
+          <Parameter name='MeanReversion' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>HullWhite mean reversion.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlFuturesConvAdjustmentQuoteVolatility' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
+      <description>Return the value of HW volatility.</description>
+      <libraryFunction>volatility</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFuturesConvAdjustmentQuoteMeanReversion' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
+      <description>Return the value of HW mean reversion.</description>
+      <libraryFunction>meanReversion</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFuturesConvAdjustmentQuoteImmDate' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
+      <description>Return the IMM date of futures.</description>
+      <libraryFunction>immDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFuturesConvAdjustmentQuoteFuturesValue' type='QuantLib::FuturesConvAdjustmentQuote' superType='libraryQuote'>
+      <description>Return the value of futures underlying.</description>
+      <libraryFunction>futuresValue</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- LastFixingQuote interface and constructor -->
+    <Constructor name='qlLastFixingQuote'>
+      <libraryFunction>LastFixingQuote</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Index'>
+            <type>QuantLib::Index</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Index object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlLastFixingQuoteReferenceDate' type='QuantLib::LastFixingQuote' superType='libraryQuote'>
+      <description>Return the date of the last fixing</description>
+      <libraryFunction>referenceDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- RelinkableHandle constructor -->
+    <Constructor name='qlRelinkableHandleQuote'>
+      <libraryFunction>RelinkableHandleImpl&lt;QuantLibAddin::Quote, QuantLib::Quote&gt;</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>RelinkableHandleProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CurrentLink' default='""'>
+            <type>string</type>
+            <superType>handlePredecessor</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Quote object ID. If omitted, nothing is linked by the RelinkableHandle.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

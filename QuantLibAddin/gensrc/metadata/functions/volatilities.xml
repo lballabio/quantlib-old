@@ -1,0 +1,868 @@
+<Category name='volatilities'>
+  <description>functions to construct and use volatility objects.</description>
+  <displayName>Volatilities</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/indexes/interestrateindex.hpp</include>
+    <include>qlo/volatilities.hpp</include>
+    <include>ql/math/interpolations/sabrinterpolation.hpp</include>
+    <include>ql/termstructures/volatility/equityfx/blackconstantvol.hpp</include>
+    <include>ql/termstructures/volatility/equityfx/blackvariancesurface.hpp</include>
+    <include>ql/experimental/volatility/abcdatmvolcurve.hpp</include>
+    <include>ql/experimental/volatility/sabrvolsurface.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/indexes/interestrateindex.hpp</include>
+    <include>qlo/volatilities.hpp</include>
+    <include>ql/math/interpolations/sabrinterpolation.hpp</include>
+    <include>ql/termstructures/volatility/equityfx/blackconstantvol.hpp</include>
+    <include>ql/termstructures/volatility/equityfx/blackvariancesurface.hpp</include>
+    <include>ql/experimental/volatility/abcdatmvolcurve.hpp</include>
+    <include>ql/experimental/volatility/sabrvolsurface.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2007, 2010 Ferdinando Ametrano
+    Copyright (C) 2005, 2006 Eric Ehlers
+  </copyright>
+  <Functions>
+
+    <Procedure name='qlSabrVolatility'>
+      <description>Sabr formula for smile volatility.</description>
+      <alias>QuantLib::sabrVolatility</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Strike' exampleValue ='0.06'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option strike.</description>
+          </Parameter>
+          <Parameter name='Forward' exampleValue ='0.04'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying forward value.</description>
+          </Parameter>
+          <Parameter name='ExpTime' exampleValue ='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>expiry time (in years).</description>
+          </Parameter>
+          <Parameter name='Alpha' exampleValue ='0.02'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha.</description>
+          </Parameter>
+          <Parameter name='Beta' exampleValue ='0.6'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta.</description>
+          </Parameter>
+          <Parameter name='Nu' exampleValue ='.02'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>nu.</description>
+          </Parameter>
+          <Parameter name='Rho' exampleValue ='0.03'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rho.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <!-- VolatilityTermStructure interface -->
+    <Member name='qlVolatilityTermStructureBusinessDayConvention' type='QuantLib::VolatilityTermStructure' superType='libraryClass'>
+      <description>Returns the business day convention used in tenor to date conversion.</description>
+      <libraryFunction>businessDayConvention</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::BusinessDayConvention</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVolatilityTermStructureOptionDateFromTenor' type='QuantLib::VolatilityTermStructure' superType='libraryClass'>
+      <description>Returns the option date corrisponding to a given option tenor.</description>
+      <libraryFunction>optionDateFromTenor</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Tenor' exampleValue = '1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option tenor.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVolatilityTermStructureMinStrike' type='QuantLib::VolatilityTermStructure' superType='libraryClass'>
+      <description>Returns the minimum strike for which the given VolatilityTermStructure can return vols.</description>
+      <libraryFunction>minStrike</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVolatilityTermStructureMaxStrike' type='QuantLib::VolatilityTermStructure' superType='libraryClass'>
+      <description>Returns the maximum strike for which the given VolatilityTermStructure can return vols.</description>
+      <libraryFunction>maxStrike</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- BlackAtmVolCurve interface -->
+    <Member name='qlBlackAtmVolCurveAtmVol' type='QuantLib::BlackAtmVolCurve' superType='libraryClass'>
+      <description>Returns the spot at-the-money (no-smile) volatility at a given option date.</description>
+      <libraryFunction>atmVol</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionDate' exampleValue = '1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The date at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackAtmVolCurveAtmVol2' type='QuantLib::BlackAtmVolCurve' superType='libraryClass'>
+      <description>Returns the spot at-the-money (no-smile) volatility at a given option tenor.</description>
+      <libraryFunction>atmVol</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionTenor' exampleValue = '1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The time at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackAtmVolCurveAtmVol3' type='QuantLib::BlackAtmVolCurve' superType='libraryClass'>
+      <description>Returns the spot at-the-money (no-smile) volatility at a given option time.</description>
+      <libraryFunction>atmVol</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionTime' exampleValue = '1.0'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The time at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackAtmVolCurveAtmVariance' type='QuantLib::BlackAtmVolCurve' superType='libraryClass'>
+      <description>Returns the spot at-the-money (no-smile) variance at a given option date.</description>
+      <libraryFunction>atmVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionDate' exampleValue = '1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The date at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackAtmVolCurveAtmVariance2' type='QuantLib::BlackAtmVolCurve' superType='libraryClass'>
+      <description>Returns the spot at-the-money (no-smile) variance at a given option tenor.</description>
+      <libraryFunction>atmVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionTenor' exampleValue = '1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The tenor at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackAtmVolCurveAtmVariance3' type='QuantLib::BlackAtmVolCurve' superType='libraryClass'>
+      <description>Returns the spot at-the-money (no-smile) variance at a given option time.</description>
+      <libraryFunction>atmVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionTime' exampleValue = '1.0'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The time at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- BlackVolTermStructure interface -->
+    <Member name='qlBlackVolTermStructureBlackVol' type='QuantLib::BlackVolTermStructure' superType='libraryClass'>
+      <description>Returns the black spot volatility at a given option date and strike.</description>
+      <libraryFunction>blackVol</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionDate' exampleValue = '1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The date at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue = '5%'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The strike at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackVolTermStructureBlackVariance' type='QuantLib::BlackVolTermStructure' superType='libraryClass'>
+      <description>Returns the black spot variance at a given option date and strike.</description>
+      <libraryFunction>blackVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionDate' exampleValue = '1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The date at which the variance is evaluated.</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue = '5%'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The strike at which the variance is evaluated.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackVolTermStructureBlackForwardVol' type='QuantLib::BlackVolTermStructure' superType='libraryClass'>
+      <description>Returns the black forward (at-the-money) volatility at a given option date and strike.</description>
+      <libraryFunction>blackForwardVol</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ForwardDate' exampleValue = '6M'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The forward date at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='OptionDate' exampleValue = '1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The option date at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue = '5%'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The strike at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlBlackVolTermStructureBlackForwardVariance' type='QuantLib::BlackVolTermStructure' superType='libraryClass'>
+      <description>Returns the black forward (at-the-money) variance at a given option date and strike.</description>
+      <libraryFunction>blackForwardVariance</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ForwardDate' exampleValue = '6M'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The forward date at which the volatility is evaluated.</description>
+          </Parameter>
+          <Parameter name='OptionDate' exampleValue = '1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The date at which the variance is evaluated.</description>
+          </Parameter>
+          <Parameter name='Strike' exampleValue = '5%'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The strike at which the variance is evaluated.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation' const='False' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Extrapolation Flag (TRUE allows extrapolation).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- BlackVolTermStructure classes -->
+    <Constructor name='qlBlackConstantVol'>
+      <libraryFunction>BlackConstantVol</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlementDate' exampleValue ='0D'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='Volatility' exampleValue ='0.2'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>volatility.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBlackVarianceSurface'>
+      <libraryFunction>BlackVarianceSurface</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlementDate' exampleValue ='0D'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement date.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='Dates' exampleValue ='3m, 1y, 5y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>dates.</description>
+          </Parameter>
+          <Parameter name='Strikes' exampleValue ='0.03, 0.05, 0.10'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>strikes.</description>
+          </Parameter>
+          <Parameter name='Volatilities'>
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>volatilities.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- AbcdAtmVolCurve interface and constructor -->
+    <Member name='qlAbcdAtmVolCurveOptionTenors' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the options tenors of the atm volatility curve.</description>
+      <libraryFunction>optionTenors</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveOptionTenorsInInterpolation' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the options tenors used in the fitting of the atm volatility curve.</description>
+      <libraryFunction>optionTenorsInInterpolation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveOptionDates' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the options dates of the atm volatility curve.</description>
+      <libraryFunction>optionDates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveOptionTimes' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the options times to maturity of the atm volatility curve.</description>
+      <libraryFunction>optionTimes</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveRmsError' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the root mean squared error between the abcd implied Black vols and the given Black vols vector.</description>
+      <libraryFunction>rmsError</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveMaxError' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the max error between the abcd implied Black vols and the given Black vols vector.</description>
+      <libraryFunction>maxError</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!--<Member name='qlAbcdAtmVolCurveEndCriteria' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the end criteria.</description>
+      <libraryFunction>d</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::EndCriteria::Type</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>-->
+
+    <Member name='qlAbcdAtmVolCurveA' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the a coefficient in the abcd vol parametrization.</description>
+      <libraryFunction>a</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveB' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the b coefficient in the abcd vol parametrization.</description>
+      <libraryFunction>b</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveC' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the c coefficient in the abcd vol parametrization.</description>
+      <libraryFunction>c</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveD' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the d coefficient in the abcd vol parametrization.</description>
+      <libraryFunction>d</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveKatOptionTenors' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the k adjustments factors needed to match the input Black vols.</description>
+      <libraryFunction>k</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAbcdAtmVolCurveK' type='QuantLib::AbcdAtmVolCurve' superType='libraryClass'>
+      <description>Returns the k adjustments factors needed to match the input Black vols at a given time.</description>
+      <libraryFunction>k</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Time' exampleValue ='1M'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlAbcdAtmVolCurve'>
+      <libraryFunction>AbcdAtmVolCurve</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlementDays' exampleValue ='2D'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement days.</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='OptionTenors'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>options tenors.</description>
+          </Parameter>
+          <Parameter name='VolatilitiesQuotes' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>vector</tensorRank>
+            <description>volatilities quotes.</description>
+          </Parameter>
+          <Parameter name='InclusionInInterpolation' >
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>inclusion flags. If omitted, all volatilities are interpolated.</description>
+          </Parameter>
+          <Parameter name='Convention' exampleValue='Following'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business day convention (e.g. Following).</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+    <!-- SabrVolSurface interface and constructor -->
+    <Constructor name='qlSabrVolSurface'>
+      <libraryFunction>SabrVolSurface</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='InterestRateIndex'>
+            <type>QuantLib::InterestRateIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>interest rate index object ID.</description>
+          </Parameter>
+          <Parameter name='BlackAtmVolCurve'>
+            <type>QuantLib::BlackAtmVolCurve</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>the atm volatility curve.</description>
+          </Parameter>
+          <Parameter name='OptionTenors'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>options tenors.</description>
+          </Parameter>
+          <Parameter name='AtmRateSpreads'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>vector</tensorRank>
+            <description>spreads.</description>
+          </Parameter>
+          <Parameter name='VolatilitiesQuotes' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>matrix</tensorRank>
+            <description>volatilities quotes.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlVolatilitySpreads' type='QuantLib::SabrVolSurface' superType='libraryClass'>
+      <description>Returns the volatilities spread at a given date.</description>
+      <libraryFunction>volatilitySpreads</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionDate' exampleValue = '1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The date at which the volatility is evaluated.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlVolatilitySpreads2' type='QuantLib::SabrVolSurface' superType='libraryClass'>
+      <description>Returns the volatilities spread at a given date.</description>
+      <libraryFunction>volatilitySpreads</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='OptionTenor' exampleValue = '1Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The tenor at which the volatility is evaluated.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAtmCurve' type='QuantLibAddin::SabrVolSurface'>
+      <description>Returns the Atm volatility curve.</description>
+      <libraryFunction>atmCurve</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

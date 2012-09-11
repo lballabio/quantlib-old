@@ -1,0 +1,24 @@
+
+<Addin name='Cpp'>
+
+  <relativePath>Addins/Cpp</relativePath>
+  <rootDirectory>Addins/Cpp</rootDirectory>
+  <namespaceAddin>QuantLibAddinCpp</namespaceAddin>
+  <coreCategories>true</coreCategories>
+  <addinCategories>true</addinCategories>
+
+  <copyright>
+    Copyright (C) 2007, 2008 Eric Ehlers
+  </copyright>
+
+  <Buffers>
+    <Buffer name='bufferBody' fileName='stub.cpp.body' local='true'/>
+    <Buffer name='bufferDeclaration' fileName='stub.cpp.declaration'/>
+    <Buffer name='bufferFunction' fileName='stub.cpp.function'/>
+    <Buffer name='bufferHeader' fileName='stub.cpp.header'/>
+    <Buffer name='bufferAll' fileName='stub.cpp.all'/>
+    <Buffer name='bufferLoop' fileName='stub.cpp.loop'/>
+  </Buffers>
+
+</Addin>
+

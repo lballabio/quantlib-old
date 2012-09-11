@@ -1,0 +1,97 @@
+<Category name='daycounter'>
+  <description>Daycounter related functions.</description>
+  <displayName>Daycounter</displayName>
+  <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>ql/time/date.hpp</include>
+    <include>ql/time/daycounter.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+  </copyright>
+  <Functions>
+
+    <EnumerationMember name='qlDayCounterName' type='QuantLib::DayCounter'>
+      <description>returns the name of the given DayCounter.</description>
+      <libraryFunction>name</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <EnumerationMember name='qlDayCounterDayCount' type='QuantLib::DayCounter' loopParameter='EndDate'>
+      <description>calculate the number of days in a period according to a given day count convention.</description>
+      <libraryFunction>dayCount</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='StartDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start date.</description>
+          </Parameter>
+          <Parameter name='EndDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>end date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+    <EnumerationMember name='qlDayCounterYearFraction' type='QuantLib::DayCounter' loopParameter='EndDate'>
+      <description>calculate a year fraction.</description>
+      <libraryFunction>yearFraction</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='StartDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start date.</description>
+          </Parameter>
+          <Parameter name='EndDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>end date.</description>
+          </Parameter>
+          <Parameter name='RefPeriodStart' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start date for reference period.</description>
+          </Parameter>
+          <Parameter name='RefPeriodEnd' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end date for reference period.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Time</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </EnumerationMember>
+
+  </Functions>
+</Category>

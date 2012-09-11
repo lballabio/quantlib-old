@@ -1,0 +1,327 @@
+<Category name='rangeaccrual'>
+  <description>functions to construct and use Range Accrual objects.</description>
+  <displayName>Range Accrual</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/rangeaccrual.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/smilesection.hpp</include>
+    
+    <include>ql/indexes/iborindex.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/rangeaccrual.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/smilesection.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+    <include>ql/cashflows/rangeaccrual.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+
+    <!-- RangeAccrualFloatersCoupon constructors -->
+
+    <Constructor name='qlRangeAccrualFloatersCoupon'>
+      <libraryFunction>RangeAccrualFloatersCoupon</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Nominal'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>coupon nominal.</description>
+          </Parameter>
+          <Parameter name='PaymentDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment Date.</description>
+          </Parameter>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying ibor index.</description>
+          </Parameter>
+          <Parameter name='StartDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start Date.</description>
+          </Parameter>
+          <Parameter name='EndDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end Date.</description>
+          </Parameter>
+          <Parameter name='FixingDays'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixingDays.</description>
+          </Parameter>
+          <Parameter name='DayCountID'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>day counter.</description>
+          </Parameter>
+          <Parameter name='Gearings'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearings.</description>
+          </Parameter>
+          <Parameter name='Spreads'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spreads.</description>
+          </Parameter>
+          <Parameter name='RefPeriodStart'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>refPeriodStart.</description>
+          </Parameter>
+          <Parameter name='RefPeriodEnd'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>refPeriodEnd.</description>
+          </Parameter>
+          <Parameter name='ObserSchedID'>
+            <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>observations schedule.</description>
+          </Parameter>
+          <Parameter name='LowerTrigger'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>lowerTrigger.</description>
+          </Parameter>
+          <Parameter name='UpperTrigger'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>upperTrigger.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlRangeAccrualFloatersCouponFromLeg'>
+      <libraryFunction>RangeAccrualFloatersCoupon</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RangeAccrualLeg'>
+            <type>QuantLib::Leg</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>range accrual leg object ID.</description>
+          </Parameter>
+          <Parameter name='Position'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>position.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlRangeAccrualFloatersCouponSetPricer' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>Set the coupon pricer at the given coupon object.</description>
+      <libraryFunction>setPricer</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RangeAccrualPricer'>
+            <type>QuantLib::RangeAccrualPricer</type>
+            <tensorRank>scalar</tensorRank>
+            <description>RangeAccrual coupon pricer object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRangeAccrualFloatersCouponObservationDates' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>Return the observation Dates.</description>
+      <libraryFunction>observationDates</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRangeAccrualFloatersCouponStarDate' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>Return the accrual start Date.</description>
+      <libraryFunction>accrualStartDate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRangeAccrualFloatersCouponEndDate' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>Return the accrual end Date.</description>
+      <libraryFunction>accrualEndDate</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRangeAccrualFloatersCouponObservationsNo' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>Return the observations number.</description>
+      <libraryFunction>observationsNo</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRangeAccrualFloatersPrice' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>return the price of Range Accrual Floater Coupon.</description>
+      <libraryFunction>price</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>yield curve.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSimpleFloaterPrice' type='QuantLib::RangeAccrualFloatersCoupon' superType='libraryClass'>
+      <description>return the price of Simple Floater Coupon.</description>
+      <libraryFunction>priceWithoutOptionality</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>yield curve.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <!-- RangeAccrualPricerByBgm constructors -->
+
+    <Constructor name='qlRangeAccrualPricerByBgm'>
+      <libraryFunction>RangeAccrualPricerByBgm</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Correlation' >
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>correlation.</description>
+          </Parameter>
+          <Parameter name='SmileOnStartDateID'>
+            <type>QuantLib::SmileSection</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of the smile on start date object.</description>
+          </Parameter>
+          <Parameter name='SmileOnEndDateID'>
+            <type>QuantLib::SmileSection</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>ID of the smile on end date object.</description>
+          </Parameter>
+          <Parameter name='WithSmile' >
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>with Smile?.</description>
+          </Parameter>
+          <Parameter name='ByCallSpread' >
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>replicated by Call spread?.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+  </Functions>
+</Category>
+

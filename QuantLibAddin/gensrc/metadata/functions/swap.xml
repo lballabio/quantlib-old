@@ -1,0 +1,218 @@
+<Category name='swap'>
+  <description>functions to construct and use Swap objects.</description>
+  <displayName>Swap</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/swap.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/conundrumpricer.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/swap.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/conundrumpricer.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
+    <include>ql/instruments/swap.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/termstructures/yieldtermstructure.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2005 Eric Ehlers
+    Copyright (C) 2006, 2007, 2011 Ferdinando Ametrano
+    Copyright (C) 2005 Aurelien Chanudet
+    Copyright (C) 2005 Plamen Neykov
+    Copyright (C) 2006 Katiuscia Manzoni
+  </copyright>
+  <Functions>
+
+    <Constructor name='qlSwap'>
+      <libraryFunction>Swap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>InstrumentProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LegIDs'>
+            <type>QuantLibAddin::Leg</type>
+            <!--
+            
+                it would be better to have support
+                for vector of underlyingClass
+                
+            <type>QuantLib::Leg</type>
+            <supertype>underlyingClass</supertype>
+          -->
+            <tensorRank>vector</tensorRank>
+            <description>leg object IDs.</description>
+          </Parameter>
+          <Parameter name='Payer'>
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>TRUE for payed leg.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlMakeCms'>
+      <libraryFunction>Swap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwapTenor' exampleValue='10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap tenor period.</description>
+          </Parameter>
+          <Parameter name='SwapIndex' exampleValue='EuriborSwapIsdaFixA10Y'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>SwapIndex object ID.</description>
+          </Parameter>
+          <Parameter name='IborIndex' exampleValue='Euribor3M'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>IborIndex object ID.</description>
+          </Parameter>
+          <Parameter name='IborSpread' default='QuantLib::Null&lt;QuantLib::Spread&gt;()'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>spread over the ibor leg.</description>
+          </Parameter>
+          <Parameter name='ForwardStart' exampleValue='"0D"'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forward start period.</description>
+          </Parameter>
+          <!--<Parameter name='CmsCouponPricer' default='boost::shared_ptr&lt;QuantLib::CmsCouponPricer&gt;()'>-->
+          <Parameter name='CmsCouponPricer' exampleValue='CmsCouponPricerID'>
+            <type>QuantLib::CmsCouponPricer</type>
+            <tensorRank>scalar</tensorRank>
+            <description>CmsCouponPricer object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlSwapLegBPS' type='QuantLib::Swap'>
+      <description>returns the BPS of the i-th leg for the given Swap object.</description>
+      <libraryFunction>legBPS</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LegNumber' exampleValue='1'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwapLegNPV' type='QuantLib::Swap'>
+      <description>returns the NPV of the i-th leg for the given Swap object.</description>
+      <libraryFunction>legNPV</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LegNumber' exampleValue='1'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwapStartDate' type='QuantLib::Swap'>
+      <description>Returns the start (i.e. first accrual) date for the given Swap object.</description>
+      <libraryFunction>startDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwapMaturityDate' type='QuantLib::Swap'>
+      <description>Returns the maturity (i.e. last payment) date for the given Swap object.</description>
+      <libraryFunction>maturityDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwapLegAnalysis' type='QuantLibAddin::Swap'>
+      <description>Returns the cash flow analysis of the i-th leg for the given Swap object.</description>
+      <libraryFunction>legAnalysis</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LegNumber' exampleValue='1'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Zero based leg number (e.g. use 0 for the first leg, 1 for the second leg, etc.).</description>
+          </Parameter>
+          <Parameter name='AfterDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Shows only cashflows after given date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

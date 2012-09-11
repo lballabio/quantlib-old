@@ -1,0 +1,224 @@
+
+<root>
+
+  <RuleGroups>
+
+    <RuleGroup name='functionDeclaration' indent='3' delimiter=',&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sconst ObjectHandler::property_t &amp;%(name)s</Rule>
+        <Rule tensorRank='scalar' superType='libraryClass' type='QuantLib::Quote'>%(indent)sconst ObjectHandler::property_t &amp;%(name)s</Rule>
+        <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote'>%(indent)sconst ObjectHandler::property_t &amp;%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst ObjectHandler::property_t &amp;%(name)s</Rule>
+        <Rule tensorRank='scalar' default='true'>%(indent)sconst ObjectHandler::property_t &amp;%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst std::string &amp;%(name)s</Rule>
+        <Rule tensorRank='scalar'>%(indent)sconst %(nativeType)s &amp;%(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Period'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule>
+        <!--Rule tensorRank='vector' type='QuantLib::Real'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule-->
+        <Rule tensorRank='vector' nativeType='any'>%(indent)sconst std::vector&lt;ObjectHandler::property_t&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector' nativeType='string'>%(indent)sconst std::vector&lt;std::string&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='vector'>%(indent)sconst std::vector&lt;%(nativeType)s&gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Quote'>%(indent)sconst std::vector&lt;std::vector &lt;ObjectHandler::property_t&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>%(indent)sconst std::vector&lt;std::vector &lt;ObjectHandler::property_t&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix' nativeType='string'>%(indent)sconst std::vector&lt;std::vector &lt;std::string&gt; &gt;&amp; %(name)s</Rule>
+        <Rule tensorRank='matrix'>%(indent)sconst std::vector&lt;std::vector&lt;%(nativeType)s&gt; &gt;&amp; %(name)s</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='functionReturnType'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule default='true'>ObjectHandler::property_t</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>std::string</Rule>
+        <Rule tensorRank='scalar' nativeType='any'>ObjectHandler::property_t</Rule>
+        <Rule tensorRank='scalar' nativeType='void'>bool</Rule>
+        <Rule tensorRank='scalar'>%(nativeType)s</Rule>
+        <Rule tensorRank='vector' nativeType='string'>std::vector&lt;std::string&gt;</Rule>
+        <Rule tensorRank='vector' nativeType='any'>std::vector&lt;ObjectHandler::property_t&gt;</Rule>
+        <Rule tensorRank='vector'>std::vector&lt;%(nativeType)s&gt;</Rule>
+        <Rule tensorRank='matrix' nativeType='string'>std::vector&lt;std::vector&lt;std::string&gt; &gt;</Rule>
+        <Rule tensorRank='matrix' nativeType='any'>std::vector&lt;std::vector&lt;ObjectHandler::property_t&gt; &gt;</Rule>
+        <Rule tensorRank='matrix'>std::vector&lt;std::vector&lt;%(nativeType)s&gt; &gt;</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='cppConversions' indent='3' checkParameterIgnore='true' delimiter='&#10;'>
+      <Wrap codeID='wrap1'/>
+      <Rules>
+        <Rule loop='true'/>
+        <Rule tensorRank='scalar' type='QuantLib::Date'/>
+        <!-- <Rule tensorRank='scalar' type='QuantLib::Natural'/> -->
+        <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code207'/>
+        <Rule tensorRank='scalar' default='true' codeID='code208'/>
+        <Rule tensorRank='scalar'/>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='libraryConversions' indent='3' checkParameterIgnore='true' delimiter='&#10;' prefix='&#10;'>
+      <Wrap codeID='wrap2'/>
+      <Rules>
+        <!--Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Real'/-->
+        <Rule tensorRank='scalar' type='QuantLib::Real' default='false'/>
+        <Rule tensorRank='scalar' type='QuantLib::Natural' default='true' codeID='code201a'/>
+        <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Date' default='false' codeID='code200'/>
+        <Rule tensorRank='scalar' superType='libraryType' nativeType='string' default='true' codeID='code213'/>
+        <Rule tensorRank='scalar' superType='libraryType' nativeType='string' default='false' codeID='code22'/>
+        <Rule tensorRank='scalar' superType='libraryType' default='true' codeID='code201'/>
+        <Rule tensorRank='scalar' superType='libraryType' default='false' codeID='code22'/>
+        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Array' codeID='code203'/>
+        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Date' codeID='code204'/>
+        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Period' codeID='code205'/>
+        <!--Rule tensorRank='vector' superType='libraryType' type='QuantLib::Real' codeID='code205'/-->
+        <Rule tensorRank='vector' superType='libraryType' codeID='code132'/>
+        <Rule tensorRank='matrix' superType='libraryType' type='QuantLib::Matrix' codeID='code206'/>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='enumConversions' indent='3' checkParameterIgnore='true' delimiter='&#10;'>
+      <Wrap codeID='wrap3'/>
+      <Rules>
+        <Rule tensorRank='scalar' superType='enumeration' default='true' codeID='code33'/>
+        <Rule tensorRank='scalar' superType='enumeration' default='false' codeID='code34'/>
+        <Rule tensorRank='vector' superType='enumeration' codeID='code35b'/>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='objectConversions' indent='3' delimiter='&#10;'>
+      <Wrap codeID='wrap4'/>
+      <Rules>
+        <Rule tensorRank='scalar' superType='objectClass' codeID='code36'/>
+        <Rule tensorRank='scalar' superType='objectQuote' codeID='code36b'/>
+        <Rule tensorRank='scalar' superType='objectTermStructure' codeID='code36c'/>
+        <Rule tensorRank='vector' superType='objectClass' type='ObjectHandler::Object' codeID='code159'/>
+        <Rule tensorRank='vector' superType='objectClass' codeID='code160'/>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='referenceConversions' indent='3' delimiter='&#10;'>
+      <Wrap codeID='wrap5'/>
+      <Rules>
+        <Rule tensorRank='scalar' superType='libraryClass' default='true' codeID='code39'/>
+        <Rule tensorRank='scalar' superType='libraryClass' codeID='code38'/>
+        <Rule tensorRank='scalar' superType='libraryQuote' default='true' codeID='code39'/>
+        <Rule tensorRank='scalar' superType='libraryQuote' type='QuantLib::Quote' codeID='code47'/>
+        <Rule tensorRank='scalar' superType='libraryQuote' codeID='code38'/>
+        <Rule tensorRank='scalar' superType='libToHandle' type='QuantLib::Quote' codeID='code214'/>
+        <Rule tensorRank='scalar' superType='libToHandle' default='true' codeID='code44a'/>
+        <Rule tensorRank='scalar' superType='libToHandle' codeID='code44b'/>
+        <Rule tensorRank='scalar' superType='libraryTermStructure' codeID='code46'/>
+        <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatistics' codeID='code49'/>
+        <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::YieldTermStructure' codeID='code48b'/>
+        <Rule tensorRank='scalar' superType='underlyingClass' codeID='code48'/>
+        <Rule tensorRank='vector' superType='libraryClass' codeID='code37c'/>
+        <Rule tensorRank='vector' superType='libToHandle' type='QuantLib::Quote' codeID='code218'/>
+        <Rule tensorRank='vector' superType='libToHandle' codeID='code154'/>
+        <Rule tensorRank='matrix' superType='libToHandle' type='QuantLib::Quote' codeID='code215'/>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='libraryReturnType'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule tensorRank='scalar' superType='enumeration'>%(type)s returnValue = </Rule>
+        <Rule tensorRank='scalar' superType='libraryType'>%(type)s returnValue = </Rule>
+        <Rule tensorRank='scalar' nativeType='string'>std::string returnValue = </Rule>
+        <Rule tensorRank='scalar' nativeType='void'>static bool returnValue = true;&#10;        </Rule>
+        <Rule tensorRank='scalar' nativeType='any'>ObjectHandler::property_t returnValue = </Rule>
+        <Rule tensorRank='scalar'>%(type)s returnValue = </Rule>
+        <Rule tensorRank='vector' superType='libraryType' type='QuantLib::Array'>%(type)s returnValue = </Rule>
+        <Rule tensorRank='vector' superType='libraryType'>std::vector&lt;%(type)s&gt; returnValue = </Rule>
+        <Rule tensorRank='vector' nativeType='string'>std::vector&lt;std::string&gt; returnValue = </Rule>
+        <Rule tensorRank='vector' nativeType='any'>std::vector&lt;ObjectHandler::property_t&gt; returnValue = </Rule>
+        <Rule tensorRank='vector'>std::vector&lt;%(type)s&gt; returnValue = </Rule>
+        <Rule tensorRank='matrix' superType='libraryType' type='QuantLib::Matrix'>%(type)s returnValue = </Rule>
+        <Rule tensorRank='matrix' superType='libraryType' codeID='code52'/>
+        <Rule tensorRank='matrix' nativeType='string' codeID='code51'/>
+        <Rule tensorRank='matrix' nativeType='any' codeID='code53'/>
+        <Rule tensorRank='matrix' codeID='code52'/>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='libraryCall' checkParameterIgnore='true' checkSkipFirst='true' indent='4' delimiter=',&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <!--Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Real'>%(indent)s%(name)s</Rule-->
+        <Rule tensorRank='scalar' superType='libraryType' type='QuantLib::Real' default='false'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' objectReference='true'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Natural'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Size'>%(indent)s%(nameConverted)s</Rule>
+        <!--<Rule tensorRank='vector' type='QuantLib::Real'>%(indent)s%(nameConverted)s</Rule>-->
+        <Rule superType='libraryType' vectorIterator='begin'>%(indent)s%(nameConverted)s.begin()</Rule>
+        <Rule superType='libraryType' vectorIterator='end'>%(indent)s%(nameConverted)s.end()</Rule>
+        <Rule superType='libraryType' vectorIterator='beginAndEnd' codeID='code54'/>
+        <Rule superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
+        <Rule objectReference='true'>%(indent)s%(nameConverted)s</Rule>
+        <Rule vectorIterator='begin'>%(indent)s%(name)sCpp.begin()</Rule>
+        <Rule vectorIterator='end'>%(indent)s%(name)sCpp.end()</Rule>
+        <Rule vectorIterator='beginAndEnd' codeID='code55'/>
+        <Rule>%(indent)s%(name)s</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='voCall' checkParameterIgnore='true' checkSkipFirst='true' indent='4' delimiter=',&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <!--<Rule tensorRank='scalar' superType='enumeration' default='true'>%(indent)s%(name)sCpp</Rule>-->
+        <!--<Rule tensorRank='scalar' type='QuantLib::Natural' default='true'>%(indent)s%(name)s</Rule>-->
+        <Rule tensorRank='scalar' type='QuantLib::Date' default='true'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule>%(indent)s%(name)s</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='returnConversion' indent='2'>
+      <Wrap codeID='wrap6'/>
+      <Rules>
+        <Rule tensorRank='scalar' superType='libraryType' nativeType='long' codeID='code210b'/>
+        <Rule tensorRank='scalar' superType='libraryType' codeID='code210'/>
+        <Rule tensorRank='scalar' superType='enumeration' codeID='code211'/>
+        <Rule tensorRank='vector' type='QuantLib::Real' codeID='code209b'/>
+        <Rule tensorRank='vector' superType='libraryType' codeID='code209'/>
+        <Rule tensorRank='matrix' type='QuantLib::Matrix' codeID='code209c'/>
+        <Rule>%(indent)sreturn returnValue;</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='loopInputs' indent='4' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(nameConverted)s</Rule>
+        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>%(indent)sstd::string(%(name)s)</Rule>
+        <Rule tensorRank='vector' loop='true'>%(indent)s_1</Rule>
+        <Rule>%(indent)s%(name)s</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='loopReturnType'>
+      <Wrap/>
+      <Rules>
+        <Rule superType='libraryType'>%(type)s</Rule>
+        <Rule superType='enumeration'>%(type)s</Rule>
+        <Rule nativeType='string'>std::string</Rule>
+        <Rule nativeType='any'>ObjectHandler::property_t</Rule>
+        <Rule>%(nativeType)s</Rule>
+      </Rules>
+    </RuleGroup>
+
+    <RuleGroup name='loopDatatype' delimiter='&#10;'>
+      <Wrap>&#10;%s</Wrap>
+      <Rules>
+        <Rule>%(type)s</Rule>
+      </Rules>
+    </RuleGroup>
+
+  </RuleGroups>
+
+</root>
+

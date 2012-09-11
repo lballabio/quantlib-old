@@ -1,0 +1,83 @@
+
+/*
+ Copyright (C) 2005, 2006, 2008 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \mainpage QuantLibAddin
+
+\section idx_project Project
+
+%QuantLibAddin exports the functionality of the
+<a href="http://quantlib.org">QuantLib</a> C++ analytics library to a variety
+of end-user platforms including Microsoft Excel and OpenOffice.org Calc.
+
+The Excel implementation of %QuantLibAddin is packaged for end users as the
+<a href="http://www.quantlibxl.org">QuantLibXL</a> project which provides
+\li An installer for the addin
+\li Business documentation
+\li Example workbooks
+
+The scope of the %QuantLibAddin project includes
+\li Implementations for platforms other than Excel
+\li Downloads and tutorials for compiling %QuantLibAddin/QuantLibXL from source
+    code
+
+\section idx_components Components
+
+The %QuantLibAddin application comprises
+\li QuantLibObjects, a library which wraps %QuantLib classes in a format which
+    allows them to be stored in <a href="http://www.objecthandler.org">ObjectHandler</a>
+\li An interface configured in XML from which
+    <a href="http://www.gensrc.org">gensrc</a>
+    generates source code for Addins on supported platforms
+
+<div class="center"><img src="images/screenshot.jpg"></div>
+
+\section idx_features Features
+
+Features of %QuantLibAddin include
+\li <b>Object Orientation</b> - %QuantLib objects may be constructed,
+    interrogated, updated, passed as arguments to other functions, and destructed.
+\li <b>Polymorphism</b> - For example, function \c qlNPV() returns the NPV of
+    an \c Instrument and may be invoked on an instance of any derived class such as
+    \c Swap or \c Bond.
+\li <b>Portability</b> - The same interface is implemented in platform neutral
+    C++ and is available on all supported environments.
+\li <b>Serialization</b> - A pricing environment may be created in Excel
+    workbooks and transmitted to a Linux process for calculation.
+\li <b>Coercion</b> - The value which the user inputs to a function may be one
+    of a number of datatypes and any necessary conversion is performed
+    automatically.
+\li <b>Enumerations</b> - Minor or transient types are represented by a
+    registry of string/value pairs, for example \c "PUT" indicates \c
+    QuantLib::Option::Put.
+
+\section idx_quantlib QuantLib
+
+%QuantLibAddin is a subproject of %QuantLib and shares the %QuantLib project
+structure with regard to distribution and licensing.  The mailing list for
+%QuantLibAddin is
+<a href="https://lists.sourceforge.net/lists/listinfo/quantlib-users">quantlib-users@lists.sf.net</a>.
+The list archives may be searched
+<a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">here</a>.
+
+*/
+

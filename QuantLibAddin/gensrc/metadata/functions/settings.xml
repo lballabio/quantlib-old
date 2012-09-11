@@ -1,0 +1,96 @@
+<Category name='settings'>
+  <description>global settings functions.</description>
+  <displayName>Settings</displayName>
+  <xlFunctionWizardCategory>QuantLib - Date</xlFunctionWizardCategory>
+  <copyright>
+    Copyright (C) 2006, 2007, 2011 Ferdinando Ametrano
+  </copyright>
+  <Functions>
+
+    <Procedure name='qlSettingsEvaluationDate'>
+      <description>returns the current value of the Evaluation Date.</description>
+      <alias>QuantLib::Settings::instance().evaluationDate</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlSettingsSetEvaluationDate'>
+      <description>sets the value of the Evaluation Date.</description>
+      <alias>QuantLibAddin::qlSettingsSetEvaluationDate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EvalDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>new value for the evaluation date. If a null date is provided the current date wiil be used and midnight date change will be detected.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlSettingsEnforceTodaysHistoricFixings'>
+      <description>returns the current value of the boolean which enforce the usage of historic fixings for today's date.</description>
+      <alias>QuantLib::Settings::instance().enforcesTodaysHistoricFixings</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlSettingsSetEnforceTodaysHistoricFixings'>
+      <description>sets the value of the boolean which enforce the usage of historic fixings for today's date.</description>
+      <alias>QuantLibAddin::qlSettingsSetEnforceTodaysHistoricFixings</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Boolean' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>new value for the boolean which enforce the usage of historic fixings for today's date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+</Category>

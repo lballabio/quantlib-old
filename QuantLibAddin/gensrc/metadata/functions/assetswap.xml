@@ -1,0 +1,295 @@
+<Category name='assetswap'>
+  <description>functions to construct and use AssetSwap objects.</description>
+  <displayName>Asset Swap</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/assetswap.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/bonds.hpp</include>
+    <include>ql/instruments/assetswap.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/assetswap.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/bonds.hpp</include>
+    <include>ql/instruments/assetswap.hpp</include>
+    <include>ql/indexes/iborindex.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2009, 2011 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, Chiara Fornarola
+  </copyright>
+  <Functions>
+
+    <Constructor name='qlAssetSwap'>
+      <libraryFunction>AssetSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='PayBondCoupon' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE to pay the bond's coupons and receive floating.</description>
+          </Parameter>
+          <Parameter name='Bond' exampleValue='DE0003088704'>
+            <type>QuantLib::Bond</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying bond object ID.</description>
+          </Parameter>
+          <Parameter name='CleanPrice' exampleValue='99.16'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>market price of the underlying bond.</description>
+          </Parameter>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg IborIndex object ID.</description>
+          </Parameter>
+          <Parameter name='Spread' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Floating leg spread.</description>
+          </Parameter>
+          <!--<Parameter name='YieldCurve' exampleValue='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>-->
+          <Parameter name='FloatingLegSchedule' default='""'>
+            <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg schedule object ID.</description>
+          </Parameter>
+          <Parameter name='FloatingLegDayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <Parameter name='ParAssetSwap' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for par asset swap, FALSE for market asset swap.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlAssetSwap2'>
+      <libraryFunction>AssetSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ParAssetSwap' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for par asset swap, FALSE for market asset swap.</description>
+          </Parameter>
+          <Parameter name='Bond' exampleValue='DE0003088704'>
+            <type>QuantLib::Bond</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying bond object ID.</description>
+          </Parameter>
+          <Parameter name='CleanPrice' exampleValue='99.16'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>market price of the underlying bond.</description>
+          </Parameter>
+          <Parameter name='NonParRepayment' exampleValue='101.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>non par repayment on deal maturity date.</description>
+          </Parameter>
+          <Parameter name='Gearing' default='1.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gearing.</description>
+          </Parameter>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg IborIndex object ID.</description>
+          </Parameter>
+          <Parameter name='Spread' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Floating leg spread.</description>
+          </Parameter>
+          <Parameter name='FloatingLegDayCounter' default='"QuantLib::DayCounter()"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <Parameter name='DealMaturity' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>deal maturity (bond maturity if missing).</description>
+          </Parameter>
+          <Parameter name='PayBondCoupon' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE to pay the bond's coupons and receive floating.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlAssetSwapBondLegAnalysis' type='QuantLibAddin::AssetSwap'>
+      <description>The bond leg cash flow analysis.</description>
+      <libraryFunction>bondLeg</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='AfterDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Shows only cashflows after given date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAssetSwapFloatingLegAnalysis' type='QuantLibAddin::AssetSwap'>
+      <description>The floating leg cash flow analysis.</description>
+      <libraryFunction>floatingLeg</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='AfterDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Shows only cashflows after given date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAssetSwapFairSpread' type='QuantLib::AssetSwap'>
+      <description>the fair rate of the asset swap, i.e. the asset swap spread.</description>
+      <libraryFunction>fairSpread</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Spread</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAssetSwapFloatingLegBPS' type='QuantLib::AssetSwap'>
+      <description>the BPS of the floating leg.</description>
+      <libraryFunction>floatingLegBPS</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAssetSwapFairCleanPrice' type='QuantLib::AssetSwap'>
+      <description>the fair price of the bond in the asset swap.</description>
+      <libraryFunction>fairCleanPrice</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAssetSwapFairNonParRepayment' type='QuantLib::AssetSwap'>
+      <description>the fair non par repayment of the bond in the asset swap.</description>
+      <libraryFunction>fairNonParRepayment</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAssetSwapParSwap' type='QuantLib::AssetSwap'>
+      <description>Returns TRUE if par swap</description>
+      <libraryFunction>parSwap</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        SupportedPlatform name='Cpp'/
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlAssetSwapPayBondCoupon' type='QuantLib::AssetSwap'>
+      <description>Returns TRUE if it is a bond coupon payer swap</description>
+      <libraryFunction>payBondCoupon</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

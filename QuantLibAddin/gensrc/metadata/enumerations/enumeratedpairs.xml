@@ -1,0 +1,352 @@
+<root>
+
+  <enumeratedPairCopyright>
+    Copyright (C) 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2005, 2006, 2007 Eric Ehlers
+    Copyright (C) 2006 Giorgio Facchinetti
+    Copyright (C) 2006 Chiara Fornarola
+    Copyright (C) 2006 Katiuscia Manzoni
+    Copyright (C) 2005 Plamen Neykov
+  </enumeratedPairCopyright>
+
+  <EnumeratedPairGroups>
+
+    <EnumeratedPairGroup class='QuantLib::YieldTermStructure'>
+      <includeFile/>
+      <EnumeratedPairs>
+        <!-- Discount based yield term structures -->
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>BackwardFlat</id2>
+          <value>DISCOUNT_BACKWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>ForwardFlat</id2>
+          <value>DISCOUNT_FORWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>Linear</id2>
+          <value>DISCOUNT_LINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>LogLinear</id2>
+          <value>DISCOUNT_LOGLINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>CubicNaturalSpline</id2>
+          <value>DISCOUNT_CUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>LogCubicNaturalSpline</id2>
+          <value>DISCOUNT_LOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>MonotonicCubicNaturalSpline</id2>
+          <value>DISCOUNT_MONOTONICCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>MonotonicLogCubicNaturalSpline</id2>
+          <value>DISCOUNT_MONOTONICLOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>KrugerCubic</id2>
+          <value>DISCOUNT_KrugerCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>KrugerLogCubic</id2>
+          <value>DISCOUNT_KrugerLogCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>FritschButlandCubic</id2>
+          <value>DISCOUNT_FritschButlandCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>FritschButlandLogCubic</id2>
+          <value>DISCOUNT_FritschButlandLogCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>Parabolic</id2>
+          <value>DISCOUNT_Parabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>LogParabolic</id2>
+          <value>DISCOUNT_LogParabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>MonotonicParabolic</id2>
+          <value>DISCOUNT_MonotonicParabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>MonotonicLogParabolic</id2>
+          <value>DISCOUNT_MonotonicLogParabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <!-- ZeroYield based yield term structures -->
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>BackwardFlat</id2>
+          <value>ZEROYIELD_BACKWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>ForwardFlat</id2>
+          <value>ZEROYIELD_FORWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>Linear</id2>
+          <value>ZEROYIELD_LINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>LogLinear</id2>
+          <value>ZEROYIELD_LOGLINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>CubicNaturalSpline</id2>
+          <value>ZEROYIELD_CUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>LogCubicNaturalSpline</id2>
+          <value>ZEROYIELD_LOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>MonotonicCubicNaturalSpline</id2>
+          <value>ZEROYIELD_MONOTONICCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>MonotonicLogCubicNaturalSpline</id2>
+          <value>ZEROYIELD_MONOTONICLOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>KrugerCubic</id2>
+          <value>ZEROYIELD_KrugerCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>KrugerLogCubic</id2>
+          <value>ZEROYIELD_KrugerLogCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>FritschButlandCubic</id2>
+          <value>ZEROYIELD_FritschButlandCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>FritschButlandLogCubic</id2>
+          <value>ZEROYIELD_FritschButlandLogCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>Parabolic</id2>
+          <value>ZEROYIELD_Parabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>LogParabolic</id2>
+          <value>ZEROYIELD_LogParabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>MonotonicParabolic</id2>
+          <value>ZEROYIELD_MonotonicParabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>MonotonicLogParabolic</id2>
+          <value>ZEROYIELD_MonotonicLogParabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <!--ForwardRate based yield term structures-->
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>BackwardFlat</id2>
+          <value>FORWARDRATE_BACKWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>ForwardFlat</id2>
+          <value>FORWARDRATE_FORWARDFLAT_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>Linear</id2>
+          <value>FORWARDRATE_LINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>LogLinear</id2>
+          <value>FORWARDRATE_LOGLINEAR_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>CubicNaturalSpline</id2>
+          <value>FORWARDRATE_CUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>LogCubicNaturalSpline</id2>
+          <value>FORWARDRATE_LOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>MonotonicCubicNaturalSpline</id2>
+          <value>FORWARDRATE_MONOTONICCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>MonotonicLogCubicNaturalSpline</id2>
+          <value>FORWARDRATE_MONOTONICLOGCUBICNATURALSPLINE_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>KrugerCubic</id2>
+          <value>FORWARDRATE_KrugerCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>KrugerLogCubic</id2>
+          <value>FORWARDRATE_KrugerLogCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>FritschButlandCubic</id2>
+          <value>FORWARDRATE_FritschButlandCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>FritschButlandLogCubic</id2>
+          <value>FORWARDRATE_FritschButlandLogCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>Parabolic</id2>
+          <value>FORWARDRATE_Parabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>LogParabolic</id2>
+          <value>FORWARDRATE_LogParabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>MonotonicParabolic</id2>
+          <value>FORWARDRATE_MonotonicParabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>MonotonicLogParabolic</id2>
+          <value>FORWARDRATE_MonotonicLogParabolic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+      </EnumeratedPairs>
+    </EnumeratedPairGroup>
+
+    <EnumeratedPairGroup class='QuantLib::HistoricalForwardRatesAnalysis'>
+      <includeFile/>
+      <EnumeratedPairs>
+        <!-- Discount based yield term structures -->
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>BackwardFlat</id2>
+          <value>DISCOUNT_BACKWARDFLAT_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>ForwardFlat</id2>
+          <value>DISCOUNT_FORWARDFLAT_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>Linear</id2>
+          <value>DISCOUNT_LINEAR_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>LogLinear</id2>
+          <value>DISCOUNT_LOGLINEAR_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+        <!-- ZeroYield based yield term structures -->
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>BackwardFlat</id2>
+          <value>ZEROYIELD_BACKWARDFLAT_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>ForwardFlat</id2>
+          <value>ZEROYIELD_FORWARDFLAT_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>Linear</id2>
+          <value>ZEROYIELD_LINEAR_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>LogLinear</id2>
+          <value>ZEROYIELD_LOGLINEAR_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+        <!--ForwardRate based yield term structures-->
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>BackwardFlat</id2>
+          <value>FORWARDRATE_BACKWARDFLAT_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>ForwardFlat</id2>
+          <value>FORWARDRATE_FORWARDFLAT_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>Linear</id2>
+          <value>FORWARDRATE_LINEAR_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ForwardRate</id1>
+          <id2>LogLinear</id2>
+          <value>FORWARDRATE_LOGLINEAR_HistoricalForwardRatesAnalysis</value>
+        </EnumeratedPair>
+      </EnumeratedPairs>
+    </EnumeratedPairGroup>
+  </EnumeratedPairGroups>
+
+</root>

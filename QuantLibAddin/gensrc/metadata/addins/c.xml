@@ -1,0 +1,15 @@
+<Addin name='C'>
+
+  <rootDirectory>Addins/C</rootDirectory>
+
+  <copyright>
+    Copyright (C) 2004, 2005, 2006 Eric Ehlers
+  </copyright>
+
+  <Buffers>
+    <Buffer name='bufferFunction' fileName='stub.c.function'/>
+    <Buffer name='bufferIncludes' fileName='stub.c.includes'/>
+    <Buffer name='bufferHeader' fileName='stub.c.header'/>
+  </Buffers>
+
+</Addin>

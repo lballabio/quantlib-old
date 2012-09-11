@@ -1,0 +1,196 @@
+<Category name='swaption'>
+  <description>functions to construct and use Swaption objects.</description>
+  <displayName>Swaption</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/swaption.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
+    <include>qlo/vanillaswap.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/pricingengines.hpp</include>
+    <include>qlo/exercise.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/exercise.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/swaption.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
+    <include>qlo/vanillaswap.hpp</include>
+    <include>qlo/termstructures.hpp</include>
+    <include>qlo/pricingengines.hpp</include>
+    <include>qlo/exercise.hpp</include>
+    <include>ql/indexes/swapindex.hpp</include>
+    <include>ql/exercise.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2006 Cristina Duminuco
+    Copyright (C) 2006 Eric Ehlers
+  </copyright>
+  <Functions>
+
+    <Constructor name='qlSwaption'>
+      <libraryFunction>Swaption</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>InstrumentProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <!-- if you change the vanillaSwap name, C++ code should be updated'-->
+          <Parameter name='VanillaSwap'>
+            <type>QuantLib::VanillaSwap</type>
+            <tensorRank>scalar</tensorRank>
+            <description>underlying (vanilla) swap object ID.</description>
+          </Parameter>
+          <Parameter name='Exercise'>
+            <type>QuantLib::EuropeanExercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise object ID.</description>
+          </Parameter>
+          <Parameter name='SettlementType'>
+            <type>QuantLib::Settlement::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>settlement type (PhysicalSettlement, CashSettlement).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!--
+    This function is commented out for the 0.3.14 release because
+    it breaks QuantLibXLDynamic.
+    <Member name='qlSwaptionUnderlyingSwap' type='QuantLibAddin::Swaption'>
+      <description>returns the underlying swap for the given Swaption object.</description>
+      <libraryFunction>underlyingSwap</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member-->
+
+    <Constructor name='qlMakeSwaption'>
+      <libraryFunction>Swaption</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SwapIndex' exampleValue='EuriborSwapIsdaFixA10Y'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>SwapIndex object ID.</description>
+          </Parameter>
+          <Parameter name='OptionTenor' exampleValue='5Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>option tenor as Period (e.g. '5Y').</description>
+          </Parameter>
+          <Parameter name='Strike' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>strike.</description>
+          </Parameter>
+          <!--<Parameter name='PricingEngineID' default='boost::shared_ptr&lt;QuantLib::PricingEngine&gt;()'>-->
+          <Parameter name='PricingEngineID' exampleValue='SwaptionEngineID'>
+            <type>QuantLib::PricingEngine</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Swaption PricingEngine object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlSwaptionType' type='QuantLib::Swaption'>
+      <description>returns the type (Payer or Receiver) for the given Swaption object.</description>
+      <libraryFunction>type</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::VanillaSwap::Type</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionSettlementType' type='QuantLib::Swaption'>
+      <description>returns the settlement type (Cash or Delivery) for the given Swaption object.</description>
+      <libraryFunction>settlementType</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Settlement::Type</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlSwaptionImpliedVolatility' type='QuantLib::Swaption'>
+      <description>Returns the volatility implied by the given price for the given Swaption object.</description>
+      <libraryFunction>impliedVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Price' exampleValue ='0.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Price used to infer the implied volatility.</description>
+          </Parameter>
+          <Parameter name='YieldCurve' exampleValue ='EURYC'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='Guess' default='0.10'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Volatility guess.</description>
+          </Parameter>
+          <Parameter name='Accuracy' default='1.0e-6'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>solver accuracy.</description>
+          </Parameter>
+          <Parameter name='MaxIter' default='100'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>solver max iterations.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

@@ -1,0 +1,499 @@
+<Category name='correlation'>
+  <description>functions to construct and use Correlation objects.</description>
+  <displayName>Correlation</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/correlation.hpp</include>
+    <include>qlo/sequencestatistics.hpp</include>
+    <include>qlo/curvestate.hpp</include>
+    <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
+    <include>ql/models/marketmodels/correlations/expcorrelations.hpp</include>
+    <include>ql/models/marketmodels/historicalforwardratesanalysis.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/sequencestatistics.hpp</include>
+    <include>qlo/correlation.hpp</include>
+    <include>qlo/curvestate.hpp</include>
+    <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/indexes/swapindex.hpp</include>
+    <include>ql/models/marketmodels/correlations/expcorrelations.hpp</include>
+    <include>ql/models/marketmodels/historicalforwardratesanalysis.hpp</include>
+    <include>ql/models/marketmodels/historicalratesanalysis.hpp</include>
+  </addinIncludes>
+
+  <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2007 Chiara Fornarola
+    Copyright (C) 2007 Katiuscia Manzoni
+    Copyright (C) 2006, 2007 Marco Bianchetti
+    Copyright (C) 2006, 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+
+    <!-- LmLinearExponentialCorrelationModel constructor  -->
+
+    <Constructor name='qlMarketModelLmLinearExponentialCorrelationModel'>
+      <libraryFunction>LmLinearExponentialCorrelationModel</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Size' exampleValue ='4'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>size.</description>
+          </Parameter>
+          <Parameter name='Rho' exampleValue ='0.5'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>rho.</description>
+          </Parameter>
+          <Parameter name='Beta' exampleValue ='.6'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta.</description>
+          </Parameter>
+          <Parameter name='Factors' default='QuantLib::Null&lt;QuantLib::Size&gt;()'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>factors.</description>
+          </Parameter>
+        </Parameters>c
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlHistoricalForwardRatesAnalysisSkippedDates' type='QuantLib::HistoricalForwardRatesAnalysis'>
+      <description>Returns vector of historic dates for which some fixing is missing.</description>
+      <libraryFunction>skippedDates</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalForwardRatesAnalysisSkippedDatesErrorMessage' type='QuantLib::HistoricalForwardRatesAnalysis'>
+      <description>Returns vector of error messages for historic dates with missing fixing.</description>
+      <libraryFunction>skippedDatesErrorMessage</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalForwardRatesAnalysisFailedDates' type='QuantLib::HistoricalForwardRatesAnalysis'>
+      <description>Returns vector of dates for which forward rates could not be calculated.</description>
+      <libraryFunction>failedDates</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalForwardRatesAnalysisFailedDatesErrorMessage' type='QuantLib::HistoricalForwardRatesAnalysis'>
+      <description>Returns vector of error messages for dates on which forward rates could not be calculated.</description>
+      <libraryFunction>failedDatesErrorMessage</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalForwardRatesAnalysisFixingPeriods' type='QuantLib::HistoricalForwardRatesAnalysis'>
+      <description>Returns the forward rates time grid.</description>
+      <libraryFunction>fixingPeriods</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlHistoricalForwardRatesAnalysis'>
+      <libraryFunction>HistoricalForwardRatesAnalysis</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SequenceStats'>
+            <type>QuantLib::SequenceStatistics</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Sequence Statistics object ID.</description>
+          </Parameter>
+          <Parameter name='StartDate' exampleValue='37413'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beginning of the time series.</description>
+          </Parameter>
+          <Parameter name='EndDate' exampleValue='39248'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end of the time series.</description>
+          </Parameter>
+          <Parameter name='Step' exampleValue='1D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time series' time step.</description>
+          </Parameter>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating rate index.</description>
+          </Parameter>
+          <Parameter name='InitialGap' exampleValue='3M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>initialGap.</description>
+          </Parameter>
+          <Parameter name='Horizon' exampleValue='30Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bootstrap horizon.</description>
+          </Parameter>
+          <Parameter name='IborIndexes'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Ibor indexes.</description>
+          </Parameter>
+          <Parameter name='SwapIndexes'>
+            <type>QuantLib::SwapIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>Swap indexes.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>yield curve DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='TraitsID' default='"Discount"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Discount, ZeroRate, or ForwardRate.</description>
+          </Parameter>
+          <Parameter name='InterpolatorID' default='"CubicSpline"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Linear, LogLinear, or CubicSpline.</description>
+          </Parameter>
+          <Parameter name='BootstrapAccuracy' default='1.0e-12'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>boostrap accuracy.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlHistoricalRatesAnalysisSkippedDates' type='QuantLib::HistoricalRatesAnalysis'>
+      <description>Returns vector of historic dates for which some fixing is missing.</description>
+      <libraryFunction>skippedDates</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlHistoricalRatesAnalysisSkippedDatesErrorMessage' type='QuantLib::HistoricalRatesAnalysis'>
+      <description>Returns vector of error messages for historic dates with missing fixing.</description>
+      <libraryFunction>skippedDatesErrorMessage</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlHistoricalRatesAnalysis'>
+      <libraryFunction>HistoricalRatesAnalysis</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SequenceStats'>
+            <type>QuantLib::SequenceStatistics</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Sequence Statistics object ID.</description>
+          </Parameter>
+          <Parameter name='StartDate' exampleValue='37413'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beginning of the time series.</description>
+          </Parameter>
+          <Parameter name='EndDate' exampleValue='39248'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end of the time series.</description>
+          </Parameter>
+          <Parameter name='Step' exampleValue='1D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time series' time step.</description>
+          </Parameter>
+          <Parameter name='InterestRateIndexes'>
+            <type>QuantLib::InterestRateIndex</type>
+            <tensorRank>vector</tensorRank>
+            <description>interest rate indexes object IDs.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlTimeHomogeneousForwardCorrelation'>
+      <libraryFunction>TimeHomogeneousForwardCorrelation</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FwdCorrMatrix' >
+            <type>QuantLib::Matrix</type>
+            <tensorRank>matrix</tensorRank>
+            <description>forward correlation matrix.</description>
+          </Parameter>
+          <Parameter name='RateTimes' >
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate times.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Procedure name="qlExponentialCorrelations">
+      <description>Returns the correlation matrix (time dependent long term + beta + gamma exponential functional form).</description>
+      <alias>QuantLib::exponentialCorrelations</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RateTimes' exampleValue ='0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5'>
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate fixing times.</description>
+          </Parameter>
+          <Parameter name='LongTermCorr' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation .</description>
+          </Parameter>
+          <Parameter name='Beta' default='0.24'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponential decay factor.</description>
+          </Parameter>
+          <Parameter name='Gamma' default='0.333'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponent for time to go.</description>
+          </Parameter>
+          <Parameter name='Time' exampleValue ='0.0'>
+            <type>QuantLib::Time</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time t .</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Constructor name='qlExponentialForwardCorrelation'>
+      <libraryFunction>ExponentialForwardCorrelation</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RateTimes' >
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>rate times.</description>
+          </Parameter>
+          <Parameter name='LongTermCorr' exampleValue ='0.5'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Long term correlation .</description>
+          </Parameter>
+          <Parameter name='Beta' exampleValue ='0.2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponential decay factor.</description>
+          </Parameter>
+          <Parameter name='Gamma' exampleValue ='0.9'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>exponent for time to go.</description>
+          </Parameter>
+          <Parameter name='Times' >
+            <type>QuantLib::Time</type>
+            <tensorRank>vector</tensorRank>
+            <description>times.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlPiecewiseConstantCorrelationCorrelation' type='QuantLib::PiecewiseConstantCorrelation' superType='libraryClass'>
+      <description>Returns the pseudo-root of the equivalent covariance swap rates matrix.</description>
+      <libraryFunction>correlation</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TimeIndex' exampleValue ='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>time index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantCorrelationTimes' type='QuantLib::PiecewiseConstantCorrelation' superType='libraryClass'>
+      <description>Piecewise Constant Correlation Times.</description>
+      <libraryFunction>times</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlPiecewiseConstantCorrelationNumberOfRates' type='QuantLib::PiecewiseConstantCorrelation' superType='libraryClass'>
+      <description>Piecewise Constant Correlation Number of Rates.</description>
+      <libraryFunction>numberOfRates</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlCotSwapFromFwdCorrelation'>
+      <libraryFunction>CotSwapFromFwdCorrelation</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FwdCorr' exampleValue ='PiecewiseConstantCorrelationID'>
+            <type>QuantLib::PiecewiseConstantCorrelation</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Forward rates correlation (i.e. PiecewiseConstantCorrelation object ID).</description>
+          </Parameter>
+          <Parameter name='CurveState' exampleValue ='CurveStateID'>
+            <type>QuantLib::CurveState</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>curveState.</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

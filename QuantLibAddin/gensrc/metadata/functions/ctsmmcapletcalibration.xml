@@ -1,0 +1,501 @@
+<Category name='ctsmmcapletcalibration'>
+  <description>functions to construct and use ctsmmcapletcalibration objects.</description>
+  <displayName>Ctsmmcapletcalibration</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/ctsmmcapletcalibration.hpp</include>
+    <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/correlation.hpp</include>
+    <include>qlo/curvestate.hpp</include>
+    <include>qlo/volatility.hpp</include>
+    <include>qlo/alphaform.hpp</include>
+    <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/ctsmmcapletcalibration.hpp</include>
+    <include>qlo/evolutiondescription.hpp</include>
+    <include>qlo/correlation.hpp</include>
+    <include>qlo/curvestate.hpp</include>
+    <include>qlo/volatility.hpp</include>
+    <include>qlo/alphaform.hpp</include>
+    <include>ql/models/marketmodels/models/capletcoterminalalphacalibration.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+    Copyright (C) 2007 Chiara Fornarola
+    Copyright (C) 2006, 2007 Marco Bianchetti
+    Copyright (C) 2006, 2007 Cristina Duminuco
+    Copyright (C) 2006, 2007 Giorgio Facchinetti
+  </copyright>
+  <Functions>
+    <!-- Caplet calibration of a Coterminal Swap Market Model -->
+
+    <Member name='qlCTSMMCapletCalibrationCalibrate' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>calibrate.</description>
+      <libraryFunction>calibrate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='NumberOfFactors' exampleValue='3'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of factors.</description>
+          </Parameter>
+          <Parameter name='MaxIter' default='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>maximum number of iterations.</description>
+          </Parameter>
+          <Parameter name='Tol' default='0.0001'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>caplet vol tolerance.</description>
+          </Parameter>
+          <Parameter name='InnerMaxIter' default='100'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>innerMaxIter.</description>
+          </Parameter>
+          <Parameter name='InnerTol' default='1e-8'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>caplet vol tolerance.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationFailures' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>failures.</description>
+      <libraryFunction>failures</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Natural</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationDeformationSize' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>deformationSize.</description>
+      <libraryFunction>deformationSize</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationMarketCapletVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>market caplet volalitilies.</description>
+      <libraryFunction>mktCapletVols</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationModelCapletVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>model caplet volalitilies.</description>
+      <libraryFunction>mdlCapletVols</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationCapletRmsError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>capletRmsError.</description>
+      <libraryFunction>capletRmsError</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationCapletMaxError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>capletMaxError.</description>
+      <libraryFunction>capletMaxError</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationMarketSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>market swaption volalitilies.</description>
+      <libraryFunction>mktSwaptionVols</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationModelSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>model swaption volalitilies.</description>
+      <libraryFunction>mdlSwaptionVols</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationSwaptionRmsError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>swaptionRmsError.</description>
+      <libraryFunction>swaptionRmsError</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationSwaptionMaxError' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>swaptionMaxError.</description>
+      <libraryFunction>swaptionMaxError</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationSwapPseudoRoot' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>swapPseudoRoot.</description>
+      <libraryFunction>swapPseudoRoot</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Index' exampleValue='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Matrix</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationTimeDependentCalibratedSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>timeDependentCalibratedSwaptionVols.</description>
+      <libraryFunction>timeDependentCalibratedSwaptionVols</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Index' exampleValue='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCTSMMCapletCalibrationTimeDependentUnCalibratedSwaptionVols' type='QuantLib::CTSMMCapletCalibration' superType='libraryClass'>
+      <description>timeDependentUnCalibratedSwaptionVols.</description>
+      <libraryFunction>timeDependentUnCalibratedSwaptionVols</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Index' exampleValue='0'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>index.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlCTSMMCapletOriginalCalibration'>
+      <libraryFunction>CTSMMCapletOriginalCalibration</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Evolution' exampleValue ='EvolutionDescriptionID'>
+            <type>QuantLib::EvolutionDescription</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Evolution Description.</description>
+          </Parameter>
+          <Parameter name='Correlations'>
+            <type>QuantLib::PiecewiseConstantCorrelation</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>PiecewiseConstantCorrelation object ID.</description>
+          </Parameter>
+          <Parameter name='SwapPiecewiseConstantVariances'>
+            <type>QuantLib::PiecewiseConstantVariance</type>
+            <tensorRank>vector</tensorRank>
+            <description>PiecewiseConstantVariance IDs.</description>
+          </Parameter>
+          <Parameter name='CapletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>vector</tensorRank>
+            <description>caplet volatilities.</description>
+          </Parameter>
+          <Parameter name='CurveState' exampleValue ='CurveStateID'>
+            <type>QuantLib::CurveState</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID.</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement.</description>
+          </Parameter>
+          <Parameter name='Alphas' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>alphas.</description>
+          </Parameter>
+          <Parameter name='LowestRoot' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for lowest root, FALSE for the root nearest to 1.0.</description>
+          </Parameter>
+          <Parameter name='UseFullApprox' exampleValue='TRUE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for using Full Approximation.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlCTSMMCapletAlphaFormCalibration'>
+      <libraryFunction>CTSMMCapletAlphaFormCalibration</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Evolution' exampleValue ='EvolutionDescriptionID'>
+            <type>QuantLib::EvolutionDescription</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Evolution Description.</description>
+          </Parameter>
+          <Parameter name='Correlations'>
+            <type>QuantLib::PiecewiseConstantCorrelation</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>PiecewiseConstantCorrelation object ID.</description>
+          </Parameter>
+          <Parameter name='SwapPiecewiseConstantVariances'>
+            <type>QuantLib::PiecewiseConstantVariance</type>
+            <tensorRank>vector</tensorRank>
+            <description>PiecewiseConstantVariance IDs.</description>
+          </Parameter>
+          <Parameter name='CapletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>vector</tensorRank>
+            <description>caplet volatilities.</description>
+          </Parameter>
+          <Parameter name='CurveState' exampleValue ='CurveStateID'>
+            <type>QuantLib::CurveState</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID.</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement.</description>
+          </Parameter>
+          <Parameter name='AlphaInitial' exampleValue ='0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>alphaInitial.</description>
+          </Parameter>
+          <Parameter name='AlphaMax' default ='1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>alphaMax.</description>
+          </Parameter>
+          <Parameter name='AlphaMin' default ='-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>alphaMin.</description>
+          </Parameter>
+          <Parameter name='MaximizeHomogeneity' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for maximizing homogeneity.</description>
+          </Parameter>
+          <Parameter name='AlphaForm' exampleValue ='AlphaFormID' default='""'>
+            <type>QuantLib::AlphaForm</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha form ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlCTSMMCapletAlphaFormCalibrationAlpha' type='QuantLib::CTSMMCapletAlphaFormCalibration' superType='libraryClass'>
+      <description>alpha.</description>
+      <libraryFunction>alpha</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlCTSMMCapletMaxHomogeneityCalibration'>
+      <libraryFunction>CTSMMCapletMaxHomogeneityCalibration</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Evolution' exampleValue ='EvolutionDescriptionID'>
+            <type>QuantLib::EvolutionDescription</type>
+            <superType>underlyingClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Evolution Description.</description>
+          </Parameter>
+          <Parameter name='Correlations'>
+            <type>QuantLib::PiecewiseConstantCorrelation</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>PiecewiseConstantCorrelation object ID.</description>
+          </Parameter>
+          <Parameter name='SwapPiecewiseConstantVariances'>
+            <type>QuantLib::PiecewiseConstantVariance</type>
+            <tensorRank>vector</tensorRank>
+            <description>PiecewiseConstantVariance IDs.</description>
+          </Parameter>
+          <Parameter name='CapletVols' exampleValue ='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>vector</tensorRank>
+            <description>caplet volatilities.</description>
+          </Parameter>
+          <Parameter name='CurveState' exampleValue ='CurveStateID'>
+            <type>QuantLib::CurveState</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>CurveState object ID.</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement.</description>
+          </Parameter>
+          <Parameter name='Caplet0Swaption1Priority' default='1.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>caplet0Swaption1Priority.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>

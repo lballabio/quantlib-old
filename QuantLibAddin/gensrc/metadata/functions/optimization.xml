@@ -1,0 +1,317 @@
+<Category name='optimization'>
+  <description>functions to construct and use Optimization objects.</description>
+  <displayName>Optimization</displayName>
+  <xlFunctionWizardCategory>QuantLib - Math</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>qlo/optimization.hpp</include>
+    <include>ql/math/optimization/spherecylinder.hpp</include>
+    <include>ql/math/optimization/endcriteria.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006, 2007 Ferdinando Ametrano
+  </copyright>
+
+  <Functions>
+
+    <Procedure name='qlSphereCylinderOptimizerClosest' >
+      <description>Sphere Cylinder Optimizer Closest.</description>
+      <alias>QuantLib::sphereCylinderOptimizerClosest</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='R'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>r.</description>
+          </Parameter>
+          <Parameter name='S'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>s.</description>
+          </Parameter>
+          <Parameter name='Alpha'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha.</description>
+          </Parameter>
+          <Parameter name='Z1'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>z1.</description>
+          </Parameter>
+          <Parameter name='Z2'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>z2.</description>
+          </Parameter>
+          <Parameter name='Z3'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>z3.</description>
+          </Parameter>
+          <Parameter name='MaxIter'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>maxIter.</description>
+          </Parameter>
+          <Parameter name='Tol'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tolerance.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+
+
+    <!-- EndCriteria class and interface -->
+
+    <Procedure name='qlSecondsToString'>
+      <description>returns a hh:mm:ss string from the number of seconds provided as input.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Seconds' exampleValue='3661'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>number of seconds.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Member name='qlEndCriteriaMaxIterations' type='QuantLib::EndCriteria'>
+      <description>Returns the number of max interation for the given EndCriteria object.</description>
+      <libraryFunction>maxIterations</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEndCriteriaMaxStationaryStateIterations' type='QuantLib::EndCriteria'>
+      <description>Returns the number of max interation in a stationary state for the given EndCriteria object.</description>
+      <libraryFunction>maxStationaryStateIterations</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEndCriteriaFunctionEpsilon' type='QuantLib::EndCriteria'>
+      <description>Returns the function epsilon for the given EndCriteria object.</description>
+      <libraryFunction>functionEpsilon</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlEndCriteriaGradientNormEpsilon' type='QuantLib::EndCriteria'>
+      <description>Returns the gradient norm epsilon for the given EndCriteria object.</description>
+      <libraryFunction>gradientNormEpsilon</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlEndCriteria'>
+      <libraryFunction>EndCriteria</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='MaxIterations' exampleValue='1000'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max number of iterations.</description>
+          </Parameter>
+          <Parameter name='MaxStationaryStateIterations' exampleValue='100'>
+            <type>long</type>
+            <tensorRank>scalar</tensorRank>
+            <description>max number of iterations in a stationary state.</description>
+          </Parameter>
+          <Parameter name='RootEpsilon' exampleValue='1e-8'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tolerance on the root value.</description>
+          </Parameter>
+          <Parameter name='FunctionEpsilon' exampleValue='1e-8'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tolerance on the function value.</description>
+          </Parameter>
+          <Parameter name='GradientNormEpsilon' exampleValue='1e-8'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>tolerance on the function gradient norm value.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- OptimizationMethod derived classes' constructors -->
+
+    <Constructor name='qlSimplex'>
+      <libraryFunction>Simplex</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Lambda' exampleValue="0.01">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>lambda (typical scale length of the problem).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlLevenbergMarquardt'>
+      <libraryFunction>LevenbergMarquardt</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Epsfcn' libraryType="QuantLib::Real" default="1.0e-8">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>epsfcn.</description>
+          </Parameter>
+          <Parameter name='Xtol' libraryType="QuantLib::Real" default="1.0e-8">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>xtol.</description>
+          </Parameter>
+          <Parameter name='Gtol' libraryType="QuantLib::Real" default="1.0e-8">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>gtol.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlConjugateGradient'>
+      <libraryFunction>ConjugateGradient</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LineSearch' default='""'>
+            <type>QuantLib::LineSearch</type>
+            <tensorRank>scalar</tensorRank>
+            <description>LineSearch object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlSteepestDescent'>
+      <libraryFunction>SteepestDescent</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='LineSearch' default='""'>
+            <type>QuantLib::LineSearch</type>
+            <tensorRank>scalar</tensorRank>
+            <description>LineSearch object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- LineSearch derived classes' constructors -->
+
+    <Constructor name='qlArmijoLineSearch'>
+      <libraryFunction>ArmijoLineSearch</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Epsilon' default="1e-8">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>epsilon.</description>
+          </Parameter>
+          <Parameter name='Alpha' default="0.05">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>alpha.</description>
+          </Parameter>
+          <Parameter name='Beta' default="0.65">
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>beta.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+
+</Category>

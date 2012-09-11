@@ -1,0 +1,122 @@
+<Category name='exercise'>
+  <description>functions to construct and use Exercise objects.</description>
+  <displayName>Exercise</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>ql/exercise.hpp</include>
+    <include>qlo/exercise.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006 Ferdinando Ametrano
+    Copyright (C) 2006 Cristina Duminuco
+    Copyright (C) 2006 Eric Ehlers
+  </copyright>
+  <Functions>
+
+    <Member name='qlExerciseDates' type='QuantLib::Exercise'>
+      <description>Returns all exercise dates.</description>
+      <libraryFunction>dates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue >
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlExerciseLastDate' type='QuantLib::Exercise'>
+      <description>Returns last exercise date.</description>
+      <libraryFunction>lastDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue >
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlAmericanExercise'>
+      <libraryFunction>AmericanExercise</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EarliestDate' exampleValue ='1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>earliest exercise date.</description>
+          </Parameter>
+          <Parameter name='LatestDate' exampleValue ='2Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>latest exercise date.</description>
+          </Parameter>
+          <Parameter name='PayoffAtExpiry' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payoff at expiry.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlEuropeanExercise'>
+      <libraryFunction>EuropeanExercise</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Guile'/>
+        <SupportedPlatform name='C'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ExpiryDate' exampleValue ='1Y'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>expiry date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBermudanExercise'>
+      <libraryFunction>BermudanExercise</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Dates' exampleValue ="'1Y,2Y">
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>dates.</description>
+          </Parameter>
+          <Parameter name='PayoffAtExpiry' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payoff at expiry.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  </Functions>
+</Category>
+

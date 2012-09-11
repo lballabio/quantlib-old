@@ -1,0 +1,78 @@
+<Category name='prices'>
+  <description>Price utility functions.</description>
+  <displayName>Prices</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>ql/prices.hpp</include>
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2006 Katiuscia Manzoni
+  </copyright>
+  <Functions>
+
+    <Procedure name='qlMidEquivalent' >
+      <description>returns the mid price if available, or a suitable substitute otherwise.</description>
+      <alias>QuantLib::midEquivalent</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Bid' default='0' exampleValue='90'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bid price.</description>
+          </Parameter>
+          <Parameter name='Ask' default='0' exampleValue='110'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ask price.</description>
+          </Parameter>
+          <Parameter name='Last' default='0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>last price.</description>
+          </Parameter>
+          <Parameter name='Close' default='0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>close price.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlMidSafe' >
+      <description>returns the mid price only if both bid and ask are available.</description>
+      <alias>QuantLib::midSafe</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Bid' default='0' exampleValue='90'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>bid price.</description>
+          </Parameter>
+          <Parameter name='Ask' default='0' exampleValue='110'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>ask price.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+  </Functions>
+</Category>
