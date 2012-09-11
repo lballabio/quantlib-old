@@ -1,0 +1,25 @@
+<Environment>
+  <GlobalAddins>
+    <GlobalAddin name="Reuters" enabled="False" path="C:\Program Files\Reuters\PowerPlus\PPP.xla" />
+    <GlobalAddin name="Bloomberg" enabled="False" path="C:\blp\API\dde\BlpMain.xla" />
+    <GlobalAddin name="Oracle" enabled="False" path="C:\Program Files\Oracle\Oracle.xla" />
+  </GlobalAddins>
+  <Frameworks>
+    <Framework name="demo" displayName="framework 1" fileName="demo">
+      <Components>
+        <Component path="C:\erik\projects\XL-Launcher\bin\Demo\Framework1\Framework1.xla" />
+      </Components>
+      <StartupParameters>
+        <StartupParameter name="startup parameter 0" value="abc" />
+        <StartupParameter name="startup parameter 1" value="False" />
+        <StartupParameter name="startup parameter 2" value="True" />
+        <StartupParameter name="startup parameter 3" value="" />
+        <StartupParameter name="startup parameter 4" value="abc" />
+        <StartupParameter name="startup parameter 5" value="" />
+        <StartupParameter name="startup parameter 6" value="item 2" />
+        <StartupParameter name="startup parameter 7" value="2011-10-20" />
+        <StartupParameter name="startup parameter 8" value="1968-04-22" />
+      </StartupParameters>
+    </Framework>
+  </Frameworks>
+</Environment>

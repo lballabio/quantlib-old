@@ -1,0 +1,2 @@
+- help file not displayed
+- handle relative path

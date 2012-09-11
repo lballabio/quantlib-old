@@ -1,0 +1,34 @@
+<Environment>
+  <GlobalAddins>
+    <GlobalAddin name="Reuters" enabled="False" path="C:\Program Files\Reuters\PowerPlus\PPP.xla" />
+    <GlobalAddin name="Bloomberg" enabled="False" path="C:\blp\API\dde\BlpMain.xla" />
+    <GlobalAddin name="Oracle" enabled="False" path="C:\Program Files\Oracle\Oracle.xla" />
+  </GlobalAddins>
+  <Frameworks>
+    <Framework name="QuantLibXL" displayName="QuantLibXL" fileName="QuantLibXL">
+      <Components>
+        <Component path="C:\erik\projects\ql\trunk\QuantLibXL\xll\QuantLibXL-vc90-mt-s-1_1_0.xll" />
+        <Component path="C:\erik\projects\ql\trunk\QuantLibXL\framework2\QuantLibXL.xla" />
+      </Components>
+      <StartupParameters>
+        <StartupParameter name="Environment" value="Fixed Income" />
+        <StartupParameter name="Workbook Path" value="C:\erik\projects\ql\trunk\QuantLibXL\Workbooks" />
+        <StartupParameter name="Help File Path" value="C:\erik\projects\ql\trunk\QuantLibXL\Docs" />
+        <StartupParameter name="Metadata Path" value="C:\erik\projects\ql\trunk\QuantLibAddin\gensrc\metadata" />
+        <StartupParameter name="Set Evaluation Date" value="False" />
+        <StartupParameter name="Evaluation Date" value="2011-10-12" />
+        <StartupParameter name="Default Currency" value="EUR" />
+        <StartupParameter name="Initialization Data Source" value="Excel" />
+        <StartupParameter name="Open Main Checks" value="False" />
+        <StartupParameter name="Update Indexes Time Series" value="False" />
+        <StartupParameter name="Load Indexes Time Series" value="False" />
+        <StartupParameter name="Load Bonds" value="False" />
+        <StartupParameter name="BTP Analysis" value="False" />
+        <StartupParameter name="Bootstrap Yield Curves" value="True" />
+        <StartupParameter name="Bootstrap Bond Curve" value="False" />
+        <StartupParameter name="Switch to Static Market Data" value="False" />
+        <StartupParameter name="Feed Use" value="Reuters" />
+      </StartupParameters>
+    </Framework>
+  </Frameworks>
+</Environment>

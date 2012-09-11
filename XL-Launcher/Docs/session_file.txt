@@ -1,0 +1,12 @@
+<frameworklist>
+ <framework name="framework 1">
+  <addinlist>
+   <addin1.xla>
+   <addin2.xla>
+  </addinlist>
+  <startupparameters>
+   <parameter key="bootstrapYieldCurve" value="true">
+   <parameter key="evaluationDate" value="2011-08-10">
+  </startupparameters>
+ </framework>
+<frameworklist>

@@ -1,0 +1,10 @@
+<addinlist>
+ <addin1.xla>
+ <addin2.xla>
+</addinlist>
+<startupparameters>
+ <checkbox>
+  <caption text="bootstrap">
+  <parameter key="bootstrapYieldCurve" value="true">
+ </checkbox>
+</startupparameters>
