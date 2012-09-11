@@ -1,0 +1,11 @@
+#include <oh/utilities.hpp>
+#include <oh/ohdefines.hpp>
+#include <%(libRoot)s/%(prefix)saddindefines.hpp>
+#include <%(libRoot)s/enumerations/factories/all.hpp>
+#include <%(libRoot)s/conversions/all.hpp>
+%(categoryIncludes)s
+#include <Addins/Calc/%(prefix)saddin.hpp>
+#include <Addins/Calc/calcutils.hpp>
+#include <Addins/Calc/conversions.hpp>
+
+%(buffer)s

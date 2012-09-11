@@ -1,0 +1,19 @@
+# File for Visual Studio NMAKE.
+# Local gensrc makefiles can include this one to
+# enforce make dependencies on the core gensrc files.
+
+CORE_DEPENDENCIES=$(GENSRC_DIR)\gensrc.py \
+                  $(GENSRC_DIR)\gensrc\addins\*.py \
+                  $(GENSRC_DIR)\gensrc\categories\*.py \
+                  $(GENSRC_DIR)\gensrc\configuration\*.py \
+                  $(GENSRC_DIR)\gensrc\enumerations\*.py \
+                  $(GENSRC_DIR)\gensrc\exceptions\*.py \
+                  $(GENSRC_DIR)\gensrc\functions\*.py \
+                  $(GENSRC_DIR)\gensrc\parameters\*.py \
+                  $(GENSRC_DIR)\gensrc\patterns\*.py \
+                  $(GENSRC_DIR)\gensrc\rules\*.py \
+                  $(GENSRC_DIR)\gensrc\serialization\*.py \
+                  $(GENSRC_DIR)\gensrc\types\*.py \
+                  $(GENSRC_DIR)\gensrc\utilities\*.py \
+                  $(GENSRC_DIR)\gensrc\stubs\stub.*
+

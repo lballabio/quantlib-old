@@ -1,0 +1,15 @@
+#ifdef WIN32
+#pragma warning(disable: 4503)
+#pragma warning(disable: 4786)
+#pragma warning(disable: 4800)
+#endif
+
+#include <Addins/Calc/%(prefix)saddin.hpp>
+#include <Addins/Calc/init.hpp>
+
+%(addinClassName)s::%(addinClassName)s() throw () : m_refcount( 0 ) {
+
+    QuantLibAddin::initializeAddin();
+
+%(buffer)s}
+

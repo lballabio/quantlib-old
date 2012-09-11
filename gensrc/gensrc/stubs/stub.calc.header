@@ -1,0 +1,7 @@
+#ifndef %(prefix)s_calc_auto_hpp
+#define %(prefix)s_calc_auto_hpp
+
+%(buffer)s
+
+#endif
+

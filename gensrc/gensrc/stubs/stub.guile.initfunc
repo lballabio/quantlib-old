@@ -1,0 +1,9 @@
+%s#include <extra.h>
+#include <guile/gh.h>
+
+void init_addin() {
+
+%s
+
+}
+
