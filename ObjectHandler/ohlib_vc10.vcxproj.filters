@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{f278379a-c8b2-4060-98d6-39f662cc8093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="conversions">
+      <UniqueIdentifier>{af4b90f4-20a0-4151-a651-9aeb4dc4a6df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities">
+      <UniqueIdentifier>{5108a5ad-a00f-4b4b-9fa4-1f610a866b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="enumerations">
+      <UniqueIdentifier>{77b8e2a1-e0d2-44f5-8c22-e58be772f9d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="valueobjects">
+      <UniqueIdentifier>{9b70d8dc-a879-464c-9ea3-1b1e2bbb85a7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="oh\exception.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\group.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\iless.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\libraryobject.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\object.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\objecthandler.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\objectwrapper.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\observable.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\ohdefines.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\processor.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\property.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\range.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\repository.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\serializationfactory.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\singleton.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\valueobject.hpp">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\conversions\coerce.hpp">
+      <Filter>conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\conversions\convert2.hpp">
+      <Filter>conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\conversions\getobjectvector.hpp">
+      <Filter>conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\auto_link.hpp">
+      <Filter>utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\logger.hpp">
+      <Filter>utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\utilities.hpp">
+      <Filter>utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\enumerations\enumregistry.hpp">
+      <Filter>enumerations</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\enumerations\registry.hpp">
+      <Filter>enumerations</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\enumerations\typefactory.hpp">
+      <Filter>enumerations</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\valueobjects\vo_all.hpp">
+      <Filter>valueobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\valueobjects\vo_group.hpp">
+      <Filter>valueobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="oh\valueobjects\vo_range.hpp">
+      <Filter>valueobjects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="oh\processor.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="oh\repository.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="oh\serializationfactory.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="oh\logger.cpp">
+      <Filter>utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="oh\utilities.cpp">
+      <Filter>utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="oh\enumerations\enumregistry.cpp">
+      <Filter>enumerations</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

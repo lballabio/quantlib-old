@@ -1,0 +1,8 @@
+
+#ifndef ohxl_export_hpp
+#define ohxl_export_hpp
+
+%(exportSymbols)s
+
+#endif
+

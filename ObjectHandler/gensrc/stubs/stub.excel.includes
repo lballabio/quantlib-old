@@ -1,0 +1,12 @@
+#include <oh/utilities.hpp>
+#include <oh/exception.hpp>
+#include <ohxl/repositoryxl.hpp>
+#include <ohxl/conversions/all.hpp>
+#include <ohxl/functioncall.hpp>
+#include <ohxl/callingrange.hpp>
+%(categoryIncludes)s
+#include <sstream>
+
+#define XLL_DEC extern "C"
+#define SET_SESSION_ID
+

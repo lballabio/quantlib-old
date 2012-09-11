@@ -1,0 +1,11 @@
+
+<Config>
+
+  <relativePath>gensrc</relativePath>
+  <prefix>oh</prefix>
+  <namespaceObjects>ObjectHandler</namespaceObjects>
+  <namespaceLibrary>ObjectHandler</namespaceLibrary>
+  <libRootDirectory>oh</libRootDirectory>
+
+</Config>
+
