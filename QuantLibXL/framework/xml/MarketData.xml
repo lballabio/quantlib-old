@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="8">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>5</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="221" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>FlatForward</ObjectId>
+			<ClassName>qlFlatForward</ClassName>
+			<NDays>0</NDays>
+			<Calendar>NullCalendar</Calendar>
+			<Rate class_id="241" tracking_level="0" version="0">
+				<which>4</which>
+				<value>0.043999999999999997</value>
+			</Rate>
+			<DayCounter>Actual/365 (Fixed)</DayCounter>
+			<Compounding>Continuous</Compounding>
+			<Frequency>Annual</Frequency>
+			<Permanent>0</Permanent>
+			<UserProperties class_id="242" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="212" tracking_level="1" version="0" object_id="_2">
+			<ObjectId>SwaptionVTSConstant</ObjectId>
+			<ClassName>qlConstantSwaptionVolatility</ClassName>
+			<NDays>0</NDays>
+			<Calendar>TARGET</Calendar>
+			<BusinessDayConvention>f</BusinessDayConvention>
+			<Volatility>
+				<which>4</which>
+				<value>0.14999999999999999</value>
+			</Volatility>
+			<DayCounter>Actual/365 (Fixed)</DayCounter>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="83" tracking_level="1" version="0" object_id="_3">
+			<ObjectId>Euribor</ObjectId>
+			<ClassName>qlEuribor</ClassName>
+			<Tenor>6M</Tenor>
+			<YieldCurve>FlatForward</YieldCurve>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="191" tracking_level="1" version="0" object_id="_4">
+			<ObjectId>Schedule1</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<which>4</which>
+				<value>40548</value>
+			</EffectiveDate>
+			<TerminationDate>
+				<which>4</which>
+				<value>44201</value>
+			</TerminationDate>
+			<Tenor>1Y</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Modified Following</Convention>
+			<TermDateConv>Modified Following</TermDateConv>
+			<GenRule>Backward</GenRule>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<which>0</which>
+				<value class_id="243" tracking_level="0" version="0"></value>
+			</FirstDate>
+			<NextToLastDate>
+				<which>0</which>
+				<value></value>
+			</NextToLastDate>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_5">
+			<ObjectId>Schedule2</ObjectId>
+			<ClassName>qlSchedule</ClassName>
+			<EffectiveDate>
+				<which>4</which>
+				<value>40548</value>
+			</EffectiveDate>
+			<TerminationDate>
+				<which>4</which>
+				<value>44201</value>
+			</TerminationDate>
+			<Tenor>6M</Tenor>
+			<Calendar>TARGET</Calendar>
+			<Convention>Modified Following</Convention>
+			<TermDateConv>Modified Following</TermDateConv>
+			<GenRule>Backward</GenRule>
+			<EndOfMonth>0</EndOfMonth>
+			<FirstDate>
+				<which>0</which>
+				<value></value>
+			</FirstDate>
+			<NextToLastDate>
+				<which>0</which>
+				<value></value>
+			</NextToLastDate>
+			<Permanent>0</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+

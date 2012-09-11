@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="auto.pages">
+      <UniqueIdentifier>{8a5752cc-103c-4696-ab4e-3b8e0533c4df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pages">
+      <UniqueIdentifier>{559aa2a3-2d26-4b61-ab81-a23a96e17290}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\abcd.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\accountingengines.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\allfunctions.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\alphaform.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\assetswap.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\bonds.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\browniangenerators.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\btp.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\calendar.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\capfloor.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\capletvolstructure.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\categories.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\cmsmarket.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\cmsmarketcalibration.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\correlation.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\couponvectors.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\credit.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\ctsmmcapletcalibration.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\curvestate.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\date.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\daycounter.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\defaulttermstructures.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\driftcalculators.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\enumerations.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\enums.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\evolutiondescription.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\exercise.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\forwardrateagreement.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\garbagecollection.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\group.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\handles.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\index.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\instruments.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\interpolation.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\leg.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\logging.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\marketmodelevolvers.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\marketmodels.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\mathf.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\objects.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\ohutils.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\optimization.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\options.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\overnightindexedswap.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\payoffs.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\piecewiseyieldcurve.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\prices.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\pricingengines.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\processes.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\products.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\quotes.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\randomsequencegenerator.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\range.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\rangeaccrual.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\ratehelpers.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\schedule.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\sequencestatistics.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\serialization.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\settings.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\shortratemodels.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\smilesection.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\statistics.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\swap.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\swaption.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\swaptionvolstructure.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\termstructures.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\timeseries.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\utilities.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\valueobjects.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\vanillaswap.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\quantlibaddin\docs\auto.pages\volatilities.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="..\..\QuantLibAddin\Docs\auto.pages\volatility.docs">
+      <Filter>auto.pages</Filter>
+    </None>
+    <None Include="pages\framework.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\functional.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\history.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\index.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\installation.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\license.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="pages\people.docs">
+      <Filter>pages</Filter>
+    </None>
+    <None Include="doxygen.css" />
+    <None Include="Makefile.vc" />
+    <None Include="ql.css" />
+    <None Include="qlxl_footer.html" />
+    <None Include="qlxl_header.html" />
+    <None Include="qlxl_headeronline.html" />
+    <None Include="quantlibxl.doxy" />
+    <None Include="tabs.css" />
+  </ItemGroup>
+</Project>
