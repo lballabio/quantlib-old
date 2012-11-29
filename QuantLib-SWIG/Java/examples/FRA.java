@@ -1,18 +1,14 @@
 package examples;
 
-import org.quantlib.QuantLib;
 import org.quantlib.Actual360;
 import org.quantlib.Date;
 import org.quantlib.DayCounter;
 import org.quantlib.FlatForward;
 import org.quantlib.Month;
 import org.quantlib.Settings;
-import org.quantlib.TARGET;
-import org.quantlib.YieldTermStructure;
 import org.quantlib.YieldTermStructureHandle;
 import org.quantlib.ForwardRateAgreement;
 import org.quantlib.Position;
-import org.quantlib.Calendar;
 import org.quantlib.IborIndex;
 import org.quantlib.Euribor3M;
 
@@ -37,7 +33,6 @@ public class FRA {
         double notional = 100.0;
         double riskFreeRate = 0.06;
         DayCounter dayCounter = new Actual360();
-        Calendar calendar = new TARGET();
 
         // define the underlying asset and the yield/dividend/volatility curves
         YieldTermStructureHandle flatTermStructure =

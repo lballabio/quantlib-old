@@ -27,10 +27,8 @@ import org.quantlib.Calendar;
 import org.quantlib.Date;
 import org.quantlib.DayCounter;
 import org.quantlib.FlatForward;
-import org.quantlib.GaussianLowDiscrepancySequenceGenerator;
 import org.quantlib.GaussianPathGenerator;
 import org.quantlib.GaussianRandomSequenceGenerator;
-import org.quantlib.GaussianSobolPathGenerator;
 import org.quantlib.Option;
 import org.quantlib.Path;
 import org.quantlib.PlainVanillaPayoff;
@@ -39,7 +37,6 @@ import org.quantlib.SamplePath;
 import org.quantlib.SimpleQuote;
 import org.quantlib.Statistics;
 import org.quantlib.TARGET;
-import org.quantlib.UniformLowDiscrepancySequenceGenerator;
 import org.quantlib.UniformRandomGenerator;
 import org.quantlib.UniformRandomSequenceGenerator;
 import org.quantlib.YieldTermStructureHandle;
@@ -243,7 +240,7 @@ public class DiscreteHedging {
             assert n > 0 : "The path can't be empty!";
 
             // discrete hedging interval
-            double dt = maturity_ / ((double)n);
+            double dt = maturity_ / n;
 
             // For simplicity, we assume the stock pays no dividends.
             double stockDividendYield = 0.0;

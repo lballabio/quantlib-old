@@ -33,7 +33,6 @@ import org.quantlib.BinomialVanillaEngine;
 import org.quantlib.BjerksundStenslandEngine;
 import org.quantlib.BlackConstantVol;
 import org.quantlib.BlackScholesMertonProcess;
-import org.quantlib.BlackVolTermStructure;
 import org.quantlib.BlackVolTermStructureHandle;
 import org.quantlib.Calendar;
 import org.quantlib.Date;
@@ -54,15 +53,12 @@ import org.quantlib.Option;
 import org.quantlib.Payoff;
 import org.quantlib.Period;
 import org.quantlib.PlainVanillaPayoff;
-import org.quantlib.Quote;
 import org.quantlib.QuoteHandle;
 import org.quantlib.Settings;
 import org.quantlib.SimpleQuote;
-import org.quantlib.StochasticProcess;
 import org.quantlib.TARGET;
 import org.quantlib.TimeUnit;
 import org.quantlib.VanillaOption;
-import org.quantlib.YieldTermStructure;
 import org.quantlib.YieldTermStructureHandle;
 
 /**
