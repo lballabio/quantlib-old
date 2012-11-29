@@ -3,7 +3,14 @@ CLEANFILES = quantlib_wrap.cpp libQuantLibJNI.@JNILIB_EXTENSION@ QuantLib.jar
 
 BUILT_SOURCES = quantlib_wrap.cpp
 
+EXAMPLES = DiscreteHedging EquityOptions
+
 if HAVE_JAVA
+
+examples/%.class: examples/%.java QuantLib.jar
+	$(JAVAC) -source 1.5 -cp QuantLib.jar examples/$*.java
+
+.PHONY: $(EXAMPLES)
 
 all-local: libQuantLibJNI.@JNILIB_EXTENSION@ QuantLib.jar
 
@@ -22,15 +29,10 @@ install-exec-local:
 	cp -p libQuantLibJNI.@JNILIB_EXTENSION@ $(DESTDIR)/$(libdir)/libQuantLibJNI.@JNILIB_EXTENSION@
 	cp -p QuantLib.jar $(DESTDIR)/$(libdir)/QuantLib.jar
 
-check-local: examples/EquityOptions.class examples/DiscreteHedging.class
-	LD_LIBRARY_PATH=. $(JAVA) -cp ".:QuantLib.jar" examples.DiscreteHedging
-	LD_LIBRARY_PATH=. $(JAVA) -cp ".:QuantLib.jar" examples.EquityOptions
+check-local: $(EXAMPLES)
 
-examples/DiscreteHedging.class: examples/DiscreteHedging.java QuantLib.jar
-	$(JAVAC) -source 1.5 -cp QuantLib.jar examples/DiscreteHedging.java
-
-examples/EquityOptions.class: examples/EquityOptions.java QuantLib.jar
-	$(JAVAC) -source 1.5 -cp QuantLib.jar examples/EquityOptions.java
+$(EXAMPLES): $(EXAMPLES:%=examples/%.class)
+	LD_LIBRARY_PATH=. $(JAVA) -cp ".:QuantLib.jar" examples.$@
 
 endif
 
