@@ -11,7 +11,7 @@ quantlib_wrap.o: quantlib_wrap.cpp
 	g++ -c quantlib_wrap.cpp -fno-strict-aliasing $(CXXFLAGS) @JDK_INCLUDE@ @JDK_SYSTEM_INCLUDE@ `quantlib-config --cflags` -o quantlib_wrap.o
 
 libQuantLibJNI.@JNILIB_EXTENSION@: quantlib_wrap.o
-	g++ @SHARED_LIB@ quantlib_wrap.o -Wl -o libQuantLibJNI.@JNILIB_EXTENSION@ `quantlib-config --libs`
+	g++ @SHARED_LIB@ quantlib_wrap.o -o libQuantLibJNI.@JNILIB_EXTENSION@ `quantlib-config --libs`
 
 QuantLib.jar: quantlib_wrap.cpp org/quantlib/*.java
 	mkdir -p bin
