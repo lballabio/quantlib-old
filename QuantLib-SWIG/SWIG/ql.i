@@ -164,6 +164,7 @@
 %include exchangerates.i
 %include exercise.i
 %include forwardcurve.i
+%include fra.i
 %include functions.i
 %include grid.i
 %include indexes.i

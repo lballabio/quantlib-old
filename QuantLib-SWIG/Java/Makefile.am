@@ -3,7 +3,7 @@ CLEANFILES = quantlib_wrap.cpp libQuantLibJNI.@JNILIB_EXTENSION@ QuantLib.jar
 
 BUILT_SOURCES = quantlib_wrap.cpp
 
-EXAMPLES = DiscreteHedging EquityOptions
+EXAMPLES = DiscreteHedging EquityOptions FRA
 
 if HAVE_JAVA
 
