@@ -4,6 +4,7 @@ CLEANFILES = quantlib_wrap.* QuantLibc.so extension.mak .build-stamp
 BUILT_SOURCES = quantlib_wrap.cpp
 
 if HAVE_RUBY
+if BUILD_RUBY
 
 all-local: .build-stamp
 
@@ -17,6 +18,7 @@ check-local: .build-stamp
 install-exec-local: .build-stamp
 	$(RUBY) setup.rb install
 
+endif
 endif
 
 quantlib_wrap.cpp: ../SWIG/*.i

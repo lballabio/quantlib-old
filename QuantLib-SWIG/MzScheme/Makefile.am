@@ -4,6 +4,7 @@ CLEANFILES = quantlib_wrap.* quantlib/QuantLibc.so .build-stamp
 BUILT_SOURCES = quantlib_wrap.cpp
 
 if HAVE_MZSCHEME
+if BUILD_MZSCHEME
 
 all-local: .build-stamp
 
@@ -17,6 +18,7 @@ check-local: .build-stamp
 install-exec-local: .build-stamp
 	$(MZSCHEME) -r setup.scm install
 
+endif
 endif
 
 quantlib_wrap.cpp: ../SWIG/*.i

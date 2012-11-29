@@ -4,6 +4,7 @@ CLEANFILES = quantlib_wrap.* QuantLibc.so QuantLib.scm test.* .build-stamp
 BUILT_SOURCES = quantlib_wrap.cpp QuantLib.scm
 
 if HAVE_GUILE
+if BUILD_GUILE
 
 all-local: .build-stamp
 
@@ -17,6 +18,7 @@ check-local: .build-stamp
 install-exec-local: .build-stamp
 	$(GUILE) -s setup.scm install
 
+endif
 endif
 
 quantlib_wrap.cpp QuantLib.scm: ../SWIG/*.i

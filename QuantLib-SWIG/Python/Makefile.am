@@ -4,6 +4,7 @@ CLEANFILES = QuantLib/quantlib_wrap.cpp QuantLib/QuantLib.py .build-stamp
 BUILT_SOURCES = QuantLib/quantlib_wrap.cpp QuantLib/QuantLib.py
 
 if HAVE_PYTHON
+if BUILD_PYTHON
 
 all-local: .build-stamp
 
@@ -20,6 +21,7 @@ install-exec-local: .build-stamp
 clean-local:
 	rm -rf build
 
+endif
 endif
 
 QuantLib/quantlib_wrap.cpp QuantLib/QuantLib.py: ../SWIG/*.i

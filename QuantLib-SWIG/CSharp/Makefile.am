@@ -5,6 +5,7 @@ CLEANFILES = cpp/quantlib_wrap.* csharp/*.cs *.so *.dll \
 BUILT_SOURCES = cpp/quantlib_wrap.cpp
 
 if HAVE_MCS
+if BUILD_MCS
 
 all-local: libNQuantLibc.so NQuantLib.dll
 
@@ -32,6 +33,7 @@ examples/libNQuantLibc.so: libNQuantLibc.so
 examples/NQuantLib.dll: NQuantLib.dll
 	cd examples && ln -sf ../NQuantLib.dll
 
+endif
 endif
 
 cpp/quantlib_wrap.cpp: ../SWIG/*.i

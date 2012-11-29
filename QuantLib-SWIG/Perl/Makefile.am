@@ -5,6 +5,7 @@ BUILT_SOURCES = quantlib_wrap.cpp QuantLib.pm
 CLEANFILES = $(BUILT_SOURCES) $(PERL_MAKEFILE) .build-stamp
 
 if HAVE_PERL
+if BUILD_PERL
 
 all-local: .build-stamp
 
@@ -26,6 +27,7 @@ clean-local: $(PERL_MAKEFILE)
 $(PERL_MAKEFILE): Makefile.PL
 	$(PERL) Makefile.PL OPTIMIZE="$(CXXFLAGS) $(CXXWARNINGFLAGS)" PREFIX=$(prefix)
 
+endif
 endif
 
 quantlib_wrap.cpp QuantLib.pm: ../SWIG/*.i

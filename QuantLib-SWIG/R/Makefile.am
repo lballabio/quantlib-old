@@ -9,6 +9,7 @@ CLEANFILES = $(BUILT_SOURCES) .build-stamp
 QUANTLIB_CONFIG=quantlib-config
 
 if HAVE_R
+if BUILD_R
 
 all-local: .build-stamp
 
@@ -34,6 +35,7 @@ clean-local:
 $(BUILT_SOURCES): ../SWIG/*.i
 	$(SWIG) -r -c++ -o $(QUANTLIB_R_ROOT).cpp ../SWIG/quantlib.i
 
+endif
 endif
 
 dist-hook:

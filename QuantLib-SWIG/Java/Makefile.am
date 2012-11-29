@@ -6,6 +6,7 @@ BUILT_SOURCES = quantlib_wrap.cpp
 EXAMPLES = DiscreteHedging EquityOptions FRA
 
 if HAVE_JAVA
+if BUILD_JAVA
 
 examples/%.class: examples/%.java QuantLib.jar
 	$(JAVAC) -source 1.5 -cp QuantLib.jar examples/$*.java
@@ -34,6 +35,7 @@ check-local: $(EXAMPLES)
 $(EXAMPLES): $(EXAMPLES:%=examples/%.class)
 	LD_LIBRARY_PATH=. $(JAVA) -cp ".:QuantLib.jar" examples.$@
 
+endif
 endif
 
 

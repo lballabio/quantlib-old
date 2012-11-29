@@ -5,6 +5,7 @@ CLEANFILES = $(BUILT_SOURCES) .build-stamp
 OCAMLCFLAGS = -I/usr/lib/ocaml
 
 if HAVE_OCAML
+if BUILD_OCAML
 
 %.cmi: %.mli
 	$(OCAMLC) -c $<
@@ -31,6 +32,7 @@ QuantLib.cmo: swig.cmi
 clean-local:
 	rm -rf *.cmi *.cmo *.o
 
+endif
 endif
 
 QuantLib.mli QuantLib.ml quantlib_wrap.c: ../SWIG/*.i
