@@ -50,7 +50,7 @@
 
     <Procedure name='qlLegMaturityDate'>
       <description>Returns the maturity (i.e. last payment) date for the given Leg object.</description>
-      <alias>QuantLib::CashFlows::startDate</alias>
+      <alias>QuantLib::CashFlows::maturityDate</alias>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
