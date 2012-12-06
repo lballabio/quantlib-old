@@ -23,6 +23,18 @@
 
 /*! \page history Version History
 
+<strong>Release 1.2.0 - July 2012</strong>
+
+REQUIRED PACKAGES
+
+- %QuantLib version 1.2.0
+- ObjectHandler version 1.2.0
+- gensrc version 1.2.0
+
+FUNCTIONALITY
+
+- 11 new functions / 1015 in total
+
 <strong>Release 1.1.0 - May 2011</strong>
 
 DOCUMENTATION

@@ -74,8 +74,8 @@ namespace QuantLibAddin {
                       bool permanent);
         QuantLib::Size n_;
         std::vector<QuantLib::Real> x_;
-        mutable std::vector<QuantLib::Real> y_;
         std::vector<QuantLib::Handle<QuantLib::Quote> > yh_;
+        mutable std::vector<QuantLib::Real> y_;
         boost::shared_ptr<QuantLib::Interpolation> qlInterpolation_;
     };
 
