@@ -46,12 +46,20 @@ void operToOper(OPER *xTarget, const OPER *xSource) {
         if (len)
             strncpy(xTarget->val.str + 1, xSource->val.str + 1, len);
         return;
+    } else if (xSource->xltype == xltypeBool) {
+        xTarget->xltype = xltypeBool;
+        xTarget->val.boolean = xSource->val.boolean;
+        return;
     } else if (xSource->xltype == xltypeErr) {
         xTarget->xltype = xltypeErr;
         xTarget->val.err = xSource->val.err;
         return;
     } else if (xSource->xltype == xltypeNil) {
         xTarget->xltype = xltypeNil;
+        return;
+    } else if (xSource->xltype == xltypeInt) {
+        xTarget->xltype = xltypeInt;
+        xTarget->val.w = xSource->val.w;
         return;
     } else {
         OH_FAIL("operToOper: unexpected OPER type: " << xSource->xltype);

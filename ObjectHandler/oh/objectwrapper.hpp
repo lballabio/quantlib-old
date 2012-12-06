@@ -53,9 +53,7 @@ namespace ObjectHandler {
         //! Construct the ObjectWrapper from the given Object.
         ObjectWrapper(const boost::shared_ptr<Object>& object);
         //! Virtual destructor - unregister with Observers.
-        virtual ~ObjectWrapper() {
-            unregisterAllWith();
-        }
+        virtual ~ObjectWrapper() { unregisterWithAll(); }
         //@}
 
         //! \name Behavior

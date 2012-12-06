@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2004, 2005, 2006, 2007, 2008 Eric Ehlers
- Copyright (C) 2005, 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2005, 2006, 2007, 2012 Ferdinando Ametrano
  Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
@@ -31,6 +31,11 @@
 #include <ostream>
 #include <sstream>
 
+using boost::shared_ptr;
+using std::set;
+using std::string;
+using std::endl;
+
 namespace ObjectHandler {
 
     Repository *Repository::instance_;
@@ -48,87 +53,87 @@ namespace ObjectHandler {
     }
 
     Repository &Repository::instance() {
-        OH_REQUIRE(instance_, "Attempt to reference uninitialized Repository object");
+        OH_REQUIRE(instance_,
+                   "Attempt to reference uninitialized Repository object");
         return *instance_;
     }
 
     // TODO: implement Scott Meyers' "Effective STL" item 24
-    std::string Repository::storeObject(
-        const std::string &objectID,
-        const boost::shared_ptr<Object> &object,
-        bool overwrite) {
+    string Repository::storeObject(const string &objectID,
+                                   const shared_ptr<Object> &object,
+                                   bool overwrite) {
+        OH_REQUIRE(overwrite || !objectExists(objectID),
+                   "Cannot store object with ID '" << objectID <<
+                   "' because an object with that ID already exists");
 
-            OH_REQUIRE(overwrite || !objectExists(objectID), "Cannot store object with ID '"
-                << objectID << "' because an object with that ID already exists");
+        if(objectExists(objectID)){
+            ObjectMap::const_iterator result = objectMap_.find(objectID);
+            //result->second->notifyObservers();
+            result->second->reset(object);
+        } else{
+            shared_ptr<ObjectWrapper> objWrapper(new ObjectWrapper(object));
+            objectMap_[objectID] = objWrapper;
+        }
 
-
-            if(objectExists(objectID)){
-                ObjectMap::const_iterator result = objectMap_.find(objectID);
-                //result->second->notifyObservers();
-                result->second->reset(object);
-
-            }
-            else{
-                boost::shared_ptr<ObjectWrapper> objWrapper(
-                    new ObjectWrapper(object));
-
-                objectMap_[objectID] = objWrapper;
-            }
-
-            registerObserver(objectMap_[objectID]);
-
-            return objectID;
+        registerObserver(objectMap_[objectID]);
+        return objectID;
     }
 
-    void Repository::retrieveObject(boost::shared_ptr<Object> &ret,
-        const std::string &id) {
-
-            ret = retrieveObjectImpl(id);
+    void Repository::retrieveObject(shared_ptr<Object> &ret,
+                                    const string &id) {
+        ret = retrieveObjectImpl(id);
     }
 
-    boost::shared_ptr<Object> Repository::retrieveObjectImpl(
-        const std::string &objectID) {
+    shared_ptr<Object> Repository::retrieveObjectImpl(const string &objectID) {
 
-            ObjectMap::const_iterator result = objectMap_.find(formatID(objectID));
-            OH_REQUIRE(result != objectMap_.end(), "ObjectHandler error: attempt to retrieve object "
-                "with unknown ID '" << objectID << "'");
-            if(result->second->dirty()){
-                result->second->recreate();
-            }
-            return result->second->object();
+        ObjectMap::const_iterator result = objectMap_.find(formatID(objectID));
+        OH_REQUIRE(result != objectMap_.end(),
+                   "ObjectHandler error: attempt to retrieve object "
+                   "with unknown ID '" << objectID << "'");
+        if(result->second->dirty()) {
+            result->second->recreate();
+        }
+        return result->second->object();
     }
 
-    const boost::shared_ptr<ObjectWrapper>& Repository::getObjectWrapper(const std::string &objectID) const{
+    const shared_ptr<ObjectWrapper>&
+    Repository::getObjectWrapper(const string &objectID) const {
+
         ObjectMap::const_iterator result = objectMap_.find(objectID);
-        OH_REQUIRE(result != objectMap_.end(), "ObjectHandler error: attempt to retrieve object "
-            "with unknown ID '" << objectID << "'");
+        OH_REQUIRE(result != objectMap_.end(),
+                   "ObjectHandler error: attempt to retrieve object "
+                   "with unknown ID '" << objectID << "'");
 
         return result->second;
     }
 
-    void Repository::registerObserver( 
-        boost::shared_ptr<ObjectWrapper> objWrapper){
+    void Repository::registerObserver(shared_ptr<ObjectWrapper> objWrapper) {
 
-            const std::set<std::string>& relationObs = objWrapper->object()->properties()->getPrecedentObjects();
-            std::set<std::string>::const_iterator iter = relationObs.begin();
-            for(; iter != relationObs.end();  iter++){
-                boost::shared_ptr<ObjectWrapper> objServable = getObjectWrapper(formatID(*iter));
-                objWrapper->registerWith(objServable);
+        objWrapper->unregisterWithAll();
 
-            }
+        const set<string>& relationObs =
+            objWrapper->object()->properties()->getPrecedentObjects();
+        set<string>::const_iterator iter = relationObs.begin();
+        for(; iter != relationObs.end();  iter++) {
+            shared_ptr<ObjectWrapper> objServable =
+                                            getObjectWrapper(formatID(*iter));
+            objWrapper->registerWith(objServable);
+        }
     }
 
-    void Repository::deleteObject(const std::string &objectID) {
-        std::string realID = formatID(objectID);
-        OH_REQUIRE(objectExists(realID), "Cannot delete Object with ID '" << realID
-            << "' because no Object with that ID is present in the Repository");
+    void Repository::deleteObject(const string &objectID) {
+        string realID = formatID(objectID);
+        OH_REQUIRE(objectExists(realID),
+                   "Cannot delete '" << realID << "' because no Object with "
+                   "that ID is present in the Repository");
         objectMap_.erase(realID);
     }
 
-    void Repository::deleteObject(const std::vector<std::string> &objectIDs) {
-        OH_REQUIRE(!objectIDs.empty(), "List of Object IDs for deletion is empty");
-        for (std::vector<std::string>::const_iterator i = objectIDs.begin();
-            i != objectIDs.end(); ++i)
+    void Repository::deleteObject(const std::vector<string> &objectIDs) {
+        OH_REQUIRE(!objectIDs.empty(),
+                   "List of Object IDs for deletion is empty");
+        std::vector<string>::const_iterator i;
+        for (i = objectIDs.begin(); i != objectIDs.end(); ++i)
             deleteObject(*i);
     }
 
@@ -141,32 +146,31 @@ namespace ObjectHandler {
             while (i != objectMap_.end()) {
                 if (i->second->object()->permanent())
                     ++i;
-                else{
+                else
                     objectMap_.erase(i++);                    
-                }
             }
         }
     }
 
     void Repository::dump(std::ostream& out) {
 
-        out << "dump of all objects in ObjectHandler:" <<
-            std::endl << std::endl;
-        for (ObjectMap::const_iterator i=objectMap_.begin();
-            i!=objectMap_.end(); ++i) {
-                boost::shared_ptr<Object> object = i->second->object();
-                out << "Object with ID = " << i->first << ":" << std::endl << object;
+        out << "dump of all objects in ObjectHandler:" << endl << endl;
+        ObjectMap::const_iterator i;
+        for (i=objectMap_.begin(); i!=objectMap_.end(); ++i) {
+                shared_ptr<Object> object = i->second->object();
+                out << "Object with ID = " << i->first << ":" << endl <<object;
         }
     }
 
-    void Repository::dumpObject(const std::string &objectID, std::ostream &out) {
+    void Repository::dumpObject(const string &objectID, std::ostream &out) {
 
-        std::string realID = formatID(objectID);
+        string realID = formatID(objectID);
         ObjectMap::const_iterator result = objectMap_.find(realID);
         if (result == objectMap_.end()) {
-            out << "no object in repository with ID = " << realID << std::endl;
+            out << "no object in repository with ID = " << realID << endl;
         } else {
-            out << "log dump of object with ID = " << realID << std::endl << result->second;
+            out << "log dump of object with ID = " << realID <<
+                endl << result->second;
         }
     }
 
@@ -174,66 +178,67 @@ namespace ObjectHandler {
         return objectMap_.size();
     }
 
-    const std::vector<std::string> Repository::listObjectIDs(
-        const std::string &regex) {
+    const std::vector<string> Repository::listObjectIDs(const string &regex) {
 
-            std::vector<std::string> objectIDs;
-            if (regex.empty()) {
-                objectIDs.reserve(objectMap_.size());
-                for (ObjectMap::const_iterator i=objectMap_.begin();
-                    i!=objectMap_.end(); ++i)
-                    objectIDs.push_back(i->first);
-            } else {
-                boost::regex r(regex, boost::regex::perl | boost::regex::icase);
-                for (ObjectMap::const_iterator i=objectMap_.begin();
-                    i!=objectMap_.end(); ++i) {
-                        std::string objectID = i->first;
-                        if (regex_match(objectID, r)) objectIDs.push_back(objectID);
-                }
+        std::vector<string> objectIDs;
+        if (regex.empty()) {
+            objectIDs.reserve(objectMap_.size());
+            ObjectMap::const_iterator i;
+            for (i=objectMap_.begin(); i!=objectMap_.end(); ++i)
+                objectIDs.push_back(i->first);
+        } else {
+            boost::regex r(regex, boost::regex::perl | boost::regex::icase);
+            ObjectMap::const_iterator i;
+            for (i=objectMap_.begin(); i!=objectMap_.end(); ++i) {
+                string objectID = i->first;
+                if (regex_match(objectID, r))
+                    objectIDs.push_back(objectID);
             }
-            return objectIDs;
+        }
+        return objectIDs;
     }
 
-    bool Repository::objectExists(const std::string &objectID) const {
+    bool Repository::objectExists(const string &objectID) const {
         return objectMap_.find(objectID) != objectMap_.end();
     }
 
-    std::vector<bool> Repository::objectExists(const std::vector<std::string> &objectList) {
+    std::vector<bool>
+    Repository::objectExists(const std::vector<string> &objectList) {
         std::vector<bool> ret;
 
-        for (std::vector<std::string>::const_iterator i = objectList.begin();
-            i != objectList.end(); ++i) {
-
+        std::vector<string>::const_iterator i;
+        for (i = objectList.begin(); i != objectList.end(); ++i) {
                 ret.push_back(objectExists(formatID(*i)));
         }
 
         return ret;
     }
 
-    std::vector<double> Repository::creationTime(const std::vector<std::string> &objectList)  {
+    std::vector<double>
+    Repository::creationTime(const std::vector<string> &objectList) {
         std::vector<double> ret;
 
-        for (std::vector<std::string>::const_iterator i = objectList.begin();
-            i != objectList.end(); ++i) {
-
-                std::string realID = formatID(*i);
-                if(objectExists(realID)){
-                    ObjectMap::const_iterator result = objectMap_.find(realID);
-                    ret.push_back(result->second->creationTime());
-                } else {
-                    OH_FAIL("Unable to retrieve object with ID "<<*i);
-                }
+        std::vector<string>::const_iterator i;
+        for (i = objectList.begin(); i != objectList.end(); ++i) {
+            string realID = formatID(*i);
+            if(objectExists(realID)){
+                ObjectMap::const_iterator result = objectMap_.find(realID);
+                ret.push_back(result->second->creationTime());
+            } else {
+                OH_FAIL("Unable to retrieve object with ID "<<*i);
+            }
         }
         return ret;
     }
 
-    std::vector<double> Repository::updateTime(const std::vector<std::string> &objectList) {
+    std::vector<double>
+    Repository::updateTime(const std::vector<string> &objectList) {
         std::vector<double> ret;
 
-        for (std::vector<std::string>::const_iterator i = objectList.begin();
+        for (std::vector<string>::const_iterator i = objectList.begin();
             i != objectList.end(); ++i) {
 
-                std::string realID = formatID(*i);
+                string realID = formatID(*i);
                 if (objectExists(realID)){
                     ObjectMap::const_iterator result = objectMap_.find(realID);
                     ret.push_back( result->second->updateTime());
@@ -244,20 +249,22 @@ namespace ObjectHandler {
         return ret;
     }
 
-    const std::vector<std::string> Repository::precedentIDs(const std::string &objectID) {
-        std::string realID = formatID(objectID);
+    const std::vector<string>
+    Repository::precedentIDs(const string &objectID) {
+        string realID = formatID(objectID);
         if (objectExists(realID)){
 			ObjectMap::const_iterator result = objectMap_.find(realID);
 
-			boost::shared_ptr<Object> object = result->second->object();
-			boost::shared_ptr<Group> group = boost::dynamic_pointer_cast<Group>(object);
+			shared_ptr<Object> object = result->second->object();
+			shared_ptr<Group> group = boost::dynamic_pointer_cast<Group>(object);
 
 			if(group)
 				return precedentIDs(group);
 
-			const std::set<std::string>& relationObs = object->properties()->getPrecedentObjects();
-			std::vector<std::string> vecRelationObs;
-			std::set<std::string>::const_iterator it = relationObs.begin();
+			const set<string>& relationObs =
+                object->properties()->getPrecedentObjects();
+			std::vector<string> vecRelationObs;
+			set<string>::const_iterator it = relationObs.begin();
 			for(; it != relationObs.end(); ++it){
 				vecRelationObs.push_back(formatID(*it));
 			}
@@ -267,55 +274,57 @@ namespace ObjectHandler {
         }
     }
 
-	const std::vector<std::string> Repository::precedentIDs(const boost::shared_ptr<Group>& group) {
-		std::vector<std::string> ret;
-		std::vector<std::string>::const_iterator i = group->list().begin();
-		for(; i != group->list().end(); ++i)
-			if(objectExists(*i))
-				ret.push_back(*i);
+	const std::vector<string>
+    Repository::precedentIDs(const shared_ptr<Group>& group) {
+		std::vector<string> ret;
+
+        std::vector<string>::const_iterator i;
+        for(i = group->list().begin(); i != group->list().end(); ++i) {
+			if (objectExists(*i))
+                ret.push_back(*i);
+        }
 
 		return ret;
 	}
 
-    std::vector<bool> Repository::isPermanent(const std::vector<std::string> &objectList){
+    std::vector<bool>
+    Repository::isPermanent(const std::vector<string> &objectList) {
         std::vector<bool> ret;
 
-        for (std::vector<std::string>::const_iterator i = objectList.begin();
-            i != objectList.end(); ++i) {
-
-                std::string realID = formatID(*i);
-                if (objectExists(realID)){
-                    ObjectMap::const_iterator result = objectMap_.find(realID);
-
-                    ret.push_back(result->second->object()->permanent());
-
-                } else {
-                    OH_FAIL("Unable to retrieve object with ID "<<*i);
-                }
+        std::vector<string>::const_iterator i;
+        for (i = objectList.begin(); i != objectList.end(); ++i) {
+            string realID = formatID(*i);
+            if (objectExists(realID)){
+                ObjectMap::const_iterator result = objectMap_.find(realID);
+                ret.push_back(result->second->object()->permanent());
+            } else {
+                OH_FAIL("Unable to retrieve object with ID "<<*i);
+            }
         }
         return ret;
     }
 
-    const std::vector<std::string> Repository::className(const std::vector<std::string> &objectList){
-        std::vector<std::string> ret;
+    const std::vector<string>
+    Repository::className(const std::vector<string> &objectList) {
+        std::vector<string> ret;
 
-        for (std::vector<std::string>::const_iterator i = objectList.begin();
-            i != objectList.end(); ++i) {
-                std::string realID = formatID(*i);
-                if (objectExists(realID)){
+        std::vector<string>::const_iterator i;
+        for (i = objectList.begin(); i != objectList.end(); ++i) {
+            string realID = formatID(*i);
+            if (objectExists(realID)){
 
-                    ObjectMap::const_iterator result = objectMap_.find(realID);
+                ObjectMap::const_iterator result = objectMap_.find(realID);
 
-                    ret.push_back(result->second->object()->properties()->className());
+                ret.push_back(result->second->object()->properties()->className());
 
-                } else {
-                    OH_FAIL("Unable to retrieve object with ID "<<*i);
-                }
+            } else {
+                OH_FAIL("Unable to retrieve object with ID "<<*i);
+            }
         }
         return ret;
     }
 
-    std::string Repository::formatID(const std::string &objectID){
+    string Repository::formatID(const string &objectID) {
         return objectID;
     }
 

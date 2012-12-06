@@ -28,27 +28,21 @@
 #include <boost/config.hpp>
 #include <boost/version.hpp>
 
-#if BOOST_VERSION < 103401
-    #error using an old version of Boost, please update to 1.34.1 or higher.
-#endif
-
-// Workaround for problem with boost 1.34.1 + gcc 4.3.2 (or all 4.3.x?) for
-// #include <boost/serialization/vector.hpp>
-#if (BOOST_VERSION == 103401 && __GNUC__ == 4 && __GNUC_MINOR__ == 3) // && __GNUC_PATCHLEVEL__ == 2
-#define BOOST_NO_INTRINSIC_INT64_T
+#if BOOST_VERSION < 103600
+    #error using an old version of Boost, please update to 1.36.0 or higher.
 #endif
 
 //! Version string.
 #ifdef _DEBUG
-    #define OBJHANDLER_VERSION "1.1.0-debug"
+    #define OBJHANDLER_VERSION "1.2.0-debug"
 #else
-    #define OBJHANDLER_VERSION "1.1.0"
+    #define OBJHANDLER_VERSION "1.2.0"
 #endif
 
 //! Version hexadecimal number.
-#define OBJHANDLER_HEX_VERSION 0x010100f0
+#define OBJHANDLER_HEX_VERSION 0x010200f0
 //! Version string for output lib name.
-#define OBJHANDLER_LIB_VERSION "1_1_0"
+#define OBJHANDLER_LIB_VERSION "1_2_0"
 
 #include <cctype>
 #if defined(BOOST_NO_STDC_NAMESPACE)
@@ -172,4 +166,3 @@ OH_LIB_CTOR(derived_class, base_class) \
 }
 
 #endif
-

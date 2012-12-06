@@ -28,10 +28,4 @@ stored, shared, updated, interrogated, and destroyed.  This
 facilitates object orientation in procedural environments
 such as spreadsheets.
 
-gensrc
-http://www.gensrc.org
-gensrc is a python application which takes function metadata
-and autogenerates addin source code for various platforms
-including Excel, Calc, and C++.
-
         The QuantLib group

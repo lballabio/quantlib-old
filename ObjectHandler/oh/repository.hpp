@@ -187,17 +187,17 @@ namespace ObjectHandler {
         //! Get the object ObjectWrapper from ObjectMap
         virtual const boost::shared_ptr<ObjectWrapper>& getObjectWrapper(const std::string &objectID) const;
 
-        //! Register an ObjectWrapper as an Observable of its precedents
+        //! Register an ObjectWrapper as an Observer of its precedents
         /*! The given ObjectWrapper is registered as an Observer of all of its
-            precedent ObjectWrappers, which in this case act as Observers.
-            If any of the precedents changes, then the Observable is notified.
+            precedent ObjectWrappers, which in this case act as Observables.
+            If any of the precedents changes, then the Observer is notified.
         */
         virtual void registerObserver( 
             boost::shared_ptr<ObjectWrapper> objWrapper);
 
         //! Convert Excel-format Object IDs into the format recognized by the base Repository class
-        /*! The functiong will be used in derived class(e.g in class repositoryXL it will change the objectID
-            custorm_#0001 into custrom); 
+        /*! The functiong will be used in derived class(e.g in class
+            repositoryXL it will change the objectID custom_#0001 into custom);
         */
         virtual std::string formatID(const std::string &objectID);
 

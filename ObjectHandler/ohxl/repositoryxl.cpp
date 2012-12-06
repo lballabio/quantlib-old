@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2005, 2006, 2007, 2008 Eric Ehlers
- Copyright (C) 2007 Ferdinando Ametrano
+ Copyright (C) 2007, 2012 Ferdinando Ametrano
  Copyright (C) 2008 Nazcatech sprl Belgium
 
  This file is part of QuantLib, a free-software/open-source library
@@ -39,6 +39,10 @@ for example) also #define _MSC_VER
 #include <sstream>
 #include <string>
 
+using boost::shared_ptr;
+using std::string;
+using std::endl;
+
 namespace ObjectHandler {
 
     // Below are three structures which must be declared as static variables rather than
@@ -48,12 +52,12 @@ namespace ObjectHandler {
     extern Repository::ObjectMap objectMap_;
 
     // A map to associate error messages with Excel range addresses.
-    typedef std::map<std::string, boost::shared_ptr<RangeReference> > ErrorMessageMap;
+    typedef std::map<string, shared_ptr<RangeReference> > ErrorMessageMap;
     ErrorMessageMap errorMessageMap_;
 
     // Excel cell ranges in which objects have been constructed,
     // keyed by a unique ID which is assigned to each range.
-    typedef std::map<std::string, boost::shared_ptr<CallingRange> > RangeMap;
+    typedef std::map<string, shared_ptr<CallingRange> > RangeMap;
     RangeMap callingRanges_;
 
     RepositoryXL &RepositoryXL::instance() {
@@ -64,18 +68,18 @@ namespace ObjectHandler {
         OH_FAIL("Attempt to reference uninitialized RepositoryXL object");
     }
 
-    std::string RepositoryXL::storeObject(
-        const std::string &objectIDRaw,
-        const boost::shared_ptr<Object> &object,
+    string RepositoryXL::storeObject(
+        const string &objectIDRaw,
+        const shared_ptr<Object> &object,
         bool overwrite) {
 
-            boost::shared_ptr<CallingRange> callingRange = getCallingRange();
-            std::string objectID = callingRange->initializeID(objectIDRaw);
+            shared_ptr<CallingRange> callingRange = getCallingRange();
+            string objectID = callingRange->initializeID(objectIDRaw);
 
-            boost::shared_ptr<ObjectWrapperXL> objectWrapperXL;
+            shared_ptr<ObjectWrapperXL> objectWrapperXL;
             ObjectMap::const_iterator result = objectMap_.find(objectID);
             if (result == objectMap_.end()) {
-                objectWrapperXL = boost::shared_ptr<ObjectWrapperXL> (
+                objectWrapperXL = shared_ptr<ObjectWrapperXL> (
                     new ObjectWrapperXL(objectID, object, callingRange));
                 objectMap_[objectID] = objectWrapperXL;
                 callingRange->registerObject(objectID, objectWrapperXL);
@@ -97,17 +101,17 @@ namespace ObjectHandler {
     }
 
     void RepositoryXL::setError(
-        const std::string &message,
-        const boost::shared_ptr<FunctionCall> &functionCall) {
+        const string &message,
+        const shared_ptr<FunctionCall> &functionCall) {
 
             std::ostringstream logMessage, cellMessage;
             cellMessage << functionCall->functionName() << " - " << message;
 
-            std::string refStr = functionCall->refStr();
-            std::string refStrUpper = boost::algorithm::to_upper_copy(refStr);
+            string refStr = functionCall->refStr();
+            string refStrUpper = boost::algorithm::to_upper_copy(refStr);
             ErrorMessageMap::const_iterator i = errorMessageMap_.find(refStrUpper);
             if (i == errorMessageMap_.end()) {
-                boost::shared_ptr<RangeReference> rangeReference(new RangeReference(refStrUpper));
+                shared_ptr<RangeReference> rangeReference(new RangeReference(refStrUpper));
                 rangeReference->setErrorMessage(cellMessage.str());
                 errorMessageMap_[refStrUpper] = rangeReference;
             } else {
@@ -116,8 +120,8 @@ namespace ObjectHandler {
     }
 
     void RepositoryXL::logError(
-        const std::string &message,
-        const boost::shared_ptr<FunctionCall> &functionCall) {
+        const string &message,
+        const shared_ptr<FunctionCall> &functionCall) {
 
             // This function is called during error handling and must not throw.
 
@@ -145,14 +149,14 @@ namespace ObjectHandler {
             } catch(...) {}
     }
 
-    std::string RepositoryXL::retrieveError(const XLOPER *xRangeRef) {
+    string RepositoryXL::retrieveError(const XLOPER *xRangeRef) {
 
         OH_REQUIRE(xRangeRef->xltype == xltypeRef || xRangeRef->xltype == xltypeSRef,
             "Input parameter is not a range reference.");
         Xloper xRangeText;
         Excel(xlfReftext, &xRangeText, 1, xRangeRef);
-        std::string refStr = ConvertOper(xRangeText());
-        std::string refStrUpper = boost::algorithm::to_upper_copy(refStr);
+        string refStr = ConvertOper(xRangeText());
+        string refStrUpper = boost::algorithm::to_upper_copy(refStr);
 
         ErrorMessageMap::const_iterator i = errorMessageMap_.find(refStrUpper);
         if (i != errorMessageMap_.end())
@@ -168,7 +172,7 @@ namespace ObjectHandler {
     }
 
     void RepositoryXL::clearError() {
-        std::string refStr = FunctionCall::instance().refStr();
+        string refStr = FunctionCall::instance().refStr();
         errorMessageMap_.erase(boost::algorithm::to_upper_copy(refStr));
     }
 
@@ -176,7 +180,7 @@ namespace ObjectHandler {
 
         RangeMap::iterator i = callingRanges_.begin();
         while (i != callingRanges_.end()) {
-            boost::shared_ptr<CallingRange> callingRange = i->second;
+            shared_ptr<CallingRange> callingRange = i->second;
             if (callingRange->valid()) {
                 ++i;
             } else {
@@ -189,14 +193,14 @@ namespace ObjectHandler {
         }
     }
 
-    boost::shared_ptr<CallingRange> RepositoryXL::getCallingRange() {
-        std::string callerName = FunctionCall::instance().callerName();
+    shared_ptr<CallingRange> RepositoryXL::getCallingRange() {
+        string callerName = FunctionCall::instance().callerName();
         if (callerName == "VBA") {
             // Called from VBA - check whether the corresponding calling range
             // object exists and create it if not.
             RangeMap::const_iterator i = callingRanges_.find(callerName);
             if (i == callingRanges_.end()) {
-                boost::shared_ptr<CallingRange> callingRange(new CallingRange);
+                shared_ptr<CallingRange> callingRange(new CallingRange);
                 callingRanges_[callingRange->key()] = callingRange;
                 return callingRange;
             } else {
@@ -205,7 +209,7 @@ namespace ObjectHandler {
             // Called from a worksheet formula
         } else if (callerName.empty()) {
             // Calling range not yet named - create a new CallingRange object
-            boost::shared_ptr<CallingRange> callingRange(new CallingRange);
+            shared_ptr<CallingRange> callingRange(new CallingRange);
             callingRanges_[callingRange->key()] = callingRange;
             return callingRange;
         } else {
@@ -219,39 +223,39 @@ namespace ObjectHandler {
     void RepositoryXL::dump(std::ostream& out) {
         Repository::dump(out);
 
-        out << std::endl << "calling ranges:";
+        out << endl << "calling ranges:";
         if (callingRanges_.empty()) {
-            out << " none." << std::endl;
+            out << " none." << endl;
         } else {
-            out << std::endl << std::endl;
+            out << endl << endl;
             for (RangeMap::const_iterator i = callingRanges_.begin();
                 i != callingRanges_.end(); ++i) {
                     out << i->second;
             }
         }
 
-        out << std::endl << "Error messages:";
+        out << endl << "Error messages:";
         if (errorMessageMap_.empty()) {
-            out << " none." << std::endl;
+            out << " none." << endl;
         } else {
-            out << std::endl << std::endl;
+            out << endl << endl;
             for (ErrorMessageMap::const_iterator i = errorMessageMap_.begin();
                 i != errorMessageMap_.end(); ++i) {
-                    out << std::left << std::setw(50) << i->first << i->second->errorMessage() << std::endl;
+                    out << std::left << std::setw(50) << i->first << i->second->errorMessage() << endl;
             }
         }
 
-        out << std::endl << std::endl << "VBA error message: " << vbaError_ << std::endl;
+        out << endl << endl << "VBA error message: " << vbaError_ << endl;
     }
 
-    std::vector<std::string> RepositoryXL::callerAddress(const std::vector<std::string> &objectList) {
+    std::vector<string> RepositoryXL::callerAddress(const std::vector<string> &objectList) {
 
-        std::vector<std::string> ret;
+        std::vector<string> ret;
 
-        for (std::vector<std::string>::const_iterator i = objectList.begin();
+        for (std::vector<string>::const_iterator i = objectList.begin();
             i != objectList.end(); ++i) {
-                std::string idStrip = CallingRange::getStub(*i);
-                const boost::shared_ptr<ObjectWrapperXL>& objectWrapperXL = boost::static_pointer_cast<ObjectWrapperXL>(
+                string idStrip = CallingRange::getStub(*i);
+                const shared_ptr<ObjectWrapperXL>& objectWrapperXL = boost::static_pointer_cast<ObjectWrapperXL>(
                     getObjectWrapper(idStrip));
                 ret.push_back(objectWrapperXL->callerAddress());
         }
@@ -259,14 +263,14 @@ namespace ObjectHandler {
         return ret;
     }
 
-    std::vector<std::string> RepositoryXL::callerKey(const std::vector<std::string> &objectList) {
+    std::vector<string> RepositoryXL::callerKey(const std::vector<string> &objectList) {
 
-        std::vector<std::string> ret;
+        std::vector<string> ret;
 
-        for (std::vector<std::string>::const_iterator i = objectList.begin();
+        for (std::vector<string>::const_iterator i = objectList.begin();
             i != objectList.end(); ++i) {
-                std::string idStrip = CallingRange::getStub(*i);
-                const boost::shared_ptr<ObjectWrapperXL>& objectWrapperXL = boost::static_pointer_cast<ObjectWrapperXL>(
+                string idStrip = CallingRange::getStub(*i);
+                const shared_ptr<ObjectWrapperXL>& objectWrapperXL = boost::static_pointer_cast<ObjectWrapperXL>(
                     getObjectWrapper(idStrip));
                 ret.push_back(objectWrapperXL->callerKey());
         }
@@ -274,12 +278,12 @@ namespace ObjectHandler {
         return ret;
     }
 
-    std::vector<bool> RepositoryXL::isOrphan(const std::vector<std::string> &objectList){
+    std::vector<bool> RepositoryXL::isOrphan(const std::vector<string> &objectList){
         std::vector<bool> ret;
 
-        for (std::vector<std::string>::const_iterator i = objectList.begin();
+        for (std::vector<string>::const_iterator i = objectList.begin();
             i != objectList.end(); ++i) {
-                boost::shared_ptr<ObjectWrapperXL> objectWrapperXL;
+                shared_ptr<ObjectWrapperXL> objectWrapperXL;
                 ObjectMap::const_iterator result = objectMap_.find(CallingRange::getStub(*i));
                 if (result != objectMap_.end()) {
 
@@ -295,14 +299,14 @@ namespace ObjectHandler {
 
     }
 
-    std::vector<std::string>
-    RepositoryXL::updateCounter(const std::vector<std::string> &objectList) {
-        std::vector<std::string> ret;
+    std::vector<string>
+    RepositoryXL::updateCounter(const std::vector<string> &objectList) {
+        std::vector<string> ret;
 
-        for (std::vector<std::string>::const_iterator i = objectList.begin();
+        for (std::vector<string>::const_iterator i = objectList.begin();
             i != objectList.end(); ++i) {
 
-                boost::shared_ptr<ObjectWrapperXL> objectWrapperXL;
+                shared_ptr<ObjectWrapperXL> objectWrapperXL;
                 ObjectMap::const_iterator result = objectMap_.find(CallingRange::getStub(*i));
                 if (result != objectMap_.end()) {
 
@@ -319,7 +323,7 @@ namespace ObjectHandler {
 
     }
 
-    std::string RepositoryXL::formatID(const std::string &objectID){
+    string RepositoryXL::formatID(const string &objectID){
 
         return CallingRange::getStub(objectID);
     }
