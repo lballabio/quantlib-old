@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006 Ferdinando Ametrano
+ Copyright (C) 2006, 2012 Ferdinando Ametrano
  Copyright (C) 2006 Cristina Duminuco
  Copyright (C) 2007 Eric Ehlers
 
@@ -88,12 +88,14 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>&,
             const QuantLib::Handle<QuantLib::Quote>& vol,
+            const QuantLib::Real displacement,
             const QuantLib::DayCounter& dayCounter,
             bool permanent);
           BlackSwaptionEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>&,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>&,
+            const QuantLib::Real displacement,
             bool permanent);
     };
 
@@ -103,12 +105,14 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>&,
             const QuantLib::Handle<QuantLib::Quote>& vol,
+            const QuantLib::Real displacement,
             const QuantLib::DayCounter& dayCounter,
             bool permanent);
         BlackCapFloorEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>&,
             const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>&,
+            const QuantLib::Real displacement,
             bool permanent);
     };
 

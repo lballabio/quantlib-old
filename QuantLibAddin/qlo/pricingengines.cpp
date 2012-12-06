@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2012 Ferdinando Ametrano
  Copyright (C) 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -69,27 +69,30 @@ namespace QuantLibAddin {
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
         const QuantLib::Handle<QuantLib::Quote>& vol,
+        const QuantLib::Real displacement,
         const QuantLib::DayCounter& dayCounter,
         bool permanent) : PricingEngine(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
-            QuantLib::BlackSwaptionEngine(hYTS, vol, dayCounter));
+            QuantLib::BlackSwaptionEngine(hYTS, vol, dayCounter, displacement));
     }
 
     BlackSwaptionEngine::BlackSwaptionEngine(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
         const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>& vol,
+        const QuantLib::Real displacement,
         bool permanent) : PricingEngine(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
-            QuantLib::BlackSwaptionEngine(hYTS, vol));
+            QuantLib::BlackSwaptionEngine(hYTS, vol, displacement));
     }
 
     BlackCapFloorEngine::BlackCapFloorEngine(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
         const QuantLib::Handle<QuantLib::Quote>& vol,
+        const QuantLib::Real displacement,
         const QuantLib::DayCounter& dayCounter,
         bool permanent) : PricingEngine(properties, permanent)
     {
@@ -101,6 +104,7 @@ namespace QuantLibAddin {
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const QuantLib::Handle<QuantLib::YieldTermStructure>& hYTS,
         const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>& vol,
+        const QuantLib::Real displacement,
         bool permanent) : PricingEngine(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
