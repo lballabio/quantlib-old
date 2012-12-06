@@ -1,15 +1,14 @@
-
 <LauncherConfig>
- <!--SelectedEnvironmentType /-->
- <!--SelectedEnvironmentName /-->
- <!--SelectedFrameworkName /-->
- <!--EnvironmentTabIndex>0</EnvironmentTabIndex-->
- <!--FrameworkTabIndex>0</FrameworkTabIndex-->
- <ExcelPath>C:\Program Files\Microsoft Office\OFFICE11\EXCEL.EXE</ExcelPath>
- <GlobalAddins>
-  <GlobalAddin name="Reuters" enabled="True" path="C:\Program Files\Reuters\PowerPlus\PPP.xla" />
-  <GlobalAddin name="Bloomberg" enabled="False" path="C:\blp\API\dde\BlpMain.xla" />
-  <GlobalAddin name="Oracle" enabled="False" path="C:\Program Files\Oracle\Oracle.xla" />
- </GlobalAddins>
+  <!--<SelectedEnvironmentType/>-->
+  <!--<SelectedEnvironmentName />-->
+  <!--<SelectedFrameworkName />-->
+  <!--<EnvironmentTabIndex>0</EnvironmentTabIndex>-->
+  <!--FrameworkTabIndex>0</FrameworkTabIndex-->
+  <ExcelPath>C:\Program Files\Microsoft Office\OFFICE11\EXCEL.EXE</ExcelPath>
+  <GlobalAddins>
+    <GlobalAddin name="Reuters" enabled="True" path="C:\Program Files\Reuters\PowerPlus\PPP.xla" />
+    <GlobalAddin name="Bloomberg" enabled="False" path="C:\blp\API\dde\BlpMain.xla" />
+    <GlobalAddin name="Oracle" enabled="False" path="C:\Program Files\Oracle\Oracle.xla" />
+  </GlobalAddins>
 </LauncherConfig>
 

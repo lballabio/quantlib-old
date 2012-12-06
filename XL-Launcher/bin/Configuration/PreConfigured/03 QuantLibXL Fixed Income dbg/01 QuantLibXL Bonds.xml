@@ -1,0 +1,15 @@
+<Framework name="QuantLibXLBonds" displayName="QuantLibXL Bonds">
+  <StartupParameters>
+    <GroupBox text="Bonds">
+      <CheckBox text="Load Bonds" checked="False" enabled="True" />
+      <CheckBox text="BTP Analysis" checked="False" enabled="True" />
+    </GroupBox>
+    <GroupBox text="Curves">
+      <CheckBox text="Bootstrap Bond Curves" checked="False" enabled="True" />
+    </GroupBox>
+  </StartupParameters>
+  <Components>
+    <Component path="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\framework\addin\Bonds.xla" />
+  </Components>
+  <EnvironmentVariables />
+</Framework>

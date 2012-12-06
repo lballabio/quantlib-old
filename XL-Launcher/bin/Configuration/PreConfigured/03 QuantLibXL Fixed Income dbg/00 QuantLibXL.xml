@@ -1,0 +1,51 @@
+<Framework name="QuantLibXL" displayName="QuantLibXL Rates - Base">
+  <StartupParameters>
+    <GroupBox text="Settings">
+      <KeyValuePair name="Environment" value="Fixed Income" />
+      <KeyValuePair name="Workbook Path" value="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\Workbooks" />
+      <KeyValuePair name="Help File Path" value="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\Docs" />
+      <KeyValuePair name="Metadata Path" value="C:\Projects\QuantLib\R01020x-branch\QuantLibAddin\gensrc\metadata" />
+      <CheckBox text="Set Evaluation Date" checked="False" enabled="True" />
+      <DateTimePicker label="Evaluation Date" value="10/12/2011" enabled="True" />
+      <ComboBox label="Default Currency" selectedItem="EUR" enabled="True">
+        <Items>
+          <Item>EUR</Item>
+          <Item>GBP</Item>
+          <Item>USD</Item>
+          <Item>CHF</Item>
+          <Item>JPY</Item>
+        </Items>
+      </ComboBox>
+      <ComboBox label="Initialization Data Source" selectedItem="Excel" enabled="True">
+        <Items>
+          <Item>Excel</Item>
+          <Item>XML</Item>
+        </Items>
+      </ComboBox>
+      <CheckBox text="Open Main Checks" checked="False" enabled="True" />
+    </GroupBox>
+    <GroupBox text="Index Fixings">
+      <CheckBox text="Update Euribor YTD Time Series (xls)" checked="False" enabled="True" />
+      <CheckBox text="Update Index YTD Time Series (xls)" checked="False" enabled="True" />
+      <CheckBox text="Load Index YTD Time Series (xml)" checked="False" enabled="True" />
+    </GroupBox>
+    <GroupBox text="Curves">
+      <CheckBox text="Bootstrap Yield Curves" checked="False" enabled="True" />
+    </GroupBox>
+    <GroupBox text="RealTime Data">
+      <ComboBox label="Real Time Feed" selectedItem="Reuters" enabled="True">
+        <Items>
+          <Item>Reuters</Item>
+          <Item>Bloomberg</Item>
+        </Items>
+      </ComboBox>
+      <CheckBox text="Use Static Market Data" checked="False" enabled="True" />
+    </GroupBox>
+  </StartupParameters>
+  <Components>
+    <Component path="C:\Projects\QuantLib\R01020x-branch\ObjectHandler\xll\ObjectHandler-xll-vc90-mt-gd-1_2_0.xll" />
+    <Component path="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-gd-1_2_0.xll" />
+    <Component path="C:\Projects\QuantLib\R01020x-branch\QuantLibXL\framework\QuantLibXL.xla" />
+  </Components>
+  <EnvironmentVariables />
+</Framework>

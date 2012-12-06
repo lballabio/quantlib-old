@@ -1,6 +1,9 @@
 
 <Paths>
+  <!--<PreConfiguredDirectory>\\srv0001.caboto.it\risorse\Apps\Appsscript\CabotoXL\PreConfiguredEnv</PreConfiguredDirectory>-->
   <!--<PreConfiguredDirectory>\\srv0001\risorse\WorkGroup\IMI_Workbooks\PreConfiguredEnv</PreConfiguredDirectory>-->
-  <PreConfiguredDirectory>C:\Projects\QuantLib\trunk\XL-Launcher\bin\Configuration\PreConfigured</PreConfiguredDirectory>
+
+  <!--<PreConfiguredDirectory>C:\Projects\QuantLib\trunk\XL-Launcher\bin\Configuration\PreConfigured</PreConfiguredDirectory>-->
+  <PreConfiguredDirectory>C:\Projects\QuantLib\R01020x-branch\XL-Launcher\bin\Configuration\PreConfigured</PreConfiguredDirectory>
 </Paths>
 

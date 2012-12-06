@@ -1,2 +1,3 @@
 <EnvironmentConfig name="Local QuantLibXL">
+  <AuthenticationFile />
 </EnvironmentConfig>

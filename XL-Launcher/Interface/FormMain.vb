@@ -260,7 +260,7 @@ Public Class FormMain
 
             preConfigPath_ = p.PreConfigPath
             userConfigPath_ = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\XL-Launcher\UserConfigured"
-            launcherXlaPath_ = ApplicationDeployment.CurrentDeployment.DataDirectory & "\Addin\Launcher.xla"
+            launcherXlaPath_ = ApplicationDeployment.CurrentDeployment.DataDirectory & "\bin\Addin\Launcher.xla"
 
         Else
 
