@@ -4,7 +4,7 @@
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009, 2012 Ferdinando Ametrano
  Copyright (C) 2007 Marco Bianchetti
 
  This file is part of QuantLib, a free-software/open-source library
@@ -168,6 +168,7 @@ namespace QuantLibAddin {
             const QuantLib::Period& tenor, // swap maturity
             const QuantLib::Handle<QuantLib::Quote>& fixedRate,
             const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             bool permanent);
     };
 
@@ -179,6 +180,7 @@ namespace QuantLibAddin {
             const QuantLib::Date& endDate,
             const QuantLib::Handle<QuantLib::Quote>& fixedRate,
             const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             bool permanent);
     };
 
