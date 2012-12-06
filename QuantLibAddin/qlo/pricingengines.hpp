@@ -88,12 +88,14 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>&,
             const QuantLib::Handle<QuantLib::Quote>& vol,
+            const QuantLib::Real displacement,
             const QuantLib::DayCounter& dayCounter,
             bool permanent);
           BlackSwaptionEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>&,
             const QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>&,
+            const QuantLib::Real displacement,
             bool permanent);
     };
 
@@ -103,12 +105,14 @@ namespace QuantLibAddin {
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>&,
             const QuantLib::Handle<QuantLib::Quote>& vol,
+            const QuantLib::Real displacement,
             const QuantLib::DayCounter& dayCounter,
             bool permanent);
         BlackCapFloorEngine(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::YieldTermStructure>&,
             const QuantLib::Handle<QuantLib::OptionletVolatilityStructure>&,
+            const QuantLib::Real displacement,
             bool permanent);
     };
 

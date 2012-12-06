@@ -1292,6 +1292,11 @@
             <tensorRank>scalar</tensorRank>
             <description>SwaptionVolatilityStructure object ID.</description>
           </Parameter>
+            <Parameter name='Displacement' default='0.0'>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+                <description>displacement in a displaced diffusion model.</description>
+            </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -1318,7 +1323,12 @@
             <tensorRank>scalar</tensorRank>
             <description>cap/floor term volatility.</description>
           </Parameter>
-          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <Parameter name='Displacement' default='0.0'>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+                <description>displacement in a displaced diffusion model.</description>
+            </Parameter>
+            <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID.</description>
@@ -1349,6 +1359,11 @@
             <tensorRank>scalar</tensorRank>
             <description>OptionletVolatilityStructure object ID.</description>
           </Parameter>
+            <Parameter name='Displacement' default='0.0'>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+                <description>displacement in a displaced diffusion model.</description>
+            </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -1375,7 +1390,12 @@
             <tensorRank>scalar</tensorRank>
             <description>Term (i.e. flat) volatility.</description>
           </Parameter>
-          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <Parameter name='Displacement' default='0.0'>
+                <type>QuantLib::Real</type>
+                <tensorRank>scalar</tensorRank>
+                <description>displacement in a displaced diffusion model.</description>
+            </Parameter>
+            <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID.</description>
