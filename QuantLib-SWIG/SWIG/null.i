@@ -207,7 +207,7 @@ typedef double doubleOrNull;
 
 %typemap(rtype) intOrNull "numeric";
 %typemap(scoercein) intOrNull
-   %{ as(input, "integer"); %}
+   %{ $input = as($input, "integer"); %}
 %typemap(scoerceout) intOrNull %{ %}
 
 %typemap(in) intOrNull {
@@ -224,7 +224,7 @@ typedef double doubleOrNull;
 
 %typemap(rtype) doubleOrNull "numeric";
 %typemap(scoercein) doubleOrNull
-    %{ as(input, "numeric"); %}
+    %{ $input = as($input, "numeric"); %}
 %typemap(scoerceout) doubleOrNull %{ %}
 
 %typemap(in) doubleOrNull {
