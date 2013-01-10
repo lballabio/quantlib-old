@@ -237,7 +237,7 @@
     </Member>
 
     <Member name='qlInterestRateIndexFixingDays' type='QuantLib::InterestRateIndex'>
-      <description>Returns the fixing days (e.g. 2) for the given InterestRateIndex object.</description>
+      <description>Returns the fixing days (e.g. 0, 2) for the given InterestRateIndex object.</description>
       <libraryFunction>fixingDays</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
@@ -429,7 +429,7 @@
           <Parameter name='FixingDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing days (e.g. 2).</description>
+            <description>fixing days (e.g. 0, 2).</description>
           </Parameter>
           <Parameter name='Currency' exampleValue='EUR'>
             <type>QuantLib::Currency</type>
@@ -485,7 +485,7 @@
           <Parameter name='FixingDays' exampleValue='0'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing days (e.g. 0).</description>
+            <description>fixing days (e.g. 0, 2).</description>
           </Parameter>
           <Parameter name='Currency' exampleValue='EUR'>
             <type>QuantLib::Currency</type>
@@ -715,7 +715,7 @@
           <Parameter name='FixingDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>swap rate fixing days (e.g. 2).</description>
+            <description>swap rate fixing days (e.g. 0, 2).</description>
           </Parameter>
           <Parameter name='Currency' exampleValue='EUR'>
             <type>QuantLib::Currency</type>
@@ -915,7 +915,7 @@
           <Parameter name='FixingDays' exampleValue='2'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
-            <description>fixing days (e.g. 2).</description>
+            <description>fixing days (e.g. 0, 2).</description>
           </Parameter>
           <Parameter name='Currency' exampleValue='EUR'>
             <type>QuantLib::Currency</type>
