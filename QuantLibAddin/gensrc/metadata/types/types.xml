@@ -57,6 +57,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::BlackCalculator</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::BlackScholesCalculator</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::BlackSwaptionEngine</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::BlackCapFloorEngine</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::BlackVolTermStructure</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Bond</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::BTP</DataType>

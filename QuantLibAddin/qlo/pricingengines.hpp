@@ -33,7 +33,6 @@ namespace QuantLib {
     class MarketModelFactory;
     class SwaptionVolatilityStructure;
     class OptionletVolatilityStructure;
-    class BlackCapFloorEngine;
     class AnalyticCapFloorEngine;
     class MarketModelCapFloorEngine;
     class BlackCalculator;
