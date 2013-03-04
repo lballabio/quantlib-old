@@ -18,6 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+
 #ifndef quantlib_cash_flows_i
 #define quantlib_cash_flows_i
 
@@ -773,6 +774,35 @@ class CashFlows {
              bool includeSettlementDateFlows,
              Date settlementDate = Date(),
              Date npvDate = Date());
+
+    static Real basisPointValue(const Leg& leg,
+             const InterestRate& yield,
+             bool includeSettlementDateFlows,
+             Date settlementDate = Date(),
+             Date npvDate = Date());
+
+    static Real basisPointValue(const Leg& leg,
+             Rate yield,
+             const DayCounter& dayCounter,
+             Compounding compounding,
+             Frequency frequency,
+             bool includeSettlementDateFlows,
+             Date settlementDate = Date(),
+             Date npvDate = Date());
+
+    static Spread zSpread(const Leg& leg,
+             Real npv,
+             const boost::shared_ptr<YieldTermStructure>&,
+             const DayCounter& dayCounter,
+             Compounding compounding,
+             Frequency frequency,
+             bool includeSettlementDateFlows,
+             Date settlementDate = Date(),
+             Date npvDate = Date(),
+             Real accuracy = 1.0e-10,
+             Size maxIterations = 100,
+             Rate guess = 0.0);
+
 };
 
 
