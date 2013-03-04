@@ -3,6 +3,7 @@
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
  Copyright (C) 2005 Johan Witters
+ Copyright (C) 2013 Simon Shakeshaft
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -235,6 +236,66 @@ function(from) {Period(from)})
 #if defined(SWIGRUBY)
 %mixin Date "Comparable";
 #endif
+
+#if defined(SWIGCSHARP)
+%typemap(cscode) Date %{
+    public static Date operator+(Date d, int i) {
+        return new Date(d.serialNumber() + i);
+    }
+    public static Date operator-(Date d, int i) {
+        return new Date(d.serialNumber() - i);
+    }
+    public static bool operator==(Date d1, Date d2) {
+        object o1 = (object)d1;
+        object o2 = (object)d2;
+        if (o1 == null && o2 == null)
+            return true;
+        if (o1 == null || o2 == null)
+            return false;
+        return d1.serialNumber() == d2.serialNumber();
+    }
+    public static bool operator!=(Date d1, Date d2) {
+        object o1 = (object)d1;
+        object o2 = (object)d2;
+        if (o1 == null && o2 == null)
+            return false;
+        if (o1 == null || o2 == null)
+            return true;
+        return d1.serialNumber() != d2.serialNumber();
+    }
+    public static bool operator>(Date d1, Date d2) {
+        object o1 = (object)d1;
+        object o2 = (object)d2;
+        if (o1 == null || o2 == null)
+            return false;
+        return d1.serialNumber() > d2.serialNumber();
+    }
+    public static bool operator<(Date d1, Date d2) {
+        object o1 = (object)d1;
+        object o2 = (object)d2;
+        if (o1 == null || o2 == null)
+            return false;
+        return d1.serialNumber() < d2.serialNumber();
+    }
+    public override bool Equals(object o)
+    {
+        try
+        {
+            Date d = (Date)o;
+            return this.serialNumber() == d.serialNumber();
+        }
+        catch
+        {
+           return false;
+        }
+   }
+   public override int GetHashCode()
+   {
+       return this.serialNumber();
+   }
+%}
+#endif
+
 class Date {
     #if defined(SWIGRUBY)
     %rename("isLeap?")        isLeap;
