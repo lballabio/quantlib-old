@@ -147,6 +147,7 @@
 %include vectors.i
 %include basketoptions.i
 %include bonds.i
+%include bondfunctions.i
 %include calendars.i
 %include callability.i
 %include capfloor.i
