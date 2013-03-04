@@ -34,20 +34,20 @@ class BondFunctions {
     %rename("start-date")                 startDate;
     %rename("maturity-date")              maturityDate;
     %rename("is-tradeable")               isTradable;
-    %rename("previous-cash-flow-date")    previousCashFlowDate
-    %rename("next-cash-flow-date")        nextCashFlowDate
-    %rename("previous-cash-flow-amount")  previousCashFlowAmount
-    %rename("next-cash-flow-amount")      nextCashFlowAmount
-    %rename("previous-coupon-rate")       previousCouponRate
-    %rename("next-coupon-rate")           nextCouponRate
-    %rename("accrual-start-date")         accrualStartDate
-    %rename("accrual-end-date")           accrualEndDate
-    %rename("accrual-period")             accrualPeriod
-    %rename("accrual-days")               accrualDays
-    %rename("clean-price")                cleanPrice
-    %rename("atm-rate")                   atmRate
-    %rename("basis-point-value")          basisPointValue
-    %rename("yield-value-basis-point")    yieldValueBasisPoint
+    %rename("previous-cash-flow-date")    previousCashFlowDate;
+    %rename("next-cash-flow-date")        nextCashFlowDate;
+    %rename("previous-cash-flow-amount")  previousCashFlowAmount;
+    %rename("next-cash-flow-amount")      nextCashFlowAmount;
+    %rename("previous-coupon-rate")       previousCouponRate;
+    %rename("next-coupon-rate")           nextCouponRate;
+    %rename("accrual-start-date")         accrualStartDate;
+    %rename("accrual-end-date")           accrualEndDate;
+    %rename("accrual-period")             accrualPeriod;
+    %rename("accrual-days")               accrualDays;
+    %rename("clean-price")                cleanPrice;
+    %rename("atm-rate")                   atmRate;
+    %rename("basis-point-value")          basisPointValue;
+    %rename("yield-value-basis-point")    yieldValueBasisPoint;
     #endif
   public:
     %extend {
