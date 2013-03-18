@@ -46,16 +46,23 @@ Ballabio, L.</li>
 
 <h2 class="center">Slides</h2>
 <ul>
-<li>Dimitri Reiswich contributed the slides he used during a course he
-taught, along with the corresponding code:<br>
-<strong>Boost introduction</strong>
+<li><strong>Dimitri Reiswich</strong> contributed the slides he used
+during a course he taught, along with the corresponding code:<br>
+<em>Boost introduction</em>
 [<a href="slides/dima-boost-intro.pdf">PDF</a>]<br>
-<strong>QuantLib introduction, part I</strong>
+<em>QuantLib introduction, part I</em>
 [<a href="slides/dima-ql-intro-1.pdf">PDF</a>]<br>
-<strong>QuantLib introduction, part II</strong>
+<em>QuantLib introduction, part II</em>
 [<a href="slides/dima-ql-intro-2.pdf">PDF</a>]<br>
-<strong>code samples</strong>
+<em>code samples</em>
 [<a href="slides/dima-code.zip">ZIP</a>]<br>
+</li>
+<li><strong>Marco Marchioro</strong> has made available the slides for
+his derivatives class at Milan University, in which he uses QuantLibXL
+for teaching.  They can be downloaded from the <em>Advanced
+Derivatives</em> page on his
+site, <a href="http://www.marchioro.org/">http://www.marchioro.org/</a>,
+along with the corresponding spreadsheets and additional material.
 </li>
 </ul>
 
