@@ -66,13 +66,11 @@ separately.</li>
 
 
 <h3>Repository access</h3>
-
-<p>The procedure for checking out the repository (or any module therein)
-is the same for developers and users. If you're using command-line
-tools, you can issue the command</p>
+<p>If you're using command-line tools, you can issue the command</p>
 <pre>
 svn checkout https://quantlib.svn.sourceforge.net/svnroot/quantlib/trunk
 </pre>
+to check out the public repository.
 <p>If you're using some other tool, the actual steps might vary;
 however, the same URL can be used. Passing such URL causes Subversion
 to check out a copy of all modules (recommended for developers;) users
@@ -98,14 +96,13 @@ of any file in the repository.</p>
 
 <h3>Developer Access</h3>
 
-<p>The steps for checking out the repository are the same as for
-users. In addition, developers have the possibility to commit changes
-to the repository; authentication is performed upon commit by using
-the <em>username</em> option, as in:</p>
+<p>The steps for checking out the repository are almost the same as for
+users, but with a different URL; developers with commit privileges
+will have to use
 <pre>
-svn commit --username=USER -m "A description of the changes being written"
+svn checkout --username=$USER svn+ssh://$USER@svn.code.sf.net/p/quantlib/code/trunk
 </pre>
-<p>where you'll have to replace USER by your Sourceforge username.</p>
+instead, where <tt>$USER</tt> is their Sourceforge username.
 
 <p><strong>Note for C++ Unix users</strong>: if you use Subversion, you
 will need some GNU tools that usually only developers use, and
