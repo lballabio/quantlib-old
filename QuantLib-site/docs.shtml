@@ -30,13 +30,6 @@ page</a>.
 
 <h1 class="center">Other information</h1>
 
-<h2 class="center">Unofficial wiki</h2>
-<ul>
-<li>An unofficial QuantLib wiki is up at
-<a href= "http://quantlib.referata.com/">http://quantlib.referata.com/</a>.<br>
-Contributions are welcome.</li>
-</ul>
-
 <h2 class="center">Books</h2>
 <ul>
 <li><strong>Implementing QuantLib</strong> (in progress) [<a href=
