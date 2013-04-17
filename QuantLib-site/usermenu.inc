@@ -52,21 +52,6 @@
 </ul>
 
 <hr>
-<h3 class="navbartitle">Quantitative Finance Resources</h3>
-
-<ul class="navbarlist">
-<li class="navlink"><a href="/books.shtml">Books</a></li>
-
-<li class="navlink"><a href="/marketconventions.shtml">Market Conventions</a></li>
-
-<li class="navlink"><a href="http://www.wilmott.com/">Wilmott</a></li>
-
-<li class="navlink"><a href="http://www.quantnotes.com/">QuantNotes</a></li>
-
-<li class="navlink"><a href="http://www.compplusplus.com/">C(omp)++</a></li>
-</ul>
-
-<hr>
 <div class="center">
 <a href="http://opensource.org/docs/definition.html"><img src=
 "/images/osi-certified-90x75.png" width="90" height="75" border="0"
