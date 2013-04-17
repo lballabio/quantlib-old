@@ -118,9 +118,10 @@
 
 <c>Building QuantLib
 <q>I'm having trouble building QuantLib with MinGW.
-<a>Terry August was kind enough to put together detailed instructions
-   for MinGW users. Although a bit outdated, they can be found <a
-   href="http://www.nativact.com/taugust/quantlib.html">here</a>.
+<a>I suggest you use Dev-C++ or the free VC++ Express instead.
+   Anyway, some guidance can be found
+   <a href="http://blog.fosstrading.com/2010/12/build-rquantlib-on-32-bit-windows.html">here</a>;
+   the steps to build QuantLib are those from 1 to 5.
 
 <c>Building QuantLib
 <q>When building QuantLib, I get a compile error about a missing
