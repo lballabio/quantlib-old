@@ -68,7 +68,7 @@ separately.</li>
 <h3>Repository access</h3>
 <p>If you're using command-line tools, you can issue the command</p>
 <pre>
-svn checkout https://quantlib.svn.sourceforge.net/svnroot/quantlib/trunk
+svn checkout https://svn.code.sf.net/p/quantlib/code/trunk
 </pre>
 to check out the public repository.
 <p>If you're using some other tool, the actual steps might vary;
@@ -78,18 +78,18 @@ wanting to check out a single module (e.g., QuantLib for the core
 library) can do so by appending the module name to the repository URL,
 e.g.,</p>
 <pre>
-svn checkout https://quantlib.svn.sourceforge.net/svnroot/quantlib/trunk/QuantLib
+svn checkout https://svn.code.sf.net/p/quantlib/code/trunk/QuantLib
 </pre>
 
 <p>If you have <a href="http://tortoisesvn.net/about">TortoiseSVN</a> (for
 Windows) installed, with just one click you can check out the <a href=
-"tsvn:https://quantlib.svn.sourceforge.net/svnroot/quantlib/trunk/">whole
+"tsvn:https://svn.code.sf.net/p/quantlib/code/trunk/">whole
 sourcecode</a> or the <a href=
-"tsvn:https://quantlib.svn.sourceforge.net/svnroot/quantlib/trunk/QuantLib/">core
+"tsvn:https://svn.code.sf.net/p/quantlib/code/trunk/QuantLib/">core
 library</a>.</p>
 
 <p>Also, it is possible to <a href=
-"http://quantlib.svn.sourceforge.net/viewvc/quantlib/">browse the
+"https://sourceforge.net/p/quantlib/code/HEAD/tree/">browse the
 Subversion repository</a>: this gives you a view into the current
 status of the project's code. You may also view the complete histories
 of any file in the repository.</p>
@@ -101,6 +101,10 @@ users, but with a different URL; developers with commit privileges
 will have to use
 <pre>
 svn checkout --username=$USER svn+ssh://$USER@svn.code.sf.net/p/quantlib/code/trunk
+</pre>
+or
+<pre>
+svn checkout --username=$USER https://svn.code.sf.net/p/quantlib/code/trunk
 </pre>
 instead, where <tt>$USER</tt> is their Sourceforge username.
 
