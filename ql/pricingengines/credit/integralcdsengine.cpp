@@ -50,8 +50,8 @@ namespace QuantLib {
         Date today = Settings::instance().evaluationDate();
         Date settlementDate = discountCurve_->referenceDate();
 
-        // Upfront Flow NPV. Either we are on-the-run (no flow)
-        // or we are forward start
+		// Upfront Flow NPV and accrual rebate NPV. Either we are on-the-run (no flow)        
+		// or we are forward start
         Real upfPVO1 = 0.0;
         if(!arguments_.upfrontPayment->hasOccurred(
                                                settlementDate,
@@ -65,7 +65,9 @@ namespace QuantLib {
                 probability_->survivalProbability(effectiveUpfrontDate) *
                 discountCurve_->discount(arguments_.upfrontPayment->date());
         }
+		results_.accrualRebateNPV = upfPVO1 * boost::dynamic_pointer_cast<FixedRateCoupon>(arguments_.leg.at(0))->accruedAmount(arguments_.protectionStart); // accruals are rebated until protection starts
         results_.upfrontNPV = upfPVO1 * arguments_.upfrontPayment->amount();
+		results_.upfrontPV01 = upfPVO1;
 
         results_.couponLegNPV = 0.0;
         results_.defaultLegNPV = 0.0;
@@ -87,6 +89,8 @@ namespace QuantLib {
                  endDate = coupon->accrualEndDate();
             Date effectiveStartDate =
                 (startDate <= today && today <= endDate) ? today : startDate;
+            Date defaultDate = // mid-point
+                effectiveStartDate + (endDate-effectiveStartDate)/2;
             Real couponAmount = coupon->amount();
 
             Probability S = probability_->survivalProbability(paymentDate);
@@ -140,6 +144,7 @@ namespace QuantLib {
         switch (arguments_.side) {
           case Protection::Seller:
             results_.defaultLegNPV *= -1.0;
+			results_.accrualRebateNPV *= -1.0;
             break;
           case Protection::Buyer:
             results_.couponLegNPV *= -1.0;
@@ -156,7 +161,7 @@ namespace QuantLib {
 
         if (results_.couponLegNPV != 0.0) {
             results_.fairSpread =
-                -results_.defaultLegNPV*arguments_.spread/results_.couponLegNPV;
+				-results_.defaultLegNPV*arguments_.spread/(results_.couponLegNPV + results_.accrualRebateNPV); // the accrual rebate is accounted for in the fair spread cakculation
         } else {
             results_.fairSpread = Null<Rate>();
         }
