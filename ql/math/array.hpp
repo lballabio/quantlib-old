@@ -37,6 +37,11 @@
 #include <numeric>
 #include <vector>
 #include <iomanip>
+#include <boost/lambda/lambda.hpp>
+#include <boost/lambda/bind.hpp>
+
+
+#include <ql/math/comparison.hpp>
 
 namespace QuantLib {
 
@@ -193,6 +198,8 @@ namespace QuantLib {
     const Disposable<Array> Log(const Array&);
     /*! \relates Array */
     const Disposable<Array> Exp(const Array&);
+	/*! \relates Array */
+	const Disposable<Array> Pow(const Array&, const Real a);
 
     // utilities
     /*! \relates Array */
@@ -622,6 +629,13 @@ namespace QuantLib {
         return result;
     }
 
+	inline const Disposable<Array> Pow(const Array& v, const Real a) {
+        Array result(v.size());
+		Real (*fun)(Real,Real) = &std::pow;
+		std::transform(v.begin(),v.end(),result.begin(),boost::lambda::bind(fun,boost::lambda::_1,a));
+		return result;
+    }
+
     inline void swap(Array& v, Array& w) {
         v.swap(w);
     }
@@ -631,8 +645,8 @@ namespace QuantLib {
         out << "[ ";
         if (!a.empty()) {
             for (Size n=0; n<a.size()-1; ++n)
-                out << std::setw(int(width)) << a[n] << "; ";
-            out << std::setw(int(width)) << a.back();
+                out << std::setw(width) << a[n] << "; ";
+            out << std::setw(width) << a.back();
         }
         out << " ]";
         return out;
