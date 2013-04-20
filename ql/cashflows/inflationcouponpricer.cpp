@@ -193,5 +193,73 @@ namespace QuantLib {
     }
 
 
+    Real FixedInflationCouponPricer::floorletPrice(Rate effectiveFloor) const{
+        QL_FAIL("not implemented");
+    }
+
+    Real FixedInflationCouponPricer::capletPrice(Rate effectiveCap) const{
+        QL_FAIL("not implemented");
+    }
+
+
+    Rate FixedInflationCouponPricer::floorletRate(Rate effectiveFloor) const{
+        QL_FAIL("not implemented");
+    }
+
+    Rate FixedInflationCouponPricer::capletRate(Rate effectiveCap) const{
+        QL_FAIL("not implemented");
+    }
+
+    Rate FixedInflationCouponPricer::adjustedFixing(Rate fixing) const {
+
+        if (fixing == Null<Rate>())
+            fixing = coupon_->indexFixing();
+
+        // no adjustment
+        return fixing / baseFixing_;
+    }
+
+
+    void FixedInflationCouponPricer::initialize(const InflationCoupon& coupon) {
+        coupon_ = dynamic_cast<const FixedInflationCoupon*>(&coupon);
+        QL_REQUIRE(coupon_, "year-on-year inflation coupon needed");
+        gearing_ = coupon_->gearing();
+        spread_ = coupon_->spread();
+        paymentDate_ = coupon_->date();
+        rateCurve_ = boost::dynamic_pointer_cast<ZeroInflationIndex>(coupon.index())
+            ->zeroInflationTermStructure()
+            ->nominalTermStructure();
+
+        // past or future fixing is managed in ZeroInflationIndex::fixing()
+        // use yield curve from index (which sets discount)
+
+        discount_ = 1.0;
+        if (paymentDate_ > rateCurve_->referenceDate())
+            discount_ = rateCurve_->discount(paymentDate_);
+
+        spreadLegValue_ = spread_ * coupon_->accrualPeriod()* discount_;
+
+		baseFixing_ = boost::dynamic_pointer_cast<ZeroInflationIndex>(coupon.index())->fixing(coupon_->baseDate());
+		fixedRate_ = coupon_->fixedRate();
+
+    }
+
+
+    Real FixedInflationCouponPricer::swapletPrice() const {
+
+        Real swapletPrice = adjustedFixing() * fixedRate_ * coupon_->accrualPeriod() * discount_;
+        return gearing_ * swapletPrice + spreadLegValue_;
+    }
+
+
+    Rate FixedInflationCouponPricer::swapletRate() const {
+        // This way we do not require the index to have
+        // a yield curve, i.e. we do not get the problem
+        // that a discounting-instrument-pricer is used
+        // with a different yield curve
+        return gearing_ * adjustedFixing() * fixedRate_ + spread_;
+    }
+
+
 
 }
