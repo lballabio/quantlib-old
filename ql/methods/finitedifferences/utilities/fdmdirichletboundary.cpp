@@ -31,37 +31,87 @@ namespace QuantLib {
                             const boost::shared_ptr<FdmMesher>& mesher,
                             Real valueOnBoundary, Size direction,
                             FdmDirichletBoundary::Side side)
-    : side_(side),
-      valueOnBoundary_(valueOnBoundary),
-      indices_(FdmIndicesOnBoundary(mesher->layout(),
-                                    direction, side).getIndices()) {
+    : mesher_(mesher), direction_(direction), side_(side),
+      valueOnBoundary_(valueOnBoundary), timeDependentBoundary_(false), spatialDependentBoundary_(false) {
 
+		  init();                  
+        
+    }
+
+	FdmDirichletBoundary::FdmDirichletBoundary(
+                            const boost::shared_ptr<FdmMesher>& mesher,
+                            const Array valuesOnBoundary, Size direction, Side side)
+    : mesher_(mesher), direction_(direction), side_(side),
+      valuesOnBoundary_(valuesOnBoundary), timeDependentBoundary_(false), spatialDependentBoundary_(true) {
+
+		  init();                  
+        
+    }
+
+	FdmDirichletBoundary::FdmDirichletBoundary(
+                            const boost::shared_ptr<FdmMesher>& mesher,
+							const boost::function<Real (Real)>& valueOnBoundary, Size direction, Side side)
+    : mesher_(mesher), direction_(direction), side_(side),
+      timeDependentBoundary_(true), spatialDependentBoundary_(false), valueOnBoundaryTimeDep_(valueOnBoundary) {
+
+		  init();                  
+        
+    }
+
+	FdmDirichletBoundary::FdmDirichletBoundary(
+                            const boost::shared_ptr<FdmMesher>& mesher,
+							const boost::function<Disposable<Array> (Real)>& valuesOnBoundary, Size direction, Side side)
+    : mesher_(mesher), direction_(direction), side_(side),
+      timeDependentBoundary_(true), spatialDependentBoundary_(true), valueOnBoundary_(0.0) {
+
+		  init();                  
+        
+    }
+
+	void FdmDirichletBoundary::init() {
+
+		const boost::shared_ptr<FdmLinearOpLayout> layout = mesher_->layout();
+                                
+        std::vector<Size> newDim(layout->dim());
+        newDim[direction_] = 1;
+        const Size hyperSize = std::accumulate(newDim.begin(), newDim.end(),
+                                               Size(1), std::multiplies<Size>());
+        indicies_.resize(hyperSize);
+
+        Size i=0;
+        const FdmLinearOpIterator endIter = layout->end();
+        for (FdmLinearOpIterator iter = layout->begin(); iter != endIter;
+            ++iter) {
+            if (   (side_ == Lower && iter.coordinates()[direction_] == 0)
+                || (side_ == Upper && iter.coordinates()[direction_] 
+                                            == layout->dim()[direction_]-1)) {
+
+                QL_REQUIRE(hyperSize > i, "index missmatch");
+                indicies_[i++] = iter.index();
+            }
+        }
+        
         if (side_ == Lower) {
-            xExtreme_ = mesher->locations(direction)[0];
+            xExtreme_ = mesher_->locations(direction_)[0];
         }
         else if (side_ == Upper) {
-            xExtreme_ = mesher
-                ->locations(direction)[mesher->layout()->dim()[direction]-1];
+            xExtreme_ 
+                = mesher_->locations(direction_)[layout->dim()[direction_]-1];
         }
-        else {
-            QL_FAIL("internal error");
+	}
+
+    void FdmDirichletBoundary::applyAfterApplying(Array& rhs) const {
+		QL_REQUIRE(!spatialDependentBoundary_ || indicies_.size() == valuesOnBoundary_.size(), "values on boundary size (" << valuesOnBoundary_.size() << ") does not match hypersurface size (" << indicies_.size() << ")");
+		for (std::vector<Size>::const_iterator iter = indicies_.begin();
+             iter != indicies_.end(); ++iter) {
+            rhs[*iter] = spatialDependentBoundary_ ? valuesOnBoundary_[iter - indicies_.begin()] : valueOnBoundary_;
         }
     }
 
-    void FdmDirichletBoundary::applyBeforeApplying(operator_type&) const {
-    }
-
-    void FdmDirichletBoundary::applyAfterApplying(Array& x) const {
-        for (std::vector<Size>::const_iterator iter = indices_.begin();
-             iter != indices_.end(); ++iter) {
-            x[*iter] = valueOnBoundary_;
-        }
-    }
+	void FdmDirichletBoundary::applyBeforeSolving(operator_type&, Array& rhs) const {
+		this->applyAfterApplying(rhs);
+	}
     
-    void FdmDirichletBoundary::applyBeforeSolving(operator_type&,
-                                                  array_type&) const {
-    }
-
     void FdmDirichletBoundary::applyAfterSolving(Array& rhs) const {
         this->applyAfterApplying(rhs);
     }
@@ -70,4 +120,16 @@ namespace QuantLib {
         return (   (side_ == Lower && x < xExtreme_) 
                 || (side_ == Upper && x > xExtreme_)) ? valueOnBoundary_ : value;
     }
+
+	void FdmDirichletBoundary::setTime(Time t) {
+		if(timeDependentBoundary_) {
+			if(spatialDependentBoundary_) {
+				valuesOnBoundary_ = valuesOnBoundaryTimeDep_(t);
+			}
+			else {
+				valueOnBoundary_ = valueOnBoundaryTimeDep_(t);
+			}
+		}
+	}
+
 }

@@ -28,7 +28,8 @@
 #define quantlib_fdm_dirichlet_boundary_hpp
 
 #include <ql/methods/finitedifferences/boundarycondition.hpp>
-#include <ql/methods/finitedifferences/operators/fdmlinearop.hpp>
+#include <ql/methods/finitedifferences/fdmlinearop.hpp>
+#include <boost/function.hpp>
 
 namespace QuantLib {
 
@@ -44,22 +45,42 @@ namespace QuantLib {
 
         FdmDirichletBoundary(const boost::shared_ptr<FdmMesher>& mesher,
                              Real valueOnBoundary, Size direction, Side side);
+		FdmDirichletBoundary(const boost::shared_ptr<FdmMesher>& mesher,
+                             const Array valuesOnBoundary, Size direction, Side side);
+		FdmDirichletBoundary(const boost::shared_ptr<FdmMesher>& mesher,
+							 const boost::function<Real (Real)>& valueOnBoundary, Size direction, Side side);
+		FdmDirichletBoundary(const boost::shared_ptr<FdmMesher>& mesher,
+							 const boost::function<Disposable<Array> (Real)>& valuesOnBoundary, Size direction, Side side);
 
-        void applyBeforeApplying(operator_type&) const;
+        void applyBeforeApplying(operator_type&) const {}
         void applyBeforeSolving(operator_type&, array_type&) const;
         void applyAfterApplying(array_type&) const;
         void applyAfterSolving(array_type&) const;
-        void setTime(Time) {}
+        void setTime(Time);
         
         Real applyAfterApplying(Real x, Real value) const;
 
       private:
+		void init();
+		const boost::shared_ptr<FdmMesher>& mesher_;
+		const Size direction_;
         const Side side_;  
-        const Real valueOnBoundary_;
-        const std::vector<Size> indices_;
+        Real valueOnBoundary_;
+		Array valuesOnBoundary_;
+		boost::function<Real (Real)> valueOnBoundaryTimeDep_;
+		boost::function<Disposable<Array> (Real)> valuesOnBoundaryTimeDep_;
+		const bool spatialDependentBoundary_;
+		const bool timeDependentBoundary_;
 
         Real xExtreme_;
+        std::vector<Size> indicies_;
     };
+
+
+    typedef std::vector<boost::shared_ptr<FdmDirichletBoundary> >
+        FdmBoundaryConditionSet;
+    
+
 }
 
 #endif
