@@ -49,21 +49,21 @@ namespace QuantLib {
           public:
             BicubicSplineImpl(const I1& xBegin, const I1& xEnd,
                               const I2& yBegin, const I2& yEnd,
-                              const M& zData)
+                              const M& zData, const bool monotonic)
             : Interpolation2D::templateImpl<I1,I2,M>(xBegin,xEnd,
                                                      yBegin,yEnd,
-                                                     zData) {
+                                                     zData), monotonic_(monotonic) {
                 calculate();
             }
             void calculate() {
-                splines_.resize(this->zData_.rows());
+                splines_.reserve(this->zData_.rows());
                 for (Size i=0; i<(this->zData_.rows()); ++i)
-                    splines_[i] = CubicInterpolation(
+                    splines_.push_back(CubicInterpolation(
                                 this->xBegin_, this->xEnd_,
                                 this->zData_.row_begin(i),
-                                CubicInterpolation::Spline, false,
+                                CubicInterpolation::Spline, monotonic_,
                                 CubicInterpolation::SecondDerivative, 0.0,
-                                CubicInterpolation::SecondDerivative, 0.0);
+                                CubicInterpolation::SecondDerivative, 0.0));
             }
             Real value(Real x, Real y) const {
                 std::vector<Real> section(splines_.size());
@@ -72,7 +72,7 @@ namespace QuantLib {
 
                 CubicInterpolation spline(this->yBegin_, this->yEnd_,
                                           section.begin(),
-                                          CubicInterpolation::Spline, false,
+                                          CubicInterpolation::Spline, monotonic_,
                                           CubicInterpolation::SecondDerivative, 0.0,
                                           CubicInterpolation::SecondDerivative, 0.0);
                 return spline(y,true);
@@ -150,6 +150,7 @@ namespace QuantLib {
           
           private:
             std::vector<Interpolation> splines_;
+			const bool monotonic_;
         };
 
     }
@@ -162,10 +163,10 @@ namespace QuantLib {
         template <class I1, class I2, class M>
         BicubicSpline(const I1& xBegin, const I1& xEnd,
                       const I2& yBegin, const I2& yEnd,
-                      const M& zData) {
+                      const M& zData, const bool monotonic = false) {
             impl_ = boost::shared_ptr<Interpolation2D::Impl>(
                   new detail::BicubicSplineImpl<I1,I2,M>(xBegin, xEnd,
-                                                         yBegin, yEnd, zData));
+                                                         yBegin, yEnd, zData, monotonic));
         }
         
         Real derivativeX(Real x, Real y) const {
@@ -197,8 +198,8 @@ namespace QuantLib {
         template <class I1, class I2, class M>
         Interpolation2D interpolate(const I1& xBegin, const I1& xEnd,
                                     const I2& yBegin, const I2& yEnd,
-                                    const M& z) const {
-            return BicubicSpline(xBegin,xEnd,yBegin,yEnd,z);
+                                    const M& z, const bool monotonic = false) const {
+            return BicubicSpline(xBegin,xEnd,yBegin,yEnd,z,monotonic);
         }
     };
 
