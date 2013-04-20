@@ -32,10 +32,8 @@ namespace QuantLib {
 
     //! Jamshidian swaption engine
     /*! \ingroup swaptionengines
-
-        \warning The engine assumes that the exercise date equals the
-                 start date of the passed swap.
     */
+
     class JamshidianSwaptionEngine
         : public GenericModelEngine<OneFactorAffineModel,
                                     Swaption::arguments,
