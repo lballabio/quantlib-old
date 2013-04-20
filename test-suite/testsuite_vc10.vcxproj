@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug (static runtime)|Win32">
@@ -368,6 +368,7 @@
     <ClCompile Include="garch.cpp" />
     <ClCompile Include="gaussianquadratures.cpp" />
     <ClCompile Include="gjrgarchmodel.cpp" />
+    <ClCompile Include="gsr.cpp" />
     <ClCompile Include="hestonmodel.cpp" />
     <ClCompile Include="himalayaoption.cpp" />
     <ClCompile Include="hybridhestonhullwhiteprocess.cpp" />
@@ -491,6 +492,7 @@
     <ClInclude Include="garch.hpp" />
     <ClInclude Include="gaussianquadratures.hpp" />
     <ClInclude Include="gjrgarchmodel.hpp" />
+    <ClInclude Include="gsr.hpp" />
     <ClInclude Include="hestonmodel.hpp" />
     <ClInclude Include="himalayaoption.hpp" />
     <ClInclude Include="hybridhestonhullwhiteprocess.hpp" />
