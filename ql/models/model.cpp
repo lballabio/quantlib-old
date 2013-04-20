@@ -31,6 +31,35 @@ namespace QuantLib {
       constraint_(new PrivateConstraint(arguments_)),
       shortRateEndCriteria_(EndCriteria::None) {}
 
+	class CalibratedModel::CalibrationFunctionIterative : public CostFunction {
+		public:
+		CalibrationFunctionIterative(
+			CalibratedModel* model,
+			const boost::shared_ptr<CalibrationHelper>& instrument,
+			Array& par,
+			Size i) : model_(model, no_deletion), instrument_(instrument), i_(i), par_(par) {}
+
+		virtual ~CalibrationFunctionIterative() {}
+
+		virtual Real value(const Array& v) const {
+			par_[i_] = v[0];
+			model_->setParams(par_);
+			return fabs(instrument_->calibrationError());
+		}
+
+		virtual Disposable<Array> values(const Array& v) const {
+			return Array(1,value(v));
+		}
+
+		virtual Real finiteDifferenceEpsilon() const { return 1e-6; }
+
+		private:
+        boost::shared_ptr<CalibratedModel> model_;
+        const boost::shared_ptr<CalibrationHelper>& instrument_;
+		const Size i_;
+		mutable Array par_;
+	};
+
     class CalibratedModel::CalibrationFunction : public CostFunction {
       public:
         CalibrationFunction(
@@ -99,10 +128,31 @@ namespace QuantLib {
         shortRateEndCriteria_ = method.minimize(prob, endCriteria);
         Array result(prob.currentValue());
         setParams(result);
-        Array shortRateProblemValues_ = prob.values(result);
+        Array shortRateProblemValues_ = prob.values(result); // PC this is somewhat useless
 
         notifyObservers();
     }
+
+	void CalibratedModel::calibrateIterative(   // PC
+                   const std::vector<boost::shared_ptr<CalibrationHelper> >& instruments,
+                   OptimizationMethod& method,
+                   const EndCriteria& endCriteria) {
+
+		NoConstraint nc;
+		Array par = params();
+		for(Size i=0;i<instruments.size();i++) {
+			CalibrationFunctionIterative f(this,instruments[i],par,i);
+			Array pro(1,par[i]);
+			Problem prob(f,nc,pro);
+			shortRateEndCriteria_ = method.minimize(prob,endCriteria); // FIXME only the last calibration is available ...
+			Array result(prob.currentValue());
+			par[i] = result[0];
+			setParams(par);
+		}
+
+		notifyObservers();
+			
+	}
 
     EndCriteria::Type CalibratedModel::endCriteria() {
         return shortRateEndCriteria_;
