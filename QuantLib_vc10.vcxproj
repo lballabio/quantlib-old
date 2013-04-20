@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug (static runtime)|Win32">
@@ -250,18 +250,24 @@
   <ItemGroup>
     <ClInclude Include="ql\cashflows\cpicoupon.hpp" />
     <ClInclude Include="ql\cashflows\cpicouponpricer.hpp" />
+    <ClInclude Include="ql\cashflows\fixedinflationcoupon.hpp" />
+    <ClInclude Include="ql\cashflows\zcinflationcapfloor.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\dynprogvppintrinsicvalueengine.hpp" />
+    <ClInclude Include="ql\experimental\finitedifferences\fddstartlimitstepcondition.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdextoujumpvanillaengine.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdklugeextouspreadengine.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmblackscholesfwdop.hpp" />
+    <ClInclude Include="ql\experimental\finitedifferences\fdmdupire1dop.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmexpextouinnervaluecalculator.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmextendedornsteinuhlenbeckop.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmextoujumpmodelinnervalue.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmextoujumpop.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmextoujumpsolver.hpp" />
+    <ClInclude Include="ql\experimental\finitedifferences\fdmheat1dop.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmhestonfwdop.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmklugeextouop.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmklugeextousolver.hpp" />
+    <ClInclude Include="ql\experimental\finitedifferences\fdmsabrfpeop.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmsimple2dextousolver.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmsimple3dextoujumpsolver.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmspreadpayoffinnervalue.hpp" />
@@ -269,6 +275,7 @@
     <ClInclude Include="ql\experimental\finitedifferences\fdmvppstartlimitstepcondition.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmvppstepcondition.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdmvppstepconditionfactory.hpp" />
+    <ClInclude Include="ql\experimental\finitedifferences\fdmzabrop.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdsimpleextoujumpswingengine.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdsimpleextoustorageengine.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\fdsimpleklugeextouvppengine.hpp" />
@@ -277,9 +284,20 @@
     <ClInclude Include="ql\experimental\finitedifferences\vanillavppoption.hpp" />
     <ClInclude Include="ql\experimental\inflation\cpicapfloorengines.hpp" />
     <ClInclude Include="ql\experimental\inflation\cpicapfloortermpricesurface.hpp" />
+    <ClInclude Include="ql\experimental\models\cmsswap.hpp" />
+    <ClInclude Include="ql\experimental\models\cmsswaption.hpp" />
+    <ClInclude Include="ql\experimental\models\gsr.hpp" />
+    <ClInclude Include="ql\experimental\models\gsrjamshidianswaptionengine.hpp" />
+    <ClInclude Include="ql\experimental\models\gsrNonstandardSwaptionEngine.hpp" />
+    <ClInclude Include="ql\experimental\models\gsrprocess.hpp" />
+    <ClInclude Include="ql\experimental\models\gsrSwaptionEngine.hpp" />
+    <ClInclude Include="ql\experimental\models\markovFunctionalCmsSwaptionEngine.hpp" />
+    <ClInclude Include="ql\experimental\models\nonstandardswap.hpp" />
+    <ClInclude Include="ql\experimental\models\nonstandardswaption.hpp" />
     <ClInclude Include="ql\experimental\processes\extouwithjumpsprocess.hpp" />
     <ClInclude Include="ql\experimental\processes\gemanroncoroniprocess.hpp" />
     <ClInclude Include="ql\experimental\processes\klugeextouprocess.hpp" />
+    <ClInclude Include="ql\experimental\termstructures\zabr.hpp" />
     <ClInclude Include="ql\instruments\bonds\cpibond.hpp" />
     <ClInclude Include="ql\instruments\cpicapfloor.hpp" />
     <ClInclude Include="ql\instruments\cpiswap.hpp" />
@@ -1384,19 +1402,25 @@
   <ItemGroup>
     <ClCompile Include="ql\cashflows\cpicoupon.cpp" />
     <ClCompile Include="ql\cashflows\cpicouponpricer.cpp" />
+    <ClCompile Include="ql\cashflows\fixedinflationcoupon.cpp" />
+    <ClCompile Include="ql\cashflows\zcinflationcapfloor.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\dynprogvppintrinsicvalueengine.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdextoujumpvanillaengine.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdklugeextouspreadengine.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdmblackscholesfwdop.cpp" />
+    <ClCompile Include="ql\experimental\finitedifferences\fdmdupire1dop.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdmextendedornsteinuhlenbeckop.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdmextoujumpop.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdmextoujumpsolver.cpp" />
+    <ClCompile Include="ql\experimental\finitedifferences\fdmheat1dop.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdmhestonfwdop.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdmklugeextouop.cpp" />
+    <ClCompile Include="ql\experimental\finitedifferences\fdmsabrfpeop.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdmsquarerootfwdop.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdmvppstartlimitstepcondition.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdmvppstepcondition.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdmvppstepconditionfactory.cpp" />
+    <ClCompile Include="ql\experimental\finitedifferences\fdmzabrop.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdsimpleextoujumpswingengine.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdsimpleextoustorageengine.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\fdsimpleklugeextouvppengine.cpp" />
@@ -1404,9 +1428,20 @@
     <ClCompile Include="ql\experimental\finitedifferences\vanillavppoption.cpp" />
     <ClCompile Include="ql\experimental\inflation\cpicapfloorengines.cpp" />
     <ClCompile Include="ql\experimental\inflation\cpicapfloortermpricesurface.cpp" />
+    <ClCompile Include="ql\experimental\models\cmsswap.cpp" />
+    <ClCompile Include="ql\experimental\models\cmsswaption.cpp" />
+    <ClCompile Include="ql\experimental\models\gsr.cpp" />
+    <ClCompile Include="ql\experimental\models\gsrjamshidianswaptionengine.cpp" />
+    <ClCompile Include="ql\experimental\models\gsrNonstandardSwaptionEngine.cpp" />
+    <ClCompile Include="ql\experimental\models\gsrprocess.cpp" />
+    <ClCompile Include="ql\experimental\models\gsrSwaptionEngine.cpp" />
+    <ClCompile Include="ql\experimental\models\markovFunctionalCmsSwaptionEngine.cpp" />
+    <ClCompile Include="ql\experimental\models\nonstandardswap.cpp" />
+    <ClCompile Include="ql\experimental\models\nonstandardswaption.cpp" />
     <ClCompile Include="ql\experimental\processes\extouwithjumpsprocess.cpp" />
     <ClCompile Include="ql\experimental\processes\gemanroncoroniprocess.cpp" />
     <ClCompile Include="ql\experimental\processes\klugeextouprocess.cpp" />
+    <ClCompile Include="ql\experimental\termstructures\zabr.cpp" />
     <ClCompile Include="ql\instruments\bonds\cpibond.cpp" />
     <ClCompile Include="ql\instruments\cpicapfloor.cpp" />
     <ClCompile Include="ql\instruments\cpiswap.cpp" />
