@@ -22,7 +22,7 @@
 */
 
 // uncomment to enable NTL support
-//#define MF_ENABLE_NTL 
+#define MF_ENABLE_NTL 
 
 #ifndef quantlib_markovfunctional_hpp
 #define quantlib_markovfunctional_hpp
@@ -178,49 +178,50 @@ namespace QuantLib {
 
         // Constructor for a swaption smile calibrated model
         MarkovFunctional(const Handle<YieldTermStructure>& termStructure,
-                        const Real reversion,
-                        const std::vector<Date>& volstepdates,
-                        const std::vector<Real>& volatilities,
-                        const Handle<SwaptionVolatilityStructure>& swaptionVol,
-                        const std::vector<Date>& swaptionExpiries,
-                        const std::vector<Period>& swaptionTenors,
-                        const boost::shared_ptr<SwapIndex>& swapIndexBase,
-                        const MarkovFunctional::ModelSettings& modelSettings = ModelSettings());
+						const Real reversion,
+						const std::vector<Date>& volstepdates,
+						const std::vector<Real>& volatilities,
+						const Handle<SwaptionVolatilityStructure>& swaptionVol,
+						const std::vector<Date>& swaptionExpiries,
+						const std::vector<Period>& swaptionTenors,
+						const boost::shared_ptr<SwapIndex>& swapIndexBase,
+						const MarkovFunctional::ModelSettings& modelSettings = ModelSettings());
 
-        // Constructor for a caplet smile calibrated model
-        MarkovFunctional(const Handle<YieldTermStructure>& termStructure,
-                        const Real reversion,
-                        const std::vector<Date>& volstepdates,
-                        const std::vector<Real>& volatilities,
-                        const Handle<OptionletVolatilityStructure>& capletVol,
-                        const std::vector<Date>& capletExpiries,
-                        const boost::shared_ptr<IborIndex>& iborIndex,
-                        const MarkovFunctional::ModelSettings& modelSettings = ModelSettings());
+		// Constructor for a caplet smile calibrated model
+		MarkovFunctional(const Handle<YieldTermStructure>& termStructure,
+						const Real reversion,
+						const std::vector<Date>& volstepdates,
+						const std::vector<Real>& volatilities,
+						const Handle<OptionletVolatilityStructure>& capletVol,
+						const std::vector<Date>& capletExpiries,
+						const boost::shared_ptr<IborIndex>& iborIndex,
+						const MarkovFunctional::ModelSettings& modelSettings = ModelSettings());
 
-        const ModelSettings& modelSettings() const { return modelSettings_; }
-        const ModelOutputs& modelOutputs() const;
+		const ModelSettings& modelSettings() const { return modelSettings_; }
+		const ModelOutputs& modelOutputs() const;
 
-        const Date& numeraireDate() const { return numeraireDate_; }
-        const Time& numeraireTime() const { return numeraireTime_; }
+		const Date& numeraireDate() const { return numeraireDate_; }
+		const Time& numeraireTime() const { return numeraireTime_; }
 
-        const boost::shared_ptr<StochasticProcess1D> stateProcess() const { return stateProcess_; }
+		const boost::shared_ptr<StochasticProcess1D> stateProcess() const { return stateProcess_; }
 
-        const Real numeraire(const Time t, const Real y=0.0) const;
-        const Disposable<Array> numeraire(const Time t, const Array& y) const;
-        const Real deflatedZerobond(const Time T, const Time t=0.0, const Real y=0.0) const;
-        const Disposable<Array> deflatedZerobond(const Time T, const Time t, const Array& y) const;
+		const Real numeraire(const Time t, const Real y=0.0, boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>() ) const;
+		const Disposable<Array> numeraire(const Time t, const Array& y , boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>() ) const;
+		const Real deflatedZerobond(const Time T, const Time t=0.0, const Real y=0.0, boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>() ) const;
+		const Disposable<Array> deflatedZerobond(const Time T, const Time t, const Array& y, boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>() ) const;
 
-        const Real zerobond(const Time T, const Time t=0.0, const Real y=0.0) const;
-        const Real zerobond(const Date& maturity, const Date& referenceDate = Null<Date>(), const Real y=0.0) const;
+		const Real zerobond(const Time T, const Time t=0.0, const Real y=0.0, boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
+		const Real zerobond(const Date& maturity, const Date& referenceDate = Null<Date>(), const Real y=0.0, boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
 
-        const Real zerobondOption(const Option::Type& type, const Date& expiry, const Date& maturity, const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0) const;
+		const Real zerobondOption(const Option::Type& type, const Date& expiry, const Date& maturity, const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0, boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>() ) const;
 
-        const Real forwardRate(const Date& fixing, const Date& referenceDate = Null<Date>(), const Real y=0.0,const bool zeroFixingDays=false, boost::shared_ptr<IborIndex> iborIdx = boost::shared_ptr<IborIndex>()) const;
-        const Real swapRate(const Date& fixing, const Period& tenor, const Date& referenceDate = Null<Date>(), const Real y=0.0,const bool zeroFixingDays=false, boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>()) const;
-        const Real swapAnnuity(const Date& fixing, const Period& tenor, const Date& referenceDate = Null<Date>(), const Real y=0.0,const bool zeroFixingDays=false, boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>()) const;
+		// spreads to adjust forward and discounting curves can be supplied, they are added in a static manner to the model curve, if given these spreads are expected as continuous zero rates 
+		const Real forwardRate(const Date& fixing, const Date& referenceDate = Null<Date>(), const Real y=0.0,const bool zeroFixingDays=false, boost::shared_ptr<IborIndex> iborIdx = boost::shared_ptr<IborIndex>(), boost::shared_ptr<Interpolation> forwardSpread = boost::shared_ptr<Interpolation>()) const;
+		const Real swapRate(const Date& fixing, const Period& tenor, const Date& referenceDate = Null<Date>(), const Real y=0.0,const bool zeroFixingDays=false, boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>(), boost::shared_ptr<Interpolation> forwardSpread = boost::shared_ptr<Interpolation>(), boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
+		const Real swapAnnuity(const Date& fixing, const Period& tenor, const Date& referenceDate = Null<Date>(), const Real y=0.0,const bool zeroFixingDays=false, boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>(), boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
 
-        const Real capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0, const bool zeroFixingDays=false, boost::shared_ptr<IborIndex> iborIdx = boost::shared_ptr<IborIndex>()) const;
-        const Real swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor, const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0, const bool zeroFixingDays=false, boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>()) const;
+		const Real capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0, const bool zeroFixingDays=false, boost::shared_ptr<IborIndex> iborIdx = boost::shared_ptr<IborIndex>()) const;
+		const Real swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor, const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0, const bool zeroFixingDays=false, boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>()) const;
 
         /*! Computes the integral
         \f[ {2\pi}^{-0.5} \int_{a}^{b} p(x) \exp{-0.5*x*x} \mathrm{d}x \f]
