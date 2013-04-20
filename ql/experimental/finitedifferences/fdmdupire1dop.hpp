@@ -25,8 +25,10 @@
 #ifndef quantlib_fdm_dupire1d_op_hpp
 #define quantlib_fdm_dupire1d_op_hpp
 
-#include <ql/experimental/finitedifferences/triplebandlinearop.hpp>
-#include <ql/experimental/finitedifferences/fdmlinearopcomposite.hpp>
+#include <ql/methods/finitedifferences/meshers/fdmmesher.hpp>
+#include <ql/methods/finitedifferences/operators/fdmlinearoplayout.hpp>
+#include <ql/methods/finitedifferences/operators/triplebandlinearop.hpp>
+#include <ql/methods/finitedifferences/operators/fdmlinearopcomposite.hpp>
 
 namespace QuantLib {
 
@@ -46,6 +48,10 @@ namespace QuantLib {
         Disposable<Array> solve_splitting(Size direction,
                                           const Array& r, Real s) const;
         Disposable<Array> preconditioner(const Array& r, Real s) const;
+
+#if !defined(QL_NO_UBLAS_SUPPORT)
+		Disposable<std::vector<SparseMatrix> > FdmDupire1dOp::toMatrixDecomp() const; 
+#endif
 	  
       private:
 		const boost::shared_ptr<FdmMesher> mesher_;

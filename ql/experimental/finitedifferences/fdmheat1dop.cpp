@@ -18,7 +18,11 @@
 */
 
 #include <ql/experimental/finitedifferences/fdmheat1dop.hpp>
-#include <ql/experimental/finitedifferences/secondderivativeop.hpp>
+#include <ql/methods/finitedifferences/operators/secondderivativeop.hpp>
+
+#if !defined(QL_NO_UBLAS_SUPPORT)
+#include <boost/numeric/ublas/matrix.hpp>
+#endif
 
 namespace QuantLib {
 
@@ -70,4 +74,15 @@ namespace QuantLib {
 
         return solve_splitting(0, r, dt);
     }
+
+#if !defined(QL_NO_UBLAS_SUPPORT)
+    Disposable<std::vector<SparseMatrix> >
+    FdmHeat1dOp::toMatrixDecomp() const {
+        std::vector<SparseMatrix> retVal(2);
+        retVal[0] = mapT_.toMatrix();
+        retVal[1] = boost::numeric::ublas::identity_matrix<Real>(mesher_->layout()->size()); // that correct ?
+        return retVal;
+    }
+#endif
+
 }

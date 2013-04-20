@@ -18,8 +18,8 @@
 */
 
 #include <ql/experimental/finitedifferences/fdmzabrop.hpp>
-#include <ql/experimental/finitedifferences/secondderivativeop.hpp>
-#include <ql/experimental/finitedifferences/secondordermixedderivativeop.hpp>
+#include <ql/methods/finitedifferences/operators/secondderivativeop.hpp>
+#include <ql/methods/finitedifferences/operators/secondordermixedderivativeop.hpp>
 
 namespace QuantLib {
 
@@ -118,4 +118,16 @@ namespace QuantLib {
 
         return solve_splitting(0, r, dt);
     }
+
+#if !defined(QL_NO_UBLAS_SUPPORT)
+    Disposable<std::vector<SparseMatrix> >
+    FdmZabrOp::toMatrixDecomp() const {
+        std::vector<SparseMatrix> retVal(3);
+        retVal[0] = dxMap_.getMap().toMatrix();
+        retVal[1] = dyMap_.getMap().toMatrix();
+        retVal[2] = dxyMap_.toMatrix();
+        return retVal;
+    }
+#endif
+
 }
