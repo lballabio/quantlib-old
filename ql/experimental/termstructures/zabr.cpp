@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/termstructures/volatility/zabr.hpp>
+#include <ql/experimental/termstructures/zabr.hpp>
 #include <ql/termstructures/volatility/sabr.hpp>
 #include <ql/errors.hpp>
 #include <ql/math/comparison.hpp>
@@ -27,17 +27,17 @@
 //#include <boost/lambda/if.hpp>
 #include <boost/lambda/bind.hpp>
 
-#include <adaptiveRungeKutta.hpp>
+#include <ql/experimental/math/adaptiveRungeKutta.hpp>
 
-#include <ql/experimental/finitedifferences/fdmlinearoplayout.hpp>
-#include <ql/experimental/finitedifferences/fdm1dmesher.hpp>
-#include <ql/experimental/finitedifferences/uniform1dmesher.hpp>
-#include <ql/experimental/finitedifferences/concentrating1dmesher.hpp>
+#include <ql/methods/finitedifferences/operators/fdmlinearoplayout.hpp>
+#include <ql/methods/finitedifferences/meshers/fdm1dmesher.hpp>
+#include <ql/methods/finitedifferences/meshers/uniform1dmesher.hpp>
+#include <ql/methods/finitedifferences/meshers/concentrating1dmesher.hpp>
 #include <ql/experimental/finitedifferences/glued1dmesher.hpp>
-#include <ql/experimental/finitedifferences/fdmmeshercomposite.hpp>
+#include <ql/methods/finitedifferences/meshers/fdmmeshercomposite.hpp>
 #include <ql/methods/finitedifferences/operatortraits.hpp>
-#include <ql/experimental/finitedifferences/fdmdirichletboundary.hpp>
-#include <ql/experimental/finitedifferences/fdmbackwardsolver.hpp>
+#include <ql/methods/finitedifferences/utilities/fdmdirichletboundary.hpp>
+#include <ql/methods/finitedifferences/solvers/fdmbackwardsolver.hpp>
 
 #include <ql/experimental/finitedifferences/fdmdupire1dop.hpp>
 #include <ql/experimental/finitedifferences/fdmzabrop.hpp>

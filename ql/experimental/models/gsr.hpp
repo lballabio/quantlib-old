@@ -37,7 +37,7 @@
 #include <ql/math/integrals/gausslobattointegral.hpp>
 #include <ql/math/distributions/normaldistribution.hpp>
 
-#include <ql/experimental/models/gsr/gsrprocess.hpp>
+#include <ql/experimental/models/gsrprocess.hpp>
 
 #include <boost/math/special_functions.hpp>
 

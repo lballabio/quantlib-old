@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/gsr/gsrSwaptionEngine.hpp>
+#include <ql/experimental/models/gsrSwaptionEngine.hpp>
 
 namespace QuantLib {
 

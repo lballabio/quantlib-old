@@ -26,7 +26,7 @@
 
 #include <ql/option.hpp>
 #include <ql/instruments/swaption.hpp>
-#include <ql/experimental/models/gsr/nonstandardswap.hpp>
+#include <ql/experimental/models/nonstandardswap.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
 #include <ql/models/calibrationhelper.hpp>

@@ -28,7 +28,7 @@
 #define quantlib_fdm_dirichlet_boundary_hpp
 
 #include <ql/methods/finitedifferences/boundarycondition.hpp>
-#include <ql/methods/finitedifferences/fdmlinearop.hpp>
+#include <ql/methods/finitedifferences/operators/fdmlinearop.hpp>
 #include <boost/function.hpp>
 
 namespace QuantLib {
@@ -77,9 +77,6 @@ namespace QuantLib {
     };
 
 
-    typedef std::vector<boost::shared_ptr<FdmDirichletBoundary> >
-        FdmBoundaryConditionSet;
-    
 
 }
 

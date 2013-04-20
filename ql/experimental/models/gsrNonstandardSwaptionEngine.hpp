@@ -24,8 +24,8 @@
 #ifndef quantlib_pricers_gsr_nonstandardswaption_hpp
 #define quantlib_pricers_gsr_nonstandardswaption_hpp
 
-#include <ql/experimental/models/gsr/nonstandardswaption.hpp>
-#include <ql/experimental/models/gsr/gsr.hpp>
+#include <ql/experimental/models/nonstandardswaption.hpp>
+#include <ql/experimental/models/gsr.hpp>
 
 #include <ql/pricingengines/genericmodelengine.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>

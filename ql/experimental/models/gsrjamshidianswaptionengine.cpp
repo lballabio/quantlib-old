@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/gsr/gsrjamshidianswaptionengine.hpp>
+#include <ql/experimental/models/gsrjamshidianswaptionengine.hpp>
 #include <ql/math/solvers1d/brent.hpp>
 
 namespace QuantLib {

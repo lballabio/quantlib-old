@@ -18,7 +18,7 @@
 */
 
 
-#include <ql/experimental/models/gsr/gsrprocess.hpp>
+#include <ql/experimental/models/gsrprocess.hpp>
 
 #include <iostream>
 

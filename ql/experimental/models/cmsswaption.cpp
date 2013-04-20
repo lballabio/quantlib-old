@@ -18,7 +18,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/markovfunctional/cmsswaption.hpp>
+#include <ql/experimental/models/cmsswaption.hpp>
 #include <ql/pricingengines/swaption/blackswaptionengine.hpp>
 #include <ql/math/solvers1d/newtonsafe.hpp>
 #include <ql/quotes/simplequote.hpp>

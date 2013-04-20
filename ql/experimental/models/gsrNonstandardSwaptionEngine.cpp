@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/gsr/gsrNonstandardSwaptionEngine.hpp>
+#include <ql/experimental/models/gsrNonstandardSwaptionEngine.hpp>
 #include <ql/utilities/disposable.hpp>
 #include <ql/cashflows/fixedratecoupon.hpp>
 #include <ql/cashflows/iborcoupon.hpp>
@@ -26,6 +26,7 @@
 #include <ql/time/daycounters/ActualActual.hpp>
 #include <ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp>
 #include <ql/quotes/simplequote.hpp>
+#include <ql/termstructures/volatility/swaption/swaptionvolcube.hpp>
 
 #include <iostream> // only for debug
 
@@ -173,7 +174,10 @@ namespace QuantLib {
 
 				if(basketType == NonstandardSwaption::Naive) {
 					Real swapLength = swaptionVolatility->dayCounter().yearFraction(standardSwapBase->valueDate(expiry),arguments_.fixedPayDates.back());
-					Real atm = standardSwapBase->fixing(expiry,swapLength);
+					boost::shared_ptr<SwaptionVolatilityCube> cube = boost::dynamic_pointer_cast<SwaptionVolatilityCube>(swaptionVolatility);
+					Real atm;
+					if(cube) atm = cube->atmVol()->volatility(expiry,swapLength,0.03,true);
+					else atm = swaptionVolatility->volatility(expiry,swapLength,0.03,true);
 					helper = boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(expiry,arguments_.fixedPayDates.back(),Handle<Quote>(new SimpleQuote(swaptionVolatility->volatility(expiry,swapLength,atm,true))),standardSwapBase->iborIndex(),
 							standardSwapBase->fixedLegTenor(),standardSwapBase->dayCounter(),standardSwapBase->iborIndex()->dayCounter(), standardSwapBase->exogenousDiscount() ? standardSwapBase->discountingTermStructure() : standardSwapBase->forwardingTermStructure(),
 							CalibrationHelper::RelativePriceError,Null<Real>(),arguments_.fixedNominal[fixedIdx]));

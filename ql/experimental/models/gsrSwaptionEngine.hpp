@@ -25,7 +25,7 @@
 #define quantlib_pricers_gsr_swaption_hpp
 
 #include <ql/instruments/swaption.hpp>
-#include <ql/experimental/models/gsr/gsr.hpp>
+#include <ql/experimental/models/gsr.hpp>
 
 #include <ql/pricingengines/genericmodelengine.hpp>
 

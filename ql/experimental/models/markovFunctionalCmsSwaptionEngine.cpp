@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/markovfunctional/markovFunctionalCmsSwaptionEngine.hpp>
+#include <ql/experimental/models/markovFunctionalCmsSwaptionEngine.hpp>
 
 namespace QuantLib {
 

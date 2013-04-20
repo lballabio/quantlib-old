@@ -18,8 +18,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/gsr/nonstandardswaption.hpp>
-#include <ql/experimental/models/gsr/gsrnonstandardswaptionengine.hpp>
+#include <ql/experimental/models/nonstandardswaption.hpp>
+#include <ql/experimental/models/gsrnonstandardswaptionengine.hpp>
 #include <ql/exercise.hpp>
 
 namespace QuantLib {

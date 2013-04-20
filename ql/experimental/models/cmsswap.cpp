@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/markovfunctional/cmsswap.hpp>
+#include <ql/experimental/models/cmsswap.hpp>
 #include <ql/cashflows/iborcoupon.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>

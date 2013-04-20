@@ -25,7 +25,7 @@
 #define quantlib_instruments_cmsswaption_hpp
 
 #include <ql/option.hpp>
-#include <ql/experimental/models/markovfunctional/cmsswap.hpp>
+#include <ql/experimental/models/cmsswap.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {

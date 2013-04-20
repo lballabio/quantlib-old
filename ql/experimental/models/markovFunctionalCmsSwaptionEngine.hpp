@@ -24,10 +24,10 @@
 #ifndef quantlib_pricers_markovFunctional_cmsswaption_hpp
 #define quantlib_pricers_markovFunctional_cmsswaption_hpp
 
-#include <ql/experimental/models/markovfunctional/cmsswaption.hpp>
+#include <ql/experimental/models/cmsswaption.hpp>
 #include <ql/pricingengines/genericmodelengine.hpp>
 
-#include <ql/experimental/models/markovfunctional/markovfunctional.hpp>
+#include <ql/experimental/models/markovfunctional.hpp>
 
 namespace QuantLib {
 
