@@ -30,17 +30,23 @@ namespace QuantLib {
     }
 
     Rate CurveState::swapRate(Size begin,
-                              Size end) const {
+                              Size end, Size step) const {
 
         QL_REQUIRE(end > begin, "empty range specified");
         QL_REQUIRE(end <= numberOfRates_, "taus/end mismatch");
 
-        Real sum = 0.0;
-        for (Size i=begin; i<end; ++i)
-            sum += rateTaus_[i]*discountRatio(i+1, numberOfRates_);
-
-        return (discountRatio(begin, numberOfRates_)-discountRatio(end, numberOfRates_))/sum;
+        return (discountRatio(begin, numberOfRates_)-discountRatio(end, numberOfRates_))/swapAnnuity(numberOfRates_,begin,end,step);
     }
+
+	Rate CurveState::swapAnnuity(Size i, Size begin,
+		                         Size end, Size step) const {
+
+		Real sum = 0.0;
+        for (Size j=begin+step; j<=end; j+=step)
+            sum += (rateTimes_[j]-rateTimes_[j-step])*discountRatio(j,i);
+		return sum;
+
+	}
 
     void forwardsFromDiscountRatios(const Size firstValidIndex,
                                     const std::vector<DiscountFactor>& ds,
