@@ -22,15 +22,18 @@
 #include <ql/models/marketmodels/utilities.hpp>
 #include <ql/instruments/payoffs.hpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
    
     MultiStepSwaption::MultiStepSwaption(const std::vector<Time>& rateTimes,
                                      Size startIndex,
                                      Size endIndex,
-                                     boost::shared_ptr<StrikedTypePayoff> & payOff)
+                                     boost::shared_ptr<StrikedTypePayoff> & payOff,
+									 Size step)
                                      : MultiProductMultiStep(rateTimes),
-     startIndex_(startIndex), endIndex_(endIndex), payoff_(payOff) 
+     startIndex_(startIndex), endIndex_(endIndex), payoff_(payOff), step_(step)
     {
         QL_REQUIRE(startIndex_ < endIndex_," start index must be before end index");
    
@@ -50,22 +53,25 @@ namespace QuantLib {
             genCashFlows[0][0].timeIndex = 0;
 
 
-            Rate swapRate = currentState.cmSwapRate(startIndex_,endIndex_-startIndex_);
-            Real annuity = currentState.cmSwapAnnuity(startIndex_,startIndex_,endIndex_-startIndex_);
+            //Rate swapRate = currentState.cmSwapRate(startIndex_,endIndex_-startIndex_);
+            //Real annuity = currentState.cmSwapAnnuity(startIndex_,startIndex_,endIndex_-startIndex_);
+            Rate swapRate = currentState.swapRate(startIndex_,endIndex_,step_);
+            Real annuity = currentState.swapAnnuity(startIndex_,startIndex_,endIndex_,step_);
 
             genCashFlows[0][0].amount =
                 (*payoff_)(swapRate) * annuity;
-             
+				//std::max(swapRate-payoff_->strike(),0.0) * annuity; // test
+            
             numberCashFlowsThisStep[0] =genCashFlows[0][0].amount != 0.0 ? 1 : 0 ;
-
-            return true;
         }
         else
         {
             numberCashFlowsThisStep[0] =0;
-            ++currentIndex_;
-            return false;
         }
+
+		++currentIndex_;
+		return currentIndex_ > startIndex_;
+
     }
 
     std::auto_ptr<MarketModelMultiProduct>

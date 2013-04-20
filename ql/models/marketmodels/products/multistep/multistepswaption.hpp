@@ -38,7 +38,7 @@ namespace QuantLib {
         MultiStepSwaption(const std::vector<Time>& rateTimes,
                                      Size startIndex,
                                      Size endIndex,
-                                     boost::shared_ptr<StrikedTypePayoff> &);
+                                     boost::shared_ptr<StrikedTypePayoff> &, Size step=1);
         //! \name MarketModelMultiProduct interface
         //@{
         std::vector<Time> possibleCashFlowTimes() const;
@@ -56,6 +56,7 @@ namespace QuantLib {
     
         Size startIndex_;
         Size endIndex_;
+		Size step_;
         boost::shared_ptr<StrikedTypePayoff> payoff_;
         std::vector<Time> paymentTimes_;
         // things that vary in a path
