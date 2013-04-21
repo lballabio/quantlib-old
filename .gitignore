@@ -1,6 +1,6 @@
 .gitignore
 boost*/
-ntl*/
+*ntl*/
 build/
 buildstatic/
 release/
