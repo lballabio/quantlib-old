@@ -78,9 +78,8 @@ namespace QuantLib {
 #if !defined(QL_NO_UBLAS_SUPPORT)
     Disposable<std::vector<SparseMatrix> >
     FdmHeat1dOp::toMatrixDecomp() const {
-        std::vector<SparseMatrix> retVal(2);
+        std::vector<SparseMatrix> retVal(1);
         retVal[0] = mapT_.toMatrix();
-        retVal[1] = boost::numeric::ublas::identity_matrix<Real>(mesher_->layout()->size()); // that correct ?
         return retVal;
     }
 #endif
