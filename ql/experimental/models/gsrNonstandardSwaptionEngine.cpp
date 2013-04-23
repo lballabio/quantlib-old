@@ -28,7 +28,7 @@
 #include <ql/quotes/simplequote.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolcube.hpp>
 
-#include <iostream> // only for debug
+//#include <iostream> // only for debug
 
 namespace QuantLib {
 
@@ -67,11 +67,11 @@ namespace QuantLib {
 				Real gamma = (npvp-2.0*npv+npvm)/(h*h);
 
 				// debug
-				std::cout << " SOURCE SWAP:  NPV = " << npv << "  Delta = " << delta << "  Gamma = " << gamma << std::endl;
+				/*std::cout << " SOURCE SWAP:  NPV = " << npv << "  Delta = " << delta << "  Gamma = " << gamma << std::endl;
 				for(Real y = -5.0 ; y <= 5.0001; y+=0.1) {
 					std::cout << floatingLegNpv(floatingIdx,expiry,y) - fixedLegNpv(fixedIdx,expiry,y) << ";";
 				}
-				std::cout << std::endl;
+				std::cout << std::endl;*/
 				// end debug
 
 				class MatchHelper : public CostFunction {
@@ -154,10 +154,10 @@ namespace QuantLib {
 						res[2] = (gamma-gamma_) / gamma_;
 						// debug
 						//std::cout << " ** type=" << type << " nom=" << nominal << " rat=" << fixedRate << " mat=" << fabs(v[1]) << " alpha=" << alpha << " ==> npv=" << npv << "/" << npv_ << " delta=" << delta << "/" << delta_ << " gamma=" << gamma << "/" << gamma_ << std::endl; 
-						for(Real y = -5.0 ; y <= 5.0001; y+=0.1) {
+						/*for(Real y = -5.0 ; y <= 5.0001; y+=0.1) {
 							std::cout << NPV(swapLower,fixedRate,nominal,y,type) << ";"; 
 						}
-						std::cout << std::endl;
+						std::cout << std::endl;*/
 						// end debug
 						return res;
 					}
@@ -178,7 +178,7 @@ namespace QuantLib {
 					Real atm;
 					if(cube) atm = cube->atmVol()->volatility(expiry,swapLength,0.03,true);
 					else atm = swaptionVolatility->volatility(expiry,swapLength,0.03,true);
-					helper = boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(expiry,arguments_.fixedPayDates.back(),Handle<Quote>(new SimpleQuote(swaptionVolatility->volatility(expiry,swapLength,atm,true))),standardSwapBase->iborIndex(),
+					helper = boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(expiry,arguments_.fixedPayDates.back(),Handle<Quote>(new SimpleQuote(atm)),standardSwapBase->iborIndex(),
 							standardSwapBase->fixedLegTenor(),standardSwapBase->dayCounter(),standardSwapBase->iborIndex()->dayCounter(), standardSwapBase->exogenousDiscount() ? standardSwapBase->discountingTermStructure() : standardSwapBase->forwardingTermStructure(),
 							CalibrationHelper::RelativePriceError,Null<Real>(),arguments_.fixedNominal[fixedIdx]));
 				}
