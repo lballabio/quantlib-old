@@ -257,7 +257,7 @@ namespace QuantLib {
 		
 		Real npv=0.0;
 		for(Size i=idx; i<arguments_.floatingResetDates.size(); i++) {
-			npv += model_->forwardRate(arguments_.floatingFixingDates[i],arguments_.swap->iborIndex(),referenceDate,y) *
+			npv += (model_->forwardRate(arguments_.floatingFixingDates[i],arguments_.swap->iborIndex(),referenceDate,y) + arguments_.floatingSpreads[i]) *
 				   arguments_.floatingAccrualTimes[i] *
 				   arguments_.floatingNominal[i] * model_->zerobond(arguments_.floatingPayDates[i],referenceDate,y);
 		}
