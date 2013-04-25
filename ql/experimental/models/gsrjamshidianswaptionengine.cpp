@@ -30,13 +30,14 @@ namespace QuantLib {
 					const Date& maturityDate,
                     const Date& valueDate,
                     const std::vector<Date>& fixedPayDates,
-                    const std::vector<Real>& amounts)
-        : strike_(nominal), maturityDate_(maturityDate), valueDate_(valueDate), times_(fixedPayDates), amounts_(amounts), model_(model) {}
+                    const std::vector<Real>& amounts,
+					const Size startIndex)
+        : strike_(nominal), maturityDate_(maturityDate), valueDate_(valueDate), times_(fixedPayDates), amounts_(amounts), model_(model), startIndex_(startIndex) {}
 
         Real operator()(Rate y) const {
             Real value = strike_;
             Size size = times_.size();
-            for (Size i=0; i<size; i++) {
+            for (Size i=startIndex_; i<size; i++) {
                 Real dbValue =
                     model_->zerobond(times_[i], maturityDate_, y) / model_->zerobond(valueDate_, maturityDate_, y);
                 value -= amounts_[i]*dbValue;
@@ -46,6 +47,7 @@ namespace QuantLib {
       private:
         Real strike_;
         Date maturityDate_,valueDate_;
+		Size startIndex_;
         std::vector<Date> times_;
         const std::vector<Real>& amounts_;
         const boost::shared_ptr<Gsr>& model_;
@@ -71,7 +73,9 @@ namespace QuantLib {
         std::vector<Real> amounts(arguments_.fixedCoupons);
         amounts.back() += arguments_.nominal;
 
-		rStarFinder finder(*model_, arguments_.nominal, arguments_.exercise->date(0), arguments_.fixedResetDates[0], arguments_.fixedPayDates, amounts);
+		Size startIndex = std::upper_bound(arguments_.fixedResetDates.begin(), arguments_.fixedResetDates.end(), arguments_.exercise->date(0)-1) - arguments_.fixedResetDates.begin(); // only consider coupons with start date >= exercise dates
+
+		rStarFinder finder(*model_, arguments_.nominal, arguments_.exercise->date(0), arguments_.fixedResetDates[startIndex], arguments_.fixedPayDates, amounts,startIndex);
         Brent s1d;
         Rate minStrike = -5.0;
         Rate maxStrike = 5.0;
@@ -84,10 +88,10 @@ namespace QuantLib {
         Size size = arguments_.fixedCoupons.size();
 
         Real value = 0.0;
-        for (Size i=0; i<size; i++) {
+        for (Size i=startIndex; i<size; i++) {
             Real fixedPayTime = dayCounter.yearFraction(referenceDate,arguments_.fixedPayDates[i]);
-            Real strike = model_->zerobond(arguments_.fixedPayDates[i], arguments_.exercise->date(0), rStar) / model_->zerobond(arguments_.fixedResetDates[0], arguments_.exercise->date(0), rStar);
-            Real dboValue = model_->zerobondOption(w, arguments_.exercise->date(0), arguments_.fixedResetDates[0], arguments_.fixedPayDates[i], strike);
+            Real strike = model_->zerobond(arguments_.fixedPayDates[i], arguments_.exercise->date(0), rStar) / model_->zerobond(arguments_.fixedResetDates[startIndex], arguments_.exercise->date(0), rStar);
+            Real dboValue = model_->zerobondOption(w, arguments_.exercise->date(0), arguments_.fixedResetDates[startIndex], arguments_.fixedPayDates[i], strike);
             value += amounts[i]*dboValue;
         }
         results_.value = value;
