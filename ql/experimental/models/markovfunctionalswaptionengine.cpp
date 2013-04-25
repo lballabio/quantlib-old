@@ -88,7 +88,7 @@ namespace QuantLib {
                 npv0[k] = price;
 
                 if(expiry0 >today) {
-                    Real floatingLegNpv = (model_->zerobond(schedule.date(j1),expiry0,z[k]) - model_->zerobond(arguments_.fixedPayDates.back(),expiry0,z[k]));
+                    Real floatingLegNpv = arguments_.nominal* (model_->zerobond(schedule.date(j1),expiry0,z[k]) - model_->zerobond(arguments_.fixedPayDates.back(),expiry0,z[k]));
                     Real fixedLegNpv = 0.0;
                     for(Size l=j1;l<arguments_.fixedCoupons.size();l++) {
                         fixedLegNpv += arguments_.fixedCoupons[l] * model_->zerobond(arguments_.fixedPayDates[l],expiry0,z[k]);
