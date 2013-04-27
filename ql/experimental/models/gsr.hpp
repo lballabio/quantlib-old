@@ -21,6 +21,9 @@
     \brief GSR 1 factor model
 */
 
+// uncomment to enably high precision floating point
+#define GSR_ENABLE_NTL
+
 #ifndef quantlib_gsr_hpp
 #define quantlib_gsr_hpp
 
@@ -40,6 +43,11 @@
 #include <ql/experimental/models/gsrprocess.hpp>
 
 #include <boost/math/special_functions.hpp>
+
+#ifdef GSR_ENABLE_NTL
+    #include <boost/math/bindings/rr.hpp>
+#endif
+
 
 namespace QuantLib {
 
@@ -87,7 +95,7 @@ namespace QuantLib {
 		const Real zerobondOption(const Option::Type& type, const Date& expiry, const Date& valueDate, const Date& maturity, const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0);
 
 		// zero bond option pricing via numerical integration (only for monocurve setup, TODO extend this to the case value date not euqal expiry date)
-		const Real zerobondOption2(const Option::Type& type, const Date& expiry, const Date& maturity, const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0,
+		const Real zerobondOption(const Option::Type& type, const Date& expiry, const Date& maturity, const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0,
 			boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>(),
 			const Size yGridPoints=32, const Real yStdDevs=7.0, const bool extrapolatePayoff=true, const bool flatPayoffExtrapolation=false) const;
 

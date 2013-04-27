@@ -107,15 +107,15 @@ namespace QuantLib {
 		QL_REQUIRE(reversions_.size() == 1 || reversions_.size() == volsteptimes_.size()+1,"there must be 1 or n+1 reversions (" << reversions_.size() << ") for n volatility step times (" << volsteptimes_.size() << ")");
 		if(reversions_.size() == 1) {
 			if(calibrateReversion_)
-				reversion_ = ConstantParameter(reversions_[0],PositiveConstraint());
+				reversion_ = ConstantParameter(reversions_[0],NoConstraint());
 			else
-				reversionNc_ = ConstantParameter(reversions_[0],PositiveConstraint());
+				reversionNc_ = ConstantParameter(reversions_[0],NoConstraint());
 		}
 		else {
 			if(calibrateReversion_)
-				reversion_ = PiecewiseConstantParameter(volsteptimes_,PositiveConstraint());
+				reversion_ = PiecewiseConstantParameter(volsteptimes_,NoConstraint());
 			else
-				reversionNc_ = PiecewiseConstantParameter(volsteptimes_,PositiveConstraint());
+				reversionNc_ = PiecewiseConstantParameter(volsteptimes_,NoConstraint());
 			for(Size i=0;i<reversions_.size();i++) {
 				if(calibrateReversion_)
 					reversion_.setParam(i,reversions_[i]);
@@ -161,6 +161,8 @@ namespace QuantLib {
 
 		Real x = y*stateProcess_->stdDeviation(0.0,0.0,t)+stateProcess_->expectation(0.0,0.0,t); 
 		Real gtT = stateProcess_->G(t,T,x);
+
+		//std::cout << ";" << x << ";" << gtT << ";";
 
 		return termStructure()->discount(T,true) / termStructure()->discount(t,true) * exp( -x*gtT-0.5*stateProcess_->y(t)*gtT*gtT )
 			* ( discountSpread ? std::exp(- discountSpread->operator()(T,true)*T + discountSpread->operator()(t,true)*t ) : 1.0 ); 
@@ -287,8 +289,11 @@ namespace QuantLib {
 
 	}
 
+	/*const Real Gsr::zerobondOption(const Option::Type& type, const Date& expiry, const Date& valueDate, const Date& maturity, const Rate strike, const Date& referenceDate, const Real y) {
+		return zerobondOption(type,expiry,maturity,strike,referenceDate,y);
+	}*/
 
-	const Real Gsr::zerobondOption2(const Option::Type& type, const Date& expiry, const Date& maturity, const Rate strike, const Date& referenceDate, const Real y,
+	const Real Gsr::zerobondOption(const Option::Type& type, const Date& expiry, const Date& maturity, const Rate strike, const Date& referenceDate, const Real y,
 		boost::shared_ptr<Interpolation> discountSpread,
 		const Size yGridPoints, const Real yStdDevs, const bool extrapolatePayoff, const bool flatPayoffExtrapolation) const {
 
@@ -415,19 +420,18 @@ namespace QuantLib {
 	}
 
 	const Real Gsr::gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, const Real y0, const Real y1) const {
-		//#ifdef MF_ENABLE_NTL
-		//	if(modelSettings_.enableNtl_) {
-		//		const boost::math::ntl::RR aa=4.0*a, ba=2.0*M_SQRT2*b, ca=2.0*c, da=M_SQRT2*d;
-		//		const boost::math::ntl::RR x0=y0*M_SQRT1_2, x1=y1*M_SQRT1_2;
-		//		const boost::math::ntl::RR res = (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*exp(-x1*x1)*(2.0*aa*x1*x1*x1+3.0*aa*x1+2.0*ba*(x1*x1+1.0)+2.0*ca*x1+2.0*da))-
-		//											(0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*(2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
-		//		return NTL::to_double(res.value());
-		//	}
-		//#endif
+		#ifdef GSR_ENABLE_NTL
+				const boost::math::ntl::RR aa=4.0*a, ba=2.0*M_SQRT2*b, ca=2.0*c, da=M_SQRT2*d;
+				const boost::math::ntl::RR x0=y0*M_SQRT1_2, x1=y1*M_SQRT1_2;
+				const boost::math::ntl::RR res = (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*exp(-x1*x1)*(2.0*aa*x1*x1*x1+3.0*aa*x1+2.0*ba*(x1*x1+1.0)+2.0*ca*x1+2.0*da))-
+													(0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*(2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
+				return NTL::to_double(res.value());
+		#else
 		const Real aa=4.0*a, ba=2.0*M_SQRT2*b, ca=2.0*c, da=M_SQRT2*d;
 		const Real x0=y0*M_SQRT1_2, x1=y1*M_SQRT1_2;
 		return (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*exp(-x1*x1)*(2.0*aa*x1*x1*x1+3.0*aa*x1+2.0*ba*(x1*x1+1.0)+2.0*ca*x1+2.0*da))-
 			(0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*(2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
+        #endif
 	}
 
 	const Real Gsr::gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, const Real h, const Real x0, const Real x1) const {
