@@ -19,6 +19,8 @@
 
 #include <ql/experimental/models/gsrSwaptionEngine.hpp>
 
+#include <ql/indexes/swap/euriborswap.hpp>
+
 namespace QuantLib {
 
     void GsrSwaptionEngine::calculate() const {
@@ -100,6 +102,7 @@ namespace QuantLib {
 					}
 					CubicInterpolation payoff1(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
 					for(Size i=0;i<z.size()-1;i++) {
+						//std::cout << "int;" << i << ";" << z[i] << ";" << p[i] << std::endl;
 						price += model_->gaussianShiftedPolynomialIntegral( 0.0, payoff1.cCoefficients()[i], payoff1.bCoefficients()[i], payoff1.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
 					}
 					if(extrapolatePayoff_) {
@@ -118,6 +121,7 @@ namespace QuantLib {
 
 				if(expiry0 >today) {
 					Real floatingLegNpv = 0.0;
+					//floatingLegNpv = (model_->zerobond(schedule.date(j1),expiry0,z[k]) - model_->zerobond(arguments_.fixedPayDates.back(),expiry0,z[k])); // approximation
 					for(Size l=k1;l<arguments_.floatingCoupons.size();l++) {
 						floatingLegNpv += arguments_.nominal * arguments_.floatingAccrualTimes[l] *
 							                (arguments_.floatingSpreads[l]+model_->forwardRate(arguments_.floatingFixingDates[l],arguments_.swap->iborIndex(),expiry0,z[k],spreadF_)) * 
@@ -127,8 +131,15 @@ namespace QuantLib {
 					for(Size l=j1;l<arguments_.fixedCoupons.size();l++) {
 						fixedLegNpv += arguments_.fixedCoupons[l] * model_->zerobond(arguments_.fixedPayDates[l],expiry0,z[k],spreadD_);
 					}
-					//std::cout << expiry0Time << ";" << expiry1Time << ";" << k << ";" << npv0[k] << ";" << (floatingLegNpv-fixedLegNpv) / model_->numeraire(expiry0Time,z[k]) << ";" << model_->numeraire(expiry0Time,z[k]) << std::endl;
-					npv0[k] = std::max( npv0[k] * (npv0[k]>0.0 ? model_->numeraire(expiry0Time,z[k],spreadD_) : 0.0) , (type==Option::Call ? 1.0 : -1.0) * ( floatingLegNpv - fixedLegNpv ) ) / model_->numeraire(expiry0Time,z[k],spreadD_);
+					//test
+					//std::cout << expiry0Time << ";" << expiry1Time << ";" << k << ";" << npv0[k] << ";" << (floatingLegNpv-fixedLegNpv) / model_->numeraire(expiry0Time,z[k]) << ";" << z[k] << ";" << model_->numeraire(expiry0Time,z[k]) << std::endl;
+					//std::cout << z[k] << ";" << model_->numeraire(expiry0Time,z[k]) << std::endl;
+					//NormalDistribution nd;
+					//std::cout << z[k] << ";" << nd(z[k]) << ";" << model_->swapRate(expiry0,5*Years,boost::shared_ptr<SwapIndex>(new EuriborSwapIsdaFixA(10*Years)),expiry0,z[k]) << ";" << std::max( floatingLegNpv - fixedLegNpv , 0.0 ) << ";" << model_->numeraire(expiry0Time,z[k]) << std::endl;
+					//npv0[k] = std::max( npv0[k] * (npv0[k]>0.0 ? model_->numeraire(expiry0Time,z[k],spreadD_) : 0.0) , (type==Option::Call ? 1.0 : -1.0) * ( floatingLegNpv - fixedLegNpv ) ) / model_->numeraire(expiry0Time,z[k],spreadD_);
+					//end test
+					std::cout << k << ";" << z[k] << ";" << floatingLegNpv-fixedLegNpv << ";" << model_->numeraire(0.0,0.0) / model_->numeraire(expiry0Time,z[k],spreadD_) << std::endl;
+					npv0[k] = std::max( npv0[k], (type==Option::Call ? 1.0 : -1.0) * ( floatingLegNpv - fixedLegNpv ) / model_->numeraire(expiry0Time,z[k],spreadD_) );
 				}
 
 			}
@@ -139,6 +150,7 @@ namespace QuantLib {
 
 		} while(--idx >= minIdxAlive-1);
 
+		std::cout << "final numeraire factor = " << model_->numeraire(0.0,0.0) << std::endl;
 		results_.value = npv1[0] * model_->numeraire(0.0,0.0,spreadD_);
 
 	}
