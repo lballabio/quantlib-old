@@ -30,7 +30,7 @@ namespace QuantLib {
 		QL_REQUIRE(times.size() == reversions.size()-1 || reversions.size()==1, "number of reversions (" << vols.size() << ") compared to number of times (" << times_.size() << " must be bigger by one, or exactly 1 reversion must be given");
 		for(int i=0; i<((int)times.size())-1; i++) QL_REQUIRE(times[i] < times[i+1], "times must be increasing (" << times[i] << "@" << i << " , " << times[i+1] << "@" << i+1 << ")");
 		for(int i=0; i<(int)vols.size(); i++) QL_REQUIRE(vols[i] >= 0.0, "volatilities must be non negative (" << vols[i] << "@" << i << ")");
-		for(int i=0; i<(int)reversions.size(); i++) QL_REQUIRE(reversions[i] > 0.0, "reversions must be positive (" << reversions[i] << "@" << i << ")");
+		for(int i=0; i<(int)reversions.size(); i++) QL_REQUIRE(!close(reversions[i],0.0), "reversions must be non zero (" << reversions[i] << "@" << i << ")"); // FIXME
 		flushCache();
     }
 
