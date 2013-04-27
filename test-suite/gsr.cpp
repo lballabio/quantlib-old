@@ -35,16 +35,19 @@ void GsrTest::testGsrProcess() {
 
 	Real tol = 1E-8;
 
+	Real reversion = 0.01;
+	Real modelvol = 0.01;
+
 	Handle<YieldTermStructure> yts0( boost::shared_ptr<YieldTermStructure>(new FlatForward(0,TARGET(),0.00,Actual365Fixed())));
 
 	std::vector<Date> stepDates0;
-	std::vector<Real> vols0(1,0.01);
-	std::vector<Real> reversions0(1,0.01);
+	std::vector<Real> vols0(1,modelvol);
+	std::vector<Real> reversions0(1,reversion);
 
 	std::vector<Date> stepDates1;
 	for(Size i=1;i<60;i++) stepDates1.push_back(refDate+(i*6*Months));
-	std::vector<Real> vols1(stepDates1.size()+1,0.01);
-	std::vector<Real> reversions1(stepDates1.size()+1,0.01);
+	std::vector<Real> vols1(stepDates1.size()+1,modelvol);
+	std::vector<Real> reversions1(stepDates1.size()+1,reversion);
 
 	Real T = 10.0;
 	do {
@@ -54,7 +57,7 @@ void GsrTest::testGsrProcess() {
 		boost::shared_ptr<Gsr> model2(new Gsr(yts0,stepDates1,vols1,reversions1,T));
 		boost::shared_ptr<GsrProcess> gsrProcess2 = model2->stateProcess();
 
-		boost::shared_ptr<HullWhiteForwardProcess> hwProcess(new HullWhiteForwardProcess(yts0,0.01,0.01));
+		boost::shared_ptr<HullWhiteForwardProcess> hwProcess(new HullWhiteForwardProcess(yts0,reversion,modelvol));
 		hwProcess->setForwardMeasureTime(T);
 
 		Real w,t,xw,hwVal,gsrVal,gsr2Val;
@@ -111,19 +114,22 @@ void GsrTest::testGsrModel() {
 
 	Date refDate = Settings::instance().evaluationDate();
 
+	Real modelvol = 0.01;
+	Real reversion = 0.01;
+
 	std::vector<Date> stepDates; // no step dates
-	std::vector<Real> vols(1,0.01);
-	std::vector<Real> reversions(1,0.01);
+	std::vector<Real> vols(1,modelvol);
+	std::vector<Real> reversions(1,reversion);
 
 	std::vector<Date> stepDates1; // artificial step dates (should yield the same result)
 	for(Size i=1;i<60;i++) stepDates1.push_back(refDate+(i*6*Months));
-	std::vector<Real> vols1(stepDates1.size()+1,0.01);
-	std::vector<Real> reversions1(stepDates1.size()+1,0.01);
+	std::vector<Real> vols1(stepDates1.size()+1,modelvol);
+	std::vector<Real> reversions1(stepDates1.size()+1,reversion);
 
 	Handle<YieldTermStructure> yts( boost::shared_ptr<YieldTermStructure>(new FlatForward(0,TARGET(),0.03,Actual365Fixed())));
 	boost::shared_ptr<Gsr> model(new Gsr(yts,stepDates,vols,reversions,50.0));
 	boost::shared_ptr<Gsr> model2(new Gsr(yts,stepDates1,vols1,reversions1,50.0));
-	boost::shared_ptr<HullWhite> hw(new HullWhite(yts,0.01,0.01));
+	boost::shared_ptr<HullWhite> hw(new HullWhite(yts,reversion,modelvol));
 
 	// test zerobond prices against existing HullWhite model
 	// technically we test two representations of the same constant reversion and volatility structure, namely with and without step dates
@@ -321,51 +327,124 @@ void GsrTest::testDummy() {
 
 	Date refDate = Settings::instance().evaluationDate();
 
-	// TEST1
+	// Test numeraire time
 
-	Handle<YieldTermStructure> yts( boost::shared_ptr<YieldTermStructure>(new FlatForward(0,TARGET(),0.03,Actual365Fixed())));
-	boost::shared_ptr<SwapIndex> swpIdx(new EuriborSwapIsdaFixA(20*Years,yts));
-	boost::shared_ptr<IborIndex> iborIdx(new Euribor(6*Months,yts));
+	boost::math::ntl::RR::SetPrecision(256);
 
-	std::vector<Date> expiries;
-	for(Size i=1;i<35;i++) {
-		expiries.push_back(refDate+i*Years);
-	}
-	std::vector<Date> volstepdates(expiries);
-	volstepdates.pop_back();
+	Real rate = 0.00;
 
-	boost::shared_ptr<VanillaSwap> underlying = swpIdx->underlyingSwap(refDate);
-	boost::shared_ptr<Exercise> exercise(new BermudanExercise(expiries));
+	Handle<YieldTermStructure> yts( boost::shared_ptr<YieldTermStructure>(new FlatForward(0,TARGET(),rate,Actual365Fixed())));
+	std::vector<Date> volstepdates;
+	std::vector<Real> vols;
+	vols.push_back(0.010);
+
+	boost::shared_ptr<SwapIndex> swpIdx(new EuriborSwapIsdaFixA(10*Years,yts));
+	boost::shared_ptr<IborIndex> iborIdx(new Euribor(6*Months));
+	Date expiry = refDate + 5*Years;
+
+	boost::shared_ptr<VanillaSwap> underlying = MakeVanillaSwap(10*Years,iborIdx,rate).withType(VanillaSwap::Payer);
+	boost::shared_ptr<Exercise> exercise(new EuropeanExercise(expiry));
 	boost::shared_ptr<Swaption> swaption(new Swaption(underlying,exercise));
 
-	boost::shared_ptr<Gsr> model(new Gsr(yts,volstepdates,std::vector<Real>(volstepdates.size()+1,0.01),0.01));
-	//model->stateProcess()->enableCache();
-	//boost::shared_ptr<Gsr> model(new Gsr(yts,std::vector<Date>(),std::vector<Real>(1,0.01),0.01));
-	boost::shared_ptr<PricingEngine> intEngine(new GsrSwaptionEngine(model,32,7.0));
-	swaption->setPricingEngine(intEngine);
+	Real t = yts->timeFromReference(expiry);
+	Real T = 150.0;
 
-	BOOST_MESSAGE("NPV=" << swaption->NPV());
+	for(Size i=0;i<1;i++) {
 
-	boost::shared_ptr<PricingEngine> jamEngine(new GsrJamshidianSwaptionEngine(model));
-	std::vector<boost::shared_ptr<CalibrationHelper>> basket;
+		boost::shared_ptr<Gsr> gsr(new Gsr(yts,volstepdates,vols,-0.0110,T));
 
-	for(Size i=1;i<35;i++) {
-		boost::shared_ptr<CalibrationHelper> h(new SwaptionHelper(i*Years,(35-i)*Years,Handle<Quote>(new SimpleQuote(0.25)),iborIdx,1*Years,Thirty360(),Actual360(),yts));
-		//h->setPricingEngine(jamEngine);
-		h->setPricingEngine(intEngine);
-		basket.push_back(h);
+		// test paramters
+		Real ext = gsr->stateProcess()->expectation(0.0,0.0,t);
+		Real var = gsr->stateProcess()->variance(0.0,0.0,t);
+		Real yt = gsr->stateProcess()->y(t);
+		Real gtT = gsr->stateProcess()->G(t,T,ext);
+		std::cout << "E(x(t)) = " << ext << std::endl;
+		std::cout << "V(x(t)) = " << var << std::endl;
+		std::cout << "y(t) = " << gsr->stateProcess()->y(t) << std::endl;
+		std::cout << "G(t,T) = " << gsr->stateProcess()->G(t,T,ext) << std::endl;
+		std::cout << "G(t,t+5) = " << gsr->stateProcess()->G(t,t+5,ext) << std::endl;
+		// test zero coupon bond
+		/*Real y=-5.0;
+		while(y <= 10.0001) {
+			Real x=y*std::sqrt(var)+ext;
+			std::cout << y << ";" << gsr->numeraire(5.0,y) << ";" << x << ";" << exp(-x*gtT-0.5*yt*gtT*gtT) << std::endl;
+			y+=0.1;
+		}*/
+
+		// test forward integration
+		Array z = gsr->yGrid(10.0,32);
+		Array payoff(z.size()), undeflatedpayoff(z.size());
+		for(int j=0; j<z.size(); j++) {
+			undeflatedpayoff[j] = gsr->forwardRate(expiry,iborIdx,expiry,z[j]);
+			payoff[j] = undeflatedpayoff[j] / gsr->numeraire(t,z[j]);
+		}
+		CubicInterpolation payoff0(z.begin(),z.end(),payoff.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+		Real price=0.0;
+		for(int j=0;j<z.size()-1; j++) {
+			price += gsr->gaussianShiftedPolynomialIntegral( 0.0, payoff0.cCoefficients()[j], payoff0.bCoefficients()[j], payoff0.aCoefficients()[j], payoff[j], z[j], z[j], z[j+1] );
+			std::cout << j << ";" << z[j] << ";" << undeflatedpayoff[j] << std::endl;
+		}
+		std::cout << "forward price = " << price << std::endl;
+
+		//boost::shared_ptr<PricingEngine> jam(new GsrJamshidianSwaptionEngine(gsr));
+		//boost::shared_ptr<PricingEngine> in(new GsrSwaptionEngine(gsr,512,25.0,false,false,yts,yts));
+
+		//swaption->setPricingEngine(jam);
+		//Real npvJam = swaption->NPV();
+		////Real npvJam = 0.0;
+		//swaption->setPricingEngine(in);
+		//Real npvIn = swaption->NPV();
+		//
+		//std::cout << "T=" << T << " jam=" << npvJam << " in=" << npvIn <<  std::endl;
+
+		//T+=5.0;
 	}
 
+	// TEST1
 
-	LevenbergMarquardt lm;
-	EndCriteria ec(2000,200,1E-8,1E-8,1E-8);
-	model->calibrate(basket,lm,ec);
-	//model->calibrateIterative(basket,lm,ec);
+	//Handle<YieldTermStructure> yts( boost::shared_ptr<YieldTermStructure>(new FlatForward(0,TARGET(),0.03,Actual365Fixed())));
+	//boost::shared_ptr<SwapIndex> swpIdx(new EuriborSwapIsdaFixA(20*Years,yts));
+	//boost::shared_ptr<IborIndex> iborIdx(new Euribor(6*Months,yts));
 
-	BOOST_MESSAGE("Calibrated model params");
-	for(Size i=0;i<model->params().size();i++) {
-		BOOST_MESSAGE(model->params()[i]);
-	}
+	//std::vector<Date> expiries;
+	//for(Size i=1;i<35;i++) {
+	//	expiries.push_back(refDate+i*Years);
+	//}
+	//std::vector<Date> volstepdates(expiries);
+	//volstepdates.pop_back();
+
+	//boost::shared_ptr<VanillaSwap> underlying = swpIdx->underlyingSwap(refDate);
+	//boost::shared_ptr<Exercise> exercise(new BermudanExercise(expiries));
+	//boost::shared_ptr<Swaption> swaption(new Swaption(underlying,exercise));
+
+	//boost::shared_ptr<Gsr> model(new Gsr(yts,volstepdates,std::vector<Real>(volstepdates.size()+1,0.01),0.01));
+	////model->stateProcess()->enableCache();
+	////boost::shared_ptr<Gsr> model(new Gsr(yts,std::vector<Date>(),std::vector<Real>(1,0.01),0.01));
+	//boost::shared_ptr<PricingEngine> intEngine(new GsrSwaptionEngine(model,32,7.0));
+	//swaption->setPricingEngine(intEngine);
+
+	//BOOST_MESSAGE("NPV=" << swaption->NPV());
+
+	//boost::shared_ptr<PricingEngine> jamEngine(new GsrJamshidianSwaptionEngine(model));
+	//std::vector<boost::shared_ptr<CalibrationHelper>> basket;
+
+	//for(Size i=1;i<35;i++) {
+	//	boost::shared_ptr<CalibrationHelper> h(new SwaptionHelper(i*Years,(35-i)*Years,Handle<Quote>(new SimpleQuote(0.25)),iborIdx,1*Years,Thirty360(),Actual360(),yts));
+	//	//h->setPricingEngine(jamEngine);
+	//	h->setPricingEngine(intEngine);
+	//	basket.push_back(h);
+	//}
+
+
+	//LevenbergMarquardt lm;
+	//EndCriteria ec(2000,200,1E-8,1E-8,1E-8);
+	//model->calibrate(basket,lm,ec);
+	////model->calibrateIterative(basket,lm,ec);
+
+	//BOOST_MESSAGE("Calibrated model params");
+	//for(Size i=0;i<model->params().size();i++) {
+	//	BOOST_MESSAGE(model->params()[i]);
+	//}
 
 
 	// TEST2
@@ -418,14 +497,12 @@ void GsrTest::testDummy() {
 }
 
 
-
-
 test_suite* GsrTest::suite() {
     test_suite* suite = BOOST_TEST_SUITE("GSR model tests");
-	suite->add(QUANTLIB_TEST_CASE(&GsrTest::testGsrProcess));
-	suite->add(QUANTLIB_TEST_CASE(&GsrTest::testGsrModel));
+	//suite->add(QUANTLIB_TEST_CASE(&GsrTest::testGsrProcess));
+	//suite->add(QUANTLIB_TEST_CASE(&GsrTest::testGsrModel));
 	//suite->add(QUANTLIB_TEST_CASE(&GsrTest::testNonstandardSwaption));
-	//suite->add(QUANTLIB_TEST_CASE(&GsrTest::testDummy));
+	suite->add(QUANTLIB_TEST_CASE(&GsrTest::testDummy));
 	return suite;
 }
 
