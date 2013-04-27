@@ -77,8 +77,8 @@ namespace QuantLib {
 
 		rStarFinder finder(*model_, arguments_.nominal, arguments_.exercise->date(0), arguments_.fixedResetDates[startIndex], arguments_.fixedPayDates, amounts,startIndex);
         Brent s1d;
-        Rate minStrike = -5.0;
-        Rate maxStrike = 5.0;
+        Rate minStrike = -8.0;
+        Rate maxStrike = 8.0;
         s1d.setMaxEvaluations(10000);
         s1d.setLowerBound(minStrike);
         s1d.setUpperBound(maxStrike);
