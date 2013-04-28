@@ -347,7 +347,7 @@ void GsrTest::testDummy() {
 	boost::shared_ptr<Swaption> swaption(new Swaption(underlying,exercise));
 
 	Real t = yts->timeFromReference(expiry);
-	Real T = 150.0;
+	Real T = 120.0;
 
 	for(Size i=0;i<1;i++) {
 
@@ -371,20 +371,26 @@ void GsrTest::testDummy() {
 			y+=0.1;
 		}*/
 
+		std::cout << "forward = " << gsr->zerobond(t,0.0) / gsr->zerobond(t+1,0.0) - 1.0 << std::endl;
+
 		// test forward integration
-		Array z = gsr->yGrid(10.0,32);
-		Array payoff(z.size()), undeflatedpayoff(z.size());
+		Array z = gsr->yGrid(12.0,128);
+		Array payoffC(z.size()), payoffP(z.size()), undeflatedpayoff(z.size());
 		for(int j=0; j<z.size(); j++) {
-			undeflatedpayoff[j] = gsr->forwardRate(expiry,iborIdx,expiry,z[j]);
-			payoff[j] = undeflatedpayoff[j] / gsr->numeraire(t,z[j]);
+			//undeflatedpayoff[j] = gsr->forwardRate(expiry,iborIdx,expiry,z[j]);
+			undeflatedpayoff[j] = (1.0 / gsr->zerobond(t+1,t,z[j]) - 1.0) * gsr->zerobond(t+1,t,z[j]);
+			payoffC[j] = std::max(undeflatedpayoff[j],0.0) / gsr->numeraire(t,z[j]);
+			payoffP[j] = std::max(-undeflatedpayoff[j],0.0) / gsr->numeraire(t,z[j]);
 		}
-		CubicInterpolation payoff0(z.begin(),z.end(),payoff.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
-		Real price=0.0;
+		CubicInterpolation payoff0C(z.begin(),z.end(),payoffC.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+		CubicInterpolation payoff0P(z.begin(),z.end(),payoffP.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+		Real priceC=0.0, priceP=0.0;
 		for(int j=0;j<z.size()-1; j++) {
-			price += gsr->gaussianShiftedPolynomialIntegral( 0.0, payoff0.cCoefficients()[j], payoff0.bCoefficients()[j], payoff0.aCoefficients()[j], payoff[j], z[j], z[j], z[j+1] );
-			std::cout << j << ";" << z[j] << ";" << undeflatedpayoff[j] << std::endl;
+			priceC += gsr->gaussianShiftedPolynomialIntegral( 0.0, payoff0C.cCoefficients()[j], payoff0C.bCoefficients()[j], payoff0C.aCoefficients()[j], payoffC[j], z[j], z[j], z[j+1] );
+			priceP += gsr->gaussianShiftedPolynomialIntegral( 0.0, payoff0P.cCoefficients()[j], payoff0P.bCoefficients()[j], payoff0P.aCoefficients()[j], payoffP[j], z[j], z[j], z[j+1] );
+			std::cout << j << ";" << z[j] << ";" << undeflatedpayoff[j] << ";" << payoffC[j] << ";" << payoffP[j] << ";" << std::endl;
 		}
-		std::cout << "forward price = " << price << std::endl;
+		std::cout << "forward price = " << priceC << " - " << priceP << " = " << (priceC-priceP) << std::endl;
 
 		//boost::shared_ptr<PricingEngine> jam(new GsrJamshidianSwaptionEngine(gsr));
 		//boost::shared_ptr<PricingEngine> in(new GsrSwaptionEngine(gsr,512,25.0,false,false,yts,yts));

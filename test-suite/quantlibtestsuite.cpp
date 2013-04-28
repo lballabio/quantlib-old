@@ -365,7 +365,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     //test->add(InflationCPICapFloorTest::suite());
     //test->add(InflationVolTest::suite());
     //test->add(MargrabeOptionTest::suite());
-    test->add(MarkovFunctionalTest::suite());
+    //test->add(MarkovFunctionalTest::suite());
     //test->add(NthToDefaultTest::suite());
     //test->add(OdeTest::suite());
     //test->add(PagodaOptionTest::suite());
@@ -381,7 +381,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     //test->add(LiborMarketModelTest::suite());
     //test->add(LiborMarketModelProcessTest::suite());
 
-	//test->add(GsrTest::suite());
+	test->add(GsrTest::suite());
 
     test->add(QUANTLIB_TEST_CASE(stopTimer));
 
