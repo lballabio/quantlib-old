@@ -1167,4 +1167,3 @@ test_suite* MarkovFunctionalTest::suite() {
     suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testBermudanSwaption));
 	return suite;
 }
-

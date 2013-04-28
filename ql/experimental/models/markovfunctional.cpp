@@ -31,11 +31,13 @@ namespace QuantLib {
                         const std::vector<Period>& swaptionTenors,
                         const boost::shared_ptr<SwapIndex>& swapIndexBase,
                         const MarkovFunctional::ModelSettings& modelSettings) :
-      CalibratedModel(1), TermStructureConsistentModel(termStructure), capletCalibrated_(false),
-      reversion_(ConstantParameter(reversion, NoConstraint())),sigma_(arguments_[0]), volatilities_(volatilities),
-      volstepdates_(volstepdates), swaptionVol_(swaptionVol), swaptionExpiries_(swaptionExpiries), swaptionTenors_(swaptionTenors),
-      swapIndexBase_(swapIndexBase), iborIndex_(swapIndexBase->iborIndex()), capletVol_(Handle<OptionletVolatilityStructure>()), capletExpiries_(std::vector<Date>()),
-      modelSettings_(modelSettings) {
+      TermStructureConsistentModel(termStructure), CalibratedModel(1), modelSettings_(modelSettings), capletCalibrated_(false),
+      reversion_(ConstantParameter(reversion, NoConstraint())),sigma_(arguments_[0]), volstepdates_(volstepdates),
+      volatilities_(volatilities), swaptionVol_(swaptionVol),
+      capletVol_(Handle<OptionletVolatilityStructure>()),
+      swaptionExpiries_(swaptionExpiries), capletExpiries_(std::vector<Date>()), swaptionTenors_(swaptionTenors),
+      swapIndexBase_(swapIndexBase), iborIndex_(swapIndexBase->iborIndex())
+       {
 
         QL_REQUIRE(swaptionExpiries.size()==swaptionTenors.size(),"number of swaption expiries (" << swaptionExpiries.size() << ") is differnt from number of swaption tenors (" << swaptionTenors.size() << ")");
         QL_REQUIRE(swaptionExpiries.size()>=1,"need at least one swaption expiry to calibrate numeraire");
@@ -55,11 +57,13 @@ namespace QuantLib {
                         const std::vector<Date>& capletExpiries,
                         const boost::shared_ptr<IborIndex>& iborIndex,
                         const MarkovFunctional::ModelSettings& modelSettings) :
-      CalibratedModel(1), TermStructureConsistentModel(termStructure), capletCalibrated_(true),
-      reversion_(ConstantParameter(reversion, NoConstraint())),sigma_(arguments_[0]), volatilities_(volatilities),
-      volstepdates_(volstepdates), swaptionVol_(Handle<SwaptionVolatilityStructure>()), swaptionExpiries_(std::vector<Date>()), swaptionTenors_(std::vector<Period>()),
-      iborIndex_(iborIndex), capletVol_(capletVol), capletExpiries_(capletExpiries),
-      modelSettings_(modelSettings)
+      TermStructureConsistentModel(termStructure), CalibratedModel(1),
+      modelSettings_(modelSettings), capletCalibrated_(true),
+      reversion_(ConstantParameter(reversion, NoConstraint())),sigma_(arguments_[0]),
+      volstepdates_(volstepdates), volatilities_(volatilities),
+      swaptionVol_(Handle<SwaptionVolatilityStructure>()), capletVol_(capletVol),
+      swaptionExpiries_(std::vector<Date>()), capletExpiries_(capletExpiries), swaptionTenors_(std::vector<Period>()),
+      iborIndex_(iborIndex)
       {
 
         QL_REQUIRE(capletExpiries.size()>=1,"need at least one caplet expiry to calibrate numeraire");
@@ -558,7 +562,6 @@ namespace QuantLib {
 	const Real MarkovFunctional::zerobond(Time T, Time t, Real y, boost::shared_ptr<Interpolation> discountSpread) const {
 
 		calculate();
-
 		return deflatedZerobond(T,t,y)*numeraire(t,y) * ( discountSpread ? std::exp(- discountSpread->operator()(T,true)*T + discountSpread->operator()(t,true)*t ) : 1.0 ); 
 
 	}
