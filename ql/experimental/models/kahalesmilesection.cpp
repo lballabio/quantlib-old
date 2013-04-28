@@ -23,7 +23,7 @@
 namespace QuantLib {
 
     KahaleSmileSection::KahaleSmileSection(const boost::shared_ptr<SmileSection> source, const Real atm, const bool interpolate, const std::vector<Real>& moneynessGrid, const Real gap)
-        : source_(source), interpolate_(interpolate), SmileSection(*source), moneynessGrid_(moneynessGrid), gap_(1E-8) {
+        : SmileSection(*source), source_(source), moneynessGrid_(moneynessGrid), gap_(1E-8), interpolate_(interpolate) {
 
         if(atm==Null<Real>()) {
             f_ = source_->atmLevel();
@@ -61,7 +61,7 @@ namespace QuantLib {
 
         Brent brent;
         bool success;
-        Real secl;
+        Real secl = 0.0;
 
         if(leftIndex_ > 0) {
             do {
@@ -97,18 +97,17 @@ namespace QuantLib {
             QL_REQUIRE(leftIndex_ < rightIndex_, "can not extrapolate to left, right index of af region reached (" << rightIndex_ << ")");
         }
 
-        Real cp0, cp1;
+        Real cp0 = 0.0, cp1 = 0.0;
 
         if(interpolate_) {
 
             for(Size i = leftIndex_; i<rightIndex_; i++) {
-                Size im = i-1 >= leftIndex_ ? i-1 : 0;
                 Real k0 = k_[i];
                 Real k1 = k_[i+1];
                 Real c0 = c_[i];
                 Real c1 = c_[i+1];
                 Real sec = (c_[i+1]-c_[i]) / (k_[i+1]-k_[i]);
-                if(i==leftIndex_) cp0 = (secl + sec) / 2.0;
+                if(i==leftIndex_) cp0 = leftIndex_ > 0 ? (secl + sec) / 2.0 : sec;
                 Real secr;
                 if(i==rightIndex_-1) secr=0.0;
                 else secr = (c_[i+2]-c_[i+1]) / (k_[i+2]-k_[i+1]);
@@ -164,14 +163,14 @@ namespace QuantLib {
     Real KahaleSmileSection::optionPrice(Rate strike, Option::Type type, Real discount) const { // option prices are directly available, so implement this function rather than use smileSection standard implementation
         strike = std::max ( strike, QL_EPSILON );
         int i = index(strike);
-        if(interpolate_ || (i==0 || i==rightIndex_-leftIndex_+1)) return discount*(type == Option::Call ? cFunctions_[i]->operator()(strike) : cFunctions_[i]->operator()(strike)+strike-f_);
+        if(interpolate_ || (i==0 || i==(int) (rightIndex_-leftIndex_+1))) return discount*(type == Option::Call ? cFunctions_[i]->operator()(strike) : cFunctions_[i]->operator()(strike)+strike-f_);
         return source_->optionPrice(strike,type,discount); 
     }
 
     Real KahaleSmileSection::volatilityImpl(Rate strike) const {
         strike = std::max ( strike, QL_EPSILON );
         int i = index(strike);
-        if(!interpolate_ && !(i==0 || i==rightIndex_-leftIndex_+1)) return source_->volatility(strike);
+        if(!interpolate_ && !(i==0 || i==(int) (rightIndex_-leftIndex_+1))) return source_->volatility(strike);
         Real c = cFunctions_[i]->operator()(strike);
         Real vol=0.0;
         try {
