@@ -99,7 +99,8 @@ namespace QuantLib {
 		}
 
 		QL_REQUIRE(volatilities_.size() == volsteptimes_.size()+1,"there must be n+1 volatilities (" << volatilities_.size() << ") for n volatility step times (" << volsteptimes_.size() << ")");
-		sigma_ = PiecewiseConstantParameter(volsteptimes_,PositiveConstraint());   
+		//sigma_ = PiecewiseConstantParameter(volsteptimes_,PositiveConstraint());   
+		sigma_ = PiecewiseConstantParameter(volsteptimes_,NoConstraint());   
 		for(Size i=0;i<sigma_.size();i++) {
 			sigma_.setParam(i,volatilities_[i]);
 		}
