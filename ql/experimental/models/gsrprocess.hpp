@@ -70,6 +70,7 @@ namespace QuantLib {
 		const Real flooredTime(Size index, Real floor = Null<Real>()) const;
 		const Real vol(Size index) const;
 		const Real rev(Size index) const;
+		const bool revZero(Size index) const;
 		mutable std::map<std::tuple<Real,Real>,Real> cache1_, cache2_, cache3_, cache5_;
 		mutable std::map<Real,Real> cache4_;
 		std::vector<bool> revZero_;
