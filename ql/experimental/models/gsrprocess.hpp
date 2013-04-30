@@ -72,6 +72,7 @@ namespace QuantLib {
 		const Real rev(Size index) const;
 		mutable std::map<std::tuple<Real,Real>,Real> cache1_, cache2_, cache3_, cache5_;
 		mutable std::map<Real,Real> cache4_;
+		std::vector<bool> revZero_;
     };
 
 }
