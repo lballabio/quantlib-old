@@ -20,8 +20,6 @@
 
 #include <ql/experimental/models/gsrprocess.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
    GsrProcess::GsrProcess(const Array& times, const Array& vols, const Array& reversions, const Real T)
