@@ -796,7 +796,7 @@ namespace QuantLib {
 				if(type==Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
 				if(type==Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
 			}
-		}
+        }
 
 		return numeraire(referenceTime,y) * price;
 
@@ -804,20 +804,6 @@ namespace QuantLib {
 
 
 	const Real MarkovFunctional::marketSwapRate(const Date& expiry, const CalibrationPoint& p, const Real digitalPrice, const Real guess) const {
-
-		class ZeroHelper {
-			public:
-			ZeroHelper(const MarkovFunctional *model, const Date& expiry, const CalibrationPoint& p, const Real marketPrice) :
-				model_(model), expiry_(expiry), p_(p), marketPrice_(marketPrice) {}
-			double operator()(double strike) const {
-				Real modelPrice = model_->marketDigitalPrice(expiry_,p_,Option::Call,strike);
-				return modelPrice-marketPrice_;
-			};
-			const MarkovFunctional *model_;
-			const Real marketPrice_;
-			const Date& expiry_;
-			const CalibrationPoint& p_;
-		};
 
 		ZeroHelper z(this,expiry,p,digitalPrice);
 		Brent b;

@@ -22,7 +22,7 @@
 */
 
 // uncomment to enable NTL support
-#define MF_ENABLE_NTL 
+//#define MF_ENABLE_NTL 
 
 #ifndef quantlib_markovfunctional_hpp
 #define quantlib_markovfunctional_hpp
@@ -322,7 +322,7 @@ namespace QuantLib {
 
         Array normalIntegralX_;
         Array normalIntegralW_;
-        
+
     };
 
     std::ostream& operator<<(std::ostream& out, const MarkovFunctional::ModelOutputs& m);
