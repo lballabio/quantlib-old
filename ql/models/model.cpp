@@ -48,7 +48,8 @@ namespace QuantLib {
 		}
 
 		virtual Disposable<Array> values(const Array& v) const {
-			return Array(1,value(v));
+            Array ret(1,value(v));
+            return ret;
 		}
 
 		virtual Real finiteDifferenceEpsilon() const { return 1e-6; }
