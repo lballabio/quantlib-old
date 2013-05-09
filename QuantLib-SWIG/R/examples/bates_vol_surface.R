@@ -45,5 +45,5 @@ g$vol <- mapply(impliedVol, g$strikes, g$maturities)
 newcols <- colorRampPalette(c("grey90", "grey10")) 
 print(wireframe(vol ~ strikes*maturities, g, 
                 xlab="Strike",ylab="Maturitiy",zlab="Vol",
-		            drape=TRUE,col.regions=rainbow(100,end=0.99,alpha=0.9),
-      		      screen = list(z = -25, x = -65),scale=list(arrows=FALSE)))
+                drape=TRUE,col.regions=rainbow(100,end=0.99,alpha=0.9),
+                screen = list(z = -25, x = -65),scale=list(arrows=FALSE)))
