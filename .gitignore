@@ -32,3 +32,14 @@ debug/
 *.exp
 *.pyc
 *.xll
+*.o
+*.Po
+*.Plo
+*.lo
+*.la
+*.a
+*/.*/*
+*.in
+Makefile
+*.*~
+*.m4
