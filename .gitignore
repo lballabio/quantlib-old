@@ -43,3 +43,4 @@ debug/
 Makefile
 *.*~
 *.m4
+.svn*
