@@ -198,8 +198,8 @@ namespace QuantLib {
     const Disposable<Array> Log(const Array&);
     /*! \relates Array */
     const Disposable<Array> Exp(const Array&);
-	/*! \relates Array */
-	const Disposable<Array> Pow(const Array&, const Real a);
+    /*! \relates Array */
+    const Disposable<Array> Pow(const Array&, Real);
 
     // utilities
     /*! \relates Array */
@@ -629,11 +629,12 @@ namespace QuantLib {
         return result;
     }
 
-	inline const Disposable<Array> Pow(const Array& v, const Real a) {
+    inline const Disposable<Array> Pow(const Array& v, Real alpha) {
         Array result(v.size());
-		Real (*fun)(Real,Real) = &std::pow;
-		std::transform(v.begin(),v.end(),result.begin(),boost::lambda::bind(fun,boost::lambda::_1,a));
-		return result;
+        std::transform(v.begin(), v.end(), result.begin(),
+            std::bind2nd(std::ptr_fun<Real, Real, Real>(std::pow), alpha));
+
+        return result;
     }
 
     inline void swap(Array& v, Array& w) {

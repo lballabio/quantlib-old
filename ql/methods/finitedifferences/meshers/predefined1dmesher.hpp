@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2012 Peter Caspers
+ Copyright (C) 2013 Klaus Spanderen
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,21 +17,32 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef quantlib_test_ode_hpp
-#define quantlib_test_ode_hpp
+/*! \file predefined1dmesher.hpp
+    \brief One-dimensional mesher build from a given set of points
+*/
 
-#include <boost/test/unit_test.hpp>
+#ifndef quantlib_predefined_1d_mesher_hpp
+#define quantlib_predefined_1d_mesher_hpp
 
-/* remember to document new and/or updated tests in the Doxygen
-   comment block of the corresponding class */
+#include <ql/utilities/null.hpp>
+#include <ql/methods/finitedifferences/meshers/fdm1dmesher.hpp>
 
-class OdeTest {
-  public:
-    static void testAdaptiveRungeKutta();
-    static void testMatrixExponential();
+#include <vector>
 
-    static boost::unit_test_framework::test_suite* suite();
-};
+namespace QuantLib {
 
+    class Predefined1dMesher : public Fdm1dMesher {
+      public:
+        Predefined1dMesher(const std::vector<Real>& x)
+        : Fdm1dMesher(x.size()) {
+            std::copy(x.begin(), x.end(), locations_.begin());
+
+            dplus_.back() = dminus_.front() = Null<Real>();
+            for (Size i=0; i < x.size()-1; ++i) {
+                dplus_[i] = dminus_[i+1] = x[i+1] - x[i];
+            }
+        }
+    };
+}
 
 #endif

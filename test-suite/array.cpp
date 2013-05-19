@@ -162,7 +162,7 @@ void ArrayTest::testConstruction() {
     // transform
     Array a10(5);
     for (i=0; i < a10.size(); i++) {
-        a10[i] = i;
+        a10[i] = static_cast<Real>(i);
     }
     FSquared f2;
     std::transform(a10.begin(), a10.end(), a10.begin(), FSquared());
@@ -175,9 +175,43 @@ void ArrayTest::testConstruction() {
     }
 }
 
+void ArrayTest::testArrayFunctions() {
+
+    BOOST_TEST_MESSAGE("Testing array functions...");
+
+    Array a(5);
+    for (Size i=0; i < a.size(); ++i) {
+        a[i] = std::sin(Real(i));
+    }
+
+    const Real exponential = -2.3;
+    const Array p = Pow(a, exponential);
+    const Array e = Exp(a);
+    const Array l = Log(a);
+    const Array s = Sqrt(a);
+
+    const Real tol = 10*QL_EPSILON;
+    for (Size i=0; i < a.size(); ++i) {
+        if (std::fabs(p[i]-std::pow(a[i], exponential)) > tol) {
+            BOOST_FAIL("Array function test Pow failed");
+        }
+        if (std::fabs(e[i]-std::exp(a[i])) > tol) {
+            BOOST_FAIL("Array function test Exp failed");
+        }
+        if (std::fabs(l[i]-std::log(a[i])) > tol) {
+            BOOST_FAIL("Array function test Log failed");
+        }
+        if (std::fabs(s[i]-std::sqrt(a[i])) > tol) {
+            BOOST_FAIL("Array function test Sqrt failed");
+        }
+    }
+
+}
+
 test_suite* ArrayTest::suite() {
     test_suite* suite = BOOST_TEST_SUITE("array tests");
     suite->add(QUANTLIB_TEST_CASE(&ArrayTest::testConstruction));
+    suite->add(QUANTLIB_TEST_CASE(&ArrayTest::testArrayFunctions));
     return suite;
 }
 

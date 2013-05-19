@@ -398,26 +398,22 @@ namespace {
           case Terminal:
               result = terminalMeasure(evolution);
               if (!isInTerminalMeasure(evolution, result)) {
-                  Array a(result.size());
-                  std::copy(result.begin(), result.end(), a.begin());
-                  BOOST_ERROR("\nfailure in verifying Terminal measure:\n" << a);
+                  BOOST_ERROR("\nfailure in verifying Terminal measure:\n"
+                              << to_stream(result));
               }
               break;
           case MoneyMarket:
               result = moneyMarketMeasure(evolution);
               if (!isInMoneyMarketMeasure(evolution, result)) {
-                  Array a(result.size());
-                  std::copy(result.begin(), result.end(), a.begin());
-                  BOOST_ERROR("\nfailure in verifying MoneyMarket measure:\n" << a);
+                  BOOST_ERROR("\nfailure in verifying MoneyMarket measure:\n"
+                              << to_stream(result));
               }
               break;
           case MoneyMarketPlus:
               result = moneyMarketPlusMeasure(evolution, measureOffset_);
               if (!isInMoneyMarketPlusMeasure(evolution, result, measureOffset_)) {
-                  Array a(result.size());
-                  std::copy(result.begin(), result.end(), a.begin());
                   BOOST_ERROR("\nfailure in verifying MoneyMarketPlus(" <<
-                      measureOffset_ << ") measure:\n" << a);
+                      measureOffset_ << ") measure:\n" << to_stream(result));
               }
               break;
           default:
@@ -425,9 +421,7 @@ namespace {
             }
             checkCompatibility(evolution, result);
             if (printReport_) {
-                Array num(result.size());
-                std::copy(result.begin(), result.end(), num.begin());
-                BOOST_TEST_MESSAGE("    " << measureTypeToString(measureType) << ": " << num);
+                BOOST_TEST_MESSAGE("    " << measureTypeToString(measureType) << ": " << to_stream(result));
             }
             return result;
     }
@@ -4807,9 +4801,9 @@ void MarketModelTest::testCovariance() {
     std::vector<Real> evolTimes4;
     std::vector<std::vector<Real> > evolTimes;
 
-    for(Size i=1;i<=n;i++) rateTimes.push_back(i);
+    for(Size i=1;i<=n;i++) rateTimes.push_back(static_cast<Time>(i));
     evolTimes1.push_back(n-1);
-    for(Size i=1;i<=n-1;i++) evolTimes2.push_back(i);
+    for(Size i=1;i<=n-1;i++) evolTimes2.push_back(static_cast<Time>(i));
     for(Size i=1;i<=2*n-2;i++) evolTimes3.push_back(0.5*i);
     evolTimes4.push_back(0.3);
     evolTimes4.push_back(1.3);
