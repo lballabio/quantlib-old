@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/markovFunctionalCmsSwaptionEngine.hpp>
+#include <ql/experimental/models/markovfunctionalcmsswaptionengine.hpp>
 
 namespace QuantLib {
 
@@ -95,7 +95,7 @@ namespace QuantLib {
 
 		// only events starting tommorow are of interest by definition of the deal part that is exericsed into,
 
-		std::vector<Date>::const_iterator filit = std::upper_bound(events.begin(),events.end(),today);
+		std::vector<Date>::iterator filit = std::upper_bound(events.begin(),events.end(),today);
 		while(events[0] <= today) events.erase(events.begin(),filit);
 
 		int idx = events.size()-1;
@@ -135,6 +135,10 @@ namespace QuantLib {
 				isStructuredFixing = false;
 
 			event0Time = std::max(model_->termStructure()->timeFromReference(event0),0.0);
+            
+            // locate first float coupon with start date >= event date
+			Size jStart = std::upper_bound( arguments_.floatingResetDates.begin(), arguments_.floatingResetDates.end(), event0-1 ) - arguments_.floatingResetDates.begin(); 
+
 
 			for(Size k=0; k < (event0 > today ? npv0.size() : 1); k++) {
 
@@ -177,13 +181,11 @@ namespace QuantLib {
 				// event date calculations
 
 				if(event0 > today) {
-					Size jStart = std::upper_bound( arguments_.floatingResetDates.begin(), arguments_.floatingResetDates.end(), event0-1 ) - arguments_.floatingResetDates.begin(); // locate first float coupon with start date >= event date
 					for(Size j=jStart; j<jEnd; j++) {
 						npv0a[k] += (model_->forwardRate( arguments_.floatingFixingDates[j], event0, z[k], false, arguments_.swap->iborIndex(), spreadB_ ) + arguments_.floatingSpreads[j]) *
 										arguments_.floatingAccrualTimes[j] *
 										model_->zerobond( arguments_.floatingPayDates[j], event0, z[k], spreadD_ ) / model_->numeraire(event0Time,z[k],spreadD_);
 					}
-					jEnd = jStart;
 					if(isStructuredFixing) { // if event is structured fixing date and exercise date, structured coupon is part of the exercise into right (by definition)
 						Size j = std::find( arguments_.structuredFixingDates.begin(), arguments_.structuredFixingDates.end(), event0 ) - arguments_.structuredFixingDates.begin();
 						Real rate = model_->swapRate( arguments_.structuredFixingDates[j], arguments_.swap->swapIndex()->tenor(), event0, z[k], false, arguments_.swap->swapIndex(), spreadC_, spreadD_); 
@@ -198,6 +200,8 @@ namespace QuantLib {
 				}
 
 			}
+
+			jEnd = jStart; // update float leg alive indices
 
 			npv1.swap(npv0);
 			npv1a.swap(npv0a);
