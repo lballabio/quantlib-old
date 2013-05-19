@@ -1,5 +1,3 @@
-boost*/
-*ntl*/
 build/
 buildstatic/
 release/
@@ -38,9 +36,9 @@ debug/
 *.lo
 *.la
 *.a
-*/.*/*
 *.in
 Makefile
 *.*~
+#*#
 *.m4
 .svn*
