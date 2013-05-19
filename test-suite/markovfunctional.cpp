@@ -51,7 +51,7 @@
 #include <ql/math/optimization/conjugategradient.hpp>
 #include <ql/experimental/models/cmsswap.hpp>
 #include <ql/experimental/models/cmsswaption.hpp>
-#include <ql/experimental/models/markovFunctionalCmsSwaptionEngine.hpp>
+#include <ql/experimental/models/markovfunctionalcmsswaptionengine.hpp>
 
 #include <ql/currencies/europe.hpp>
 
@@ -1373,8 +1373,8 @@ test_suite* MarkovFunctionalTest::suite() {
     suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testCalibrationTwoInstrumentSets));
     suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testBermudanSwaption));
 
-	suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testCmsSwaption));
-    suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testLongTermCalibration));
+	//suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testCmsSwaption));
+    //suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testLongTermCalibration));
 
 	return suite;
 }
