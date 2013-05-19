@@ -29,4 +29,6 @@
 #include <ql/cashflows/simplecashflow.hpp>
 #include <ql/cashflows/timebasket.hpp>
 #include <ql/cashflows/yoyinflationcoupon.hpp>
+#include <ql/cashflows/fixedinflationcoupon.hpp>
+#include <ql/cashflows/zcinflationcapfloor.hpp>
 

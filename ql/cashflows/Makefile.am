@@ -31,7 +31,9 @@ this_include_HEADERS = \
     replication.hpp \
     simplecashflow.hpp \
     timebasket.hpp \
-    yoyinflationcoupon.hpp
+    yoyinflationcoupon.hpp \
+    fixedinflationcoupon.hpp \
+    zcinflationcapfloor.hpp
 
 libCashFlows_la_SOURCES = \
     averagebmacoupon.cpp \
@@ -61,7 +63,9 @@ libCashFlows_la_SOURCES = \
     replication.cpp \
     simplecashflow.cpp \
     timebasket.cpp \
-    yoyinflationcoupon.cpp
+    yoyinflationcoupon.cpp \
+    fixedinflationcoupon.cpp \
+    zcinflationcapfloor.cpp
 
 noinst_LTLIBRARIES = libCashFlows.la
 
