@@ -28,7 +28,7 @@ namespace QuantLib {
 						const Real T) : 
 	  CalibratedModel(1), TermStructureConsistentModel(termStructure),
 	  calibrateReversion_(false),
-	  reversion_(NullParameter()),  // warning C4413 does not matter, because we do not use this variable if calibrateReversios == false
+	  reversion_(dummyParameter_),
 	  sigma_(arguments_[0]),                   
 	  volatilities_(volatilities), reversions_(std::vector<Real>(1,reversion)), volstepdates_(volstepdates) {
 
@@ -44,7 +44,7 @@ namespace QuantLib {
 						const Real T) : 
 	  CalibratedModel(1), TermStructureConsistentModel(termStructure),
 	  calibrateReversion_(false),
-	  reversion_(NullParameter()), // warning C4413 does not matter, because we do not use this variable if calibrateReversios == false
+	  reversion_(dummyParameter_),
 	  sigma_(arguments_[0]), 
 	  volatilities_(volatilities), reversions_(reversions), volstepdates_(volstepdates) {
 		

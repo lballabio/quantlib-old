@@ -22,7 +22,7 @@
 */
 
 // uncomment to enably high precision floating point
-#define GSR_ENABLE_NTL
+//#define GSR_ENABLE_NTL
 
 #ifndef quantlib_gsr_hpp
 #define quantlib_gsr_hpp
@@ -152,6 +152,8 @@ namespace QuantLib {
   		void initialize(Real);
 
 		const bool calibrateReversion_;
+
+        NullParameter dummyParameter_;
 
 		Parameter& reversion_;
 		Parameter reversionNc_; // this is used if reversion is not calibrated
