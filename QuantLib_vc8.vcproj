@@ -646,6 +646,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\ql\methods\finitedifferences\meshers\predefined1dmesher.hpp"
+						>
+					</File>
+					<File
 						RelativePath=".\ql\methods\finitedifferences\meshers\uniform1dmesher.hpp"
 						>
 					</File>
@@ -7932,6 +7936,14 @@
 				</File>
 				<File
 					RelativePath=".\ql\experimental\math\claytoncopularng.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\math\expm.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\math\expm.hpp"
 					>
 				</File>
 				<File

@@ -3204,6 +3204,9 @@
     <ClInclude Include="ql\experimental\math\claytoncopularng.hpp">
       <Filter>experimental\math</Filter>
     </ClInclude>
+    <ClInclude Include="ql\experimental\math\expm.hpp">
+      <Filter>experimental\math</Filter>
+    </ClInclude>
     <ClInclude Include="ql\experimental\math\farliegumbelmorgensterncopularng.hpp">
       <Filter>experimental\math</Filter>
     </ClInclude>
@@ -3526,6 +3529,9 @@
       <Filter>methods\finitedifferences\solvers</Filter>
     </ClInclude>
     <ClInclude Include="ql\methods\finitedifferences\meshers\fdmsimpleprocess1dmesher.hpp">
+      <Filter>methods\finitedifferences\meshers</Filter>
+    </ClInclude>
+    <ClInclude Include="ql\methods\finitedifferences\meshers\predefined1dmesher.hpp">
       <Filter>methods\finitedifferences\meshers</Filter>
     </ClInclude>
     <ClInclude Include="ql\methods\finitedifferences\meshers\uniform1dmesher.hpp">
@@ -5491,6 +5497,9 @@
     </ClCompile>
     <ClCompile Include="ql\experimental\inflation\yoyoptionlethelpers.cpp">
       <Filter>experimental\inflation</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\experimental\math\expm.cpp">
+      <Filter>experimental\math</Filter>
     </ClCompile>
     <ClCompile Include="ql\experimental\math\zigguratrng.cpp">
       <Filter>experimental\math</Filter>
