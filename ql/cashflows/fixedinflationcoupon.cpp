@@ -56,7 +56,7 @@ namespace QuantLib {
 
     bool FixedInflationCoupon::checkPricerImpl(
         const boost::shared_ptr<InflationCouponPricer>&pricer) const {
-        return boost::dynamic_pointer_cast<FixedInflationCouponPricer>(pricer);
+        return boost::dynamic_pointer_cast<FixedInflationCouponPricer>(pricer) != NULL;
     }
 
 
