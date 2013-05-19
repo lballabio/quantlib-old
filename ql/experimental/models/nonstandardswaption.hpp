@@ -43,7 +43,7 @@ namespace QuantLib {
     class NonstandardSwaption : public Option {
       public:
 
-  		typedef enum CalibrationBasketType { Naive, MaturityStrikeByDeltaGamma };
+  		typedef enum CalibrationBasketType { Naive, MaturityStrikeByDeltaGamma } CalibrationBasketType;
 
         class arguments;
         class engine;

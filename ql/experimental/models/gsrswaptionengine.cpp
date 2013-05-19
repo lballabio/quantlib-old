@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/gsrSwaptionEngine.hpp>
+#include <ql/experimental/models/gsrswaptionengine.hpp>
 
 #include <ql/indexes/swap/euriborswap.hpp>
 

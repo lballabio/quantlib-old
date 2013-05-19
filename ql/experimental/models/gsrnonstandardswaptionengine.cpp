@@ -17,13 +17,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/gsrNonstandardSwaptionEngine.hpp>
+#include <ql/experimental/models/gsrnonstandardswaptionengine.hpp>
 #include <ql/utilities/disposable.hpp>
 #include <ql/cashflows/fixedratecoupon.hpp>
 #include <ql/cashflows/iborcoupon.hpp>
 #include <ql/math/optimization/levenbergmarquardt.hpp>
 #include <ql/math/optimization/simplex.hpp>
-#include <ql/time/daycounters/ActualActual.hpp>
+#include <ql/time/daycounters/actualactual.hpp>
 #include <ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp>
 #include <ql/quotes/simplequote.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolcube.hpp>
