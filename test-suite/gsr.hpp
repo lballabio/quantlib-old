@@ -27,9 +27,9 @@
 #include <ql/experimental/models/gsr.hpp>
 #include <ql/experimental/models/nonstandardswap.hpp>
 #include <ql/experimental/models/nonstandardswaption.hpp>
-#include <ql/experimental/models/gsrSwaptionEngine.hpp>
-#include <ql/experimental/models/gsrJamshidianSwaptionEngine.hpp>
-#include <ql/experimental/models/gsrNonstandardSwaptionEngine.hpp>
+#include <ql/experimental/models/gsrswaptionengine.hpp>
+#include <ql/experimental/models/gsrjamshidianswaptionengine.hpp>
+#include <ql/experimental/models/gsrnonstandardswaptionengine.hpp>
 
 #include <ql/indexes/swap/euriborswap.hpp>
 #include <ql/termstructures/yield/flatforward.hpp>
