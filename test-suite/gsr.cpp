@@ -329,7 +329,7 @@ void GsrTest::testDummy() {
 
 	// Test numeraire time
 
-	boost::math::ntl::RR::SetPrecision(256);
+	//boost::math::ntl::RR::SetPrecision(256);
 
 	Real rate = 0.00;
 
@@ -505,10 +505,10 @@ void GsrTest::testDummy() {
 
 test_suite* GsrTest::suite() {
     test_suite* suite = BOOST_TEST_SUITE("GSR model tests");
-	//suite->add(QUANTLIB_TEST_CASE(&GsrTest::testGsrProcess));
-	//suite->add(QUANTLIB_TEST_CASE(&GsrTest::testGsrModel));
+	suite->add(QUANTLIB_TEST_CASE(&GsrTest::testGsrProcess));
+	suite->add(QUANTLIB_TEST_CASE(&GsrTest::testGsrModel));
 	//suite->add(QUANTLIB_TEST_CASE(&GsrTest::testNonstandardSwaption));
-	suite->add(QUANTLIB_TEST_CASE(&GsrTest::testDummy));
+	//suite->add(QUANTLIB_TEST_CASE(&GsrTest::testDummy));
 	return suite;
 }
 
