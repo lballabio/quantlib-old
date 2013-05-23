@@ -49,7 +49,7 @@ namespace QuantLib {
                      const CurveState& currentState,
                      std::vector<Size>& numberCashFlowsThisStep,
                      std::vector<std::vector<CashFlow> >& cashFlowsGenerated);
-        std::auto_ptr<MarketModelMultiProduct> clone() const;
+        std::unique_ptr<MarketModelMultiProduct> clone() const;
         //@}
       private:
         std::vector<Real> fixedAccruals_, floatingAccruals_,fixedStrikes_, fixedMultipliers_, floatingSpreads_;

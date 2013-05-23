@@ -40,7 +40,7 @@ namespace QuantLib {
         void reset();
         void nextStep(const CurveState& currentState);
         bool exercise(const CurveState& currentState) const;
-        std::auto_ptr<ExerciseStrategy<CurveState> > clone() const;
+        std::unique_ptr<ExerciseStrategy<CurveState> > clone() const;
       private:
         Clone<MarketModelParametricExercise> exercise_;
         std::vector<std::vector<Real> > parameters_;

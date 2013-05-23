@@ -79,7 +79,7 @@ namespace QuantLib {
                       Size end, Size step=1) const; // PC
 		Rate swapAnnuity(Size i, Size begin, Size end, Size step=1) const; // PC
 
-        virtual std::auto_ptr<CurveState> clone() const = 0;
+        virtual std::unique_ptr<CurveState> clone() const = 0;
         //@}
       protected:
         Size numberOfRates_;

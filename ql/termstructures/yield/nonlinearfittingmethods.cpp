@@ -26,9 +26,9 @@ namespace QuantLib {
     ExponentialSplinesFitting::ExponentialSplinesFitting(bool constrainAtZero)
     : FittedBondDiscountCurve::FittingMethod(constrainAtZero) {}
 
-    std::auto_ptr<FittedBondDiscountCurve::FittingMethod>
+    std::unique_ptr<FittedBondDiscountCurve::FittingMethod>
     ExponentialSplinesFitting::clone() const {
-        return std::auto_ptr<FittedBondDiscountCurve::FittingMethod>(
+        return std::unique_ptr<FittedBondDiscountCurve::FittingMethod>(
                                         new ExponentialSplinesFitting(*this));
     }
 
@@ -66,9 +66,9 @@ namespace QuantLib {
     NelsonSiegelFitting::NelsonSiegelFitting()
     : FittedBondDiscountCurve::FittingMethod(true) {}
 
-    std::auto_ptr<FittedBondDiscountCurve::FittingMethod>
+    std::unique_ptr<FittedBondDiscountCurve::FittingMethod>
     NelsonSiegelFitting::clone() const {
-        return std::auto_ptr<FittedBondDiscountCurve::FittingMethod>(
+        return std::unique_ptr<FittedBondDiscountCurve::FittingMethod>(
                                               new NelsonSiegelFitting(*this));
     }
 
@@ -91,9 +91,9 @@ namespace QuantLib {
     SvenssonFitting::SvenssonFitting()
     : FittedBondDiscountCurve::FittingMethod(true) {}
 
-    std::auto_ptr<FittedBondDiscountCurve::FittingMethod>
+    std::unique_ptr<FittedBondDiscountCurve::FittingMethod>
     SvenssonFitting::clone() const {
-        return std::auto_ptr<FittedBondDiscountCurve::FittingMethod>(
+        return std::unique_ptr<FittedBondDiscountCurve::FittingMethod>(
                                               new SvenssonFitting(*this));
     }
 
@@ -145,9 +145,9 @@ namespace QuantLib {
         return splines_(i,t);
     }
 
-    std::auto_ptr<FittedBondDiscountCurve::FittingMethod>
+    std::unique_ptr<FittedBondDiscountCurve::FittingMethod>
     CubicBSplinesFitting::clone() const {
-        return std::auto_ptr<FittedBondDiscountCurve::FittingMethod>(
+        return std::unique_ptr<FittedBondDiscountCurve::FittingMethod>(
                                              new CubicBSplinesFitting(*this));
     }
 
@@ -189,9 +189,9 @@ namespace QuantLib {
     : FittedBondDiscountCurve::FittingMethod(constrainAtZero),
       size_(constrainAtZero ? degree : degree+1) {}
 
-    std::auto_ptr<FittedBondDiscountCurve::FittingMethod>
+    std::unique_ptr<FittedBondDiscountCurve::FittingMethod>
     SimplePolynomialFitting::clone() const {
-        return std::auto_ptr<FittedBondDiscountCurve::FittingMethod>(
+        return std::unique_ptr<FittedBondDiscountCurve::FittingMethod>(
                                           new SimplePolynomialFitting(*this));
     }
 

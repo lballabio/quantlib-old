@@ -104,6 +104,10 @@
 #endif
 
 
+#if defined(BOOST_NO_CXX11_SMART_PTR)
+#define unique_ptr auto_ptr
+#endif
+
 /*! \defgroup limitMacros Numeric limits
 
     Some compilers do not give an implementation of

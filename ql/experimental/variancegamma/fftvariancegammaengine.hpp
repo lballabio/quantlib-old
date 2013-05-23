@@ -39,7 +39,7 @@ namespace QuantLib {
     public:
         FFTVarianceGammaEngine(
             const boost::shared_ptr<VarianceGammaProcess>&process, Real logStrikeSpacing = 0.001);
-        virtual std::auto_ptr<FFTEngine> clone() const;
+        virtual std::unique_ptr<FFTEngine> clone() const;
 
     protected:
         virtual void precalculateExpiry(Date d);

@@ -44,7 +44,7 @@ namespace QuantLib {
         void reset();
         bool exercise(const CurveState& currentState) const;
         void nextStep(const CurveState& currentState);
-        std::auto_ptr<ExerciseStrategy<CurveState> > clone() const;
+        std::unique_ptr<ExerciseStrategy<CurveState> > clone() const;
       private:
         Clone<MarketModelBasisSystem> basisSystem_;
         std::vector<std::vector<Real> > basisCoefficients_;
