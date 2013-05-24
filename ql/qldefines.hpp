@@ -103,9 +103,8 @@
     }
 #endif
 
-
-#if defined(BOOST_NO_CXX11_SMART_PTR)
-#define unique_ptr auto_ptr
+#if !(defined(__GXX_EXPERIMENTAL_CXX0X__) || (__cplusplus >= 201103L))
+  #define unique_ptr auto_ptr
 #endif
 
 /*! \defgroup limitMacros Numeric limits
