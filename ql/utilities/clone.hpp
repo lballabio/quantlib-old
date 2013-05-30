@@ -71,7 +71,7 @@ namespace QuantLib {
 #ifdef QL_UNIQUE_PTR_ENABLED
 	ptr_(std::move(p))
 #else
-	ptr_(p);
+	ptr_(p)
 #endif
 	{}
 
