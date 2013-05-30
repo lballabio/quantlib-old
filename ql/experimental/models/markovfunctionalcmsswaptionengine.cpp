@@ -182,15 +182,17 @@ namespace QuantLib {
 
 				if(event0 > today) {
 					for(Size j=jStart; j<jEnd; j++) {
-						npv0a[k] += (model_->forwardRate( arguments_.floatingFixingDates[j], event0, z[k], false, arguments_.swap->iborIndex(), spreadB_ ) + arguments_.floatingSpreads[j]) *
+                        // DEBUG cancel float leg npv
+						npv0a[k] += 0.0*(model_->forwardRate( arguments_.floatingFixingDates[j], event0, z[k], false, arguments_.swap->iborIndex(), spreadB_ ) + arguments_.floatingSpreads[j]) *
 										arguments_.floatingAccrualTimes[j] *
 										model_->zerobond( arguments_.floatingPayDates[j], event0, z[k], spreadD_ ) / model_->numeraire(event0Time,z[k],spreadD_);
 					}
 					if(isStructuredFixing) { // if event is structured fixing date and exercise date, structured coupon is part of the exercise into right (by definition)
 						Size j = std::find( arguments_.structuredFixingDates.begin(), arguments_.structuredFixingDates.end(), event0 ) - arguments_.structuredFixingDates.begin();
-						Real rate = model_->swapRate( arguments_.structuredFixingDates[j], arguments_.swap->swapIndex()->tenor(), event0, z[k], false, arguments_.swap->swapIndex(), spreadC_, spreadD_); 
+						Real rate = arguments_.structuredSpreads[j] + 
+                            model_->swapRate( arguments_.structuredFixingDates[j], arguments_.swap->swapIndex()->tenor(), event0, z[k], false, arguments_.swap->swapIndex(), spreadC_, spreadD_); 
 						if( arguments_.structuredCappedRates[j] != Null<Real>() ) rate = std::min( arguments_.structuredCappedRates[j] , rate );
-						if( arguments_.structuredFlooredRates[j] != Null<Real>() ) rate = std::max( arguments_.structuredCappedRates[j] , rate );
+						if( arguments_.structuredFlooredRates[j] != Null<Real>() ) rate = std::max( arguments_.structuredFlooredRates[j] , rate );
 						npv0a[k] += rate * arguments_.structuredAccrualTimes[j] * model_->zerobond( arguments_.structuredPayDates[j], event0, z[k], spreadD_ ) / model_->numeraire(event0Time,z[k],spreadD_);
 					}
 					if(isExercise) {
