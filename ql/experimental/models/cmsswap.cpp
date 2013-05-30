@@ -57,12 +57,18 @@ namespace QuantLib {
         else
             paymentConvention_ = floatingSchedule_.businessDayConvention();
 
-		CmsLeg cmsLeg = CmsLeg(structuredSchedule_, swapIndex_).withNotionals(nominal_).withPaymentAdjustment(paymentConvention_);
+		CmsLeg cmsLeg = CmsLeg(structuredSchedule_, swapIndex_)
+            .withPaymentDayCounter(structuredDayCount)
+            .withNotionals(nominal_)
+            .withPaymentAdjustment(paymentConvention_);
 		if(cappedRate_ != Null<Real>()) cmsLeg = cmsLeg.withCaps(cappedRate_);
 		if(flooredRate_ != Null<Real>()) cmsLeg = cmsLeg.withFloors(flooredRate_);
         legs_[0] = cmsLeg;
 
-		IborLeg iborLeg = IborLeg(floatingSchedule_,iborIndex_).withNotionals(nominal_).withPaymentDayCounter(floatingDayCount_).withPaymentAdjustment(paymentConvention_);
+		IborLeg iborLeg = IborLeg(floatingSchedule_,iborIndex_)
+            .withNotionals(nominal_)
+            .withPaymentDayCounter(floatingDayCount_)
+            .withPaymentAdjustment(paymentConvention_);
 		if(spread_ != Null<Real>()) iborLeg = iborLeg.withSpreads(spread_);
 		legs_[1] = iborLeg;
 
