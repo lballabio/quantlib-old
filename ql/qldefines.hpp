@@ -105,6 +105,8 @@
 
 #if !(defined(__GXX_EXPERIMENTAL_CXX0X__) || (__cplusplus >= 201103L) || (_MSC_VER >= 1600))
   #define unique_ptr auto_ptr
+#else
+  #define QL_UNIQUE_PTR_ENABLED
 #endif
 
 /*! \defgroup limitMacros Numeric limits

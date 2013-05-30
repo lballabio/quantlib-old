@@ -40,7 +40,7 @@ namespace QuantLib {
     class Clone {
       public:
         Clone();
-        Clone(std::unique_ptr<T>);
+        Clone(std::unique_ptr<T>&);
         Clone(const T&);
         Clone(const Clone<T>&);
         Clone<T>& operator=(const T&);
@@ -50,13 +50,16 @@ namespace QuantLib {
         bool empty() const;
         void swap(Clone<T>& t);
       private:
-        boost::scoped_ptr<T> ptr_;
+#ifdef QL_UNIQUE_PTR_ENABLED
+        std::unique_ptr<T> ptr_;
+#else
+		boost::scoped_ptr<T> ptr_;
+#endif
     };
 
     /*! \relates Clone */
     template <class T>
     void swap(Clone<T>&, Clone<T>&);
-
 
     // inline definitions
 
@@ -64,8 +67,13 @@ namespace QuantLib {
     inline Clone<T>::Clone() {}
 
     template <class T>
-    inline Clone<T>::Clone(std::unique_ptr<T> p)
-    : ptr_(p) {}
+	inline Clone<T>::Clone(std::unique_ptr<T>& p) : 
+#ifdef QL_UNIQUE_PTR_ENABLED
+	ptr_(std::move(p))
+#else
+	ptr_(p);
+#endif
+	{}
 
     template <class T>
     inline Clone<T>::Clone(const T& t)
