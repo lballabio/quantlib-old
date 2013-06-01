@@ -618,11 +618,11 @@ namespace QuantLib {
 		if(!iborIdx) iborIdx = iborIndex_;
 
 		Date valueDate = zeroFixingDays ? fixing : iborIdx->valueDate(fixing);
-		Date endDate = iborIdx->fixingCalendar().advance(valueDate,iborIdx->tenor(),
+		Date endDate = iborIdx->fixingCalendar().advance(iborIdx->valueDate(fixing),iborIdx->tenor(),
 								iborIdx->businessDayConvention(),iborIdx->endOfMonth()); // FIXME Here we should use the calculation date calendar ?
 		Real dcf = iborIdx->dayCounter().yearFraction(valueDate,endDate);
 
-		return ( zerobond(zeroFixingDays ? fixing : valueDate,referenceDate,y,forwardSpread) - zerobond(endDate,referenceDate,y,forwardSpread) ) / 
+		return ( zerobond(valueDate,referenceDate,y,forwardSpread) - zerobond(endDate,referenceDate,y,forwardSpread) ) / 
 							(dcf * zerobond(endDate,referenceDate,y,forwardSpread));
 
 	}
