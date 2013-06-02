@@ -24,12 +24,13 @@
 #include <ql/cashflows/fixedratecoupon.hpp>
 #include <ql/cashflows/iborcoupon.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
-#include <ql/termstructures/volatility/smilesection.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 #include <ql/quotes/simplequote.hpp>
 #include <ql/indexes/iborindex.hpp>
 #include <ql/time/schedule.hpp>
 #include <ql/instruments/vanillaswap.hpp>
+#include <ql/math/solvers1d/brent.hpp>
+#include <ql/pricingengines/blackformula.hpp>
 
 namespace QuantLib {
 
@@ -37,7 +38,7 @@ namespace QuantLib {
                 const Handle<SwaptionVolatilityStructure>& swaptionVol,
                 const Handle<Quote>& meanReversion,
 		const Handle<YieldTermStructure>& couponDiscountCurve,
-		const Settings settings) : CmsCouponPricer(swaptionVol), meanReversion_(meanReversion), 
+		const Settings& settings) : CmsCouponPricer(swaptionVol), meanReversion_(meanReversion), 
 					   couponDiscountCurve_(couponDiscountCurve), settings_(settings) { 
           registerWith(meanReversion_);
 	  if(!couponDiscountCurve_.empty())
@@ -85,6 +86,9 @@ namespace QuantLib {
             swap_ = swapIndex_->underlyingSwap(fixingDate_);
 
             swapRateValue_ = swap_->fairRate();
+	    annuity_ = 1.0E4 * std::fabs(swap_->fixedLegBPS());
+
+	    smileSection_ = swaptionVolatility()->smileSection(fixingDate_, swapTenor_);
 
 	    const Leg& fixedCoupons = swap_->fixedLeg();
 	    fixedLegPaymentDates_ = std::vector<Date>(fixedCoupons.size());
@@ -110,7 +114,7 @@ namespace QuantLib {
          }
     }
 
-    Real CmsReplicationPricer::hullWhiteScenario(Real dt, Real h) {
+    Real CmsReplicationPricer::hullWhiteScenario(Real dt, Real h) const {
 	
 	Real e;
 
@@ -119,11 +123,11 @@ namespace QuantLib {
 	else
 	    e = (1.0 - std::exp( -dt * meanReversion_->value() ) ) / meanReversion_->value();
 
-	return std::exp( h * e );
+	return std::exp( -h * e );
 
     }
 
-    Real CmsReplicationPricer::annuity(Real h) {
+    Real CmsReplicationPricer::annuity(Real h) const {
 	
 	Real annuity=0.0;
 	for(Size i=0; i<fixedLegYearFractions_.size(); i++) {
@@ -137,7 +141,7 @@ namespace QuantLib {
 
     }
 
-    Real CmsReplicationPricer::floatingLegNpv(Real h) {
+    Real CmsReplicationPricer::floatingLegNpv(Real h) const {
 	
 	Real npv=0.0;
 	for(Size i=0; i<floatingLegStartDates_.size();i++) {
@@ -157,16 +161,190 @@ namespace QuantLib {
 
     }
 
-    Real CmsReplicationPricer::swapRate(Real h) {
+    Real CmsReplicationPricer::swapRate(Real h) const {
 
 	return floatingLegNpv(h) / annuity(h);
 
     }
 
+    Real CmsReplicationPricer::h(Real rate) const {
+
+	Real a = -10.0, b = 10.0;
+	HHelper h(this,rate);
+	Brent solver;
+
+	Real c;
+	
+	try {
+	    c = solver.solve(h,1.0E-6,0.0,a,b);
+	} catch(QuantLib::Error e) {
+	    QL_FAIL("can not imply h from rate (" << rate << "):" << e.what()); 
+	}
+
+	return c;
+
+    }
+
+
+    Real CmsReplicationPricer::strikeFromVegaRatio(Real ratio, Option::Type optionType, Real referenceStrike) const {
+	
+	Real a,b,min,max,k;
+	if(optionType == Option::Call) {
+	    a = swapRateValue_;
+	    min = referenceStrike;
+	    b = max = k = std::min(smileSection_->maxStrike(), settings_.upperRateBound_);
+	}
+	else {
+	    a = min = k = std::max(smileSection_->minStrike(), settings_.lowerRateBound_);
+	    b = swapRateValue_;
+	    max = referenceStrike;
+	}
+
+	VegaRatioHelper h(&*smileSection_,smileSection_->vega(swapRateValue_)*ratio);
+	Brent solver;
+
+	try {
+	    k = solver.solve(h,1.0E-5,(a+b)/2.0,a,b);
+	} catch(...) {
+	    // use default value set above	    
+	}
+
+	return std::min(std::max(k,min),max);
+
+    }
+
+
+    Real CmsReplicationPricer::strikeFromPrice(Real price, Option::Type optionType, Real referenceStrike) const {
+
+	Real a,b,min,max,k;
+	if(optionType == Option::Call) {
+	    a = swapRateValue_;
+	    min = referenceStrike;
+	    b = max = k = std::min(smileSection_->maxStrike(), settings_.upperRateBound_);
+	}
+	else {
+	    a = min = k = std::max(smileSection_->minStrike(), settings_.lowerRateBound_);
+	    b = swapRateValue_;
+	    max = referenceStrike;
+	}
+
+	PriceHelper h(&*smileSection_, optionType, price);
+	Brent solver;
+
+	try {
+	    k = solver.solve(h,1.0E-5,swapRateValue_,a,b);
+	} catch(...) {
+	    // use default value set above	    
+	}
+
+	return std::min(std::max(k,min),max);
+
+    }
+
     Real CmsReplicationPricer::optionletPrice(
                                 Option::Type optionType, Real strike) const {
+	
+	Real phi = optionType == Option::Call ? 1.0 : -1.0;
 
-	return 0.0;
+	// determine vector of hs corresponding to scenarios;
+
+	std::vector<Real> hs;
+	switch(settings_.strategy_) {
+	
+	case Settings::DiscreteStrikeSpreads : {
+	    for(Size i=0;i<settings_.n_;i++) {
+		Real k = strike + phi*settings_.discreteStrikeSpreads_[i];
+		if(k>=smileSection_->minStrike() && k<=smileSection_->maxStrike())
+		    hs.push_back( h(k) );
+	    }
+	    break;
+	}
+
+	case Settings::RateBound : {
+	    for(Size i=0;i<settings_.n_;i++) {
+		Real k = strike + ((Real)(i+1)) * (optionType == Option::Call ?
+			      (settings_.upperRateBound_ - strike) / ((Real)settings_.n_) :
+						   (settings_.lowerRateBound_ - strike) / ((Real)settings_.n_));
+		if(k>=smileSection_->minStrike() && k<=smileSection_->maxStrike())
+		    hs.push_back( h(k) );
+	    }
+	    break;
+	}
+
+	case Settings::VegaRatio : {
+	    // strikeFromVegaRatio ensures that returned strike is on the expected side of strike
+	    Real effectiveBound = optionType == Option::Call ?
+		 std::min(settings_.upperRateBound_ , 
+			  strikeFromVegaRatio(settings_.vegaRatio_,optionType,strike)) :
+		 std::max(settings_.lowerRateBound_, 
+			  strikeFromVegaRatio(settings_.vegaRatio_,optionType,strike));
+	    for(Size i=0;i<settings_.n_;i++) {
+		Real k = strike + ((Real)(i+1)) * (optionType == Option::Call ?
+		    (effectiveBound - strike) / ((Real)settings_.n_) :
+						   (effectiveBound - strike) / ((Real)settings_.n_));
+		if(k>=smileSection_->minStrike() && k<=smileSection_->maxStrike())
+		    hs.push_back( h(k) );
+	    }
+	    break;
+	}
+
+	case Settings::PriceThreshold : {
+	    // strikeFromPrice ensures that returned strike is on the expected side of strike
+	    Real effectiveBound = optionType == Option::Call ?
+		 std::min(settings_.upperRateBound_,
+			  strikeFromPrice(settings_.priceThreshold_,optionType,strike)) :
+		 std::max(settings_.lowerRateBound_,
+			  strikeFromPrice(settings_.priceThreshold_,optionType,strike));
+	    for(Size i=0;i<settings_.n_;i++) {
+		Real k = strike + ((Real)(i+1)) * (optionType == Option::Call ?
+		    (effectiveBound - strike) / ((Real)settings_.n_) :
+						   (effectiveBound - strike) / ((Real)settings_.n_));
+		if(k>=smileSection_->minStrike() && k<=smileSection_->maxStrike())
+		    hs.push_back( h(k) );
+	    }
+	    break;
+	}
+
+	default:
+	    QL_FAIL("Unknown strategy (" << settings_.strategy_ << ")");
+
+	}
+
+	// compute the hedge basket and price it
+	std::vector<Real> weights, strikes;
+
+	Real rate = strike, lastRate;
+	Real price = QL_MAX_REAL, lastPrice, basketPrice = 0.0;
+
+        for(Size i=0;i<hs.size();i++) {
+	    lastPrice = price;
+	    lastRate = rate;
+	    rate = swapRate(hs[i]);
+	    strikes.push_back(lastRate);
+	    Real ann = annuity(hs[i]);
+	    Real npv=0.0;
+	    for(Size j=0;j<i;j++) {
+		npv += weights[j] * phi * (rate - strikes[j]) * ann;
+	    }
+	    Real dt = discountCurve_->timeFromReference(paymentDate_) - 
+		discountCurve_->timeFromReference(fixingDate_);
+	    weights.push_back( ( phi * discountCurve_->discount(paymentDate_) / 
+				 discountCurve_->discount(fixingDate_) *
+			       hullWhiteScenario(dt,hs[i]) * (rate - strike) - npv ) /
+			       ( phi * ann * (rate - lastRate) ) );
+	    price = blackFormula(optionType,lastRate,swapRateValue_,
+				 std::sqrt(smileSection_->variance(lastRate)),annuity_);
+	    if(settings_.enforceMonotonicPrices_)
+		price = std::min( lastPrice, price );
+	    basketPrice += weights.back()*price;
+	}
+
+	// note that fixedLegBPS() is computed w.r.t. discountCurve_, but the coupon discount curve
+	// may be different. We have to take this into account here.
+
+	basketPrice *=  coupon_->accrualPeriod() * discount_ / discountCurve_->discount(paymentDate_);
+
+	return basketPrice;
 
     }
 

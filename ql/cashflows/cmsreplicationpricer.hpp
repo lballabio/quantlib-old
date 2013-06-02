@@ -22,6 +22,7 @@
 #ifndef quantlib_cmsreplication_pricer_hpp
 #define quantlib_cmsreplication_pricer_hpp
 
+#include <ql/termstructures/volatility/smilesection.hpp>
 #include <ql/cashflows/couponpricer.hpp>
 #include <ql/instruments/payoffs.hpp>
 #include <ql/indexes/swapindex.hpp>
@@ -42,42 +43,60 @@ namespace QuantLib {
 
 	struct Settings {
 
-	    enum Strategy { DiscreteStrikes, RateBound, VegaRatio, PriceThreshold };
+	    enum Strategy { DiscreteStrikeSpreads, RateBound, VegaRatio, PriceThreshold };
      
-	    Settings() : strategy_(PriceThreshold), priceThreshold_(1.0E-6), cashSettledSwaptions_(false) {}
+	    Settings() : strategy_(PriceThreshold), priceThreshold_(1.0E-6),
+			 lowerRateBound_(0.0001), upperRateBound_(2.0000),
+			 cashSettledSwaptions_(false),
+			 enforceMonotonicPrices_(true),
+			 n_(50) {}
 
-	    // hedge with given discrete strikes relative to atm, e.g.
+	    // hedge with given discrete strikes relative to the strike, e.g.
 	    // 0.0025, 0.0050, 0.0100, 0.0150, 0.0200, 0.0250 means that swaptions 
-	    // atm, 0.0025, ... , 0.0200 are used to hedge scenarios 0.0025, ... , 0.0250
+	    // strike, strike+0.0025, ... , 0.0200 are used to hedge scenarios strike+0.0025, ... , 0.0250
+	    // and similar for the left side of the strike
 	    Settings& withDiscreteStrikeSpreads(const std::vector<Real>& discreteStrikeSpreads) { 
-		strategy_ = DiscreteStrikes; discreteStrikeSpreads_ = discreteStrikeSpreads; return *this;
+		strategy_ = DiscreteStrikeSpreads; discreteStrikeSpreads_ = discreteStrikeSpreads; 
+		n_ = discreteStrikeSpreads_.size(); return *this;
 	    }
 
 	    // hedge with given lower and upper bound for swap rate, e.g. 0.0001 and 2.0000
-	    Settings& withRateBound(const Real lowerRateBound, const Real upperRateBound) {
+	    // n discrete scenarios are used on each side of the strike
+	    Settings& withRateBound(const Size n, const Real lowerRateBound, const Real upperRateBound) {
 		strategy_ = RateBound; 
+		n_= n;
 		lowerRateBound_ = lowerRateBound; upperRateBound_ = upperRateBound; return *this; 
 	    }
 
 	    // hedge with an lower / upper rate bound such that the swaption vega is a given ratio of the
-	    // atm vega but not outside the given bounds
-	    Settings& withVegaRatio(const Real vegaRatio, 
-				    const Real lowerBound = 0.0001, const Real upperBound = 2.0000) { 
-		strategy_ = VegaRatio; vegaRatio_ = vegaRatio; 
-		lowerRateBound_=lowerBound; upperRateBound_=upperBound; return *this; 
+	    // atm vega but not outside the given bounds. Again n discrete scenarios are used on each
+	    // side of the strike
+	    Settings& withVegaRatio(const Size n, const Real vegaRatio,
+				    const Real lowerRateBound = 0.0001, const Real upperRateBound = 2.0000) { 
+		strategy_ = VegaRatio; 
+		n_=n; vegaRatio_ = vegaRatio; 
+		lowerRateBound_=lowerRateBound; upperRateBound_=upperRateBound; return *this; 
 	    }
 
-	    // hedge with an upper rate bound such that a price of the replicating swaption is below
-	    // a given threshold but not outside the given bounds
-	    Settings& withPriceThreshold(const Real priceThreshold, 
-					 const Real lowerBound = 0.0001, const Real upperBound = 2.0000) { 
-		strategy_ = PriceThreshold; priceThreshold_ = priceThreshold;  
-		lowerRateBound_=lowerBound; upperRateBound_=upperBound; return *this; 
+	    // hedge with an upper rate bound such that a (undeflated) price of the replicating swaption is
+	    // below a given threshold but not outside the given bounds. n discrete scenarios are used on
+	    // each side of the strike
+	    Settings& withPriceThreshold(const Size n, const Real priceThreshold,
+					 const Real lowerRateBound = 0.0001, const Real upperRateBound = 2.0000) { 
+		strategy_ = PriceThreshold; 
+		n_=n; priceThreshold_ = priceThreshold;  
+		lowerRateBound_=lowerRateBound; upperRateBound_=upperRateBound; return *this; 
 	    }
 
 	    // use cash settlement pricing formula for replicating swaptions
-	    Settings& withCashSettledSwaptions(const bool cashSettledSwaptions) { 
+	    Settings& withCashSettledSwaptions(const bool cashSettledSwaptions) {
+		QL_REQUIRE(!cashSettledSwaptions,"cash settled swaptions basket not yet implemented"); 
 		cashSettledSwaptions_ = cashSettledSwaptions; return *this; 
+	    }
+
+	    // enforce monotonic decreasing call swaptions and increasing put swaptions
+	    Settings& withMonotonicPrices(const bool enforceMonotonicPrices) {
+		enforceMonotonicPrices_ = enforceMonotonicPrices; return *this;
 	    }
 
 	    Strategy strategy_;
@@ -85,7 +104,8 @@ namespace QuantLib {
 	    Real lowerRateBound_, upperRateBound_;
 	    Real priceThreshold_;
 	    Real vegaRatio_;
-	    bool cashSettledSwaptions_;
+	    bool cashSettledSwaptions_, enforceMonotonicPrices_;
+	    Size n_;
 
 	};
 
@@ -94,7 +114,7 @@ namespace QuantLib {
 			     const Handle<Quote>& meanReversion,
 			     const Handle<YieldTermStructure>& couponDiscountCurve = 
 			       Handle<YieldTermStructure>(),
-			     const Settings settings = Settings());
+			     const Settings& settings = Settings());
         
 	/* */
         virtual Real swapletPrice() const;
@@ -114,14 +134,61 @@ namespace QuantLib {
 
       private:
 
+        class VegaRatioHelper;
+        friend class VegaRatioelper;
+        class VegaRatioHelper {
+            public:
+            VegaRatioHelper(const SmileSection* section,
+			    const Real targetVega)
+            : section_(section), targetVega_(targetVega) {}
+            double operator()(double strike) const {
+		return section_->vega(strike) - targetVega_;
+            };
+            const SmileSection* section_;
+	    const Real targetVega_;
+        };
+
+        class PriceHelper;
+        friend class PriceHelper;
+        class PriceHelper {
+            public:
+            PriceHelper(const SmileSection* section,
+			const Option::Type type,
+			const Real targetPrice)
+		: section_(section), type_(type), targetPrice_(targetPrice) {}
+            double operator()(double strike) const {
+		return section_->optionPrice(strike,type_) - targetPrice_;
+            };
+            const SmileSection* section_;
+	    const Real targetPrice_;
+	    const Option::Type type_;
+        };
+
+	class HHelper;
+	friend class HHelper;
+	class HHelper {
+	    public:
+	    HHelper(const CmsReplicationPricer* pricer, const Real targetSwapRate)
+		: pricer_(pricer), targetSwapRate_(targetSwapRate) {}
+	    double operator()(double h) const {
+		return pricer_->swapRate(h) - targetSwapRate_;
+	    }
+	    const CmsReplicationPricer* pricer_;
+	    const Real targetSwapRate_;
+	};
+
         void initialize(const FloatingRateCoupon& coupon);
 
         Real optionletPrice(Option::Type optionType, Real strike) const;
 
-	Real hullWhiteScenario(Real dt, Real h);
-	Real annuity(Real h);
-	Real floatingLegNpv(Real h);
-	Real swapRate(Real h);
+	Real hullWhiteScenario(Real dt, Real h) const;
+	Real annuity(Real h) const;
+	Real floatingLegNpv(Real h) const;
+	Real swapRate(Real h) const;
+	
+	Real h(Real rate) const;
+	Real strikeFromVegaRatio(Real ratio, Option::Type optionType, Real referenceStrike) const;
+	Real strikeFromPrice(Real price, Option::Type optionType, Real referenceStrike) const;
       
         Handle<YieldTermStructure> forwardCurve_, discountCurve_;
         Handle<YieldTermStructure> couponDiscountCurve_;
@@ -141,10 +208,11 @@ namespace QuantLib {
         Handle<Quote> meanReversion_;
 
         Period swapTenor_;
-        Real spreadLegValue_, swapRateValue_, discount_;
+        Real spreadLegValue_, swapRateValue_, discount_, annuity_;
 	
 	boost::shared_ptr<SwapIndex> swapIndex_;
 	boost::shared_ptr<VanillaSwap> swap_;
+	boost::shared_ptr<SmileSection> smileSection_;
 
 	Settings settings_;
 
