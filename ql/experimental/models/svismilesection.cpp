@@ -1,18 +1,42 @@
-#include <svismilesection.hpp>
+/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+
+/*
+ Copyright (C) 2011 Peter Caspers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+#include <ql/experimental/models/svismilesection.hpp>
+#include <ql/experimental/models/smilesectionutils.hpp>
 
 namespace QuantLib {
 
-   SviSmileSection::SviSmileSection(const boost::shared_ptr<SmileSection> source, const std::vector<Real>& strikes, const Real atm)
-		: source_(source), k_(strikes), SmileSection(*source) {
+    SviSmileSection::SviSmileSection(const boost::shared_ptr<SmileSection> source, const Real atm,
+				     const std::vector<Real>& moneynessGrid)
+		: source_(source), SmileSection(*source) {
 		
-		QL_REQUIRE(strikes.size() >=5, "at least five strikes must be given (" << strikes.size() <<")");
-		QL_REQUIRE(k_[0]>0.0,"strikes must be positive (" << k_[0] << ")");
+
+                k_ = SmileSectionUtils().makeStrikeGrid(*source_, moneynessGrid);
+
+		QL_REQUIRE(k_.size() >=5, "at least five strikes must be given (" << k_.size() <<")");
+		QL_REQUIRE(k_[0] >= 0.0,"strikes must be non negative (" << k_[0] << ")");
 
 		if(atm==Null<Real>()) {
-			f_ = source_->atmLevel();
+		    f_ = source_->atmLevel();
 		}
 		else {
-			f_ = atm;
+		    f_ = atm;
 		}
 
 		for(Size i=1; i<k_.size(); i++) {
@@ -55,7 +79,7 @@ namespace QuantLib {
 		std::cout << "Constraint: " << b_*(1.0+fabs(r_)) << " <= " << 4.0/exerciseTime() << std::endl;
 
 	}
-
+ 
 	
     Real SviSmileSection::volatilityImpl(Rate strike) const {
 		return sqrt(variance(strike)/exerciseTime());
@@ -67,8 +91,6 @@ namespace QuantLib {
 		return a_+b_*(r_*(k-m_)+sqrt((k-m_)*(k-m_)+s_*s_));
 	}
 
-	Real SviSmileSection::price(Rate strike, Option::Type type, Real discount) const {
-		return blackFormula(Option::Call,strike,f_,sqrt(variance(strike)),discount);
-	}
+
 
 }

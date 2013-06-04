@@ -42,13 +42,12 @@ namespace QuantLib {
     class SviSmileSection : public SmileSection {
 
 	  public:
-        SviSmileSection(const boost::shared_ptr<SmileSection> source, const std::vector<Real>& strikes, const Real atm = Null<Real>());
+        SviSmileSection(const boost::shared_ptr<SmileSection> source, const Real atm = Null<Real>(),
+                        const std::vector<Real>& moneynessGrid = std::vector<Real>());
 
 	    Real minStrike () const { return 0.0; }
         Real maxStrike () const { return QL_MAX_REAL; }
         Real atmLevel() const { return f_; }
-
-		Real price(Rate strike, Option::Type type = Option::Call, Real discount = 1.0) const; 
 
       protected:
 		Volatility volatilityImpl(Rate strike) const;
