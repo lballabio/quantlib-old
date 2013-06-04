@@ -9,6 +9,7 @@
 #include <ql/experimental/models/markovfunctionalswaptionengine.hpp>
 #include <ql/experimental/models/mfstateprocess.hpp>
 #include <ql/experimental/models/smilesectionutils.hpp>
+#include <ql/experimental/models/svismilesection.hpp>
 #include <ql/experimental/models/gsr.hpp>
 #include <ql/experimental/models/cmsswap.hpp>
 #include <ql/experimental/models/cmsswaption.hpp>

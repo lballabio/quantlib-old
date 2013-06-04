@@ -12,6 +12,7 @@ this_include_HEADERS = \
 	markovfunctionalswaptionengine.hpp \
 	mfstateprocess.hpp \
 	smilesectionutils.hpp \
+	svismilesection.hpp \
 	gsr.hpp \
 	cmsswap.hpp \
 	cmsswaption.hpp \
@@ -32,6 +33,7 @@ libModels_la_SOURCES = \
 	markovfunctionalswaptionengine.cpp \
 	mfstateprocess.cpp \
 	smilesectionutils.cpp \
+	svismilesection.cpp \
 	gsr.cpp \
 	cmsswap.cpp \
 	cmsswaption.cpp \
