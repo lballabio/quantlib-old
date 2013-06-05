@@ -59,6 +59,27 @@ along with the corresponding spreadsheets and additional material.
 </li>
 </ul>
 
+<h2 class="center">First QuantLib Forum</h2>
+
+The first QuantLib forum was held in London on January 18th, 2011,
+thanks to the sponsorship of StatPro.
+<ul>
+<li>Slides of <strong>Marco Marchioro</strong>'s
+presentation, <em>Risk simulations for a bond in QuantLibXL</em>, are
+available from the <em>Conferences</em> page on his
+site, <a href="http://www.marchioro.org/">http://www.marchioro.org/</a>,
+along with the corresponding spreadsheet.
+</li>
+<li>A screencast of <strong>Luigi Ballabio</strong>'s
+presentation, <em>Code Arbitrage: or, how to get features for free in
+QuantLib</em>, is available
+at <a href="http://archive.org/details/FirstQuantlibForum">http://archive.org/details/FirstQuantlibForum</a>.
+</li>
+<li>The brochure of the forum (just a historical curiosity by now) is
+available [<a href= "press/first-quantlib-forum.pdf">PDF</a>].
+</li>
+</ul>
+
 <h2 class="center">Blogs</h2>
 <ul>
 <li>Useful QuantLib-related posts appear in a few blogs, such as:<br>

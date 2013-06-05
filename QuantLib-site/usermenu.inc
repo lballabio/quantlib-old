@@ -42,13 +42,6 @@
 </div>
 
 <hr>
-<h3 class="navbartitle"><a href="http://www.statpro.com/quantlib_forum">First QuantLib Forum</a></h3>
-<div class="center"><strong>London, January 18th 2011</strong></div>
-<ul class="navbarlist">
-<li class="navlink"><a href="http://www.statpro.com/quantlib_forum/quantlib_presentations.aspx">Presentations are now online</a></li>
-</ul>
-
-<hr>
 <div class="center">
 <a href="http://opensource.org/docs/definition.html"><img src=
 "/images/osi-certified-90x75.png" width="90" height="75" border="0"
