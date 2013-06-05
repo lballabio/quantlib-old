@@ -33,9 +33,6 @@
 
 <li class="navlink"><a href="/reference/group.html">QuantLib Group</a></li>
 
-<li class="navlink"><a href=
-"http://quantlib.referata.com">Unofficial Wiki</a></li>
-
 </ul>
 
 <hr>
