@@ -64,6 +64,11 @@ along with the corresponding spreadsheets and additional material.
 The first QuantLib forum was held in London on January 18th, 2011,
 thanks to the sponsorship of StatPro.
 <ul>
+<li>Slides of <strong>Ferdinando Ametrano</strong>'s
+presentation, <em>Yield curves for forward Euribor estimation and
+CSA-discounting</em>, are available here [<a href=
+"slides/rate-curves.pdf">PDF</a>].
+</li>
 <li>Slides of <strong>Marco Marchioro</strong>'s
 presentation, <em>Risk simulations for a bond in QuantLibXL</em>, are
 available from the <em>Conferences</em> page on his
