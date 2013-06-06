@@ -7,7 +7,7 @@
 
 <li class="navlink"><a href="/reference/index.html">Reference Manual</a></li>
 
-<li class="navlink"><a href="/svn.shtml">Subversion</a></li>
+<li class="navlink"><a href="/git.shtml">Git Repository</a></li>
 
 <li class="navlink"><a href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bugs</a></li>

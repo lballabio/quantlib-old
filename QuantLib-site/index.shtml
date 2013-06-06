@@ -111,9 +111,6 @@ the most recent updates on the project.</li>
 <li>The released files (source code, binaries, documentation, etc.)
 are available at the <a href="download.shtml">download
 page</a>.</li>
-<li>The <a href="svn.shtml">QuantLib SVN repository</a>, providing all
-the snapshots of the development, can be accessed directly or through
-a web interface.</li>
 <li>To submit a bug report, please use the <a href=
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bug
 Tracker</a>.</li>
@@ -125,6 +122,8 @@ Manager</a>.</li>
 "http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">let
 us know</a>.</li>
 </ul>
+
+<p>Our code is hosted on <a href="https://github.com/">GitHub</a>.</p>
 
 </div>
 

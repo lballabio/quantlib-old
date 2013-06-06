@@ -75,16 +75,19 @@
    any relevant portion of code---and get a statement in print.
 
    <br>
-   As for the mechanics of contribution, the preferred way is to
-   submit a patch to the <a
+   As for the mechanics of contribution, the preferred way by far is to
+   submit a pull request on GitHub.
+
+   <br>
+   If you're not comfortable with that, you can submit a patch to the <a
    href="http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">
    SourceForge patch tracker</a>.  This will make it less likely that
    your files are forgotten in the depths of a developer's mailbox.
 
    <br>
    The preferred format is a diff file as created by the 'patch'
-   utility.  If possible, send differences against the current (HEAD)
-   code base available in the SVN repository;
+   utility.  If possible, send differences against the current master
+   code base available in the Git repository;
    diff files based on the latest release might not apply to the
    latest sources.
 

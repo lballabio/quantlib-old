@@ -20,7 +20,10 @@
 <div id="content">
 
 <h1 class="center">QuantLib CVS Repository</h1>
-<p>At the end of March 2007, the QuantLib project migrated its code repository to Subversion. CVS access is no longer available. See our <a href="/svn.shtml">SVN page</a> for information on accessing our code via Subversion.</p>
+<p>At the end of March 2007, the QuantLib project migrated its code
+repository to Subversion; at the beginning of June 2013, to Git. CVS
+access is no longer available. See our <a href="/git.shtml">Git
+page</a> for information on accessing our code.</p>
 
 </div>
 

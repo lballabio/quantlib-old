@@ -26,7 +26,7 @@
  </url>
  <url>
   <loc>http://quantlib.org/faq.shtml</loc>
-  <lastmod>2009-04-21T10:24:45Z</lastmod>
+  <lastmod>2013-06-05T12:00:00Z</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
@@ -61,7 +61,7 @@
  </url>
  <url>
   <loc>http://quantlib.org/mailinglists.shtml</loc>
-  <lastmod>2007-11-12T14:22:10Z</lastmod>
+  <lastmod>2013-06-05T12:00:00Z</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
@@ -150,8 +150,8 @@
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://quantlib.org/svn.shtml</loc>
-  <lastmod>2007-04-01T14:20:52Z</lastmod>
+  <loc>http://quantlib.org/git.shtml</loc>
+  <lastmod>2013-06-05T12:00:00Z</lastmod>
   <priority>0.5000</priority>
  </url>
 </urlset>

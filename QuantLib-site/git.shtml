@@ -1,0 +1,78 @@
+<!--
+ $Id: cvs.shtml 6934 2006-05-23 12:18:52Z lballabio $
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="qlmeta.inc"-->
+<meta name="author" content="Luigi Ballabio">
+<meta name="copyright" content=
+"StatPro Italia srl (C) 2013">
+<meta name="description" content="QuantLib Git">
+<title>QuantLib Git Repository</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="header.inc"-->
+<div id="menu">
+<!--#include virtual="devmenu.inc"-->
+</div>
+<div id="content">
+
+<h1 class="center">QuantLib Git Repository</h1>
+
+<h3>Using Git</h3>
+<p>If you're new to Git, you can read the
+free <a href="http://git-scm.com/book"><em>Pro Git</em></a> book; its
+first couple of chapters contain the information you need to get
+started.</p>
+
+<p>Also, <a href="http://git-scm.com/book/ch5-2.html#Commit-Guidelines">the
+commit guidelines in chapter 5.2</a> are suggested reading, especially
+the part on commit messages.</p>
+
+
+<h3>Repository access</h3>
+<p>For the time being, the main repository is the one located on
+GitHub
+at <a href="https://github.com/lballabio/quantlib">https://github.com/lballabio/quantlib</a>;
+from there, you can also browse the code and the commit history.  If
+you only want to check out the code, you can clone it directly by
+issuing the command</p>
+<pre>
+git clone https://github.com/lballabio/quantlib.git
+</pre>
+<p>(if you're using some other tool, the actual steps might vary but
+the same URL can be used).  However, and especially if you want to
+contribute, a better way is to get a GitHub account, fork the
+repository, and check out your fork to your computer.  This way,
+you'll be able to push changes to your fork and ask for them to be
+pulled into the main repository.</p>
+
+<p><strong>Note for C++ Unix users</strong>: if you use Git, you will
+need some GNU tools that usually only developers use, and which are
+not required to build QuantLib from released tarballs. These are
+automake, autoconf, libtool, GNU m4, GNU make, and others which might
+escape me now. They all come with recent GNU/Linux distributions.</p>
+<p>To begin the build process from a Git working copy, start
+with:</p>
+<pre>
+sh ./autogen.sh
+</pre>
+<p>which will prepare the package for compilation. You can then use
+<em>./configure</em> and <em>make</em> in the usual way.</p>
+
+<br>
+<h3>Git commit messages</h3>
+If you want to stay abreast of the latest changes in the repository, GitHub provides an RSS feed which is updated each time a commit is made; you can subscribe at <a href="https://github.com/lballabio/quantlib/commits/master.atom">https://github.com/lballabio/quantlib/commits/master.atom</a>.
+
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>
