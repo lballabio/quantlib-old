@@ -33,7 +33,17 @@ namespace QuantLib {
                                Rate strike)
     : swapIndex_(swapIndex),
       delivery_(Settlement::Physical),
+      fixingDate_(Null<Date>()),
       optionTenor_(optionTenor),
+      optionConvention_(ModifiedFollowing),
+      strike_(strike) {}
+
+    MakeSwaption::MakeSwaption(const boost::shared_ptr<SwapIndex>& swapIndex,
+                               const Date& fixingDate,
+                               Rate strike)
+    : swapIndex_(swapIndex),
+      delivery_(Settlement::Physical),
+      fixingDate_(fixingDate),
       optionConvention_(ModifiedFollowing),
       strike_(strike) {}
 
@@ -46,7 +56,8 @@ namespace QuantLib {
 
         const Date& evaluationDate = Settings::instance().evaluationDate();
         const Calendar& fixingCalendar = swapIndex_->fixingCalendar();
-        fixingDate_ = fixingCalendar.advance(evaluationDate, optionTenor_,
+        if(fixingDate_ == Null<Date>())
+            fixingDate_ = fixingCalendar.advance(evaluationDate, optionTenor_,
                                              optionConvention_);
         if (exerciseDate_ == Null<Date>()) {
             exercise_ = boost::shared_ptr<Exercise>(new
