@@ -49,10 +49,10 @@ namespace QuantLib {
           public:
             BicubicSplineImpl(const I1& xBegin, const I1& xEnd,
                               const I2& yBegin, const I2& yEnd,
-                              const M& zData)
+                              const M& zData, const bool monotonic)
             : Interpolation2D::templateImpl<I1,I2,M>(xBegin,xEnd,
                                                      yBegin,yEnd,
-                                                     zData) {
+                                                     zData), monotonic_(monotonic) {
                 calculate();
             }
             void calculate() {
@@ -72,7 +72,7 @@ namespace QuantLib {
 
                 CubicInterpolation spline(this->yBegin_, this->yEnd_,
                                           section.begin(),
-                                          CubicInterpolation::Spline, false,
+                                          CubicInterpolation::Spline, monotonic_,
                                           CubicInterpolation::SecondDerivative, 0.0,
                                           CubicInterpolation::SecondDerivative, 0.0);
                 return spline(y,true);
