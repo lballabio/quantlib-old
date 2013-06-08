@@ -10,6 +10,7 @@ this_include_HEADERS = \
     cashflows.hpp \
     cashflowvectors.hpp \
     cmscoupon.hpp \
+    cmsreplicationpricer.hpp \
     conundrumpricer.hpp \
     coupon.hpp \
     couponpricer.hpp \
@@ -31,7 +32,9 @@ this_include_HEADERS = \
     replication.hpp \
     simplecashflow.hpp \
     timebasket.hpp \
-    yoyinflationcoupon.hpp
+    yoyinflationcoupon.hpp \
+    fixedinflationcoupon.hpp \
+    zcinflationcapfloor.hpp
 
 libCashFlows_la_SOURCES = \
     averagebmacoupon.cpp \
@@ -40,6 +43,7 @@ libCashFlows_la_SOURCES = \
     cashflows.cpp \
     cashflowvectors.cpp \
     cmscoupon.cpp \
+    cmsreplicationpricer.cpp \
     conundrumpricer.cpp \
     coupon.cpp \
     couponpricer.cpp \
@@ -62,6 +66,9 @@ libCashFlows_la_SOURCES = \
     simplecashflow.cpp \
     timebasket.cpp \
     yoyinflationcoupon.cpp
+    yoyinflationcoupon.cpp \
+    fixedinflationcoupon.cpp \
+    zcinflationcapfloor.cpp
 
 noinst_LTLIBRARIES = libCashFlows.la
 

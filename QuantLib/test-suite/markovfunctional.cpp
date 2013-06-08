@@ -39,6 +39,7 @@
 #include <ql/termstructures/yield/ratehelpers.hpp>
 #include <ql/time/daycounters/actual360.hpp>
 #include <ql/time/daycounters/thirty360.hpp>
+#include <ql/time/daycounters/actualactual.hpp>
 #include <ql/instruments/makeswaption.hpp>
 #include <ql/instruments/makevanillaswap.hpp>
 #include <ql/instruments/makecapfloor.hpp>
@@ -48,6 +49,11 @@
 #include <ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp>
 #include <ql/models/shortrate/calibrationhelpers/caphelper.hpp>
 #include <ql/math/optimization/conjugategradient.hpp>
+#include <ql/experimental/models/cmsswap.hpp>
+#include <ql/experimental/models/cmsswaption.hpp>
+#include <ql/experimental/models/markovfunctionalcmsswaptionengine.hpp>
+
+#include <ql/currencies/europe.hpp>
 
 #include <stdio.h>
 
@@ -534,6 +540,27 @@ Disposable<std::vector<Period> > tenorsCalBasket3() {
 
 }
 
+// Calibration Basket 4: Long Term CMS10y basket
+Disposable<std::vector<Date> > expiriesCalBasket4() {
+
+		std::vector<Date> res;
+		Date referenceDate_ = Settings::instance().evaluationDate();
+
+		for(int i=1;i<=50;i++)
+			res.push_back(NullCalendar().advance(referenceDate_,i*Years));
+
+		return res;
+
+}
+
+Disposable<std::vector<Period> > tenorsCalBasket4() {
+
+		std::vector<Period> res(50,2*Years);
+
+		return res;
+
+}
+
 void MarkovFunctionalTest::testCalibrationOneInstrumentSet() {
 
 	const Real tol0 = 0.0001; //  1bp tolerance for model zero rates vs. market zero rates (note that model zero rates are implied by the calibration of the numeraire to the smile)
@@ -1013,6 +1040,7 @@ void MarkovFunctionalTest::testCalibrationTwoInstrumentSets() {
 		ch1[i].setPricingEngine(blackEngine);
 		Real blackPrice = ch1[i].NPV();
 		Real blackVega = ch1[i].result<Real>("vega");
+
 		ch1[i].setPricingEngine(mfSwaptionEngine1);
 		Real mfPrice = ch1[i].NPV();
 		if( fabs(blackPrice-mfPrice) / blackVega  > tol1 ) BOOST_MESSAGE("Basket 1 / flat yts, vts: Secondary instrument set calibration failed for instrument #" << i << " black premium is " << blackPrice << " while model premium is " << mfPrice << " (market vega is " << blackVega << ")");
@@ -1156,6 +1184,185 @@ void MarkovFunctionalTest::testBermudanSwaption() {
 
 }
 
+/*void MarkovFunctionalTest::testCmsSwaption() {
+
+	BOOST_MESSAGE("Testing markov functional cms swaption engine...");
+
+	Date savedEvalDate = Settings::instance().evaluationDate();
+	Date referenceDate(14,November,2012);
+	Settings::instance().evaluationDate() = referenceDate;
+
+	Handle<YieldTermStructure> flatYts_ = flatYts();
+	Handle<YieldTermStructure> md0Yts_ = md0Yts();
+	Handle<SwaptionVolatilityStructure> flatSwaptionVts_ = flatSwaptionVts();
+	Handle<SwaptionVolatilityStructure> md0SwaptionVts_ = md0SwaptionVts();
+	Handle<OptionletVolatilityStructure> flatOptionletVts_ = flatOptionletVts();
+	Handle<OptionletVolatilityStructure> md0OptionletVts_ = md0OptionletVts();
+
+	boost::shared_ptr<SwapIndex> swapIndex(new EuriborSwapIsdaFixA(10*Years,md0Yts_)); // one curve setup, i.e. model curve serves as all indices forwarding and discounting curve
+	boost::shared_ptr<IborIndex> iborIndex(new Euribor(6*Months,md0Yts_));
+
+	// define underlying cms swap
+
+	Date effectiveDate = TARGET().advance(referenceDate,2*Days);
+	Date terminationDate = TARGET().advance(effectiveDate,10*Years);
+
+	Schedule floatSchedule(effectiveDate,terminationDate,6*Months,TARGET(),ModifiedFollowing,ModifiedFollowing,DateGeneration::Backward,false);
+	Schedule strucSchedule(effectiveDate,terminationDate,1*Years,TARGET(),ModifiedFollowing,ModifiedFollowing,DateGeneration::Backward,false);
+
+	boost::shared_ptr<CmsSwap> underlying(new CmsSwap(CmsSwap::Payer,100000000.0,strucSchedule,swapIndex,0.0,0.0,0.0,Thirty360(),floatSchedule,iborIndex,0.0,Actual360()));
+
+	// exercise dates defined as structured leg start dates minus 5 bd
+	// also extract structured fixing Dates for later use
+
+	std::vector<Date> exerciseDates, structuredFixingDates;
+	std::vector<Period> cmsTenors;
+	for(Size i=1;i<strucSchedule.size();i++) {
+		if(i<strucSchedule.size()-1) 
+			exerciseDates.push_back(TARGET().advance(strucSchedule.at(i),-5*Days));
+		structuredFixingDates.push_back(swapIndex->fixingDate(strucSchedule.at(i)));
+		cmsTenors.push_back(10*Years);
+	}
+
+	// define cms swaption
+
+	boost::shared_ptr<Exercise> bermudanExercise(new BermudanExercise(exerciseDates));
+	boost::shared_ptr<CmsSwaption> cmsSwaption(new CmsSwaption(underlying,bermudanExercise));
+
+	// the vol step dates are chosen to be the exercise into dates except the last one
+	
+	std::vector<Date> volstepdates(exerciseDates.size()-1);
+	std::copy(exerciseDates.begin(),--exerciseDates.end(),volstepdates.begin());
+	std::vector<Real> vols(volstepdates.size()+1,1.0); // we need number of exercise dates plus one volatilities
+
+	// set up the model, numeraire calibration on cms swaptions on structured leg fixing date
+	// the volatility function is calibrated later on atm coterminal swaptions
+
+	boost::shared_ptr<MarkovFunctional> mf(new MarkovFunctional(md0Yts_,0.01,volstepdates,vols,md0SwaptionVts_,structuredFixingDates,cmsTenors,swapIndex,
+		MarkovFunctional::ModelSettings()));
+
+	// helper for coterminal calibration
+
+	boost::shared_ptr<MarkovFunctionalSwaptionEngine> mfSwaptionEngine(new MarkovFunctionalSwaptionEngine(mf,64,7.0));
+
+	std::vector<boost::shared_ptr<CalibrationHelper> > calibrationHelper;
+	for(Size i=0;i<exerciseDates.size();i++) {
+		Real swapLen = ActualActual().yearFraction(swapIndex->valueDate(exerciseDates[i]),strucSchedule.dates().back());
+		Period swapTen = Rounding(0).operator()(swapLen*12.0) * Months; 
+		Real vol = md0SwaptionVts_->volatility(exerciseDates[i],swapTen,boost::dynamic_pointer_cast<SwaptionVolatilityCube>(md0SwaptionVts_.currentLink())->atmStrike(exerciseDates[i],swapTen));
+		std::cout << "adding swaption helper " << i << " with " << exerciseDates[i] << "/" << swapTen << " atm = " << boost::dynamic_pointer_cast<SwaptionVolatilityCube>(md0SwaptionVts_.currentLink())->atmStrike(exerciseDates[i],swapTen) << " vol = " << vol << std::endl;
+		calibrationHelper.push_back(boost::shared_ptr<CalibrationHelper>(new SwaptionHelper(exerciseDates[i],swapTen,Handle<Quote>(new SimpleQuote(vol)),iborIndex,1*Years,Thirty360(),Actual360(),md0Yts_)));
+		calibrationHelper.back()->setPricingEngine(mfSwaptionEngine);
+	}
+
+	// calibrate the model to coterminal swaping result of code execution
+	LevenbergMarquardt om;
+	//ConjugateGradient om;
+	EndCriteria ec(1000,500,1e-2,1e-2,1e-2);
+
+	mf->calibrate(calibrationHelper,om,ec);
+	
+	std::cout << "Calibrated parameters Cms Swaption: ";
+	Array params2 = mf->params();
+	for(Size i=0;i<params2.size();i++) std::cout << params2[i] << ";";
+	std::cout << std::endl;
+
+	std::cout << "Calibration errors:" << std::endl;
+	for(Size i=0;i<calibrationHelper.size();i++) {
+		std::cout << i << " - market " << calibrationHelper[i]->marketValue() << " model " << calibrationHelper[i]->modelValue() << std::endl; 
+	}
+
+	//std::cout << "Model status:" << std::endl << mf->modelOutputs() << std::endl;
+
+	// price the cms swaption 
+
+	boost::shared_ptr<MarkovFunctionalCmsSwaptionEngine> mfCmsSwaptionEngine(new MarkovFunctionalCmsSwaptionEngine(mf,64,7.0,true,false));
+	cmsSwaption->setPricingEngine(mfCmsSwaptionEngine);
+
+	std::cout << "NPV = " << cmsSwaption->NPV() << std::endl;
+
+	// reset eval date
+
+	Settings::instance().evaluationDate() = savedEvalDate;
+
+    }*/
+
+
+void MarkovFunctionalTest::testLongTermCalibration() {
+
+	const Real tol0 = 0.0001; //  1bp tolerance for model zero rates vs. market zero rates (note that model zero rates are implied by the calibration of the numeraire to the smile)
+	const Real tol1 = 0.0001;  // 1bp tolerance for model call put premia vs. market premia
+
+	BOOST_MESSAGE("Testing markov functional calibration to long term instrument set...");
+
+	Date savedEvalDate = Settings::instance().evaluationDate();
+	Date referenceDate(14,November,2012);
+	Settings::instance().evaluationDate() = referenceDate;
+
+	Handle<YieldTermStructure> flatYts_ = flatYts();
+	Handle<YieldTermStructure> md0Yts_ = md0Yts();
+	Handle<SwaptionVolatilityStructure> flatSwaptionVts_ = flatSwaptionVts();
+	Handle<SwaptionVolatilityStructure> md0SwaptionVts_ = md0SwaptionVts();
+	Handle<OptionletVolatilityStructure> flatOptionletVts_ = flatOptionletVts();
+	Handle<OptionletVolatilityStructure> md0OptionletVts_ = md0OptionletVts();
+
+	std::vector<Real> money; // use a grid with fewer points for smile arbitrage testing and model outputs than the default grid for the testing here
+	money.push_back(0.1);
+	money.push_back(0.25);
+	money.push_back(0.50);
+	money.push_back(0.75);
+	money.push_back(1.0);
+	money.push_back(1.25);
+	money.push_back(1.50);
+	money.push_back(2.0);
+	money.push_back(5.0);
+
+	//boost::shared_ptr<IborIndex> iborIndex(new Euribor(6*Months));
+	//boost::shared_ptr<SwapIndex> swapIndexBase(new EuriborSwapIsdaFixA(1*Years));
+	boost::shared_ptr<IborIndex> iborIndex(new IborIndex("blabla",6*Months,0,EURCurrency(),NullCalendar(),Unadjusted,false,Actual360()));
+	boost::shared_ptr<SwapIndex> swapIndexBase(new SwapIndex("blabla",1*Years,0,EURCurrency(),NullCalendar(),1*Years,Unadjusted,Thirty360(),iborIndex));
+
+	std::vector<Date> volStepDates;
+	std::vector<Real> vols;
+	vols.push_back(1.0);
+
+	//unsigned oldState;
+	//_controlfp_s(&oldState, _PC_64, _MCW_PC);
+
+	//boost::math::ntl::RR::SetPrecision(150);
+	boost::shared_ptr<MarkovFunctional> mf1(new MarkovFunctional(flatYts_,0.01,volStepDates,vols,flatSwaptionVts_,expiriesCalBasket4(),tenorsCalBasket4(),swapIndexBase,
+		MarkovFunctional::ModelSettings().withGaussHermitePoints(32) // 64
+		                                 .withYGridPoints(64) // 128
+										 .withYStdDevs(7.0) // 12.0
+										 .withUpperRateBound(2.0) // 4.0
+										 //.withMarketRateAccuracy(1E-15)
+										 //.withDigitalGap(1E-8)
+										 .withEnableNtl(false) // true
+										 .withSmileMoneynessCheckpoints(money)
+										 .withAdjustments(MarkovFunctional::ModelSettings::AdjustYts) // AdjustNone
+										 ));
+
+	outputSurfaces(mf1,flatYts_); 
+
+	MarkovFunctional::ModelOutputs outputs1 = mf1->modelOutputs();   // this costs a lot of time, so only use it if you want to check the calibration
+	BOOST_MESSAGE(outputs1);
+
+	//for(Size i=0; i<outputs1.expiries_.size(); i++) {
+	//	if(fabs(outputs1.marketZerorate_[i] - outputs1.modelZerorate_[i]) > tol0) BOOST_ERROR("Market zero rate (" << outputs1.marketZerorate_[i] << ") and model zero rate (" << outputs1.modelZerorate_[i] << ") do not agree.");
+	//}
+
+	//for(Size i=0;i<outputs1.expiries_.size(); i++) {
+	//	for(Size j=0;j<outputs1.smileStrikes_[i].size();j++) {
+	//		if(fabs(outputs1.marketCallPremium_[i][j]-outputs1.modelCallPremium_[i][j]) > tol1)
+	//			BOOST_ERROR("Market call premium (" << outputs1.marketCallPremium_[i][j] << ") does not match model premium (" << outputs1.modelCallPremium_[i][j] << ")");
+	//		if(fabs(outputs1.marketPutPremium_[i][j]-outputs1.modelPutPremium_[i][j]) > tol1)
+	//			BOOST_ERROR("Market put premium (" << outputs1.marketPutPremium_[i][j] << ") does not match model premium (" << outputs1.modelPutPremium_[i][j] << ")");
+	//	}
+	//}
+
+	Settings::instance().evaluationDate() = savedEvalDate;
+
+}
 
 
 test_suite* MarkovFunctionalTest::suite() {
@@ -1165,5 +1372,9 @@ test_suite* MarkovFunctionalTest::suite() {
     suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testVanillaEngines));
     suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testCalibrationTwoInstrumentSets));
     suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testBermudanSwaption));
+
+	//suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testCmsSwaption));
+    //suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testLongTermCalibration));
+
 	return suite;
 }

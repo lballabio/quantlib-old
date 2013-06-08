@@ -26,25 +26,25 @@ namespace QuantLib {
       public:
         rStarFinder(const boost::shared_ptr<OneFactorAffineModel>& model,
                     Real nominal,
-                    Time maturity,
+					Time maturity, 
+                    Time valueTime, // PC
                     const std::vector<Time>& fixedPayTimes,
                     const std::vector<Real>& amounts)
-        : strike_(nominal), maturity_(maturity), times_(fixedPayTimes),
-          amounts_(amounts), model_(model) {}
+        : strike_(nominal), maturity_(maturity), valueTime_(valueTime), times_(fixedPayTimes), amounts_(amounts), model_(model) {}
 
         Real operator()(Rate x) const {
             Real value = strike_;
             Size size = times_.size();
             for (Size i=0; i<size; i++) {
                 Real dbValue =
-                    model_->discountBond(maturity_, times_[i], x);
+                    model_->discountBond(maturity_, times_[i], x) / model_->discountBond(maturity_, valueTime_, x);
                 value -= amounts_[i]*dbValue;
             }
             return value;
         }
       private:
         Real strike_;
-        Time maturity_;
+        Time maturity_,valueTime_;
         std::vector<Time> times_;
         const std::vector<Real>& amounts_;
         const boost::shared_ptr<OneFactorAffineModel>& model_;
@@ -58,6 +58,8 @@ namespace QuantLib {
         QL_REQUIRE(arguments_.exercise->type() == Exercise::European,
                    "cannot use the Jamshidian decomposition "
                    "on exotic swaptions");
+
+		QL_REQUIRE(arguments_.swap->spread() == 0.0, "non zero spread (" << arguments_.swap->spread() << ") not allowed"); // PC
 
         Date referenceDate;
         DayCounter dayCounter;
@@ -79,12 +81,12 @@ namespace QuantLib {
                                                 arguments_.exercise->date(0));
 
         std::vector<Time> fixedPayTimes(arguments_.fixedPayDates.size());
+		Time valueTime = dayCounter.yearFraction(referenceDate,arguments_.fixedResetDates[0]); // PC
         for (Size i=0; i<fixedPayTimes.size(); i++)
-            fixedPayTimes[i] =
-                dayCounter.yearFraction(referenceDate,
-                                        arguments_.fixedPayDates[i]);
+            fixedPayTimes[i] = dayCounter.yearFraction(referenceDate,
+											arguments_.fixedPayDates[i]);
 
-        rStarFinder finder(*model_, arguments_.nominal, maturity,
+        rStarFinder finder(*model_, arguments_.nominal, maturity, valueTime, // PC
                            fixedPayTimes, amounts);
         Brent s1d;
         Rate minStrike = -10.0;
@@ -105,9 +107,9 @@ namespace QuantLib {
                                         arguments_.fixedPayDates[i]);
             Real strike = model_->discountBond(maturity,
                                                fixedPayTime,
-                                               rStar);
+                                               rStar) / model_->discountBond(maturity,valueTime,rStar); // PC
             Real dboValue = model_->discountBondOption(
-                                               w, strike, maturity,
+                                               w, strike, maturity, valueTime, // PC
                                                fixedPayTime);
             value += amounts[i]*dboValue;
         }

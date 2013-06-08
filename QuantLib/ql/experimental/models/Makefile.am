@@ -11,7 +11,18 @@ this_include_HEADERS = \
 	markovfunctionalcapfloorengine.hpp \
 	markovfunctionalswaptionengine.hpp \
 	mfstateprocess.hpp \
-	smilesectionutils.hpp
+	smilesectionutils.hpp \
+	svismilesection.hpp \
+	gsr.hpp \
+	cmsswap.hpp \
+	cmsswaption.hpp \
+	gsrjamshidianswaptionengine.hpp \
+	gsrnonstandardswaptionengine.hpp \
+	gsrprocess.hpp \
+	gsrswaptionengine.hpp \
+	markovfunctionalcmsswaptionengine.hpp \
+	nonstandardswap.hpp \
+	nonstandardswaption.hpp	
 
 libModels_la_SOURCES = \
 	atmadjustedsmilesection.cpp \
@@ -21,7 +32,18 @@ libModels_la_SOURCES = \
 	markovfunctionalcapfloorengine.cpp \
 	markovfunctionalswaptionengine.cpp \
 	mfstateprocess.cpp \
-	smilesectionutils.cpp
+	smilesectionutils.cpp \
+	svismilesection.cpp \
+	gsr.cpp \
+	cmsswap.cpp \
+	cmsswaption.cpp \
+	gsrjamshidianswaptionengine.cpp \
+	gsrnonstandardswaptionengine.cpp \
+	gsrprocess.cpp \
+	gsrswaptionengine.cpp \
+	markovfunctionalcmsswaptionengine.cpp \
+	nonstandardswap.cpp \
+	nonstandardswaption.cpp	
 
 noinst_LTLIBRARIES = libModels.la
 

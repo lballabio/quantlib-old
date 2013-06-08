@@ -46,11 +46,52 @@ namespace QuantLib {
                        const DayCounter& floatingLegDayCounter,
                        const Handle<YieldTermStructure>& termStructure,
                        CalibrationHelper::CalibrationErrorType errorType
-                                      = CalibrationHelper::RelativePriceError);
+                                      = CalibrationHelper::RelativePriceError,
+					   const Real strike = Null<Real>(),   // PC allow to specify strike which is not atm
+					   const Real nominal = 1.0); // PC allow for non unit nominal, which does not affect calibration, but a nice information in connection with non standard swaptions
+		SwaptionHelper(const Date& exerciseDate, // PC allow to construct by exercise date
+                       const Period& length,
+                       const Handle<Quote>& volatility,
+                       const boost::shared_ptr<IborIndex>& index,
+                       const Period& fixedLegTenor,
+                       const DayCounter& fixedLegDayCounter,
+                       const DayCounter& floatingLegDayCounter,
+                       const Handle<YieldTermStructure>& termStructure,
+                       CalibrationHelper::CalibrationErrorType errorType
+                                      = CalibrationHelper::RelativePriceError,
+					   const Real strike = Null<Real>(),
+					   const Real nominal = 1.0);
+		SwaptionHelper(const Date& exerciseDate, // PC allow to construct by exercise date and end date
+                       const Date& endDate,
+                       const Handle<Quote>& volatility,
+                       const boost::shared_ptr<IborIndex>& index,
+                       const Period& fixedLegTenor,
+                       const DayCounter& fixedLegDayCounter,
+                       const DayCounter& floatingLegDayCounter,
+                       const Handle<YieldTermStructure>& termStructure,
+                       CalibrationHelper::CalibrationErrorType errorType
+                                      = CalibrationHelper::RelativePriceError,
+					   const Real strike = Null<Real>(),
+					   const Real nominal = 1.0);
         virtual void addTimesTo(std::list<Time>& times) const;
         virtual Real modelValue() const;
         virtual Real blackPrice(Volatility volatility) const;
+
+		Real volatility() const { return volatility_->value(); }
+		Real nominal() const { return swap_->nominal(); }
+		boost::shared_ptr<VanillaSwap> underlyingSwap() const { return swap_; }
+		boost::shared_ptr<Swaption> swaption() const { return swaption_; }
+
       private:
+		void init(const Date& exerciseDate, const Date& startDate, const Date& endDate, // PC
+                       const Handle<Quote>& volatility,
+                       const boost::shared_ptr<IborIndex>& index,
+                       const Period& fixedLegTenor,
+                       const DayCounter& fixedLegDayCounter,
+                       const DayCounter& floatingLegDayCounter,
+                       const Handle<YieldTermStructure>& termStructure,
+					   const Real strike, const Real nominal);
+
         Rate exerciseRate_;
         boost::shared_ptr<VanillaSwap> swap_;
         boost::shared_ptr<Swaption> swaption_;

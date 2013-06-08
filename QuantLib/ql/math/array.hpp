@@ -38,6 +38,13 @@
 #include <vector>
 #include <iomanip>
 
+#include <boost/lambda/lambda.hpp>
+#include <boost/lambda/bind.hpp>
+
+
+#include <ql/math/comparison.hpp>
+
+
 namespace QuantLib {
 
     //! 1-D array used in linear algebra.
@@ -642,8 +649,10 @@ namespace QuantLib {
         out << "[ ";
         if (!a.empty()) {
             for (Size n=0; n<a.size()-1; ++n)
+
                 out << std::setw(int(width)) << a[n] << "; ";
             out << std::setw(int(width)) << a.back();
+
         }
         out << " ]";
         return out;

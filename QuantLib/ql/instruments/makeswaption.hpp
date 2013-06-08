@@ -47,6 +47,10 @@ namespace QuantLib {
                      const Period& optionTenor,
                      Rate strike = Null<Rate>());
 
+        MakeSwaption(const boost::shared_ptr<SwapIndex>& swapIndex,
+                     const Date& fixingDate,
+                     Rate strike = Null<Rate>());
+
         operator Swaption() const;
         operator boost::shared_ptr<Swaption>() const ;
 

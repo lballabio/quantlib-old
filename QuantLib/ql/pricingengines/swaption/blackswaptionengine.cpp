@@ -146,6 +146,9 @@ namespace QuantLib {
         results_.additionalResults["vega"] = std::sqrt(exerciseTime) *
             blackFormulaStdDevDerivative(strike, atmForward, stdDev, annuity,
                                                                 displacement_);
+
+		results_.additionalResults["cashItmProbability"] = blackFormulaCashItmProbability(w,strike,atmForward,stdDev,displacement_);
+		results_.additionalResults["assetItmProbability"] = blackFormulaAssetItmProbability(w,strike,atmForward,stdDev,displacement_);
     }
 
 }

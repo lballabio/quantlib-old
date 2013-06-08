@@ -74,6 +74,20 @@ namespace QuantLib {
                                       the accrual period.
             @param protectionStart  The first date where a default
                                     event will trigger the contract.
+									For standard CDS this is usually
+									trade date + 1 day (unadjusted).
+									It does not mean the legal start
+									of protection.
+			@param lastPeriodDayCounter Day-count convention for accrual in last period
+			@param standardCdsStartDelayDays In case of a standard CDS which is identified
+			                                 by the date generation rule CDS this is the 
+											 start delay, usually 1 day (unadjusted).
+											 The protection start, if given, overrides
+											 this parameter.
+			@param standardCdsUpfrontDelayDays In case of a standard CDS which is identified
+			                                   by the date generation rule CDS this is the
+											   delay for the upfront premium and accrual rebate,
+											   usually 3 days adjusted with weekends only calendar.
         */
         CreditDefaultSwap(Protection::Side side,
                           Real notional,
@@ -85,7 +99,10 @@ namespace QuantLib {
                           bool paysAtDefaultTime = true,
                           const Date& protectionStart = Date(),
                           const boost::shared_ptr<Claim>& =
-                                                  boost::shared_ptr<Claim>());
+                                                  boost::shared_ptr<Claim>(),
+						  const DayCounter& lastPeriodDayCounter = DayCounter(),
+						  const Natural standardCdsStartDelayDays = 1,
+						  const Natural standardCdsUpfrontDelayDays = 3);
         //! CDS quoted as upfront and running spread
         /*! @param side  Whether the protection is bought or sold.
             @param notional  Notional value
@@ -104,7 +121,23 @@ namespace QuantLib {
                                      the accrual period.
             @param protectionStart The first date where a default
                                    event will trigger the contract.
+									For standard CDS this is usually
+									trade date + 1 day (unadjusted).
+									It does not mean the legal start
+									of protection.
             @param upfrontDate Settlement date for the upfront payment.
+			@param lastPeriodDayCounter Day-count convention for accrual in last period
+			@param standardCdsStartDelayDays In case of a standard CDS which is identified
+			                                 by the date generation rule CDS this is the 
+											 start delay, usually 1 day (unadjusted).
+											 The protection start, if given, overrides
+											 this parameter.
+			@param standardCdsUpfrontDelayDays In case of a standard CDS which is identified
+			                                   by the date generation rule CDS this is the
+											   delay for the upfront premium and accrual rebate,
+											   usually 3 days adjusted with weekends only calendar.
+											   The upfront date, if given, overrides this
+											   parameter.
         */
         CreditDefaultSwap(Protection::Side side,
                           Real notional,
@@ -118,7 +151,10 @@ namespace QuantLib {
                           const Date& protectionStart = Date(),
                           const Date& upfrontDate = Date(),
                           const boost::shared_ptr<Claim>& =
-                                                  boost::shared_ptr<Claim>());
+                                                  boost::shared_ptr<Claim>(),
+						  const DayCounter& lastPeriodDayCounter = DayCounter(),
+						  const Natural standardCdsStartDelayDays = 1,
+						  const Natural standardCdsUpfrontDelayDays = 3);
         //@}
         //! \name Instrument interface
         //@{
@@ -162,6 +198,8 @@ namespace QuantLib {
         Real couponLegNPV() const;
         Real defaultLegNPV() const;
         Real upfrontNPV() const;
+		Real accrualRebateNPV() const;
+		Real upfrontPV01() const;
 
         //! Implied hazard rate calculation
         /*! \note This method performs the calculation with the
@@ -242,6 +280,8 @@ namespace QuantLib {
         mutable Real couponLegBPS_, couponLegNPV_;
         mutable Real upfrontBPS_, upfrontNPV_;
         mutable Real defaultLegNPV_;
+		mutable Real accrualRebateNPV_;
+		mutable Real upfrontPV01_;
     };
 
 
@@ -271,6 +311,8 @@ namespace QuantLib {
         Real defaultLegNPV;
         Real upfrontBPS;
         Real upfrontNPV;
+		Real accrualRebateNPV;
+		Real upfrontPV01;
         void reset();
     };
 

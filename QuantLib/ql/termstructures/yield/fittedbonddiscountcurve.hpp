@@ -209,7 +209,7 @@ namespace QuantLib {
         //! final value of cost function after optimization
         Real minimumCostValue() const;
         //! clone of the current object
-        virtual std::auto_ptr<FittingMethod> clone() const = 0;
+        virtual std::unique_ptr<FittingMethod> clone() const = 0;
       protected:
         //! constructor
         FittingMethod(bool constrainAtZero = true);

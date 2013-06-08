@@ -76,9 +76,10 @@ namespace QuantLib {
         virtual const std::vector<Rate>& coterminalSwapRates() const = 0;
         virtual const std::vector<Rate>& cmSwapRates(Size spanningForwards) const = 0;
         Rate swapRate(Size begin,
-                      Size end) const;
+                      Size end, Size step=1) const; // PC
+		Rate swapAnnuity(Size i, Size begin, Size end, Size step=1) const; // PC
 
-        virtual std::auto_ptr<CurveState> clone() const = 0;
+        virtual std::unique_ptr<CurveState> clone() const = 0;
         //@}
       protected:
         Size numberOfRates_;

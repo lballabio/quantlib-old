@@ -93,7 +93,7 @@ namespace QuantLib {
     Real SmileSection::vega(Rate strike, Real discount) const {
         Real atm = atmLevel();
         QL_REQUIRE(atm != Null<Real>(),
-                   "smile section must provide atm level to compute option price");
+                   "smile section must provide atm level to compute option vega");
         return blackFormulaVolDerivative(strike,atmLevel(),
                                          sqrt(variance(strike)),
                                          exerciseTime(),discount)*0.01;

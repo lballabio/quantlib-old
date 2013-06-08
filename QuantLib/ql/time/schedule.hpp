@@ -75,6 +75,7 @@ namespace QuantLib {
         BusinessDayConvention terminationDateBusinessDayConvention() const;
         DateGeneration::Rule rule() const;
         bool endOfMonth() const;
+		bool fullInterface() const { return fullInterface_; }
         //@}
         //! \name Iterators
         //@{

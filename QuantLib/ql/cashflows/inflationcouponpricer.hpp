@@ -27,6 +27,7 @@
 #include <ql/cashflow.hpp>
 #include <ql/option.hpp>
 #include <ql/cashflows/yoyinflationcoupon.hpp>
+#include <ql/cashflows/fixedinflationcoupon.hpp>
 #include <ql/termstructures/volatility/inflation/yoyinflationoptionletvolatilitystructure.hpp>
 
 namespace QuantLib {
@@ -167,6 +168,36 @@ namespace QuantLib {
     protected:
         Real optionletPriceImp(Option::Type, Real strike,
                                Real forward, Real stdDev) const;
+    };
+
+
+	//! base pricer for zero inflation index ratio lifted fixed rate coupons
+    class FixedInflationCouponPricer : public InflationCouponPricer {
+    public:
+		FixedInflationCouponPricer() {}
+
+        //! \name InflationCouponPricer interface
+        //@{
+        virtual Real swapletPrice() const;
+        virtual Rate swapletRate() const;
+        virtual Real capletPrice(Rate effectiveCap) const;
+        virtual Rate capletRate(Rate effectiveCap) const;
+        virtual Real floorletPrice(Rate effectiveFloor) const;
+        virtual Rate floorletRate(Rate effectiveFloor) const;
+        virtual void initialize(const InflationCoupon&);
+        //@}
+
+
+    protected:
+		virtual Rate adjustedFixing(Rate fixing = Null<Rate>()) const;
+       
+        const FixedInflationCoupon* coupon_;
+        Real gearing_;
+        Spread spread_;
+        Real discount_;
+        Real spreadLegValue_;
+		Real baseFixing_;
+		Real fixedRate_;
     };
 
 

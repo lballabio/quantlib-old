@@ -161,6 +161,8 @@
 #include "vpp.hpp"
 #include "writerextensibleoption.hpp"
 
+#include "gsr.hpp"
+
 #include <iostream>
 #include <iomanip>
 
@@ -378,6 +380,8 @@ test_suite* init_unit_test_suite(int, char* []) {
     // tests for deprecated classes
     test->add(LiborMarketModelTest::suite());
     test->add(LiborMarketModelProcessTest::suite());
+
+    test->add(GsrTest::suite());
 
     test->add(QUANTLIB_TEST_CASE(stopTimer));
 

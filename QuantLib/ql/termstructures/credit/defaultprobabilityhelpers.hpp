@@ -64,7 +64,9 @@ namespace QuantLib {
                   Real recoveryRate,
                   const Handle<YieldTermStructure>& discountCurve,
                   bool settlesAccrual = true,
-                  bool paysAtDefaultTime = true);
+                  bool paysAtDefaultTime = true,
+				  const DayCounter& lastPeriodDayCounter = DayCounter(),
+				  Integer upfrontSettlementDays = 3);
         CdsHelper(Rate quote,
                   const Period& tenor,
                   Integer settlementDays,
@@ -76,7 +78,9 @@ namespace QuantLib {
                   Real recoveryRate,
                   const Handle<YieldTermStructure>& discountCurve,
                   bool settlesAccrual = true,
-                  bool paysAtDefaultTime = true);
+                  bool paysAtDefaultTime = true,
+				  const DayCounter& lastPeriodDayCounter = DayCounter(),
+				  Integer upfrontSettlementDays = 3);
         void setTermStructure(DefaultProbabilityTermStructure*);
       protected:
         void update();
@@ -93,6 +97,8 @@ namespace QuantLib {
         Handle<YieldTermStructure> discountCurve_;
         bool settlesAccrual_;
         bool paysAtDefaultTime_;
+		DayCounter lastPeriodDC_;
+		Integer upfrontSettlementDays_;
 
         Schedule schedule_;
         boost::shared_ptr<CreditDefaultSwap> swap_;
@@ -115,7 +121,10 @@ namespace QuantLib {
                         Real recoveryRate,
                         const Handle<YieldTermStructure>& discountCurve,
                         bool settlesAccrual = true,
-                        bool paysAtDefaultTime = true);
+                        bool paysAtDefaultTime = true,
+						const DayCounter& lastPeriodDayCounter = DayCounter(),
+						Integer upfrontSettlementDays = 3
+						);
 
         SpreadCdsHelper(Rate runningSpread,
                         const Period& tenor,
@@ -128,7 +137,9 @@ namespace QuantLib {
                         Real recoveryRate,
                         const Handle<YieldTermStructure>& discountCurve,
                         bool settlesAccrual = true,
-                        bool paysAtDefaultTime = true);
+                        bool paysAtDefaultTime = true,
+						const DayCounter& lastPeriodDayCounter = DayCounter(),
+						Integer upfrontSettlementDays = 3);
         Real impliedQuote() const;
       private:
         void resetEngine();
@@ -151,7 +162,8 @@ namespace QuantLib {
                          const Handle<YieldTermStructure>& discountCurve,
                          Natural upfrontSettlementDays = 0,
                          bool settlesAccrual = true,
-                         bool paysAtDefaultTime = true);
+                         bool paysAtDefaultTime = true,
+						 const DayCounter& lastPeriodDayCounter = DayCounter());
 
         /*! \note the upfront must be quoted in fractional units. */
         UpfrontCdsHelper(Rate upfront,
@@ -167,7 +179,8 @@ namespace QuantLib {
                          const Handle<YieldTermStructure>& discountCurve,
                          Natural upfrontSettlementDays = 0,
                          bool settlesAccrual = true,
-                         bool paysAtDefaultTime = true);
+                         bool paysAtDefaultTime = true,
+						 const DayCounter& lastPeriodDayCounter = DayCounter());
         Real impliedQuote() const;
         void initializeDates();
       private:
