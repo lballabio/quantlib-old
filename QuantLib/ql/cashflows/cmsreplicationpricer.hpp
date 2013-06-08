@@ -45,19 +45,22 @@ namespace QuantLib {
 
 	    enum Strategy { DiscreteStrikeSpreads, RateBound, VegaRatio, PriceThreshold };
      
-	    Settings() : strategy_(PriceThreshold), priceThreshold_(1.0E-6),
+	    Settings() : strategy_(RateBound), vegaRatio_(0.01), priceThreshold_(1.0E-8),
 			 lowerRateBound_(0.0001), upperRateBound_(2.0000),
 			 cashSettledSwaptions_(false),
 			 enforceMonotonicPrices_(true),
-			 n_(50) {}
+			 n_(200) {}
 
 	    // hedge with given discrete strikes relative to the strike, e.g.
 	    // 0.0025, 0.0050, 0.0100, 0.0150, 0.0200, 0.0250 means that swaptions 
 	    // strike, strike+0.0025, ... , 0.0200 are used to hedge scenarios strike+0.0025, ... , 0.0250
 	    // and similar for the left side of the strike
-	    Settings& withDiscreteStrikeSpreads(const std::vector<Real>& discreteStrikeSpreads) { 
+	    // always stay between lowerRateBound and upperRateBound
+	    Settings& withDiscreteStrikeSpreads(const std::vector<Real>& discreteStrikeSpreads,
+				const Real lowerRateBound = 0.0001, const Real upperRateBound = 2.0000) { 
 		strategy_ = DiscreteStrikeSpreads; discreteStrikeSpreads_ = discreteStrikeSpreads; 
-		n_ = discreteStrikeSpreads_.size(); return *this;
+		n_ = discreteStrikeSpreads_.size();
+		lowerRateBound_ = lowerRateBound; upperRateBound_ = upperRateBound; return *this; 
 	    }
 
 	    // hedge with given lower and upper bound for swap rate, e.g. 0.0001 and 2.0000

@@ -246,6 +246,9 @@ namespace QuantLib {
 	
 	Real phi = optionType == Option::Call ? 1.0 : -1.0;
 
+	if(optionType == Option::Call && strike >= settings_.upperRateBound_) return 0.0;
+	if(optionType == Option::Put && strike <= settings_.lowerRateBound_) return 0.0;
+	
 	// determine vector of hs corresponding to scenarios;
 
 	std::vector<Real> hs;
