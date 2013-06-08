@@ -330,13 +330,17 @@ int Bermudan()
             accruals,
             strikes,
             receive);
-        Clone<MarketModelPathwiseMultiProduct> receiverPathwiseSwapPtr(receiverPathwiseSwap.clone());
+
+        std::unique_ptr<MarketModelPathwiseMultiProduct> p = receiverPathwiseSwap.clone();
+
+        Clone<MarketModelPathwiseMultiProduct> receiverPathwiseSwapPtr(p);
 
         //  callable receiver swap
         CallSpecifiedPathwiseMultiProduct callableProductPathwise(receiverPathwiseSwapPtr,
             exerciseStrategy);
-
-        Clone<MarketModelPathwiseMultiProduct> callableProductPathwisePtr(callableProductPathwise.clone());
+        
+        p = callableProductPathwise.clone();
+        Clone<MarketModelPathwiseMultiProduct> callableProductPathwisePtr(p);
 
 
         std::vector<std::vector<Matrix> > theBumps(theVegaBumps(allowFactorwiseBumping,
@@ -673,14 +677,16 @@ int InverseFloater(Real rateLevel)
                                                          floatingSpreads,
                                                          paymentTimes,
                                                          payer);
-
-        Clone<MarketModelPathwiseMultiProduct> pathwiseInverseFloaterPtr(pathwiseInverseFloater.clone());
+        
+        std::unique_ptr<MarketModelPathwiseMultiProduct> p = pathwiseInverseFloater.clone();
+        Clone<MarketModelPathwiseMultiProduct> pathwiseInverseFloaterPtr(p);
 
         //  callable inverse floater
         CallSpecifiedPathwiseMultiProduct callableProductPathwise(pathwiseInverseFloaterPtr,
                                                                                                                                                exerciseStrategy);
 
-        Clone<MarketModelPathwiseMultiProduct> callableProductPathwisePtr(callableProductPathwise.clone());
+        p = callableProductPathwise.clone();
+        Clone<MarketModelPathwiseMultiProduct> callableProductPathwisePtr(p);
 
 
         std::vector<std::vector<Matrix> > theBumps(theVegaBumps(allowFactorwiseBumping,
