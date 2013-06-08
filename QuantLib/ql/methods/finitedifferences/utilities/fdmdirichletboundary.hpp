@@ -61,7 +61,7 @@ namespace QuantLib {
         Real applyAfterApplying(Real x, Real value) const;
 
       private:
-
+		void init();
 		const boost::shared_ptr<FdmMesher>& mesher_;
 		const Size direction_;
         const Side side_;  
