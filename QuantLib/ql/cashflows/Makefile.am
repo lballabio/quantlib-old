@@ -65,7 +65,6 @@ libCashFlows_la_SOURCES = \
     replication.cpp \
     simplecashflow.cpp \
     timebasket.cpp \
-    yoyinflationcoupon.cpp
     yoyinflationcoupon.cpp \
     fixedinflationcoupon.cpp \
     zcinflationcapfloor.cpp
