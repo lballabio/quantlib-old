@@ -537,7 +537,7 @@ namespace QuantLib {
 
 		//}
 
-		return result * (discountSpread ? exp( discountSpread->operator()(numeraireTime(),true)-discountSpread->operator()(T,true) ) : 1.0 );
+		return result * (discountSpread ? exp( discountSpread->operator()(numeraireTime(),true)*numeraireTime()-discountSpread->operator()(T,true)*T ) : 1.0 );
 
 	}
 
