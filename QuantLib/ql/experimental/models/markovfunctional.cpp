@@ -497,7 +497,7 @@ namespace QuantLib {
 				ya[i] = (y[j]*stdDev_0_t + stdDev_t_T*normalIntegralX_[i]) / stdDev_0_T;
 				
 			}
-			Array res=numeraire(T,ya);
+			Array res=numeraire(T,ya,discountSpread);
 			for(Size i=0;i<modelSettings_.gaussHermitePoints_;i++) {
 				result[j]+=normalIntegralW_[i] / res[i];
 			}
@@ -537,7 +537,7 @@ namespace QuantLib {
 
 		//}
 
-		return result * (discountSpread ? exp( discountSpread->operator()(numeraireTime(),true)*numeraireTime()-discountSpread->operator()(T,true)*T ) : 1.0 );
+		return result * (discountSpread ? exp( -discountSpread->operator()(T,true)*T+discountSpread->operator()(t,true)*t ) : 1.0 );
 
 	}
 
@@ -562,7 +562,7 @@ namespace QuantLib {
 	const Real MarkovFunctional::zerobond(Time T, Time t, Real y, boost::shared_ptr<Interpolation> discountSpread) const {
 
 		calculate();
-		return deflatedZerobond(T,t,y)*numeraire(t,y) * ( discountSpread ? std::exp(- discountSpread->operator()(T,true)*T + discountSpread->operator()(t,true)*t ) : 1.0 ); 
+		return deflatedZerobond(T,t,y,discountSpread)*numeraire(t,y,discountSpread); 
 
 	}
 
@@ -586,7 +586,8 @@ namespace QuantLib {
 	const Disposable<Array> MarkovFunctional::numeraire(const Time t, const Array& y, boost::shared_ptr<Interpolation> discountSpread ) const {
 
 		calculate();
-		Array res(y.size(), termStructure()->discount(numeraireTime_,true));
+        Real discSpr = discountSpread ? exp( -discountSpread->operator()(numeraireTime(),true)*numeraireTime() + discountSpread->operator()(t,true)*t ) : 1.0; 
+		Array res(y.size(), termStructure()->discount(numeraireTime_,true)*discSpr);
 		if(t<QL_EPSILON) return res;
 		
 		Real inverseNormalization=termStructure()->discount(numeraireTime_,true)/termStructure()->discount(t,true);
@@ -607,7 +608,7 @@ namespace QuantLib {
 			res[j] = inverseNormalization / ( (tz-ta) / nb + (tb-tz) / na ) * dt;   // linear in reciprocal of normalized numeraire
 		}
 
-		return res * (discountSpread ? exp( discountSpread->operator()(t,true)-discountSpread->operator()(numeraireTime(),true)) : 1.0 );
+		return res * discSpr;
 
 	}
 
