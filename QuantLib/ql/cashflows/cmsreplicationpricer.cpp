@@ -281,6 +281,7 @@ namespace QuantLib {
 			  strikeFromVegaRatio(settings_.vegaRatio_,optionType,strike)) :
 		 std::max(settings_.lowerRateBound_, 
 			  strikeFromVegaRatio(settings_.vegaRatio_,optionType,strike));
+	    if(close(fabs(effectiveBound-strike),0.0)) return 0.0;
 	    for(Size i=0;i<settings_.n_;i++) {
 		Real k = strike + ((Real)(i+1)) * (optionType == Option::Call ?
 		    (effectiveBound - strike) / ((Real)settings_.n_) :
@@ -298,6 +299,7 @@ namespace QuantLib {
 			  strikeFromPrice(settings_.priceThreshold_,optionType,strike)) :
 		 std::max(settings_.lowerRateBound_,
 			  strikeFromPrice(settings_.priceThreshold_,optionType,strike));
+	    if(close(fabs(effectiveBound-strike),0.0)) return 0.0;
 	    for(Size i=0;i<settings_.n_;i++) {
 		Real k = strike + ((Real)(i+1)) * (optionType == Option::Call ?
 		    (effectiveBound - strike) / ((Real)settings_.n_) :
