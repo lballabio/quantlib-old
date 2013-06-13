@@ -151,6 +151,7 @@
     <Compile Include="BlackVolTermStructure.cs" />
     <Compile Include="BlackVolTermStructureHandle.cs" />
     <Compile Include="Bond.cs" />
+    <Compile Include="BondFunctions.cs" />
     <Compile Include="BoolVector.cs" />
     <Compile Include="BoundaryCondition.cs" />
     <Compile Include="BoundaryConstraint.cs" />
@@ -347,6 +348,7 @@
     <Compile Include="ForwardFlat.cs" />
     <Compile Include="ForwardFlatInterpolation.cs" />
     <Compile Include="ForwardRate.cs" />
+    <Compile Include="ForwardRateAgreement.cs" />
     <Compile Include="ForwardSpreadedTermStructure.cs" />
     <Compile Include="ForwardVanillaOption.cs" />
     <Compile Include="FractionalDividend.cs" />
@@ -387,6 +389,7 @@
     <Compile Include="HazardRate.cs" />
     <Compile Include="HazardRateCurve.cs" />
     <Compile Include="HestonModel.cs" />
+    <Compile Include="HestonModelHelper.cs" />
     <Compile Include="HestonProcess.cs" />
     <Compile Include="HimalayaOption.cs" />
     <Compile Include="HKDCurrency.cs" />
@@ -449,6 +452,7 @@
     <Compile Include="LecuyerUniformRng.cs" />
     <Compile Include="LecuyerUniformRsg.cs" />
     <Compile Include="Leg.cs" />
+    <Compile Include="LevenbergMarquardt.cs" />
     <Compile Include="LexicographicalView.cs" />
     <Compile Include="Linear.cs" />
     <Compile Include="LinearInterpolation.cs" />
@@ -545,6 +549,7 @@
     <Compile Include="PLNCurrency.cs" />
     <Compile Include="PoissonDistribution.cs" />
     <Compile Include="Poland.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="PositiveConstraint.cs" />
     <Compile Include="PricingEngine.cs" />
     <Compile Include="Protection.cs" />
