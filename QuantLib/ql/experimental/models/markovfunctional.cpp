@@ -815,7 +815,6 @@ namespace QuantLib {
 
 	const Real MarkovFunctional::marketDigitalPrice(const Date& expiry,const CalibrationPoint& p, const Option::Type& type, const Real strike) const {
 
-		Time fixingTime = termStructure()->timeFromReference(expiry);
 		return p.smileSection_->digitalOptionPrice(strike,type,p.annuity_,modelSettings_.digitalGap_);
 
 	}
