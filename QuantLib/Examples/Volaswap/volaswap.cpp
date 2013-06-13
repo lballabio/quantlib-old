@@ -10,13 +10,13 @@ using namespace QuantLib;
 #define LTCORR 0.5
 #define CORRDECAY 0.2
 #define PRICINGPATHS 100000
-#define CALIBRATIONPATHS 100000
+#define CALIBRATIONPATHS 10000
 #define SEED 24
 
 int main(int argc, char* argv[]) {
 
-	bool calibrate = false;
-	bool price = true;
+    bool calibrate = false;
+    bool price = true;
 
 	// set evalulation date
 
@@ -347,7 +347,7 @@ int main(int argc, char* argv[]) {
 			dinf=std::min(dinf,1.0);
 			v0=std::min(v0,2.0);
 			vinf=std::min(vinf,2.0);
-			volvol=x[10]*x[10];
+			volvol=1.25; //x[10]*x[10];   /// FIX THE VOLVOL !!!
 			meanrev=x[11]*x[11];
 			for(int i=0;i<numberOfForwards_;i++) {
 				Real idx = (double)i / (double)numberOfForwards_;
@@ -384,13 +384,13 @@ int main(int argc, char* argv[]) {
 		AbcdParametersTransformation trans;
 		// vol abcd
 		Array startAbcd(4);
-		startAbcd[0] = 0.146641; startAbcd[1] = -0.0838546; startAbcd[2] = 0.878426; startAbcd[3] = 0.029039; // START VALUES CALIBRATION abcd
+		startAbcd[0] = 0.0526421; startAbcd[1] = -0.11285; startAbcd[2] = 0.655273; startAbcd[3] = 0.0371576; // START VALUES CALIBRATION abcd
 		Array startAbcdInv = trans.inverse(startAbcd);
 		Array start(4+3+3+2); // 4 abcd, 3 displacement, 3 voladjusterrs, 2 volvol,meanrev
 		start[0] = startAbcdInv[0]; start[1] = startAbcdInv[1]; start[2] = startAbcdInv[2]; start[3] = startAbcdInv[3];
-		start[4] = sqrt(0.192274); start[5] = sqrt(0.075661); start[6] = sqrt(1.07315); // START VALUES transformed dinf, d0, dl, vinf, v0, vl 
-		start[7] = sqrt(1.48443); start[8] = sqrt(0.950788); start[9] = sqrt(1.03851);
-		start[10] = sqrt(0.531083); start[11] = sqrt(0.31118); // START VALUES volvol, meanrev 
+		start[4] = sqrt(0.641966); start[5] = sqrt(1.49192E-5); start[6] = sqrt(3.49002); // START VALUES transformed dinf, d0, dl, vinf, v0, vl 
+		start[7] = sqrt(1.46214); start[8] = sqrt(2.02632); start[9] = sqrt(4.288867);
+		start[10] = sqrt(1.25); start[11] = sqrt(0.15); // START VALUES volvol, meanrev 
 		Problem calProblem(calCost,noConstraint,start);
 		EndCriteria endC(2500,40,1E-14,1E-6,1E-6);
 		LevenbergMarquardt opt;
@@ -432,8 +432,23 @@ int main(int argc, char* argv[]) {
 		Real a=0.139554; Real b=-0.147794; Real c=1.18073; Real d=0.0289232; //Real d=0.0389232; // shifted d for vega calculation
 		Real d0=0.236085; Real dinf=0.070035; Real dl=1.07391;
 		Real v0=1.61279; Real vinf=0.762128; Real vl=1.44591;
-		//Real volvol=0.115108; Real meanrev=0.0156075;
-		Real volvol=1.25; Real meanrev=0.15;
+		Real volvol=1.25; Real meanrev=0.0156075;
+
+		//result 3 (FLSV, calibration with different start values		
+	        // Real a=0.0549993; Real b=-0.10386; Real c=0.71529; Real d=0.0376729;
+		// Real d0=0.689256; Real dinf=0.0525882; Real dl=3.6251;
+	        // Real v0=1.06682; Real vinf=2.02632; Real vl=8.45854e-5;
+		// Real volvol=0.176627; Real meanrev=0.0350293;
+
+		//result 4 (FLSV, calibration with fixed volvol)
+		// a,b,c,d = 0.0526539,-0.112852,0.654989,0.0371449
+		// d0,dinf,dl = 0.640446,1.57354e-06,3.49814
+		// v0,vinf,vl = 1.4618,2.02632,4.2133
+		// volvol, meanrev = 1.25,0.157441
+		// Real a = 0.0526539; Real b = -0.112852; Real c = 0.654989; Real d = 0.0371449;
+		// Real d0 = 0.640446; Real dinf = 1.57354e-06; Real dl = 3.49814;
+		// Real v0 = 1.4618; Real vinf = 2.02632; Real vl = 4.2133;
+		// Real volvol = 1.25; Real  meanrev = 0.157441;
 
 		//test
 		/*Real a=0.0; Real b=0.0; Real c=0.0; Real d=0.10;
