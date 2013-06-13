@@ -63,7 +63,7 @@ namespace QuantLib {
                                 Real strike,
                                 Time maturity,
 								Time bondStart,
-                                Time bondMaturity) const; // PC 
+                                Time bondMaturity) const;
 
         /*! Futures convexity bias (i.e., the difference between
             futures implied rate and forward rate) calculated as in

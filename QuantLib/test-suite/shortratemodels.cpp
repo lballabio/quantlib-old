@@ -5,6 +5,7 @@
  Copyright (C) 2007 Giorgio Facchinetti
  Copyright (C) 2006 Chiara Fornarola
  Copyright (C) 2005 StatPro Italia srl
+ Copyright (C) 2013 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/

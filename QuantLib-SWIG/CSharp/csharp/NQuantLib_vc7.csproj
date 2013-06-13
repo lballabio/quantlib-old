@@ -444,6 +444,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "BondFunctions.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "BoolVector.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -1424,6 +1429,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "ForwardRateAgreement.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "ForwardSpreadedTermStructure.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -1620,6 +1630,11 @@
                 />
                 <File
                     RelPath = "HestonModel.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "HestonModelHelper.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -1930,6 +1945,11 @@
                 />
                 <File
                     RelPath = "Leg.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LevenbergMarquardt.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -2410,6 +2430,11 @@
                 />
                 <File
                     RelPath = "Poland.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Position.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

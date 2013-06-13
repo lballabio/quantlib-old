@@ -33,8 +33,11 @@ page</a>.
 <h2 class="center">Books</h2>
 <ul>
 <li><strong>Implementing QuantLib</strong> (in progress) [<a href=
-"http://sites.google.com/site/luigiballabio/qlbook">web page</a>]<br>
-Ballabio, L.</li>
+"http://implementingquantlib.blogspot.com/p/the-book.html">web
+page</a>]<br> Ballabio, L.<br>
+The book has an accompanying
+[<a href="http://implementingquantlib.blogspot.com/">blog</a>].
+</li>
 </ul>
 
 <h2 class="center">Slides</h2>
