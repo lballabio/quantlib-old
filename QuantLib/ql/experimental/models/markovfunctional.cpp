@@ -39,11 +39,13 @@ namespace QuantLib {
       swapIndexBase_(swapIndexBase), iborIndex_(swapIndexBase->iborIndex())
        {
 
-        QL_REQUIRE(swaptionExpiries.size()==swaptionTenors.size(),"number of swaption expiries (" << swaptionExpiries.size() << ") is differnt from number of swaption tenors (" << swaptionTenors.size() << ")");
+        QL_REQUIRE(swaptionExpiries.size()==swaptionTenors.size(),"number of swaption expiries (" << 
+                   swaptionExpiries.size() << ") is differnt from number of swaption tenors (" << 
+                   swaptionTenors.size() << ")");
         QL_REQUIRE(swaptionExpiries.size()>=1,"need at least one swaption expiry to calibrate numeraire");
         QL_REQUIRE(!termStructure.empty(),"yield term structure handle is empty");
         QL_REQUIRE(!swaptionVol.empty(),"swaption volatility structure is empty");
-        modelSettings.validate();
+        modelSettings_.validate();
 
         initialize();
 
@@ -69,7 +71,7 @@ namespace QuantLib {
         QL_REQUIRE(capletExpiries.size()>=1,"need at least one caplet expiry to calibrate numeraire");
         QL_REQUIRE(!termStructure.empty(),"yield term structure handle is empty");
         QL_REQUIRE(!capletVol.empty(),"caplet volatility structure is empty");
-        modelSettings.validate();
+        modelSettings_.validate();
 
         initialize();
 
@@ -97,7 +99,8 @@ namespace QuantLib {
             volsteptimes_.push_back(termStructure()->timeFromReference(*i));
             volsteptimesArray_[j]=volsteptimes_[j];
             if(j==0) QL_REQUIRE(volsteptimes_[0] > 0.0,"volsteptimes must be positive (" << volsteptimes_[0] << ")");
-            else QL_REQUIRE(volsteptimes_[j] > volsteptimes_[j-1],"volsteptimes must be strictly increasing (" << volsteptimes_[j-1] << "@" << (j-1) << ", " << volsteptimes_[j] << "@" << j << ")");
+            else QL_REQUIRE(volsteptimes_[j] > volsteptimes_[j-1],"volsteptimes must be strictly increasing (" << 
+                            volsteptimes_[j-1] << "@" << (j-1) << ", " << volsteptimes_[j] << "@" << j << ")");
         }
 
         std::vector<Date>::const_iterator i;
@@ -118,7 +121,8 @@ namespace QuantLib {
         do {
             Date numeraireKnown = numeraireDate_;
             done = true;
-            for(std::map<Date,CalibrationPoint>::reverse_iterator i = calibrationPoints_.rbegin(); i != calibrationPoints_.rend() && done; i++) {
+            for(std::map<Date,CalibrationPoint>::reverse_iterator i = calibrationPoints_.rbegin(); 
+                i != calibrationPoints_.rend() && done; i++) {
                 if(i->second.paymentDates_.back() > numeraireDate_) {
                       numeraireDate_ = i->second.paymentDates_.back();
                       numeraireKnown = i->second.paymentDates_.back();
@@ -126,7 +130,8 @@ namespace QuantLib {
                           done=false;
                       }
                 }
-                for(std::vector<Date>::const_reverse_iterator j = i->second.paymentDates_.rbegin(); j != i->second.paymentDates_.rend() && done; j++) {
+                for(std::vector<Date>::const_reverse_iterator j = i->second.paymentDates_.rbegin(); 
+                    j != i->second.paymentDates_.rend() && done; j++) {
                     if(*j < numeraireKnown) {
                         if(capletCalibrated_) {
                             makeCapletCalibrationPoint(*j);
@@ -135,7 +140,8 @@ namespace QuantLib {
                         }
                         else {
                             UpRounding rounder(0);
-                            makeSwaptionCalibrationPoint(*j,Period(static_cast<Integer>(rounder((swapIndexBase_->dayCounter().yearFraction(*j,numeraireKnown)-0.5/365)*12.0)), Months));
+                            makeSwaptionCalibrationPoint(*j,Period(static_cast<Integer>(rounder((swapIndexBase_->
+                                             dayCounter().yearFraction(*j,numeraireKnown)-0.5/365)*12.0)), Months));
                             done = false;
                             break;
                         }
@@ -161,20 +167,23 @@ namespace QuantLib {
         }
         times_.push_back(numeraireTime_);
 
-        QL_REQUIRE(volatilities_.size() == volsteptimes_.size()+1,"there must be n+1 volatilities (" << volatilities_.size() << ") for n volatility step times (" << volsteptimes_.size() << ")");
+        QL_REQUIRE(volatilities_.size() == volsteptimes_.size()+1,"there must be n+1 volatilities (" << 
+                   volatilities_.size() << ") for n volatility step times (" << volsteptimes_.size() << ")");
         sigma_ = PiecewiseConstantParameter(volsteptimes_,PositiveConstraint());   
         for(Size i=0;i<sigma_.size();i++) {
             sigma_.setParam(i,volatilities_[i]);
         }
 
-        stateProcess_ = boost::shared_ptr<MfStateProcess>(new MfStateProcess(reversion_(0.0),volsteptimesArray_,sigma_.params()));
+        stateProcess_ = boost::shared_ptr<MfStateProcess>(new MfStateProcess(reversion_(0.0),
+                                                                             volsteptimesArray_,sigma_.params()));
 
         y_ = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_);
 
         discreteNumeraire_ = boost::shared_ptr<Matrix>(new Matrix(times_.size(),2*modelSettings_.yGridPoints_+1,1.0));
         for(Size i=0;i<times_.size();i++) {
-            boost::shared_ptr<Interpolation> numInt(new CubicInterpolation(y_.begin(), y_.end(), discreteNumeraire_->row_begin(i), CubicInterpolation::Spline, true,
-                                                                                                    CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0));
+            boost::shared_ptr<Interpolation> numInt(new CubicInterpolation(y_.begin(), y_.end(), 
+                      discreteNumeraire_->row_begin(i), CubicInterpolation::Spline, true,
+                      CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0));
             numInt->enableExtrapolation();
             numeraire_.push_back(numInt);
         }
@@ -188,7 +197,8 @@ namespace QuantLib {
 
     void MarkovFunctional::makeSwaptionCalibrationPoint(const Date& expiry, const Period& tenor) {
 
-        QL_REQUIRE(calibrationPoints_.count(expiry)==0, "swaption expiry (" << expiry << ") occurs more than once in calibration set");
+        QL_REQUIRE(calibrationPoints_.count(expiry)==0, "swaption expiry (" << expiry << 
+                   ") occurs more than once in calibration set");
         
         CalibrationPoint p;
         p.isCaplet_ = false;
@@ -198,6 +208,7 @@ namespace QuantLib {
                             swapIndexBase_->currency(), swapIndexBase_->fixingCalendar(), swapIndexBase_->fixedLegTenor(),
                             swapIndexBase_->fixedLegConvention(), swapIndexBase_->dayCounter(),
                             swapIndexBase_->iborIndex());
+
 		boost::shared_ptr<VanillaSwap> underlying = tmpIndex.underlyingSwap(expiry);
 		Schedule sched = underlying->fixedSchedule();
 		Calendar cal = sched.calendar();
@@ -261,36 +272,49 @@ namespace QuantLib {
 
 			i->second.rawSmileSection_ = boost::shared_ptr<SmileSection>(new AtmSmileSection(smileSection,i->second.atm_));
 
-			switch(modelSettings_.smilePretreatment_) {
-					case ModelSettings::NoPretreatment:
-						i->second.smileSection_ = i->second.rawSmileSection_;
-						break;
-					case ModelSettings::KahaleExtrapolation:
-						i->second.smileSection_ = boost::shared_ptr<KahaleSmileSection>(new KahaleSmileSection(i->second.rawSmileSection_,i->second.atm_,false,modelSettings_.smileMoneynessCheckpoints_,modelSettings_.digitalGap_));
-						break;
-					default:
-						QL_FAIL("Unknown Smile Pretreatment (" << modelSettings_.smilePretreatment_ << ")");
-						break;
-			}
+            if( modelSettings_.adjustments_ & ModelSettings::KahaleSmile ) {
+
+                i->second.smileSection_ = boost::shared_ptr<KahaleSmileSection>(new KahaleSmileSection(
+                      i->second.rawSmileSection_, i->second.atm_,
+                      modelSettings_.adjustments_ & ModelSettings::KahaleInterpolation,
+                      modelSettings_.adjustments_ & ModelSettings::KahaleExponentialExtrapolation,
+                      modelSettings_.adjustments_ & ModelSettings::KahaleDeleteArbitragePoints,
+                      modelSettings_.smileMoneynessCheckpoints_,
+                      modelSettings_.digitalGap_));
+
+            } else {
+    
+                i->second.smileSection_ = i->second.rawSmileSection_;
+
+            }
 
 			i->second.minRateDigital_ = i->second.smileSection_->digitalOptionPrice(modelSettings_.lowerRateBound_,Option::Call,i->second.annuity_,modelSettings_.digitalGap_);
 			i->second.maxRateDigital_ = i->second.smileSection_->digitalOptionPrice(modelSettings_.upperRateBound_,Option::Call,i->second.annuity_,modelSettings_.digitalGap_);
 
-			//TEST output smile section
-			//{std::cout << "-----SMILE SECTION OUTPUT: " << i->first << " / " << i->second.tenor_ << std::endl;
-			//Real strike=0.00001;
-			//std::cout << "min / max = " << i->second.rawSmileSection_->minStrike() << "," << i->second.rawSmileSection_->minStrike() << std::endl;
-			//std::cout << "arbitrage free = " << i->second.rawSmileSection_->arbitragefreeRegion().first << " / " << i->second.rawSmileSection_->arbitragefreeRegion().second << std::endl;
-			//std::cout << "atm = " << i->second.smileSection_->atmLevel() << std::endl;
-			//std::cout << "strike;volSource;volKahale;callSource;callKahale;digitalCallSource;digitalCallKahale;densitySource;densityKahale" << std::endl;
-			//for(int j=0;j<1000;j++) {
-			//	std::cout << strike << ";" << i->second.rawSmileSection_->volatility(strike) << ";" << i->second.smileSection_->volatility(strike) << ";" <<
-			//		i->second.rawSmileSection_->optionPrice(strike,Option::Call) << ";" << i->second.smileSection_->optionPrice(strike,Option::Call) << ";" <<
-			//		i->second.rawSmileSection_->digitalOptionPrice(strike,Option::Call,1.0) << ";" << i->second.smileSection_->digitalOptionPrice(strike,Option::Call,1.0) << ";" <<
-			//		i->second.rawSmileSection_->density(strike,1.0) << ";" << i->second.smileSection_->density(strike,1.0) << std::endl;
-			//	strike+=0.0010;
-			//}}
-			//END TEST
+            // output smile for testing
+            // SmileSectionUtils sutils;
+            // boost::shared_ptr<SmileSection> sec1 = i->second.rawSmileSection_;
+            // boost::shared_ptr<KahaleSmileSection> sec2 = 
+            //     boost::dynamic_pointer_cast<KahaleSmileSection>(i->second.smileSection_);
+            // const std::vector<double>& money = modelSettings_.smileMoneynessCheckpoints_;
+            // std::cout << "-------------------------------------------------------------------" << std::endl;
+            // std::cout << "Smile for expiry " << i->first << std::endl;
+            // std::cout << "Arbitrage free region " << sutils.arbitragefreeRegion(*sec1,money).first << " ... " <<
+            //     sutils.arbitragefreeRegion(*sec1,money).second << std::endl;
+            // if(sec2)
+            //     std::cout << "Kahale core region    " << sec2->minAfStrike() << " ... " << sec2->maxAfStrike() << std::endl;
+            // std::cout << "strike;rawCall;Call;rawDigial;Digital;rawDensity;Density;callDiff;Arb" << std::endl;
+            // Real strike = 0.0010;
+            // while(strike <= 1.0000 + 1E-8) {
+            //     std::cout << strike << ";" << sec1->optionPrice(strike) << ";" << (sec2 ? sec2->optionPrice(strike) : 0.0) << ";" <<
+            //         sec1->digitalOptionPrice(strike) << ";" << (sec2 ? sec2->digitalOptionPrice(strike) : 0.0) << ";" <<
+            //         sec1->density(strike) << ";" << (sec2 ? sec2->density(strike) : 0.0) << ";" <<
+            //         (sec2 ? sec1->optionPrice(strike)-sec2->optionPrice(strike) : 0.0) << ";" <<
+            //         ((sec2 ? sec2->density(strike) : sec1->density(strike)) < 0.0 ? "**********" : "" ) << std::endl;
+            //     strike += 0.0010;
+            // }
+            // std::cout << "-------------------------------------------------------------------" << std::endl;
+
 
 		}
 
@@ -399,6 +423,7 @@ namespace QuantLib {
 			}
 
 			numeraire_[idx]->update();
+
 		}
 
 	}
@@ -433,7 +458,7 @@ namespace QuantLib {
 				boost::shared_ptr<SmileSection> sec = i->second.smileSection_;
 				boost::shared_ptr<SmileSection> rawSec = i->second.rawSmileSection_;
 				SmileSectionUtils ssutils;
-				std::vector<Real> money = ssutils.makeMoneynessGrid(modelSettings_.smileMoneynessCheckpoints_);
+				std::vector<Real> money = ssutils.makeMoneynessGrid(*sec,modelSettings_.smileMoneynessCheckpoints_);
 				std::vector<Real> strikes, marketCall, marketPut, modelCall, modelPut, marketVega, marketRawCall, marketRawPut;
 				for(Size j=0;j<money.size();j++) {
 					strikes.push_back(money[j]*i->second.atm_);
@@ -490,7 +515,6 @@ namespace QuantLib {
 		Real stdDev_0_T = stateProcess_->stdDeviation(0.0,0.0,T);
 		Real stdDev_t_T = stateProcess_->stdDeviation(t,0.0,T-t);
 
-
 		for(Size j=0;j<y.size();j++) {
 			Array ya(modelSettings_.gaussHermitePoints_);
 			for(Size i=0;i<modelSettings_.gaussHermitePoints_;i++) {
@@ -503,39 +527,9 @@ namespace QuantLib {
 			}
 		}
 
-		// Spline
 
-		//Array z = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_);
-		//Array p(z.size());
 
-		//for(Size j=0;j<y.size();j++) {
 
-		//	Array yg = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_,T,t,y[j]);
-
-		//	for(Size i=0;i<yg.size();i++) {
-		//		p[i] = 1.0 / numeraire(T,yg[i]);
-		//	}
-
-		//	CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
-
-		//	Real price = 0.0;
-		//	for(Size i=0;i<z.size()-1;i++) {
-		//		price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
-		//	}
-		//	if(modelSettings_.extrapolatePayoff_) {
-		//		if(modelSettings_.flatPayoffExtrapolation_) {
-		//			price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
-		//			price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
-		//		}
-		//		else {
-		//			price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
-		//			price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
-		//		}
-		//	}
-
-		//	result[j] = price;
-
-		//}
 
 		return result * (discountSpread ? exp( -discountSpread->operator()(T,true)*T+discountSpread->operator()(t,true)*t ) : 1.0 );
 
@@ -550,6 +544,7 @@ namespace QuantLib {
 		Real stdDev_t_T = stateProcess_->stdDeviation(t,0.0,T-t);
 
 		Real h = stdDevs / ((Real)gridPoints);
+
 
 		for(int j=-gridPoints;j<=gridPoints;j++) {
 			result[j+gridPoints] = (y*stdDev_0_t + stdDev_t_T*((Real)j)*h) / stdDev_0_T;
@@ -775,7 +770,6 @@ namespace QuantLib {
 								iborIdx->businessDayConvention(),iborIdx->endOfMonth()); // FIXME Here we should use the calculation date calendar ?
 		Real dcf = iborIdx->dayCounter().yearFraction(zeroFixingDays ? expiry : valueDate,endDate);
 
-
 		for(Size i=0;i<yg.size();i++) {
 			Real annuity=zerobond(endDate,expiry,yg[i]) * dcf;
 			Rate atm=forwardRate(expiry,expiry,yg[i],zeroFixingDays,iborIdx);
@@ -839,64 +833,72 @@ namespace QuantLib {
 		return gaussianPolynomialIntegral(a,-4.0*a*h+b,6.0*a*h*h-3.0*b*h+c,-4*a*h*h*h+3.0*b*h*h-2.0*c*h+d,a*h*h*h*h-b*h*h*h+c*h*h-d*h+e,x0,x1);
 	}
 
-	std::ostream& operator<<(std::ostream& out, const MarkovFunctional::ModelOutputs& m) {
-		out << "Markov functional model trace output " << std::endl;
-		out << "Model settings" << std::endl;
-		out << "Grid points y        : " << m.settings_.yGridPoints_ << std::endl;
-		out << "Std devs y           : " << m.settings_.yStdDevs_ << std::endl;
-		out << "Lower rate bound     : " << m.settings_.lowerRateBound_ << std::endl;
-		out << "Upper rate bound     : " << m.settings_.upperRateBound_ << std::endl;
-		out << "Gauss Hermite points : " << m.settings_.gaussHermitePoints_ << std::endl;
-		out << "Digital gap          : " << m.settings_.digitalGap_ << std::endl;
-		out << "Adjustments          : " << ((m.settings_.adjustments_ & MarkovFunctional::ModelSettings::AdjustDigitals) ? "AdjustDigitals " : "") 
-			                   << ((m.settings_.adjustments_ & MarkovFunctional::ModelSettings::AdjustYts) ? "AdjustYts " : "")
-							   << std::endl;
-		out << "Smile pretreatment   : " << ((m.settings_.smilePretreatment_ & MarkovFunctional::ModelSettings::NoPretreatment) ? "NoPretreatment" : "")
-			                          << ((m.settings_.smilePretreatment_ & MarkovFunctional::ModelSettings::KahaleExtrapolation) ? "KahaleExtrapolation" : "")
-			                          << std::endl;
-		out << "Payoff Extrapolation : " << ((m.settings_.adjustments_ & MarkovFunctional::ModelSettings::NoPayoffExtrapolation) ? "No Extrapolation" : "Yes") << std::endl;
-		out << "Flat Payoff Extrap.  : " << ((m.settings_.adjustments_ & MarkovFunctional::ModelSettings::ExtrapolatePayoffFlat) ? "Yes" : "No") << 
-			                                ((m.settings_.adjustments_ & MarkovFunctional::ModelSettings::NoPayoffExtrapolation) ? " (overridden by No Extrapolation)" : "") << std::endl;
-		out << "High precision / NTL : " << (m.settings_.enableNtl_ ? "On" : "Off") << std::endl;
-		#ifdef MF_ENABLE_NTL
-			out << "NTL Precision        : " << boost::math::ntl::RR::precision() << std::endl;
-		#endif
-		out << "Smile moneyness checkpoints: ";
-		for(Size i=0;i<m.settings_.smileMoneynessCheckpoints_.size();i++) out << m.settings_.smileMoneynessCheckpoints_[i] << (i < m.settings_.smileMoneynessCheckpoints_.size()-1 ? ";" : "");
-		out << std::endl;
+    std::ostream& operator<<(std::ostream& out, const MarkovFunctional::ModelOutputs& m) {
+        out << "Markov functional model trace output " << std::endl;
+        out << "Model settings" << std::endl;
+        out << "Grid points y        : " << m.settings_.yGridPoints_ << std::endl;
+        out << "Std devs y           : " << m.settings_.yStdDevs_ << std::endl;
+        out << "Lower rate bound     : " << m.settings_.lowerRateBound_ << std::endl;
+        out << "Upper rate bound     : " << m.settings_.upperRateBound_ << std::endl;
+        out << "Gauss Hermite points : " << m.settings_.gaussHermitePoints_ << std::endl;
+        out << "Digital gap          : " << m.settings_.digitalGap_ << std::endl;
+        out << "Adjustments          : " 
+            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::AdjustDigitals ? "Digitals " : "") 
+            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::AdjustYts ? "Yts " : "")
+            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::ExtrapolatePayoffFlat ? "FlatPayoffExt " : "")
+            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::NoPayoffExtrapolation ? "NoPayoffExt " : "")
+            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::KahaleSmile ? "Kahale " : "")
+            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::KahaleExponentialExtrapolation ? "KahaleExp " : "")
+            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::KahaleInterpolation ? "KahaleInt " : "")
+            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::KahaleDeleteArbitragePoints ? "KahaleDelArb " : "")
+            << std::endl;
+        out << "High precision / NTL : " << (m.settings_.enableNtl_ ? "On" : "Off") << std::endl;
+        #ifdef MF_ENABLE_NTL
+            out << "NTL Precision        : " << boost::math::ntl::RR::precision() << std::endl;
+        #endif
+        out << "Smile moneyness checkpoints: ";
+        for(Size i=0;i<m.settings_.smileMoneynessCheckpoints_.size();i++) 
+            out << m.settings_.smileMoneynessCheckpoints_[i] << (i < m.settings_.smileMoneynessCheckpoints_.size()-1 ? 
+                                                                 ";" : "");
+        out << std::endl;
 
-		QL_REQUIRE(!m.dirty_,"model outputs are dirty");
+        QL_REQUIRE(!m.dirty_,"model outputs are dirty");
 
-		if(m.expiries_.size()==0) return out; // no trace information was collected so no output
-		out << std::endl;
-		out << "Messages:" << std::endl;
-		for(std::vector<std::string>::const_iterator i=m.messages_.begin(); i != m.messages_.end() ; i++) out << (*i) << std::endl;
-		out << std::endl << std::setprecision(16);
-		out << "Yield termstructure fit:" << std::endl;
-		out << "expiry;tenor;atm;annuity;digitalAdj;ytsAdj;marketzerorate;modelzerorate;diff(bp)" << std::endl;
-		for(Size i=0;i<m.expiries_.size();i++) {
-			out << m.expiries_[i] << ";" << m.tenors_[i] << ";" << m.atm_[i] << ";" << m.annuity_[i] << ";" << m.digitalsAdjustmentFactors_[i] << ";" << m.adjustmentFactors_[i] << ";" << m.marketZerorate_[i] << ";" << m.modelZerorate_[i] << ";" << (m.marketZerorate_[i]-m.modelZerorate_[i])*10000.0 << std::endl;
-		}
-		out << std::endl;
-		out << "Volatility smile fit:" << std::endl;
-		for(Size i=0;i<m.expiries_.size();i++) {
-			std::ostringstream os;
-			os << m.expiries_[i] << "/" << m.tenors_[i];
-			std::string p = os.str();
-			out << "strike("<<p<<");marketCallRaw("<<p<<";marketCall("<<p<<");modelCall("<<p<<");marketPutRaw("<<p<<");marketPut("<<p<<");modelPut("<<p<<");marketVega("<<p<<")" << (i<m.expiries_.size()-1 ? ";" : "");
-		}
-		out << std::endl;
-		for(Size j=0;j<m.smileStrikes_[0].size();j++) {
-			for(Size i=0;i<m.expiries_.size();i++) {
-				out << m.smileStrikes_[i][j] << ";" << m.marketRawCallPremium_[i][j] << ";" << m.marketCallPremium_[i][j] << ";" << m.modelCallPremium_[i][j] << ";" << 
-					                                   m.marketRawPutPremium_[i][j] << ";" << m.marketPutPremium_[i][j] << ";" << m.modelPutPremium_[i][j] << ";" << 
-													   m.marketVega_[i][j] << (i<m.expiries_.size()-1 ? ";" : "");
-			}
-			out << std::endl;
-		}
-		return out;
+        if(m.expiries_.size()==0) return out; // no trace information was collected so no output
+        out << std::endl;
+        out << "Messages:" << std::endl;
+        for(std::vector<std::string>::const_iterator i=m.messages_.begin(); i != m.messages_.end() ; i++) 
+            out << (*i) << std::endl;
+        out << std::endl << std::setprecision(16);
+        out << "Yield termstructure fit:" << std::endl;
+        out << "expiry;tenor;atm;annuity;digitalAdj;ytsAdj;marketzerorate;modelzerorate;diff(bp)" << std::endl;
+        for(Size i=0;i<m.expiries_.size();i++) {
+            out << m.expiries_[i] << ";" << m.tenors_[i] << ";" << m.atm_[i] << ";" << m.annuity_[i] << ";" << 
+                m.digitalsAdjustmentFactors_[i] << ";" << m.adjustmentFactors_[i] << ";" << 
+                m.marketZerorate_[i] << ";" << m.modelZerorate_[i] << ";" << 
+                (m.marketZerorate_[i]-m.modelZerorate_[i])*10000.0 << std::endl;
+        }
+        out << std::endl;
+        out << "Volatility smile fit:" << std::endl;
+        for(Size i=0;i<m.expiries_.size();i++) {
+            std::ostringstream os;
+            os << m.expiries_[i] << "/" << m.tenors_[i];
+            std::string p = os.str();
+            out << "strike("<<p<<");marketCallRaw("<<p<<";marketCall("<<p<<");modelCall("<<p<<");marketPutRaw("<< p <<
+                ");marketPut("<<p<<");modelPut("<<p<<");marketVega("<<p<<")" << (i<m.expiries_.size()-1 ? ";" : "");
+        }
+        out << std::endl;
+        for(Size j=0;j<m.smileStrikes_[0].size();j++) {
+            for(Size i=0;i<m.expiries_.size();i++) {
+                out << m.smileStrikes_[i][j] << ";" << m.marketRawCallPremium_[i][j] << ";" << 
+                    m.marketCallPremium_[i][j] << ";" << m.modelCallPremium_[i][j] << ";" << 
+                    m.marketRawPutPremium_[i][j] << ";" << m.marketPutPremium_[i][j] << ";" << 
+                    m.modelPutPremium_[i][j] << ";" << m.marketVega_[i][j] << (i<m.expiries_.size()-1 ? ";" : "");
+            }
+            out << std::endl;
+        }
+        return out;
 	}
-
 
 }
 
