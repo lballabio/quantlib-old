@@ -182,8 +182,7 @@ namespace QuantLib {
 
 				if(event0 > today) {
 					for(Size j=jStart; j<jEnd; j++) {
-                        // DEBUG cancel float leg npv
-						npv0a[k] += 0.0*(model_->forwardRate( arguments_.floatingFixingDates[j], event0, z[k], false, arguments_.swap->iborIndex(), spreadB_ ) + arguments_.floatingSpreads[j]) *
+						npv0a[k] += (model_->forwardRate( arguments_.floatingFixingDates[j], event0, z[k], false, arguments_.swap->iborIndex(), spreadB_ ) + arguments_.floatingSpreads[j]) *
 										arguments_.floatingAccrualTimes[j] *
 										model_->zerobond( arguments_.floatingPayDates[j], event0, z[k], spreadD_ ) / model_->numeraire(event0Time,z[k],spreadD_);
 					}
