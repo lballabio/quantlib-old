@@ -7,17 +7,6 @@ using namespace QuantLib;
 
 int main(int, char* []) {
 
-    // tests
-    int a = 0;
-    a |= 1<<2;
-    a |= 1<<3;
-    std::cout << "a=" << a;
-    a &= ~(1<<3);
-    std::cout << "a=" << a;
-    
-    return 0;
-    
-
     Settings::instance().evaluationDate() = Date(15,June,2013);
 
     Real atm = 84.16652402;
@@ -58,8 +47,8 @@ int main(int, char* []) {
     boost::shared_ptr<SviSmileSection> svi(new SviSmileSection(src,atm,m));
 
     Real k0 = 10.0;
-    while(k0<=130.001) {
-	std::cout << k0 << " " << svi->volatility(k0) << std::endl;
+    while(k0<=230.001) {
+	std::cout << k0 << " " << svi->volatility(k0) << " " << svi->density(k0) << std::endl;
 	k0 += 1.0;
     }
 
