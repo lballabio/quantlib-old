@@ -59,9 +59,9 @@ class Callability {
 
 %template(Callability) boost::shared_ptr<Callability>;
 %extend boost::shared_ptr<Callability> {
-    boost::shared_ptr<Callability>(const CallabilityPrice& price,
-                                   Callability::Type type,
-                                   const Date& date) {
+    shared_ptr<Callability>(const CallabilityPrice& price,
+                            Callability::Type type,
+                            const Date& date) {
         return new boost::shared_ptr<Callability>(
                                             new Callability(price,type,date));
     }
