@@ -102,31 +102,31 @@ class FixedRateBondTest(unittest.TestCase):
         """ Testing FixedRateBond clean price. """
         self.assertEqual(round(self.bond.cleanPrice(0.05, self.day_counter, QuantLib.Compounded,
                                                     QuantLib.Semiannual, self.issue_date), 4),
-                         100.0)
+                         99.9964)
         self.assertEqual(round(self.bond.cleanPrice(0.05, self.day_counter, QuantLib.Compounded,
                                                     QuantLib.Semiannual, self.issue_date +
                                                     QuantLib.Period(1, QuantLib.Months)), 4),
-                         99.9956)
+                         99.9921)
 
         self.assertEqual(round(self.bond.cleanPrice(0.06, self.day_counter, QuantLib.Compounded,
                                                     QuantLib.Semiannual, self.issue_date +
                                                     QuantLib.Period(1,QuantLib.Months)), 4),
-                         92.6026)
+                         92.5985)
 
 
     def testDirtyPrice(self):
         """ Testing FixedRateBond dirty price. """
         self.assertEqual(round(self.bond.dirtyPrice(0.05, self.day_counter, QuantLib.Compounded,
                                                     QuantLib.Semiannual, self.issue_date), 4),
-                         100.0)
+                         99.9964)
         self.assertEqual(round(self.bond.dirtyPrice(0.05, self.day_counter, QuantLib.Compounded,
                                                     QuantLib.Semiannual, self.issue_date +
                                                     QuantLib.Period(1,QuantLib.Months)), 4),
-                         100.4215)
+                         100.4179)
         self.assertEqual(round(self.bond.dirtyPrice(0.06, self.day_counter, QuantLib.Compounded,
                                                     QuantLib.Semiannual, self.issue_date +
                                                     QuantLib.Period(1,QuantLib.Months)), 4),
-                         93.0285)
+                         93.0244)
 
     def testCleanPriceFromZSpread(self):
         """ Testing FixedRateBond clean price derived from Z-spread. """
