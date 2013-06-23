@@ -1457,7 +1457,7 @@ void MarkovFunctionalTest::testLongTermCalibration() {
 										 .withAdjustments(MarkovFunctional::ModelSettings::AdjustYts) // AdjustNone
 										 ));
 
-	outputSurfaces(mf1,flatYts_); 
+	//outputSurfaces(mf1,flatYts_); 
 
 	MarkovFunctional::ModelOutputs outputs1 = mf1->modelOutputs();   // this costs a lot of time, so only use it if you want to check the calibration
 	BOOST_MESSAGE(outputs1);
