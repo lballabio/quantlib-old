@@ -1,5 +1,4 @@
 library(lattice)
-suppressMessages(library(QuantLib))
 
 todaysDate <- Date(18, "May", 2013)
 Settings_instance()$setEvaluationDate(d=todaysDate)
