@@ -26,22 +26,13 @@ namespace QuantLib {
 				     const std::vector<Real>& moneynessGrid)
 		: source_(source), SmileSection(*source) {
 		
-
-                k_ = SmileSectionUtils().makeStrikeGrid(*source_, moneynessGrid);
+        SmileSectionUtils ssutils(*source_,moneynessGrid,atm);
+        k_ = ssutils.strikeGrid();
 
 		QL_REQUIRE(k_.size() >=5, "at least five strikes must be given (" << k_.size() <<")");
 		QL_REQUIRE(k_[0] >= 0.0,"strikes must be non negative (" << k_[0] << ")");
 
-		if(atm==Null<Real>()) {
-		    f_ = source_->atmLevel();
-		}
-		else {
-		    f_ = atm;
-		}
-
-		for(Size i=1; i<k_.size(); i++) {
-			QL_REQUIRE(k_[i]>k_[i-1], "strikes must be strictly increasing (" << k_[i-1] << " >= " << k_[i] << ")");
-		}
+        f_ = ssutils.atmLevel();
 
 		compute();
 
