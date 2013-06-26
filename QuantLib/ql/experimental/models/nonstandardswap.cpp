@@ -160,6 +160,9 @@ namespace QuantLib {
                 arguments->floatingCoupons[i] = Null<Real>();
             }
         }
+
+        arguments->iborIndex = iborIndex();
+
     }
 
     void NonstandardSwap::setupExpired() const {

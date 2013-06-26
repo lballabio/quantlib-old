@@ -37,7 +37,7 @@ namespace QuantLib {
                               const DayCounter& floatingLegDayCounter,
                               const Handle<YieldTermStructure>& termStructure,
                               CalibrationHelper::CalibrationErrorType errorType,
-							  const Real strike, const Real nominal)
+                              const Real strike, const Real nominal)
 
     : CalibrationHelper(volatility,termStructure, errorType) {
 
@@ -46,18 +46,19 @@ namespace QuantLib {
         Date exerciseDate = calendar.advance(termStructure->referenceDate(),
                                              maturity,
                                              index->businessDayConvention());
-		Date startDate = calendar.advance(exerciseDate,
+        Date startDate = calendar.advance(exerciseDate,
                                     fixingDays, Days,
                                     index->businessDayConvention());
 
-		Date endDate = calendar.advance(startDate, length,
+        Date endDate = calendar.advance(startDate, length,
                                 index->businessDayConvention());
 
-		init(exerciseDate,startDate,endDate,volatility,index,fixedLegTenor,fixedLegDayCounter,floatingLegDayCounter,termStructure,strike,nominal);
+        init(exerciseDate,startDate,endDate,volatility,index,fixedLegTenor,fixedLegDayCounter,
+             floatingLegDayCounter,termStructure,strike,nominal);
 
     }
 
-	SwaptionHelper::SwaptionHelper(
+    SwaptionHelper::SwaptionHelper(
                               const Date& exerciseDate,
                               const Period& length,
                               const Handle<Quote>& volatility,
@@ -67,24 +68,25 @@ namespace QuantLib {
                               const DayCounter& floatingLegDayCounter,
                               const Handle<YieldTermStructure>& termStructure,
                               CalibrationHelper::CalibrationErrorType errorType,
-							  const Real strike, const Real nominal)
+                              const Real strike, const Real nominal)
     : CalibrationHelper(volatility,termStructure, errorType) {
 
         Calendar calendar = index->fixingCalendar();
         Natural fixingDays = index->fixingDays();
 
-		Date startDate = calendar.advance(exerciseDate,
+        Date startDate = calendar.advance(exerciseDate,
                                     fixingDays, Days,
                                     index->businessDayConvention());
 
-		Date endDate = calendar.advance(startDate, length,
+        Date endDate = calendar.advance(startDate, length,
                                 index->businessDayConvention());
 
-		init(exerciseDate,startDate,endDate,volatility,index,fixedLegTenor,fixedLegDayCounter,floatingLegDayCounter,termStructure,strike,nominal);
+        init(exerciseDate,startDate,endDate,volatility,index,fixedLegTenor,fixedLegDayCounter,
+             floatingLegDayCounter,termStructure,strike,nominal);
 
     }
 
-	SwaptionHelper::SwaptionHelper(
+    SwaptionHelper::SwaptionHelper(
                               const Date& exerciseDate,
                               const Date& endDate,
                               const Handle<Quote>& volatility,
@@ -94,21 +96,22 @@ namespace QuantLib {
                               const DayCounter& floatingLegDayCounter,
                               const Handle<YieldTermStructure>& termStructure,
                               CalibrationHelper::CalibrationErrorType errorType,
-							  const Real strike, const Real nominal)
+                              const Real strike, const Real nominal)
     : CalibrationHelper(volatility,termStructure, errorType) {
 
         Calendar calendar = index->fixingCalendar();
         Natural fixingDays = index->fixingDays();
 
-		Date startDate = calendar.advance(exerciseDate,
+        Date startDate = calendar.advance(exerciseDate,
                                     fixingDays, Days,
                                     index->businessDayConvention());
 
-		init(exerciseDate,startDate,endDate,volatility,index,fixedLegTenor,fixedLegDayCounter,floatingLegDayCounter,termStructure,strike,nominal);
+        init(exerciseDate,startDate,endDate,volatility,index,fixedLegTenor,fixedLegDayCounter,
+             floatingLegDayCounter,termStructure,strike,nominal);
 
     }
 
-	void SwaptionHelper::addTimesTo(std::list<Time>& times) const {
+    void SwaptionHelper::addTimesTo(std::list<Time>& times) const {
         Swaption::arguments args;
         swaption_->setupArguments(&args);
         std::vector<Time> swaptionTimes =
@@ -134,16 +137,16 @@ namespace QuantLib {
         return value;
     }
 
-	void SwaptionHelper::init(const Date& exerciseDate, const Date& startDate, const Date& endDate, // PC
+    void SwaptionHelper::init(const Date& exerciseDate, const Date& startDate, const Date& endDate, // PC
                        const Handle<Quote>& volatility,
                        const boost::shared_ptr<IborIndex>& index,
                        const Period& fixedLegTenor,
                        const DayCounter& fixedLegDayCounter,
                        const DayCounter& floatingLegDayCounter,
                        const Handle<YieldTermStructure>& termStructure,
-					   const Real strike, const Real nominal) {
-		
-		Calendar calendar = index->fixingCalendar();
+                       const Real strike, const Real nominal) {
+        
+        Calendar calendar = index->fixingCalendar();
         Period indexTenor = index->tenor();
 
         Schedule fixedSchedule(startDate, endDate, fixedLegTenor, calendar,
@@ -158,20 +161,21 @@ namespace QuantLib {
         boost::shared_ptr<PricingEngine> swapEngine(
                              new DiscountingSwapEngine(termStructure, false));
 
-		VanillaSwap::Type type = VanillaSwap::Receiver;
+        VanillaSwap::Type type = VanillaSwap::Receiver;
 
-		VanillaSwap temp(VanillaSwap::Receiver, nominal,
-							fixedSchedule, 0.0, fixedLegDayCounter,
-							floatSchedule, index, 0.0, floatingLegDayCounter);
-		temp.setPricingEngine(swapEngine);
-		Real forward = temp.fairRate();
-		if(strike == Null<Real>()) {
-			exerciseRate_ = forward;
-		}
-		else {
-			exerciseRate_ = strike;
-			type = strike <= forward ? VanillaSwap::Receiver : VanillaSwap::Payer;   // ensure that calibration instrument is out of the money
-		}
+        VanillaSwap temp(VanillaSwap::Receiver, nominal,
+                            fixedSchedule, 0.0, fixedLegDayCounter,
+                            floatSchedule, index, 0.0, floatingLegDayCounter);
+        temp.setPricingEngine(swapEngine);
+        Real forward = temp.fairRate();
+        if(strike == Null<Real>()) {
+            exerciseRate_ = forward;
+        }
+        else {
+            exerciseRate_ = strike;
+            type = strike <= forward ? VanillaSwap::Receiver : VanillaSwap::Payer;   
+            // ensure that calibration instrument is out of the money
+        }
         swap_ = boost::shared_ptr<VanillaSwap>(
             new VanillaSwap(type, nominal,
                             fixedSchedule, exerciseRate_, fixedLegDayCounter,
@@ -184,6 +188,6 @@ namespace QuantLib {
         swaption_ = boost::shared_ptr<Swaption>(new Swaption(swap_, exercise));
         marketValue_ = blackPrice(volatility_->value());
 
-	}
+    }
 
 }

@@ -119,6 +119,9 @@ namespace QuantLib {
 		std::vector<Real> fixedRate;
         std::vector<Spread> floatingSpreads;
         std::vector<Real> floatingCoupons;
+
+        boost::shared_ptr<IborIndex> iborIndex;
+
         void validate() const;
     };
 

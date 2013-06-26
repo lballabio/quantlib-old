@@ -86,31 +86,53 @@ namespace QuantLib {
 		
 		// spreads to adjust forward and discounting curves can be supplied, they are added in a static manner to the model curve, if given these spreads are expected as continuous zero rates 
 
-		const Real zerobond(const Time T, const Time t=0.0, const Real y=0.0, boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
-		const Real zerobond(const Date& maturity, const Date& referenceDate = Null<Date>(), const Real y=0.0, boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
+		const Real zerobond(const Time T, const Time t=0.0, const Real y=0.0, 
+                            boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
+		const Real zerobond(const Date& maturity, const Date& referenceDate = Null<Date>(), const Real y=0.0, 
+                            boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
 
-		const Real numeraire(const Time t, const Real y=0.0, boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
+		const Real numeraire(const Time t, const Real y=0.0, boost::shared_ptr<Interpolation> discountSpread = 
+                                                                           boost::shared_ptr<Interpolation>()) const;
 
 		// zero bond option pricing via analytical formula (only for monocurve setup)
-		const Real zerobondOption(const Option::Type& type, const Date& expiry, const Date& valueDate, const Date& maturity, const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0);
+		const Real zerobondOption(const Option::Type& type, const Date& expiry, const Date& valueDate, 
+                                  const Date& maturity, const Rate strike, const Date& referenceDate = Null<Date>(), 
+                                  const Real y=0.0);
 
-		// zero bond option pricing via numerical integration (only for monocurve setup, TODO extend this to the case value date not euqal expiry date)
-		const Real zerobondOption(const Option::Type& type, const Date& expiry, const Date& maturity, const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0,
+		// zero bond option pricing via numerical integration (only for monocurve setup, TODO extend this to the 
+        // case value date not euqal expiry date)
+		const Real zerobondOption(const Option::Type& type, const Date& expiry, const Date& maturity, 
+                                  const Rate strike, const Date& referenceDate = Null<Date>(), const Real y=0.0,
 			boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>(),
-			const Size yGridPoints=32, const Real yStdDevs=7.0, const bool extrapolatePayoff=true, const bool flatPayoffExtrapolation=false) const;
+			const Size yGridPoints=32, const Real yStdDevs=7.0, const bool extrapolatePayoff=true, 
+                                  const bool flatPayoffExtrapolation=false) const;
 
-		const Real forwardRate(const Date& fixing, boost::shared_ptr<IborIndex> iborIdx, const Date& referenceDate = Null<Date>(), const Real y=0.0, boost::shared_ptr<Interpolation> forwardSpread = boost::shared_ptr<Interpolation>()) const;
-		const Real swapRate(const Date& fixing, const Period& tenor, boost::shared_ptr<SwapIndex> swapIdx, const Date& referenceDate = Null<Date>(), const Real y=0.0, boost::shared_ptr<Interpolation> forwardSpread = boost::shared_ptr<Interpolation>(), boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
-		const Real swapAnnuity(const Date& fixing, const Period& tenor, boost::shared_ptr<SwapIndex> swapIdx, const Date& referenceDate = Null<Date>(), const Real y=0.0, boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
+		const Real forwardRate(const Date& fixing, boost::shared_ptr<IborIndex> iborIdx, 
+                               const Date& referenceDate = Null<Date>(), const Real y=0.0, 
+                               boost::shared_ptr<Interpolation> forwardSpread = boost::shared_ptr<Interpolation>()) const;
+		const Real swapRate(const Date& fixing, const Period& tenor, boost::shared_ptr<SwapIndex> swapIdx, 
+                            const Date& referenceDate = Null<Date>(), const Real y=0.0, 
+                            boost::shared_ptr<Interpolation> forwardSpread = boost::shared_ptr<Interpolation>(), 
+                            boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
+		const Real swapAnnuity(const Date& fixing, const Period& tenor, boost::shared_ptr<SwapIndex> swapIdx, 
+                               const Date& referenceDate = Null<Date>(), const Real y=0.0, 
+                               boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
 
 		// monocurve setup only
-		const Real capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, boost::shared_ptr<IborIndex> iborIdx, const Date& referenceDate = Null<Date>(), const Real y=0.0,
-			const Size yGridPoints=32, const Real yStdDevs=7.0, const bool extrapolatePayoff=true, const bool flatPayoffExtrapolation=false) const;
+		const Real capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, 
+                               boost::shared_ptr<IborIndex> iborIdx, const Date& referenceDate = Null<Date>(), 
+                               const Real y=0.0,
+                               const Size yGridPoints=32, const Real yStdDevs=7.0, const bool extrapolatePayoff=true, 
+                               const bool flatPayoffExtrapolation=false) const;
 		// monocurve setup only
-		const Real swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor, const Rate strike, boost::shared_ptr<SwapIndex> swapIdx, const Date& referenceDate = Null<Date>(), const Real y=0.0,
-			const Size yGridPoints=32, const Real yStdDevs=7.0, const bool extrapolatePayoff=true, const bool flatPayoffExtrapolation=false) const;
+		const Real swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor, const Rate strike, 
+                                 boost::shared_ptr<SwapIndex> swapIdx, const Date& referenceDate = Null<Date>(), 
+                                 const Real y=0.0,
+                                 const Size yGridPoints=32, const Real yStdDevs=7.0, const bool extrapolatePayoff=true, 
+                                 const bool flatPayoffExtrapolation=false) const;
 
-		const Disposable<Array> yGrid(const Real yStdDevs, const int gridPoints, const Real T=1.0, const Real t=0, const Real y=0) const;
+		const Disposable<Array> yGrid(const Real yStdDevs, const int gridPoints, const Real T=1.0, const Real t=0, 
+                                      const Real y=0) const;
 
 		const Real forwardMeasureTime() const { return stateProcess_->getForwardMeasureTime(); }
 		const Real forwardMeasureTime(const Real T) const { stateProcess_->setForwardMeasureTime(T); calculate(); }
@@ -130,14 +152,16 @@ namespace QuantLib {
         with
 		\f[ p(x) = ax^4+bx^3+cx^2+dx+e \f].
 		*/
-		const Real gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, const Real x0, const Real x1) const;
+		const Real gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, 
+                                              const Real x0, const Real x1) const;
 		
 		/*! Computes the integral
         \f[ {2\pi}^{-0.5} \int_{a}^{b} p(x) \exp{-0.5*x*x} \mathrm{d}x \f]
         with
 		\f[ p(x) = a(x-h)^4+b(x-h)^3+c(x-h)^2+d(x-h)+e \f].
 		*/
-		const Real gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, const Real h, const Real x0, const Real x1) const;
+		const Real gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, 
+                                                     const Real e, const Real h, const Real x0, const Real x1) const;
 
       protected:
         
