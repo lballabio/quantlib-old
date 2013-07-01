@@ -31,11 +31,15 @@
 namespace QuantLib {
 
 	NonstandardSwap::NonstandardSwap(const VanillaSwap& fromVanilla) :
-		Swap(2), type_((NonstandardSwap::Type)fromVanilla.type()), fixedNominal_(std::vector<Real>(fromVanilla.fixedLeg().size(),fromVanilla.nominal())),
-			floatingNominal_(std::vector<Real>(fromVanilla.floatingLeg().size(),fromVanilla.nominal())), fixedSchedule_(fromVanilla.fixedSchedule()), 
-			fixedRate_(std::vector<Real>(fromVanilla.fixedLeg().size(),fromVanilla.fixedRate())),
-			fixedDayCount_(fromVanilla.fixedDayCount()), floatingSchedule_(fromVanilla.floatingSchedule()), iborIndex_(fromVanilla.iborIndex()),
-			spread_(fromVanilla.spread()), floatingDayCount_(fromVanilla.floatingDayCount()), paymentConvention_(fromVanilla.paymentConvention()) {
+		Swap(2), type_((NonstandardSwap::Type)fromVanilla.type()), 
+        fixedNominal_(std::vector<Real>(fromVanilla.fixedLeg().size(),fromVanilla.nominal())),
+        floatingNominal_(std::vector<Real>(fromVanilla.floatingLeg().size(),fromVanilla.nominal())), 
+        fixedSchedule_(fromVanilla.fixedSchedule()), 
+		fixedRate_(std::vector<Real>(fromVanilla.fixedLeg().size(),fromVanilla.fixedRate())),
+		fixedDayCount_(fromVanilla.fixedDayCount()), floatingSchedule_(fromVanilla.floatingSchedule()), 
+        iborIndex_(fromVanilla.iborIndex()),
+		spread_(fromVanilla.spread()), floatingDayCount_(fromVanilla.floatingDayCount()), 
+        paymentConvention_(fromVanilla.paymentConvention()) {
 
 		init();
 	}
@@ -59,13 +63,16 @@ namespace QuantLib {
       floatingDayCount_(floatingDayCount) {
 
 		QL_REQUIRE(fixedNominal.size() == fixedRate.size(),
-						"Fixed nominal size (" << fixedNominal.size() << ") does not match fixed rate size (" << fixedRate.size() <<")");
+						"Fixed nominal size (" << fixedNominal.size() << ") does not match fixed rate size (" << 
+                   fixedRate.size() <<")");
 
 		QL_REQUIRE(fixedNominal.size() == fixedSchedule.size()-1,
-						"Fixed nominal size (" << fixedNominal.size() << ") does not match schedule size (" << fixedSchedule.size() << ") - 1");
+						"Fixed nominal size (" << fixedNominal.size() << ") does not match schedule size (" << 
+                   fixedSchedule.size() << ") - 1");
 
 		QL_REQUIRE(floatingNominal.size() == floatingSchedule.size()-1,
-						"Floating nominal size (" << floatingNominal.size() << ") does not match schedule size (" << floatingSchedule.size() << ") - 1");
+						"Floating nominal size (" << floatingNominal.size() << ") does not match schedule size (" << 
+                   floatingSchedule.size() << ") - 1");
 
         if (paymentConvention)
             paymentConvention_ = *paymentConvention;
@@ -177,8 +184,10 @@ namespace QuantLib {
 
     void NonstandardSwap::arguments::validate() const {
         Swap::arguments::validate();
-        QL_REQUIRE(fixedNominal.size() == fixedPayDates.size(), "number of fixed leg nominals different from number of payment dates");
-        QL_REQUIRE(floatingNominal.size() == floatingPayDates.size(), "number of float leg nominals different from number of payment dates");
+        QL_REQUIRE(fixedNominal.size() == fixedPayDates.size(), 
+                   "number of fixed leg nominals different from number of payment dates");
+        QL_REQUIRE(floatingNominal.size() == floatingPayDates.size(), 
+                   "number of float leg nominals different from number of payment dates");
         QL_REQUIRE(fixedResetDates.size() == fixedPayDates.size(),
                    "number of fixed start dates different from "
                    "number of fixed payment dates");
