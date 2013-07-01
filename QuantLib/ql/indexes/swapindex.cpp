@@ -183,7 +183,7 @@ namespace QuantLib {
                           fixedLegTenor(),
                           fixedLegConvention(),
                           dayCounter(),
-			  iborIndex()));
+                          iborIndex()));
 
     }
 

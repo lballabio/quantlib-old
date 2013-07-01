@@ -87,8 +87,7 @@ namespace QuantLib {
                         const Handle<YieldTermStructure>& discounting) const;
         //! returns a copy of itself with different tenor
         virtual boost::shared_ptr<SwapIndex> clone(
-						 const Period& tenor) const;
-						
+                        const Period& tenor) const;
         // @}
       protected:
         Rate forecastFixing(const Date& fixingDate) const;

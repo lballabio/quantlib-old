@@ -102,7 +102,7 @@ namespace QuantLib {
             else QL_REQUIRE(volsteptimes_[j] > volsteptimes_[j-1],"volsteptimes must be strictly increasing (" << 
                             volsteptimes_[j-1] << "@" << (j-1) << ", " << volsteptimes_[j] << "@" << j << ")");
         }
-
+        
         std::vector<Date>::const_iterator i;
         if(capletCalibrated_) {
             for(i = capletExpiries_.begin() ; i != capletExpiries_.end() ; i++) {
@@ -111,7 +111,7 @@ namespace QuantLib {
         }
         else {
             std::vector<Period>::const_iterator j;
-            for(i = swaptionExpiries_.begin(), j = swaptionTenors_.begin() ; i != swaptionExpiries_.end() ; i++,j++) {
+            for(i = swaptionExpiries_.begin(),  j = swaptionTenors_.begin(); i != swaptionExpiries_.end() ; i++,j++) {
                 makeSwaptionCalibrationPoint(*i,*j);
             }
         }
@@ -279,9 +279,9 @@ namespace QuantLib {
 
                 i->second.smileSection_ = boost::shared_ptr<KahaleSmileSection>(new KahaleSmileSection(
                       i->second.rawSmileSection_, i->second.atm_,
-                      modelSettings_.adjustments_ & ModelSettings::KahaleInterpolation,
-                      modelSettings_.adjustments_ & ModelSettings::KahaleExponentialExtrapolation,
-                      modelSettings_.adjustments_ & ModelSettings::KahaleDeleteArbitragePoints,
+                      (modelSettings_.adjustments_ & ModelSettings::KahaleInterpolation),
+                      (modelSettings_.adjustments_ & ModelSettings::KahaleExponentialExtrapolation),
+                      (modelSettings_.adjustments_ & ModelSettings::KahaleDeleteArbitragePoints),
                       modelSettings_.smileMoneynessCheckpoints_,
                       modelSettings_.digitalGap_));
 
@@ -317,7 +317,6 @@ namespace QuantLib {
             //     strike += 0.0010;
             // }
             // std::cout << "-------------------------------------------------------------------" << std::endl;
-
 
 		}
 

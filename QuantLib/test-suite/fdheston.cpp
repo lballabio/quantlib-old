@@ -55,10 +55,12 @@
 #include <ql/experimental/finitedifferences/fdmhestonfwdop.hpp>
 
 #include <boost/math/special_functions/gamma.hpp>
+#if BOOST_VERSION >= 103900
 #include <boost/math/distributions/non_central_chi_squared.hpp>
+#endif
 
 using namespace QuantLib;
-using namespace boost::unit_test_framework;
+using boost::unit_test_framework::test_suite;
 
 namespace {
     struct NewBarrierOptionData {
@@ -786,6 +788,8 @@ void FdHestonTest::testBlackScholesFokkerPlanckFwdEquation() {
 
 
 namespace {
+
+    #if BOOST_VERSION >= 103900
     Real squareRootGreensFct(Real v0, Real kappa, Real theta,
                              Real sigma, Real t, Real x) {
 
@@ -799,6 +803,7 @@ namespace {
 
         return boost::math::pdf(dist, x/k) / k;
     }
+    #endif
 
     Real stationaryProbabilityFct(Real kappa, Real theta,
                                    Real sigma, Real v) {
@@ -834,6 +839,8 @@ namespace {
 }
 
 void FdHestonTest::testSquareRootZeroFlowBC() {
+    #if BOOST_VERSION >= 103900
+
     BOOST_MESSAGE("Testing Zero Flow BC for the square root process...");
 
     SavedSettings backup;
@@ -897,6 +904,7 @@ void FdHestonTest::testSquareRootZeroFlowBC() {
                        << "\n   tolerance:  " << tol);
         }
     }
+    #endif
 }
 
 
@@ -987,7 +995,7 @@ namespace {
 }
 
 void FdHestonTest::testSquareRootEvolveWithStationaryDensity() {
-    BOOST_MESSAGE("Testing Fokker-Planck forward equation"
+    BOOST_MESSAGE("Testing Fokker-Planck forward equation "
                   "for the square root process with stationary density...");
 
     // Documentation for this test case:
@@ -1047,7 +1055,9 @@ void FdHestonTest::testSquareRootEvolveWithStationaryDensity() {
 }
 
 void FdHestonTest::testSquareRootFokkerPlanckFwdEquation() {
-    BOOST_MESSAGE("Testing Fokker-Planck forward equation"
+    #if BOOST_VERSION >= 103900
+
+    BOOST_MESSAGE("Testing Fokker-Planck forward equation "
                   "for the square root process with Dirac start...");
 
     SavedSettings backup;
@@ -1111,6 +1121,7 @@ void FdHestonTest::testSquareRootFokkerPlanckFwdEquation() {
                        << "\n   tolerance:  " << tol);
         }
     }
+    #endif
 }
 
 
@@ -1155,7 +1166,7 @@ namespace {
 }
 
 void FdHestonTest::testHestonFokkerPlanckFwdEquation() {
-    BOOST_TEST_MESSAGE("Testing Fokker-Planck forward equation"
+    BOOST_TEST_MESSAGE("Testing Fokker-Planck forward equation "
                        "for the Heston process...");
 
     SavedSettings backup;
@@ -1299,12 +1310,16 @@ test_suite* FdHestonTest::experimental() {
     test_suite* suite = BOOST_TEST_SUITE("Finite Difference Heston tests");
     suite->add(QUANTLIB_TEST_CASE(
         &FdHestonTest::testBlackScholesFokkerPlanckFwdEquation));
+    #if BOOST_VERSION >= 103900
     suite->add(QUANTLIB_TEST_CASE(&FdHestonTest::testSquareRootZeroFlowBC));
+    #endif
     suite->add(QUANTLIB_TEST_CASE(&FdHestonTest::testTransformedZeroFlowBC));
     suite->add(QUANTLIB_TEST_CASE(
           &FdHestonTest::testSquareRootEvolveWithStationaryDensity));
+    #if BOOST_VERSION >= 103900
     suite->add(QUANTLIB_TEST_CASE(
         &FdHestonTest::testSquareRootFokkerPlanckFwdEquation));
+    #endif
     suite->add(QUANTLIB_TEST_CASE(
         &FdHestonTest::testHestonFokkerPlanckFwdEquation));
 

@@ -51,7 +51,7 @@ namespace QuantLib {
         baseCPI_(baseCPI), fixedRate_(fixedRate), spread_(spread),
         observationInterpolation_(observationInterpolation) {
 
-            QL_REQUIRE(fabs(baseCPI_) > 1e-16,
+            QL_REQUIRE(std::fabs(baseCPI_) > 1e-16,
                        "|baseCPI_| < 1e-16, future divide-by-zero problem");
         }
 
@@ -105,7 +105,7 @@ namespace QuantLib {
 
     Date CPICashFlow::baseDate() const {
         // you may not have a valid date
-        exit(-1);
+        QL_FAIL("no base date specified");
     }
 
     Real CPICashFlow::baseFixing() const {

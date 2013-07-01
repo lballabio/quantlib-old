@@ -22,6 +22,12 @@ QuantLib/Docs/.time-stamp-man
 QuantLib/Docs/reference-*/
 QuantLib/Docs/html/
 QuantLib/Docs/man/
+QuantLib/Examples/*/bin/
+QuantLib/Examples/*/build/
+QuantLib/build/
+QuantLib/lib/
+QuantLib/test-suite/bin/QuantLib-test-suite-*.manifest
+QuantLib/test-suite/build/
 QuantLib-SWIG/config/
 QuantLib-SWIG/CSharp/cpp/quantlib_wrap.cpp
 QuantLib-SWIG/Guile/quantlib_wrap.cpp
@@ -40,7 +46,51 @@ QuantLib-SWIG/R/QuantLib.cpp
 QuantLib-SWIG/R/makeRData.Rout
 QuantLib-SWIG/Ruby/extension.mak
 QuantLib-SWIG/Ruby/quantlib_wrap.cpp
-
+ObjectHandler/Docs/auto.pages/
+ObjectHandler/build/
+ObjectHandler/gensrc/build/
+ObjectHandler/lib/
+ObjectHandler/oh/loop/loop_*.hpp
+ObjectHandler/oh/valueobjects/vo_*.hpp
+ObjectHandler/ohxl/functions/*.cpp
+!ObjectHandler/ohxl/functions/manual.cpp
+ObjectHandler/ohxl/register/register_*.cpp
+ObjectHandler/ohxl/functions/*.hpp
+QuantLibAddin/Addins/Cpp/*.cpp
+QuantLibAddin/Addins/Cpp/*.hpp
+!QuantLibAddin/Addins/Cpp/init.cpp
+!QuantLibAddin/Addins/Cpp/addincppdefines.hpp
+!QuantLibAddin/Addins/Cpp/init.hpp
+!QuantLibAddin/Addins/Cpp/loop.hpp
+QuantLibAddin/Docs/auto.pages/
+QuantLibAddin/build/
+QuantLibAddin/gensrc/build/
+QuantLibAddin/lib/
+QuantLibAddin/qlo/enumerations/register/register_classes.cpp
+QuantLibAddin/qlo/enumerations/register/register_pairs.cpp
+QuantLibAddin/qlo/enumerations/register/register_types.cpp
+QuantLibAddin/qlo/loop/loop_*.hpp
+!QuantLibAddin/qlo/loop/loop_valueobjects.hpp
+QuantLibAddin/qlo/serialization/create/create_*.cpp
+QuantLibAddin/qlo/serialization/create/create_*.hpp
+QuantLibAddin/qlo/serialization/register_creators.cpp
+QuantLibAddin/qlo/serialization/register/serialization_*.cpp
+QuantLibAddin/qlo/serialization/register/serialization_*.hpp
+!QuantLibAddin/qlo/serialization/register/serialization_oh.cpp
+!QuantLibAddin/qlo/serialization/register/serialization_oh.hpp
+QuantLibAddin/qlo/valueobjects/vo_*.cpp
+QuantLibAddin/qlo/valueobjects/vo_*.hpp
+!QuantLibAddin/qlo/valueobjects/vo_group.hpp
+!QuantLibAddin/qlo/valueobjects/vo_range.hpp
+QuantLibXL/qlxl/buildstatic/
+QuantLibXL/qlxl/functions/*.cpp
+!QuantLibXL/qlxl/functions/manual.cpp
+!QuantLibXL/qlxl/functions/manual_template.cpp
+QuantLibXL/qlxl/functions/*.hpp
+QuantLibXL/qlxl/register/register_*.cpp
+QuantLibXL/xll/
+log4cxx/msvc/build/
+log4cxx/msvc/lib/
 
 # Artifacts created in multiple directories
 Makefile
@@ -57,6 +107,9 @@ Makefile.in
 *.dll
 *.class
 *~
+*.ncb
+*.suo
+*.vcproj.*.user
 
 # Outputs
 QuantLib/Examples/BermudanSwaption/BermudanSwaption
