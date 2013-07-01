@@ -26,8 +26,6 @@
 #include <ql/quotes/simplequote.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolcube.hpp>
 
-//#include <iostream> // only for debug
-
 namespace QuantLib {
 
 	Disposable<std::vector<boost::shared_ptr<CalibrationHelper> > > 
@@ -76,6 +74,18 @@ namespace QuantLib {
 				Real delta = (npvp-npvm)/(2.0*h);
 				Real gamma = (npvp-2.0*npv+npvm)/(h*h);
 
+                //std::cout << "npv " << npv << " delta " << delta << " gamma " << gamma << std::endl;
+                //debug: output the global npv for x=-5...5
+#ifdef DEBUGOUTPUT
+                Real xtmp=-5.0;
+                std::cout << "********************************************EXERCISE " << expiry << " ******************" << std::endl;
+                std::cout << "globalExoticNpv;";
+                while(xtmp<=5.0+QL_EPSILON) {
+                    std::cout <<  type*(floatingLegNpv(floatingIdx,expiry,xtmp) - fixedLegNpv(fixedIdx,expiry,xtmp)) << ";";
+                    xtmp +=0.1;
+                }
+                std::cout << std::endl;
+#endif
 
 				boost::shared_ptr<SwaptionHelper> helper;
 
@@ -190,9 +200,9 @@ namespace QuantLib {
 		Real npv=0.0;
 		for(Size i=idx; i<arguments_.floatingResetDates.size(); i++) {
 			npv += ( model_->forwardRate(arguments_.floatingFixingDates[i],arguments_.swap->iborIndex(),
-                                        referenceDate,y,spreadF_) + arguments_.floatingSpreads[i] ) *
+                                         referenceDate,y,spreadF_) + arguments_.floatingSpreads[i] ) *
 				     arguments_.floatingAccrualTimes[i] * arguments_.floatingNominal[i] * 
-                     model_->zerobond(arguments_.floatingPayDates[i],referenceDate,y,spreadD_);
+                model_->zerobond(arguments_.floatingPayDates[i],referenceDate,y,spreadD_);
 		}
 
 		return npv;
@@ -208,21 +218,20 @@ namespace QuantLib {
 		Real T = model_->forwardMeasureTime();
 
 		Size N=(int)(yN*T+0.5);
-		std::vector<Real> t(N);
-		std::vector<Real> yF(N),yD(N);
+        t_.resize(N); yF_.resize(N); yD_.resize(N);
 		for(Size i=0;i<N;++i) {
-			t[i]=i*(T/((Real)N-1));
+			t_[i]=i*(T/((Real)N-1));
 		}
 
-		for(Size i=0;i<N;++i) yD[i] = effectiveDiscountYts_->zeroRate(t[i],QuantLib::Continuous,QuantLib::NoFrequency,true) -
-									  model_->termStructure()->zeroRate(t[i],QuantLib::Continuous,QuantLib::NoFrequency,true);
+		for(Size i=0;i<N;++i) yD_[i] = effectiveDiscountYts_->zeroRate(t_[i],QuantLib::Continuous,QuantLib::NoFrequency,true) -
+									  model_->termStructure()->zeroRate(t_[i],QuantLib::Continuous,QuantLib::NoFrequency,true);
 
-		for(Size i=0;i<N;++i) yF[i] = effectiveForwardYts_->zeroRate(t[i],QuantLib::Continuous,QuantLib::NoFrequency,true) -
-									  model_->termStructure()->zeroRate(t[i],QuantLib::Continuous,QuantLib::NoFrequency,true);
-
-		spreadD_ = boost::shared_ptr<Interpolation>(new CubicInterpolation(t.begin(),t.end(),yD.begin(),
+		for(Size i=0;i<N;++i) yF_[i] = effectiveForwardYts_->zeroRate(t_[i],QuantLib::Continuous,QuantLib::NoFrequency,true) -
+									  model_->termStructure()->zeroRate(t_[i],QuantLib::Continuous,QuantLib::NoFrequency,true);
+        
+		spreadD_ = boost::shared_ptr<Interpolation>(new CubicInterpolation(t_.begin(),t_.end(),yD_.begin(),
                     CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0));
-		spreadF_ = boost::shared_ptr<Interpolation>(new CubicInterpolation(t.begin(),t.end(),yF.begin(),
+		spreadF_ = boost::shared_ptr<Interpolation>(new CubicInterpolation(t_.begin(),t_.end(),yF_.begin(),
                     CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0));
 
 		spreadD_->enableExtrapolation();

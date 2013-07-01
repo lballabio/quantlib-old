@@ -32,6 +32,7 @@
 #include <ql/cashflows/fixedratecoupon.hpp>
 #include <ql/cashflows/iborcoupon.hpp>
 
+//#define DEBUGOUTPUT
 
 namespace QuantLib {
 
@@ -94,6 +95,7 @@ namespace QuantLib {
 		const bool extrapolatePayoff_,flatPayoffExtrapolation_;
 		const Handle<YieldTermStructure> discountYts_;
         mutable YieldTermStructure *effectiveDiscountYts_, *effectiveForwardYts_;
+        mutable std::vector<Real> t_,yF_,yD_; // discrete zero rate spreads to market curves used in interpolation objects
 		mutable boost::shared_ptr<Interpolation> spreadF_, spreadD_; // zero rate spreads to market curves
 
 		friend class NonstandardSwaption;
@@ -202,6 +204,17 @@ namespace QuantLib {
                     (1.0-alpha)*NPV(swapUpper,fixedRate,nominal,h_,type);
                 Real delta = (npvu-npvm) / (2.0*h_);
                 Real gamma = (npvu-2.0*npv+npvm) / (h_*h_);
+                // debug output global standard underlying npv
+#ifdef DEBUGOUTPUT
+                Real xtmp=-5.0;
+                std::cout << "globalStandardNpv;";
+                while(xtmp<=5.0+QL_EPSILON) {
+                    std::cout <<  alpha*NPV(swapLower,fixedRate,nominal,xtmp,type) + 
+                        (1.0-alpha)*NPV(swapUpper,fixedRate,nominal,xtmp,type) << ";";
+                    xtmp+=0.1;
+                }
+                std::cout << std::endl;
+#endif
                 // return target function values
                 Array res(3);
                 res[0] = (npv-npv_) / delta_;
@@ -215,6 +228,7 @@ namespace QuantLib {
             const boost::shared_ptr<SwapIndex> indexBase_;
             const Handle<Gsr>& mdl_;
             const NonstandardSwap::Type type_;
+            
             const boost::shared_ptr<Interpolation> spreadD_, spreadF_;
 
         };
