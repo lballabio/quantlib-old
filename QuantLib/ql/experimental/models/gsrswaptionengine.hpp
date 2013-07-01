@@ -34,8 +34,10 @@ namespace QuantLib {
 
     //! Gsr swaption engine
     /*! \ingroup swaptionengines
-		All fixed coupons with start date greater or equal to the respective option expiry are considered to be part of the exercise into right.
-		All float coupons with start date greater or equal to the respective option expiry are consideres to be part of the exercise into right.
+		All fixed coupons with start date greater or equal to the respective option expiry are considered to be part
+        of the exercise into right.
+		All float coupons with start date greater or equal to the respective option expiry are consideres to be part
+        of the exercise into right.
 		\warning Cash settled swaptions are not supported
 
     */
@@ -56,7 +58,8 @@ namespace QuantLib {
         : GenericModelEngine<Gsr,
                              Swaption::arguments,
                              Swaption::results>(model),
-		  integrationPoints_(integrationPoints) , stddevs_(stddevs), extrapolatePayoff_(extrapolatePayoff), flatPayoffExtrapolation_(flatPayoffExtrapolation),
+		  integrationPoints_(integrationPoints) , stddevs_(stddevs), extrapolatePayoff_(extrapolatePayoff), 
+            flatPayoffExtrapolation_(flatPayoffExtrapolation),
 			discountYts_(discountCurve), forwardYts_(forwardCurve) { 
 		
 				registerWith(discountYts_);
