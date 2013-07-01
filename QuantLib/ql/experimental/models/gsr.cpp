@@ -60,7 +60,7 @@ namespace QuantLib {
                         const Real T) : 
       CalibratedModel(2), TermStructureConsistentModel(termStructure),
       calibrateReversion_(true),
-      reversion_(arguments_[1]),  // warning C4413 does not matter, because we do not use this variable if calibrateReversios == false
+      reversion_(arguments_[1]),
       sigma_(arguments_[0]),                   
       volatilities_(volatilities), reversions_(std::vector<Real>(1,reversion)), volstepdates_(volstepdates) {
 
@@ -76,7 +76,7 @@ namespace QuantLib {
                         const Real T) : 
       CalibratedModel(2), TermStructureConsistentModel(termStructure),
       calibrateReversion_(true),
-      reversion_(arguments_[1]), // warning C4413 does not matter, because we do not use this variable if calibrateReversios == false
+      reversion_(arguments_[1]), 
       sigma_(arguments_[0]), 
       volatilities_(volatilities), reversions_(reversions), volstepdates_(volstepdates) {
         
@@ -95,17 +95,21 @@ namespace QuantLib {
             volsteptimes_.push_back(termStructure()->timeFromReference(*i));
             volsteptimesArray_[j]=volsteptimes_[j];
             if(j==0) QL_REQUIRE(volsteptimes_[0] > 0.0,"volsteptimes must be positive (" << volsteptimes_[0] << ")");
-            else QL_REQUIRE(volsteptimes_[j] > volsteptimes_[j-1],"volsteptimes must be strictly increasing (" << volsteptimes_[j-1] << "@" << (j-1) << ", " << volsteptimes_[j] << "@" << j << ")");
+            else QL_REQUIRE(volsteptimes_[j] > volsteptimes_[j-1],"volsteptimes must be strictly increasing (" << 
+                            volsteptimes_[j-1] << "@" << (j-1) << ", " << volsteptimes_[j] << "@" << j << ")");
         }
 
-        QL_REQUIRE(volatilities_.size() == volsteptimes_.size()+1,"there must be n+1 volatilities (" << volatilities_.size() << ") for n volatility step times (" << volsteptimes_.size() << ")");
+        QL_REQUIRE(volatilities_.size() == volsteptimes_.size()+1,"there must be n+1 volatilities (" << volatilities_.size() 
+                   << ") for n volatility step times (" << volsteptimes_.size() << ")");
         //sigma_ = PiecewiseConstantParameter(volsteptimes_,PositiveConstraint());   
         sigma_ = PiecewiseConstantParameter(volsteptimes_,NoConstraint());   
         for(Size i=0;i<sigma_.size();i++) {
             sigma_.setParam(i,volatilities_[i]);
         }
 
-        QL_REQUIRE(reversions_.size() == 1 || reversions_.size() == volsteptimes_.size()+1,"there must be 1 or n+1 reversions (" << reversions_.size() << ") for n volatility step times (" << volsteptimes_.size() << ")");
+        QL_REQUIRE(reversions_.size() == 1 || reversions_.size() == volsteptimes_.size()+1,
+                   "there must be 1 or n+1 reversions (" << reversions_.size() << ") for n volatility step times (" 
+                   << volsteptimes_.size() << ")");
         if(reversions_.size() == 1) {
             if(calibrateReversion_)
                 reversion_ = ConstantParameter(reversions_[0],NoConstraint());
@@ -125,18 +129,21 @@ namespace QuantLib {
             }
         }
         
-        stateProcess_ = boost::shared_ptr<GsrProcess>(new GsrProcess(volsteptimesArray_,sigma_.params(),calibrateReversion_? reversion_.params() : reversionNc_.params(),T));
+        stateProcess_ = boost::shared_ptr<GsrProcess>(new GsrProcess(volsteptimesArray_,sigma_.params(),
+                                               calibrateReversion_? reversion_.params() : reversionNc_.params(),T));
 
         LazyObject::registerWith(stateProcess_); // forward measure time may change, the model must be notified then
         LazyObject::registerWith(termStructure());
 
     }
 
-    const Disposable<Array> Gsr::yGrid(const Real stdDevs, const int gridPoints, const Real T, const Real t, const Real y) const {
+    const Disposable<Array> Gsr::yGrid(const Real stdDevs, const int gridPoints, const Real T, const Real t, 
+                                       const Real y) const {
 
         Array result(2*gridPoints+1,0.0);
 
-        Real stdDev_0_t = stateProcess_->stdDeviation(0.0,0.0,t); // we use that the standard deviation is independent of $x$ here
+        Real stdDev_0_t = stateProcess_->stdDeviation(0.0,0.0,t); 
+        // we use that the standard deviation is independent of $x$ here
         Real stdDev_0_T = stateProcess_->stdDeviation(0.0,0.0,T);
 
         Real e_0_t = stateProcess_->expectation(0.0,0.0,t);
@@ -149,7 +156,8 @@ namespace QuantLib {
         Real h = stdDevs / ((Real)gridPoints);
 
         for(int j=-gridPoints;j<=gridPoints;j++) {
-            result[j+gridPoints] = stdDev_0_T > QL_EPSILON ? ( (e_t_T + stdDev_t_T*((Real)j)*h) - e_0_T) / stdDev_0_T : 0.0; // second case makes trouble anyway ... maybe look at that again later
+            result[j+gridPoints] = stdDev_0_T > QL_EPSILON ? ( (e_t_T + stdDev_t_T*((Real)j)*h) - e_0_T) / 
+                stdDev_0_T : 0.0; // second case makes trouble anyway ... maybe look at that again later
         }
 
         return result;
@@ -157,20 +165,21 @@ namespace QuantLib {
     }
     
     const Real Gsr::zerobond(Time T, Time t, Real y, boost::shared_ptr<Interpolation> discountSpread) const {
-
+        
+        //std::cout << "zerobond t=" << t << " T=" << T << std::endl;
         calculate();
 
         Real x = y*stateProcess_->stdDeviation(0.0,0.0,t)+stateProcess_->expectation(0.0,0.0,t); 
         Real gtT = stateProcess_->G(t,T,x);
 
-        //std::cout << ";" << x << ";" << gtT << ";";
-
-        return termStructure()->discount(T,true) / termStructure()->discount(t,true) * exp( -x*gtT-0.5*stateProcess_->y(t)*gtT*gtT )
-            * ( discountSpread ? std::exp(- discountSpread->operator()(T,true)*T + discountSpread->operator()(t,true)*t ) : 1.0 ); 
+        return termStructure()->discount(T,true) / termStructure()->discount(t,true) * 
+            exp( -x*gtT-0.5*stateProcess_->y(t)*gtT*gtT ) *
+                    ( discountSpread ? std::exp(- discountSpread->operator()(T,true)*T + discountSpread->operator()(t,true)*t )            : 1.0 ); 
 
     }
 
-    const Real Gsr::zerobond(const Date& maturity, const Date& referenceDate, const Real y, boost::shared_ptr<Interpolation> discountSpread) const {
+    const Real Gsr::zerobond(const Date& maturity, const Date& referenceDate, const Real y, 
+                             boost::shared_ptr<Interpolation> discountSpread) const {
 
         calculate();
         return zerobond(termStructure()->timeFromReference(maturity),
@@ -185,7 +194,8 @@ namespace QuantLib {
 
     }
 
-    const Real Gsr::forwardRate(const Date& fixing, boost::shared_ptr<IborIndex> iborIdx, const Date& referenceDate, const Real y, boost::shared_ptr<Interpolation> forwardSpread) const {
+    const Real Gsr::forwardRate(const Date& fixing, boost::shared_ptr<IborIndex> iborIdx, const Date& referenceDate, 
+                                const Real y, boost::shared_ptr<Interpolation> forwardSpread) const {
 
         calculate();
 
@@ -193,7 +203,8 @@ namespace QuantLib {
 
         Date valueDate = iborIdx->valueDate(fixing);
         Date endDate = iborIdx->fixingCalendar().advance(valueDate,iborIdx->tenor(),
-                                iborIdx->businessDayConvention(),iborIdx->endOfMonth()); // FIXME Here we should use the calculation date calendar ?
+                                iborIdx->businessDayConvention(),iborIdx->endOfMonth()); 
+        // FIXME Here we should use the calculation date calendar ?
         Real dcf = iborIdx->dayCounter().yearFraction(valueDate,endDate);
 
         return ( zerobond(valueDate,referenceDate,y,forwardSpread) - zerobond(endDate,referenceDate,y,forwardSpread) ) / 
@@ -201,7 +212,9 @@ namespace QuantLib {
 
     }
 
-    const Real Gsr::swapRate(const Date& fixing, const Period& tenor, boost::shared_ptr<SwapIndex> swapIdx, const Date& referenceDate, const Real y, boost::shared_ptr<Interpolation> forwardSpread, boost::shared_ptr<Interpolation> discountSpread) const {
+    const Real Gsr::swapRate(const Date& fixing, const Period& tenor, boost::shared_ptr<SwapIndex> swapIdx, 
+                             const Date& referenceDate, const Real y, boost::shared_ptr<Interpolation> forwardSpread, 
+                             boost::shared_ptr<Interpolation> discountSpread) const {
 
         calculate();
 
@@ -215,14 +228,17 @@ namespace QuantLib {
         Real annuity = swapAnnuity(fixing,tenor,swapIdx,referenceDate,y,discountSpread);
         Rate atm;
         if(!forwardSpread && !discountSpread) {
-            atm = ( zerobond(sched.dates().front(),referenceDate,y) - zerobond(sched.calendar().adjust(sched.dates().back(), underlying->paymentConvention()), referenceDate, y) ) / annuity;
+            atm = ( zerobond(sched.dates().front(),referenceDate,y) - zerobond(sched.calendar().adjust(sched.dates().back(), 
+                                                      underlying->paymentConvention()), referenceDate, y) ) / annuity;
         }
         else {
             Schedule floatSched = underlying->floatingSchedule();
             Real floatLeg=0.0;
             for(Size i=1; i<floatSched.size(); i++) {
-                floatLeg += ( zerobond( floatSched[i-1], referenceDate, y, forwardSpread ) / zerobond ( floatSched[i], referenceDate, y, forwardSpread ) - 1.0 ) *
-                                        zerobond( floatSched.calendar().adjust(floatSched[i], underlying->paymentConvention()), referenceDate, y , discountSpread );
+                floatLeg += ( zerobond( floatSched[i-1], referenceDate, y, forwardSpread ) / 
+                              zerobond ( floatSched[i], referenceDate, y, forwardSpread ) - 1.0 ) *
+                              zerobond( floatSched.calendar().adjust(floatSched[i], 
+                                                  underlying->paymentConvention()), referenceDate, y , discountSpread );
             }
             atm = floatLeg / annuity;
         }
@@ -230,7 +246,9 @@ namespace QuantLib {
 
     }
 
-    const Real Gsr::swapAnnuity(const Date& fixing, const Period& tenor, boost::shared_ptr<SwapIndex> swapIdx, const Date& referenceDate, const Real y, boost::shared_ptr<Interpolation> discountSpread) const {
+    const Real Gsr::swapAnnuity(const Date& fixing, const Period& tenor, boost::shared_ptr<SwapIndex> swapIdx, 
+                                const Date& referenceDate, const Real y, 
+                                boost::shared_ptr<Interpolation> discountSpread) const {
 
         calculate();
 
@@ -244,14 +262,16 @@ namespace QuantLib {
 
         Real annuity=0.0;
         for(unsigned int j=1; j<sched.size(); j++) {
-            annuity += zerobond(sched.calendar().adjust(sched.date(j),underlying->paymentConvention()),referenceDate,y,discountSpread) * 
+            annuity += zerobond(sched.calendar().adjust(sched.date(j),underlying->paymentConvention()),referenceDate,
+                                y,discountSpread) * 
                 swapIdx->dayCounter().yearFraction( sched.date(j-1) , sched.date(j) );
         }
         return annuity;
 
     }
 
-    const Real Gsr::zerobondOption(const Option::Type& type, const Date& expiry, const Date& valueDate, const Date& maturity, const Rate strike, const Date& referenceDate, const Real y) {
+    const Real Gsr::zerobondOption(const Option::Type& type, const Date& expiry, const Date& valueDate, 
+                                   const Date& maturity, const Rate strike, const Date& referenceDate, const Real y) {
 
         calculate();
 
@@ -265,7 +285,8 @@ namespace QuantLib {
             VolHelper(boost::shared_ptr<GsrProcess> p, Real t1, Real t2) : p_(p), t1_(t1), t2_(t2) {}
 
             Real operator()(Real u) const {
-                Real v = p_->diffusion(u,0.0)*(p_->G(u,t1_,0.0)-p_->G(u,t2_,0.0)); // diffusion and G is independent of x, so putting 0.0 here is safe
+                Real v = p_->diffusion(u,0.0)*(p_->G(u,t1_,0.0)-p_->G(u,t2_,0.0)); 
+                // diffusion and G is independent of x, so putting 0.0 here is safe
                 return v*v;
             }
 
@@ -286,17 +307,21 @@ namespace QuantLib {
         Real call = p2 * cnd(d1) - p1 * strike * cnd(d2);
 
         if(type == Option::Call) return call;
-        else return call - (termStructure()->discount(maturity)/termStructure()->discount(valueTime) - strike) * termStructure()->discount(valueTime);
+        else return call - (termStructure()->discount(maturity)/termStructure()->discount(valueTime) - strike) * 
+                 termStructure()->discount(valueTime);
 
     }
 
-    /*const Real Gsr::zerobondOption(const Option::Type& type, const Date& expiry, const Date& valueDate, const Date& maturity, const Rate strike, const Date& referenceDate, const Real y) {
+    /*const Real Gsr::zerobondOption(const Option::Type& type, const Date& expiry, const Date& valueDate, 
+      const Date& maturity, const Rate strike, const Date& referenceDate, const Real y) {
         return zerobondOption(type,expiry,maturity,strike,referenceDate,y);
     }*/
 
-    const Real Gsr::zerobondOption(const Option::Type& type, const Date& expiry, const Date& maturity, const Rate strike, const Date& referenceDate, const Real y,
-        boost::shared_ptr<Interpolation> discountSpread,
-        const Size yGridPoints, const Real yStdDevs, const bool extrapolatePayoff, const bool flatPayoffExtrapolation) const {
+    const Real Gsr::zerobondOption(const Option::Type& type, const Date& expiry, const Date& maturity, const Rate strike, 
+                                   const Date& referenceDate, const Real y,
+                                   boost::shared_ptr<Interpolation> discountSpread,
+                                   const Size yGridPoints, const Real yStdDevs, const bool extrapolatePayoff, 
+                                   const bool flatPayoffExtrapolation) const {
 
         calculate();
 
@@ -310,23 +335,30 @@ namespace QuantLib {
 
         for(Size i=0;i<yg.size();i++) {
             Real discount = zerobond(maturity,expiry,yg[i],discountSpread);
-            p[i] = std::max((type == Option::Call ? 1.0 : -1.0) * (discount-strike), 0.0 ) / numeraire(fixingTime,yg[i],discountSpread);
+            p[i] = std::max((type == Option::Call ? 1.0 : -1.0) * (discount-strike), 0.0 ) / 
+                numeraire(fixingTime,yg[i],discountSpread);
         }
 
-        CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+        CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,
+                                  0.0,CubicInterpolation::Lagrange,0.0);
 
         Real price = 0.0;
         for(Size i=0;i<z.size()-1;i++) {
-            price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
+            price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], 
+                                                        payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
         }
         if(extrapolatePayoff) {
             if(flatPayoffExtrapolation) {
-                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 
+                                                            100.0 );
                 price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
             }
             else {
-                if(type == Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
-                if(type == Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
+                if(type == Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], 
+                     payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], 
+                                                                                     z[z.size()-2], z[z.size()-1], 100.0 );
+                if(type == Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], 
+                     payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
             }
         }
 
@@ -334,8 +366,10 @@ namespace QuantLib {
 
     }
 
-    const Real Gsr::swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor,  const Rate strike, boost::shared_ptr<SwapIndex> swapIdx, const Date& referenceDate, const Real y,
-        const Size yGridPoints, const Real yStdDevs, const bool extrapolatePayoff, const bool flatPayoffExtrapolation) const {
+    const Real Gsr::swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor,  const Rate strike, 
+                                  boost::shared_ptr<SwapIndex> swapIdx, const Date& referenceDate, const Real y,
+                                  const Size yGridPoints, const Real yStdDevs, const bool extrapolatePayoff, 
+                                  const bool flatPayoffExtrapolation) const {
         
         calculate();
 
@@ -352,20 +386,26 @@ namespace QuantLib {
             p[i] = annuity * std::max((type == Option::Call ? 1.0 : -1.0) * (atm-strike), 0.0) / numeraire(fixingTime,yg[i]);
         }
 
-        CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+        CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,
+                                  0.0,CubicInterpolation::Lagrange,0.0);
 
         Real price = 0.0;
         for(Size i=0;i<z.size()-1;i++) {
-            price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
+            price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], 
+                                                        payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
         }
         if(extrapolatePayoff) {
             if(flatPayoffExtrapolation) {
-                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], 
+                                                            z[z.size()-1], 100.0 );
                 price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
             }
             else {
-                if(type == Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
-                if(type == Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
+                if(type == Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], 
+                     payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], 
+                                                                                                      z[z.size()-1], 100.0 );
+                if(type == Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], 
+                     payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
             }
         }
 
@@ -374,8 +414,10 @@ namespace QuantLib {
 
     }
 
-    const Real Gsr::capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, boost::shared_ptr<IborIndex> iborIdx, const Date& referenceDate, const Real y,
-        const Size yGridPoints, const Real yStdDevs, const bool extrapolatePayoff, const bool flatPayoffExtrapolation) const {
+    const Real Gsr::capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, 
+                                boost::shared_ptr<IborIndex> iborIdx, const Date& referenceDate, const Real y,
+                                const Size yGridPoints, const Real yStdDevs, const bool extrapolatePayoff, 
+                                const bool flatPayoffExtrapolation) const {
 
         calculate();
 
@@ -390,7 +432,8 @@ namespace QuantLib {
 
         Date valueDate = iborIdx->valueDate(expiry);
         Date endDate = iborIdx->fixingCalendar().advance(valueDate,iborIdx->tenor(),
-                                iborIdx->businessDayConvention(),iborIdx->endOfMonth()); // FIXME Here we should use the calculation date calendar ?
+                                iborIdx->businessDayConvention(),iborIdx->endOfMonth()); 
+        // FIXME Here we should use the calculation date calendar ?
         Real dcf = iborIdx->dayCounter().yearFraction(valueDate,endDate);
 
         for(Size i=0;i<yg.size();i++) {
@@ -399,20 +442,26 @@ namespace QuantLib {
             p[i] = annuity * std::max((type == Option::Call ? 1.0 : -1.0) * (atm-strike), 0.0 ) / numeraire(fixingTime,yg[i]);
         }
 
-        CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+        CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,
+                                  0.0,CubicInterpolation::Lagrange,0.0);
 
         Real price = 0.0;
         for(Size i=0;i<z.size()-1;i++) {
-            price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
+            price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], 
+                                                        payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
         }
         if(extrapolatePayoff) {
             if(flatPayoffExtrapolation) {
-                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], 
+                                                            z[z.size()-1], 100.0 );
                 price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
             }
             else {
-                if(type==Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
-                if(type==Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
+                if(type==Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], 
+                                 payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], 
+                                 p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+                if(type==Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], 
+                                 payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
             }
         }
 
@@ -420,23 +469,31 @@ namespace QuantLib {
 
     }
 
-    const Real Gsr::gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, const Real y0, const Real y1) const {
+    const Real Gsr::gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, 
+                                               const Real y0, const Real y1) const {
         #ifdef GSR_ENABLE_NTL
                 const boost::math::ntl::RR aa=4.0*a, ba=2.0*M_SQRT2*b, ca=2.0*c, da=M_SQRT2*d;
                 const boost::math::ntl::RR x0=y0*M_SQRT1_2, x1=y1*M_SQRT1_2;
-                const boost::math::ntl::RR res = (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*exp(-x1*x1)*(2.0*aa*x1*x1*x1+3.0*aa*x1+2.0*ba*(x1*x1+1.0)+2.0*ca*x1+2.0*da))-
-                                                    (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*(2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
+                const boost::math::ntl::RR res = (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*
+                                                  exp(-x1*x1)*(2.0*aa*x1*x1*x1+3.0*aa*x1+2.0*ba*(x1*x1+1.0)+2.0*ca*x1+2.0*da))-
+                                                    (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*
+                                                     exp(-x0*x0)*(2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+
+                                                                  2.0*ca*x0+2.0*da));
                 return NTL::to_double(res.value());
         #else
         const Real aa=4.0*a, ba=2.0*M_SQRT2*b, ca=2.0*c, da=M_SQRT2*d;
         const Real x0=y0*M_SQRT1_2, x1=y1*M_SQRT1_2;
-        return (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*exp(-x1*x1)*(2.0*aa*x1*x1*x1+3.0*aa*x1+2.0*ba*(x1*x1+1.0)+2.0*ca*x1+2.0*da))-
-            (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*(2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
+        return (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*exp(-x1*x1)*(2.0*aa*x1*x1*x1+3.0*aa*x1+
+                                                                                         2.0*ba*(x1*x1+1.0)+2.0*ca*x1+2.0*da))-
+            (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*
+             (2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
         #endif
     }
 
-    const Real Gsr::gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, const Real h, const Real x0, const Real x1) const {
-        return gaussianPolynomialIntegral(a,-4.0*a*h+b,6.0*a*h*h-3.0*b*h+c,-4*a*h*h*h+3.0*b*h*h-2.0*c*h+d,a*h*h*h*h-b*h*h*h+c*h*h-d*h+e,x0,x1);
+    const Real Gsr::gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, 
+                                                      const Real e, const Real h, const Real x0, const Real x1) const {
+        return gaussianPolynomialIntegral(a,-4.0*a*h+b,6.0*a*h*h-3.0*b*h+c,-4*a*h*h*h+3.0*b*h*h-2.0*c*h+d,
+                                          a*h*h*h*h-b*h*h*h+c*h*h-d*h+e,x0,x1);
     }
 
 
