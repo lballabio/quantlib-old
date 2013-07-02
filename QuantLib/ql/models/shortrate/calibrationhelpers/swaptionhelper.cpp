@@ -41,12 +41,11 @@ namespace QuantLib {
 
     : CalibrationHelper(volatility,termStructure, errorType),
         exerciseDate_(Null<Date>()), endDate_(Null<Date>()),
-        maturity_(maturity), length_(length), index_(index),
-        fixedLegTenor_(fixedLegTenor), 
+        maturity_(maturity), length_(length), fixedLegTenor_(fixedLegTenor), index_(index),
         fixedLegDayCounter_(fixedLegDayCounter), floatingLegDayCounter_(floatingLegDayCounter),
         strike_(strike), nominal_(nominal)
     {
-        
+
         registerWith(index_);
 
     }
@@ -64,8 +63,7 @@ namespace QuantLib {
                               const Real strike, const Real nominal)
     : CalibrationHelper(volatility,termStructure, errorType),
         exerciseDate_(exerciseDate), endDate_(Null<Date>()),
-        maturity_(0*Days), length_(length), index_(index),
-        fixedLegTenor_(fixedLegTenor), 
+        maturity_(0*Days), length_(length), fixedLegTenor_(fixedLegTenor), index_(index),
         fixedLegDayCounter_(fixedLegDayCounter), floatingLegDayCounter_(floatingLegDayCounter),
         strike_(strike), nominal_(nominal) {
 
@@ -86,8 +84,7 @@ namespace QuantLib {
                               const Real strike, const Real nominal)
     : CalibrationHelper(volatility,termStructure, errorType),
         exerciseDate_(exerciseDate), endDate_(endDate),
-        maturity_(0*Days), length_(0*Days), index_(index),
-        fixedLegTenor_(fixedLegTenor), 
+        maturity_(0*Days), length_(0*Days), fixedLegTenor_(fixedLegTenor), index_(index),
         fixedLegDayCounter_(fixedLegDayCounter), floatingLegDayCounter_(floatingLegDayCounter),
         strike_(strike), nominal_(nominal) {
 
@@ -127,7 +124,6 @@ namespace QuantLib {
     void SwaptionHelper::performCalculations() const {
 
         Calendar calendar = index_->fixingCalendar();
-        Period indexTenor = index_->tenor();
         Natural fixingDays = index_->fixingDays();
 
         if(exerciseDate_ == Null<Date>())
@@ -138,8 +134,8 @@ namespace QuantLib {
         Date startDate = calendar.advance(exerciseDate_,
                                     fixingDays, Days,
                                     index_->businessDayConvention());
-        
-        if(endDate_ == Null<Date>()) 
+
+        if(endDate_ == Null<Date>())
             endDate_ = calendar.advance(startDate, length_,
                                        index_->businessDayConvention());
 
@@ -167,7 +163,7 @@ namespace QuantLib {
         }
         else {
             exerciseRate_ = strike_;
-            type = strike_ <= forward ? VanillaSwap::Receiver : VanillaSwap::Payer;   
+            type = strike_ <= forward ? VanillaSwap::Receiver : VanillaSwap::Payer;
             // ensure that calibration instrument is out of the money
         }
         swap_ = boost::shared_ptr<VanillaSwap>(
@@ -177,11 +173,11 @@ namespace QuantLib {
         swap_->setPricingEngine(swapEngine);
 
         boost::shared_ptr<Exercise> exercise(new EuropeanExercise(exerciseDate_));
-        
+
         swaption_ = boost::shared_ptr<Swaption>(new Swaption(swap_, exercise));
 
         CalibrationHelper::performCalculations();
-        
+
     }
 
 }

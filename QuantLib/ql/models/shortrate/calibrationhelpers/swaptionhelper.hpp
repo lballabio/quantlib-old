@@ -43,10 +43,10 @@ namespace QuantLib {
                        const Handle<YieldTermStructure>& termStructure,
                        CalibrationHelper::CalibrationErrorType errorType
                                       = CalibrationHelper::RelativePriceError,
-                       const Real strike = Null<Real>(),   
-                       const Real nominal = 1.0); 
+                       const Real strike = Null<Real>(),
+                       const Real nominal = 1.0);
 
-        SwaptionHelper(const Date& exerciseDate, 
+        SwaptionHelper(const Date& exerciseDate,
                        const Period& length,
                        const Handle<Quote>& volatility,
                        const boost::shared_ptr<IborIndex>& index,
@@ -59,7 +59,7 @@ namespace QuantLib {
                        const Real strike = Null<Real>(),
                        const Real nominal = 1.0);
 
-        SwaptionHelper(const Date& exerciseDate, 
+        SwaptionHelper(const Date& exerciseDate,
                        const Date& endDate,
                        const Handle<Quote>& volatility,
                        const boost::shared_ptr<IborIndex>& index,
@@ -90,7 +90,6 @@ namespace QuantLib {
         const boost::shared_ptr<IborIndex> index_;
         const DayCounter fixedLegDayCounter_, floatingLegDayCounter_;
         const Real strike_, nominal_;
-  
         mutable Rate exerciseRate_;
         mutable boost::shared_ptr<VanillaSwap> swap_;
         mutable boost::shared_ptr<Swaption> swaption_;
