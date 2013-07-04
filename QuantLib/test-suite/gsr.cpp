@@ -289,7 +289,7 @@ void GsrTest::testNonstandardSwaption() {
 			boost::shared_ptr<SwaptionHelper> helper = boost::dynamic_pointer_cast<SwaptionHelper>(basket[j]);
 			Date endDate = helper->underlyingSwap()->fixedSchedule().dates().back();
 			Real nominal = helper->underlyingSwap()->nominal();
-			Real vol = helper->volatility();
+			Real vol = helper->volatility()->value();
 			Real rate = helper->underlyingSwap()->fixedRate();
 			Date expiry = helper->swaption()->exercise()->date(0);
 			Real expiryTime = model->termStructure()->timeFromReference(expiry);
