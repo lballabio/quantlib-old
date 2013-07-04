@@ -14,7 +14,7 @@ void outputBasket(std::vector<boost::shared_ptr<CalibrationHelper>> basket,
         boost::shared_ptr<SwaptionHelper> helper = boost::dynamic_pointer_cast<SwaptionHelper>(basket[j]);
         Date endDate = helper->underlyingSwap()->fixedSchedule().dates().back();
         Real nominal = helper->underlyingSwap()->nominal();
-        Real vol = helper->volatility();
+        Real vol = helper->volatility()->value();
         Real rate = helper->underlyingSwap()->fixedRate();
         Date expiry = helper->swaption()->exercise()->date(0);
         Real expiryTime = termStructure->timeFromReference(expiry);
@@ -52,14 +52,21 @@ int main(int, char* []) {
     Real volLevel = 0.20;
 
     boost::shared_ptr<Quote> ytsQuote0(new SimpleQuote(rateLevel));
-    boost::shared_ptr<Quote> ytsQuote1(new SimpleQuote(rateLevel+0.0010)); // 10bp shift for dv01 calculation
+    boost::shared_ptr<Quote> ytsQuote1(new SimpleQuote(rateLevel+0.0010)); // 10bp shift up for dv01, dv02 calculation
+    boost::shared_ptr<Quote> ytsQuote2(new SimpleQuote(rateLevel-0.0010)); // 10bp shift down for dv01, dv02 calculation
     
     RelinkableHandle<Quote> ytsQuote(ytsQuote0);
 
     Handle<YieldTermStructure> yts( boost::shared_ptr<YieldTermStructure>(new FlatForward(0,TARGET(),ytsQuote,
                                                                                               Actual365Fixed())));
+
+    boost::shared_ptr<Quote> volQuote0(new SimpleQuote(volLevel));
+    boost::shared_ptr<Quote> volQuote1(new SimpleQuote(volLevel+0.01));
+
+    RelinkableHandle<Quote> volQuote(volQuote0);
+
 	boost::shared_ptr<SwaptionVolatilityStructure> swaptionVol(new ConstantSwaptionVolatility(0,TARGET(),
-                                                                         ModifiedFollowing,volLevel,Actual365Fixed()));
+                                                          ModifiedFollowing,volQuote,Actual365Fixed()));
    
 	boost::shared_ptr<IborIndex> iborIndex(new Euribor(6*Months,yts));
 	boost::shared_ptr<SwapIndex> standardSwapBase(new EuriborSwapIsdaFixA(10*Years,yts));
@@ -109,7 +116,9 @@ int main(int, char* []) {
     std::cout.precision(6);
     std::cout << std::fixed;
 
+    std::cout << "============================================================" << std::endl;
     std::cout << "Model is not calibrated" << std::endl;
+    std::cout << "============================================================" << std::endl;
     outputModel(stepDates,gsr);
 
     std::cout << "Calculate calibration basket" << std::endl;
@@ -137,31 +146,96 @@ int main(int, char* []) {
     std::cout << "Price the nonstandard swaption" << std::endl;
 
     Real npv0 = swaption->NPV();
-    std::cout << "NPV              = " << npv0 << std::endl;
-
-    std::cout << "Shift the rate curve by 10bp and reprice to compute delta" << std::endl;
+ 
+    std::cout << "Shift the rate curve by 10bp up, down and reprice to compute delta, gamma" << std::endl;
 
     ytsQuote.linkTo(ytsQuote1);
     Real npv1 = swaption->NPV();
-    std::cout << "NPV(+10bp)       = " << npv1 << " DV01 = " << (npv1-npv0) << std::endl;
+    ytsQuote.linkTo(ytsQuote2);
+    Real npv2 = swaption->NPV();
+    ytsQuote.linkTo(ytsQuote0);
 
-    std::cout << "Recalibrate the model, reprice and compute delta" << std::endl;
+    Real npv3 = swaption->NPV();
+
+    std::cout << "NPV(-10bp) = " << npv2 << " NPV(0) = " << npv0 << " NPV(+10bp) = " << npv1 << std::endl;
+    std::cout << "DV01 = " << (npv1-npv2) / 20.0 << std::endl;
+    std::cout << "DV02 = " << (npv1-2.0*npv0+npv2) / 100.0 << std::endl;
+    std::cout << "Vega = " << (npv3-npv0) << std::endl;
+
+    std::cout << "============================================================" << std::endl;
+    std::cout << "Compute delta, gamma with model recalibration" << std::endl;
+    std::cout << "============================================================" << std::endl;
+    
+    gsr->calibrateIterative(basket2,lm,ec);
+    outputModel(stepDates,gsr);
+    npv0 = swaption->NPV();
+    
+    ytsQuote.linkTo(ytsQuote1);
+    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    npv1 = swaption->NPV();
+    ytsQuote.linkTo(ytsQuote2);
+    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    npv2 = swaption->NPV();
+    ytsQuote.linkTo(ytsQuote0);
+
+    for(Size i=0;i<basket2.size();i++) boost::dynamic_pointer_cast<SimpleQuote>(*basket2[i]->volatility())
+                                           ->setValue(volQuote1->value());
+    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    npv3 = swaption->NPV();
+    for(Size i=0;i<basket2.size();i++) boost::dynamic_pointer_cast<SimpleQuote>(*basket2[i]->volatility())
+                                           ->setValue(volQuote0->value());
+
+    std::cout << "NPV(-10bp) = " << npv2 << " NPV(0) = " << npv0 << " NPV(+10bp) = " << npv1 << std::endl;
+    std::cout << "DV01 = " << (npv1-npv2) / 20.0 << std::endl;
+    std::cout << "DV02 = " << (npv1-2.0*npv0+npv2) / 100.0 << std::endl;
+    std::cout << "Vega = " << (npv3-npv0) << std::endl;
+
+    std::cout << "============================================================" << std::endl;
+    std::cout << "Compute delta, gamma with basket recalculation and recalibration" << std::endl;
+    std::cout << "============================================================" << std::endl;
 
     gsr->calibrateIterative(basket2,lm,ec);
     outputModel(stepDates,gsr);
-    Real npv2 = swaption->NPV();
-    std::cout << "NPV(+10bp,recal) = " << npv2 << " DV01 = " << (npv2-npv0) << std::endl;
+    npv0 = swaption->NPV(); 
 
-    std::cout << "Recompute calibration basket, reclibrate to that basket and compute delta" << std::endl;
+    ytsQuote.linkTo(ytsQuote1);
+    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    std::vector<boost::shared_ptr<CalibrationHelper>> basket3a = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+	for(Size i=0;i<basket3a.size();i++) basket3a[i]->setPricingEngine(standardEngine);
+    outputBasket(basket3a,*gsr->termStructure());
+    gsr->calibrateIterative(basket3a,lm,ec); outputModel(stepDates,gsr);
+    npv1 = swaption->NPV();
 
-    std::vector<boost::shared_ptr<CalibrationHelper>> basket3 = swaption->calibrationBasket(standardSwapBase,swaptionVol);
-	for(Size i=0;i<basket2.size();i++) basket3[i]->setPricingEngine(standardEngine);
-    outputBasket(basket3,*gsr->termStructure());
-    gsr->calibrateIterative(basket3,lm,ec);
-    outputModel(stepDates,gsr);
-    Real npv3 = swaption->NPV();
-    std::cout << "NPV(+10bp,recompBasket) = " << npv3 << " DV01 = " << (npv3-npv0) << std::endl;
-   
+    ytsQuote.linkTo(ytsQuote2);
+
+    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    std::vector<boost::shared_ptr<CalibrationHelper>> basket3b = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+	for(Size i=0;i<basket3b.size();i++) basket3b[i]->setPricingEngine(standardEngine);
+    outputBasket(basket3b,*gsr->termStructure());
+    gsr->calibrateIterative(basket3b,lm,ec); outputModel(stepDates,gsr);
+    npv2 = swaption->NPV();
+
+    ytsQuote.linkTo(ytsQuote0);
+
+    for(Size i=0;i<basket2.size();i++) boost::dynamic_pointer_cast<SimpleQuote>(*basket2[i]->volatility())->
+                                           setValue(volQuote1->value());
+    volQuote.linkTo(volQuote1);
+    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    std::vector<boost::shared_ptr<CalibrationHelper>> basket3c = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+	for(Size i=0;i<basket3c.size();i++) basket3c[i]->setPricingEngine(standardEngine);
+    outputBasket(basket3c,*gsr->termStructure());
+    gsr->calibrateIterative(basket3c,lm,ec); outputModel(stepDates,gsr);
+    npv3 = swaption->NPV();
+    for(Size i=0;i<basket2.size();i++) boost::dynamic_pointer_cast<SimpleQuote>(*basket2[i]->volatility())->
+                                           setValue(volQuote0->value());
+    volQuote.linkTo(volQuote0);
+
+
+    std::cout << "NPV(-10bp) = " << npv2 << " NPV(0) = " << npv0 << " NPV(+10bp) = " << npv1 << std::endl;
+    std::cout << "DV01 = " << (npv1-npv2) / 20.0 << std::endl;
+    std::cout << "DV02 = " << (npv1-2.0*npv0+npv2) / 100.0 << std::endl;
+    std::cout << "Vega = " << (npv3-npv0) << std::endl;
+  
 
 
 }
