@@ -46,8 +46,15 @@ namespace QuantLib {
         // inspectors
         Type type() const { return type_; }
         Date date(Size index) const { return dates_[index]; }
+        Real rebate(Size index) const { return rebates_[index]; }
+        Date rebatePaymentDate(Size index) const { return rebatePaymentCalendar_.advance(dates_[index],
+                                                                                         rebateSettlementDays_,
+                                                                                         Days,
+                                                                                         rebatePaymentConvention_); }
         //! Returns all exercise dates
         const std::vector<Date>& dates() const { return dates_; }
+        //! Returns all rebates
+        const std::vector<Real>& rebates() const { return rebates_; }
         Date lastDate() const { return dates_.back(); }
       protected:
         std::vector<Date> dates_;
@@ -94,7 +101,9 @@ namespace QuantLib {
       public:
         BermudanExercise(const std::vector<Date>& dates,
                          bool payoffAtExpiry = false,
-						 const std::vector<Real>& rebates = std::vector<Real>(),     // PC in case of exercise the holder receives the rebate (if positive) or pays it (if negative) on the rebate settlement date
+						 const std::vector<Real>& rebates = std::vector<Real>(),     
+                         // in case of exercise the holder receives the rebate (if positive) or 
+                         // pays it (if negative) on the rebate settlement date
 						 const Natural rebateSettlementDays = 0,
 						 const Calendar rebatePaymentCalendar = NullCalendar(),
 						 const BusinessDayConvention rebatePaymentConvention = Following);
@@ -105,8 +114,9 @@ namespace QuantLib {
     */
     class EuropeanExercise : public Exercise {
       public:
-        EuropeanExercise(const Date& date, const Real rebate = 0.0, const Natural rebateSettlementDays = 0, const Calendar rebatePaymentCalendar = NullCalendar(),
-			const BusinessDayConvention rebatePaymentConvention = Following);
+        EuropeanExercise(const Date& date, const Real rebate = 0.0, const Natural rebateSettlementDays = 0, 
+                         const Calendar rebatePaymentCalendar = NullCalendar(),
+                         const BusinessDayConvention rebatePaymentConvention = Following);
     };
 
 }

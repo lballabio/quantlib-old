@@ -56,7 +56,8 @@ namespace QuantLib {
 
 		if(rebates.empty()) rebates_ = std::vector<Real>(dates_.size(),0.0);
 		else {
-			QL_REQUIRE(rebates.size() == dates_.size(),"rebate size (" << rebates.size() << ") must be equal to exercise dates size (" << dates_.size() << ")");
+			QL_REQUIRE(rebates.size() == dates_.size(),"rebate size (" << rebates.size() << 
+                       ") must be equal to exercise dates size (" << dates_.size() << ")");
 			rebates_ = rebates;
 		}
 		rebateSettlementDays_ = rebateSettlementDays;
@@ -65,7 +66,8 @@ namespace QuantLib {
     }
 
     EuropeanExercise::EuropeanExercise(const Date& date, const Real rebate,
-		const Natural rebateSettlementDays, const Calendar rebatePaymentCalendar, const BusinessDayConvention rebatePaymentConvention)
+		const Natural rebateSettlementDays, const Calendar rebatePaymentCalendar, 
+        const BusinessDayConvention rebatePaymentConvention)
     : Exercise(European) {
         dates_ = std::vector<Date>(1,date);
 		rebates_ = std::vector<Real>(1,rebate);
