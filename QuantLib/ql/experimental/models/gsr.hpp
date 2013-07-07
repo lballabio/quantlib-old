@@ -135,7 +135,7 @@ namespace QuantLib {
                                       const Real y=0) const;
 
 		const Real forwardMeasureTime() const { return stateProcess_->getForwardMeasureTime(); }
-		const Real forwardMeasureTime(const Real T) const { stateProcess_->setForwardMeasureTime(T); calculate(); }
+		const void forwardMeasureTime(const Real T) const { stateProcess_->setForwardMeasureTime(T); calculate(); }
 
 		const boost::shared_ptr<GsrProcess> stateProcess() const { return stateProcess_; }
 
