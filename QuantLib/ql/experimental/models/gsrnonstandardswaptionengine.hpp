@@ -69,12 +69,13 @@ namespace QuantLib {
 						 const Real stddevs=7.0,
 						 const bool extrapolatePayoff=true,
 						 const bool flatPayoffExtrapolation=false,
+                         const Handle<Quote>& zSpread=Handle<Quote>(), // continuously compounded w.r.t. yts daycounter
 						 const Handle<YieldTermStructure>& discountCurve=Handle<YieldTermStructure>())
             : GenericModelEngine<Gsr,NonstandardSwaption::arguments,
                                      NonstandardSwaption::results>(model),
 		  integrationPoints_(integrationPoints) , stddevs_(stddevs), extrapolatePayoff_(extrapolatePayoff), 
           flatPayoffExtrapolation_(flatPayoffExtrapolation),
-          discountYts_(discountCurve) {
+            zSpread_(zSpread), discountYts_(discountCurve) {
 		
 			  registerWith(discountYts_);
 
@@ -94,6 +95,7 @@ namespace QuantLib {
 		const Real stddevs_;
 		const bool extrapolatePayoff_,flatPayoffExtrapolation_;
 		const Handle<YieldTermStructure> discountYts_;
+        const Handle<Quote> zSpread_;
         mutable YieldTermStructure *effectiveDiscountYts_, *effectiveForwardYts_;
         mutable std::vector<Real> t_,yF_,yD_; // discrete zero rate spreads to market curves used in interpolation objects
 		mutable boost::shared_ptr<Interpolation> spreadF_, spreadD_; // zero rate spreads to market curves

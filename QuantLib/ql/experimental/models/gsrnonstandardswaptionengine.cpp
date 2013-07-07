@@ -78,7 +78,8 @@ namespace QuantLib {
                 //debug: output the global npv for x=-5...5
 #ifdef DEBUGOUTPUT
                 Real xtmp=-5.0;
-                std::cout << "********************************************EXERCISE " << expiry << " ******************" << std::endl;
+                std::cout << "********************************************EXERCISE " << expiry << " ******************" 
+                          << std::endl;
                 std::cout << "globalExoticNpv;";
                 while(xtmp<=5.0+QL_EPSILON) {
                     std::cout <<  type*(floatingLegNpv(floatingIdx,expiry,xtmp) - fixedLegNpv(fixedIdx,expiry,xtmp)) << ";";
@@ -188,7 +189,9 @@ namespace QuantLib {
 
 		Real npv=0.0;
 		for(Size i=idx; i<arguments_.fixedResetDates.size(); i++) {
-			npv += arguments_.fixedCoupons[i] * model_->zerobond(arguments_.fixedPayDates[i],referenceDate,y,spreadD_);
+			npv += arguments_.fixedCoupons[i] * model_->zerobond(arguments_.fixedPayDates[i],referenceDate,y,spreadD_) *
+                (zSpread_.empty() ? 1.0 : 
+                 exp(-zSpread_->value()*model_->termStructure()->timeFromReference(arguments_.fixedPayDates[i])));
 		}
 
 		return npv;
@@ -202,7 +205,9 @@ namespace QuantLib {
 			npv += ( model_->forwardRate(arguments_.floatingFixingDates[i],arguments_.swap->iborIndex(),
                                          referenceDate,y,spreadF_) + arguments_.floatingSpreads[i] ) *
 				     arguments_.floatingAccrualTimes[i] * arguments_.floatingNominal[i] * 
-                model_->zerobond(arguments_.floatingPayDates[i],referenceDate,y,spreadD_);
+                model_->zerobond(arguments_.floatingPayDates[i],referenceDate,y,spreadD_) *
+                (zSpread_.empty() ? 1.0 : 
+                 exp(-zSpread_->value()*model_->termStructure()->timeFromReference(arguments_.fixedPayDates[i])));
 		}
 
 		return npv;
@@ -289,6 +294,7 @@ namespace QuantLib {
 			for(Size k=0; k < (expiry0 > today ? npv0.size() : 1); k++) {
 
 				Real price = 0.0;
+                Real zSpreadDf = zSpread_.empty() ? 1.0 : std::exp(-zSpread_->value()*(expiry1-expiry0));
 				if(expiry1Time != Null<Real>()) {
 					Array yg = model_->yGrid(stddevs_, integrationPoints_, expiry1Time, expiry0Time, expiry0Time > 0 ? 
                                              z[k] : 0.0);
@@ -301,22 +307,23 @@ namespace QuantLib {
                                                CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
 					for(Size i=0;i<z.size()-1;i++) {
 						price += model_->gaussianShiftedPolynomialIntegral( 0.0, payoff1.cCoefficients()[i], 
-                            payoff1.bCoefficients()[i], payoff1.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
+                            payoff1.bCoefficients()[i], payoff1.aCoefficients()[i], p[i], z[i], z[i], z[i+1] ) * zSpreadDf;
 					}
 					if(extrapolatePayoff_) {
 							if(flatPayoffExtrapolation_) {
 								price += model_->gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, 
-                                                   p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+                                                   p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 ) * zSpreadDf;
 								price += model_->gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, 
-                                                   p[0], z[0], -100.0 , z[0] );
+                                                   p[0], z[0], -100.0 , z[0] ) * zSpreadDf;
 							}
 							else {
 								if(type == Option::Call) price += model_->gaussianShiftedPolynomialIntegral( 
                                      0.0, payoff1.cCoefficients()[z.size()-2], payoff1.bCoefficients()[z.size()-2], 
-                                     payoff1.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+                                     payoff1.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 )
+                                                             *zSpreadDf;
 								if(type == Option::Put) price += model_->gaussianShiftedPolynomialIntegral( 
                                      0.0, payoff1.cCoefficients()[0], payoff1.bCoefficients()[0], 
-                                     payoff1.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
+                                     payoff1.aCoefficients()[0], p[0], z[0], -100.0 , z[0] )*zSpreadDf;
 							}
 					}	
 				}
@@ -338,9 +345,12 @@ namespace QuantLib {
 						fixedLegNpv += arguments_.fixedCoupons[l] * model_->zerobond(arguments_.fixedPayDates[l],
                                             expiry0,z[k],spreadD_);
 					}
-					npv0[k] = std::max( npv0[k] * (npv0[k]>0.0 ? model_->numeraire(expiry0Time,z[k],spreadD_) : 0.0) , 
-                                        (type==Option::Call ? 1.0 : -1.0) * ( floatingLegNpv - fixedLegNpv ) ) / 
-                                                                             model_->numeraire(expiry0Time,z[k],spreadD_);
+                    Real rebate = arguments_.exercise->rebate(idx);
+                    Date rebateDate = arguments_.exercise->rebatePaymentDate(idx);
+					npv0[k] = std::max( npv0[k],  
+                                        ((type==Option::Call ? 1.0 : -1.0) * ( floatingLegNpv - fixedLegNpv ) + 
+                                         rebate * model_->zerobond(rebateDate,expiry0,z[k],spreadD_)) / 
+                                        model_->numeraire(expiry0Time,z[k],spreadD_) );
 				}
 
 			}
