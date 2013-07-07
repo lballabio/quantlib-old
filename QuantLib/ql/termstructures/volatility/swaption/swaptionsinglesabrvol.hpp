@@ -97,7 +97,7 @@ namespace QuantLib {
                 return (operator()(date+1E-6)-operator()(date))*1E6; 
             }
             const TermStructure& ts_;
-            const Time& t_;
+            const Time t_;
         };
             
     };
