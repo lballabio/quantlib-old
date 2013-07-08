@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "container:QuantLib.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/BermudanSwaption/BermudanSwaption.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/Bonds/Bonds.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/CallableBonds/CallableBonds.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/CDS/CDS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/ConvertibleBonds/ConvertibleBonds.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/DiscreteHedging/DiscreteHedging.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/EquityOption/EquityOption.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/FittedBondCurve/FittedBondCurve.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/FRA/FRA.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/MarketModels/MarketModels.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/Replication/Replication.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/Repo/Repo.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/Swap/Swap.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:test-suite.xcodeproj">
+   </FileRef>
+</Workspace>
