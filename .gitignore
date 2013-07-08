@@ -143,3 +143,6 @@ QuantLib-SWIG/Python/build
 QuantLib-SWIG/R/QuantLib.R
 QuantLib-SWIG/R/QuantLib.RData
 
+# Additional custom ignore items
+*/*.DS_Store
+!*/*.pro
