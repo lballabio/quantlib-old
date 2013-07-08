@@ -144,5 +144,10 @@ QuantLib-SWIG/R/QuantLib.R
 QuantLib-SWIG/R/QuantLib.RData
 
 # Additional custom ignore items
-*/*.DS_Store
+*/.DS_Store
 !*/*.pro
+*/*.xls
+*/*.xlsx
+*/*.pdf
+build-QuantLibQtExamples*/
+*/*.pro.user*git

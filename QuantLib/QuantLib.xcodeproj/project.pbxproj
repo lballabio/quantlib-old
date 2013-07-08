@@ -8711,7 +8711,7 @@
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					/opt/local/include/boost,
-					"/Users/osx/Documents/QuantLib/quantlib/QuantLib/**",
+					"$(PROJECT_DIR)/**",
 				);
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
@@ -8758,7 +8758,7 @@
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					/opt/local/include/boost,
-					"/Users/osx/Documents/QuantLib/quantlib/QuantLib/**",
+					"$(PROJECT_DIR)/**",
 				);
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
