@@ -1,0 +1,272 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		10B76754178884060069A0F0 /* FRA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10B76753178884060069A0F0 /* FRA.cpp */; };
+		10C0B81F178943A900EE08C7 /* libQuantLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10C0B81E178943A900EE08C7 /* libQuantLib.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		10B76748178883E30069A0F0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		10B7674A178883E30069A0F0 /* FRA */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FRA; sourceTree = BUILT_PRODUCTS_DIR; };
+		10B76753178884060069A0F0 /* FRA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FRA.cpp; sourceTree = "<group>"; };
+		10C0B81E178943A900EE08C7 /* libQuantLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libQuantLib.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/QuantLib-gyawljfmuhrddyfdmcgaewuveqcj/Build/Products/Release/libQuantLib.a"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		10B76747178883E30069A0F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10C0B81F178943A900EE08C7 /* libQuantLib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		10B76709178840150069A0F0 = {
+			isa = PBXGroup;
+			children = (
+				10C0B81E178943A900EE08C7 /* libQuantLib.a */,
+				10B76753178884060069A0F0 /* FRA.cpp */,
+				10B76713178840150069A0F0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		10B76713178840150069A0F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10B7674A178883E30069A0F0 /* FRA */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		10B76749178883E30069A0F0 /* FRA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10B76750178883E30069A0F0 /* Build configuration list for PBXNativeTarget "FRA" */;
+			buildPhases = (
+				10B76746178883E30069A0F0 /* Sources */,
+				10B76747178883E30069A0F0 /* Frameworks */,
+				10B76748178883E30069A0F0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FRA;
+			productName = FRA;
+			productReference = 10B7674A178883E30069A0F0 /* FRA */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		10B7670A178840150069A0F0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = XCode;
+			};
+			buildConfigurationList = 10B7670D178840150069A0F0 /* Build configuration list for PBXProject "FRA" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 10B76709178840150069A0F0;
+			productRefGroup = 10B76713178840150069A0F0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				10B76749178883E30069A0F0 /* FRA */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		10B76746178883E30069A0F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10B76754178884060069A0F0 /* FRA.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		10B76719178840150069A0F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ../pch.hpp;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					/opt/local/include/boost,
+					"$(PROJECT_DIR)/../../**",
+				);
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-j2";
+				OTHER_LDFLAGS = (
+					"-lboost_timer-mt",
+					"-lboost_thread-mt",
+					"-lQuantLib",
+				);
+				PRODUCT_NAME = "";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
+			};
+			name = Debug;
+		};
+		10B7671A178840150069A0F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ../pch.hpp;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					/opt/local/include/boost,
+					"$(PROJECT_DIR)/../../**",
+				);
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "-j2";
+				OTHER_LDFLAGS = (
+					"-lboost_timer-mt",
+					"-lboost_thread-mt",
+					"-lQuantLib",
+				);
+				PRODUCT_NAME = "";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
+			};
+			name = Release;
+		};
+		10B76751178883E30069A0F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../DerivedData/QuantLib/Build/Products/Release\"",
+					"\"$(SRCROOT)/../../DerivedData/QuantLib/Build/Products/Release\"",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/QuantLib-gyawljfmuhrddyfdmcgaewuveqcj/Build/Products/Release\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		10B76752178883E30069A0F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../DerivedData/QuantLib/Build/Products/Release\"",
+					"\"$(SRCROOT)/../../DerivedData/QuantLib/Build/Products/Release\"",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/QuantLib-gyawljfmuhrddyfdmcgaewuveqcj/Build/Products/Release\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10B7670D178840150069A0F0 /* Build configuration list for PBXProject "FRA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10B76719178840150069A0F0 /* Debug */,
+				10B7671A178840150069A0F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10B76750178883E30069A0F0 /* Build configuration list for PBXNativeTarget "FRA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10B76751178883E30069A0F0 /* Debug */,
+				10B76752178883E30069A0F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 10B7670A178840150069A0F0 /* Project object */;
+}
