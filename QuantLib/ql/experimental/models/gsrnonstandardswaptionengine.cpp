@@ -52,6 +52,8 @@ namespace QuantLib {
 		for(Size i=0; i< arguments_.exercise->dates().size() ; i++) {
 
 			Date expiry = arguments_.exercise->date(i);
+            Real rebate = arguments_.exercise->rebate(i);
+            Date rebateDate = arguments_.exercise->rebatePaymentDate(i);            
 
 			// determine the indices on both legs representing the cashflows that are part of the exercise into right
 
@@ -61,20 +63,26 @@ namespace QuantLib {
                                 arguments_.floatingResetDates.end(), expiry-1 ) - arguments_.floatingResetDates.begin();
 			Real type = (Real)arguments_.type;
 
-			if(fixedIdx < arguments_.fixedResetDates.size()) { // do nothing if no cashflows on fixed leg are present
+			if(fixedIdx < arguments_.fixedResetDates.size()) {  // do nothing if no cashflows on fixed leg are present
 
-				// determine the npv, first and second order derivatives at $y=0$ of the underlying swap 
-                // (which we normalize to be a payer swap)
+                // determine the npv, first and second order derivatives at $y=0$ of the underlying swap 
 			
-				const Real h = 0.0001; 			// finite difference step in $y$, make this a parameter of the engine ?
-				Real npvm = type*(floatingLegNpv(floatingIdx,expiry,-h) - fixedLegNpv(fixedIdx,expiry,-h));
-				Real npv = type*(floatingLegNpv(floatingIdx,expiry,0.0) - fixedLegNpv(fixedIdx,expiry,0.0));
-				Real npvp = type*(floatingLegNpv(floatingIdx,expiry,h) - fixedLegNpv(fixedIdx,expiry,h));
+                const Real h = 0.0001; 			// finite difference step in $y$, make this a parameter of the engine ?
+                Real zSpreadDsc = zSpread_.empty() ? 1.0 : 
+                                   exp(-zSpread_->value()*model_->termStructure()->dayCounter().
+                                       yearFraction(expiry,rebateDate));
 
-				Real delta = (npvp-npvm)/(2.0*h);
-				Real gamma = (npvp-2.0*npv+npvm)/(h*h);
+                Real npvm = type*(floatingLegNpv(floatingIdx,expiry,-h) - fixedLegNpv(fixedIdx,expiry,-h)) +
+                             rebate * model_->zerobond(rebateDate,expiry,-h,spreadD_) * zSpreadDsc;
+                Real npv = type*(floatingLegNpv(floatingIdx,expiry,0.0) - fixedLegNpv(fixedIdx,expiry,0.0)) +
+                            rebate * model_->zerobond(rebateDate,expiry,0,spreadD_) *  zSpreadDsc;
+                Real npvp = type*(floatingLegNpv(floatingIdx,expiry,h) - fixedLegNpv(fixedIdx,expiry,h)) +
+                             rebate * model_->zerobond(rebateDate,expiry,h,spreadD_) * zSpreadDsc;
 
-                //std::cout << "npv " << npv << " delta " << delta << " gamma " << gamma << std::endl;
+                Real delta = (npvp-npvm)/(2.0*h);
+                Real gamma = (npvp-2.0*npv+npvm)/(h*h);
+                
+                //std::cout << "EXOTIC npv " << npv << " delta " << delta << " gamma " << gamma << std::endl;
                 //debug: output the global npv for x=-5...5
 #ifdef DEBUGOUTPUT
                 Real xtmp=-5.0;
@@ -88,86 +96,85 @@ namespace QuantLib {
                 std::cout << std::endl;
 #endif
 
-				boost::shared_ptr<SwaptionHelper> helper;
+                boost::shared_ptr<SwaptionHelper> helper;
 
                 switch(basketType) {
 
-                    case NonstandardSwaption::Naive: {
-					Real swapLength = swaptionVolatility->dayCounter().yearFraction(standardSwapBase->valueDate(expiry),
+                case NonstandardSwaption::Naive: {
+                    Real swapLength = swaptionVolatility->dayCounter().yearFraction(standardSwapBase->valueDate(expiry),
                                                                                     arguments_.fixedPayDates.back());
-					boost::shared_ptr<SwaptionVolatilityCube> cube = boost::dynamic_pointer_cast<SwaptionVolatilityCube>(
-                                                                                                 swaptionVolatility);
-					Real atm;
-					if(cube) atm = cube->atmVol()->volatility(expiry,swapLength,0.03,true);
-					else atm = swaptionVolatility->volatility(expiry,swapLength,0.03,true);
-					helper = boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(expiry,arguments_.fixedPayDates.back(),
-                            Handle<Quote>(new SimpleQuote(atm)),standardSwapBase->iborIndex(),
-							standardSwapBase->fixedLegTenor(),standardSwapBase->dayCounter(),
-                            standardSwapBase->iborIndex()->dayCounter(), 
-                            standardSwapBase->exogenousDiscount() ? standardSwapBase->discountingTermStructure() : 
-                                                                                  standardSwapBase->forwardingTermStructure(),
-							CalibrationHelper::RelativePriceError,Null<Real>(),arguments_.fixedNominal[fixedIdx]));
+                    boost::shared_ptr<SwaptionVolatilityCube> cube = 
+                        boost::dynamic_pointer_cast<SwaptionVolatilityCube>(swaptionVolatility);
+                    Real atm;
+                    if(cube) atm = cube->atmVol()->volatility(expiry,swapLength,0.03,true);
+                    else atm = swaptionVolatility->volatility(expiry,swapLength,0.03,true);
+                    helper = boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(expiry,arguments_.fixedPayDates.back(),
+                                   Handle<Quote>(new SimpleQuote(atm)),standardSwapBase->iborIndex(),
+                                   standardSwapBase->fixedLegTenor(),standardSwapBase->dayCounter(),
+                                   standardSwapBase->iborIndex()->dayCounter(), 
+                                   standardSwapBase->exogenousDiscount() ? standardSwapBase->discountingTermStructure() : 
+                                   standardSwapBase->forwardingTermStructure(),
+                                   CalibrationHelper::RelativePriceError,Null<Real>(),arguments_.fixedNominal[fixedIdx]));
 
                     break;
+                }
+
+                case NonstandardSwaption::MaturityStrikeByDeltaGamma: {
+                    boost::shared_ptr<MatchHelper> matchHelper_;
+                    matchHelper_ = boost::shared_ptr<MatchHelper>(new MatchHelper(arguments_.swap->type(),npv,
+                                                     delta,gamma,model_,standardSwapBase,expiry,h,spreadD_,spreadF_));
+
+                    // Optimize
+
+                    Array initial(3); // compute some more or less smart start values for optimization
+                    Real nominalSum=0.0, weightedRate=0.0;
+                    for(Size i=fixedIdx;i<arguments_.fixedResetDates.size();i++) {
+                        nominalSum += arguments_.fixedNominal[i];
+                        weightedRate += arguments_.fixedNominal[i] * arguments_.fixedRate[i]; 
                     }
+                    Real nominalAvg = nominalSum / (arguments_.fixedResetDates.size() - fixedIdx);
+                    Real weightedMaturity=0.0, plainMaturity=0.0;
+                    for(Size i=fixedIdx;i<arguments_.fixedResetDates.size();i++) {
+                        weightedMaturity += ActualActual().yearFraction(arguments_.fixedResetDates[i],
+                                                                        arguments_.fixedPayDates[i])*arguments_.fixedNominal[i];
+                    }
+                    weightedMaturity /= nominalAvg;
+                    weightedRate /= nominalSum;
+                    initial[0] = nominalAvg;
+                    initial[1] = weightedMaturity;
+                    initial[2] = weightedRate;
 
-                    case NonstandardSwaption::MaturityStrikeByDeltaGamma: {
-                        boost::shared_ptr<MatchHelper> matchHelper_;
-                        matchHelper_ = boost::shared_ptr<MatchHelper>(new MatchHelper(arguments_.swap->type(),npv,
-                                       delta,gamma,model_,standardSwapBase,expiry,h,spreadD_,spreadF_));
+                    EndCriteria ec(1000,200,1E-8,1E-8,1E-8); // make these criteria and the optimizer itself 
+                    // parameters of the method ?
+                    Constraint constraint = NoConstraint();
+                    Problem p(*matchHelper_,constraint,initial);
+                    LevenbergMarquardt lm;
 
-                        // Optimize
+                    EndCriteria::Type ret = lm.minimize(p,ec);
+                    QL_REQUIRE(ret != EndCriteria::None && ret != EndCriteria::Unknown && 
+                               ret != EndCriteria::MaxIterations, "optimizer returns error (" << ret << ")");
+                    Array solution = p.currentValue();
 
-                        Array initial(3); // compute some more or less smart start values for optimization
-                        Real nominalSum=0.0, weightedRate=0.0;
-                        for(Size i=fixedIdx;i<arguments_.fixedResetDates.size();i++) {
-                            nominalSum += arguments_.fixedNominal[i];
-                            weightedRate += arguments_.fixedNominal[i] * arguments_.fixedRate[i]; 
-                        }
-                        Real nominalAvg = nominalSum / (arguments_.fixedResetDates.size() - fixedIdx);
-                        Real weightedMaturity=0.0, plainMaturity=0.0;
-                        for(Size i=fixedIdx;i<arguments_.fixedResetDates.size();i++) {
-                            weightedMaturity += ActualActual().yearFraction(arguments_.fixedResetDates[i],
-                                                             arguments_.fixedPayDates[i])*arguments_.fixedNominal[i];
-                        }
-                        weightedMaturity /= nominalAvg;
-                        weightedRate /= nominalSum;
-                        initial[0] = nominalAvg;
-                        initial[1] = weightedMaturity;
-                        initial[2] = weightedRate;
+                    Real maturity = fabs(solution[1]);
 
-                        EndCriteria ec(1000,200,1E-8,1E-8,1E-8); // make these criteria and the optimizer itself 
-                                                                 // parameters of the method ?
-                        Constraint constraint = NoConstraint();
-                        Problem p(*matchHelper_,constraint,initial);
-                        LevenbergMarquardt lm;
-
-                        EndCriteria::Type ret = lm.minimize(p,ec);
-                        QL_REQUIRE(ret != EndCriteria::None && ret != EndCriteria::Unknown && 
-                                   ret != EndCriteria::MaxIterations, "optimizer returns error (" << ret << ")");
-                        Array solution = p.currentValue();
-
-                        Real maturity = fabs(solution[1]);
-
-                        Size years = (Size)std::floor(maturity);
-                        maturity -= (Real)years; maturity *= 12.0;
-                        Size months = (Size)std::floor(maturity+0.5);
-                        if(years==0 && months==0) months=1; // ensure a maturity of at least one months
-                        //maturity -= (Real)months; maturity *= 365.25;
-                        //Size days = (Size)std::floor(maturity);
+                    Size years = (Size)std::floor(maturity);
+                    maturity -= (Real)years; maturity *= 12.0;
+                    Size months = (Size)std::floor(maturity+0.5);
+                    if(years==0 && months==0) months=1; // ensure a maturity of at least one months
+                    //maturity -= (Real)months; maturity *= 365.25;
+                    //Size days = (Size)std::floor(maturity);
 				
-                        Period matPeriod = years*Years+months*Months;//+days*Days;
+                    Period matPeriod = years*Years+months*Months;//+days*Days;
 
-                        helper = boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(expiry,matPeriod,
-                           Handle<Quote>(new SimpleQuote(swaptionVolatility->volatility(expiry,matPeriod,solution[2],true))),
-                           standardSwapBase->iborIndex(),standardSwapBase->fixedLegTenor(),
-                           standardSwapBase->dayCounter(),standardSwapBase->iborIndex()->dayCounter(), 
-                           standardSwapBase->exogenousDiscount() ? standardSwapBase->discountingTermStructure() : 
-                                                                                  standardSwapBase->forwardingTermStructure(),
-                           CalibrationHelper::RelativePriceError,fabs(solution[2]),fabs(solution[0])));
-                        
-                        break;
-				    }
+                    helper = boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(expiry,matPeriod,
+                          Handle<Quote>(new SimpleQuote(swaptionVolatility->volatility(expiry,matPeriod,solution[2],true))),
+                          standardSwapBase->iborIndex(),standardSwapBase->fixedLegTenor(),
+                          standardSwapBase->dayCounter(),standardSwapBase->iborIndex()->dayCounter(), 
+                          standardSwapBase->exogenousDiscount() ? standardSwapBase->discountingTermStructure() : 
+                          standardSwapBase->forwardingTermStructure(),
+                          CalibrationHelper::RelativePriceError,fabs(solution[2]),fabs(solution[0])));
+                    break;
+                }
 
                 default:
                     QL_FAIL("Calibration basket type not known (" << basketType << ")");
@@ -177,7 +184,6 @@ namespace QuantLib {
                 result.push_back(helper);
 
             }
-
 
         }
 
@@ -191,7 +197,8 @@ namespace QuantLib {
 		for(Size i=idx; i<arguments_.fixedResetDates.size(); i++) {
 			npv += arguments_.fixedCoupons[i] * model_->zerobond(arguments_.fixedPayDates[i],referenceDate,y,spreadD_) *
                 (zSpread_.empty() ? 1.0 : 
-                 exp(-zSpread_->value()*model_->termStructure()->timeFromReference(arguments_.fixedPayDates[i])));
+                 exp(-zSpread_->value()*model_->termStructure()->dayCounter().
+                     yearFraction(referenceDate,arguments_.fixedPayDates[i])));
 		}
 
 		return npv;
@@ -202,12 +209,18 @@ namespace QuantLib {
 		
 		Real npv=0.0;
 		for(Size i=idx; i<arguments_.floatingResetDates.size(); i++) {
-			npv += ( model_->forwardRate(arguments_.floatingFixingDates[i],arguments_.swap->iborIndex(),
-                                         referenceDate,y,spreadF_) + arguments_.floatingSpreads[i] ) *
-				     arguments_.floatingAccrualTimes[i] * arguments_.floatingNominal[i] * 
+            Real amount;
+            if(!arguments_.floatingIsRedemptionFlow[i])
+                amount = (model_->forwardRate(arguments_.floatingFixingDates[i],arguments_.swap->iborIndex(),
+                                             referenceDate,y,spreadF_) + arguments_.floatingSpreads[i]) *
+                                         arguments_.floatingAccrualTimes[i] * arguments_.floatingNominal[i];
+            else
+                amount = arguments_.floatingCoupons[i];
+			npv +=  amount * 
                 model_->zerobond(arguments_.floatingPayDates[i],referenceDate,y,spreadD_) *
                 (zSpread_.empty() ? 1.0 : 
-                 exp(-zSpread_->value()*model_->termStructure()->timeFromReference(arguments_.fixedPayDates[i])));
+                 exp(-zSpread_->value()*model_->termStructure()->dayCounter().
+                     yearFraction(referenceDate,arguments_.floatingPayDates[i])));
 		}
 
 		return npv;
@@ -294,7 +307,7 @@ namespace QuantLib {
 			for(Size k=0; k < (expiry0 > today ? npv0.size() : 1); k++) {
 
 				Real price = 0.0;
-                Real zSpreadDf = zSpread_.empty() ? 1.0 : std::exp(-zSpread_->value()*(expiry1-expiry0));
+                Real zSpreadDf = zSpread_.empty() ? 1.0 : std::exp(-zSpread_->value()*(expiry1Time-expiry0Time));
 				if(expiry1Time != Null<Real>()) {
 					Array yg = model_->yGrid(stddevs_, integrationPoints_, expiry1Time, expiry0Time, expiry0Time > 0 ? 
                                              z[k] : 0.0);
@@ -335,10 +348,14 @@ namespace QuantLib {
 					//floatingLegNpv = (model_->zerobond(schedule.date(j1),expiry0,z[k]) 
                     //- model_->zerobond(arguments_.fixedPayDates.back(),expiry0,z[k])); // approximation
 					for(Size l=k1;l<arguments_.floatingCoupons.size();l++) {
-						floatingLegNpv += arguments_.floatingNominal[l] * arguments_.floatingAccrualTimes[l] *
+                        Real amount;
+                        if(arguments_.floatingIsRedemptionFlow[l])
+                            amount = arguments_.floatingCoupons[l];
+                        else 
+                            amount = arguments_.floatingNominal[l] * arguments_.floatingAccrualTimes[l] *
 							    (arguments_.floatingSpreads[l]+model_->forwardRate(arguments_.floatingFixingDates[l],
-                                 arguments_.swap->iborIndex(),expiry0,z[k],spreadF_)) * 
-											model_->zerobond(arguments_.floatingPayDates[l],expiry0,z[k],spreadD_);
+                                 arguments_.swap->iborIndex(),expiry0,z[k],spreadF_));
+						floatingLegNpv +=  amount * model_->zerobond(arguments_.floatingPayDates[l],expiry0,z[k],spreadD_);
 					}
 					Real fixedLegNpv = 0.0;
 					for(Size l=j1;l<arguments_.fixedCoupons.size();l++) {

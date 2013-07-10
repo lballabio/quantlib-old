@@ -77,12 +77,17 @@ namespace QuantLib {
           flatPayoffExtrapolation_(flatPayoffExtrapolation),
             zSpread_(zSpread), discountYts_(discountCurve) {
 		
-			  registerWith(discountYts_);
 
-              if(!discountYts_.empty())
+            if(zSpread_.empty()) 
+                registerWith(zSpread_);
+
+            if(!discountYts_.empty()) {
                   effectiveDiscountYts_ = &**discountYts_;
-              else
+                  registerWith(discountYts_);
+            }
+            else {
                   effectiveDiscountYts_ = &**model_->termStructure();
+            }
                   		
 		}
 
@@ -134,8 +139,8 @@ namespace QuantLib {
                 }
                 for(Size i=0; i < swap->floatingLeg().size() ; i++) {
                     boost::shared_ptr<IborCoupon> c = boost::dynamic_pointer_cast<IborCoupon>(swap->floatingLeg()[i]);
-                    npv += mdl_->forwardRate(c->fixingDate(),c->iborIndex(),expiry_,y) * c->accrualPeriod() * 
-                        nominal * mdl_->zerobond(c->date(),expiry_,y);
+                    npv += mdl_->forwardRate(c->fixingDate(),c->iborIndex(),expiry_,y,spreadF_) * c->accrualPeriod() * 
+                        nominal * mdl_->zerobond(c->date(),expiry_,y,spreadD_);
                 }
                 return (Real)type*npv;
             }
