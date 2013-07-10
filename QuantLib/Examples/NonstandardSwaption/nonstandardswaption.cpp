@@ -41,7 +41,7 @@ void outputModel(std::vector<Date>& expiries, boost::shared_ptr<Gsr> model) {
 
 int main(int, char* []) {
     
-    Date refDate(15,June,2013);
+    Date refDate(17,June,2013); 
     Settings::instance().evaluationDate() = refDate;
 	Date effective = TARGET().advance(refDate,2*Days);
 	Date maturity = TARGET().advance(effective,10*Years);
@@ -75,9 +75,9 @@ int main(int, char* []) {
 
     std::vector<Real> fixedNominal(10), floatingNominal(20), fixedRate(10);
 	for(Size i=0;i<10;i++) {
-		fixedNominal[i] = 100.0-i*10.0;//-i*5000000;//(i>0 ? fixedNominal[i-1] : 100000000.0 )*1.075;
+		fixedNominal[i] = 100.0;;-i*10.0;//-i*5000000;//(i>0 ? fixedNominal[i-1] : 100000000.0 )*1.075;
 		floatingNominal[2*i] = floatingNominal[2*i+1] = fixedNominal[i];
-		fixedRate[i] = 0.035;//+0.0030*i;
+		fixedRate[i] = 0.035+0.0050*i;
 	}
 
 	Schedule fixedSchedule(effective,maturity,1*Years,TARGET(),ModifiedFollowing,ModifiedFollowing,
