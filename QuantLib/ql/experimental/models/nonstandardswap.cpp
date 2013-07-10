@@ -18,6 +18,7 @@
 */
 
 #include <ql/experimental/models/nonstandardswap.hpp>
+#include <ql/cashflows/simplecashflow.hpp>
 #include <ql/cashflows/iborcoupon.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
@@ -39,6 +40,7 @@ namespace QuantLib {
 		fixedDayCount_(fromVanilla.fixedDayCount()), floatingSchedule_(fromVanilla.floatingSchedule()), 
         iborIndex_(fromVanilla.iborIndex()),
 		spread_(fromVanilla.spread()), floatingDayCount_(fromVanilla.floatingDayCount()), 
+        capitalExchange_(false),
         paymentConvention_(fromVanilla.paymentConvention()) {
 
 		init();
@@ -55,12 +57,13 @@ namespace QuantLib {
             const boost::shared_ptr<IborIndex>& iborIndex,
             Spread spread,
             const DayCounter& floatingDayCount,
+            const bool capitalExchange,
             boost::optional<BusinessDayConvention> paymentConvention)
     : Swap(2), type_(type), fixedNominal_(fixedNominal), floatingNominal_(floatingNominal),
       fixedSchedule_(fixedSchedule), fixedRate_(fixedRate),
       fixedDayCount_(fixedDayCount),
       floatingSchedule_(floatingSchedule), iborIndex_(iborIndex), spread_(spread),
-      floatingDayCount_(floatingDayCount) {
+      floatingDayCount_(floatingDayCount), capitalExchange_(capitalExchange) {
 
 		QL_REQUIRE(fixedNominal.size() == fixedRate.size(),
 						"Fixed nominal size (" << fixedNominal.size() << ") does not match fixed rate size (" << 
@@ -95,6 +98,19 @@ namespace QuantLib {
             .withPaymentDayCounter(floatingDayCount_)
             .withPaymentAdjustment(paymentConvention_)
             .withSpreads(spread_);
+
+        // FIXME here we need in addtion the amortizing cashflows when nominal reduces
+
+        if(capitalExchange_) {
+            legs_[0].push_back(boost::shared_ptr<CashFlow>(new Redemption(fixedNominal_.back(),
+                                                                          legs_[0].back()->date())));
+            fixedNominal_.push_back(fixedNominal_.back());
+            fixedRate_.push_back(0.0);
+            legs_[1].push_back(boost::shared_ptr<CashFlow>(new Redemption(floatingNominal_.back(),
+                                                                          legs_[1].back()->date())));
+            floatingNominal_.push_back(floatingNominal_.back());
+        }
+        
         for (Leg::const_iterator i = legs_[1].begin(); i < legs_[1].end(); ++i)
             registerWith(*i);
 
@@ -110,6 +126,7 @@ namespace QuantLib {
           default:
             QL_FAIL("Unknown nonstandard-swap type");
         }
+
     }
 
     void NonstandardSwap::setupArguments(PricingEngine::arguments* args) const {
@@ -131,14 +148,30 @@ namespace QuantLib {
         arguments->fixedResetDates = arguments->fixedPayDates =
             std::vector<Date>(fixedCoupons.size());
         arguments->fixedCoupons = std::vector<Real>(fixedCoupons.size());
+        arguments->fixedIsRedemptionFlow = std::vector<bool>(fixedCoupons.size(),false);
 
         for (Size i=0; i<fixedCoupons.size(); ++i) {
             boost::shared_ptr<FixedRateCoupon> coupon =
                 boost::dynamic_pointer_cast<FixedRateCoupon>(fixedCoupons[i]);
-
-            arguments->fixedPayDates[i] = coupon->date();
-            arguments->fixedResetDates[i] = coupon->accrualStartDate();
-            arguments->fixedCoupons[i] = coupon->amount();
+            if(coupon) {
+                arguments->fixedPayDates[i] = coupon->date();
+                arguments->fixedResetDates[i] = coupon->accrualStartDate();
+                arguments->fixedCoupons[i] = coupon->amount();
+            }
+            else {
+                boost::shared_ptr<CashFlow> cashflow =
+                    boost::dynamic_pointer_cast<CashFlow>(fixedCoupons[i]);
+                std::vector<Date>::const_iterator j = std::find(arguments->fixedPayDates.begin(),
+                                                                arguments->fixedPayDates.end(),
+                                                                cashflow->date());
+                QL_REQUIRE(j != arguments->fixedPayDates.end(),"nominal redemption on " << cashflow->date() <<
+                           "has no corresponding coupon");
+                Size jIdx = j - arguments->fixedPayDates.begin();
+                arguments->fixedIsRedemptionFlow[i] = true;
+                arguments->fixedCoupons[i] = cashflow->amount();
+                arguments->fixedResetDates[i] = arguments->fixedResetDates[jIdx];
+                arguments->fixedPayDates[i] = cashflow->date();
+            }
         }
 
         const Leg& floatingCoupons = floatingLeg();
@@ -151,20 +184,39 @@ namespace QuantLib {
         arguments->floatingSpreads =
             std::vector<Spread>(floatingCoupons.size());
         arguments->floatingCoupons = std::vector<Real>(floatingCoupons.size());
+        arguments->floatingIsRedemptionFlow = std::vector<bool>(floatingCoupons.size(),false);
+
         for (Size i=0; i<floatingCoupons.size(); ++i) {
             boost::shared_ptr<IborCoupon> coupon =
                 boost::dynamic_pointer_cast<IborCoupon>(floatingCoupons[i]);
-
-            arguments->floatingResetDates[i] = coupon->accrualStartDate();
-            arguments->floatingPayDates[i] = coupon->date();
-
-            arguments->floatingFixingDates[i] = coupon->fixingDate();
-            arguments->floatingAccrualTimes[i] = coupon->accrualPeriod();
-            arguments->floatingSpreads[i] = coupon->spread();
-            try {
-                arguments->floatingCoupons[i] = coupon->amount();
-            } catch (Error&) {
-                arguments->floatingCoupons[i] = Null<Real>();
+            if(coupon) {
+                arguments->floatingResetDates[i] = coupon->accrualStartDate();
+                arguments->floatingPayDates[i] = coupon->date();
+                arguments->floatingFixingDates[i] = coupon->fixingDate();
+                arguments->floatingAccrualTimes[i] = coupon->accrualPeriod();
+                arguments->floatingSpreads[i] = coupon->spread();
+                try {
+                    arguments->floatingCoupons[i] = coupon->amount();
+                } catch (Error&) {
+                    arguments->floatingCoupons[i] = Null<Real>();
+                }
+            }
+            else {
+                boost::shared_ptr<CashFlow> cashflow =
+                    boost::dynamic_pointer_cast<CashFlow>(floatingCoupons[i]);
+                std::vector<Date>::const_iterator j = std::find(arguments->floatingPayDates.begin(),
+                                                                arguments->floatingPayDates.end(),
+                                                                cashflow->date());
+                QL_REQUIRE(j != arguments->floatingPayDates.end(),"nominal redemption on " << cashflow->date() <<
+                           "has no corresponding coupon");
+                Size jIdx = j - arguments->floatingPayDates.begin();
+                arguments->floatingIsRedemptionFlow[i] = true;
+                arguments->floatingCoupons[i] = cashflow->amount();
+                arguments->floatingResetDates[i] = arguments->floatingResetDates[jIdx];
+                arguments->floatingFixingDates[i] = arguments->floatingFixingDates[jIdx];
+                arguments->floatingAccrualTimes[i] = 0.0;
+                arguments->floatingSpreads[i] = 0.0;
+                arguments->floatingPayDates[i] = cashflow->date();
             }
         }
 
@@ -185,7 +237,9 @@ namespace QuantLib {
     void NonstandardSwap::arguments::validate() const {
         Swap::arguments::validate();
         QL_REQUIRE(fixedNominal.size() == fixedPayDates.size(), 
-                   "number of fixed leg nominals different from number of payment dates");
+                   "number of fixed leg nominals plus redemption flows different from number of payment dates");
+        QL_REQUIRE(fixedRate.size() == fixedPayDates.size(),
+                   "number of fixed rates plus redemption flows different from number of payment dates");
         QL_REQUIRE(floatingNominal.size() == floatingPayDates.size(), 
                    "number of float leg nominals different from number of payment dates");
         QL_REQUIRE(fixedResetDates.size() == fixedPayDates.size(),

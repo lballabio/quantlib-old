@@ -39,7 +39,7 @@ namespace QuantLib {
 
     class NonstandardSwap : public Swap {
       public:
-        enum Type { Receiver = -1, Payer = 1 }; // this refers to the structured (i.e. cms) coupon leg
+        enum Type { Receiver = -1, Payer = 1 }; // this refers to the fixed coupon leg
         class arguments;
         class results;
         class engine;
@@ -55,6 +55,7 @@ namespace QuantLib {
             const boost::shared_ptr<IborIndex>& iborIndex,
             Spread spread,
             const DayCounter& floatingDayCount,
+            const bool capitalExchange = false,
             boost::optional<BusinessDayConvention> paymentConvention =
                                                                  boost::none);
         //! \name Inspectors
@@ -88,14 +89,15 @@ namespace QuantLib {
 		void init();
         void setupExpired() const;
         Type type_;
-        const std::vector<Real> fixedNominal_, floatingNominal_;
+        std::vector<Real> fixedNominal_, floatingNominal_;
         Schedule fixedSchedule_;
-        const std::vector<Real> fixedRate_;
+        std::vector<Real> fixedRate_;
         DayCounter fixedDayCount_;
         Schedule floatingSchedule_;
         boost::shared_ptr<IborIndex> iborIndex_;
         Spread spread_;
         DayCounter floatingDayCount_;
+        const bool capitalExchange_;
         BusinessDayConvention paymentConvention_;
         // results
     };
@@ -108,19 +110,22 @@ namespace QuantLib {
         Type type;
         std::vector<Real> fixedNominal,floatingNominal;
 
-        std::vector<Date> fixedResetDates;
-        std::vector<Date> fixedPayDates;
-        std::vector<Time> floatingAccrualTimes;
-        std::vector<Date> floatingResetDates;
-        std::vector<Date> floatingFixingDates;
-        std::vector<Date> floatingPayDates;
+        std::vector<Date> fixedResetDates; 
+        std::vector<Date> fixedPayDates; 
+        std::vector<Time> floatingAccrualTimes; 
+        std::vector<Date> floatingResetDates; 
+        std::vector<Date> floatingFixingDates; 
+        std::vector<Date> floatingPayDates; 
 
-        std::vector<Real> fixedCoupons;
-		std::vector<Real> fixedRate;
-        std::vector<Spread> floatingSpreads;
+        std::vector<Real> fixedCoupons; 
+		std::vector<Real> fixedRate; 
+        std::vector<Spread> floatingSpreads; 
         std::vector<Real> floatingCoupons;
 
         boost::shared_ptr<IborIndex> iborIndex;
+
+        std::vector<bool> fixedIsRedemptionFlow; 
+        std::vector<bool> floatingIsRedemptionFlow; 
 
         void validate() const;
     };
