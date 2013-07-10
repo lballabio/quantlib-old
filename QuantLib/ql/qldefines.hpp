@@ -26,6 +26,10 @@
 /* install-hook */
 #define quantlib_defines_hpp
 
+// clang throws some false warnings, ignore them
+#pragma clang diagnostic ignored "-Wunused-value"
+
+
 #ifdef _MSC_VER
 /* Microsoft-specific, but needs to be defined before
    including <boost/config.hpp> which somehow includes
