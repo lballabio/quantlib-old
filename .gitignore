@@ -143,3 +143,5 @@ QuantLib-SWIG/Python/build
 QuantLib-SWIG/R/QuantLib.R
 QuantLib-SWIG/R/QuantLib.RData
 
+#HTML
+QuantLib/HTML/
