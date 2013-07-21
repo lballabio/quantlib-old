@@ -20,5 +20,5 @@
 #include <ql/experimental/models/markovfunctionalcmsswaptionengine.hpp>
 #include <ql/experimental/models/nonstandardswap.hpp>
 #include <ql/experimental/models/nonstandardswaption.hpp>
-
+#include <ql/experimental/models/creditriskplus.hpp>
 

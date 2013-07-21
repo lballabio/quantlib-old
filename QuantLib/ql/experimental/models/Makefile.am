@@ -22,7 +22,8 @@ this_include_HEADERS = \
 	gsrswaptionengine.hpp \
 	markovfunctionalcmsswaptionengine.hpp \
 	nonstandardswap.hpp \
-	nonstandardswaption.hpp	
+	nonstandardswaption.hpp	\
+    creditriskplus.hpp
 
 libModels_la_SOURCES = \
 	atmadjustedsmilesection.cpp \
@@ -43,7 +44,8 @@ libModels_la_SOURCES = \
 	gsrswaptionengine.cpp \
 	markovfunctionalcmsswaptionengine.cpp \
 	nonstandardswap.cpp \
-	nonstandardswaption.cpp	
+	nonstandardswaption.cpp	\
+    creditriskplus.cpp
 
 noinst_LTLIBRARIES = libModels.la
 
