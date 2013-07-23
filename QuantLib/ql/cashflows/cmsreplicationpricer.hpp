@@ -50,6 +50,7 @@ namespace QuantLib {
                          lowerRateBound_(0.0001), upperRateBound_(2.0000),
                          cashSettledSwaptions_(false),
                          enforceMonotonicPrices_(true),
+                         simplifiedFloatingLeg_(false),
                          n_(100) {}
 
             // hedge with given discrete strikes relative to the strike, e.g.
@@ -103,12 +104,17 @@ namespace QuantLib {
                 enforceMonotonicPrices_ = enforceMonotonicPrices; return *this;
             }
 
+            // use simplified formula for floating leg swap evaluation
+            Settings& withSimplifiedFloatingLeg(const bool simplifiedFloatingLeg) {
+                simplifiedFloatingLeg_ = simplifiedFloatingLeg; return *this;
+            }
+
             Strategy strategy_;
             std::vector<Real> discreteStrikeSpreads_;
             Real lowerRateBound_, upperRateBound_;
             Real priceThreshold_;
             Real vegaRatio_;
-            bool cashSettledSwaptions_, enforceMonotonicPrices_;
+            bool cashSettledSwaptions_, enforceMonotonicPrices_, simplifiedFloatingLeg_;
             Size n_;
 
         };

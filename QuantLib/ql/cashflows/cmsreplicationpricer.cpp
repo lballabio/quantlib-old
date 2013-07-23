@@ -38,8 +38,10 @@ namespace QuantLib {
     CmsReplicationPricer::CmsReplicationPricer(const Handle<SwaptionVolatilityStructure>& swaptionVol,
                                                const Handle<Quote>& meanReversion,
                                                const Handle<YieldTermStructure>& couponDiscountCurve,
-                                               const Settings& settings) : CmsCouponPricer(swaptionVol), meanReversion_(meanReversion), 
-                                                                           couponDiscountCurve_(couponDiscountCurve), settings_(settings) { 
+                                               const Settings& settings) : 
+        CmsCouponPricer(swaptionVol), meanReversion_(meanReversion), 
+        couponDiscountCurve_(couponDiscountCurve), settings_(settings) { 
+        
         registerWith(meanReversion_);
         if(!couponDiscountCurve_.empty())
             registerWith(couponDiscountCurve_);
@@ -131,8 +133,7 @@ namespace QuantLib {
     
         Real annuity=0.0;
         for(Size i=0; i<fixedLegYearFractions_.size(); i++) {
-            Real dt = discountCurve_->timeFromReference(fixedLegPaymentDates_[i]) -
-                discountCurve_->timeFromReference(fixingDate_);
+            Real dt = discountCurve_->dayCounter().yearFraction(fixingDate_,fixedLegPaymentDates_[i]);
             annuity += fixedLegYearFractions_[i] * discountCurve_->discount(fixedLegPaymentDates_[i])
                 / discountCurve_->discount(fixingDate_) * hullWhiteScenario(dt,h);
         }
@@ -142,22 +143,32 @@ namespace QuantLib {
     }
 
     Real CmsReplicationPricer::floatingLegNpv(Real h) const {
-    
-        Real npv=0.0;
-        for(Size i=0; i<floatingLegStartDates_.size();i++) {
-            Real dt1 = forwardCurve_->timeFromReference(floatingLegEndDates_[i])-
-                forwardCurve_->timeFromReference(floatingLegStartDates_[i]);
-            Real dt2 = discountCurve_->timeFromReference(floatingLegPaymentDates_[i])-
-                discountCurve_->timeFromReference(fixingDate_);
-            // we use that the day counter of the floating leg is equal to that of the float index always for
-            // swapIndex underlying swaps
-            npv += (forwardCurve_->discount(floatingLegStartDates_[i]) / 
-                    forwardCurve_->discount(floatingLegEndDates_[i]) / hullWhiteScenario(dt1,h) - 1.0) * 
-                discountCurve_->discount(floatingLegPaymentDates_[i]) / discountCurve_->discount(fixingDate_) * 
-                hullWhiteScenario(dt2,h);
-        }
 
-        return npv;
+        if(settings_.simplifiedFloatingLeg_) {
+            Real dt1 = discountCurve_->dayCounter().yearFraction(fixingDate_,floatingLegStartDates_.front());
+            Real dt2 = discountCurve_->dayCounter().yearFraction(fixingDate_,floatingLegPaymentDates_.back());
+            return (discountCurve_->discount(floatingLegStartDates_.front()) * hullWhiteScenario(dt1,h) -
+                    discountCurve_->discount(floatingLegPaymentDates_.back()) * hullWhiteScenario(dt2,h)) /
+                discountCurve_->discount(fixingDate_);
+        }
+        else {
+            Real npv=0.0;
+            for(Size i=0; i<floatingLegStartDates_.size();i++) {
+                Real dt1 = forwardCurve_->dayCounter().yearFraction(fixingDate_,floatingLegStartDates_[i]);
+                Real dt2 = forwardCurve_->dayCounter().yearFraction(fixingDate_,floatingLegEndDates_[i]);
+                Real dt3 = discountCurve_->dayCounter().yearFraction(fixingDate_,floatingLegPaymentDates_[i]);
+                // we use that the day counter of the floating leg is equal to that of the float index always for
+                // swapIndex underlying swaps
+                npv += (forwardCurve_->discount(floatingLegStartDates_[i]) / 
+                        forwardCurve_->discount(floatingLegEndDates_[i]) * 
+                        hullWhiteScenario(dt1,h) /
+                        hullWhiteScenario(dt2,h)) * 
+                    discountCurve_->discount(floatingLegPaymentDates_[i]) / 
+                    discountCurve_->discount(fixingDate_) * 
+                    hullWhiteScenario(dt3,h);
+            }
+            return npv;
+        }
 
     }
 
@@ -241,8 +252,7 @@ namespace QuantLib {
 
     }
 
-    Real CmsReplicationPricer::optionletPrice(
-                                              Option::Type optionType, Real strike) const {
+    Real CmsReplicationPricer::optionletPrice(Option::Type optionType, Real strike) const {
     
         Real phi = optionType == Option::Call ? 1.0 : -1.0;
 
@@ -264,12 +274,9 @@ namespace QuantLib {
         }
 
         case Settings::RateBound : {
+            Real h2 = h(optionType == Option::Call ? settings_.upperRateBound_ : settings_.lowerRateBound_);
             for(Size i=0;i<settings_.n_;i++) {
-                Real k = strike + ((Real)(i+1)) * (optionType == Option::Call ?
-                                                   (settings_.upperRateBound_ - strike) / ((Real)settings_.n_) :
-                                                   (settings_.lowerRateBound_ - strike) / ((Real)settings_.n_));
-                if(k>=smileSection_->minStrike() && k<=smileSection_->maxStrike())
-                    hs.push_back( h(k) );
+                hs.push_back(((Real)(i+1)/(settings_.n_-1))*h2);
             }
             break;
         }
@@ -282,12 +289,9 @@ namespace QuantLib {
                 std::max(settings_.lowerRateBound_, 
                          strikeFromVegaRatio(settings_.vegaRatio_,optionType,strike));
             if(close(fabs(effectiveBound-strike),0.0)) return 0.0;
+            Real h2 = h(effectiveBound);
             for(Size i=0;i<settings_.n_;i++) {
-                Real k = strike + ((Real)(i+1)) * (optionType == Option::Call ?
-                                                   (effectiveBound - strike) / ((Real)settings_.n_) :
-                                                   (effectiveBound - strike) / ((Real)settings_.n_));
-                if(k>=smileSection_->minStrike() && k<=smileSection_->maxStrike())
-                    hs.push_back( h(k) );
+                hs.push_back(((Real)(i+1)/(settings_.n_-1))*h2);
             }
             break;
         }
@@ -300,12 +304,9 @@ namespace QuantLib {
                 std::max(settings_.lowerRateBound_,
                          strikeFromPrice(settings_.priceThreshold_,optionType,strike));
             if(close(fabs(effectiveBound-strike),0.0)) return 0.0;
+            Real h2 = h(effectiveBound);
             for(Size i=0;i<settings_.n_;i++) {
-                Real k = strike + ((Real)(i+1)) * (optionType == Option::Call ?
-                                                   (effectiveBound - strike) / ((Real)settings_.n_) :
-                                                   (effectiveBound - strike) / ((Real)settings_.n_));
-                if(k>=smileSection_->minStrike() && k<=smileSection_->maxStrike())
-                    hs.push_back( h(k) );
+                hs.push_back(((Real)(i+1)/(settings_.n_-1))*h2);
             }
             break;
         }
@@ -331,8 +332,7 @@ namespace QuantLib {
             for(Size j=0;j<i;j++) {
                 npv += weights[j] * phi * (rate - strikes[j]) * ann;
             }
-            Real dt = discountCurve_->timeFromReference(paymentDate_) - 
-                discountCurve_->timeFromReference(fixingDate_);
+            Real dt = discountCurve_->dayCounter().yearFraction(fixingDate_,paymentDate_);
             weights.push_back( ( phi * discountCurve_->discount(paymentDate_) / 
                                  discountCurve_->discount(fixingDate_) *
                                  hullWhiteScenario(dt,hs[i]) * (rate - strike) - npv ) /
