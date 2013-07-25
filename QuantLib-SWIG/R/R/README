@@ -1,0 +1,2 @@
+The SWIG build process creates a file QuantLib.R which will be moved into
+this directory when the package is prepared by the 'make' step.
