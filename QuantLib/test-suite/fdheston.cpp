@@ -55,10 +55,12 @@
 #include <ql/experimental/finitedifferences/fdmhestonfwdop.hpp>
 
 #include <boost/math/special_functions/gamma.hpp>
+#if BOOST_VERSION >= 103900
 #include <boost/math/distributions/non_central_chi_squared.hpp>
+#endif
 
 using namespace QuantLib;
-using namespace boost::unit_test_framework;
+using boost::unit_test_framework::test_suite;
 
 namespace {
     struct NewBarrierOptionData {
@@ -786,6 +788,8 @@ void FdHestonTest::testBlackScholesFokkerPlanckFwdEquation() {
 
 
 namespace {
+
+    #if BOOST_VERSION >= 103900
     Real squareRootGreensFct(Real v0, Real kappa, Real theta,
                              Real sigma, Real t, Real x) {
 
@@ -799,6 +803,7 @@ namespace {
 
         return boost::math::pdf(dist, x/k) / k;
     }
+    #endif
 
     Real stationaryProbabilityFct(Real kappa, Real theta,
                                    Real sigma, Real v) {
@@ -834,7 +839,9 @@ namespace {
 }
 
 void FdHestonTest::testSquareRootZeroFlowBC() {
-    BOOST_MESSAGE("Testing Zero Flow BC for the square root process...");
+    #if BOOST_VERSION >= 103900
+
+    BOOST_TEST_MESSAGE("Testing Zero Flow BC for the square root process...");
 
     SavedSettings backup;
 
@@ -897,6 +904,7 @@ void FdHestonTest::testSquareRootZeroFlowBC() {
                        << "\n   tolerance:  " << tol);
         }
     }
+    #endif
 }
 
 
@@ -922,8 +930,8 @@ namespace {
 
 
 void FdHestonTest::testTransformedZeroFlowBC() {
-    BOOST_MESSAGE("Testing zero flow BC for transformed "
-                  "Fokker-Planck forward equation...");
+    BOOST_TEST_MESSAGE("Testing zero flow BC for transformed "
+                       "Fokker-Planck forward equation...");
 
     SavedSettings backup;
 
@@ -971,8 +979,9 @@ namespace {
       public:
         q_fct(const Array& v, const Array& p, const Real alpha)
         : v_(v), q_(Pow(v, alpha)*p), alpha_(alpha) {
-            spline_ = boost::shared_ptr<CubicNaturalSpline>(
-                new CubicNaturalSpline(v_.begin(), v_.end(), q_.begin()));
+            spline_ = boost::shared_ptr<CubicInterpolation>(
+                new MonotonicCubicNaturalSpline(v_.begin(), v_.end(),
+                                                q_.begin()));
         }
 
         Real operator()(Real v) {
@@ -982,13 +991,13 @@ namespace {
 
         const Array v_, q_;
         const Real alpha_;
-        boost::shared_ptr<CubicNaturalSpline> spline_;
+        boost::shared_ptr<CubicInterpolation> spline_;
     };
 }
 
 void FdHestonTest::testSquareRootEvolveWithStationaryDensity() {
-    BOOST_MESSAGE("Testing Fokker-Planck forward equation"
-                  "for the square root process with stationary density...");
+    BOOST_TEST_MESSAGE("Testing Fokker-Planck forward equation "
+                       "for the square root process with stationary density...");
 
     // Documentation for this test case:
     // http://www.spanderen.de/2013/05/04/fokker-planck-equation-feller-constraint-and-boundary-conditions/
@@ -1019,7 +1028,6 @@ void FdHestonTest::testSquareRootEvolveWithStationaryDensity() {
             new FdmSquareRootFwdOp(mesher, kappa, theta,
                                    sigma, 0, sigma > 0.75));
 
-
         const Array eP = p;
 
         const Size n = 100;
@@ -1047,8 +1055,10 @@ void FdHestonTest::testSquareRootEvolveWithStationaryDensity() {
 }
 
 void FdHestonTest::testSquareRootFokkerPlanckFwdEquation() {
-    BOOST_MESSAGE("Testing Fokker-Planck forward equation"
-                  "for the square root process with Dirac start...");
+    #if BOOST_VERSION >= 103900
+
+    BOOST_TEST_MESSAGE("Testing Fokker-Planck forward equation "
+                       "for the square root process with Dirac start...");
 
     SavedSettings backup;
 
@@ -1111,6 +1121,7 @@ void FdHestonTest::testSquareRootFokkerPlanckFwdEquation() {
                        << "\n   tolerance:  " << tol);
         }
     }
+    #endif
 }
 
 
@@ -1155,7 +1166,7 @@ namespace {
 }
 
 void FdHestonTest::testHestonFokkerPlanckFwdEquation() {
-    BOOST_TEST_MESSAGE("Testing Fokker-Planck forward equation"
+    BOOST_TEST_MESSAGE("Testing Fokker-Planck forward equation "
                        "for the Heston process...");
 
     SavedSettings backup;
@@ -1299,12 +1310,16 @@ test_suite* FdHestonTest::experimental() {
     test_suite* suite = BOOST_TEST_SUITE("Finite Difference Heston tests");
     suite->add(QUANTLIB_TEST_CASE(
         &FdHestonTest::testBlackScholesFokkerPlanckFwdEquation));
+    #if BOOST_VERSION >= 103900
     suite->add(QUANTLIB_TEST_CASE(&FdHestonTest::testSquareRootZeroFlowBC));
+    #endif
     suite->add(QUANTLIB_TEST_CASE(&FdHestonTest::testTransformedZeroFlowBC));
     suite->add(QUANTLIB_TEST_CASE(
           &FdHestonTest::testSquareRootEvolveWithStationaryDensity));
+    #if BOOST_VERSION >= 103900
     suite->add(QUANTLIB_TEST_CASE(
         &FdHestonTest::testSquareRootFokkerPlanckFwdEquation));
+    #endif
     suite->add(QUANTLIB_TEST_CASE(
         &FdHestonTest::testHestonFokkerPlanckFwdEquation));
 

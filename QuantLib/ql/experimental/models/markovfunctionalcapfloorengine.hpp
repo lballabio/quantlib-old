@@ -17,12 +17,12 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file markovFunctionalCapFloorEngine.hpp
+/*! \file markovfunctionalcapfloorengine.hpp
     \brief
 */
 
 #ifndef quantlib_pricers_markovFunctional_capfloor_hpp
-#define quantlib_pricers_markovFunctional_capFloor_hpp
+#define quantlib_pricers_markovFunctional_capfloor_hpp
 
 #include <ql/instruments/capfloor.hpp>
 #include <ql/pricingengines/genericmodelengine.hpp>
