@@ -1,3 +1,15 @@
+
+Updated July 2013
+
+The new build process creates sources for a standard R packages which can
+be installed from this directory via
+
+   R CMD INSTALL .
+
+Dirk Eddelbuettel 
+edd@debian.org
+
+========================================================================
 This is the R interface to QuantLib. The needed C++ bindings are created
 by means of SWIG (Simplified Wrapper and Interface Generator) available
 from <http://swig.sourceforge.net/>. SWIG version 1.3.32 is needed.

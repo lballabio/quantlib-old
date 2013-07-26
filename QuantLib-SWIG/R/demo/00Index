@@ -1,0 +1,8 @@
+european-option    European Option
+fd-option	   Finite-Differences Option
+graph              Graph demo
+scatter            Scatter plot
+wireframe          Wireframe
+bonds		   Zero Coupon, Fixed Rate and Floating Rate Bonds
+bates_vol_surface  Bates Stochastic Volatility
+
