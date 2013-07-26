@@ -1,7 +1,5 @@
 QUANTLIB_R_ROOT = QuantLib
 
-#QUANTLIB_R_ROOT = QuantLib_wrap # for swig 1.3.31. or before
-
 BUILT_SOURCES = src/$(QUANTLIB_R_ROOT).cpp R/$(QUANTLIB_R_ROOT).R
 
 CLEANFILES = $(BUILT_SOURCES) .build-stamp
@@ -13,25 +11,18 @@ if BUILD_R
 
 all-local: .build-stamp
 
-#.build-stamp: $(QUANTLIB_R_ROOT).RData $(QUANTLIB_R_ROOT).so
-.build-stamp: src/$(QUANTLIB_R_ROOT).cpp
+.build-stamp: $(BUILT_SOURCES)
+	R CMD check .
 	touch .build-stamp
-
-#$(QUANTLIB_R_ROOT).RData: R/$(QUANTLIB_R_ROOT).R
-#	R CMD BATCH makeRData.R
-
-#$(QUANTLIB_R_ROOT).so: $(BUILT_SOURCES)
-#	MAKEFLAGS="CPPFLAGS="`$(QUANTLIB_CONFIG) --cflags` PKG_LIBS=`$(QUANTLIB_CONFIG) --libs` R CMD SHLIB $(QUANTLIB_R_ROOT).cpp
-
-debug-object: $(BUILT_SOURCES)
-	g++ -I/usr/lib/R/include  -I/usr/local/include   -fPIC  -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -march=i586 -mtune=pentiumpro -fasynchronous-unwind-tables -c $(QUANTLIB_R_ROOT).cpp -o $(QUANTLIB_R_ROOT).o
 
 check-local: .build-stamp
 
 install-exec-local: .build-stamp
+	R CMD INSTALL .
 
 clean-local:
-	rm -rf $(BUILT_SOURCES) $(QUANTLIB_R_ROOT).cpp *.so *.o $(QUANTLIB_R_ROOT).RData *.Rout
+	rm -rf $(BUILT_SOURCES) ..Rcheck \
+           src/symbols.rds src/QuantLib.o src/QuantLib.so
 
 $(BUILT_SOURCES): ../SWIG/*.i
 	$(SWIG) -r -c++ -o src/$(QUANTLIB_R_ROOT).cpp ../SWIG/quantlib.i
