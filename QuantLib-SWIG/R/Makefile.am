@@ -40,9 +40,12 @@ $(BUILT_SOURCES): ../SWIG/*.i
 endif
 endif
 
-#dist-hook:
-#	mkdir -p $(distdir)/examples
-#	cp ./examples/*.R $(distdir)/examples
+dist-hook:
+	mkdir -p $(distdir)/demo
+	cp ./demo/00Index $(distdir)/demo
+	cp ./demo/*.R $(distdir)/demo
 
-EXTRA_DIST = README.txt $(BUILT_SOURCES) makeRData.R
+EXTRA_DIST = DESCRIPTION NAMESPACE README.txt \
+             $(BUILT_SOURCES) makeRData.R \
+             R/README src/Makevars
 
