@@ -42,8 +42,10 @@ QuantLib-SWIG/Perl/pm_to_blib
 QuantLib-SWIG/Perl/quantlib_wrap.cpp
 QuantLib-SWIG/Perl/MYMETA.yml
 QuantLib-SWIG/Python/QuantLib/quantlib_wrap.cpp
-QuantLib-SWIG/R/QuantLib.cpp
+QuantLib-SWIG/R/src/QuantLib.cpp
 QuantLib-SWIG/R/makeRData.Rout
+QuantLib-SWIG/R/src/symbols.rds
+QuantLib-SWIG/R/..Rcheck
 QuantLib-SWIG/Ruby/extension.mak
 QuantLib-SWIG/Ruby/quantlib_wrap.cpp
 ObjectHandler/Docs/auto.pages/
@@ -140,6 +142,6 @@ QuantLib-SWIG/OCaml/*.mli
 QuantLib-SWIG/Perl/QuantLib.pm
 QuantLib-SWIG/Python/QuantLib/QuantLib.py
 QuantLib-SWIG/Python/build
-QuantLib-SWIG/R/QuantLib.R
+QuantLib-SWIG/R/R/QuantLib.R
 QuantLib-SWIG/R/QuantLib.RData
 

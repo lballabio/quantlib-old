@@ -1,0 +1,6 @@
+
+## This NAMESPACE file declares which symbols are being exported,
+## and which dynamic library needs to be loaded.
+
+useDynLib(QuantLib)
+exportPattern("^[[:alpha:]]+")
