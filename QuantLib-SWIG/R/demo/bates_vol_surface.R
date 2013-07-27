@@ -1,3 +1,5 @@
+
+library(QuantLib)
 library(lattice)
 
 todaysDate <- Date(18, "May", 2013)
@@ -29,11 +31,14 @@ impliedVol <- function(strike, maturity) {
                                  Period(maturity*365, "Days"))
     payoff <- PlainVanillaPayoff("Call", strike)
     option <- VanillaOption(payoff, exercise)
-    option$setPricingEngine(option, batesEngine)
-
-    option$impliedVolatility(option, targetValue=option$NPV(),
-                             process=bsProcess, accuracy=1e-16,
-                             maxEvaluations=100, minVol=0.1,maxVol=5.1)
+    option$setPricingEngine(s_arg2=batesEngine)
+    VanillaOption_impliedVolatility(option,
+                                    targetValue=option$NPV(),
+                                    process=bsProcess,
+                                    accuracy=1e-16,
+                                    maxEvaluations=100,
+                                    minVol=0.1,
+                                    maxVol=5.1)
 }
 
 g$vol <- mapply(impliedVol, g$strikes, g$maturities)
