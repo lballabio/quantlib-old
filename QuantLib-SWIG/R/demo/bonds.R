@@ -1,7 +1,6 @@
 ## bonds.R -- following what bonds.py does for the QuantLib bindings for Python
 
-## if the package QuantLib exists, load it; else carry on
-try(suppressMessages(library(QuantLib)))
+suppressMessages(library(QuantLib))
 
 ## global data
 calendar <- TARGET()
@@ -12,8 +11,7 @@ settlementDate <- Calendar_adjust(calendar, settlementDate)
 fixingDays <- 3
 settlementDays <- 3
 todaysDate <- Calendar_advance(calendar, settlementDate, -fixingDays, "Days")
-#Settings_setEvaluationDate(Settings_instance(),  todaysDate)
-Settings_instance()$setEvaluationDate(d=todaysDate)
+invisible(Settings_instance()$setEvaluationDate(d=todaysDate))
 
 cat('Today          : ', todaysDate$`__str__`(), "\n")
 cat('Settlement Date: ', settlementDate$`__str__`(), "\n")
@@ -41,7 +39,6 @@ for (i in 1:3) {
                              zcBondsDayCounter)
     RateHelperVector_push_back(bondInstruments, drh)
 }
-#cat("Zeros done\n")
 
 ## setup bonds
 redemption <- 100.0
@@ -65,7 +62,6 @@ bondQuotes <- list(list(Date(15,"March",2005),
                    )
 
 # Definition of the rate helpers
-
 for (i in 1:5) {
     issueDate <- bondQuotes[[i]][[1]]
     maturity <- bondQuotes[[i]][[2]]
@@ -76,20 +72,18 @@ for (i in 1:5) {
                          "Unadjusted", "Unadjusted",
                          copyToR(DateGeneration(), "Backward"),
                          FALSE)
-    vec <- DoubleVector(1)
-    vec[1] <- couponRate
+
     bh <- FixedRateBondHelper(QuoteHandle(SimpleQuote(marketQuote)),
                               settlementDays,
                               100.0,
                               schedule,
-                              vec,
+                              couponRate,
                               ActualActual("Bond"),
                               "Unadjusted",
                               redemption,
                               issueDate)
     RateHelperVector_push_back(bondInstruments, bh)
 }
-
 termStructureDayCounter <-  ActualActual("ISDA")
 
 # not needed as defined in the interface file:  tolerance = 1.0e-15
@@ -97,7 +91,6 @@ termStructureDayCounter <-  ActualActual("ISDA")
 bondDiscountingTermStructure <- PiecewiseFlatForward(settlementDate,
                                                      bondInstruments,
                                                      termStructureDayCounter)
-#cat("Bond Discounting TermStructure set\n")
 
 
 # Building of the Libor forecasting curve
@@ -144,7 +137,6 @@ for (i in 1:length(sQuotes)) {
                           swFloatingLegIndex, QuoteHandle(),forwardStart)
     RateHelperVector_push_back(depoSwapInstruments, srh)
 }
-#cat("Deposit + Swap TermStructure set\n")
 
 depoSwapTermStructure <- PiecewiseFlatForward(settlementDate, depoSwapInstruments,
                                               termStructureDayCounter)
@@ -178,8 +170,7 @@ zeroCouponBond <- ZeroCouponBond(settlementDays,
                                  116.92,
                                  Date(15,"August",2003))
 
-Instrument_setPricingEngine(zeroCouponBond, bondEngine)
-
+invisible(Instrument_setPricingEngine(zeroCouponBond, bondEngine))
 
 ## fixed 4.5% US Treasury note
 
@@ -189,18 +180,14 @@ fixedBondSchedule <- Schedule(Date(15, "May", 2007),
                               "Unadjusted", "Unadjusted",
                               copyToR(DateGeneration(), "Backward"), FALSE)
 
-vec <- DoubleVector()
-DoubleVector_push_back(vec, 0.045)
 fixedRateBond <- FixedRateBond(settlementDays,
                                faceAmount,
                                fixedBondSchedule,
-                               vec,  ##[0.045],
+                               0.045,
                                ActualActual("Bond"),
                                "ModifiedFollowing",
                                100.0, Date(15, "May", 2007))
-
-Instrument_setPricingEngine(fixedRateBond, bondEngine)
-
+invisible(Instrument_setPricingEngine(fixedRateBond, bondEngine))
 
 ## Floating rate bond (3M USD Libor + 0.1%)
 ## Should and will be priced on another curve later...
@@ -208,18 +195,13 @@ Instrument_setPricingEngine(fixedRateBond, bondEngine)
 liborTermStructure <- RelinkableYieldTermStructureHandle()
 
 libor3m <- USDLibor(Period(3,"Months"),liborTermStructure)
-Index_addFixing(libor3m, Date(17, "July", 2008), 0.0278625)
+invisible(Index_addFixing(libor3m, Date(17, "July", 2008), 0.0278625))
 
 floatingBondSchedule <- Schedule(Date(21, "October", 2005),
                                  Date(21, "October", 2010), Period("Quarterly"),
                                  UnitedStates("NYSE"),
                                  "Unadjusted", "Unadjusted",
                                  copyToR(DateGeneration(), "Backward"), TRUE)
-
-gearings <- DoubleVector()
-DoubleVector_push_back(gearings, 1.0)
-spreads <- DoubleVector()
-DoubleVector_push_back(spreads, 0.001)
 
 floatingRateBond <- FloatingRateBond(settlementDays,
                                      faceAmount,
@@ -228,15 +210,15 @@ floatingRateBond <- FloatingRateBond(settlementDays,
                                      Actual360(),
                                      "ModifiedFollowing",
                                      2,
-                                     gearings,            #[1.0],   # Gearings
-                                     spreads,             #[0.001], # Spreads
-                                     DoubleVector(),      #[],      # Caps
-                                     DoubleVector(),      #[],      # Floors
+                                     1.0,         # Gearings
+                                     0.001,       # Spreads
+                                     numeric(0),  #[],      # Caps
+                                     numeric(0),  #[],      # Floors
                                      TRUE,    # Fixing in arrears
                                      100.0,
                                      Date(21, "October", 2005))
 
-Instrument_setPricingEngine(floatingRateBond, bondEngine)
+invisible(Instrument_setPricingEngine(floatingRateBond, bondEngine))
 
 ## coupon pricers
 
@@ -250,16 +232,16 @@ vol <- ConstantOptionletVolatility(settlementDays,
                                    volatility,
                                    Actual365Fixed())
 
-IborCouponPricer_setCapletVolatility(pricer, OptionletVolatilityStructureHandle(vol))
-setCouponPricer(Bond_cashflows(floatingRateBond), pricer)
+invisible(IborCouponPricer_setCapletVolatility(pricer, OptionletVolatilityStructureHandle(vol)))
+invisible(setCouponPricer(Bond_cashflows(floatingRateBond), pricer))
 
 
 ## Yield curve bootstrapping
-RelinkableQuoteHandle_linkTo(forecastingTermStructure, depoSwapTermStructure)
-RelinkableQuoteHandle_linkTo(discountingTermStructure, bondDiscountingTermStructure)
+invisible(RelinkableQuoteHandle_linkTo(forecastingTermStructure, depoSwapTermStructure))
+invisible(RelinkableQuoteHandle_linkTo(discountingTermStructure, bondDiscountingTermStructure))
 
 ## We are using the depo & swap curve to estimate the future Libor rates
-RelinkableQuoteHandle_linkTo(liborTermStructure, depoSwapTermStructure)
+invisible(RelinkableQuoteHandle_linkTo(liborTermStructure, depoSwapTermStructure))
 
 ##
 df <- data.frame(zeroCoupon=c(Instrument_NPV(zeroCouponBond),
