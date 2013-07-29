@@ -1,8 +1,7 @@
 
 ## expanded to follow european-option.py
 
-## if the package QuantLib exists, load it; else carry on
-try(suppressMessages(library(QuantLib)))
+suppressMessages(library(QuantLib))
 
 # global data
 todaysDate <- Date(15, "May", 1998)
@@ -33,86 +32,65 @@ report <- function(method, x, dx=NA) {
 }
 
 option <- VanillaOption(payoff, exercise)
-invisible(option$setPricingEngine(option, AnalyticEuropeanEngine(process)))
+invisible(option$setPricingEngine(AnalyticEuropeanEngine(process)))
 value <- option$NPV()
 refValue <- value
 report("analytic", value)
 
-invisible(option$setPricingEngine(option, IntegralEngine(process)))
+invisible(option$setPricingEngine(IntegralEngine(process)))
 report('integral', option$NPV())
-
 
 ## method: finite differences
 timeSteps <- 801
 gridPoints <- 800
 
-invisible(option$setPricingEngine(option, FDEuropeanEngine(process,timeSteps,gridPoints)))
+invisible(option$setPricingEngine(FDEuropeanEngine(process,timeSteps,gridPoints)))
 report('finite diff.', option$NPV())
 
 
 ## method: binomial
 timeSteps <- 801
 
-invisible(option$setPricingEngine(option, BinomialVanillaEngine(process,'jr',timeSteps)))
+invisible(option$setPricingEngine(BinomialVanillaEngine(process,'jr',timeSteps)))
 report('binomial (JR)', option$NPV())
 
-invisible(option$setPricingEngine(option, BinomialVanillaEngine(process,'crr',timeSteps)))
+invisible(option$setPricingEngine(BinomialVanillaEngine(process,'crr',timeSteps)))
 report('binomial (CRR)', option$NPV())
 
-invisible(option$setPricingEngine(option, BinomialVanillaEngine(process,'eqp',timeSteps)))
+invisible(option$setPricingEngine(BinomialVanillaEngine(process,'eqp',timeSteps)))
 report('binomial (EQP)', option$NPV())
 
-invisible(option$setPricingEngine(option, BinomialVanillaEngine(process,'trigeorgis',timeSteps)))
+invisible(option$setPricingEngine(BinomialVanillaEngine(process,'trigeorgis',timeSteps)))
 report('bin. (Trigeorgis)', option$NPV())
 
-invisible(option$setPricingEngine(option, BinomialVanillaEngine(process,'tian',timeSteps)))
+invisible(option$setPricingEngine(BinomialVanillaEngine(process,'tian',timeSteps)))
 report('binomial (Tian)', option$NPV())
 
-invisible(option$setPricingEngine(option, BinomialVanillaEngine(process,'lr',timeSteps)))
+invisible(option$setPricingEngine(BinomialVanillaEngine(process,'lr',timeSteps)))
 report('binomial (LR)', option$NPV())
 
-
-MCEuropeanEngine <- function(process, traits, timeSteps, timeStepsPerYear=NA,
-                             brownianBridge=FALSE, antitheticVariate=FALSE,
-                             requiredSamples=NULL,
-                             requiredTolerance=1.0e-3, maxSamples=NULL, seed=0L) {
-    traits <- as(traits, "character")
-    timeSteps <- as.integer(timeSteps)                  ##as(input, "integer");
-    timeStepsPerYear <- as.integer(timeStepsPerYear)    ##as(input, "integer");
-    brownianBridge <- as.logical(brownianBridge)
-    antitheticVariate <- as.logical(antitheticVariate)
-    requiredSamples <- as.integer(requiredSamples)      ##as(input, "integer");
-    requiredTolerance <- as.numeric(requiredTolerance)  ##as(input, "numeric");
-    maxSamples <- as.integer(maxSamples)                ##as(input, "integer");
-    seed <- as.integer(seed)
-    if (length(seed) > 1) {
-        warning("using only the first element of seed")
-    }
-
-    ans <- .Call('R_swig_new_MCEuropeanEngine',
-                 process, traits, timeSteps,
-                 timeStepsPerYear, brownianBridge,
-                 antitheticVariate, requiredSamples,
-                 requiredTolerance, maxSamples, seed,
-                 PACKAGE='QuantLib')
-    class(ans) <- "_p_MCEuropeanEnginePtr"
-
-    reg.finalizer(ans, delete_MCEuropeanEngine)
-    ans
-}
-
-
 ## method: Monte Carlo
-invisible(option$setPricingEngine(option, MCEuropeanEngine(process,
+invisible(option$setPricingEngine(MCEuropeanEngine(process,
                                   'pseudorandom',
                                   timeSteps = 1,
+                                  timeStepsPerYear=NA,
+                                  brownianBridge=FALSE,
+                                  antitheticVariate=FALSE,
+                                  requiredSamples=NULL,
                                   requiredTolerance = 0.02,
+                                  maxSamples=NULL,
                                   seed = 42)))
 report('MC (crude)', option$NPV(), option$errorEstimate())
 
-invisible(option$setPricingEngine(option, MCEuropeanEngine(process,
+invisible(option$setPricingEngine(MCEuropeanEngine(process,
                                   'lowdiscrepancy',
                                   timeSteps = 1,
-                                  requiredSamples = 32768)))
+                                  timeStepsPerYear=NA,                                                                             brownianBridge=FALSE,
+                                  antitheticVariate=FALSE,
+                                  requiredSamples = 32768,
+                                  requiredTolerance = 0.02,
+                                  maxSamples=NULL,
+                                  seed=42)))
 report('MC (Sobol)', option$NPV())
+
 
