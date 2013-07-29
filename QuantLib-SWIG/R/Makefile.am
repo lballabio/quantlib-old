@@ -37,6 +37,6 @@ dist-hook:
 	cp ./demo/*.R $(distdir)/demo
 
 EXTRA_DIST = DESCRIPTION NAMESPACE README.txt \
-             $(BUILT_SOURCES) makeRData.R \
+             $(BUILT_SOURCES) \
              R/README src/Makevars
 
