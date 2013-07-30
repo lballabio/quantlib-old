@@ -1,5 +1,8 @@
+
+suppressMessages(library(QuantLib))
+
 todaysDate <- Date(15, "May", 1998)
-Settings_instance()$setEvaluationDate(d=todaysDate)
+invisible(Settings_instance()$setEvaluationDate(d=todaysDate))
 settlementDate <- Date(17, "May", 1998)
 riskFreeRate <- FlatForward(settlementDate, 0.05, Actual365Fixed())
 exercise <- EuropeanExercise(Date(17, "May", 1999))
@@ -12,6 +15,11 @@ process <- BlackScholesMertonProcess(QuoteHandle(underlying),
 		YieldTermStructureHandle(riskFreeRate),
 		BlackVolTermStructureHandle(volatility))
 option <- VanillaOption(payoff, exercise)
-option$setPricingEngine(s_arg2=FDEuropeanEngine(process))
+invisible(option$setPricingEngine(s_arg2=FDEuropeanEngine(process)))
 priceCurve <- option$priceCurve()
+
+print(summary(as.data.frame(priceCurve)))
+
+plot(as.data.frame(priceCurve), type='l')
+
 
