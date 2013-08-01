@@ -39,7 +39,7 @@ namespace QuantLib {
 		fixedRate_(std::vector<Real>(fromVanilla.fixedLeg().size(),fromVanilla.fixedRate())),
 		fixedDayCount_(fromVanilla.fixedDayCount()), floatingSchedule_(fromVanilla.floatingSchedule()), 
         iborIndex_(fromVanilla.iborIndex()),
-		spread_(fromVanilla.spread()), floatingDayCount_(fromVanilla.floatingDayCount()), 
+		spread_(fromVanilla.spread()), gearing_(1.0), floatingDayCount_(fromVanilla.floatingDayCount()), 
         capitalExchange_(false),
         paymentConvention_(fromVanilla.paymentConvention()) {
 
@@ -55,14 +55,15 @@ namespace QuantLib {
             const DayCounter& fixedDayCount,
             const Schedule& floatingSchedule,
             const boost::shared_ptr<IborIndex>& iborIndex,
-            Spread spread,
+            const Real gearing,
+            const Spread spread,
             const DayCounter& floatingDayCount,
             const bool capitalExchange,
             boost::optional<BusinessDayConvention> paymentConvention)
     : Swap(2), type_(type), fixedNominal_(fixedNominal), floatingNominal_(floatingNominal),
       fixedSchedule_(fixedSchedule), fixedRate_(fixedRate),
       fixedDayCount_(fixedDayCount),
-      floatingSchedule_(floatingSchedule), iborIndex_(iborIndex), spread_(spread),
+      floatingSchedule_(floatingSchedule), iborIndex_(iborIndex), spread_(spread), gearing_(gearing),
       floatingDayCount_(floatingDayCount), capitalExchange_(capitalExchange) {
 
 		QL_REQUIRE(fixedNominal.size() == fixedRate.size(),
@@ -82,6 +83,12 @@ namespace QuantLib {
         else
             paymentConvention_ = floatingSchedule_.businessDayConvention();
 
+        // if the gearing is zero then the ibor leg will be set up with fixed coupons
+        // which makes trouble here in this context. We therefore use a dirty trick
+        // and enforce the gearing to be non zero.
+        if(close(gearing_,0.0))
+            gearing_ = 1.0E-8;
+
 		init();
 
 	}
@@ -97,9 +104,11 @@ namespace QuantLib {
             .withNotionals(floatingNominal_)
             .withPaymentDayCounter(floatingDayCount_)
             .withPaymentAdjustment(paymentConvention_)
-            .withSpreads(spread_);
+            .withSpreads(spread_)
+            .withGearings(gearing_);
 
         // FIXME here we need in addtion the amortizing cashflows when nominal reduces
+        // do this via a second flag (i.e. intermediateCapitalExchange and finalCapitalExchange)
 
         if(capitalExchange_) {
             legs_[0].push_back(boost::shared_ptr<CashFlow>(new Redemption(fixedNominal_.back(),
@@ -183,6 +192,8 @@ namespace QuantLib {
             std::vector<Time>(floatingCoupons.size());
         arguments->floatingSpreads =
             std::vector<Spread>(floatingCoupons.size());
+        arguments->floatingGearings =
+            std::vector<Real>(floatingCoupons.size());
         arguments->floatingCoupons = std::vector<Real>(floatingCoupons.size());
         arguments->floatingIsRedemptionFlow = std::vector<bool>(floatingCoupons.size(),false);
 
@@ -195,6 +206,7 @@ namespace QuantLib {
                 arguments->floatingFixingDates[i] = coupon->fixingDate();
                 arguments->floatingAccrualTimes[i] = coupon->accrualPeriod();
                 arguments->floatingSpreads[i] = coupon->spread();
+                arguments->floatingGearings[i] = coupon->gearing();
                 try {
                     arguments->floatingCoupons[i] = coupon->amount();
                 } catch (Error&) {
@@ -216,6 +228,7 @@ namespace QuantLib {
                 arguments->floatingFixingDates[i] = arguments->floatingFixingDates[jIdx];
                 arguments->floatingAccrualTimes[i] = 0.0;
                 arguments->floatingSpreads[i] = 0.0;
+                arguments->floatingGearings[i] = 1.0;
                 arguments->floatingPayDates[i] = cashflow->date();
             }
         }
