@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rm -f src/*.o src/*.so src/*~
