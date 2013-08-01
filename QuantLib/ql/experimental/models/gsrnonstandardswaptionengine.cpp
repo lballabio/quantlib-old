@@ -49,7 +49,10 @@ namespace QuantLib {
 
 		std::vector<boost::shared_ptr<CalibrationHelper>> result;
 
-		for(Size i=0; i< arguments_.exercise->dates().size() ; i++) {
+        int minIdxAlive = std::upper_bound(arguments_.exercise->dates().begin(), arguments_.exercise->dates().end(),
+                                           Settings::instance().evaluationDate()) - arguments_.exercise->dates().begin();
+
+		for(Size i=minIdxAlive; i< arguments_.exercise->dates().size() ; i++) {
 
 			Date expiry = arguments_.exercise->date(i);
             Real rebate = arguments_.exercise->rebate(i);
@@ -114,7 +117,7 @@ namespace QuantLib {
                                    standardSwapBase->iborIndex()->dayCounter(), 
                                    standardSwapBase->exogenousDiscount() ? standardSwapBase->discountingTermStructure() : 
                                    standardSwapBase->forwardingTermStructure(),
-                                   CalibrationHelper::RelativePriceError,Null<Real>(),arguments_.fixedNominal[fixedIdx]));
+                                   CalibrationHelper::RelativePriceError,Null<Real>(),1.0));
 
                     break;
                 }
@@ -138,6 +141,9 @@ namespace QuantLib {
                         weightedMaturity += ActualActual().yearFraction(arguments_.fixedResetDates[i],
                                                                         arguments_.fixedPayDates[i])*arguments_.fixedNominal[i];
                     }
+
+                    QL_REQUIRE(nominalSum > 0.0, "sum of nominals on fixed leg must be positive (" << nominalSum << ")");
+
                     weightedMaturity /= nominalAvg;
                     weightedRate /= nominalSum;
                     initial[0] = nominalAvg;
@@ -166,13 +172,20 @@ namespace QuantLib {
 				
                     Period matPeriod = years*Years+months*Months;//+days*Days;
 
+                    // we have to floor the strike of the calibration instrument because
+                    // ql only allows for lognormal swaptions here at the moment
+                    solution[2] = std::max(solution[2], 0.0001); // floor at 1bp
+                    
+                    // also the calibrated nominal may be zero, so we floor it, too
+                    solution[0] = std::max(solution[0], 0.000001); // float at 0.01bp
+
                     helper = boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(expiry,matPeriod,
                           Handle<Quote>(new SimpleQuote(swaptionVolatility->volatility(expiry,matPeriod,solution[2],true))),
                           standardSwapBase->iborIndex(),standardSwapBase->fixedLegTenor(),
                           standardSwapBase->dayCounter(),standardSwapBase->iborIndex()->dayCounter(), 
                           standardSwapBase->exogenousDiscount() ? standardSwapBase->discountingTermStructure() : 
                           standardSwapBase->forwardingTermStructure(),
-                          CalibrationHelper::RelativePriceError,fabs(solution[2]),fabs(solution[0])));
+                          CalibrationHelper::RelativePriceError,solution[2],fabs(solution[0])));
                     break;
                 }
 
@@ -211,8 +224,10 @@ namespace QuantLib {
 		for(Size i=idx; i<arguments_.floatingResetDates.size(); i++) {
             Real amount;
             if(!arguments_.floatingIsRedemptionFlow[i])
-                amount = (model_->forwardRate(arguments_.floatingFixingDates[i],arguments_.swap->iborIndex(),
-                                             referenceDate,y,spreadF_) + arguments_.floatingSpreads[i]) *
+                amount = 
+                    (arguments_.floatingGearings[i]*
+                     model_->forwardRate(arguments_.floatingFixingDates[i],arguments_.swap->iborIndex(),
+                                         referenceDate,y,spreadF_) + arguments_.floatingSpreads[i]) *
                                          arguments_.floatingAccrualTimes[i] * arguments_.floatingNominal[i];
             else
                 amount = arguments_.floatingCoupons[i];
@@ -307,8 +322,8 @@ namespace QuantLib {
 			for(Size k=0; k < (expiry0 > today ? npv0.size() : 1); k++) {
 
 				Real price = 0.0;
-                Real zSpreadDf = zSpread_.empty() ? 1.0 : std::exp(-zSpread_->value()*(expiry1Time-expiry0Time));
 				if(expiry1Time != Null<Real>()) {
+                    Real zSpreadDf = zSpread_.empty() ? 1.0 : std::exp(-zSpread_->value()*(expiry1Time-expiry0Time));
 					Array yg = model_->yGrid(stddevs_, integrationPoints_, expiry1Time, expiry0Time, expiry0Time > 0 ? 
                                              z[k] : 0.0);
 					CubicInterpolation payoff0(z.begin(),z.end(),npv1.begin(),CubicInterpolation::Spline,true,
@@ -348,25 +363,37 @@ namespace QuantLib {
 					//floatingLegNpv = (model_->zerobond(schedule.date(j1),expiry0,z[k]) 
                     //- model_->zerobond(arguments_.fixedPayDates.back(),expiry0,z[k])); // approximation
 					for(Size l=k1;l<arguments_.floatingCoupons.size();l++) {
+                        Real zSpreadDf = zSpread_.empty() ? 1.0 : 
+                            std::exp(-zSpread_->value()*(model_->termStructure()->dayCounter()
+                                                         .yearFraction(expiry0,arguments_.floatingPayDates[l])));
                         Real amount;
                         if(arguments_.floatingIsRedemptionFlow[l])
                             amount = arguments_.floatingCoupons[l];
                         else 
                             amount = arguments_.floatingNominal[l] * arguments_.floatingAccrualTimes[l] *
-							    (arguments_.floatingSpreads[l]+model_->forwardRate(arguments_.floatingFixingDates[l],
-                                 arguments_.swap->iborIndex(),expiry0,z[k],spreadF_));
-						floatingLegNpv +=  amount * model_->zerobond(arguments_.floatingPayDates[l],expiry0,z[k],spreadD_);
+							    (arguments_.floatingGearings[l] *
+                                 model_->forwardRate(arguments_.floatingFixingDates[l],
+                                                                      arguments_.swap->iborIndex(),expiry0,z[k],spreadF_)
+                                 + arguments_.floatingSpreads[l]);
+						floatingLegNpv +=  amount * model_->zerobond(arguments_.floatingPayDates[l],expiry0,z[k],spreadD_)
+                            * zSpreadDf;
 					}
 					Real fixedLegNpv = 0.0;
 					for(Size l=j1;l<arguments_.fixedCoupons.size();l++) {
+                        Real zSpreadDf = zSpread_.empty() ? 1.0 : 
+                            std::exp(-zSpread_->value()*(model_->termStructure()->dayCounter()
+                                                         .yearFraction(expiry0,arguments_.fixedPayDates[l])));
 						fixedLegNpv += arguments_.fixedCoupons[l] * model_->zerobond(arguments_.fixedPayDates[l],
-                                            expiry0,z[k],spreadD_);
+                                                                                     expiry0,z[k],spreadD_) * zSpreadDf;
 					}
                     Real rebate = arguments_.exercise->rebate(idx);
                     Date rebateDate = arguments_.exercise->rebatePaymentDate(idx);
+                    Real zSpreadDf = zSpread_.empty() ? 1.0 : 
+                        std::exp(-zSpread_->value()*(model_->termStructure()->dayCounter()
+                                                     .yearFraction(expiry0,rebateDate)));
 					npv0[k] = std::max( npv0[k],  
                                         ((type==Option::Call ? 1.0 : -1.0) * ( floatingLegNpv - fixedLegNpv ) + 
-                                         rebate * model_->zerobond(rebateDate,expiry0,z[k],spreadD_)) / 
+                                         rebate * model_->zerobond(rebateDate,expiry0,z[k],spreadD_) * zSpreadDf) / 
                                         model_->numeraire(expiry0Time,z[k],spreadD_) );
 				}
 

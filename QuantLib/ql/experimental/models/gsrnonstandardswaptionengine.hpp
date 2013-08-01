@@ -78,7 +78,7 @@ namespace QuantLib {
             zSpread_(zSpread), discountYts_(discountCurve) {
 		
 
-            if(zSpread_.empty()) 
+            if(!zSpread_.empty()) 
                 registerWith(zSpread_);
 
             if(!discountYts_.empty()) {
@@ -160,8 +160,10 @@ namespace QuantLib {
                 Real nominal = fabs(v[0]);
                 if(v[0] < 0.0) type *=-1;
                 Real maturity = fabs(v[1]);
-                Real fixedRate = fabs(v[2]);
-                if(v[2] < 0.0) type *=-1;
+                Real fixedRate = v[2]; // allow for negative rates explicitly 
+                                       // (though it might not be reasonable for calibration depending on the
+                                       // model to calibrate and the market instrument quotation)
+                //if(v[2] < 0.0) type *=-1; // always use type of exotic underlying
                 Size years = (Size)std::floor(maturity);
                 maturity -= (Real)years; maturity *= 12.0;
                 Size months = (Size)std::floor(maturity);
