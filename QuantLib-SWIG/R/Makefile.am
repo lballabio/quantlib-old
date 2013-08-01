@@ -12,7 +12,8 @@ if BUILD_R
 all-local: .build-stamp
 
 .build-stamp: $(BUILT_SOURCES)
-	R CMD check .
+        ## R is better at checking from above than within
+	cd .. && R CMD check R && cd -
 	touch .build-stamp
 
 check-local: .build-stamp
@@ -21,8 +22,8 @@ install-exec-local: .build-stamp
 	R CMD INSTALL .
 
 clean-local:
-	rm -rf $(BUILT_SOURCES) ..Rcheck \
-           src/symbols.rds src/QuantLib.o src/QuantLib.so
+	rm -rf $(BUILT_SOURCES) ../$(QUANTLIB_R_ROOT).Rcheck \
+           src/symbols.rds src/$(QUANTLIB_R_ROOT).o src/$(QUANTLIB_R_ROOT).so
 
 $(BUILT_SOURCES): ../SWIG/*.i
 	$(SWIG) -r -c++ -o src/$(QUANTLIB_R_ROOT).cpp ../SWIG/quantlib.i
