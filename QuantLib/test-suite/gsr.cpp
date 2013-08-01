@@ -236,7 +236,8 @@ void GsrTest::testNonstandardSwaption() {
 	std::vector<Date> exerciseDates;
 	for(Size i=1;i<10;i++) exerciseDates.push_back(TARGET().advance(fixedSchedule[i],-2*Days));
 
-	boost::shared_ptr<NonstandardSwap> underlying(new NonstandardSwap(NonstandardSwap::Payer,fixedNominal,floatingNominal,fixedSchedule,fixedRate,Thirty360(),floatingSchedule,iborIndex,0.0,Actual360()));
+	boost::shared_ptr<NonstandardSwap> underlying(new NonstandardSwap(NonstandardSwap::Payer,fixedNominal,floatingNominal,
+                                        fixedSchedule,fixedRate,Thirty360(),floatingSchedule,iborIndex,1.0,0.0,Actual360()));
 	//boost::shared_ptr<Exercise> exercise(new BermudanExercise(exerciseDates));
 	boost::shared_ptr<Exercise> exercise(new EuropeanExercise(exerciseDates[2]));
 	boost::shared_ptr<NonstandardSwaption> swaption(new NonstandardSwaption(underlying,exercise));
