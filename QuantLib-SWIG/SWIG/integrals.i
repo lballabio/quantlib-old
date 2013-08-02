@@ -65,10 +65,10 @@ using QuantLib::GaussGegenbauerIntegration;
             UnaryFunction f(ghFunction);
             return (*self)(f, a, b);
         }
-	#elif defined(SWIGJAVA)
-        Real calculate(UnaryFunctionDelegate* f, Real a, Real b) {	    
-	    return (*self)(UnaryFunction(f), a, b);		
-	}
+        #elif defined(SWIGJAVA)
+        Real calculate(UnaryFunctionDelegate* f, Real a, Real b) {
+            return (*self)(UnaryFunction(f), a, b);		
+        }
         #endif
     }
 %enddef
