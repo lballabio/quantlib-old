@@ -340,8 +340,8 @@ class UnaryFunctionDelegate {
   public:
     virtual ~UnaryFunctionDelegate() {}
     virtual Real value(Real x) const {
-	QL_FAIL("implementation of UnaryFunctionDelegate.value is missing");
-	return 0.0;
+        QL_FAIL("implementation of UnaryFunctionDelegate.value is missing");
+        return 0.0;
     };
 };
 

@@ -95,10 +95,10 @@ using QuantLib::GaussGegenbauerIntegration;
             UnaryFunction f(ghFunction);
             return (*self)(f);
         }
-	#elif defined(SWIGJAVA)
+        #elif defined(SWIGJAVA)
         Real calculate(UnaryFunctionDelegate* f, Real a, Real b) {	    
-	    return (*self)(UnaryFunction(f));		
-	}
+            return (*self)(UnaryFunction(f));		
+        }
         #endif
     }
 %enddef
@@ -145,7 +145,7 @@ class GaussKronrodNonAdaptive {
 class GaussLobattoIntegral {
   public:
     GaussLobattoIntegral(Size maxIterations,
-    	                 Real absAccuracy,
+                         Real absAccuracy,
                          Real relAccuracy = Null<Real>(),
                          bool useConvergenceEstimate = true);
     INTEGRATION_METHODS;
