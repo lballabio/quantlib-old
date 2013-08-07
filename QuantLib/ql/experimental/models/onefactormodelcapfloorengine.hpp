@@ -17,46 +17,48 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file markovfunctionalcapfloorengine.hpp
+/*! \file onefactormodelcapfloorengine.hpp
     \brief
 */
 
-#ifndef quantlib_pricers_markovFunctional_capfloor_hpp
-#define quantlib_pricers_markovFunctional_capfloor_hpp
+#ifndef quantlib_pricers_onefactormodel_capfloor_hpp
+#define quantlib_pricers_onefactormodel_capfloor_hpp
 
 #include <ql/instruments/capfloor.hpp>
 #include <ql/pricingengines/genericmodelengine.hpp>
-#include <ql/experimental/models/markovfunctional.hpp>
+#include <ql/experimental/models/onefactormodel.hpp>
 
 namespace QuantLib {
 
     //! Markov functional cap/floor engine
     /*! \ingroup capfloorengines
-        \warning The float leg is simplified in the sense that it is worth $P(t,T_0)-P(t,T_1)$ with $T_0$ and $T_1$ being the start date and end date of each caplet
-        \warning Non zero spreads are not allowed
     */
 
-    class MarkovFunctionalCapFloorEngine
-        : public GenericModelEngine<MarkovFunctional,
+    class OneFactorModelCapFloorEngine
+        : public GenericModelEngine<OneFactorModel,
                                     CapFloor::arguments,
                                     CapFloor::results > {
       public:
-        MarkovFunctionalCapFloorEngine(
-                         const boost::shared_ptr<MarkovFunctional>& model,
+        OneFactorModelCapFloorEngine(
+                         const boost::shared_ptr<OneFactorModel>& model,
                          const int integrationPoints=64,
                          const Real stddevs=7.0,
                          const bool extrapolatePayoff=true,
-                         const bool flatPayoffExtrapolation=false)
-        : GenericModelEngine<MarkovFunctional,
+                         const bool flatPayoffExtrapolation=false,
+                         const Handle<YieldTermStructure>& discountCurve=Handle<YieldTermStructure>())
+        : GenericModelEngine<OneFactorModel,
                              CapFloor::arguments,
                              CapFloor::results>(model),
-          integrationPoints_(integrationPoints), stddevs_(stddevs), extrapolatePayoff_(extrapolatePayoff), flatPayoffExtrapolation_(flatPayoffExtrapolation) { }
+            integrationPoints_(integrationPoints), stddevs_(stddevs), 
+            extrapolatePayoff_(extrapolatePayoff), flatPayoffExtrapolation_(flatPayoffExtrapolation),
+            discountCurve_(discountCurve) { }
         void calculate() const;
       
     private:
         const int integrationPoints_;
         const Real stddevs_;
         const bool extrapolatePayoff_,flatPayoffExtrapolation_;
+        const Handle<YieldTermStructure>& discountCurve_;
 
     };
 

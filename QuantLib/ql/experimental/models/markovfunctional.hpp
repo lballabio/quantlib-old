@@ -21,39 +21,20 @@
     \brief Markov Functional 1 Factor Model
 */
 
-// uncomment to enable NTL support
-//#define MF_ENABLE_NTL 
-
 #ifndef quantlib_markovfunctional_hpp
 #define quantlib_markovfunctional_hpp
 
-#include <ql/models/model.hpp>
-#include <ql/models/parameter.hpp>
-#include <ql/math/interpolation.hpp>
-#include <ql/math/interpolations/cubicinterpolation.hpp>
+#include <ql/experimental/models/onefactormodel.hpp>
 #include <ql/math/integrals/gaussianquadratures.hpp>
 #include <ql/math/solvers1d/brent.hpp>
-#include <ql/indexes/iborindex.hpp>
-#include <ql/indexes/swapindex.hpp>
-#include <ql/instruments/vanillaswap.hpp>
-#include <ql/time/date.hpp>
-#include <ql/time/period.hpp>
-#include <ql/termstructures/yieldtermstructure.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp>
 #include <ql/termstructures/volatility/smilesection.hpp>
-#include <ql/stochasticprocess.hpp>
-#include <ql/utilities/null.hpp>
-#include <ql/patterns/lazyobject.hpp>
 
 #include <ql/experimental/models/mfstateprocess.hpp>
 #include <ql/experimental/models/kahalesmilesection.hpp>
 #include <ql/experimental/models/atmadjustedsmilesection.hpp>
 #include <ql/experimental/models/atmsmilesection.hpp>
-
-#ifdef MF_ENABLE_NTL
-    #include <boost/math/bindings/rr.hpp>
-#endif
 
 namespace QuantLib {
 
@@ -96,7 +77,7 @@ namespace QuantLib {
                  precision computing.
     */
 
-    class MarkovFunctional : public TermStructureConsistentModel, public CalibratedModel, public LazyObject  {
+    class MarkovFunctional : public OneFactorModel, public CalibratedModel {
 
       public:
 
@@ -164,9 +145,11 @@ namespace QuantLib {
             bool isCaplet_;
             Period tenor_;
             std::vector<Date> paymentDates_;
-            std::vector<Real> yearFractions_;
-            Real atm_;
-            Real annuity_;
+            std::vector<Real> yearFractions_; // zero fixing days yearfractions
+            Real marketYearFraction0_; // first yearfraction w.r.t. market index
+            Real atm_; // atm level w.r.t. zero fixing days annuity
+            Real annuity_; // annuity with zero fixing days
+            Real marketAnnuity_; // annuity with fixing days according to market index
             boost::shared_ptr<SmileSection> smileSection_;
             boost::shared_ptr<SmileSection> rawSmileSection_;
             Real minRateDigital_;
@@ -229,55 +212,17 @@ namespace QuantLib {
         const Date& numeraireDate() const { return numeraireDate_; }
         const Time& numeraireTime() const { return numeraireTime_; }
 
-        const boost::shared_ptr<StochasticProcess1D> stateProcess() const { return stateProcess_; }
-
-        const Real numeraire(const Time t, const Real y=0.0) const;
-        const Disposable<Array> numeraire(const Time t, const Array& y) const;
-        const Real deflatedZerobond(const Time T, const Time t=0.0, const Real y=0.0) const;
-        const Disposable<Array> deflatedZerobond(const Time T, const Time t, const Array& y) const;
-
-        const Real zerobond(const Time T, const Time t=0.0, const Real y=0.0) const;
-        const Real zerobond(const Date& maturity, const Date& referenceDate = Null<Date>(), const Real y=0.0) const;
-
-        const Real zerobondOption(const Option::Type& type, const Date& expiry, const Date& maturity, const Rate strike, 
-                                  const Date& referenceDate = Null<Date>(), const Real y=0.0) const;
-
-        const Real forwardRate(const Date& fixing, const Date& referenceDate = Null<Date>(), const Real y=0.0,
-                               const bool zeroFixingDays=false, 
-                               boost::shared_ptr<IborIndex> iborIdx = boost::shared_ptr<IborIndex>()) const;
-        const Real swapRate(const Date& fixing, const Period& tenor, const Date& referenceDate = Null<Date>(), 
-                            const Real y=0.0,const bool zeroFixingDays=false, 
-                            boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>()) const;
-        const Real swapAnnuity(const Date& fixing, const Period& tenor, const Date& referenceDate = Null<Date>(), 
-                               const Real y=0.0,const bool zeroFixingDays=false, 
-                               boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>()) const;
-
-        const Real capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, 
-                               const Date& referenceDate = Null<Date>(), const Real y=0.0, const bool zeroFixingDays=false, 
-                               boost::shared_ptr<IborIndex> iborIdx = boost::shared_ptr<IborIndex>()) const;
+      protected:
         
-        const Real swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor, const Rate strike, 
-                                 const Date& referenceDate = Null<Date>(), const Real y=0.0, const bool zeroFixingDays=false, 
-                                 boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>()) const;
+        const Real numeraireImpl(const Time t, const Real y, const Handle<YieldTermStructure>& yts) const;
 
-        /*! Computes the integral
-        \f[ {2\pi}^{-0.5} \int_{a}^{b} p(x) \exp{-0.5*x*x} \mathrm{d}x \f]
-        with
-        \f[ p(x) = ax^4+bx^3+cx^2+dx+e \f].
-        */
-        const Real gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, 
-                                              const Real x0, const Real x1) const;
-        
-        /*! Computes the integral
-        \f[ {2\pi}^{-0.5} \int_{a}^{b} p(x) \exp{-0.5*x*x} \mathrm{d}x \f]
-        with
-        \f[ p(x) = a(x-h)^4+b(x-h)^3+c(x-h)^2+d(x-h)+e \f].
-        */
-        const Real gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, 
-                                                     const Real e, const Real h, const Real x0, const Real x1) const;
+        const Real zerobondImpl(const Time T, const Time t, const Real y, const Handle<YieldTermStructure>& yts) const;
 
-        const Disposable<Array> yGrid(const Real yStdDevs, const int gridPoints, const Real T=1.0, 
-                                      const Real t=0, const Real y=0) const;
+        void generateArguments() {
+            calculate();
+            updateNumeraireTabulation();
+            notifyObservers();
+        }
 
         void update() {
             LazyObject::update();
@@ -286,14 +231,6 @@ namespace QuantLib {
         void performCalculations() const {
             updateSmiles();
             updateNumeraireTabulation();
-        }
-
-      protected:
-        
-        void generateArguments() {
-            calculate();
-            updateNumeraireTabulation();
-            notifyObservers();
         }
 
       private:
@@ -309,6 +246,20 @@ namespace QuantLib {
                                   const Real guess = 0.03) const;
         const Real marketDigitalPrice(const Date& expiry, const CalibrationPoint& p, const Option::Type& type, 
                                       const Real strike) const;
+
+        const Disposable<Array> deflatedZerobondArray(const Time T, const Time t, const Array& y) const;
+        const Disposable<Array> numeraireArray(const Time t, const Array& y) const;
+        const Disposable<Array> zerobondArray(const Time T, const Time t, const Array& y) const;
+
+        const Real deflatedZerobond(const Time T, const Time t=0.0, const Real y=0.0) const;
+        
+        // this method is intended only to produce parts of the model outputs
+        const Real capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, 
+                               const Date& referenceDate = Null<Date>(), const Real y=0.0) const;
+        
+        // this method is intended only to produce parts of the model outputs
+        const Real swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor, const Rate strike, 
+                                 const Date& referenceDate = Null<Date>(), const Real y=0.0) const;
 
         class ZeroHelper;
         friend class ZeroHelper;
@@ -333,8 +284,6 @@ namespace QuantLib {
         mutable ModelOutputs modelOutputs_;
 
         const bool capletCalibrated_;
-
-        boost::shared_ptr<StochasticProcess1D> stateProcess_;
 
         boost::shared_ptr<Matrix> discreteNumeraire_;
         std::vector<boost::shared_ptr<Interpolation> > numeraire_; 

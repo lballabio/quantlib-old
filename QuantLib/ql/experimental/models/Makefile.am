@@ -6,21 +6,39 @@ this_include_HEADERS = \
     all.hpp \
 	atmadjustedsmilesection.hpp \
 	atmsmilesection.hpp \
+	basketgeneratingengine.hpp \
+	cmsswap.hpp \
+	cmsswaption.hpp \
+    gsr.hpp \
 	kahalesmilesection.hpp \
 	markovfunctional.hpp \
-	markovfunctionalcapfloorengine.hpp \
-	markovfunctionalswaptionengine.hpp \
 	mfstateprocess.hpp \
+	nonstandardswap.hpp \
+	nonstandardswaption.hpp \
+	onefactormodel.hpp \
+	onefactormodelcapfloorengine.hpp \
+	onefactormodelcmsswaptionengine.hpp \
+	onefactormodelnonstandardswaptionengine.hpp \
+	onefactormodelswaptionengine.hpp \
 	smilesectionutils.hpp
 
 libModels_la_SOURCES = \
 	atmadjustedsmilesection.cpp \
 	atmsmilesection.cpp \
+	basketgeneratingengine.cpp \
+	cmsswap.cpp \
+	cmsswaption.cpp \
+	gsr.cpp \
 	kahalesmilesection.cpp \
 	markovfunctional.cpp \
-	markovfunctionalcapfloorengine.cpp \
-	markovfunctionalswaptionengine.cpp \
 	mfstateprocess.cpp \
+	nonstandardswap.cpp \
+	nonstandardswaption.cpp \
+	onefactormodel.cpp \
+	onefactormodelcapfloorengine.cpp \
+	onefactormodelcmsswaptionengine.cpp \
+	onefactormodelnonstandardswaptionengine.cpp \
+	onefactormodelswaptionengine.cpp \
 	smilesectionutils.cpp
 
 noinst_LTLIBRARIES = libModels.la
