@@ -9,17 +9,19 @@ this_include_HEADERS = \
 	basketgeneratingengine.hpp \
 	cmsswap.hpp \
 	cmsswaption.hpp \
+	gaussian1dmodel.hpp \
+	gaussian1dcapfloorengine.hpp \
+	gaussian1dcmsswaptionengine.hpp \
+	gaussian1djamshidianswaptionengine.hpp \
+	gaussian1dnonstandardswaptionengine.hpp \
+	gaussian1dswaptionengine.hpp \
     gsr.hpp \
+	gsrprocess.hpp \
 	kahalesmilesection.hpp \
 	markovfunctional.hpp \
 	mfstateprocess.hpp \
 	nonstandardswap.hpp \
 	nonstandardswaption.hpp \
-	onefactormodel.hpp \
-	onefactormodelcapfloorengine.hpp \
-	onefactormodelcmsswaptionengine.hpp \
-	onefactormodelnonstandardswaptionengine.hpp \
-	onefactormodelswaptionengine.hpp \
 	smilesectionutils.hpp
 
 libModels_la_SOURCES = \
@@ -28,17 +30,19 @@ libModels_la_SOURCES = \
 	basketgeneratingengine.cpp \
 	cmsswap.cpp \
 	cmsswaption.cpp \
+	gaussian1dmodel.cpp \
+	gaussian1dcapfloorengine.cpp \
+	gaussian1dcmsswaptionengine.cpp \
+	gaussian1djamshidianswaptionengine.cpp \
+	gaussian1dnonstandardswaptionengine.cpp \
+	gaussian1dswaptionengine.cpp \
 	gsr.cpp \
+	gsrprocess.cpp \
 	kahalesmilesection.cpp \
 	markovfunctional.cpp \
 	mfstateprocess.cpp \
 	nonstandardswap.cpp \
 	nonstandardswaption.cpp \
-	onefactormodel.cpp \
-	onefactormodelcapfloorengine.cpp \
-	onefactormodelcmsswaptionengine.cpp \
-	onefactormodelnonstandardswaptionengine.cpp \
-	onefactormodelswaptionengine.cpp \
 	smilesectionutils.cpp
 
 noinst_LTLIBRARIES = libModels.la

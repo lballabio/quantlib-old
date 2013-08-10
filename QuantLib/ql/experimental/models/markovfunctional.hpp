@@ -24,12 +24,14 @@
 #ifndef quantlib_markovfunctional_hpp
 #define quantlib_markovfunctional_hpp
 
-#include <ql/experimental/models/onefactormodel.hpp>
 #include <ql/math/integrals/gaussianquadratures.hpp>
 #include <ql/math/solvers1d/brent.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp>
 #include <ql/termstructures/volatility/smilesection.hpp>
+#include <ql/stochasticprocess.hpp>
+#include <ql/utilities/null.hpp>
+#include <ql/patterns/lazyobject.hpp>
 
 #include <ql/experimental/models/mfstateprocess.hpp>
 #include <ql/experimental/models/kahalesmilesection.hpp>
@@ -77,7 +79,7 @@ namespace QuantLib {
                  precision computing.
     */
 
-    class MarkovFunctional : public OneFactorModel, public CalibratedModel {
+    class MarkovFunctional : public TermStructureConsistentModel, public CalibratedModel, public LazyObject  {
 
       public:
 
@@ -145,11 +147,9 @@ namespace QuantLib {
             bool isCaplet_;
             Period tenor_;
             std::vector<Date> paymentDates_;
-            std::vector<Real> yearFractions_; // zero fixing days yearfractions
-            Real marketYearFraction0_; // first yearfraction w.r.t. market index
-            Real atm_; // atm level w.r.t. zero fixing days annuity
-            Real annuity_; // annuity with zero fixing days
-            Real marketAnnuity_; // annuity with fixing days according to market index
+            std::vector<Real> yearFractions_;
+            Real atm_;
+            Real annuity_;
             boost::shared_ptr<SmileSection> smileSection_;
             boost::shared_ptr<SmileSection> rawSmileSection_;
             Real minRateDigital_;
@@ -187,36 +187,42 @@ namespace QuantLib {
 
         // Constructor for a swaption smile calibrated model
         MarkovFunctional(const Handle<YieldTermStructure>& termStructure,
-                        const Real reversion,
-                        const std::vector<Date>& volstepdates,
-                        const std::vector<Real>& volatilities,
-                        const Handle<SwaptionVolatilityStructure>& swaptionVol,
-                        const std::vector<Date>& swaptionExpiries,
-                        const std::vector<Period>& swaptionTenors,
-                        const boost::shared_ptr<SwapIndex>& swapIndexBase,
-                        const MarkovFunctional::ModelSettings& modelSettings = ModelSettings());
+						const Real reversion,
+						const std::vector<Date>& volstepdates,
+						const std::vector<Real>& volatilities,
+						const Handle<SwaptionVolatilityStructure>& swaptionVol,
+						const std::vector<Date>& swaptionExpiries,
+						const std::vector<Period>& swaptionTenors,
+						const boost::shared_ptr<SwapIndex>& swapIndexBase,
+						const MarkovFunctional::ModelSettings& modelSettings = ModelSettings());
 
-        // Constructor for a caplet smile calibrated model
-        MarkovFunctional(const Handle<YieldTermStructure>& termStructure,
-                        const Real reversion,
-                        const std::vector<Date>& volstepdates,
-                        const std::vector<Real>& volatilities,
-                        const Handle<OptionletVolatilityStructure>& capletVol,
-                        const std::vector<Date>& capletExpiries,
-                        const boost::shared_ptr<IborIndex>& iborIndex,
-                        const MarkovFunctional::ModelSettings& modelSettings = ModelSettings());
+		// Constructor for a caplet smile calibrated model
+		MarkovFunctional(const Handle<YieldTermStructure>& termStructure,
+						const Real reversion,
+						const std::vector<Date>& volstepdates,
+						const std::vector<Real>& volatilities,
+						const Handle<OptionletVolatilityStructure>& capletVol,
+						const std::vector<Date>& capletExpiries,
+						const boost::shared_ptr<IborIndex>& iborIndex,
+						const MarkovFunctional::ModelSettings& modelSettings = ModelSettings());
 
-        const ModelSettings& modelSettings() const { return modelSettings_; }
-        const ModelOutputs& modelOutputs() const;
+		const ModelSettings& modelSettings() const { return modelSettings_; }
+		const ModelOutputs& modelOutputs() const;
 
-        const Date& numeraireDate() const { return numeraireDate_; }
-        const Time& numeraireTime() const { return numeraireTime_; }
+		const Date& numeraireDate() const { return numeraireDate_; }
+		const Time& numeraireTime() const { return numeraireTime_; }
 
       protected:
-        
+
         const Real numeraireImpl(const Time t, const Real y, const Handle<YieldTermStructure>& yts) const;
 
-        const Real zerobondImpl(const Time T, const Time t, const Real y, const Handle<YieldTermStructure>& yts) const;
+        const Real zerobondImpl(const Time T, const Time t, const Real y, 
+                                const Handle<YieldTermStructure>& yts) const;
+
+        void performCalculations() const {
+            updateSmiles();
+            updateNumeraireTabulation();
+        }
 
         void generateArguments() {
             calculate();
@@ -224,16 +230,39 @@ namespace QuantLib {
             notifyObservers();
         }
 
-        void update() {
-            LazyObject::update();
-        }
-
-        void performCalculations() const {
-            updateSmiles();
-            updateNumeraireTabulation();
-        }
-
       private:
+
+		const Disposable<Array> numeraireArray(const Time t, const Array& y , 
+                                               const Handle<YieldTermStructure>& yts) const;
+		const Real deflatedZerobond(const Time T, const Time t=0.0, const Real y=0.0, 
+                                               const Handle<YieldTermStructure>& yts) const;
+		const Disposable<Array> deflatedZerobondArray(const Time T, const Time t, const Array& y, 
+                                               const Handle<YieldTermStructure>& yts) const;
+
+		// methods which compute the respective quantities under the special zero fixing days convention optionally
+        // these are used to produce the volatility diagnostics in the model outputs
+        const Real forwardRateZfd(const Date& fixing, const Date& referenceDate = Null<Date>(), const Real y=0.0,
+                               const bool zeroFixingDays=false, 
+                               boost::shared_ptr<IborIndex> iborIdx = boost::shared_ptr<IborIndex>(), 
+                               boost::shared_ptr<Interpolation> forwardSpread = boost::shared_ptr<Interpolation>()) const;
+		const Real swapRateZfd(const Date& fixing, const Period& tenor, const Date& referenceDate = Null<Date>(), 
+                            const Real y=0.0,const bool zeroFixingDays=false, 
+                            boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>(), 
+                            boost::shared_ptr<Interpolation> forwardSpread = boost::shared_ptr<Interpolation>(), 
+                            boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
+		const Real swapAnnuityZfd(const Date& fixing, const Period& tenor, const Date& referenceDate = Null<Date>(), 
+                               const Real y=0.0,const bool zeroFixingDays=false, 
+                               boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>(), 
+                               boost::shared_ptr<Interpolation> discountSpread = boost::shared_ptr<Interpolation>()) const;
+
+		const Real capletPriceZfd(const Option::Type& type, const Date& expiry, const Rate strike, 
+                               const Date& referenceDate = Null<Date>(), const Real y=0.0, 
+                               const bool zeroFixingDays=false, 
+                               boost::shared_ptr<IborIndex> iborIdx = boost::shared_ptr<IborIndex>()) const;
+		const Real swaptionPriceZfd(const Option::Type& type, const Date& expiry, const Period& tenor, const Rate strike, 
+                                 const Date& referenceDate = Null<Date>(), const Real y=0.0, 
+                                 const bool zeroFixingDays=false, 
+                                 boost::shared_ptr<SwapIndex> swapIdx = boost::shared_ptr<SwapIndex>()) const;
 
         void initialize();
         void updateSmiles() const;
@@ -246,20 +275,6 @@ namespace QuantLib {
                                   const Real guess = 0.03) const;
         const Real marketDigitalPrice(const Date& expiry, const CalibrationPoint& p, const Option::Type& type, 
                                       const Real strike) const;
-
-        const Disposable<Array> deflatedZerobondArray(const Time T, const Time t, const Array& y) const;
-        const Disposable<Array> numeraireArray(const Time t, const Array& y) const;
-        const Disposable<Array> zerobondArray(const Time T, const Time t, const Array& y) const;
-
-        const Real deflatedZerobond(const Time T, const Time t=0.0, const Real y=0.0) const;
-        
-        // this method is intended only to produce parts of the model outputs
-        const Real capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, 
-                               const Date& referenceDate = Null<Date>(), const Real y=0.0) const;
-        
-        // this method is intended only to produce parts of the model outputs
-        const Real swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor, const Rate strike, 
-                                 const Date& referenceDate = Null<Date>(), const Real y=0.0) const;
 
         class ZeroHelper;
         friend class ZeroHelper;
@@ -314,7 +329,7 @@ namespace QuantLib {
 
         Array normalIntegralX_;
         Array normalIntegralW_;
-        
+
     };
 
     std::ostream& operator<<(std::ostream& out, const MarkovFunctional::ModelOutputs& m);

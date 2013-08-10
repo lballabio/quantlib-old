@@ -27,7 +27,7 @@
 #include <ql/qldefines.hpp>
 #include <ql/math/optimization/costfunction.hpp>
 #include <ql/instruments/vanillaswap.hpp>
-#include <ql/experimental/models/onefactormodel.hpp>
+#include <ql/experimental/models/gaussian1dmodel.hpp>
 #include <ql/indexes/swapindex.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
 #include <ql/cashflows/fixedratecoupon.hpp>
@@ -44,7 +44,7 @@ namespace QuantLib {
         
         typedef enum CalibrationBasketType { Naive, MaturityStrikeByDeltaGamma } CalibrationBasketType;
 
-        BasketGeneratingEngine(const boost::shared_ptr<OneFactorModel>& model,
+        BasketGeneratingEngine(const boost::shared_ptr<Gaussian1dModel>& model,
                                const Handle<Quote>& oas,
                                const Handle<YieldTermStructure>& discountCurve) : onefactormodel_(model), oas_(oas),
                                                                                   discountCurve_(discountCurve) {}
@@ -65,7 +65,7 @@ namespace QuantLib {
 
     private:
 
-        const boost::shared_ptr<OneFactorModel>& onefactormodel_;
+        const boost::shared_ptr<Gaussian1dModel>& onefactormodel_;
         const Handle<Quote> oas_;
         const Handle<YieldTermStructure>& discountCurve_;
 
@@ -76,7 +76,7 @@ namespace QuantLib {
         public:
 
             MatchHelper(const VanillaSwap::Type type, const Real npv, const Real delta, const Real gamma, 
-                        const boost::shared_ptr<OneFactorModel>& model, const boost::shared_ptr<SwapIndex> indexBase, 
+                        const boost::shared_ptr<Gaussian1dModel>& model, const boost::shared_ptr<SwapIndex> indexBase, 
                         const Date& expiry, const Real h) : 
                 type_(type), mdl_(model), indexBase_(indexBase), expiry_(expiry), npv_(npv), 
                 delta_(delta), gamma_(gamma), h_(h) {}
@@ -165,7 +165,7 @@ namespace QuantLib {
             const Real npv_,delta_,gamma_,h_;
             const Date& expiry_;
             const boost::shared_ptr<SwapIndex> indexBase_;
-            const boost::shared_ptr<OneFactorModel>& mdl_;
+            const boost::shared_ptr<Gaussian1dModel>& mdl_;
             const VanillaSwap::Type type_;
 
         };

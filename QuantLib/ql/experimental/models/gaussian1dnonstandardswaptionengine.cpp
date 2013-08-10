@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/onefactormodelnonstandardswaptionengine.hpp>
+#include <ql/experimental/models/gaussian1dnonstandardswaptionengine.hpp>
 #include <ql/utilities/disposable.hpp>
 #include <ql/time/daycounters/actualactual.hpp>
 #include <ql/quotes/simplequote.hpp>
@@ -25,7 +25,7 @@
 namespace QuantLib {
 
 
-	const Real OneFactorModelNonstandardSwaptionEngine::underlyingNpv(const Date& expiry, const Real y) const {
+	const Real Gaussian1dNonstandardSwaptionEngine::underlyingNpv(const Date& expiry, const Real y) const {
 
 
         // determine the indices on both legs representing the cashflows that are part of the exercise into right
@@ -69,16 +69,16 @@ namespace QuantLib {
 
 	}
 
-    const VanillaSwap::Type OneFactorModelNonstandardSwaptionEngine::underlyingType() const {
+    const VanillaSwap::Type Gaussian1dNonstandardSwaptionEngine::underlyingType() const {
         return arguments_.swap->type();
     }
 
-    const Date& OneFactorModelNonstandardSwaptionEngine::underlyingLastDate() const {
+    const Date& Gaussian1dNonstandardSwaptionEngine::underlyingLastDate() const {
         return arguments_.fixedPayDates.back();
     }
     
 
-    const Disposable<Array> OneFactorModelNonstandardSwaptionEngine::initialGuess(const Date& expiry) const {
+    const Disposable<Array> Gaussian1dNonstandardSwaptionEngine::initialGuess(const Date& expiry) const {
 
         Size fixedIdx = std::upper_bound(arguments_.fixedResetDates.begin(), 
                                          arguments_.fixedResetDates.end(), expiry-1 ) - arguments_.fixedResetDates.begin();
@@ -108,7 +108,7 @@ namespace QuantLib {
     }
 
 
-    void OneFactorModelNonstandardSwaptionEngine::calculate() const {
+    void Gaussian1dNonstandardSwaptionEngine::calculate() const {
         
         QL_REQUIRE(arguments_.settlementType==Settlement::Physical,
                    "cash-settled swaptions not yet implemented ...");

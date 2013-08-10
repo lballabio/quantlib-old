@@ -17,11 +17,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/onefactormodelcapfloorengine.hpp>
+#include <ql/experimental/models/gaussian1dcapfloorengine.hpp>
 
 namespace QuantLib {
 
-    void OneFactorModelCapFloorEngine::calculate() const {
+    void Gaussian1dCapFloorEngine::calculate() const {
 
         for(Size i=0;i<arguments_.spreads.size();i++)
             QL_REQUIRE(arguments_.spreads[i] == 0.0,"Non zero spreads (" << arguments_.spreads[i] << ") are not allowed.");

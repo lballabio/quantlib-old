@@ -18,11 +18,11 @@
 */
 
 
-#include <ql/experimental/models/onefactormodel.hpp>
+#include <ql/experimental/models/gaussian1dmodel.hpp>
 
 namespace QuantLib {
 
-    const Real OneFactorModel::forwardRate(const Date& fixing, const Date& referenceDate, const Real y,
+    const Real Gaussian1dModel::forwardRate(const Date& fixing, const Date& referenceDate, const Real y,
                                   boost::shared_ptr<IborIndex> iborIdx) const {
 
         QL_REQUIRE(iborIdx != NULL,"no ibor index given");
@@ -40,7 +40,7 @@ namespace QuantLib {
 
     }
 
-    const Real OneFactorModel::swapRate(const Date& fixing, const Period& tenor, const Date& referenceDate, 
+    const Real Gaussian1dModel::swapRate(const Date& fixing, const Period& tenor, const Date& referenceDate, 
                                         const Real y, boost::shared_ptr<SwapIndex> swapIdx) const {
 
         QL_REQUIRE(swapIdx != NULL,"no swap index given");
@@ -74,7 +74,7 @@ namespace QuantLib {
 
     }
 
-   	const Real OneFactorModel::swapAnnuity(const Date& fixing, const Period& tenor, const Date& referenceDate, 
+   	const Real Gaussian1dModel::swapAnnuity(const Date& fixing, const Period& tenor, const Date& referenceDate, 
                                            const Real y, boost::shared_ptr<SwapIndex> swapIdx) const {
         
         QL_REQUIRE(swapIdx != NULL,"no swap index given");
@@ -97,7 +97,7 @@ namespace QuantLib {
 
 	}
 
-    const Real OneFactorModel::zerobondOption(const Option::Type& type, const Date& expiry, const Date& valueDate, 
+    const Real Gaussian1dModel::zerobondOption(const Option::Type& type, const Date& expiry, const Date& valueDate, 
                                               const Date& maturity, const Rate strike, const Date& referenceDate, 
                                               const Real y, const Handle<YieldTermStructure>& yts,
                                               const Real yStdDevs,
@@ -114,9 +114,10 @@ namespace QuantLib {
         Array p(yg.size());
 
         for(Size i=0;i<yg.size();i++) {
-            Real discount = zerobond(maturity,expiry,yg[i],yts) / zerobond(maturity,valueDate,yg[i],yts);
+            Real expValDsc = zerobond(valueDate,expiry,yg[i],yts);
+            Real discount = zerobond(maturity,expiry,yg[i],yts) / expValDsc;
             p[i] = std::max((type == Option::Call ? 1.0 : -1.0) * (discount-strike), 0.0 ) / 
-                numeraire(fixingTime,yg[i],yts);
+                numeraire(fixingTime,yg[i],yts) * expValDsc;
         }
 
         CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,
@@ -146,7 +147,7 @@ namespace QuantLib {
 
     }
 
-    const Real OneFactorModel::gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, 
+    const Real Gaussian1dModel::gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, 
                                                                  const Real e, const Real y0, const Real y1,
                                                                  const bool useNtl) {
 #ifdef MF_ENABLE_NTL
@@ -168,13 +169,13 @@ namespace QuantLib {
              (2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
     }
 
-    const Real OneFactorModel::gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, 
+    const Real Gaussian1dModel::gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, 
             const Real d, const Real e, const Real h, const Real x0, const Real x1, const bool useNtl) {
         return gaussianPolynomialIntegral(a,-4.0*a*h+b,6.0*a*h*h-3.0*b*h+c,-4*a*h*h*h+3.0*b*h*h-2.0*c*h+d,
             a*h*h*h*h-b*h*h*h+c*h*h-d*h+e,x0,x1,useNtl);
     }
 
-    const Disposable<Array> OneFactorModel::yGrid(const Real stdDevs, const int gridPoints, const Real T, 
+    const Disposable<Array> Gaussian1dModel::yGrid(const Real stdDevs, const int gridPoints, const Real T, 
                                                     const Real t, const Real y) const {
 
         QL_REQUIRE(stateProcess_ != NULL,"state process not set");

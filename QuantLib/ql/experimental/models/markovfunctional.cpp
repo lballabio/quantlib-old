@@ -1,4 +1,3 @@
-
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
@@ -32,13 +31,13 @@ namespace QuantLib {
                         const std::vector<Period>& swaptionTenors,
                         const boost::shared_ptr<SwapIndex>& swapIndexBase,
                         const MarkovFunctional::ModelSettings& modelSettings) :
-    OneFactorModel(termStructure), CalibratedModel(1), modelSettings_(modelSettings), capletCalibrated_(false),
-        reversion_(ConstantParameter(reversion, NoConstraint())),sigma_(arguments_[0]), volstepdates_(volstepdates),
-        volatilities_(volatilities), swaptionVol_(swaptionVol),
-        capletVol_(Handle<OptionletVolatilityStructure>()),
-        swaptionExpiries_(swaptionExpiries), capletExpiries_(std::vector<Date>()), swaptionTenors_(swaptionTenors),
-        swapIndexBase_(swapIndexBase), iborIndex_(swapIndexBase->iborIndex())
-    {
+      TermStructureConsistentModel(termStructure), CalibratedModel(1), modelSettings_(modelSettings), capletCalibrated_(false),
+      reversion_(ConstantParameter(reversion, NoConstraint())),sigma_(arguments_[0]), volstepdates_(volstepdates),
+      volatilities_(volatilities), swaptionVol_(swaptionVol),
+      capletVol_(Handle<OptionletVolatilityStructure>()),
+      swaptionExpiries_(swaptionExpiries), capletExpiries_(std::vector<Date>()), swaptionTenors_(swaptionTenors),
+      swapIndexBase_(swapIndexBase), iborIndex_(swapIndexBase->iborIndex())
+       {
 
         QL_REQUIRE(swaptionExpiries.size()==swaptionTenors.size(),"number of swaption expiries (" << 
                    swaptionExpiries.size() << ") is differnt from number of swaption tenors (" << 
@@ -60,13 +59,13 @@ namespace QuantLib {
                         const std::vector<Date>& capletExpiries,
                         const boost::shared_ptr<IborIndex>& iborIndex,
                         const MarkovFunctional::ModelSettings& modelSettings) :
-    OneFactorModel(termStructure), CalibratedModel(1),
-        modelSettings_(modelSettings), capletCalibrated_(true),
-        reversion_(ConstantParameter(reversion, NoConstraint())),sigma_(arguments_[0]),
-        volstepdates_(volstepdates), volatilities_(volatilities),
-        swaptionVol_(Handle<SwaptionVolatilityStructure>()), capletVol_(capletVol),
-        swaptionExpiries_(std::vector<Date>()), capletExpiries_(capletExpiries), swaptionTenors_(std::vector<Period>()),
-        iborIndex_(iborIndex)
+      TermStructureConsistentModel(termStructure), CalibratedModel(1),
+      modelSettings_(modelSettings), capletCalibrated_(true),
+      reversion_(ConstantParameter(reversion, NoConstraint())),sigma_(arguments_[0]),
+      volstepdates_(volstepdates), volatilities_(volatilities),
+      swaptionVol_(Handle<SwaptionVolatilityStructure>()), capletVol_(capletVol),
+      swaptionExpiries_(std::vector<Date>()), capletExpiries_(capletExpiries), swaptionTenors_(std::vector<Period>()),
+      iborIndex_(iborIndex)
       {
 
         QL_REQUIRE(capletExpiries.size()>=1,"need at least one caplet expiry to calibrate numeraire");
@@ -103,15 +102,16 @@ namespace QuantLib {
             else QL_REQUIRE(volsteptimes_[j] > volsteptimes_[j-1],"volsteptimes must be strictly increasing (" << 
                             volsteptimes_[j-1] << "@" << (j-1) << ", " << volsteptimes_[j] << "@" << j << ")");
         }
-
+        
+        std::vector<Date>::const_iterator i;
         if(capletCalibrated_) {
-            for(std::vector<Date>::const_iterator i = capletExpiries_.begin() ; i != capletExpiries_.end() ; i++) {
+            for(i = capletExpiries_.begin() ; i != capletExpiries_.end() ; i++) {
                 makeCapletCalibrationPoint(*i);
             }
         }
         else {
-            std::vector<Period>::const_iterator j = swaptionTenors_.begin();
-            for(std::vector<Date>::const_iterator i = swaptionExpiries_.begin() ; i != swaptionExpiries_.end() ; i++,j++) {
+            std::vector<Period>::const_iterator j;
+            for(i = swaptionExpiries_.begin(),  j = swaptionTenors_.begin(); i != swaptionExpiries_.end() ; i++,j++) {
                 makeSwaptionCalibrationPoint(*i,*j);
             }
         }
@@ -211,83 +211,77 @@ namespace QuantLib {
                             swapIndexBase_->currency(), swapIndexBase_->fixingCalendar(), swapIndexBase_->fixedLegTenor(),
                             swapIndexBase_->fixedLegConvention(), swapIndexBase_->dayCounter(),
                             swapIndexBase_->iborIndex());
-        boost::shared_ptr<VanillaSwap> underlying = tmpIndex.underlyingSwap(expiry);
-        Schedule sched = underlying->fixedSchedule();
-        Calendar cal = sched.calendar();
-        BusinessDayConvention bdc = underlying->paymentConvention();
-        
-        for(unsigned int k=1; k<sched.size(); k++) {
-            p.yearFractions_.push_back(swapIndexBase_->dayCounter().yearFraction( k==1 ? expiry : 
-                                                                               sched.date(k-1),sched.date(k)));
-            if(k==1) p.marketYearFraction0_ = swapIndexBase_->dayCounter().yearFraction(sched.date(0),sched.date(1));
-            // adjust the first period to start on the expiry
-            p.paymentDates_.push_back(cal.adjust(sched.date(k),bdc));
-        }
-        calibrationPoints_[expiry]=p;
 
-    }
+		boost::shared_ptr<VanillaSwap> underlying = tmpIndex.underlyingSwap(expiry);
+		Schedule sched = underlying->fixedSchedule();
+		Calendar cal = sched.calendar();
+		BusinessDayConvention bdc = underlying->paymentConvention();
+		
+		std::vector<Date> paymentDates;
+		std::vector<Real> yearFractions;
+		for(unsigned int k=1; k<sched.size(); k++) {
+			yearFractions.push_back(swapIndexBase_->dayCounter().yearFraction( k==1 ? expiry : sched.date(k-1),sched.date(k))); // adjust the first period to start on the expiry
+			paymentDates.push_back(cal.adjust(sched.date(k),bdc));
+		}
+		p.yearFractions_ = yearFractions;
+		p.paymentDates_ = paymentDates;
+		calibrationPoints_[expiry]=p;
 
-    void MarkovFunctional::makeCapletCalibrationPoint(const Date& expiry) {
+	}
 
-        QL_REQUIRE(calibrationPoints_.count(expiry)==0, "caplet expiry (" << expiry << 
-                   ") occurs more than once in calibration set");
+	void MarkovFunctional::makeCapletCalibrationPoint(const Date& expiry) {
 
-        CalibrationPoint p;
-        p.isCaplet_ = true;
-        //p.expiry_ = expiry;
-        p.tenor_ = iborIndex_->tenor();
-        Date valueDate = iborIndex_->valueDate(expiry);
-        Date endDate = iborIndex_->fixingCalendar().advance(valueDate,iborIndex_->tenor(),
-            iborIndex_->businessDayConvention(),iborIndex_->endOfMonth()); 
-        // FIXME Here we should use a calculation date calendar ?
-        p.paymentDates_.push_back(endDate);
-        p.yearFractions_.push_back(iborIndex_->dayCounter().yearFraction(expiry,endDate));
-        p.marketYearFraction0_ = iborIndex_->dayCounter().yearFraction(valueDate,endDate);
-        // adjust the first period to start on expiry
-        calibrationPoints_[expiry]=p;
+		QL_REQUIRE(calibrationPoints_.count(expiry)==0, "caplet expiry (" << expiry << ") occurs more than once in calibration set");
 
-    }
+		CalibrationPoint p;
+		p.isCaplet_ = true;
+		//p.expiry_ = expiry;
+		p.tenor_ = iborIndex_->tenor();
+		std::vector<Date> paymentDates;
+		std::vector<Real> yearFractions;
+		Date valueDate = iborIndex_->valueDate(expiry);
+		Date endDate = iborIndex_->fixingCalendar().advance(valueDate,iborIndex_->tenor(),
+			iborIndex_->businessDayConvention(),iborIndex_->endOfMonth()); // FIXME Here we should use a calculation date calendar ?
+		paymentDates.push_back(endDate);
+		yearFractions.push_back(iborIndex_->dayCounter().yearFraction(expiry,endDate)); // adjust the first period to start on expiry
+		p.yearFractions_ = yearFractions;
+		p.paymentDates_ = paymentDates;
+		calibrationPoints_[expiry]=p;
 
-    void MarkovFunctional::updateSmiles() const {
+	}
 
-        QL_MFMESSAGE(modelOutputs_,"updating smiles");
-        modelOutputs_.dirty_=true;
+	void MarkovFunctional::updateSmiles() const {
 
-        for(std::map<Date,CalibrationPoint>::reverse_iterator i = calibrationPoints_.rbegin(); 
-            i != calibrationPoints_.rend(); i++) {
+		QL_MFMESSAGE(modelOutputs_,"updating smiles");
+		modelOutputs_.dirty_=true;
 
-            boost::shared_ptr<SmileSection> smileSection;
-            if(i->second.isCaplet_) {
-                i->second.annuity_= i->second.yearFractions_[0] * termStructure()->discount(i->second.paymentDates_[0],true);
-                i->second.marketAnnuity_= i->second.marketYearFraction0_ *  
-                    termStructure()->discount(i->second.paymentDates_[0],true);
-                i->second.atm_= (termStructure()->discount(i->first,true) - 
-                                 termStructure()->discount(i->second.paymentDates_[0],true)) / i->second.annuity_;
-                smileSection=capletVol_->smileSection(i->first,true);
-            }
-            else {
-                Real annuity=0.0, marketAnnuity=0.0;
-                for(unsigned int k=0; k<i->second.paymentDates_.size(); k++) {
-                    annuity += i->second.yearFractions_[k] * termStructure()->discount(i->second.paymentDates_[k],true);
-                    marketAnnuity += (k==0 ? i->second.marketYearFraction0_ : i->second.yearFractions_[k]) *
-                        termStructure()->discount(i->second.paymentDates_[k],true);
-                }
-                i->second.annuity_=annuity;
-                i->second.marketAnnuity_=marketAnnuity;
-                i->second.atm_= (termStructure()->discount(i->first,true) - 
-                                 termStructure()->discount(i->second.paymentDates_.back(),true) ) / annuity; 
-                smileSection=swaptionVol_->smileSection(i->first,i->second.tenor_,true);
-            }
+		for(std::map<Date,CalibrationPoint>::reverse_iterator i = calibrationPoints_.rbegin(); i != calibrationPoints_.rend(); i++) {
 
-            i->second.rawSmileSection_ = boost::shared_ptr<SmileSection>(new AtmSmileSection(smileSection,i->second.atm_));
+			boost::shared_ptr<SmileSection> smileSection;
+			if(i->second.isCaplet_) {
+				i->second.annuity_= i->second.yearFractions_[0] * termStructure()->discount(i->second.paymentDates_[0],true);
+				i->second.atm_= (termStructure()->discount(i->first,true) - termStructure()->discount(i->second.paymentDates_[0],true)) / i->second.annuity_;
+				smileSection=capletVol_->smileSection(i->first,true);
+			}
+			else {
+				Real annuity=0.0;
+				for(unsigned int k=0; k<i->second.paymentDates_.size(); k++) {
+					annuity += i->second.yearFractions_[k] * termStructure()->discount(i->second.paymentDates_[k],true);
+				}
+				i->second.annuity_=annuity;
+				i->second.atm_= (termStructure()->discount(i->first,true) - termStructure()->discount(i->second.paymentDates_.back(),true) ) / annuity; 
+				smileSection=swaptionVol_->smileSection(i->first,i->second.tenor_,true);
+			}
+
+			i->second.rawSmileSection_ = boost::shared_ptr<SmileSection>(new AtmSmileSection(smileSection,i->second.atm_));
 
             if( modelSettings_.adjustments_ & ModelSettings::KahaleSmile ) {
 
                 i->second.smileSection_ = boost::shared_ptr<KahaleSmileSection>(new KahaleSmileSection(
                       i->second.rawSmileSection_, i->second.atm_,
-                      (modelSettings_.adjustments_ & ModelSettings::KahaleInterpolation) != 0,
-                      (modelSettings_.adjustments_ & ModelSettings::KahaleExponentialExtrapolation) != 0,
-                      (modelSettings_.adjustments_ & ModelSettings::KahaleDeleteArbitragePoints) != 0,
+                      (modelSettings_.adjustments_ & ModelSettings::KahaleInterpolation),
+                      (modelSettings_.adjustments_ & ModelSettings::KahaleExponentialExtrapolation),
+                      (modelSettings_.adjustments_ & ModelSettings::KahaleDeleteArbitragePoints),
                       modelSettings_.smileMoneynessCheckpoints_,
                       modelSettings_.digitalGap_));
 
@@ -297,10 +291,8 @@ namespace QuantLib {
 
             }
 
-            i->second.minRateDigital_ = i->second.smileSection_->digitalOptionPrice(modelSettings_.lowerRateBound_,
-                                                 Option::Call,i->second.annuity_,modelSettings_.digitalGap_);
-            i->second.maxRateDigital_ = i->second.smileSection_->digitalOptionPrice(modelSettings_.upperRateBound_,
-                                                 Option::Call,i->second.annuity_,modelSettings_.digitalGap_);
+			i->second.minRateDigital_ = i->second.smileSection_->digitalOptionPrice(modelSettings_.lowerRateBound_,Option::Call,i->second.annuity_,modelSettings_.digitalGap_);
+			i->second.maxRateDigital_ = i->second.smileSection_->digitalOptionPrice(modelSettings_.upperRateBound_,Option::Call,i->second.annuity_,modelSettings_.digitalGap_);
 
             // output smile for testing
             // boost::shared_ptr<SmileSection> sec1 = i->second.rawSmileSection_;
@@ -326,418 +318,521 @@ namespace QuantLib {
             // }
             // std::cout << "-------------------------------------------------------------------" << std::endl;
 
+		}
+
+	}
+
+	void MarkovFunctional::updateNumeraireTabulation() const {
+
+		QL_MFMESSAGE(modelOutputs_,"updating numeraire tabulation");
+		modelOutputs_.dirty_=true;
+
+		modelOutputs_.adjustmentFactors_.clear();
+		modelOutputs_.digitalsAdjustmentFactors_.clear();
+
+		int idx = times_.size()-2;
+
+		for(std::map<Date,CalibrationPoint>::reverse_iterator i = calibrationPoints_.rbegin(); i != calibrationPoints_.rend(); i++,idx--) {
+
+			Array discreteDeflatedAnnuities(y_.size(),0.0);
+			Array deflatedFinalPayments;
+
+			Real numeraire0=termStructure()->discount(numeraireTime_,true);
+			Real normalization=termStructure()->discount(times_[idx],true) / numeraire0;
+
+			for(unsigned int k=0;k<i->second.paymentDates_.size();k++) {
+				deflatedFinalPayments = deflatedZerobond(termStructure()->timeFromReference(i->second.paymentDates_[k]),times_[idx],y_);
+				discreteDeflatedAnnuities += deflatedFinalPayments*i->second.yearFractions_[k];
+			}
+
+			CubicInterpolation deflatedAnnuities(y_.begin(),y_.end(),discreteDeflatedAnnuities.begin(),CubicInterpolation::Spline,
+														true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+			deflatedAnnuities.enableExtrapolation();
+
+			Real digitalsCorrectionFactor = 1.0;
+			modelOutputs_.digitalsAdjustmentFactors_.insert(modelOutputs_.digitalsAdjustmentFactors_.begin(),digitalsCorrectionFactor);
+
+			Real digital,swapRate,swapRate0;
+
+			for(int c=0;c==0 || (c==1 && (modelSettings_.adjustments_ & ModelSettings::AdjustDigitals));c++) {
+
+				if(c==1) {
+					digitalsCorrectionFactor = i->second.annuity_ / digital;
+					modelOutputs_.digitalsAdjustmentFactors_.front() = digitalsCorrectionFactor;
+				}
+				
+				digital=0.0;
+				swapRate0=modelSettings_.upperRateBound_/2.0; // initial guess
+				for(int j=y_.size()-1;j>=0;j--) {
+
+					Real integral = 0.0;
+
+					if(j==y_.size()-1) {
+						if((modelSettings_.adjustments_ & ModelSettings::NoPayoffExtrapolation) == 0) { 
+							if((modelSettings_.adjustments_ & ModelSettings::ExtrapolatePayoffFlat) != 0) {
+								integral = gaussianShiftedPolynomialIntegral(0.0,0.0,0.0,0.0,discreteDeflatedAnnuities[j-1],y_[j-1],y_[j], 100.0);
+							}
+							else {
+								Real ca = deflatedAnnuities.aCoefficients()[j-1];
+								Real cb = deflatedAnnuities.bCoefficients()[j-1];
+								Real cc = deflatedAnnuities.cCoefficients()[j-1];
+								integral = gaussianShiftedPolynomialIntegral(0.0,cc,cb,ca,discreteDeflatedAnnuities[j-1],y_[j-1],y_[j],100.0);
+							}
+						}
+					}
+					else {
+						Real ca = deflatedAnnuities.aCoefficients()[j];
+						Real cb = deflatedAnnuities.bCoefficients()[j];
+						Real cc = deflatedAnnuities.cCoefficients()[j];
+						integral = gaussianShiftedPolynomialIntegral(0.0,cc,cb,ca,discreteDeflatedAnnuities[j],y_[j],y_[j],y_[j+1]);
+					}
+
+					if(integral < 0) {
+						QL_MFMESSAGE(modelOutputs_,"WARNING: integral for digitalPrice is negative for j=" << j << " (" << integral << ") --- reset it to zero.");
+						integral = 0.0;
+					}
+
+					digital += integral * numeraire0 * digitalsCorrectionFactor;
+			
+					if(digital >= i->second.minRateDigital_) swapRate = modelSettings_.lowerRateBound_;
+					else {
+						if(digital <= i->second.maxRateDigital_) swapRate = modelSettings_.upperRateBound_;
+						else {
+							swapRate = marketSwapRate(i->first,i->second,digital, swapRate0);
+							if(j < (int)y_.size()-1 && swapRate > swapRate0) {
+								QL_MFMESSAGE(modelOutputs_,"WARNING: swap rate is decreasing in y for t=" << times_[idx] << ", j=" << j << " (y, swap rate) is (" << y_[j] << "," << swapRate << ") but for j=" << j+1 << " it is (" << y_[j+1] << "," << swapRate0 << ") --- reset rate to " << swapRate0 << " in node j=" << j);
+								swapRate = swapRate0;
+							}
+						}
+					}
+					swapRate0 = swapRate; 
+					Real numeraire = 1.0 / (swapRate*discreteDeflatedAnnuities[j]+deflatedFinalPayments[j]);
+					(*discreteNumeraire_)[idx][j] = numeraire * normalization;
+				}
+			}
+
+			if(modelSettings_.adjustments_ & ModelSettings::AdjustYts) {
+				numeraire_[idx]->update();
+				Real modelDeflatedZerobond = deflatedZerobond(times_[idx],0.0);
+				Real marketDeflatedZerobond = termStructure()->discount(times_[idx],true) / termStructure()->discount(numeraireTime_,true);
+				for(int j=y_.size()-1;j>=0;j--) {
+					(*discreteNumeraire_)[idx][j] *= modelDeflatedZerobond/marketDeflatedZerobond;
+				}
+				modelOutputs_.adjustmentFactors_.insert(modelOutputs_.adjustmentFactors_.begin(),modelDeflatedZerobond/marketDeflatedZerobond);
+			}
+			else {
+				modelOutputs_.adjustmentFactors_.insert(modelOutputs_.adjustmentFactors_.begin(),1.0);
+			}
+
+			numeraire_[idx]->update();
+
+		}
+
+	}
+
+	const MarkovFunctional::ModelOutputs& MarkovFunctional::modelOutputs() const {
+
+		if(modelOutputs_.dirty_) {
+
+			calculate();
+
+			// yield term structure
+			modelOutputs_.marketZerorate_.clear();
+			modelOutputs_.modelZerorate_.clear();
+			for(Size i=1;i<times_.size()-1;i++) {
+				modelOutputs_.marketZerorate_.push_back(termStructure()->zeroRate(times_[i],QuantLib::Continuous,QuantLib::Annual));
+				modelOutputs_.modelZerorate_.push_back( -std::log( this->zerobond(times_[i]) ) / times_[i]);
+			}
+
+			// volatility surface
+			modelOutputs_.smileStrikes_.clear();
+			modelOutputs_.marketCallPremium_.clear();
+			modelOutputs_.marketPutPremium_.clear();
+			modelOutputs_.modelCallPremium_.clear();
+			modelOutputs_.modelPutPremium_.clear();
+			modelOutputs_.marketVega_.clear();
+			modelOutputs_.marketRawCallPremium_.clear();
+			modelOutputs_.marketRawPutPremium_.clear();
+			Size idx = 1;
+			for(std::map<Date,CalibrationPoint>::iterator i=calibrationPoints_.begin(); i != calibrationPoints_.end(); i++) {
+				modelOutputs_.atm_.push_back(i->second.atm_);
+				modelOutputs_.annuity_.push_back(i->second.annuity_);
+				boost::shared_ptr<SmileSection> sec = i->second.smileSection_;
+				boost::shared_ptr<SmileSection> rawSec = i->second.rawSmileSection_;
+				SmileSectionUtils ssutils(*sec,modelSettings_.smileMoneynessCheckpoints_,i->second.atm_);
+				std::vector<Real> money = ssutils.moneyGrid();
+				std::vector<Real> strikes, marketCall, marketPut, modelCall, modelPut, marketVega, marketRawCall, marketRawPut;
+				for(Size j=0;j<money.size();j++) {
+					strikes.push_back(money[j]*i->second.atm_);
+					try {
+						marketRawCall.push_back(rawSec->optionPrice(strikes[j],Option::Call,i->second.annuity_));
+						marketRawPut.push_back(rawSec->optionPrice(strikes[j],Option::Put,i->second.annuity_));
+					} catch(QuantLib::Error) { // the smile section might not be able to output an option price because it has no atm level
+						marketRawCall.push_back(0.0);
+						marketRawPut.push_back(0.0);
+					}
+					marketCall.push_back(sec->optionPrice(strikes[j],Option::Call,i->second.annuity_));
+					marketPut.push_back(sec->optionPrice(strikes[j],Option::Put,i->second.annuity_));
+					modelCall.push_back(i->second.isCaplet_ ? capletPrice(Option::Call,i->first,strikes[j],Null<Date>(),0.0,true) : 
+						                                      swaptionPrice(Option::Call,i->first,i->second.tenor_,strikes[j],Null<Date>(),0.0,true)); 
+					modelPut.push_back(i->second.isCaplet_ ? capletPrice(Option::Put,i->first,strikes[j],Null<Date>(),0.0,true) : 
+						                                      swaptionPrice(Option::Put,i->first,i->second.tenor_,strikes[j],Null<Date>(),0.0,true)); 
+					marketVega.push_back(sec->vega(strikes[j],i->second.annuity_));
+				}
+				modelOutputs_.smileStrikes_.push_back(strikes);
+				modelOutputs_.marketCallPremium_.push_back(marketCall);
+				modelOutputs_.marketPutPremium_.push_back(marketPut);
+				modelOutputs_.modelCallPremium_.push_back(modelCall);
+				modelOutputs_.modelPutPremium_.push_back(modelPut);
+				modelOutputs_.marketVega_.push_back(marketVega);
+				modelOutputs_.marketRawCallPremium_.push_back(marketRawCall);
+				modelOutputs_.marketRawPutPremium_.push_back(marketRawPut);
+			}
+
+			modelOutputs_.dirty_=false;
+
+		}
+
+		return modelOutputs_;
+
+	}
+
+	const Real MarkovFunctional::deflatedZerobond(Time T, Time t, Real y) const {
+
+		calculate();
+		Array ya(1,y);
+		return deflatedZerobond(T,t,ya,yts)[0];
+
+	}
+
+	const Disposable<Array> MarkovFunctional::deflatedZerobondArray(const Time T, const Time t, const Array& y) const {
+
+		calculate();
+
+		Array result(y.size(),0.0);
+
+		// Gauss Hermite
+
+		Real stdDev_0_t = stateProcess_->stdDeviation(0.0,0.0,t); // we use that the standard deviation is independent of $x$ here
+		Real stdDev_0_T = stateProcess_->stdDeviation(0.0,0.0,T);
+		Real stdDev_t_T = stateProcess_->stdDeviation(t,0.0,T-t);
+
+		for(Size j=0;j<y.size();j++) {
+			Array ya(modelSettings_.gaussHermitePoints_);
+			for(Size i=0;i<modelSettings_.gaussHermitePoints_;i++) {
+				ya[i] = (y[j]*stdDev_0_t + stdDev_t_T*normalIntegralX_[i]) / stdDev_0_T;
+				
+			}
+			Array res=numeraire(T,ya,discountSpread);
+			for(Size i=0;i<modelSettings_.gaussHermitePoints_;i++) {
+				result[j]+=normalIntegralW_[i] / res[i];
+			}
+		}
+
+		return result * (yts.empty() ? yts->discount(T)/yts->discount(t) *
+                         termStructure
+
+(discountSpread ? exp( -discountSpread->operator()(T,true)*T+discountSpread->operator()(t,true)*t ) : 1.0 );
+
+	}
+
+	const Disposable<Array> MarkovFunctional::yGrid(const Real stdDevs, const int gridPoints, const Real T, const Real t, const Real y) const {
+
+		Array result(2*gridPoints+1,0.0);
+
+		Real stdDev_0_t = stateProcess_->stdDeviation(0.0,0.0,t); // we use that the standard deviation is independent of $x$ here
+		Real stdDev_0_T = stateProcess_->stdDeviation(0.0,0.0,T);
+		Real stdDev_t_T = stateProcess_->stdDeviation(t,0.0,T-t);
+
+		Real h = stdDevs / ((Real)gridPoints);
+
+
+		for(int j=-gridPoints;j<=gridPoints;j++) {
+			result[j+gridPoints] = (y*stdDev_0_t + stdDev_t_T*((Real)j)*h) / stdDev_0_T;
+		}
+
+		return result;
+
+	}
+	
+	const Real MarkovFunctional::zerobond(Time T, Time t, Real y, boost::shared_ptr<Interpolation> discountSpread) const {
+
+		calculate();
+		return deflatedZerobond(T,t,y,discountSpread)*numeraire(t,y,discountSpread); 
+
+	}
+
+	const Real MarkovFunctional::zerobond(const Date& maturity, const Date& referenceDate, const Real y, boost::shared_ptr<Interpolation> spread) const {
+
+		calculate();
+
+		return zerobond(termStructure()->timeFromReference(maturity),
+			referenceDate == Null<Date>() ? 0.0 : termStructure()->timeFromReference(referenceDate),y,spread);
+
+	}
+
+	const Real MarkovFunctional::numeraire(Time t, Real y, boost::shared_ptr<Interpolation> discountSpread ) const {
+
+		calculate();
+		Array ay(1,y);
+		return numeraire(t,ay,discountSpread)[0];
+
+	}
+
+	const Disposable<Array> MarkovFunctional::numeraire(const Time t, const Array& y, boost::shared_ptr<Interpolation> discountSpread ) const {
+
+		calculate();
+        Real discSpr = discountSpread ? exp( -discountSpread->operator()(numeraireTime(),true)*numeraireTime() + discountSpread->operator()(t,true)*t ) : 1.0; 
+		Array res(y.size(), termStructure()->discount(numeraireTime_,true)*discSpr);
+		if(t<QL_EPSILON) return res;
+		
+		Real inverseNormalization=termStructure()->discount(numeraireTime_,true)/termStructure()->discount(t,true);
+
+		Time tz = std::min(t,times_.back());
+		Size i= std::min<Size> ( std::upper_bound(times_.begin(),times_.end()-1,t)-times_.begin(), times_.size()-1 );
+
+		Real ta = times_[i-1];
+		Real tb = times_[i];
+		Real dt = tb-ta;
+
+		for(Size j=0;j<y.size();j++) {
+			Real yv = y[j];
+			if(yv<y_.front()) yv=y_.front(); // FIXME flat extrapolation should be incoperated into interpolation object, see above
+			if(yv>y_.back()) yv=y_.back();
+			Real na= (*numeraire_[i-1])(yv);
+			Real nb = (*numeraire_[i])(yv);
+			res[j] = inverseNormalization / ( (tz-ta) / nb + (tb-tz) / na ) * dt;   // linear in reciprocal of normalized numeraire
+		}
+
+		return res * discSpr;
+
+	}
+
+	const Real MarkovFunctional::forwardRate(const Date& fixing, const Date& referenceDate, const Real y,const bool zeroFixingDays, boost::shared_ptr<IborIndex> iborIdx, boost::shared_ptr<Interpolation> forwardSpread) const {
+
+		calculate();
+
+		if(!iborIdx) iborIdx = iborIndex_;
+
+		Date valueDate = zeroFixingDays ? fixing : iborIdx->valueDate(fixing);
+		Date endDate = iborIdx->fixingCalendar().advance(iborIdx->valueDate(fixing),iborIdx->tenor(),
+								iborIdx->businessDayConvention(),iborIdx->endOfMonth()); // FIXME Here we should use the calculation date calendar ?
+		Real dcf = iborIdx->dayCounter().yearFraction(valueDate,endDate);
+
+		return ( zerobond(valueDate,referenceDate,y,forwardSpread) - zerobond(endDate,referenceDate,y,forwardSpread) ) / 
+							(dcf * zerobond(endDate,referenceDate,y,forwardSpread));
+
+	}
+
+	const Real MarkovFunctional::swapRate(const Date& fixing, const Period& tenor, const Date& referenceDate, const Real y, bool zeroFixingDays, boost::shared_ptr<SwapIndex> swapIdx, boost::shared_ptr<Interpolation> forwardSpread, boost::shared_ptr<Interpolation> discountSpread) const {
+
+		calculate();
+
+		if(!swapIdx) swapIdx = swapIndexBase_;
+		QL_REQUIRE(swapIdx,"No swap index given");
+
+		SwapIndex tmpIdx = SwapIndex(swapIdx->familyName(), tenor, swapIdx->fixingDays(),
+                                 swapIdx->currency(), swapIdx->fixingCalendar(), swapIdx->fixedLegTenor(),
+                                 swapIdx->fixedLegConvention(), swapIdx->dayCounter(), swapIdx->iborIndex());
+		boost::shared_ptr<VanillaSwap> underlying = tmpIdx.underlyingSwap(fixing);
+		Schedule sched = underlying->fixedSchedule();
+		Real annuity = swapAnnuity(fixing,tenor,referenceDate,y,zeroFixingDays,swapIdx,discountSpread);
+		Rate atm;
+		if(!forwardSpread && !discountSpread) {
+			atm = ( zerobond(zeroFixingDays ? fixing : sched.dates().front(),referenceDate,y) - zerobond(sched.calendar().adjust(sched.dates().back(), underlying->paymentConvention()), referenceDate, y) ) / annuity;
+		}
+		else {
+			Schedule floatSched = underlying->floatingSchedule();
+			Real floatLeg=0.0;
+			for(Size i=1; i<floatSched.size(); i++) {
+				floatLeg += ( zerobond( (i==1 && zeroFixingDays) ? fixing:floatSched[i-1], referenceDate, y, forwardSpread ) / zerobond ( floatSched[i], referenceDate, y, forwardSpread ) - 1.0 ) *
+										zerobond( floatSched.calendar().adjust(floatSched[i], underlying->paymentConvention()), referenceDate, y , discountSpread );
+			}
+			atm = floatLeg / annuity;
+		}
+		return atm;
+
+	}
+
+	const Real MarkovFunctional::swapAnnuity(const Date& fixing, const Period& tenor, const Date& referenceDate, const Real y, const bool zeroFixingDays, boost::shared_ptr<SwapIndex> swapIdx, boost::shared_ptr<Interpolation> discountSpread) const {
+
+		calculate();
+
+		if(!swapIdx) swapIdx = swapIndexBase_;
+		QL_REQUIRE(swapIdx,"No swap index given");
+
+		SwapIndex tmpIdx = SwapIndex(swapIdx->familyName(), tenor, swapIdx->fixingDays(),
+                                 swapIdx->currency(), swapIdx->fixingCalendar(), swapIdx->fixedLegTenor(),
+                                 swapIdx->fixedLegConvention(), swapIdx->dayCounter(), swapIdx->iborIndex());
+		boost::shared_ptr<VanillaSwap> underlying = tmpIdx.underlyingSwap(fixing);
+		Schedule sched = underlying->fixedSchedule();
+
+		Real annuity=0.0;
+		for(unsigned int j=1; j<sched.size(); j++) {
+			annuity += zerobond(sched.calendar().adjust(sched.date(j),underlying->paymentConvention()),referenceDate,y,discountSpread) * 
+				swapIdx->dayCounter().yearFraction( j==1 && zeroFixingDays ? fixing : sched.date(j-1) , sched.date(j) );
+		}
+		return annuity;
+
+	}
+
+	const Real MarkovFunctional::zerobondOption(const Option::Type& type, const Date& expiry, const Date& maturity, const Rate strike, const Date& referenceDate, const Real y, boost::shared_ptr<Interpolation> discountSpread ) const {
+
+		calculate();
+
+		Time fixingTime = termStructure()->timeFromReference(expiry);
+		Time referenceTime = referenceDate == Null<Date>() ? 0.0 : termStructure()->timeFromReference(referenceDate);
+
+		Array yg = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_,fixingTime,referenceTime,y);
+		Array z = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_);
+
+		Array p(yg.size());
+
+		for(Size i=0;i<yg.size();i++) {
+			Real discount = zerobond(maturity,expiry,yg[i],discountSpread);
+			p[i] = std::max((type == Option::Call ? 1.0 : -1.0) * (discount-strike), 0.0 ) / numeraire(fixingTime,yg[i],discountSpread);
+		}
+
+		CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+
+		Real price = 0.0;
+		for(Size i=0;i<z.size()-1;i++) {
+			price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
+		}
+		if((modelSettings_.adjustments_ & ModelSettings::NoPayoffExtrapolation) == 0) {
+			if((modelSettings_.adjustments_ & ModelSettings::ExtrapolatePayoffFlat) != 0) {
+				price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+				price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
+			}
+			else {
+				if(type == Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+				if(type == Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
+			}
+		}
+
+		return numeraire(referenceTime,y,discountSpread) * price;
+
+	}
+
+	const Real MarkovFunctional::swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor, const Rate strike, const Date& referenceDate, const Real y, const bool zeroFixingDays, boost::shared_ptr<SwapIndex> swapIdx) const {
+		
+		calculate();
+
+		Time fixingTime = termStructure()->timeFromReference(expiry);
+		Time referenceTime = referenceDate == Null<Date>() ? 0.0 : termStructure()->timeFromReference(referenceDate);
+
+		Array yg = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_,fixingTime,referenceTime,y);
+		Array z = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_);
+		Array p(yg.size());
+
+		for(Size i=0;i<yg.size();i++) {
+			Real annuity=swapAnnuity(expiry,tenor,expiry,yg[i],zeroFixingDays,swapIdx);
+			Rate atm=swapRate(expiry,tenor,expiry,yg[i],zeroFixingDays,swapIdx);
+			p[i] = annuity * std::max((type == Option::Call ? 1.0 : -1.0) * (atm-strike), 0.0) / numeraire(fixingTime,yg[i]);
+		}
+
+		CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+
+		Real price = 0.0;
+		for(Size i=0;i<z.size()-1;i++) {
+			price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
+		}
+		if((modelSettings_.adjustments_ & ModelSettings::NoPayoffExtrapolation) == 0) {
+			if((modelSettings_.adjustments_ & ModelSettings::ExtrapolatePayoffFlat) != 0) {
+				price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+				price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
+			}
+			else {
+				if(type == Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+				if(type == Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
+			}
+		}
+
+
+		return numeraire(referenceTime,y) * price;
+
+	}
+
+	const Real MarkovFunctional::capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, const Date& referenceDate, const Real y, const bool zeroFixingDays, boost::shared_ptr<IborIndex> iborIdx) const {
+
+		calculate();
+
+		if(!iborIdx) iborIdx = iborIndex_;
+
+		Time fixingTime = termStructure()->timeFromReference(expiry);
+		Time referenceTime = referenceDate == Null<Date>() ? 0.0 : termStructure()->timeFromReference(referenceDate);
+
+		Array yg = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_,fixingTime,referenceTime,y);
+		Array z = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_);
+		Array p(yg.size());
+
+		Date valueDate = iborIdx->valueDate(expiry);
+		Date endDate = iborIdx->fixingCalendar().advance(valueDate,iborIdx->tenor(),
+								iborIdx->businessDayConvention(),iborIdx->endOfMonth()); // FIXME Here we should use the calculation date calendar ?
+		Real dcf = iborIdx->dayCounter().yearFraction(zeroFixingDays ? expiry : valueDate,endDate);
+
+		for(Size i=0;i<yg.size();i++) {
+			Real annuity=zerobond(endDate,expiry,yg[i]) * dcf;
+			Rate atm=forwardRate(expiry,expiry,yg[i],zeroFixingDays,iborIdx);
+			p[i] = annuity * std::max((type == Option::Call ? 1.0 : -1.0) * (atm-strike), 0.0 ) / numeraire(fixingTime,yg[i]);
+		}
+
+		CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+
+		Real price = 0.0;
+		for(Size i=0;i<z.size()-1;i++) {
+			price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
+		}
+		if((modelSettings_.adjustments_ & ModelSettings::NoPayoffExtrapolation) == 0) {
+			if((modelSettings_.adjustments_ & ModelSettings::ExtrapolatePayoffFlat) != 0) {
+				price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+				price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
+			}
+			else {
+				if(type==Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+				if(type==Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
+			}
         }
 
-    }
+		return numeraire(referenceTime,y) * price;
 
-    void MarkovFunctional::updateNumeraireTabulation() const {
+	}
 
-        QL_MFMESSAGE(modelOutputs_,"updating numeraire tabulation");
-        modelOutputs_.dirty_=true;
 
-        modelOutputs_.adjustmentFactors_.clear();
-        modelOutputs_.digitalsAdjustmentFactors_.clear();
+	const Real MarkovFunctional::marketSwapRate(const Date& expiry, const CalibrationPoint& p, const Real digitalPrice, const Real guess) const {
 
-        int idx = times_.size()-2;
+		ZeroHelper z(this,expiry,p,digitalPrice);
+		Brent b;
+		Real solution=b.solve(z,modelSettings_.marketRateAccuracy_,std::max(std::min(guess,modelSettings_.upperRateBound_-0.00001),modelSettings_.lowerRateBound_+0.00001),modelSettings_.lowerRateBound_,modelSettings_.upperRateBound_);
+		return solution;
 
-        for(std::map<Date,CalibrationPoint>::reverse_iterator i = calibrationPoints_.rbegin(); 
-            i != calibrationPoints_.rend(); i++,idx--) {
+	}
 
-            Array discreteDeflatedAnnuities(y_.size(),0.0);
-            Array deflatedFinalPayments;
+	const Real MarkovFunctional::marketDigitalPrice(const Date& expiry,const CalibrationPoint& p, const Option::Type& type, const Real strike) const {
 
-            Real numeraire0=termStructure()->discount(numeraireTime_,true);
-            Real normalization=termStructure()->discount(times_[idx],true) / numeraire0;
+		return p.smileSection_->digitalOptionPrice(strike,type,p.annuity_,modelSettings_.digitalGap_);
 
-            for(unsigned int k=0;k<i->second.paymentDates_.size();k++) {
-                deflatedFinalPayments = deflatedZerobondArray(termStructure()->timeFromReference(i->second.paymentDates_[k]),
-                                                         times_[idx],y_);
-                discreteDeflatedAnnuities += deflatedFinalPayments*i->second.yearFractions_[k];
-            }
+	}
 
-            CubicInterpolation deflatedAnnuities(y_.begin(),y_.end(),discreteDeflatedAnnuities.begin(),
-                                                 CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,
-                                                 CubicInterpolation::Lagrange,0.0);
-            deflatedAnnuities.enableExtrapolation();
+	const Real MarkovFunctional::gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, const Real y0, const Real y1) const {
+		#ifdef MF_ENABLE_NTL
+			if(modelSettings_.enableNtl_) {
+				const boost::math::ntl::RR aa=4.0*a, ba=2.0*M_SQRT2*b, ca=2.0*c, da=M_SQRT2*d;
+				const boost::math::ntl::RR x0=y0*M_SQRT1_2, x1=y1*M_SQRT1_2;
+				const boost::math::ntl::RR res = (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*exp(-x1*x1)*(2.0*aa*x1*x1*x1+3.0*aa*x1+2.0*ba*(x1*x1+1.0)+2.0*ca*x1+2.0*da))-
+													(0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*(2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
+				return NTL::to_double(res.value());
+			}
+		#endif
+		const Real aa=4.0*a, ba=2.0*M_SQRT2*b, ca=2.0*c, da=M_SQRT2*d;
+		const Real x0=y0*M_SQRT1_2, x1=y1*M_SQRT1_2;
+		return (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*exp(-x1*x1)*(2.0*aa*x1*x1*x1+3.0*aa*x1+2.0*ba*(x1*x1+1.0)+2.0*ca*x1+2.0*da))-
+			(0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*(2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
+	}
 
-            Real digitalsCorrectionFactor = 1.0;
-            modelOutputs_.digitalsAdjustmentFactors_.insert(modelOutputs_.digitalsAdjustmentFactors_.begin(),
-                                                            digitalsCorrectionFactor);
-
-            Real digital=0.0,swapRate,swapRate0;
-
-            for(int c=0;c==0 || (c==1 && (modelSettings_.adjustments_ & ModelSettings::AdjustDigitals));c++) {
-
-                if(c==1) {
-                    digitalsCorrectionFactor = i->second.annuity_ / digital;
-                    modelOutputs_.digitalsAdjustmentFactors_.front() = digitalsCorrectionFactor;
-                }
-                
-                digital=0.0;
-                swapRate0=modelSettings_.upperRateBound_/2.0; // initial guess
-                for(int j=y_.size()-1;j>=0;j--) {
-
-                    Real integral = 0.0;
-
-                    if(j==(int)(y_.size()-1)) {
-                        if((modelSettings_.adjustments_ & ModelSettings::NoPayoffExtrapolation) == 0) { 
-                            if((modelSettings_.adjustments_ & ModelSettings::ExtrapolatePayoffFlat) != 0) {
-                                integral = gaussianShiftedPolynomialIntegral(0.0,0.0,0.0,0.0,discreteDeflatedAnnuities[j-1],
-                                                                             y_[j-1],y_[j], 100.0);
-                            }
-                            else {
-                                Real ca = deflatedAnnuities.aCoefficients()[j-1];
-                                Real cb = deflatedAnnuities.bCoefficients()[j-1];
-                                Real cc = deflatedAnnuities.cCoefficients()[j-1];
-                                integral = gaussianShiftedPolynomialIntegral(0.0,cc,cb,ca,discreteDeflatedAnnuities[j-1],
-                                                                             y_[j-1],y_[j],100.0);
-                            }
-                        }
-                    }
-                    else {
-                        Real ca = deflatedAnnuities.aCoefficients()[j];
-                        Real cb = deflatedAnnuities.bCoefficients()[j];
-                        Real cc = deflatedAnnuities.cCoefficients()[j];
-                        integral = gaussianShiftedPolynomialIntegral(0.0,cc,cb,ca,discreteDeflatedAnnuities[j],
-                                                                     y_[j],y_[j],y_[j+1]);
-                    }
-
-                    if(integral < 0) {
-                        QL_MFMESSAGE(modelOutputs_,"WARNING: integral for digitalPrice is negative for j=" << 
-                                     j << " (" << integral << ") --- reset it to zero.");
-                        integral = 0.0;
-                    }
-
-                    digital += integral * numeraire0 * digitalsCorrectionFactor;
-            
-                    if(digital >= i->second.minRateDigital_) swapRate = modelSettings_.lowerRateBound_;
-                    else {
-                        if(digital <= i->second.maxRateDigital_) swapRate = modelSettings_.upperRateBound_;
-                        else {
-                            swapRate = marketSwapRate(i->first,i->second,digital, swapRate0);
-                            if(j < (int)y_.size()-1 && swapRate > swapRate0) {
-                                QL_MFMESSAGE(modelOutputs_,"WARNING: swap rate is decreasing in y for t=" << 
-                                             times_[idx] << ", j=" << j << " (y, swap rate) is (" << y_[j] << 
-                                             "," << swapRate << ") but for j=" << j+1 << " it is (" << y_[j+1] << "," << 
-                                             swapRate0 << ") --- reset rate to " << swapRate0 << 
-                                             " in node j=" << j);
-                                swapRate = swapRate0;
-                            }
-                        }
-                    }
-                    swapRate0 = swapRate; 
-                    Real numeraire = 1.0 / (swapRate*discreteDeflatedAnnuities[j]+deflatedFinalPayments[j]);
-                    (*discreteNumeraire_)[idx][j] = numeraire * normalization;
-                }
-            }
-
-            if(modelSettings_.adjustments_ & ModelSettings::AdjustYts) {
-                numeraire_[idx]->update();
-                Real modelDeflatedZerobond = deflatedZerobond(times_[idx],0.0);
-                Real marketDeflatedZerobond = termStructure()->discount(times_[idx],true) / 
-                                                            termStructure()->discount(numeraireTime_,true);
-                for(int j=y_.size()-1;j>=0;j--) {
-                    (*discreteNumeraire_)[idx][j] *= modelDeflatedZerobond/marketDeflatedZerobond;
-                }
-                modelOutputs_.adjustmentFactors_.insert(modelOutputs_.adjustmentFactors_.begin(),
-                                                        modelDeflatedZerobond/marketDeflatedZerobond);
-            }
-            else {
-                modelOutputs_.adjustmentFactors_.insert(modelOutputs_.adjustmentFactors_.begin(),1.0);
-            }
-
-            numeraire_[idx]->update();
-        }
-
-    }
-
-    const MarkovFunctional::ModelOutputs& MarkovFunctional::modelOutputs() const {
-
-        if(modelOutputs_.dirty_) {
-
-            calculate();
-
-            // yield term structure
-            modelOutputs_.marketZerorate_.clear();
-            modelOutputs_.modelZerorate_.clear();
-            for(Size i=1;i<times_.size()-1;i++) {
-                modelOutputs_.marketZerorate_.push_back(termStructure()->zeroRate(
-                                                                times_[i],QuantLib::Continuous,QuantLib::Annual));
-                modelOutputs_.modelZerorate_.push_back( -std::log( zerobond(times_[i]) ) / times_[i]);
-            }
-
-            // volatility surface
-            modelOutputs_.smileStrikes_.clear();
-            modelOutputs_.marketCallPremium_.clear();
-            modelOutputs_.marketPutPremium_.clear();
-            modelOutputs_.modelCallPremium_.clear();
-            modelOutputs_.modelPutPremium_.clear();
-            modelOutputs_.marketVega_.clear();
-            modelOutputs_.marketRawCallPremium_.clear();
-            modelOutputs_.marketRawPutPremium_.clear();
-
-            for(std::map<Date,CalibrationPoint>::iterator i=calibrationPoints_.begin(); i != calibrationPoints_.end(); i++) {
-                modelOutputs_.atm_.push_back(i->second.atm_);
-                modelOutputs_.annuity_.push_back(i->second.annuity_);
-                boost::shared_ptr<SmileSection> sec = i->second.smileSection_;
-                boost::shared_ptr<SmileSection> rawSec = i->second.rawSmileSection_;
-                SmileSectionUtils ssutils(*sec,modelSettings_.smileMoneynessCheckpoints_,i->second.atm_);
-                std::vector<Real> money = ssutils.moneyGrid();
-                std::vector<Real> strikes, marketCall, marketPut, modelCall, modelPut, 
-                                  marketVega, marketRawCall, marketRawPut;
-                for(Size j=0;j<money.size();j++) {
-                    strikes.push_back(money[j]*i->second.atm_);
-                    try {
-                        marketRawCall.push_back(rawSec->optionPrice(strikes[j],Option::Call,i->second.marketAnnuity_));
-                        marketRawPut.push_back(rawSec->optionPrice(strikes[j],Option::Put,i->second.marketAnnuity_));
-                    } catch(QuantLib::Error) { 
-                        // the smile section might not be able to output an option price because it has no atm level
-                        marketRawCall.push_back(0.0);
-                        marketRawPut.push_back(0.0);
-                    }
-                    marketCall.push_back(sec->optionPrice(strikes[j],Option::Call,i->second.marketAnnuity_));
-                    marketPut.push_back(sec->optionPrice(strikes[j],Option::Put,i->second.marketAnnuity_));
-                    modelCall.push_back(i->second.isCaplet_ ? capletPrice(Option::Call,i->first,strikes[j],
-                                                                          Null<Date>(),0.0) : 
-                                                              swaptionPrice(Option::Call,i->first,
-                                                                            i->second.tenor_,strikes[j],Null<Date>(),
-                                                                            0.0)); 
-                    modelPut.push_back(i->second.isCaplet_ ? capletPrice(Option::Put,i->first,strikes[j],Null<Date>(),
-                                                                            0.0) : 
-                                                             swaptionPrice(Option::Put,i->first,i->second.tenor_,strikes[j],
-                                                                            Null<Date>(),0.0)); 
-                    marketVega.push_back(sec->vega(strikes[j],i->second.marketAnnuity_));
-                }
-                modelOutputs_.smileStrikes_.push_back(strikes);
-                modelOutputs_.marketCallPremium_.push_back(marketCall);
-                modelOutputs_.marketPutPremium_.push_back(marketPut);
-                modelOutputs_.modelCallPremium_.push_back(modelCall);
-                modelOutputs_.modelPutPremium_.push_back(modelPut);
-                modelOutputs_.marketVega_.push_back(marketVega);
-                modelOutputs_.marketRawCallPremium_.push_back(marketRawCall);
-                modelOutputs_.marketRawPutPremium_.push_back(marketRawPut);
-            }
-
-            modelOutputs_.dirty_=false;
-
-        }
-
-        return modelOutputs_;
-
-    }
-
-    const Disposable<Array> MarkovFunctional::numeraireArray(const Time t, const Array& y) const {
-
-        calculate();
-        Array res(y.size(), termStructure()->discount(numeraireTime_,true));
-        if(t<QL_EPSILON) return res;
-        
-        Real inverseNormalization=termStructure()->discount(numeraireTime_,true)/termStructure()->discount(t,true);
-
-        Time tz = std::min(t,times_.back());
-        Size i= std::min<Size> ( std::upper_bound(times_.begin(),times_.end()-1,t)-times_.begin(), times_.size()-1 );
-
-        Real ta = times_[i-1];
-        Real tb = times_[i];
-        Real dt = tb-ta;
-
-        for(Size j=0;j<y.size();j++) {
-            Real yv = y[j];
-            if(yv<y_.front()) yv=y_.front(); 
-            // FIXME flat extrapolation should be incoperated into interpolation object, see above
-            if(yv>y_.back()) yv=y_.back();
-            Real na= (*numeraire_[i-1])(yv);
-            Real nb = (*numeraire_[i])(yv);
-            res[j] = inverseNormalization / ( (tz-ta) / nb + (tb-tz) / na ) * dt;   
-            // linear in reciprocal of normalized numeraire
-        }
-
-        return res;
-    }
-
-    const Disposable<Array> MarkovFunctional::zerobondArray(const Time T, const Time t, const Array& y) const {
-
-        return deflatedZerobondArray(T,t,y)*numeraireArray(t,y);
-
-    }
-
-    const Disposable<Array> MarkovFunctional::deflatedZerobondArray(const Time T, const Time t, const Array& y) const {
-
-        calculate();
-
-        Array result(y.size(),0.0);
-
-        // Gauss Hermite
-
-        Real stdDev_0_t = stateProcess_->stdDeviation(0.0,0.0,t); 
-        // we use that the standard deviation is independent of $x$ here
-        Real stdDev_0_T = stateProcess_->stdDeviation(0.0,0.0,T);
-        Real stdDev_t_T = stateProcess_->stdDeviation(t,0.0,T-t);
-
-
-        for(Size j=0;j<y.size();j++) {
-            Array ya(modelSettings_.gaussHermitePoints_);
-            for(Size i=0;i<modelSettings_.gaussHermitePoints_;i++) {
-                ya[i] = (y[j]*stdDev_0_t + stdDev_t_T*normalIntegralX_[i]) / stdDev_0_T;
-                
-            }
-            Array res=numeraireArray(T,ya);
-            for(Size i=0;i<modelSettings_.gaussHermitePoints_;i++) {
-                result[j]+=normalIntegralW_[i] / res[i];
-            }
-        }
-
-        return result;
-
-    }
-
-    const Real MarkovFunctional::numeraireImpl(const Time t, const Real y,
-                                           const Handle<YieldTermStructure>& yts) const {
-        
-        Array ya(1,y);
-        return numeraireArray(t,ya)[0] * ( 
-            yts.empty() ? 1.0 : (yts->discount(numeraireTime())/yts->discount(t) *
-                                 termStructure()->discount(t)/termStructure()->discount(numeraireTime())));
-
-    }
-
-    const Real MarkovFunctional::zerobondImpl(const Time T, const Time t, const Real y,
-                                          const Handle<YieldTermStructure>& yts) const {
-        
-        Array ya(1,y);
-        return zerobondArray(T,t,ya)[0] * (
-            yts.empty() ? 1.0 : (yts->discount(T)/yts->discount(t) * 
-                                 termStructure()->discount(t)/termStructure()->discount(T)));
-
-    }
-
-    const Real MarkovFunctional::deflatedZerobond(Time T, Time t, Real y) const {
-
-        Array ya(1,y);
-        return deflatedZerobondArray(T,t,ya)[0];
-
-    }
-
-    const Real MarkovFunctional::swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor, 
-                                               const Rate strike, const Date& referenceDate, const Real y) const {
-        
-        const boost::shared_ptr<SwapIndex> swapIdx = swapIndexBase_->clone(Handle<YieldTermStructure>());
-        // make sure that no exogeneous curve is used for pricing here
-        
-        Time fixingTime = termStructure()->timeFromReference(expiry);
-        Time referenceTime = referenceDate == Null<Date>() ? 0.0 : termStructure()->timeFromReference(referenceDate);
-
-        Array yg = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_,fixingTime,referenceTime,y);
-        Array z = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_);
-        Array p(yg.size());
-
-        for(Size i=0;i<yg.size();i++) {
-            Real annuity=swapAnnuity(expiry,tenor,expiry,yg[i],swapIdx);
-            Rate atm=swapRate(expiry,tenor,expiry,yg[i],swapIdx);
-            p[i] = annuity * std::max((type == Option::Call ? 1.0 : -1.0) * (atm-strike), 0.0) / 
-                numeraire(fixingTime,yg[i]);
-        }
-
-        CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,
-                                  CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
-
-        Real price = 0.0;
-        for(Size i=0;i<z.size()-1;i++) {
-            price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], 
-                                                        payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
-        }
-        if((modelSettings_.adjustments_ & ModelSettings::NoPayoffExtrapolation) == 0) {
-            if((modelSettings_.adjustments_ & ModelSettings::ExtrapolatePayoffFlat) != 0) {
-                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], 
-                                                            z[z.size()-1], 100.0 );
-                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
-            }
-            else {
-                if(type == Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], 
-                                                      payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], 
-                                                      p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
-                if(type == Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], 
-                                                      payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], 
-                                                      -100.0 , z[0] );
-            }
-        }
-
-        return numeraire(referenceTime,y) * price;
-
-    }
-
-    const Real MarkovFunctional::capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, 
-                                             const Date& referenceDate, const Real y) const {
-        
-        boost::shared_ptr<IborIndex> iborIdx = iborIndex_->clone(Handle<YieldTermStructure>());
-        // make sure that no exogeneous curve is used for pricing here
-
-        Time fixingTime = termStructure()->timeFromReference(expiry);
-        Time referenceTime = referenceDate == Null<Date>() ? 0.0 : termStructure()->timeFromReference(referenceDate);
-
-        Array yg = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_,fixingTime,referenceTime,y);
-        Array z = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_);
-        Array p(yg.size());
-
-        Date valueDate = iborIdx->valueDate(expiry);
-        Date endDate = iborIdx->fixingCalendar().advance(valueDate,iborIdx->tenor(),
-                                iborIdx->businessDayConvention(),iborIdx->endOfMonth()); 
-        // FIXME Here we should use the calculation date calendar ?
-        Real dcf = iborIdx->dayCounter().yearFraction(valueDate,endDate);
-
-
-        for(Size i=0;i<yg.size();i++) {
-            Real annuity=zerobond(endDate,expiry,yg[i]) * dcf;
-            Rate atm=forwardRate(expiry,expiry,yg[i],iborIdx);
-            p[i] = annuity * std::max((type == Option::Call ? 1.0 : -1.0) * (atm-strike), 0.0 ) / 
-                numeraire(fixingTime,yg[i]);
-        }
-
-        CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,
-                                  CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
-
-        Real price = 0.0;
-        for(Size i=0;i<z.size()-1;i++) {
-            price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], 
-                                                        payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
-        }
-        if((modelSettings_.adjustments_ & ModelSettings::NoPayoffExtrapolation) == 0) {
-            if((modelSettings_.adjustments_ & ModelSettings::ExtrapolatePayoffFlat) != 0) {
-                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 
-                                                            100.0 );
-                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
-            }
-            else {
-                if(type==Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], 
-                        payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], 
-                        p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
-                if(type==Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], 
-                        payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
-            }
-        }
-
-        return numeraire(referenceTime,y) * price;
-
-    }
-
-    const Real MarkovFunctional::marketSwapRate(const Date& expiry, const CalibrationPoint& p, const Real digitalPrice, 
-                                                const Real guess) const {
-
-        ZeroHelper z(this,expiry,p,digitalPrice);
-        Brent b;
-        Real solution=b.solve(z,modelSettings_.marketRateAccuracy_,std::max(std::min(guess,
-                              modelSettings_.upperRateBound_-0.00001),modelSettings_.lowerRateBound_+0.00001),
-                              modelSettings_.lowerRateBound_,modelSettings_.upperRateBound_);
-        return solution;
-
-    }
-
-    const Real MarkovFunctional::marketDigitalPrice(const Date& expiry,const CalibrationPoint& p, const Option::Type& type, 
-                                                    const Real strike) const {
-
-        return p.smileSection_->digitalOptionPrice(strike,type,p.annuity_,modelSettings_.digitalGap_);
-
-    }
+	const Real MarkovFunctional::gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, const Real h, const Real x0, const Real x1) const {
+		return gaussianPolynomialIntegral(a,-4.0*a*h+b,6.0*a*h*h-3.0*b*h+c,-4*a*h*h*h+3.0*b*h*h-2.0*c*h+d,a*h*h*h*h-b*h*h*h+c*h*h-d*h+e,x0,x1);
+	}
 
     std::ostream& operator<<(std::ostream& out, const MarkovFunctional::ModelOutputs& m) {
         out << "Markov functional model trace output " << std::endl;
@@ -804,8 +899,7 @@ namespace QuantLib {
             out << std::endl;
         }
         return out;
-    }
-
+	}
 
 }
 

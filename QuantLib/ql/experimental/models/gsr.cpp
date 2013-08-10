@@ -26,7 +26,7 @@ namespace QuantLib {
                         const std::vector<Real>& volatilities,
                         const Real reversion,
                         const Real T) : 
-      CalibratedModel(1), OneFactorModel(termStructure),
+      CalibratedModel(1), Gaussian1dModel(termStructure),
       calibrateReversion_(false),
       reversion_(dummyParameter_),
       sigma_(arguments_[0]),                   
@@ -42,7 +42,7 @@ namespace QuantLib {
                         const std::vector<Real>& volatilities,
                         const std::vector<Real>& reversions,
                         const Real T) : 
-      CalibratedModel(1), OneFactorModel(termStructure),
+      CalibratedModel(1), Gaussian1dModel(termStructure),
       calibrateReversion_(false),
       reversion_(dummyParameter_),
       sigma_(arguments_[0]), 
@@ -58,7 +58,7 @@ namespace QuantLib {
                         const std::vector<Real>& volatilities,
                         const Real reversion,
                         const Real T) : 
-      CalibratedModel(2), OneFactorModel(termStructure),
+      CalibratedModel(2), Gaussian1dModel(termStructure),
       calibrateReversion_(true),
       reversion_(arguments_[1]),
       sigma_(arguments_[0]),                   
@@ -74,7 +74,7 @@ namespace QuantLib {
                         const std::vector<Real>& volatilities,
                         const std::vector<Real>& reversions,
                         const Real T) : 
-      CalibratedModel(2), OneFactorModel(termStructure),
+      CalibratedModel(2), Gaussian1dModel(termStructure),
       calibrateReversion_(true),
       reversion_(arguments_[1]), 
       sigma_(arguments_[0]), 
@@ -137,7 +137,7 @@ namespace QuantLib {
 
     }
 
-    const Real Gsr::zerobondImpl(Time T, Time t, Real y, const Handle<YieldTermStructure>& yts) const {
+    const Real Gsr::zerobondImpl(const Time T, const Time t, const Real y, const Handle<YieldTermStructure>& yts) const {
         
         calculate();
 
@@ -153,7 +153,7 @@ namespace QuantLib {
 
     }
 
-    const Real Gsr::numeraireImpl(Time t, Real y, const Handle<YieldTermStructure>& yts) const {
+    const Real Gsr::numeraireImpl(const Time t, const Real y, const Handle<YieldTermStructure>& yts) const {
 
         boost::shared_ptr<GsrProcess> p = boost::dynamic_pointer_cast<GsrProcess>(stateProcess_);
         return zerobond(p->getForwardMeasureTime(),t,y,yts);

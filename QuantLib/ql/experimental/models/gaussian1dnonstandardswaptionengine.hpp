@@ -17,12 +17,12 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file onefactormodelnonstandardswaptionengine.hpp
+/*! \file gaussian1dnonstandardswaptionengine.hpp
     \brief
 */
 
-#ifndef quantlib_pricers_onefactormodel_nonstandardswaption_hpp
-#define quantlib_pricers_onefactormodel_nonstandardswaption_hpp
+#ifndef quantlib_pricers_gaussian1d_nonstandardswaption_hpp
+#define quantlib_pricers_gaussian1d_nonstandardswaption_hpp
 
 #include <ql/experimental/models/nonstandardswaption.hpp>
 #include <ql/experimental/models/gsr.hpp>
@@ -54,15 +54,15 @@ namespace QuantLib {
         swapIndex used to determine the calibration basket.
     */
 
-    class OneFactorModelNonstandardSwaptionEngine
+    class Gaussian1dNonstandardSwaptionEngine
         : public BasketGeneratingEngine, 
-          public GenericModelEngine<OneFactorModel,
+          public GenericModelEngine<Gaussian1dModel,
                                     NonstandardSwaption::arguments,
                                     NonstandardSwaption::results > {
       public:
 
-        OneFactorModelNonstandardSwaptionEngine(
-                         const boost::shared_ptr<OneFactorModel>& model,
+        Gaussian1dNonstandardSwaptionEngine(
+                         const boost::shared_ptr<Gaussian1dModel>& model,
 						 const int integrationPoints=64,
 						 const Real stddevs=7.0,
 						 const bool extrapolatePayoff=true,
@@ -70,7 +70,7 @@ namespace QuantLib {
                          const Handle<Quote>& oas=Handle<Quote>(), // continuously compounded w.r.t. yts daycounter
 						 const Handle<YieldTermStructure>& discountCurve=Handle<YieldTermStructure>())
             :  BasketGeneratingEngine(model, oas, discountCurve),
-               GenericModelEngine<OneFactorModel,NonstandardSwaption::arguments,
+               GenericModelEngine<Gaussian1dModel,NonstandardSwaption::arguments,
                                      NonstandardSwaption::results>(model),
 		  integrationPoints_(integrationPoints) , stddevs_(stddevs), extrapolatePayoff_(extrapolatePayoff), 
           flatPayoffExtrapolation_(flatPayoffExtrapolation),

@@ -104,6 +104,14 @@ namespace QuantLib {
                    const Constraint& constraint = Constraint(),
                    const std::vector<Real>& weights = std::vector<Real>());
 
+		//! Calibrate each ith helper separately by changing the ith parameter
+		//  This is of course not guaranteed to work, but useful to bootstrap piecewise vol
+		//  PC
+		void calibrateIterative(
+                   const std::vector<boost::shared_ptr<CalibrationHelper> >&,
+                   OptimizationMethod& method,
+                   const EndCriteria& endCriteria);
+
         Real value(const Array& params,
                    const std::vector<boost::shared_ptr<CalibrationHelper> >&);
 
@@ -127,6 +135,8 @@ namespace QuantLib {
         //! Calibration cost function class
         class CalibrationFunction;
         friend class CalibrationFunction;
+        class CalibrationFunctionIterative;
+        friend class CalibrationFunctionIterative;
     };
 
     //! Abstract short-rate model class

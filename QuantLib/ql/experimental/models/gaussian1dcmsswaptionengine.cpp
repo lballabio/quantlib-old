@@ -17,12 +17,12 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/onefactormodelcmsswaptionengine.hpp>
+#include <ql/experimental/models/gaussian1dcmsswaptionengine.hpp>
 
 namespace QuantLib {
 
 
-    void OneFactorModelCmsSwaptionEngine::calculate() const {
+    void Gaussian1dCmsSwaptionEngine::calculate() const {
 
 		// pricing
 

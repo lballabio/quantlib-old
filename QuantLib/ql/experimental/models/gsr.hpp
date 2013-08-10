@@ -30,7 +30,7 @@
 #include <ql/math/integrals/gausslobattointegral.hpp>
 #include <ql/math/distributions/normaldistribution.hpp>
 
-#include <ql/experimental/models/onefactormodel.hpp>
+#include <ql/experimental/models/gaussian1dmodel.hpp>
 #include <ql/experimental/models/gsrprocess.hpp>
 
 #include <boost/math/special_functions.hpp>
@@ -39,7 +39,7 @@ namespace QuantLib {
 
     //! One factor gsr model, formulation is in forward measure
 
-    class Gsr : public OneFactorModel, public CalibratedModel {
+    class Gsr : public Gaussian1dModel, public CalibratedModel {
 
       public:
 
@@ -74,10 +74,10 @@ namespace QuantLib {
 
       protected:
 
-        const Real numeraireImpl(const Time t, const Real y, const Handle<YieldTermStructure>& yts) const = 0;
+        const Real numeraireImpl(const Time t, const Real y, const Handle<YieldTermStructure>& yts) const;
 
         const Real zerobondImpl(const Time T, const Time t, const Real y, 
-                                        const Handle<YieldTermStructure>& yts) const = 0;
+                                const Handle<YieldTermStructure>& yts) const;
         
 		void generateArguments() {
 			calculate();

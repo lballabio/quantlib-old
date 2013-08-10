@@ -30,6 +30,7 @@
 #define quantlib_gsr_process_hpp
 
 #include <ql/processes/forwardmeasureprocess.hpp>
+#include <ql/math/comparison.hpp>
 #include <map>
 #include <tuple>
 

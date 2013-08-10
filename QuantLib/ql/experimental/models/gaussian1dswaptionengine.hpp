@@ -17,16 +17,16 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file onefactormodelswaptionengine.hpp
+/*! \file gaussian1dswaptionengine.hpp
     \brief
 */
 
-#ifndef quantlib_pricers_onefactormodel_swaption_hpp
-#define quantlib_pricers_onefactormodel_swaption_hpp
+#ifndef quantlib_pricers_gaussian1d_swaption_hpp
+#define quantlib_pricers_gaussian1d_swaption_hpp
 
 #include <ql/instruments/swaption.hpp>
 #include <ql/pricingengines/genericmodelengine.hpp>
-#include <ql/experimental/models/onefactormodel.hpp>
+#include <ql/experimental/models/gaussian1dmodel.hpp>
 
 namespace QuantLib {
 
@@ -37,19 +37,19 @@ namespace QuantLib {
         \warning Cash settled swaptions are not supported
     */
 
-    class OneFactorModelSwaptionEngine
-        : public GenericModelEngine<OneFactorModel,
+    class Gaussian1dSwaptionEngine
+        : public GenericModelEngine<Gaussian1dModel,
                                     Swaption::arguments,
                                     Swaption::results > {
       public:
-        OneFactorModelSwaptionEngine(
-                         const boost::shared_ptr<OneFactorModel>& model,
+        Gaussian1dSwaptionEngine(
+                         const boost::shared_ptr<Gaussian1dModel>& model,
                          const int integrationPoints=64,
                          const Real stddevs=7.0,
                          const bool extrapolatePayoff=true,
                          const bool flatPayoffExtrapolation=false,
                          const Handle<YieldTermStructure>& discountCurve = Handle<YieldTermStructure>())
-        : GenericModelEngine<OneFactorModel,
+        : GenericModelEngine<Gaussian1dModel,
                              Swaption::arguments,
                              Swaption::results>(model),
             integrationPoints_(integrationPoints) , stddevs_(stddevs), 
@@ -67,7 +67,7 @@ namespace QuantLib {
         const int integrationPoints_;
         const Real stddevs_;
         const bool extrapolatePayoff_,flatPayoffExtrapolation_;
-        const Handle<YieldTermStructure>& discountCurve_;
+        const Handle<YieldTermStructure> discountCurve_;
 
     };
 

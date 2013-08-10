@@ -17,15 +17,15 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file onefactormodel.hpp
+/*! \file gaussian1dmodel.hpp
     \brief basic interface for one factor interest rate models
 */
 
 // uncomment to enable NTL support
 //#define MF_ENABLE_NTL 
 
-#ifndef quantlib_onefactormodel_hpp
-#define quantlib_onefactormodel_hpp
+#ifndef quantlib_gaussian1dmodel_hpp
+#define quantlib_gaussian1dmodel_hpp
 
 #include <ql/models/model.hpp>
 #include <ql/models/parameter.hpp>
@@ -61,16 +61,16 @@ namespace QuantLib {
 
     */
 
-    class OneFactorModel : public TermStructureConsistentModel, 
+    class Gaussian1dModel : public TermStructureConsistentModel, 
                            public LazyObject  {
 
       public:
         
         // we let derived classes register with the termstructure 
-        OneFactorModel(const Handle<YieldTermStructure>& yieldTermStructure) : 
+        Gaussian1dModel(const Handle<YieldTermStructure>& yieldTermStructure) : 
             TermStructureConsistentModel(yieldTermStructure) { }
 
-        virtual ~OneFactorModel() {}
+        virtual ~Gaussian1dModel() {}
 
         const boost::shared_ptr<StochasticProcess1D> stateProcess() const;
         
@@ -148,14 +148,14 @@ namespace QuantLib {
     };
 
 
-    inline const boost::shared_ptr<StochasticProcess1D> OneFactorModel::stateProcess() const { 
+    inline const boost::shared_ptr<StochasticProcess1D> Gaussian1dModel::stateProcess() const { 
 
         QL_REQUIRE(stateProcess_ != NULL,"state process not set");
         return stateProcess_; 
 
     }
 
-    inline const Real OneFactorModel::numeraire(const Time t, const Real y, 
+    inline const Real Gaussian1dModel::numeraire(const Time t, const Real y, 
                                 const Handle<YieldTermStructure>& yts) const {
 
         return numeraireImpl(t,y,yts);
@@ -163,22 +163,22 @@ namespace QuantLib {
 
     }
 
-    inline const Real OneFactorModel::zerobond(const Time T, const Time t, const Real y,
-                               const Handle<YieldTermStructure>& yts) const {
-
+    inline const Real Gaussian1dModel::zerobond(const Time T, const Time t, const Real y,
+                                                const Handle<YieldTermStructure>& yts) const {
+        
         return zerobondImpl(T,t,y,yts);
 
     }
 
-    inline const Real OneFactorModel::numeraire(const Date& referenceDate, const Real y,
+    inline const Real Gaussian1dModel::numeraire(const Date& referenceDate, const Real y,
                                                 const Handle<YieldTermStructure>& yts) const {
 
         return numeraire(termStructure()->timeFromReference(referenceDate),y,yts);
 
     }
 
-    inline const Real OneFactorModel::zerobond(const Date& maturity, const Date& referenceDate, const Real y,
-                               const Handle<YieldTermStructure>& yts) const {
+    inline const Real Gaussian1dModel::zerobond(const Date& maturity, const Date& referenceDate, const Real y,
+                                                const Handle<YieldTermStructure>& yts) const {
 
         return zerobond(termStructure()->timeFromReference(maturity),
                         referenceDate != Null<Date>() ? termStructure()->timeFromReference(referenceDate) : 0.0,

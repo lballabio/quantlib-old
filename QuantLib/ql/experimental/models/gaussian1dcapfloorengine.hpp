@@ -17,16 +17,16 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file onefactormodelcapfloorengine.hpp
+/*! \file gaussian1dcapfloorengine.hpp
     \brief
 */
 
-#ifndef quantlib_pricers_onefactormodel_capfloor_hpp
-#define quantlib_pricers_onefactormodel_capfloor_hpp
+#ifndef quantlib_pricers_gaussian1d_capfloor_hpp
+#define quantlib_pricers_gaussian1d_capfloor_hpp
 
 #include <ql/instruments/capfloor.hpp>
 #include <ql/pricingengines/genericmodelengine.hpp>
-#include <ql/experimental/models/onefactormodel.hpp>
+#include <ql/experimental/models/gaussian1dmodel.hpp>
 
 namespace QuantLib {
 
@@ -34,19 +34,19 @@ namespace QuantLib {
     /*! \ingroup capfloorengines
     */
 
-    class OneFactorModelCapFloorEngine
-        : public GenericModelEngine<OneFactorModel,
+    class Gaussian1dCapFloorEngine
+        : public GenericModelEngine<Gaussian1dModel,
                                     CapFloor::arguments,
                                     CapFloor::results > {
       public:
-        OneFactorModelCapFloorEngine(
-                         const boost::shared_ptr<OneFactorModel>& model,
+        Gaussian1dCapFloorEngine(
+                         const boost::shared_ptr<Gaussian1dModel>& model,
                          const int integrationPoints=64,
                          const Real stddevs=7.0,
                          const bool extrapolatePayoff=true,
                          const bool flatPayoffExtrapolation=false,
                          const Handle<YieldTermStructure>& discountCurve=Handle<YieldTermStructure>())
-        : GenericModelEngine<OneFactorModel,
+        : GenericModelEngine<Gaussian1dModel,
                              CapFloor::arguments,
                              CapFloor::results>(model),
             integrationPoints_(integrationPoints), stddevs_(stddevs), 
@@ -58,7 +58,7 @@ namespace QuantLib {
         const int integrationPoints_;
         const Real stddevs_;
         const bool extrapolatePayoff_,flatPayoffExtrapolation_;
-        const Handle<YieldTermStructure>& discountCurve_;
+        const Handle<YieldTermStructure>  discountCurve_;
 
     };
 

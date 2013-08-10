@@ -17,11 +17,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/onefactormodelswaptionengine.hpp>
+#include <ql/experimental/models/gaussian1dswaptionengine.hpp>
 
 namespace QuantLib {
 
-    void OneFactorModelSwaptionEngine::calculate() const {
+    void Gaussian1dSwaptionEngine::calculate() const {
 
         QL_REQUIRE(arguments_.settlementType==Settlement::Physical,
                    "cash-settled swaptions not yet implemented ...");
