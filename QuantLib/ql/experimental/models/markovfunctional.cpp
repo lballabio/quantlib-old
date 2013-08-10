@@ -32,7 +32,7 @@ namespace QuantLib {
                         const std::vector<Period>& swaptionTenors,
                         const boost::shared_ptr<SwapIndex>& swapIndexBase,
                         const MarkovFunctional::ModelSettings& modelSettings) :
-    OneFactorModel(termStructure), CalibratedModel(1), modelSettings_(modelSettings), capletCalibrated_(false),
+    Gaussian1dModel(termStructure), CalibratedModel(1), modelSettings_(modelSettings), capletCalibrated_(false),
         reversion_(ConstantParameter(reversion, NoConstraint())),sigma_(arguments_[0]), volstepdates_(volstepdates),
         volatilities_(volatilities), swaptionVol_(swaptionVol),
         capletVol_(Handle<OptionletVolatilityStructure>()),
@@ -60,7 +60,7 @@ namespace QuantLib {
                         const std::vector<Date>& capletExpiries,
                         const boost::shared_ptr<IborIndex>& iborIndex,
                         const MarkovFunctional::ModelSettings& modelSettings) :
-    OneFactorModel(termStructure), CalibratedModel(1),
+    Gaussian1dModel(termStructure), CalibratedModel(1),
         modelSettings_(modelSettings), capletCalibrated_(true),
         reversion_(ConstantParameter(reversion, NoConstraint())),sigma_(arguments_[0]),
         volstepdates_(volstepdates), volatilities_(volatilities),
@@ -219,8 +219,6 @@ namespace QuantLib {
         for(unsigned int k=1; k<sched.size(); k++) {
             p.yearFractions_.push_back(swapIndexBase_->dayCounter().yearFraction( k==1 ? expiry : 
                                                                                sched.date(k-1),sched.date(k)));
-            if(k==1) p.marketYearFraction0_ = swapIndexBase_->dayCounter().yearFraction(sched.date(0),sched.date(1));
-            // adjust the first period to start on the expiry
             p.paymentDates_.push_back(cal.adjust(sched.date(k),bdc));
         }
         calibrationPoints_[expiry]=p;
@@ -242,7 +240,6 @@ namespace QuantLib {
         // FIXME Here we should use a calculation date calendar ?
         p.paymentDates_.push_back(endDate);
         p.yearFractions_.push_back(iborIndex_->dayCounter().yearFraction(expiry,endDate));
-        p.marketYearFraction0_ = iborIndex_->dayCounter().yearFraction(valueDate,endDate);
         // adjust the first period to start on expiry
         calibrationPoints_[expiry]=p;
 
@@ -259,8 +256,6 @@ namespace QuantLib {
             boost::shared_ptr<SmileSection> smileSection;
             if(i->second.isCaplet_) {
                 i->second.annuity_= i->second.yearFractions_[0] * termStructure()->discount(i->second.paymentDates_[0],true);
-                i->second.marketAnnuity_= i->second.marketYearFraction0_ *  
-                    termStructure()->discount(i->second.paymentDates_[0],true);
                 i->second.atm_= (termStructure()->discount(i->first,true) - 
                                  termStructure()->discount(i->second.paymentDates_[0],true)) / i->second.annuity_;
                 smileSection=capletVol_->smileSection(i->first,true);
@@ -269,11 +264,8 @@ namespace QuantLib {
                 Real annuity=0.0, marketAnnuity=0.0;
                 for(unsigned int k=0; k<i->second.paymentDates_.size(); k++) {
                     annuity += i->second.yearFractions_[k] * termStructure()->discount(i->second.paymentDates_[k],true);
-                    marketAnnuity += (k==0 ? i->second.marketYearFraction0_ : i->second.yearFractions_[k]) *
-                        termStructure()->discount(i->second.paymentDates_[k],true);
                 }
                 i->second.annuity_=annuity;
-                i->second.marketAnnuity_=marketAnnuity;
                 i->second.atm_= (termStructure()->discount(i->first,true) - 
                                  termStructure()->discount(i->second.paymentDates_.back(),true) ) / annuity; 
                 smileSection=swaptionVol_->smileSection(i->first,i->second.tenor_,true);
@@ -488,25 +480,25 @@ namespace QuantLib {
                 for(Size j=0;j<money.size();j++) {
                     strikes.push_back(money[j]*i->second.atm_);
                     try {
-                        marketRawCall.push_back(rawSec->optionPrice(strikes[j],Option::Call,i->second.marketAnnuity_));
-                        marketRawPut.push_back(rawSec->optionPrice(strikes[j],Option::Put,i->second.marketAnnuity_));
+                        marketRawCall.push_back(rawSec->optionPrice(strikes[j],Option::Call,i->second.annuity_));
+                        marketRawPut.push_back(rawSec->optionPrice(strikes[j],Option::Put,i->second.annuity_));
                     } catch(QuantLib::Error) { 
                         // the smile section might not be able to output an option price because it has no atm level
                         marketRawCall.push_back(0.0);
                         marketRawPut.push_back(0.0);
                     }
-                    marketCall.push_back(sec->optionPrice(strikes[j],Option::Call,i->second.marketAnnuity_));
-                    marketPut.push_back(sec->optionPrice(strikes[j],Option::Put,i->second.marketAnnuity_));
-                    modelCall.push_back(i->second.isCaplet_ ? capletPrice(Option::Call,i->first,strikes[j],
-                                                                          Null<Date>(),0.0) : 
-                                                              swaptionPrice(Option::Call,i->first,
+                    marketCall.push_back(sec->optionPrice(strikes[j],Option::Call,i->second.annuity_));
+                    marketPut.push_back(sec->optionPrice(strikes[j],Option::Put,i->second.annuity_));
+                    modelCall.push_back(i->second.isCaplet_ ? capletPriceZfd(Option::Call,i->first,strikes[j],
+                                                                             Null<Date>(),0.0,true) : 
+                                                              swaptionPriceZfd(Option::Call,i->first,
                                                                             i->second.tenor_,strikes[j],Null<Date>(),
-                                                                            0.0)); 
-                    modelPut.push_back(i->second.isCaplet_ ? capletPrice(Option::Put,i->first,strikes[j],Null<Date>(),
-                                                                            0.0) : 
-                                                             swaptionPrice(Option::Put,i->first,i->second.tenor_,strikes[j],
-                                                                            Null<Date>(),0.0)); 
-                    marketVega.push_back(sec->vega(strikes[j],i->second.marketAnnuity_));
+                                                                               0.0,true)); 
+                    modelPut.push_back(i->second.isCaplet_ ? capletPriceZfd(Option::Put,i->first,strikes[j],Null<Date>(),
+                                                                            0.0,true) : 
+                                                             swaptionPriceZfd(Option::Put,i->first,i->second.tenor_,strikes[j],
+                                                                              Null<Date>(),0.0,true)); 
+                    marketVega.push_back(sec->vega(strikes[j],i->second.annuity_));
                 }
                 modelOutputs_.smileStrikes_.push_back(strikes);
                 modelOutputs_.marketCallPremium_.push_back(marketCall);
@@ -618,108 +610,6 @@ namespace QuantLib {
 
     }
 
-    const Real MarkovFunctional::swaptionPrice(const Option::Type& type, const Date& expiry, const Period& tenor, 
-                                               const Rate strike, const Date& referenceDate, const Real y) const {
-        
-        const boost::shared_ptr<SwapIndex> swapIdx = swapIndexBase_->clone(Handle<YieldTermStructure>());
-        // make sure that no exogeneous curve is used for pricing here
-        
-        Time fixingTime = termStructure()->timeFromReference(expiry);
-        Time referenceTime = referenceDate == Null<Date>() ? 0.0 : termStructure()->timeFromReference(referenceDate);
-
-        Array yg = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_,fixingTime,referenceTime,y);
-        Array z = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_);
-        Array p(yg.size());
-
-        for(Size i=0;i<yg.size();i++) {
-            Real annuity=swapAnnuity(expiry,tenor,expiry,yg[i],swapIdx);
-            Rate atm=swapRate(expiry,tenor,expiry,yg[i],swapIdx);
-            p[i] = annuity * std::max((type == Option::Call ? 1.0 : -1.0) * (atm-strike), 0.0) / 
-                numeraire(fixingTime,yg[i]);
-        }
-
-        CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,
-                                  CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
-
-        Real price = 0.0;
-        for(Size i=0;i<z.size()-1;i++) {
-            price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], 
-                                                        payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
-        }
-        if((modelSettings_.adjustments_ & ModelSettings::NoPayoffExtrapolation) == 0) {
-            if((modelSettings_.adjustments_ & ModelSettings::ExtrapolatePayoffFlat) != 0) {
-                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], 
-                                                            z[z.size()-1], 100.0 );
-                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
-            }
-            else {
-                if(type == Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], 
-                                                      payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], 
-                                                      p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
-                if(type == Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], 
-                                                      payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], 
-                                                      -100.0 , z[0] );
-            }
-        }
-
-        return numeraire(referenceTime,y) * price;
-
-    }
-
-    const Real MarkovFunctional::capletPrice(const Option::Type& type, const Date& expiry, const Rate strike, 
-                                             const Date& referenceDate, const Real y) const {
-        
-        boost::shared_ptr<IborIndex> iborIdx = iborIndex_->clone(Handle<YieldTermStructure>());
-        // make sure that no exogeneous curve is used for pricing here
-
-        Time fixingTime = termStructure()->timeFromReference(expiry);
-        Time referenceTime = referenceDate == Null<Date>() ? 0.0 : termStructure()->timeFromReference(referenceDate);
-
-        Array yg = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_,fixingTime,referenceTime,y);
-        Array z = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_);
-        Array p(yg.size());
-
-        Date valueDate = iborIdx->valueDate(expiry);
-        Date endDate = iborIdx->fixingCalendar().advance(valueDate,iborIdx->tenor(),
-                                iborIdx->businessDayConvention(),iborIdx->endOfMonth()); 
-        // FIXME Here we should use the calculation date calendar ?
-        Real dcf = iborIdx->dayCounter().yearFraction(valueDate,endDate);
-
-
-        for(Size i=0;i<yg.size();i++) {
-            Real annuity=zerobond(endDate,expiry,yg[i]) * dcf;
-            Rate atm=forwardRate(expiry,expiry,yg[i],iborIdx);
-            p[i] = annuity * std::max((type == Option::Call ? 1.0 : -1.0) * (atm-strike), 0.0 ) / 
-                numeraire(fixingTime,yg[i]);
-        }
-
-        CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,
-                                  CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
-
-        Real price = 0.0;
-        for(Size i=0;i<z.size()-1;i++) {
-            price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], 
-                                                        payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
-        }
-        if((modelSettings_.adjustments_ & ModelSettings::NoPayoffExtrapolation) == 0) {
-            if((modelSettings_.adjustments_ & ModelSettings::ExtrapolatePayoffFlat) != 0) {
-                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 
-                                                            100.0 );
-                price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
-            }
-            else {
-                if(type==Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], 
-                        payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], 
-                        p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
-                if(type==Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], 
-                        payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
-            }
-        }
-
-        return numeraire(referenceTime,y) * price;
-
-    }
-
     const Real MarkovFunctional::marketSwapRate(const Date& expiry, const CalibrationPoint& p, const Real digitalPrice, 
                                                 const Real guess) const {
 
@@ -805,6 +695,147 @@ namespace QuantLib {
         }
         return out;
     }
+
+	const Real MarkovFunctional::forwardRateZfd(const Date& fixing, const Date& referenceDate, const Real y,const bool zeroFixingDays, boost::shared_ptr<IborIndex> iborIdx) const {
+
+		calculate();
+
+		if(!iborIdx) iborIdx = iborIndex_;
+
+		Date valueDate = zeroFixingDays ? fixing : iborIdx->valueDate(fixing);
+		Date endDate = iborIdx->fixingCalendar().advance(iborIdx->valueDate(fixing),iborIdx->tenor(),
+								iborIdx->businessDayConvention(),iborIdx->endOfMonth()); // FIXME Here we should use the calculation date calendar ?
+		Real dcf = iborIdx->dayCounter().yearFraction(valueDate,endDate);
+
+		return ( zerobond(valueDate,referenceDate,y) - zerobond(endDate,referenceDate,y) ) / 
+							(dcf * zerobond(endDate,referenceDate,y));
+
+	}
+
+	const Real MarkovFunctional::swapRateZfd(const Date& fixing, const Period& tenor, const Date& referenceDate, const Real y, bool zeroFixingDays, boost::shared_ptr<SwapIndex> swapIdx) const {
+
+		calculate();
+
+		if(!swapIdx) swapIdx = swapIndexBase_;
+		QL_REQUIRE(swapIdx,"No swap index given");
+
+		SwapIndex tmpIdx = SwapIndex(swapIdx->familyName(), tenor, swapIdx->fixingDays(),
+                                 swapIdx->currency(), swapIdx->fixingCalendar(), swapIdx->fixedLegTenor(),
+                                 swapIdx->fixedLegConvention(), swapIdx->dayCounter(), swapIdx->iborIndex());
+		boost::shared_ptr<VanillaSwap> underlying = tmpIdx.underlyingSwap(fixing);
+		Schedule sched = underlying->fixedSchedule();
+		Real annuity = swapAnnuityZfd(fixing,tenor,referenceDate,y,zeroFixingDays,swapIdx);
+		Rate atm = ( zerobond(zeroFixingDays ? fixing : sched.dates().front(),referenceDate,y) - zerobond(sched.calendar().adjust(sched.dates().back(), underlying->paymentConvention()), referenceDate, y) ) / annuity;
+		return atm;
+
+	}
+
+	const Real MarkovFunctional::swapAnnuityZfd(const Date& fixing, const Period& tenor, const Date& referenceDate, const Real y, const bool zeroFixingDays, boost::shared_ptr<SwapIndex> swapIdx) const {
+
+		calculate();
+
+		if(!swapIdx) swapIdx = swapIndexBase_;
+		QL_REQUIRE(swapIdx,"No swap index given");
+
+		SwapIndex tmpIdx = SwapIndex(swapIdx->familyName(), tenor, swapIdx->fixingDays(),
+                                 swapIdx->currency(), swapIdx->fixingCalendar(), swapIdx->fixedLegTenor(),
+                                 swapIdx->fixedLegConvention(), swapIdx->dayCounter(), swapIdx->iborIndex());
+		boost::shared_ptr<VanillaSwap> underlying = tmpIdx.underlyingSwap(fixing);
+		Schedule sched = underlying->fixedSchedule();
+
+		Real annuity=0.0;
+		for(unsigned int j=1; j<sched.size(); j++) {
+			annuity += zerobond(sched.calendar().adjust(sched.date(j),underlying->paymentConvention()),referenceDate,y) * 
+				swapIdx->dayCounter().yearFraction( j==1 && zeroFixingDays ? fixing : sched.date(j-1) , sched.date(j) );
+		}
+		return annuity;
+
+	}
+
+	const Real MarkovFunctional::swaptionPriceZfd(const Option::Type& type, const Date& expiry, const Period& tenor, const Rate strike, const Date& referenceDate, const Real y, const bool zeroFixingDays, boost::shared_ptr<SwapIndex> swapIdx) const {
+		
+		calculate();
+
+		Time fixingTime = termStructure()->timeFromReference(expiry);
+		Time referenceTime = referenceDate == Null<Date>() ? 0.0 : termStructure()->timeFromReference(referenceDate);
+
+		Array yg = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_,fixingTime,referenceTime,y);
+		Array z = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_);
+		Array p(yg.size());
+
+		for(Size i=0;i<yg.size();i++) {
+			Real annuity=swapAnnuityZfd(expiry,tenor,expiry,yg[i],zeroFixingDays,swapIdx);
+			Rate atm=swapRateZfd(expiry,tenor,expiry,yg[i],zeroFixingDays,swapIdx);
+			p[i] = annuity * std::max((type == Option::Call ? 1.0 : -1.0) * (atm-strike), 0.0) / numeraire(fixingTime,yg[i]);
+		}
+
+		CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+
+		Real price = 0.0;
+		for(Size i=0;i<z.size()-1;i++) {
+			price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
+		}
+		if((modelSettings_.adjustments_ & ModelSettings::NoPayoffExtrapolation) == 0) {
+			if((modelSettings_.adjustments_ & ModelSettings::ExtrapolatePayoffFlat) != 0) {
+				price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+				price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
+			}
+			else {
+				if(type == Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+				if(type == Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
+			}
+		}
+
+
+		return numeraire(referenceTime,y) * price;
+
+	}
+
+	const Real MarkovFunctional::capletPriceZfd(const Option::Type& type, const Date& expiry, const Rate strike, const Date& referenceDate, const Real y, const bool zeroFixingDays, boost::shared_ptr<IborIndex> iborIdx) const {
+
+		calculate();
+
+		if(!iborIdx) iborIdx = iborIndex_;
+
+		Time fixingTime = termStructure()->timeFromReference(expiry);
+		Time referenceTime = referenceDate == Null<Date>() ? 0.0 : termStructure()->timeFromReference(referenceDate);
+
+		Array yg = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_,fixingTime,referenceTime,y);
+		Array z = yGrid(modelSettings_.yStdDevs_,modelSettings_.yGridPoints_);
+		Array p(yg.size());
+
+		Date valueDate = iborIdx->valueDate(expiry);
+		Date endDate = iborIdx->fixingCalendar().advance(valueDate,iborIdx->tenor(),
+								iborIdx->businessDayConvention(),iborIdx->endOfMonth()); // FIXME Here we should use the calculation date calendar ?
+		Real dcf = iborIdx->dayCounter().yearFraction(zeroFixingDays ? expiry : valueDate,endDate);
+
+		for(Size i=0;i<yg.size();i++) {
+			Real annuity=zerobond(endDate,expiry,yg[i]) * dcf;
+			Rate atm=forwardRateZfd(expiry,expiry,yg[i],zeroFixingDays,iborIdx);
+			p[i] = annuity * std::max((type == Option::Call ? 1.0 : -1.0) * (atm-strike), 0.0 ) / numeraire(fixingTime,yg[i]);
+		}
+
+		CubicInterpolation payoff(z.begin(),z.end(),p.begin(),CubicInterpolation::Spline,true,CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
+
+		Real price = 0.0;
+		for(Size i=0;i<z.size()-1;i++) {
+			price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i], payoff.aCoefficients()[i], p[i], z[i], z[i], z[i+1] );
+		}
+		if((modelSettings_.adjustments_ & ModelSettings::NoPayoffExtrapolation) == 0) {
+			if((modelSettings_.adjustments_ & ModelSettings::ExtrapolatePayoffFlat) != 0) {
+				price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+				price += gaussianShiftedPolynomialIntegral( 0.0, 0.0, 0.0, 0.0, p[0], z[0], -100.0 , z[0] );
+			}
+			else {
+				if(type==Option::Call) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[z.size()-2], payoff.bCoefficients()[z.size()-2], payoff.aCoefficients()[z.size()-2], p[z.size()-2], z[z.size()-2], z[z.size()-1], 100.0 );
+				if(type==Option::Put) price += gaussianShiftedPolynomialIntegral( 0.0, payoff.cCoefficients()[0], payoff.bCoefficients()[0], payoff.aCoefficients()[0], p[0], z[0], -100.0 , z[0] );
+			}
+        }
+
+		return numeraire(referenceTime,y) * price;
+
+	}
+
 
 
 }
