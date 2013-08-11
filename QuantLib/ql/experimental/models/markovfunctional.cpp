@@ -279,9 +279,9 @@ namespace QuantLib {
 
                 i->second.smileSection_ = boost::shared_ptr<KahaleSmileSection>(new KahaleSmileSection(
                       i->second.rawSmileSection_, i->second.atm_,
-                      (modelSettings_.adjustments_ & ModelSettings::KahaleInterpolation),
-                      (modelSettings_.adjustments_ & ModelSettings::KahaleExponentialExtrapolation),
-                      (modelSettings_.adjustments_ & ModelSettings::KahaleDeleteArbitragePoints),
+                      (modelSettings_.adjustments_ & ModelSettings::KahaleInterpolation) != 0,
+                      (modelSettings_.adjustments_ & ModelSettings::KahaleExponentialExtrapolation) != 0,
+                      (modelSettings_.adjustments_ & ModelSettings::KahaleDeleteArbitragePoints) != 0,
                       modelSettings_.smileMoneynessCheckpoints_,
                       modelSettings_.digitalGap_));
 
@@ -299,22 +299,22 @@ namespace QuantLib {
             // boost::shared_ptr<KahaleSmileSection> sec2 = 
             //     boost::dynamic_pointer_cast<KahaleSmileSection>(i->second.smileSection_);
             // const std::vector<double>& money = modelSettings_.smileMoneynessCheckpoints_;
-            // SmileSectionUtils sutils(sec1,money);
+            // SmileSectionUtils sutils(*sec1,money);
             // std::cout << "-------------------------------------------------------------------" << std::endl;
-            // std::cout << "Smile for expiry " << i->first << std::endl;
+            // std::cout << "Smile for expiry " << i->first << " atm is " << i->second.atm_ << std::endl;
             // std::cout << "Arbitrage free region " << sutils.arbitragefreeRegion().first << " ... " <<
             //     sutils.arbitragefreeRegion().second << std::endl;
             // if(sec2)
             //     std::cout << "Kahale core region    " << sec2->leftCoreStrike() << " ... " << sec2->rightCoreStrike() << std::endl;
-            // std::cout << "strike;rawCall;Call;rawDigial;Digital;rawDensity;Density;callDiff;Arb" << std::endl;
-            // Real strike = 0.0010;
-            // while(strike <= 1.0000 + 1E-8) {
-            //     std::cout << strike << ";" << sec1->optionPrice(strike) << ";" << (sec2 ? sec2->optionPrice(strike) : 0.0) << ";" <<
+            // std::cout << "strike;rawVol;rawVar;rawCall;Call;rawDigial;Digital;rawDensity;Density;callDiff;Arb" << std::endl;
+            // Real strike = 0.00001;
+            // while(strike <= 0.02 + 1E-8) {
+            //     std::cout << strike << ";" << sec1->volatility(strike) << ";" << sec1->variance(strike) << ";" << sec1->optionPrice(strike) << ";" << (sec2 ? sec2->optionPrice(strike) : 0.0) << ";" <<
             //         sec1->digitalOptionPrice(strike) << ";" << (sec2 ? sec2->digitalOptionPrice(strike) : 0.0) << ";" <<
             //         sec1->density(strike) << ";" << (sec2 ? sec2->density(strike) : 0.0) << ";" <<
             //         (sec2 ? sec1->optionPrice(strike)-sec2->optionPrice(strike) : 0.0) << ";" <<
             //         ((sec2 ? sec2->density(strike) : sec1->density(strike)) < 0.0 ? "**********" : "" ) << std::endl;
-            //     strike += 0.0010;
+            //     strike += 0.0001;
             // }
             // std::cout << "-------------------------------------------------------------------" << std::endl;
 
@@ -807,6 +807,8 @@ namespace QuantLib {
 
 	const Real MarkovFunctional::marketDigitalPrice(const Date& expiry,const CalibrationPoint& p, const Option::Type& type, const Real strike) const {
 
+        //std::cout << "expiry;" << expiry << ";strike;" << strike << ";digPrice;" << p.smileSection_->digitalOptionPrice(strike,type,p.annuity_,modelSettings_.digitalGap_) << std::endl;
+
 		return p.smileSection_->digitalOptionPrice(strike,type,p.annuity_,modelSettings_.digitalGap_);
 
 	}
@@ -824,7 +826,7 @@ namespace QuantLib {
 		const Real aa=4.0*a, ba=2.0*M_SQRT2*b, ca=2.0*c, da=M_SQRT2*d;
 		const Real x0=y0*M_SQRT1_2, x1=y1*M_SQRT1_2;
 		return (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*exp(-x1*x1)*(2.0*aa*x1*x1*x1+3.0*aa*x1+2.0*ba*(x1*x1+1.0)+2.0*ca*x1+2.0*da))-
-			(0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*(2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
+   			(0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*(2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
 	}
 
 	const Real MarkovFunctional::gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, const Real h, const Real x0, const Real x1) const {
