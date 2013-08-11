@@ -130,6 +130,8 @@ namespace QuantLib {
                 if(i==rightIndex_-1) secr=0.0;
                 else secr = (c_[i+2]-c_[i+1]) / (k_[i+2]-k_[i+1]);
                 cp1 = (sec+secr) / 2.0;
+                //std::cout << "interpolation, k0 = " << k0 << " k1 = " << k1 <<
+                //    " c0 = " << c0 << " c1= " << c1 << " cp0=" << cp0 << " cp1=" << cp1 << std::endl;
                 aHelper ah(k0,k1,c0,c1,cp0,cp1);
                 Real a;
                 try {
@@ -143,9 +145,13 @@ namespace QuantLib {
                     Real ra = std::fabs(ah(1.0+cp0-QL_KAHALE_EPS));
                     if( la < QL_KAHALE_ACC_RELAX || ra < QL_KAHALE_ACC_RELAX) { // tolerance hardcoded here
                         a = la < ra ? cp1+QL_KAHALE_EPS : 1.0+cp0-QL_KAHALE_EPS;
+                        //std::cout << "overwriting a with " << a << std::endl;
                     }
                     else
-                        QL_FAIL("can not interpolate at index " << i);
+                        QL_FAIL("can not interpolate at index " << i <<
+                                "strikes are " << k0 << " and " << k1 <<
+                                "cp0 = " << cp0 << " < (c1-c0)/(k1-k0) = " << (c1-c0)/(k1-k0) <<
+                                " < cp1 = " << cp1 << " < 1+cp0 = " << 1+cp0);
 
                 }
                 ah(a);
@@ -170,9 +176,12 @@ namespace QuantLib {
                          blackFormula(Option::Call, k0-gap_, f_, sqrt(source_->variance(k0-gap_))))/gap_;
 
                 }
+                //std::cout << "right extrapolation, k0 = " << k0 << " c0 = " << c0 << " cp0 = " << cp0 << std::endl;
                 boost::shared_ptr<cFunction> cFct;
                 if(exponentialExtrapolation_) {
-                    cFct = boost::shared_ptr<cFunction>(new cFunction(-cp0/c0 ,std::log(c0)-cp0/c0*k0));
+                    QL_REQUIRE(-cp0/c0 > 0.0, "can not extrapolate to right exponentially, a is not positive (" 
+                               << -cp0/c0 << ")"); // this is actually catched below
+                    cFct = boost::shared_ptr<cFunction>(new cFunction(-cp0/c0,std::log(c0)-cp0/c0*k0));
                 }
                 else {
                     sHelper sh(k0,c0,cp0);
