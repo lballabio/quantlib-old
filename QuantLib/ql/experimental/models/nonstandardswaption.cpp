@@ -19,24 +19,31 @@
 */
 
 #include <ql/experimental/models/nonstandardswaption.hpp>
-#include <ql/experimental/models/gsrnonstandardswaptionengine.hpp>
 #include <ql/exercise.hpp>
 
 namespace QuantLib {
 
 	NonstandardSwaption::NonstandardSwaption(const Swaption& fromSwaption) :
-		Option(boost::shared_ptr<Payoff>(), const_cast<Swaption&>(fromSwaption).exercise()), settlementType_(fromSwaption.settlementType()), swap_(boost::shared_ptr<NonstandardSwap>(new NonstandardSwap(*fromSwaption.underlyingSwap()))) {
-			registerWith(swap_);
-	}
+		Option(boost::shared_ptr<Payoff>(), const_cast<Swaption&>(fromSwaption).exercise()),
+        settlementType_(fromSwaption.settlementType()), 
+        swap_(boost::shared_ptr<NonstandardSwap>(new NonstandardSwap(*fromSwaption.underlyingSwap()))) {
+			
+        registerWith(swap_);
+	
+    }
 
     NonstandardSwaption::NonstandardSwaption(const boost::shared_ptr<NonstandardSwap>& swap,
                        const boost::shared_ptr<Exercise>& exercise,Settlement::Type delivery)
     : Option(boost::shared_ptr<Payoff>(), exercise), settlementType_(delivery), swap_(swap) {
+    
         registerWith(swap_);
+
     }
 
     bool NonstandardSwaption::isExpired() const {
+
         return detail::simple_event(exercise_->dates().back()).hasOccurred();
+
     }
 
     void NonstandardSwaption::setupArguments(PricingEngine::arguments* args) const {
@@ -62,15 +69,16 @@ namespace QuantLib {
     }
 
 
-	Disposable<std::vector<boost::shared_ptr<CalibrationHelper>>> NonstandardSwaption::calibrationBasket(boost::shared_ptr<SwapIndex> standardSwapBase,
-		boost::shared_ptr<SwaptionVolatilityStructure> swaptionVolatility,
-		const CalibrationBasketType basketType) const {
+	Disposable<std::vector<boost::shared_ptr<CalibrationHelper>>> 
+    NonstandardSwaption::calibrationBasket(boost::shared_ptr<SwapIndex> standardSwapBase,
+                                           boost::shared_ptr<SwaptionVolatilityStructure> swaptionVolatility,
+                                           const BasketGeneratingEngine::CalibrationBasketType basketType) const {
 
 		calculate();
-		boost::shared_ptr<GsrNonstandardSwaptionEngine> gsrEngine = boost::dynamic_pointer_cast<GsrNonstandardSwaptionEngine>(engine_);
-		// .. add other possible engines here ...
-		QL_REQUIRE(gsrEngine,"engine is not conistent with instrument");
-		return gsrEngine->calibrationBasket(standardSwapBase,swaptionVolatility,basketType);
+		boost::shared_ptr<BasketGeneratingEngine> engine = 
+            boost::dynamic_pointer_cast<BasketGeneratingEngine>(engine_);
+		QL_REQUIRE(engine,"engine is not a basket generating engine");
+		return engine->calibrationBasket(exercise_,standardSwapBase,swaptionVolatility,basketType);
 
 	}
 

@@ -46,7 +46,7 @@ namespace QuantLib {
         //@}
         //! \name Inspectors
         //@{
-        CmsSwap::Type type() const { return swap_->type(); }
+        VanillaSwap::Type type() const { return swap_->type(); }
         const boost::shared_ptr<CmsSwap>& underlyingSwap() const {
             return swap_;
         }

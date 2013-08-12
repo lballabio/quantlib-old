@@ -17,48 +17,57 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file markovfunctionalswaptionengine.hpp
+/*! \file gaussian1dswaptionengine.hpp
     \brief
 */
 
-#ifndef quantlib_pricers_markovFunctional_swaption_hpp
-#define quantlib_pricers_markovFunctional_swaption_hpp
+#ifndef quantlib_pricers_gaussian1d_swaption_hpp
+#define quantlib_pricers_gaussian1d_swaption_hpp
 
 #include <ql/instruments/swaption.hpp>
 #include <ql/pricingengines/genericmodelengine.hpp>
-#include <ql/experimental/models/markovfunctional.hpp>
+#include <ql/experimental/models/gaussian1dmodel.hpp>
 
 namespace QuantLib {
 
-    //! Markov functional swaption engine
+    //! One factor model swaption engine
     /*! \ingroup swaptionengines
-        All fixed coupons with start date greater or equal to the respective option expiry are considered to be part of the exercise into right.
-        \warning The float leg is simplified in the sense that it is worth $P(t,T_0)-P(t,T_1)$ with $T_0$ and $T_1$ being the start date and last payment date of the fixed leg schedule
-        \warning Non zero spreads on the float leg is not allowed
+        All fixed coupons with start date greater or equal to the respective option expiry are considered to be 
+        part of the exercise into right.
         \warning Cash settled swaptions are not supported
     */
 
-    class MarkovFunctionalSwaptionEngine
-        : public GenericModelEngine<MarkovFunctional,
+    class Gaussian1dSwaptionEngine
+        : public GenericModelEngine<Gaussian1dModel,
                                     Swaption::arguments,
                                     Swaption::results > {
       public:
-        MarkovFunctionalSwaptionEngine(
-                         const boost::shared_ptr<MarkovFunctional>& model,
+        Gaussian1dSwaptionEngine(
+                         const boost::shared_ptr<Gaussian1dModel>& model,
                          const int integrationPoints=64,
                          const Real stddevs=7.0,
                          const bool extrapolatePayoff=true,
-                         const bool flatPayoffExtrapolation=false)
-        : GenericModelEngine<MarkovFunctional,
+                         const bool flatPayoffExtrapolation=false,
+                         const Handle<YieldTermStructure>& discountCurve = Handle<YieldTermStructure>())
+        : GenericModelEngine<Gaussian1dModel,
                              Swaption::arguments,
                              Swaption::results>(model),
-          integrationPoints_(integrationPoints) , stddevs_(stddevs), extrapolatePayoff_(extrapolatePayoff), flatPayoffExtrapolation_(flatPayoffExtrapolation) { }
+            integrationPoints_(integrationPoints) , stddevs_(stddevs), 
+            extrapolatePayoff_(extrapolatePayoff), flatPayoffExtrapolation_(flatPayoffExtrapolation),
+            discountCurve_(discountCurve) { 
+
+            if(!discountCurve.empty())
+                registerWith(discountCurve);
+
+        }
+
         void calculate() const;
       
     private:
         const int integrationPoints_;
         const Real stddevs_;
         const bool extrapolatePayoff_,flatPayoffExtrapolation_;
+        const Handle<YieldTermStructure> discountCurve_;
 
     };
 

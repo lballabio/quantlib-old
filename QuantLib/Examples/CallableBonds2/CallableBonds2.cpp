@@ -41,7 +41,7 @@ void outputModel(std::vector<Date>& expiries, boost::shared_ptr<Gsr> model) {
 
 int main(int, char* []) {
     
-    Date refDate(17,June,2013); 
+    Date refDate(17,June,2013);
     Settings::instance().evaluationDate() = refDate;
 	Date effective = TARGET().advance(refDate,2*Days);
 	Date maturity = TARGET().advance(effective,10*Years);
@@ -71,13 +71,23 @@ int main(int, char* []) {
 	boost::shared_ptr<IborIndex> iborIndex(new Euribor(6*Months,yts));
 	boost::shared_ptr<SwapIndex> standardSwapBase(new EuriborSwapIsdaFixA(10*Years,yts));
 
-    // non standard swaption instrument (10y, amortizing nominal and step up coupon, yearly exercise dates)
+    // zSpread Quote
 
-    std::vector<Real> fixedNominal(10), floatingNominal(20), fixedRate(10);
+    Real zSpreadLevel = 0.0100;
+    boost::shared_ptr<Quote> zSpreadQuote0(new SimpleQuote(zSpreadLevel));
+
+    RelinkableHandle<Quote> zSpreadQuote(zSpreadQuote0);
+
+    // non standard swaption instrument (10y, amortizing nominal and step up coupon, yearly exercise dates)
+    // we use the nonstandard swap and the nonstandard swaption for bond pricing, i.e. set the floating side to zero
+    // receiver swap means we are long the bond
+    // we are short the call right, so the rebate is positive
+
+    std::vector<Real> fixedNominal(10), floatingNominal(20,0.0), fixedRate(10);
 	for(Size i=0;i<10;i++) {
-		fixedNominal[i] = 100.0;;-i*10.0;//-i*5000000;//(i>0 ? fixedNominal[i-1] : 100000000.0 )*1.075;
-		floatingNominal[2*i] = floatingNominal[2*i+1] = fixedNominal[i];
-		fixedRate[i] = 0.035+0.0050*i;
+		fixedNominal[i] = 100.0;//-i*10.0;//-i*5000000;//(i>0 ? fixedNominal[i-1] : 100000000.0 )*1.075;
+		floatingNominal[2*i] = floatingNominal[2*i+1] = 0.0; //fixedNominal[i];
+		fixedRate[i] = 0.035;//+0.0030*i;
 	}
 
 	Schedule fixedSchedule(effective,maturity,1*Years,TARGET(),ModifiedFollowing,ModifiedFollowing,
@@ -85,15 +95,34 @@ int main(int, char* []) {
 	Schedule floatingSchedule(effective,maturity,6*Months,TARGET(),ModifiedFollowing,ModifiedFollowing,
                            DateGeneration::Forward,false);
 
-	boost::shared_ptr<NonstandardSwap> underlying(new NonstandardSwap(NonstandardSwap::Payer,fixedNominal,floatingNominal,
+	boost::shared_ptr<NonstandardSwap> underlying(new NonstandardSwap(VanillaSwap::Receiver,fixedNominal,floatingNominal,
                                                                       fixedSchedule,fixedRate,Thirty360(),floatingSchedule,
-                                                                      iborIndex,0.0,Actual360()));
+                                                                      iborIndex,1.0,0.0,Actual360(),true));
     
     std::vector<Date> exerciseDates;
-	for(Size i=1;i<10;i++) exerciseDates.push_back(TARGET().advance(fixedSchedule[i],-2*Days));
-    boost::shared_ptr<Exercise> exercise(new BermudanExercise(exerciseDates));
+    std::vector<Real> rebates;
+	for(Size i=1;i<10;i++) {
+        exerciseDates.push_back(TARGET().advance(fixedSchedule[i],-2*Days));
+        rebates.push_back(-100.0);
+    }
+
+    boost::shared_ptr<Exercise> exercise(new BermudanExercise(exerciseDates,false,rebates,2,TARGET(),Following));
 
 	boost::shared_ptr<NonstandardSwaption> swaption(new NonstandardSwaption(underlying,exercise));
+
+    // pricing of vanilla bond part
+
+    std::cout << "============================================================" << std::endl;
+    std::cout << "Vanilla part pricing" << std::endl;
+    std::cout << "============================================================" << std::endl;
+    
+    Leg vanilla = underlying->leg(0);
+    Leg other = underlying->leg(1);
+
+    Real vanillaNpv = CashFlows::npv(vanilla,*yts,zSpreadQuote->value(),yts->dayCounter(),Continuous,NoFrequency,false);
+    Real otherNpv = CashFlows::npv(other,*yts,zSpreadQuote->value(),yts->dayCounter(),Continuous,NoFrequency,false);
+
+    std::cout << "npv = " << vanillaNpv << " (other = " << otherNpv << ")" << std::endl;
 
     // gsr model (1% mean reversion, intially 1% vol)
 
@@ -107,9 +136,10 @@ int main(int, char* []) {
     // engines for nonstandard swaption and standard swaption
     
     // this engine is used for standard swaptions used in model calibration
-    boost::shared_ptr<PricingEngine> standardEngine(new GsrSwaptionEngine(gsr));
+    boost::shared_ptr<PricingEngine> standardEngine(new Gaussian1dSwaptionEngine(gsr));
     // this engine is used for the non standard swaption
-    boost::shared_ptr<PricingEngine> nonStandardEngine(new GsrNonstandardSwaptionEngine(gsr));
+    boost::shared_ptr<PricingEngine> nonStandardEngine(new Gaussian1dNonstandardSwaptionEngine(gsr,64,7.0,true,false,
+                                                                                        zSpreadQuote));
 
     swaption->setPricingEngine(nonStandardEngine);
 

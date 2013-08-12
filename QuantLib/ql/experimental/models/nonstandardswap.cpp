@@ -32,7 +32,7 @@
 namespace QuantLib {
 
 	NonstandardSwap::NonstandardSwap(const VanillaSwap& fromVanilla) :
-		Swap(2), type_((NonstandardSwap::Type)fromVanilla.type()), 
+		Swap(2), type_((VanillaSwap::Type)fromVanilla.type()), 
         fixedNominal_(std::vector<Real>(fromVanilla.fixedLeg().size(),fromVanilla.nominal())),
         floatingNominal_(std::vector<Real>(fromVanilla.floatingLeg().size(),fromVanilla.nominal())), 
         fixedSchedule_(fromVanilla.fixedSchedule()), 
@@ -47,7 +47,7 @@ namespace QuantLib {
 	}
 
     NonstandardSwap::NonstandardSwap(
-            Type type,
+            const VanillaSwap::Type type,
             const std::vector<Real>& fixedNominal,
             const std::vector<Real>& floatingNominal,
             const Schedule& fixedSchedule,
@@ -124,11 +124,11 @@ namespace QuantLib {
             registerWith(*i);
 
         switch (type_) {
-          case Payer:
+        case VanillaSwap::Payer:
             payer_[0] = -1.0;
             payer_[1] = +1.0;
             break;
-          case Receiver:
+        case VanillaSwap::Receiver:
             payer_[0] = +1.0;
             payer_[1] = -1.0;
             break;

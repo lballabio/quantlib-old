@@ -179,9 +179,8 @@ namespace QuantLib {
                 //std::cout << "right extrapolation, k0 = " << k0 << " c0 = " << c0 << " cp0 = " << cp0 << std::endl;
                 boost::shared_ptr<cFunction> cFct;
                 if(exponentialExtrapolation_) {
-                    QL_REQUIRE(-cp0/c0 > 0.0, "can not extrapolate to right exponentially, a is not positive (" 
-                               << -cp0/c0 << ")"); // this is actually catched below
-                    cFct = boost::shared_ptr<cFunction>(new cFunction(-cp0/c0,std::log(c0)-cp0/c0*k0));
+                    QL_REQUIRE(-cp0/c0 > 0.0, "dummy"); // this is caught below
+                    cFct = boost::shared_ptr<cFunction>(new cFunction(-cp0/c0 ,std::log(c0)-cp0/c0*k0));
                 }
                 else {
                     sHelper sh(k0,c0,cp0);

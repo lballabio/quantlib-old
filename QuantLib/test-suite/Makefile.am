@@ -47,6 +47,7 @@ QL_TESTS = \
 	garch.hpp garch.cpp \
 	gaussianquadratures.hpp gaussianquadratures.cpp \
 	gjrgarchmodel.hpp gjrgarchmodel.cpp \
+	gsr.hpp gsr.cpp \
 	hestonmodel.hpp hestonmodel.cpp \
 	himalayaoption.hpp himalayaoption.cpp \
 	hybridhestonhullwhiteprocess.hpp hybridhestonhullwhiteprocess.cpp \
@@ -121,8 +122,7 @@ QL_TESTS = \
 	varianceswaps.hpp varianceswaps.cpp \
 	volatilitymodels.hpp volatilitymodels.cpp \
 	vpp.hpp vpp.cpp \
-	writerextensibleoption.hpp writerextensibleoption.cpp \
-	gsr.hpp gsr.cpp
+	writerextensibleoption.hpp writerextensibleoption.cpp
 
 QL_BENCHMARKS = \
 	quantlibbenchmark.cpp \

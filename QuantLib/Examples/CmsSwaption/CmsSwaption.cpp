@@ -34,7 +34,7 @@ int main(int, char* []) {
       									       Actual365Fixed(),
       									       swapIndexBase));
 
-      boost::shared_ptr<CmsSwap> cmsswap(new CmsSwap(CmsSwap::Payer,1.0,sched,swapIndexBase,
+      boost::shared_ptr<CmsSwap> cmsswap(new CmsSwap(VanillaSwap::Payer,1.0,sched,swapIndexBase,
       						     0.0,Null<Real>(),Null<Real>(),Actual360(),
       					     sched,iborIndex,0.0,Actual360()));
       
@@ -102,7 +102,7 @@ int main(int, char* []) {
       // set ntl precision
       // --------------------------
 
-      boost::math::ntl::RR::SetPrecision(150);
+      //boost::math::ntl::RR::SetPrecision(150);
 
       // --------------------------
       // Compute CMS Coupons
@@ -117,7 +117,7 @@ int main(int, char* []) {
 								  .withGaussHermitePoints(32)
 								  .withLowerRateBound(0.0)
 								  .withUpperRateBound(1000.0)
-								  .withEnableNtl(true)
+								  .withEnableNtl(false)
 								  .withDigitalGap(1E-8)
 								  .withMarketRateAccuracy(1E-10)
 								  //.withAdjustments(MarkovFunctional::ModelSettings::AdjustDigitals)
@@ -128,7 +128,7 @@ int main(int, char* []) {
       boost::shared_ptr<Exercise> exercise(new EuropeanExercise(swaptionExpiries[0]));
       boost::shared_ptr<CmsSwaption> cmsswaption(new CmsSwaption(cmsswap,exercise));
 
-      boost::shared_ptr<PricingEngine> cmsswaptionEngine(new MarkovFunctionalCmsSwaptionEngine(mf,64,10.0,true,false));
+      boost::shared_ptr<PricingEngine> cmsswaptionEngine(new Gaussian1dCmsSwaptionEngine(mf,64,10.0,true,false));
       
       cmsswaption->setPricingEngine(cmsswaptionEngine);
       
@@ -178,7 +178,7 @@ int main(int, char* []) {
       boost::shared_ptr<SwapIndex> swapIndexTest(new EuriborSwapIsdaFixA(1*Years,yts));
       boost::shared_ptr<Swaption> swaption = MakeSwaption(swapIndexTest,fixing,0.03045474463736828);
 
-      boost::shared_ptr<MarkovFunctionalSwaptionEngine> swEng(new MarkovFunctionalSwaptionEngine(mf,
+      boost::shared_ptr<Gaussian1dSwaptionEngine> swEng(new Gaussian1dSwaptionEngine(mf,
 												 128,10.0));
 
       swaption->setPricingEngine(swEng);

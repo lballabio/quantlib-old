@@ -39,13 +39,12 @@ namespace QuantLib {
 
     class NonstandardSwap : public Swap {
       public:
-        enum Type { Receiver = -1, Payer = 1 }; // this refers to the fixed coupon leg
         class arguments;
         class results;
         class engine;
 		NonstandardSwap(const VanillaSwap& fromVanilla);
         NonstandardSwap(
-            Type type,
+            const VanillaSwap::Type type,
             const std::vector<Real>& fixedNominal,
             const std::vector<Real>& floatingNominal,
             const Schedule& fixedSchedule,
@@ -61,7 +60,7 @@ namespace QuantLib {
                                                                  boost::none);
         //! \name Inspectors
         //@{
-        Type type() const;
+        VanillaSwap::Type type() const;
         const std::vector<Real>& fixedNominal() const;
         const std::vector<Real>& floatingNominal() const;
 
@@ -90,7 +89,7 @@ namespace QuantLib {
       private:
 		void init();
         void setupExpired() const;
-        Type type_;
+        VanillaSwap::Type type_;
         std::vector<Real> fixedNominal_, floatingNominal_;
         Schedule fixedSchedule_;
         std::vector<Real> fixedRate_;
@@ -109,8 +108,8 @@ namespace QuantLib {
     //! %Arguments for simple swap calculation
     class NonstandardSwap::arguments : public Swap::arguments {
       public:
-        arguments() : type(Receiver) {}
-        Type type;
+        arguments() : type(VanillaSwap::Receiver) {}
+        VanillaSwap::Type type;
         std::vector<Real> fixedNominal,floatingNominal;
 
         std::vector<Date> fixedResetDates; 
@@ -147,7 +146,7 @@ namespace QuantLib {
 
     // inline definitions
 
-    inline NonstandardSwap::Type NonstandardSwap::type() const {
+    inline VanillaSwap::Type NonstandardSwap::type() const {
         return type_;
     }
 

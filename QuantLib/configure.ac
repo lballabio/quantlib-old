@@ -411,16 +411,24 @@ AC_CONFIG_FILES([
     Examples/BermudanSwaption/Makefile
     Examples/Bonds/Makefile
     Examples/CallableBonds/Makefile
+    Examples/CallableBonds2/Makefile
     Examples/CDS/Makefile
+    Examples/CmsSwaption/Makefile
     Examples/ConvertibleBonds/Makefile
+    Examples/CreditRiskPlus/Makefile
     Examples/DiscreteHedging/Makefile
     Examples/EquityOption/Makefile
     Examples/FittedBondCurve/Makefile
     Examples/FRA/Makefile
+    Examples/KahaleSmileSection/Makefile
     Examples/MarketModels/Makefile
+    Examples/MultitenorVols/Makefile
+    Examples/NonstandardSwaption/Makefile
     Examples/Replication/Makefile
     Examples/Repo/Makefile
+    Examples/SviSmileSection/Makefile
     Examples/Swap/Makefile
+    Examples/Volaswap/Makefile
     test-suite/Makefile])
 AC_CONFIG_FILES([quantlib-config],[chmod +x quantlib-config])
 AC_CONFIG_FILES([QuantLib.spec])

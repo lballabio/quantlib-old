@@ -27,6 +27,7 @@
 #define quantlib_cms_swap_hpp
 
 #include <ql/instruments/swap.hpp>
+#include <ql/instruments/vanillaswap.hpp>
 #include <ql/time/daycounter.hpp>
 #include <ql/time/schedule.hpp>
 #include <boost/optional.hpp>
@@ -40,28 +41,27 @@ namespace QuantLib {
 
     class CmsSwap : public Swap {
       public:
-        enum Type { Receiver = -1, Payer = 1 }; // this refers to the structured (i.e. cms) coupon leg
         class arguments;
         class results;
         class engine;
         CmsSwap(
-            Type type,
-            Real nominal,
+            const VanillaSwap::Type type,
+            const Real nominal,
             const Schedule& structuredSchedule,
 			const boost::shared_ptr<SwapIndex>& swapIndex,
-            Spread structuredSpread,
-			Rate cappedRate,
-			Rate flooredRate,
+            const Spread structuredSpread,
+			const Rate cappedRate,
+			const Rate flooredRate,
             const DayCounter& structuredDayCount,
             const Schedule& floatSchedule,
             const boost::shared_ptr<IborIndex>& iborIndex,
-            Spread spread,
+            const Spread spread,
             const DayCounter& floatingDayCount,
             boost::optional<BusinessDayConvention> paymentConvention =
                                                                  boost::none);
         //! \name Inspectors
         //@{
-        Type type() const;
+        VanillaSwap::Type type() const;
         Real nominal() const;
 
         const Schedule& structuredSchedule() const;
@@ -91,7 +91,7 @@ namespace QuantLib {
         void fetchResults(const PricingEngine::results*) const;
       private:
         void setupExpired() const;
-        Type type_;
+        VanillaSwap::Type type_;
         Real nominal_;
         Schedule structuredSchedule_;
 		boost::shared_ptr<SwapIndex> swapIndex_;
@@ -111,9 +111,9 @@ namespace QuantLib {
     //! %Arguments for cms swap calculation
     class CmsSwap::arguments : public Swap::arguments {
       public:
-        arguments() : type(Receiver),
+        arguments() : type(VanillaSwap::Receiver),
                       nominal(Null<Real>()) {}
-        Type type;
+        VanillaSwap::Type type;
         Real nominal;
 
 		std::vector<Time> structuredAccrualTimes;
@@ -146,7 +146,7 @@ namespace QuantLib {
 
     // inline definitions
 
-    inline CmsSwap::Type CmsSwap::type() const {
+    inline VanillaSwap::Type CmsSwap::type() const {
         return type_;
     }
 

@@ -5,16 +5,24 @@ SUBDIRS = \
     BermudanSwaption \
     Bonds \
     CallableBonds \
+	CallableBonds2 \
     CDS \
+	CmsSwaption \
     ConvertibleBonds \
+	CreditRiskPlus \
     DiscreteHedging \
     EquityOption \
     FittedBondCurve \
     FRA \
+	KahaleSmileSection \
     MarketModels \
+	MultitenorVols \
+	NonstandardSwaption \
     Replication \
     Repo \
-    Swap
+	SviSmileSection \
+    Swap \
+	Volaswap
 
 SUBDIR_CHECKS = $(SUBDIRS:%=%.check)
 

@@ -31,19 +31,19 @@
 namespace QuantLib {
 
     CmsSwap::CmsSwap(
-            Type type,
-            Real nominal,
+            const VanillaSwap::Type type,
+            const Real nominal,
             const Schedule& structuredSchedule,
 			const boost::shared_ptr<SwapIndex>& swapIndex,
-            Spread structuredSpread,
-			Rate cappedRate,
-			Rate flooredRate,
+            const Spread structuredSpread,
+			const Rate cappedRate,
+			const Rate flooredRate,
             const DayCounter& structuredDayCount,
             const Schedule& floatSchedule,
             const boost::shared_ptr<IborIndex>& iborIndex,
-            Spread spread,
+            const Spread spread,
             const DayCounter& floatingDayCount,
-            boost::optional<BusinessDayConvention> paymentConvention)
+            const boost::optional<BusinessDayConvention> paymentConvention)
 
     : Swap(2), type_(type), nominal_(nominal),
       structuredSchedule_(structuredSchedule), swapIndex_(swapIndex), structuredSpread_(structuredSpread),
@@ -80,11 +80,11 @@ namespace QuantLib {
             registerWith(*i);
 
         switch (type_) {
-          case Payer:
+        case VanillaSwap::Payer:
             payer_[0] = -1.0;
             payer_[1] = +1.0;
             break;
-          case Receiver:
+        case VanillaSwap::Receiver:
             payer_[0] = +1.0;
             payer_[1] = -1.0;
             break;

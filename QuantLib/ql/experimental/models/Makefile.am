@@ -6,46 +6,48 @@ this_include_HEADERS = \
     all.hpp \
 	atmadjustedsmilesection.hpp \
 	atmsmilesection.hpp \
-	kahalesmilesection.hpp \
-	markovfunctional.hpp \
-	markovfunctionalcapfloorengine.hpp \
-	markovfunctionalswaptionengine.hpp \
-	mfstateprocess.hpp \
-	smilesectionutils.hpp \
-	svismilesection.hpp \
-	gsr.hpp \
+	basketgeneratingengine.hpp \
 	cmsswap.hpp \
 	cmsswaption.hpp \
-	gsrjamshidianswaptionengine.hpp \
-	gsrnonstandardswaptionengine.hpp \
+    creditriskplus.hpp \
+	gaussian1dmodel.hpp \
+	gaussian1dcapfloorengine.hpp \
+	gaussian1dcmsswaptionengine.hpp \
+	gaussian1djamshidianswaptionengine.hpp \
+	gaussian1dnonstandardswaptionengine.hpp \
+	gaussian1dswaptionengine.hpp \
+    gsr.hpp \
 	gsrprocess.hpp \
-	gsrswaptionengine.hpp \
-	markovfunctionalcmsswaptionengine.hpp \
+	kahalesmilesection.hpp \
+	markovfunctional.hpp \
+	mfstateprocess.hpp \
 	nonstandardswap.hpp \
-	nonstandardswaption.hpp	\
-    creditriskplus.hpp
+	nonstandardswaption.hpp \
+	smilesectionutils.hpp \
+	svismilesection.hpp
 
 libModels_la_SOURCES = \
 	atmadjustedsmilesection.cpp \
 	atmsmilesection.cpp \
-	kahalesmilesection.cpp \
-	markovfunctional.cpp \
-	markovfunctionalcapfloorengine.cpp \
-	markovfunctionalswaptionengine.cpp \
-	mfstateprocess.cpp \
-	smilesectionutils.cpp \
-	svismilesection.cpp \
-	gsr.cpp \
+	basketgeneratingengine.cpp \
 	cmsswap.cpp \
 	cmsswaption.cpp \
-	gsrjamshidianswaptionengine.cpp \
-	gsrnonstandardswaptionengine.cpp \
+    creditriskplus.cpp \
+	gaussian1dmodel.cpp \
+	gaussian1dcapfloorengine.cpp \
+	gaussian1dcmsswaptionengine.cpp \
+	gaussian1djamshidianswaptionengine.cpp \
+	gaussian1dnonstandardswaptionengine.cpp \
+	gaussian1dswaptionengine.cpp \
+	gsr.cpp \
 	gsrprocess.cpp \
-	gsrswaptionengine.cpp \
-	markovfunctionalcmsswaptionengine.cpp \
+	kahalesmilesection.cpp \
+	markovfunctional.cpp \
+	mfstateprocess.cpp \
 	nonstandardswap.cpp \
-	nonstandardswaption.cpp	\
-    creditriskplus.cpp
+	nonstandardswaption.cpp \
+	smilesectionutils.cpp \
+	svismilesection.cpp
 
 noinst_LTLIBRARIES = libModels.la
 

@@ -21,8 +21,8 @@
 #include "utilities.hpp"
 #include <ql/experimental/models/mfstateprocess.hpp>
 #include <ql/experimental/models/markovfunctional.hpp>
-#include <ql/experimental/models/markovfunctionalswaptionengine.hpp>
-#include <ql/experimental/models/markovfunctionalcapfloorengine.hpp>
+#include <ql/experimental/models/gaussian1dswaptionengine.hpp>
+#include <ql/experimental/models/gaussian1dcapfloorengine.hpp>
 #include <ql/termstructures/yield/flatforward.hpp>
 #include <ql/termstructures/yield/piecewiseyieldcurve.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionconstantvol.hpp>
@@ -916,7 +916,7 @@ void MarkovFunctionalTest::testVanillaEngines() {
     MarkovFunctional::ModelOutputs outputs1 = mf1->modelOutputs();
     //BOOST_MESSAGE(outputs1);
 
-    boost::shared_ptr<MarkovFunctionalSwaptionEngine> mfSwaptionEngine1(new MarkovFunctionalSwaptionEngine(mf1,64,7.0));
+    boost::shared_ptr<Gaussian1dSwaptionEngine> mfSwaptionEngine1(new Gaussian1dSwaptionEngine(mf1,64,7.0));
     boost::shared_ptr<BlackSwaptionEngine> blackSwaptionEngine1(new BlackSwaptionEngine(flatYts_,flatSwaptionVts_));
 
     for(Size i=0;i<outputs1.expiries_.size();i++) {
@@ -962,7 +962,7 @@ void MarkovFunctionalTest::testVanillaEngines() {
     //BOOST_MESSAGE(outputs2);
 
     boost::shared_ptr<BlackCapFloorEngine> blackCapFloorEngine2(new BlackCapFloorEngine(flatYts_,flatOptionletVts_));
-    boost::shared_ptr<MarkovFunctionalCapFloorEngine> mfCapFloorEngine2(new MarkovFunctionalCapFloorEngine(mf2,64,7.0));
+    boost::shared_ptr<Gaussian1dCapFloorEngine> mfCapFloorEngine2(new Gaussian1dCapFloorEngine(mf2,64,7.0));
     std::vector<CapFloor> c2;
     c2.push_back(MakeCapFloor(CapFloor::Cap,5*Years,iborIndex2,0.01));
     c2.push_back(MakeCapFloor(CapFloor::Cap,5*Years,iborIndex2,0.02));
@@ -984,8 +984,7 @@ void MarkovFunctionalTest::testVanillaEngines() {
         Real blackPrice = c2[i].NPV();
         c2[i].setPricingEngine(mfCapFloorEngine2);
         Real mfPrice = c2[i].NPV();
-        if( fabs(blackPrice - mfPrice) > tol1 ) BOOST_ERROR("Basket 2 / flat termstructures: Cap/Floor premium market (" << blackPrice << ") does not match model premium (" << mfPrice << ")"
-                                                            << "#" << i);
+        if( fabs(blackPrice - mfPrice) > tol1 ) BOOST_ERROR("Basket 2 / flat termstructures: Cap/Floor premium market (" << blackPrice << ") does not match model premium (" << mfPrice << ")");
     }
 
     // Calibration Basket 1 / real yts, vts
@@ -1002,7 +1001,7 @@ void MarkovFunctionalTest::testVanillaEngines() {
                                                                  .withUpperRateBound(2.0)
                                                                  .withSmileMoneynessCheckpoints(money)));
 
-    boost::shared_ptr<MarkovFunctionalSwaptionEngine> mfSwaptionEngine3(new MarkovFunctionalSwaptionEngine(mf3,64,7.0));
+    boost::shared_ptr<Gaussian1dSwaptionEngine> mfSwaptionEngine3(new Gaussian1dSwaptionEngine(mf3,64,7.0));
     boost::shared_ptr<BlackSwaptionEngine> blackSwaptionEngine3(new BlackSwaptionEngine(md0Yts_,md0SwaptionVts_));
 
     MarkovFunctional::ModelOutputs outputs3 = mf3->modelOutputs();
@@ -1058,7 +1057,8 @@ void MarkovFunctionalTest::testVanillaEngines() {
     //BOOST_MESSAGE(outputs4);
 
     boost::shared_ptr<BlackCapFloorEngine> blackCapFloorEngine4(new BlackCapFloorEngine(md0Yts_,md0OptionletVts_));
-    boost::shared_ptr<MarkovFunctionalCapFloorEngine> mfCapFloorEngine4(new MarkovFunctionalCapFloorEngine(mf4,64,7.0));
+    boost::shared_ptr<Gaussian1dCapFloorEngine> mfCapFloorEngine4(new Gaussian1dCapFloorEngine(mf4,64,7.0));
+
     std::vector<CapFloor> c4;
     c4.push_back(MakeCapFloor(CapFloor::Cap,5*Years,iborIndex4,0.01));
     c4.push_back(MakeCapFloor(CapFloor::Cap,5*Years,iborIndex4,0.02));
@@ -1082,13 +1082,7 @@ void MarkovFunctionalTest::testVanillaEngines() {
         c4[i].setPricingEngine(mfCapFloorEngine4);
         std::vector<Real> mfOptionlets = c4[i].result<std::vector<Real>>("optionletsPrice");
         Real mfPrice = c4[i].NPV();
-        if( fabs(blackPrice - mfPrice) > tol1 ) BOOST_ERROR("Basket 2 / real termstructures: Cap/Floor premium market (" << blackPrice << ") does not match model premium (" << mfPrice << ") #" << i);
-        // if(i==0) {
-        //     std::cout << "optionlets:" << std::endl;
-        //     for(Size j=0;j<blackOptionlets.size();j++) {
-        //         std::cout << blackOptionlets[j] << ";" << mfOptionlets[j] << std::endl;
-        //     }
-        //}
+        if( fabs(blackPrice - mfPrice) > tol1 ) BOOST_ERROR("Basket 2 / real termstructures: Cap/Floor premium market (" << blackPrice << ") does not match model premium (" << mfPrice << ")");
     }
 
     Settings::instance().evaluationDate() = savedEvalDate;
@@ -1165,7 +1159,7 @@ void MarkovFunctionalTest::testCalibrationTwoInstrumentSets() {
                                                                  .withUpperRateBound(2.0)
                                                                  .withSmileMoneynessCheckpoints(money)));
 
-    boost::shared_ptr<MarkovFunctionalSwaptionEngine> mfSwaptionEngine1(new MarkovFunctionalSwaptionEngine(mf1,64,7.0));
+    boost::shared_ptr<Gaussian1dSwaptionEngine> mfSwaptionEngine1(new Gaussian1dSwaptionEngine(mf1,64,7.0));
     calibrationHelper1[0]->setPricingEngine(mfSwaptionEngine1);
     calibrationHelper1[1]->setPricingEngine(mfSwaptionEngine1);
     calibrationHelper1[2]->setPricingEngine(mfSwaptionEngine1);
@@ -1224,7 +1218,7 @@ void MarkovFunctionalTest::testCalibrationTwoInstrumentSets() {
     calibrationHelper2.push_back(boost::shared_ptr<CalibrationHelper>(new SwaptionHelper(4*Years,1*Years,Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(calibrationHelperVols2[3]))),iborIndex2,1*Years,Thirty360(),Actual360(),md0Yts_)));
 
 
-    boost::shared_ptr<MarkovFunctionalSwaptionEngine> mfSwaptionEngine2(new MarkovFunctionalSwaptionEngine(mf2,64,7.0));
+    boost::shared_ptr<Gaussian1dSwaptionEngine> mfSwaptionEngine2(new Gaussian1dSwaptionEngine(mf2,64,7.0));
     calibrationHelper2[0]->setPricingEngine(mfSwaptionEngine2);
     calibrationHelper2[1]->setPricingEngine(mfSwaptionEngine2);
     calibrationHelper2[2]->setPricingEngine(mfSwaptionEngine2);
@@ -1295,7 +1289,7 @@ void MarkovFunctionalTest::testBermudanSwaption() {
                                                                  .withUpperRateBound(2.0)
                                                                  ));
 
-    boost::shared_ptr<PricingEngine> mfSwaptionEngine1(new MarkovFunctionalSwaptionEngine(mf1,64,7.0));
+    boost::shared_ptr<PricingEngine> mfSwaptionEngine1(new Gaussian1dSwaptionEngine(mf1,64,7.0));
 
     boost::shared_ptr<VanillaSwap> underlyingCall = MakeVanillaSwap(10*Years,iborIndex1,0.03)
                                                                             .withEffectiveDate(TARGET().advance(referenceDate,2,Days)) 

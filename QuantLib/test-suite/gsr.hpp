@@ -27,16 +27,16 @@
 #include <ql/experimental/models/gsr.hpp>
 #include <ql/experimental/models/nonstandardswap.hpp>
 #include <ql/experimental/models/nonstandardswaption.hpp>
-#include <ql/experimental/models/gsrswaptionengine.hpp>
-#include <ql/experimental/models/gsrjamshidianswaptionengine.hpp>
-#include <ql/experimental/models/gsrnonstandardswaptionengine.hpp>
+#include <ql/experimental/models/gaussian1dswaptionengine.hpp>
+#include <ql/experimental/models/gaussian1djamshidianswaptionengine.hpp>
+#include <ql/experimental/models/gaussian1dnonstandardswaptionengine.hpp>
 
 #include <ql/indexes/swap/euriborswap.hpp>
 #include <ql/termstructures/yield/flatforward.hpp>
 #include <ql/time/calendars/target.hpp>
 #include <ql/processes/hullwhiteprocess.hpp>
 #include <ql/models/shortrate/onefactormodels/hullwhite.hpp>
-#include <ql/models//shortrate/calibrationhelpers/swaptionhelper.hpp>
+#include <ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp>
 #include <ql/quotes/simplequote.hpp>
 #include <ql/pricingengines/swaption/jamshidianswaptionengine.hpp>
 #include <ql/time/daycounters/actual360.hpp>

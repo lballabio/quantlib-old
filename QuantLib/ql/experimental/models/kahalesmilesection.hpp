@@ -76,6 +76,7 @@ namespace QuantLib {
                 Real alpha = (d20-d21)/(log(k0_)-log(k1_));
                 Real beta = d20-alpha*log(k0_);
                 s_ = -1.0 / alpha;
+                //f_ = std::min(exp(s_*(beta+s_/2.0)), QL_KAHALE_FMAX); // cap ?
                 f_ = exp(s_*(beta+s_/2.0));
                 cFunction cTmp(f_,s_,a,0.0);
                 b_ = c0_-cTmp(k0_);
