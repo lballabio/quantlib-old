@@ -76,27 +76,27 @@ using QuantLib::GaussGegenbauerIntegration;
 %define GAUSSIAN_QUADRATURE_METHODS
     %extend {
         #if defined(SWIGPYTHON)
-        Real __call__(PyObject* pyFunction, Real a, Real b) {
+        Real __call__(PyObject* pyFunction) {
             UnaryFunction f(pyFunction);
             return (*self)(f);
         }
         #elif defined(SWIGRUBY)
-        Real __call__(Real a, Real b) {
+        Real __call__() {
             UnaryFunction f;
             return (*self)(f);
         }
         #elif defined(SWIGMZSCHEME)
-        Real calculate(Scheme_Object* mzFunction, Real a, Real b) {
+        Real calculate(Scheme_Object* mzFunction) {
             UnaryFunction f(mzFunction);
             return (*self)(f);
         }
         #elif defined(SWIGGUILE)
-        Real calculate(SCM ghFunction, Real a, Real b) {
+        Real calculate(SCM ghFunction) {
             UnaryFunction f(ghFunction);
             return (*self)(f);
         }
         #elif defined(SWIGJAVA)
-        Real calculate(UnaryFunctionDelegate* f, Real a, Real b) {	    
+        Real calculate(UnaryFunctionDelegate* f) {
             return (*self)(UnaryFunction(f));		
         }
         #endif
