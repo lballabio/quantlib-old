@@ -33,6 +33,7 @@ QuantLib-SWIG/CSharp/cpp/quantlib_wrap.cpp
 QuantLib-SWIG/Guile/quantlib_wrap.cpp
 QuantLib-SWIG/Java/bin/
 QuantLib-SWIG/Java/quantlib_wrap.cpp
+QuantLib-SWIG/Java/quantlib_wrap.h
 QuantLib-SWIG/MzScheme/quantlib_wrap.cpp
 QuantLib-SWIG/OCaml/quantlib_wrap.c
 QuantLib-SWIG/Perl/Makefile.quantlib
