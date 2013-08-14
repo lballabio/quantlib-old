@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2013 Klaus Spanderen
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -31,6 +32,15 @@ using QuantLib::MidPoint;
 using QuantLib::SimpsonIntegral;
 using QuantLib::GaussKronrodAdaptive;
 using QuantLib::GaussKronrodNonAdaptive;
+using QuantLib::GaussLobattoIntegral;
+using QuantLib::GaussLaguerreIntegration;
+using QuantLib::GaussHermiteIntegration;
+using QuantLib::GaussJacobiIntegration;
+using QuantLib::GaussHyperbolicIntegration;
+using QuantLib::GaussLegendreIntegration;
+using QuantLib::GaussChebyshevIntegration;
+using QuantLib::GaussChebyshev2ndIntegration;
+using QuantLib::GaussGegenbauerIntegration;
 %}
 
 %define INTEGRATION_METHODS
@@ -54,6 +64,40 @@ using QuantLib::GaussKronrodNonAdaptive;
         Real calculate(SCM ghFunction, Real a, Real b) {
             UnaryFunction f(ghFunction);
             return (*self)(f, a, b);
+        }
+        #elif defined(SWIGJAVA)
+        Real calculate(UnaryFunctionDelegate* f, Real a, Real b) {
+            return (*self)(UnaryFunction(f), a, b);		
+        }
+        #endif
+    }
+%enddef
+
+%define GAUSSIAN_QUADRATURE_METHODS
+    %extend {
+        #if defined(SWIGPYTHON)
+        Real __call__(PyObject* pyFunction, Real a, Real b) {
+            UnaryFunction f(pyFunction);
+            return (*self)(f);
+        }
+        #elif defined(SWIGRUBY)
+        Real __call__(Real a, Real b) {
+            UnaryFunction f;
+            return (*self)(f);
+        }
+        #elif defined(SWIGMZSCHEME)
+        Real calculate(Scheme_Object* mzFunction, Real a, Real b) {
+            UnaryFunction f(mzFunction);
+            return (*self)(f);
+        }
+        #elif defined(SWIGGUILE)
+        Real calculate(SCM ghFunction, Real a, Real b) {
+            UnaryFunction f(ghFunction);
+            return (*self)(f);
+        }
+        #elif defined(SWIGJAVA)
+        Real calculate(UnaryFunctionDelegate* f, Real a, Real b) {	    
+            return (*self)(UnaryFunction(f));		
         }
         #endif
     }
@@ -98,6 +142,62 @@ class GaussKronrodNonAdaptive {
     INTEGRATION_METHODS;
 };
 
+class GaussLobattoIntegral {
+  public:
+    GaussLobattoIntegral(Size maxIterations,
+                         Real absAccuracy,
+                         Real relAccuracy = Null<Real>(),
+                         bool useConvergenceEstimate = true);
+    INTEGRATION_METHODS;
+};
+
+class GaussLaguerreIntegration {
+  public:
+    GaussLaguerreIntegration(Size n, Real s = 0.0);
+    GAUSSIAN_QUADRATURE_METHODS;
+};
+
+class GaussHermiteIntegration {
+  public:
+    GaussHermiteIntegration(Size n, Real mu = 0.0);
+    GAUSSIAN_QUADRATURE_METHODS;
+};
+
+class GaussJacobiIntegration {
+  public:
+    GaussJacobiIntegration(Size n, Real alpha, Real beta);
+    GAUSSIAN_QUADRATURE_METHODS;
+};
+
+class GaussHyperbolicIntegration {
+  public:
+    GaussHyperbolicIntegration(Size n);
+    GAUSSIAN_QUADRATURE_METHODS;
+};
+
+class GaussLegendreIntegration {
+  public:
+    GaussLegendreIntegration(Size n);
+    GAUSSIAN_QUADRATURE_METHODS;
+};
+
+class GaussChebyshevIntegration {
+  public:
+    GaussChebyshevIntegration(Size n);
+    GAUSSIAN_QUADRATURE_METHODS;
+};
+
+class GaussChebyshev2ndIntegration {
+  public:
+    GaussChebyshev2ndIntegration(Size n);
+    GAUSSIAN_QUADRATURE_METHODS;
+};
+
+class GaussGegenbauerIntegration {
+  public:
+    GaussGegenbauerIntegration(Size n, Real lambda);
+    GAUSSIAN_QUADRATURE_METHODS;
+};
 
 
 #endif

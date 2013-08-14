@@ -22,6 +22,8 @@
 %module QuantLibc
 #elif defined(SWIGCSHARP)
 %module NQuantLibc
+#elif defined(SWIGJAVA)
+%module(directors="1") QuantLib
 #else
 %module QuantLib
 #endif
@@ -84,4 +86,3 @@ const char* __version__;
 //#endif
 
 %include ql.i
-

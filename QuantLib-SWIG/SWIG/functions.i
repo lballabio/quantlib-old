@@ -333,7 +333,46 @@ class GuileCostFunction : public CostFunction {
 };
 %}
 
+#elif defined(SWIGJAVA)
+
+%{
+class UnaryFunctionDelegate {
+  public:
+    virtual ~UnaryFunctionDelegate() {}
+    virtual Real value(Real x) const {
+        QL_FAIL("implementation of UnaryFunctionDelegate.value is missing");
+        return 0.0;
+    };
+};
+
+class UnaryFunction : public std::unary_function<Real, Real> {
+  public:
+    UnaryFunction(UnaryFunctionDelegate* delegate)
+    : delegate_(delegate) { }
+
+    virtual ~UnaryFunction() { }
+
+    Real operator()(Real x) const {
+        return delegate_->value(x);
+    }
+
+  private:
+    UnaryFunctionDelegate* delegate_;
+};
+%}
+
+class UnaryFunction {
+  public:
+    UnaryFunction(UnaryFunctionDelegate*);
+    Real operator()(Real x) const;
+};
+
+%feature("director") UnaryFunctionDelegate;
+
+class UnaryFunctionDelegate {
+  public:
+    virtual ~UnaryFunctionDelegate();
+    virtual Real value(Real x) const;
+};
 #endif
-
-
 #endif
