@@ -421,6 +421,7 @@ AC_CONFIG_FILES([
     Examples/FittedBondCurve/Makefile
     Examples/FRA/Makefile
     Examples/KahaleSmileSection/Makefile
+    Examples/Lmm/Makefile
     Examples/MarketModels/Makefile
     Examples/MultitenorVols/Makefile
     Examples/NonstandardSwaption/Makefile

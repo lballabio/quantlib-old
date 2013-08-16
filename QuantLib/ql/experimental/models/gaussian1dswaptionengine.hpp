@@ -56,8 +56,8 @@ namespace QuantLib {
             extrapolatePayoff_(extrapolatePayoff), flatPayoffExtrapolation_(flatPayoffExtrapolation),
             discountCurve_(discountCurve) { 
 
-            if(!discountCurve.empty())
-                registerWith(discountCurve);
+            if(!discountCurve_.empty())
+                registerWith(discountCurve_);
 
         }
 

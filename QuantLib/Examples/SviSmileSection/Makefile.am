@@ -17,7 +17,7 @@ SviSmileSection_LDADD = ../../ql/libQuantLib.la
 examples: SviSmileSection$(EXEEXT)
 
 check-examples: examples
-	./SviSmileSectionXS$(EXEEXT)
+	./SviSmileSection$(EXEEXT)
 
 dist-hook:
 	mkdir -p $(distdir)/bin

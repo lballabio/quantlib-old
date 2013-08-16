@@ -2,22 +2,22 @@
 AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 
 if AUTO_EXAMPLES
-bin_PROGRAMS = Volaswap
-TESTS = Volaswap$(EXEEXT)
+bin_PROGRAMS = Lmm
+TESTS = Lmm$(EXEEXT)
 else
-noinst_PROGRAMS = Volaswap
+noinst_PROGRAMS = Lmm
 endif
-Volaswap_SOURCES = Volaswap.cpp
-Volaswap_LDADD = ../../ql/libQuantLib.la
+Lmm_SOURCES = Lmm.cpp
+Lmm_LDADD = ../../ql/libQuantLib.la
 
 #EXTRA_DIST =
 
 .PHONY: examples check-examples
 
-examples: Volaswap$(EXEEXT)
+examples: Lmm$(EXEEXT)
 
 check-examples: examples
-	./Volaswap$(EXEEXT)
+	./Lmm$(EXEEXT)
 
 dist-hook:
 	mkdir -p $(distdir)/bin
