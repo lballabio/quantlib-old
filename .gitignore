@@ -46,7 +46,7 @@ QuantLib-SWIG/Python/QuantLib/quantlib_wrap.cpp
 QuantLib-SWIG/R/src/QuantLib.cpp
 QuantLib-SWIG/R/makeRData.Rout
 QuantLib-SWIG/R/src/symbols.rds
-QuantLib-SWIG/R/..Rcheck
+QuantLib-SWIG/R.Rcheck
 QuantLib-SWIG/Ruby/extension.mak
 QuantLib-SWIG/Ruby/quantlib_wrap.cpp
 ObjectHandler/Docs/auto.pages/
