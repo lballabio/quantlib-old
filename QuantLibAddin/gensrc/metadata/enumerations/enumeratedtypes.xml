@@ -521,6 +521,24 @@
           <value>QuantLib::Thirty360(QuantLib::Thirty360::Italian)</value>
         </EnumeratedType>
 
+        <!-- NON-ISDA -->
+        <EnumeratedType>
+          <string>Actual/365 (No Leap)</string>
+          <value>QuantLib::Actual365NoLeap()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Actual/365 (JGB)</string>
+          <value>QuantLib::Actual365NoLeap()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Act/365 (NL)</string>
+          <value>QuantLib::Actual365NoLeap()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>NL/365</string>
+          <value>QuantLib::Actual365NoLeap()</value>
+        </EnumeratedType>
+
         <!-- NON-ISDA QuantLib specific -->
         <EnumeratedType>
           <string>Simple</string>
