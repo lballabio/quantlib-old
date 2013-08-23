@@ -76,6 +76,7 @@ namespace QuantLib {
 
     class Actual360 : public DayCounter {};
     class Actual365Fixed : public DayCounter {};
+    class Actual365NoLeap : public DayCounter {};
     class Thirty360 : public DayCounter {
       public:
         enum Convention { USA, BondBasis, European, EurobondBasis, Italian };
