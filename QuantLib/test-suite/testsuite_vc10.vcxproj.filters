@@ -41,6 +41,9 @@
     <ClCompile Include="blackdeltacalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blackformula.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="bonds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -372,9 +375,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="quantlibtestsuite.cpp" />
-    <ClCompile Include="gsr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="americanoption.hpp">
@@ -405,6 +405,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blackdeltacalculator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blackformula.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bonds.hpp">
@@ -740,9 +743,5 @@
     <ClInclude Include="writerextensibleoption.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gsr.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
-

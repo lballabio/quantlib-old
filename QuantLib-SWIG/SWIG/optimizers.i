@@ -103,6 +103,17 @@ class SolverName {
             UnaryFunction f(function);
             return self->solve(f, xAccuracy, guess, xMin, xMax);
         }
+        #elif defined(SWIGJAVA)
+        Real solve(UnaryFunctionDelegate* function, Real xAccuracy,
+                   Real guess, Real step) {
+            UnaryFunction f(function);
+            return self->solve(f, xAccuracy, guess, step);
+        }
+        Real solve(UnaryFunctionDelegate* function, Real xAccuracy,
+                   Real guess, Real xMin, Real xMax) {
+            UnaryFunction f(function);
+            return self->solve(f, xAccuracy, guess, xMin, xMax);
+        }
         #endif
     }
 };

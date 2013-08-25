@@ -556,7 +556,6 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>ntl-vc100-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
@@ -635,6 +634,7 @@
     <ClCompile Include="batesmodel.cpp" />
     <ClCompile Include="bermudanswaption.cpp" />
     <ClCompile Include="blackdeltacalculator.cpp" />
+    <ClCompile Include="blackformula.cpp" />
     <ClCompile Include="bonds.cpp" />
     <ClCompile Include="brownianbridge.cpp" />
     <ClCompile Include="calendars.cpp" />
@@ -671,7 +671,6 @@
     <ClCompile Include="garch.cpp" />
     <ClCompile Include="gaussianquadratures.cpp" />
     <ClCompile Include="gjrgarchmodel.cpp" />
-    <ClCompile Include="gsr.cpp" />
     <ClCompile Include="hestonmodel.cpp" />
     <ClCompile Include="himalayaoption.cpp" />
     <ClCompile Include="hybridhestonhullwhiteprocess.cpp" />
@@ -759,6 +758,7 @@
     <ClInclude Include="batesmodel.hpp" />
     <ClInclude Include="bermudanswaption.hpp" />
     <ClInclude Include="blackdeltacalculator.hpp" />
+    <ClInclude Include="blackformula.hpp" />
     <ClInclude Include="bonds.hpp" />
     <ClInclude Include="brownianbridge.hpp" />
     <ClInclude Include="calendars.hpp" />
@@ -795,7 +795,6 @@
     <ClInclude Include="garch.hpp" />
     <ClInclude Include="gaussianquadratures.hpp" />
     <ClInclude Include="gjrgarchmodel.hpp" />
-    <ClInclude Include="gsr.hpp" />
     <ClInclude Include="hestonmodel.hpp" />
     <ClInclude Include="himalayaoption.hpp" />
     <ClInclude Include="hybridhestonhullwhiteprocess.hpp" />
@@ -882,4 +881,3 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
 </Project>
-

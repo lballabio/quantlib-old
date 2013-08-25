@@ -1,9 +1,9 @@
 
 CLEANFILES = quantlib_wrap.cpp libQuantLibJNI.@JNILIB_EXTENSION@ QuantLib.jar
 
-BUILT_SOURCES = quantlib_wrap.cpp
+BUILT_SOURCES = quantlib_wrap.cpp quantlib_wrap.h
 
-EXAMPLES = DiscreteHedging EquityOptions FRA
+EXAMPLES = DiscreteHedging EquityOptions FRA UnaryFunctions
 
 if HAVE_JAVA
 if BUILD_JAVA
@@ -15,7 +15,7 @@ examples/%.class: examples/%.java QuantLib.jar
 
 all-local: libQuantLibJNI.@JNILIB_EXTENSION@ QuantLib.jar
 
-quantlib_wrap.o: quantlib_wrap.cpp
+quantlib_wrap.o: quantlib_wrap.cpp quantlib_wrap.h
 	g++ -c quantlib_wrap.cpp -fno-strict-aliasing $(CXXFLAGS) @JDK_INCLUDE@ @JDK_SYSTEM_INCLUDE@ `quantlib-config --cflags` -o quantlib_wrap.o
 
 libQuantLibJNI.@JNILIB_EXTENSION@: quantlib_wrap.o
@@ -48,6 +48,7 @@ dist-hook:
 	mkdir -p $(distdir)/org/quantlib
 	cp ./org/quantlib/*.java $(distdir)/org/quantlib
 	touch $(distdir)/quantlib_wrap.cpp
+	touch $(distdir)/quantlib_wrap.h
 	mkdir -p $(distdir)/examples
 	cp ./examples/*.java $(distdir)/examples
 
