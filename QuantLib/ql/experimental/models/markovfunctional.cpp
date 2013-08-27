@@ -261,7 +261,7 @@ namespace QuantLib {
                 smileSection=capletVol_->smileSection(i->first,true);
             }
             else {
-                Real annuity=0.0, marketAnnuity=0.0;
+                Real annuity=0.0;
                 for(unsigned int k=0; k<i->second.paymentDates_.size(); k++) {
                     annuity += i->second.yearFractions_[k] * termStructure()->discount(i->second.paymentDates_[k],true);
                 }
