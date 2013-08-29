@@ -24,56 +24,50 @@
 
 namespace QuantLib {
 
-   
-    MultiStepSwaption::MultiStepSwaption(const std::vector<Time>& rateTimes,
-                                     Size startIndex,
-                                     Size endIndex,
-                                     boost::shared_ptr<StrikedTypePayoff> & payOff,
-									 Size step)
-                                     : MultiProductMultiStep(rateTimes),
-     startIndex_(startIndex), endIndex_(endIndex), payoff_(payOff), step_(step)
-    {
-        QL_REQUIRE(startIndex_ < endIndex_," start index must be before end index");
-   
-        QL_REQUIRE(endIndex_ < rateTimes.size(), "end index be before the end of the rates.");
-        paymentTimes_.push_back(rateTimes[startIndex_]);
+    MultiStepSwaption::MultiStepSwaption(
+        const std::vector<Time> &rateTimes, Size startIndex, Size endIndex,
+        boost::shared_ptr<StrikedTypePayoff> &payOff, Size step)
+        : MultiProductMultiStep(rateTimes), startIndex_(startIndex),
+          endIndex_(endIndex), step_(step), payoff_(payOff) {
+        QL_REQUIRE(startIndex_ < endIndex_,
+                   " start index must be before end index");
 
+        QL_REQUIRE(endIndex_ < rateTimes.size(),
+                   "end index be before the end of the rates.");
+        paymentTimes_.push_back(rateTimes[startIndex_]);
     }
 
     bool MultiStepSwaption::nextTimeStep(
-            const CurveState& currentState,
-            std::vector<Size>& numberCashFlowsThisStep,
-            std::vector<std::vector<MarketModelMultiProduct::CashFlow> >&
-                                                               genCashFlows)
-    {
-        if (currentIndex_ == startIndex_)
-        {
+        const CurveState &currentState,
+        std::vector<Size> &numberCashFlowsThisStep,
+        std::vector<std::vector<MarketModelMultiProduct::CashFlow> > &
+            genCashFlows) {
+        if (currentIndex_ == startIndex_) {
             genCashFlows[0][0].timeIndex = 0;
-            //Rate swapRate = currentState.cmSwapRate(startIndex_,endIndex_-startIndex_);
-            //Real annuity = currentState.cmSwapAnnuity(startIndex_,startIndex_,endIndex_-startIndex_);
-            Rate swapRate = currentState.swapRate(startIndex_,endIndex_,step_);
-            Real annuity = currentState.swapAnnuity(startIndex_,startIndex_,endIndex_,step_);
+            // Rate swapRate =
+            // currentState.cmSwapRate(startIndex_,endIndex_-startIndex_);
+            // Real annuity =
+            // currentState.cmSwapAnnuity(startIndex_,startIndex_,endIndex_-startIndex_);
+            Rate swapRate =
+                currentState.swapRate(startIndex_, endIndex_, step_);
+            Real annuity = currentState.swapAnnuity(startIndex_, startIndex_,
+                                                    endIndex_, step_);
 
-            genCashFlows[0][0].amount =
-                (*payoff_)(swapRate) * annuity;
-				//std::max(swapRate-payoff_->strike(),0.0) * annuity; // test
-            
-            numberCashFlowsThisStep[0] =genCashFlows[0][0].amount != 0.0 ? 1 : 0 ;
+            genCashFlows[0][0].amount = (*payoff_)(swapRate) * annuity;
+            // std::max(swapRate-payoff_->strike(),0.0) * annuity; // test
+
+            numberCashFlowsThisStep[0] =
+                genCashFlows[0][0].amount != 0.0 ? 1 : 0;
+        } else {
+            numberCashFlowsThisStep[0] = 0;
         }
-        else
-        {
-            numberCashFlowsThisStep[0] =0;
-        }
 
-		++currentIndex_;
-		return currentIndex_ > startIndex_;
-
+        ++currentIndex_;
+        return currentIndex_ > startIndex_;
     }
 
-    std::unique_ptr<MarketModelMultiProduct>
-    MultiStepSwaption::clone() const {
+    std::unique_ptr<MarketModelMultiProduct> MultiStepSwaption::clone() const {
         return std::unique_ptr<MarketModelMultiProduct>(
-                                         new MultiStepSwaption(*this));
+            new MultiStepSwaption(*this));
     }
-
 }
