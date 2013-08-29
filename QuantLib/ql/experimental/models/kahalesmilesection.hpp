@@ -24,6 +24,7 @@
     call price function. Note that in the leftmost interval and right from the last grid point the input smile is always 
     replaced by the extrapolating functional forms, so if you are sure that the input smile is globally arbitrage free and
     you do not want to change it in these strike regions you should not use this class at all.
+
 */
 
 #ifndef quantlib_kahale_smile_section_hpp
@@ -140,7 +141,7 @@ namespace QuantLib {
         std::vector<Real> moneynessGrid_, k_, c_;
         Real f_;
         const Real gap_;
-        Size centralIndex_,leftIndex_,rightIndex_;
+        Size leftIndex_,rightIndex_;
         std::vector<boost::shared_ptr<cFunction> > cFunctions_;
         const bool interpolate_, exponentialExtrapolation_, deleteArbitragePoints_;
         boost::shared_ptr<SmileSectionUtils> ssutils_;
