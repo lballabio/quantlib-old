@@ -39,10 +39,11 @@ namespace QuantLib {
 						 const Size referenceRateStep,
 						 const std::vector<Rate>& referenceRateFixings,
 					     bool payer) 
-	  : MultiProductMultiStep(rateTimes), rateTimes_(rateTimes), obsTimes_(obsTimes), paymentTimes_(paymentTimes), structuredAccruals_(structuredAccruals), floatingAccruals_(floatingAccruals),
+	  : MultiProductMultiStep(rateTimes), rateTimes_(rateTimes),  structuredAccruals_(structuredAccruals), 
+        paymentTimes_(paymentTimes), obsTimes_(obsTimes),  floatingAccruals_(floatingAccruals),
 	  structuredFixingIndices_(structuredFixingIndices), floatingFixingIndices_(floatingFixingIndices),
-	  structuredPaymentIndices_(structuredPaymentIndices), floatingPaymentIndices_(floatingPaymentIndices),
-	  fixedRate_(fixedRate), multiplier_(multiplier), floor_(floor), 
+	  structuredPaymentIndices_(structuredPaymentIndices), 
+	  fixedRate_(fixedRate), floatingPaymentIndices_(floatingPaymentIndices), multiplier_(multiplier), floor_(floor), 
 	  referenceRateIndices_(referenceRateIndices), referenceRateStep_(referenceRateStep),
 	  referenceRateFixings0_(referenceRateFixings),
       /*lastIndex_(obsTimes.size()-1),*/ payer_(payer), filterStructuredIndex_(-1) {

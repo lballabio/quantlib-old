@@ -44,24 +44,20 @@ namespace QuantLib {
     class ZCInflationCapFloor : public CashFlow,
                             public Observer {
       public:
-        ZCInflationCapFloor(Real notional,
-                        const boost::shared_ptr<Index> &index,
-						const Handle<YieldTermStructure>& nominalYts,
-						const Handle<ZeroInflationTermStructure>& inflationYts,
-						const Handle<BlackVolTermStructure>& inflationVol,
-                        const Date& baseDate,
-                        const Date& fixingDate,
-                        const Date& paymentDate,
-						const Real strike,
-						const Option::Type type)
-
-        : notional_(notional), index_(index),
-          baseDate_(baseDate), fixingDate_(fixingDate),
-		  nominalYts_(nominalYts), inflationYts_(inflationYts), inflationVol_(inflationVol),
-          paymentDate_(paymentDate), strike_(strike), type_(type) {
-            //registerWith(index);
-			registerWith(nominalYts);
-			registerWith(inflationYts);
+        ZCInflationCapFloor(
+            Real notional, const boost::shared_ptr<Index> &index,
+            const Handle<YieldTermStructure> &nominalYts,
+            const Handle<ZeroInflationTermStructure> &inflationYts,
+            const Handle<BlackVolTermStructure> &inflationVol,
+            const Date &baseDate, const Date &fixingDate,
+            const Date &paymentDate, const Real strike, const Option::Type type)
+            : notional_(notional), index_(index), baseDate_(baseDate),
+              fixingDate_(fixingDate), paymentDate_(paymentDate),
+              nominalYts_(nominalYts), inflationYts_(inflationYts),
+              inflationVol_(inflationVol), strike_(strike), type_(type) {
+          // registerWith(index);
+          registerWith(nominalYts);
+          registerWith(inflationYts);
         }
         //! \name Event interface
         //@{

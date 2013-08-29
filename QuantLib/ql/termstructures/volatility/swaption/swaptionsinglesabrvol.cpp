@@ -35,7 +35,7 @@ namespace QuantLib {
                                    const DayCounter& dc,
                                    const boost::shared_ptr<SwapIndex>& indexBase)
     : SwaptionVolatilityStructure(settlementDays, cal, bdc, dc),
-          alpha_(alpha), beta_(beta), rho_(rho), nu_(nu), indexBase_(indexBase), maxSwapTenor_(100*Years) {
+        alpha_(alpha), beta_(beta), nu_(nu), rho_(rho), maxSwapTenor_(100*Years), indexBase_(indexBase)  {
     }
 
     // fixed reference date
@@ -49,7 +49,7 @@ namespace QuantLib {
                                    const DayCounter& dc,
                                    const boost::shared_ptr<SwapIndex>& indexBase)
     : SwaptionVolatilityStructure(referenceDate, cal, bdc, dc),
-          alpha_(alpha), beta_(beta), rho_(rho), nu_(nu), indexBase_(indexBase), maxSwapTenor_(100*Years) {
+        alpha_(alpha), beta_(beta), nu_(nu), rho_(rho), maxSwapTenor_(100*Years), indexBase_(indexBase) {
     }
 
     boost::shared_ptr<SmileSection>

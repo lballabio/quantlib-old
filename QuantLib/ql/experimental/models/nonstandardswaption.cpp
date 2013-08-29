@@ -25,8 +25,8 @@ namespace QuantLib {
 
 	NonstandardSwaption::NonstandardSwaption(const Swaption& fromSwaption) :
 		Option(boost::shared_ptr<Payoff>(), const_cast<Swaption&>(fromSwaption).exercise()),
-        settlementType_(fromSwaption.settlementType()), 
-        swap_(boost::shared_ptr<NonstandardSwap>(new NonstandardSwap(*fromSwaption.underlyingSwap()))) {
+        swap_(boost::shared_ptr<NonstandardSwap>(new NonstandardSwap(*fromSwaption.underlyingSwap()))),
+        settlementType_(fromSwaption.settlementType()) {
 			
         registerWith(swap_);
 	
@@ -34,7 +34,7 @@ namespace QuantLib {
 
     NonstandardSwaption::NonstandardSwaption(const boost::shared_ptr<NonstandardSwap>& swap,
                        const boost::shared_ptr<Exercise>& exercise,Settlement::Type delivery)
-    : Option(boost::shared_ptr<Payoff>(), exercise), settlementType_(delivery), swap_(swap) {
+        : Option(boost::shared_ptr<Payoff>(), exercise), swap_(swap), settlementType_(delivery) {
     
         registerWith(swap_);
 

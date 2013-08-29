@@ -111,9 +111,9 @@ namespace QuantLib {
 
             Strategy strategy_;
             std::vector<Real> discreteStrikeSpreads_;
-            Real lowerRateBound_, upperRateBound_;
-            Real priceThreshold_;
             Real vegaRatio_;
+            Real priceThreshold_;
+            Real lowerRateBound_, upperRateBound_;
             bool cashSettledSwaptions_, enforceMonotonicPrices_, simplifiedFloatingLeg_;
             Size n_;
 
@@ -165,7 +165,7 @@ namespace QuantLib {
             PriceHelper(const SmileSection* section,
                         const Option::Type type,
                         const Real targetPrice)
-                : section_(section), type_(type), targetPrice_(targetPrice) {}
+                : section_(section), targetPrice_(targetPrice), type_(type) {}
             double operator()(double strike) const {
                 return section_->optionPrice(strike,type_) - targetPrice_;
             };
@@ -200,6 +200,7 @@ namespace QuantLib {
         Real strikeFromVegaRatio(Real ratio, Option::Type optionType, Real referenceStrike) const;
         Real strikeFromPrice(Real price, Option::Type optionType, Real referenceStrike) const;
       
+        Handle<Quote> meanReversion_;
         Handle<YieldTermStructure> forwardCurve_, discountCurve_;
         Handle<YieldTermStructure> couponDiscountCurve_;
 
@@ -214,8 +215,6 @@ namespace QuantLib {
             floatingLegEndDates_, floatingLegPaymentDates_;
 
         Real gearing_, spread_;
-
-        Handle<Quote> meanReversion_;
 
         Period swapTenor_;
         Real spreadLegValue_, swapRateValue_, discount_, annuity_;

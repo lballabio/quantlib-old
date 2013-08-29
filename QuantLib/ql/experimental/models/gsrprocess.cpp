@@ -93,29 +93,29 @@ namespace QuantLib {
 			for(int l=0;l<=k-1;l++) {
 				Real res2=1.0;
 				//alpha_l
-				res2 *= revZero(l) ? vol(l)*vol(l)*(time(l+1)-time(l)) : vol(l)*vol(l)/(2.0*rev(l))*(1.0-exp(-2.0*rev(l)*(time(l+1)-time(l))));
+				res2 *= revZero(l) ? vol(l)*vol(l)*(time2(l+1)-time2(l)) : vol(l)*vol(l)/(2.0*rev(l))*(1.0-exp(-2.0*rev(l)*(time2(l+1)-time2(l))));
 				//zeta_i (i>k)
 				for(int i=k+1;i<=upperIndex(t)-1;i++)
-					res2 *= exp(-rev(i)*(cappedTime(i+1,t)-time(i)));
+					res2 *= exp(-rev(i)*(cappedTime(i+1,t)-time2(i)));
 				//beta_j (j<k)
 				for(int j=l+1;j<=k-1;j++)
-					res2 *= exp(-2.0*rev(j)*( time(j+1) - time(j) ));
+					res2 *= exp(-2.0*rev(j)*( time2(j+1) - time2(j) ));
 				//zeta_k beta_k
-				res2 *= revZero(k) ? 2.0*time(k)-flooredTime(k,w)-cappedTime(k+1,t) - 2.0*(time(k)-cappedTime(k+1,t)) : 
-					                       (exp(rev(k)*(2.0*time(k)-flooredTime(k,w)-cappedTime(k+1,t)))-exp(2.0*rev(k)*(time(k)-cappedTime(k+1,t)))) / rev(k);
+				res2 *= revZero(k) ? 2.0*time2(k)-flooredTime(k,w)-cappedTime(k+1,t) - 2.0*(time2(k)-cappedTime(k+1,t)) : 
+					                       (exp(rev(k)*(2.0*time2(k)-flooredTime(k,w)-cappedTime(k+1,t)))-exp(2.0*rev(k)*(time2(k)-cappedTime(k+1,t)))) / rev(k);
 				//add to sum
 				res += res2;
 			}
 			// l=k
 			Real res2=1.0;
 			// alpha_k zeta_k
-			res2 *= revZero(k) ? vol(k)*vol(k)/4.0*(4.0*pow(cappedTime(k+1,t)-time(k),2.0)-(pow(flooredTime(k,w)-2.0*time(k)+cappedTime(k+1,t),2.0)+
+			res2 *= revZero(k) ? vol(k)*vol(k)/4.0*(4.0*pow(cappedTime(k+1,t)-time2(k),2.0)-(pow(flooredTime(k,w)-2.0*time2(k)+cappedTime(k+1,t),2.0)+
 				                                                                          pow(cappedTime(k+1,t)-flooredTime(k,w),2.0))) :
-				           vol(k)*vol(k)/(2.0*rev(k)*rev(k))*(exp(-2.0*rev(k)*(cappedTime(k+1,t)-time(k)))+1.0 -
-				                    ( exp(-rev(k)*(flooredTime(k,w)-2.0*time(k)+cappedTime(k+1,t))) + exp(-rev(k)*(cappedTime(k+1,t)-flooredTime(k,w)))));
+				           vol(k)*vol(k)/(2.0*rev(k)*rev(k))*(exp(-2.0*rev(k)*(cappedTime(k+1,t)-time2(k)))+1.0 -
+				                    ( exp(-rev(k)*(flooredTime(k,w)-2.0*time2(k)+cappedTime(k+1,t))) + exp(-rev(k)*(cappedTime(k+1,t)-flooredTime(k,w)))));
 			// zeta_i (i>k)
 			for(int i=k+1;i<=upperIndex(t)-1;i++)
-				res2 *= exp(-rev(i)*(cappedTime(i+1,t)-time(i)));
+				res2 *= exp(-rev(i)*(cappedTime(i+1,t)-time2(i)));
 			// no beta_j in this case ...
 			res +=res2;
 		}
@@ -127,16 +127,16 @@ namespace QuantLib {
 			for(int l=k+1;l<=upperIndex(T)-1;l++) {
 				Real res3=1.0;
 				//eta_l
-				res3 *= revZero(l) ? cappedTime(l+1,T)-time(l) : (1.0-exp(-rev(l)*(cappedTime(l+1,T)-time(l))))/rev(l);
+				res3 *= revZero(l) ? cappedTime(l+1,T)-time2(l) : (1.0-exp(-rev(l)*(cappedTime(l+1,T)-time2(l))))/rev(l);
 				//zeta_i (i>k)
 				for(int i=k+1;i<=upperIndex(t)-1;i++)
-					res3 *= exp(-rev(i)*(cappedTime(i+1,t)-time(i)));
+					res3 *= exp(-rev(i)*(cappedTime(i+1,t)-time2(i)));
 				//gamma_j (j>k)
 				for(int j=k+1;j<=l-1;j++)
-					res3 *= exp(-rev(j)*(time(j+1)-time(j)));
+					res3 *= exp(-rev(j)*(time2(j+1)-time2(j)));
 				//zeta_k gamma_k
-				res3 *= revZero(k) ?  (cappedTime(k+1,t)-time(k+1) - (2.0*flooredTime(k,w)-cappedTime(k+1,t)-time(k+1))) / 2.0 :
-					 (exp(rev(k)*(cappedTime(k+1,t)-time(k+1)))-exp(rev(k)*(2.0*flooredTime(k,w)-cappedTime(k+1,t)-time(k+1))))/(2.0*rev(k));
+				res3 *= revZero(k) ?  (cappedTime(k+1,t)-time2(k+1) - (2.0*flooredTime(k,w)-cappedTime(k+1,t)-time2(k+1))) / 2.0 :
+					 (exp(rev(k)*(cappedTime(k+1,t)-time2(k+1)))-exp(rev(k)*(2.0*flooredTime(k,w)-cappedTime(k+1,t)-time2(k+1))))/(2.0*rev(k));
 				//add to sum
 				res2 += res3;
 			}
@@ -149,7 +149,7 @@ namespace QuantLib {
 				          ( 2.0*exp(-rev(k)*(cappedTime(k+1,t)-flooredTime(k,w))) - exp(rev(k)*(2.0*flooredTime(k,w)-cappedTime(k+1,T)-cappedTime(k+1,t))))) / (2.0*rev(k)*rev(k));
 			// zeta_i (i>k)
 			for(int i=k+1;i<=upperIndex(t)-1;i++)
-				res3 *= exp(-rev(i)*(cappedTime(i+1,t)-time(i)));
+				res3 *= exp(-rev(i)*(cappedTime(i+1,t)-time2(i)));
 			// no gamma_j in this case ...
 			res2 += res3;
 			// add to main accumulator
@@ -183,7 +183,7 @@ namespace QuantLib {
 			res2 *= revZero(k) ? -(flooredTime(k,w)-cappedTime(k+1,t)) : ( 1.0 - exp( 2.0*rev(k)*(flooredTime(k,w)-cappedTime(k+1,t))) ) / (2.0*rev(k));
 			// zeta_i (i>k)
 			for(int i=k+1;i<=upperIndex(t)-1;i++) {
-				res2 *= exp(-2.0*rev(i)*( cappedTime(i+1,t)-time(i) ) );
+				res2 *= exp(-2.0*rev(i)*( cappedTime(i+1,t)-time2(i) ) );
 			}
 			res += res2;
 		}
@@ -209,9 +209,9 @@ namespace QuantLib {
 		for(int i=0; i<=upperIndex(t)-1; i++) {
 			Real res2 = 1.0;
 			for(int j=i+1;j<=upperIndex(t)-1; j++) {
-				res2*=exp(-2.0*rev(j)*(cappedTime(j+1,t)-time(j)));
+				res2*=exp(-2.0*rev(j)*(cappedTime(j+1,t)-time2(j)));
 			}
-			res2 *= revZero(i) ? vol(i)*vol(i) * (cappedTime(i+1,t)-time(i)) : (vol(i)*vol(i)/(2.0*rev(i))*(1.0-exp(-2.0*rev(i)*(cappedTime(i+1,t)-time(i)))));
+			res2 *= revZero(i) ? vol(i)*vol(i) * (cappedTime(i+1,t)-time2(i)) : (vol(i)*vol(i)/(2.0*rev(i))*(1.0-exp(-2.0*rev(i)*(cappedTime(i+1,t)-time2(i)))));
 			res +=res2;
 		}
 
@@ -234,7 +234,7 @@ namespace QuantLib {
 		for(int i=lowerIndex(t); i<=upperIndex(w)-1; i++) {
 			Real res2 = 1.0;
 			for(int j=lowerIndex(t); j<=i-1; j++) {
-				res2 *= exp(-rev(j)*(time(j+1)-flooredTime(j,t)));
+				res2 *= exp(-rev(j)*(time2(j+1)-flooredTime(j,t)));
 			}
 			res2 *= revZero(i) ? cappedTime(i+1,w)-flooredTime(i,t) : (1.0-exp(-rev(i)*(cappedTime(i+1,w)-flooredTime(i,t))))/rev(i);
 			res +=res2;
@@ -255,14 +255,14 @@ namespace QuantLib {
 	}
 
 	const Real GsrProcess::cappedTime(Size index, Real cap) const {
-	   return cap != Null<Real>() ? std::min(cap,time(index)) : time(index);
+	   return cap != Null<Real>() ? std::min(cap,time2(index)) : time2(index);
 	}
 
 	const Real GsrProcess::flooredTime(Size index, Real floor) const {
-	   return floor != Null<Real>() ? std::max(floor,time(index)) : time(index);
+	   return floor != Null<Real>() ? std::max(floor,time2(index)) : time2(index);
 	}
 
-	const Real GsrProcess::time(Size index) const {
+	const Real GsrProcess::time2(Size index) const {
 	   if( index == 0 ) return 0.0;
 	   if( index > times_.size() ) return getForwardMeasureTime(); // FIXME how to ensure that forward measure time is geq all times given
 	   return times_[index-1];

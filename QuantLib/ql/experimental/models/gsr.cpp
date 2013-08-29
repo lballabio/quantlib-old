@@ -26,11 +26,11 @@ namespace QuantLib {
                         const std::vector<Real>& volatilities,
                         const Real reversion,
                         const Real T) : 
-      CalibratedModel(1), Gaussian1dModel(termStructure),
+      Gaussian1dModel(termStructure), CalibratedModel(1), 
       calibrateReversion_(false),
       reversion_(dummyParameter_),
       sigma_(arguments_[0]),                   
-      volatilities_(volatilities), reversions_(std::vector<Real>(1,reversion)), volstepdates_(volstepdates) {
+      volatilities_(volatilities), reversions_(std::vector<Real>(1,reversion)), volstepdates_(volstepdates)  {
 
         QL_REQUIRE(!termStructure.empty(),"yield term structure handle is empty");
         initialize(T);
@@ -42,7 +42,7 @@ namespace QuantLib {
                         const std::vector<Real>& volatilities,
                         const std::vector<Real>& reversions,
                         const Real T) : 
-      CalibratedModel(1), Gaussian1dModel(termStructure),
+      Gaussian1dModel(termStructure), CalibratedModel(1),
       calibrateReversion_(false),
       reversion_(dummyParameter_),
       sigma_(arguments_[0]), 
@@ -58,7 +58,7 @@ namespace QuantLib {
                         const std::vector<Real>& volatilities,
                         const Real reversion,
                         const Real T) : 
-      CalibratedModel(2), Gaussian1dModel(termStructure),
+      Gaussian1dModel(termStructure), CalibratedModel(2),
       calibrateReversion_(true),
       reversion_(arguments_[1]),
       sigma_(arguments_[0]),                   
@@ -74,7 +74,7 @@ namespace QuantLib {
                         const std::vector<Real>& volatilities,
                         const std::vector<Real>& reversions,
                         const Real T) : 
-      CalibratedModel(2), Gaussian1dModel(termStructure),
+      Gaussian1dModel(termStructure), CalibratedModel(2),
       calibrateReversion_(true),
       reversion_(arguments_[1]), 
       sigma_(arguments_[0]), 

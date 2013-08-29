@@ -150,7 +150,7 @@ namespace QuantLib {
         std::vector<Real> moneynessGrid_, k_, c_;
         Real f_;
         const Real gap_;
-        Size centralIndex_,leftIndex_,rightIndex_;
+        Size leftIndex_,rightIndex_;
         std::vector<boost::shared_ptr<cFunction> > cFunctions_;
         const bool interpolate_, exponentialExtrapolation_, deleteArbitragePoints_;
         boost::shared_ptr<SmileSectionUtils> ssutils_;

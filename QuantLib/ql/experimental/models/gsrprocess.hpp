@@ -66,7 +66,7 @@ namespace QuantLib {
 		Real expectationp2(Time t0, Time dt) const;
 		const int lowerIndex(Time t) const;
 		const int upperIndex(Time t) const;
-		const Real time(Size index) const;
+		const Real time2(Size index) const;
 		const Real cappedTime(Size index, Real cap = Null<Real>()) const;
 		const Real flooredTime(Size index, Real floor = Null<Real>()) const;
 		const Real vol(Size index) const;

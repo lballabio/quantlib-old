@@ -33,9 +33,9 @@ namespace QuantLib {
                                Rate strike)
     : swapIndex_(swapIndex),
       delivery_(Settlement::Physical),
-      fixingDate_(Null<Date>()),
       optionTenor_(optionTenor),
       optionConvention_(ModifiedFollowing),
+      fixingDate_(Null<Date>()),
       strike_(strike) {}
 
     MakeSwaption::MakeSwaption(const boost::shared_ptr<SwapIndex>& swapIndex,

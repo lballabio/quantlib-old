@@ -90,7 +90,7 @@ namespace QuantLib {
             weightedRate += arguments_.fixedNominal[i] * arguments_.fixedRate[i]; 
         }
         Real nominalAvg = nominalSum / (arguments_.fixedResetDates.size() - fixedIdx);
-        Real weightedMaturity=0.0, plainMaturity=0.0;
+        Real weightedMaturity=0.0;
         for(Size i=fixedIdx;i<arguments_.fixedResetDates.size();i++) {
             weightedMaturity += ActualActual().yearFraction(arguments_.fixedResetDates[i],
                                                             arguments_.fixedPayDates[i])*arguments_.fixedNominal[i];

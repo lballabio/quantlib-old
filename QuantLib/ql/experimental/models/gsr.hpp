@@ -101,11 +101,11 @@ namespace QuantLib {
 		Parameter reversionNc_; // this is used if reversion is not calibrated
 		Parameter& sigma_;
 		
+		std::vector<Real> volatilities_;
+		std::vector<Real> reversions_;
 		std::vector<Date> volstepdates_; // this is shared between vols and reverisons in case of piecewise reversions
 		std::vector<Time> volsteptimes_;
 		Array volsteptimesArray_; // FIXME this is redundant (just a copy of volsteptimes_)
-		std::vector<Real> volatilities_;
-		std::vector<Real> reversions_;
 
     };
 

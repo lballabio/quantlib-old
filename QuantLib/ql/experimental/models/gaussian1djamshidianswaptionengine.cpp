@@ -32,8 +32,8 @@ namespace QuantLib {
                     const std::vector<Date>& fixedPayDates,
                     const std::vector<Real>& amounts,
 					const Size startIndex)
-        : strike_(nominal), maturityDate_(maturityDate), valueDate_(valueDate), times_(fixedPayDates), 
-          amounts_(amounts), model_(model), startIndex_(startIndex) {}
+        : strike_(nominal), maturityDate_(maturityDate), valueDate_(valueDate),  
+          startIndex_(startIndex), times_(fixedPayDates), amounts_(amounts), model_(model) {}
 
         Real operator()(Rate y) const {
             Real value = strike_;
@@ -94,7 +94,7 @@ namespace QuantLib {
 
         Real value = 0.0;
         for (Size i=startIndex; i<size; i++) {
-            Real fixedPayTime = dayCounter.yearFraction(referenceDate,arguments_.fixedPayDates[i]);
+            //Real fixedPayTime = dayCounter.yearFraction(referenceDate,arguments_.fixedPayDates[i]);
             Real strike = model_->zerobond(arguments_.fixedPayDates[i], arguments_.exercise->date(0), rStar) / 
                 model_->zerobond(arguments_.fixedResetDates[startIndex], arguments_.exercise->date(0), rStar);
             Real dboValue = model_->zerobondOption(w, arguments_.exercise->date(0), arguments_.fixedResetDates[startIndex], 

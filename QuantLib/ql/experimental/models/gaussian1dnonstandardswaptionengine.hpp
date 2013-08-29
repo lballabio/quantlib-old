@@ -72,9 +72,9 @@ namespace QuantLib {
             :  BasketGeneratingEngine(model, oas, discountCurve),
                GenericModelEngine<Gaussian1dModel,NonstandardSwaption::arguments,
                                      NonstandardSwaption::results>(model),
-		  integrationPoints_(integrationPoints) , stddevs_(stddevs), extrapolatePayoff_(extrapolatePayoff), 
-          flatPayoffExtrapolation_(flatPayoffExtrapolation),
-            oas_(oas), discountCurve_(discountCurve) {
+            integrationPoints_(integrationPoints) , stddevs_(stddevs), extrapolatePayoff_(extrapolatePayoff), 
+            flatPayoffExtrapolation_(flatPayoffExtrapolation),
+            discountCurve_(discountCurve), oas_(oas) {
 		
 
             if(!oas_.empty()) 

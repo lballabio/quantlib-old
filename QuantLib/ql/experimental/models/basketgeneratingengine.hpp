@@ -162,11 +162,11 @@ namespace QuantLib {
                 return res;
             }
 
-            const Real npv_,delta_,gamma_,h_;
-            const Date& expiry_;
-            const boost::shared_ptr<SwapIndex> indexBase_;
-            const boost::shared_ptr<Gaussian1dModel>& mdl_;
             const VanillaSwap::Type type_;
+            const boost::shared_ptr<Gaussian1dModel>& mdl_;
+            const boost::shared_ptr<SwapIndex> indexBase_;
+            const Date& expiry_;
+            const Real npv_,delta_,gamma_,h_;
 
         };
 
