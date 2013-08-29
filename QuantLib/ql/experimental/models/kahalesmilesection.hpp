@@ -25,7 +25,6 @@
     replaced by the extrapolating functional forms, so if you are sure that the input smile is globally arbitrage free and
     you do not want to change it in these strike regions you should not use this class at all.
 
-
     //TODO when fitted parameters exceed certain limits, error values may be returned as call prices
     therefore it may be useful to check the parameters and throw an exception in case they are out of
     range (to be defined what a suitable range is). in case of interpolation such an exception
@@ -34,6 +33,7 @@
     maximum iterations (does not find the zero with desired accuracy) however, we can rely on the
     already implemented workaround (relax the accuracy) or also delete the point and proceed as above.
     Maybe the second alternative is the better one.
+
 */
 
 #ifndef quantlib_kahale_smile_section_hpp
