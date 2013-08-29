@@ -159,13 +159,14 @@ namespace QuantLib {
                 Real dt3 = discountCurve_->dayCounter().yearFraction(fixingDate_,floatingLegPaymentDates_[i]);
                 // we use that the day counter of the floating leg is equal to that of the float index always for
                 // swapIndex underlying swaps
-                npv += (forwardCurve_->discount(floatingLegStartDates_[i]) / 
-                        forwardCurve_->discount(floatingLegEndDates_[i]) * 
-                        hullWhiteScenario(dt1,h) /
-                        hullWhiteScenario(dt2,h)) * 
-                    discountCurve_->discount(floatingLegPaymentDates_[i]) / 
-                    discountCurve_->discount(fixingDate_) * 
-                    hullWhiteScenario(dt3,h);
+                npv += (forwardCurve_->discount(floatingLegStartDates_[i]) *
+                            hullWhiteScenario(dt1, h) /
+                            (forwardCurve_->discount(floatingLegEndDates_[i]) *
+                             hullWhiteScenario(dt2, h)) -
+                        1.0) *
+                       discountCurve_->discount(floatingLegPaymentDates_[i]) /
+                       discountCurve_->discount(fixingDate_) *
+                       hullWhiteScenario(dt3, h);
             }
             return npv;
         }
