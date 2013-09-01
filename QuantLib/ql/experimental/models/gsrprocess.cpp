@@ -23,7 +23,7 @@
 namespace QuantLib {
 
    GsrProcess::GsrProcess(const Array& times, const Array& vols, const Array& reversions, const Real T)
-    : times_(times), vols_(vols), reversions_(reversions), revZero_(reversions.size(),false), ForwardMeasureProcess1D(T) {
+       : ForwardMeasureProcess1D(T), times_(times), vols_(vols), reversions_(reversions), revZero_(reversions.size(),false)  {
 		QL_REQUIRE(times.size() == vols.size()-1, "number of volatilities (" << vols.size() << ") compared to number of times (" << times_.size() << " must be bigger by one");
 		QL_REQUIRE(times.size() == reversions.size()-1 || reversions.size()==1, "number of reversions (" << vols.size() << ") compared to number of times (" << times_.size() << " must be bigger by one, or exactly 1 reversion must be given");
 		for(int i=0; i<((int)times.size())-1; i++) QL_REQUIRE(times[i] < times[i+1], "times must be increasing (" << times[i] << "@" << i << " , " << times[i+1] << "@" << i+1 << ")");
