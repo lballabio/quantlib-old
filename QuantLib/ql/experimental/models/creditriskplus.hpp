@@ -18,7 +18,7 @@
 */
 
 /*! \file creditriskplus.hpp
-    \brief Extended CreditRisk+ Model 
+    \brief Extended CreditRisk+ Model
 */
 
 #ifndef quantlib_creditriskplus_hpp
@@ -33,42 +33,49 @@
 
 namespace QuantLib {
 
-    /*! CreditRisk+ model as described in [1] Integrating Correlations, Risk, July 1999 and
-      the references therein.
+    /*! CreditRisk+ model as described in [1] Integrating Correlations, Risk,
+      July 1999 and the references therein.
 
-      \warning the input correlation matrix is taken as is, there is no check for positive definiteness
+      \warning the input correlation matrix is taken as is, there is no check
+      for positive definiteness
     */
-
 
     class CreditRiskPlus {
 
-    public:
+      public:
 
-        CreditRiskPlus(const std::vector<Real>& exposure,
-                       const std::vector<Real>& pd,
-                       const std::vector<Size>& sector,
-                       const std::vector<Real>& relativeDefaultVariance,
-                       const Matrix& correlation,
-                       const Real unit);
+        CreditRiskPlus(const std::vector<Real> &exposure,
+                       const std::vector<Real> &pd,
+                       const std::vector<Size> &sector,
+                       const std::vector<Real> &relativeDefaultVariance,
+                       const Matrix &correlation, const Real unit);
 
-        const std::vector<Real>& loss() { return loss_; }
-        const std::vector<Real>& marginalLoss() { return marginalLoss_; }
+        const std::vector<Real> &loss() { return loss_; }
+        const std::vector<Real> &marginalLoss() { return marginalLoss_; }
 
         Real exposure() { return exposureSum_; }
         Real expectedLoss() const { return el_; }
         Real unexpectedLoss() { return ul_; }
-        Real relativeDefaultVariance() { return unexpectedLoss()*unexpectedLoss() / 
-                (expectedLoss()*expectedLoss()); }
+        Real relativeDefaultVariance() {
+            return unexpectedLoss() * unexpectedLoss() /
+                   (expectedLoss() * expectedLoss());
+        }
 
-        const std::vector<Real>& sectorExposures() const { return sectorExposure_; }
-        const std::vector<Real>& sectorExpectedLoss() const { return sectorEl_; }
-        const std::vector<Real>& sectorUnexpectedLoss() const { return sectorUl_; }
+        const std::vector<Real> &sectorExposures() const {
+            return sectorExposure_;
+        }
+        const std::vector<Real> &sectorExpectedLoss() const {
+            return sectorEl_;
+        }
+        const std::vector<Real> &sectorUnexpectedLoss() const {
+            return sectorUl_;
+        }
 
         Real lossQuantile(const Real p);
 
-    private:
+      private:
 
-        const std::vector<Real> exposure_;    
+        const std::vector<Real> exposure_;
         const std::vector<Real> pd_;
         const std::vector<Size> sector_;
         const std::vector<Real> relativeDefaultVariance_;
@@ -77,15 +84,14 @@ namespace QuantLib {
 
         Size n_, m_; // number of sectors, exposures
 
-        std::vector<Real> sectorExposure_, sectorEl_, sectorUl_, marginalLoss_, loss_;
+        std::vector<Real> sectorExposure_, sectorEl_, sectorUl_, marginalLoss_,
+            loss_;
 
         Real exposureSum_, el_, ul_;
         unsigned long upperIndex_;
 
         void compute();
-
     };
-
 }
 
 #endif
