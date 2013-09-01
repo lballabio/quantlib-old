@@ -54,7 +54,7 @@ namespace QuantLib {
         boost::shared_ptr<VanillaSwap> underlying = tmpIdx.underlyingSwap(fixing);
         Schedule sched = underlying->fixedSchedule();
         Real annuity = swapAnnuity(fixing,tenor,referenceDate,y,swapIdx);
-        Rate floatleg;
+        Rate floatleg = 0.0;
         if(ytsf.empty() && ytsd.empty()) { // simple 100-formula can be used only in one curve setup
             floatleg = ( zerobond(sched.dates().front(),referenceDate,y) - 
                          zerobond(sched.calendar().adjust(sched.dates().back(),
@@ -62,9 +62,8 @@ namespace QuantLib {
         }
         else {
 			Schedule floatSched = underlying->floatingSchedule();
-			Real floatLeg=0.0;
 			for(Size i=1; i<floatSched.size(); i++) {
-				floatLeg += ( zerobond( floatSched[i-1], referenceDate, y, ytsf ) / 
+				floatleg += ( zerobond( floatSched[i-1], referenceDate, y, ytsf ) / 
                               zerobond ( floatSched[i], referenceDate, y, ytsf ) - 1.0 ) *
                     zerobond( floatSched.calendar().adjust(floatSched[i], underlying->paymentConvention()), 
                               referenceDate, y , ytsd );
