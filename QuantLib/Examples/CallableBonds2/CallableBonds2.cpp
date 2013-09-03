@@ -71,12 +71,12 @@ int main(int, char* []) {
 	boost::shared_ptr<IborIndex> iborIndex(new Euribor(6*Months,yts));
 	boost::shared_ptr<SwapIndex> standardSwapBase(new EuriborSwapIsdaFixA(10*Years,yts));
 
-    // zSpread Quote
+    // spread Quote
 
-    Real zSpreadLevel = 0.0100;
-    boost::shared_ptr<Quote> zSpreadQuote0(new SimpleQuote(zSpreadLevel));
+    Real spreadLevel = 0.0100;
+    boost::shared_ptr<Quote> spreadQuote0(new SimpleQuote(spreadLevel));
 
-    RelinkableHandle<Quote> zSpreadQuote(zSpreadQuote0);
+    RelinkableHandle<Quote> spreadQuote(spreadQuote0);
 
     // non standard swaption instrument (10y, amortizing nominal and step up coupon, yearly exercise dates)
     // we use the nonstandard swap and the nonstandard swaption for bond pricing, i.e. set the floating side to zero
@@ -119,8 +119,8 @@ int main(int, char* []) {
     Leg vanilla = underlying->leg(0);
     Leg other = underlying->leg(1);
 
-    Real vanillaNpv = CashFlows::npv(vanilla,*yts,zSpreadQuote->value(),yts->dayCounter(),Continuous,NoFrequency,false);
-    Real otherNpv = CashFlows::npv(other,*yts,zSpreadQuote->value(),yts->dayCounter(),Continuous,NoFrequency,false);
+    Real vanillaNpv = CashFlows::npv(vanilla,*yts,spreadQuote->value(),yts->dayCounter(),Continuous,NoFrequency,false);
+    Real otherNpv = CashFlows::npv(other,*yts,spreadQuote->value(),yts->dayCounter(),Continuous,NoFrequency,false);
 
     std::cout << "npv = " << vanillaNpv << " (other = " << otherNpv << ")" << std::endl;
 
@@ -139,7 +139,7 @@ int main(int, char* []) {
     boost::shared_ptr<PricingEngine> standardEngine(new Gaussian1dSwaptionEngine(gsr));
     // this engine is used for the non standard swaption
     boost::shared_ptr<PricingEngine> nonStandardEngine(new Gaussian1dNonstandardSwaptionEngine(gsr,64,7.0,true,false,
-                                                                                        zSpreadQuote));
+                                                                                        spreadQuote));
 
     swaption->setPricingEngine(nonStandardEngine);
 
