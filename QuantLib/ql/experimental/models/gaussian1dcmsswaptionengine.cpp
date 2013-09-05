@@ -171,7 +171,7 @@ namespace QuantLib {
                                                                                arguments_.structuredCappedRates[j] , rate );
 						if( arguments_.structuredFlooredRates[j] != Null<Real>() ) rate = std::max( 
                                                                               arguments_.structuredFlooredRates[j] , rate );
-						npv0a[k] += rate * arguments_.structuredAccrualTimes[j] * 
+						npv0a[k] -= rate * arguments_.structuredAccrualTimes[j] * 
                             model_->zerobond( arguments_.structuredPayDates[j], event0, z[k], discountCurve_ ) / 
                                            model_->numeraire(event0Time,z[k],discountCurve_);
 					}
