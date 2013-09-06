@@ -39,8 +39,9 @@ void outputModel(std::vector<Date>& expiries, boost::shared_ptr<Gsr> model) {
 
 }
 
-int main(int, char* []) {
-    
+
+void example01() {
+
     Date refDate(17,June,2013); 
     Settings::instance().evaluationDate() = refDate;
 	Date effective = TARGET().advance(refDate,2*Days);
@@ -235,6 +236,108 @@ int main(int, char* []) {
     std::cout << "DV01 = " << (npv1-npv2) / 20.0 << std::endl;
     std::cout << "DV02 = " << (npv1-2.0*npv0+npv2) / 100.0 << std::endl;
     std::cout << "Vega = " << (npv3-npv0) << std::endl;
+
+    return;
+
+}
+
+void example02() {
+
+    Date refDate(17, June, 2013);
+    Settings::instance().evaluationDate() = refDate;
+    Date effective = TARGET().advance(refDate, 2 * Days);
+    Date maturity = TARGET().advance(effective, 10 * Years);
+
+    Handle<Quote> rate3m(new SimpleQuote(0.03));
+    Handle<Quote> rate6m(new SimpleQuote(0.04));
+
+    Handle<YieldTermStructure> yts3m(boost::shared_ptr<YieldTermStructure>(
+        new FlatForward(0, TARGET(), rate3m, Actual365Fixed())));
+    Handle<YieldTermStructure> yts6m(boost::shared_ptr<YieldTermStructure>(
+        new FlatForward(0, TARGET(), rate6m, Actual365Fixed())));
+
+    Handle<Quote> volQuote6m(new SimpleQuote(0.20));
+
+    boost::shared_ptr<SwaptionVolatilityStructure> swaptionVol(
+        new ConstantSwaptionVolatility(0, TARGET(), ModifiedFollowing,
+                                       volQuote6m, Actual365Fixed()));
+
+    boost::shared_ptr<IborIndex> iborIndex3m(new Euribor(3 * Months, yts3m));
+    boost::shared_ptr<IborIndex> iborIndex6m(new Euribor(6 * Months, yts6m));
+    boost::shared_ptr<SwapIndex> standardSwapBase(
+        new EuriborSwapIsdaFixA(10 * Years, yts6m));
+
+    // 3m atm swaption 5y into 10y
+
+    std::vector<Real> fixedNominal(10), floatingNominal(20), fixedRate(10);
+    for (Size i = 0; i < 10; i++) {
+        fixedNominal[i] = 100.0;
+        floatingNominal[2 * i] = floatingNominal[2 * i + 1] = fixedNominal[i];
+        fixedRate[i] = 0.04;
+    }
+
+    Schedule fixedSchedule(effective, maturity, 1 * Years, TARGET(),
+                           ModifiedFollowing, ModifiedFollowing,
+                           DateGeneration::Forward, false);
+    Schedule floatingSchedule(effective, maturity, 6 * Months, TARGET(),
+                              ModifiedFollowing, ModifiedFollowing,
+                              DateGeneration::Forward, false);
+
+    boost::shared_ptr<NonstandardSwap> underlying(new NonstandardSwap(
+        VanillaSwap::Payer, fixedNominal, floatingNominal, fixedSchedule,
+        fixedRate, Thirty360(), floatingSchedule, iborIndex3m, 1.0, 0.0,
+        Actual360()));
+
+    std::vector<Date> exerciseDates(1, Date(fixedSchedule[5]));
+    boost::shared_ptr<Exercise> exercise(new BermudanExercise(exerciseDates));
+    boost::shared_ptr<NonstandardSwaption> swaption(
+        new NonstandardSwaption(underlying, exercise));
+
+    // gsr model (1% mean reversion, intially 1% vol)
+
+    std::vector<Date> stepDates;
+    std::vector<Real> vols(1, 0.01);
+    std::vector<Real> reversions(1, 0.01);
+
+    boost::shared_ptr<Gsr> gsr(
+        new Gsr(yts6m, stepDates, vols, reversions, 50.0));
+
+    // engines for nonstandard swaption and standard swaption
+
+    // this engine is used for standard swaptions used in model calibration
+    boost::shared_ptr<PricingEngine> standardEngine(
+        new Gaussian1dSwaptionEngine(gsr));
+    // this engine is used for the non standard swaption
+    boost::shared_ptr<PricingEngine> nonStandardEngine(
+        new Gaussian1dNonstandardSwaptionEngine(gsr));
+
+    swaption->setPricingEngine(nonStandardEngine);
+
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket =
+        swaption->calibrationBasket(
+            standardSwapBase, swaptionVol,
+            BasketGeneratingEngine::MaturityStrikeByDeltaGamma);
+
+    std::cout << "6m swaption that matches 3m swaption:" << std::endl;
+    outputBasket(basket,*yts6m);
+
+}
+
+int main(int argc, char* argv[]) {
+
+    if(argc==1 || !strcmp(argv[1],"1")) {
+        std::cout << "########################################" << std::endl;
+        std::cout << "Example 1 non standard bermudan swaption" << std::endl;
+        std::cout << "########################################" << std::endl;
+        example01();
+    }
+
+    if(argc==1 || !strcmp(argv[1],"2")) {
+        std::cout << "########################################" << std::endl;
+        std::cout << "Example 2 3m - 6m - swaption" << std::endl;
+        std::cout << "########################################" << std::endl;
+        example02();
+    }
   
 
 
