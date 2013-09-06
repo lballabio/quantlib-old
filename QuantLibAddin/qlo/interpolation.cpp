@@ -74,7 +74,7 @@ namespace QuantLibAddin {
 
         vector<pair<Real, Handle<Quote> > > pairs(n);
         for (Size i=0; i<n; ++i)
-            pairs[i] = std::make_pair<Real, Handle<Quote> >(x[i], yh[i]);
+            pairs[i] = std::make_pair(x[i], yh[i]);
         std::sort(pairs.begin(), pairs.end(), QuoteHandleSorter());
 
         vector<pair<Real, Handle<Quote> > >::iterator j=pairs.begin();
