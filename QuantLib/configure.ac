@@ -420,6 +420,7 @@ AC_CONFIG_FILES([
     Examples/EquityOption/Makefile
     Examples/FittedBondCurve/Makefile
     Examples/FRA/Makefile
+    Examples/InterestRateSmiles/Makefile
     Examples/KahaleSmileSection/Makefile
     Examples/Lmm/Makefile
     Examples/MarketModels/Makefile
