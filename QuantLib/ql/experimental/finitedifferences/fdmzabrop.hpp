@@ -86,7 +86,7 @@ namespace QuantLib {
         Disposable<Array> preconditioner(const Array& r, Real s) const;
 
 #if !defined(QL_NO_UBLAS_SUPPORT)
-		Disposable<std::vector<SparseMatrix> > FdmZabrOp::toMatrixDecomp() const; 
+		Disposable<std::vector<SparseMatrix> > toMatrixDecomp() const; 
 #endif
 
       private:

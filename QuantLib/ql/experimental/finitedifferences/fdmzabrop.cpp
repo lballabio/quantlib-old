@@ -24,8 +24,8 @@
 namespace QuantLib {
 
     FdmZabrUnderlyingPart::FdmZabrUnderlyingPart(const boost::shared_ptr<FdmMesher>& mesher, const Real beta, const Real nu, const Real rho, const Real gamma) :
-	  forwardValues_(mesher->locations(0)),
       volatilityValues_(mesher->locations(1)),
+	  forwardValues_(mesher->locations(0)),
       mapT_  (SecondDerivativeOp(0, mesher).mult(0.5*volatilityValues_*volatilityValues_*Pow(Abs(forwardValues_),2.0*beta))),
       mesher_(mesher) {
         
@@ -42,8 +42,8 @@ namespace QuantLib {
     FdmZabrVolatilityPart::FdmZabrVolatilityPart(
             const boost::shared_ptr<FdmMesher>& mesher,
 			const Real beta, const Real nu, const Real rho, const Real gamma) :
-	  forwardValues_(mesher->locations(0)),
       volatilityValues_(mesher->locations(1)),
+	  forwardValues_(mesher->locations(0)),
       mapT_(SecondDerivativeOp(1,mesher).mult(0.5*nu*nu*Pow(Abs(volatilityValues_),2.0*gamma))),
 	  mesher_(mesher) {
 
@@ -57,20 +57,17 @@ namespace QuantLib {
         return mapT_;
     }
 
-    FdmZabrOp::FdmZabrOp(const boost::shared_ptr<FdmMesher>& mesher,
-			const Real beta,
-			const Real nu,
-			const Real rho,
-			const Real gamma)
-    : forwardValues_(mesher->locations(0)),
-      volatilityValues_(mesher->locations(1)),
-	  dxyMap_(SecondOrderMixedDerivativeOp(0, 1, mesher).mult(nu*rho*Pow(Abs(volatilityValues_),gamma+1.0)*Pow(Abs(forwardValues_),beta))),
-	  dxMap_(FdmZabrUnderlyingPart(mesher,beta,nu,rho,gamma)),
-	  dyMap_(FdmZabrVolatilityPart(mesher,beta,nu,rho,gamma))
-	{
-
-    }
-
+    FdmZabrOp::FdmZabrOp(const boost::shared_ptr<FdmMesher> &mesher,
+                         const Real beta, const Real nu, const Real rho,
+                         const Real gamma)
+        : volatilityValues_(mesher->locations(1)),
+          forwardValues_(mesher->locations(0)),
+          dxyMap_(SecondOrderMixedDerivativeOp(0, 1, mesher)
+                      .mult(nu * rho *
+                            Pow(Abs(volatilityValues_), gamma + 1.0) *
+                            Pow(Abs(forwardValues_), beta))),
+          dxMap_(FdmZabrUnderlyingPart(mesher, beta, nu, rho, gamma)),
+          dyMap_(FdmZabrVolatilityPart(mesher, beta, nu, rho, gamma)) {}
 
     void FdmZabrOp::setTime(Time t1, Time t2) {
         dxMap_.setTime(t1, t2);

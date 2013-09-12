@@ -24,8 +24,8 @@
 namespace QuantLib {
 
     FdmSabrFpeUnderlyingPart::FdmSabrFpeUnderlyingPart(const boost::shared_ptr<FdmMesher>& mesher, const Real beta, const Real nu, const Real rho) :
-	  forwardValues_(mesher->locations(0)),
       volatilityValues_(mesher->locations(1)),
+	  forwardValues_(mesher->locations(0)),
       dxMap_ (FirstDerivativeOp(0, mesher).mult(2.0*beta*Pow(forwardValues_,2.0*beta-1.0)*volatilityValues_*volatilityValues_+
 												2.0*nu*rho*Pow(forwardValues_,beta)*volatilityValues_)),
       dxxMap_(SecondDerivativeOp(0, mesher).mult(0.5*volatilityValues_*volatilityValues_*Pow(forwardValues_,2.0*beta))),
@@ -46,8 +46,8 @@ namespace QuantLib {
     FdmSabrFpeVolatilityPart::FdmSabrFpeVolatilityPart(
             const boost::shared_ptr<FdmMesher>& mesher,
 			const Real beta, const Real nu, const Real rho) :
-	  forwardValues_(mesher->locations(0)),
       volatilityValues_(mesher->locations(1)),
+	  forwardValues_(mesher->locations(0)),
 	  dyMap_(FirstDerivativeOp(1,mesher).mult(beta*nu*rho*volatilityValues_*volatilityValues_*Pow(forwardValues_,beta-1.0)+2.0*nu*nu*volatilityValues_)),
 	  dyyMap_(SecondDerivativeOp(1,mesher).mult(0.5*nu*nu*volatilityValues_*volatilityValues_)),
       mapT_(dyMap_.add(dyyMap_)) {
@@ -61,18 +61,14 @@ namespace QuantLib {
         return mapT_;
     }
 
-    FdmSabrFpeOp::FdmSabrFpeOp(const boost::shared_ptr<FdmMesher>& mesher,
-			const Real beta,
-			const Real nu,
-			const Real rho)
-    : forwardValues_(mesher->locations(0)),
-      volatilityValues_(mesher->locations(1)),
-	  dxMap_(mesher,beta,nu,rho),
-	  dyMap_(mesher,beta,nu,rho),
-	  dxyMap_(SecondOrderMixedDerivativeOp(0, 1, mesher).mult(nu*rho*volatilityValues_*volatilityValues_*Pow(forwardValues_,beta))) {
-
-    }
-
+    FdmSabrFpeOp::FdmSabrFpeOp(const boost::shared_ptr<FdmMesher> &mesher,
+                               const Real beta, const Real nu, const Real rho)
+        : volatilityValues_(mesher->locations(1)),
+          forwardValues_(mesher->locations(0)), dxMap_(mesher, beta, nu, rho),
+          dyMap_(mesher, beta, nu, rho),
+          dxyMap_(SecondOrderMixedDerivativeOp(0, 1, mesher)
+                      .mult(nu * rho * volatilityValues_ * volatilityValues_ *
+                            Pow(forwardValues_, beta))) {}
 
     void FdmSabrFpeOp::setTime(Time t1, Time t2) {
         dxMap_.setTime(t1, t2);
