@@ -8,14 +8,17 @@ this_include_HEADERS = \
     fdextoujumpvanillaengine.hpp \
 	fdklugeextouspreadengine.hpp \
 	fdmblackscholesfwdop.hpp \
+	fdmdupire1dop.hpp \
 	fdmexpextouinnervaluecalculator.hpp \
 	fdmextendedornsteinuhlenbeckop.hpp \
 	fdmextoujumpmodelinnervalue.hpp \
 	fdmextoujumpop.hpp \
 	fdmextoujumpsolver.hpp \
+	fdmheat1dop.hpp \
 	fdmhestonfwdop.hpp \
 	fdmklugeextouop.hpp \
 	fdmklugeextousolver.hpp \
+	fdmsabrfpeop.hpp \
 	fdmsimple2dextousolver.hpp \
     fdmsimple3dextoujumpsolver.hpp \
 	fdmspreadpayoffinnervalue.hpp \
@@ -23,6 +26,7 @@ this_include_HEADERS = \
 	fdmvppstartlimitstepcondition.hpp \
 	fdmvppstepcondition.hpp \
 	fdmvppstepconditionfactory.hpp \
+	fdmzabrop.hpp \
 	fdsimpleextoujumpswingengine.hpp \
     fdsimpleextoustorageengine.hpp \
 	fdsimpleklugeextouvppengine.hpp \
@@ -35,15 +39,19 @@ libMultiDimFDM_la_SOURCES = \
     fdextoujumpvanillaengine.cpp \
 	fdklugeextouspreadengine.cpp \
 	fdmblackscholesfwdop.cpp \
+	fdmdupire1dop.cpp \
 	fdmextendedornsteinuhlenbeckop.cpp \
 	fdmextoujumpop.cpp \
 	fdmextoujumpsolver.cpp \
+	fdmheat1dop.cpp \
 	fdmhestonfwdop.cpp \
 	fdmklugeextouop.cpp \
+	fdmsabrfpeop.cpp \
 	fdmsquarerootfwdop.cpp \
 	fdmvppstartlimitstepcondition.cpp \
 	fdmvppstepcondition.cpp \
 	fdmvppstepconditionfactory.cpp \
+	fdmzabrop.cpp \
 	fdsimpleextoujumpswingengine.cpp \
     fdsimpleextoustorageengine.cpp \
     fdsimpleklugeextouvppengine.cpp \

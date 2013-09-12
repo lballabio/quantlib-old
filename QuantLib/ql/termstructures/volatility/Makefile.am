@@ -14,7 +14,9 @@ this_include_HEADERS = \
     sabrinterpolatedsmilesection.hpp \
     sabrsmilesection.hpp \
     smilesection.hpp \
-    spreadedsmilesection.hpp
+    spreadedsmilesection.hpp \
+	zabr.hpp \
+	zabrsmilesection.hpp 
 
 libVolTermStructures_la_SOURCES = \
     abcd.cpp \
@@ -24,7 +26,9 @@ libVolTermStructures_la_SOURCES = \
     sabrinterpolatedsmilesection.cpp \
     sabrsmilesection.cpp \
     smilesection.cpp \
-    spreadedsmilesection.cpp
+    spreadedsmilesection.cpp \
+	zabr.cpp \
+	zabrsmilesection.cpp
 
 libVolTermStructures_la_LIBADD = \
     equityfx/libEquityFxVol.la \
