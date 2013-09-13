@@ -105,7 +105,7 @@ namespace QuantLib {
     }
 
     Real ZabrModel::localVolatilityHelper(const Real f, const Real x) const {
-        return alpha_ * std::pow(f, beta_) /
+        return alpha_ * std::pow(std::fabs(f), beta_) /
                F(y(f), std::pow(alpha_, gamma_ - 1.0) *
                            x); // TODO optimize this, y is comoputed together
                                // with x already
@@ -133,11 +133,13 @@ namespace QuantLib {
     Disposable<std::vector<Real> >
     ZabrModel::fdPrice(const std::vector<Real> &strikes) const {
 
+        // TODO check strikes to be increasing
+
         // TODO put these magic numbers somewhere ...
-        const Real start = 0.00001;       // lowest strike for grid
-        const Real end = forward_ * 20.0; // highest strike for grid
+        const Real start = std::min(-forward_ * 5.0, strikes.front()); // 0.00001; // lowest strike for grid
+        const Real end = std::max(forward_ * 5.0, strikes.back()); // highest strike for grid
         const Size size = 200;            // grid points
-        const Real density = 0.005; // density for non concentrating mesher
+        const Real density = 0.005;       // density for non concentrating mesher
         const Size steps =
             (Size)std::ceil(expiryTime_ * 50); // number of steps in dimension t
         const Size dampingSteps = 10;          // thereof damping steps
@@ -147,18 +149,24 @@ namespace QuantLib {
         const boost::shared_ptr<FdmLinearOpLayout> layout(
             new FdmLinearOpLayout(dim));
         // Mesher
-        const boost::shared_ptr<Fdm1dMesher> m1(new Concentrating1dMesher(
-            start, end, size, std::pair<Real, Real>(forward_, density), true));
-        // const boost::shared_ptr<Fdm1dMesher> m1(new
-        // Uniform1dMesher(start,end,size));
+        //const boost::shared_ptr<Fdm1dMesher> m1(new Concentrating1dMesher(
+        //    start, end, size, std::pair<Real, Real>(forward_, density), true));
+        const boost::shared_ptr<Fdm1dMesher> m1(new  Uniform1dMesher(start,end,size));
         const std::vector<boost::shared_ptr<Fdm1dMesher> > meshers(1, m1);
         const boost::shared_ptr<FdmMesher> mesher(
             new FdmMesherComposite(layout, meshers));
         // Boundary conditions
         FdmBoundaryConditionSet boundaries;
-        // boundaries.push_back(boost::shared_ptr<BoundaryCondition<FdmLinearOp>>(new
-        // FdmDirichletBoundary(mesher,0.0,0,FdmDirichletBoundary::Upper))); //
-        // for strike = \infty call is worth zero
+        boundaries.push_back(boost::shared_ptr<BoundaryCondition<FdmLinearOp> >(
+            new FdmDirichletBoundary(
+                mesher, 0.0, 0, FdmDirichletBoundary::Upper))); // for strike =
+                                                                // \infty call
+                                                                // is worth zero
+        boundaries.push_back(boost::shared_ptr<BoundaryCondition<FdmLinearOp> >(
+            new FdmDirichletBoundary(
+                mesher, forward_ - start, 0,
+                FdmDirichletBoundary::Lower))); // for strike = -\infty call is
+                                                // worth f-k
         // initial values
         Array rhs(mesher->layout()->size());
         for (FdmLinearOpIterator iter = layout->begin(); iter != layout->end();
@@ -187,7 +195,8 @@ namespace QuantLib {
             CubicInterpolation::SecondDerivative, 0.0));
         // boost::shared_ptr<Interpolation> solution(new
         // LinearInterpolation(k.begin(),k.end(),rhs.begin()));
-        solution->disableExtrapolation();
+        //solution->disableExtrapolation();
+        solution->enableExtrapolation();
         // return solution;
         std::vector<Real> result(strikes.size());
         std::transform(strikes.begin(), strikes.end(), result.begin(),
@@ -304,8 +313,8 @@ namespace QuantLib {
 
     Disposable<std::vector<Real> > ZabrModel::x(const std::vector<Real> &strikes) const {
 
-        QL_REQUIRE(strikes[0] > 0.0, "strikes must be positive (" << strikes[0]
-                                                                  << ")");
+        QL_REQUIRE(strikes[0] > 0.0 || beta_ < 1.0, "strikes must be positive (" << strikes[0]
+                                                                  << ") if beta = 1");
         for (std::vector<Real>::const_iterator i = strikes.begin() + 1;
              i != strikes.end(); i++)
             QL_REQUIRE(*i > *(i - 1), "strikes must be strictly ascending ("
@@ -354,12 +363,16 @@ namespace QuantLib {
     }
 
     Real ZabrModel::y(const Real strike) const {
-        return close(beta_, 1.0)
-                   ? std::log(forward_ / strike) *
-                         std::pow(alpha_, gamma_ - 2.0)
-                   : (std::pow(forward_, 1.0 - beta_) -
-                      std::pow(strike, 1.0 - beta_)) *
-                         std::pow(alpha_, gamma_ - 2.0) / (1.0 - beta_);
+
+        if (close(beta_, 1.0)) {
+            return std::log(forward_ / strike) * std::pow(alpha_, gamma_ - 2.0);
+        } else {
+            return (strike < 0.0 ?
+                    std::pow(forward_ , 1.0 - beta_) + std::pow(-strike , 1.0 - beta_) :
+                    std::pow(forward_ , 1.0 - beta_) - std::pow(strike, 1.0 - beta_)) *
+                       std::pow(alpha_, gamma_ - 2.0) / (1.0 - beta_);
+        }
+
     }
 
     Real ZabrModel::F(const Real y, const Real u) const {

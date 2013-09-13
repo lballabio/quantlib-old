@@ -72,7 +72,7 @@ namespace QuantLib {
         Real x(const Real strike) const;
         Disposable<std::vector<Real> >
         x(const std::vector<Real> &strikes) const;
-
+        
         Real y(const Real strike) const;
 
         Real F(const Real y, const Real u) const;
@@ -80,6 +80,7 @@ namespace QuantLib {
         Real lognormalVolatilityHelper(const Real strike, const Real x) const;
         Real normalVolatilityHelper(const Real strike, const Real x) const;
         Real localVolatilityHelper(const Real f, const Real x) const;
+
     };
 
 }

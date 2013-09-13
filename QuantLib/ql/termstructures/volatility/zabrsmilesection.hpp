@@ -35,7 +35,8 @@ namespace QuantLib {
 
       public:
         
-        enum Evaluation { ShortMaturityLognormal = 0, ShortMaturityNormal = 1 };
+        enum Evaluation { ShortMaturityLognormal = 0, ShortMaturityNormal = 1,
+                          LocalVolatility = 2};
 
         ZabrSmileSection(Time timeToExpiry, Rate forward,
                          const std::vector<Real> &zabrParameters,

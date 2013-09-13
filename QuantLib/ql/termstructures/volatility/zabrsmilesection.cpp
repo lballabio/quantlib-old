@@ -66,6 +66,10 @@ namespace QuantLib {
                 model_->normalVolatility(strike) * std::sqrt(exerciseTime()),
                 discount);
 
+        case LocalVolatility:
+            QL_REQUIRE(type == Option::Call, "local volatility only supports calls at the moment");
+            return model_->fdPrice(strike) * discount;
+
         default:
             QL_FAIL("Unknown evaluation (" << evaluation_ << ")");
         }
@@ -80,12 +84,13 @@ namespace QuantLib {
             return model_->lognormalVolatility(strike);
         }
 
-        case ShortMaturityNormal: {
+        case ShortMaturityNormal:
+        case LocalVolatility: {
             Real impliedVol = 0.0;
             try {
                 Option::Type type;
-                if (strike >= model_->forward()) // use otm option to imply vol
-                    type = Option::Call;
+                if (strike >= model_->forward() || evaluation_ == LocalVolatility) // use otm option to imply vol
+                    type = Option::Call; // todo: implement put price in zabrsmilesection for LocalVolatility
                 else
                     type = Option::Put;
                 impliedVol =
