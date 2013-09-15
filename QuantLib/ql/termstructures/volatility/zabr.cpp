@@ -105,6 +105,7 @@ namespace QuantLib {
     }
 
     Real ZabrModel::localVolatilityHelper(const Real f, const Real x) const {
+        //return (f+0.05) * 0.20; // debug shifted lognormal local vol with shift 0.05
         return alpha_ * std::pow(std::fabs(f), beta_) /
                F(y(f), std::pow(alpha_, gamma_ - 1.0) *
                            x); // TODO optimize this, y is comoputed together
@@ -136,37 +137,37 @@ namespace QuantLib {
         // TODO check strikes to be increasing
 
         // TODO put these magic numbers somewhere ...
-        const Real start = std::min(-forward_ * 5.0, strikes.front()); // 0.00001; // lowest strike for grid
-        const Real end = std::max(forward_ * 5.0, strikes.back()); // highest strike for grid
-        const Size size = 200;            // grid points
-        const Real density = 0.005;       // density for non concentrating mesher
+        const Real start = std::min(-forward_ * 15.0, strikes.front()); // 0.00001; // lowest strike for grid
+        const Real end = std::max(forward_ * 15.0, strikes.back()); // highest strike for grid
+        const Size size = 500;           // grid points
+        const Real density = 0.005;      // density for concentrating mesher
         const Size steps =
             (Size)std::ceil(expiryTime_ * 50); // number of steps in dimension t
-        const Size dampingSteps = 10;          // thereof damping steps
+        const Size dampingSteps = 50;          // thereof damping steps
 
         // Layout
         std::vector<Size> dim(1, size);
         const boost::shared_ptr<FdmLinearOpLayout> layout(
             new FdmLinearOpLayout(dim));
         // Mesher
-        //const boost::shared_ptr<Fdm1dMesher> m1(new Concentrating1dMesher(
-        //    start, end, size, std::pair<Real, Real>(forward_, density), true));
-        const boost::shared_ptr<Fdm1dMesher> m1(new  Uniform1dMesher(start,end,size));
+        const boost::shared_ptr<Fdm1dMesher> m1(new Concentrating1dMesher(
+            start, end, size, std::pair<Real, Real>(0.0, density), true));
+        // const boost::shared_ptr<Fdm1dMesher> m1(new  Uniform1dMesher(start,end,size));
         const std::vector<boost::shared_ptr<Fdm1dMesher> > meshers(1, m1);
         const boost::shared_ptr<FdmMesher> mesher(
             new FdmMesherComposite(layout, meshers));
         // Boundary conditions
         FdmBoundaryConditionSet boundaries;
-        boundaries.push_back(boost::shared_ptr<BoundaryCondition<FdmLinearOp> >(
-            new FdmDirichletBoundary(
-                mesher, 0.0, 0, FdmDirichletBoundary::Upper))); // for strike =
-                                                                // \infty call
-                                                                // is worth zero
-        boundaries.push_back(boost::shared_ptr<BoundaryCondition<FdmLinearOp> >(
-            new FdmDirichletBoundary(
-                mesher, forward_ - start, 0,
-                FdmDirichletBoundary::Lower))); // for strike = -\infty call is
-                                                // worth f-k
+        // boundaries.push_back(boost::shared_ptr<BoundaryCondition<FdmLinearOp> >(
+        //     new FdmDirichletBoundary(
+        //         mesher, 0.0, 0, FdmDirichletBoundary::Upper))); // for strike =
+        //                                                         // \infty call
+        //                                                         // is worth zero
+        // boundaries.push_back(boost::shared_ptr<BoundaryCondition<FdmLinearOp> >(
+        //     new FdmDirichletBoundary(
+        //         mesher, forward_ - start, 0,
+        //         FdmDirichletBoundary::Lower))); // for strike = -\infty call is
+        //                                         // worth f-k
         // initial values
         Array rhs(mesher->layout()->size());
         for (FdmLinearOpIterator iter = layout->begin(); iter != layout->end();
@@ -269,7 +270,7 @@ namespace QuantLib {
         for (FdmLinearOpIterator iter = layout->begin(); iter != layout->end();
              ++iter) {
             Real f = mesher->location(iter, 0);
-            Real v = mesher->location(iter, 0);
+            //Real v = mesher->location(iter, 0);
             rhs[iter.index()] = std::max(f - strike, 0.0);
             if (!iter.coordinates()[1])
                 f_.push_back(mesher->location(iter, 0));
