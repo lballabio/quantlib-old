@@ -20,13 +20,18 @@
 #include <ql/termstructures/volatility/zabrsmilesection.hpp>
 #include <ql/pricingengines/blackformula.hpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
     ZabrSmileSection::ZabrSmileSection(Time timeToExpiry, Rate forward,
                                        const std::vector<Real> &zabrParams,
                                        const Evaluation evaluation)
-        : SmileSection(timeToExpiry), evaluation_(evaluation),
-          forward_(forward), params_(zabrParams) {
+        : SmileSection(timeToExpiry, DayCounter(),
+                       evaluation == ShortMaturityLognormal
+                           ? SmileSection::ShiftedLognormal
+                           : SmileSection::Normal),
+          evaluation_(evaluation), forward_(forward), params_(zabrParams) {
 
         init();
     }
@@ -35,8 +40,10 @@ namespace QuantLib {
                                        const std::vector<Real> &zabrParams,
                                        const DayCounter &dc,
                                        const Evaluation evaluation)
-        : SmileSection(d, dc), evaluation_(evaluation), forward_(forward),
-          params_(zabrParams) {
+        : SmileSection(d, dc, Date(), evaluation == ShortMaturityLognormal
+                                          ? SmileSection::ShiftedLognormal
+                                          : SmileSection::Normal),
+          evaluation_(evaluation), forward_(forward), params_(zabrParams) {
 
         init();
     }
