@@ -37,11 +37,16 @@ namespace QuantLib {
     class SmileSection : public virtual Observable,
                          public virtual Observer {
       public:
+        enum Nature { ShiftedLognormal, Normal };
         SmileSection(const Date& d,
                      const DayCounter& dc = DayCounter(),
-                     const Date& referenceDate = Date());
+                     const Date& referenceDate = Date(),
+                     const Nature nature = ShiftedLognormal,
+                     const Rate shift = 0.0);
         SmileSection(Time exerciseTime,
-                     const DayCounter& dc = DayCounter());
+                     const DayCounter& dc = DayCounter(),
+                     const Nature nature = ShiftedLognormal,
+                     const Rate shift = 0.0);
         SmileSection() {}
 
         virtual ~SmileSection() {}
@@ -53,6 +58,8 @@ namespace QuantLib {
         Volatility volatility(Rate strike) const;
         virtual Real atmLevel() const = 0;
         const Date& exerciseDate() const { return exerciseDate_; }
+        const Nature nature() const { return nature_; }
+        const Rate shift() const { return shift_; }
         const Date& referenceDate() const;
         Time exerciseTime() const { return exerciseTime_; }
         const DayCounter& dayCounter() const { return dc_; }
@@ -78,6 +85,8 @@ namespace QuantLib {
         Date exerciseDate_;
         DayCounter dc_;
         mutable Time exerciseTime_;
+        Nature nature_;
+        Rate shift_;
     };
 
 

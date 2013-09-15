@@ -41,8 +41,10 @@ namespace QuantLib {
 
     SmileSection::SmileSection(const Date& d,
                                const DayCounter& dc,
-                               const Date& referenceDate)
-    : exerciseDate_(d), dc_(dc) {
+                               const Date& referenceDate,
+                               const Nature nature,
+                               const Rate shift)
+        : exerciseDate_(d), dc_(dc), nature_(nature), shift_(shift) {
         isFloating_ = referenceDate==Date();
         if (isFloating_) {
             registerWith(Settings::instance().evaluationDate());
@@ -53,9 +55,11 @@ namespace QuantLib {
     }
 
     SmileSection::SmileSection(Time exerciseTime,
-                               const DayCounter& dc)
+                               const DayCounter& dc,
+                               const Nature nature,
+                               const Rate shift)
     : isFloating_(false), referenceDate_(Date()),
-      dc_(dc), exerciseTime_(exerciseTime) {
+      dc_(dc), exerciseTime_(exerciseTime), nature_(nature), shift_(shift) {
         QL_REQUIRE(exerciseTime_>=0.0,
                    "expiry time must be positive: " <<
                    exerciseTime_ << " not allowed");
@@ -67,24 +71,30 @@ namespace QuantLib {
         Real atm = atmLevel();
         QL_REQUIRE(atm != Null<Real>(),
                    "smile section must provide atm level to compute option price");
-        // for zero strike, return option price even if outside
+        // if lognormal or shifted lognormal,
+        // for strike at -shift, return option price even if outside
         // minstrike, maxstrike interval
-        return blackFormula(type,strike,atm, fabs(strike) < QL_EPSILON ?
-                            0.2 : sqrt(variance(strike)),discount);
+        if(nature_ == ShiftedLognormal)
+            return blackFormula(type,strike,atm, fabs(strike+shift_) < QL_EPSILON ?
+                            0.2 : sqrt(variance(strike)),discount,shift_);
+        else 
+            return bachelierBlackFormula(type,strike,atm,sqrt(variance(strike)),discount);
     }
 
     Real SmileSection::digitalOptionPrice(Rate strike,
                                           Option::Type type,
                                           Real discount,
                                           Real gap) const {
-        Real kl = std::max(strike-gap/2.0,0.0);
+        Real m = nature_ == ShiftedLognormal ? -shift_ : -QL_MAX_REAL;
+        Real kl = std::max(strike-gap/2.0,m);
         Real kr = kl+gap;
         return (type==Option::Call ? 1.0 : -1.0) *
             (optionPrice(kl,type,discount)-optionPrice(kr,type,discount)) / gap;
     }
     
     Real SmileSection::density(Rate strike, Real discount, Real gap) const {
-        Real kl = std::max(strike-gap/2.0,0.0);
+        Real m = nature_ == ShiftedLognormal ? -shift_ : -QL_MAX_REAL;
+        Real kl = std::max(strike-gap/2.0,m);
         Real kr = kl+gap;
         return (digitalOptionPrice(kl,Option::Call,discount,gap) -
                 digitalOptionPrice(kr,Option::Call,discount,gap)) / gap;
@@ -94,9 +104,12 @@ namespace QuantLib {
         Real atm = atmLevel();
         QL_REQUIRE(atm != Null<Real>(),
                    "smile section must provide atm level to compute option vega");
-        return blackFormulaVolDerivative(strike,atmLevel(),
-                                         sqrt(variance(strike)),
-                                         exerciseTime(),discount)*0.01;
+        if(nature_ == ShiftedLognormal)
+            return blackFormulaVolDerivative(strike,atmLevel(),
+                                             sqrt(variance(strike)),
+                                             exerciseTime(),discount)*0.01;
+        else
+            QL_FAIL("vega for normal smilesection not yet implemented");
     }
 
 }
