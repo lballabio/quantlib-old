@@ -67,7 +67,8 @@ namespace QuantLib {
       private:
 
         const Real expiryTime_, forward_;
-        const Real alpha_, beta_, nu_, rho_, gamma_;
+        const Real alpha_, beta_, rho_, gamma_;
+        Real nu_; // we need to transform this to match the paper ... TODO clean this up ...
 
         Real x(const Real strike) const;
         Disposable<std::vector<Real> >
