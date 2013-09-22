@@ -14,6 +14,7 @@ SUBDIRS = \
     EquityOption \
     FittedBondCurve \
     FRA \
+	InterestRateSmiles \
 	KahaleSmileSection \
     MarketModels \
 	MultitenorVols \
