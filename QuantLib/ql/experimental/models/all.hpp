@@ -21,5 +21,6 @@
 #include <ql/experimental/models/nonstandardswap.hpp>
 #include <ql/experimental/models/nonstandardswaption.hpp>
 #include <ql/experimental/models/smilesectionutils.hpp>
+#include <ql/experimental/models/splinedensitysmilesection.hpp>
 #include <ql/experimental/models/svismilesection.hpp>
 
