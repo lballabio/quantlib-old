@@ -27,6 +27,7 @@
 #include <ql/termstructures/volatility/smilesection.hpp>
 #include <ql/time/daycounters/actual365fixed.hpp>
 #include <ql/termstructures/volatility/zabr.hpp>
+#include <ql/experimental/models/smilesectionutils.hpp>
 #include <vector>
 
 namespace QuantLib {
@@ -36,15 +37,19 @@ namespace QuantLib {
       public:
         
         enum Evaluation { ShortMaturityLognormal = 0, ShortMaturityNormal = 1,
-                          LocalVolatility = 2};
+                          LocalVolatility = 2, FullFd = 3};
 
         ZabrSmileSection(Time timeToExpiry, Rate forward,
                          const std::vector<Real> &zabrParameters,
-                         const Evaluation evaluation = ShortMaturityLognormal);
+                         const Evaluation evaluation = ShortMaturityLognormal,
+                         const std::vector<Real> &moneyness = std::vector<Real>(),
+                         const Size localVolRefinement = 50);
         ZabrSmileSection(const Date &d, Rate forward,
                          const std::vector<Real> &zabrParameters,
                          const DayCounter &dc = Actual365Fixed(),
-                         const Evaluation evaluation = ShortMaturityLognormal);
+                         const Evaluation evaluation = ShortMaturityLognormal,
+                         const std::vector<Real> &moneyness = std::vector<Real>(),
+                         const Size localVolRefinement = 50);
         Real minStrike() const { return 0.0; } // revisit later ...
         Real maxStrike() const { return QL_MAX_REAL; }
         Real atmLevel() const { return model_->forward(); }
@@ -57,12 +62,15 @@ namespace QuantLib {
         Volatility volatilityImpl(Rate strike) const;
 
       private:
-        void init();
+        void init(const std::vector<Real> &moneyness);
         boost::shared_ptr<ZabrModel> model_;
         Evaluation evaluation_;
         Rate forward_;
         std::vector<Real> params_;
-
+        const Size localVolRefinement_;
+        std::vector<Real> strikes_ , callPrices_;
+        boost::shared_ptr<Interpolation> callPriceFct_;
+        Real a_,b_;
     };
 
 }
