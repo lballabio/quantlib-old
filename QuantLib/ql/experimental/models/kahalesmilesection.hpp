@@ -152,7 +152,7 @@ namespace QuantLib {
         const Real gap_;
         Size leftIndex_,rightIndex_;
         std::vector<boost::shared_ptr<cFunction> > cFunctions_;
-        const bool interpolate_, exponentialExtrapolation_, deleteArbitragePoints_;
+        const bool interpolate_, exponentialExtrapolation_;
         boost::shared_ptr<SmileSectionUtils> ssutils_;
     };
 

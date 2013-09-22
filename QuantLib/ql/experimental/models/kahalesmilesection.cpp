@@ -26,10 +26,9 @@ namespace QuantLib {
                                            const bool deleteArbitragePoints, 
                                            const std::vector<Real>& moneynessGrid, const Real gap) : 
           SmileSection(*source), source_(source), moneynessGrid_(moneynessGrid), gap_(gap),
-          interpolate_(interpolate), exponentialExtrapolation_(exponentialExtrapolation),
-          deleteArbitragePoints_(deleteArbitragePoints) {
+          interpolate_(interpolate), exponentialExtrapolation_(exponentialExtrapolation) {
         
-        ssutils_ = boost::shared_ptr<SmileSectionUtils>(new SmileSectionUtils(*source,moneynessGrid,atm));
+        ssutils_ = boost::shared_ptr<SmileSectionUtils>(new SmileSectionUtils(*source,moneynessGrid,atm,deleteArbitragePoints));
 
         moneynessGrid_ = ssutils_->moneyGrid();
         k_ = ssutils_->strikeGrid();
@@ -45,35 +44,6 @@ namespace QuantLib {
         std::pair<Size,Size> afIdx = ssutils_->arbitragefreeIndices();
         leftIndex_ = afIdx.first;
         rightIndex_ = afIdx.second;
-
-        if(deleteArbitragePoints_) {
-            while(leftIndex_>1 || rightIndex_<k_.size()-1) {
-                
-                ssutils_ = boost::shared_ptr<SmileSectionUtils>(new SmileSectionUtils(*source_,moneynessGrid_,f_));
-                std::pair<Size,Size> afIdx = ssutils_->arbitragefreeIndices();
-
-                leftIndex_ = afIdx.first;
-                rightIndex_ = afIdx.second;
-
-                QL_REQUIRE(rightIndex_>leftIndex_,
-                           "arbitrage free region must at least contain two points (only index is " << leftIndex_ << ")");
-            
-                if(leftIndex_>1) {
-                    moneynessGrid_.erase(moneynessGrid_.begin()+leftIndex_-1);
-                    k_.erase(k_.begin()+leftIndex_-1);
-                    c_.erase(c_.begin()+leftIndex_-1);
-                    leftIndex_--;
-                    rightIndex_--; 
-                }
-
-                if(rightIndex_<k_.size()-1) {
-                    moneynessGrid_.erase(moneynessGrid_.begin()+rightIndex_+1);
-                    k_.erase(k_.begin()+rightIndex_+1);
-                    c_.erase(c_.begin()+rightIndex_+1);
-                    rightIndex_--;
-                }
-            }
-        }
 
         cFunctions_ = std::vector<boost::shared_ptr<cFunction> >(rightIndex_-leftIndex_+2);
 
@@ -221,7 +191,8 @@ namespace QuantLib {
         Real c = cFunctions_[i]->operator()(strike);
         Real vol=0.0;
         try {
-            vol = blackFormulaImpliedStdDev(Option::Call,strike,f_,c) / sqrt(exerciseTime());
+            Option::Type type = strike >= f_ ? Option::Call : Option::Put;
+            vol = blackFormulaImpliedStdDev(type,strike,f_,type == Option::Put ? strike-f_+c : c) / sqrt(exerciseTime());
         } catch(...) { }
         return vol;
     }
