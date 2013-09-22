@@ -19,8 +19,6 @@
 
 #include <ql/experimental/models/smilesectionutils.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
     SmileSectionUtils::SmileSectionUtils(const SmileSection &section,
@@ -142,7 +140,6 @@ namespace QuantLib {
                    "points (only index is "
                    << leftIndex_ << ")");
 
-        std::cout << "af indices are " << leftIndex_ << "..." << rightIndex_ << std::endl;
 
     }
 
