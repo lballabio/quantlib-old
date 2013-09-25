@@ -21,60 +21,65 @@
     \brief cms swaption engine for one factor interest rate models
 */
 
-#ifndef quantlib_pricers_gaussian1d_cmsswaption_hpp
-#define quantlib_pricers_gaussian1d_cmsswaption_hpp
+#ifndef quantlib_pricers_gaussian1d_floatfloatswaption_hpp
+#define quantlib_pricers_gaussian1d_floatfloatswaption_hpp
 
-#include <ql/experimental/models/cmsswaption.hpp>
+#include <ql/experimental/models/floatfloatswaption.hpp>
 #include <ql/pricingengines/genericmodelengine.hpp>
 
 #include <ql/experimental/models/gaussian1dmodel.hpp>
 
 namespace QuantLib {
 
-    //! One factor model cms swaption engine
-    /*! \ingroup swaptionengines
+  //! One factor model float float swaption engine
+  /*! \ingroup swaptionengines
 
-		All float coupons with start date greater or equal to the respective option expiry and all structured 
-        coupons with fixing date greater or equal to the respective option expiry
-		are considered to be part of the exercise into right.
+       All float coupons with start date greater or equal to the respective option
+       expiry
+       are considered to be part of the exercise into right.
 
-		// FIXME relevant floating coupons may have been fixed on or before today, this may cause problems below
+       // FIXME relevant floating coupons may have been fixed on or before today,
+       this may cause problems below
 
-	*/
+       // TODO implement this as a basket generating engine
+ */
 
-    class Gaussian1dCmsSwaptionEngine
-        : public GenericModelEngine<Gaussian1dModel,
-                                    CmsSwaption::arguments,
-                                    CmsSwaption::results > {
+    class Gaussian1dFloatFloatSwaptionEngine : public GenericModelEngine<
+        Gaussian1dModel, FloatFloatSwaption::arguments, FloatFloatSwaption::results> {
       public:
-        Gaussian1dCmsSwaptionEngine(const boost::shared_ptr<Gaussian1dModel>& model,
-                                        const int integrationPoints=64,
-                                        const Real stddevs=7.0,
-                                        const bool extrapolatePayoff=true,
-                                        const bool flatPayoffExtrapolation=false,
-                                        const Handle<YieldTermStructure>& discountCurve = Handle<YieldTermStructure>()) :
-            GenericModelEngine<Gaussian1dModel, CmsSwaption::arguments, CmsSwaption::results>(model),
-            integrationPoints_(integrationPoints) , stddevs_(stddevs), 
-            extrapolatePayoff_(extrapolatePayoff), flatPayoffExtrapolation_(flatPayoffExtrapolation), 
-            model_(model), discountCurve_(discountCurve) {
-             
-            if(!discountCurve_.empty())
+        Gaussian1dFloatFloatSwaptionEngine(
+            const boost::shared_ptr<Gaussian1dModel> &model,
+            const int integrationPoints = 64, const Real stddevs = 7.0,
+            const bool extrapolatePayoff = true,
+            const bool flatPayoffExtrapolation = false,
+            const Handle<Quote> &oas =
+                Handle<Quote>(), // continously compounded w.r.t. yts daycounter
+            const Handle<YieldTermStructure> &discountCurve =
+                Handle<YieldTermStructure>())
+            : GenericModelEngine<Gaussian1dModel, FloatFloatSwaption::arguments,
+                                 FloatFloatSwaption::results>(model),
+              integrationPoints_(integrationPoints), stddevs_(stddevs),
+              extrapolatePayoff_(extrapolatePayoff),
+              flatPayoffExtrapolation_(flatPayoffExtrapolation), model_(model),
+              oas_(oas), discountCurve_(discountCurve) {
+
+            if (!discountCurve_.empty())
                 registerWith(discountCurve_);
 
+            if (!oas_.empty())
+                registerWith(oas_);
         }
 
         void calculate() const;
-      
-	private:
-		const int integrationPoints_;
-		const Real stddevs_;
-		const bool extrapolatePayoff_, flatPayoffExtrapolation_;
-		const boost::shared_ptr<Gaussian1dModel> model_;
+
+      private:
+        const int integrationPoints_;
+        const Real stddevs_;
+        const bool extrapolatePayoff_, flatPayoffExtrapolation_;
+        const boost::shared_ptr<Gaussian1dModel> model_;
+        const Handle<Quote> oas_;
         const Handle<YieldTermStructure> discountCurve_;
     };
-
 }
 
-
 #endif
-
