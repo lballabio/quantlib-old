@@ -44,12 +44,6 @@ namespace QuantLib {
         
         typedef enum CalibrationBasketType { Naive, MaturityStrikeByDeltaGamma } CalibrationBasketType;
 
-        BasketGeneratingEngine(const boost::shared_ptr<Gaussian1dModel>& model,
-                               const Handle<Quote>& oas,
-                               const Handle<YieldTermStructure>& discountCurve) : onefactormodel_(model), oas_(oas),
-                                                                                  discountCurve_(discountCurve) {}
-        virtual ~BasketGeneratingEngine() {}
-
 		Disposable<std::vector<boost::shared_ptr<CalibrationHelper> > > 
         calibrationBasket(const boost::shared_ptr<Exercise>& exercise,
                           boost::shared_ptr<SwapIndex> standardSwapBase,
@@ -57,6 +51,13 @@ namespace QuantLib {
                           const CalibrationBasketType basketType = MaturityStrikeByDeltaGamma ) const;
 
     protected:
+
+        BasketGeneratingEngine(const boost::shared_ptr<Gaussian1dModel>& model,
+                               const Handle<Quote>& oas,
+                               const Handle<YieldTermStructure>& discountCurve) : onefactormodel_(model), oas_(oas),
+                                                                                  discountCurve_(discountCurve) {}
+        virtual ~BasketGeneratingEngine() {}
+
 
         virtual const Real underlyingNpv(const Date& expiry, const Real y) const = 0;
         virtual const VanillaSwap::Type underlyingType() const = 0;
