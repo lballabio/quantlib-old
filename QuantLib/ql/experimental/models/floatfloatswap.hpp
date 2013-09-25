@@ -17,14 +17,17 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file cmsswap.hpp
-    \brief cms vs libor swap
-	If no payment convention is given, the floating leg schedule convention is used
-	The swap index and the ibor index should be linked to valid forwarding and discounting curves
+/*! \file floatfloatswap.hpp
+    \brief swap exchanging capped floored Libor or CMS coupons with quite
+ general specification
+ If no payment convention is given, the respective leg schedule convention is
+ used
+ The interest rate indices should be linked to valid forwarding and in case of
+ swap indices discounting curves
 */
 
-#ifndef quantlib_cms_swap_hpp
-#define quantlib_cms_swap_hpp
+#ifndef quantlib_floatfloat_swap_hpp
+#define quantlib_floatfloat_swap_hpp
 
 #include <ql/instruments/swap.hpp>
 #include <ql/instruments/vanillaswap.hpp>
@@ -34,182 +37,204 @@
 
 namespace QuantLib {
 
-    class IborIndex;
-	class SwapIndex;
+    class InterestRateIndex;
 
-    //! cms swap: cms vs libor leg
+    //! float float swap
 
-    class CmsSwap : public Swap {
+    class FloatFloatSwap : public Swap {
       public:
         class arguments;
         class results;
         class engine;
-        CmsSwap(
-            const VanillaSwap::Type type,
-            const Real nominal,
-            const Schedule& structuredSchedule,
-			const boost::shared_ptr<SwapIndex>& swapIndex,
-            const Spread structuredSpread,
-			const Rate cappedRate,
-			const Rate flooredRate,
-            const DayCounter& structuredDayCount,
-            const Schedule& floatSchedule,
-            const boost::shared_ptr<IborIndex>& iborIndex,
-            const Spread spread,
-            const DayCounter& floatingDayCount,
-            boost::optional<BusinessDayConvention> paymentConvention =
-                                                                 boost::none);
+        FloatFloatSwap(
+            const VanillaSwap::Type type, const std::vector<Real> &nominal1,
+            const std::vector<Real> &nominal2, const Schedule &schedule1,
+            const boost::shared_ptr<InterestRateIndex> &index1,
+            const DayCounter &dayCount1, const Schedule &schedule2,
+            const boost::shared_ptr<InterestRateIndex> &index2,
+            const DayCounter &dayCount2,
+            const bool intermediateCapitalExchange = false,
+            const bool finalCapitalExchange = false,
+            const std::vector<Real> &gearing1 = std::vector<Real>(),
+            const std::vector<Real> &spread1 = std::vector<Real>(),
+            const std::vector<Real> &cappedRate1 = std::vector<Real>(),
+            const std::vector<Real> &flooredRate1 = std::vector<Real>(),
+            const std::vector<Real> &gearing2 = std::vector<Real>(),
+            const std::vector<Real> &spread2 = std::vector<Real>(),
+            const std::vector<Real> &cappedRate2 = std::vector<Real>(),
+            const std::vector<Real> &flooredRate2 = std::vector<Real>(),
+            boost::optional<BusinessDayConvention> paymentConvention1 =
+                boost::none,
+            boost::optional<BusinessDayConvention> paymentConvention2 =
+                boost::none);
         //! \name Inspectors
         //@{
         VanillaSwap::Type type() const;
-        Real nominal() const;
+        const std::vector<Real> &nominal1() const;
+        const std::vector<Real> &nominal2() const;
 
-        const Schedule& structuredSchedule() const;
-        Spread structuredSpread() const;
-		const boost::shared_ptr<SwapIndex>& swapIndex() const;
-        const DayCounter& structuredDayCount() const;
-		Rate cappedRate() const;
-		Rate flooredRate() const;
+        const Schedule &schedule1() const;
+        const Schedule &schedule2() const;
 
-        const Schedule& floatingSchedule() const;
-        const boost::shared_ptr<IborIndex>& iborIndex() const;
-        Spread spread() const;
-        const DayCounter& floatingDayCount() const;
+        const boost::shared_ptr<InterestRateIndex> &index1() const;
+        const boost::shared_ptr<InterestRateIndex> &index2() const;
 
-        BusinessDayConvention paymentConvention() const;
+        const std::vector<Real> spread1() const;
+        const std::vector<Real> spread2() const;
 
-        const Leg& structuredLeg() const;
-        const Leg& floatingLeg() const;
+        const std::vector<Real> gearing1() const;
+        const std::vector<Real> gearing2() const;
+
+        const std::vector<Rate> cappedRate1() const;
+        const std::vector<Rate> flooredRate1() const;
+        const std::vector<Rate> cappedRate2() const;
+        const std::vector<Rate> flooredRate2() const;
+
+        const DayCounter &dayCount1() const;
+        const DayCounter &dayCount2() const;
+
+        BusinessDayConvention paymentConvention1() const;
+        BusinessDayConvention paymentConvention2() const;
+
+        const Leg &leg1() const;
+        const Leg &leg2() const;
         //@}
 
         //! \name Results
         //@{
-		const Spread fairStructuredSpread() const;
         //@}
         // other
-        void setupArguments(PricingEngine::arguments* args) const;
-        void fetchResults(const PricingEngine::results*) const;
+        void setupArguments(PricingEngine::arguments *args) const;
+        void fetchResults(const PricingEngine::results *) const;
+
       private:
         void setupExpired() const;
         VanillaSwap::Type type_;
-        Real nominal_;
-        Schedule structuredSchedule_;
-		boost::shared_ptr<SwapIndex> swapIndex_;
-        Spread structuredSpread_;
-		Rate cappedRate_, flooredRate_;
-        DayCounter structuredDayCount_;
-        Schedule floatingSchedule_;
-        boost::shared_ptr<IborIndex> iborIndex_;
-        Spread spread_;
-        DayCounter floatingDayCount_;
-        BusinessDayConvention paymentConvention_;
-        // results
-		mutable Spread fairStructuredSpread_;
+        std::vector<Real> nominal1_, nominal2_;
+        Schedule schedule1_, schedule2_;
+        boost::shared_ptr<InterestRateIndex> index1_, index2_;
+        std::vector<Real> gearing1_, gearing2_, spread1_, spread2_;
+        std::vector<Real> cappedRate1_, flooredRate1_, cappedRate2_,
+            flooredRate2_;
+        DayCounter dayCount1_, dayCount2_;
+        std::vector<bool> isRedemptionFlow1_, isRedemptionFlow2_;
+        BusinessDayConvention paymentConvention1_, paymentConvention2_;
+        const bool intermediateCapitalExchange_, finalCapitalExchange_;
     };
 
-
-    //! %Arguments for cms swap calculation
-    class CmsSwap::arguments : public Swap::arguments {
+    //! %Arguments for float float swap calculation
+    class FloatFloatSwap::arguments : public Swap::arguments {
       public:
-        arguments() : type(VanillaSwap::Receiver),
-                      nominal(Null<Real>()) {}
+        arguments() : type(VanillaSwap::Receiver) {}
         VanillaSwap::Type type;
-        Real nominal;
+        std::vector<Real> nominal1, nominal2;
 
-		std::vector<Time> structuredAccrualTimes;
-        std::vector<Date> structuredResetDates;
-        std::vector<Date> structuredFixingDates;
-        std::vector<Date> structuredPayDates;
+        std::vector<Date> leg1ResetDates, leg1FixingDates, leg1PayDates;
+        std::vector<Date> leg2ResetDates, leg2FixingDates, leg2PayDates;
 
-		std::vector<Time> floatingAccrualTimes;
-        std::vector<Date> floatingResetDates;
-        std::vector<Date> floatingFixingDates;
-        std::vector<Date> floatingPayDates;
+        std::vector<Real> leg1Spreads, leg2Spreads, leg1Gearings, leg2Gearings;
+        std::vector<Real> leg1CappedRates, leg1FlooredRates, leg2CappedRates, leg2FlooredRates;
 
-        std::vector<Spread> structuredSpreads;
-		std::vector<Rate> structuredCappedRates;
-		std::vector<Rate> structuredFlooredRates;
+        std::vector<Real> leg1Coupons, leg2Coupons;
+        std::vector<Real> leg1AccrualTimes, leg2AccrualTimes;
 
-        std::vector<Spread> floatingSpreads;
+        boost::shared_ptr<InterestRateIndex> index1, index2;
+
+        std::vector<bool> leg1IsRedemptionFlow, leg2IsRedemptionFlow;
+
         void validate() const;
     };
 
-    //! %Results from cms swap calculation
-    class CmsSwap::results : public Swap::results {
+    //! %Results from float float swap calculation
+    class FloatFloatSwap::results : public Swap::results {
       public:
-		Spread fairStructuredSpread;
         void reset();
     };
 
-    class CmsSwap::engine : public GenericEngine<CmsSwap::arguments,
-                                                     CmsSwap::results> {};
+    class FloatFloatSwap::engine : public GenericEngine<
+        FloatFloatSwap::arguments, FloatFloatSwap::results> {};
 
     // inline definitions
 
-    inline VanillaSwap::Type CmsSwap::type() const {
-        return type_;
+    inline VanillaSwap::Type FloatFloatSwap::type() const { return type_; }
+
+    inline const std::vector<Real> &FloatFloatSwap::nominal1() const {
+        return nominal1_;
     }
 
-    inline Real CmsSwap::nominal() const {
-        return nominal_;
+    inline const std::vector<Real> &FloatFloatSwap::nominal2() const {
+        return nominal2_;
     }
 
-    inline const Schedule& CmsSwap::structuredSchedule() const {
-        return structuredSchedule_;
+    inline const Schedule &FloatFloatSwap::schedule1() const {
+        return schedule1_;
     }
 
-	inline const boost::shared_ptr<SwapIndex>& CmsSwap::swapIndex() const {
-		return swapIndex_;
-	}
-
-    inline Spread CmsSwap::structuredSpread() const {
-        return structuredSpread_;
+    inline const Schedule &FloatFloatSwap::schedule2() const {
+        return schedule2_;
     }
 
-	inline Rate CmsSwap::cappedRate() const {
-        return cappedRate_;
-    }
-    
-	inline Rate CmsSwap::flooredRate() const {
-        return flooredRate_;
+    inline const boost::shared_ptr<InterestRateIndex> &
+    FloatFloatSwap::index1() const {
+        return index1_;
     }
 
-    inline const DayCounter& CmsSwap::structuredDayCount() const {
-        return structuredDayCount_;
+    inline const boost::shared_ptr<InterestRateIndex> &
+    FloatFloatSwap::index2() const {
+        return index2_;
     }
 
-    inline const Schedule& CmsSwap::floatingSchedule() const {
-        return floatingSchedule_;
+    inline const std::vector<Real> FloatFloatSwap::spread1() const {
+        return spread1_;
     }
 
-    inline const boost::shared_ptr<IborIndex>& CmsSwap::iborIndex() const {
-        return iborIndex_;
+    inline const std::vector<Real> FloatFloatSwap::spread2() const {
+        return spread2_;
     }
 
-    inline Spread CmsSwap::spread() const {
-        return spread_;
+    inline const std::vector<Real> FloatFloatSwap::gearing1() const {
+        return gearing1_;
     }
 
-    inline const DayCounter& CmsSwap::floatingDayCount() const {
-        return floatingDayCount_;
+    inline const std::vector<Real> FloatFloatSwap::gearing2() const {
+        return gearing2_;
     }
 
-    inline BusinessDayConvention CmsSwap::paymentConvention() const {
-        return paymentConvention_;
+    inline const std::vector<Real> FloatFloatSwap::cappedRate1() const {
+        return cappedRate1_;
     }
 
-    inline const Leg& CmsSwap::structuredLeg() const {
-        return legs_[0];
+    inline const std::vector<Real> FloatFloatSwap::cappedRate2() const {
+        return cappedRate2_;
     }
 
-    inline const Leg& CmsSwap::floatingLeg() const {
-        return legs_[1];
+    inline const std::vector<Real> FloatFloatSwap::flooredRate1() const {
+        return flooredRate1_;
     }
 
-	inline const Real CmsSwap::fairStructuredSpread() const {
-		return fairStructuredSpread_;
-	}
+    inline const std::vector<Real> FloatFloatSwap::flooredRate2() const {
+        return flooredRate2_;
+    }
 
+    inline const DayCounter &FloatFloatSwap::dayCount1() const {
+        return dayCount1_;
+    }
+
+    inline const DayCounter &FloatFloatSwap::dayCount2() const {
+        return dayCount2_;
+    }
+
+    inline BusinessDayConvention FloatFloatSwap::paymentConvention1() const {
+        return paymentConvention1_;
+    }
+
+    inline BusinessDayConvention FloatFloatSwap::paymentConvention2() const {
+        return paymentConvention2_;
+    }
+
+    inline const Leg &FloatFloatSwap::leg1() const { return legs_[0]; }
+
+    inline const Leg &FloatFloatSwap::leg2() const { return legs_[1]; }
 }
 
 #endif

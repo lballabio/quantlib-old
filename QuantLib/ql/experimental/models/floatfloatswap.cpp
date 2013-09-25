@@ -17,61 +17,257 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/cmsswap.hpp>
+#include <ql/experimental/models/floatfloatswap.hpp>
 #include <ql/cashflows/iborcoupon.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
 #include <ql/cashflows/cashflows.hpp>
 #include <ql/cashflows/couponpricer.hpp>
+#include <ql/cashflows/simplecashflow.hpp>
 #include <ql/indexes/iborindex.hpp>
 #include <ql/indexes/swapindex.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
-    CmsSwap::CmsSwap(
-            const VanillaSwap::Type type,
-            const Real nominal,
-            const Schedule& structuredSchedule,
-			const boost::shared_ptr<SwapIndex>& swapIndex,
-            const Spread structuredSpread,
-			const Rate cappedRate,
-			const Rate flooredRate,
-            const DayCounter& structuredDayCount,
-            const Schedule& floatSchedule,
-            const boost::shared_ptr<IborIndex>& iborIndex,
-            const Spread spread,
-            const DayCounter& floatingDayCount,
-            const boost::optional<BusinessDayConvention> paymentConvention)
+    FloatFloatSwap::FloatFloatSwap(
+        const VanillaSwap::Type type, const std::vector<Real> &nominal1,
+        const std::vector<Real> &nominal2, const Schedule &schedule1,
+        const boost::shared_ptr<InterestRateIndex> &index1,
+        const DayCounter &dayCount1, const Schedule &schedule2,
+        const boost::shared_ptr<InterestRateIndex> &index2,
+        const DayCounter &dayCount2, const bool intermediateCapitalExchange,
+        const bool finalCapitalExchange, const std::vector<Real> &gearing1,
+        const std::vector<Real> &spread1, const std::vector<Real> &cappedRate1,
+        const std::vector<Real> &flooredRate1,
+        const std::vector<Real> &gearing2, const std::vector<Real> &spread2,
+        const std::vector<Real> &cappedRate2,
+        const std::vector<Real> &flooredRate2,
+        boost::optional<BusinessDayConvention> paymentConvention1,
+        boost::optional<BusinessDayConvention> paymentConvention2)
+        : Swap(2), type_(type), nominal1_(nominal1), nominal2_(nominal2),
+          schedule1_(schedule1), schedule2_(schedule2), index1_(index1),
+          index2_(index2), gearing1_(gearing1), gearing2_(gearing2),
+          spread1_(spread1), spread2_(spread2), cappedRate1_(cappedRate1),
+          flooredRate1_(flooredRate1), cappedRate2_(cappedRate2),
+          flooredRate2_(flooredRate2), dayCount1_(dayCount1),
+          dayCount2_(dayCount2),
+          intermediateCapitalExchange_(intermediateCapitalExchange),
+          finalCapitalExchange_(finalCapitalExchange) {
 
-    : Swap(2), type_(type), nominal_(nominal),
-      structuredSchedule_(structuredSchedule), swapIndex_(swapIndex), structuredSpread_(structuredSpread),
-	  cappedRate_(cappedRate), flooredRate_(flooredRate),
-      structuredDayCount_(structuredDayCount),
-      floatingSchedule_(floatSchedule), iborIndex_(iborIndex), spread_(spread),
-      floatingDayCount_(floatingDayCount) {
+        QL_REQUIRE(nominal1.size() == schedule1.size() - 1,
+                   "nominal1 size (" << nominal1.size()
+                                     << ") does not match schedule1 size ("
+                                     << schedule1.size() << ")");
+        QL_REQUIRE(nominal1.size() == schedule2.size() - 1,
+                   "nominal2 size (" << nominal2.size()
+                                     << ") does not match schedule2 size ("
+                                     << nominal2.size() << ")");
+        QL_REQUIRE(gearing1.size() == 0 || gearing1.size() == nominal1.size(),
+                   "nominal1 size (" << nominal1.size()
+                                     << ") does not match gearing1 size ("
+                                     << gearing1.size() << ")");
+        QL_REQUIRE(gearing2.size() == 0 || gearing2.size() == nominal2.size(),
+                   "nominal2 size (" << nominal2.size()
+                                     << ") does not match gearing2 size ("
+                                     << gearing2.size() << ")");
+        QL_REQUIRE(
+            cappedRate1.size() == 0 || cappedRate1.size() == nominal1.size(),
+            "nominal1 size (" << nominal1.size()
+                              << ") does not match cappedRate1 size ("
+                              << cappedRate1.size() << ")");
+        QL_REQUIRE(
+            cappedRate2.size() == 0 || cappedRate2.size() == nominal2.size(),
+            "nominal2 size (" << nominal2.size()
+                              << ") does not match cappedRate2 size ("
+                              << cappedRate2.size() << ")");
+        QL_REQUIRE(
+            flooredRate1.size() == 0 || flooredRate1.size() == nominal1.size(),
+            "nominal1 size (" << nominal1.size()
+                              << ") does not match flooredRate1 size ("
+                              << flooredRate1.size() << ")");
+        QL_REQUIRE(
+            flooredRate2.size() == 0 || flooredRate2.size() == nominal2.size(),
+            "nominal2 size (" << nominal2.size()
+                              << ") does not match flooredRate2 size ("
+                              << flooredRate2.size() << ")");
 
-        if (paymentConvention)
-            paymentConvention_ = *paymentConvention;
+        if (paymentConvention1)
+            paymentConvention1_ = *paymentConvention1;
         else
-            paymentConvention_ = floatingSchedule_.businessDayConvention();
+            paymentConvention1_ = schedule1_.businessDayConvention();
 
-		CmsLeg cmsLeg = CmsLeg(structuredSchedule_, swapIndex_)
-            .withPaymentDayCounter(structuredDayCount)
-            .withNotionals(nominal_)
-            .withPaymentAdjustment(paymentConvention_);
-        if(spread_ != Null<Real>()) cmsLeg = cmsLeg.withSpreads(structuredSpread_);
- 		if(cappedRate_ != Null<Real>()) cmsLeg = cmsLeg.withCaps(cappedRate_);
-		if(flooredRate_ != Null<Real>()) cmsLeg = cmsLeg.withFloors(flooredRate_);
-        legs_[0] = cmsLeg;
+        if (paymentConvention2)
+            paymentConvention2_ = *paymentConvention2;
+        else
+            paymentConvention2_ = schedule2_.businessDayConvention();
 
-		IborLeg iborLeg = IborLeg(floatingSchedule_,iborIndex_)
-            .withNotionals(nominal_)
-            .withPaymentDayCounter(floatingDayCount_)
-            .withPaymentAdjustment(paymentConvention_);
-		if(spread_ != Null<Real>()) iborLeg = iborLeg.withSpreads(spread_);
-		legs_[1] = iborLeg;
+        if (gearing1_.size() == 0)
+            gearing1_ = std::vector<Real>(nominal1.size(), 1.0);
+        if (gearing2_.size() == 0)
+            gearing2_ = std::vector<Real>(nominal2.size(), 1.0);
+        if (spread1_.size() == 0)
+            spread1_ = std::vector<Real>(nominal1.size(), 0.0);
+        if (spread2_.size() == 0)
+            spread2_ = std::vector<Real>(nominal2.size(), 0.0);
+        if (cappedRate1_.size() == 0)
+            cappedRate1_ = std::vector<Real>(nominal1.size(), Null<Real>());
+        if (cappedRate2_.size() == 0)
+            cappedRate2_ = std::vector<Real>(nominal2.size(), Null<Real>());
+        if (flooredRate1_.size() == 0)
+            flooredRate1_ = std::vector<Real>(nominal1.size(), Null<Real>());
+        if (flooredRate2_.size() == 0)
+            flooredRate2_ = std::vector<Real>(nominal2.size(), Null<Real>());
+
+        bool isNull;
+        isNull = cappedRate1_[0] == Null<Real>();
+        for (Size i = 0; i < cappedRate1_.size(); i++) {
+            if (isNull)
+                QL_REQUIRE(cappedRate1_[i] == Null<Real>(),
+                           "cappedRate1 must be null for all or none entry ("
+                               << (i + 1) << "th is " << cappedRate1_[i]
+                               << ")");
+            else
+                QL_REQUIRE(cappedRate1_[i] != Null<Real>(),
+                           "cappedRate 1 must be null for all or none entry ("
+                               << "1st is " << cappedRate1_[0] << ")");
+        }
+        isNull = cappedRate2_[0] == Null<Real>();
+        for (Size i = 0; i < cappedRate2_.size(); i++) {
+            if (isNull)
+                QL_REQUIRE(cappedRate2_[i] == Null<Real>(),
+                           "cappedRate2 must be null for all or none entry ("
+                               << (i + 1) << "th is " << cappedRate2_[i]
+                               << ")");
+            else
+                QL_REQUIRE(cappedRate2_[i] != Null<Real>(),
+                           "cappedRate2 must be null for all or none entry ("
+                               << "1st is " << cappedRate2_[0] << ")");
+        }
+        isNull = flooredRate1_[0] == Null<Real>();
+        for (Size i = 0; i < flooredRate1_.size(); i++) {
+            if (isNull)
+                QL_REQUIRE(flooredRate1_[i] == Null<Real>(),
+                           "flooredRate1 must be null for all or none entry ("
+                               << (i + 1) << "th is " << flooredRate1_[i]
+                               << ")");
+            else
+                QL_REQUIRE(flooredRate1_[i] != Null<Real>(),
+                           "flooredRate 1 must be null for all or none entry ("
+                               << "1st is " << flooredRate1_[0] << ")");
+        }
+        isNull = flooredRate2_[0] == Null<Real>();
+        for (Size i = 0; i < flooredRate2_.size(); i++) {
+            if (isNull)
+                QL_REQUIRE(flooredRate2_[i] == Null<Real>(),
+                           "flooredRate2 must be null for all or none entry ("
+                               << (i + 1) << "th is " << flooredRate2_[i]
+                               << ")");
+            else
+                QL_REQUIRE(flooredRate2_[i] != Null<Real>(),
+                           "flooredRate2 must be null for all or none entry ("
+                               << "1st is " << flooredRate2_[0] << ")");
+        }
+
+        boost::shared_ptr<IborIndex> ibor1 =
+            boost::dynamic_pointer_cast<IborIndex>(index1);
+        boost::shared_ptr<IborIndex> ibor2 =
+            boost::dynamic_pointer_cast<IborIndex>(index2);
+        boost::shared_ptr<SwapIndex> cms1 =
+            boost::dynamic_pointer_cast<SwapIndex>(index1);
+        boost::shared_ptr<SwapIndex> cms2 =
+            boost::dynamic_pointer_cast<SwapIndex>(index2);
+
+        if (ibor1) {
+            IborLeg leg(schedule1_, ibor1);
+            leg = leg.withNotionals(nominal1_).withPaymentDayCounter(dayCount1_)
+                .withPaymentAdjustment(paymentConvention1_)
+                .withSpreads(spread1_).withGearings(gearing1);
+            if (cappedRate1[0] != Null<Real>())
+                leg = leg.withCaps(cappedRate1);
+            if (flooredRate1[0] != Null<Real>())
+                leg = leg.withFloors(flooredRate1);
+            legs_[0] = leg;
+        }
+
+        if (ibor2) {
+            IborLeg leg(schedule2_, ibor2);
+            leg = leg.withNotionals(nominal2_).withPaymentDayCounter(dayCount2_)
+                .withPaymentAdjustment(paymentConvention2_)
+                .withSpreads(spread2_).withGearings(gearing1);
+            if (cappedRate2[0] != Null<Real>())
+                leg = leg.withCaps(cappedRate2);
+            if (flooredRate2[0] != Null<Real>())
+                leg = leg.withFloors(flooredRate2);
+            legs_[1] = leg;
+        }
+
+        if (cms1) {
+            CmsLeg leg(schedule1_, cms1);
+            leg = leg.withNotionals(nominal1_).withPaymentDayCounter(dayCount1_)
+                .withPaymentAdjustment(paymentConvention1_)
+                .withSpreads(spread1_).withGearings(gearing1);
+            if (cappedRate1[0] != Null<Real>())
+                leg = leg.withCaps(cappedRate1);
+            if (flooredRate1[0] != Null<Real>())
+                leg = leg.withFloors(flooredRate1);
+            legs_[0] = leg;
+        }
+
+        if (cms2) {
+            CmsLeg leg(schedule2_, cms2);
+            leg = leg.withNotionals(nominal2_).withPaymentDayCounter(dayCount2_)
+                .withPaymentAdjustment(paymentConvention2_)
+                .withSpreads(spread2_).withGearings(gearing2);
+            if (cappedRate2[0] != Null<Real>())
+                leg = leg.withCaps(cappedRate1);
+            if (flooredRate2[0] != Null<Real>())
+                leg = leg.withFloors(flooredRate1);
+            legs_[1] = leg;
+        }
+
+        if (intermediateCapitalExchange_) {
+            for (Size i = 0; i < legs_[0].size() - 1; i++) {
+                Real cap = nominal1_[i + 1] - nominal1_[i];
+                if (!close(cap, 0.0)) {
+                    std::vector<boost::shared_ptr<CashFlow> >::iterator it1 =
+                        legs_[0].begin();
+                    std::advance(it1, i + 1);
+                    legs_[0].insert(
+                        it1, boost::shared_ptr<CashFlow>(
+                                 new Redemption(cap, legs_[0][i]->date())));
+                    std::vector<Real>::iterator it2 = nominal1_.begin();
+                    std::advance(it2, i + 1);
+                    nominal1_.insert(it2, nominal1_[i]);
+                    i++;
+                }
+            }
+            for (Size i = 0; i < legs_[1].size() - 1; i++) {
+                Real cap = nominal2_[i + 1] - nominal2_[i];
+                if (!close(cap, 0.0)) {
+                    std::vector<boost::shared_ptr<CashFlow> >::iterator it1 =
+                        legs_[1].begin();
+                    std::advance(it1, i + 1);
+                    legs_[1].insert(
+                        it1, boost::shared_ptr<CashFlow>(
+                                 new Redemption(cap, legs_[1][i]->date())));
+                    std::vector<Real>::iterator it2 = nominal2_.begin();
+                    std::advance(it2, i + 1);
+                    nominal2_.insert(it2, nominal2_[i]);
+                    i++;
+                }
+            }
+        }
+
+        if (finalCapitalExchange_) {
+            legs_[0].push_back(boost::shared_ptr<CashFlow>(
+                new Redemption(nominal1_.back(), legs_[0].back()->date())));
+            nominal1_.push_back(nominal1_.back());
+            legs_[1].push_back(boost::shared_ptr<CashFlow>(
+                new Redemption(nominal2_.back(), legs_[1].back()->date())));
+            nominal2_.push_back(nominal2_.back());
+        }
 
         for (Leg::const_iterator i = legs_[0].begin(); i < legs_[0].end(); ++i)
             registerWith(*i);
@@ -88,125 +284,200 @@ namespace QuantLib {
             payer_[0] = +1.0;
             payer_[1] = -1.0;
             break;
-          default:
-            QL_FAIL("Unknown cms-swap type");
+        default:
+            QL_FAIL("Unknown float float - swap type");
         }
     }
 
-    void CmsSwap::setupArguments(PricingEngine::arguments* args) const {
+    void FloatFloatSwap::setupArguments(PricingEngine::arguments *args) const {
 
         Swap::setupArguments(args);
 
-        CmsSwap::arguments* arguments =
-            dynamic_cast<CmsSwap::arguments*>(args);
+        FloatFloatSwap::arguments *arguments =
+            dynamic_cast<FloatFloatSwap::arguments *>(args);
 
-		QL_REQUIRE(arguments != 0, "argument type does not match");
+        QL_REQUIRE(arguments != 0, "argument type does not match");
 
         arguments->type = type_;
-        arguments->nominal = nominal_;
+        arguments->nominal1 = nominal1_;
+        arguments->nominal2 = nominal2_;
+        arguments->index1 = index1_;
+        arguments->index2 = index2_;
 
-        const Leg& structuredCoupons = structuredLeg();
+        const Leg &leg1Coupons = leg1();
+        const Leg &leg2Coupons = leg2();
 
-        arguments->structuredResetDates = arguments->structuredPayDates = arguments->structuredFixingDates = std::vector<Date>(structuredCoupons.size());
-		arguments->structuredAccrualTimes = std::vector<Time>(structuredCoupons.size());
-		arguments->structuredSpreads = std::vector<Spread>(structuredCoupons.size());
-		arguments->structuredCappedRates = arguments->structuredFlooredRates = std::vector<Rate>(structuredCoupons.size(),Null<Real>());
+        arguments->leg1ResetDates = arguments->leg1PayDates =
+            arguments->leg1FixingDates = std::vector<Date>(leg1Coupons.size());
+        arguments->leg2ResetDates = arguments->leg2PayDates =
+            arguments->leg2FixingDates = std::vector<Date>(leg2Coupons.size());
 
-        for (Size i=0; i<structuredCoupons.size(); ++i) {
-            boost::shared_ptr<CmsCoupon> coupon = boost::dynamic_pointer_cast<CmsCoupon>(structuredCoupons[i]);
-			if(coupon) {
-				arguments->structuredAccrualTimes[i] = coupon->accrualPeriod();
-				arguments->structuredPayDates[i] = coupon->date();
-				arguments->structuredResetDates[i] = coupon->accrualStartDate();
-				arguments->structuredFixingDates[i] = coupon->fixingDate();
-				arguments->structuredSpreads[i] = coupon->spread();
-			}
-			boost::shared_ptr<CappedFlooredCmsCoupon> cfcoupon = boost::dynamic_pointer_cast<CappedFlooredCmsCoupon>(structuredCoupons[i]);
-			if(cfcoupon) {
-				arguments->structuredAccrualTimes[i] = cfcoupon->accrualPeriod();
-				arguments->structuredPayDates[i] = cfcoupon->date();
-				arguments->structuredResetDates[i] = cfcoupon->accrualStartDate();
-				arguments->structuredFixingDates[i] = cfcoupon->fixingDate();
-				arguments->structuredSpreads[i] = cfcoupon->spread();
-				arguments->structuredCappedRates[i] = cfcoupon->cap();
-				arguments->structuredFlooredRates[i] = cfcoupon->floor();
-			}
+        arguments->leg1Spreads = arguments->leg1AccrualTimes =
+            arguments->leg1Gearings = std::vector<Real>(leg1Coupons.size());
+        arguments->leg2Spreads = arguments->leg2AccrualTimes =
+            arguments->leg2Gearings = std::vector<Real>(leg2Coupons.size());
+
+        arguments->leg1Coupons =
+            std::vector<Real>(leg1Coupons.size(), Null<Real>());
+        arguments->leg2Coupons =
+            std::vector<Real>(leg2Coupons.size(), Null<Real>());
+
+        arguments->leg1IsRedemptionFlow =
+            std::vector<bool>(leg1Coupons.size(), false);
+        arguments->leg2IsRedemptionFlow =
+            std::vector<bool>(leg2Coupons.size(), false);
+
+        arguments->leg1CappedRates = arguments->leg1FlooredRates =
+            std::vector<Real>(leg1Coupons.size(), Null<Real>());
+        arguments->leg2CappedRates = arguments->leg2FlooredRates =
+            std::vector<Real>(leg2Coupons.size(), Null<Real>());
+
+        for (Size i = 0; i < leg1Coupons.size(); ++i) {
+            boost::shared_ptr<FloatingRateCoupon> coupon =
+                boost::dynamic_pointer_cast<FloatingRateCoupon>(leg1Coupons[i]);
+            if (coupon) {
+                arguments->leg1AccrualTimes[i] = coupon->accrualPeriod();
+                arguments->leg1PayDates[i] = coupon->date();
+                arguments->leg1ResetDates[i] = coupon->accrualStartDate();
+                arguments->leg1FixingDates[i] = coupon->fixingDate();
+                arguments->leg1Spreads[i] = coupon->spread();
+                try {
+                    arguments->leg1Coupons[i] = coupon->amount();
+                }
+                catch (Error &) {
+                    arguments->leg1Coupons[i] = Null<Real>();
+                }
+                boost::shared_ptr<CappedFlooredCoupon> cfcoupon =
+                    boost::dynamic_pointer_cast<CappedFlooredCoupon>(
+                        leg1Coupons[i]);
+                if (cfcoupon) {
+                    arguments->leg1CappedRates[i] = cfcoupon->cap();
+                    arguments->leg1FlooredRates[i] = cfcoupon->floor();
+                }
+            } else {
+                boost::shared_ptr<CashFlow> cashflow =
+                    boost::dynamic_pointer_cast<CashFlow>(leg1Coupons[i]);
+                std::vector<Date>::const_iterator j =
+                    std::find(arguments->leg1PayDates.begin(),
+                              arguments->leg1PayDates.end(), cashflow->date());
+                QL_REQUIRE(j != arguments->leg1PayDates.end(),
+                           "nominal redemption on "
+                               << cashflow->date()
+                               << "has no corresponding coupon");
+                Size jIdx = j - arguments->leg1PayDates.begin();
+                arguments->leg1IsRedemptionFlow[i] = true;
+                arguments->leg1Coupons[i] = cashflow->amount();
+                arguments->leg1ResetDates[i] = arguments->leg1ResetDates[jIdx];
+                arguments->leg1FixingDates[i] =
+                    arguments->leg1FixingDates[jIdx];
+                arguments->leg1AccrualTimes[i] = 0.0;
+                arguments->leg1Spreads[i] = 0.0;
+                arguments->leg1Gearings[i] = 1.0;
+                arguments->leg1PayDates[i] = cashflow->date();
+            }
         }
 
-        const Leg& floatingCoupons = floatingLeg();
-
-        arguments->floatingResetDates = arguments->floatingPayDates = arguments->floatingFixingDates = std::vector<Date>(floatingCoupons.size());
-        arguments->floatingAccrualTimes = std::vector<Time>(floatingCoupons.size());
-        arguments->floatingSpreads = std::vector<Spread>(floatingCoupons.size());
-
-		for (Size i=0; i<floatingCoupons.size(); ++i) {
-            boost::shared_ptr<IborCoupon> coupon = boost::dynamic_pointer_cast<IborCoupon>(floatingCoupons[i]);
-            arguments->floatingResetDates[i] = coupon->accrualStartDate();
-            arguments->floatingPayDates[i] = coupon->date();
-            arguments->floatingFixingDates[i] = coupon->fixingDate();
-            arguments->floatingAccrualTimes[i] = coupon->accrualPeriod();
-            arguments->floatingSpreads[i] = coupon->spread();
-
+        for (Size i = 0; i < leg2Coupons.size(); ++i) {
+            boost::shared_ptr<FloatingRateCoupon> coupon =
+                boost::dynamic_pointer_cast<FloatingRateCoupon>(leg2Coupons[i]);
+            if (coupon) {
+                arguments->leg2AccrualTimes[i] = coupon->accrualPeriod();
+                arguments->leg2PayDates[i] = coupon->date();
+                arguments->leg2ResetDates[i] = coupon->accrualStartDate();
+                arguments->leg2FixingDates[i] = coupon->fixingDate();
+                arguments->leg2Spreads[i] = coupon->spread();
+                try {
+                    arguments->leg2Coupons[i] = coupon->amount();
+                }
+                catch (Error &) {
+                    arguments->leg2Coupons[i] = Null<Real>();
+                }
+                boost::shared_ptr<CappedFlooredCoupon> cfcoupon =
+                    boost::dynamic_pointer_cast<CappedFlooredCoupon>(
+                        leg2Coupons[i]);
+                if (cfcoupon) {
+                    arguments->leg2CappedRates[i] = cfcoupon->cap();
+                    arguments->leg2FlooredRates[i] = cfcoupon->floor();
+                }
+            } else {
+                boost::shared_ptr<CashFlow> cashflow =
+                    boost::dynamic_pointer_cast<CashFlow>(leg2Coupons[i]);
+                std::vector<Date>::const_iterator j =
+                    std::find(arguments->leg2PayDates.begin(),
+                              arguments->leg2PayDates.end(), cashflow->date());
+                QL_REQUIRE(j != arguments->leg2PayDates.end(),
+                           "nominal redemption on "
+                               << cashflow->date()
+                               << "has no corresponding coupon");
+                Size jIdx = j - arguments->leg2PayDates.begin();
+                arguments->leg2IsRedemptionFlow[i] = true;
+                arguments->leg2Coupons[i] = cashflow->amount();
+                arguments->leg2ResetDates[i] = arguments->leg2ResetDates[jIdx];
+                arguments->leg2FixingDates[i] =
+                    arguments->leg2FixingDates[jIdx];
+                arguments->leg2AccrualTimes[i] = 0.0;
+                arguments->leg2Spreads[i] = 0.0;
+                arguments->leg2Gearings[i] = 2.0;
+                arguments->leg2PayDates[i] = cashflow->date();
+            }
         }
-
     }
 
-    void CmsSwap::setupExpired() const {
-        Swap::setupExpired();
-        legBPS_[0] = legBPS_[1] = 0.0;
-    }
+    void FloatFloatSwap::setupExpired() const { Swap::setupExpired(); }
 
-    void CmsSwap::fetchResults(const PricingEngine::results* r) const {
+    void FloatFloatSwap::fetchResults(const PricingEngine::results *r) const {
         Swap::fetchResults(r);
-        const CmsSwap::results* results = dynamic_cast<const CmsSwap::results*>(r);
-		QL_REQUIRE(results != 0, "result type doess not match");
-		fairStructuredSpread_ = results->fairStructuredSpread;
     }
 
-    void CmsSwap::arguments::validate() const {
+    void FloatFloatSwap::arguments::validate() const {
 
         Swap::arguments::validate();
-        
-		QL_REQUIRE(nominal != Null<Real>(), "nominal null or not set");
-        
-		QL_REQUIRE(structuredResetDates.size() == structuredPayDates.size(),
-                   "number of structured start dates different from "
-                   "number of structured payment dates");
-        QL_REQUIRE(structuredFixingDates.size() == structuredPayDates.size(),
-                   "number of structured fixing dates different from "
-                   "number of structured payment dates");
-        QL_REQUIRE(structuredAccrualTimes.size() == structuredPayDates.size(),
-                   "number of structured accrual Times different from "
-                   "number of structured payment dates");
-        QL_REQUIRE(structuredSpreads.size() == structuredPayDates.size(),
-                   "number of structured spreads different from "
-                   "number of structured payment dates");
 
-		QL_REQUIRE(floatingResetDates.size() == floatingPayDates.size(),
-                   "number of floating start dates different from "
-                   "number of floating payment dates");
-        QL_REQUIRE(floatingFixingDates.size() == floatingPayDates.size(),
-                   "number of floating fixing dates different from "
-                   "number of floating payment dates");
-        QL_REQUIRE(floatingAccrualTimes.size() == floatingPayDates.size(),
-                   "number of floating accrual Times different from "
-                   "number of floating payment dates");
-        QL_REQUIRE(floatingSpreads.size() == floatingPayDates.size(),
-                   "number of floating spreads different from "
-                   "number of floating payment dates");
+        QL_REQUIRE(nominal1.size() == leg1ResetDates.size(),
+                   "nominal1 size is different from resetDates1 size");
+        QL_REQUIRE(nominal1.size() == leg1FixingDates.size(),
+                   "nominal1 size is different from fixingDates1 size");
+        QL_REQUIRE(nominal1.size() == leg1PayDates.size(),
+                   "nominal1 size is different from payDates1 size");
+        QL_REQUIRE(nominal1.size() == leg1Spreads.size(),
+                   "nominal1 size is different from spreads1 size");
+        QL_REQUIRE(nominal1.size() == leg1Gearings.size(),
+                   "nominal1 size is different from gearings1 size");
+        QL_REQUIRE(nominal1.size() == leg1CappedRates.size(),
+                   "nominal1 size is different from cappedRates1 size");
+        QL_REQUIRE(nominal1.size() == leg1FlooredRates.size(),
+                   "nominal1 size is different from flooredRates1 size");
+        QL_REQUIRE(nominal1.size() == leg1Coupons.size(),
+                   "nominal1 size is different from coupons1 size");
+        QL_REQUIRE(nominal1.size() == leg1AccrualTimes.size(),
+                   "nominal1 size is different from accrualTimes1 size");
+        QL_REQUIRE(nominal1.size() == leg1IsRedemptionFlow.size(),
+                   "nominal1 size is different from redemption1 size");
 
-		QL_REQUIRE(structuredCappedRates.size() == structuredPayDates.size(),
-            "number of structured capped rates different from "
-            "number of structured payment dates");
-        QL_REQUIRE(structuredFlooredRates.size() == structuredPayDates.size(),
-                   "number of structured floored rates different from "
-                   "number of structured payment dates");
+        QL_REQUIRE(nominal2.size() == leg2ResetDates.size(),
+                   "nominal2 size is different from resetDates2 size");
+        QL_REQUIRE(nominal2.size() == leg2FixingDates.size(),
+                   "nominal2 size is different from fixingDates2 size");
+        QL_REQUIRE(nominal2.size() == leg2PayDates.size(),
+                   "nominal2 size is different from payDates2 size");
+        QL_REQUIRE(nominal2.size() == leg2Spreads.size(),
+                   "nominal2 size is different from spreads2 size");
+        QL_REQUIRE(nominal2.size() == leg2Gearings.size(),
+                   "nominal2 size is different from gearings2 size");
+        QL_REQUIRE(nominal2.size() == leg2CappedRates.size(),
+                   "nominal2 size is different from cappedRates2 size");
+        QL_REQUIRE(nominal2.size() == leg2FlooredRates.size(),
+                   "nominal2 size is different from flooredRates2 size");
+        QL_REQUIRE(nominal2.size() == leg2Coupons.size(),
+                   "nominal2 size is different from coupons2 size");
+        QL_REQUIRE(nominal2.size() == leg2AccrualTimes.size(),
+                   "nominal2 size is different from accrualTimes2 size");
+        QL_REQUIRE(nominal2.size() == leg2IsRedemptionFlow.size(),
+                   "nominal2 size is different from redemption2 size");
 
+        QL_REQUIRE(index1 != NULL, "index1 is null");
+        QL_REQUIRE(index2 != NULL, "index2 is null");
     }
 
-    void CmsSwap::results::reset() {
-        Swap::results::reset();
-		fairStructuredSpread = Null<Spread>();
-    }
-
+    void FloatFloatSwap::results::reset() { Swap::results::reset(); }
 }

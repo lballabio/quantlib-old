@@ -17,28 +17,32 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file cmsswaption.hpp
-    \brief cms swaption class
+/*! \file floatfloatswaption.hpp
+    \brief floatfloatswaption class
 */
 
-#ifndef quantlib_instruments_cmsswaption_hpp
-#define quantlib_instruments_cmsswaption_hpp
+#ifndef quantlib_instruments_floatfloatswaption_hpp
+#define quantlib_instruments_floatfloatswaption_hpp
 
 #include <ql/option.hpp>
-#include <ql/experimental/models/cmsswap.hpp>
+#include <ql/experimental/models/floatfloatswap.hpp>
+#include <ql/experimental/models/basketgeneratingengine.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
+#include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
+#include <ql/models/calibrationhelper.hpp>
+#include <ql/utilities/disposable.hpp>
 
 namespace QuantLib {
 
-    //! cms swaption class
+    //! floatfloat swaption class
     /*! \ingroup instruments
     */
 
-    class CmsSwaption : public Option {
+    class FloatFloatSwaption : public Option {
       public:
         class arguments;
         class engine;
-        CmsSwaption(const boost::shared_ptr<CmsSwap>& swap, const boost::shared_ptr<Exercise>& exercise);
+        FloatFloatSwaption(const boost::shared_ptr<FloatFloatSwap>& swap, const boost::shared_ptr<Exercise>& exercise);
         //! \name Instrument interface
         //@{
         bool isExpired() const;
@@ -47,27 +51,34 @@ namespace QuantLib {
         //! \name Inspectors
         //@{
         VanillaSwap::Type type() const { return swap_->type(); }
-        const boost::shared_ptr<CmsSwap>& underlyingSwap() const {
+        const boost::shared_ptr<FloatFloatSwap>& underlyingSwap() const {
             return swap_;
         }
         //@}
+		Disposable<std::vector<boost::shared_ptr<CalibrationHelper> > > 
+        calibrationBasket(boost::shared_ptr<SwapIndex> standardSwapBase, 
+                          boost::shared_ptr<SwaptionVolatilityStructure> swaptionVolatility,
+                          const BasketGeneratingEngine::CalibrationBasketType basketType = 
+                          BasketGeneratingEngine::MaturityStrikeByDeltaGamma) const;
+
+        
       private:
         // arguments
-        boost::shared_ptr<CmsSwap> swap_;
+        boost::shared_ptr<FloatFloatSwap> swap_;
     };
 
     //! %Arguments for cms swaption calculation
-    class CmsSwaption::arguments : public CmsSwap::arguments,
+    class FloatFloatSwaption::arguments : public FloatFloatSwap::arguments,
                                 public Option::arguments {
       public:
         arguments() {}
-        boost::shared_ptr<CmsSwap> swap;
+        boost::shared_ptr<FloatFloatSwap> swap;
         void validate() const;
     };
 
     //! base class for cms swaption engines
-    class CmsSwaption::engine
-        : public GenericEngine<CmsSwaption::arguments, CmsSwaption::results> {};
+    class FloatFloatSwaption::engine
+        : public GenericEngine<FloatFloatSwaption::arguments, FloatFloatSwaption::results> {};
 
 }
 
