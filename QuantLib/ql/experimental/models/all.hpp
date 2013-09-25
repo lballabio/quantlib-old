@@ -4,12 +4,12 @@
 #include <ql/experimental/models/atmadjustedsmilesection.hpp>
 #include <ql/experimental/models/atmsmilesection.hpp>
 #include <ql/experimental/models/basketgeneratingengine.hpp>
-#include <ql/experimental/models/cmsswap.hpp>
-#include <ql/experimental/models/cmsswaption.hpp>
+#include <ql/experimental/models/floatfloatswap.hpp>
+#include <ql/experimental/models/floatfloatswaption.hpp>
 #include <ql/experimental/models/creditriskplus.hpp>
 #include <ql/experimental/models/gaussian1dmodel.hpp>
 #include <ql/experimental/models/gaussian1dcapfloorengine.hpp>
-#include <ql/experimental/models/gaussian1dcmsswaptionengine.hpp>
+#include <ql/experimental/models/gaussian1dfloatfloatswaptionengine.hpp>
 #include <ql/experimental/models/gaussian1djamshidianswaptionengine.hpp>
 #include <ql/experimental/models/gaussian1dnonstandardswaptionengine.hpp>
 #include <ql/experimental/models/gaussian1dswaptionengine.hpp>
