@@ -64,7 +64,7 @@ namespace QuantLib {
       fixedSchedule_(fixedSchedule), fixedRate_(fixedRate),
       fixedDayCount_(fixedDayCount),
       floatingSchedule_(floatingSchedule), iborIndex_(iborIndex), spread_(spread), gearing_(gearing),
-      floatingDayCount_(floatingDayCount), capitalExchange_(capitalExchange) {
+        floatingDayCount_(floatingDayCount), capitalExchange_(capitalExchange) {
 
 		QL_REQUIRE(fixedNominal.size() == fixedRate.size(),
 						"Fixed nominal size (" << fixedNominal.size() << ") does not match fixed rate size (" << 
@@ -87,7 +87,7 @@ namespace QuantLib {
         // which makes trouble here in this context. We therefore use a dirty trick
         // and enforce the gearing to be non zero.
         if(close(gearing_,0.0))
-            gearing_ = 1.0E-8;
+            gearing_ = QL_EPSILON;
 
 		init();
 

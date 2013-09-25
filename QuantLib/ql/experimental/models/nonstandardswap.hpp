@@ -99,13 +99,13 @@ namespace QuantLib {
         Spread spread_;
         Real gearing_;
         DayCounter floatingDayCount_;
-        const bool capitalExchange_;
         BusinessDayConvention paymentConvention_;
+        const bool capitalExchange_;
         // results
     };
 
 
-    //! %Arguments for simple swap calculation
+    //! %Arguments for nonstandard swap calculation
     class NonstandardSwap::arguments : public Swap::arguments {
       public:
         arguments() : type(VanillaSwap::Receiver) {}
@@ -123,7 +123,6 @@ namespace QuantLib {
 		std::vector<Real> fixedRate; 
         std::vector<Spread> floatingSpreads;
         std::vector<Real> floatingGearings;
-        std::vector<Real> gearings;
         std::vector<Real> floatingCoupons;
 
         boost::shared_ptr<IborIndex> iborIndex;
@@ -134,7 +133,7 @@ namespace QuantLib {
         void validate() const;
     };
 
-    //! %Results from simple swap calculation
+    //! %Results from nonstandard swap calculation
     class NonstandardSwap::results : public Swap::results {
       public:
         void reset();
