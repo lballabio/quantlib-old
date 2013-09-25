@@ -66,12 +66,6 @@ namespace QuantLib {
 
       public:
         
-        // we let derived classes register with the termstructure 
-        Gaussian1dModel(const Handle<YieldTermStructure>& yieldTermStructure) : 
-            TermStructureConsistentModel(yieldTermStructure) { }
-
-        virtual ~Gaussian1dModel() {}
-
         const boost::shared_ptr<StochasticProcess1D> stateProcess() const;
         
         const Real numeraire(const Time t, const Real y=0.0, 
@@ -130,6 +124,12 @@ namespace QuantLib {
 
 
       protected:
+
+        // we let derived classes register with the termstructure 
+        Gaussian1dModel(const Handle<YieldTermStructure>& yieldTermStructure) : 
+            TermStructureConsistentModel(yieldTermStructure) { }
+
+        virtual ~Gaussian1dModel() {}
 
         virtual const Real numeraireImpl(const Time t, const Real y, const Handle<YieldTermStructure>& yts) const = 0;
 
