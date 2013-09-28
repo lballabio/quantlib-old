@@ -26,16 +26,16 @@ namespace QuantLib {
         QL_REQUIRE(arguments_.settlementType==Settlement::Physical,
                    "cash-settled swaptions not yet implemented ...");
 
-        Date today = Settings::instance().evaluationDate();
+        Date settlement = model_->termStructure()->referenceDate();
 
-        if(arguments_.exercise->dates().back() <= today) {  // swaption is expired, possibly generated swap is not valued
+        if(arguments_.exercise->dates().back() <= settlement) {  // swaption is expired, possibly generated swap is not valued
             results_.value = 0.0;
             return;
         }
 
         int idx = static_cast<int>(arguments_.exercise->dates().size())-1;
         int minIdxAlive = static_cast<int>(std::upper_bound(arguments_.exercise->dates().begin(), 
-                                                            arguments_.exercise->dates().end(), today) - 
+                                                            arguments_.exercise->dates().end(), settlement) - 
                                            arguments_.exercise->dates().begin());
 
         VanillaSwap swap = *arguments_.swap;
@@ -53,7 +53,7 @@ namespace QuantLib {
         do {
 
             if(idx == minIdxAlive-1)
-                expiry0 = today;
+                expiry0 = settlement;
             else
                 expiry0 = arguments_.exercise->dates()[idx];
 
@@ -64,7 +64,7 @@ namespace QuantLib {
             Size k1 = std::upper_bound(floatSchedule.dates().begin(), floatSchedule.dates().end(), expiry0 -1 ) - 
                 floatSchedule.dates().begin();
 
-            for(Size k=0; k < (expiry0 > today ? npv0.size() : 1); k++) {
+            for(Size k=0; k < (expiry0 > settlement ? npv0.size() : 1); k++) {
 
                 Real price = 0.0;
                 if(expiry1Time != Null<Real>()) {
@@ -102,11 +102,11 @@ namespace QuantLib {
 
                 npv0[k] = price;
 
-                if(expiry0 >today) {
+                if(expiry0 >settlement) {
                     Real floatingLegNpv = 0.0;
                     for(Size l=k1;l<arguments_.floatingCoupons.size();l++) {
                         floatingLegNpv += arguments_.nominal * arguments_.floatingAccrualTimes[l] *
-                                (arguments_.floatingSpreads[l]+
+                                (arguments_.floatingSpreads[l] +
                                  model_->forwardRate(arguments_.floatingFixingDates[l],expiry0,z[k],
                                                      arguments_.swap->iborIndex())) * 
                                          model_->zerobond(arguments_.floatingPayDates[l],expiry0,z[k],discountCurve_);

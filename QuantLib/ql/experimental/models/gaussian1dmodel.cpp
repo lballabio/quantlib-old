@@ -27,6 +27,11 @@ namespace QuantLib {
 
         QL_REQUIRE(iborIdx != NULL,"no ibor index given");
 
+        if (fixing <=
+            ((Date)Settings::instance().evaluationDate()) +
+                (Settings::instance().enforcesTodaysHistoricFixings() ? 0 : -1))
+            return iborIdx->fixing(fixing);
+
         Handle<YieldTermStructure> yts = iborIdx->forwardingTermStructure(); // might be empty, then use model curve
 
         Date valueDate = iborIdx->valueDate(fixing);
@@ -44,6 +49,11 @@ namespace QuantLib {
                                         const Real y, boost::shared_ptr<SwapIndex> swapIdx) const {
 
         QL_REQUIRE(swapIdx != NULL,"no swap index given");
+
+        if (fixing <=
+            ((Date)Settings::instance().evaluationDate()) +
+                (Settings::instance().enforcesTodaysHistoricFixings() ? 0 : -1))
+            return swapIdx->fixing(fixing);
 
         Handle<YieldTermStructure> ytsf = swapIdx->iborIndex()->forwardingTermStructure();
         Handle<YieldTermStructure> ytsd = swapIdx->discountingTermStructure(); // either might be empty, then use model curve

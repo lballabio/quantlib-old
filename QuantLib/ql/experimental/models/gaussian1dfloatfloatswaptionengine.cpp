@@ -25,10 +25,10 @@ namespace QuantLib {
 
         // pricing
 
-        Date today = Settings::instance().evaluationDate();
+        Date settlement = model_->termStructure()->referenceDate();
 
         if (arguments_.exercise->dates().back() <=
-            today) { // swaption is expired, possibly generated swap is not
+            settlement) { // swaption is expired, possibly generated swap is not
                      // valued
             results_.value = 0.0;
             return;
@@ -55,8 +55,8 @@ namespace QuantLib {
         // deal part that is exericsed into,
 
         std::vector<Date>::iterator filit =
-            std::upper_bound(events.begin(), events.end(), today);
-        while (events[0] <= today)
+            std::upper_bound(events.begin(), events.end(), settlement);
+        while (events[0] <= settlement)
             events.erase(events.begin(), filit);
 
         int idx = events.size() - 1;
@@ -99,7 +99,7 @@ namespace QuantLib {
             // date or an exercise date or both.
 
             if (idx == -1)
-                event0 = today;
+                event0 = settlement;
             else
                 event0 = events[idx];
 
@@ -127,7 +127,7 @@ namespace QuantLib {
             event0Time = std::max(
                 model_->termStructure()->timeFromReference(event0), 0.0);
 
-            for (Size k = 0; k < (event0 > today ? npv0.size() : 1); k++) {
+            for (Size k = 0; k < (event0 > settlement ? npv0.size() : 1); k++) {
 
                 // roll back
 
@@ -243,7 +243,7 @@ namespace QuantLib {
 
                 // event date calculations
 
-                if (event0 > today) {
+                if (event0 > settlement) {
                     if (isLeg1Fixing) { // if event is a fixing date and
                                         // exercise date,
                         // the coupon is part of the exercise into right (by

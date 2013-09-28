@@ -113,16 +113,16 @@ namespace QuantLib {
         QL_REQUIRE(arguments_.settlementType==Settlement::Physical,
                    "cash-settled swaptions not yet implemented ...");
 
-		Date today = Settings::instance().evaluationDate();
+        Date settlement = model_->termStructure()->referenceDate();
 
-		if(arguments_.exercise->dates().back() <= today) {	// swaption is expired, possibly generated swap is not valued
+		if(arguments_.exercise->dates().back() <= settlement) {	// swaption is expired, possibly generated swap is not valued
 			results_.value = 0.0;
 			return;
 		}
 
 		int idx = arguments_.exercise->dates().size()-1;
 		int minIdxAlive = std::upper_bound(arguments_.exercise->dates().begin(), arguments_.exercise->dates().end(), 
-                                           today) - arguments_.exercise->dates().begin();
+                                           settlement) - arguments_.exercise->dates().begin();
 
 		NonstandardSwap swap = *arguments_.swap;
 		Option::Type type = arguments_.type==VanillaSwap::Payer ? Option::Call : Option::Put;
@@ -139,7 +139,7 @@ namespace QuantLib {
 		do {
 
 			if(idx == minIdxAlive-1)
-				expiry0 = today;
+				expiry0 = settlement;
 			else
 				expiry0 = arguments_.exercise->dates()[idx];
 
@@ -150,7 +150,7 @@ namespace QuantLib {
 			Size k1 = std::upper_bound(floatSchedule.dates().begin(), floatSchedule.dates().end(), expiry0 -1 ) - 
                 floatSchedule.dates().begin();
 
-			for(Size k=0; k < (expiry0 > today ? npv0.size() : 1); k++) {
+			for(Size k=0; k < (expiry0 > settlement ? npv0.size() : 1); k++) {
 
 				Real price = 0.0;
 				if(expiry1Time != Null<Real>()) {
@@ -189,7 +189,7 @@ namespace QuantLib {
 
 				npv0[k] = price;
 
-				if(expiry0 >today) {
+				if(expiry0 >settlement) {
 					Real floatingLegNpv = 0.0;
 					for(Size l=k1;l<arguments_.floatingCoupons.size();l++) {
                         Real zSpreadDf = oas_.empty() ? 1.0 : 
