@@ -45,7 +45,7 @@ void example01() {
     std::vector<Date> exerciseDates;
     std::vector<Period> exerciseTenors;
 	for(Size i=1;i<10;i++) {
-        exerciseDates.push_back(TARGET().advance(fixedSchedule[i],0*Days));
+        exerciseDates.push_back(TARGET().advance(fixedSchedule[i],-2*Days));
         exerciseTenors.push_back( (10-i)*Years );
     }
 
