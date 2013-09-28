@@ -183,7 +183,7 @@ void splineSmiles() {
     boost::shared_ptr<SmileSection> flatSmileSection(new FlatSmileSection(expiryTime,0.10,Actual365Fixed(),forward));
 
     boost::shared_ptr<SplineDensitySmileSection> spline(
-        new SplineDensitySmileSection(sabr, forward, 0.0, 1.00, false, money));
+         new SplineDensitySmileSection(sabr, forward, 0.0, 1.00, false, money));
 
     std::cout << "arbitrage free region is " << spline->leftCoreStrike()
               << " ... " << spline->rightCoreStrike() << std::endl;
@@ -219,4 +219,33 @@ void splineSmiles() {
     out.close();
 }
 
-int main(int, char * []) { splineSmiles(); }
+void sbSmiles() {
+
+    std::ofstream out;
+    out.open("smiles3.dat");
+
+    Real forward = 0.0325;
+    Real expiryTime = 10.0;
+
+
+    boost::shared_ptr<SbSmileSection> sb(new SbSmileSection(expiryTime,forward,
+                                                            0.0,0.50,1.0,1.0));
+
+    Real strike = -1.0;
+
+    while (strike <= 1.0) {
+
+        out << strike << " "                                    // 1
+            //<< sb->volatility(strike) << " "                  // 2
+            << sb->optionPrice(strike) << " "                 // 3
+            << sb->digitalOptionPrice(strike) << " "          // 4
+            << sb->density(strike) << " "                     // 5
+            << std::endl;
+        strike += 0.0010;
+    }
+
+    out.close();
+}
+
+
+int main(int, char * []) { sbSmiles(); }
