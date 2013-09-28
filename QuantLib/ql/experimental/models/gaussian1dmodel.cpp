@@ -147,9 +147,8 @@ namespace QuantLib {
     }
 
     const Real Gaussian1dModel::gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, 
-                                                                 const Real e, const Real y0, const Real y1,
-                                                                 const bool useNtl) {
-#ifdef MF_ENABLE_NTL
+                                                                 const Real e, const Real y0, const Real y1) {
+#ifdef GAUSS1D_ENABLE_NTL
         if(useNtl) {
         const boost::math::ntl::RR aa=4.0*a, ba=2.0*M_SQRT2*b, ca=2.0*c, da=M_SQRT2*d;
         const boost::math::ntl::RR x0=y0*M_SQRT1_2, x1=y1*M_SQRT1_2;
@@ -169,27 +168,43 @@ namespace QuantLib {
     }
 
     const Real Gaussian1dModel::gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, 
-            const Real d, const Real e, const Real h, const Real x0, const Real x1, const bool useNtl) {
+            const Real d, const Real e, const Real h, const Real x0, const Real x1) {
         return gaussianPolynomialIntegral(a,-4.0*a*h+b,6.0*a*h*h-3.0*b*h+c,-4*a*h*h*h+3.0*b*h*h-2.0*c*h+d,
-            a*h*h*h*h-b*h*h*h+c*h*h-d*h+e,x0,x1,useNtl);
+            a*h*h*h*h-b*h*h*h+c*h*h-d*h+e,x0,x1);
     }
 
     const Disposable<Array> Gaussian1dModel::yGrid(const Real stdDevs, const int gridPoints, const Real T, 
                                                     const Real t, const Real y) const {
 
+        // we use that the standard deviation is independent of $x$ here !
+
         QL_REQUIRE(stateProcess_ != NULL,"state process not set");
 
         Array result(2*gridPoints+1,0.0);
 
-        Real stdDev_0_t = stateProcess_->stdDeviation(0.0,0.0,t);
-        // we use that the standard deviation is independent of $x$ here !
+        Real x_t, e_0_t, e_t_T, stdDev_0_t, stdDev_t_T;
         Real stdDev_0_T = stateProcess_->stdDeviation(0.0,0.0,T);
-        Real stdDev_t_T = stateProcess_->stdDeviation(t,0.0,T-t);
+        Real e_0_T = stateProcess_->expectation(0.0,0.0,T);
+
+        if(t < QL_EPSILON) {
+            stdDev_0_t = 0.0;
+            stdDev_t_T = stdDev_0_T;
+            e_0_t = 0.0;
+            x_t = 0.0;
+            e_t_T = e_0_T;
+        }
+        else {
+            stdDev_0_t = stateProcess_->stdDeviation(0.0,0.0,t);
+            stdDev_t_T = stateProcess_->stdDeviation(t,0.0,T-t);
+            e_0_t = stateProcess_->expectation(0.0,0.0,t);
+            x_t = y*stdDev_0_t + e_0_t;
+            e_t_T = stateProcess_->expectation(t,x_t,T-t);
+        }
 
         Real h = stdDevs / ((Real)gridPoints);
 
         for(int j=-gridPoints;j<=gridPoints;j++) {
-            result[j+gridPoints] = (y*stdDev_0_t + stdDev_t_T*((Real)j)*h) / stdDev_0_T;
+            result[j+gridPoints] = (e_t_T + stdDev_t_T*((Real)j)*h - e_0_T) / stdDev_0_T;
         }
 
         return result;

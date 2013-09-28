@@ -22,7 +22,7 @@
 */
 
 // uncomment to enable NTL support
-//#define MF_ENABLE_NTL 
+//#define GAUSS1D_ENABLE_NTL 
 
 #ifndef quantlib_gaussian1dmodel_hpp
 #define quantlib_gaussian1dmodel_hpp
@@ -41,11 +41,11 @@
 #include <ql/utilities/null.hpp>
 #include <ql/patterns/lazyobject.hpp>
 
-#ifdef MF_ENABLE_NTL
+#ifdef GAUSS1D_ENABLE_NTL
     #include <boost/math/bindings/rr.hpp>
-#else
-    #include <boost/math/special_functions/erf.hpp>
 #endif
+
+#include <boost/math/special_functions/erf.hpp>
 
 namespace QuantLib {
 
@@ -104,7 +104,7 @@ namespace QuantLib {
         \f[ p(x) = ax^4+bx^3+cx^2+dx+e \f].
         */
         const static Real gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, const Real e, 
-                                                     const Real x0, const Real x1, const bool useNtl = false);
+                                                     const Real x0, const Real x1);
         
         /*! Computes the integral
         \f[ {2\pi}^{-0.5} \int_{a}^{b} p(x) \exp{-0.5*x*x} \mathrm{d}x \f]
@@ -112,8 +112,7 @@ namespace QuantLib {
         \f[ p(x) = a(x-h)^4+b(x-h)^3+c(x-h)^2+d(x-h)+e \f].
         */
         const static Real gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, 
-                                                            const Real e, const Real h, const Real x0, const Real x1,
-                                                            const bool useNtl = false);
+                                                            const Real e, const Real h, const Real x0, const Real x1);
 
         /*! Generates a grid of values for the standardized state variable $y$ at time $T$
             conditional on $y(t)=y$, covering yStdDevs standard deviations consisting of
