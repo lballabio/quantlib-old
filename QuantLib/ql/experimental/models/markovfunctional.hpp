@@ -91,7 +91,7 @@ namespace QuantLib {
             ModelSettings() : yGridPoints_(64), yStdDevs_(7.0), gaussHermitePoints_(32), digitalGap_(1E-5), 
                               marketRateAccuracy_(1E-7), lowerRateBound_(0.0), upperRateBound_(2.0), 
                               adjustments_(KahaleSmile | KahaleExponentialExtrapolation),
-                              smileMoneynessCheckpoints_(std::vector<Real>()), enableNtl_(false) {}
+                              smileMoneynessCheckpoints_(std::vector<Real>()) {}
             
             void validate() {
                 if(adjustments_ & KahaleExponentialExtrapolation) addAdjustment(KahaleSmile);
@@ -112,10 +112,6 @@ namespace QuantLib {
                            "If Kahale extrapolation is used, the lower rate bound (" << lowerRateBound_ << ") must be zero.");
                 QL_REQUIRE(lowerRateBound_ < upperRateBound_,"Lower rate bound (" << lowerRateBound_ << 
                            ") must be strictly less than upper rate bound (" << upperRateBound_ << ")");
-                #ifndef MF_ENABLE_NTL
-                    QL_REQUIRE(!enableNtl_,
-                               "High precision computation using NTL can not be enabled since MF_ENABLE_NTL is not defined.");
-                #endif
             }
 
             ModelSettings& withYGridPoints(Size n) { yGridPoints_ = n; return *this; }
@@ -129,7 +125,6 @@ namespace QuantLib {
             ModelSettings& addAdjustment(int a) { adjustments_ |= a; return *this; }
             ModelSettings& removeAdjustment(int a) { adjustments_ &= ~a; return *this; }
             ModelSettings& withSmileMoneynessCheckpoints(std::vector<Real> m) { smileMoneynessCheckpoints_ = m; return *this; }
-            ModelSettings& withEnableNtl(bool e) { enableNtl_ = e; return *this; }
 
             Size yGridPoints_;
             Real yStdDevs_;
@@ -138,7 +133,6 @@ namespace QuantLib {
             Real lowerRateBound_,upperRateBound_;
             int adjustments_;
             std::vector<Real> smileMoneynessCheckpoints_;
-            bool enableNtl_;
         };
 
         struct CalibrationPoint {

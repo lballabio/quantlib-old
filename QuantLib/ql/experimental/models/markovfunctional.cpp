@@ -647,10 +647,6 @@ namespace QuantLib {
             << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::KahaleInterpolation ? "KahaleInt " : "")
             << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::KahaleDeleteArbitragePoints ? "KahaleDelArb " : "")
             << std::endl;
-        out << "High precision / NTL : " << (m.settings_.enableNtl_ ? "On" : "Off") << std::endl;
-        #ifdef MF_ENABLE_NTL
-            out << "NTL Precision        : " << boost::math::ntl::RR::precision() << std::endl;
-        #endif
         out << "Smile moneyness checkpoints: ";
         for(Size i=0;i<m.settings_.smileMoneynessCheckpoints_.size();i++) 
             out << m.settings_.smileMoneynessCheckpoints_[i] << (i < m.settings_.smileMoneynessCheckpoints_.size()-1 ? 
