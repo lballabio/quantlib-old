@@ -1477,7 +1477,6 @@ void MarkovFunctionalTest::testLongTermCalibration() {
 										 .withUpperRateBound(2.0) // 4.0
 										 //.withMarketRateAccuracy(1E-15)
 										 //.withDigitalGap(1E-8)
-										 .withEnableNtl(false) // true
 										 .withSmileMoneynessCheckpoints(money)
 										 .withAdjustments(MarkovFunctional::ModelSettings::AdjustYts) // AdjustNone
 										 ));
