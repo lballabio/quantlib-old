@@ -101,7 +101,6 @@ namespace QuantLib {
         rightIndex_ = centralIndex;
 
         bool done=false;
-        
         while(!done) {
 
             bool isAf;
@@ -141,7 +140,6 @@ namespace QuantLib {
                 rightIndex_--;
                 done = false;
             }
-            
         }
 
 
