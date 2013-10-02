@@ -30,11 +30,11 @@ namespace QuantLib {
         if (moneynessGrid.size() != 0) {
             QL_REQUIRE(
                 moneynessGrid[0] >= 0.0,
-                "moneyness grid should only containt non negative values ("
+                "moneyness grid should only contain non negative values ("
                     << moneynessGrid[0] << ")");
             for (Size i = 0; i < moneynessGrid.size() - 1; i++) {
                 QL_REQUIRE(moneynessGrid[i] < moneynessGrid[i + 1],
-                           "moneyness grid should containt strictly increasing "
+                           "moneyness grid should contain strictly increasing "
                            "values ("
                                << moneynessGrid[i] << ","
                                << moneynessGrid[i + 1] << " at indices " << i
