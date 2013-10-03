@@ -24,16 +24,16 @@
 #ifndef quantlib_creditriskplus_hpp
 #define quantlib_creditriskplus_hpp
 
+#include <vector>
+
 #include <ql/qldefines.hpp>
 #include <ql/types.hpp>
 #include <ql/math/matrix.hpp>
 
-#include <vector>
-#include <math.h>
 
 namespace QuantLib {
 
-    /*! CreditRisk+ model as described in [1] Integrating Correlations, Risk,
+    /*! Extended CreditRisk+ model as described in [1] Integrating Correlations, Risk,
       July 1999 and the references therein.
 
       \warning the input correlation matrix is not checked for positive

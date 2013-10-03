@@ -19,6 +19,8 @@
 
 #include <ql/experimental/models/creditriskplus.hpp>
 
+#include <map>
+
 namespace QuantLib {
 
     CreditRiskPlus::CreditRiskPlus(
@@ -107,8 +109,9 @@ namespace QuantLib {
         unsigned long maxNu_ = 0;
         upperIndex_ = 0;
 
-        std::map<unsigned long, Real, std::less<unsigned long> > epsNuC_;
         // map of nuC_ to expected loss
+        std::map<unsigned long, Real, std::less<unsigned long> > epsNuC_;
+
         std::map<unsigned long, Real, std::less<unsigned long> >::iterator iter;
 
         for (int k = 0; k < m_; k++) {
@@ -143,7 +146,9 @@ namespace QuantLib {
         }
 
         for (Size i = 0; i < n_; i++) {
+
             // precompute sector specific terms (formula 15 in [1])
+
             sectorSpecTerms_[i] += relativeDefaultVariance_[i] * sectorEl_[i];
             for (Size j = 0; j < n_; j++) {
                 if (j != i) {
