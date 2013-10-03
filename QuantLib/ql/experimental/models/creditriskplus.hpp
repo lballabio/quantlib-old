@@ -36,8 +36,9 @@ namespace QuantLib {
     /*! CreditRisk+ model as described in [1] Integrating Correlations, Risk,
       July 1999 and the references therein.
 
-      \warning the input correlation matrix is taken as is, there is no check
-      for positive definiteness
+      \warning the input correlation matrix is not checked for positive
+      definiteness
+
     */
 
     class CreditRiskPlus {

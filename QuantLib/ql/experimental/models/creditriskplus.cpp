@@ -39,13 +39,19 @@ namespace QuantLib {
                                          << pd_.size() << ")");
         QL_REQUIRE(m_ == sector_.size(),
                    "number of exposures ("
-                       << m_ << ") must be equal to number of sectors ("
+                       << m_
+                       << ") must be equal to number of exposure sectors ("
                        << sector_.size() << ")");
 
         n_ = correlation_.rows();
         QL_REQUIRE(correlation_.columns() == n_,
                    "correlation matrix (" << n_ << "," << correlation_.columns()
                                           << ") must be a square matrix");
+
+        QL_REQUIRE(relativeDefaultVariance_.size() == n_,
+                   "number of relative default variances ("
+                       << relativeDefaultVariance_.size() << ")"
+                       << " must be equal to number of sectors (" << n_ << ")");
 
         el_ = 0.0;
         for (Size i = 0; i < m_; i++) {
