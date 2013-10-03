@@ -36,14 +36,15 @@ namespace QuantLib {
       public:
         SbSmileSection(const Real timeToExpiry,
                        const Real forward,
-                       const Real xi,
                        const Real lambda,
                        const Real delta,
                        const Real gamma,
-                       const Size resolution = 100);
+                       const Size resolution = 100,
+                       const Real lower = -50.0,
+                       const Real upper = 50.0);
 
-        Real minStrike() const { return xi_; }
-        Real maxStrike() const { return xi_+lambda_; }
+        Real minStrike() const { return -QL_MAX_REAL; }
+        Real maxStrike() const { return QL_MAX_REAL; }
         Real atmLevel() const { return f_; }
 
         Real optionPrice(Rate strike, Option::Type type = Option::Call,
@@ -59,6 +60,7 @@ namespace QuantLib {
         void update();
         Size index(Real strike) const;
         Real f_, xi_, lambda_, delta_, gamma_;
+        Real minStrike_ , maxStrike_;
         std::vector<Real> k_, d_;
         boost::shared_ptr<CubicInterpolation> density_;
         std::vector<Real> eta_, kappa_;

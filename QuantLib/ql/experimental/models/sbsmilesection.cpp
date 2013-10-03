@@ -27,38 +27,56 @@ namespace QuantLib {
 
     SbSmileSection::SbSmileSection(const Time timeToExpiry,
                                    const Real forward,
-                                   const Real xi,
                                    const Real lambda,
                                    const Real delta,
                                    const Real gamma,
-                                   const Size resolution) :
+                                   const Size resolution,
+                                   const Real lower,
+                                   const Real upper) :
         SmileSection(timeToExpiry, DayCounter()),
-        f_(forward), xi_(xi), lambda_(lambda), delta_(delta), gamma_(gamma) {
+        f_(forward), lambda_(lambda), delta_(delta), gamma_(gamma) {
 
         QL_REQUIRE(lambda_>0.0,"lambda must be positive (" << lambda_ << ")");
 
         adjustment_ = 1.0;
+
+        // set xi as to match forward approximately
+        Real omega = std::exp( 1.0 / (delta_*delta_) );
+        Real Omega = gamma_ / delta_;
+        Real origE = - std::sqrt(omega)*std::sinh(Omega);
+        xi_ = f_ - lambda_*origE;
+        std::cout << "o=" << omega << " O=" << Omega << " E " << origE << std::endl;
+
+        // lower and upper bound for $y$ spline discretization
+        minStrike_ = lower * lambda_ + xi_;
+        maxStrike_ = upper *lambda_ + xi_;
 
         k_.clear();
         d_.clear();
 
         NormalDistribution norm;
 
-        k_.push_back(xi_);
+        k_.push_back(minStrike_);
         d_.push_back(0.0);
         for(Size i=1;i<resolution;i++) {
-            Real x = xi_+((double)i)/((double)resolution)*lambda_;
-            Real p = delta_*lambda_/((x-xi_)*(lambda_+xi_-x)) * norm( gamma_+delta_*std::log( (x-xi_)/(lambda_+xi_-x) ) );
+            Real y = lower+(upper-lower)*((double)i)/((double)resolution);
+            Real x = xi_+y*lambda_;
+            // Real p = delta_*lambda_/((x-xi_)*(lambda_+xi_-x)) * norm( gamma_+delta_*std::log( (x-xi_)/(lambda_+xi_-x) ) ); // system S_B
+            Real p = delta_/lambda_/std::sqrt(1.0+y*y) * norm( gamma_+delta_*std::log( y + (std::sqrt(1.0+y*y)))); // system S_U
             k_.push_back(x);
             d_.push_back(p);
         }
-        k_.push_back(xi_+lambda_);
+        k_.push_back(maxStrike_); 
         d_.push_back(0.0);
+
+        std::cout << "building spline..." << std::endl;
 
         density_ = boost::shared_ptr<CubicInterpolation>(new CubicInterpolation(k_.begin(), k_.end(),
                                                                            d_.begin(), CubicInterpolation::Spline, true,
                                                                            CubicInterpolation::SecondDerivative, 0.0,
                                                                            CubicInterpolation::SecondDerivative, 0.0));
+
+        std::cout << "end..." << std::endl;
 
         update();
 
@@ -102,7 +120,8 @@ namespace QuantLib {
 
         adjustment_ = 1.0 / etaSum_;
         expectation_ *= adjustment_;
-
+        
+        std::cout << "minstrike = " << minStrike_ << " maxstrike = " << maxStrike_ << std::endl;
         std::cout << "expectation = " << expectation_ << " adjustment = " << adjustment_ << std::endl;
 
     }
@@ -113,10 +132,10 @@ namespace QuantLib {
 
         strike += expectation_-f_;
 
-        if(strike <= xi_) return expectation_-strike;
-        if(strike >= xi_+lambda_) return 0.0;
+        if(strike <= minStrike_) return expectation_-strike;
+        if(strike >= maxStrike_) return 0.0; 
 
-        Real price = expectation_;
+        Real price = expectation_ - minStrike_;
 
         const std::vector<Real> &pa_ = density_->cCoefficients(); // just for our convenience
         const std::vector<Real> &pb_ = density_->bCoefficients();
@@ -158,8 +177,8 @@ namespace QuantLib {
 
         strike += expectation_-f_;
 
-        if(strike <= xi_) return discount;
-        if(strike >= xi_+lambda_) return 0.0;
+        if(strike <= minStrike_) return discount;
+        if(strike >= maxStrike_) return 0.0; 
 
         Real price = 1.0;
 
@@ -196,7 +215,7 @@ namespace QuantLib {
         // return SmileSection::density(strike,discount,gap); // debug
         strike += expectation_-f_;
 
-        if(strike <= xi_ || strike >= xi_+lambda_) return 0.0;
+        if(strike <= minStrike_ || strike >= maxStrike_) return 0.0; // only useful for SB
         
         return adjustment_*density_->operator()(strike)*discount;
 
@@ -204,8 +223,8 @@ namespace QuantLib {
 
     Size SbSmileSection::index(Real strike) const {
 
-        QL_REQUIRE(strike > xi_ && strike < xi_+lambda_, "strike (" << strike <<") outside bounds ("
-                   << xi_ << "," << xi_+lambda_ << ")");
+        // QL_REQUIRE(strike > xi_ && strike < xi_+lambda_, "strike (" << strike <<") outside bounds ("
+        //            << xi_ << "," << xi_+lambda_ << ")");
         return std::upper_bound(k_.begin(),k_.end(),strike) - k_.begin() - 1;
 
     }
