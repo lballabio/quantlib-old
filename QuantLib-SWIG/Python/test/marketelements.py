@@ -53,8 +53,7 @@ class MarketElementTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print 'testing QuantLib', QuantLib.__version__
+    print('testing QuantLib ' + QuantLib.__version__)
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(MarketElementTest,'test'))
     unittest.TextTestRunner(verbosity=2).run(suite)
-    raw_input('press return to continue')
