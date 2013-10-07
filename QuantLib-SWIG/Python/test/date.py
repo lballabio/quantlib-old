@@ -50,9 +50,7 @@ wrong day, month, year increment
 
 
 if __name__ == '__main__':
-    print 'testing QuantLib', QuantLib.__version__, 
+    print('testing QuantLib ' + QuantLib.__version__) 
     suite = unittest.TestSuite()
     suite.addTest(DateTest())
     unittest.TextTestRunner(verbosity=2).run(suite)
-    raw_input('press return to continue')
-

@@ -17,13 +17,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import os, sys, string
+import os, sys
 from distutils.cmd import Command
 from distutils.command.build_ext import build_ext
 from distutils.command.build import build
-from distutils.command.install_data import install_data
-from distutils.command.install import install
-from distutils.file_util import copy_file
 from distutils.ccompiler import get_default_compiler
 from distutils.core import setup, Extension
 from distutils import sysconfig
@@ -70,7 +67,7 @@ class my_wrap(Command):
     def initialize_options(self): pass
     def finalize_options(self): pass
     def run(self):
-        print 'Generating Python bindings for QuantLib...'
+        print('Generating Python bindings for QuantLib...')
         swig_dir = os.path.join("..","SWIG")
         os.system('swig -python -c++ -modern ' +
                   '-I%s ' % swig_dir +
@@ -118,13 +115,13 @@ class my_build_ext(build_ext):
                 QL_INSTALL_DIR = os.environ['QL_DIR']
                 self.include_dirs += [QL_INSTALL_DIR]
                 self.library_dirs += [os.path.join(QL_INSTALL_DIR, 'lib')]
-            except KeyError, e:
-                print 'warning: unable to detect QuantLib installation'
+            except KeyError:
+                print('warning: unable to detect QuantLib installation')
 
-            if os.environ.has_key('INCLUDE'):
+            if 'INCLUDE' in os.environ:
                 dirs = [dir for dir in os.environ['INCLUDE'].split(';')]
                 self.include_dirs += dirs
-            if os.environ.has_key('LIB'):
+            if 'LIB' in os.environ:
                 dirs = [dir for dir in os.environ['LIB'].split(';')]
                 self.library_dirs += dirs
 
@@ -163,8 +160,8 @@ class my_build_ext(build_ext):
                                    if not arg.startswith('-D')
                                    if not arg.startswith('-I') ] \
                                    + [ '-Wno-unused' ]
-            if os.environ.has_key('CXXFLAGS'):
-                extra_compile_args += string.split(os.environ['CXXFLAGS'])
+            if 'CXXFLAGS' in os.environ:
+                extra_compile_args += os.environ['CXXFLAGS'].split()
 
             extra_link_args = [ arg for arg in ql_link_args
                                 if not arg.startswith('-L')
@@ -186,7 +183,7 @@ if os.name == 'posix':
     def my_init_posix():
         save_init_posix()
         g = sysconfig._config_vars
-        if os.environ.has_key('CXX'):
+        if 'CXX' in os.environ:
             g['CC'] = os.environ['CXX']
         else:
             g['CC'] = 'g++'

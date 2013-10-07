@@ -184,6 +184,9 @@ class Period {
         Period __rmul__(Integer n) {
             return *self*n;
         }
+        bool __lt__(const Period& other) {
+            return *self < other;
+        }
         #endif
         bool __eq__(const Period& other) {
             return *self == other;
@@ -389,6 +392,9 @@ class Date {
         }
         int __hash__() {
             return self->serialNumber();
+        }
+        bool __lt__(const Date& other) {
+            return *self < other;
         }
         #endif
         #if defined(SWIGRUBY)
