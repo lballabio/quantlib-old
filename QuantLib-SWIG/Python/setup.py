@@ -164,7 +164,7 @@ class my_build_ext(build_ext):
                                    if not arg.startswith('-I') ] \
                                    + [ '-Wno-unused' ]
             if 'CXXFLAGS' in os.environ:
-                extra_compile_args += string.split(os.environ['CXXFLAGS'])
+                extra_compile_args += os.environ['CXXFLAGS'].split()
 
             extra_link_args = [ arg for arg in ql_link_args
                                 if not arg.startswith('-L')
