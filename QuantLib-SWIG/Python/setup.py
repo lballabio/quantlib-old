@@ -17,13 +17,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import os, sys, string
+import os, sys
 from distutils.cmd import Command
 from distutils.command.build_ext import build_ext
 from distutils.command.build import build
-from distutils.command.install_data import install_data
-from distutils.command.install import install
-from distutils.file_util import copy_file
 from distutils.ccompiler import get_default_compiler
 from distutils.core import setup, Extension
 from distutils import sysconfig
@@ -118,7 +115,7 @@ class my_build_ext(build_ext):
                 QL_INSTALL_DIR = os.environ['QL_DIR']
                 self.include_dirs += [QL_INSTALL_DIR]
                 self.library_dirs += [os.path.join(QL_INSTALL_DIR, 'lib')]
-            except KeyError as e:
+            except KeyError:
                 print('warning: unable to detect QuantLib installation')
 
             if 'INCLUDE' in os.environ:
