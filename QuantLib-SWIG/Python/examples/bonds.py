@@ -31,8 +31,8 @@ settlementDays = 3
 todaysDate = calendar.advance(settlementDate,-fixingDays, Days)
 Settings.instance().evaluationDate = todaysDate
 
-print 'Today: '  + str(todaysDate)
-print 'Settlement Date: ' + str(settlementDate)
+print('Today: '  + str(todaysDate))
+print('Settlement Date: ' + str(settlementDate))
 
 # market quotes
 
@@ -270,15 +270,15 @@ def report(Info, Zc, Fix, Frn, format):
         Fix = formatRate(Fix)
         Frn = formatRate(Frn)
         
-    print '%19s' % Info + ' |' + \
-          ' |'.join(['%10s' % y for y in [Zc, Fix, Frn] ])
+    print('%19s' % Info + ' |' +
+          ' |'.join(['%10s' % y for y in [Zc, Fix, Frn] ]))
 
 
 
 headers = [ "ZC", "Fixed", "Floating" ]
-print ''
-print '%19s' % '' + ' |' + \
-          ' |'.join(['%10s' % y for y in headers])
+print('')
+print('%19s' % '' + ' |' +
+          ' |'.join(['%10s' % y for y in headers]))
                      
 separator = " | "
 widths = [ 18, 10, 10, 10 ]
@@ -287,7 +287,7 @@ rule = "-" * width
 dblrule = "=" * width
 tab = " " * 8
 
-print  rule
+print(rule)
 report( "Net present value",
         zeroCouponBond.NPV(),
         fixedRateBond.NPV(),
@@ -323,17 +323,17 @@ report( "Yield",
         ,fixedRateBond.bondYield(Actual360(),Compounded,Annual),
         floatingRateBond.bondYield(Actual360(),Compounded,Annual),
         "Rate")
-print ''
+print('')
 
 # Other computations
 
-print  "Sample indirect computations (for the floating rate bond): "
-print   rule
-print  "Yield to Clean Price: " + formatPrice(
+print("Sample indirect computations (for the floating rate bond): ")
+print(rule)
+print("Yield to Clean Price: " + formatPrice(
     floatingRateBond.cleanPrice(floatingRateBond.bondYield(Actual360(),
                                                            Compounded,Annual),
-                                Actual360(),Compounded,Annual,settlementDate))
-print  "Clean Price to Yield: " + formatRate(
+                                Actual360(),Compounded,Annual,settlementDate)))
+print("Clean Price to Yield: " + formatRate(
     floatingRateBond.bondYield(floatingRateBond.cleanPrice(),
                                Actual360(),Compounded,
-                               Annual,settlementDate)) 
+                               Annual,settlementDate)))
