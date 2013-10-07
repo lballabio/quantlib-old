@@ -16,8 +16,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from .QuantLib import *
-from .QuantLib import _QuantLib
+import sys
+if sys.version_info.major >= 3:
+    from .QuantLib import *
+    from .QuantLib import _QuantLib
+else:
+    from QuantLib import *
+    from QuantLib import _QuantLib
+del sys
 
 __author__ = 'The QuantLib Group'
 __email__ = 'quantlib-users@lists.sourceforge.net'
