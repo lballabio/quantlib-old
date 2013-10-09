@@ -38,6 +38,15 @@
 
 namespace QuantLib {
 
+    /* \warning the standardSwapBase index should have associated forward and discount curves. These curves are used 
+        for setup of the swaption helper. This means that the market price of the calibration instrument is calculated using
+        these curves. Therefore the model price must be calculated using the same curves, otherwise the calibration gets
+        incosistent, i.e. the pricing engine used for model calibration has to be capable of using
+		the same curves as associated to the index. Also the volatility structure passed to construct the calibration 
+        helper should use curves that are consistent with the model calibration curve setup.
+        Finally the discountCurve given in the constructor should be the same curve as the discounting curve of the
+        swapIndex used to determine the calibration basket. */
+
     class BasketGeneratingEngine {
 
     public:
