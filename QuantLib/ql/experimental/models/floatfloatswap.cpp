@@ -171,23 +171,26 @@ namespace QuantLib {
         }
 
         boost::shared_ptr<IborIndex> ibor1 =
-            boost::dynamic_pointer_cast<IborIndex>(index1);
+            boost::dynamic_pointer_cast<IborIndex>(index1_);
         boost::shared_ptr<IborIndex> ibor2 =
-            boost::dynamic_pointer_cast<IborIndex>(index2);
+            boost::dynamic_pointer_cast<IborIndex>(index2_);
         boost::shared_ptr<SwapIndex> cms1 =
-            boost::dynamic_pointer_cast<SwapIndex>(index1);
+            boost::dynamic_pointer_cast<SwapIndex>(index1_);
         boost::shared_ptr<SwapIndex> cms2 =
-            boost::dynamic_pointer_cast<SwapIndex>(index2);
+            boost::dynamic_pointer_cast<SwapIndex>(index2_);
+
+        QL_REQUIRE(ibor1 != NULL || cms1 != NULL,"index1 must be ibor or cms");
+        QL_REQUIRE(ibor2 != NULL || cms2 != NULL,"index2 must be ibor or cms");
 
         if (ibor1) {
             IborLeg leg(schedule1_, ibor1);
             leg = leg.withNotionals(nominal1_).withPaymentDayCounter(dayCount1_)
                 .withPaymentAdjustment(paymentConvention1_)
-                .withSpreads(spread1_).withGearings(gearing1);
-            if (cappedRate1[0] != Null<Real>())
-                leg = leg.withCaps(cappedRate1);
-            if (flooredRate1[0] != Null<Real>())
-                leg = leg.withFloors(flooredRate1);
+                .withSpreads(spread1_).withGearings(gearing1_);
+            if (cappedRate1_[0] != Null<Real>())
+                leg = leg.withCaps(cappedRate1_);
+            if (flooredRate1_[0] != Null<Real>())
+                leg = leg.withFloors(flooredRate1_);
             legs_[0] = leg;
         }
 
@@ -195,11 +198,11 @@ namespace QuantLib {
             IborLeg leg(schedule2_, ibor2);
             leg = leg.withNotionals(nominal2_).withPaymentDayCounter(dayCount2_)
                 .withPaymentAdjustment(paymentConvention2_)
-                .withSpreads(spread2_).withGearings(gearing1);
-            if (cappedRate2[0] != Null<Real>())
-                leg = leg.withCaps(cappedRate2);
-            if (flooredRate2[0] != Null<Real>())
-                leg = leg.withFloors(flooredRate2);
+                .withSpreads(spread2_).withGearings(gearing1_);
+            if (cappedRate2_[0] != Null<Real>())
+                leg = leg.withCaps(cappedRate2_);
+            if (flooredRate2_[0] != Null<Real>())
+                leg = leg.withFloors(flooredRate2_);
             legs_[1] = leg;
         }
 
@@ -207,11 +210,11 @@ namespace QuantLib {
             CmsLeg leg(schedule1_, cms1);
             leg = leg.withNotionals(nominal1_).withPaymentDayCounter(dayCount1_)
                 .withPaymentAdjustment(paymentConvention1_)
-                .withSpreads(spread1_).withGearings(gearing1);
+                .withSpreads(spread1_).withGearings(gearing1_);
             if (cappedRate1[0] != Null<Real>())
-                leg = leg.withCaps(cappedRate1);
+                leg = leg.withCaps(cappedRate1_);
             if (flooredRate1[0] != Null<Real>())
-                leg = leg.withFloors(flooredRate1);
+                leg = leg.withFloors(flooredRate1_);
             legs_[0] = leg;
         }
 
@@ -221,9 +224,9 @@ namespace QuantLib {
                 .withPaymentAdjustment(paymentConvention2_)
                 .withSpreads(spread2_).withGearings(gearing2);
             if (cappedRate2[0] != Null<Real>())
-                leg = leg.withCaps(cappedRate1);
+                leg = leg.withCaps(cappedRate1_);
             if (flooredRate2[0] != Null<Real>())
-                leg = leg.withFloors(flooredRate1);
+                leg = leg.withFloors(flooredRate1_);
             legs_[1] = leg;
         }
 
