@@ -5,9 +5,10 @@
 
 using namespace QuantLib;
 
-// compare different SABR formulas
 
 void zabrPaper() {
+
+    // compare different SABR formulas
 
     std::ofstream out;
     out.open("smiles.dat");
@@ -183,7 +184,8 @@ void splineSmiles() {
     boost::shared_ptr<SmileSection> flatSmileSection(new FlatSmileSection(expiryTime,0.10,Actual365Fixed(),forward));
 
     boost::shared_ptr<SplineDensitySmileSection> spline(
-         new SplineDensitySmileSection(sabr, forward, 0.0, 1.00, false, money));
+        new SplineDensitySmileSection(flatSmileSection, forward, 0.0, 1.00,
+                                      false, money));
 
     std::cout << "arbitrage free region is " << spline->leftCoreStrike()
               << " ... " << spline->rightCoreStrike() << std::endl;
@@ -200,18 +202,22 @@ void splineSmiles() {
         Real referenceDensity = norm(std::log(strike))/strike;
 
         out << strike << " "                                    // 1
-            << sabr->volatility(strike) << " "                  // 2
-            << sabr->optionPrice(strike) << " "                 // 3
-            << sabr->digitalOptionPrice(strike) << " "          // 4
-            << sabr->density(strike) << " "                     // 5
-            << spline->volatility(strike) << " "                // 6
-            << spline->optionPrice(strike) << " "               // 7
-            << spline->digitalOptionPrice(strike) << " "        // 8
-            << spline->density(strike) << " "                   // 9
-            << referencePrice << " " // 5
-            << referenceDigital << " " //6
-            << referenceDensity << " "  //7 
-            << referenceDigital - spline->digitalOptionPrice(strike) << " " // 8
+            // << sabr->volatility(strike) << " "                  // 2
+            // << sabr->optionPrice(strike) << " "                 // 3
+            // << sabr->digitalOptionPrice(strike) << " "          // 4
+            // << sabr->density(strike) << " "                     // 5
+            << flatSmileSection->volatility(strike) << " "                  // 2
+            << flatSmileSection->optionPrice(strike) << " "                 // 3
+            << flatSmileSection->digitalOptionPrice(strike) << " "          // 4
+            << flatSmileSection->density(strike) << " "                     // 5
+            << spline->volatility(strike) << " "                // 6 
+            << spline->optionPrice(strike) << " "               // 7 
+            << spline->digitalOptionPrice(strike) << " "        // 8  
+            << spline->density(strike) << " "                   // 9 
+            // << referencePrice << " " // 5
+            // << referenceDigital << " " //6
+            // << referenceDensity << " "  //7 
+            // << referenceDigital - spline->digitalOptionPrice(strike) << " " // 8
             << std::endl;
         strike += 0.0010;
     }
@@ -245,7 +251,37 @@ void sbSmiles() {
     }
 
     out.close();
+
+}
+
+void interpolation() {
+    
+    std::ofstream out;
+    out.open("sample.dat");
+
+    Real x[] = { 0.0, 0.5, 1.0, 1.5, 2.0 };
+    Real y1[] = { 0.0, 0.5, 1.0, 0.5, 0.0 };
+    Real y2[] = { 0.0, 0.5, 0.2, 0.5, 0.0 };
+    
+    std::vector<Real> xv(x,x+5);
+    std::vector<Real> yv1(y1,y1+5);
+    std::vector<Real> yv2(y2,y2+5);
+
+    CubicInterpolation i1(xv.begin(), xv.end(), yv1.begin(), CubicInterpolation::Parabolic, false,
+                         CubicInterpolation::FirstDerivative, 0.0, CubicInterpolation::FirstDerivative, 0.0);
+
+    CubicInterpolation i2(xv.begin(), xv.end(), yv2.begin(), CubicInterpolation::Parabolic, false,
+                         CubicInterpolation::FirstDerivative, 0.0, CubicInterpolation::FirstDerivative, 0.0);
+
+    Real h = 0.0;
+    while(h <= 2.01) {
+        out << h << " " << i1(h) << " " << i2(h) << std::endl;
+        h+=0.01;
+    }
+
+    out.close();
+
 }
 
 
-int main(int, char * []) { sbSmiles(); }
+int main(int, char * []) { splineSmiles();  }
