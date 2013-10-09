@@ -31,21 +31,27 @@
 
 namespace QuantLib {
 
-  //! One factor model float float swaption engine
-  /*! \ingroup swaptionengines
+    //! One factor model float float swaption engine
+    /*! \ingroup swaptionengines
 
-       All float coupons with start date greater or equal to the respective option
-       expiry
-       are considered to be part of the exercise into right.
+         All float coupons with fixing date greater or
+         equal the respective option expiry are considered
+         part of the exercise into right. Note that this
+         is different from the usual accrual start date
+         greater or equal exercise date if the fixing lag
+         is strictly greater than the exercise lag (which
+         should be a rare case).
 
-       // FIXME relevant floating coupons may have been fixed on or before today,
-       this may cause problems below
+         The addtional result underlyingValue is the npv
+         of the underlying (as seen from "today") in which
+         one can exercise on the earliest exercise date.
+   */
 
-       // TODO implement this as a basket generating engine
- */
-
-    class Gaussian1dFloatFloatSwaptionEngine : public GenericModelEngine<
-        Gaussian1dModel, FloatFloatSwaption::arguments, FloatFloatSwaption::results> {
+    class Gaussian1dFloatFloatSwaptionEngine
+        : BasketGeneratingEngine,
+          public GenericModelEngine<Gaussian1dModel,
+                                    FloatFloatSwaption::arguments,
+                                    FloatFloatSwaption::results> {
       public:
         Gaussian1dFloatFloatSwaptionEngine(
             const boost::shared_ptr<Gaussian1dModel> &model,
@@ -56,7 +62,8 @@ namespace QuantLib {
                 Handle<Quote>(), // continously compounded w.r.t. yts daycounter
             const Handle<YieldTermStructure> &discountCurve =
                 Handle<YieldTermStructure>())
-            : GenericModelEngine<Gaussian1dModel, FloatFloatSwaption::arguments,
+            : BasketGeneratingEngine(model, oas, discountCurve),
+              GenericModelEngine<Gaussian1dModel, FloatFloatSwaption::arguments,
                                  FloatFloatSwaption::results>(model),
               integrationPoints_(integrationPoints), stddevs_(stddevs),
               extrapolatePayoff_(extrapolatePayoff),
@@ -72,6 +79,13 @@ namespace QuantLib {
 
         void calculate() const;
 
+      protected:
+
+        const Real underlyingNpv(const Date &expiry, const Real y) const;
+        const VanillaSwap::Type underlyingType() const;
+        const Date &underlyingLastDate() const;
+        const Disposable<Array> initialGuess(const Date &expiry) const;
+
       private:
         const int integrationPoints_;
         const Real stddevs_;
@@ -79,6 +93,10 @@ namespace QuantLib {
         const boost::shared_ptr<Gaussian1dModel> model_;
         const Handle<Quote> oas_;
         const Handle<YieldTermStructure> discountCurve_;
+
+        const std::pair<Real, Real>
+        npvs(const Date &expiry, const Real y,
+             const bool includeExerciseOnxpiry) const;
     };
 }
 

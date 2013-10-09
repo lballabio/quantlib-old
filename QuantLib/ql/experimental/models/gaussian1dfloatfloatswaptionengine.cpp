@@ -29,15 +29,71 @@ namespace QuantLib {
 
         if (arguments_.exercise->dates().back() <=
             settlement) { // swaption is expired, possibly generated swap is not
-                     // valued
+                          // valued
             results_.value = 0.0;
             return;
         }
+
+        std::pair<Real,Real> result = npvs(settlement, 0.0, false);
+
+        results_.value = result.first;
+        results_.additionalResults["underlyingValue"] = result.second;
+
+    }
+
+    const Real Gaussian1dFloatFloatSwaptionEngine::underlyingNpv(const Date& expiry, const Real y) const {
+        return npvs(expiry,y,true).first;
+    }
+
+    const VanillaSwap::Type Gaussian1dFloatFloatSwaptionEngine::underlyingType() const {
+        return arguments_.swap->type();
+    }
+
+    const Date& Gaussian1dFloatFloatSwaptionEngine::underlyingLastDate() const {
+        Date l1 = arguments_.leg1PayDates.back();
+        Date l2 = arguments_.leg2PayDates.back();
+        return std::max<Date>(l1,l2);
+    }
+
+    const Disposable<Array> Gaussian1dFloatFloatSwaptionEngine::initialGuess(const Date& expiry) const {
+        
+        Size idx1 = std::upper_bound(arguments_.leg1ResetDates.begin(),
+                                     arguments_.leg1ResetDates.end(), expiry-1 ) - arguments_.leg1ResetDates.begin();
+        
+        // very simple initial guess
+
+        Array initial(3);
+        Real nominalSum1 = 0.0;
+        for(Size i=idx1;i<arguments_.leg1ResetDates.size();i++) {
+            nominalSum1 += arguments_.nominal1[i];
+        }
+        Real nominalAvg1 = nominalSum1 /= (arguments_.leg1ResetDates.size() - idx1);
+        Real weightedMaturity1 = 0.0;
+        for(Size i=idx1;i<arguments_.leg1ResetDates.size();i++) {
+            weightedMaturity1 += arguments_.leg1AccrualTimes[i] * arguments_.nominal1[i];
+        }
+        weightedMaturity1 /= nominalAvg1;
+
+        initial[0] = nominalAvg1;
+        initial[1] = weightedMaturity1;
+        initial[2] = 0.03; // ???
+
+        return initial;
+    }
+
+    // calculate npv and underlying npv as of expiry date
+    const std::pair<Real,Real>  Gaussian1dFloatFloatSwaptionEngine::npvs(const Date& expiry, const Real y,
+                                                                         const bool includeExerciseOnExpiry) const {
+
+        // pricing
 
         // event dates are coupon fixing dates and exercise dates
         // we explicitly estimate cms and also libor coupons although
         // the latter could be calculated analytically to make the code
         // simpler
+        // Only exercise dates on (or after) expiry and only fixing dates
+        // with resetDate (accrualStartDate) on (or after) expiry are
+        // of interest
 
         std::vector<Date> events;
         events.insert(events.end(), arguments_.exercise->dates().begin(),
@@ -51,13 +107,12 @@ namespace QuantLib {
             std::unique(events.begin(), events.end());
         events.resize(std::distance(events.begin(), it));
 
-        // only events starting tommorow are of interest by definition of the
-        // deal part that is exericsed into,
+        // only events on or after expiry are of interest by definition of the
+        // deal part that is exericsed into.
 
         std::vector<Date>::iterator filit =
-            std::upper_bound(events.begin(), events.end(), settlement);
-        while (events[0] <= settlement)
-            events.erase(events.begin(), filit);
+            std::upper_bound(events.begin(), events.end(), expiry - (includeExerciseOnExpiry ? 1 : 0));
+        events.erase(events.begin(), filit);
 
         int idx = events.size() - 1;
 
@@ -99,7 +154,7 @@ namespace QuantLib {
             // date or an exercise date or both.
 
             if (idx == -1)
-                event0 = settlement;
+                event0 = expiry;
             else
                 event0 = events[idx];
 
@@ -127,7 +182,7 @@ namespace QuantLib {
             event0Time = std::max(
                 model_->termStructure()->timeFromReference(event0), 0.0);
 
-            for (Size k = 0; k < (event0 > settlement ? npv0.size() : 1); k++) {
+            for (Size k = 0; k < (event0 > expiry ? npv0.size() : 1); k++) {
 
                 // roll back
 
@@ -138,7 +193,7 @@ namespace QuantLib {
                                                      (event1Time - event0Time));
                     Array yg =
                         model_->yGrid(stddevs_, integrationPoints_, event1Time,
-                                      event0Time, event0Time > 0 ? z[k] : 0.0);
+                                      event0Time, event0 > expiry ? z[k] : y);
                     CubicInterpolation payoff0(
                         z.begin(), z.end(), npv1.begin(),
                         CubicInterpolation::Spline, true,
@@ -243,7 +298,7 @@ namespace QuantLib {
 
                 // event date calculations
 
-                if (event0 > settlement) {
+                if (event0 > expiry) {
                     if (isLeg1Fixing) { // if event is a fixing date and
                                         // exercise date,
                         // the coupon is part of the exercise into right (by
@@ -357,8 +412,13 @@ namespace QuantLib {
 
         } while (--idx >= -1);
 
-        results_.value = npv1[0] * model_->numeraire(0.0, 0.0, discountCurve_);
-        results_.additionalResults["underlyingValue"] =
-            npv1a[0] * model_->numeraire(0.0, 0.0, discountCurve_);
+        std::pair<Real,Real> res(npv1[0] * model_->numeraire(0.0, 0.0, discountCurve_),
+                                 npv1a[0] * model_->numeraire(0.0, 0.0, discountCurve_));
+
+        return res;
+
     }
+
+
+
 }
