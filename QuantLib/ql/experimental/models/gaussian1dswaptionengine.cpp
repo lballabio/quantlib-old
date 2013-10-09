@@ -69,7 +69,7 @@ namespace QuantLib {
                 Real price = 0.0;
                 if(expiry1Time != Null<Real>()) {
                     Array yg = model_->yGrid(stddevs_, integrationPoints_, expiry1Time, expiry0Time, 
-                                             expiry0Time > 0 ? z[k] : 0.0);
+                                             expiry0 > settlement ? z[k] : 0.0);
                     CubicInterpolation payoff0(z.begin(),z.end(),npv1.begin(),CubicInterpolation::Spline,true,
                                                CubicInterpolation::Lagrange,0.0,CubicInterpolation::Lagrange,0.0);
                     for(Size i=0;i<yg.size();i++) {
