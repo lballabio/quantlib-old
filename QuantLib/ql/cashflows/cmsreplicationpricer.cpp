@@ -274,6 +274,8 @@ namespace QuantLib {
             break;
         }
 
+        // FIXME we have to convert the rate bounds to h's rather than use them
+        // directly
         case Settings::RateBound : {
             Real h2 = h(optionType == Option::Call ? settings_.upperRateBound_ : settings_.lowerRateBound_);
             for(Size i=0;i<settings_.n_;i++) {
