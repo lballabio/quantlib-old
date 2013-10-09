@@ -74,8 +74,8 @@ namespace QuantLib {
         std::vector<Real> lambda_, eta_;
         boost::shared_ptr<SmileSectionUtils> ssutils_;
 
-        boost::shared_ptr<CubicInterpolation> density_;
-        //boost::shared_ptr<LinearInterpolation> density_;
+        //boost::shared_ptr<CubicInterpolation> density_;
+        boost::shared_ptr<LinearInterpolation> density_;
         Real etaSum_,adjustment_,expectation_;
 
         class SplineDensityCostFunction : public CostFunction {

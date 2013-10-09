@@ -82,57 +82,57 @@ namespace QuantLib {
         d_.push_back(0.0);
 
 
-        density_ = boost::shared_ptr<CubicInterpolation>(new CubicInterpolation(k_.begin(), k_.end(),
-                                                                           d_.begin(), CubicInterpolation::Spline, true,
-                                                                           CubicInterpolation::SecondDerivative, 0.0,
-                                                                           CubicInterpolation::SecondDerivative, 0.0));
+        // density_ = boost::shared_ptr<CubicInterpolation>(new CubicInterpolation(k_.begin(), k_.end(),
+        //                                                                    d_.begin(), CubicInterpolation::Spline, true,
+        //                                                                    CubicInterpolation::SecondDerivative, 0.0,
+        //                                                                    CubicInterpolation::SecondDerivative, 0.0));
 
-        //density_ = boost::shared_ptr<LinearInterpolation>(new LinearInterpolation(k_.begin(), k_.end(), d_.begin()));
+        density_ = boost::shared_ptr<LinearInterpolation>(new LinearInterpolation(k_.begin(), k_.end(), d_.begin()));
         
-        // global calibration
-        SplineDensityCostFunction cost(this);
-        NoConstraint constraint;
-        Problem p(cost,constraint,initial);
+        // // global calibration
+        // SplineDensityCostFunction cost(this);
+        // NoConstraint constraint;
+        // Problem p(cost,constraint,initial);
 
-   		LevenbergMarquardt lm;
-		//Simplex lm(0.01);
-		//BFGS lm;
-		EndCriteria ec(5000,100,1e-16,1e-16,1e-16);
+   		// LevenbergMarquardt lm;
+		// //Simplex lm(0.01);
+		// //BFGS lm;
+		// EndCriteria ec(5000,100,1e-16,1e-16,1e-16);
 
-		EndCriteria::Type ret = lm.minimize(p,ec);
-		QL_REQUIRE(ret!=EndCriteria::MaxIterations,"Optimizer returns maxiterations");
+		// EndCriteria::Type ret = lm.minimize(p,ec);
+		// QL_REQUIRE(ret!=EndCriteria::MaxIterations,"Optimizer returns maxiterations");
 
-		Array res = p.currentValue();
-        setDensity(res); // just to make really sure, we are at the optimal point
+		// Array res = p.currentValue();
+        // setDensity(res); // just to make really sure, we are at the optimal point
 
         // iterative calibration
-        // for(Size i=1; i<k_.size()-1; i++) {
-        //     SplineDensityCostFunction2 cost(this,i);
-        //     NoConstraint constraint;
-        //     Array initial2(1,initial[i-1]);
-        //     Problem p(cost,constraint,initial2);
+        for(Size i=1; i<k_.size()-1; i++) {
+            SplineDensityCostFunction2 cost(this,i);
+            NoConstraint constraint;
+            Array initial2(1,initial[i-1]);
+            Problem p(cost,constraint,initial2);
 
-        //     LevenbergMarquardt lm;
-        //     //Simplex lm(0.01);
-        //     //BFGS lm;
-        //     EndCriteria ec(5000,100,1e-16,1e-16,1e-16);
+            LevenbergMarquardt lm;
+            //Simplex lm(0.01);
+            //BFGS lm;
+            EndCriteria ec(5000,100,1e-16,1e-16,1e-16);
 
-        //     EndCriteria::Type ret = lm.minimize(p,ec);
-        //     QL_REQUIRE(ret!=EndCriteria::MaxIterations,"Optimizer returns maxiterations");
+            EndCriteria::Type ret = lm.minimize(p,ec);
+            QL_REQUIRE(ret!=EndCriteria::MaxIterations,"Optimizer returns maxiterations");
 
-        //     Array res = p.currentValue();
-        //     setDensity(res[0],i); // just to make really sure, we are at the optimal point
-        // }
+            Array res = p.currentValue();
+            setDensity(res[0],i); // just to make really sure, we are at the optimal point
+        }
 
-        update();
+        //update();
 
     }
 
     void SplineDensitySmileSection::update() {
 
-        const std::vector<Real> &pa_ = density_->cCoefficients(); // just for our convenience
-        const std::vector<Real> &pb_ = density_->bCoefficients();
-        const std::vector<Real> &pc_ = density_->aCoefficients();
+        // const std::vector<Real> &pa_ = density_->cCoefficients(); // just for our convenience
+        // const std::vector<Real> &pb_ = density_->bCoefficients();
+        // const std::vector<Real> &pc_ = density_->aCoefficients();
         const std::vector<Real> &pd_ = d_;
 
         eta_.clear();
@@ -143,32 +143,37 @@ namespace QuantLib {
         for (Size i = 0; i < k_.size() - 1; i++) {
             Real dk = k_[i + 1] - k_[i];
             Real dk2 = dk*dk;
-            eta_.push_back(1.0 / 4.0 * pa_[i] * dk2*dk2 +
-                           1.0 / 3.0 * pb_[i] * dk2*dk +
-                           1.0 / 2.0 * pc_[i] * dk2 +
-                           pd_[i] * dk);
-            // linear interpolation
-            // Real pa=0.0,pb=0.0;
-            // Real pc=(d_[i+1]-d_[i])/(k_[i+1]-k_[i]);
-            // eta_.push_back(1.0 / 4.0 * pa * dk2*dk2 +
-            //                1.0 / 3.0 * pb * dk2*dk +
-            //                1.0 / 2.0 * pc * dk2 +
+            // eta_.push_back(1.0 / 4.0 * pa_[i] * dk2*dk2 +
+            //                1.0 / 3.0 * pb_[i] * dk2*dk +
+            //                1.0 / 2.0 * pc_[i] * dk2 +
             //                pd_[i] * dk);
+            // expectation_ +=
+            //     k_[i+1] * eta_.back() - 1.0 / 20.0 * pa_[i] * dk2 * dk2 * dk -
+            //     1.0 / 12.0 * pb_[i] * dk2 * dk2 -
+            //     1.0 / 6.0 * pc_[i] * dk2 * dk - 1.0 / 2.0 * pd_[i] * dk2;
+
+            // linear interpolation
+            Real pa=0.0,pb=0.0;
+            Real pc=(d_[i+1]-d_[i])/(k_[i+1]-k_[i]);
+            eta_.push_back(1.0 / 4.0 * pa * dk2*dk2 +
+                           1.0 / 3.0 * pb * dk2*dk +
+                           1.0 / 2.0 * pc * dk2 +
+                           pd_[i] * dk);
 
             expectation_ +=
-                k_[i+1] * eta_.back() - 1.0 / 20.0 * pa_[i] * dk2 * dk2 * dk -
-                1.0 / 12.0 * pb_[i] * dk2 * dk2 -
-                1.0 / 6.0 * pc_[i] * dk2 * dk - 1.0 / 2.0 * pd_[i] * dk2;
+                k_[i+1] * eta_.back() - 1.0 / 20.0 * pa * dk2 * dk2 * dk -
+                1.0 / 12.0 * pb * dk2 * dk2 -
+                1.0 / 6.0 * pc * dk2 * dk - 1.0 / 2.0 * pd_[i] * dk2;
 
             lambda_.push_back(etaSum_);
             etaSum_ += eta_.back();
-            std::cout << k_[i] << " " << k_[i+1] << " etasum " << etaSum_ << std::endl;
+            //std::cout << k_[i] << " " << k_[i+1] << " etasum " << etaSum_ << std::endl;
         }
 
-        adjustment_ = 1.0 / etaSum_;
-        expectation_ *= adjustment_;
+        // adjustment_ = 1.0 / etaSum_;
+        // expectation_ *= adjustment_;
 
-        std::cout << "expectation is " << expectation_ << " adjustment is " << adjustment_ << std::endl;
+        //std::cout << "expectation is " << expectation_ << " adjustment is " << adjustment_ << std::endl;
 
     }
 
@@ -222,16 +227,16 @@ namespace QuantLib {
         
         if(type == Option::Put) return discount*(optionPrice(strike, Option::Call, 1.0) - f_ + strike);
 
-        strike += expectation_-f_;
+        //strike += expectation_-f_;
 
         if(strike <= lowerBound_) return f_-strike;
         if(strike >= upperBound_) return 0.0;
 
-        Real price = f_- lowerBound_ + expectation_-f_;
+        Real price = f_- lowerBound_;// + expectation_-f_;
 
-        const std::vector<Real> &pa_ = density_->cCoefficients(); // just for our convenience
-        const std::vector<Real> &pb_ = density_->bCoefficients();
-        const std::vector<Real> &pc_ = density_->aCoefficients();
+        // const std::vector<Real> &pa_ = density_->cCoefficients(); // just for our convenience
+        // const std::vector<Real> &pb_ = density_->bCoefficients();
+        // const std::vector<Real> &pc_ = density_->aCoefficients();
         const std::vector<Real> &pd_ = d_;
 
         for(Size j=0; j<=index(strike); j++) {
@@ -240,20 +245,20 @@ namespace QuantLib {
             Real dk = mu - k_[j];
             Real dk2 = dk*dk;
 
-            price += (dk * (adjustment_*lambda_[j] - 1.0) + adjustment_*(
-                                    1.0 / 20.0 * pa_[j] * dk2*dk2*dk +
-                                    1.0 / 12.0 * pb_[j] * dk2*dk2 +
-                                    1.0 / 6.0 * pc_[j] * dk2*dk +
-                                    1.0 / 2.0 * pd_[j] * dk2));
+            // price += (dk * (adjustment_*lambda_[j] - 1.0) + adjustment_*(
+            //                         1.0 / 20.0 * pa_[j] * dk2*dk2*dk +
+            //                         1.0 / 12.0 * pb_[j] * dk2*dk2 +
+            //                         1.0 / 6.0 * pc_[j] * dk2*dk +
+            //                         1.0 / 2.0 * pd_[j] * dk2));
             
             // linear interpolation
-            // Real pa=0.0,pb=0.0;
-            // Real pc=(d_[j+1]-d_[j])/(k_[j+1]-k_[j]);
-            // price += (dk * (adjustment_*lambda_[j] - 1.0) + adjustment_*(
-            //                         1.0 / 20.0 * pa * dk2*dk2*dk +
-            //                         1.0 / 12.0 * pb * dk2*dk2 +
-            //                         1.0 / 6.0 * pc * dk2*dk +
-            //                         1.0 / 2.0 * pd_[j] * dk2));
+            Real pa=0.0,pb=0.0;
+            Real pc=(d_[j+1]-d_[j])/(k_[j+1]-k_[j]);
+            price += (dk * (adjustment_*lambda_[j] - 1.0) + adjustment_*(
+                                    1.0 / 20.0 * pa * dk2*dk2*dk +
+                                    1.0 / 12.0 * pb * dk2*dk2 +
+                                    1.0 / 6.0 * pc * dk2*dk +
+                                    1.0 / 2.0 * pd_[j] * dk2));
 
         }
 
@@ -263,20 +268,20 @@ namespace QuantLib {
 
     Real SplineDensitySmileSection::digitalOptionPrice(Rate strike, Option::Type type, Real discount, Real gap) const {
 
-        return SmileSection::digitalOptionPrice(strike,type,discount,gap); // debug
+        //return SmileSection::digitalOptionPrice(strike,type,discount,gap); // debug
         
         if(type == Option::Put) return discount*(1.0 - digitalOptionPrice(strike, Option::Call, 1.0));
 
-        strike += expectation_-f_;
+        //strike += expectation_-f_;
 
         if(strike <= lowerBound_) return discount;
         if(strike >= upperBound_) return 0.0;
 
         Real price = 1.0;
 
-        const std::vector<Real> &pa_ = density_->cCoefficients(); // just for our convenience
-        const std::vector<Real> &pb_ = density_->bCoefficients();
-        const std::vector<Real> &pc_ = density_->aCoefficients();
+        // const std::vector<Real> &pa_ = density_->cCoefficients(); // just for our convenience
+        // const std::vector<Real> &pb_ = density_->bCoefficients();
+        // const std::vector<Real> &pc_ = density_->aCoefficients();
         const std::vector<Real> &pd_ = d_;
         
         Size n = index(strike);
@@ -288,15 +293,15 @@ namespace QuantLib {
         Real dk = strike - k_[n];
         Real dk2 = dk*dk;
 
-        price -= adjustment_* ( 1.0 / 4.0 * pa_[n] * dk2*dk2 +
-                 1.0 / 3.0 * pb_[n] * dk2*dk +
-                                1.0 / 2.0 * pc_[n] * dk2 + pd_[n] * dk);
+        // price -= adjustment_* ( 1.0 / 4.0 * pa_[n] * dk2*dk2 +
+        //          1.0 / 3.0 * pb_[n] * dk2*dk +
+        //                         1.0 / 2.0 * pc_[n] * dk2 + pd_[n] * dk);
 
         // linear interpolation
-        // Real pa = 0.0, pb = 0.0, pc = (c_[n+1]-c_[n])/(k_[n+1]-k_[n]);
-        // price -= adjustment_* ( 1.0 / 4.0 * pa * dk2*dk2 +
-        //          1.0 / 3.0 * pb * dk2*dk +
-        //                         1.0 / 2.0 * pc * dk2 + pd_[n] * dk);
+        Real pa = 0.0, pb = 0.0, pc = (c_[n+1]-c_[n])/(k_[n+1]-k_[n]);
+        price -= adjustment_* ( 1.0 / 4.0 * pa * dk2*dk2 +
+                 1.0 / 3.0 * pb * dk2*dk +
+                                1.0 / 2.0 * pc * dk2 + pd_[n] * dk);
 
         return price;
 
@@ -305,7 +310,7 @@ namespace QuantLib {
     Real SplineDensitySmileSection::density(Rate strike, Real discount, Real gap) const {
 
         // return SmileSection::density(strike,discount,gap); // debug
-        strike += expectation_-f_;
+        //strike += expectation_-f_;
 
         if(strike <= lowerBound_ || strike >= upperBound_) return 0.0;
         
