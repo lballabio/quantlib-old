@@ -48,7 +48,7 @@ namespace QuantLib {
    */
 
     class Gaussian1dFloatFloatSwaptionEngine
-        : BasketGeneratingEngine,
+        : public BasketGeneratingEngine,
           public GenericModelEngine<Gaussian1dModel,
                                     FloatFloatSwaption::arguments,
                                     FloatFloatSwaption::results> {
