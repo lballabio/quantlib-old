@@ -47,6 +47,24 @@ namespace QuantLib {
         class results;
         class engine;
         FloatFloatSwap(
+            const VanillaSwap::Type type, const Real nominal1,
+            const Real nominal2, const Schedule &schedule1,
+            const boost::shared_ptr<InterestRateIndex> &index1,
+            const DayCounter &dayCount1, const Schedule &schedule2,
+            const boost::shared_ptr<InterestRateIndex> &index2,
+            const DayCounter &dayCount2,
+            const bool intermediateCapitalExchange = false,
+            const bool finalCapitalExchange = false, const Real gearing1 = 1.0,
+            const Real spread1 = 0.0, const Real cappedRate1 = Null<Real>(),
+            const Real flooredRate1 = Null<Real>(), const Real gearing2 = 1.0,
+            const Real spread2 = 0.0, const Real cappedRate2 = Null<Real>(),
+            const Real flooredRate2 = Null<Real>(),
+            boost::optional<BusinessDayConvention> paymentConvention1 =
+                boost::none,
+            boost::optional<BusinessDayConvention> paymentConvention2 =
+                boost::none);
+
+        FloatFloatSwap(
             const VanillaSwap::Type type, const std::vector<Real> &nominal1,
             const std::vector<Real> &nominal2, const Schedule &schedule1,
             const boost::shared_ptr<InterestRateIndex> &index1,
@@ -133,7 +151,8 @@ namespace QuantLib {
         std::vector<Date> leg2ResetDates, leg2FixingDates, leg2PayDates;
 
         std::vector<Real> leg1Spreads, leg2Spreads, leg1Gearings, leg2Gearings;
-        std::vector<Real> leg1CappedRates, leg1FlooredRates, leg2CappedRates, leg2FlooredRates;
+        std::vector<Real> leg1CappedRates, leg1FlooredRates, leg2CappedRates,
+            leg2FlooredRates;
 
         std::vector<Real> leg1Coupons, leg2Coupons;
         std::vector<Real> leg1AccrualTimes, leg2AccrualTimes;

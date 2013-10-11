@@ -32,6 +32,35 @@
 namespace QuantLib {
 
     FloatFloatSwap::FloatFloatSwap(
+        const VanillaSwap::Type type, const Real nominal1, const Real nominal2,
+        const Schedule &schedule1,
+        const boost::shared_ptr<InterestRateIndex> &index1,
+        const DayCounter &dayCount1, const Schedule &schedule2,
+        const boost::shared_ptr<InterestRateIndex> &index2,
+        const DayCounter &dayCount2, const bool intermediateCapitalExchange,
+        const bool finalCapitalExchange, const Real gearing1,
+        const Real spread1, const Real cappedRate1, const Real flooredRate1,
+        const Real gearing2, const Real spread2, const Real cappedRate2,
+        const Real flooredRate2,
+        boost::optional<BusinessDayConvention> paymentConvention1,
+        boost::optional<BusinessDayConvention> paymentConvention2)
+        : FloatFloatSwap(type,
+                         std::vector<Real>(schedule1.size() - 1, nominal1),
+                         std::vector<Real>(schedule2.size() - 1, nominal2),
+                         schedule1, index1, dayCount1, schedule2, index2,
+                         dayCount2, intermediateCapitalExchange,
+                         finalCapitalExchange,
+                         std::vector<Real>(schedule1.size() - 1, gearing1),
+                         std::vector<Real>(schedule1.size() - 1, spread1),
+                         std::vector<Real>(schedule1.size() - 1, cappedRate1),
+                         std::vector<Real>(schedule1.size() - 1, flooredRate1),
+                         std::vector<Real>(schedule1.size() - 1, gearing2),
+                         std::vector<Real>(schedule1.size() - 1, spread2),
+                         std::vector<Real>(schedule1.size() - 1, cappedRate2),
+                         std::vector<Real>(schedule1.size() - 1, flooredRate2),
+                         paymentConvention1, paymentConvention2) {}
+
+    FloatFloatSwap::FloatFloatSwap(
         const VanillaSwap::Type type, const std::vector<Real> &nominal1,
         const std::vector<Real> &nominal2, const Schedule &schedule1,
         const boost::shared_ptr<InterestRateIndex> &index1,
@@ -179,8 +208,8 @@ namespace QuantLib {
         boost::shared_ptr<SwapIndex> cms2 =
             boost::dynamic_pointer_cast<SwapIndex>(index2_);
 
-        QL_REQUIRE(ibor1 != NULL || cms1 != NULL,"index1 must be ibor or cms");
-        QL_REQUIRE(ibor2 != NULL || cms2 != NULL,"index2 must be ibor or cms");
+        QL_REQUIRE(ibor1 != NULL || cms1 != NULL, "index1 must be ibor or cms");
+        QL_REQUIRE(ibor2 != NULL || cms2 != NULL, "index2 must be ibor or cms");
 
         if (ibor1) {
             IborLeg leg(schedule1_, ibor1);
