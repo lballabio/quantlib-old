@@ -88,8 +88,8 @@ namespace QuantLib {
         // pricing
 
         // event dates are coupon fixing dates and exercise dates
-        // we explicitly estimate cms and also libor coupons although
-        // the latter could be calculated analytically to make the code
+        // we explicitly estimate cms and also libor coupons (although
+        // the latter could be calculated analytically) to make the code
         // simpler
         // Only exercise dates on (or after) expiry and only fixing dates
         // with resetDate (accrualStartDate) on (or after) expiry are
@@ -101,8 +101,9 @@ namespace QuantLib {
         events.insert(events.end(), arguments_.leg1FixingDates.begin(),
                       arguments_.leg1FixingDates.end());
         events.insert(events.end(), arguments_.leg2FixingDates.begin(),
-                      arguments_.leg1FixingDates.end());
+                      arguments_.leg2FixingDates.end());
         std::sort(events.begin(), events.end());
+        
         std::vector<Date>::iterator it =
             std::unique(events.begin(), events.end());
         events.resize(std::distance(events.begin(), it));
@@ -113,7 +114,7 @@ namespace QuantLib {
         std::vector<Date>::iterator filit =
             std::upper_bound(events.begin(), events.end(), expiry - (includeExerciseOnExpiry ? 1 : 0));
         events.erase(events.begin(), filit);
-
+        
         int idx = events.size() - 1;
 
         FloatFloatSwap swap = *arguments_.swap;
@@ -330,7 +331,8 @@ namespace QuantLib {
                             rate =
                                 std::max(arguments_.leg1FlooredRates[j], rate);
                         npv0a[k] -=
-                            rate * arguments_.leg1AccrualTimes[j] *
+                            rate * arguments_.nominal1[j] * 
+                            arguments_.leg1AccrualTimes[j] *
                             model_->zerobond(arguments_.leg1PayDates[j], event0,
                                              z[k], discountCurve_) /
                             model_->numeraire(event0Time, z[k],
@@ -345,10 +347,6 @@ namespace QuantLib {
                                            arguments_.leg2FixingDates.end(),
                                            event0) -
                                  arguments_.leg2FixingDates.begin();
-                        std::exp(
-                            -oas_->value() *
-                            (model_->termStructure()->dayCounter().yearFraction(
-                                event0, arguments_.leg2PayDates[j])));
                         Real zSpreadDf =
                             oas_.empty()
                                 ? 1.0
@@ -371,8 +369,9 @@ namespace QuantLib {
                         if (arguments_.leg2FlooredRates[j] != Null<Real>())
                             rate =
                                 std::max(arguments_.leg2FlooredRates[j], rate);
-                        npv0a[k] -=
-                            rate * arguments_.leg2AccrualTimes[j] *
+                        npv0a[k] +=
+                            rate * arguments_.nominal2[j] *
+                            arguments_.leg2AccrualTimes[j] *
                             model_->zerobond(arguments_.leg2PayDates[j], event0,
                                              z[k], discountCurve_) /
                             model_->numeraire(event0Time, z[k],
@@ -413,7 +412,7 @@ namespace QuantLib {
         } while (--idx >= -1);
 
         std::pair<Real,Real> res(npv1[0] * model_->numeraire(0.0, 0.0, discountCurve_),
-                                 npv1a[0] * model_->numeraire(0.0, 0.0, discountCurve_));
+                                 npv1a[0] * model_->numeraire(0.0, 0.0, discountCurve_) * (type == Option::Call ? 1.0 : -1.0));
 
         return res;
 
