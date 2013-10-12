@@ -2,6 +2,7 @@
 AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 
 SUBDIRS = \
+	AswZSpreads \
     BermudanSwaption \
 	BermudanSwaption2 \
     Bonds \

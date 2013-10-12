@@ -408,6 +408,7 @@ AC_CONFIG_FILES([
     m4/Makefile
     Docs/Makefile
     Examples/Makefile
+    Examples/AswZSpreads/Makefile
     Examples/BermudanSwaption/Makefile
     Examples/BermudanSwaption2/Makefile
     Examples/Bonds/Makefile
