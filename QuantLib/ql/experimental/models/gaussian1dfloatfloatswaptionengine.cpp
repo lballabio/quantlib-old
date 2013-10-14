@@ -385,7 +385,7 @@ namespace QuantLib {
                                  arguments_.exercise->dates().begin();
                         Real rebate = arguments_.exercise->rebate(j);
                         Date rebateDate =
-                            arguments_.exercise->rebatePaymentDate(idx);
+                            arguments_.exercise->rebatePaymentDate(j);
                         Real zSpreadDf =
                             oas_.empty()
                                 ? 1.0
