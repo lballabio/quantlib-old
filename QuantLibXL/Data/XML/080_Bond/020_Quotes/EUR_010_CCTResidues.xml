@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="7">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>6</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="171" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>CCT EU 2015-12 RESIDUE_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties class_id="242" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="171" object_id="_2">
+			<ObjectId>CCT EU 2015-12 RESIDUEResPrem_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>0</Value>
+			<TickValue>-0.01</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="171" object_id="_3">
+			<ObjectId>CCT EU 2017-10 RESIDUE_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="171" object_id="_4">
+			<ObjectId>CCT EU 2017-10 RESIDUEResPrem_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>0</Value>
+			<TickValue>-0.01</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="171" object_id="_5">
+			<ObjectId>CCT EU 2018-04 RESIDUE_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>3.4028234663852886e+038</Value>
+			<TickValue>-0.01</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="171" object_id="_6">
+			<ObjectId>CCT EU 2018-04 RESIDUEResPrem_Quote</ObjectId>
+			<ClassName>qlSimpleQuote</ClassName>
+			<Value>0</Value>
+			<TickValue>-0.01</TickValue>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+

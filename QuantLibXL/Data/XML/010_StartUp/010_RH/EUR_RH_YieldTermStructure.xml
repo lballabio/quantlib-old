@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="7">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>17</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="227" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>EurYC</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties class_id="242" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_2">
+			<ObjectId>EurYCSTD</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_3">
+			<ObjectId>EuriborYCON</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_4">
+			<ObjectId>EuriborYC1M</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_5">
+			<ObjectId>EuriborYC3M</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_6">
+			<ObjectId>EuriborYC6M</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_7">
+			<ObjectId>EuriborYC1Y</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_8">
+			<ObjectId>EuriborYCON-Mx</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_9">
+			<ObjectId>EuriborYC1M-Mx</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_10">
+			<ObjectId>EuriborYC3M-Mx</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_11">
+			<ObjectId>EuriborYC6M-Mx</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_12">
+			<ObjectId>EuriborYC1Y-Mx</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_13">
+			<ObjectId>EurLiborYCON</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_14">
+			<ObjectId>EurLiborYC1M</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_15">
+			<ObjectId>EurLiborYC3M</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_16">
+			<ObjectId>EurLiborYC6M</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="227" object_id="_17">
+			<ObjectId>EurLiborYC1Y</ObjectId>
+			<ClassName>qlRelinkableHandleYieldTermStructure</ClassName>
+			<CurrentLink></CurrentLink>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+

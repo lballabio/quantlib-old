@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="7">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>3</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="163" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>IT0004620305-ResPrem_Quote</ObjectId>
+			<ClassName>qlCompositeQuote</ClassName>
+			<Element1 class_id="242" tracking_level="0" version="0">
+				<which>2</which>
+				<value>IT0004620305_Quote</value>
+			</Element1>
+			<Element2>
+				<which>2</which>
+				<value>CCT EU 2015-12 RESIDUEResPrem_Quote</value>
+			</Element2>
+			<Operator>-</Operator>
+			<Permanent>1</Permanent>
+			<UserProperties class_id="243" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="163" object_id="_2">
+			<ObjectId>IT0004652175-ResPrem_Quote</ObjectId>
+			<ClassName>qlCompositeQuote</ClassName>
+			<Element1>
+				<which>2</which>
+				<value>IT0004652175_Quote</value>
+			</Element1>
+			<Element2>
+				<which>2</which>
+				<value>CCT EU 2017-10 RESIDUEResPrem_Quote</value>
+			</Element2>
+			<Operator>-</Operator>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="163" object_id="_3">
+			<ObjectId>IT0004716319-ResPrem_Quote</ObjectId>
+			<ClassName>qlCompositeQuote</ClassName>
+			<Element1>
+				<which>2</which>
+				<value>IT0004716319_Quote</value>
+			</Element1>
+			<Element2>
+				<which>2</which>
+				<value>CCT EU 2018-04 RESIDUEResPrem_Quote</value>
+			</Element2>
+			<Operator>-</Operator>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+

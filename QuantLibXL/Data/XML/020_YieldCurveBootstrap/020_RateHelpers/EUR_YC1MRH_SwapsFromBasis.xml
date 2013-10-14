@@ -1,0 +1,1021 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="7">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>38</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="83" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS_ibor1M</ObjectId>
+			<ClassName>qlEuribor</ClassName>
+			<Tenor>1M</Tenor>
+			<YieldCurve></YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties class_id="242" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id="191" tracking_level="1" version="0" object_id="_2">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS1Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate class_id="243" tracking_level="0" version="0">
+				<which>2</which>
+				<value>EURAB1EBASIS1Y_Quote</value>
+			</Rate>
+			<Tenor>1Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_3">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS15M</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS15M_Quote</value>
+			</Rate>
+			<Tenor>15M</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_4">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS18M</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS18M_Quote</value>
+			</Rate>
+			<Tenor>18M</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_5">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS21M</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS21M_Quote</value>
+			</Rate>
+			<Tenor>21M</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_6">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS2Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS2Y_Quote</value>
+			</Rate>
+			<Tenor>2Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_7">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS3Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS3Y_Quote</value>
+			</Rate>
+			<Tenor>3Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_8">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS4Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS4Y_Quote</value>
+			</Rate>
+			<Tenor>4Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_9">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS5Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS5Y_Quote</value>
+			</Rate>
+			<Tenor>5Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_10">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS6Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS6Y_Quote</value>
+			</Rate>
+			<Tenor>6Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_11">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS7Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS7Y_Quote</value>
+			</Rate>
+			<Tenor>7Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_12">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS8Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS8Y_Quote</value>
+			</Rate>
+			<Tenor>8Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_13">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS9Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS9Y_Quote</value>
+			</Rate>
+			<Tenor>9Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_14">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS10Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS10Y_Quote</value>
+			</Rate>
+			<Tenor>10Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_15">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS11Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS11Y_Quote</value>
+			</Rate>
+			<Tenor>11Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_16">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS12Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS12Y_Quote</value>
+			</Rate>
+			<Tenor>12Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_17">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS13Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS13Y_Quote</value>
+			</Rate>
+			<Tenor>13Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_18">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS14Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS14Y_Quote</value>
+			</Rate>
+			<Tenor>14Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_19">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS15Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS15Y_Quote</value>
+			</Rate>
+			<Tenor>15Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_20">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS16Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS16Y_Quote</value>
+			</Rate>
+			<Tenor>16Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_21">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS17Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS17Y_Quote</value>
+			</Rate>
+			<Tenor>17Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_22">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS18Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS18Y_Quote</value>
+			</Rate>
+			<Tenor>18Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_23">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS19Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS19Y_Quote</value>
+			</Rate>
+			<Tenor>19Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_24">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS20Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS20Y_Quote</value>
+			</Rate>
+			<Tenor>20Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_25">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS21Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS21Y_Quote</value>
+			</Rate>
+			<Tenor>21Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_26">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS22Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS22Y_Quote</value>
+			</Rate>
+			<Tenor>22Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_27">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS23Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS23Y_Quote</value>
+			</Rate>
+			<Tenor>23Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_28">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS24Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS24Y_Quote</value>
+			</Rate>
+			<Tenor>24Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_29">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS25Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS25Y_Quote</value>
+			</Rate>
+			<Tenor>25Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_30">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS26Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS26Y_Quote</value>
+			</Rate>
+			<Tenor>26Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_31">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS27Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS27Y_Quote</value>
+			</Rate>
+			<Tenor>27Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_32">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS28Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS28Y_Quote</value>
+			</Rate>
+			<Tenor>28Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_33">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS29Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS29Y_Quote</value>
+			</Rate>
+			<Tenor>29Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_34">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS30Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS30Y_Quote</value>
+			</Rate>
+			<Tenor>30Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_35">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS35Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS35Y_Quote</value>
+			</Rate>
+			<Tenor>35Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_36">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS40Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS40Y_Quote</value>
+			</Rate>
+			<Tenor>40Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_37">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS50Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS50Y_Quote</value>
+			</Rate>
+			<Tenor>50Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="191" object_id="_38">
+			<ObjectId>EUR_YC1MRH_AB1EBASIS60Y</ObjectId>
+			<ClassName>qlSwapRateHelper2</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>EURAB1EBASIS60Y_Quote</value>
+			</Rate>
+			<Tenor>60Y</Tenor>
+			<Calendar>Target</Calendar>
+			<FixedLegFrequency>Annual</FixedLegFrequency>
+			<FixedLegConvention>Modified Following</FixedLegConvention>
+			<FixedLegDayCounter>30/360 (Bond Basis)</FixedLegDayCounter>
+			<IborIndex>EUR_YC1MRH_AB1EBASIS_ibor1M</IborIndex>
+			<Spread>
+				<which>4</which>
+				<value>0</value>
+			</Spread>
+			<ForwardStart>0D</ForwardStart>
+			<DiscountingCurve>EurYC</DiscountingCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+

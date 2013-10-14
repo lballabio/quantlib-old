@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="7">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>18</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="88" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>JpyLiborON</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>ON</Tenor>
+			<YieldCurve>JPYLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties class_id="242" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_2">
+			<ObjectId>JpyLiborTN</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>TN</Tenor>
+			<YieldCurve>JPYLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_3">
+			<ObjectId>JpyLiborSN</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>SN</Tenor>
+			<YieldCurve>JPYLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_4">
+			<ObjectId>JpyLiborSW</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>SW</Tenor>
+			<YieldCurve>JPYLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_5">
+			<ObjectId>JpyLibor2W</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>2W</Tenor>
+			<YieldCurve>JPYLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_6">
+			<ObjectId>JpyLibor3W</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>3W</Tenor>
+			<YieldCurve>JPYLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_7">
+			<ObjectId>JpyLibor1M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>1M</Tenor>
+			<YieldCurve>JPYLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_8">
+			<ObjectId>JpyLibor2M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>2M</Tenor>
+			<YieldCurve>JPYLiborYC3M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_9">
+			<ObjectId>JpyLibor3M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>3M</Tenor>
+			<YieldCurve>JPYLiborYC3M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_10">
+			<ObjectId>JpyLibor4M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>4M</Tenor>
+			<YieldCurve>JPYLiborYC3M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_11">
+			<ObjectId>JpyLibor5M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>5M</Tenor>
+			<YieldCurve>JPYLiborYC6M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_12">
+			<ObjectId>JpyLibor6M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>6M</Tenor>
+			<YieldCurve>JPYLiborYC6M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_13">
+			<ObjectId>JpyLibor7M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>7M</Tenor>
+			<YieldCurve>JPYLiborYC6M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_14">
+			<ObjectId>JpyLibor8M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>8M</Tenor>
+			<YieldCurve>JPYLiborYC6M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_15">
+			<ObjectId>JpyLibor9M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>9M</Tenor>
+			<YieldCurve>JPYLiborYC1Y</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_16">
+			<ObjectId>JpyLibor10M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>10M</Tenor>
+			<YieldCurve>JPYLiborYC1Y</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_17">
+			<ObjectId>JpyLibor11M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>11M</Tenor>
+			<YieldCurve>JPYLiborYC1Y</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_18">
+			<ObjectId>JpyLibor1Y</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>JPY</Currency>
+			<Tenor>1Y</Tenor>
+			<YieldCurve>JPYLiborYC1Y</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+

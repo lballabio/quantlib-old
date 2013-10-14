@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="7">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>1</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="16" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>IT0004491343</ObjectId>
+			<ClassName>qlZeroCouponBond</ClassName>
+			<Description>BTPSS 0 2019-09-01</Description>
+			<Currency>EUR</Currency>
+			<SettlementDays>3</SettlementDays>
+			<Calendar>TARGET</Calendar>
+			<FaceAmount>100</FaceAmount>
+			<Maturity class_id="242" tracking_level="0" version="0">
+				<which>4</which>
+				<value>43709</value>
+			</Maturity>
+			<PaymentBDC>Following</PaymentBDC>
+			<Redemption>100</Redemption>
+			<IssueDate>
+				<which>4</which>
+				<value>39873</value>
+			</IssueDate>
+			<Permanent>1</Permanent>
+			<UserProperties class_id="243" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="7">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>1</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="181" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>USD_YCONRH_OND</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate class_id="242" tracking_level="0" version="0">
+				<which>2</which>
+				<value>USDOND_Quote</value>
+			</Rate>
+			<IborIndex>Eonia</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties class_id="243" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+

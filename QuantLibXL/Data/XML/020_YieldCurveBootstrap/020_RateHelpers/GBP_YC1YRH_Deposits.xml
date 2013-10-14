@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="7">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>15</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="181" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>GBP_YC1YRH_SWD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate class_id="242" tracking_level="0" version="0">
+				<which>2</which>
+				<value>GBPSWD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLiborSW</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties class_id="243" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_2">
+			<ObjectId>GBP_YC1YRH_2WD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP2WD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor2W</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_3">
+			<ObjectId>GBP_YC1YRH_3WD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP3WD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor3W</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_4">
+			<ObjectId>GBP_YC1YRH_1MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP1MD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor1M</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_5">
+			<ObjectId>GBP_YC1YRH_2MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP2MD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor2M</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_6">
+			<ObjectId>GBP_YC1YRH_3MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP3MD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor3M</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_7">
+			<ObjectId>GBP_YC1YRH_4MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP4MD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor4M</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_8">
+			<ObjectId>GBP_YC1YRH_5MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP5MD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor5M</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_9">
+			<ObjectId>GBP_YC1YRH_6MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP6MD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor6M</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_10">
+			<ObjectId>GBP_YC1YRH_7MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP7MD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor7M</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_11">
+			<ObjectId>GBP_YC1YRH_8MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP8MD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor8M</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_12">
+			<ObjectId>GBP_YC1YRH_9MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP9MD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor9M</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_13">
+			<ObjectId>GBP_YC1YRH_10MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP10MD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor10M</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_14">
+			<ObjectId>GBP_YC1YRH_11MD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP11MD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor11M</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="181" object_id="_15">
+			<ObjectId>GBP_YC1YRH_1YD</ObjectId>
+			<ClassName>qlDepositRateHelper</ClassName>
+			<Rate>
+				<which>2</which>
+				<value>GBP1YD_SYNTH1Y_Quote</value>
+			</Rate>
+			<IborIndex>GbpLibor1Y</IborIndex>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+

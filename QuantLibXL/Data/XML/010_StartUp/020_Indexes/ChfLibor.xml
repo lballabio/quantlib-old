@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="7">
+<object_list class_id="1" tracking_level="1" version="0" object_id="_0">
+	<count>18</count>
+	<item_version>1</item_version>
+	<item class_id="0" tracking_level="0" version="1">
+		<px class_id="88" tracking_level="1" version="0" object_id="_1">
+			<ObjectId>ChfLiborON</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>ON</Tenor>
+			<YieldCurve>CHFLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties class_id="242" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_2">
+			<ObjectId>ChfLiborTN</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>TN</Tenor>
+			<YieldCurve>CHFLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_3">
+			<ObjectId>ChfLiborSN</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>SN</Tenor>
+			<YieldCurve>CHFLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_4">
+			<ObjectId>ChfLiborSW</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>SW</Tenor>
+			<YieldCurve>CHFLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_5">
+			<ObjectId>ChfLibor2W</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>2W</Tenor>
+			<YieldCurve>CHFLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_6">
+			<ObjectId>ChfLibor3W</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>3W</Tenor>
+			<YieldCurve>CHFLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_7">
+			<ObjectId>ChfLibor1M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>1M</Tenor>
+			<YieldCurve>CHFLiborYC1M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_8">
+			<ObjectId>ChfLibor2M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>2M</Tenor>
+			<YieldCurve>CHFLiborYC3M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_9">
+			<ObjectId>ChfLibor3M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>3M</Tenor>
+			<YieldCurve>CHFLiborYC3M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_10">
+			<ObjectId>ChfLibor4M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>4M</Tenor>
+			<YieldCurve>CHFLiborYC3M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_11">
+			<ObjectId>ChfLibor5M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>5M</Tenor>
+			<YieldCurve>CHFLiborYC6M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_12">
+			<ObjectId>ChfLibor6M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>6M</Tenor>
+			<YieldCurve>CHFLiborYC6M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_13">
+			<ObjectId>ChfLibor7M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>7M</Tenor>
+			<YieldCurve>CHFLiborYC6M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_14">
+			<ObjectId>ChfLibor8M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>8M</Tenor>
+			<YieldCurve>CHFLiborYC6M</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_15">
+			<ObjectId>ChfLibor9M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>9M</Tenor>
+			<YieldCurve>CHFLiborYC1Y</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_16">
+			<ObjectId>ChfLibor10M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>10M</Tenor>
+			<YieldCurve>CHFLiborYC1Y</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_17">
+			<ObjectId>ChfLibor11M</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>11M</Tenor>
+			<YieldCurve>CHFLiborYC1Y</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+	<item>
+		<px class_id_reference="88" object_id="_18">
+			<ObjectId>ChfLibor1Y</ObjectId>
+			<ClassName>qlLibor</ClassName>
+			<Currency>CHF</Currency>
+			<Tenor>1Y</Tenor>
+			<YieldCurve>CHFLiborYC1Y</YieldCurve>
+			<Permanent>1</Permanent>
+			<UserProperties>
+				<count>0</count>
+				<item_version>0</item_version>
+			</UserProperties>
+		</px>
+	</item>
+</object_list>
+</boost_serialization>
+
