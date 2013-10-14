@@ -161,12 +161,14 @@ namespace QuantLib {
         temp.setPricingEngine(swapEngine);
         Real forward = temp.fairRate();
         if(strike_ == Null<Real>()) {
-            exerciseRate_ = forward;
+            // currently only lognormal market volatilities are
+            // available, therefore we floor the strike at 0.1bp
+            exerciseRate_ = std::max(forward,0.00001);
         }
         else {
             exerciseRate_ = strike_;
-            type = strike_ <= forward ? VanillaSwap::Receiver : VanillaSwap::Payer;
             // ensure that calibration instrument is out of the money
+            type = strike_ <= forward ? VanillaSwap::Receiver : VanillaSwap::Payer;
         }
         swap_ = boost::shared_ptr<VanillaSwap>(
             new VanillaSwap(type, nominal_,
