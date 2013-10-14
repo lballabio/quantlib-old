@@ -10,6 +10,7 @@
 "Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
 <meta name="description" content=
 "QuantLib: a free/open-source library for quantitative finance">
+<link rel="stylesheet" href="./styles/splash.css" type="text/css">
 <title>QuantLib: a free/open-source library for quantitative
 finance</title>
 </head>

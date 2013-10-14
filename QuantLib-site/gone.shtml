@@ -8,23 +8,24 @@
 <meta name="author" content="StatPro Italia srl">
 <meta name="copyright" content="StatPro Italia srl (c) 2004">
 <meta name="description" content="QuantLib Documentation">
+<link rel="stylesheet" href="./styles/splash.css" type="text/css">
 <title>QuantLib - page removed</title>
 </head>
 <body>
 <div id="container">
 <!--#include virtual="header.inc"-->
-<div id="menu">
-<!--#include virtual="usermenu.inc"-->
-</div>
 <div id="content">
 
 <h2 class="center">Sorry, the page you requested does no longer exist.</h2>
 
-You can look for the content you need by perusing the links on the
-right (or, of course, by performing a search on this site with your
-favorite engine). You might also want to notify the owner of the
-referring page to remove all references to this address.
+You can look for the content you need by perusing the links below (or,
+of course, by performing a search on this site with your favorite
+engine). You might also want to notify the owner of the referring page
+to remove all references to this address.
 
+</div>
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
 </div>
 
 <div class="footer">
