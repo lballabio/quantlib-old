@@ -49,10 +49,10 @@ namespace QuantLib {
         return arguments_.swap->type();
     }
 
-    const Date& Gaussian1dFloatFloatSwaptionEngine::underlyingLastDate() const {
+    const Date Gaussian1dFloatFloatSwaptionEngine::underlyingLastDate() const {
         Date l1 = arguments_.leg1PayDates.back();
         Date l2 = arguments_.leg2PayDates.back();
-        return std::max<Date>(l1,l2);
+        return l2 >= l1 ? l2 : l1;
     }
 
     const Disposable<Array> Gaussian1dFloatFloatSwaptionEngine::initialGuess(const Date& expiry) const {
@@ -91,9 +91,6 @@ namespace QuantLib {
         // we explicitly estimate cms and also libor coupons (although
         // the latter could be calculated analytically) to make the code
         // simpler
-        // Only exercise dates on (or after) expiry and only fixing dates
-        // with resetDate (accrualStartDate) on (or after) expiry are
-        // of interest
 
         std::vector<Date> events;
         events.insert(events.end(), arguments_.exercise->dates().begin(),

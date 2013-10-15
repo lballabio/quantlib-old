@@ -73,7 +73,7 @@ namespace QuantLib {
         return arguments_.swap->type();
     }
 
-    const Date& Gaussian1dNonstandardSwaptionEngine::underlyingLastDate() const {
+    const Date Gaussian1dNonstandardSwaptionEngine::underlyingLastDate() const {
         return arguments_.fixedPayDates.back();
     }
     

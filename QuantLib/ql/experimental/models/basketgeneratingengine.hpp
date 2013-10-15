@@ -70,7 +70,7 @@ namespace QuantLib {
 
         virtual const Real underlyingNpv(const Date& expiry, const Real y) const = 0;
         virtual const VanillaSwap::Type underlyingType() const = 0;
-        virtual const Date& underlyingLastDate() const = 0;
+        virtual const Date underlyingLastDate() const = 0;
         virtual const Disposable<Array> initialGuess(const Date& expiry) const = 0; // return (nominal, maturity, rate)
 
     private:
