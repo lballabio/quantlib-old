@@ -38,7 +38,10 @@
 
 namespace QuantLib {
 
-    /* \warning the standardSwapBase index should have associated forward and discount curves. These curves are used 
+    /* \warning the generated calibrating swaptions have a strike floored at 0.1bp because the library only
+                provides (unshifted) lognormal market volatilities at the moment
+
+       \warning the standardSwapBase index should have associated forward and discount curves. These curves are used 
         for setup of the swaption helper. This means that the market price of the calibration instrument is calculated using
         these curves. Therefore the model price must be calculated using the same curves, otherwise the calibration gets
         incosistent, i.e. the pricing engine used for model calibration has to be capable of using

@@ -93,13 +93,16 @@ namespace QuantLib {
                     Real atm;
                     if(cube) atm = cube->atmVol()->volatility(expiry,swapLength,0.03,true);
                     else atm = swaptionVolatility->volatility(expiry,swapLength,0.03,true);
+                    Real atmStrike = standardSwapBase->fixing(expiry);
+                    // we have to floor the strike of the calibration instrument, see warning in the header
+                    atmStrike = std::max(atmStrike, 0.00001);                    
                     helper = boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(expiry,underlyingLastDate(),
                                    Handle<Quote>(new SimpleQuote(atm)),standardSwapBase->iborIndex(),
                                    standardSwapBase->fixedLegTenor(),standardSwapBase->dayCounter(),
                                    standardSwapBase->iborIndex()->dayCounter(), 
                                    standardSwapBase->exogenousDiscount() ? standardSwapBase->discountingTermStructure() : 
                                    standardSwapBase->forwardingTermStructure(),
-                                   CalibrationHelper::RelativePriceError,Null<Real>(),1.0));
+                                   CalibrationHelper::RelativePriceError,atmStrike,1.0));
 
                     break;
                 }
@@ -136,9 +139,8 @@ namespace QuantLib {
 				
                     Period matPeriod = years*Years+months*Months;//+days*Days;
 
-                    // we have to floor the strike of the calibration instrument because
-                    // ql only allows for lognormal swaptions here at the moment
-                    solution[2] = std::max(solution[2], 0.0001); // floor at 1bp
+                    // we have to floor the strike of the calibration instrument, see warning in the header
+                    solution[2] = std::max(solution[2], 0.00001); // floor at 0.1bp
                     
                     // also the calibrated nominal may be zero, so we floor it, too
                     solution[0] = std::max(solution[0], 0.000001); // float at 0.01bp
