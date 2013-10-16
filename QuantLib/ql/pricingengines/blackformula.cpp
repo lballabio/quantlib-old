@@ -32,6 +32,9 @@ namespace {
                          QuantLib::Real forward,
                          QuantLib::Real displacement)
     {
+        QL_REQUIRE(displacement >= 0.0, "displacement ("
+                                            << displacement
+                                            << ") must be non-negative");
         QL_REQUIRE(strike + displacement >= 0.0,
                    "strike + displacement (" << strike << " + " << displacement
                                              << ") must be non-negative");
@@ -39,9 +42,6 @@ namespace {
                                                      << forward << " + "
                                                      << displacement
                                                      << ") must be positive");
-        QL_REQUIRE(displacement >= 0.0, "displacement ("
-                                            << displacement
-                                            << ") must be non-negative");
     }
 }
 
