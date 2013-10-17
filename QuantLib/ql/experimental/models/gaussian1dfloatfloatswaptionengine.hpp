@@ -61,14 +61,16 @@ namespace QuantLib {
             const Handle<Quote> &oas =
                 Handle<Quote>(), // continously compounded w.r.t. yts daycounter
             const Handle<YieldTermStructure> &discountCurve =
-                Handle<YieldTermStructure>())
+                Handle<YieldTermStructure>(),
+            const bool includeTodaysExercise = false)
             : BasketGeneratingEngine(model, oas, discountCurve),
               GenericModelEngine<Gaussian1dModel, FloatFloatSwaption::arguments,
                                  FloatFloatSwaption::results>(model),
               integrationPoints_(integrationPoints), stddevs_(stddevs),
               extrapolatePayoff_(extrapolatePayoff),
               flatPayoffExtrapolation_(flatPayoffExtrapolation), model_(model),
-              oas_(oas), discountCurve_(discountCurve) {
+              oas_(oas), discountCurve_(discountCurve),
+              includeTodaysExercise_(includeTodaysExercise) {
 
             if (!discountCurve_.empty())
                 registerWith(discountCurve_);
@@ -93,6 +95,7 @@ namespace QuantLib {
         const boost::shared_ptr<Gaussian1dModel> model_;
         const Handle<Quote> oas_;
         const Handle<YieldTermStructure> discountCurve_;
+        const bool includeTodaysExercise_;
 
         const std::pair<Real, Real>
         npvs(const Date &expiry, const Real y,
