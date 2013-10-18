@@ -357,7 +357,7 @@ namespace QuantLib {
                                                 event0,
                                                 arguments_.leg1PayDates[j])));
                         Real rate =
-                            arguments_.leg1Spreads[j] +
+                            arguments_.leg1Spreads[j] + arguments_.leg1Gearings[j] *
                             (ibor1 != NULL
                                  ? model_->forwardRate(
                                        arguments_.leg1FixingDates[j], event0,
@@ -399,7 +399,7 @@ namespace QuantLib {
                                                 event0,
                                                 arguments_.leg2PayDates[j])));
                         Real rate =
-                            arguments_.leg2Spreads[j] +
+                            arguments_.leg2Spreads[j] + arguments_.leg1Gearings[j] *
                             (ibor2 != NULL
                                  ? model_->forwardRate(
                                        arguments_.leg2FixingDates[j], event0,

@@ -373,6 +373,7 @@ namespace QuantLib {
                 arguments->leg1ResetDates[i] = coupon->accrualStartDate();
                 arguments->leg1FixingDates[i] = coupon->fixingDate();
                 arguments->leg1Spreads[i] = coupon->spread();
+                arguments->leg1Gearings[i] = coupon->gearing();
                 try {
                     arguments->leg1Coupons[i] = coupon->amount();
                 }
@@ -418,6 +419,7 @@ namespace QuantLib {
                 arguments->leg2ResetDates[i] = coupon->accrualStartDate();
                 arguments->leg2FixingDates[i] = coupon->fixingDate();
                 arguments->leg2Spreads[i] = coupon->spread();
+                arguments->leg2Gearings[i] = coupon->gearing();
                 try {
                     arguments->leg2Coupons[i] = coupon->amount();
                 }
@@ -449,7 +451,7 @@ namespace QuantLib {
                     arguments->leg2FixingDates[jIdx];
                 arguments->leg2AccrualTimes[i] = 0.0;
                 arguments->leg2Spreads[i] = 0.0;
-                arguments->leg2Gearings[i] = 2.0;
+                arguments->leg2Gearings[i] = 1.0;
                 arguments->leg2PayDates[i] = cashflow->date();
             }
         }
