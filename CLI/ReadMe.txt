@@ -7,9 +7,6 @@ http://connect.microsoft.com/VisualStudio/feedback/details/336844/static-variabl
 
 As a workaround:
 
-copy africa.hpp/cpp; america.hpp/cpp; asia.hpp/cpp; europe.hpp/cpp; and oceania.hpp/cpp 
-to ql/currencies folder.
-
 copy singleton.hpp to ql/patterns folder.
 
 rebuild QuantLib.
