@@ -46,8 +46,7 @@ class FixedRateBondHelperTest(unittest.TestCase):
         self.assertEqual(bond.nextCouponRate(), self.coupons[0])
 
 if __name__ == '__main__':
-    print 'testing QuantLib', QuantLib.__version__
+    print('testing QuantLib ' + QuantLib.__version__)
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(FixedRateBondHelperTest,'test'))
     unittest.TextTestRunner(verbosity=2).run(suite)
-    raw_input('press return to continue')

@@ -38,19 +38,19 @@ def calibrate(model, helpers, l, name):
     rule = '-' * len(header)
     dblrule = '=' * len(header)
 
-    print
-    print dblrule
-    print name
-    print rule
+    print('')
+    print(dblrule)
+    print(name)
+    print(rule)
 
     method = Simplex(l);
     model.calibrate(helpers, method, EndCriteria(1000, 250, 1e-7, 1e-7, 1e-7))
 
-    print 'Parameters: %s' % model.params()
-    print rule
+    print('Parameters: %s' % model.params())
+    print(rule)
 
-    print header
-    print rule
+    print(header)
+    print(rule)
 
     totalError = 0.0
     for swaption, helper in zip(swaptionVols, helpers):
@@ -59,15 +59,15 @@ def calibrate(model, helpers, l, name):
         implied = helper.impliedVolatility(NPV, 1.0e-4, 1000, 0.05, 0.50)
         error = implied - vol
         totalError += abs(error)
-        print format % (maturity, length,
+        print(format % (maturity, length,
                         formatVol(vol,4), formatVol(implied,4),
-                        formatVol(error,4))
+                        formatVol(error,4)))
     averageError = totalError/len(helpers)
 
-    print rule
+    print(rule)
     format = '%%%ds' % len(header)
-    print format % ('Average error: ' + formatVol(averageError,4))
-    print dblrule
+    print(format % ('Average error: ' + formatVol(averageError,4)))
+    print(dblrule)
 
 todaysDate = Date(15,February,2002)
 Settings.instance().evaluationDate = todaysDate
@@ -141,8 +141,7 @@ times = {}
 for h in helpers:
     for t in h.times():
         times[t] = 1
-times = times.keys()
-times.sort()
+times = sorted(times.keys())
 
 grid = TimeGrid(times, 30)
 
@@ -151,7 +150,7 @@ HWmodel = HullWhite(termStructure)
 HWmodel2 = HullWhite(termStructure)
 BKmodel = BlackKarasinski(termStructure)
 
-print "Calibrating..."
+print("Calibrating...")
 
 for h in helpers:
     h.setPricingEngine(G2SwaptionEngine(G2model,6.0,16))
@@ -180,12 +179,12 @@ header = format % ('model', 'in-the-money', 'at-the-money', 'out-of-the-money')
 rule = '-' * len(header)
 dblrule = '=' * len(header)
 
-print
-print dblrule
-print 'Pricing Bermudan swaptions...'
-print rule
-print header
-print rule
+print('')
+print(dblrule)
+print('Pricing Bermudan swaptions...')
+print(rule)
+print(header)
+print(rule)
 
 atmSwaption = Swaption(atmSwap, exercise)
 otmSwaption = Swaption(otmSwap, exercise)
@@ -195,29 +194,29 @@ atmSwaption.setPricingEngine(TreeSwaptionEngine(G2model, 50))
 otmSwaption.setPricingEngine(TreeSwaptionEngine(G2model, 50))
 itmSwaption.setPricingEngine(TreeSwaptionEngine(G2model, 50))
 
-print format % ('G2 analytic', formatPrice(itmSwaption.NPV()),
-                formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))
+print(format % ('G2 analytic', formatPrice(itmSwaption.NPV()),
+                formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV())))
 
 atmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel, 50))
 otmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel, 50))
 itmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel, 50))
 
-print format % ('HW analytic', formatPrice(itmSwaption.NPV()),
-                formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))
+print(format % ('HW analytic', formatPrice(itmSwaption.NPV()),
+                formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV())))
 
 atmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel2, 50))
 otmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel2, 50))
 itmSwaption.setPricingEngine(TreeSwaptionEngine(HWmodel2, 50))
 
-print format % ('HW numerical', formatPrice(itmSwaption.NPV()),
-                formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))
+print(format % ('HW numerical', formatPrice(itmSwaption.NPV()),
+                formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV())))
 
 atmSwaption.setPricingEngine(TreeSwaptionEngine(BKmodel, 50))
 otmSwaption.setPricingEngine(TreeSwaptionEngine(BKmodel, 50))
 itmSwaption.setPricingEngine(TreeSwaptionEngine(BKmodel, 50))
 
-print format % ('BK numerical', formatPrice(itmSwaption.NPV()),
-                formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV()))
+print(format % ('BK numerical', formatPrice(itmSwaption.NPV()),
+                formatPrice(atmSwaption.NPV()), formatPrice(otmSwaption.NPV())))
 
-print dblrule
+print(dblrule)
 

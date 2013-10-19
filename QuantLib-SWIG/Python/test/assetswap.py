@@ -614,8 +614,8 @@ class AssetSwapTest(unittest.TestCase):
          ## CMS Underlying bond (Isin: XS0218766664 ISPIM 0 5/6/15)
          ## maturity occurs on a business day
 
-        cmsBondSchedule2 =  Schedule(Date(06,May,2005),
-                                  Date(06,May,2015),
+        cmsBondSchedule2 =  Schedule(Date(6,May,2005),
+                                  Date(6,May,2015),
                                   Period(Annual), bondCalendar,
                                   Unadjusted, Unadjusted,
                                   DateGeneration.Backward, False)
@@ -625,12 +625,12 @@ class AssetSwapTest(unittest.TestCase):
                         [0.84], [0.0],
                         [], [],
                         inArrears,
-                        100.0, Date(06,May,2005))
+                        100.0, Date(6,May,2005))
 
         cmsBond2.setPricingEngine(bondEngine)
 
         setCouponPricer(cmsBond2.cashflows(), self.cmspricer)
-        self.swapIndex.addFixing(Date(04,May,2006), 0.04217)
+        self.swapIndex.addFixing(Date(4,May,2006), 0.04217)
         cmsBondPrice2 = cmsBond2.cleanPrice()
         cmsBondAssetSwap2 = AssetSwap(payFixedRate,
                                     cmsBond2, cmsBondPrice2,
@@ -966,8 +966,8 @@ class AssetSwapTest(unittest.TestCase):
          ## CMS Underlying bond (Isin: XS0218766664 ISPIM 0 5/6/15)
          ## maturity occurs on a business day
 
-        cmsBondSchedule2 = Schedule(Date(06,May,2005),
-                                  Date(06,May,2015),
+        cmsBondSchedule2 = Schedule(Date(6,May,2005),
+                                  Date(6,May,2015),
                                   Period(Annual), bondCalendar,
                                   Unadjusted, Unadjusted,
                                   DateGeneration.Backward, False)
@@ -977,12 +977,12 @@ class AssetSwapTest(unittest.TestCase):
                         [0.84], [0.0],
                         [], [],
                         inArrears,
-                        100.0, Date(06,May,2005))
+                        100.0, Date(6,May,2005))
 
         cmsBond2.setPricingEngine(bondEngine)
 
         setCouponPricer(cmsBond2.cashflows(), self.cmspricer)
-        self.swapIndex.addFixing(Date(04,May,2006), 0.04217)
+        self.swapIndex.addFixing(Date(4,May,2006), 0.04217)
         cmsBondMktPrice2 = 94.08  ## market price observed on 7th June 2007
         cmsBondMktFullPrice2 = cmsBondMktPrice2+cmsBond2.accruedAmount()
         cmsBondParAssetSwap2 = AssetSwap(payFixedRate,
@@ -1286,8 +1286,8 @@ class AssetSwapTest(unittest.TestCase):
         ## CMS bond (Isin: XS0218766664 ISPIM 0 5/6/15)
         ## maturity occurs on a business day
 
-        cmsBondSchedule2 = Schedule(Date(06,May,2005),
-                                  Date(06,May,2015),
+        cmsBondSchedule2 = Schedule(Date(6,May,2005),
+                                  Date(6,May,2015),
                                   Period(Annual), bondCalendar,
                                   Unadjusted, Unadjusted,
                                   DateGeneration.Backward, False)
@@ -1297,12 +1297,12 @@ class AssetSwapTest(unittest.TestCase):
                         [0.84], [0.0],
                         [], [],
                         inArrears,
-                        100.0, Date(06,May,2005))
+                        100.0, Date(6,May,2005))
 
         cmsBond2.setPricingEngine(bondEngine)
 
         setCouponPricer(cmsBond2.cashflows(), self.cmspricer)
-        self.swapIndex.addFixing(Date(04,May,2006), 0.04217)
+        self.swapIndex.addFixing(Date(4,May,2006), 0.04217)
         cmsBondImpliedValue2 = cmsBond2.cleanPrice()
         cmsBondSettlementDate2= cmsBond2.settlementDate()
         ## standard market conventions:
@@ -1597,8 +1597,8 @@ class AssetSwapTest(unittest.TestCase):
 
         ## CMS Underlying bond (Isin: XS0218766664 ISPIM 0 5/6/15)
         ## maturity occurs on a business day
-        cmsBondStartDate2 = Date(06,May,2005)
-        cmsBondMaturityDate2 = Date(06,May,2015)
+        cmsBondStartDate2 = Date(6,May,2005)
+        cmsBondMaturityDate2 = Date(6,May,2015)
         cmsBondSchedule2 = Schedule(cmsBondStartDate2,
                                   cmsBondMaturityDate2,
                                   Period(Annual), bondCalendar,
@@ -1613,7 +1613,7 @@ class AssetSwapTest(unittest.TestCase):
         cmsBond2.setPricingEngine(bondEngine)
 
         setCouponPricer(cmsBond2.cashflows(), self.cmspricer)
-        self.swapIndex.addFixing(Date(04,May,2006), 0.04217)
+        self.swapIndex.addFixing(Date(4,May,2006), 0.04217)
         cmsBondPrice2 = cmsBond2.cleanPrice()
         cmsBondAssetSwap2 = AssetSwap(payFixedRate,
                                     cmsBond2, cmsBondPrice2,
@@ -1954,8 +1954,8 @@ class AssetSwapTest(unittest.TestCase):
          ## CMS Underlying bond (Isin: XS0218766664 ISPIM 0 5/6/15)
          ## maturity occurs on a business day
 
-        cmsBondStartDate2 = Date(06,May,2005)
-        cmsBondMaturityDate2 = Date(06,May,2015)
+        cmsBondStartDate2 = Date(6,May,2005)
+        cmsBondMaturityDate2 = Date(6,May,2015)
         cmsBondSchedule2 = Schedule(cmsBondStartDate2,
                                   cmsBondMaturityDate2,
                                   Period(Annual), bondCalendar,
@@ -1970,7 +1970,7 @@ class AssetSwapTest(unittest.TestCase):
         cmsBond2.setPricingEngine(bondEngine)
 
         setCouponPricer(cmsBond2.cashflows(), self.cmspricer)
-        self.swapIndex.addFixing(Date(04,May,2006), 0.04217)
+        self.swapIndex.addFixing(Date(4,May,2006), 0.04217)
         cmsBondMktPrice2 = 94.08  ## market price observed on 7th June 2007
         cmsBondMktFullPrice2 = cmsBondMktPrice2+cmsBond2.accruedAmount()
         cmsBondParAssetSwap2 = AssetSwap(payFixedRate,
@@ -2271,8 +2271,8 @@ class AssetSwapTest(unittest.TestCase):
         ## CMS Underlying bond (Isin: XS0218766664 ISPIM 0 5/6/15)
         ## maturity occurs on a business day
        
-        cmsBondStartDate2 = Date(06,May,2005)
-        cmsBondMaturityDate2 = Date(06,May,2015)
+        cmsBondStartDate2 = Date(6,May,2005)
+        cmsBondMaturityDate2 = Date(6,May,2015)
         cmsBondSchedule2 = Schedule(cmsBondStartDate2,
                                   cmsBondMaturityDate2,
                                   Period(Annual), bondCalendar,
@@ -2287,7 +2287,7 @@ class AssetSwapTest(unittest.TestCase):
         cmsBond2.setPricingEngine(bondEngine)
 
         setCouponPricer(cmsBond2.cashflows(), self.cmspricer)
-        self.swapIndex.addFixing(Date(04,May,2006), 0.04217)
+        self.swapIndex.addFixing(Date(4,May,2006), 0.04217)
         cmsBondImpliedValue2 = cmsBond2.cleanPrice()
         cmsBondSettlementDate2= cmsBond2.settlementDate()
         ## standard market conventions:
@@ -2642,8 +2642,8 @@ class AssetSwapTest(unittest.TestCase):
 
         ## CMS Underlying bond (Isin: XS0218766664 ISPIM 0 5/6/15)
         ## maturity occurs on a business day
-        cmsBondStartDate2 = Date(06,May,2005)
-        cmsBondMaturityDate2 = Date(06,May,2015)
+        cmsBondStartDate2 = Date(6,May,2005)
+        cmsBondMaturityDate2 = Date(6,May,2015)
         cmsBondSchedule2 = Schedule(cmsBondStartDate2,
                                   cmsBondMaturityDate2,
                                   Period(Annual), bondCalendar,
@@ -2665,12 +2665,12 @@ class AssetSwapTest(unittest.TestCase):
                     [0.84], [0.0],
                     [], [],
                     inArrears,
-                    100.0, Date(06,May,2005))
+                    100.0, Date(6,May,2005))
         cmsSpecializedBond2.setPricingEngine(bondEngine)
 
         setCouponPricer(cmsBond2.cashflows(), self.cmspricer)
         setCouponPricer(cmsSpecializedBond2.cashflows(), self.cmspricer)
-        self.swapIndex.addFixing(Date(04,May,2006), 0.04217)
+        self.swapIndex.addFixing(Date(4,May,2006), 0.04217)
         cmsBondTheoValue2 = cmsBond2.cleanPrice()
         cmsSpecializedBondTheoValue2 = cmsSpecializedBond2.cleanPrice()
 
@@ -3229,8 +3229,8 @@ class AssetSwapTest(unittest.TestCase):
 
           ##CMS bond (Isin: XS0218766664 ISPIM 0 5/6/15)
           ##maturity occurs on a business day
-        cmsBondStartDate2 = Date(06,May,2005)
-        cmsBondMaturityDate2 = Date(06,May,2015)
+        cmsBondStartDate2 = Date(6,May,2005)
+        cmsBondMaturityDate2 = Date(6,May,2015)
         cmsBondSchedule2 = Schedule(cmsBondStartDate2,
                                   cmsBondMaturityDate2,
                                   Period(Annual), bondCalendar,
@@ -3253,12 +3253,12 @@ class AssetSwapTest(unittest.TestCase):
                     [0.84], [0.0],
                     [], [],
                     inArrears,
-                    100.0, Date(06,May,2005))
+                    100.0, Date(6,May,2005))
         cmsSpecializedBond2.setPricingEngine(bondEngine)
 
         setCouponPricer(cmsBond2.cashflows(), self.cmspricer)
         setCouponPricer(cmsSpecializedBond2.cashflows(), self.cmspricer)
-        self.swapIndex.addFixing(Date(04,May,2006), 0.04217)
+        self.swapIndex.addFixing(Date(4,May,2006), 0.04217)
         cmsBondPrice2 = cmsBond2.cleanPrice()
         cmsSpecializedBondPrice2 = cmsSpecializedBond2.cleanPrice()
         cmsBondAssetSwap2 = AssetSwap(payFixedRate,cmsBond2, cmsBondPrice2,
@@ -3464,9 +3464,7 @@ class AssetSwapTest(unittest.TestCase):
         
 
 if __name__ == '__main__':
-    print 'testing QuantLib', QuantLib.__version__
+    print('testing QuantLib ' + QuantLib.__version__)
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(AssetSwapTest,'test'))
     unittest.TextTestRunner(verbosity=2).run(suite)
-    raw_input('press return to continue')
-
