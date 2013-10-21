@@ -94,6 +94,10 @@ QuantLibXL/qlxl/register/register_*.cpp
 QuantLibXL/xll/
 log4cxx/msvc/build/
 log4cxx/msvc/lib/
+XL-Launcher/bin/Configuration/UserConfigured/
+XL-Launcher/bin/Debug/
+XL-Launcher/bin/Release/
+XL-Launcher/obj/
 
 # Artifacts created in multiple directories
 Makefile
