@@ -40,7 +40,7 @@
 #include <vector>
 
 // numerical constants, still experimental
-#define QL_KAHALE_FMAX 1E+100
+#define QL_KAHALE_FMAX QL_MAX_REAL
 #define QL_KAHALE_SMAX 5.0
 #define QL_KAHALE_ACC 1E-12
 #define QL_KAHALE_EPS QL_EPSILON
