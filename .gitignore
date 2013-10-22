@@ -28,7 +28,6 @@ QuantLib/build/
 QuantLib/lib/
 QuantLib/test-suite/bin/QuantLib-test-suite-*.manifest
 QuantLib/test-suite/build/
-QuantLib/test-suite/*.log
 QuantLib/test-suite/*.trs
 QuantLib-SWIG/config/
 QuantLib-SWIG/CSharp/cpp/quantlib_wrap.cpp
@@ -115,6 +114,7 @@ Makefile.in
 *.ncb
 *.suo
 *.vcproj.*.user
+*.log
 
 # Outputs
 QuantLib/Examples/BermudanSwaption/BermudanSwaption
