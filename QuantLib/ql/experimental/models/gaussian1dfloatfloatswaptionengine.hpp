@@ -40,7 +40,12 @@ namespace QuantLib {
          is different from the usual accrual start date
          greater or equal exercise date if the fixing lag
          is strictly greater than the exercise lag (which
-         should be a rare case).
+         should be a rare case). For the redepmtion flows
+         the criterion is that the associated start date
+         of the redemption flow (i.e. the start date of
+         the regular coupon period with same payment date
+         as the redemption flow) is greater or equal the
+         exercise date.
 
          The addtional result underlyingValue is the npv
          of the underlying (as seen from "today") in which

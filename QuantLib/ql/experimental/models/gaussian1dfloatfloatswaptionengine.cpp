@@ -204,7 +204,7 @@ namespace QuantLib {
             Real leg1RedemptionSum = 0.0;
             Real leg2RedemptionSum = 0.0;
             while (leg1RedemptionFlowsIdx >= 0 &&
-                   arguments_.leg1PayDates[leg1RedemptionFlowsIdx] >= event0) {
+                   arguments_.leg1ResetDates[leg1RedemptionFlowsIdx] >= event0) {
                 if (arguments_.leg1IsRedemptionFlow[leg1RedemptionFlowsIdx]) {
                     leg1RedemptionSum +=
                         arguments_.leg1Coupons[leg1RedemptionFlowsIdx];
@@ -212,7 +212,7 @@ namespace QuantLib {
                 leg1RedemptionFlowsIdx--;
             }
             while (leg2RedemptionFlowsIdx >= 0 &&
-                   arguments_.leg2PayDates[leg2RedemptionFlowsIdx] >= event0) {
+                   arguments_.leg2ResetDates[leg2RedemptionFlowsIdx] >= event0) {
                 if (arguments_.leg2IsRedemptionFlow[leg2RedemptionFlowsIdx]) {
                     leg2RedemptionSum +=
                         arguments_.leg2Coupons[leg2RedemptionFlowsIdx];
