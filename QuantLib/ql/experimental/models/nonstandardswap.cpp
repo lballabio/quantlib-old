@@ -40,8 +40,8 @@ namespace QuantLib {
 		fixedDayCount_(fromVanilla.fixedDayCount()), floatingSchedule_(fromVanilla.floatingSchedule()), 
         iborIndex_(fromVanilla.iborIndex()),
 		spread_(fromVanilla.spread()), gearing_(1.0), floatingDayCount_(fromVanilla.floatingDayCount()), 
-        capitalExchange_(false),
-        paymentConvention_(fromVanilla.paymentConvention()) {
+        paymentConvention_(fromVanilla.paymentConvention()),
+        capitalExchange_(false) {
 
 		init();
 	}

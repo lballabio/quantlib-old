@@ -19,6 +19,7 @@
 
 /*! \file nonstandardswap.hpp
     \brief vanilla swap but possibly with period dependent nominal and strike
+    \todo add intermediate capital exchange flag (similar to the floatfloatswap instrument)
 */
 
 #ifndef quantlib_nonstandard_swap_hpp
