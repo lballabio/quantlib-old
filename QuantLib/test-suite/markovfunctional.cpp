@@ -749,7 +749,7 @@ void MarkovFunctionalTest::testCalibrationOneInstrumentSet() {
                                                                  .withLowerRateBound(0.0)
                                                                  .withUpperRateBound(2.0)
                                                                  .withAdjustments(MarkovFunctional::ModelSettings::KahaleSmile |
-                                                                                  MarkovFunctional::ModelSettings::KahaleExponentialExtrapolation)
+                                                                                  MarkovFunctional::ModelSettings::SmileExponentialExtrapolation)
                                                                  .withSmileMoneynessCheckpoints(money)));
     
     MarkovFunctional::ModelOutputs outputs1 = mf1->modelOutputs();   // this costs a lot of time, so only use it if you want to check the calibration

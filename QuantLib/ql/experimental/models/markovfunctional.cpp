@@ -278,14 +278,57 @@ namespace QuantLib {
                 i->second.smileSection_ = boost::shared_ptr<KahaleSmileSection>(new KahaleSmileSection(
                       i->second.rawSmileSection_, i->second.atm_,
                       (modelSettings_.adjustments_ & ModelSettings::KahaleInterpolation) != 0,
-                      (modelSettings_.adjustments_ & ModelSettings::KahaleExponentialExtrapolation) != 0,
-                      (modelSettings_.adjustments_ & ModelSettings::KahaleDeleteArbitragePoints) != 0,
+                      (modelSettings_.adjustments_ & ModelSettings::SmileExponentialExtrapolation) != 0,
+                      (modelSettings_.adjustments_ & ModelSettings::SmileDeleteArbitragePoints) != 0,
                       modelSettings_.smileMoneynessCheckpoints_,
                       modelSettings_.digitalGap_));
 
             } else {
-    
-                i->second.smileSection_ = i->second.rawSmileSection_;
+
+                if (modelSettings_.adjustments_ & ModelSettings::SabrSmile) {
+
+                    SmileSectionUtils ssutils(
+                        *i->second.rawSmileSection_,
+                        modelSettings_.smileMoneynessCheckpoints_);
+                    std::vector<Real> k = ssutils.strikeGrid();
+                    k.erase(k.begin()); // the first strike is zero which we do
+                                        // not want in the sabr calibration
+                    QL_REQUIRE(
+                        k.size() >= 4,
+                        "for sabr calibration at least 4 points are needed (is "
+                            << k.size() << ")");
+                    std::vector<Real> v;
+                    for (Size j = 0; j < k.size(); j++) {
+                        v.push_back(
+                                    i->second.rawSmileSection_->volatility(k[j]));
+                    }
+
+                    // TODO should we fix beta to avoid numerical instabilities
+                    // during calibration ?
+                    boost::shared_ptr<SabrInterpolatedSmileSection>
+                    sabrSection(new SabrInterpolatedSmileSection(
+                        i->first, i->second.atm_, k, false,
+                        i->second.rawSmileSection_->volatility(i->second.atm_),
+                        v, 0.03, 0.80, 0.50, 0.00, false, false, false, false));
+
+                    // we make the sabr section arbitrage free by superimposing
+                    // a kahalesection
+
+                    i->second.smileSection_ = boost::shared_ptr<
+                        KahaleSmileSection>(new KahaleSmileSection(
+                        sabrSection, i->second.atm_, false,
+                        (modelSettings_.adjustments_ &
+                         ModelSettings::SmileExponentialExtrapolation) != 0,
+                        (modelSettings_.adjustments_ &
+                         ModelSettings::SmileDeleteArbitragePoints) != 0,
+                        modelSettings_.smileMoneynessCheckpoints_,
+                        modelSettings_.digitalGap_));
+
+                } else { // no smile pretreatment
+
+                    i->second.smileSection_ = i->second.rawSmileSection_;
+
+                }
 
             }
 
@@ -643,9 +686,10 @@ namespace QuantLib {
             << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::ExtrapolatePayoffFlat ? "FlatPayoffExt " : "")
             << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::NoPayoffExtrapolation ? "NoPayoffExt " : "")
             << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::KahaleSmile ? "Kahale " : "")
-            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::KahaleExponentialExtrapolation ? "KahaleExp " : "")
+            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::SmileExponentialExtrapolation ? "SmileExp " : "")
             << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::KahaleInterpolation ? "KahaleInt " : "")
-            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::KahaleDeleteArbitragePoints ? "KahaleDelArb " : "")
+            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::SmileDeleteArbitragePoints ? "SmileDelArb " : "")
+            << (m.settings_.adjustments_ & MarkovFunctional::ModelSettings::SabrSmile ? "Sabr" : "")
             << std::endl;
         out << "Smile moneyness checkpoints: ";
         for(Size i=0;i<m.settings_.smileMoneynessCheckpoints_.size();i++) 

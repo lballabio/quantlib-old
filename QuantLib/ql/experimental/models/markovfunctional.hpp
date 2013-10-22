@@ -30,6 +30,7 @@
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp>
 #include <ql/termstructures/volatility/smilesection.hpp>
+#include <ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp>
 
 #include <ql/experimental/models/mfstateprocess.hpp>
 #include <ql/experimental/models/kahalesmilesection.hpp>
@@ -85,21 +86,22 @@ namespace QuantLib {
 
             // NoPayoffExtrapolation overrides ExtrapolatePayoffFlat
             enum Adjustments { AdjustNone = 0, AdjustDigitals = 1<<0, AdjustYts = 1<<1, ExtrapolatePayoffFlat = 1<<2, 
-                               NoPayoffExtrapolation = 1<<3, KahaleSmile = 1<<4, KahaleExponentialExtrapolation = 1<<5, 
-                               KahaleInterpolation = 1<<6, KahaleDeleteArbitragePoints = 1 << 7 };
+                               NoPayoffExtrapolation = 1<<3, KahaleSmile = 1<<4, SmileExponentialExtrapolation = 1<<5, 
+                               KahaleInterpolation = 1<<6, SmileDeleteArbitragePoints = 1 << 7,
+                               SabrSmile = 1 << 8 };
 
             ModelSettings() : yGridPoints_(64), yStdDevs_(7.0), gaussHermitePoints_(32), digitalGap_(1E-5), 
                               marketRateAccuracy_(1E-7), lowerRateBound_(0.0), upperRateBound_(2.0), 
-                              adjustments_(KahaleSmile | KahaleExponentialExtrapolation),
+                              adjustments_(KahaleSmile | SmileExponentialExtrapolation),
                               smileMoneynessCheckpoints_(std::vector<Real>()) {}
             
             void validate() {
-                if(adjustments_ & KahaleExponentialExtrapolation) addAdjustment(KahaleSmile);
-                if(adjustments_ & KahaleInterpolation) addAdjustment(KahaleSmile);
-                if(adjustments_ & KahaleDeleteArbitragePoints) {
-                    addAdjustment(KahaleSmile);
+                if((adjustments_ & KahaleInterpolation) != 0) addAdjustment(KahaleSmile);
+                if((adjustments_ & KahaleSmile) != 0 && (adjustments_ & SmileDeleteArbitragePoints)) {
                     addAdjustment(KahaleInterpolation);
                 }
+                QL_REQUIRE((adjustments_ & SabrSmile) == 0 ||
+                           (adjustments_ & KahaleSmile) == 0, "KahaleSmile and SabrSmile can not specified at the same time");
                 QL_REQUIRE(yGridPoints_>0,"At least one grid point (" << yGridPoints_ << 
                            ") for the state process discretization must be given");
                 QL_REQUIRE(yStdDevs_>0.0,"Multiple of standard deviations covered by state process discretization (" << 
@@ -248,6 +250,8 @@ namespace QuantLib {
         // the following methods are indended only to produce the volatility diagnostics in the model outputs
         // we should use external pricing engines instead, the zero fixing days convention should be replaced
         // by the market convention in output
+        // further note that these methods do not respect multiple curves given in the indices, but always
+        // use the model's yield term structure
         const Real forwardRateZfd(const Date& fixing, const Date& referenceDate = Null<Date>(), const Real y=0.0,
                                const bool zeroFixingDays=false, 
                                   boost::shared_ptr<IborIndex> iborIdx = boost::shared_ptr<IborIndex>()) const;
