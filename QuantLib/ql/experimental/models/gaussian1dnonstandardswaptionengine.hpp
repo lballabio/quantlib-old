@@ -42,6 +42,9 @@ namespace QuantLib {
 		All float coupons with start date greater or equal to the respective option expiry are consideres 
         to be part of the exercise into right.
 
+        For redemption flows an associated start date is considered in the criterion, which is the start
+        date of the regular coupon period with same payment date as the redemption flow.
+
 		\warning Cash settled swaptions are not supported
 
     */
