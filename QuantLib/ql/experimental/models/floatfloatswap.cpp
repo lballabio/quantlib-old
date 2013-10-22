@@ -31,6 +31,7 @@
 
 namespace QuantLib {
 
+    // here we need the c++11 standard (delegated constructors)
     FloatFloatSwap::FloatFloatSwap(
         const VanillaSwap::Type type, const Real nominal1, const Real nominal2,
         const Schedule &schedule1,
