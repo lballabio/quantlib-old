@@ -228,7 +228,7 @@ namespace QuantLib {
             IborLeg leg(schedule2_, ibor2);
             leg = leg.withNotionals(nominal2_).withPaymentDayCounter(dayCount2_)
                 .withPaymentAdjustment(paymentConvention2_)
-                .withSpreads(spread2_).withGearings(gearing1_);
+                .withSpreads(spread2_).withGearings(gearing2_);
             if (cappedRate2_[0] != Null<Real>())
                 leg = leg.withCaps(cappedRate2_);
             if (flooredRate2_[0] != Null<Real>())
