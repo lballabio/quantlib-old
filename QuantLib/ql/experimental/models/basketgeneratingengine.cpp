@@ -93,16 +93,19 @@ namespace QuantLib {
                     Real atm;
                     if(cube) atm = cube->atmVol()->volatility(expiry,swapLength,0.03,true);
                     else atm = swaptionVolatility->volatility(expiry,swapLength,0.03,true);
-                    Real atmStrike = standardSwapBase->fixing(expiry);
-                    // we have to floor the strike of the calibration instrument, see warning in the header
-                    atmStrike = std::max(atmStrike, 0.00001);                    
-                    helper = boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(expiry,underlyingLastDate(),
-                                   Handle<Quote>(new SimpleQuote(atm)),standardSwapBase->iborIndex(),
-                                   standardSwapBase->fixedLegTenor(),standardSwapBase->dayCounter(),
-                                   standardSwapBase->iborIndex()->dayCounter(), 
-                                   standardSwapBase->exogenousDiscount() ? standardSwapBase->discountingTermStructure() : 
-                                   standardSwapBase->forwardingTermStructure(),
-                                   CalibrationHelper::RelativePriceError,atmStrike,1.0));
+                    helper =
+                        boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(
+                            expiry, underlyingLastDate(),
+                            Handle<Quote>(new SimpleQuote(atm)),
+                            standardSwapBase->iborIndex(),
+                            standardSwapBase->fixedLegTenor(),
+                            standardSwapBase->dayCounter(),
+                            standardSwapBase->iborIndex()->dayCounter(),
+                            standardSwapBase->exogenousDiscount()
+                                ? standardSwapBase->discountingTermStructure()
+                                : standardSwapBase->forwardingTermStructure(),
+                            CalibrationHelper::RelativePriceError, Null<Real>(),
+                            1.0));
 
                     break;
                 }

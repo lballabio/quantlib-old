@@ -40,6 +40,7 @@ namespace QuantLib {
 
     /* \warning the generated calibrating swaptions have a strike floored at 0.1bp because the library only
                 provides (unshifted) lognormal market volatilities at the moment
+                this is not true for atm swaptions where the strike is generated in the swaption helper
 
        \warning the standardSwapBase index should have associated forward and discount curves. These curves are used 
         for setup of the swaption helper. This means that the market price of the calibration instrument is calculated using
