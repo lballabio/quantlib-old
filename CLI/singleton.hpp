@@ -2,7 +2,6 @@
 
 /*
  Copyright (C) 2004, 2005, 2007 StatPro Italia srl
- Copyright (C) 2013 Simon Shakeshaft
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,9 +24,19 @@
 #ifndef quantlib_singleton_hpp
 #define quantlib_singleton_hpp
 
-//#include <ql/types.hpp>
+#include <ql/types.hpp>
 #include <boost/shared_ptr.hpp>
+#if defined(QL_PATCH_MSVC71)
+    #pragma unmanaged
+#elif defined(QL_PATCH_MSVC)
+    #pragma managed(push, off)
+#endif
 #include <boost/noncopyable.hpp>
+#if defined(QL_PATCH_MSVC71)
+    #pragma managed
+#elif defined(QL_PATCH_MSVC)
+    #pragma managed(pop)
+#endif
 #include <map>
 
 namespace QuantLib {
@@ -65,12 +74,35 @@ namespace QuantLib {
     */
     template <class T>
     class Singleton : private boost::noncopyable {
+      private:
+        //! the unique instance
+        static std::map<Integer, boost::shared_ptr<T> > instances_;
       public:
         //! access to the unique instance
         static T& instance();
       protected:
-        Singleton();
+        Singleton() {}
     };
+
+    // static member definition 
+    template <class T>
+    std::map<Integer, boost::shared_ptr<T> > Singleton<T>::instances_;
+
+    // template definitions
+
+    template <class T>
+    T& Singleton<T>::instance() {
+        //static std::map<Integer, boost::shared_ptr<T> > instances_;
+        #if defined(QL_ENABLE_SESSIONS)
+        Integer id = sessionId();
+        #else
+        Integer id = 0;
+        #endif
+        boost::shared_ptr<T>& instance = instances_[id];
+        if (!instance)
+            instance = boost::shared_ptr<T>(new T);
+        return *instance;
+    }
 
     // reverts the change above
     #if defined(QL_PATCH_MSVC71)
