@@ -419,7 +419,7 @@ namespace QuantLib {
                                     arguments_.leg2AccrualTimes[j];
                             }
 
-                            npv0a[k] -= amount *
+                            npv0a[k] += amount *
                                 model_->zerobond(arguments_.leg2PayDates[j], event0,
                                                  z[k], discountCurve_) /
                                 model_->numeraire(event0Time, z[k],
