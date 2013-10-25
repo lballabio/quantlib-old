@@ -34,6 +34,8 @@ QuantLibAddin project, please refer to
 - Added additional clones of Calendars to correspond to the output from
   QuantLib::Calendar::name(). This allows us in Excel to ask a calendar for its
   name and then recreate the same calendar based on that string.
+- VBA Framework - fix bug in which exception is thrown by context sensitive
+  menu when active worksheet is a chart.
 
 <strong>Release 1.2.0 - July 2012</strong>
 
