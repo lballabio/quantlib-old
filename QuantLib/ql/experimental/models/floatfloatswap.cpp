@@ -123,6 +123,12 @@ namespace QuantLib {
                               << ") does not match flooredRate2 size ("
                               << flooredRate2.size() << ")");
 
+        // if the gearing is zero then the ibor / cms leg will be set up with
+        // fixed coupons which makes trouble here in this context. We therefore
+        // use a dirty trick and enforce the gearing to be non zero
+        for(Size i=0;i<gearing1_.size();i++) if(close(gearing1_[i],0.0)) gearing1_[i]=QL_EPSILON;
+        for(Size i=0;i<gearing2_.size();i++) if(close(gearing2_[i],0.0)) gearing2_[i]=QL_EPSILON;
+
         if (paymentConvention1)
             paymentConvention1_ = *paymentConvention1;
         else
