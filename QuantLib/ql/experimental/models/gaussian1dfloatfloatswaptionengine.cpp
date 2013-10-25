@@ -333,38 +333,49 @@ namespace QuantLib {
                                            .yearFraction(
                                                 event0,
                                                 arguments_.leg1PayDates[j])));
-                        Real amount;
-                        if(arguments_.leg1IsRedemptionFlow[j]) {
-                            amount = arguments_.leg1Coupons[j];
-                        }
-                        else {
-                            Real rate =
-                                arguments_.leg1Spreads[j] + arguments_.leg1Gearings[j] *
-                                (ibor1 != NULL
-                                 ? model_->forwardRate(
-                                                       arguments_.leg1FixingDates[j], event0,
-                                                       z[k], ibor1)
-                                 : model_->swapRate(
-                                                    arguments_.leg1FixingDates[j],
-                                                    cms1->tenor(), event0, z[k], cms1));
-                            if (arguments_.leg1CappedRates[j] != Null<Real>())
-                                rate =
-                                    std::min(arguments_.leg1CappedRates[j], rate);
-                            if (arguments_.leg1FlooredRates[j] != Null<Real>())
-                                rate =
-                                    std::max(arguments_.leg1FlooredRates[j], rate);
-                            amount = rate * arguments_.nominal1[j] *
-                                arguments_.leg1AccrualTimes[j];
-                        }
+                        bool done = false;
+                        do {
+                            Real amount;
+                            if(arguments_.leg1IsRedemptionFlow[j]) {
+                                amount = arguments_.leg1Coupons[j];
+                            }
+                            else {
+                                Real rate =
+                                    arguments_.leg1Spreads[j] + arguments_.leg1Gearings[j] *
+                                    (ibor1 != NULL
+                                     ? model_->forwardRate(
+                                                           arguments_.leg1FixingDates[j], event0,
+                                                           z[k], ibor1)
+                                     : model_->swapRate(
+                                                        arguments_.leg1FixingDates[j],
+                                                        cms1->tenor(), event0, z[k], cms1));
+                                if (arguments_.leg1CappedRates[j] != Null<Real>())
+                                    rate =
+                                        std::min(arguments_.leg1CappedRates[j], rate);
+                                if (arguments_.leg1FlooredRates[j] != Null<Real>())
+                                    rate =
+                                        std::max(arguments_.leg1FlooredRates[j], rate);
+                                amount = rate * arguments_.nominal1[j] *
+                                    arguments_.leg1AccrualTimes[j];
+                            }
 
-                        npv0a[k] -= amount *
-                            model_->zerobond(arguments_.leg1PayDates[j], event0,
-                                             z[k], discountCurve_) /
-                            model_->numeraire(event0Time, z[k],
-                                              discountCurve_) *
-                            zSpreadDf;
+                            npv0a[k] -= amount *
+                                model_->zerobond(arguments_.leg1PayDates[j], event0,
+                                                 z[k], discountCurve_) /
+                                model_->numeraire(event0Time, z[k],
+                                                  discountCurve_) *
+                                zSpreadDf;
 
+                            if(j<arguments_.leg1FixingDates.size()-1) {
+                                j++;
+                                done = (event0 != arguments_.leg1FixingDates[j]);
+                            }
+                            else 
+                                done = true;
+
+                        } while(!done);
                     }
+
                     if (isLeg2Fixing) { // if event is a fixing date and
                                         // exercise date,
                         // the coupon is part of the exercise into right (by
@@ -382,38 +393,48 @@ namespace QuantLib {
                                            .yearFraction(
                                                 event0,
                                                 arguments_.leg2PayDates[j])));
-                        Real amount;
-                        if(arguments_.leg2IsRedemptionFlow[j]) {
-                            amount = arguments_.leg2Coupons[j];
-                        }
-                        else {
-                            Real rate =
-                                arguments_.leg2Spreads[j] + arguments_.leg2Gearings[j] *
-                                (ibor2 != NULL
-                                 ? model_->forwardRate(
-                                                       arguments_.leg2FixingDates[j], event0,
-                                                       z[k], ibor2)
-                                 : model_->swapRate(
-                                                    arguments_.leg2FixingDates[j],
-                                                    cms2->tenor(), event0, z[k], cms1));
-                            if (arguments_.leg2CappedRates[j] != Null<Real>())
-                                rate =
-                                    std::min(arguments_.leg2CappedRates[j], rate);
-                            if (arguments_.leg2FlooredRates[j] != Null<Real>())
-                                rate =
-                                    std::max(arguments_.leg2FlooredRates[j], rate);
-                            amount = rate * arguments_.nominal2[j] *
-                                arguments_.leg2AccrualTimes[j];
-                        }
+                        bool done;
+                        do {
+                            Real amount;
+                            if(arguments_.leg2IsRedemptionFlow[j]) {
+                                amount = arguments_.leg2Coupons[j];
+                            }
+                            else {
+                                Real rate =
+                                    arguments_.leg2Spreads[j] + arguments_.leg2Gearings[j] *
+                                    (ibor2 != NULL
+                                     ? model_->forwardRate(
+                                                           arguments_.leg2FixingDates[j], event0,
+                                                           z[k], ibor2)
+                                     : model_->swapRate(
+                                                        arguments_.leg2FixingDates[j],
+                                                        cms2->tenor(), event0, z[k], cms1));
+                                if (arguments_.leg2CappedRates[j] != Null<Real>())
+                                    rate =
+                                        std::min(arguments_.leg2CappedRates[j], rate);
+                                if (arguments_.leg2FlooredRates[j] != Null<Real>())
+                                    rate =
+                                        std::max(arguments_.leg2FlooredRates[j], rate);
+                                amount = rate * arguments_.nominal2[j] *
+                                    arguments_.leg2AccrualTimes[j];
+                            }
 
-                        npv0a[k] -= amount *
-                            model_->zerobond(arguments_.leg2PayDates[j], event0,
-                                             z[k], discountCurve_) /
-                            model_->numeraire(event0Time, z[k],
-                                              discountCurve_) *
-                            zSpreadDf;
+                            npv0a[k] -= amount *
+                                model_->zerobond(arguments_.leg2PayDates[j], event0,
+                                                 z[k], discountCurve_) /
+                                model_->numeraire(event0Time, z[k],
+                                                  discountCurve_) *
+                                zSpreadDf;
+                            if(j<arguments_.leg2FixingDates.size()-1) {
+                                j++;
+                                done = (event0 != arguments_.leg2FixingDates[j]);
+                            }
+                            else
+                                done = true;
 
+                        } while(!done);
                     }
+
                     if (isExercise) {
                         Size j = std::find(arguments_.exercise->dates().begin(),
                                            arguments_.exercise->dates().end(),
