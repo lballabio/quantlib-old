@@ -43,85 +43,99 @@ namespace QuantLib {
 
       public:
 
-		// constant mean reversion
-		Gsr(const Handle<YieldTermStructure>& termStructure,
-						const std::vector<Date>& volstepdates,
-						const std::vector<Real>& volatilities,
-						const Real reversion,
-						const Real T = 60.0);
-		// piecewise mean reversion (with same step dates as volatilities)
-		Gsr(const Handle<YieldTermStructure>& termStructure,
-						const std::vector<Date>& volstepdates,
-						const std::vector<Real>& volatilities,
-						const std::vector<Real>& reversions,
-						const Real T = 60.0);
-		// constant mean reversion (calibrated), the first dummy parameter indicates this 
-        // (can be set to true or false, does not matter)
-		Gsr(const bool dummy, const Handle<YieldTermStructure>& termStructure,
-						const std::vector<Date>& volstepdates,
-						const std::vector<Real>& volatilities,
-						const Real reversion,
-						const Real T = 60.0);
-		// piecewise mean reversion (with same step dates as volatilities, calibrated)
-		Gsr(const bool dummy, const Handle<YieldTermStructure>& termStructure,
-						const std::vector<Date>& volstepdates,
-						const std::vector<Real>& volatilities,
-						const std::vector<Real>& reversions,
-						const Real T = 60.0);
+        // constant mean reversion
+        Gsr(const Handle<YieldTermStructure> &termStructure,
+            const std::vector<Date> &volstepdates,
+            const std::vector<Real> &volatilities, const Real reversion,
+            const Real T = 60.0);
+        // piecewise mean reversion (with same step dates as volatilities)
+        Gsr(const Handle<YieldTermStructure> &termStructure,
+            const std::vector<Date> &volstepdates,
+            const std::vector<Real> &volatilities,
+            const std::vector<Real> &reversions, const Real T = 60.0);
 
-		const Real numeraireTime() const; 
-		const void numeraireTime(const Real T);
+        const Real numeraireTime() const;
+        const void numeraireTime(const Real T);
+
+        // calibration constraints
+
+        Disposable<std::vector<bool> > FixedReversions() {
+            std::vector<bool> res(reversions_.size(), true);
+            std::vector<bool> vol(volatilities_.size(), false);
+            res.insert(res.end(), vol.begin(), vol.end());
+            return res;
+        }
+
+        Disposable<std::vector<bool> > MoveVolatility(Size i) {
+            QL_REQUIRE(i < volatilities_.size(),
+                       "volatility with index " << i << " does not exist (0..."
+                                                << volatilities_.size() - 1
+                                                << ")");
+            std::vector<bool> res(reversions_.size() + volatilities_.size(),
+                                  true);
+            res[reversions_.size() + i] = false;
+            return res;
+        }
+
+        // with fixed reversion calibrate the volatilities one by one
+        // to the given helpers. It is assumed that that volatility step
+        // dates are suitable to do so.
+        // also the calibrated model reflects only the last calibration w.r.t
+        // endcriteria
+        void calibrateVolatilitiesIterative(
+            const std::vector<boost::shared_ptr<CalibrationHelper> > &helpers,
+            OptimizationMethod &method, const EndCriteria &endCriteria,
+            const Constraint &constraint = Constraint(),
+            const std::vector<Real> &weights = std::vector<Real>()) {
+
+            for (Size i = 0; i < helpers.size(); i++)
+                calibrate(helpers, method, endCriteria, constraint, weights,
+                          MoveVolatility(i));
+        }
 
       protected:
 
-        const Real numeraireImpl(const Time t, const Real y, const Handle<YieldTermStructure>& yts) const;
+        const Real numeraireImpl(const Time t, const Real y,
+                                 const Handle<YieldTermStructure> &yts) const;
 
-        const Real zerobondImpl(const Time T, const Time t, const Real y, 
-                                const Handle<YieldTermStructure>& yts) const;
-        
-		void generateArguments() {
-			calculate();
-			boost::dynamic_pointer_cast<GsrProcess>(stateProcess_)->flushCache();
-			notifyObservers();
-		}
+        const Real zerobondImpl(const Time T, const Time t, const Real y,
+                                const Handle<YieldTermStructure> &yts) const;
 
-        void update() {
-            LazyObject::update();
+        void generateArguments() {
+            calculate();
+            boost::dynamic_pointer_cast<GsrProcess>(stateProcess_)
+                ->flushCache();
+            notifyObservers();
         }
+
+        void update() { LazyObject::update(); }
 
       private:
 
-  		void initialize(Real);
+        void initialize(Real);
 
-		const bool calibrateReversion_;
+        Parameter &reversion_, &sigma_;
 
-        NullParameter dummyParameter_;
-
-		Parameter& reversion_;
-		Parameter reversionNc_; // this is used if reversion is not calibrated
-		Parameter& sigma_;
-		
-		std::vector<Real> volatilities_;
-		std::vector<Real> reversions_;
-		std::vector<Date> volstepdates_; // this is shared between vols and reverisons in case of piecewise reversions
-		std::vector<Time> volsteptimes_;
-		Array volsteptimesArray_; // FIXME this is redundant (just a copy of volsteptimes_)
-
+        std::vector<Real> volatilities_;
+        std::vector<Real> reversions_;
+        std::vector<Date> volstepdates_; // this is shared between vols and
+                                         // reverisons in case of piecewise
+                                         // reversions
+        std::vector<Time> volsteptimes_;
+        Array volsteptimesArray_; // FIXME this is redundant (just a copy of
+                                  // volsteptimes_)
     };
 
-
-
     inline const Real Gsr::numeraireTime() const {
-        return boost::dynamic_pointer_cast<GsrProcess>(stateProcess_)->getForwardMeasureTime();
+        return boost::dynamic_pointer_cast<GsrProcess>(stateProcess_)
+            ->getForwardMeasureTime();
     }
 
     inline const void Gsr::numeraireTime(const Real T) {
-        boost::dynamic_pointer_cast<GsrProcess>(stateProcess_)->setForwardMeasureTime(T);
+        boost::dynamic_pointer_cast<GsrProcess>(stateProcess_)
+            ->setForwardMeasureTime(T);
         calculate();
     }
-
 }
 
-
 #endif
-

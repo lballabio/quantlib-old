@@ -159,7 +159,7 @@ int main(int, char* []) {
     std::cout << "Calibrate the model to the initial basket" << std::endl;
     LevenbergMarquardt lm;
     EndCriteria ec(2000,200,1E-8,1E-8,1E-8);
-    gsr->calibrateIterative(basket,lm,ec);
+    gsr->calibrateVolatilitiesIterative(basket,lm,ec);
     outputModel(stepDates,gsr);
 
     std::cout << "Calculate calibration basket" << std::endl;
@@ -170,7 +170,7 @@ int main(int, char* []) {
 
     std::cout << "Calibrate the model to the second basket" << std::endl;
 
-    gsr->calibrateIterative(basket2,lm,ec);
+    gsr->calibrateVolatilitiesIterative(basket2,lm,ec);
     outputModel(stepDates,gsr);
 
     std::cout << "Price the nonstandard swaption" << std::endl;
@@ -196,21 +196,21 @@ int main(int, char* []) {
     std::cout << "Compute delta, gamma with model recalibration" << std::endl;
     std::cout << "============================================================" << std::endl;
     
-    gsr->calibrateIterative(basket2,lm,ec);
+    gsr->calibrateVolatilitiesIterative(basket2,lm,ec);
     outputModel(stepDates,gsr);
     npv0 = swaption->NPV();
     
     ytsQuote.linkTo(ytsQuote1);
-    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
     npv1 = swaption->NPV();
     ytsQuote.linkTo(ytsQuote2);
-    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
     npv2 = swaption->NPV();
     ytsQuote.linkTo(ytsQuote0);
 
     for(Size i=0;i<basket2.size();i++) boost::dynamic_pointer_cast<SimpleQuote>(*basket2[i]->volatility())
                                            ->setValue(volQuote1->value());
-    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
     npv3 = swaption->NPV();
     for(Size i=0;i<basket2.size();i++) boost::dynamic_pointer_cast<SimpleQuote>(*basket2[i]->volatility())
                                            ->setValue(volQuote0->value());
@@ -224,25 +224,25 @@ int main(int, char* []) {
     std::cout << "Compute delta, gamma with basket recalculation and recalibration" << std::endl;
     std::cout << "============================================================" << std::endl;
 
-    gsr->calibrateIterative(basket2,lm,ec);
+    gsr->calibrateVolatilitiesIterative(basket2,lm,ec);
     outputModel(stepDates,gsr);
     npv0 = swaption->NPV(); 
 
     ytsQuote.linkTo(ytsQuote1);
-    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
     std::vector<boost::shared_ptr<CalibrationHelper>> basket3a = swaption->calibrationBasket(standardSwapBase,swaptionVol);
 	for(Size i=0;i<basket3a.size();i++) basket3a[i]->setPricingEngine(standardEngine);
     outputBasket(basket3a,*gsr->termStructure());
-    gsr->calibrateIterative(basket3a,lm,ec); outputModel(stepDates,gsr);
+    gsr->calibrateVolatilitiesIterative(basket3a,lm,ec); outputModel(stepDates,gsr);
     npv1 = swaption->NPV();
 
     ytsQuote.linkTo(ytsQuote2);
 
-    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
     std::vector<boost::shared_ptr<CalibrationHelper>> basket3b = swaption->calibrationBasket(standardSwapBase,swaptionVol);
 	for(Size i=0;i<basket3b.size();i++) basket3b[i]->setPricingEngine(standardEngine);
     outputBasket(basket3b,*gsr->termStructure());
-    gsr->calibrateIterative(basket3b,lm,ec); outputModel(stepDates,gsr);
+    gsr->calibrateVolatilitiesIterative(basket3b,lm,ec); outputModel(stepDates,gsr);
     npv2 = swaption->NPV();
 
     ytsQuote.linkTo(ytsQuote0);
@@ -250,11 +250,11 @@ int main(int, char* []) {
     for(Size i=0;i<basket2.size();i++) boost::dynamic_pointer_cast<SimpleQuote>(*basket2[i]->volatility())->
                                            setValue(volQuote1->value());
     volQuote.linkTo(volQuote1);
-    gsr->calibrateIterative(basket2,lm,ec); outputModel(stepDates,gsr);
+    gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
     std::vector<boost::shared_ptr<CalibrationHelper>> basket3c = swaption->calibrationBasket(standardSwapBase,swaptionVol);
 	for(Size i=0;i<basket3c.size();i++) basket3c[i]->setPricingEngine(standardEngine);
     outputBasket(basket3c,*gsr->termStructure());
-    gsr->calibrateIterative(basket3c,lm,ec); outputModel(stepDates,gsr);
+    gsr->calibrateVolatilitiesIterative(basket3c,lm,ec); outputModel(stepDates,gsr);
     npv3 = swaption->NPV();
     for(Size i=0;i<basket2.size();i++) boost::dynamic_pointer_cast<SimpleQuote>(*basket2[i]->volatility())->
                                            setValue(volQuote0->value());

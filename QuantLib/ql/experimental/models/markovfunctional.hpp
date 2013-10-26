@@ -206,6 +206,20 @@ namespace QuantLib {
         const Date& numeraireDate() const { return numeraireDate_; }
         const Time& numeraireTime() const { return numeraireTime_; }
 
+        void calibrate(
+                   const std::vector<boost::shared_ptr<CalibrationHelper> >& helper,
+                   OptimizationMethod& method,
+                   const EndCriteria& endCriteria,
+                   const Constraint& constraint = Constraint(),
+                   const std::vector<Real>& weights = std::vector<Real>(),
+                   const std::vector<bool>& parametersFreedoms = std::vector<bool>()) {
+
+            CalibratedModel::calibrate(helper,method,endCriteria,constraint,weights,
+                                       parametersFreedoms.size() == 0 ? FixedFirstVolatility() :
+                                       parametersFreedoms);
+
+        }
+
       protected:
         
         const Real numeraireImpl(const Time t, const Real y, const Handle<YieldTermStructure>& yts) const;
@@ -227,6 +241,12 @@ namespace QuantLib {
             updateNumeraireTabulation();
         }
 
+        Disposable<std::vector<bool> > FixedFirstVolatility() const {
+            std::vector<bool> c(volatilities_.size(),false);
+            c[0] = true;
+            return c;
+        }
+
       private:
 
         void initialize();
@@ -235,7 +255,7 @@ namespace QuantLib {
 
         void makeSwaptionCalibrationPoint(const Date& expiry, const Period& tenor);
         void makeCapletCalibrationPoint(const Date& expiry);
-        
+
         const Real marketSwapRate(const Date& expiry, const CalibrationPoint& p, const Real digitalPrice, 
                                   const Real guess = 0.03) const;
         const Real marketDigitalPrice(const Date& expiry, const CalibrationPoint& p, const Option::Type& type, 
@@ -295,12 +315,12 @@ namespace QuantLib {
         const bool capletCalibrated_;
 
         boost::shared_ptr<Matrix> discreteNumeraire_;
-        std::vector<boost::shared_ptr<Interpolation> > numeraire_; 
+        std::vector<boost::shared_ptr<Interpolation> > numeraire_;
         // vector of interpolated numeraires in y direction for all calibration times
 
         Parameter reversion_;
         Parameter& sigma_;
-        
+
         std::vector<Date> volstepdates_;
         std::vector<Time> volsteptimes_;
         Array volsteptimesArray_; // FIXME this is redundant (just a copy of volsteptimes_)
@@ -332,4 +352,3 @@ namespace QuantLib {
 
 
 #endif
-

@@ -27,9 +27,8 @@ namespace QuantLib {
                         const Real reversion,
                         const Real T) : 
       Gaussian1dModel(termStructure), CalibratedModel(1), 
-      calibrateReversion_(false),
-      reversion_(dummyParameter_),
-      sigma_(arguments_[0]),                   
+      reversion_(arguments_[0]),
+      sigma_(arguments_[1]),                   
       volatilities_(volatilities), reversions_(std::vector<Real>(1,reversion)), volstepdates_(volstepdates)  {
 
         QL_REQUIRE(!termStructure.empty(),"yield term structure handle is empty");
@@ -43,48 +42,14 @@ namespace QuantLib {
                         const std::vector<Real>& reversions,
                         const Real T) : 
       Gaussian1dModel(termStructure), CalibratedModel(1),
-      calibrateReversion_(false),
-      reversion_(dummyParameter_),
-      sigma_(arguments_[0]), 
+      reversion_(arguments_[0]),
+      sigma_(arguments_[1]), 
       volatilities_(volatilities), reversions_(reversions), volstepdates_(volstepdates) {
         
         QL_REQUIRE(!termStructure.empty(),"yield term structure handle is empty");
         initialize(T);
 
     }
-
-      Gsr::Gsr(const bool dummy, const Handle<YieldTermStructure>& termStructure,
-                        const std::vector<Date>& volstepdates,
-                        const std::vector<Real>& volatilities,
-                        const Real reversion,
-                        const Real T) : 
-      Gaussian1dModel(termStructure), CalibratedModel(2),
-      calibrateReversion_(true),
-      reversion_(arguments_[1]),
-      sigma_(arguments_[0]),                   
-      volatilities_(volatilities), reversions_(std::vector<Real>(1,reversion)), volstepdates_(volstepdates) {
-
-        QL_REQUIRE(!termStructure.empty(),"yield term structure handle is empty");
-        initialize(T);
-
-    }
-
-    Gsr::Gsr(const bool dummy, const Handle<YieldTermStructure>& termStructure,
-                        const std::vector<Date>& volstepdates,
-                        const std::vector<Real>& volatilities,
-                        const std::vector<Real>& reversions,
-                        const Real T) : 
-      Gaussian1dModel(termStructure), CalibratedModel(2),
-      calibrateReversion_(true),
-      reversion_(arguments_[1]), 
-      sigma_(arguments_[0]), 
-      volatilities_(volatilities), reversions_(reversions), volstepdates_(volstepdates) {
-        
-        QL_REQUIRE(!termStructure.empty(),"yield term structure handle is empty");
-        initialize(T);
-
-    }
-
 
     void Gsr::initialize(Real T) {
 
@@ -111,26 +76,17 @@ namespace QuantLib {
                    "there must be 1 or n+1 reversions (" << reversions_.size() << ") for n volatility step times (" 
                    << volsteptimes_.size() << ")");
         if(reversions_.size() == 1) {
-            if(calibrateReversion_)
                 reversion_ = ConstantParameter(reversions_[0],NoConstraint());
-            else
-                reversionNc_ = ConstantParameter(reversions_[0],NoConstraint());
         }
         else {
-            if(calibrateReversion_)
-                reversion_ = PiecewiseConstantParameter(volsteptimes_,NoConstraint());
-            else
-                reversionNc_ = PiecewiseConstantParameter(volsteptimes_,NoConstraint());
+            reversion_ = PiecewiseConstantParameter(volsteptimes_,NoConstraint());
             for(Size i=0;i<reversions_.size();i++) {
-                if(calibrateReversion_)
                     reversion_.setParam(i,reversions_[i]);
-                else
-                    reversionNc_.setParam(i,reversions_[i]);
             }
         }
         
         stateProcess_ = boost::shared_ptr<GsrProcess>(new GsrProcess(volsteptimesArray_,sigma_.params(),
-                                               calibrateReversion_? reversion_.params() : reversionNc_.params(),T));
+                                               reversion_.params(),T));
 
         LazyObject::registerWith(stateProcess_); // forward measure time may change, the model must be notified then
         LazyObject::registerWith(termStructure());

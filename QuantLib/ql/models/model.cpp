@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2001, 2002, 2003 Sadruddin Rejeb
+ Copyright (C) 2013 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,6 +20,8 @@
 
 #include <ql/models/model.hpp>
 #include <ql/math/optimization/problem.hpp>
+#include <ql/math/optimization/projection.hpp>
+#include <ql/math/optimization/projectedconstraint.hpp>
 
 namespace QuantLib {
 
@@ -31,77 +34,46 @@ namespace QuantLib {
       constraint_(new PrivateConstraint(arguments_)),
       shortRateEndCriteria_(EndCriteria::None) {}
 
-	class CalibratedModel::CalibrationFunctionIterative : public CostFunction {
-		public:
-		CalibrationFunctionIterative(
-			CalibratedModel* model,
-			const boost::shared_ptr<CalibrationHelper>& instrument,
-			Array& par,
-			Size i) : model_(model, no_deletion), instrument_(instrument), i_(i), par_(par) {}
-
-		virtual ~CalibrationFunctionIterative() {}
-
-		virtual Real value(const Array& v) const {
-			par_[i_] = v[0];
-			model_->setParams(par_);
-			return fabs(instrument_->calibrationError());
-		}
-
-		virtual Disposable<Array> values(const Array& v) const {
-            Array ret(1,value(v));
-            return ret;
-		}
-
-		virtual Real finiteDifferenceEpsilon() const { return 1e-6; }
-
-		private:
-        boost::shared_ptr<CalibratedModel> model_;
-        const boost::shared_ptr<CalibrationHelper>& instrument_;
-		const Size i_;
-		mutable Array par_;
-	};
-
     class CalibratedModel::CalibrationFunction : public CostFunction {
       public:
         CalibrationFunction(
                   CalibratedModel* model,
                   const std::vector<boost::shared_ptr<CalibrationHelper> >&
                                                                   instruments,
-                  const std::vector<Real>& weights)
+                  const std::vector<Real>& weights,
+                  const Projection& projection)
         : model_(model, no_deletion), instruments_(instruments),
-          weights_(weights) {}
+          weights_(weights), projection_(projection) { }
 
         virtual ~CalibrationFunction() {}
 
         virtual Real value(const Array& params) const {
-            model_->setParams(params);
-
+            model_->setParams(projection_.include(params));
             Real value = 0.0;
             for (Size i=0; i<instruments_.size(); i++) {
                 Real diff = instruments_[i]->calibrationError();
                 value += diff*diff*weights_[i];
             }
-
             return std::sqrt(value);
         }
 
         virtual Disposable<Array> values(const Array& params) const {
-            model_->setParams(params);
-
+            model_->setParams(projection_.include(params));
             Array values(instruments_.size());
             for (Size i=0; i<instruments_.size(); i++) {
                 values[i] = instruments_[i]->calibrationError()
                            *std::sqrt(weights_[i]);
             }
-
             return values;
         }
 
         virtual Real finiteDifferenceEpsilon() const { return 1e-6; }
+
       private:
         boost::shared_ptr<CalibratedModel> model_;
         const std::vector<boost::shared_ptr<CalibrationHelper> >& instruments_;
         std::vector<Real> weights_;
+        const Projection projection_;
     };
 
     void CalibratedModel::calibrate(
@@ -109,7 +81,8 @@ namespace QuantLib {
         OptimizationMethod& method,
         const EndCriteria& endCriteria,
         const Constraint& additionalConstraint,
-        const std::vector<Real>& weights) {
+        const std::vector<Real>& weights,
+        const std::vector<bool>& parametersFreedoms) {
 
         QL_REQUIRE(weights.empty() ||
                    weights.size() == instruments.size(),
@@ -123,37 +96,20 @@ namespace QuantLib {
         std::vector<Real> w = weights.empty() ?
                               std::vector<Real>(instruments.size(), 1.0):
                               weights;
-        CalibrationFunction f(this, instruments, w);
 
-        Problem prob(f, c, params());
+        Array prms = params();
+        std::vector<bool> all(prms.size(), false);
+        Projection proj(prms,parametersFreedoms.size()>0 ? parametersFreedoms : all);
+        CalibrationFunction f(this,instruments,w,proj);
+        ProjectedConstraint pc(c,proj);
+        Problem prob(f, pc, proj.project(prms));
         shortRateEndCriteria_ = method.minimize(prob, endCriteria);
         Array result(prob.currentValue());
-        setParams(result);
-        Array shortRateProblemValues_ = prob.values(result); // PC this is somewhat useless
+        setParams(proj.include(result));
+        Array shortRateProblemValues_ = prob.values(result);
 
         notifyObservers();
     }
-
-	void CalibratedModel::calibrateIterative(   // PC
-                   const std::vector<boost::shared_ptr<CalibrationHelper> >& instruments,
-                   OptimizationMethod& method,
-                   const EndCriteria& endCriteria) {
-
-		NoConstraint nc;
-		Array par = params();
-		for(Size i=0;i<instruments.size();i++) {
-			CalibrationFunctionIterative f(this,instruments[i],par,i);
-			Array pro(1,par[i]);
-			Problem prob(f,nc,pro);
-			shortRateEndCriteria_ = method.minimize(prob,endCriteria); // FIXME only the last calibration is available ...
-			Array result(prob.currentValue());
-			par[i] = result[0];
-			setParams(par);
-		}
-
-		notifyObservers();
-			
-	}
 
     EndCriteria::Type CalibratedModel::endCriteria() {
         return shortRateEndCriteria_;
@@ -162,7 +118,8 @@ namespace QuantLib {
     Real CalibratedModel::value(const Array& params,
        const std::vector<boost::shared_ptr<CalibrationHelper> >& instruments) {
         std::vector<Real> w = std::vector<Real>(instruments.size(), 1.0);
-        CalibrationFunction f(this, instruments, w);
+        Projection p(params);
+        CalibrationFunction f(this, instruments, w, p);
         return f.value(params);
     }
 
