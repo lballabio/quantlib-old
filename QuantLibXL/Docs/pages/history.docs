@@ -36,6 +36,8 @@ QuantLibAddin project, please refer to
   name and then recreate the same calendar based on that string.
 - VBA Framework - fix bug in which exception is thrown by context sensitive
   menu when active worksheet is a chart.
+- Function qlRateHelperSelection() now works for anonymous objects thanks to a
+  bug fix in ObjectHandler.
 
 <strong>Release 1.2.0 - July 2012</strong>
 

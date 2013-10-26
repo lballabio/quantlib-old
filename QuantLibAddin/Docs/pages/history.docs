@@ -37,6 +37,8 @@ FUNCTIONALITY
 - Added additional clones of Calendars to correspond to the output from
   QuantLib::Calendar::name(). This allows us in Excel to ask a calendar for its
   name and then recreate the same calendar based on that string.
+- Function qlRateHelperSelection() now works for anonymous objects thanks to a
+  bug fix in ObjectHandler.
 
 <strong>Release 1.2.0 - July 2012</strong>
 
