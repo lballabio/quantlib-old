@@ -48,8 +48,9 @@ namespace QuantLib {
          exercise date.
 
          The addtional result underlyingValue is the npv
-         of the underlying (as seen from "today") in which
-         one can exercise on the earliest exercise date.
+         of the underlying (as seen from "today") including
+         all fixings greater (or greater equal depending
+         on includeTodaysExercise) today.
    */
 
     class Gaussian1dFloatFloatSwaptionEngine
