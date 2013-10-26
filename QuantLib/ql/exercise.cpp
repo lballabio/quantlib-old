@@ -70,7 +70,7 @@ namespace QuantLib {
     }
 
     EuropeanExercise::EuropeanExercise(const Date& date, const Real rebate,
-		const Natural rebateSettlementDays, const Calendar rebatePaymentCalendar, 
+		const Natural rebateSettlementDays, const Calendar rebatePaymentCalendar,
         const BusinessDayConvention rebatePaymentConvention)
     : Exercise(European) {
         dates_ = std::vector<Date>(1, date);

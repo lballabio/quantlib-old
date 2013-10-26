@@ -56,10 +56,10 @@ namespace QuantLib {
         Date lastDate() const { return dates_.back(); }
       protected:
         std::vector<Date> dates_;
-		std::vector<Real> rebates_;
-		Natural rebateSettlementDays_;
-		Calendar rebatePaymentCalendar_;
-		BusinessDayConvention rebatePaymentConvention_;
+        std::vector<Real> rebates_;
+        Natural rebateSettlementDays_;
+        Calendar rebatePaymentCalendar_;
+        BusinessDayConvention rebatePaymentConvention_;
         Type type_;
     };
 
@@ -117,14 +117,16 @@ namespace QuantLib {
     */
     class BermudanExercise : public EarlyExercise {
       public:
-        BermudanExercise(const std::vector<Date>& dates,
+        BermudanExercise(const std::vector<Date> &dates,
                          bool payoffAtExpiry = false,
-						 const std::vector<Real>& rebates = std::vector<Real>(),     
-                         // in case of exercise the holder receives the rebate (if positive) or 
-                         // pays it (if negative) on the rebate settlement date
-						 const Natural rebateSettlementDays = 0,
-						 const Calendar rebatePaymentCalendar = NullCalendar(),
-						 const BusinessDayConvention rebatePaymentConvention = Following);
+                         const std::vector<Real> &rebates = std::vector<Real>(),
+                         // in case of exercise the holder receives the rebate
+                         // (if positive) or pays it (if negative) on the rebate
+                         // settlement date
+                         const Natural rebateSettlementDays = 0,
+                         const Calendar rebatePaymentCalendar = NullCalendar(),
+                         const BusinessDayConvention rebatePaymentConvention =
+                             Following);
     };
 
     //! European exercise
@@ -132,14 +134,15 @@ namespace QuantLib {
     */
     class EuropeanExercise : public Exercise {
       public:
-        EuropeanExercise(const Date& date, const Real rebate = 0.0, 
-                         // in case of exercise the holder receives the rebate (if positive) or 
-                         // pays it (if negative) on the rebate settlement date
-                         const Natural rebateSettlementDays = 0, 
+        EuropeanExercise(const Date &date, const Real rebate = 0.0,
+                         // in case of exercise the holder receives the rebate
+                         // (if positive) or pays it (if negative) on the rebate
+                         // settlement date
+                         const Natural rebateSettlementDays = 0,
                          const Calendar rebatePaymentCalendar = NullCalendar(),
-                         const BusinessDayConvention rebatePaymentConvention = Following);
+                         const BusinessDayConvention rebatePaymentConvention =
+                             Following);
     };
-
 }
 
 
