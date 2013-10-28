@@ -57,6 +57,9 @@ namespace QuantLib {
         const Real numeraireTime() const;
         const void numeraireTime(const Real T);
 
+        const Array& reversion() const { return reversion_.params(); }
+        const Array& volatility() const { return sigma_.params(); }
+
         // calibration constraints
 
         Disposable<std::vector<bool> > FixedReversions() {
@@ -88,9 +91,11 @@ namespace QuantLib {
             const Constraint &constraint = Constraint(),
             const std::vector<Real> &weights = std::vector<Real>()) {
 
-            for (Size i = 0; i < helpers.size(); i++)
-                calibrate(helpers, method, endCriteria, constraint, weights,
+            for (Size i = 0; i < helpers.size(); i++) {
+                std::vector<boost::shared_ptr<CalibrationHelper> > h(1,helpers[i]);
+                calibrate(h, method, endCriteria, constraint, weights,
                           MoveVolatility(i));
+            }
         }
 
       protected:
