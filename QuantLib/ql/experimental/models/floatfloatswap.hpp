@@ -126,6 +126,8 @@ namespace QuantLib {
         void fetchResults(const PricingEngine::results *) const;
 
       private:
+        void init(boost::optional<BusinessDayConvention> paymentConvention1,
+                  boost::optional<BusinessDayConvention> paymentConvention2);
         void setupExpired() const;
         VanillaSwap::Type type_;
         std::vector<Real> nominal1_, nominal2_;

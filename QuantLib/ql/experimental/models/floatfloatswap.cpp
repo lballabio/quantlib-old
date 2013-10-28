@@ -31,7 +31,6 @@
 
 namespace QuantLib {
 
-    // here we need the c++11 standard (delegated constructors)
     FloatFloatSwap::FloatFloatSwap(
         const VanillaSwap::Type type, const Real nominal1, const Real nominal2,
         const Schedule &schedule1,
@@ -45,21 +44,25 @@ namespace QuantLib {
         const Real flooredRate2,
         boost::optional<BusinessDayConvention> paymentConvention1,
         boost::optional<BusinessDayConvention> paymentConvention2)
-        : FloatFloatSwap(type,
-                         std::vector<Real>(schedule1.size() - 1, nominal1),
-                         std::vector<Real>(schedule2.size() - 1, nominal2),
-                         schedule1, index1, dayCount1, schedule2, index2,
-                         dayCount2, intermediateCapitalExchange,
-                         finalCapitalExchange,
-                         std::vector<Real>(schedule1.size() - 1, gearing1),
-                         std::vector<Real>(schedule1.size() - 1, spread1),
-                         std::vector<Real>(schedule1.size() - 1, cappedRate1),
-                         std::vector<Real>(schedule1.size() - 1, flooredRate1),
-                         std::vector<Real>(schedule1.size() - 1, gearing2),
-                         std::vector<Real>(schedule1.size() - 1, spread2),
-                         std::vector<Real>(schedule1.size() - 1, cappedRate2),
-                         std::vector<Real>(schedule1.size() - 1, flooredRate2),
-                         paymentConvention1, paymentConvention2) {}
+        : Swap(2), type_(type),
+          nominal1_(std::vector<Real>(schedule1.size() - 1, nominal1)),
+          nominal2_(std::vector<Real>(schedule2.size() - 1, nominal2)),
+          schedule1_(schedule1), schedule2_(schedule2), index1_(index1),
+          index2_(index2),
+          gearing1_(std::vector<Real>(schedule1.size() - 1, gearing1)),
+          gearing2_(std::vector<Real>(schedule1.size() - 1, gearing2)),
+          spread1_(std::vector<Real>(schedule1.size() - 1, spread1)),
+          spread2_(std::vector<Real>(schedule1.size() - 1, spread2)),
+          cappedRate1_(std::vector<Real>(schedule1.size() - 1, cappedRate1)),
+          flooredRate1_(std::vector<Real>(schedule1.size() - 1, flooredRate1)),
+          cappedRate2_(std::vector<Real>(schedule1.size() - 1, cappedRate2)),
+          flooredRate2_(std::vector<Real>(schedule2.size() - 1, flooredRate2)),
+          dayCount1_(dayCount1), dayCount2_(dayCount2),
+          intermediateCapitalExchange_(intermediateCapitalExchange),
+          finalCapitalExchange_(finalCapitalExchange) {
+
+        init(paymentConvention1, paymentConvention2);
+    }
 
     FloatFloatSwap::FloatFloatSwap(
         const VanillaSwap::Type type, const std::vector<Real> &nominal1,
@@ -86,48 +89,51 @@ namespace QuantLib {
           intermediateCapitalExchange_(intermediateCapitalExchange),
           finalCapitalExchange_(finalCapitalExchange) {
 
-        QL_REQUIRE(nominal1.size() == schedule1.size() - 1,
-                   "nominal1 size (" << nominal1.size()
-                                     << ") does not match schedule1 size ("
-                                     << schedule1.size() << ")");
-        QL_REQUIRE(nominal1.size() == schedule2.size() - 1,
-                   "nominal2 size (" << nominal2.size()
-                                     << ") does not match schedule2 size ("
-                                     << nominal2.size() << ")");
-        QL_REQUIRE(gearing1.size() == 0 || gearing1.size() == nominal1.size(),
-                   "nominal1 size (" << nominal1.size()
-                                     << ") does not match gearing1 size ("
-                                     << gearing1.size() << ")");
-        QL_REQUIRE(gearing2.size() == 0 || gearing2.size() == nominal2.size(),
-                   "nominal2 size (" << nominal2.size()
-                                     << ") does not match gearing2 size ("
-                                     << gearing2.size() << ")");
-        QL_REQUIRE(
-            cappedRate1.size() == 0 || cappedRate1.size() == nominal1.size(),
-            "nominal1 size (" << nominal1.size()
-                              << ") does not match cappedRate1 size ("
-                              << cappedRate1.size() << ")");
-        QL_REQUIRE(
-            cappedRate2.size() == 0 || cappedRate2.size() == nominal2.size(),
-            "nominal2 size (" << nominal2.size()
-                              << ") does not match cappedRate2 size ("
-                              << cappedRate2.size() << ")");
-        QL_REQUIRE(
-            flooredRate1.size() == 0 || flooredRate1.size() == nominal1.size(),
-            "nominal1 size (" << nominal1.size()
-                              << ") does not match flooredRate1 size ("
-                              << flooredRate1.size() << ")");
-        QL_REQUIRE(
-            flooredRate2.size() == 0 || flooredRate2.size() == nominal2.size(),
-            "nominal2 size (" << nominal2.size()
-                              << ") does not match flooredRate2 size ("
-                              << flooredRate2.size() << ")");
+        init(paymentConvention1, paymentConvention2);
+    }
 
-        // if the gearing is zero then the ibor / cms leg will be set up with
-        // fixed coupons which makes trouble here in this context. We therefore
-        // use a dirty trick and enforce the gearing to be non zero
-        for(Size i=0;i<gearing1_.size();i++) if(close(gearing1_[i],0.0)) gearing1_[i]=QL_EPSILON;
-        for(Size i=0;i<gearing2_.size();i++) if(close(gearing2_[i],0.0)) gearing2_[i]=QL_EPSILON;
+    void FloatFloatSwap::init(
+        boost::optional<BusinessDayConvention> paymentConvention1,
+        boost::optional<BusinessDayConvention> paymentConvention2) {
+
+        QL_REQUIRE(nominal1_.size() == schedule1_.size() - 1,
+                   "nominal1 size (" << nominal1_.size()
+                                     << ") does not match schedule1 size ("
+                                     << schedule1_.size() << ")");
+        QL_REQUIRE(nominal1_.size() == schedule2_.size() - 1,
+                   "nominal2 size (" << nominal2_.size()
+                                     << ") does not match schedule2 size ("
+                                     << nominal2_.size() << ")");
+        QL_REQUIRE(
+            gearing1_.size() == 0 || gearing1_.size() == nominal1_.size(),
+            "nominal1 size (" << nominal1_.size()
+                              << ") does not match gearing1 size ("
+                              << gearing1_.size() << ")");
+        QL_REQUIRE(
+            gearing2_.size() == 0 || gearing2_.size() == nominal2_.size(),
+            "nominal2 size (" << nominal2_.size()
+                              << ") does not match gearing2 size ("
+                              << gearing2_.size() << ")");
+        QL_REQUIRE(
+            cappedRate1_.size() == 0 || cappedRate1_.size() == nominal1_.size(),
+            "nominal1 size (" << nominal1_.size()
+                              << ") does not match cappedRate1 size ("
+                              << cappedRate1_.size() << ")");
+        QL_REQUIRE(
+            cappedRate2_.size() == 0 || cappedRate2_.size() == nominal2_.size(),
+            "nominal2 size (" << nominal2_.size()
+                              << ") does not match cappedRate2 size ("
+                              << cappedRate2_.size() << ")");
+        QL_REQUIRE(flooredRate1_.size() == 0 ||
+                       flooredRate1_.size() == nominal1_.size(),
+                   "nominal1 size (" << nominal1_.size()
+                                     << ") does not match flooredRate1 size ("
+                                     << flooredRate1_.size() << ")");
+        QL_REQUIRE(flooredRate2_.size() == 0 ||
+                       flooredRate2_.size() == nominal2_.size(),
+                   "nominal2 size (" << nominal2_.size()
+                                     << ") does not match flooredRate2 size ("
+                                     << flooredRate2_.size() << ")");
 
         if (paymentConvention1)
             paymentConvention1_ = *paymentConvention1;
@@ -140,21 +146,21 @@ namespace QuantLib {
             paymentConvention2_ = schedule2_.businessDayConvention();
 
         if (gearing1_.size() == 0)
-            gearing1_ = std::vector<Real>(nominal1.size(), 1.0);
+            gearing1_ = std::vector<Real>(nominal1_.size(), 1.0);
         if (gearing2_.size() == 0)
-            gearing2_ = std::vector<Real>(nominal2.size(), 1.0);
+            gearing2_ = std::vector<Real>(nominal2_.size(), 1.0);
         if (spread1_.size() == 0)
-            spread1_ = std::vector<Real>(nominal1.size(), 0.0);
+            spread1_ = std::vector<Real>(nominal1_.size(), 0.0);
         if (spread2_.size() == 0)
-            spread2_ = std::vector<Real>(nominal2.size(), 0.0);
+            spread2_ = std::vector<Real>(nominal2_.size(), 0.0);
         if (cappedRate1_.size() == 0)
-            cappedRate1_ = std::vector<Real>(nominal1.size(), Null<Real>());
+            cappedRate1_ = std::vector<Real>(nominal1_.size(), Null<Real>());
         if (cappedRate2_.size() == 0)
-            cappedRate2_ = std::vector<Real>(nominal2.size(), Null<Real>());
+            cappedRate2_ = std::vector<Real>(nominal2_.size(), Null<Real>());
         if (flooredRate1_.size() == 0)
-            flooredRate1_ = std::vector<Real>(nominal1.size(), Null<Real>());
+            flooredRate1_ = std::vector<Real>(nominal1_.size(), Null<Real>());
         if (flooredRate2_.size() == 0)
-            flooredRate2_ = std::vector<Real>(nominal2.size(), Null<Real>());
+            flooredRate2_ = std::vector<Real>(nominal2_.size(), Null<Real>());
 
         bool isNull;
         isNull = cappedRate1_[0] == Null<Real>();
@@ -206,6 +212,18 @@ namespace QuantLib {
                                << "1st is " << flooredRate2_[0] << ")");
         }
 
+        // if the gearing is zero then the ibor / cms leg will be set up with
+        // fixed coupons
+        // which makes trouble here in this context. We therefore use a dirty
+        // trick
+        // and enforce the gearing to be non zero.
+        for (Size i = 0; i < gearing1_.size(); i++)
+            if (close(gearing1_[i], 0.0))
+                gearing1_[i] = QL_EPSILON;
+        for (Size i = 0; i < gearing2_.size(); i++)
+            if (close(gearing2_[i], 0.0))
+                gearing2_[i] = QL_EPSILON;
+
         boost::shared_ptr<IborIndex> ibor1 =
             boost::dynamic_pointer_cast<IborIndex>(index1_);
         boost::shared_ptr<IborIndex> ibor2 =
@@ -247,9 +265,9 @@ namespace QuantLib {
             leg = leg.withNotionals(nominal1_).withPaymentDayCounter(dayCount1_)
                 .withPaymentAdjustment(paymentConvention1_)
                 .withSpreads(spread1_).withGearings(gearing1_);
-            if (cappedRate1[0] != Null<Real>())
+            if (cappedRate1_[0] != Null<Real>())
                 leg = leg.withCaps(cappedRate1_);
-            if (flooredRate1[0] != Null<Real>())
+            if (flooredRate1_[0] != Null<Real>())
                 leg = leg.withFloors(flooredRate1_);
             legs_[0] = leg;
         }
@@ -258,11 +276,11 @@ namespace QuantLib {
             CmsLeg leg(schedule2_, cms2);
             leg = leg.withNotionals(nominal2_).withPaymentDayCounter(dayCount2_)
                 .withPaymentAdjustment(paymentConvention2_)
-                .withSpreads(spread2_).withGearings(gearing2);
-            if (cappedRate2[0] != Null<Real>())
-                leg = leg.withCaps(cappedRate1_);
-            if (flooredRate2[0] != Null<Real>())
-                leg = leg.withFloors(flooredRate1_);
+                .withSpreads(spread2_).withGearings(gearing2_);
+            if (cappedRate2_[0] != Null<Real>())
+                leg = leg.withCaps(cappedRate2_);
+            if (flooredRate2_[0] != Null<Real>())
+                leg = leg.withFloors(flooredRate2_);
             legs_[1] = leg;
         }
 
