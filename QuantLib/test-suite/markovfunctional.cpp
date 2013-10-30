@@ -50,8 +50,6 @@
 #include <ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp>
 #include <ql/models/shortrate/calibrationhelpers/caphelper.hpp>
 #include <ql/math/optimization/conjugategradient.hpp>
-#include <ql/experimental/models/cmsswap.hpp>
-#include <ql/experimental/models/cmsswaption.hpp>
 #include <ql/experimental/models/gaussian1dfloatfloatswaptionengine.hpp>
 
 #include <ql/currencies/europe.hpp>
