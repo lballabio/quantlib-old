@@ -89,8 +89,12 @@ namespace QuantLib {
          public:
             DateHelper(const TermStructure& ts, const Time t) : ts_(ts), t_(t) {}
             Real operator()(Real date) const {
-                Date d(static_cast<BigInteger>(date));
-                return ts_.timeFromReference(d)-t_;
+                Date d1(static_cast<BigInteger>(date));
+                Date d2(static_cast<BigInteger>(date)+1);
+                Real t1 = ts_.timeFromReference(d1)-t_;
+                Real t2 = ts_.timeFromReference(d2)-t_;
+                Real h = date - static_cast<BigInteger>(date);
+                return h*t2+(1.0-h)*t1;
             }
             Real derivative(Real date) const {
                 // use fwd difference to avoid dates before reference date

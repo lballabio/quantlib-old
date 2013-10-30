@@ -79,8 +79,9 @@ namespace QuantLib {
         DateHelper hlp(*this,optionTime);
         NewtonSafe newton;
         Date d(static_cast<BigInteger>(newton.solve(hlp, 0.1, 
-                                                    optionTime+static_cast<Real>(referenceDate().serialNumber()),1.0)));
+                                                    365.25*optionTime+static_cast<Real>(referenceDate().serialNumber()),1.0)));
         Period tenor(static_cast<Integer>(Rounding(0).operator()(swapLength*12.0)), Months);
+        d = indexBase_->fixingCalendar().adjust(d);
         Real forward = indexBase_->clone(tenor)->fixing(d);
         boost::shared_ptr<SmileSection> raw(new SabrSmileSection(optionTime,forward,params));
         // make it arbitrage free
