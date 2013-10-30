@@ -100,7 +100,7 @@ namespace QuantLib {
                    "nominal1 size (" << nominal1_.size()
                                      << ") does not match schedule1 size ("
                                      << schedule1_.size() << ")");
-        QL_REQUIRE(nominal1_.size() == schedule2_.size() - 1,
+        QL_REQUIRE(nominal2_.size() == schedule2_.size() - 1,
                    "nominal2 size (" << nominal2_.size()
                                      << ") does not match schedule2 size ("
                                      << nominal2_.size() << ")");
