@@ -33,7 +33,7 @@ void outputModel(std::vector<Date>& expiries, boost::shared_ptr<Gsr> model) {
     std::cout << "expiry;volatility" << std::endl;
     for(Size i=0;i<expiries.size();i++) { // first parameters are the vols, after that the mean reversions follow
         //std::cout << expiries[i] << ";" << model->params()[i] << std::endl;
-        std::cout << expiries[i] << " & " << model->params()[i] << " \\\\" << std::endl;
+        std::cout << expiries[i] << " & " << model->volatility()[i] << " \\\\" << std::endl;
     }
     std::cout << std::endl;
 
