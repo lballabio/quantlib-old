@@ -206,7 +206,7 @@ namespace QuantLib {
         const Date& numeraireDate() const { return numeraireDate_; }
         const Time& numeraireTime() const { return numeraireTime_; }
 
-        const Array& volatilities() const { return sigma_.params(); }
+        const Array& volatility() const { return sigma_.params(); }
 
         void calibrate(
                    const std::vector<boost::shared_ptr<CalibrationHelper> >& helper,
