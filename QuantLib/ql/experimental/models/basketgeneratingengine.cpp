@@ -130,10 +130,7 @@ namespace QuantLib {
                     << expiry << " ******************" << std::endl;
                 std::cout << "globalExoticNpv;";
                 while (xtmp <= 5.0 + QL_EPSILON) {
-                    std::cout << type *(
-                                     floatingLegNpv(floatingIdx, expiry, xtmp) -
-                                     fixedLegNpv(fixedIdx, expiry, xtmp))
-                              << ";";
+                    std::cout << underlyingNpv(expiry,xtmp) << ";";
                     xtmp += 0.1;
                 }
                 std::cout << std::endl;
