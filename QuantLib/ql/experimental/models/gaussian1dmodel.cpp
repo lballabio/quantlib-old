@@ -159,7 +159,6 @@ namespace QuantLib {
     const Real Gaussian1dModel::gaussianPolynomialIntegral(const Real a, const Real b, const Real c, const Real d, 
                                                                  const Real e, const Real y0, const Real y1) {
 #ifdef GAUSS1D_ENABLE_NTL
-        if(useNtl) {
         const boost::math::ntl::RR aa=4.0*a, ba=2.0*M_SQRT2*b, ca=2.0*c, da=M_SQRT2*d;
         const boost::math::ntl::RR x0=y0*M_SQRT1_2, x1=y1*M_SQRT1_2;
         const boost::math::ntl::RR res = (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*
@@ -167,14 +166,14 @@ namespace QuantLib {
             (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*
             (2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
         return NTL::to_double(res.value());
-    }
-#endif
+#else
         const Real aa=4.0*a, ba=2.0*M_SQRT2*b, ca=2.0*c, da=M_SQRT2*d;
         const Real x0=y0*M_SQRT1_2, x1=y1*M_SQRT1_2;
         return (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x1)-1.0/(4.0*M_SQRTPI)*exp(-x1*x1)*
                 (2.0*aa*x1*x1*x1+3.0*aa*x1+2.0*ba*(x1*x1+1.0)+2.0*ca*x1+2.0*da))-
             (0.125*(3.0*aa+2.0*ca+4.0*e)*boost::math::erf(x0)-1.0/(4.0*M_SQRTPI)*exp(-x0*x0)*
              (2.0*aa*x0*x0*x0+3.0*aa*x0+2.0*ba*(x0*x0+1.0)+2.0*ca*x0+2.0*da));
+#endif
     }
 
     const Real Gaussian1dModel::gaussianShiftedPolynomialIntegral(const Real a, const Real b, const Real c, 
