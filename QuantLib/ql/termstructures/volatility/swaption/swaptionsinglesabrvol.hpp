@@ -114,7 +114,7 @@ namespace QuantLib {
     }
 
     inline Real SingleSabrSwaptionVolatility::minStrike() const {
-        return QL_MIN_REAL;
+        return 0.0;
     }
 
     inline Real SingleSabrSwaptionVolatility::maxStrike() const {
