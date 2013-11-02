@@ -36,7 +36,8 @@ namespace QuantLib {
       optionTenor_(optionTenor),
       optionConvention_(ModifiedFollowing),
       fixingDate_(Null<Date>()),
-      strike_(strike) {}
+      strike_(strike),
+      underlyingType_(VanillaSwap::Payer) {}
 
     MakeSwaption::MakeSwaption(const boost::shared_ptr<SwapIndex>& swapIndex,
                                const Date& fixingDate,
@@ -45,7 +46,8 @@ namespace QuantLib {
       delivery_(Settlement::Physical),
       fixingDate_(fixingDate),
       optionConvention_(ModifiedFollowing),
-      strike_(strike) {}
+      strike_(strike),
+      underlyingType_(VanillaSwap::Payer) {}
 
     MakeSwaption::operator Swaption() const {
         boost::shared_ptr<Swaption> swaption = *this;
@@ -93,7 +95,8 @@ namespace QuantLib {
             .withFixedLegCalendar(swapIndex_->fixingCalendar())
             .withFixedLegDayCount(swapIndex_->dayCounter())
             .withFixedLegConvention(bdc)
-            .withFixedLegTerminationDateConvention(bdc);
+            .withFixedLegTerminationDateConvention(bdc)
+            .withType(underlyingType_);
 
         boost::shared_ptr<Swaption> swaption(new
             Swaption(underlyingSwap_, exercise_, delivery_));
@@ -115,6 +118,10 @@ namespace QuantLib {
     MakeSwaption& MakeSwaption::withExerciseDate(const Date& date) {
         exerciseDate_ = date;
         return *this;
+    }
+
+    MakeSwaption& MakeSwaption::withUnderlyingType(const VanillaSwap::Type type) {
+        underlyingType_ = type;
     }
 
     MakeSwaption& MakeSwaption::withPricingEngine(

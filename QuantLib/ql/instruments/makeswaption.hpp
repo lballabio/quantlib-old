@@ -57,6 +57,7 @@ namespace QuantLib {
         MakeSwaption& withSettlementType(Settlement::Type delivery);
         MakeSwaption& withOptionConvention(BusinessDayConvention bdc);
         MakeSwaption& withExerciseDate(const Date&);
+        MakeSwaption& withUnderlyingType(const VanillaSwap::Type type);
 
         MakeSwaption& withPricingEngine(
                               const boost::shared_ptr<PricingEngine>& engine);
@@ -72,6 +73,7 @@ namespace QuantLib {
         mutable boost::shared_ptr<Exercise> exercise_;
 
         Rate strike_;
+        VanillaSwap::Type underlyingType_;
 
         boost::shared_ptr<PricingEngine> engine_;
     };
