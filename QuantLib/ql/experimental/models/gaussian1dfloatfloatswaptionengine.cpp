@@ -44,7 +44,7 @@ namespace QuantLib {
     const Real
     Gaussian1dFloatFloatSwaptionEngine::underlyingNpv(const Date &expiry,
                                                       const Real y) const {
-        return npvs(expiry, y, true).first;
+        return npvs(expiry, y, true).second;
     }
 
     const VanillaSwap::Type
@@ -161,17 +161,15 @@ namespace QuantLib {
             // we are at event0 date, which can be a structured coupon fixing
             // date or an exercise date or both.
 
-            // idx = -1 is the valuation date which might be the same as the
-            // earliest event date (if and only if we have an exercise on
-            // the evaluation date and includeTodaysExercise_ = true)
-            // in this case we do a pseudo roll back on a zero time interval
-            // which is not super efficient (so we might optimize this later)
-            // but works.
-
-            if (idx == -1)
+            bool isEventDate = true;
+            if (idx == -1) {
                 event0 = expiry;
-            else
-                event0 = events[idx];
+                isEventDate = false;
+            }
+            else {
+                 event0 = events[idx];
+                 if(event0 == expiry) idx = -1; // avoid double roll back if expiry equal to earliest event date
+            }
 
             if (std::find(arguments_.exercise->dates().begin(),
                           arguments_.exercise->dates().end(),
@@ -315,7 +313,8 @@ namespace QuantLib {
 
                 // event date calculations
 
-                if (idx != -1) {
+                if (isEventDate) {
+                    Real zk = event0 > expiry ? z[k] : y;
                     if (isLeg1Fixing) { // if event is a fixing date and
                                         // exercise date,
                         // the coupon is part of the exercise into right (by
@@ -345,10 +344,10 @@ namespace QuantLib {
                                     (ibor1 != NULL
                                      ? model_->forwardRate(
                                                            arguments_.leg1FixingDates[j], event0,
-                                                           z[k], ibor1)
+                                                           zk, ibor1)
                                      : model_->swapRate(
                                                         arguments_.leg1FixingDates[j],
-                                                        cms1->tenor(), event0, z[k], cms1));
+                                                        cms1->tenor(), event0, zk, cms1));
                                 if (arguments_.leg1CappedRates[j] != Null<Real>())
                                     rate =
                                         std::min(arguments_.leg1CappedRates[j], rate);
@@ -361,8 +360,8 @@ namespace QuantLib {
 
                             npv0a[k] -= amount *
                                 model_->zerobond(arguments_.leg1PayDates[j], event0,
-                                                 z[k], discountCurve_) /
-                                model_->numeraire(event0Time, z[k],
+                                                 zk, discountCurve_) /
+                                model_->numeraire(event0Time, zk,
                                                   discountCurve_) *
                                 zSpreadDf;
 
@@ -405,10 +404,10 @@ namespace QuantLib {
                                     (ibor2 != NULL
                                      ? model_->forwardRate(
                                                            arguments_.leg2FixingDates[j], event0,
-                                                           z[k], ibor2)
+                                                           zk, ibor2)
                                      : model_->swapRate(
                                                         arguments_.leg2FixingDates[j],
-                                                        cms2->tenor(), event0, z[k], cms1));
+                                                        cms2->tenor(), event0, zk, cms1));
                                 if (arguments_.leg2CappedRates[j] != Null<Real>())
                                     rate =
                                         std::min(arguments_.leg2CappedRates[j], rate);
@@ -421,8 +420,8 @@ namespace QuantLib {
 
                             npv0a[k] += amount *
                                 model_->zerobond(arguments_.leg2PayDates[j], event0,
-                                                 z[k], discountCurve_) /
-                                model_->numeraire(event0Time, z[k],
+                                                 zk, discountCurve_) /
+                                model_->numeraire(event0Time, zk,
                                                   discountCurve_) *
                                 zSpreadDf;
                             if(j<arguments_.leg2FixingDates.size()-1) {
@@ -455,7 +454,7 @@ namespace QuantLib {
                             (type == Option::Call ? 1.0 : -1.0) * npv0a[k] +
                                 rebate * model_->zerobond(rebateDate, event0) *
                                     zSpreadDf /
-                                    model_->numeraire(event0Time, z[k],
+                                    model_->numeraire(event0Time, zk,
                                                       discountCurve_));
                     }
                 }
@@ -469,8 +468,8 @@ namespace QuantLib {
         } while (--idx >= -1);
 
         std::pair<Real, Real> res(
-            npv1[0] * model_->numeraire(0.0, 0.0, discountCurve_),
-            npv1a[0] * model_->numeraire(0.0, 0.0, discountCurve_) *
+            npv1[0] * model_->numeraire(event1Time, y, discountCurve_),
+            npv1a[0] * model_->numeraire(event1Time, y, discountCurve_) *
                 (type == Option::Call ? 1.0 : -1.0));
 
         return res;
