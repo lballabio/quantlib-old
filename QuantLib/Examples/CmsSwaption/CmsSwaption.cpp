@@ -21,14 +21,14 @@ int main(int, char * []) {
         swapIndex->addFixing(refDate, 0.0315);
 
         Handle<Quote> volatilityLevel(new SimpleQuote(0.30));
-        // Handle<SwaptionVolatilityStructure> swaptionVol(
-        //     new ConstantSwaptionVolatility(refDate, TARGET(), Following,
-        //                                    volatilityLevel, Actual365Fixed()));
-
         Handle<SwaptionVolatilityStructure> swaptionVol(
-            new SingleSabrSwaptionVolatility(refDate, TARGET(), Following, 0.15,
-                                             0.80, -0.30, 0.20,
-                                             Actual365Fixed(), swapIndex));
+            new ConstantSwaptionVolatility(refDate, TARGET(), Following,
+                                           volatilityLevel, Actual365Fixed()));
+
+        // Handle<SwaptionVolatilityStructure> swaptionVol(
+        //     new SingleSabrSwaptionVolatility(refDate, TARGET(), Following, 0.15,
+        //                                      0.80, -0.30, 0.20,
+        //                                      Actual365Fixed(), swapIndex));
 
         // Real strike = 0.0001;
         // while(strike < 1.0) {
@@ -108,14 +108,14 @@ int main(int, char * []) {
             new EuriborSwapIsdaFixA(30 * Years, yts));
         std::vector<boost::shared_ptr<CalibrationHelper> > basket =
             callRight->calibrationBasket(swapBase, *swaptionVol,
-                                         BasketGeneratingEngine::Naive
-                                         //BasketGeneratingEngine::MaturityStrikeByDeltaGamma
+                                         //BasketGeneratingEngine::Naive
+                                         BasketGeneratingEngine::MaturityStrikeByDeltaGamma
                                          );
 
-        std::cout << "option date & maturity date & nominal & strike \\\\" << std::endl;
+        std::cout << "# & option date & maturity date & nominal & strike \\\\" << std::endl;
         for(Size i=0;i<basket.size();i++) {
             boost::shared_ptr<SwaptionHelper> h = boost::dynamic_pointer_cast<SwaptionHelper>(basket[i]);
-            std::cout << exerciseDates[i] << " & " << h->underlyingSwap()->fixedSchedule().dates().back() << " & " <<
+            std::cout << i << " & " << exerciseDates[i] << " & " << h->underlyingSwap()->fixedSchedule().dates().back() << " & " <<
                       h->underlyingSwap()->nominal() << " & " << h->underlyingSwap()->fixedRate() << std::endl;
         }
 
@@ -127,12 +127,12 @@ int main(int, char * []) {
         LevenbergMarquardt opt;
         EndCriteria ec(2000, 500, 1E-8, 1E-8, 1E-8);
         model->calibrate(basket, opt, ec); // for markov
-        // model->calibrate(basket, opt, ec, Constraint(), std::vector<Real>(), model->FixedReversions()); // for gsr
+        //model->calibrate(basket, opt, ec, Constraint(), std::vector<Real>(), model->FixedReversions()); // for gsr
 
-        std::cout << "model vol & swaption market & swaption model "
+        std::cout << "# & model vol & swaption market & swaption model "
                   << std::endl;
         for (Size i = 0; i < basket.size(); i++) {
-            std::cout << model->volatility()[i] << " & "
+            std::cout << i << " & " << model->volatility()[i] << " & "
                       << basket[i]->marketValue() << " & "
                       << basket[i]->modelValue() << " \\\\" << std::endl;
         }
@@ -151,10 +151,9 @@ int main(int, char * []) {
         std::cout << "Swap Npv (Hagan)     & " << analyticSwapNpv << "\\\\" << std::endl;
         std::cout << "Call Right Npv (MF)  & " << callRightNpv << "\\\\" << std::endl;
         std::cout << "Underlying Npv (MF)  & " << underlyingNpv << "\\\\" << std::endl;
-
         std::cout << "fair margin swap & " << -analyticSwapNpv/CashFlows::bps(cmsswap->leg(1),**yts,false) << std::endl;
 
-        std::cout << "Model trace : " << std::endl << model->modelOutputs() << std::endl;
+        //std::cout << "Model trace : " << std::endl << model->modelOutputs() << std::endl;
     }
     catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
