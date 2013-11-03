@@ -25,11 +25,6 @@
 
 namespace QuantLib {
 
-    Real Gaussian1dSwaptionSmileSection::atmLevel() const {
-
-        return model_->swapRate(expiry_, tenor_);
-    }
-
     Real Gaussian1dSwaptionSmileSection::optionPrice(Rate strike,
                                                      Option::Type type,
                                                      Real discount) const {
@@ -46,7 +41,8 @@ namespace QuantLib {
             discountYts));
 
         Swaption swp = MakeSwaption(index_, expiry_, strike).withUnderlyingType(
-            type == Option::Call ? VanillaSwap::Payer : VanillaSwap::Receiver);
+                    type == Option::Call ? VanillaSwap::Payer : VanillaSwap::Receiver);
+
         swp.setPricingEngine(engine);
 
         Real npv = swp.NPV(); // discounted npv, needs to be lifted ...

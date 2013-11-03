@@ -42,11 +42,15 @@ namespace QuantLib {
             SmileSection(expiry,
                          model->termStructure()->dayCounter(),
                          model->termStructure()->referenceDate()),
-            model_(model), index_(index), expiry_(expiry), tenor_(tenor) {}
+            model_(model), index_(index), expiry_(expiry), tenor_(tenor) {
+
+            forward_ = model_->swapRate(expiry_, tenor_, referenceDate(), 0.0, index_);
+
+        }
 
         Real minStrike() const { return QL_MIN_REAL; }
         Real maxStrike() const { return QL_MAX_REAL; }
-        Real atmLevel() const;
+        Real atmLevel() const { return forward_; }
 
         Real optionPrice(Rate strike, Option::Type type = Option::Call, Real discount=1.0) const;
 
@@ -58,6 +62,7 @@ namespace QuantLib {
         const boost::shared_ptr<SwapIndex> index_;
         const Date expiry_;
         const Period tenor_;
+        Real forward_;
 
     };
 
