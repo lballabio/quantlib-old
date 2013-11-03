@@ -42,6 +42,13 @@ namespace QuantLib {
     /*! One factor Markov Functional model class. Some documentation is available here 
         http://ssrn.com/abstract_id=2183721 */
 
+    /*! TODO the atm smile section should only be used when no atm level is provided by the input smile section
+             otherwise we should use the original smile section and its atm level (both for Kahale pretreatment and without)
+             this will then imply a fit to the atm level of the source volatility, which is good for multicurve also
+             what we have to think about is: do we need the yts input at all any more ? What is the effect when we
+             use multicurve pricing in this model, do we match the prices again ? How do we do the diagnostics for
+             yts fit and vol fit ? Are there other possibilities for multicurve adaption ? */
+
     /*! \warning The model requires a suitable input smile which means it should be arbitrage free, smooth (at least
                  implying a C^1 call price function) and with a call price function not decreasing too slow in strike
                  direction. A method for arbitrage free extra- and interpolation due to Kahale is provided and may be
