@@ -21,6 +21,7 @@
 #include <ql/experimental/models/gaussian1dswaptionengine.hpp>
 #include <ql/instruments/makeswaption.hpp>
 #include <ql/pricingengines/blackformula.hpp>
+#include <ql/cashflows/cashflows.hpp>
 
 namespace QuantLib {
 
@@ -34,8 +35,10 @@ namespace QuantLib {
                                                      Real discount) const {
 
         Handle<YieldTermStructure> discountYts =
-            index_->discountingTermStructure();
-        boost::shared_ptr<IborIndex> ibor = index_->iborIndex();
+            index_->discountingTermStructure(); // may be an empty handle
+
+        boost::shared_ptr<IborIndex> ibor =
+            index_->iborIndex(); // may be an empty handle
 
         boost::shared_ptr<PricingEngine> engine(new Gaussian1dSwaptionEngine(
             model_, 64, 7.0, true, false, // hard coded numerical
@@ -45,10 +48,22 @@ namespace QuantLib {
         Swaption swp = MakeSwaption(index_, expiry_, strike).withUnderlyingType(
             type == Option::Call ? VanillaSwap::Payer : VanillaSwap::Receiver);
         swp.setPricingEngine(engine);
-        return swp.NPV();
+
+        Real npv = swp.NPV(); // discounted npv, needs to be lifted ...
+
+        Leg fixLeg = swp.underlyingSwap()->fixedLeg();
+
+        Real annuity = std::fabs(CashFlows::bps(
+            fixLeg,
+            discountYts.empty() ? **model_->termStructure() : **discountYts, 
+            false)); // expiry is always in the future
+
+        return npv / annuity * discount;
     }
 
-    Volatility Gaussian1dSwaptionSmileSection::volatilityImpl(Rate strike) const {
+
+    Volatility
+    Gaussian1dSwaptionSmileSection::volatilityImpl(Rate strike) const {
 
         Real impliedVol = 0.0;
         Real forward = atmLevel();
