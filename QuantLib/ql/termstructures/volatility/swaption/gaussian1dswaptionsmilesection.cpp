@@ -51,8 +51,8 @@ namespace QuantLib {
 
         Real annuity = std::fabs(CashFlows::bps(
             fixLeg,
-            discountYts.empty() ? **model_->termStructure() : **discountYts, 
-            false)); // expiry is always in the future
+            discountYts.empty() ? **model_->termStructure() : **discountYts,
+            false)) * 10000.0; // expiry is always in the future
 
         return npv / annuity * discount;
     }
