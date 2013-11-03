@@ -62,7 +62,7 @@ namespace QuantLib {
                                                 const Period& swapTenor) const;
         boost::shared_ptr<SmileSection> smileSectionImpl(
                                                 Time optionTime,
-                                                Time swapLength) const = 0;
+                                                Time swapLength) const;
         Volatility volatilityImpl(const Date& optionDate,
                                   const Period& swapTenor,
                                   Rate strike) const;
