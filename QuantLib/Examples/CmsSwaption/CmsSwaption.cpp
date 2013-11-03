@@ -88,17 +88,18 @@ int main(int, char * []) {
                                    reversionLevel));
         setCouponPricer(cmsswap->leg(0), haganPricer);
 
+        // hull white model (change the model->calibrate call below)
+        std::vector<Date> sigmaSteps2(sigmaSteps.begin(), sigmaSteps.end() - 1);
+        std::vector<Real> sigma2(sigma.begin(), sigma.end() - 1);
+        boost::shared_ptr<Gaussian1dModel> model2(new Gsr(yts,sigmaSteps2,sigma2,reversionLevel->value()));
+        Handle<SwaptionVolatilityStructure> hwVol(new Gaussian1dSwaptionVolatility(model2,swapIndex));
+        
         // markov model (change the model->calibrate call below)
         //boost::math::ntl::RR::SetPrecision(113);
         boost::shared_ptr<MarkovFunctional> model(new MarkovFunctional(
-            yts, reversionLevel->value(), sigmaSteps, sigma, swaptionVol,
+            yts, reversionLevel->value(), sigmaSteps, sigma, hwVol/*swaptionVol*/,
             cmsFixingDates, cmsTenors, swapIndex));
 
-        // hull white model (change the model->calibrate call below)
-        // std::vector<Date> sigmaSteps2(sigmaSteps.begin(), sigmaSteps.end() - 1);
-        // std::vector<Real> sigma2(sigma.begin(), sigma.end() - 1);
-        // boost::shared_ptr<Gsr> model(new Gsr(yts,sigmaSteps2,sigma2,reversionLevel->value()));
-        
         boost::shared_ptr<Gaussian1dFloatFloatSwaptionEngine> floatEngine(
             new Gaussian1dFloatFloatSwaptionEngine(model));
 
@@ -108,8 +109,8 @@ int main(int, char * []) {
             new EuriborSwapIsdaFixA(30 * Years, yts));
         std::vector<boost::shared_ptr<CalibrationHelper> > basket =
             callRight->calibrationBasket(swapBase, *swaptionVol,
-                                         //BasketGeneratingEngine::Naive
-                                         BasketGeneratingEngine::MaturityStrikeByDeltaGamma
+                                         BasketGeneratingEngine::Naive
+                                         //BasketGeneratingEngine::MaturityStrikeByDeltaGamma
                                          );
 
         std::cout << "# & option date & maturity date & nominal & strike \\\\" << std::endl;
@@ -126,7 +127,7 @@ int main(int, char * []) {
 
         LevenbergMarquardt opt;
         EndCriteria ec(2000, 500, 1E-8, 1E-8, 1E-8);
-        model->calibrate(basket, opt, ec); // for markov
+        //model->calibrate(basket, opt, ec); // for markov
         //model->calibrate(basket, opt, ec, Constraint(), std::vector<Real>(), model->FixedReversions()); // for gsr
 
         std::cout << "# & model vol & swaption market & swaption model "
