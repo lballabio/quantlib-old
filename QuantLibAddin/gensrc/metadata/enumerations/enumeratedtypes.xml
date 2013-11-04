@@ -179,7 +179,17 @@
           <value>QuantLib::TARGET()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone of TARGET -->
+          <string>EUR</string>
+          <value>QuantLib::TARGET()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Argentina::Merval</string>
+          <value>QuantLib::Argentina(QuantLib::Argentina::Merval)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for Argentina::Merval -->
+          <string>Buenos Aires stock exchange</string>
           <value>QuantLib::Argentina(QuantLib::Argentina::Merval)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -191,7 +201,17 @@
           <value>QuantLib::Brazil(QuantLib::Brazil::Settlement)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Brazil::Settlement -->
+          <string>Brazil</string>
+          <value>QuantLib::Brazil(QuantLib::Brazil::Settlement)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Brazil::Exchange</string>
+          <value>QuantLib::Brazil(QuantLib::Brazil::Exchange)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for Brazil::Exchange -->
+          <string>BOVESPA</string>
           <value>QuantLib::Brazil(QuantLib::Brazil::Exchange)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -199,7 +219,17 @@
           <value>QuantLib::Canada(QuantLib::Canada::Settlement)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Canada::Settlement -->
+          <string>Canada</string>
+          <value>QuantLib::Canada(QuantLib::Canada::Settlement)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Canada::TSX</string>
+          <value>QuantLib::Canada(QuantLib::Canada::TSX)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for Canada::TSX -->
+          <string>TSX</string>
           <value>QuantLib::Canada(QuantLib::Canada::TSX)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -207,7 +237,17 @@
           <value>QuantLib::China()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for China -->
+          <string>Shanghai stock exchange</string>
+          <value>QuantLib::China()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>CzechRepublic::PSE</string>
+          <value>QuantLib::CzechRepublic(QuantLib::CzechRepublic::PSE)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for CzechRepublic::PSE -->
+          <string>Prague stock exchange</string>
           <value>QuantLib::CzechRepublic(QuantLib::CzechRepublic::PSE)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -223,7 +263,17 @@
           <value>QuantLib::Germany(QuantLib::Germany::Eurex)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Germany::Eurex -->
+          <string>Eurex</string>
+          <value>QuantLib::Germany(QuantLib::Germany::Eurex)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Germany::FrankfurtStockExchange</string>
+          <value>QuantLib::Germany(QuantLib::Germany::FrankfurtStockExchange)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for Germany::FrankfurtStockExchange -->
+          <string>Frankfurt stock exchange</string>
           <value>QuantLib::Germany(QuantLib::Germany::FrankfurtStockExchange)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -231,11 +281,26 @@
           <value>QuantLib::Germany(QuantLib::Germany::Settlement)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Germany::Settlement -->
+          <string>German settlement</string>
+          <value>QuantLib::Germany(QuantLib::Germany::Settlement)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Germany::Xetra</string>
           <value>QuantLib::Germany(QuantLib::Germany::Xetra)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Germany::Xetra -->
+          <string>Xetra</string>
+          <value>QuantLib::Germany(QuantLib::Germany::Xetra)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>HongKong::HKEx</string>
+          <value>QuantLib::HongKong(QuantLib::HongKong::HKEx)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for HongKong::HKEx -->
+          <string>Hong Kong stock exchange</string>
           <value>QuantLib::HongKong(QuantLib::HongKong::HKEx)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -247,7 +312,17 @@
           <value>QuantLib::Iceland(QuantLib::Iceland::ICEX)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Iceland::ICEX -->
+          <string>Iceland stock exchange</string>
+          <value>QuantLib::Iceland(QuantLib::Iceland::ICEX)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>India::NSE</string>
+          <value>QuantLib::India(QuantLib::India::NSE)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for India::NSE -->
+          <string>National Stock Exchange of India</string>
           <value>QuantLib::India(QuantLib::India::NSE)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -259,11 +334,26 @@
           <value>QuantLib::Indonesia(QuantLib::Indonesia::JSX)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Indonesia::JSX -->
+          <string>Jakarta stock exchange</string>
+          <value>QuantLib::Indonesia(QuantLib::Indonesia::JSX)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Italy::Exchange</string>
           <value>QuantLib::Italy(QuantLib::Italy::Exchange)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Italy::Exchange -->
+          <string>Milan stock exchange</string>
+          <value>QuantLib::Italy(QuantLib::Italy::Exchange)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Italy::Settlement</string>
+          <value>QuantLib::Italy(QuantLib::Italy::Settlement)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for Italy::Settlement -->
+          <string>Italian settlement</string>
           <value>QuantLib::Italy(QuantLib::Italy::Settlement)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -275,7 +365,17 @@
           <value>QuantLib::Mexico(QuantLib::Mexico::BMV)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Mexico::BMV -->
+          <string>Mexican stock exchange</string>
+          <value>QuantLib::Mexico(QuantLib::Mexico::BMV)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>NewZealand</string>
+          <value>QuantLib::NewZealand()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for NewZealand -->
+          <string>New Zealand</string>
           <value>QuantLib::NewZealand()</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -291,7 +391,17 @@
           <value>QuantLib::Russia()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Russia -->
+          <string>Russian settlement</string>
+          <value>QuantLib::Russia()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SaudiArabia::Tadawul</string>
+          <value>QuantLib::SaudiArabia(QuantLib::SaudiArabia::Tadawul)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for SaudiArabia::Tadawul -->
+          <string>Tadawul</string>
           <value>QuantLib::SaudiArabia(QuantLib::SaudiArabia::Tadawul)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -299,7 +409,17 @@
           <value>QuantLib::Singapore(QuantLib::Singapore::SGX)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Singapore::SGX -->
+          <string>Singapore exchange</string>
+          <value>QuantLib::Singapore(QuantLib::Singapore::SGX)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Slovakia::BSSE</string>
+          <value>QuantLib::Slovakia(QuantLib::Slovakia::BSSE)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for Slovakia::BSSE -->
+          <string>Bratislava stock exchange</string>
           <value>QuantLib::Slovakia(QuantLib::Slovakia::BSSE)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -307,7 +427,17 @@
           <value>QuantLib::SouthAfrica()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for SouthAfrica -->
+          <string>South Africa</string>
+          <value>QuantLib::SouthAfrica()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>SouthKorea::KRX</string>
+          <value>QuantLib::SouthKorea(QuantLib::SouthKorea::KRX)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for SouthKorea::KRX -->
+          <string>South-Korea exchange</string>
           <value>QuantLib::SouthKorea(QuantLib::SouthKorea::KRX)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -323,9 +453,9 @@
           <value>QuantLib::Taiwan(QuantLib::Taiwan::TSEC)</value>
         </EnumeratedType>
         <EnumeratedType>
-          <!-- clone of TARGET -->
-          <string>EUR</string>
-          <value>QuantLib::TARGET()</value>
+          <!-- Clone for Taiwan::TSEC -->
+          <string>Taiwan stock exchange</string>
+          <value>QuantLib::Taiwan(QuantLib::Taiwan::TSEC)</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Turkey</string>
@@ -336,22 +466,27 @@
           <value>QuantLib::Ukraine(QuantLib::Ukraine::USE)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for Ukraine::USE -->
+          <string>Ukrainian stock exchange</string>
+          <value>QuantLib::Ukraine(QuantLib::Ukraine::USE)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UnitedKingdom::Exchange</string>
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for UnitedKingdom::Exchange -->
           <string>London stock exchange</string>
-          <!-- Clone for UnitedKingdom::Exchange -->
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for UnitedKingdom::Exchange -->
           <string>LONDON</string>
-          <!-- Clone for UnitedKingdom::Exchange -->
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
         </EnumeratedType>
         <EnumeratedType>
-          <string>GBP</string>
           <!-- Clone for UnitedKingdom::Exchange -->
+          <string>GBP</string>
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Exchange)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -359,7 +494,17 @@
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Metals)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for UnitedKingdom::Metals -->
+          <string>London metals exchange</string>
+          <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Metals)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UnitedKingdom::Settlement</string>
+          <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Settlement)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for UnitedKingdom::Settlement -->
+          <string>UK settlement</string>
           <value>QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Settlement)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -367,7 +512,17 @@
           <value>QuantLib::UnitedStates(QuantLib::UnitedStates::GovernmentBond)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for UnitedStates::GovernmentBond -->
+          <string>US government bond market</string>
+          <value>QuantLib::UnitedStates(QuantLib::UnitedStates::GovernmentBond)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UnitedStates::NERC</string>
+          <value>QuantLib::UnitedStates(QuantLib::UnitedStates::NERC)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for UnitedStates::NERC -->
+          <string>North American Energy Reliability Council</string>
           <value>QuantLib::UnitedStates(QuantLib::UnitedStates::NERC)</value>
         </EnumeratedType>
         <EnumeratedType>
@@ -375,7 +530,17 @@
           <value>QuantLib::UnitedStates(QuantLib::UnitedStates::NYSE)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <!-- Clone for UnitedStates::NYSE -->
+          <string>New York stock exchange</string>
+          <value>QuantLib::UnitedStates(QuantLib::UnitedStates::NYSE)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>UnitedStates::Settlement</string>
+          <value>QuantLib::UnitedStates(QuantLib::UnitedStates::Settlement)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for UnitedStates::Settlement -->
+          <string>US settlement</string>
           <value>QuantLib::UnitedStates(QuantLib::UnitedStates::Settlement)</value>
         </EnumeratedType>
       </EnumeratedTypes>

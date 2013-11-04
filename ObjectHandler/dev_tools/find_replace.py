@@ -43,12 +43,11 @@ import shutil
 # ROOT_DIRS - The list of root folders from which
 # you want the find/replace to begin.
 ROOT_DIRS = (
-#    '/usr/local/erik/projects/trunk/QuantLibXL',
-    #'C:/erik/ql/R01020x-branch/gensrc',
-    'C:/erik/ql/R01020x-branch/log4cxx',
-    #'C:/erik/ql/R01020x-branch/ObjectHandler',
-    #'C:/erik/ql/R01020x-branch/QuantLibAddin',
-    #'C:/erik/ql/R01020x-branch/QuantLibXL'
+    #'C:/erik/ql/R01020x-branch/log4cxx',
+    '/home/erik/repos/quantlib/gensrc',
+    '/home/erik/repos/quantlib/ObjectHandler',
+    '/home/erik/repos/quantlib/QuantLibAddin',
+    '/home/erik/repos/quantlib/QuantLibXL'
 )
 
 # CALLBACK FUNCTIONS - Called from regexes which require multiple passes
@@ -96,10 +95,10 @@ SUBSTITUTIONS = (
 #   (re.compile('abcDEFghi'), toLower),
 
 ##  Frequently used
-    (re.compile('1_1_0'), '1_2_0'),
-    (re.compile('1\.1\.0'), '1.2.0'),
-    (re.compile('0x010100'), '0x010200'),
-    (re.compile('R010101f0'), 'R010200f0'),
+    (re.compile('1_2_0'), '1_3_0'),
+    (re.compile('1\.2\.0'), '1.3.0'),
+    (re.compile('0x010200'), '0x010300'),
+    (re.compile('R010201f0'), 'R010300f0'),
 #   (re.compile('0\.10\.0c'), '0.10.0d'),
 )
 

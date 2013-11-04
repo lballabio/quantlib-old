@@ -23,6 +23,19 @@
 
 /*! \page history Version History
 
+<strong>Release 1.4.0 - MMM YYYY</strong>
+
+FUNCTIONALITY
+
+- For anonymous objects in Excel, update the corresponding ValueObject
+  so that it knows its own name.
+
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.10.0d
+- gensrc version 1.4.0
+
 <strong>Release 1.2.0 - July 2012</strong>
 
 REQUIRED PACKAGES

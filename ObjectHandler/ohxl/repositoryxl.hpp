@@ -50,7 +50,8 @@ namespace ObjectHandler {
         */
         virtual std::string storeObject(const std::string &objectID,
                                         const boost::shared_ptr<Object> &obj,
-                                        bool overwrite = false);
+                                        bool overwrite = false,
+                                        boost::shared_ptr<ValueObject> valueObject = boost::shared_ptr<ValueObject>());
         //@}
 
         //! \name Error Messages
