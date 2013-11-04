@@ -38,6 +38,7 @@ QuantLibAddin project, please refer to
   menu when active worksheet is a chart.
 - Function qlRateHelperSelection() now works for anonymous objects thanks to a
   bug fix in ObjectHandler.
+- Fixed bug which could cause interpolation code to crash
 
 <strong>Release 1.2.0 - July 2012</strong>
 
