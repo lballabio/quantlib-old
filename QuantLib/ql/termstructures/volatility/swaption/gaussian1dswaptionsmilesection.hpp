@@ -42,7 +42,7 @@ namespace QuantLib {
             SmileSection(expiry,
                          model->termStructure()->dayCounter(),
                          model->termStructure()->referenceDate()),
-            model_(model), index_(index), expiry_(expiry), tenor_(tenor) {
+            model_(model), index_(index->clone(tenor)), expiry_(expiry), tenor_(tenor) {
 
             forward_ = model_->swapRate(expiry_, tenor_, referenceDate(), 0.0, index_);
 
