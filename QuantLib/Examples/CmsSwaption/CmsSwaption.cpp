@@ -91,14 +91,23 @@ int main(int, char * []) {
         // hull white model (change the model->calibrate call below)
         std::vector<Date> sigmaSteps2(sigmaSteps.begin(), sigmaSteps.end() - 1);
         std::vector<Real> sigma2(sigma.begin(), sigma.end() - 1);
+        //boost::shared_ptr<Gsr> model(new Gsr(yts,sigmaSteps2,sigma2,reversionLevel->value()));
         boost::shared_ptr<Gaussian1dModel> model2(new Gsr(yts,sigmaSteps2,sigma2,reversionLevel->value()));
+
         Handle<SwaptionVolatilityStructure> hwVol(new Gaussian1dSwaptionVolatility(model2,swapIndex));
-        
+        Real moneyIn[] = { 0.20, 0.50, 0.75, 1.0, 1.5, 2.0, 5.0, 10.0 };
+        std::vector<Real> money(moneyIn,moneyIn+8);
+
         // markov model (change the model->calibrate call below)
-        //boost::math::ntl::RR::SetPrecision(113);
+        // boost::math::ntl::RR::SetPrecision(113);
         boost::shared_ptr<MarkovFunctional> model(new MarkovFunctional(
-            yts, reversionLevel->value(), sigmaSteps, sigma, hwVol/*swaptionVol*/,
-            cmsFixingDates, cmsTenors, swapIndex));
+            yts, reversionLevel->value(), sigmaSteps, sigma,
+            swaptionVol, cmsFixingDates, cmsTenors, swapIndex // set vol structure for mf here
+            /*,MarkovFunctional::ModelSettings().withAdjustments(
+                MarkovFunctional::ModelSettings::SabrSmile |
+                MarkovFunctional::ModelSettings::
+                    SmileExponentialExtrapolation)
+                    .withSmileMoneynessCheckpoints(money)*/));
 
         boost::shared_ptr<Gaussian1dFloatFloatSwaptionEngine> floatEngine(
             new Gaussian1dFloatFloatSwaptionEngine(model));
@@ -108,16 +117,17 @@ int main(int, char * []) {
         boost::shared_ptr<SwapIndex> swapBase(
             new EuriborSwapIsdaFixA(30 * Years, yts));
         std::vector<boost::shared_ptr<CalibrationHelper> > basket =
-            callRight->calibrationBasket(swapBase, *swaptionVol,
+            callRight->calibrationBasket(swapBase, *swaptionVol,   // set vol structure for basket here
                                          BasketGeneratingEngine::Naive
                                          //BasketGeneratingEngine::MaturityStrikeByDeltaGamma
                                          );
 
-        std::cout << "# & option date & maturity date & nominal & strike \\\\" << std::endl;
+        std::cout << "# & option date & maturity date & nominal & strike & market vol & market price \\\\" << std::endl;
         for(Size i=0;i<basket.size();i++) {
             boost::shared_ptr<SwaptionHelper> h = boost::dynamic_pointer_cast<SwaptionHelper>(basket[i]);
             std::cout << i << " & " << exerciseDates[i] << " & " << h->underlyingSwap()->fixedSchedule().dates().back() << " & " <<
-                      h->underlyingSwap()->nominal() << " & " << h->underlyingSwap()->fixedRate() << std::endl;
+                h->underlyingSwap()->nominal() << " & " << h->underlyingSwap()->fixedRate() << " & " << 
+                h->volatility()->value() << " & " << h->marketValue() << std::endl;
         }
 
         boost::shared_ptr<Gaussian1dSwaptionEngine> stdEngine(
@@ -127,7 +137,7 @@ int main(int, char * []) {
 
         LevenbergMarquardt opt;
         EndCriteria ec(2000, 500, 1E-8, 1E-8, 1E-8);
-        //model->calibrate(basket, opt, ec); // for markov
+        model->calibrate(basket, opt, ec); // for markov
         //model->calibrate(basket, opt, ec, Constraint(), std::vector<Real>(), model->FixedReversions()); // for gsr
 
         std::cout << "# & model vol & swaption market & swaption model "
