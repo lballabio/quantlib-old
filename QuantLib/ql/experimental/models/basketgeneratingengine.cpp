@@ -61,19 +61,21 @@ namespace QuantLib {
             case Naive: {
                 Real swapLength = swaptionVolatility->dayCounter().yearFraction(
                     standardSwapBase->valueDate(expiry), underlyingLastDate());
-                boost::shared_ptr<SwaptionVolatilityCube> cube =
-                    boost::dynamic_pointer_cast<SwaptionVolatilityCube>(
-                        swaptionVolatility);
-                Real atm;
-                if (cube)
-                    atm = cube->atmVol()->volatility(expiry, swapLength, 0.03,
-                                                     true);
+                boost::shared_ptr<SmileSection> sec =
+                    swaptionVolatility->smileSection(
+                        expiry,
+                        static_cast<Size>(swapLength * 12.0 + 0.5) * Months,
+                        true);
+                Real atmStrike = sec->atmLevel();
+                Real atmVol;
+                if (atmStrike == Null<Real>())
+                    atmVol = sec->volatility(0.03);
                 else
-                    atm = swaptionVolatility->volatility(expiry, swapLength,
-                                                         0.03, true);
+                    atmVol = sec->volatility(atmStrike);
+
                 helper = boost::shared_ptr<SwaptionHelper>(new SwaptionHelper(
                     expiry, underlyingLastDate(),
-                    Handle<Quote>(new SimpleQuote(atm)),
+                    Handle<Quote>(new SimpleQuote(atmVol)),
                     standardSwapBase->iborIndex(),
                     standardSwapBase->fixedLegTenor(),
                     standardSwapBase->dayCounter(),
