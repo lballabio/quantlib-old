@@ -7,27 +7,25 @@
   <Frameworks>
     <Framework name="QuantLibXL" displayName="QuantLibXL" fileName="QuantLibXL">
       <Components>
-        <Component path="C:\erik\projects\ql\trunk\QuantLibXL\xll\QuantLibXL-vc90-mt-s-1_1_0.xll" />
-        <Component path="C:\erik\projects\ql\trunk\QuantLibXL\framework2\QuantLibXL.xla" />
+        <Component path="C:\Users\erik\repos\quantlib\QuantLibXL\xll\QuantLibXL-vc90-mt-sgd-1_3_0.xll" />
+        <Component path="C:\Users\erik\repos\quantlib\QuantLibXL\framework\QuantLibXL.xla" />
       </Components>
       <StartupParameters>
         <StartupParameter name="Environment" value="Fixed Income" />
-        <StartupParameter name="Workbook Path" value="C:\erik\projects\ql\trunk\QuantLibXL\Workbooks" />
-        <StartupParameter name="Help File Path" value="C:\erik\projects\ql\trunk\QuantLibXL\Docs" />
-        <StartupParameter name="Metadata Path" value="C:\erik\projects\ql\trunk\QuantLibAddin\gensrc\metadata" />
+        <StartupParameter name="Workbook Path" value="C:\Users\erik\repos\quantlib\QuantLibXL\Workbooks" />
+        <StartupParameter name="Help File Path" value="C:\Users\erik\repos\quantlib\QuantLibXL\Docs" />
+        <StartupParameter name="Metadata Path" value="C:\Users\erik\repos\quantlib\QuantLibAddin\gensrc\metadata" />
         <StartupParameter name="Set Evaluation Date" value="False" />
         <StartupParameter name="Evaluation Date" value="2011-10-12" />
-        <StartupParameter name="Default Currency" value="EUR" />
+        <StartupParameter name="Default Currency" value="HKD" />
         <StartupParameter name="Initialization Data Source" value="Excel" />
         <StartupParameter name="Open Main Checks" value="False" />
-        <StartupParameter name="Update Indexes Time Series" value="False" />
-        <StartupParameter name="Load Indexes Time Series" value="False" />
-        <StartupParameter name="Load Bonds" value="False" />
-        <StartupParameter name="BTP Analysis" value="False" />
+        <StartupParameter name="Update Euribor YTD Time Series (xls)" value="False" />
+        <StartupParameter name="Update Index YTD Time Series (xls)" value="False" />
+        <StartupParameter name="Load Index YTD Time Series (xml)" value="False" />
         <StartupParameter name="Bootstrap Yield Curves" value="True" />
-        <StartupParameter name="Bootstrap Bond Curve" value="False" />
-        <StartupParameter name="Switch to Static Market Data" value="False" />
-        <StartupParameter name="Feed Use" value="Reuters" />
+        <StartupParameter name="Real Time Feed" value="Reuters" />
+        <StartupParameter name="Use Static Market Data" value="False" />
       </StartupParameters>
     </Framework>
   </Frameworks>
