@@ -1,4 +1,4 @@
-<Environment>
+<Environment relativePath="XL-Launcher\bin\Addin">
   <GlobalAddins>
     <GlobalAddin name="Reuters" enabled="False" path="C:\Program Files\Reuters\PowerPlus\PPP.xla" />
     <GlobalAddin name="Bloomberg" enabled="False" path="C:\blp\API\dde\BlpMain.xla" />
@@ -23,7 +23,7 @@
         <StartupParameter name="Update Euribor YTD Time Series (xls)" value="False" />
         <StartupParameter name="Update Index YTD Time Series (xls)" value="False" />
         <StartupParameter name="Load Index YTD Time Series (xml)" value="False" />
-        <StartupParameter name="Bootstrap Yield Curves" value="True" />
+        <StartupParameter name="Bootstrap Yield Curves" value="False" />
         <StartupParameter name="Real Time Feed" value="Reuters" />
         <StartupParameter name="Use Static Market Data" value="False" />
       </StartupParameters>
