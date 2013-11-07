@@ -13,7 +13,7 @@
       <StartupParameters>
         <StartupParameter name="Environment" value="Fixed Income" />
         <StartupParameter name="Workbook Path" value=".\Workbooks" />
-        <StartupParameter name="Help File Path" value=".\Docs" />
+        <StartupParameter name="Help File Path" value=".\Docs\QuantLibXL-docs-1.3.0.chm" />
         <StartupParameter name="Metadata Path" value=".\metadata" />
         <StartupParameter name="Set Evaluation Date" value="False" />
         <StartupParameter name="Evaluation Date" value="2011-10-12" />
