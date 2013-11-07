@@ -2,7 +2,7 @@
 import sys
 import os
 import shutil
-import glob
+import datetime
 import zipfile
 
 QLXL_VERSION = "QuantLibXL-1.3.0"
@@ -27,24 +27,23 @@ def visit(params, dirname, names):
         if exclude == name: continue
         sourcePath = dirname + "/" + name
         targetPath = rootDir + "/" + name
-        #print name
         zfile.write(sourcePath, ROOT_DIR + targetPath, zipfile.ZIP_DEFLATED)
 
-zfile = zipfile.ZipFile("zip/" + QLXL_VERSION + ".zip", "w")
+zipFilePath = "zip/%s-%s.zip" % (QLXL_VERSION, datetime.datetime.now().strftime("%Y%m%d%H%M"))
+zfile = zipfile.ZipFile(zipFilePath, "w")
 
-os.path.walk("Data", visit, (zfile, ".gitignore", None))
+# Zip up some specific files from the QuantLibXL directory.
 zfile.write("Docs/QuantLibXL-docs-1.3.0.chm", ROOT_DIR + "Docs/QuantLibXL-docs-1.3.0.chm", zipfile.ZIP_DEFLATED)
-os.path.walk("framework", visit, (zfile, "ReadMe.txt", None))
-os.path.walk("Workbooks", visit, (zfile, None, None))
 zfile.write("xll/QuantLibXL-vc90-mt-s-1_3_0.xll", ROOT_DIR + "xll/QuantLibXL-vc90-mt-s-1_3_0.xll", zipfile.ZIP_DEFLATED)
 zfile.write("zip/README.txt", ROOT_DIR + "README.txt", zipfile.ZIP_DEFLATED)
+# Recursively zip some subdirectories of the QuantLibXL directory.
+os.path.walk("Data", visit, (zfile, ".gitignore", None))
+os.path.walk("framework", visit, (zfile, "ReadMe.txt", None))
+os.path.walk("Workbooks", visit, (zfile, None, None))
+# Zip up some files from other projects in the repo.
 os.path.walk("../QuantLibAddin/gensrc/metadata", visit, (zfile, None, "../QuantLibAddin/gensrc/"))
 zfile.write("../XL-Launcher/bin/Addin/Launcher.xla", ROOT_DIR + "Launcher.xla", zipfile.ZIP_DEFLATED)
 zfile.write("../XL-Launcher/bin/Addin/session_file.xml.zipfile", ROOT_DIR + "session_file.xml", zipfile.ZIP_DEFLATED)
-
-#for name in glob.glob("Data/*"):
-#    print name
-#    #zfile.write(name, os.path.basename(name), zipfile.ZIP_DEFLATED)
 
 zfile.close()
 
