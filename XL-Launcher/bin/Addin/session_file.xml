@@ -7,14 +7,14 @@
   <Frameworks>
     <Framework name="QuantLibXL" displayName="QuantLibXL" fileName="QuantLibXL">
       <Components>
-        <Component path="C:\Users\erik\Documents\repos\quantlib_nando\QuantLibXL\xll\QuantLibXL-vc90-mt-sgd-1_3_0.xll" />
-        <Component path="C:\Users\erik\Documents\repos\quantlib_nando\QuantLibXL\framework\QuantLibXL.xla" />
+        <Component path=".\QuantLibXL\xll\QuantLibXL-vc90-mt-sgd-1_3_0.xll" />
+        <Component path=".\QuantLibXL\framework\QuantLibXL.xla" />
       </Components>
       <StartupParameters>
         <StartupParameter name="Environment" value="Fixed Income" />
-        <StartupParameter name="Workbook Path" value="C:\Users\erik\Documents\repos\quantlib_nando\QuantLibXL\Workbooks" />
-        <StartupParameter name="Help File Path" value="C:\Users\erik\Documents\repos\quantlib_nando\QuantLibXL\Docs" />
-        <StartupParameter name="Metadata Path" value="C:\Users\erik\Documents\repos\quantlib_nando\QuantLibAddin\gensrc\metadata" />
+        <StartupParameter name="Workbook Path" value=".\QuantLibXL\Workbooks" />
+        <StartupParameter name="Help File Path" value=".\QuantLibXL\Docs" />
+        <StartupParameter name="Metadata Path" value=".\QuantLibAddin\gensrc\metadata" />
         <StartupParameter name="Set Evaluation Date" value="False" />
         <StartupParameter name="Evaluation Date" value="2011-10-12" />
         <StartupParameter name="Default Currency" value="HKD" />
@@ -23,7 +23,7 @@
         <StartupParameter name="Update Euribor YTD Time Series (xls)" value="False" />
         <StartupParameter name="Update Index YTD Time Series (xls)" value="False" />
         <StartupParameter name="Load Index YTD Time Series (xml)" value="False" />
-        <StartupParameter name="Bootstrap Yield Curves" value="True" />
+        <StartupParameter name="Bootstrap Yield Curves" value="False" />
         <StartupParameter name="Real Time Feed" value="Reuters" />
         <StartupParameter name="Use Static Market Data" value="False" />
       </StartupParameters>
