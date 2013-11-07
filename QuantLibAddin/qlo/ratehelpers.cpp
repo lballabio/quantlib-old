@@ -52,6 +52,11 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::DepositRateHelper(rate, iborIndex));
+        if (properties->hasProperty("RATE")) {
+            quoteName_ = convert2<string>(properties->getProperty("RATE"));
+        } else {
+            quoteName_ = "DepositRateHelper does not provide RATE named input";
+        }
     }
 
     DepositRateHelper::DepositRateHelper(
@@ -73,6 +78,11 @@ namespace QuantLibAddin {
                                         convention,
                                         endOfMonth,
                                         dayCounter));
+        if (properties->hasProperty("RATE")) {
+            quoteName_ = convert2<string>(properties->getProperty("RATE"));
+        } else {
+            quoteName_ = "DepositRateHelper does not provide RATE named input";
+        }
     }
 
     FuturesRateHelper::FuturesRateHelper(
@@ -85,6 +95,11 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FuturesRateHelper(price, immDate, iborIndex, convAdj));
+        if (properties->hasProperty("PRICE")) {
+            quoteName_ = convert2<string>(properties->getProperty("PRICE"));
+        } else {
+            quoteName_ = "FuturesRateHelper does not provide PRICE named input";
+        }
     }
 
     FuturesRateHelper::FuturesRateHelper(
@@ -108,6 +123,11 @@ namespace QuantLibAddin {
                                         endOfMonth,
                                         dayCounter,
                                         convAdj));
+        if (properties->hasProperty("PRICE")) {
+            quoteName_ = convert2<string>(properties->getProperty("PRICE"));
+        } else {
+            quoteName_ = "FuturesRateHelper does not provide PRICE named input";
+        }
     }
 
     FuturesRateHelper::FuturesRateHelper(
@@ -125,6 +145,11 @@ namespace QuantLibAddin {
                                         endDate,
                                         dayCounter,
                                         convAdj));
+        if (properties->hasProperty("PRICE")) {
+            quoteName_ = convert2<string>(properties->getProperty("PRICE"));
+        } else {
+            quoteName_ = "FuturesRateHelper does not provide PRICE named input";
+        }
     }
 
     SwapRateHelper::SwapRateHelper(
@@ -140,6 +165,11 @@ namespace QuantLibAddin {
             QuantLib::SwapRateHelper(rate,
                                      swapIndex,
                                      spread, forwardStart, discount));
+        if (properties->hasProperty("RATE")) {
+            quoteName_ = convert2<string>(properties->getProperty("RATE"));
+        } else {
+            quoteName_ = "SwapRateHelper does not provide RATE named input";
+        }
     }
 
     SwapRateHelper::SwapRateHelper(
@@ -160,6 +190,11 @@ namespace QuantLibAddin {
             QuantLib::SwapRateHelper(rate,
                                      p, cal, fixFreq, fixConv, fixDC, ibor,
                                      spread, forwardStart, discount));
+        if (properties->hasProperty("RATE")) {
+            quoteName_ = convert2<string>(properties->getProperty("RATE"));
+        } else {
+            quoteName_ = "SwapRateHelper does not provide RATE named input";
+        }
     }
 
     FraRateHelper::FraRateHelper(
@@ -171,6 +206,11 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FraRateHelper(rate, periodToStart, iborIndex));
+        if (properties->hasProperty("RATE")) {
+            quoteName_ = convert2<string>(properties->getProperty("RATE"));
+        } else {
+            quoteName_ = "SwapRateHelper does not provide RATE named input";
+        }
     }
 
     FraRateHelper::FraRateHelper(
@@ -194,6 +234,11 @@ namespace QuantLibAddin {
                                     convention,
                                     endOfMonth,
                                     dayCounter));
+        if (properties->hasProperty("RATE")) {
+            quoteName_ = convert2<string>(properties->getProperty("RATE"));
+        } else {
+            quoteName_ = "SwapRateHelper does not provide RATE named input";
+        }
     }
 
     OISRateHelper::OISRateHelper(
@@ -210,6 +255,11 @@ namespace QuantLibAddin {
                                     tenor,
                                     fixedRate,
                                     overnightIndex));
+        if (properties->hasProperty("RATE")) {
+            quoteName_ = convert2<string>(properties->getProperty("RATE"));
+        } else {
+            quoteName_ = "SwapRateHelper does not provide RATE named input";
+        }
     }
 
     DatedOISRateHelper::DatedOISRateHelper(
@@ -225,6 +275,11 @@ namespace QuantLibAddin {
             QuantLib::DatedOISRateHelper(startDate, endDate,
                                          fixedRate,
                                          overnightIndex));
+        if (properties->hasProperty("RATE")) {
+            quoteName_ = convert2<string>(properties->getProperty("RATE"));
+        } else {
+            quoteName_ = "SwapRateHelper does not provide RATE named input";
+        }
     }
 
     BondHelper::BondHelper(
@@ -235,6 +290,11 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::BondHelper>(new
             QuantLib::BondHelper(cleanPrice, bond));
+        if (properties->hasProperty("PRICE")) {
+            quoteName_ = convert2<string>(properties->getProperty("PRICE"));
+        } else {
+            quoteName_ = "BondHelper does not provide PRICE named input";
+        }
     }
 
     FixedRateBondHelper::FixedRateBondHelper(
@@ -260,6 +320,11 @@ namespace QuantLibAddin {
                                           paymentConvention,
                                           redemption,
                                           issueDate));
+        if (properties->hasProperty("PRICE")) {
+            quoteName_ = convert2<string>(properties->getProperty("PRICE"));
+        } else {
+            quoteName_ = "BondHelper does not provide PRICE named input";
+        }
     }
 
     // helper class
