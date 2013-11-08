@@ -61,8 +61,10 @@ namespace QuantLibAddin {
                                     DeposBeforeFirstFuturesStartDatePlusOne,
                                     DeposBeforeFirstFuturesExpiryDate
         };
+        std::string quoteName() { return quoteName_; }
       protected:
         OH_LIB_CTOR(RateHelper, QuantLib::RateHelper);
+        std::string quoteName_;
     };
 
     class DepositRateHelper : public RateHelper {
