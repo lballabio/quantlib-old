@@ -5,6 +5,8 @@ BUILT_SOURCES = quantlib_wrap.cpp quantlib_wrap.h
 
 EXAMPLES = DiscreteHedging EquityOptions FRA UnaryFunctions
 
+AM_CXXFLAGS= -fPIC
+
 if HAVE_JAVA
 if BUILD_JAVA
 
