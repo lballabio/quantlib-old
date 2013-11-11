@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="addins">
+      <UniqueIdentifier>{f5b0372d-786f-4097-9f84-63f1fc8f61b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="functions">
+      <UniqueIdentifier>{8d42ac07-29fe-4504-baed-ef87616b3646}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rules">
+      <UniqueIdentifier>{1e207d92-1659-486f-8c4b-e9c6ba3c8620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="types">
+      <UniqueIdentifier>{7f1a5b76-ca8c-4ef4-a469-0fdcb5a76dc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code">
+      <UniqueIdentifier>{640044cd-5d54-4921-9ce1-1c4b95d2b9e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{633c1f44-67f7-4c39-bd73-500c3dd2aa78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs">
+      <UniqueIdentifier>{f4119f6c-221d-444b-b930-80eac2adba24}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="metadata\addins\doxygen.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\excel.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\loop.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\valueobjects.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\functions\enumerations.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\garbagecollection.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\group.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\logging.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\objects.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\ohutils.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\range.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\serialization.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\valueobjects.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\rules\doxygen.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\rules\excel.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\rules\loop.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\rules\valueobjects.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\types\supertypes.xml">
+      <Filter>types</Filter>
+    </None>
+    <None Include="metadata\types\types.xml">
+      <Filter>types</Filter>
+    </None>
+    <None Include="code\codedict.py">
+      <Filter>code</Filter>
+    </None>
+    <None Include="config\categories.xml">
+      <Filter>config</Filter>
+    </None>
+    <None Include="config\config.xml">
+      <Filter>config</Filter>
+    </None>
+    <None Include="stubs\stub.copyright">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="stubs\stub.excel.exports">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="stubs\stub.excel.includes">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="Makefile.vc" />
+  </ItemGroup>
+</Project>
