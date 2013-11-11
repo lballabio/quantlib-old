@@ -35,6 +35,8 @@
 #  define QLADDIN_LIB_TOOLSET "vc90"
 #elif (_MSC_VER == 1600)
 #  define QLADDIN_LIB_TOOLSET "vc100"
+#elif (_MSC_VER == 1700)
+#  define QLADDIN_LIB_TOOLSET "vc110"
 #else
 #  error "unknown Microsoft compiler"
 #endif
