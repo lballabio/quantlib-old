@@ -24,7 +24,7 @@
 #include <oh/config.hpp>
 #endif
 #include <oh/utilities.hpp>
-#include <oh/logger.hpp>
+//#include <oh/logger.hpp>
 #include <oh/repository.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
@@ -52,42 +52,45 @@ namespace ObjectHandler {
 
     std::string logSetFile(const std::string &logFileName,
                            const int &logLevel) {
-            Logger::instance().setFile(logFileName, logLevel);
-            return logFileName;
+            //Logger::instance().setFile(logFileName, logLevel);
+            //return logFileName;
+            return std::string();
     }
 
     DLL_API void logWriteMessage(const std::string &message,
                                  const int &level) {
-            Logger::instance().writeMessage(message, level);
+            //Logger::instance().writeMessage(message, level);
     }
 
     void logSetLevel(const int &logLevel) {
-        Logger::instance().setLevel(logLevel);
+        //Logger::instance().setLevel(logLevel);
     }
 
     const std::string logFile(){
-        return Logger::instance().file();
+        //return Logger::instance().file();
+        return std::string();
     }
 
     const int logLevel(){
-        return Logger::instance().level();
+        //return Logger::instance().level();
+        return 0;
     }
 
     void logSetConsole(const int &console,
                       const int &logLevel) {
-            Logger::instance().setConsole(console, logLevel);
+            //Logger::instance().setConsole(console, logLevel);
     }
 
     void logObject(const std::string &objectID) {
-        std::ostringstream msg;
-        Repository::instance().dumpObject(objectID, msg);
-        Logger::instance().writeMessage(msg.str());
+        //std::ostringstream msg;
+        //Repository::instance().dumpObject(objectID, msg);
+        //Logger::instance().writeMessage(msg.str());
     }
 
     void logAllObjects() {
-        std::ostringstream msg;
-        Repository::instance().dump(msg);
-        Logger::instance().writeMessage(msg.str());
+        //std::ostringstream msg;
+        //Repository::instance().dump(msg);
+        //Logger::instance().writeMessage(msg.str());
     }
 
     std::vector<std::string> split(const std::string& line,
