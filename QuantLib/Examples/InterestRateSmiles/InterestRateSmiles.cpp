@@ -171,10 +171,13 @@ void splineSmiles() {
     sabrParams.push_back(-0.48);  // rho
 
     std::vector<Real> money;
-    for(Size i=0;i<4;i++) {
-        money.push_back(i/4.0);
+    for(Size i=0;i<40;i++) {
+        money.push_back(i/40.0);
     }
-    for(Size i=1;i<=60;i++) {
+    for(Size i=10;i<=100;i++) {
+        money.push_back(i*0.1);
+    }
+    for(Size i=11;i<=100;i++) {
         money.push_back(i*1.0);
     }
 
