@@ -41,7 +41,8 @@ namespace QuantLib {
                                                     << " , " << times[i + 1]
                                                     << "@" << i + 1 << ")");
         for (int i = 0; i < (int)reversions.size(); i++)
-            if (close(reversions[i], 0.0))
+            // if (close(reversions[i], 0.0))
+            if(std::fabs(reversions[i]) < 1E-4)
                 revZero_[i] = true;
         flushCache();
     }
