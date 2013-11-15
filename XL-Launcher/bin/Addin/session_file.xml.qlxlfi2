@@ -12,8 +12,7 @@
       </Components>
       <StartupParameters>
         <StartupParameter name="Environment" value="Fixed Income" />
-        <StartupParameter name="Old Data Path" value=".\QuantLibXL\Data\" />
-        <StartupParameter name="Data Path" value=".\QuantLibXL\Data2\" />
+        <StartupParameter name="Root Path" value=".\QuantLibXL\" />
         <StartupParameter name="Workbook Path" value=".\QuantLibXL\Workbooks" />
         <StartupParameter name="Help File Path" value=".\QuantLibXL\Docs\QuantLibXL-docs-1.3.0.chm" />
         <StartupParameter name="Metadata Path" value=".\QuantLibAddin\gensrc\metadata" />
