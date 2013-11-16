@@ -102,6 +102,7 @@ XL-Launcher/obj/
 
 # Artifacts created in multiple directories
 Makefile
+!QuantLibAddin/swig/Makefile
 Makefile.in
 .deps
 .libs
