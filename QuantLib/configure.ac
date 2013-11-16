@@ -430,6 +430,7 @@ AC_CONFIG_FILES([
     Examples/NonstandardSwaption/Makefile
     Examples/Replication/Makefile
     Examples/Repo/Makefile
+    Examples/SimulatedAnnealing/Makefile
     Examples/SviSmileSection/Makefile
     Examples/Swap/Makefile
     Examples/Volaswap/Makefile
