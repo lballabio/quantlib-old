@@ -62,8 +62,8 @@ namespace QuantLib {
           zero, after that the optimization runs like a deterministic simplex
           algorithm.
         */
-        SimulatedAnnealing(Real lambda, Real T0, Size K,
-                           Real alpha, const RNG &rng = RNG())
+        SimulatedAnnealing(const Real lambda, const Real T0, const Size K,
+                           const Real alpha, const RNG &rng = RNG())
             : scheme_(ConstantBudget), lambda_(lambda), T0_(T0), epsilon_(0.0),
               alpha_(alpha), K_(K), rng_(rng) {}
 
