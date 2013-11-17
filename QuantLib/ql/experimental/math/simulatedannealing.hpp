@@ -18,7 +18,9 @@
 */
 
 /*! \file simulatedannealing.hpp
-    \brief Numerical Recipes in C (?? edition), Chapter 10.9
+    \brief Numerical Recipes in C (second edition), Chapter 10.9,
+           with the original exit criterion in f(x) replaced by one
+           in x (see simplex.cpp for a reference to GSL concerning this)
 */
 
 #ifndef quantlib_optimization_simulatedannealing_hpp
@@ -37,29 +39,35 @@ namespace QuantLib {
         \endcode
     */
 
-    template<class RNG = MersenneTwisterUniformRng> class SimulatedAnnealing : public OptimizationMethod {
+    template <class RNG = MersenneTwisterUniformRng>
+    class SimulatedAnnealing : public OptimizationMethod {
 
       public:
 
-        enum Scheme { ConstantFactor, ConstantBudget };
+        enum Scheme {
+            ConstantFactor,
+            ConstantBudget
+        };
 
         /*! reduce temperature T by a factor of (1-\epsilon) after m moves */
-        SimulatedAnnealing(const Real lambda = 0.01, const Real T0 = 2.0,
-                           const Real epsilon = 0.2, const Size m = 10, 
+        SimulatedAnnealing(const Real lambda, const Real T0,
+                           const Real epsilon, const Size m,
                            const RNG &rng = RNG())
-            :scheme_(ConstantFactor), lambda_(lambda), T0_(T0), 
-             epsilon_(epsilon), alpha_(0.0), K_(0), rng_(rng), m_(m) {}
+            : scheme_(ConstantFactor), lambda_(lambda), T0_(T0),
+              epsilon_(epsilon), alpha_(0.0), K_(0), rng_(rng), m_(m) {}
 
         /*! budget a total of K moves, set temperature T to the initial
-          temperature
-          times ( 1 - k/K )^\alpha with k being the total number of moves so far
-          */
-        SimulatedAnnealing(Real lambda = 0.01, Real T0 = 2.0, Size K = 500,
-                           Real alpha = 2.0, const RNG &rng = RNG())
-            : scheme_(ConstantBudget), lambda_(lambda), T0_(T0), epsilon_(0.0), alpha_(alpha), K_(K),
-              rng_(rng) {}
+          temperature times ( 1 - k/K )^\alpha with k being the total number
+          of moves so far. After K moves the temperature is guaranteed to be
+          zero, after that optimization runs like a deterministic simplex
+          algorithm.
+        */
+        SimulatedAnnealing(Real lambda, Real T0, Size K,
+                           Real alpha, const RNG &rng = RNG())
+            : scheme_(ConstantBudget), lambda_(lambda), T0_(T0), epsilon_(0.0),
+              alpha_(alpha), K_(K), rng_(rng) {}
 
-        EndCriteria::Type minimize(Problem &P, const EndCriteria& ec);
+        EndCriteria::Type minimize(Problem &P, const EndCriteria &ec);
 
       private:
 
@@ -68,6 +76,7 @@ namespace QuantLib {
         const Size K_;
         const RNG rng_;
 
+        Real simplexSize();
         void amotsa(Problem &, Real);
 
         Real T_;
@@ -75,14 +84,27 @@ namespace QuantLib {
         Array values_, sum_;
         Integer i_, ihi_, ilo_, j_, m_, n_;
         Real fac1_, fac2_, yflu_;
-        Real rtol_, swap_, yhi_, ylo_, ynhi_, ysave_, yt_, ytry_, yb_,
-            tt_;
+        Real rtol_, swap_, yhi_, ylo_, ynhi_, ysave_, yt_, ytry_, yb_, tt_;
         Array pb_, ptry_;
         Size iteration_, iterationT_;
     };
 
+    template <class RNG>
+    Real SimulatedAnnealing<RNG>::simplexSize() { // this is taken from
+                                                  // simplex.cpp
+        Array center(vertices_.front().size(), 0);
+        for (Size i = 0; i < vertices_.size(); ++i)
+            center += vertices_[i];
+        center *= 1 / Real(vertices_.size());
+        Real result = 0;
+        for (Size i = 0; i < vertices_.size(); ++i) {
+            Array temp = vertices_[i] - center;
+            result += std::sqrt(DotProduct(temp, temp));
+        }
+        return result / Real(vertices_.size());
+    }
 
-    template<class RNG>
+    template <class RNG>
     void SimulatedAnnealing<RNG>::amotsa(Problem &P, Real fac) {
         fac1_ = (1.0 - fac) / ((Real)n_);
         fac2_ = fac1_ - fac;
@@ -96,7 +118,7 @@ namespace QuantLib {
         if (boost::math::isnan(ytry_)) {
             ytry_ = QL_MAX_REAL;
         }
-        if (ytry_ < yb_) {
+        if (ytry_ <= yb_) {
             yb_ = ytry_;
             pb_ = ptry_;
         }
@@ -109,15 +131,15 @@ namespace QuantLib {
                 vertices_[ihi_][j_] = ptry_[j_];
             }
         }
-        ytry_=yflu_;
+        ytry_ = yflu_;
         return;
     }
 
-
-    template<class RNG>
+    template <class RNG>
     EndCriteria::Type SimulatedAnnealing<RNG>::minimize(Problem &P,
-                                                   const EndCriteria &ec) {
+                                                        const EndCriteria &ec) {
 
+        Size stationaryStateIterations_ = 0;
         EndCriteria::Type ecType = EndCriteria::None;
         P.reset();
         Array x = P.currentValue();
@@ -139,7 +161,7 @@ namespace QuantLib {
                 values_[i_] = QL_MAX_REAL;
             else
                 values_[i_] = P.value(vertices_[i_]);
-            if (boost::math::isnan(ytry_)) { // NAN
+            if (boost::math::isnan(ytry_)) { // handle NAN
                 values_[i_] = QL_MAX_REAL;
             }
         }
@@ -148,7 +170,7 @@ namespace QuantLib {
 
         T_ = T0_;
         yb_ = QL_MAX_REAL;
-        pb_ = Array(n_, yb_);
+        pb_ = Array(n_, 0.0);
         do {
             iterationT_ = iteration_;
             do {
@@ -184,14 +206,22 @@ namespace QuantLib {
                         }
                     }
                 }
+
                 // rtol_ = 2.0 * std::fabs(yhi_ - ylo_) /
                 //         (std::fabs(yhi_) + std::fabs(ylo_));
-                if (ec.checkStationaryFunctionAccuracy(yhi_,ylo_,ecType) ||
+                // check rtol against some ftol... // NR end criterion in f(x)
+
+                // GSL end criterion in x (cf. above)
+                if (ec.checkStationaryPoint(simplexSize(), 0.0,
+                                            stationaryStateIterations_,
+                                            ecType) ||
                     ec.checkMaxIterations(iteration_, ecType)) {
+                    // no matter what, we return the best ever point !
                     P.setCurrentValue(pb_);
                     P.setFunctionValue(yb_);
                     return ecType;
                 }
+
                 iteration_ += 2;
                 amotsa(P, -1.0);
                 if (ytry_ <= ylo_) {
@@ -230,12 +260,13 @@ namespace QuantLib {
                 break;
             case ConstantBudget:
                 if (iteration_ <= K_)
-                    T_ = T0_*std::pow(1.0 - (Real)iteration_ / (Real)K_, alpha_);
+                    T_ = T0_ *
+                         std::pow(1.0 - (Real)iteration_ / (Real)K_, alpha_);
                 else
                     T_ = 0.0;
                 break;
             }
-            
+
         } while (true);
     }
 }
