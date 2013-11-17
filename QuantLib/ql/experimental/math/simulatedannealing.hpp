@@ -59,7 +59,7 @@ namespace QuantLib {
         /*! budget a total of K moves, set temperature T to the initial
           temperature times ( 1 - k/K )^\alpha with k being the total number
           of moves so far. After K moves the temperature is guaranteed to be
-          zero, after that optimization runs like a deterministic simplex
+          zero, after that the optimization runs like a deterministic simplex
           algorithm.
         */
         SimulatedAnnealing(Real lambda, Real T0, Size K,
