@@ -60,7 +60,7 @@ namespace QuantLib {
         d_.push_back(0.0);
 
         Real vol = 0.10; // start with a lognormal density
-        Real mu = std::log(f_) + vol*vol*exerciseTime()/2.0;
+        Real mu = std::log(f_) - vol*vol*exerciseTime()/2.0;
         NormalDistribution norm(mu,vol*sqrt(exerciseTime()));
 
 
@@ -106,25 +106,25 @@ namespace QuantLib {
         // setDensity(res); // just to make really sure, we are at the optimal point
 
         // iterative calibration
-        for(Size i=1; i<k_.size()-1; i++) {
-            SplineDensityCostFunction2 cost(this,i);
-            NoConstraint constraint;
-            Array initial2(1,initial[i-1]);
-            Problem p(cost,constraint,initial2);
+        // for(Size i=1; i<k_.size()-1; i++) {
+        //     SplineDensityCostFunction2 cost(this,i);
+        //     NoConstraint constraint;
+        //     Array initial2(1,initial[i-1]);
+        //     Problem p(cost,constraint,initial2);
 
-            LevenbergMarquardt lm;
-            //Simplex lm(0.01);
-            //BFGS lm;
-            EndCriteria ec(5000,100,1e-16,1e-16,1e-16);
+        //     LevenbergMarquardt lm;
+        //     //Simplex lm(0.01);
+        //     //BFGS lm;
+        //     EndCriteria ec(5000,100,1e-35,1e-35,1e-35);
 
-            EndCriteria::Type ret = lm.minimize(p,ec);
-            QL_REQUIRE(ret!=EndCriteria::MaxIterations,"Optimizer returns maxiterations");
+        //     EndCriteria::Type ret = lm.minimize(p,ec);
+        //     QL_REQUIRE(ret!=EndCriteria::MaxIterations,"Optimizer returns maxiterations");
 
-            Array res = p.currentValue();
-            setDensity(res[0],i); // just to make really sure, we are at the optimal point
-        }
+        //     Array res = p.currentValue();
+        //     setDensity(res[0],i); // just to make really sure, we are at the optimal point
+        // }
 
-        //update();
+        update();
 
     }
 
@@ -185,7 +185,7 @@ namespace QuantLib {
         update();
 
         Real p = optionPrice(k_[i]);
-        std::cout << "strike " << k_[i] << " dens " << d << " market " << c_[i] << " spline " << p << std::endl;
+        std::cout << std::setprecision(16) << "strike " << k_[i] << " dens " << d << " market " << c_[i] << " spline " << p << " error " << (p-c_[i]) << std::endl;
         
         return p-c_[i];
 
@@ -309,7 +309,7 @@ namespace QuantLib {
 
     Real SplineDensitySmileSection::density(Rate strike, Real discount, Real gap) const {
 
-        // return SmileSection::density(strike,discount,gap); // debug
+        return SmileSection::density(strike,discount,gap); // debug
         //strike += expectation_-f_;
 
         if(strike <= lowerBound_ || strike >= upperBound_) return 0.0;
