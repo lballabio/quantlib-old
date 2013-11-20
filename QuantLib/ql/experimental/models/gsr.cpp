@@ -110,6 +110,10 @@ namespace QuantLib {
     const Real Gsr::zerobondImpl(const Time T, const Time t, const Real y,
                                  const Handle<YieldTermStructure> &yts) const {
 
+        if (t == 0.0)
+            return yts.empty() ? this->termStructure()->discount(T, true)
+                               : yts->discount(T, true);
+
         calculate();
 
         boost::shared_ptr<GsrProcess> p =
@@ -131,6 +135,11 @@ namespace QuantLib {
 
         boost::shared_ptr<GsrProcess> p =
             boost::dynamic_pointer_cast<GsrProcess>(stateProcess_);
+
+        if (t == 0)
+            return yts.empty() ? this->termStructure()->discount(
+                                     p->getForwardMeasureTime(), true)
+                               : yts->discount(p->getForwardMeasureTime());
         return zerobond(p->getForwardMeasureTime(), t, y, yts);
     }
 }
