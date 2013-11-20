@@ -58,53 +58,64 @@ namespace QuantLib {
         Handle<YieldTermStructure> ytsf = swapIdx->iborIndex()->forwardingTermStructure();
         Handle<YieldTermStructure> ytsd = swapIdx->discountingTermStructure(); // either might be empty, then use model curve
 
+        Schedule sched, floatSched;
+
         SwapIndex tmpIdx = SwapIndex(swapIdx->familyName(), tenor, swapIdx->fixingDays(),
                                  swapIdx->currency(), swapIdx->fixingCalendar(), swapIdx->fixedLegTenor(),
                                  swapIdx->fixedLegConvention(), swapIdx->dayCounter(), swapIdx->iborIndex());
         boost::shared_ptr<VanillaSwap> underlying = tmpIdx.underlyingSwap(fixing);
-        Schedule sched = underlying->fixedSchedule();
-        Real annuity = swapAnnuity(fixing,tenor,referenceDate,y,swapIdx);
+
+        sched = underlying->fixedSchedule();
+
+        boost::shared_ptr<OvernightIndexedSwapIndex> oisIdx = boost::dynamic_pointer_cast<OvernightIndexedSwapIndex>(swapIdx);
+        if(oisIdx != NULL) {
+            floatSched = sched;
+        }
+        else {
+            floatSched = underlying->floatingSchedule();
+        }
+
+        Real annuity = swapAnnuity(fixing,tenor,referenceDate,y,swapIdx); // should be fine for overnightindexed swap indices as well
         Rate floatleg = 0.0;
         if(ytsf.empty() && ytsd.empty()) { // simple 100-formula can be used only in one curve setup
-            floatleg = ( zerobond(sched.dates().front(),referenceDate,y) - 
+            floatleg = ( zerobond(sched.dates().front(),referenceDate,y) -
                          zerobond(sched.calendar().adjust(sched.dates().back(),
                                                           underlying->paymentConvention()),referenceDate,y));
         }
         else {
-			Schedule floatSched = underlying->floatingSchedule();
-			for(Size i=1; i<floatSched.size(); i++) {
-				floatleg += ( zerobond( floatSched[i-1], referenceDate, y, ytsf ) / 
+            for(Size i=1; i<floatSched.size(); i++) {
+                floatleg += ( zerobond( floatSched[i-1], referenceDate, y, ytsf ) / 
                               zerobond ( floatSched[i], referenceDate, y, ytsf ) - 1.0 ) *
                     zerobond( floatSched.calendar().adjust(floatSched[i], underlying->paymentConvention()), 
                               referenceDate, y , ytsd );
-			}
+            }
         }
         return floatleg / annuity;
 
     }
 
-   	const Real Gaussian1dModel::swapAnnuity(const Date& fixing, const Period& tenor, const Date& referenceDate, 
+        const Real Gaussian1dModel::swapAnnuity(const Date& fixing, const Period& tenor, const Date& referenceDate, 
                                            const Real y, boost::shared_ptr<SwapIndex> swapIdx) const {
-        
+
         QL_REQUIRE(swapIdx != NULL,"no swap index given");
 
         Handle<YieldTermStructure> ytsd = swapIdx->discountingTermStructure(); // might be empty, then use model curve
 
-		SwapIndex tmpIdx = SwapIndex(swapIdx->familyName(), tenor, swapIdx->fixingDays(),
+        SwapIndex tmpIdx = SwapIndex(swapIdx->familyName(), tenor, swapIdx->fixingDays(),
                                  swapIdx->currency(), swapIdx->fixingCalendar(), swapIdx->fixedLegTenor(),
                                  swapIdx->fixedLegConvention(), swapIdx->dayCounter(), swapIdx->iborIndex());
-		boost::shared_ptr<VanillaSwap> underlying = tmpIdx.underlyingSwap(fixing);
-		Schedule sched = underlying->fixedSchedule();
+        boost::shared_ptr<VanillaSwap> underlying = tmpIdx.underlyingSwap(fixing);
+        Schedule sched = underlying->fixedSchedule();
 
-		Real annuity=0.0;
-		for(unsigned int j=1; j<sched.size(); j++) {
-			annuity += zerobond(sched.calendar().adjust(sched.date(j),underlying->paymentConvention()),
-                                referenceDate,y,ytsd) * 
-				swapIdx->dayCounter().yearFraction( sched.date(j-1) , sched.date(j) );
-		}
-		return annuity;
+        Real annuity=0.0;
+        for(unsigned int j=1; j<sched.size(); j++) {
+            annuity += zerobond(sched.calendar().adjust(sched.date(j),underlying->paymentConvention()),
+                                referenceDate,y,ytsd) *
+                swapIdx->dayCounter().yearFraction( sched.date(j-1) , sched.date(j) );
+        }
+        return annuity;
 
-	}
+    }
 
     const Real Gaussian1dModel::zerobondOption(const Option::Type& type, const Date& expiry, const Date& valueDate, 
                                               const Date& maturity, const Rate strike, const Date& referenceDate, 
