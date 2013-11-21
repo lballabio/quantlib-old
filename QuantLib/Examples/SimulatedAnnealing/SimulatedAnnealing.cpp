@@ -9,16 +9,19 @@ int main(int, char* []) {
 
     MersenneTwisterUniformRng mt(42);
 
-    SimulatedAnnealing<> sa(1.0,10.0,0.10,10);
-    //SimulatedAnnealing<> sa(1.0,1000.0,50000,2.0);
-    LevenbergMarquardt lm;
+    //SimulatedAnnealing<> sa(1.0,1000.0,0.05,10);
+    //SimulatedAnnealing<> sa(1.0,2000.0,500,2.0);
+    //LevenbergMarquardt lm;
+    //Simplex sa(1.0);
+
+    //DifferentialEvolution sa;
 
     class cfct : public CostFunction {
     public:
         Real value(const Array &x) const {
             //return -cos(x[0])*cos(x[1])*exp(-std::pow(x[0]-M_PI,2.0)-std::pow(x[1]-M_PI,2.0));
             Real y = (2.0+std::sin(x[0])*std::sin(x[1]))*(x[0]*x[0]+x[1]*x[1]);
-            //std::cout << "f(" << x[0] << "," << x[1] << ")=" << y << std::endl;
+            std::cout << "f(" << x[0] << "," << x[1] << ")=" << y << std::endl;
             return y;
         }
         Disposable<Array> values(const Array &x) const {
