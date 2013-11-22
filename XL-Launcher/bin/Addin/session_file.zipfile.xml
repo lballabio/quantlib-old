@@ -12,7 +12,13 @@
         <Component path=".\framework\QuantLibXL.xla" />
       </Components>
       <StartupParameters>
-        <StartupParameter name="Environment" value="Fixed Income" />
+        <StartupParameter name="Environment" value="Fixed Income2" />
+
+        <!-- for FixedIncome (2) -->
+        <StartupParameter name="Root Path" value=".\" />
+        <StartupParameter name="HKD Dev" value="True" />
+
+        <!-- for FixedIncome (1) -->
         <StartupParameter name="Workbook Path" value=".\Workbooks" />
         <StartupParameter name="Help File Path" value=".\Docs\QuantLibXL-docs-1.3.0.chm" />
         <StartupParameter name="Metadata Path" value=".\metadata" />
