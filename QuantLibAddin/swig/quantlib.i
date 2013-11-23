@@ -1,9 +1,8 @@
 
-%rename("arse") Real;
 %module QuantLibAddin
 %{
-#include <ql/math/comparison.hpp>
 #include <ql/quotes/simplequote.hpp>
+#include <ql/math/comparison.hpp>
 %}
 typedef double Real;
 namespace QuantLib {

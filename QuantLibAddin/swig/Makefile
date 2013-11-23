@@ -1,10 +1,11 @@
 
-SWIG = ../../../preinst-swig
+SWIG = ../../../swig/preinst-swig
 
-all: ValueObjects AddinObjects AddinCpp Main
+all: SWIG ValueObjects AddinObjects AddinCpp Main
 
-SimpleAddin.cpp: simple.i ../../../swig
-	$(SWIG) -prefix sl -c++ -objecthandler simple.i
+.PHONY: SWIG
+SWIG: quantlib.i ../../../swig/swig
+	$(SWIG) -prefix ql -c++ -objecthandler quantlib.i
 
 .PHONY: ValueObjects
 ValueObjects:
