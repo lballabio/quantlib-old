@@ -10,8 +10,6 @@ mainQuantLib: mainQuantLib.cpp
 mainQuantLibAddinHw: mainQuantLibAddinHw.cpp
 	g++ -fPIC mainQuantLibAddinHw.cpp -o mainQuantLibAddinHw -I.. -L../lib -lAddinCppHw
 
-#	g++ -fPIC mainQuantLibAddinHw.cpp -o mainQuantLibAddinHw -I.. -L../lib -lAddinCppHw -L$(LDIR) -lObjectHandler -lboost_regex -lboost_serialization -lboost_system -lboost_filesystem
-
 mainQuantLibAddin: mainQuantLibAddin.cpp ../lib/libAddinObjects.so
 	g++ -fPIC mainQuantLibAddin.cpp -o mainQuantLibAddin -I.. -L../lib -lAddinCpp
 
