@@ -6,6 +6,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinObjects", "AddinObjects\AddinObjects.vcproj", "{9DAAB1B1-0EEF-4C89-A6F6-AAE48A182145}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinXl", "AddinXl\AddinXl.vcproj", "{E2A6F3D4-19EF-419A-A529-9FC53E6DB0B6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9DAAB1B1-0EEF-4C89-A6F6-AAE48A182145} = {9DAAB1B1-0EEF-4C89-A6F6-AAE48A182145}
+		{99DCB6D4-4C65-4A60-8E94-894E7CAC8AE7} = {99DCB6D4-4C65-4A60-8E94-894E7CAC8AE7}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ValueObjects", "ValueObjects\ValueObjects.vcproj", "{99DCB6D4-4C65-4A60-8E94-894E7CAC8AE7}"
 EndProject

@@ -115,6 +115,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="..,..\..\..\ObjectHandler,..\..\..\QuantLib"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ADDINXL_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -133,7 +134,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="ObjectHandler-xllib-vc90-mt-1_3_0.lib xlsdk-vc90-mt.lib QuantLib-vc90-mt.lib"
+				OutputFile="$(OutDir)\$(ProjectName).xll"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="..\..\..\ObjectHandler\lib,..\..\..\QuantLib\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
