@@ -4,8 +4,8 @@
 #include <ohxl/functions/export.hpp>
 #include <ohxl/utilities/xlutilities.hpp>
 #include <ohxl/objectwrapperxl.hpp>
-#include "ValueObjects/vo.hpp"
-#include "AddinObjects/obj.hpp"
+#include "ValueObjects/vo_hw.hpp"
+#include "AddinObjects/obj_hw.hpp"
 
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
    for example) also #define _MSC_VER
@@ -34,11 +34,11 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             // function code name
-            TempStrNoSize("\x05""close"),
+            TempStrNoSize("\x07""qlClose"),
             // parameter codes
-            TempStrNoSize("\x03""XX#"),
+            TempStrNoSize("\x04""LEE#"),
             // function display name
-            TempStrNoSize("\x05""close"),
+            TempStrNoSize("\x07""qlClose"),
             // comma-delimited list of parameters
             TempStrNoSize("\x03""x,y"),
             // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
@@ -48,11 +48,11 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             // function code name
-            TempStrNoSize("\x0b""SimpleQuote"),
+            TempStrNoSize("\x0D""qlSimpleQuote"),
             // parameter codes
-            TempStrNoSize("\x04""CCX#"),
+            TempStrNoSize("\x04""CCE#"),
             // function display name
-            TempStrNoSize("\x0b""SimpleQuote"),
+            TempStrNoSize("\x0D""qlSimpleQuote"),
             // comma-delimited list of parameters
             TempStrNoSize("\x0e""ObjectId,value"),
             // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
@@ -62,11 +62,11 @@ DLLEXPORT int xlAutoOpen() {
 
         Excel(xlfRegister, 0, 7, &xDll,
             // function code name
-            TempStrNoSize("\x10""SimpleQuotevalue"),
+            TempStrNoSize("\xF3""qlSimpleQuoteValue"),
             // parameter codes
-            TempStrNoSize("\x03""XC#"),
+            TempStrNoSize("\x03""EC#"),
             // function display name
-            TempStrNoSize("\x10""SimpleQuotevalue"),
+            TempStrNoSize("\xF3""qlSimpleQuoteValue"),
             // comma-delimited list of parameters
             TempStrNoSize("\x08""ObjectId"),
             // function type (0 = hidden function, 1 = worksheet function, 2 = command macro)
@@ -129,21 +129,21 @@ DLLEXPORT void xlAutoFree(XLOPER *px) {
 
 }
 
-DLLEXPORT char *close() {
+DLLEXPORT bool *qlClose(double *x, double *y) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
     try {
 
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
-            (new ObjectHandler::FunctionCall("close"));
+            (new ObjectHandler::FunctionCall("qlClose"));
 
-        std::string returnValue = 
-            QuantLibAddin::close();
+        bool returnValue = 
+            QuantLibAddin::close(*x, *y);
 
-        static char ret[XL_MAX_STR_LEN];
-        ObjectHandler::stringToChar(returnValue, ret);
-        return ret;
+        static bool ret = true;
+        ret = returnValue;
+        return &ret;
 
     } catch (const std::exception &e) {
 
@@ -153,20 +153,20 @@ DLLEXPORT char *close() {
     }
 }
 
-DLLEXPORT char *SimpleQuote(char *objectID, double *value) {
+DLLEXPORT char *qlSimpleQuote(char *objectID, double *value) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
     try {
 
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
-            (new ObjectHandler::FunctionCall("SimpleQuote"));
+            (new ObjectHandler::FunctionCall("qlSimpleQuote"));
 
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new QuantLibAddin::ValueObjects::qlSimpleQuote(objectID, false));
+            new QuantLibAddin::ValueObjects::qlSimpleQuote(objectID, *value, false));
 
         boost::shared_ptr<ObjectHandler::Object> object(
-            new QuantLibAddin::SimpleQuote(valueObject, *x, false));
+            new QuantLibAddin::SimpleQuote(valueObject, *value, false));
 
         std::string returnValue =
             ObjectHandler::RepositoryXL::instance().storeObject(objectID, object, true);
@@ -183,19 +183,19 @@ DLLEXPORT char *SimpleQuote(char *objectID, double *value) {
     }
 }
 
-DLLEXPORT double *SimpleQuotevalue(char *objectID) {
+DLLEXPORT double *qlSimpleQuoteValue(char *objectID) {
 
     boost::shared_ptr<ObjectHandler::FunctionCall> functionCall;
 
     try {
 
         functionCall = boost::shared_ptr<ObjectHandler::FunctionCall>
-            (new ObjectHandler::FunctionCall("SimpleQuotevalue"));
+            (new ObjectHandler::FunctionCall("qlSimpleQuoteValue"));
 
         OH_GET_REFERENCE(x, objectID, QuantLibAddin::SimpleQuote, QuantLib::SimpleQuote);
 
         static double ret;
-        ret = x->value(*);
+        ret = x->value();
         return &ret;
 
     } catch (const std::exception &e) {

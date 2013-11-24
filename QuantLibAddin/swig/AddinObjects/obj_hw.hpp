@@ -6,9 +6,13 @@
 #include <oh/libraryobject.hpp>
 #include <oh/valueobject.hpp>
 #include <boost/shared_ptr.hpp>
+
 #include <ql/quotes/simplequote.hpp>
+#include <ql/math/comparison.hpp>
 
 namespace QuantLibAddin {
+
+    bool close(double x, double y);
 
     class SimpleQuote :
         public ObjectHandler::LibraryObject<QuantLib::SimpleQuote> {
