@@ -137,11 +137,13 @@ namespace QuantLib {
                 }
                 std::cout << std::endl;
 #endif
+                // play safe, we restrict the maximum maturity so to easily fit in the date class restriction
+                Real maxMaturity = swaptionVolatility->dayCounter().yearFraction(expiry,Date(31,December,2180));
 
                 boost::shared_ptr<MatchHelper> matchHelper_;
                 matchHelper_ = boost::shared_ptr<MatchHelper>(new MatchHelper(
                     underlyingType(), npv, delta, gamma, onefactormodel_,
-                    standardSwapBase, expiry, h));
+                    standardSwapBase,  expiry, maxMaturity, h));
 
                 // Optimize
 

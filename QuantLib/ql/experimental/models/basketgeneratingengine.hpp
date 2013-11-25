@@ -107,10 +107,11 @@ namespace QuantLib {
                         const Real delta, const Real gamma,
                         const boost::shared_ptr<Gaussian1dModel> &model,
                         const boost::shared_ptr<SwapIndex> indexBase,
-                        const Date &expiry, const Real h)
+                        const Date &expiry, const Real &maxMaturity, const Real h)
                 : type_(type), mdl_(model), indexBase_(indexBase),
-                  expiry_(expiry), npv_(npv), delta_(delta), gamma_(gamma),
-                  h_(h) {}
+                  expiry_(expiry), maxMaturity_(maxMaturity),
+                  npv_(npv), delta_(delta), gamma_(gamma),
+                  h_(h) { }
 
             Real NPV(boost::shared_ptr<VanillaSwap> swap, Real fixedRate,
                      Real nominal, Real y, int type) const {
@@ -154,7 +155,8 @@ namespace QuantLib {
                 Real nominal = fabs(v[0]);
                 if (v[0] < 0.0)
                     type *= -1;
-                Real maturity = fabs(v[1]);
+                Real maturity = std::min( fabs(v[1]) , maxMaturity_ );
+
                 Real fixedRate = v[2]; // allow for negative rates explicitly
                 // (though it might not be reasonable for calibration depending
                 // on the
@@ -224,6 +226,7 @@ namespace QuantLib {
             const boost::shared_ptr<Gaussian1dModel> &mdl_;
             const boost::shared_ptr<SwapIndex> indexBase_;
             const Date &expiry_;
+            const Real maxMaturity_;
             const Real npv_, delta_, gamma_, h_;
         };
     };
