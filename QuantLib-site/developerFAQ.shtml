@@ -16,7 +16,7 @@
 <div id="container">
 <!--#include virtual="header.inc"-->
 <div id="menu">
-<!--#include virtual="devmenu.inc"-->
+<!--#include virtual="usermenu.inc"-->
 </div>
 <div id="content">
 
