@@ -3,9 +3,10 @@
 <div class="g-plusone" data-size="medium"></div>
 <div class="g-plus" data-action="share" data-annotation="bubble"></div>
 </div>
+<a href="http://quantlib.org">
 <img class="titleimage"
  src="/images/QL-title.jpg" width="185" height="50" border="0"
- alt="QuantLib">
+ alt="QuantLib"></a>
 <br>
 <div class="subtitle">A free/open-source library for quantitative finance</div>
 </div>
