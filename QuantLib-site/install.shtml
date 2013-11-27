@@ -6,6 +6,7 @@
 <meta name="copyright" content=
 "StatPro Italia srl (c) 2009">
 <meta name="description" content="QuantLib Installation">
+<link rel="stylesheet" href="./styles/nosplash.css" type="text/css">
 <title>QuantLib Installation</title>
 </head>
 <body>
@@ -25,6 +26,10 @@ and <a href="/install/macosx.shtml">Mac OS X.</a></p>
 
 <p>Instructions for other platforms are in the works.</p>
 
+</div>
+
+<div id="menuafter">
+<!--#include virtual="usermenu.inc"-->
 </div>
 
 <div class="footer">

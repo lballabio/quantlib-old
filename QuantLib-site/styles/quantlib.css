@@ -46,6 +46,10 @@ div.social {
     line-height: 140%;
 }
 
+#menuafter {
+    display: none;
+}
+
 div.categorygroup {
 }
 
