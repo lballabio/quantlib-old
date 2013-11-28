@@ -7,6 +7,7 @@ this_include_HEADERS = \
     atmadjustedsmilesection.hpp \
     atmsmilesection.hpp \
     basketgeneratingengine.hpp \
+    bdksmilesection.hpp \
     floatfloatswap.hpp \
     floatfloatswaption.hpp \
     creditriskplus.hpp \
@@ -32,6 +33,7 @@ libModels_la_SOURCES = \
     atmadjustedsmilesection.cpp \
     atmsmilesection.cpp \
     basketgeneratingengine.cpp \
+	bdksmilesection.cpp \
     floatfloatswap.cpp \
     floatfloatswaption.cpp \
     creditriskplus.cpp \
