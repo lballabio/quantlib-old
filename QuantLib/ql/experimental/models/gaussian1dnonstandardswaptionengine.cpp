@@ -84,24 +84,21 @@ namespace QuantLib {
                                          arguments_.fixedResetDates.end(), expiry-1 ) - arguments_.fixedResetDates.begin();
 
         Array initial(3);
-        Real nominalSum=0.0, weightedRate=0.0;
+        Real nominalSum=0.0, weightedRate=0.0, ind=0.0;
         for(Size i=fixedIdx;i<arguments_.fixedResetDates.size();i++) {
             nominalSum += arguments_.fixedNominal[i];
+            Real rate = arguments_.fixedRate[i];
+            if(close(rate,0.0)) rate = 0.03; // this value is at least better than zero
             weightedRate += arguments_.fixedNominal[i] * arguments_.fixedRate[i]; 
+            if(arguments_.fixedNominal[i] > 1.0) ind+=1.0;
         }
-        Real nominalAvg = nominalSum / (arguments_.fixedResetDates.size() - fixedIdx);
-        Real weightedMaturity=0.0;
-        for(Size i=fixedIdx;i<arguments_.fixedResetDates.size();i++) {
-            weightedMaturity += ActualActual().yearFraction(arguments_.fixedResetDates[i],
-                                                            arguments_.fixedPayDates[i])*arguments_.fixedNominal[i];
-        }
+        Real nominalAvg = nominalSum / ind;
 
         QL_REQUIRE(nominalSum > 0.0, "sum of nominals on fixed leg must be positive (" << nominalSum << ")");
 
-        weightedMaturity /= nominalAvg;
         weightedRate /= nominalSum;
         initial[0] = nominalAvg;
-        initial[1] = weightedMaturity;
+        initial[1] = model_->termStructure()->timeFromReference(underlyingLastDate());
         initial[2] = weightedRate;
 
         return initial;
