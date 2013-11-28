@@ -6,6 +6,40 @@
 using namespace QuantLib;
 
 
+void bdkSmile() {
+
+    std::ofstream out;
+    out.open("bdk.dat");
+
+    Real forward = 0.03;
+    Real expiryTime = 20.0;
+
+    std::vector<Real> sabrParams;
+    sabrParams.push_back(0.15); // alpha
+    sabrParams.push_back(0.8);    // beta
+    sabrParams.push_back(0.50);   // nu
+    sabrParams.push_back(-0.48);  // rho
+
+    boost::shared_ptr<SabrSmileSection> sabr(
+        new SabrSmileSection(expiryTime, forward, sabrParams));
+
+    boost::shared_ptr<BdkSmileSection> bdk(new BdkSmileSection(sabr, 1.0, 1.0, 0.025, 0.06));
+
+    Real strike = 0.0001;
+    while (strike <= 0.10) {
+        out << strike << " " << sabr->optionPrice(strike) << " "
+            << bdk->optionPrice(strike) << " "
+            << sabr->digitalOptionPrice(strike) << " "
+            << bdk->digitalOptionPrice(strike) << " " << sabr->density(strike)
+            << " " << bdk->density(strike) << " " << sabr->volatility(strike) << " " << 
+            bdk->volatility(strike) << std::endl;
+        strike += 0.0001;
+    }
+
+    out.close();
+
+}
+
 void zabrPaper() {
 
     // compare different SABR formulas
@@ -286,5 +320,7 @@ void interpolation() {
 
 }
 
-
-int main(int, char * []) { splineSmiles();  }
+int main(int, char * []) {
+    bdkSmile();
+    // splineSmiles();
+}
