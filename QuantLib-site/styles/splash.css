@@ -34,7 +34,7 @@ p.categorysummary {
     padding-right: 0.5em;
 }
 
-div.banner {
+div.sponsor {
     float: left;
     width: 31%;
     background-color: #ffffff;
@@ -57,7 +57,7 @@ div.category {
     width: 90%;
 }
 
-div.banner {
+div.sponsor {
     float: none;
     width: 90%;
     margin-bottom: 1em;
