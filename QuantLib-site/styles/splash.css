@@ -43,6 +43,21 @@ div.sponsor {
     margin-left: 1em;
 }
 
+div.banner {
+    display: inline;
+}
+
+h3.bannertext {
+    font-family: 'Merriweather Sans', serif;
+    font-size: 120%;
+    text-align: center;
+    margin-bottom: 1em;
+    background-color: #fafa7a;
+    border: 1px solid gray;
+    padding: 0.5em;
+}
+
+
 #content {
     clear: both;
     width: 95%;
@@ -61,6 +76,10 @@ div.sponsor {
     float: none;
     width: 90%;
     margin-bottom: 1em;
+}
+
+div.banner {
+    display: none;
 }
 
 }

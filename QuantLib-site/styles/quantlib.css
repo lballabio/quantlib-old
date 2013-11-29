@@ -79,6 +79,10 @@ div.sponsor {
     padding: 1em;
 }
 
+div.banner {
+    display: none;
+}
+
 #content {
     margin-right: 18em;
     padding: 1em;
