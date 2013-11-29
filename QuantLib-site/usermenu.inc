@@ -1,98 +1,75 @@
-<h3 class="navbartitle">User Pages</h3>
-<ul class="navbarlist">
-<li class="navlink"><a href="http://quantlib.org">Home</a></li>
-
-<!--li class="navlink"><a href="/reference/overview.html">Project Overview</a></li-->
-
-<li class="navlink"><a href="/download.shtml">Download</a></li>
-
-<li class="navlink"><a href="/install.shtml">Install</a></li>
-
-<li class="navlink"><a href=
-"http://sourceforge.net/tracker/?func=add&amp;group_id=12740&amp;atid=112740">Submit a bug report</a></li>
-
-<li class="navlink"><a href="/license.shtml">License</a></li>
-
-<li class="navlink"><a href="/mailinglists.shtml">Mailing Lists</a></li>
-
-<li class="navlink"><a href="/faq.shtml">FAQ</a></li>
-
-<li class="navlink"><a href="/docs.shtml">Documentation</a></li>
-
-<li class="navlink"><a href=
-"http://sourceforge.net/news/?group_id=12740">News</a></li>
-
-<li class="navlink"><a href="/reference/history.html">History</a></li>
-
-<li class="navlink"><a href=
-"http://sourceforge.net/export/rss2_project.php?group_id=12740">RSS feeds</a></li>
-
-<li class="navlink"><a href="/extensions.shtml">Other languages / platforms</a></li>
-
-<!--li class="navlink"><a href="/reference/examples.html">Examples</a></li-->
-
-<li class="navlink"><a href="/reference/group.html">QuantLib Group</a></li>
-
-</ul>
-
-<hr>
-<div class="center">
-<div class="g-plusone" data-size="medium"></div>
-<div class="g-plus" data-action="share" data-annotation="bubble"></div>
+<div class="categorygroup">
+<div class="category">
+<h3 class="categorytitle">Get QuantLib</h3>
+<p class=categorysummary>Head to our <a
+href="./download.shtml">download</a> page to get the latest official
+release, or check out the latest development version from our <a
+href="./git.shtml">git</a> repository.
+QuantLib is also available in <a href="./extensions.shtml">other
+languages</a>.</p>
 </div>
 
-<hr>
-<div class="center">
+<div class="category">
+<h3 class="categorytitle">Documentation</h3>
+<p class=categorysummary><a href="./docs.shtml">Documentation is
+available</a> in several formats from a number of sources. You can
+also read our <a href="./install.shtml">Installation instructions</a>
+to get QuantLib working on your computer.</p>
+</div>
+
+<div class="category">
+<h3 class="categorytitle">Need Help?</h3>
+<p class=categorysummary>If you need to ask a question, subscribe to
+our <a href="./mailinglists.shtml">mailing list</a> and post it
+there. Before doing that, though, you might want to look at the <a
+href="./faq.shtml">FAQ</a> and check if it was already answered.</p>
+</div>
+</div>
+
+<div class="categorygroup">
+<div class="category">
+<h3 class="categorytitle">Found a bug?</h3>
+<p class=categorysummary>If you have a patch, open a pull request on <a href="https://github.com/lballabio/quantlib/pulls">GitHub</a> or post it to our <a href=
+"http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">patch manager</a>.  Otherwise, report the bug on our <a href=
+"http://sourceforge.net/tracker/?func=add&amp;group_id=12740&amp;atid=112740">issue tracker</a>.</p>
+</div>
+
+<div class="category">
+<h3 class="categorytitle">Want to contribute?</h3>
+<p class=categorysummary>Just fork our repository on <a
+href="https://github.com/lballabio/quantlib">GitHub</a> and start
+coding (instructions are <a
+href="https://help.github.com/articles/fork-a-repo">here</a>).  Please
+have a look at our <a href="./newdeveloper.shtml">developer intro</a>
+and <a href="./style.shtml">guidelines</a>.</p>
+</div>
+
+<div class="category">
+<h3 class="categorytitle">More info</h3>
+<p class=categorysummary>Here is the QuantLib <a
+href="./license.shtml">license</a>, the <a
+href="/reference/group.html">list of contributors</a>, and the <a
+href="/reference/history.html">version history</a>. The project page
+on Sourceforge is available at <a
+href="http://sourceforge.net/projects/quantlib">this link</a>.</p>
+</div>
+</div>
+
+<div class="categorygroup">
+<div class="sponsor">
 <a href="http://opensource.org/docs/definition.html"><img src=
 "/images/osi-certified-90x75.png" width="90" height="75" border="0"
 alt="OSI Certification Mark"></a></div>
 
-<hr>
-<div class="center"><strong>Hosted by</strong><br>
+<div class="sponsor"><strong>Hosted by</strong><br>
 <a href="http://sourceforge.net/projects/quantlib"><img
 src="http://sflogo.sourceforge.net/sflogo.php?group_id=12740&amp;type=13"
 width="120" height="30" border="0" alt="Get QuantLib at
 SourceForge.net. Fast, secure and Free Open Source software downloads">
 </a></div>
 
-<hr>
-<div class="center"><strong>Supported by</strong><br>
+<div class="sponsor"><strong>Supported by</strong><br>
 <a href="http://www.statpro.com"><img src=
 "/images/statpro.jpg" width="98"
 height="33" border="0" alt="StatPro Logo"></a></div>
-
-<hr>
-<div class="center">
-  <p>
-    <a href="http://validator.w3.org/check?uri=referer">
-    <img border="0"
-         src="http://www.w3.org/Icons/valid-html401"
-         alt="Valid HTML 4.01!" height="31" width="88"></a>
-  </p>
-  <p>
-    <a href="http://jigsaw.w3.org/css-validator/check/referer">
-    <img border="0"
-         src="http://jigsaw.w3.org/css-validator/images/vcss"
-         alt="Valid CSS!" height="31" width="88"></a>
-  </p>
 </div>
-
-<hr>
-<form action="http://www.google.com/search" method="get">
-<div class="center">
-<img src="/images/google.png" border="0" alt="Google Logo"><br>
-<input type="text" size="15" maxlength="255" value="" name="q">
-<input type="hidden" value="quantlib.org" name="domains">
-<input type="hidden" value="quantlib.org" name="sitesearch">
-</div>
-</form>
-
-<script type="text/javascript">
-  window.___gcfg = {parsetags: 'onload'};
-
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>

@@ -221,11 +221,11 @@ namespace QuantLib {
                    const EndCriteria& endCriteria,
                    const Constraint& constraint = Constraint(),
                    const std::vector<Real>& weights = std::vector<Real>(),
-                   const std::vector<bool>& parametersFreedoms = std::vector<bool>()) {
+                   const std::vector<bool>& fixParameters = std::vector<bool>()) {
 
             CalibratedModel::calibrate(helper,method,endCriteria,constraint,weights,
-                                       parametersFreedoms.size() == 0 ? FixedFirstVolatility() :
-                                       parametersFreedoms);
+                                       fixParameters.size() == 0 ? FixedFirstVolatility() :
+                                       fixParameters);
 
         }
 

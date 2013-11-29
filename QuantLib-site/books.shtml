@@ -1,6 +1,3 @@
-<!--
- $Id$
--->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
@@ -9,13 +6,14 @@
 <meta name="copyright" content=
 "Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
 <meta name="description" content="Quantitative Finance Books">
+<link rel="stylesheet" href="./styles/nosplash.css" type="text/css">
 <title>Quantitative Finance Books</title>
 </head>
 <body>
 <div id="container">
 <!--#include virtual="header.inc"-->
 <div id="menu">
-<!--#include virtual="devmenu.inc"-->
+<!--#include virtual="usermenu.inc"-->
 </div>
 <div id="content">
 
@@ -289,6 +287,10 @@ Pearson Education; ISBN: 0273654365</li>
 </li>
 </ul>
 
+</div>
+
+<div id="menuafter">
+<!--#include virtual="usermenu.inc"-->
 </div>
 
 <div class="footer">
