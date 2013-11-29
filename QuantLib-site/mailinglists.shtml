@@ -1,6 +1,3 @@
-<!--
- $Id$
--->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
@@ -9,6 +6,7 @@
 <meta name="copyright" content=
 "Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
 <meta name="description" content="QuantLib Mailing Lists">
+<link rel="stylesheet" href="./styles/nosplash.css" type="text/css">
 <title>QuantLib Mailing Lists</title>
 </head>
 <body>
@@ -67,6 +65,10 @@ to <a href=
 "http://lists.sourceforge.net/mailman/listinfo/quantlib-jobs">Subscribe/Unsubscribe/Preferences</a>).</li>
 </ol>
 
+</div>
+
+<div id="menuafter">
+<!--#include virtual="usermenu.inc"-->
 </div>
 
 <div class="footer">

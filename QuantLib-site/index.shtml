@@ -1,6 +1,3 @@
-<!--
- $Id$
--->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
@@ -10,12 +7,14 @@
 "Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
 <meta name="description" content=
 "QuantLib: a free/open-source library for quantitative finance">
+<link rel="stylesheet" href="./styles/splash.css" type="text/css">
 <title>QuantLib: a free/open-source library for quantitative
 finance</title>
 </head>
 <body>
 <div id="container">
 <!--#include virtual="header.inc"-->
+<!--#include virtual="banner.inc"-->
 <div id="menu">
 <!--#include virtual="usermenu.inc"-->
 </div>
@@ -88,42 +87,10 @@ BSD license suitable for use in both free software and proprietary
 applications, imposing no constraints at all on the use of the
 library.</p>
 <p>A few companies have committed significant resources to the
-development of this library, notably <a href=
+development of this library; notably <a href=
 "http://www.statpro.com">StatPro</a>, a leading international
 risk-management provider, where the QuantLib
 project was born.</p>
-<p>Help deciding the development road-map and start contributing to
-the library: the <a href="reference/overview.html">project-overview</a>
-page gives a summary of the work in progress. <a href=
-"docs.shtml">Documentation</a> is also available.</p>
-<p>A few resources have been setup with the help from QuantLib's
-generous host <a href=
-"http://sourceforge.net">SourceForge.net</a>:</p>
-<ul>
-<li>The <a href="http://sourceforge.net/projects/quantlib">QuantLib
-project page</a> is the main gathering point for the
-activities.</li>
-<li>Anyone interested is invited to join one of the <a href=
-"mailinglists.shtml">mailing lists</a>.</li>
-<li>Check the <a href=
-"http://sourceforge.net/news/?group_id=12740">latest news</a> for
-the most recent updates on the project.</li>
-<li>The released files (source code, binaries, documentation, etc.)
-are available at the <a href="download.shtml">download
-page</a>.</li>
-<li>To submit a bug report, please use the <a href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=112740">Bug
-Tracker</a>.</li>
-<li>If you have patches you'd like to submit, the best way is to
-use the <a href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=312740">Patch
-Manager</a>.</li>
-<li>If you have a feature request, please <a href=
-"http://sourceforge.net/tracker/?group_id=12740&amp;atid=362740">let
-us know</a>.</li>
-</ul>
-
-<p>Our code is hosted on <a href="https://github.com/">GitHub</a>.</p>
 
 </div>
 

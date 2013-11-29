@@ -1,60 +1,102 @@
 
 body {
-    font-family: trebuchet ms,luxi sans,sans-serif;
+    font-family: "Open Sans",trebuchet ms,luxi sans,sans-serif;
     text-align: justify;
-    color: #000;
-    background: #fff;
-}
-
-#container {
-    width: 100%;
-    line-height: 140%;
-}
-
-#menu {
-    float: right;
-    width: 14em;
-    margin: 0;
-    margin-bottom: 1em;
-    padding: 1em;
-    background-color: #fea;
-    border: 1px solid gray;
-}
-
-ul#profiles {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: right;
-    font-size: 80%;
-    white-space: nowrap;
-    counter-reset: profile;
-}
-
-ul#profiles li {
-    display: inline;
-    margin: 0 0.2em;
-}
-
-#content {
-    margin-right: 17em;
-    padding: 1em;
-    vertical-align: top;
+    color: #000000;
+    background: #ffffff;
 }
 
 #header {
     margin-left: 1em;
     text-align: left;
+    padding-bottom: 1em;
     border-bottom: 1px solid gray;
     margin-bottom: 1em;
+}
+
+img.titleimage {
+    margin-top: 1em;
+}
+
+div.subtitle {
+    font-family: 'Merriweather Sans', serif;
+    font-size: 120%;
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+
+div.social {
+    float: right;
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+#container {
+    clear: both;
+    width: 100%;
+    line-height: 160%;
+}
+
+#menu {
+    float: right;
+    width: 16em;
+    margin: 0;
+    margin-bottom: 1em;
+    padding-right: 1em;
+    line-height: 140%;
+}
+
+#menuafter {
+    display: none;
+}
+
+div.categorygroup {
+}
+
+div.category {
+    background-color: #ffeeaa;
+    border: 1px solid gray;
+    margin-bottom: 1em;
+}
+
+h3.categorytitle {
+    font-family: 'Merriweather Sans', serif;
+    font-size: 120%;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+p.categorysummary {
+    font-size: 90%;
+    text-align: justify;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+div.sponsor {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 1em;
+}
+
+div.banner {
+    display: none;
+}
+
+#content {
+    margin-right: 18em;
+    padding: 1em;
+    vertical-align: top;
+}
+
+h1 {
+    font-family: 'Merriweather Sans', serif;
+    font-size: 200%;
 }
 
 .footer {
     clear: both;
     margin: 0;
-    padding: .5em;
-    text-align: center;
-    border-top: 1px solid gray;
 }
 
 a:link {
@@ -73,41 +115,9 @@ a:active {
     color: red;
 }
 
-img.titleimage {
-    margin-top: 1em;
-}
-
-h3.subtitle {
-    margin-top: 2px;
-    margin-bottom: 0;
-}
-
-ul.navbarlist {
-    padding-left: 1em;
-    margin-left: 0;
-}
-
-li.navlink {
-    font-weight: normal;
-    font-size: 80%;
-    text-align: left;
-    list-style: none;
-    margin: 0;
-}
-
-.navbartitle {
-    text-align: center;
-}
-
 .hide { display: none }
 
 .addtopspace { margin-top: 2em }
-
-.endmatter {
-    font-family: times-new-roman, sans-serif;
-    font-size: 60%;
-    font-style: italic;
-}
 
 .button { border-style: none }
 
