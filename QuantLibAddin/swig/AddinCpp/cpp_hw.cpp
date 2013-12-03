@@ -1,5 +1,5 @@
 
-#include "sla_hw.hpp"
+#include "cpp_hw.hpp"
 #include "ValueObjects/vo_hw.hpp"
 #include "AddinObjects/obj_hw.hpp"
 #include <boost/shared_ptr.hpp>

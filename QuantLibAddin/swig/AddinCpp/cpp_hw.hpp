@@ -1,6 +1,6 @@
 
-#ifndef sla_hpp
-#define sla_hpp
+#ifndef cpp_hw_hpp
+#define cpp_hw_hpp
 
 #include <string>
 

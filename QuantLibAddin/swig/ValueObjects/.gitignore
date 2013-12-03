@@ -1,3 +1,4 @@
-vo.?pp
+vo_*.?pp
+!vo_hw.?pp
 !Makefile
 Release
