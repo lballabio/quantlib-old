@@ -68,6 +68,12 @@ namespace ObjectHandler {
         OH_FAIL("Attempt to reference uninitialized RepositoryXL object");
     }
 
+    void RepositoryXL::clear() {
+        objectMap_.clear();
+        errorMessageMap_.clear();
+        callingRanges_.clear();
+    }
+
     string RepositoryXL::storeObject(
         const string &objectIDRaw,
         const shared_ptr<Object> &object,

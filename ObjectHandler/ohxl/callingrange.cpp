@@ -53,8 +53,8 @@ namespace ObjectHandler {
 
     CallingRange::~CallingRange() {
         // unname the calling range
-        //if (callerType_ == CallerType::Cell)
-        //    Excel(xlfSetName, 0, 1, TempStrStl(key_));
+        if (callerType_ == CallerType::Cell)
+            Excel(xlfSetName, 0, 1, TempStrStl(key_));
     }
 
     std::string CallingRange::getKeyCount() {
