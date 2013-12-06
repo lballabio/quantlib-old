@@ -31,14 +31,15 @@ QuantLibAddin project, please refer to
 <strong>Release 1.4.0 - MMM YYYY</strong>
 
 - ?? new functions / ???? in total
+- Fixed bug which could cause Excel to crash at shutdown.
+- Fixed bug which could cause interpolation code to crash.
+- VBA Framework - fix bug in which exception is thrown by context sensitive
+  menu when the active worksheet is a chart.
 - Added additional clones of Calendars to correspond to the output from
   QuantLib::Calendar::name(). This allows us in Excel to ask a calendar for its
   name and then recreate the same calendar based on that string.
-- VBA Framework - fix bug in which exception is thrown by context sensitive
-  menu when active worksheet is a chart.
 - Function qlRateHelperSelection() now works for anonymous objects thanks to a
   bug fix in ObjectHandler.
-- Fixed bug which could cause interpolation code to crash
 
 <strong>Release 1.2.0 - July 2012</strong>
 
