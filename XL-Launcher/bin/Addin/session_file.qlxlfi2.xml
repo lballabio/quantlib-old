@@ -7,8 +7,7 @@
   <Frameworks>
     <Framework name="QuantLibXL" displayName="QuantLibXL" fileName="QuantLibXL">
       <Components>
-        <Component path=".\ObjectHandler\xll\ObjectHandler-xll-vc90-mt-1_3_0.xll" />
-        <Component path=".\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_3_0.xll" />
+        <Component path=".\QuantLibXL\xll\QuantLibXL-vc90-mt-s-1_3_0.xll" />
         <Component path=".\QuantLibXL\framework\QuantLibXL.xla" />
       </Components>
       <StartupParameters>
@@ -16,7 +15,8 @@
 
         <!-- for FixedIncome (2) -->
         <StartupParameter name="Root Path" value=".\QuantLibXL\" />
-        <StartupParameter name="Load HKD Rate Curves" value="True" />
+        <StartupParameter name="Load HKD Rate Curves" value="False" />
+        <StartupParameter name="Load GBP Rate Curves" value="True" />
 
         <!-- for FixedIncome (1) -->
         <StartupParameter name="Workbook Path" value=".\QuantLibXL\Workbooks" />
@@ -24,7 +24,7 @@
         <StartupParameter name="Metadata Path" value=".\QuantLibAddin\gensrc\metadata" />
         <StartupParameter name="Set Evaluation Date" value="False" />
         <StartupParameter name="Evaluation Date" value="2011-10-12" />
-        <StartupParameter name="Default Currency" value="HKD" />
+        <StartupParameter name="Default Currency" value="GBP" />
         <StartupParameter name="Initialization Data Source" value="Excel" />
         <StartupParameter name="Open Main Checks" value="False" />
         <StartupParameter name="Update Euribor YTD Time Series (xls)" value="False" />
