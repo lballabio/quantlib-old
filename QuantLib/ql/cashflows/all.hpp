@@ -8,6 +8,7 @@
 #include <ql/cashflows/cashflowvectors.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
 #include <ql/cashflows/cmsreplicationpricer.hpp>
+#include <ql/cashflows/lineartsrpricer.hpp>
 #include <ql/cashflows/conundrumpricer.hpp>
 #include <ql/cashflows/coupon.hpp>
 #include <ql/cashflows/couponpricer.hpp>
@@ -32,5 +33,4 @@
 #include <ql/cashflows/yoyinflationcoupon.hpp>
 #include <ql/cashflows/fixedinflationcoupon.hpp>
 #include <ql/cashflows/zcinflationcapfloor.hpp>
-
 
