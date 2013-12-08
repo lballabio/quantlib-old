@@ -59,7 +59,8 @@ namespace QuantLib {
         CappedFlooredCoupon(
                   const boost::shared_ptr<FloatingRateCoupon>& underlying,
                   Rate cap = Null<Rate>(),
-                  Rate floor = Null<Rate>());
+                  Rate floor = Null<Rate>(),
+                  bool capFloorPayoff = false);
         //! \name Coupon interface
         //@{
         Rate rate() const;
@@ -111,11 +112,12 @@ namespace QuantLib {
                   const Date& refPeriodStart = Date(),
                   const Date& refPeriodEnd = Date(),
                   const DayCounter& dayCounter = DayCounter(),
-                  bool isInArrears = false)
+                  bool isInArrears = false,
+                  bool capFloorPayoff = false)
         : CappedFlooredCoupon(boost::shared_ptr<FloatingRateCoupon>(new
             IborCoupon(paymentDate, nominal, startDate, endDate, fixingDays,
                        index, gearing, spread, refPeriodStart, refPeriodEnd,
-                       dayCounter, isInArrears)), cap, floor) {}
+                       dayCounter, isInArrears)), cap, floor, capFloorPayoff) {}
 
         virtual void accept(AcyclicVisitor& v) {
             Visitor<CappedFlooredIborCoupon>* v1 =
@@ -143,11 +145,12 @@ namespace QuantLib {
                   const Date& refPeriodStart = Date(),
                   const Date& refPeriodEnd = Date(),
                   const DayCounter& dayCounter = DayCounter(),
-                  bool isInArrears = false)
+                  bool isInArrears = false,
+                  bool capFloorPayoff = false)
         : CappedFlooredCoupon(boost::shared_ptr<FloatingRateCoupon>(new
             CmsCoupon(paymentDate, nominal, startDate, endDate, fixingDays,
                       index, gearing, spread, refPeriodStart, refPeriodEnd,
-                      dayCounter, isInArrears)), cap, floor) {}
+                      dayCounter, isInArrears)), cap, floor, capFloorPayoff) {}
 
         virtual void accept(AcyclicVisitor& v) {
             Visitor<CappedFlooredCmsCoupon>* v1 =
