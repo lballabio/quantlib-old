@@ -65,6 +65,7 @@ namespace QuantLib {
             discountCurve_ = swapIndex_->discountingTermStructure();
         else
             discountCurve_ = forwardCurve_;
+
     
         // if no coupon discount curve is given just use the discounting curve from the swap index.
         // for rate calculation this curve cancels out in the computation, so e.g. the discounting
@@ -274,12 +275,11 @@ namespace QuantLib {
             break;
         }
 
-        // FIXME we have to convert the rate bounds to h's rather than use them
-        // directly
         case Settings::RateBound : {
+            Real h1 = h(strike);
             Real h2 = h(optionType == Option::Call ? settings_.upperRateBound_ : settings_.lowerRateBound_);
             for(Size i=0;i<settings_.n_;i++) {
-                hs.push_back(((Real)(i+1)/(settings_.n_-1))*h2);
+                hs.push_back(h1+((Real)(i+1)/(settings_.n_-1))*(h2-h1));
             }
             break;
         }
@@ -292,9 +292,10 @@ namespace QuantLib {
                 std::max(settings_.lowerRateBound_, 
                          strikeFromVegaRatio(settings_.vegaRatio_,optionType,strike));
             if(close(fabs(effectiveBound-strike),0.0)) return 0.0;
+            Real h1 = h(strike);
             Real h2 = h(effectiveBound);
             for(Size i=0;i<settings_.n_;i++) {
-                hs.push_back(((Real)(i+1)/(settings_.n_-1))*h2);
+                hs.push_back(h1+((Real)(i+1)/(settings_.n_-1))*(h2-h1));
             }
             break;
         }
@@ -307,9 +308,10 @@ namespace QuantLib {
                 std::max(settings_.lowerRateBound_,
                          strikeFromPrice(settings_.priceThreshold_,optionType,strike));
             if(close(fabs(effectiveBound-strike),0.0)) return 0.0;
+            Real h1 = h(strike);
             Real h2 = h(effectiveBound);
             for(Size i=0;i<settings_.n_;i++) {
-                hs.push_back(((Real)(i+1)/(settings_.n_-1))*h2);
+                hs.push_back(h1+((Real)(i+1)/(settings_.n_-1))*(h2-h1));
             }
             break;
         }
@@ -332,7 +334,7 @@ namespace QuantLib {
             strikes.push_back(lastRate);
             Real ann = annuity(hs[i]);
             Real npv=0.0;
-            for(Size j=0;j<i;j++) {
+            for(Size j=0;j<i;j++) { // this can be done _much_ more efficiently ...
                 npv += weights[j] * phi * (rate - strikes[j]) * ann;
             }
             Real dt = discountCurve_->dayCounter().yearFraction(fixingDate_,paymentDate_);

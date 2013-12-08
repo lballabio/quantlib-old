@@ -35,7 +35,8 @@ namespace QuantLib {
     
     //! CMS-coupon pricer
     /*! Prices a cms coupon via static replication
-      The replication portfolio is discrete
+      The replication portfolio is discrete. This implementation is only for test purposes,
+      it is highly inefficient.
     */
 
     class CmsReplicationPricer: public CmsCouponPricer {
