@@ -16,7 +16,8 @@
         <!-- for FixedIncome (2) -->
         <StartupParameter name="Root Path" value=".\QuantLibXL\" />
         <StartupParameter name="Load HKD Rate Curves" value="False" />
-        <StartupParameter name="Load GBP Rate Curves" value="True" />
+        <StartupParameter name="Load GBP Rate Curves" value="False" />
+        <StartupParameter name="Load EUR Rate Curves" value="True" />
 
         <!-- for FixedIncome (1) -->
         <StartupParameter name="Workbook Path" value=".\QuantLibXL\Workbooks" />
