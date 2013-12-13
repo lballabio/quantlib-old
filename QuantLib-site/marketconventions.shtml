@@ -1,11 +1,9 @@
-<!--
- $Id$
--->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
 <!--#include virtual="qlmeta.inc"-->
 <meta name="description" content="Financial Market Conventions">
+<link rel="stylesheet" href="./styles/nosplash.css" type="text/css">
 <title>QuantLib - Financial Market Conventions</title>
 
 <style type="text/css">
@@ -137,6 +135,10 @@ convention is of special interest.</li>
 <br></li>
 <!-- list entry --></ul>
 
+</div>
+
+<div id="menuafter">
+<!--#include virtual="usermenu.inc"-->
 </div>
 
 <div class="footer">

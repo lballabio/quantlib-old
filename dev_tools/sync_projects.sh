@@ -8,7 +8,8 @@
 
 find ql -name '*.[hc]pp' -or -name '*.[hc]' \
 | grep -v 'ql/config\.hpp' | sort > ql.ref.files
-find test-suite -name '*.[hc]pp' | grep -v 'quantlibbenchmark' \
+find test-suite -name '*.[hc]pp' \
+| grep -v 'quantlibbenchmark' | grep -v '/main\.cpp' \
 | sort > test-suite.ref.files
 
 # extract file names from VC7 projects and clean up so that they
