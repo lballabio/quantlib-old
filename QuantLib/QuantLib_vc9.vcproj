@@ -2857,6 +2857,10 @@
 					RelativePath=".\ql\math\integrals\trapezoidintegral.hpp"
 					>
 				</File>
+				<File
+					RelativePath=".\ql\math\integrals\twodimensionalintegral.hpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="matrixutilities"
@@ -6822,6 +6826,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\ql\time\daycounters\actual365nl.hpp"
+					>
+				</File>
+				<File
 					RelativePath=".\ql\time\daycounters\actualactual.cpp"
 					>
 				</File>
@@ -7131,6 +7139,46 @@
 				</File>
 				<File
 					RelativePath=".\ql\experimental\callablebonds\treecallablebondengine.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="catbonds"
+				>
+				<File
+					RelativePath=".\ql\experimental\catbonds\all.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\catbond.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\catbond.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\catrisk.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\catrisk.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\montecarlocatbondengine.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\montecarlocatbondengine.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\riskynotional.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\riskynotional.hpp"
 					>
 				</File>
 			</Filter>
@@ -8286,11 +8334,47 @@
 					>
 				</File>
 				<File
+					RelativePath=".\ql\experimental\barrieroption\analyticdoublebarrierengine.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\barrieroption\analyticdoublebarrierengine.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\barrieroption\doublebarrieroption.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\barrieroption\doublebarrieroption.hpp"
+					>
+				</File>
+				<File
 					RelativePath=".\ql\experimental\barrieroption\perturbativebarrieroptionengine.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\ql\experimental\barrieroption\perturbativebarrieroptionengine.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\barrieroption\vannavolgabarrierengine.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\barrieroption\vannavolgabarrierengine.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\barrieroption\vannavolgadoublebarrierengine.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\barrieroption\vannavolgadoublebarrierengine.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\barrieroption\vannavolgainterpolation.hpp"
 					>
 				</File>
 			</Filter>
@@ -8447,6 +8531,10 @@
 				</File>
 				<File
 					RelativePath=".\ql\experimental\math\frankcopularng.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\math\simulatedannealing.hpp"
 					>
 				</File>
 				<File

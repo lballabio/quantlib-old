@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2003 RiskMap srl
+ Copyright (C) 2012, 2013 Grzegorz Andruszkiewicz
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,26 +17,23 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef quantlib_test_integrals_hpp
-#define quantlib_test_integrals_hpp
+#ifndef quantlib_test_catbond_hpp
+#define quantlib_test_catbond_hpp
 
 #include <boost/test/unit_test.hpp>
 
-/* remember to document new and/or updated tests in the Doxygen
-   comment block of the corresponding class */
-
-class IntegralTest {
+class CatBondTest {
   public:
-    static void testSegment();
-    static void testTrapezoid();
-    static void testMidPointTrapezoid();
-    static void testSimpson();
-    static void testGaussKronrodAdaptive();
-    static void testGaussKronrodNonAdaptive();
-    static void testGaussLobatto();
-    static void testTwoDimensionalIntegration();
+    static void testEventSetForWholeYears();
+    static void testEventSetForIrregularPeriods();
+    static void testEventSetForNoEvents();
+    static void testBetaRisk();
+    static void testRiskFreeAgainstFloatingRateBond();
+    static void testCatBondInDoomScenario();
+    static void testCatBondWithDoomOnceInTenYears();
+    static void testCatBondWithDoomOnceInTenYearsProportional();
+    static void testCatBondWithGeneratedEventsProportional();
     static boost::unit_test_framework::test_suite* suite();
 };
-
 
 #endif
