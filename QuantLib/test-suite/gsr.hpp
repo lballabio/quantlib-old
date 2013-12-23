@@ -53,12 +53,11 @@ using namespace QuantLib;
 
 class GsrTest {
   public:
-	static void testGsrProcess();
-	static void testGsrModel();
-	static void testNonstandardSwaption();
-	static void testDummy();
-    static boost::unit_test_framework::test_suite* suite();
+    static void testGsrProcess();
+    static void testGsrModel();
+    static void testNonstandardSwaption();
+    static void testDummy();
+    static boost::unit_test_framework::test_suite *suite();
 };
-
 
 #endif

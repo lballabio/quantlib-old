@@ -47,8 +47,6 @@ namespace QuantLib {
         // inspectors
         Type type() const { return type_; }
         Date date(Size index) const;
-        Real rebate(Size index) const;
-        Date rebatePaymentDate(Size index) const;
         //! Returns all exercise dates
         const std::vector<Date>& dates() const { return dates_; }
         //! Returns all rebates
@@ -68,19 +66,6 @@ namespace QuantLib {
                    "date with index " << index << " does not exist (0..."
                                       << dates_.size() << ")");
         return dates_[index];
-    }
-
-    inline Real Exercise::rebate(Size index) const {
-        QL_REQUIRE(index < rebates_.size(),
-                   "rebate with index " << index << " does not exist (0..."
-                                        << rebates_.size() << ")");
-        return rebates_[index];
-    }
-
-    inline Date Exercise::rebatePaymentDate(Size index) const {
-        return rebatePaymentCalendar_.advance(dates_[index],
-                                              rebateSettlementDays_, Days,
-                                              rebatePaymentConvention_);
     }
 
     //! Early-exercise base class
@@ -144,6 +129,5 @@ namespace QuantLib {
                              Following);
     };
 }
-
 
 #endif

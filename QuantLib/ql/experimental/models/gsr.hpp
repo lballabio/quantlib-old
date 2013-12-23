@@ -42,7 +42,6 @@ namespace QuantLib {
     class Gsr : public Gaussian1dModel, public CalibratedModel {
 
       public:
-
         // constant mean reversion
         Gsr(const Handle<YieldTermStructure> &termStructure,
             const std::vector<Date> &volstepdates,
@@ -57,8 +56,8 @@ namespace QuantLib {
         const Real numeraireTime() const;
         const void numeraireTime(const Real T);
 
-        const Array& reversion() const { return reversion_.params(); }
-        const Array& volatility() const { return sigma_.params(); }
+        const Array &reversion() const { return reversion_.params(); }
+        const Array &volatility() const { return sigma_.params(); }
 
         // calibration constraints
 
@@ -92,14 +91,14 @@ namespace QuantLib {
             const std::vector<Real> &weights = std::vector<Real>()) {
 
             for (Size i = 0; i < helpers.size(); i++) {
-                std::vector<boost::shared_ptr<CalibrationHelper> > h(1,helpers[i]);
+                std::vector<boost::shared_ptr<CalibrationHelper> > h(
+                    1, helpers[i]);
                 calibrate(h, method, endCriteria, constraint, weights,
                           MoveVolatility(i));
             }
         }
 
       protected:
-
         const Real numeraireImpl(const Time t, const Real y,
                                  const Handle<YieldTermStructure> &yts) const;
 
@@ -116,7 +115,6 @@ namespace QuantLib {
         void update() { LazyObject::update(); }
 
       private:
-
         void initialize(Real);
 
         Parameter &reversion_, &sigma_;

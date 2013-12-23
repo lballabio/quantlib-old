@@ -8,8 +8,6 @@ this_include_HEADERS = \
     atmsmilesection.hpp \
     basketgeneratingengine.hpp \
     bdksmilesection.hpp \
-    floatfloatswap.hpp \
-    floatfloatswaption.hpp \
     creditriskplus.hpp \
     gaussian1dmodel.hpp \
     gaussian1dcapfloorengine.hpp \

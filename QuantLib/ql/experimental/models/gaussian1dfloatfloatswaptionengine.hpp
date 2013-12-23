@@ -18,16 +18,18 @@
 */
 
 /*! \file onefactorcmsswaptionengine.hpp
-    \brief cms swaption engine for one factor interest rate models
+    \brief float float swaption engine for one factor interest rate models
 */
 
 #ifndef quantlib_pricers_gaussian1d_floatfloatswaption_hpp
 #define quantlib_pricers_gaussian1d_floatfloatswaption_hpp
 
 #include <ql/experimental/models/floatfloatswaption.hpp>
+#include <ql/experimental/models/gaussian1dmodel.hpp>
+#include <ql/experimental/exercise/rebatedexercise.hpp>
+
 #include <ql/pricingengines/genericmodelengine.hpp>
 
-#include <ql/experimental/models/gaussian1dmodel.hpp>
 
 namespace QuantLib {
 
@@ -59,6 +61,7 @@ namespace QuantLib {
                                     FloatFloatSwaption::arguments,
                                     FloatFloatSwaption::results> {
       public:
+
         Gaussian1dFloatFloatSwaptionEngine(
             const boost::shared_ptr<Gaussian1dModel> &model,
             const int integrationPoints = 64, const Real stddevs = 7.0,
@@ -88,7 +91,6 @@ namespace QuantLib {
         void calculate() const;
 
       protected:
-
         const Real underlyingNpv(const Date &expiry, const Real y) const;
         const VanillaSwap::Type underlyingType() const;
         const Date underlyingLastDate() const;
@@ -106,7 +108,10 @@ namespace QuantLib {
         const std::pair<Real, Real>
         npvs(const Date &expiry, const Real y,
              const bool includeExerciseOnxpiry) const;
+
+        mutable boost::shared_ptr<RebatedExercise> rebatedExercise_;
     };
+
 }
 
 #endif

@@ -23,9 +23,10 @@
 
 namespace QuantLib {
 
-    FloatFloatSwaption::FloatFloatSwaption(const boost::shared_ptr<FloatFloatSwap>& swap,
-                       const boost::shared_ptr<Exercise>& exercise)
-    : Option(boost::shared_ptr<Payoff>(), exercise), swap_(swap) {
+    FloatFloatSwaption::FloatFloatSwaption(
+        const boost::shared_ptr<FloatFloatSwap> &swap,
+        const boost::shared_ptr<Exercise> &exercise)
+        : Option(boost::shared_ptr<Payoff>(), exercise), swap_(swap) {
         registerWith(swap_);
     }
 
@@ -33,12 +34,13 @@ namespace QuantLib {
         return detail::simple_event(exercise_->dates().back()).hasOccurred();
     }
 
-    void FloatFloatSwaption::setupArguments(PricingEngine::arguments* args) const {
+    void
+    FloatFloatSwaption::setupArguments(PricingEngine::arguments *args) const {
 
         swap_->setupArguments(args);
 
-        FloatFloatSwaption::arguments* arguments =
-            dynamic_cast<FloatFloatSwaption::arguments*>(args);
+        FloatFloatSwaption::arguments *arguments =
+            dynamic_cast<FloatFloatSwaption::arguments *>(args);
 
         QL_REQUIRE(arguments != 0, "wrong argument type");
 
@@ -52,20 +54,18 @@ namespace QuantLib {
         QL_REQUIRE(exercise, "exercise not set");
     }
 
+    Disposable<std::vector<boost::shared_ptr<CalibrationHelper> > >
+    FloatFloatSwaption::calibrationBasket(
+        boost::shared_ptr<SwapIndex> standardSwapBase,
+        boost::shared_ptr<SwaptionVolatilityStructure> swaptionVolatility,
+        const BasketGeneratingEngine::CalibrationBasketType basketType) const {
 
-	Disposable<std::vector<boost::shared_ptr<CalibrationHelper>>> 
-    FloatFloatSwaption::calibrationBasket(boost::shared_ptr<SwapIndex> standardSwapBase,
-                                           boost::shared_ptr<SwaptionVolatilityStructure> swaptionVolatility,
-                                           const BasketGeneratingEngine::CalibrationBasketType basketType) const {
-
-		calculate();
-		boost::shared_ptr<BasketGeneratingEngine> engine = 
+        calculate();
+        boost::shared_ptr<BasketGeneratingEngine> engine =
             boost::dynamic_pointer_cast<BasketGeneratingEngine>(engine_);
-		QL_REQUIRE(engine,"engine is not a basket generating engine");
-		return engine->calibrationBasket(exercise_,standardSwapBase,swaptionVolatility,basketType);
-
-	}
-
-
+        QL_REQUIRE(engine, "engine is not a basket generating engine");
+        return engine->calibrationBasket(exercise_, standardSwapBase,
+                                         swaptionVolatility, basketType);
+    }
 
 }

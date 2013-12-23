@@ -35,25 +35,23 @@ namespace QuantLib {
     /*! \ingroup swaptionengines
     */
     class Gaussian1dJamshidianSwaptionEngine
-        : public GenericModelEngine<Gaussian1dModel,
-                                    Swaption::arguments,
-                                    Swaption::results > {
+        : public GenericModelEngine<Gaussian1dModel, Swaption::arguments,
+                                    Swaption::results> {
       public:
         /*! \note the term structure is only needed when the short-rate
                   model cannot provide one itself.
         */
-        Gaussian1dJamshidianSwaptionEngine(const boost::shared_ptr<Gaussian1dModel>& model)
-        : GenericModelEngine<Gaussian1dModel,
-                             Swaption::arguments,
-							 Swaption::results>(model) {}
+        Gaussian1dJamshidianSwaptionEngine(
+            const boost::shared_ptr<Gaussian1dModel> &model)
+            : GenericModelEngine<Gaussian1dModel, Swaption::arguments,
+                                 Swaption::results>(model) {}
         void calculate() const;
+
       private:
         class rStarFinder;
         friend class rStarFinder;
     };
-
 }
-
 
 #endif
 

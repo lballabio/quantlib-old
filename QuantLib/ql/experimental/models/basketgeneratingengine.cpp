@@ -18,6 +18,7 @@
 */
 
 #include <ql/experimental/models/basketgeneratingengine.hpp>
+#include <ql/experimental/exercise/rebatedexercise.hpp>
 #include <ql/math/optimization/levenbergmarquardt.hpp>
 #include <ql/math/optimization/simplex.hpp>
 #include <ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp>
@@ -48,11 +49,18 @@ namespace QuantLib {
                              Settings::instance().evaluationDate()) -
             exercise->dates().begin();
 
+        boost::shared_ptr<RebatedExercise> rebEx =
+            boost::dynamic_pointer_cast<RebatedExercise>(exercise);
+
         for (Size i = minIdxAlive; i < exercise->dates().size(); i++) {
 
             Date expiry = exercise->date(i);
-            Real rebate = exercise->rebate(i);
-            Date rebateDate = exercise->rebatePaymentDate(i);
+            Real rebate = 0.0;
+            Date rebateDate = expiry;
+            if (rebEx != NULL) {
+                rebate = rebEx->rebate(i);
+                rebateDate = rebEx->rebatePaymentDate(i);
+            }
 
             boost::shared_ptr<SwaptionHelper> helper;
 
@@ -96,11 +104,11 @@ namespace QuantLib {
                 const Real h = 0.0001; // finite difference step in $y$, make
                                        // this a parameter of the engine ?
                 Real zSpreadDsc =
-                    oas_.empty()
-                        ? 1.0
-                        : exp(-oas_->value() *
-                              onefactormodel_->termStructure()->dayCounter()
-                                  .yearFraction(expiry, rebateDate));
+                    oas_.empty() ? 1.0
+                                 : exp(-oas_->value() *
+                                       onefactormodel_->termStructure()
+                                           ->dayCounter()
+                                           .yearFraction(expiry, rebateDate));
 
                 Real npvm = underlyingNpv(expiry, -h) +
                             rebate *
@@ -123,30 +131,33 @@ namespace QuantLib {
                 QL_REQUIRE(npv * npv + delta * delta + gamma * gamma > 0.0,
                            "(npv,delta,gamma) must have a positive norm");
 
-#ifdef DEBUGOUTPUT
-                std::cout << "EXOTIC npv " << npv << " delta " << delta
-                          << " gamma " << gamma << std::endl;
-                Real xtmp = -5.0;
-                std::cout
-                    << "********************************************EXERCISE "
-                    << expiry << " ******************" << std::endl;
-                std::cout << "globalExoticNpv;";
-                while (xtmp <= 5.0 + QL_EPSILON) {
-                    std::cout << underlyingNpv(expiry,xtmp) << ";";
-                    xtmp += 0.1;
-                }
-                std::cout << std::endl;
-#endif
-                // play safe, we restrict the maximum maturity so to easily fit in the date class restriction
-                Real maxMaturity = swaptionVolatility->dayCounter().yearFraction(expiry,Date::maxDate()-365);
+                // debug output
+                // std::cout << "EXOTIC npv " << npv << " delta " << delta
+                //           << " gamma " << gamma << std::endl;
+                // Real xtmp = -5.0;
+                // std::cout
+                //     << "********************************************EXERCISE "
+                //     << expiry << " ******************" << std::endl;
+                // std::cout << "globalExoticNpv;";
+                // while (xtmp <= 5.0 + QL_EPSILON) {
+                //     std::cout << underlyingNpv(expiry, xtmp) << ";";
+                //     xtmp += 0.1;
+                // }
+                // std::cout << std::endl;
+                // end debug output
+
+                // play safe, we restrict the maximum maturity so to easily fit
+                // in the date class restriction
+                Real maxMaturity =
+                    swaptionVolatility->dayCounter().yearFraction(
+                        expiry, Date::maxDate() - 365);
 
                 boost::shared_ptr<MatchHelper> matchHelper_;
                 matchHelper_ = boost::shared_ptr<MatchHelper>(new MatchHelper(
                     underlyingType(), npv, delta, gamma, onefactormodel_,
-                    standardSwapBase,  expiry, maxMaturity, h));
+                    standardSwapBase, expiry, maxMaturity, h));
 
                 // Optimize
-
                 Array initial = initialGuess(expiry);
                 QL_REQUIRE(initial.size() == 3,
                            "initial guess must have size 3 (but is "
@@ -155,7 +166,8 @@ namespace QuantLib {
                 EndCriteria ec(1000, 200, 1E-8, 1E-8, 1E-8); // make these
                                                              // criteria and the
                                                              // optimizer itself
-                // parameters of the method ?
+                                                             // parameters of
+                                                             // the method ?
                 Constraint constraint = NoConstraint();
                 Problem p(*matchHelper_, constraint, initial);
                 LevenbergMarquardt lm;

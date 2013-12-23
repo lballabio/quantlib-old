@@ -104,26 +104,26 @@ namespace QuantLib {
                    "nominal2 size (" << nominal2_.size()
                                      << ") does not match schedule2 size ("
                                      << nominal2_.size() << ")");
-        QL_REQUIRE(
-            gearing1_.size() == 0 || gearing1_.size() == nominal1_.size(),
-            "nominal1 size (" << nominal1_.size()
-                              << ") does not match gearing1 size ("
-                              << gearing1_.size() << ")");
-        QL_REQUIRE(
-            gearing2_.size() == 0 || gearing2_.size() == nominal2_.size(),
-            "nominal2 size (" << nominal2_.size()
-                              << ") does not match gearing2 size ("
-                              << gearing2_.size() << ")");
-        QL_REQUIRE(
-            cappedRate1_.size() == 0 || cappedRate1_.size() == nominal1_.size(),
-            "nominal1 size (" << nominal1_.size()
-                              << ") does not match cappedRate1 size ("
-                              << cappedRate1_.size() << ")");
-        QL_REQUIRE(
-            cappedRate2_.size() == 0 || cappedRate2_.size() == nominal2_.size(),
-            "nominal2 size (" << nominal2_.size()
-                              << ") does not match cappedRate2 size ("
-                              << cappedRate2_.size() << ")");
+        QL_REQUIRE(gearing1_.size() == 0 ||
+                       gearing1_.size() == nominal1_.size(),
+                   "nominal1 size (" << nominal1_.size()
+                                     << ") does not match gearing1 size ("
+                                     << gearing1_.size() << ")");
+        QL_REQUIRE(gearing2_.size() == 0 ||
+                       gearing2_.size() == nominal2_.size(),
+                   "nominal2 size (" << nominal2_.size()
+                                     << ") does not match gearing2 size ("
+                                     << gearing2_.size() << ")");
+        QL_REQUIRE(cappedRate1_.size() == 0 ||
+                       cappedRate1_.size() == nominal1_.size(),
+                   "nominal1 size (" << nominal1_.size()
+                                     << ") does not match cappedRate1 size ("
+                                     << cappedRate1_.size() << ")");
+        QL_REQUIRE(cappedRate2_.size() == 0 ||
+                       cappedRate2_.size() == nominal2_.size(),
+                   "nominal2 size (" << nominal2_.size()
+                                     << ") does not match cappedRate2 size ("
+                                     << cappedRate2_.size() << ")");
         QL_REQUIRE(flooredRate1_.size() == 0 ||
                        flooredRate1_.size() == nominal1_.size(),
                    "nominal1 size (" << nominal1_.size()
@@ -213,10 +213,8 @@ namespace QuantLib {
         }
 
         // if the gearing is zero then the ibor / cms leg will be set up with
-        // fixed coupons
-        // which makes trouble here in this context. We therefore use a dirty
-        // trick
-        // and enforce the gearing to be non zero.
+        // fixed coupons which makes trouble here in this context. We therefore
+        // use a dirty trick and enforce the gearing to be non zero.
         for (Size i = 0; i < gearing1_.size(); i++)
             if (close(gearing1_[i], 0.0))
                 gearing1_[i] = QL_EPSILON;
@@ -238,9 +236,11 @@ namespace QuantLib {
 
         if (ibor1) {
             IborLeg leg(schedule1_, ibor1);
-            leg = leg.withNotionals(nominal1_).withPaymentDayCounter(dayCount1_)
-                .withPaymentAdjustment(paymentConvention1_)
-                .withSpreads(spread1_).withGearings(gearing1_);
+            leg = leg.withNotionals(nominal1_)
+                      .withPaymentDayCounter(dayCount1_)
+                      .withPaymentAdjustment(paymentConvention1_)
+                      .withSpreads(spread1_)
+                      .withGearings(gearing1_);
             if (cappedRate1_[0] != Null<Real>())
                 leg = leg.withCaps(cappedRate1_);
             if (flooredRate1_[0] != Null<Real>())
@@ -250,9 +250,11 @@ namespace QuantLib {
 
         if (ibor2) {
             IborLeg leg(schedule2_, ibor2);
-            leg = leg.withNotionals(nominal2_).withPaymentDayCounter(dayCount2_)
-                .withPaymentAdjustment(paymentConvention2_)
-                .withSpreads(spread2_).withGearings(gearing2_);
+            leg = leg.withNotionals(nominal2_)
+                      .withPaymentDayCounter(dayCount2_)
+                      .withPaymentAdjustment(paymentConvention2_)
+                      .withSpreads(spread2_)
+                      .withGearings(gearing2_);
             if (cappedRate2_[0] != Null<Real>())
                 leg = leg.withCaps(cappedRate2_);
             if (flooredRate2_[0] != Null<Real>())
@@ -262,9 +264,11 @@ namespace QuantLib {
 
         if (cms1) {
             CmsLeg leg(schedule1_, cms1);
-            leg = leg.withNotionals(nominal1_).withPaymentDayCounter(dayCount1_)
-                .withPaymentAdjustment(paymentConvention1_)
-                .withSpreads(spread1_).withGearings(gearing1_);
+            leg = leg.withNotionals(nominal1_)
+                      .withPaymentDayCounter(dayCount1_)
+                      .withPaymentAdjustment(paymentConvention1_)
+                      .withSpreads(spread1_)
+                      .withGearings(gearing1_);
             if (cappedRate1_[0] != Null<Real>())
                 leg = leg.withCaps(cappedRate1_);
             if (flooredRate1_[0] != Null<Real>())
@@ -274,9 +278,11 @@ namespace QuantLib {
 
         if (cms2) {
             CmsLeg leg(schedule2_, cms2);
-            leg = leg.withNotionals(nominal2_).withPaymentDayCounter(dayCount2_)
-                .withPaymentAdjustment(paymentConvention2_)
-                .withSpreads(spread2_).withGearings(gearing2_);
+            leg = leg.withNotionals(nominal2_)
+                      .withPaymentDayCounter(dayCount2_)
+                      .withPaymentAdjustment(paymentConvention2_)
+                      .withSpreads(spread2_)
+                      .withGearings(gearing2_);
             if (cappedRate2_[0] != Null<Real>())
                 leg = leg.withCaps(cappedRate2_);
             if (flooredRate2_[0] != Null<Real>())

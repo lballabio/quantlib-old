@@ -42,7 +42,7 @@ namespace QuantLib {
                                                     << "@" << i + 1 << ")");
         for (int i = 0; i < (int)reversions.size(); i++)
             // if (close(reversions[i], 0.0))
-            if(std::fabs(reversions[i]) < 1E-4)
+            if (std::fabs(reversions[i]) < 1E-4)
                 revZero_[i] = true;
         flushCache();
     }
@@ -87,9 +87,9 @@ namespace QuantLib {
 
     Real GsrProcess::expectationp1(Time w, Real xw, Time dt) const {
         Real t = w + dt;
-        std::tuple<Real, Real> key;
-        key = std::make_tuple(w, t);
-        std::map<std::tuple<Real, Real>, Real>::const_iterator k =
+        std::pair<Real, Real> key;
+        key = std::make_pair(w, t);
+        std::map<std::pair<Real, Real>, Real>::const_iterator k =
             cache1_.find(key);
         if (k != cache1_.end())
             return xw * (k->second);
@@ -106,9 +106,9 @@ namespace QuantLib {
 
         Real t = w + dt;
 
-        std::tuple<Real, Real> key;
-        key = std::make_tuple(w, t);
-        std::map<std::tuple<Real, Real>, Real>::const_iterator k =
+        std::pair<Real, Real> key;
+        key = std::make_pair(w, t);
+        std::map<std::pair<Real, Real>, Real>::const_iterator k =
             cache2_.find(key);
         if (k != cache2_.end())
             return k->second;
@@ -252,9 +252,9 @@ namespace QuantLib {
                          << ") must not be greater than forward measure time ("
                          << getForwardMeasureTime() << ")");
 
-        std::tuple<Real, Real> key;
-        key = std::make_tuple(w, t);
-        std::map<std::tuple<Real, Real>, Real>::const_iterator k =
+        std::pair<Real, Real> key;
+        key = std::make_pair(w, t);
+        std::map<std::pair<Real, Real>, Real>::const_iterator k =
             cache3_.find(key);
         if (k != cache3_.end())
             return k->second;
@@ -323,9 +323,9 @@ namespace QuantLib {
                        << t << "," << w << ") in Range [0,"
                        << getForwardMeasureTime() << "].");
 
-        std::tuple<Real, Real> key;
-        key = std::make_tuple(w, t);
-        std::map<std::tuple<Real, Real>, Real>::const_iterator k =
+        std::pair<Real, Real> key;
+        key = std::make_pair(w, t);
+        std::map<std::pair<Real, Real>, Real>::const_iterator k =
             cache5_.find(key);
         if (k != cache5_.end())
             return k->second;

@@ -42,26 +42,27 @@ namespace QuantLib {
       public:
         class arguments;
         class engine;
-        FloatFloatSwaption(const boost::shared_ptr<FloatFloatSwap>& swap, const boost::shared_ptr<Exercise>& exercise);
+        FloatFloatSwaption(const boost::shared_ptr<FloatFloatSwap> &swap,
+                           const boost::shared_ptr<Exercise> &exercise);
         //! \name Instrument interface
         //@{
         bool isExpired() const;
-        void setupArguments(PricingEngine::arguments*) const;
+        void setupArguments(PricingEngine::arguments *) const;
         //@}
         //! \name Inspectors
         //@{
         VanillaSwap::Type type() const { return swap_->type(); }
-        const boost::shared_ptr<FloatFloatSwap>& underlyingSwap() const {
+        const boost::shared_ptr<FloatFloatSwap> &underlyingSwap() const {
             return swap_;
         }
         //@}
-		Disposable<std::vector<boost::shared_ptr<CalibrationHelper> > > 
-        calibrationBasket(boost::shared_ptr<SwapIndex> standardSwapBase, 
-                          boost::shared_ptr<SwaptionVolatilityStructure> swaptionVolatility,
-                          const BasketGeneratingEngine::CalibrationBasketType basketType = 
-                          BasketGeneratingEngine::MaturityStrikeByDeltaGamma) const;
+        Disposable<std::vector<boost::shared_ptr<CalibrationHelper> > >
+        calibrationBasket(
+            boost::shared_ptr<SwapIndex> standardSwapBase,
+            boost::shared_ptr<SwaptionVolatilityStructure> swaptionVolatility,
+            const BasketGeneratingEngine::CalibrationBasketType basketType =
+                BasketGeneratingEngine::MaturityStrikeByDeltaGamma) const;
 
-        
       private:
         // arguments
         boost::shared_ptr<FloatFloatSwap> swap_;
@@ -69,7 +70,7 @@ namespace QuantLib {
 
     //! %Arguments for cms swaption calculation
     class FloatFloatSwaption::arguments : public FloatFloatSwap::arguments,
-                                public Option::arguments {
+                                          public Option::arguments {
       public:
         arguments() {}
         boost::shared_ptr<FloatFloatSwap> swap;
@@ -78,8 +79,8 @@ namespace QuantLib {
 
     //! base class for cms swaption engines
     class FloatFloatSwaption::engine
-        : public GenericEngine<FloatFloatSwaption::arguments, FloatFloatSwaption::results> {};
-
+        : public GenericEngine<FloatFloatSwaption::arguments,
+                               FloatFloatSwaption::results> {};
 }
 
 #endif

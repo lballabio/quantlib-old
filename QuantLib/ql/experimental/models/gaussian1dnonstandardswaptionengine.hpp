@@ -29,78 +29,74 @@
 #include <ql/pricingengines/genericmodelengine.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
 
-//#define DEBUGOUTPUT
-
 namespace QuantLib {
 
     //! One factor model non standard swaption engine
     /*! \ingroup swaptionengines
 
-		All fixed coupons with start date greater or equal to the respective option expiry are considered 
-        to be part of the exercise into right.
+       All fixed coupons with start date greater or equal to the
+       respective option expiry are considered to be part of the
+       exercise into right.
 
-		All float coupons with start date greater or equal to the respective option expiry are consideres 
-        to be part of the exercise into right.
+       All float coupons with start date greater or equal to the
+       respective option expiry are consideres to be part of the
+       exercise into right.
 
-        For redemption flows an associated start date is considered in the criterion, which is the start
-        date of the regular coupon period with same payment date as the redemption flow.
+       For redemption flows an associated start date is considered
+       in the criterion, which is the start date of the regular
+       xcoupon period with same payment date as the redemption flow.
 
-		\warning Cash settled swaptions are not supported
+       \warning Cash settled swaptions are not supported
 
     */
 
     class Gaussian1dNonstandardSwaptionEngine
-        : public BasketGeneratingEngine, 
+        : public BasketGeneratingEngine,
           public GenericModelEngine<Gaussian1dModel,
                                     NonstandardSwaption::arguments,
-                                    NonstandardSwaption::results > {
+                                    NonstandardSwaption::results> {
       public:
-
         Gaussian1dNonstandardSwaptionEngine(
-                         const boost::shared_ptr<Gaussian1dModel>& model,
-						 const int integrationPoints=64,
-						 const Real stddevs=7.0,
-						 const bool extrapolatePayoff=true,
-						 const bool flatPayoffExtrapolation=false,
-                         const Handle<Quote>& oas=Handle<Quote>(), // continuously compounded w.r.t. yts daycounter
-						 const Handle<YieldTermStructure>& discountCurve=Handle<YieldTermStructure>())
-            :  BasketGeneratingEngine(model, oas, discountCurve),
-               GenericModelEngine<Gaussian1dModel,NonstandardSwaption::arguments,
-                                     NonstandardSwaption::results>(model),
-            integrationPoints_(integrationPoints) , stddevs_(stddevs), extrapolatePayoff_(extrapolatePayoff), 
-            flatPayoffExtrapolation_(flatPayoffExtrapolation),
-            discountCurve_(discountCurve), oas_(oas) {
-		
+            const boost::shared_ptr<Gaussian1dModel> &model,
+            const int integrationPoints = 64, const Real stddevs = 7.0,
+            const bool extrapolatePayoff = true,
+            const bool flatPayoffExtrapolation = false,
+            const Handle<Quote> &oas = Handle<Quote>(), // continuously
+                                                        // compounded w.r.t. yts
+                                                        // daycounter
+            const Handle<YieldTermStructure> &discountCurve =
+                Handle<YieldTermStructure>())
+            : BasketGeneratingEngine(model, oas, discountCurve),
+              GenericModelEngine<Gaussian1dModel,
+                                 NonstandardSwaption::arguments,
+                                 NonstandardSwaption::results>(model),
+              integrationPoints_(integrationPoints), stddevs_(stddevs),
+              extrapolatePayoff_(extrapolatePayoff),
+              flatPayoffExtrapolation_(flatPayoffExtrapolation),
+              discountCurve_(discountCurve), oas_(oas) {
 
-            if(!oas_.empty()) 
+            if (!oas_.empty())
                 registerWith(oas_);
 
-            if(!discountCurve_.empty())
-                  registerWith(discountCurve_);
-                  		
-		}
+            if (!discountCurve_.empty())
+                registerWith(discountCurve_);
+        }
 
         void calculate() const;
 
-    protected:
-
-        const Real underlyingNpv(const Date& expiry, const Real y) const;
+      protected:
+        const Real underlyingNpv(const Date &expiry, const Real y) const;
         const VanillaSwap::Type underlyingType() const;
         const Date underlyingLastDate() const;
-        const Disposable<Array> initialGuess(const Date& expiry) const;
-      
-	private:
+        const Disposable<Array> initialGuess(const Date &expiry) const;
 
-		const int integrationPoints_;
-		const Real stddevs_;
-		const bool extrapolatePayoff_,flatPayoffExtrapolation_;
-		const Handle<YieldTermStructure> discountCurve_;
+      private:
+        const int integrationPoints_;
+        const Real stddevs_;
+        const bool extrapolatePayoff_, flatPayoffExtrapolation_;
+        const Handle<YieldTermStructure> discountCurve_;
         const Handle<Quote> oas_;
-
     };
-
 }
 
-
 #endif
-

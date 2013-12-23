@@ -19,11 +19,10 @@
 
 /*! \file floatfloatswap.hpp
     \brief swap exchanging capped floored Libor or CMS coupons with quite
- general specification
- If no payment convention is given, the respective leg schedule convention is
- used
- The interest rate indices should be linked to valid forwarding and in case of
- swap indices discounting curves
+           general specification. If no payment convention is given, the
+           respective leg schedule convention is used. The interest rate
+           indices should be linked to valid forwarding and in case of
+           swap indices discounting curves
 */
 
 #ifndef quantlib_floatfloat_swap_hpp
@@ -85,6 +84,7 @@ namespace QuantLib {
                 boost::none,
             boost::optional<BusinessDayConvention> paymentConvention2 =
                 boost::none);
+
         //! \name Inspectors
         //@{
         VanillaSwap::Type type() const;
@@ -172,8 +172,9 @@ namespace QuantLib {
         void reset();
     };
 
-    class FloatFloatSwap::engine : public GenericEngine<
-        FloatFloatSwap::arguments, FloatFloatSwap::results> {};
+    class FloatFloatSwap::engine
+        : public GenericEngine<FloatFloatSwap::arguments,
+                               FloatFloatSwap::results> {};
 
     // inline definitions
 

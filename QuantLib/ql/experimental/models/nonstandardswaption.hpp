@@ -33,62 +33,61 @@
 #include <ql/models/calibrationhelper.hpp>
 #include <ql/utilities/disposable.hpp>
 
-
 namespace QuantLib {
 
     //! nonstandard swaption class
     /*! \ingroup instruments
     */
 
-
     class NonstandardSwaption : public Option {
       public:
-
         class arguments;
         class engine;
-		NonstandardSwaption(const Swaption& fromSwaption);
-        NonstandardSwaption(const boost::shared_ptr<NonstandardSwap>& swap, 
-                            const boost::shared_ptr<Exercise>& exercise,Settlement::Type delivery = Settlement::Physical);
+        NonstandardSwaption(const Swaption &fromSwaption);
+        NonstandardSwaption(const boost::shared_ptr<NonstandardSwap> &swap,
+                            const boost::shared_ptr<Exercise> &exercise,
+                            Settlement::Type delivery = Settlement::Physical);
 
         //! \name Instrument interface
         //@{
         bool isExpired() const;
-        void setupArguments(PricingEngine::arguments*) const;
+        void setupArguments(PricingEngine::arguments *) const;
         //@}
         //! \name Inspectors
         //@{
         VanillaSwap::Type type() const { return swap_->type(); }
 
-        const boost::shared_ptr<NonstandardSwap>& underlyingSwap() const {
+        const boost::shared_ptr<NonstandardSwap> &underlyingSwap() const {
             return swap_;
         }
         //@}
-		Disposable<std::vector<boost::shared_ptr<CalibrationHelper> > > 
-        calibrationBasket(boost::shared_ptr<SwapIndex> standardSwapBase, 
-                          boost::shared_ptr<SwaptionVolatilityStructure> swaptionVolatility,
-                          const BasketGeneratingEngine::CalibrationBasketType basketType = 
-                          BasketGeneratingEngine::MaturityStrikeByDeltaGamma) const;
+        Disposable<std::vector<boost::shared_ptr<CalibrationHelper> > >
+        calibrationBasket(
+            boost::shared_ptr<SwapIndex> standardSwapBase,
+            boost::shared_ptr<SwaptionVolatilityStructure> swaptionVolatility,
+            const BasketGeneratingEngine::CalibrationBasketType basketType =
+                BasketGeneratingEngine::MaturityStrikeByDeltaGamma) const;
 
       private:
         // arguments
         boost::shared_ptr<NonstandardSwap> swap_;
-		Settlement::Type settlementType_;
+        Settlement::Type settlementType_;
     };
 
     //! %Arguments for nonstandard swaption calculation
     class NonstandardSwaption::arguments : public NonstandardSwap::arguments,
-                                public Option::arguments {
+                                           public Option::arguments {
       public:
         arguments() {}
         boost::shared_ptr<NonstandardSwap> swap;
-		Settlement::Type settlementType;
+        Settlement::Type settlementType;
         void validate() const;
     };
 
     //! base class for nonstandard swaption engines
     class NonstandardSwaption::engine
-        : public GenericEngine<NonstandardSwaption::arguments, NonstandardSwaption::results> {};
-
+        : public GenericEngine<NonstandardSwaption::arguments,
+                               NonstandardSwaption::results> {};
 }
 
 #endif
