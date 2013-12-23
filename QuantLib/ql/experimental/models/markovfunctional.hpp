@@ -225,8 +225,8 @@ namespace QuantLib {
             Period tenor_;
             std::vector<Date> paymentDates_;
             std::vector<Real> yearFractions_;
-            Real atm_; 
-            Real annuity_; 
+            Real atm_;
+            Real annuity_;
             boost::shared_ptr<SmileSection> smileSection_;
             boost::shared_ptr<SmileSection> rawSmileSection_;
             Real minRateDigital_;
@@ -309,10 +309,6 @@ namespace QuantLib {
         }
 
       protected:
-        
-        const Real numeraireImpl(const Time t, const Real y, const Handle<YieldTermStructure>& yts) const;
-
-        const Real zerobondImpl(const Time T, const Time t, const Real y, const Handle<YieldTermStructure>& yts) const;
 
         const Real numeraireImpl(const Time t, const Real y,
                                  const Handle<YieldTermStructure> &yts) const;
