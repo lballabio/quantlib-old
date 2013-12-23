@@ -57,6 +57,7 @@ namespace QuantLib {
     class BasketGeneratingEngine {
 
       public:
+
         typedef enum CalibrationBasketType {
             Naive,
             MaturityStrikeByDeltaGamma
@@ -71,6 +72,7 @@ namespace QuantLib {
                 MaturityStrikeByDeltaGamma) const;
 
       protected:
+
         BasketGeneratingEngine(const boost::shared_ptr<Gaussian1dModel> &model,
                                const Handle<Quote> &oas,
                                const Handle<YieldTermStructure> &discountCurve)
@@ -91,6 +93,7 @@ namespace QuantLib {
                                                     // maturity, rate)
 
       private:
+
         const boost::shared_ptr<Gaussian1dModel> &onefactormodel_;
         const Handle<Quote> oas_;
         const Handle<YieldTermStructure> &discountCurve_;
@@ -98,7 +101,6 @@ namespace QuantLib {
         class MatchHelper;
         friend class MatchHelper;
         class MatchHelper : public CostFunction {
-
           public:
             MatchHelper(const VanillaSwap::Type type, const Real npv,
                         const Real delta, const Real gamma,
@@ -156,8 +158,7 @@ namespace QuantLib {
 
                 Real fixedRate = v[2]; // allow for negative rates explicitly
                 // (though it might not be reasonable for calibration depending
-                // on the model to calibrate and the market instrument
-                // quotation)
+                // on the model to calibrate and the market instrument quotation)
                 Size years = (Size)std::floor(maturity);
                 maturity -= (Real)years;
                 maturity *= 12.0;
@@ -202,11 +203,9 @@ namespace QuantLib {
                 // Real xtmp = -5.0;
                 // std::cout << "globalStandardNpv;";
                 // while (xtmp <= 5.0 + QL_EPSILON) {
-                //     std::cout << alpha *NPV(swapLower, fixedRate, nominal,
-                // xtmp,
+                //     std::cout << alpha *NPV(swapLower, fixedRate, nominal, xtmp,
                 //                             type) +
-                //                      (1.0 - alpha) * NPV(swapUpper,
-                // fixedRate,
+                //                      (1.0 - alpha) * NPV(swapUpper, fixedRate,
                 //                                          nominal, xtmp, type)
                 //               << ";";
                 //     xtmp += 0.1;
