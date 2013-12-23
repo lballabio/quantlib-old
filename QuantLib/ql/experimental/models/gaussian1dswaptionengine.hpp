@@ -32,47 +32,45 @@ namespace QuantLib {
 
     //! One factor model swaption engine
     /*! \ingroup swaptionengines
-        All fixed coupons with start date greater or equal to the respective option expiry are considered to be 
+
+        All fixed coupons with start date greater or equal to the respective
+        option expiry are considered to be
         part of the exercise into right.
+
         \warning Cash settled swaptions are not supported
     */
 
     class Gaussian1dSwaptionEngine
-        : public GenericModelEngine<Gaussian1dModel,
-                                    Swaption::arguments,
-                                    Swaption::results > {
+        : public GenericModelEngine<Gaussian1dModel, Swaption::arguments,
+                                    Swaption::results> {
       public:
         Gaussian1dSwaptionEngine(
-                         const boost::shared_ptr<Gaussian1dModel>& model,
-                         const int integrationPoints=64,
-                         const Real stddevs=7.0,
-                         const bool extrapolatePayoff=true,
-                         const bool flatPayoffExtrapolation=false,
-                         const Handle<YieldTermStructure>& discountCurve = Handle<YieldTermStructure>())
-        : GenericModelEngine<Gaussian1dModel,
-                             Swaption::arguments,
-                             Swaption::results>(model),
-            integrationPoints_(integrationPoints) , stddevs_(stddevs), 
-            extrapolatePayoff_(extrapolatePayoff), flatPayoffExtrapolation_(flatPayoffExtrapolation),
-            discountCurve_(discountCurve) { 
+            const boost::shared_ptr<Gaussian1dModel> &model,
+            const int integrationPoints = 64, const Real stddevs = 7.0,
+            const bool extrapolatePayoff = true,
+            const bool flatPayoffExtrapolation = false,
+            const Handle<YieldTermStructure> &discountCurve =
+                Handle<YieldTermStructure>())
+            : GenericModelEngine<Gaussian1dModel, Swaption::arguments,
+                                 Swaption::results>(model),
+              integrationPoints_(integrationPoints), stddevs_(stddevs),
+              extrapolatePayoff_(extrapolatePayoff),
+              flatPayoffExtrapolation_(flatPayoffExtrapolation),
+              discountCurve_(discountCurve) {
 
-            if(!discountCurve_.empty())
+            if (!discountCurve_.empty())
                 registerWith(discountCurve_);
-
         }
 
         void calculate() const;
-      
-    private:
+
+      private:
         const int integrationPoints_;
         const Real stddevs_;
-        const bool extrapolatePayoff_,flatPayoffExtrapolation_;
+        const bool extrapolatePayoff_, flatPayoffExtrapolation_;
         const Handle<YieldTermStructure> discountCurve_;
-
     };
-
 }
-
 
 #endif
 

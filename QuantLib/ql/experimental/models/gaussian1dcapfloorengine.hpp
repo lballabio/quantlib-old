@@ -30,40 +30,36 @@
 
 namespace QuantLib {
 
-    //! Markov functional cap/floor engine
+    //! Gaussian1d cap/floor engine
     /*! \ingroup capfloorengines
     */
 
     class Gaussian1dCapFloorEngine
-        : public GenericModelEngine<Gaussian1dModel,
-                                    CapFloor::arguments,
-                                    CapFloor::results > {
+        : public GenericModelEngine<Gaussian1dModel, CapFloor::arguments,
+                                    CapFloor::results> {
       public:
         Gaussian1dCapFloorEngine(
-                         const boost::shared_ptr<Gaussian1dModel>& model,
-                         const int integrationPoints=64,
-                         const Real stddevs=7.0,
-                         const bool extrapolatePayoff=true,
-                         const bool flatPayoffExtrapolation=false,
-                         const Handle<YieldTermStructure>& discountCurve=Handle<YieldTermStructure>())
-        : GenericModelEngine<Gaussian1dModel,
-                             CapFloor::arguments,
-                             CapFloor::results>(model),
-            integrationPoints_(integrationPoints), stddevs_(stddevs), 
-            extrapolatePayoff_(extrapolatePayoff), flatPayoffExtrapolation_(flatPayoffExtrapolation),
-            discountCurve_(discountCurve) { }
+            const boost::shared_ptr<Gaussian1dModel> &model,
+            const int integrationPoints = 64, const Real stddevs = 7.0,
+            const bool extrapolatePayoff = true,
+            const bool flatPayoffExtrapolation = false,
+            const Handle<YieldTermStructure> &discountCurve =
+                Handle<YieldTermStructure>())
+            : GenericModelEngine<Gaussian1dModel, CapFloor::arguments,
+                                 CapFloor::results>(model),
+              integrationPoints_(integrationPoints), stddevs_(stddevs),
+              extrapolatePayoff_(extrapolatePayoff),
+              flatPayoffExtrapolation_(flatPayoffExtrapolation),
+              discountCurve_(discountCurve) {}
         void calculate() const;
-      
-    private:
+
+      private:
         const int integrationPoints_;
         const Real stddevs_;
-        const bool extrapolatePayoff_,flatPayoffExtrapolation_;
-        const Handle<YieldTermStructure>  discountCurve_;
-
+        const bool extrapolatePayoff_, flatPayoffExtrapolation_;
+        const Handle<YieldTermStructure> discountCurve_;
     };
-
 }
-
 
 #endif
 
