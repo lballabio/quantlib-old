@@ -40,7 +40,7 @@
 namespace QuantLib {
 
     /*! One factor Markov Functional model class. Some documentation is
-       available here
+        available here
         http://ssrn.com/abstract_id=2183721
         http://quantlib.org/slides/qlws13/caspers.pdf
     */

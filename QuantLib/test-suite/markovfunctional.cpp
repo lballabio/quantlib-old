@@ -52,8 +52,6 @@
 #include <ql/math/optimization/conjugategradient.hpp>
 #include <ql/experimental/models/gaussian1dfloatfloatswaptionengine.hpp>
 
-#include <ql/currencies/europe.hpp>
-
 using namespace QuantLib;
 using namespace boost::unit_test_framework;
 
@@ -861,6 +859,7 @@ void MarkovFunctionalTest::testKahaleSmileSection() {
         dig10 = dig1;
         k += 0.0001;
     }
+<<<<<<< HEAD
 }
 
 // Calibration Basket 4: Long Term CMS10y basket
@@ -882,6 +881,8 @@ Disposable<std::vector<Period> > tenorsCalBasket4() {
 
 		return res;
 
+=======
+>>>>>>> revampmarkov
 }
 
 void MarkovFunctionalTest::testCalibrationOneInstrumentSet() {
@@ -1469,10 +1470,17 @@ void MarkovFunctionalTest::testCalibrationTwoInstrumentSets() {
     LevenbergMarquardt om;
     // ConjugateGradient om;
     EndCriteria ec(1000, 500, 1e-2, 1e-2, 1e-2);
+<<<<<<< HEAD
 
     // Calibration Basket 1 / flat yts, vts / Secondary calibration set consists
     // of coterminal swaptions
 
+=======
+
+    // Calibration Basket 1 / flat yts, vts / Secondary calibration set consists
+    // of coterminal swaptions
+
+>>>>>>> revampmarkov
     boost::shared_ptr<IborIndex> iborIndex1(new Euribor(6 * Months, flatYts_));
 
     std::vector<boost::shared_ptr<CalibrationHelper> > calibrationHelper1;

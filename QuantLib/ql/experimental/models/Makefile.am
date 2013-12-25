@@ -9,6 +9,8 @@ this_include_HEADERS = \
     basketgeneratingengine.hpp \
     bdksmilesection.hpp \
     creditriskplus.hpp \
+    floatfloatswap.hpp \
+    floatfloatswaption.hpp \
     gaussian1dmodel.hpp \
     gaussian1dcapfloorengine.hpp \
     gaussian1dfloatfloatswaptionengine.hpp \
@@ -26,6 +28,7 @@ this_include_HEADERS = \
     smilesectionutils.hpp \
     splinedensitysmilesection.hpp \
     svismilesection.hpp
+    smilesectionutils.hpp
 
 libModels_la_SOURCES = \
     atmadjustedsmilesection.cpp \
@@ -52,6 +55,7 @@ libModels_la_SOURCES = \
     smilesectionutils.cpp \
     splinedensitysmilesection.cpp \
     svismilesection.cpp
+    smilesectionutils.cpp
 
 noinst_LTLIBRARIES = libModels.la
 
