@@ -27,10 +27,6 @@
 #define quantlib_exercise_type_h
 
 #include <ql/time/date.hpp>
-#include <ql/time/calendar.hpp>
-#include <ql/time/calendars/nullcalendar.hpp>
-#include <ql/time/businessdayconvention.hpp>
-#include <ql/errors.hpp>
 #include <vector>
 
 namespace QuantLib {
@@ -46,7 +42,8 @@ namespace QuantLib {
         virtual ~Exercise() {}
         // inspectors
         Type type() const { return type_; }
-        Date date(Size index) const;
+        Date date(Size index) const { return dates_[index]; }
+        Date dateAt(Size index) const { return dates_.at(index); }
         //! Returns all exercise dates
         const std::vector<Date>& dates() const { return dates_; }
         Date lastDate() const { return dates_.back(); }
@@ -54,14 +51,6 @@ namespace QuantLib {
         std::vector<Date> dates_;
         Type type_;
     };
-
-    inline Date Exercise::date(Size index) const {
-        QL_REQUIRE(index < dates_.size(),
-                   "date with index " << index << " does not exist (0..."
-                                      << dates_.size() << ")");
-        return dates_[index];
-    }
-
 
     //! Early-exercise base class
     /*! The payoff can be at exercise (the default) or at expiry */
@@ -110,5 +99,6 @@ namespace QuantLib {
     };
 
 }
+
 
 #endif
