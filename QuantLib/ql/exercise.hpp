@@ -27,10 +27,6 @@
 #define quantlib_exercise_type_h
 
 #include <ql/time/date.hpp>
-#include <ql/time/calendar.hpp>
-#include <ql/time/calendars/nullcalendar.hpp>
-#include <ql/time/businessdayconvention.hpp>
-#include <ql/errors.hpp>
 #include <vector>
 
 namespace QuantLib {
@@ -46,27 +42,15 @@ namespace QuantLib {
         virtual ~Exercise() {}
         // inspectors
         Type type() const { return type_; }
-        Date date(Size index) const;
+        Date date(Size index) const { return dates_[index]; }
+        Date dateAt(Size index) const { return dates_.at(index); }
         //! Returns all exercise dates
         const std::vector<Date>& dates() const { return dates_; }
-        //! Returns all rebates
-        const std::vector<Real>& rebates() const { return rebates_; }
         Date lastDate() const { return dates_.back(); }
       protected:
         std::vector<Date> dates_;
-        std::vector<Real> rebates_;
-        Natural rebateSettlementDays_;
-        Calendar rebatePaymentCalendar_;
-        BusinessDayConvention rebatePaymentConvention_;
         Type type_;
     };
-
-    inline Date Exercise::date(Size index) const {
-        QL_REQUIRE(index < dates_.size(),
-                   "date with index " << index << " does not exist (0..."
-                                      << dates_.size() << ")");
-        return dates_[index];
-    }
 
     //! Early-exercise base class
     /*! The payoff can be at exercise (the default) or at expiry */
@@ -102,16 +86,8 @@ namespace QuantLib {
     */
     class BermudanExercise : public EarlyExercise {
       public:
-        BermudanExercise(const std::vector<Date> &dates,
-                         bool payoffAtExpiry = false,
-                         const std::vector<Real> &rebates = std::vector<Real>(),
-                         // in case of exercise the holder receives the rebate
-                         // (if positive) or pays it (if negative) on the rebate
-                         // settlement date
-                         const Natural rebateSettlementDays = 0,
-                         const Calendar rebatePaymentCalendar = NullCalendar(),
-                         const BusinessDayConvention rebatePaymentConvention =
-                             Following);
+        BermudanExercise(const std::vector<Date>& dates,
+                         bool payoffAtExpiry = false);
     };
 
     //! European exercise
@@ -119,15 +95,10 @@ namespace QuantLib {
     */
     class EuropeanExercise : public Exercise {
       public:
-        EuropeanExercise(const Date &date, const Real rebate = 0.0,
-                         // in case of exercise the holder receives the rebate
-                         // (if positive) or pays it (if negative) on the rebate
-                         // settlement date
-                         const Natural rebateSettlementDays = 0,
-                         const Calendar rebatePaymentCalendar = NullCalendar(),
-                         const BusinessDayConvention rebatePaymentConvention =
-                             Following);
+        EuropeanExercise(const Date& date);
     };
+
 }
+
 
 #endif
