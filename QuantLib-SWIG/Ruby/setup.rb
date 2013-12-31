@@ -18,6 +18,7 @@
 
 require 'rbconfig'
 require 'mkmf'
+require 'fileutils'
 
 def usage
     puts <<EOU
@@ -56,7 +57,7 @@ end
 
 
 # Current QuantLib version
-Version = "1.4"
+Version = "1.3"
 
 cfg = RbConfig::MAKEFILE_CONFIG
 
@@ -153,14 +154,14 @@ Install = Command.new {
         archDir    = RbConfig::CONFIG["sitearchdir"]
         libDir     = RbConfig::CONFIG["sitelibdir"]
     end
-    [archDir,libDir].each { |path| File.makedirs path }
+    [archDir,libDir].each { |path| FileUtils.makedirs path }
     if cfg['host_os'][0..5] == 'darwin'
       binary = 'QuantLibc.bundle'
     else
       binary = 'QuantLibc.so'
     end
-    File.install "./"+binary, archDir+"/"+binary, 0555, true 
-    File.install "./QuantLib.rb", libDir+"/QuantLib.rb", 0555, true
+    FileUtils.install "./"+binary, archDir+"/"+binary, :mode => 0555, :verbose => true 
+    FileUtils.install "./QuantLib.rb", libDir+"/QuantLib.rb", :mode => 0555, :verbose => true
 }
 
 availableCommands = {
