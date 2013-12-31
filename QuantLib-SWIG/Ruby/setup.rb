@@ -18,7 +18,7 @@
 
 require 'rbconfig'
 require 'mkmf'
-require 'ftools'
+require 'fileutils'
 
 def usage
     puts <<EOU
@@ -59,7 +59,7 @@ end
 # Current QuantLib version
 Version = "1.4"
 
-cfg = Config::MAKEFILE_CONFIG
+cfg = RbConfig::MAKEFILE_CONFIG
 
 # commands
 class Command
@@ -79,7 +79,7 @@ Wrap = Command.new {
 }
 
 Build = Command.new {
-    cfg = Config::MAKEFILE_CONFIG
+    cfg = RbConfig::MAKEFILE_CONFIG
     if cfg['host_os'] == 'mswin32'
       QL_DIR = ENV['QL_DIR']
       if QL_DIR
@@ -140,28 +140,28 @@ Install = Command.new {
     Build.execute
     if defined? Prefix
         # strip old prefix and add the new one
-        oldPrefix = Config::CONFIG["prefix"]
+        oldPrefix = RbConfig::CONFIG["prefix"]
         if defined? Debian
-          archDir = Config::CONFIG["archdir"]
-          libDir = Config::CONFIG["rubylibdir"]
+          archDir = RbConfig::CONFIG["archdir"]
+          libDir = RbConfig::CONFIG["rubylibdir"]
         else
-          archDir = Config::CONFIG["sitearchdir"]
-          libDir = Config::CONFIG["sitelibdir"]
+          archDir = RbConfig::CONFIG["sitearchdir"]
+          libDir = RbConfig::CONFIG["sitelibdir"]
         end
         archDir    = Prefix + archDir.gsub(/^#{oldPrefix}/,"")
         libDir     = Prefix + libDir.gsub(/^#{oldPrefix}/,"")
     else
-        archDir    = Config::CONFIG["sitearchdir"]
-        libDir     = Config::CONFIG["sitelibdir"]
+        archDir    = RbConfig::CONFIG["sitearchdir"]
+        libDir     = RbConfig::CONFIG["sitelibdir"]
     end
-    [archDir,libDir].each { |path| File.makedirs path }
+    [archDir,libDir].each { |path| FileUtils.makedirs path }
     if cfg['host_os'][0..5] == 'darwin'
       binary = 'QuantLibc.bundle'
     else
       binary = 'QuantLibc.so'
     end
-    File.install "./"+binary, archDir+"/"+binary, 0555, true 
-    File.install "./QuantLib.rb", libDir+"/QuantLib.rb", 0555, true
+    FileUtils.install "./"+binary, archDir+"/"+binary, :mode => 0555, :verbose => true 
+    FileUtils.install "./QuantLib.rb", libDir+"/QuantLib.rb", :mode => 0555, :verbose => true
 }
 
 availableCommands = {
