@@ -44,7 +44,7 @@ void example01() {
 
     std::vector<Date> exerciseDates;
     std::vector<Period> exerciseTenors;
-	for(Size i=1;i<10;i++) {
+	for(Size i=1;i<10;i++) { // < 10
         exerciseDates.push_back(TARGET().advance(fixedSchedule[i],-5*Days));
         exerciseTenors.push_back( (10-i)*Years );
     }
@@ -59,7 +59,7 @@ void example01() {
     std::vector<Real> vols(1,0.01);
     std::vector<Real> reversions(1,0.01);
 
-    boost::shared_ptr<Gsr> gsr(new Gsr(yts2,stepDates,vols,reversions,60));
+    boost::shared_ptr<Gsr> gsr(new Gsr(yts2,stepDates,vols,reversions,50));
 
     // hull white model (1% mean reversion, 1% vol)
     
@@ -71,21 +71,23 @@ void example01() {
 
     // pricing engines
 
-    //boost::math::ntl::RR::SetPrecision(512);
+    //boost::math::ntl::RR::SetPrecision(128);
     
-    boost::shared_ptr<PricingEngine> gsrEngine(new Gaussian1dSwaptionEngine(gsr,64,7.0,true,false));
+    boost::shared_ptr<PricingEngine> gsrEngine(new Gaussian1dSwaptionEngine(gsr,32,5.0,false,false,
+                                                                            Handle<YieldTermStructure>(),
+                                                                            true));
     // boost::shared_ptr<PricingEngine> mfEngine(new Gaussian1dSwaptionEngine(mf,64,7.0,true,false));
     // boost::shared_ptr<TreeSwaptionEngine> treeEngine(new TreeSwaptionEngine(hullwhite,512,yts));
     boost::shared_ptr<FdHullWhiteSwaptionEngine> fdEngine(new FdHullWhiteSwaptionEngine(hullwhite));
 
-    swaption->setPricingEngine(gsrEngine);
-    Real gsrNpv = swaption->NPV();
     // swaption->setPricingEngine(treeEngine);
     // Real hullwhiteNpv = swaption->NPV();
     swaption->setPricingEngine(fdEngine);
     Real fdNpv = swaption->NPV();
     // swaption->setPricingEngine(mfEngine);
     // Real mfNpv = swaption->NPV();
+    swaption->setPricingEngine(gsrEngine);
+    Real gsrNpv = swaption->NPV();
 
     
     std::cout.precision(12);
@@ -94,6 +96,12 @@ void example01() {
     // std::cout << "HW tree " << hullwhiteNpv << std::endl;
     std::cout << "FD      " << fdNpv << std::endl;
     // std::cout << "MF      " << mfNpv << " numeraire time is " << mf->numeraireTime() << std::endl;
+
+    std::vector<Real> prob = swaption->result<std::vector<Real> >("probabilities");
+    std::cout << "PROBS (GSR):" << std::endl;
+    for(Size i=0;i<prob.size();i++) {
+        std::cout << "#" << (i+1) << " : " << prob[i] << std::endl;
+    }
 
 
 }
