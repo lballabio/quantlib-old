@@ -44,39 +44,16 @@ namespace QuantLib {
     }
 
     BermudanExercise::BermudanExercise(const std::vector<Date>& dates,
-                                       bool payoffAtExpiry,
-									   const std::vector<Real>& rebates,
-									   const Natural rebateSettlementDays,
-									   const Calendar rebatePaymentCalendar,
-									   const BusinessDayConvention rebatePaymentConvention)
+                                       bool payoffAtExpiry)
     : EarlyExercise(Bermudan, payoffAtExpiry) {
         QL_REQUIRE(!dates.empty(), "no exercise date given");
         dates_ = dates;
         std::sort(dates_.begin(), dates_.end());
-
-        if (rebates.empty())
-            rebates_ = std::vector<Real>(dates_.size(), 0.0);
-        else {
-            QL_REQUIRE(
-                rebates.size() == dates_.size(),
-                "rebate size (" << rebates.size()
-                                << ") must be equal to exercise dates size ("
-                                << dates_.size() << ")");
-            rebates_ = rebates;
-        }
-        rebateSettlementDays_ = rebateSettlementDays;
-        rebatePaymentCalendar_ = rebatePaymentCalendar;
-        rebatePaymentConvention_ = rebatePaymentConvention;
     }
 
-    EuropeanExercise::EuropeanExercise(const Date& date, const Real rebate,
-		const Natural rebateSettlementDays, const Calendar rebatePaymentCalendar,
-        const BusinessDayConvention rebatePaymentConvention)
+    EuropeanExercise::EuropeanExercise(const Date& date)
     : Exercise(European) {
-        dates_ = std::vector<Date>(1, date);
-        rebates_ = std::vector<Real>(1, rebate);
-        rebateSettlementDays_ = rebateSettlementDays;
-        rebatePaymentCalendar_ = rebatePaymentCalendar;
-        rebatePaymentConvention_ = rebatePaymentConvention;
+        dates_ = std::vector<Date>(1,date);
     }
+
 }
