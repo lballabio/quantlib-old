@@ -27,8 +27,7 @@ this_include_HEADERS = \
     sbsmilesection.hpp \
     smilesectionutils.hpp \
     splinedensitysmilesection.hpp \
-    svismilesection.hpp \
-    smilesectionutils.hpp
+    svismilesection.hpp
 
 libModels_la_SOURCES = \
     atmadjustedsmilesection.cpp \
@@ -54,8 +53,7 @@ libModels_la_SOURCES = \
     sbsmilesection.cpp \
     smilesectionutils.cpp \
     splinedensitysmilesection.cpp \
-    svismilesection.cpp \
-    smilesectionutils.cpp
+    svismilesection.cpp
 
 noinst_LTLIBRARIES = libModels.la
 
