@@ -50,7 +50,6 @@
 #include <ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp>
 #include <ql/models/shortrate/calibrationhelpers/caphelper.hpp>
 #include <ql/math/optimization/conjugategradient.hpp>
-#include <ql/experimental/models/gaussian1dfloatfloatswaptionengine.hpp>
 
 using namespace QuantLib;
 using namespace boost::unit_test_framework;
@@ -859,30 +858,6 @@ void MarkovFunctionalTest::testKahaleSmileSection() {
         dig10 = dig1;
         k += 0.0001;
     }
-<<<<<<< HEAD
-}
-
-// Calibration Basket 4: Long Term CMS10y basket
-Disposable<std::vector<Date> > expiriesCalBasket4() {
-
-		std::vector<Date> res;
-		Date referenceDate_ = Settings::instance().evaluationDate();
-
-		for(int i=1;i<=50;i++)
-			res.push_back(NullCalendar().advance(referenceDate_,i*Years));
-
-		return res;
-
-}
-
-Disposable<std::vector<Period> > tenorsCalBasket4() {
-
-		std::vector<Period> res(50,2*Years);
-
-		return res;
-
-=======
->>>>>>> revampmarkov
 }
 
 void MarkovFunctionalTest::testCalibrationOneInstrumentSet() {
@@ -1470,17 +1445,10 @@ void MarkovFunctionalTest::testCalibrationTwoInstrumentSets() {
     LevenbergMarquardt om;
     // ConjugateGradient om;
     EndCriteria ec(1000, 500, 1e-2, 1e-2, 1e-2);
-<<<<<<< HEAD
 
     // Calibration Basket 1 / flat yts, vts / Secondary calibration set consists
     // of coterminal swaptions
 
-=======
-
-    // Calibration Basket 1 / flat yts, vts / Secondary calibration set consists
-    // of coterminal swaptions
-
->>>>>>> revampmarkov
     boost::shared_ptr<IborIndex> iborIndex1(new Euribor(6 * Months, flatYts_));
 
     std::vector<boost::shared_ptr<CalibrationHelper> > calibrationHelper1;
@@ -1787,9 +1755,5 @@ test_suite *MarkovFunctionalTest::suite() {
     suite->add(QUANTLIB_TEST_CASE(
         &MarkovFunctionalTest::testCalibrationTwoInstrumentSets));
     suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testBermudanSwaption));
-
-	//suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testCmsSwaption));
-    //suite->add(QUANTLIB_TEST_CASE(&MarkovFunctionalTest::testLongTermCalibration));
-
     return suite;
 }
