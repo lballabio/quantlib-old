@@ -50,13 +50,15 @@ namespace QuantLib {
             const bool extrapolatePayoff = true,
             const bool flatPayoffExtrapolation = false,
             const Handle<YieldTermStructure> &discountCurve =
-                Handle<YieldTermStructure>())
+                Handle<YieldTermStructure>(),
+            const bool computeProbabilities = false)
             : GenericModelEngine<Gaussian1dModel, Swaption::arguments,
                                  Swaption::results>(model),
               integrationPoints_(integrationPoints), stddevs_(stddevs),
               extrapolatePayoff_(extrapolatePayoff),
               flatPayoffExtrapolation_(flatPayoffExtrapolation),
-              discountCurve_(discountCurve) {
+              discountCurve_(discountCurve),
+              computeProbabilities_(computeProbabilities) {
 
             if (!discountCurve_.empty())
                 registerWith(discountCurve_);
@@ -69,6 +71,7 @@ namespace QuantLib {
         const Real stddevs_;
         const bool extrapolatePayoff_, flatPayoffExtrapolation_;
         const Handle<YieldTermStructure> discountCurve_;
+        const bool computeProbabilities_;
     };
 }
 
