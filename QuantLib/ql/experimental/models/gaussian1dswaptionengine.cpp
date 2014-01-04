@@ -53,11 +53,13 @@ namespace QuantLib {
         Array p(z.size(), 0.0);
 
         // for probability computation
-        std::vector<Array> npvp;
-        if (computeProbabilities_) {
-            for (int i = idx - minIdxAlive; i >= 0; i--) {
-                Array npvTmp(2 * integrationPoints_ + 1, 0.0);
-                npvp.push_back(npvTmp);
+        std::vector<Array> npvp0, npvp1;
+        if (probabilities_ != None) {
+            for (Size i = 0; i < idx - minIdxAlive + 2; ++i) {
+                Array npvTmp0(2 * integrationPoints_ + 1, 0.0);
+                Array npvTmp1(2 * integrationPoints_ + 1, 0.0);
+                npvp0.push_back(npvTmp0);
+                npvp1.push_back(npvTmp1);
             }
         }
         // end probabkility computation
@@ -143,15 +145,15 @@ namespace QuantLib {
                 npv0[k] = price;
 
                 // for probability computation
-                if (computeProbabilities_) {
-                    for (Size m = 0; m < npvp.size(); m++) {
+                if (probabilities_ != None) {
+                    for (Size m = 0; m < npvp0.size(); m++) {
                         Real price = 0.0;
                         if (expiry1Time != Null<Real>()) {
                             Array yg = model_->yGrid(
                                 stddevs_, integrationPoints_, expiry1Time,
                                 expiry0Time, expiry0 > settlement ? z[k] : 0.0);
                             CubicInterpolation payoff0(
-                                z.begin(), z.end(), npvp[m].begin(),
+                                z.begin(), z.end(), npvp1[m].begin(),
                                 CubicInterpolation::Spline, true,
                                 CubicInterpolation::Lagrange, 0.0,
                                 CubicInterpolation::Lagrange, 0.0);
@@ -205,18 +207,18 @@ namespace QuantLib {
                                             model_
                                                 ->gaussianShiftedPolynomialIntegral(
                                                       0.0,
-                                                      payoff1.cCoefficients()
-                                                          [0],
-                                                      payoff1.bCoefficients()
-                                                          [0],
-                                                      payoff1.aCoefficients()
-                                                          [0],
+                                                      payoff1
+                                                          .cCoefficients()[0],
+                                                      payoff1
+                                                          .bCoefficients()[0],
+                                                      payoff1
+                                                          .aCoefficients()[0],
                                                       p[0], z[0], -100.0, z[0]);
                                 }
                             }
                         }
 
-                        npvp[m][k] = price;
+                        npvp0[m][k] = price;
                     }
                 }
                 // end probability computation
@@ -248,14 +250,33 @@ namespace QuantLib {
                         model_->numeraire(expiry0Time, z[k], discountCurve_);
 
                     // for probability computation
-                    if (computeProbabilities_) {
-                        if (exerciseValue > npv0[k]) {
-                            npvp[idx - minIdxAlive][k] =
-                                1.0 / model_->numeraire(expiry0Time, z[k],
-                                                        discountCurve_);
+                    if (probabilities_ != None) {
+                        if (idx == static_cast<int>(
+                                       arguments_.exercise->dates().size()) -
+                                       1) // if true we are at the latest date,
+                                          // so we init
+                                          // the no call probability
+                            npvp0.back()[k] =
+                                probabilities_ == Naive
+                                    ? 1.0
+                                    : 1.0 / (model_->zerobond(expiry0Time, 0.0,
+                                                              0.0,
+                                                              discountCurve_) *
+                                             model_->numeraire(expiry0, z[k],
+                                                               discountCurve_));
+                        if (exerciseValue >= npv0[k]) {
+                            npvp0[idx - minIdxAlive][k] =
+                                probabilities_ == Naive
+                                    ? 1.0
+                                    : 1.0 /
+                                          (model_->zerobond(expiry0Time, 0.0,
+                                                            0.0,
+                                                            discountCurve_) *
+                                           model_->numeraire(expiry0Time, z[k],
+                                                             discountCurve_));
                             for (Size ii = idx - minIdxAlive + 1;
-                                 ii < npvp.size(); ii++)
-                                npvp[ii][k] = 0.0;
+                                 ii < npvp0.size(); ii++)
+                                npvp0[ii][k] = 0.0;
                         }
                     }
                     // end probability computation
@@ -265,6 +286,14 @@ namespace QuantLib {
             }
 
             npv1.swap(npv0);
+
+            // for probability computation
+            if (probabilities_ != None) {
+                for (Size i = 0; i < npvp0.size(); i++)
+                    npvp1[i].swap(npvp0[i]);
+            }
+            // end probability computation
+
             expiry1 = expiry0;
             expiry1Time = expiry0Time;
 
@@ -273,14 +302,13 @@ namespace QuantLib {
         results_.value = npv1[0] * model_->numeraire(0.0, 0.0, discountCurve_);
 
         // for probability computation
-        if (computeProbabilities_) {
-            std::vector<Real> prob(npvp.size());
-            for (Size i = 0; i < npvp.size(); i++) {
-                prob[i] = npvp[i][0] *
-                          model_->numeraire(0.0, 0.0, discountCurve_) /
-                          model_->zerobond(
-                              arguments_.exercise->dates()[i + minIdxAlive],
-                              Null<Date>(), 0.0, discountCurve_);
+        if (probabilities_ != None) {
+            std::vector<Real> prob(npvp0.size());
+            for (Size i = 0; i < npvp0.size(); i++) {
+                prob[i] = npvp1[i][0] *
+                          (probabilities_ == Naive
+                               ? 1.0
+                               : model_->numeraire(0.0, 0.0, discountCurve_));
             }
             results_.additionalResults["probabilities"] = prob;
         }
