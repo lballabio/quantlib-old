@@ -53,8 +53,8 @@ void spreads() {
     while (zSpread <= 0.10) {
 
         Real bondNpv = CashFlows::npv(
-            fix, *yts, zSpread, Actual365Fixed(), Compounding::Continuous,
-            Frequency::NoFrequency, false, settlDate, settlDate);
+            fix, *yts, zSpread, Actual365Fixed(), Continuous,
+            NoFrequency, false, settlDate, settlDate);
 
         Real swapNpv = swap->NPV();
         Real swapBps = swap->floatingLegBPS();
@@ -76,12 +76,12 @@ void spreads() {
     while (zSpread <= 0.10) {
 
         Real bondNpv = CashFlows::npv(
-            fix, *yts, zSpread, Actual365Fixed(), Compounding::Continuous,
-            Frequency::NoFrequency, false, settlDate, settlDate);
+            fix, *yts, zSpread, Actual365Fixed(), Continuous,
+            NoFrequency, false, settlDate, settlDate);
 
         Real bondNpvP =
             CashFlows::npv(fix, *yts, zSpread + 0.0001, Actual365Fixed(),
-                           Compounding::Continuous, Frequency::NoFrequency,
+                           Continuous, NoFrequency,
                            false, settlDate, settlDate);
 
         // Real bondNpv = CashFlows::npv(
@@ -117,15 +117,15 @@ void spreads() {
         Real swapNpv = swap->NPV();
         Real swapBps = swap->floatingLegBPS();
         Real bondNpv = CashFlows::npv(
-            fix, *yts, zSpread, Actual365Fixed(), Compounding::Continuous,
-            Frequency::NoFrequency, false, settlDate, settlDate);
+            fix, *yts, zSpread, Actual365Fixed(), Continuous,
+            NoFrequency, false, settlDate, settlDate);
 
         rateLevel0->setValue(rateLevel0->value() + 0.0001);
         rateLevel->setValue(rateLevel->value() + 0.0001);
 
         Real bondNpvP = CashFlows::npv(
-            fix, *yts, zSpread, Actual365Fixed(), Compounding::Continuous,
-            Frequency::NoFrequency, false, settlDate, settlDate);
+            fix, *yts, zSpread, Actual365Fixed(), Continuous,
+             NoFrequency, false, settlDate, settlDate);
 
         Real swapNpvP = swap->NPV();
         Real swapBpsP = swap->floatingLegBPS();
