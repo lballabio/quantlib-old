@@ -39,7 +39,7 @@ void example01() {
 	Schedule floatingSchedule(effective,maturity,6*Months,TARGET(),ModifiedFollowing,ModifiedFollowing,
                            DateGeneration::Forward,false);
 
-    boost::shared_ptr<VanillaSwap> underlying(new VanillaSwap(VanillaSwap::Payer, 1.0, fixedSchedule, 0.02,
+    boost::shared_ptr<VanillaSwap> underlying(new VanillaSwap(VanillaSwap::Payer, 100000.0, fixedSchedule, 0.02,
                                                               Thirty360(), floatingSchedule, iborIndex, 0.00, Actual360()));
 
     std::vector<Date> exerciseDates;
@@ -59,7 +59,7 @@ void example01() {
     std::vector<Real> vols(1,0.01);
     std::vector<Real> reversions(1,0.01);
 
-    boost::shared_ptr<Gsr> gsr(new Gsr(yts2,stepDates,vols,reversions,50));
+    boost::shared_ptr<Gsr> gsr(new Gsr(yts2,stepDates,vols,reversions,60));
 
     // hull white model (1% mean reversion, 1% vol)
     
@@ -72,10 +72,10 @@ void example01() {
     // pricing engines
 
     //boost::math::ntl::RR::SetPrecision(128);
-    
-    boost::shared_ptr<PricingEngine> gsrEngine(new Gaussian1dSwaptionEngine(gsr,32,5.0,false,false,
+
+    boost::shared_ptr<PricingEngine> gsrEngine(new Gaussian1dSwaptionEngine(gsr,64,7.0,true,false,
                                                                             Handle<YieldTermStructure>(),
-                                                                            true));
+                                                                            Gaussian1dSwaptionEngine::Digital));
     // boost::shared_ptr<PricingEngine> mfEngine(new Gaussian1dSwaptionEngine(mf,64,7.0,true,false));
     // boost::shared_ptr<TreeSwaptionEngine> treeEngine(new TreeSwaptionEngine(hullwhite,512,yts));
     boost::shared_ptr<FdHullWhiteSwaptionEngine> fdEngine(new FdHullWhiteSwaptionEngine(hullwhite));
@@ -99,10 +99,12 @@ void example01() {
 
     std::vector<Real> prob = swaption->result<std::vector<Real> >("probabilities");
     std::cout << "PROBS (GSR):" << std::endl;
+    Real sum = 0.0;
     for(Size i=0;i<prob.size();i++) {
         std::cout << "#" << (i+1) << " : " << prob[i] << std::endl;
+        sum += prob[i];
     }
-
+    std::cout << "SUM = " << sum << std::endl;
 
 }
 
