@@ -22,7 +22,7 @@
 */
 
 // uncomment to enable NTL support (see below for more details and references)
-// #define GAUSS1D_ENABLE_NTL 
+//#define GAUSS1D_ENABLE_NTL
 
 #ifndef quantlib_gaussian1dmodel_hpp
 #define quantlib_gaussian1dmodel_hpp
