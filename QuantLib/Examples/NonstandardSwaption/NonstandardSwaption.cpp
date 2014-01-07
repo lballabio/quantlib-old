@@ -5,11 +5,11 @@
 
 using namespace QuantLib;
 
-void outputBasket(std::vector<boost::shared_ptr<CalibrationHelper>> basket,
+void outputBasket(std::vector<boost::shared_ptr<CalibrationHelper> > basket,
                   boost::shared_ptr<TermStructure> termStructure) {
 
 	std::cout << "Calibration Basket:" << std::endl;
-    std::cout << "expiry;maturityDate;expiryTime;maturityTime;nominal;rate;marketvol" << std::endl;
+    std::cout << "expiry;maturityDate;expiryTime;maturityTime;nominal;rate" << std::endl;
     for(Size j=0;j<basket.size();j++) {
         boost::shared_ptr<SwaptionHelper> helper = boost::dynamic_pointer_cast<SwaptionHelper>(basket[j]);
         Date endDate = helper->underlyingSwap()->fixedSchedule().dates().back();
@@ -123,7 +123,7 @@ void example01() {
     outputModel(stepDates,gsr);
 
     std::cout << "Calculate calibration basket" << std::endl;
-    std::vector<boost::shared_ptr<CalibrationHelper>> basket = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket = swaption->calibrationBasket(standardSwapBase,swaptionVol);
 	for(Size i=0;i<basket.size();i++) basket[i]->setPricingEngine(standardEngine);
     outputBasket(basket,*gsr->termStructure());
 
@@ -135,7 +135,7 @@ void example01() {
 
     std::cout << "Calculate calibration basket" << std::endl;
 
-    std::vector<boost::shared_ptr<CalibrationHelper>> basket2 = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket2 = swaption->calibrationBasket(standardSwapBase,swaptionVol);
 	for(Size i=0;i<basket2.size();i++) basket2[i]->setPricingEngine(standardEngine);
     outputBasket(basket2,*gsr->termStructure());
 
@@ -201,7 +201,7 @@ void example01() {
 
     ytsQuote.linkTo(ytsQuote1);
     gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
-    std::vector<boost::shared_ptr<CalibrationHelper>> basket3a = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket3a = swaption->calibrationBasket(standardSwapBase,swaptionVol);
 	for(Size i=0;i<basket3a.size();i++) basket3a[i]->setPricingEngine(standardEngine);
     outputBasket(basket3a,*gsr->termStructure());
     gsr->calibrateVolatilitiesIterative(basket3a,lm,ec); outputModel(stepDates,gsr);
@@ -210,7 +210,7 @@ void example01() {
     ytsQuote.linkTo(ytsQuote2);
 
     gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
-    std::vector<boost::shared_ptr<CalibrationHelper>> basket3b = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket3b = swaption->calibrationBasket(standardSwapBase,swaptionVol);
 	for(Size i=0;i<basket3b.size();i++) basket3b[i]->setPricingEngine(standardEngine);
     outputBasket(basket3b,*gsr->termStructure());
     gsr->calibrateVolatilitiesIterative(basket3b,lm,ec); outputModel(stepDates,gsr);
@@ -222,7 +222,7 @@ void example01() {
                                            setValue(volQuote1->value());
     volQuote.linkTo(volQuote1);
     gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
-    std::vector<boost::shared_ptr<CalibrationHelper>> basket3c = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket3c = swaption->calibrationBasket(standardSwapBase,swaptionVol);
 	for(Size i=0;i<basket3c.size();i++) basket3c[i]->setPricingEngine(standardEngine);
     outputBasket(basket3c,*gsr->termStructure());
     gsr->calibrateVolatilitiesIterative(basket3c,lm,ec); outputModel(stepDates,gsr);
@@ -323,6 +323,87 @@ void example02() {
 
 }
 
+void example03() {
+
+    Date refDate(7, January, 2014);
+    Settings::instance().evaluationDate() = refDate;
+    Date effective = TARGET().advance(refDate, 2 * Days);
+
+    Date expiry = TARGET().advance(refDate,1*Months); // option expiry
+    Date start = TARGET().advance( TARGET().advance(expiry,2*Days), 1*Years); // start date underlying
+    Date end = TARGET().advance( start, 5*Years);
+
+    Handle<Quote> rate(new SimpleQuote(0.03));
+
+    Handle<YieldTermStructure> yts(boost::shared_ptr<YieldTermStructure>(
+        new FlatForward(0, TARGET(), rate, Actual365Fixed())));
+
+    Handle<Quote> volQuote6m(new SimpleQuote(0.20));
+
+    boost::shared_ptr<SwaptionVolatilityStructure> swaptionVol(
+        new ConstantSwaptionVolatility(0, TARGET(), ModifiedFollowing,
+                                       volQuote6m, Actual365Fixed()));
+
+    boost::shared_ptr<IborIndex> iborIndex(new Euribor(6 * Months, yts));
+    boost::shared_ptr<SwapIndex> standardSwapBase(
+                               new EuriborSwapIsdaFixA(5 * Years, yts));
+
+    // swaption 1m expiry into 1y forward starting swap (5y maturity)
+
+    std::vector<Real> fixedNominal(5), floatingNominal(10), fixedRate(5);
+    for (Size i = 0; i < 5; i++) {
+        fixedNominal[i] = 100.0;
+        floatingNominal[2 * i] = floatingNominal[2 * i + 1] = fixedNominal[i];
+        fixedRate[i] = 0.03;
+    }
+
+    Schedule fixedSchedule(start, end, 1 * Years, TARGET(),
+                           ModifiedFollowing, ModifiedFollowing,
+                           DateGeneration::Forward, false);
+    Schedule floatingSchedule(start, end, 6 * Months, TARGET(),
+                              ModifiedFollowing, ModifiedFollowing,
+                              DateGeneration::Forward, false);
+
+    boost::shared_ptr<NonstandardSwap> underlying(new NonstandardSwap(
+        VanillaSwap::Payer, fixedNominal, floatingNominal, fixedSchedule,
+        fixedRate, Thirty360(), floatingSchedule, iborIndex, 1.0, 0.0,
+        Actual360()));
+
+    std::vector<Date> exerciseDates(1, expiry);
+    boost::shared_ptr<Exercise> exercise(new BermudanExercise(exerciseDates));
+    boost::shared_ptr<NonstandardSwaption> swaption(
+        new NonstandardSwaption(underlying, exercise));
+
+    // gsr model (1% mean reversion, intially 1% vol)
+
+    std::vector<Date> stepDates;
+    std::vector<Real> vols(1, 0.006);
+    std::vector<Real> reversions(1, 0.02);
+
+    boost::shared_ptr<Gsr> gsr(
+                               new Gsr(yts, stepDates, vols, reversions, 50.0));
+
+    // engines for nonstandard swaption and standard swaption
+
+    // this engine is used for standard swaptions used in model calibration
+    boost::shared_ptr<PricingEngine> standardEngine(
+        new Gaussian1dSwaptionEngine(gsr));
+    // this engine is used for the non standard swaption
+    boost::shared_ptr<PricingEngine> nonStandardEngine(
+        new Gaussian1dNonstandardSwaptionEngine(gsr));
+
+    swaption->setPricingEngine(nonStandardEngine);
+
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket =
+        swaption->calibrationBasket(
+            standardSwapBase, swaptionVol,
+            BasketGeneratingEngine::MaturityStrikeByDeltaGamma);
+
+    std::cout << "standard swaption matching 1m option on forward starting swap 1y/10y" << std::endl;
+    outputBasket(basket,*yts);
+
+}
+
 int main(int argc, char* argv[]) {
 
     if(argc==1 || !strcmp(argv[1],"1")) {
@@ -338,8 +419,14 @@ int main(int argc, char* argv[]) {
         std::cout << "########################################" << std::endl;
         example02();
     }
-  
+
+    if(argc==1 || !strcmp(argv[1],"3")) {
+        std::cout << "########################################" << std::endl;
+        std::cout << "Example 3 midcurve swaption" << std::endl;
+        std::cout << "########################################" << std::endl;
+        example03();
+    }
+
 
 
 }
-
