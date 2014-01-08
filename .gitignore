@@ -114,7 +114,7 @@ Makefile.in
 *.ncb
 *.suo
 *.vcproj.*.user
-*.vcxproj.*.user
+*.vcxproj.user
 *.log
 *.sdf
 
