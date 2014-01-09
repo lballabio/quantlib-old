@@ -36,7 +36,7 @@ namespace QuantLib {
             boost::dynamic_pointer_cast<RebatedExercise>(arguments_.exercise);
 
         std::pair<Real, Real> result =
-            npvs(settlement, 0.0, includeTodaysExercise_);
+            npvs(settlement, 0.0, includeTodaysExercise_, true);
 
         results_.value = result.first;
         results_.additionalResults["underlyingValue"] = result.second;
@@ -92,8 +92,8 @@ namespace QuantLib {
 
     // calculate npv and underlying npv as of expiry date
     const std::pair<Real, Real> Gaussian1dFloatFloatSwaptionEngine::npvs(
-        const Date &expiry, const Real y,
-        const bool includeExerciseOnExpiry) const {
+        const Date &expiry, const Real y, const bool includeExerciseOnExpiry,
+        const bool considerProbabilities) const {
 
         // pricing
 
@@ -137,6 +137,18 @@ namespace QuantLib {
                                                     // underlying
         Array z = model_->yGrid(stddevs_, integrationPoints_);
         Array p(z.size(), 0.0), pa(z.size(), 0.0);
+
+        // for probability computation
+        std::vector<Array> npvp0, npvp1;
+        if (considerProbabilities && probabilities_ != None) {
+            for (Size i = 0; i < idx + 2; ++i) {
+                Array npvTmp0(2 * integrationPoints_ + 1, 0.0);
+                Array npvTmp1(2 * integrationPoints_ + 1, 0.0);
+                npvp0.push_back(npvTmp0);
+                npvp1.push_back(npvTmp1);
+            }
+        }
+        // end probabkility computation
 
         Date event1 = Null<Date>(), event0;
         Time event1Time = Null<Real>(), event0Time;
@@ -313,6 +325,96 @@ namespace QuantLib {
                 npv0[k] = price;
                 npv0a[k] = pricea;
 
+                // for probability computation
+                if (considerProbabilities && probabilities_ != None) {
+                    for (Size m = 0; m < npvp0.size(); m++) {
+                        Real price = 0.0;
+                        if (event1Time != Null<Real>()) {
+                            Real zSpreadDf =
+                                oas_.empty()
+                                    ? 1.0
+                                    : std::exp(-oas_->value() *
+                                               (event1Time - event0Time));
+                            Array yg = model_->yGrid(
+                                stddevs_, integrationPoints_, event1Time,
+                                event0Time, event0 > expiry ? z[k] : 0.0);
+                            CubicInterpolation payoff0(
+                                z.begin(), z.end(), npvp1[m].begin(),
+                                CubicInterpolation::Spline, true,
+                                CubicInterpolation::Lagrange, 0.0,
+                                CubicInterpolation::Lagrange, 0.0);
+                            for (Size i = 0; i < yg.size(); i++) {
+                                p[i] = payoff0(yg[i], true);
+                            }
+                            CubicInterpolation payoff1(
+                                z.begin(), z.end(), p.begin(),
+                                CubicInterpolation::Spline, true,
+                                CubicInterpolation::Lagrange, 0.0,
+                                CubicInterpolation::Lagrange, 0.0);
+                            for (Size i = 0; i < z.size() - 1; i++) {
+                                price +=
+                                    model_->gaussianShiftedPolynomialIntegral(
+                                        0.0, payoff1.cCoefficients()[i],
+                                        payoff1.bCoefficients()[i],
+                                        payoff1.aCoefficients()[i], p[i], z[i],
+                                        z[i], z[i + 1]) *
+                                    zSpreadDf;
+                            }
+                            if (extrapolatePayoff_) {
+                                if (flatPayoffExtrapolation_) {
+                                    price +=
+                                        model_
+                                            ->gaussianShiftedPolynomialIntegral(
+                                                  0.0, 0.0, 0.0, 0.0,
+                                                  p[z.size() - 2],
+                                                  z[z.size() - 2],
+                                                  z[z.size() - 1], 100.0) *
+                                        zSpreadDf;
+                                    price +=
+                                        model_
+                                            ->gaussianShiftedPolynomialIntegral(
+                                                  0.0, 0.0, 0.0, 0.0, p[0],
+                                                  z[0], -100.0, z[0]) *
+                                        zSpreadDf;
+                                } else {
+                                    if (type == Option::Call)
+                                        price +=
+                                            model_
+                                                ->gaussianShiftedPolynomialIntegral(
+                                                      0.0,
+                                                      payoff1.cCoefficients()
+                                                          [z.size() - 2],
+                                                      payoff1.bCoefficients()
+                                                          [z.size() - 2],
+                                                      payoff1.aCoefficients()
+                                                          [z.size() - 2],
+                                                      p[z.size() - 2],
+                                                      z[z.size() - 2],
+                                                      z[z.size() - 1], 100.0) *
+                                            zSpreadDf;
+                                    if (type == Option::Put)
+                                        price +=
+                                            model_
+                                                ->gaussianShiftedPolynomialIntegral(
+                                                      0.0,
+                                                      payoff1
+                                                          .cCoefficients()[0],
+                                                      payoff1
+                                                          .bCoefficients()[0],
+                                                      payoff1
+                                                          .aCoefficients()[0],
+                                                      p[0], z[0], -100.0,
+                                                      z[0]) *
+                                            zSpreadDf;
+                                }
+                            }
+                        }
+
+                        npvp0[m][k] = price;
+                    }
+                }
+                // end probability computation
+
                 // event date calculations
 
                 if (isEventDate) {
@@ -348,12 +450,12 @@ namespace QuantLib {
                                     arguments_.leg1Gearings[j] *
                                         (ibor1 != NULL
                                              ? model_->forwardRate(
-                                                   arguments_.leg1FixingDates
-                                                       [j],
+                                                   arguments_
+                                                       .leg1FixingDates[j],
                                                    event0, zk, ibor1)
                                              : model_->swapRate(
-                                                   arguments_.leg1FixingDates
-                                                       [j],
+                                                   arguments_
+                                                       .leg1FixingDates[j],
                                                    cms1->tenor(), event0, zk,
                                                    cms1));
                                 if (arguments_.leg1CappedRates[j] !=
@@ -415,12 +517,12 @@ namespace QuantLib {
                                     arguments_.leg2Gearings[j] *
                                         (ibor2 != NULL
                                              ? model_->forwardRate(
-                                                   arguments_.leg2FixingDates
-                                                       [j],
+                                                   arguments_
+                                                       .leg2FixingDates[j],
                                                    event0, zk, ibor2)
                                              : model_->swapRate(
-                                                   arguments_.leg2FixingDates
-                                                       [j],
+                                                   arguments_
+                                                       .leg2FixingDates[j],
                                                    cms2->tenor(), event0, zk,
                                                    cms1));
                                 if (arguments_.leg2CappedRates[j] !=
@@ -462,8 +564,7 @@ namespace QuantLib {
                         Date rebateDate = event0;
                         if (rebatedExercise_ != NULL) {
                             rebate = rebatedExercise_->rebate(j);
-                            rebateDate =
-                                rebatedExercise_->rebatePaymentDate(j);
+                            rebateDate = rebatedExercise_->rebatePaymentDate(j);
                             zSpreadDf =
                                 oas_.empty()
                                     ? 1.0
@@ -473,13 +574,48 @@ namespace QuantLib {
                                                     .yearFraction(event0,
                                                                   rebateDate)));
                         }
-                        npv0[k] = std::max(
-                            npv0[k],
+                        Real exerciseValue =
                             (type == Option::Call ? 1.0 : -1.0) * npv0a[k] +
-                                rebate * model_->zerobond(rebateDate, event0) *
-                                    zSpreadDf /
-                                    model_->numeraire(event0Time, zk,
-                                                      discountCurve_));
+                            rebate * model_->zerobond(rebateDate, event0) *
+                                zSpreadDf / model_->numeraire(event0Time, zk,
+                                                              discountCurve_);
+
+                        // for probability computation
+                        int idxTmp = std::max(idx, 0); // idx may be zero
+                                                       // although we are on a
+                                                       // event date (see above)
+                        if (considerProbabilities && probabilities_ != None) {
+                            if (idx == events.size() - 1)
+                                // if true we are at the latest date,
+                                // so we init
+                                // the no call probability
+                                npvp0.back()[k] =
+                                    probabilities_ == Naive
+                                        ? 1.0
+                                        : 1.0 / (model_->zerobond(
+                                                     event0Time, 0.0, 0.0,
+                                                     discountCurve_) *
+                                                 model_->numeraire(
+                                                     event0, z[k],
+                                                     discountCurve_));
+                            if (exerciseValue >= npv0[k]) {
+                                npvp0[idxTmp][k] =
+                                    probabilities_ == Naive
+                                        ? 1.0
+                                        : 1.0 / (model_->zerobond(
+                                                     event0Time, 0.0, 0.0,
+                                                     discountCurve_) *
+                                                 model_->numeraire(
+                                                     event0Time, z[k],
+                                                     discountCurve_));
+                                for (Size ii = idxTmp + 1; ii < npvp0.size();
+                                     ii++)
+                                    npvp0[ii][k] = 0.0;
+                            }
+                        }
+                        // end probability computation
+
+                        npv0[k] = std::max(npv0[k], exerciseValue);
                     }
                 }
             }
@@ -496,7 +632,19 @@ namespace QuantLib {
             npv1a[0] * model_->numeraire(event1Time, y, discountCurve_) *
                 (type == Option::Call ? 1.0 : -1.0));
 
+        // for probability computation
+        if (considerProbabilities && probabilities_ != None) {
+            std::vector<Real> prob(npvp0.size());
+            for (Size i = 0; i < npvp0.size(); i++) {
+                prob[i] = npvp1[i][0] *
+                          (probabilities_ == Naive
+                               ? 1.0
+                               : model_->numeraire(0.0, 0.0, discountCurve_));
+            }
+            results_.additionalResults["probabilities"] = prob;
+        }
+        // end probability computation
+
         return res;
     }
-
 }
