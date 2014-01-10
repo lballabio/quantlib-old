@@ -6,7 +6,7 @@
 
 using namespace QuantLib;
 
-void outputBasket(std::vector<boost::shared_ptr<CalibrationHelper>> basket,
+void outputBasket(std::vector<boost::shared_ptr<CalibrationHelper> > basket,
                   boost::shared_ptr<TermStructure> termStructure) {
 
     std::cout << "Calibration Basket:" << std::endl;
@@ -158,7 +158,7 @@ int main(int, char* []) {
     outputModel(stepDates,gsr);
 
     std::cout << "Calculate calibration basket" << std::endl;
-    std::vector<boost::shared_ptr<CalibrationHelper>> basket = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket = swaption->calibrationBasket(standardSwapBase,swaptionVol);
     for(Size i=0;i<basket.size();i++) basket[i]->setPricingEngine(standardEngine);
     outputBasket(basket,*gsr->termStructure());
 
@@ -170,7 +170,7 @@ int main(int, char* []) {
 
     std::cout << "Calculate calibration basket" << std::endl;
 
-    std::vector<boost::shared_ptr<CalibrationHelper>> basket2 = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket2 = swaption->calibrationBasket(standardSwapBase,swaptionVol);
     for(Size i=0;i<basket2.size();i++) basket2[i]->setPricingEngine(standardEngine);
     outputBasket(basket2,*gsr->termStructure());
 
@@ -236,7 +236,7 @@ int main(int, char* []) {
 
     ytsQuote.linkTo(ytsQuote1);
     gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
-    std::vector<boost::shared_ptr<CalibrationHelper>> basket3a = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket3a = swaption->calibrationBasket(standardSwapBase,swaptionVol);
     for(Size i=0;i<basket3a.size();i++) basket3a[i]->setPricingEngine(standardEngine);
     outputBasket(basket3a,*gsr->termStructure());
     gsr->calibrateVolatilitiesIterative(basket3a,lm,ec); outputModel(stepDates,gsr);
@@ -245,7 +245,7 @@ int main(int, char* []) {
     ytsQuote.linkTo(ytsQuote2);
 
     gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
-    std::vector<boost::shared_ptr<CalibrationHelper>> basket3b = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket3b = swaption->calibrationBasket(standardSwapBase,swaptionVol);
     for(Size i=0;i<basket3b.size();i++) basket3b[i]->setPricingEngine(standardEngine);
     outputBasket(basket3b,*gsr->termStructure());
     gsr->calibrateVolatilitiesIterative(basket3b,lm,ec); outputModel(stepDates,gsr);
@@ -257,7 +257,7 @@ int main(int, char* []) {
                                            setValue(volQuote1->value());
     volQuote.linkTo(volQuote1);
     gsr->calibrateVolatilitiesIterative(basket2,lm,ec); outputModel(stepDates,gsr);
-    std::vector<boost::shared_ptr<CalibrationHelper>> basket3c = swaption->calibrationBasket(standardSwapBase,swaptionVol);
+    std::vector<boost::shared_ptr<CalibrationHelper> > basket3c = swaption->calibrationBasket(standardSwapBase,swaptionVol);
     for(Size i=0;i<basket3c.size();i++) basket3c[i]->setPricingEngine(standardEngine);
     outputBasket(basket3c,*gsr->termStructure());
     gsr->calibrateVolatilitiesIterative(basket3c,lm,ec); outputModel(stepDates,gsr);

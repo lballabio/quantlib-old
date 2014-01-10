@@ -5,7 +5,7 @@
 using namespace QuantLib;
 
 
-Disposable<std::vector<Real>> impliedStdDevs(const Real atm,
+Disposable<std::vector<Real> > impliedStdDevs(const Real atm,
 					  const std::vector<Real>& strikes, 
 					  const std::vector<Real>& prices) {
     
