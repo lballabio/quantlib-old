@@ -110,8 +110,8 @@ int main(int, char* []) {
     //BermudanExercise exerciseTmp(exerciseDates, false);
     boost::shared_ptr<RebatedExercise> exercise =
         boost::make_shared<RebatedExercise>(
-            RebatedExercise(BermudanExercise(exerciseDates, false),
-                            rebates, 2, TARGET(), Following));
+            BermudanExercise(exerciseDates, false), rebates, 2, TARGET(),
+            Following);
 
     boost::shared_ptr<NonstandardSwaption> swaption(
         new NonstandardSwaption(underlying, exercise));

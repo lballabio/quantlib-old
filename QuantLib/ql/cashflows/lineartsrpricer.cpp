@@ -52,8 +52,8 @@ namespace QuantLib {
             registerWith(couponDiscountCurve_);
 
         if (integrator_ == NULL)
-            integrator_ = boost::make_shared<GaussKronrodNonAdaptive>(
-                GaussKronrodNonAdaptive(1E-10, 5000, 1E-10));
+            integrator_ =
+                boost::make_shared<GaussKronrodNonAdaptive>(1E-10, 5000, 1E-10);
     }
 
     const Real LinearTsrPricer::GsrG(const Date &d) const {
@@ -142,7 +142,7 @@ namespace QuantLib {
 
             if (sectionTmp->atmLevel() == Null<Real>())
                 smileSection_ = boost::make_shared<AtmSmileSection>(
-                    AtmSmileSection(sectionTmp, swapRateValue_));
+                    sectionTmp, swapRateValue_);
             else
                 smileSection_ = sectionTmp;
 
