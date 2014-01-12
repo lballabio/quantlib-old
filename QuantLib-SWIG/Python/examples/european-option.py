@@ -35,9 +35,9 @@ dividendYield = FlatForward(settlementDate, 0.05, Actual365Fixed())
 header = ' |'.join(['%17s' % tag for tag in ['method','value',
                                             'estimated error',
                                             'actual error' ] ])
-print
-print header
-print '-'*len(header)
+print('')
+print(header)
+print('-'*len(header))
 
 refValue = None
 def report(method, x, dx = None):
@@ -47,7 +47,7 @@ def report(method, x, dx = None):
         dx = '%.4f' % dx
     else:
         dx = 'n/a'
-    print ' |'.join(['%17s' % y for y in [method, x, dx, e] ])
+    print(' |'.join(['%17s' % y for y in [method, x, dx, e] ]))
 
 
 # good to go

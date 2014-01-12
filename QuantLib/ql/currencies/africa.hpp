@@ -29,6 +29,11 @@
 
 #include <ql/currency.hpp>
 
+#if defined(QL_PATCH_MSVC)
+#pragma warning(push)
+#pragma warning(disable:4819)
+#endif
+
 namespace QuantLib {
 
     //! South-African rand
@@ -39,17 +44,13 @@ namespace QuantLib {
     */
     class ZARCurrency : public Currency {
       public:
-        ZARCurrency() {
-            static boost::shared_ptr<Data> zarData(
-                                    new Data("South-African rand", "ZAR", 710,
-                                             "R", "", 100,
-                                             Rounding(),
-                                             "%3% %1$.2f"));
-            data_ = zarData;
-        }
+        ZARCurrency();
     };
 
 }
 
+#if defined(QL_PATCH_MSVC)
+#pragma warning(pop)
+#endif
 
 #endif

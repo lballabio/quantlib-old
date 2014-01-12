@@ -566,16 +566,28 @@
 			Name="currencies"
 			Filter="">
 			<File
+				RelativePath=".\ql\currencies\africa.cpp">
+			</File>
+			<File
 				RelativePath=".\ql\currencies\africa.hpp">
 			</File>
 			<File
 				RelativePath=".\ql\currencies\all.hpp">
 			</File>
 			<File
+				RelativePath=".\ql\currencies\america.cpp">
+			</File>
+			<File
 				RelativePath=".\ql\currencies\america.hpp">
 			</File>
 			<File
+				RelativePath=".\ql\currencies\asia.cpp">
+			</File>
+			<File
 				RelativePath=".\ql\currencies\asia.hpp">
+			</File>
+			<File
+				RelativePath=".\ql\currencies\europe.cpp">
 			</File>
 			<File
 				RelativePath=".\ql\currencies\europe.hpp">
@@ -585,6 +597,9 @@
 			</File>
 			<File
 				RelativePath=".\ql\currencies\exchangeratemanager.hpp">
+			</File>
+			<File
+				RelativePath=".\ql\currencies\oceania.cpp">
 			</File>
 			<File
 				RelativePath=".\ql\currencies\oceania.hpp">
@@ -627,11 +642,38 @@
 				<File
 					RelativePath=".\ql\experimental\barrieroption\all.hpp">
 				</File>
+                <File
+					RelativePath=".\ql\experimental\barrieroption\analyticdoublebarrierengine.cpp">
+				</File>
+                <File
+					RelativePath=".\ql\experimental\barrieroption\analyticdoublebarrierengine.hpp">
+				</File>
+                <File
+					RelativePath=".\ql\experimental\barrieroption\doublebarrieroption.cpp">
+				</File>
+                <File
+					RelativePath=".\ql\experimental\barrieroption\doublebarrieroption.hpp">
+				</File>
 				<File
 					RelativePath=".\ql\experimental\barrieroption\perturbativebarrieroptionengine.cpp">
 				</File>
 				<File
 					RelativePath=".\ql\experimental\barrieroption\perturbativebarrieroptionengine.hpp">
+				</File>
+                <File
+					RelativePath=".\ql\experimental\barrieroption\vannavolgabarrierengine.cpp">
+				</File>
+                <File
+					RelativePath=".\ql\experimental\barrieroption\vannavolgabarrierengine.hpp">
+				</File>
+                <File
+					RelativePath=".\ql\experimental\barrieroption\vannavolgadoublebarrierengine.cpp">
+				</File>
+                <File
+					RelativePath=".\ql\experimental\barrieroption\vannavolgadoublebarrierengine.hpp">
+				</File>
+                <File
+					RelativePath=".\ql\experimental\barrieroption\vannavolgainterpolation.hpp">
 				</File>
 			</Filter>
 			<Filter
@@ -675,6 +717,37 @@
 				</File>
 				<File
 					RelativePath=".\ql\experimental\callablebonds\treecallablebondengine.hpp">
+				</File>
+			</Filter>
+			<Filter
+				Name="catbonds"
+				Filter="">
+				<File
+					RelativePath=".\ql\experimental\catbonds\all.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\catbond.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\catbond.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\catrisk.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\catrisk.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\montecarlocatbondengine.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\montecarlocatbondengine.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\riskynotional.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\catbonds\riskynotional.hpp">
 				</File>
 			</Filter>
 			<Filter
@@ -1034,6 +1107,19 @@
 				</File>
 			</Filter>
 			<Filter
+				Name="exercise"
+				Filter="">
+				<File
+					RelativePath=".\ql\experimental\exercise\all.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exercise\rebatedexercise.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\exercise\rebatedexercise.hpp">
+				</File>
+			</Filter>
+			<Filter
 				Name="exoticoptions"
 				Filter="">
 				<File
@@ -1390,6 +1476,9 @@
 					RelativePath=".\ql\experimental\math\frankcopularng.hpp">
 				</File>
 				<File
+					RelativePath=".\ql\experimental\math\simulatedannealing.hpp">
+				</File>
+				<File
 					RelativePath=".\ql\experimental\math\zigguratrng.cpp">
 				</File>
 				<File
@@ -1455,6 +1544,72 @@
 					RelativePath=".\ql\experimental\models\atmsmilesection.hpp">
 				</File>
 				<File
+					RelativePath=".\ql\experimental\models\basketgeneratingengine.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\basketgeneratingengine.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\floatfloatswap.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\floatfloatswap.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\floatfloatswaption.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\floatfloatswaption.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1dmodel.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1dmodel.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1dcapfloorengine.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1dcapfloorengine.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1dfloatfloatswaptionengine.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1dfloatfloatswaptionengine.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1djamshidianswaptionengine.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1djamshidianswaptionengine.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1dswaptionengine.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1dswaptionengine.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1dnonstandardswaptionengine.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gaussian1dnonstandardswaptionengine.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gsr.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gsr.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gsrprocess.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\gsrprocess.hpp">
+				</File>
+				<File
 					RelativePath=".\ql\experimental\models\kahalesmilesection.cpp">
 				</File>
 				<File
@@ -1467,22 +1622,22 @@
 					RelativePath=".\ql\experimental\models\markovfunctional.hpp">
 				</File>
 				<File
-					RelativePath=".\ql\experimental\models\markovfunctionalcapfloorengine.cpp">
-				</File>
-				<File
-					RelativePath=".\ql\experimental\models\markovfunctionalcapfloorengine.hpp">
-				</File>
-				<File
-					RelativePath=".\ql\experimental\models\markovfunctionalswaptionengine.cpp">
-				</File>
-				<File
-					RelativePath=".\ql\experimental\models\markovfunctionalswaptionengine.hpp">
-				</File>
-				<File
 					RelativePath=".\ql\experimental\models\mfstateprocess.cpp">
 				</File>
 				<File
 					RelativePath=".\ql\experimental\models\mfstateprocess.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\nonstandardswap.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\nonstandardswap.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\nonstandardswaption.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\models\nonstandardswaption.hpp">
 				</File>
 				<File
 					RelativePath=".\ql\experimental\models\smilesectionutils.cpp">
@@ -1564,6 +1719,31 @@
 				</File>
 				<File
 					RelativePath=".\ql\experimental\shortrate\generalizedornsteinuhlenbeckprocess.hpp">
+				</File>
+			</Filter>
+			<Filter
+				Name="swaptions"
+				Filter="">
+				<File
+					RelativePath=".\ql\experimental\swaptions\all.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\swaptions\haganirregularswaptionengine.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\swaptions\haganirregularswaptionengine.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\swaptions\irregularswap.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\swaptions\irregularswap.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\swaptions\irregularswaption.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\experimental\swaptions\irregularswaption.hpp">
 				</File>
 			</Filter>
 			<Filter
@@ -2624,6 +2804,9 @@
 				<File
 					RelativePath=".\ql\math\integrals\trapezoidintegral.hpp">
 				</File>
+				<File
+					RelativePath=".\ql\math\integrals\twodimensionalintegral.hpp">
+				</File>
 			</Filter>
 			<Filter
 				Name="interpolations"
@@ -2847,10 +3030,19 @@
 					RelativePath=".\ql\math\optimization\problem.hpp">
 				</File>
 				<File
+					RelativePath=".\ql\math\optimization\projectedconstraint.hpp">
+				</File>
+				<File
 					RelativePath=".\ql\math\optimization\projectedcostfunction.cpp">
 				</File>
 				<File
 					RelativePath=".\ql\math\optimization\projectedcostfunction.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\math\optimization\projection.cpp">
+				</File>
+				<File
+					RelativePath=".\ql\math\optimization\projection.hpp">
 				</File>
 				<File
 					RelativePath=".\ql\math\optimization\simplex.cpp">
@@ -6186,6 +6378,9 @@
 				</File>
 				<File
 					RelativePath=".\ql\time\daycounters\actual365fixed.hpp">
+				</File>
+				<File
+					RelativePath=".\ql\time\daycounters\actual365nl.hpp">
 				</File>
 				<File
 					RelativePath=".\ql\time\daycounters\actualactual.cpp">

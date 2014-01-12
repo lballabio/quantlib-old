@@ -54,6 +54,9 @@ class Money {
         Decimal operator/(const Money& m) { return *self/m; }
         #if defined(SWIGPYTHON)
         Money __rmul__(Decimal x) { return *self*x; }
+        bool __lt__(const Money& other) {
+            return *self < other;
+        }
         #endif
         int __cmp__(const Money& other) {
             if (*self < other)

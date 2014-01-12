@@ -924,6 +924,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\catbonds.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\cdo.cpp"
 				>
 			</File>
@@ -1041,6 +1045,10 @@
 			</File>
 			<File
 				RelativePath=".\gjrgarchmodel.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\gsr.cpp"
 				>
 			</File>
 			<File
@@ -1413,6 +1421,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\catbonds.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\cdo.hpp"
 				>
 			</File>
@@ -1530,6 +1542,10 @@
 			</File>
 			<File
 				RelativePath=".\gjrgarchmodel.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\gsr.hpp"
 				>
 			</File>
 			<File

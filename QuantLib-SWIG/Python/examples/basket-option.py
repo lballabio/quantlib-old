@@ -62,7 +62,7 @@ basketoption.setPricingEngine(MCEuropeanBasketEngine(process,
                                                      timeStepsPerYear = 1,
                                                      requiredTolerance = 0.02,
                                                      seed = 42))
-print basketoption.NPV()
+print(basketoption.NPV())
 
 basketoption = BasketOption(MinBasketPayoff(payoff), exercise)
 basketoption.setPricingEngine(MCEuropeanBasketEngine(process,
@@ -70,7 +70,7 @@ basketoption.setPricingEngine(MCEuropeanBasketEngine(process,
                                                      timeStepsPerYear = 1,
                                                      requiredTolerance = 0.02,
                                                      seed = 42))
-print basketoption.NPV()
+print(basketoption.NPV())
 
 basketoption = BasketOption(AverageBasketPayoff(payoff, 2), exercise)
 basketoption.setPricingEngine(MCEuropeanBasketEngine(process,
@@ -78,5 +78,5 @@ basketoption.setPricingEngine(MCEuropeanBasketEngine(process,
                                                      timeStepsPerYear = 1,
                                                      requiredTolerance = 0.02,
                                                      seed = 42))
-print basketoption.NPV()
+print(basketoption.NPV())
 

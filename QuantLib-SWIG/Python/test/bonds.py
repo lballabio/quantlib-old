@@ -136,8 +136,7 @@ class FixedRateBondTest(unittest.TestCase):
                     self.issue_date + QuantLib.Period(1,QuantLib.Months)), 4), 92.5926)
 
 if __name__ == '__main__':
-    print 'testing QuantLib', QuantLib.__version__
+    print('testing QuantLib ' + QuantLib.__version__)
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(FixedRateBondTest,'test'))
     unittest.TextTestRunner(verbosity=2).run(suite)
-    raw_input('press return to continue')

@@ -18,6 +18,7 @@ QL_TESTS = \
 	capfloor.hpp capfloor.cpp \
 	capflooredcoupon.hpp capflooredcoupon.cpp \
 	cashflows.hpp cashflows.cpp \
+	catbonds.hpp catbonds.cpp \
 	cdo.hpp cdo.cpp \
 	cdsoption.hpp cdsoption.cpp \
 	chooseroption.hpp chooseroption.cpp \
@@ -48,6 +49,7 @@ QL_TESTS = \
 	garch.hpp garch.cpp \
 	gaussianquadratures.hpp gaussianquadratures.cpp \
 	gjrgarchmodel.hpp gjrgarchmodel.cpp \
+	gsr.hpp gsr.cpp \
 	hestonmodel.hpp hestonmodel.cpp \
 	himalayaoption.hpp himalayaoption.cpp \
 	hybridhestonhullwhiteprocess.hpp hybridhestonhullwhiteprocess.cpp \

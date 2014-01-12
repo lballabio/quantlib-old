@@ -2,7 +2,7 @@
 AC_INIT([QuantLib], [1.4],
         [quantlib-dev@lists.sourceforge.net],
         [QuantLib])
-AC_PREREQ(2.50)
+AC_PREREQ(2.62)
 AC_CONFIG_SRCDIR([ql/qldefines.hpp])
 AC_CONFIG_AUX_DIR([config])
 AC_CONFIG_HEADERS([ql/config.hpp])
@@ -62,6 +62,17 @@ AC_PROG_LIBTOOL
 AM_CONDITIONAL(ENABLE_STATIC, test "${enable_static}" == "yes")
 
 AC_LANG([C++])
+
+AC_ARG_ENABLE([openmp],
+              AC_HELP_STRING([--enable-openmp],
+                             [If enabled, configure will try to detect
+                              and enable OpenMP support.]),
+              [ql_openmp=$enableval],
+              [ql_openmp=no])
+if test "$ql_openmp" = "yes" ; then
+   AC_OPENMP
+   AC_SUBST([CXXFLAGS],["${CXXFLAGS} ${OPENMP_CXXFLAGS}"])
+fi
 
 # Check for mandatory features
 
@@ -225,19 +236,6 @@ if test "$ql_belt_and_braces" = "yes" ; then
 fi
 AC_MSG_RESULT([$ql_belt_and_braces])
 
-AC_MSG_CHECKING([whether to enable deprecated code])
-AC_ARG_ENABLE([deprecated-code],
-              AC_HELP_STRING([--enable-deprecated-code],
-                             [If enabled (the default), deprecated code
-                              will be included in the library.]),
-              [ql_use_deprecated_code=$enableval],
-              [ql_use_deprecated_code=yes])
-if test "$ql_use_deprecated_code" = "no" ; then
-   AC_DEFINE([QL_DISABLE_DEPRECATED],[1],
-             [Define this if you want to disable deprecated code.])
-fi
-AC_MSG_RESULT([$ql_use_deprecated_code])
-
 AC_MSG_CHECKING([whether to enable sessions])
 AC_ARG_ENABLE([sessions],
               AC_HELP_STRING([--enable-sessions],
@@ -304,11 +302,13 @@ AC_CONFIG_FILES([
     ql/experimental/amortizingbonds/Makefile
     ql/experimental/barrieroption/Makefile
     ql/experimental/callablebonds/Makefile
+    ql/experimental/catbonds/Makefile
     ql/experimental/commodities/Makefile
     ql/experimental/compoundoption/Makefile
     ql/experimental/convertiblebonds/Makefile
     ql/experimental/coupons/Makefile
     ql/experimental/credit/Makefile
+    ql/experimental/exercise/Makefile
     ql/experimental/exoticoptions/Makefile
     ql/experimental/finitedifferences/Makefile
     ql/experimental/fx/Makefile
@@ -320,6 +320,7 @@ AC_CONFIG_FILES([
     ql/experimental/processes/Makefile
     ql/experimental/risk/Makefile
     ql/experimental/shortrate/Makefile
+    ql/experimental/swaptions/Makefile
     ql/experimental/variancegamma/Makefile
     ql/experimental/varianceoption/Makefile
     ql/experimental/volatility/Makefile

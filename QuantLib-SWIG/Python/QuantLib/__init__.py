@@ -16,8 +16,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from QuantLib import *
-from QuantLib import _QuantLib
+import sys
+if sys.version_info.major >= 3:
+    from .QuantLib import *
+    from .QuantLib import _QuantLib
+else:
+    from QuantLib import *
+    from QuantLib import _QuantLib
+del sys
 
 __author__ = 'The QuantLib Group'
 __email__ = 'quantlib-users@lists.sourceforge.net'
@@ -27,14 +33,14 @@ if hasattr(_QuantLib,'__version__'):
 elif hasattr(_QuantLib.cvar,'__version__'):
     __version__ = _QuantLib.cvar.__version__
 else:
-    print 'Could not find __version__ attribute'
+    print('Could not find __version__ attribute')
 
 if hasattr(_QuantLib,'__hexversion__'):
     __hexversion__ = _QuantLib.__hexversion__
 elif hasattr(_QuantLib.cvar,'__hexversion__'):
     __hexversion__ = _QuantLib.cvar.__hexversion__
 else:
-    print 'Could not find __hexversion__ attribute'
+    print('Could not find __hexversion__ attribute')
 
 __license__ = """
 COPYRIGHT AND PERMISSION NOTICE
