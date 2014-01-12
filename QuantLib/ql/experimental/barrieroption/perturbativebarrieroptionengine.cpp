@@ -42,7 +42,7 @@ namespace {
     int NUC;
 
     // standard normal density function
-    double ndf(double t);
+    //double ndf(double t);
 
     // standard normal cumulative distribution function
     //double nc(double x);
