@@ -45,7 +45,7 @@ namespace QuantLib {
 
       private:
         Size dimensionality_;
-        Size N_;
+        //Size N_;
         Size i_;
         std::vector<Real> z_;
         

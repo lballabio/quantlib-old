@@ -30,7 +30,7 @@ namespace QuantLib
         Size N)             
         :
     dimensionality_(dimensionality),
-        N_(N),
+        //N_(N),
         i_(0),
         z_(z),
         sequence_(std::vector<Real> (dimensionality), 1.0),

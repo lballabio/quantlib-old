@@ -52,8 +52,8 @@ namespace QuantLib {
         void setupArguments(PricingEngine::arguments*) const;
       private:
         std::vector<Date> fixingDates_;
-        Real strike_;
-        mutable Rate yield_;
+        //Real strike_;
+        //mutable Rate yield_;
     };
 
     class HimalayaOption::arguments : public MultiAssetOption::arguments {

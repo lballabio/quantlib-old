@@ -52,7 +52,7 @@ namespace QuantLib {
 
         Real mu_, lambda_, muPlusLambda_, muMinusLambda_, log_H_S_;
 
-        Real D1_, D2_, cum_d1_, cum_d2_;
+        Real D1_, D2_;//, cum_d1_, cum_d2_;
 
         Real alpha_, beta_, DalphaDd1_, DbetaDd2_;
 

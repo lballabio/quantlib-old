@@ -113,7 +113,7 @@ namespace QuantLib {
                                         Ordering ordering,
                                         unsigned long seed,
                                         SobolRsg::DirectionIntegers integers)
-    : factors_(factors), steps_(steps), ordering_(ordering),
+    : factors_(factors), steps_(steps), /*ordering_(ordering),*/
       generator_(SobolRsg(factors*steps, seed, integers),
                  InverseCumulativeNormal()),
       bridge_(steps), lastStep_(0),

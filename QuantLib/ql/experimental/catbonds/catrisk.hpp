@@ -65,7 +65,7 @@ namespace QuantLib {
         Year years_;
         Date periodStart_;
         Date periodEnd_;
-        Year offsetYears_;
+        //Year offsetYears_;
         unsigned int i_;
     };
 
@@ -95,7 +95,7 @@ namespace QuantLib {
         Real generateBeta();
     
       private:
-	    Real lambda_;
+	    //Real lambda_;
 	    Real maxLoss_;
     
         Integer dayCount_;

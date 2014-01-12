@@ -32,7 +32,7 @@ namespace QuantLib {
     /*! \ingroup credit */
     class RiskyAssetSwapOption : public Instrument {
       public:
-        RiskyAssetSwapOption(bool payer,
+        RiskyAssetSwapOption(bool payer, // this is ignored
                              const boost::shared_ptr<RiskyAssetSwap>& asw,
                              const Date& expiry,
                              Rate marketSpread,
@@ -41,7 +41,7 @@ namespace QuantLib {
         bool isExpired() const;
         void performCalculations() const;
 
-        bool payer_;
+        //bool payer_;
         boost::shared_ptr<RiskyAssetSwap> asw_;
         Date expiry_;
         Rate marketSpread_;

@@ -67,7 +67,7 @@ namespace QuantLib {
 
       private:
         Size factors_, steps_;
-        Ordering ordering_;
+        //Ordering ordering_;
         InverseCumulativeRsg<SobolRsg,InverseCumulativeNormal> generator_;
         BrownianBridge bridge_;
         // work variables

@@ -176,7 +176,7 @@ namespace QuantLib {
 
         mutable Size error_;
 
-        mutable Rate fairPremium_;
+        //mutable Rate fairPremium_;
         mutable Real premiumValue_;
         mutable Real protectionValue_;
         mutable Real upfrontPremiumValue_;
