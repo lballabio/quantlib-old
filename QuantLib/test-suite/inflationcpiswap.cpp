@@ -257,9 +257,9 @@ namespace {
 
     };
 
-    bool checkAbsError(Real x1, Real x2, Real tolerance){
-        return std::fabs(x1 - x2) < tolerance;
-    }
+    // bool checkAbsError(Real x1, Real x2, Real tolerance){
+    //     return std::fabs(x1 - x2) < tolerance;
+    // }
 }
 
 

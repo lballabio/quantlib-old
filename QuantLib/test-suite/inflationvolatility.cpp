@@ -54,7 +54,7 @@ namespace {
     using namespace boost;
     using namespace QuantLib;
 
-    void no_deletion(void*) {}
+    // void no_deletion(void*) {}
 
     // local data globals
     Handle<YieldTermStructure> nominalEUR;
