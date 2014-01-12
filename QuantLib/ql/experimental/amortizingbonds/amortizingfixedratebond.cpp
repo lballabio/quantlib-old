@@ -50,14 +50,14 @@ namespace QuantLib {
 
     namespace  {
 
-        Real initialNotional(const Leg& coupons) {
-            boost::shared_ptr<FixedRateCoupon> coupon =
-                boost::dynamic_pointer_cast<FixedRateCoupon>(coupons.front());
+        // Real initialNotional(const Leg& coupons) {
+        //     boost::shared_ptr<FixedRateCoupon> coupon =
+        //         boost::dynamic_pointer_cast<FixedRateCoupon>(coupons.front());
 
-            QL_REQUIRE(coupon,
-                       "Coupon input is not a fixed rate coupon");
-            return coupon->nominal();
-        }
+        //     QL_REQUIRE(coupon,
+        //                "Coupon input is not a fixed rate coupon");
+        //     return coupon->nominal();
+        // }
 
         std::pair<Integer,Integer> daysMinMax(const Period& p) {
             switch (p.units()) {
