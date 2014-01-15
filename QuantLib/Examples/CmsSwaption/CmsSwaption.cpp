@@ -293,18 +293,18 @@ int example02() {
         Real strike = 0.0001;
         while (strike <= 0.10) {
 
-            auto cap = boost::make_shared<CappedFlooredCmsCoupon>(
+            auto cap = boost::shared_ptr<CappedFlooredCmsCoupon>(new CappedFlooredCmsCoupon(
                 Date(13, November, 2023), 100000.0, Date(13, November, 2022),
                 Date(13, November, 2023), 2, swapIndex, 1.0, 0.0, strike,
-                Null<Rate>(), Date(), Date(), DayCounter(), false, true);
-            auto floor = boost::make_shared<CappedFlooredCmsCoupon>(
+                Null<Rate>(), Date(), Date(), DayCounter(), false, true));
+            auto floor = boost::shared_ptr<CappedFlooredCmsCoupon>(new CappedFlooredCmsCoupon(
                 Date(13, November, 2023), 100000.0, Date(13, November, 2022),
                 Date(13, November, 2023), 2, swapIndex, 1.0, 0.0, Null<Real>(),
-                strike, Date(), Date(), DayCounter(), false, true);
-            auto swaplet = boost::make_shared<CappedFlooredCmsCoupon>(
+                strike, Date(), Date(), DayCounter(), false, true));
+            auto swaplet = boost::shared_ptr<CappedFlooredCmsCoupon>(new CappedFlooredCmsCoupon(
                 Date(13, November, 2023), 100000.0, Date(13, November, 2022),
                 Date(13, November, 2023), 2, swapIndex, 1.0, 0.0, Null<Rate>(),
-                Null<Rate>(), Date(), Date(), DayCounter(), false, false);
+                Null<Rate>(), Date(), Date(), DayCounter(), false, false));
 
             cap->setPricer(haganPricerN);
             floor->setPricer(haganPricerN);
