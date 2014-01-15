@@ -164,7 +164,7 @@ namespace QuantLib {
             a_ = discountCurve_->discount(paymentDate_) *
                  (gamma - GsrG(paymentDate_)) /
                  (discountCurve_->discount(lastd) * GsrG(lastd) +
-                  swapRateValue_ * gamma);
+                  swapRateValue_ * gy * gamma);
 
             b_ = discountCurve_->discount(paymentDate_) / gy -
                  a_ * swapRateValue_;
