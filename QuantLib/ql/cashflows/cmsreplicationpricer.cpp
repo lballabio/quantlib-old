@@ -33,6 +33,9 @@
 #include <ql/math/solvers1d/brent.hpp>
 #include <ql/pricingengines/blackformula.hpp>
 
+#include <boost/make_shared.hpp>
+#include <ql/experimental/models/atmsmilesection.hpp>
+
 namespace QuantLib {
 
     CmsReplicationPricer::CmsReplicationPricer(const Handle<SwaptionVolatilityStructure>& swaptionVol,
@@ -91,7 +94,17 @@ namespace QuantLib {
             swapRateValue_ = swap_->fairRate();
             annuity_ = 1.0E4 * std::fabs(swap_->fixedLegBPS());
 
-            smileSection_ = swaptionVolatility()->smileSection(fixingDate_, swapTenor_);
+            boost::shared_ptr<SmileSection> sectionTmp =
+                swaptionVolatility()->smileSection(fixingDate_, swapTenor_);
+
+            // if the section does not provide an atm level, we enhance it to
+            // have one, no need to exit with an exception ...
+
+            if (sectionTmp->atmLevel() == Null<Real>())
+                smileSection_ = boost::make_shared<AtmSmileSection>(
+                    sectionTmp, swapRateValue_);
+            else
+                smileSection_ = sectionTmp;
 
             const Leg& fixedCoupons = swap_->fixedLeg();
             fixedLegPaymentDates_ = std::vector<Date>(fixedCoupons.size());
