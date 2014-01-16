@@ -13,8 +13,8 @@
 <meta http-equiv="Window-target" content="_top">
 <meta http-equiv="Content-Language" content="en">
 <meta name='viewport' content='width=device-width,initial-scale=1'/>
-<link rel="stylesheet" href="./styles/quantlib.css" type="text/css">
-<link rel="stylesheet" href="./styles/print.css" type="text/css" media="print">
+<link rel="stylesheet" href="/styles/quantlib.css" type="text/css">
+<link rel="stylesheet" href="/styles/print.css" type="text/css" media="print">
 <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 <link href='http://fonts.googleapis.com/css?family=Merriweather:900|Open+Sans:400|Merriweather+Sans:800' rel='stylesheet' type='text/css'>
