@@ -2,6 +2,7 @@
  Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
  Copyright (C) 2009 Joseph Malicki
  Copyright (C) 2011 Lluis Pujol Bajador
+ Copyright (C) 2014 Simon Mazzucca
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,6 +27,9 @@
 %include cashflows.i
 %include interestrate.i
 %include indexes.i
+%include callability.i
+%include inflation.i
+%include shortratemodels.i
 
 %{
 using QuantLib::Bond;
@@ -350,6 +354,98 @@ class DiscountingBondEnginePtr : public boost::shared_ptr<PricingEngine> {
                             const Handle<YieldTermStructure>& discountCurve) {
             return new DiscountingBondEnginePtr(
                                     new DiscountingBondEngine(discountCurve));
+        }
+    }
+};
+
+
+%{
+using QuantLib::CallableFixedRateBond;
+using QuantLib::TreeCallableFixedRateBondEngine;
+typedef boost::shared_ptr<Instrument> CallableFixedRateBondPtr;
+typedef boost::shared_ptr<PricingEngine> TreeCallableFixedRateBondEnginePtr;
+%}
+
+%rename(CallableFixedRateBond) CallableFixedRateBondPtr;
+class CallableFixedRateBondPtr : public BondPtr {
+    %feature("kwargs") CallableFixedRateBondPtr;
+  public:
+    %extend {
+        CallableFixedRateBondPtr(
+                Integer settlementDays,
+                Real faceAmount,
+                const Schedule &schedule,
+                const std::vector<Rate>& coupons,
+                const DayCounter& accrualDayCounter,
+                BusinessDayConvention paymentConvention,
+                Real redemption,
+                Date issueDate,
+                const CallabilitySchedule &putCallSchedule) {
+            return new CallableFixedRateBondPtr(
+                new CallableFixedRateBond(settlementDays, faceAmount,
+                                          schedule, coupons, accrualDayCounter,
+                                          paymentConvention, redemption,
+                                          issueDate, putCallSchedule));
+        }
+    }
+};
+
+%rename(TreeCallableFixedRateBondEngine) TreeCallableFixedRateBondEnginePtr;
+class TreeCallableFixedRateBondEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        TreeCallableFixedRateBondEnginePtr(
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         Size timeSteps,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
+            return new TreeCallableFixedRateBondEnginePtr(
+                new TreeCallableFixedRateBondEngine(model, timeSteps,
+                                                    termStructure));
+        }
+        TreeCallableFixedRateBondEnginePtr(
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         const TimeGrid& grid,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
+            return new TreeCallableFixedRateBondEnginePtr(
+                new TreeCallableFixedRateBondEngine(model, grid,
+                                                    termStructure));
+        }
+    }
+};
+
+%{
+using QuantLib::CPIBond;
+typedef boost::shared_ptr<Instrument> CPIBondPtr;
+%}
+
+%rename(CPIBond) CPIBondPtr;
+class CPIBondPtr : public BondPtr {
+    %feature("kwargs") CPIBondPtr;
+  public:
+    %extend {
+        CPIBondPtr(
+                Natural settlementDays,
+                Real faceAmount,
+                bool growthOnly,
+                Real baseCPI,
+                const Period& observationLag,
+                const ZeroInflationIndexPtr& cpiIndex,
+                CPI::InterpolationType observationInterpolation,
+                const Schedule& schedule,
+                const std::vector<Rate>& coupons,
+                const DayCounter& accrualDayCounter,
+                BusinessDayConvention paymentConvention = ModifiedFollowing,
+                const Date& issueDate = Date()) {
+            boost::shared_ptr<ZeroInflationIndex> zeroIndex =
+                boost::dynamic_pointer_cast<ZeroInflationIndex>(cpiIndex);
+            return new CPIBondPtr(
+                new CPIBond(settlementDays, faceAmount, growthOnly, baseCPI,
+                            observationLag, zeroIndex, observationInterpolation,
+                            schedule, coupons, accrualDayCounter,
+                            paymentConvention, issueDate));
         }
     }
 };

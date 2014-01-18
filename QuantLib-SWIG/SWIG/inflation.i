@@ -245,7 +245,15 @@ export_yii_instance(YYFRHICP);
 export_yii_instance(YYUKRPI);
 export_yii_instance(YYUSCPI);
 
+// utilities
 
+%{
+    using QuantLib::CPI;
+%}
+
+struct CPI {
+    enum InterpolationType { AsIndex, Flat, Linear };
+};
 
 // bootstrapped curves
 

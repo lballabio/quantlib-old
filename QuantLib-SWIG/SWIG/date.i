@@ -299,6 +299,16 @@ function(from) {Period(from)})
 %}
 #endif
 
+%{
+    // used in Date(string, string) defined below
+    void _replace_format(std::string& s, const std::string& old_format,
+                         const std::string& new_format) {
+        std::string::size_type i = s.find(old_format);
+        if (i != std::string::npos)
+            s.replace(i, old_format.length(), new_format);
+    }
+%}
+
 class Date {
     #if defined(SWIGRUBY)
     %rename("isLeap?")        isLeap;
@@ -345,8 +355,17 @@ class Date {
     Date operator-(const Period&) const;
     #endif
     %extend {
-        Date(const std::string& str, const std::string& fmt) {
-            return new Date(DateParser::parse(str,fmt));
+        Date(const std::string& str, std::string fmt) {
+            // convert our old format into the corresponding Boost one
+            _replace_format(fmt, "YYYY", "%Y");
+            _replace_format(fmt, "yyyy", "%Y");
+            _replace_format(fmt, "YY", "%y");
+            _replace_format(fmt, "yy", "%y");
+            _replace_format(fmt, "MM", "%m");
+            _replace_format(fmt, "mm", "%m");
+            _replace_format(fmt, "DD", "%d");
+            _replace_format(fmt, "dd", "%d");
+            return new Date(DateParser::parseFormatted(str,fmt));
         }
         Integer weekdayNumber() {
             return int(self->weekday());
@@ -413,6 +432,7 @@ class Date {
 class DateParser {
   public:
     static Date parse(const std::string& str, const std::string& fmt);
+    static Date parseFormatted(const std::string& str, const std::string& fmt);
     static Date parseISO(const std::string& str);
 };
 
