@@ -91,8 +91,6 @@ namespace QuantLib {
         QL_REQUIRE(coupon_, "CMS coupon needed");
         gearing_ = coupon_->gearing();
         spread_ = coupon_->spread();
-        Time accrualPeriod = coupon_->accrualPeriod();
-        QL_REQUIRE(accrualPeriod != 0.0, "null accrual period");
 
         fixingDate_ = coupon_->fixingDate();
         paymentDate_ = coupon_->date();
@@ -122,7 +120,7 @@ namespace QuantLib {
         else
             couponDiscountRatio_ = 1.;
 
-        spreadLegValue_ = spread_ * accrualPeriod *
+        spreadLegValue_ = spread_ * coupon_->accrualPeriod() *
                           discountCurve_->discount(paymentDate_) *
                           couponDiscountRatio_;
 
@@ -305,7 +303,8 @@ namespace QuantLib {
 
         result += singularTerms(optionType, strike);
 
-        return annuity_ * result * couponDiscountRatio_;
+        return annuity_ * result * couponDiscountRatio_ *
+               coupon_->accrualPeriod();
     }
 
     Rate LinearTsrPricer::swapletRate() const {

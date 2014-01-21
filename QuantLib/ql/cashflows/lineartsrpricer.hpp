@@ -17,7 +17,7 @@
   or FITNESS FOR A PARTICULAR PURPOSE. See the license for more details. */
 
 /*! \file lineartsrpricer.hpp
-  \brief linear terminal swap rate model for cms coupon pricing
+    \brief linear terminal swap rate model for cms coupon pricing
 */
 
 #ifndef quantlib_lineartsr_pricer_hpp
@@ -37,11 +37,19 @@ namespace QuantLib {
     //! CMS-coupon pricer
     /*! Prices a cms coupon using a linear swap rate model where the slope
         parameter is linked to a gaussian short rate model.
+        The cut off point for integration can be set
+        - by explicitly setting the lower and upper bound
+        - by defining the lower and upper bound to be the strike where
+          a vanilla swaption has 1% or less vega of the atm swaption
+        - by defining the lower and upper bound to be the strike where
+          undeflated (!) payer resp. receiver prices are below a given
+          threshold
     */
 
     class LinearTsrPricer : public CmsCouponPricer {
 
       public:
+
         struct Settings {
 
             enum Strategy {
@@ -53,7 +61,7 @@ namespace QuantLib {
             Settings()
                 : strategy_(RateBound), vegaRatio_(0.01),
                   priceThreshold_(1.0E-8), lowerRateBound_(0.0001),
-                  upperRateBound_(2.0000), cashSettledSwaptions_(false) {}
+                  upperRateBound_(2.0000) {}
 
             // hedge with given lower and upper bound for swap rate, e.g. 0.0001
             // and 2.0000
@@ -83,8 +91,7 @@ namespace QuantLib {
             // below a given threshold but not outside the given bounds. n
             // discrete scenarios are used on
             // each side of the strike
-            Settings &withPriceThreshold(const Size n,
-                                         const Real priceThreshold,
+            Settings &withPriceThreshold(const Real priceThreshold,
                                          const Real lowerRateBound = 0.0001,
                                          const Real upperRateBound = 2.0000) {
                 strategy_ = PriceThreshold;
@@ -94,28 +101,19 @@ namespace QuantLib {
                 return *this;
             }
 
-            // use cash settlement pricing formula for replicating swaptions
-            Settings &
-            withCashSettledSwaptions(const bool cashSettledSwaptions) {
-                QL_REQUIRE(!cashSettledSwaptions,
-                           "cash settled swaptions basket not yet implemented");
-                cashSettledSwaptions_ = cashSettledSwaptions;
-                return *this;
-            }
-
             Strategy strategy_;
             Real vegaRatio_;
             Real priceThreshold_;
             Real lowerRateBound_, upperRateBound_;
-            bool cashSettledSwaptions_;
         };
 
         LinearTsrPricer(const Handle<SwaptionVolatilityStructure> &swaptionVol,
-                     const Handle<Quote> &meanReversion,
-                     const Handle<YieldTermStructure> &couponDiscountCurve =
-                         Handle<YieldTermStructure>(),
+                        const Handle<Quote> &meanReversion,
+                        const Handle<YieldTermStructure> &couponDiscountCurve =
+                            Handle<YieldTermStructure>(),
                         const Settings &settings = Settings(),
-                        const boost::shared_ptr<Integrator> &integrator = boost::shared_ptr<Integrator>());
+                        const boost::shared_ptr<Integrator> &integrator =
+                            boost::shared_ptr<Integrator>());
 
         /* */
         virtual Real swapletPrice() const;
@@ -139,8 +137,6 @@ namespace QuantLib {
         const Real integrand(const Real strike) const;
         Real a_, b_;
 
-        class VegaRatioHelper;
-        friend class VegaRatioelper;
         class VegaRatioHelper {
           public:
             VegaRatioHelper(const SmileSection *section, const Real targetVega)
@@ -152,8 +148,6 @@ namespace QuantLib {
             const Real targetVega_;
         };
 
-        class PriceHelper;
-        friend class PriceHelper;
         class PriceHelper {
           public:
             PriceHelper(const SmileSection *section, const Option::Type type,
@@ -168,9 +162,7 @@ namespace QuantLib {
         };
 
         void initialize(const FloatingRateCoupon &coupon);
-
         Real optionletPrice(Option::Type optionType, Real strike) const;
-
         Real strikeFromVegaRatio(Real ratio, Option::Type optionType,
                                  Real referenceStrike) const;
         Real strikeFromPrice(Real price, Option::Type optionType,
