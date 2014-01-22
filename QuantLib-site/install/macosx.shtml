@@ -6,6 +6,7 @@
 <meta name="copyright" content=
 "Jack Harvard (c) 2010">
 <meta name="description" content="QuantLib Installation on Mac OS X">
+<link rel="stylesheet" href="/styles/nosplash.css" type="text/css">
 <title>QuantLib installation on Mac OS X</title>
 </head>
 <body>
