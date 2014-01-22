@@ -146,7 +146,7 @@ namespace QuantLib {
     class LossDistHomogeneous : public LossDist {
     public:
         LossDistHomogeneous (Size nBuckets, Real maximum, Real epsilon = 1e-6) 
-            : nBuckets_(nBuckets), maximum_(maximum)
+            : nBuckets_(nBuckets), maximum_(maximum),
               n_(0), volume_(0.0) {}
         Distribution operator()(Real volume, 
                                 const std::vector<Real>& probabilities) const;
