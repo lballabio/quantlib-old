@@ -150,14 +150,33 @@ IsObservable(Handle<ZeroInflationTermStructure>);
 
 // inflation indexes
 
-%{
+%fragment("zeroinflationindex", "header") {
+%#include <ql/indexes/inflationindex.hpp>
+%#include <ql/indexes/inflation/all.hpp>
+using QuantLib::Region;
+using QuantLib::CustomRegion;
 using QuantLib::InflationIndex;
 using QuantLib::ZeroInflationIndex;
 using QuantLib::YoYInflationIndex;
 typedef boost::shared_ptr<Index> InflationIndexPtr;
 typedef boost::shared_ptr<Index> ZeroInflationIndexPtr;
 typedef boost::shared_ptr<Index> YoYInflationIndexPtr;
-%}
+}
+%fragment("zeroinflationindex");
+
+class Region {
+  public:
+    std::string name() const;
+    std::string code() const;
+  protected:
+    Region();
+};
+
+class CustomRegion : public Region {
+  public:
+    CustomRegion(const std::string& name,
+                 const std::string& code);
+};
 
 %rename(InflationIndex) InflationIndexPtr;
 class InflationIndexPtr : public boost::shared_ptr<Index> {
