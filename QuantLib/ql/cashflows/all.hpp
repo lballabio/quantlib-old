@@ -7,6 +7,7 @@
 #include <ql/cashflows/cashflows.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
+#include <ql/cashflows/cmsspreadcoupon.hpp>
 #include <ql/cashflows/cmsreplicationpricer.hpp>
 #include <ql/cashflows/lineartsrpricer.hpp>
 #include <ql/cashflows/conundrumpricer.hpp>

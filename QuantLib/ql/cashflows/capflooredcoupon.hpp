@@ -27,6 +27,7 @@
 
 #include <ql/cashflows/iborcoupon.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
+#include <ql/cashflows/cmsspreadcoupon.hpp>
 #include <ql/utilities/null.hpp>
 
 namespace QuantLib {
@@ -161,6 +162,40 @@ namespace QuantLib {
                 CappedFlooredCoupon::accept(v);
         }
     };
+
+    class CappedFlooredCmsSpreadCoupon : public CappedFlooredCoupon {
+      public:
+        CappedFlooredCmsSpreadCoupon(
+                  const Date& paymentDate,
+                  Real nominal,
+                  const Date& startDate,
+                  const Date& endDate,
+                  Natural fixingDays,
+                  const boost::shared_ptr<SwapSpreadIndex>& index,
+                  Real gearing = 1.0,
+                  Spread spread= 0.0,
+                  const Rate cap = Null<Rate>(),
+                  const Rate floor = Null<Rate>(),
+                  const Date& refPeriodStart = Date(),
+                  const Date& refPeriodEnd = Date(),
+                  const DayCounter& dayCounter = DayCounter(),
+                  bool isInArrears = false,
+                  bool capFloorPayoff = false)
+        : CappedFlooredCoupon(boost::shared_ptr<FloatingRateCoupon>(new
+            CmsSpreadCoupon(paymentDate, nominal, startDate, endDate, fixingDays,
+                      index, gearing, spread, refPeriodStart, refPeriodEnd,
+                      dayCounter, isInArrears)), cap, floor, capFloorPayoff) {}
+
+        virtual void accept(AcyclicVisitor& v) {
+            Visitor<CappedFlooredCmsSpreadCoupon>* v1 =
+                dynamic_cast<Visitor<CappedFlooredCmsSpreadCoupon>*>(&v);
+            if (v1 != 0)
+                v1->visit(*this);
+            else
+                CappedFlooredCoupon::accept(v);
+        }
+    };
+
 
 }
 
