@@ -1,0 +1,51 @@
+<Framework name="QuantLibXL" displayName="QuantLibXL">
+  <StartupParameters>
+    <GroupBox text="Settings">
+      <KeyValuePair name="Environment" value="Fixed Income2" />
+      <KeyValuePair name="Workbook Path" value="C:\Users\erik\Documents\repos\quantlib\QuantLibXL\Workbooks" />
+      <KeyValuePair name="Help File Path" value="C:\Users\erik\Documents\repos\quantlib\QuantLibXL\Docs" />
+      <KeyValuePair name="Metadata Path" value="C:\Users\erik\Documents\repos\quantlib\QuantLibAddin\gensrc\metadata" />
+      <KeyValuePair name="Root Path" value="C:\Users\erik\Documents\repos\quantlib\QuantLibXL\" />
+      <CheckBox text="Set Evaluation Date" checked="True" enabled="True" />
+      <DateTimePicker label="Evaluation Date" value="1/17/2014" enabled="True" />
+      <ComboBox label="Default Currency" selectedItem="EUR" enabled="True">
+        <Items>
+          <Item>EUR</Item>
+          <Item>GBP</Item>
+          <Item>USD</Item>
+          <Item>CHF</Item>
+          <Item>JPY</Item>
+        </Items>
+      </ComboBox>
+      <ComboBox label="Initialization Data Source" selectedItem="Excel" enabled="True">
+        <Items>
+          <Item>Excel</Item>
+          <Item>XML</Item>
+        </Items>
+      </ComboBox>
+      <CheckBox text="Open Main Checks" checked="False" enabled="True" />
+    </GroupBox>
+    <GroupBox text="Index Fixings">
+      <CheckBox text="Update Euribor YTD Time Series (xls)" checked="False" enabled="True" />
+      <CheckBox text="Update Index YTD Time Series (xls)" checked="False" enabled="True" />
+      <CheckBox text="Load Index YTD Time Series (xml)" checked="False" enabled="True" />
+    </GroupBox>
+    <GroupBox text="Curves">
+      <CheckBox text="Bootstrap Yield Curves" checked="False" enabled="True" />
+    </GroupBox>
+    <GroupBox text="RealTime Data">
+      <ComboBox label="Real Time Feed" selectedItem="Reuters" enabled="True">
+        <Items>
+          <Item>Reuters</Item>
+          <Item>Bloomberg</Item>
+        </Items>
+      </ComboBox>
+      <CheckBox text="Use Static Market Data" checked="True" enabled="True" />
+    </GroupBox>
+  </StartupParameters>
+  <Components>
+    <Component path="C:\Users\erik\Documents\repos\quantlib\QuantLibXL\xll\QuantLibXL-vc90-mt-s-1_3_0.xll" />
+    <Component path="C:\Users\erik\Documents\repos\quantlib\QuantLibXL\framework\QuantLibXL.xla" />
+  </Components>
+  <EnvironmentVariables />
+</Framework>
