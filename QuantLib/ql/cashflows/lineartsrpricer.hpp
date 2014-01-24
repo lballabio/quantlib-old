@@ -35,9 +35,9 @@ namespace QuantLib {
     class YieldTermStructure;
 
     //! CMS-coupon pricer
-    /*! Prices a cms coupon using a linear swap rate model where the slope
-        parameter is linked to a gaussian short rate model. Reference:
-        Piterbarg, Andersen, Interest Rate Modeling, 16.3.2
+    /*! Prices a cms coupon using a linear terminal swap rate model
+        The slope parameter is linked to a gaussian short rate model.
+        Reference: Andersen, Piterbarg, Interest Rate Modeling, 16.3.2
 
         The cut off point for integration can be set
         - by explicitly specifying the lower and upper bound
@@ -124,7 +124,9 @@ namespace QuantLib {
             update();
         }
 
+
       private:
+
         const Real GsrG(const Date &d) const;
         const Real singularTerms(const Option::Type type, const Real strike) const;
         const Real integrand(const Real strike) const;

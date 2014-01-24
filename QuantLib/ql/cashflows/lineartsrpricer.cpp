@@ -103,11 +103,9 @@ namespace QuantLib {
             discountCurve_ = forwardCurve_;
 
         // if no coupon discount curve is given just use the discounting curve
-        // from the swap index.
-        // for rate calculation this curve cancels out in the computation, so
-        // e.g. the discounting
-        // swap engine will produce correct results, even if the
-        // couponDiscountCurve is not set here.
+        // from the swap index. for rate calculation this curve cancels out in
+        // the computation, so e.g. the discounting swap engine will produce
+        // correct results, even if the couponDiscountCurve is not set here.
         // only the price member function in this class will be dependent on the
         // coupon discount curve.
 
@@ -145,6 +143,7 @@ namespace QuantLib {
                 smileSection_ = sectionTmp;
 
             // compute linear model's parameters
+
             Real gx = 0.0, gy = 0.0;
             for (Size i = 0; i < swap_->fixedLeg().size(); i++) {
                 boost::shared_ptr<Coupon> c =
@@ -360,7 +359,6 @@ namespace QuantLib {
     }
 
     Real LinearTsrPricer::swapletPrice() const {
-
         if (fixingDate_ <= today_) {
             // the fixing is determined
             const Rate Rs = coupon_->swapIndex()->fixing(fixingDate_);
