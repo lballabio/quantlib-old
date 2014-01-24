@@ -48,6 +48,8 @@ namespace QuantLib {
         //@{
         boost::shared_ptr<SwapIndex> swapIndex1() { return swapIndex1_; }
         boost::shared_ptr<SwapIndex> swapIndex2() { return swapIndex2_; }
+        Real gearing1() { return gearing1_; }
+        Real gearing2() { return gearing2_; }
         //@}
 
 
