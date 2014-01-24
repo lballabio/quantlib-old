@@ -11,6 +11,7 @@ this_include_HEADERS = \
     cashflowvectors.hpp \
     cmscoupon.hpp \
 	cmsspreadcoupon.hpp \
+	cmsspreadpricer.hpp \
     cmsreplicationpricer.hpp \
 	lineartsrpricer.hpp \
     conundrumpricer.hpp \
@@ -46,6 +47,7 @@ libCashFlows_la_SOURCES = \
     cashflowvectors.cpp \
     cmscoupon.cpp \
 	cmsspreadcoupon.cpp \
+	cmsspreadpricer.cpp \
     cmsreplicationpricer.cpp \
 	lineartsrpricer.cpp \
     conundrumpricer.cpp \
