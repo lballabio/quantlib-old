@@ -18,6 +18,7 @@
 */
 
 #include <ql/experimental/models/gaussian1dfloatfloatswaptionengine.hpp>
+#include <ql/indexes/swapspreadindex.hpp>
 
 namespace QuantLib {
 
@@ -159,15 +160,19 @@ namespace QuantLib {
             boost::dynamic_pointer_cast<IborIndex>(arguments_.index1);
         boost::shared_ptr<SwapIndex> cms1 =
             boost::dynamic_pointer_cast<SwapIndex>(arguments_.index1);
+        boost::shared_ptr<SwapSpreadIndex> cmsspread1 =
+            boost::dynamic_pointer_cast<SwapSpreadIndex>(arguments_.index1);
         boost::shared_ptr<IborIndex> ibor2 =
             boost::dynamic_pointer_cast<IborIndex>(arguments_.index2);
         boost::shared_ptr<SwapIndex> cms2 =
             boost::dynamic_pointer_cast<SwapIndex>(arguments_.index2);
+        boost::shared_ptr<SwapSpreadIndex> cmsspread2 =
+            boost::dynamic_pointer_cast<SwapSpreadIndex>(arguments_.index2);
 
-        QL_REQUIRE(ibor1 != NULL || cms1 != NULL,
-                   "index1 must be ibor or swap index");
-        QL_REQUIRE(ibor2 != NULL || cms2 != NULL,
-                   "index2 must be ibor or swap index");
+        QL_REQUIRE(ibor1 != NULL || cms1 != NULL || cmsspread1 != NULL,
+                   "index1 must be ibor or swap or swap spread index");
+        QL_REQUIRE(ibor2 != NULL || cms2 != NULL || cmsspread2 != NULL,
+                   "index2 must be ibor or swap or swap spread index");
 
         do {
 
@@ -445,19 +450,30 @@ namespace QuantLib {
                             if (arguments_.leg1IsRedemptionFlow[j]) {
                                 amount = arguments_.leg1Coupons[j];
                             } else {
+                                Real estFixing = 0.0;
+                                if(ibor1 != NULL)
+                                    estFixing = model_->forwardRate(arguments_.leg1FixingDates[j],event0,zk,ibor1);
+                                if(cms1 != NULL)
+                                    estFixing = model_->swapRate(arguments_.leg1FixingDates[j],cms1->tenor(),event0,zk,cms1);
+                                if (cmsspread1 != NULL)
+                                    estFixing =
+                                        cmsspread1->gearing1() *
+                                            model_->swapRate(
+                                                arguments_.leg1FixingDates[j],
+                                                cmsspread1->swapIndex1()
+                                                    ->tenor(),
+                                                event0, zk,
+                                                cmsspread1->swapIndex1()) +
+                                        cmsspread1->gearing2() *
+                                            model_->swapRate(
+                                                arguments_.leg1FixingDates[j],
+                                                cmsspread1->swapIndex2()
+                                                    ->tenor(),
+                                                event0, zk,
+                                                cmsspread1->swapIndex2());
                                 Real rate =
                                     arguments_.leg1Spreads[j] +
-                                    arguments_.leg1Gearings[j] *
-                                        (ibor1 != NULL
-                                             ? model_->forwardRate(
-                                                   arguments_
-                                                       .leg1FixingDates[j],
-                                                   event0, zk, ibor1)
-                                             : model_->swapRate(
-                                                   arguments_
-                                                       .leg1FixingDates[j],
-                                                   cms1->tenor(), event0, zk,
-                                                   cms1));
+                                    arguments_.leg1Gearings[j] * estFixing;
                                 if (arguments_.leg1CappedRates[j] !=
                                     Null<Real>())
                                     rate = std::min(
@@ -512,19 +528,30 @@ namespace QuantLib {
                             if (arguments_.leg2IsRedemptionFlow[j]) {
                                 amount = arguments_.leg2Coupons[j];
                             } else {
+                                Real estFixing = 0.0;
+                                if(ibor2 != NULL)
+                                    estFixing = model_->forwardRate(arguments_.leg2FixingDates[j],event0,zk,ibor2);
+                                if(cms2 != NULL)
+                                    estFixing = model_->swapRate(arguments_.leg2FixingDates[j],cms2->tenor(),event0,zk,cms2);
+                                if (cmsspread2 != NULL)
+                                    estFixing =
+                                        cmsspread2->gearing1() *
+                                            model_->swapRate(
+                                                arguments_.leg2FixingDates[j],
+                                                cmsspread2->swapIndex1()
+                                                    ->tenor(),
+                                                event0, zk,
+                                                cmsspread1->swapIndex1()) +
+                                        cmsspread2->gearing2() *
+                                            model_->swapRate(
+                                                arguments_.leg2FixingDates[j],
+                                                cmsspread2->swapIndex2()
+                                                    ->tenor(),
+                                                event0, zk,
+                                                cmsspread1->swapIndex2());
                                 Real rate =
                                     arguments_.leg2Spreads[j] +
-                                    arguments_.leg2Gearings[j] *
-                                        (ibor2 != NULL
-                                             ? model_->forwardRate(
-                                                   arguments_
-                                                       .leg2FixingDates[j],
-                                                   event0, zk, ibor2)
-                                             : model_->swapRate(
-                                                   arguments_
-                                                       .leg2FixingDates[j],
-                                                   cms2->tenor(), event0, zk,
-                                                   cms1));
+                                    arguments_.leg2Gearings[j] * estFixing;
                                 if (arguments_.leg2CappedRates[j] !=
                                     Null<Real>())
                                     rate = std::min(
