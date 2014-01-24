@@ -1,6 +1,6 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
-  Copyright (C) 2013 Peter Caspers
+  Copyright (C) 2014 Peter Caspers
 
   This file is part of QuantLib, a free-software/open-source library
   for financial quantitative analysts and developers - http://quantlib.org/
@@ -36,9 +36,11 @@ namespace QuantLib {
 
     //! CMS-coupon pricer
     /*! Prices a cms coupon using a linear swap rate model where the slope
-        parameter is linked to a gaussian short rate model.
+        parameter is linked to a gaussian short rate model. Reference:
+        Piterbarg, Andersen, Interest Rate Modeling, 16.3.2
+
         The cut off point for integration can be set
-        - by explicitly setting the lower and upper bound
+        - by explicitly specifying the lower and upper bound
         - by defining the lower and upper bound to be the strike where
           a vanilla swaption has 1% or less vega of the atm swaption
         - by defining the lower and upper bound to be the strike where
@@ -52,31 +54,20 @@ namespace QuantLib {
 
         struct Settings {
 
-            enum Strategy {
-                RateBound,
-                VegaRatio,
-                PriceThreshold
-            };
-
             Settings()
                 : strategy_(RateBound), vegaRatio_(0.01),
                   priceThreshold_(1.0E-8), lowerRateBound_(0.0001),
                   upperRateBound_(2.0000) {}
 
-            // hedge with given lower and upper bound for swap rate, e.g. 0.0001
-            // and 2.0000
-            Settings &withRateBound(const Real lowerRateBound,
-                                    const Real upperRateBound) {
+            Settings &withRateBound(const Real lowerRateBound = 0.0001,
+                                    const Real upperRateBound = 2.0000) {
                 strategy_ = RateBound;
                 lowerRateBound_ = lowerRateBound;
                 upperRateBound_ = upperRateBound;
                 return *this;
             }
 
-            // hedge with an lower / upper rate bound such that the swaption
-            // vega is a given ratio of the
-            // atm vega but not outside the given bounds.
-            Settings &withVegaRatio(const Real vegaRatio,
+            Settings &withVegaRatio(const Real vegaRatio = 0.01,
                                     const Real lowerRateBound = 0.0001,
                                     const Real upperRateBound = 2.0000) {
                 strategy_ = VegaRatio;
@@ -86,12 +77,7 @@ namespace QuantLib {
                 return *this;
             }
 
-            // hedge with an upper rate bound such that a (undeflated) price of
-            // the replicating swaption is
-            // below a given threshold but not outside the given bounds. n
-            // discrete scenarios are used on
-            // each side of the strike
-            Settings &withPriceThreshold(const Real priceThreshold,
+            Settings &withPriceThreshold(const Real priceThreshold = 1.0E-8,
                                          const Real lowerRateBound = 0.0001,
                                          const Real upperRateBound = 2.0000) {
                 strategy_ = PriceThreshold;
@@ -101,11 +87,18 @@ namespace QuantLib {
                 return *this;
             }
 
+            enum Strategy {
+                RateBound,
+                VegaRatio,
+                PriceThreshold
+            };
+
             Strategy strategy_;
             Real vegaRatio_;
             Real priceThreshold_;
             Real lowerRateBound_, upperRateBound_;
         };
+
 
         LinearTsrPricer(const Handle<SwaptionVolatilityStructure> &swaptionVol,
                         const Handle<Quote> &meanReversion,
