@@ -1446,8 +1446,7 @@ typedef boost::shared_ptr<PricingEngine>
     VarianceGammaEnginePtr;
 %}
 
-%rename(VarianceGammaEngine)
-        VarianceGammaEnginePtr;
+%rename(VarianceGammaEngine) VarianceGammaEnginePtr;
 class VarianceGammaEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:
@@ -1467,15 +1466,7 @@ typedef boost::shared_ptr<PricingEngine>
     FFTVarianceGammaEnginePtr;
 %}
 
-#if defined(SWIGCSHARP)
-SWIG_STD_VECTOR_ENHANCED( boost::shared_ptr<Instrument> )
-#endif
-namespace std {
-    %template(OptionList) vector<boost::shared_ptr<Instrument> >;
-}
-
-%rename(FFTVarianceGammaEngine)
-        FFTVarianceGammaEnginePtr;
+%rename(FFTVarianceGammaEngine) FFTVarianceGammaEnginePtr;
 class FFTVarianceGammaEnginePtr
     : public boost::shared_ptr<PricingEngine> {
   public:

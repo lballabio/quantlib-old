@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007, 2009 Chris Kenyon
+ Copyright (C) 2014 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -15,27 +15,29 @@
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
- */
+*/
 
-#ifndef quantlib_test_inflation_hpp
-#define quantlib_test_inflation_hpp
+#ifndef quantlib_test_piecewise_zero_spreaded_term_structure_hpp
+#define quantlib_test_piecewise_zero_spreaded_term_structure_hpp
 
 #include <boost/test/unit_test.hpp>
 
 /* remember to document new and/or updated tests in the Doxygen
- comment block of the corresponding class */
+   comment block of the corresponding class */
 
-class InflationTest {
-public:
-    static void testPeriod();
-    static void testZeroIndex();
-    static void testZeroTermStructure();
-    static void testZeroIndexFutureFixing();
-    static void testYYIndex();
-    static void testYYTermStructure();
+class PiecewiseZeroSpreadedTermStructureTest {
+  public:
+    static void testFlatInterpolationLeft();
+    static void testFlatInterpolationRight();
+    static void testLinearInterpolationMultipleSpreads();
+    static void testLinearInterpolation();
+    static void testForwardFlatInterpolation();
+    static void testBackwardFlatInterpolation();
+    static void testDefaultInterpolation();
+    static void testSetInterpolationFactory();
+    static void testMaxDate();
+    static void testQuoteChanging();
     static boost::unit_test_framework::test_suite* suite();
 };
 
-
 #endif
-
