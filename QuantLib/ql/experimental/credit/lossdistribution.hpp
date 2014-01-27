@@ -146,7 +146,7 @@ namespace QuantLib {
     class LossDistHomogeneous : public LossDist {
     public:
         LossDistHomogeneous (Size nBuckets, Real maximum, Real epsilon = 1e-6) 
-            : nBuckets_(nBuckets), maximum_(maximum), epsilon_(epsilon),
+            : nBuckets_(nBuckets), maximum_(maximum),
               n_(0), volume_(0.0) {}
         Distribution operator()(Real volume, 
                                 const std::vector<Real>& probabilities) const;
@@ -161,7 +161,6 @@ namespace QuantLib {
     private:
         Size nBuckets_;
         Real maximum_;
-        Real epsilon_;
         mutable Size n_;
         mutable Real volume_;
         mutable std::vector<Real> probability_;
@@ -210,7 +209,7 @@ namespace QuantLib {
         LossDistMonteCarlo (Size nBuckets, Real maximum, Size simulations,
                             long seed = 42, Real epsilon = 1e-6)
             : nBuckets_(nBuckets), maximum_(maximum), 
-              simulations_(simulations), seed_(seed), epsilon_(epsilon) {}
+              simulations_(simulations), epsilon_(epsilon) {}
         Distribution operator()(const std::vector<Real>& volumes, 
                                 const std::vector<Real>& probabilities) const;
         Size buckets () const { return nBuckets_; }
@@ -219,7 +218,6 @@ namespace QuantLib {
         Size nBuckets_;
         Real maximum_;
         Size simulations_;
-        long seed_;
         Real epsilon_;
     };
 

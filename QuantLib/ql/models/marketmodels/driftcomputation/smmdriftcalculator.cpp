@@ -30,7 +30,6 @@ namespace QuantLib {
                                     Size numeraire,
                                     Size alive)
     : numberOfRates_(taus.size()), numberOfFactors_(pseudo.columns()),
-      isFullFactor_(numberOfFactors_==numberOfRates_ ? true : false),
       numeraire_(numeraire), alive_(alive),
       displacements_(displacements), oneOverTaus_(taus.size()),
       pseudo_(pseudo),
@@ -38,9 +37,7 @@ namespace QuantLib {
       // zero initialization required for (used by) the last element
       wkaj_(pseudo_.columns(), pseudo_.rows(), 0.0),
       wkpj_(pseudo_.columns(), pseudo_.rows()+1, 0.0),
-      wkajshifted_(pseudo_.columns(), pseudo_.rows(), 0.0)
-      /*,
-      downs_(taus.size()), ups_(taus.size())*/ {
+      wkajshifted_(pseudo_.columns(), pseudo_.rows(), 0.0) {
 
         // Check requirements
         QL_REQUIRE(numberOfRates_>0, "Dim out of range");

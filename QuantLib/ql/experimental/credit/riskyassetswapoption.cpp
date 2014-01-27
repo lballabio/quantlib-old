@@ -29,7 +29,7 @@ namespace QuantLib {
                                  const Date& expiry,
                                  Rate marketSpread,
                                  Volatility spreadVolatility)
-    : payer_(payer), asw_(asw), expiry_(expiry),
+    : /*payer_(payer),*/ asw_(asw), expiry_(expiry),
       marketSpread_(marketSpread),
       spreadVolatility_(spreadVolatility) {}
 
