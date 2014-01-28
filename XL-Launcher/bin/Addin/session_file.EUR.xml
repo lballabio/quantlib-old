@@ -15,10 +15,6 @@
 
         <!-- for FixedIncome (2) -->
         <StartupParameter name="Root Path" value=".\QuantLibXL\" />
-        <StartupParameter name="Load HKD Rate Curves" value="False" />
-        <StartupParameter name="Load GBP Rate Curves" value="False" />
-        <StartupParameter name="Load EUR Rate Curves" value="True" />
-        <StartupParameter name="Load USD Rate Curves" value="False" />
 
         <!-- for FixedIncome (1) -->
         <StartupParameter name="Workbook Path" value=".\QuantLibXL\Workbooks" />
@@ -32,7 +28,7 @@
         <StartupParameter name="Update Euribor YTD Time Series (xls)" value="False" />
         <StartupParameter name="Update Index YTD Time Series (xls)" value="False" />
         <StartupParameter name="Load Index YTD Time Series (xml)" value="False" />
-        <StartupParameter name="Bootstrap Yield Curves" value="False" />
+        <StartupParameter name="Bootstrap Yield Curves" value="True" />
         <StartupParameter name="Real Time Feed" value="Reuters" />
         <StartupParameter name="Use Static Market Data" value="False" />
       </StartupParameters>
