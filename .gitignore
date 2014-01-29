@@ -118,7 +118,9 @@ Makefile.in
 *.ncb
 *.suo
 *.vcproj.*.user
+*.vcxproj.user
 *.log
+*.sdf
 
 # Outputs
 QuantLib/Examples/BermudanSwaption/BermudanSwaption
