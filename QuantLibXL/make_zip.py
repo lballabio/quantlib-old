@@ -46,6 +46,7 @@ zfile.write("../ObjectHandler/xll/ObjectHandler-xll-vc90-mt-1_3_0.xll", ROOT_DIR
 os.path.walk("../QuantLibAddin/gensrc/metadata", visit, (zfile, None, "../QuantLibAddin/gensrc/"))
 zfile.write("../XL-Launcher/bin/Addin/Launcher.xla", ROOT_DIR + "Launcher.xla", zipfile.ZIP_DEFLATED)
 zfile.write("../XL-Launcher/bin/Addin/session_file.zipfile.xml", ROOT_DIR + "session_file.xml", zipfile.ZIP_DEFLATED)
+zfile.write("../XL-Launcher/bin/Addin/qlxl.template.bat", ROOT_DIR + "qlxl.template.bat", zipfile.ZIP_DEFLATED)
 
 zfile.close()
 
