@@ -120,10 +120,10 @@ class my_build_ext(build_ext):
 
             if 'INCLUDE' in os.environ:
                 dirs = [dir for dir in os.environ['INCLUDE'].split(';')]
-                self.include_dirs += dirs
+                self.include_dirs += [ d for d in dirs if d.strip() ]
             if 'LIB' in os.environ:
                 dirs = [dir for dir in os.environ['LIB'].split(';')]
-                self.library_dirs += dirs
+                self.library_dirs += [ d for d in dirs if d.strip() ]
 
             self.define += [('__WIN32__', None), ('WIN32', None),
                             ('NDEBUG', None), ('_WINDOWS', None),

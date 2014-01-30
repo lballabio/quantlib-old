@@ -2817,6 +2817,9 @@
     <ClInclude Include="ql\experimental\coupons\all.hpp">
       <Filter>experimental\coupons</Filter>
     </ClInclude>
+    <ClInclude Include="ql\experimental\coupons\lineartsrpricer.hpp">
+      <Filter>experimental\coupons</Filter>
+    </ClInclude>
     <ClInclude Include="ql\experimental\coupons\proxyibor.hpp">
       <Filter>experimental\coupons</Filter>
     </ClInclude>
@@ -3749,6 +3752,12 @@
     </ClInclude>
     <ClInclude Include="ql\experimental\math\expm.hpp">
       <Filter>experimental\math</Filter>
+    </ClInclude>
+    <ClInclude Include="ql\math\modifiedbessel.hpp">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="ql\experimental\exoticoptions\analyticpdfhestonengine.hpp">
+      <Filter>experimental\exoticoptions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5330,6 +5339,9 @@
     <ClCompile Include="ql\experimental\catbonds\riskynotional.cpp">
       <Filter>experimental\catbonds</Filter>
     </ClCompile>
+    <ClCompile Include="ql\experimental\coupons\lineartsrpricer.cpp">
+      <Filter>experimental\coupons</Filter>
+    </ClCompile>
     <ClCompile Include="ql\experimental\coupons\proxyibor.cpp">
       <Filter>experimental\coupons</Filter>
     </ClCompile>
@@ -6020,6 +6032,12 @@
     </ClCompile>
     <ClCompile Include="ql\experimental\math\expm.cpp">
       <Filter>experimental\math</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\math\modifiedbessel.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\experimental\exoticoptions\analyticpdfhestonengine.cpp">
+      <Filter>experimental\exoticoptions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

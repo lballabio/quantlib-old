@@ -912,6 +912,9 @@
     <ClInclude Include="ql\math\matrix.hpp">
       <Filter>math</Filter>
     </ClInclude>
+    <ClInclude Include="ql\math\modifiedbessel.hpp">
+      <Filter>math</Filter>
+    </ClInclude>
     <ClInclude Include="ql\math\primenumbers.hpp">
       <Filter>math</Filter>
     </ClInclude>
@@ -2817,6 +2820,9 @@
     <ClInclude Include="ql\experimental\coupons\all.hpp">
       <Filter>experimental\coupons</Filter>
     </ClInclude>
+    <ClInclude Include="ql\experimental\coupons\lineartsrpricer.hpp">
+      <Filter>experimental\coupons</Filter>
+    </ClInclude>
     <ClInclude Include="ql\experimental\coupons\proxyibor.hpp">
       <Filter>experimental\coupons</Filter>
     </ClInclude>
@@ -2848,6 +2854,9 @@
       <Filter>experimental\exoticoptions</Filter>
     </ClInclude>
     <ClInclude Include="ql\experimental\exoticoptions\analyticeuropeanmargrabeengine.hpp">
+      <Filter>experimental\exoticoptions</Filter>
+    </ClInclude>
+    <ClInclude Include="ql\experimental\exoticoptions\analyticpdfhestonengine.hpp">
       <Filter>experimental\exoticoptions</Filter>
     </ClInclude>
     <ClInclude Include="ql\experimental\exoticoptions\analyticsimplechooserengine.hpp">
@@ -4077,6 +4086,9 @@
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="ql\math\matrix.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\math\modifiedbessel.cpp">
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="ql\math\primenumbers.cpp">
@@ -5330,6 +5342,9 @@
     <ClCompile Include="ql\experimental\catbonds\riskynotional.cpp">
       <Filter>experimental\catbonds</Filter>
     </ClCompile>
+    <ClCompile Include="ql\experimental\coupons\lineartsrpricer.cpp">
+      <Filter>experimental\coupons</Filter>
+    </ClCompile>
     <ClCompile Include="ql\experimental\coupons\proxyibor.cpp">
       <Filter>experimental\coupons</Filter>
     </ClCompile>
@@ -5352,6 +5367,9 @@
       <Filter>experimental\exoticoptions</Filter>
     </ClCompile>
     <ClCompile Include="ql\experimental\exoticoptions\analyticeuropeanmargrabeengine.cpp">
+      <Filter>experimental\exoticoptions</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\experimental\exoticoptions\analyticpdfhestonengine.cpp">
       <Filter>experimental\exoticoptions</Filter>
     </ClCompile>
     <ClCompile Include="ql\experimental\exoticoptions\analyticsimplechooserengine.cpp">
