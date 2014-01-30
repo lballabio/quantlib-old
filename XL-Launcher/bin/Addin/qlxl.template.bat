@@ -1,3 +1,11 @@
 
-START "EXCEL" "C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE" /e /r "C:\Users\erik\Documents\repos\quantlib_nando\XL-Launcher\bin\Addin\Launcher.xla"
+@REM This environment variable is to save Nando from having to type the same path twice.
+SET LAUNCHER_DIR=C:\Users\erik\Documents\repos\quantlib_nando\XL-Launcher\bin\Addin
+
+@REM This environment variable tells the launcher which session file to use.
+@REM If this variable is not set then Launcher.xla looks for a file called session_file.xml in the same directory.
+@REM If that file is not found then the launcher defaults to hard coded parameters.
+SET XL_LAUNCHER_PATH=%LAUNCHER_DIR%\session_file.EUR.xml
+
+START "EXCEL" "C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE" /e /r "%LAUNCHER_DIR%\Launcher.xla"
 
