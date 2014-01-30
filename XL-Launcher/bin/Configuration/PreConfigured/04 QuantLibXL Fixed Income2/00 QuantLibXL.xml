@@ -1,4 +1,4 @@
-<Framework name="QuantLibXL" displayName="QuantLibXL">
+<Framework name="QuantLibXL" displayName="New QLXL Curve Framework">
   <StartupParameters>
     <GroupBox text="Settings">
       <KeyValuePair name="Environment" value="Fixed Income2" />
@@ -8,7 +8,7 @@
       <KeyValuePair name="Root Path" value="C:\Users\erik\Documents\repos\quantlib_nando\QuantLibXL\" />
       <CheckBox text="Set Evaluation Date" checked="True" enabled="True" />
       <DateTimePicker label="Evaluation Date" value="1/17/2014" enabled="True" />
-      <ComboBox label="Default Currency" selectedItem="EUR" enabled="True">
+      <ComboBox label="Default Currency" selectedItem="HKD" enabled="True">
         <Items>
           <Item>EUR</Item>
           <Item>GBP</Item>
@@ -16,18 +16,8 @@
           <Item>USD</Item>
         </Items>
       </ComboBox>
-      <ComboBox label="Initialization Data Source" selectedItem="Excel" enabled="True">
-        <Items>
-          <Item>Excel</Item>
-          <Item>XML</Item>
-        </Items>
-      </ComboBox>
-      <CheckBox text="Open Main Checks" checked="False" enabled="True" />
-    </GroupBox>
-    <GroupBox text="Index Fixings">
-      <CheckBox text="Update Euribor YTD Time Series (xls)" checked="False" enabled="True" />
-      <CheckBox text="Update Index YTD Time Series (xls)" checked="False" enabled="True" />
-      <CheckBox text="Load Index YTD Time Series (xml)" checked="False" enabled="True" />
+      <CheckBox text="Open Main Checks" checked="True" enabled="True" />
+      <CheckBox text="Open Contributor" checked="True" enabled="True" />
     </GroupBox>
     <GroupBox text="Curves">
       <CheckBox text="Bootstrap Yield Curves" checked="True" enabled="True" />
