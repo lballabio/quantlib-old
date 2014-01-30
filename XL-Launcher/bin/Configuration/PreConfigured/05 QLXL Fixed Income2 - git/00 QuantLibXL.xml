@@ -2,10 +2,10 @@
   <StartupParameters>
     <GroupBox text="Settings">
       <KeyValuePair name="Environment" value="Fixed Income2" />
-      <KeyValuePair name="Root Path" value="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\" />
+      <KeyValuePair name="Root Path" value="C:\Projects\quantlib\QuantLibXL\" />
       <CheckBox text="Set Evaluation Date" checked="False" enabled="True" />
       <DateTimePicker label="Evaluation Date" value="1/17/2014" enabled="True" />
-      <ComboBox label="Default Currency" selectedItem="HKD" enabled="True">
+      <ComboBox label="Default Currency" selectedItem="EUR" enabled="True">
         <Items>
           <Item>EUR</Item>
           <Item>GBP</Item>
@@ -13,11 +13,11 @@
           <Item>USD</Item>
         </Items>
       </ComboBox>
-      <CheckBox text="Open Main Checks" checked="True" enabled="True" />
-      <CheckBox text="Open Contributor" checked="True" enabled="True" />
+      <CheckBox text="Open Main Checks" checked="False" enabled="True" />
+      <CheckBox text="Open Contributor" checked="False" enabled="True" />
     </GroupBox>
     <GroupBox text="Curves">
-      <CheckBox text="Bootstrap Yield Curves" checked="True" enabled="True" />
+      <CheckBox text="Bootstrap Yield Curves" checked="False" enabled="True" />
     </GroupBox>
     <GroupBox text="RealTime Data">
       <ComboBox label="Real Time Feed" selectedItem="Reuters" enabled="True">
@@ -30,9 +30,9 @@
     </GroupBox>
   </StartupParameters>
   <Components>
-    <Component path="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\xll\ObjectHandler-xll-vc90-mt-1_3_0.xll" />
-    <Component path="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\xll\QuantLibXLDynamic-vc90-mt-1_3_0.xll" />
-    <Component path="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\framework\QuantLibXL.xla" />
+    <Component path="C:\Projects\quantlib\ObjectHandler\xll\ObjectHandler-xll-vc90-mt-1_3_0.xll" />
+    <Component path="C:\Projects\quantlib\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_3_0.xll" />
+    <Component path="C:\Projects\quantlib\QuantLibXL\framework\QuantLibXL.xla" />
   </Components>
   <EnvironmentVariables />
 </Framework>
