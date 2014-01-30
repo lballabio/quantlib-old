@@ -6,7 +6,7 @@ import datetime
 import glob
 import zipfile
 
-QLXL_VERSION = "QuantLibXL-1.3.0"
+QLXL_VERSION = "QuantLibXL-1.4.0"
 ROOT_DIR = QLXL_VERSION + "/"
 
 def prompt_exit(msg='', status=0):
@@ -46,10 +46,14 @@ os.path.walk("framework", visit, (zfile, "ReadMe.txt", None))
 zfile.write("../ObjectHandler/xll/ObjectHandler-xll-vc90-mt-1_3_0.xll", ROOT_DIR + "xll/ObjectHandler-xll-vc90-mt-1_3_0.xll")
 os.path.walk("../QuantLibAddin/gensrc/metadata", visit, (zfile, None, "../QuantLibAddin/gensrc/"))
 zfile.write("../XL-Launcher/bin/Addin/Launcher.xla", ROOT_DIR + "Launcher.xla")
-zfile.write("../XL-Launcher/bin/Addin/session_file.zipfile.xml", ROOT_DIR + "session_file.xml")
+zfile.write("../XL-Launcher/bin/Addin/session_file.HKD.xml", ROOT_DIR + "session_file.xml")
 for fileName in glob.glob("../XL-Launcher/bin/Addin/session_file.*.xml"):
     baseName = os.path.basename(fileName)
-    if "session_file.zipfile.xml" == baseName: continue
+    if -1 != baseName.find("-dev"): continue
+    zfile.write("../XL-Launcher/bin/Addin/" + baseName, ROOT_DIR + baseName)
+for fileName in glob.glob("../XL-Launcher/bin/Addin/session_file.*.bat"):
+    baseName = os.path.basename(fileName)
+    if -1 != baseName.find("-dev"): continue
     zfile.write("../XL-Launcher/bin/Addin/" + baseName, ROOT_DIR + baseName)
 
 zfile.close()
