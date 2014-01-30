@@ -1,4 +1,10 @@
 
-SET XL_LAUNCHER_PATH=C:\QuantLibXL-1.3.0\session_file.EUR.xml
-START "EXCEL" "C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE" /e /r "C:\QuantLibXL-1.3.0\Launcher.xla"
+@REM Where the Launcher.xla is to be found
+SET LAUNCHER_DIR=X:\WorkGroup\IMI_Workbooks\Production
 
+@REM This environment variable tells the launcher which session file to use.
+@REM If this variable is not set then Launcher.xla looks for a file called session_file.xml in the same directory.
+@REM If that file is not found then the launcher defaults to hard coded parameters.
+SET XL_LAUNCHER_PATH=%LAUNCHER_DIR%\session_file.EUR.xml
+
+START "EXCEL" "C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE" /e /r "%LAUNCHER_DIR%\Launcher.xla"
