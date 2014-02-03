@@ -113,6 +113,9 @@ Makefile.in
 *.pyc
 *.exe
 *.dll
+*.exp
+*.lib
+*.pdb
 *.class
 *~
 *.ncb
