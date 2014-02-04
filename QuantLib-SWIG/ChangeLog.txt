@@ -1,165 +1,377 @@
-commit 2540ab4959abfbe7b60b5c58605b2d84390d913c
+commit 0fca3d88b40658a49822a2905d56940d06041e76
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Sat, 22 Jun 2013 18:24:25 +0200
+Date:   Tue, 4 Feb 2014 15:43:32 +0100
 
-    Compatibility with latest SWIG versions.
-    
-    We were using a wrong construct into an %extend directive that
-    was accepted by SWIG up to release 2.0.8, but was rejected in
-    the latest versions.
+    Updated Visual C# 2012 project.
 
-commit 07266e4a09fdb15e9b423f895e25e7e0bb7c3b60
+commit 2bf185f433d344d85f5d194eb48861ce2f5a941d
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Sat, 22 Jun 2013 17:50:55 +0200
+Date:   Tue, 4 Feb 2014 14:56:23 +0100
 
-    Changed test results according to changes in the C++ library.
+    Add list of changes for version 1.4.
+
+commit 81a6220996dc4c39d46486e52c80ddddc055836b
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Sun, 2 Feb 2014 17:15:37 +0100
+
+    Update C# projects
+
+commit 6520c4dd0bfa20a7e7a5fb870431486dc9485202
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Sat, 1 Feb 2014 23:51:53 +0100
+
+    Drop support for Visual C++ 2003 (VC++7).
     
-    The corresponding behavior was modified in revision c1423128.
+    The compiler is now more than 10 years old and no longer supported
+    by Microsoft.  Keeping the support is not worth the time and effort
+    required.  Anybody who is still stuck with this compiler and needs
+    the support can fork the repository and maintain the changes.
 
-commit 71946938fc77e9570b0560d8c35bb16b29007feb
+commit 8064ccec807b26e678ea0976ee179b62ac26efaa
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 27 Jan 2014 14:35:46 +0100
+
+    Avoid empty /I or /L flags when compiling under Windows.
+    
+    Those were possible if the INCLUDE or LIB variables ended with
+    a trailing semicolon.
+
+commit 335fa637f8816fa47fa8be4af1c46fece28c9d17
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Sat, 25 Jan 2014 14:48:05 +0100
+
+    Avoid using deprecated features.
+
+commit dab3e221023985074ceb950cd5bb0f62c8bd57cb
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Sat, 25 Jan 2014 14:30:33 +0100
+
+    Exported a few more features through SWIG.
+    
+    - let Bond::settlementDate accept a Date argument;
+    - export Redemption and AmortizingPayment cash flows;
+    - export ZeroInflationIndex constructor to create custom instances;
+    - set default interpolation to Linear for piecewise inflation curves;
+    - export inflationBaseDate function;
+    - export more inspectors for ZeroCouponInflationSwap;
+    - renamed CashFlows::yield to yieldRate in Python to avoid keyword.
+
+commit 79dc964d374d87e90de4d1174cb1b68f3d1bf9f6
+Author: Mario Aleppo <mario.aleppo@statpro.com>
+Date:   Thu, 23 Jan 2014 21:12:50 +0100
+
+    Piecewise-spreaded curve can now choose interpolation.
+
+commit 6fb9f3667c4b97589ec9fe9ecd7f12bc1086d7fa
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 23 Jan 2014 17:37:13 +0100
+
+    Add utility class for creating custom Region instance.
+
+commit 7ae4c0e425fe1fa66c951cc676bca832d08a1947
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 9 Jan 2014 16:21:35 +0100
+
+    Replace a call to a deprecated method.
+
+commit a98276f11163c0d3d3697da019a430bfa73407f5
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 9 Jan 2014 13:58:34 +0100
+
+    Export Callable fixed-rate bond and CPI bond.
+    
+    Thanks to Simon Mazzucca.
+
+commit f6345061d212adf3a108b8e7464e89112e0bea00
 Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Sun, 16 Jun 2013 16:27:00 -0500
+Date:   Mon, 30 Dec 2013 22:30:45 -0600
 
-    expanded european-option example
-    
-    now matches the more extensive Python example
+    reset to 1.4
 
-commit 082357dd62fc0cbd99065060a918fbcd3083f70c
+commit 4bb9eb3c05250fcc1d67e2d2514f505fdac561db
 Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Sat, 15 Jun 2013 16:32:33 -0500
+Date:   Mon, 30 Dec 2013 22:28:15 -0600
 
-    QuantLib SWIG bonds example for R
+    further fixes to setup.rb for Ruby 1.9
+
+commit ff3e6dc55a9c8daf8a3b68bb47adab1896084326
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Mon, 30 Dec 2013 20:49:04 -0600
+
+    patch for QL-SWIG and Ruby 1.9 (cf http://bugs.debian.org/733105)
+
+commit 8eddffdb3f12c7cc71f8126158956291050bb93f
+Merge: 08fe903 ec079f5
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 11 Nov 2013 14:48:40 +0100
+
+    Merge pull request #54.
+
+commit 18906f8721d121d9d18489dc68f9ac8db13d3b8a
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 11 Nov 2013 12:00:07 +0100
+
+    Added the flag to the command line.
     
-    Modeled after bonds.py which it replicates
+    The command is already hard-coded anyway.
 
-commit 3248d216d33b963a4c8ba96588a62106d09c0661
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Fri, 14 Jun 2013 17:39:41 +0200
+commit 11f08541acf87dfe98761308cacf8a13b5af676d
+Author: piterdias <piter.dias@piterdias.com>
+Date:   Sat, 9 Nov 2013 21:13:46 -0200
 
-    Bug fix for R example.
+    Upgrade QuantLibXL and its dependencies to Visual Studio 2012
 
-commit 0c3ca1c0f45c369e22730129e49ff34fc47a92d3
+commit 9f01935cab0a0a1091c9294bcdfd88aae824788b
+Author: joequant <joequant@gmail.com>
+Date:   Thu, 7 Nov 2013 15:19:08 +0800
+
+    add -fPIC to java compile
+
+commit eff21582e42af9af3362f7f4b51008310d4eb87e
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 13 Jun 2013 15:08:21 +0200
+Date:   Mon, 7 Oct 2013 17:02:54 +0200
 
-    Updated VC# projects.
-
-commit 12b40582927538b247f52e161d9b63f39bb45903
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Tue, 4 Jun 2013 20:24:30 +0000
-
-    some improvements for the R Bates volatility surface example (thanks to Dirk Eddelbuettel)
-
-commit d86493309f179da8de0ee1967d48f8caf8720d11
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Thu, 9 May 2013 11:08:29 +0000
-
-    added Bates implied volatility surface example for R
-
-commit b518800fd38d34ad52e97461965f2e798daa898e
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Thu, 9 May 2013 10:03:55 +0000
-
-    added Bates implied volatility surface example for R
-
-commit 8fe68e950dd2a8667b0223a02443d0e04e2f1dcb
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 4 Mar 2013 17:30:11 +0000
-
-    Fixed %rename directives for Scheme dialects.
-
-commit 3c9d59a539877c2d956f8ae995375469e326ff41
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 4 Mar 2013 14:06:27 +0000
-
-    Overloaded operators for date algebra and comparisons in C#.
+    Check major version to select import syntax.
     
-    Thanks to Simon Shakeshaft.
+    This makes the module compatible with older Python versions.
 
-commit d935818df973e65901a54b5fa0b24285fabe74c0
+commit abc9b6b8d4dfd0084e16c95667ceab41a4873b98
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 4 Mar 2013 14:06:10 +0000
+Date:   Mon, 7 Oct 2013 16:42:15 +0200
 
-    Exported BondFunctions class (thanks to Simon Shakeshaft).
+    Remove unused imports and variables
 
-commit c582367ee3ff6b9d45c29bca32e2b5271534e904
+commit a7c920be77df161c5fc41c7dbbd483527c45140d
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 4 Mar 2013 14:04:55 +0000
+Date:   Mon, 7 Oct 2013 16:40:44 +0200
 
-    Exported a couple of functions to SWIG (thanks to Sergio Villar de María).
+    Avoid using module function removed in Python 3
 
-commit cb3032a78fde4635c109f708f3bb3aa2ab0e42a5
-Author: Joseph Wang <drjoe@users.sf.net>
-Date:   Fri, 21 Dec 2012 02:01:21 +0000
-
-    fix R definition for nullOrInt / nullOrDouble
-
-commit 4a2d8cf99436eb18bffe17676c7e205fffa2d446
+commit 4bc29867ce621f658e9d8050131ccdac42066e22
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 29 Nov 2012 14:39:34 +0000
+Date:   Mon, 7 Oct 2013 16:39:51 +0200
 
-    Added possibility to manually disable build for specific modules.
+    Use Python 3-compatible syntax for print
 
-commit de5a104662f7718676c3012689fd30f440b8a70b
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 29 Nov 2012 14:38:24 +0000
+commit 12613bc60e475f9d6db419028456120342a82ed6
+Author: Minjae D Kim <minjaedkim@gmail.com>
+Date:   Sat, 5 Oct 2013 20:52:56 -0700
 
-    Cleaned up warnings.
-
-commit 9731fe57b536ce74416b904af422e54435fb5b80
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 29 Nov 2012 14:38:06 +0000
-
-    Added FRA interface and Java example.
+    Port Python 2-specific syntax into Python 3-compatible syntax.
     
-    Thanks to Tawanda Gwena and Francis Duffy.
+    Note that the resulting code is intended to be compatible with both
+    Python 2 and 3.
 
-commit e99ce4c430ae2c689b4aba919fb627de9ecdfbdb
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 29 Nov 2012 14:37:41 +0000
+commit 1ab6ea7ab412af5490762e1069c946b70c94f4a0
+Author: Minjae D Kim <minjaedkim@gmail.com>
+Date:   Sat, 5 Oct 2013 15:34:34 -0700
 
-    Reworked check rule for Makefile.
+    Remove leading zeros from integer literals.
     
-    This will make it easier to add further examples.
+    Python 3 raises syntax errors for leading zeros in integer literal while
+    Python 2 interprets them as octal numbers.  Neither is a desired
+    behavior.
 
-commit 748dae3902bc17a01d868337abe25e6e379a8679
+commit f20c164c2435cf5d7f6b29dbe74806287c0adace
+Author: Minjae D Kim <minjaedkim@gmail.com>
+Date:   Sat, 5 Oct 2013 14:14:02 -0700
+
+    Add __lt__ methods for Python 3 compatibility to date.i and money.i.
+    
+    Python 3 no longer supports __cmp__ methods and requires __lt__ methods
+    for comparison.  For backward compatibility with Python 2, previously
+    implemented __cmp__ methods in the .i files are not removed.
+
+commit 974cb0652aa27c71f8d7eea0d4a9a6f253d895b9
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 29 Nov 2012 14:37:22 +0000
+Date:   Fri, 23 Aug 2013 17:26:52 +0200
 
-    Removed incorrect compilation option.
+    Export new day counter to SWIG.
 
-commit e440add963ccf7dd38c0ad3238fbaa481667e8a6
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Sun, 25 Mar 2012 00:32:34 +0000
-
-    added Scala version of a Heston Vanilla Option Monte-Carlo example
-
-commit 9f0a54e1a91b0f82113121f08c1758d8950aa106
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Sun, 25 Mar 2012 00:26:25 +0000
-
-    added Scala version of a Heston Vanilla Option Monte-Carlo example
-
-commit 142b00b6ee8295167b8c64737dd449ddcb088d56
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Mon, 19 Mar 2012 21:55:49 +0000
-
-    added HestonModelHelper and calibration example in Scala
-
-commit 303b169ba21f054068327715d87a7d4964923337
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Sun, 18 Mar 2012 21:40:22 +0000
-
-    changed indent
-
-commit b03fdd0f240108f10757d8ec64e490d71fd43e82
+commit 8875194de11057d1e0031f208a9af65e3ab8b38b
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 8 Mar 2012 07:57:18 +0000
+Date:   Wed, 14 Aug 2013 16:12:22 +0200
 
-    Increased version number to 1.3.
+    Removed unreachable return statement.
 
-commit d1e6a3bca55197f6899f903207cf021892e3576a
+commit 731a0b0e075242ee25c7be2f5b850e80ebc1a0d7
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Wed, 7 Mar 2012 08:28:41 +0000
+Date:   Wed, 14 Aug 2013 13:35:00 +0200
 
-    Merged R01020x-branch/QuantLib-SWIG
+    Added newly generated file to distribution.
+
+commit 8e8868315f806344ba0432677bc1f8620b420bff
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Wed, 14 Aug 2013 13:34:24 +0200
+
+    Added new example to tests.
+
+commit 2287d071abc93fe92036a1cf83d84bbd247bb1c3
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Wed, 14 Aug 2013 13:32:53 +0200
+
+    Removed extraneous parameters.
+
+commit 1bb752f12099aa3dd931fb09f3f200fb91fd529b
+Author: klausspanderen <klaus@spanderen.de>
+Date:   Fri, 2 Aug 2013 18:34:18 +0200
+
+    added loadLibrary call
+
+commit f0351363e13555949fb828ad9c9ad3c1bf66a714
+Author: klausspanderen <klaus@spanderen.de>
+Date:   Fri, 2 Aug 2013 17:34:49 +0200
+
+    revert version change back to 1.4
+
+commit c15fc79a2e98c8467173e205796b2502bd574fe2
+Author: klausspanderen <klaus@spanderen.de>
+Date:   Fri, 2 Aug 2013 17:18:49 +0200
+
+    improved formatting
+
+commit 4a55a0c553fc00a9080df08114222e577aff9feb
+Author: klausspanderen <klaus@spanderen.de>
+Date:   Fri, 2 Aug 2013 17:14:53 +0200
+
+    improved formatting
+
+commit 6028876eed38bab1b4ff360928e4e18efb3b7401
+Author: klausspanderen <klaus@spanderen.de>
+Date:   Fri, 2 Aug 2013 17:08:04 +0200
+
+    changed formatting
+
+commit bef488dde49c03f60a4cdb6f61e48f4868e5f380
+Author: klausspanderen <klaus@spanderen.de>
+Date:   Fri, 2 Aug 2013 17:04:34 +0200
+
+    added Java example for UnaryFunction callback
+
+commit 97e296ee67c3d66c3134b3c15a4b87d2601e90d0
+Author: klausspanderen <klaus@spanderen.de>
+Date:   Fri, 2 Aug 2013 17:02:19 +0200
+
+    additional integrals
+    added UnaryFunction support to Java interfaces for root finding and
+    integrals
+
+commit 1e91f658df53c581e3be2f440f35043eb3e3f302
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 2 Aug 2013 11:34:39 +0200
+
+    Added package-cleanup file to distribution.
+
+commit 086edf70d45b40ee186ef9660fc9bf2ba7fa3ca8
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Wed, 31 Jul 2013 21:55:31 -0500
+
+    some minor improvements to Makefile.am
+    add a (common for R packages) cleanup script to tidy src/*
+
+commit 4c44691bc0caa32b976e7a2f1f80fc2fd5dc7969
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Mon, 29 Jul 2013 21:30:25 -0500
+
+    minimal changes to make examples run
+
+commit f350370acf21c1c6dccd9b586019afadb9e25c6a
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Mon, 29 Jul 2013 21:26:14 -0500
+
+    minimal changes to make example run
+
+commit 5790edceb428be6e220b8274a0aa8e737f5202fd
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 29 Jul 2013 14:08:14 +0200
+
+    Removed deleted file from Makefile
+
+commit 927b620326c98851d5387e6b22c8c55956fbff61
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Sat, 27 Jul 2013 11:54:35 -0500
+
+    updated to match calls for current release
+
+commit 3f66c57627784017f5c575431f15f1986b6aa39f
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Sat, 27 Jul 2013 11:40:48 -0500
+
+    minor update to match calls for current release
+
+commit 298188cba5ec690998ed3877bb8d2ad5dd225c9d
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Sat, 27 Jul 2013 11:24:30 -0500
+
+    bonds example finalised
+
+commit e293727f11730264b69432044906d9317eca159b
+Merge: ea236f5 97e9798
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Fri, 26 Jul 2013 14:52:07 -0500
+
+    Merge remote-tracking branch 'upstream/master'
+
+commit 97e9798d988aba5695ccefaeffd0e4afa5f6a5b2
+Merge: a532864 ab660d2
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 26 Jul 2013 16:09:38 +0200
+
+    Merge pull request #19.
+    
+    The R extension is now built as a standard R package.
+
+commit ab660d217a555a6b52f68bbb9d9cabd5134a33c9
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 26 Jul 2013 16:08:09 +0200
+
+    Fix compilation and installation rules.
+    
+    They now call the appropriate (I hope) R commands.
+
+commit e52700bb32159fe1025895e4e1810403cb42df87
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 26 Jul 2013 15:16:57 +0200
+
+    Add missing files to 'make dist' target.
+
+commit ea236f51f08a3cc229d4478d8b39d459531d5974
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Thu, 25 Jul 2013 20:36:51 -0500
+
+    file no longer needed
+
+commit 4aa38bacd6606e5ef84b2f6e512b7ffdff001a8c
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Wed, 24 Jul 2013 21:25:19 -0500
+
+    minimal update to README.txt
+
+commit e0b1bdc0df29253914f5467501170531ae805d3c
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Wed, 24 Jul 2013 21:24:05 -0500
+
+    new file .Rinstignore
+    
+    Files listed in this file will not be installed by into the package install location
+
+commit a446d9f37081241258f1986a219be5b658d7cea6
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Wed, 24 Jul 2013 21:22:58 -0500
+
+    old examples/ is now demo/
+    
+    demo/ is a standard (though optional) R package directory
+    also added 00Index file
+
+commit 4abe63970b5100a3d6d75eca8454f2064005b745
+Author: Dirk Eddelbuettel <edd@debian.org>
+Date:   Wed, 24 Jul 2013 20:47:25 -0500
+
+    minimal R package framework for new 'QuantLib' R package generated by SWIG
+
+commit e54294c11322b2a0e24574c05517e16d8904cfe2
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Wed, 24 Jul 2013 15:00:58 +0200
+
+    Increased version number to 1.4.
