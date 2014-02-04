@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
@@ -113,6 +113,7 @@
     <Compile Include="Actual365NoLeap.cs" />
     <Compile Include="ActualActual.cs" />
     <Compile Include="AmericanExercise.cs" />
+    <Compile Include="AmortizingPayment.cs" />
     <Compile Include="AnalyticBarrierEngine.cs" />
     <Compile Include="AnalyticCapFloorEngine.cs" />
     <Compile Include="AnalyticContinuousGeometricAveragePriceAsianEngine.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Callability.cs" />
     <Compile Include="CallabilityPrice.cs" />
     <Compile Include="CallabilitySchedule.cs" />
+    <Compile Include="CallableFixedRateBond.cs" />
     <Compile Include="Canada.cs" />
     <Compile Include="Cap.cs" />
     <Compile Include="CapFloor.cs" />
@@ -236,6 +238,8 @@
     <Compile Include="ConvertibleZeroCouponBond.cs" />
     <Compile Include="COPCurrency.cs" />
     <Compile Include="Coupon.cs" />
+    <Compile Include="CPI.cs" />
+    <Compile Include="CPIBond.cs" />
     <Compile Include="CreditDefaultSwap.cs" />
     <Compile Include="Cubic.cs" />
     <Compile Include="CubicNaturalSpline.cs" />
@@ -244,6 +248,7 @@
     <Compile Include="CumulativePoissonDistribution.cs" />
     <Compile Include="CumulativeStudentDistribution.cs" />
     <Compile Include="Currency.cs" />
+    <Compile Include="CustomRegion.cs" />
     <Compile Include="CYPCurrency.cs" />
     <Compile Include="CzechRepublic.cs" />
     <Compile Include="CZKCurrency.cs" />
@@ -392,14 +397,23 @@
     <Compile Include="GarmanKlassSigma5.cs" />
     <Compile Include="GarmanKlassSigma6.cs" />
     <Compile Include="GarmanKohlagenProcess.cs" />
+    <Compile Include="GaussChebyshev2ndIntegration.cs" />
+    <Compile Include="GaussChebyshevIntegration.cs" />
+    <Compile Include="GaussGegenbauerIntegration.cs" />
+    <Compile Include="GaussHermiteIntegration.cs" />
+    <Compile Include="GaussHyperbolicIntegration.cs" />
     <Compile Include="GaussianLowDiscrepancySequenceGenerator.cs" />
     <Compile Include="GaussianMultiPathGenerator.cs" />
     <Compile Include="GaussianPathGenerator.cs" />
     <Compile Include="GaussianRandomGenerator.cs" />
     <Compile Include="GaussianRandomSequenceGenerator.cs" />
     <Compile Include="GaussianSobolPathGenerator.cs" />
+    <Compile Include="GaussJacobiIntegration.cs" />
     <Compile Include="GaussKronrodAdaptive.cs" />
     <Compile Include="GaussKronrodNonAdaptive.cs" />
+    <Compile Include="GaussLaguerreIntegration.cs" />
+    <Compile Include="GaussLegendreIntegration.cs" />
+    <Compile Include="GaussLobattoIntegral.cs" />
     <Compile Include="GBPCurrency.cs" />
     <Compile Include="GBPLibor.cs" />
     <Compile Include="GeneralizedBlackScholesProcess.cs" />
@@ -435,6 +449,7 @@
     <Compile Include="InflationIndex.cs" />
     <Compile Include="INRCurrency.cs" />
     <Compile Include="Instrument.cs" />
+    <Compile Include="InstrumentVector.cs" />
     <Compile Include="IntegralEngine.cs" />
     <Compile Include="InterestRate.cs" />
     <Compile Include="InterestRateIndex.cs" />
@@ -550,7 +565,6 @@
     <Compile Include="Option.cs" />
     <Compile Include="OptionletVolatilityStructure.cs" />
     <Compile Include="OptionletVolatilityStructureHandle.cs" />
-    <Compile Include="OptionList.cs" />
     <Compile Include="Parabolic.cs" />
     <Compile Include="ParkinsonSigma.cs" />
     <Compile Include="Path.cs" />
@@ -590,6 +604,8 @@
     <Compile Include="RateHelper.cs" />
     <Compile Include="RateHelperVector.cs" />
     <Compile Include="RealTimeSeries.cs" />
+    <Compile Include="Redemption.cs" />
+    <Compile Include="Region.cs" />
     <Compile Include="RelinkableBlackVolTermStructureHandle.cs" />
     <Compile Include="RelinkableCapFloorTermVolatilityStructureHandle.cs" />
     <Compile Include="RelinkableDefaultProbabilityTermStructureHandle.cs" />
@@ -644,6 +660,7 @@
     <Compile Include="SouthAfrica.cs" />
     <Compile Include="SouthKorea.cs" />
     <Compile Include="SpreadCdsHelper.cs" />
+    <Compile Include="SpreadedLinearZeroInterpolatedTermStructure.cs" />
     <Compile Include="Statistics.cs" />
     <Compile Include="SteepestDescent.cs" />
     <Compile Include="StochasticProcess.cs" />
@@ -673,6 +690,7 @@
     <Compile Include="SWIGTYPE_p_boost__shared_ptrT_EndCriteria_t.cs" />
     <Compile Include="SWIGTYPE_p_boost__shared_ptrT_OptimizationMethod_t.cs" />
     <Compile Include="SWIGTYPE_p_CalibratedModel.cs" />
+    <Compile Include="SWIGTYPE_p_CallabilitySchedule.cs" />
     <Compile Include="SWIGTYPE_p_CapFloorTermVolatilityStructure.cs" />
     <Compile Include="SWIGTYPE_p_CashFlow.cs" />
     <Compile Include="SWIGTYPE_p_DefaultProbabilityHelper.cs" />
@@ -713,6 +731,7 @@
     <Compile Include="TimeUnit.cs" />
     <Compile Include="TrapezoidIntegralDefault.cs" />
     <Compile Include="TrapezoidIntegralMidPoint.cs" />
+    <Compile Include="TreeCallableFixedRateBondEngine.cs" />
     <Compile Include="TreeCapFloorEngine.cs" />
     <Compile Include="TreeSwaptionEngine.cs" />
     <Compile Include="TridiagonalOperator.cs" />
