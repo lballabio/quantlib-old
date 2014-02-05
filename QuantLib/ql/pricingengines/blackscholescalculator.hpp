@@ -66,12 +66,6 @@ namespace QuantLib {
       protected:
         Real spot_;
         DiscountFactor growth_;
-      private:
-        using BlackCalculator::delta;
-        using BlackCalculator::elasticity;
-        using BlackCalculator::gamma;
-        using BlackCalculator::theta;
-        using BlackCalculator::thetaPerDay;
     };
 
     // inline
