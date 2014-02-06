@@ -27,6 +27,7 @@
 
 FUNCTIONALITY
 
+- Fixed bug which could cause Excel to crash at shutdown.
 - For anonymous objects in Excel, update the corresponding ValueObject
   so that it knows its own name.
 

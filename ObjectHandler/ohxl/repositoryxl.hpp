@@ -39,7 +39,18 @@ namespace ObjectHandler {
     */
     class DLL_API RepositoryXL : public Repository {
     public:
+        //! \name Static Members and Initialization / Finalization
+        //@{
+        //! Client applications access the global object via a call to RepositoryXL::instance().
         static RepositoryXL &instance();
+        //! Clear the state of the Singleton.
+        /*! Clients of this class must ensure that the function below is called from the
+            xlAutoClose() function, before xlFree is called on the XLL instance.  Failure
+            to do so may result in an access violation as the RepositoryXL destructor
+            attempts to call in to the Excel C API after it has been de-initialized.
+        */
+        virtual void clear();
+        //@}
 
         //! \name Object Management
         //@{

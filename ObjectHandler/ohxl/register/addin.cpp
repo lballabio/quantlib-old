@@ -69,13 +69,16 @@ DLLEXPORT int xlAutoClose() {
     static XLOPER xDll;
 
     try {
-
         // empty the ObjectHandler repository
         //Excel(xlUDF, 0, 1, TempStrNoSize("\x1c""ohRepositoryDeleteAllObjects"));
 
-        // unregister the addin functions
+        // Get the DLL name.
         Excel(xlGetName, &xDll, 0);
+        // Unregister the addin functions.
         unregisterOhFunctions(xDll);
+        // Clear the state of the Repository.
+        ObjectHandler::RepositoryXL::instance().clear();
+        // Release the DLL name.
         Excel(xlFree, 0, 1, &xDll);
 
         return 1;
