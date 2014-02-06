@@ -57,6 +57,8 @@ typedef std::vector<boost::shared_ptr<CashFlow> > Leg;
 
 %{
 using QuantLib::SimpleCashFlow;
+using QuantLib::Redemption;
+using QuantLib::AmortizingPayment;
 using QuantLib::Coupon;
 using QuantLib::FixedRateCoupon;
 using QuantLib::IborCoupon;
@@ -64,6 +66,8 @@ using QuantLib::Leg;
 using QuantLib::FloatingRateCoupon;
 
 typedef boost::shared_ptr<CashFlow> SimpleCashFlowPtr;
+typedef boost::shared_ptr<CashFlow> RedemptionPtr;
+typedef boost::shared_ptr<CashFlow> AmortizingPaymentPtr;
 typedef boost::shared_ptr<CashFlow> CouponPtr;
 typedef boost::shared_ptr<CashFlow> IborCouponPtr;
 typedef boost::shared_ptr<CashFlow> FixedRateCouponPtr;
@@ -76,6 +80,26 @@ class SimpleCashFlowPtr : public boost::shared_ptr<CashFlow> {
     %extend {
         SimpleCashFlowPtr(Real amount, const Date& date) {
             return new SimpleCashFlowPtr(new SimpleCashFlow(amount,date));
+        }
+    }
+};
+
+%rename(Redemption) RedemptionPtr;
+class RedemptionPtr : public boost::shared_ptr<CashFlow> {
+  public:
+    %extend {
+        RedemptionPtr(Real amount, const Date& date) {
+            return new RedemptionPtr(new Redemption(amount,date));
+        }
+    }
+};
+
+%rename(AmortizingPayment) AmortizingPaymentPtr;
+class AmortizingPaymentPtr : public boost::shared_ptr<CashFlow> {
+  public:
+    %extend {
+        AmortizingPaymentPtr(Real amount, const Date& date) {
+            return new AmortizingPaymentPtr(new AmortizingPayment(amount,date));
         }
     }
 };
@@ -632,6 +656,9 @@ struct Duration {
 };
 
 class CashFlows {
+    #if defined(SWIGPYTHON)
+    %rename("yieldRate")   yield;
+    #endif
   private:
     CashFlows();
     CashFlows(const CashFlows&);

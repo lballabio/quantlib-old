@@ -1,6 +1,3 @@
-<!--
- $Id$
--->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
@@ -8,6 +5,7 @@
 <meta name="author" content="StatPro Italia srl">
 <meta name="copyright" content="StatPro Italia srl (c) 2004">
 <meta name="description" content="QuantLib Documentation">
+<link rel="stylesheet" href="./styles/nosplash.css" type="text/css">
 <title>QuantLib Documentation</title>
 </head>
 <body>
@@ -61,10 +59,60 @@ along with the corresponding spreadsheets and additional material.
 </li>
 </ul>
 
+<h2 class="center" id="qlws13">QuantLib User Meeting 2013</h2>
+
+The QuantLib User Meeting was held in D&uuml;sseldorf on November 13th
+and 14th, 2013, thanks to the sponsorship of
+<a href="http://www.ikb.de/">IKB</a>,
+<a href="http://www.quaternionrisk.com/">Quaternion</a> and
+<a href="http://www.d-fine.com/">d-fine</a>.  Most presentations from
+the meeting are available:
+<ul>
+<li><strong>Luigi Ballabio</strong>'s
+<a href="https://vimeo.com/lballabio/qlws13">opening keynote</a>;
+</li>
+<li><strong>Michael von den Driesch</strong>'s talk,
+<a href="slides/qlws13/von-den-driesch.pdf">
+<em>QuantLib at IKB</em></a>;
+</li>
+<li><strong>Roland Lichters</strong>'s talk,
+<a href="slides/qlws13/lichters.pdf">
+<em>Cross Asset CVA Application</em></a>;
+</li>
+<li><strong>Andr&eacute; Miemiec</strong>'s talk,
+<a href="slides/qlws13/miemiec.pdf">
+<em>Pricing of Accreting Swaptions using QuantLib</em></a>;
+</li>
+<li><strong>Peter Caspers</strong>'s talk,
+<a href="slides/qlws13/caspers.pdf">
+<em>Markov Functional Model</em></a>;
+</li>
+<li><strong>Sarp Kaya Acar</strong>'s talk,
+<a href="slides/qlws13/acar.pdf">
+<em>Inflation Modeling</em></a>;
+</li>
+<li><strong>Henning Segger</strong>'s talk,
+<a href="slides/qlws13/segger.pdf">
+<em>(J)CIR(++) Hazard Rate Model</em></a>;
+</li>
+<li><strong>Martin Dietrich</strong>'s talk,
+<a href="slides/qlws13/dietrich.pdf">
+<em>QuantLib Integration into Scala and Excel</em></a>;
+</li>
+<li><strong>Klaus Spanderen</strong>'s talk,
+<a href="slides/qlws13/spanderen.pdf">
+<em>Beyond Simple Monte-Carlo: Parallel Computing with QuantLib</em></a>;
+</li>
+<li><strong>Sebastian Schlenkrich</strong>'s talk,
+<a href="slides/qlws13/schlenkrich.pdf">
+<em>Design Patterns for Algorithmic Differentiation</em></a>.
+</li>
+</ul>
+
 <h2 class="center">First QuantLib Forum</h2>
 
 The first QuantLib forum was held in London on January 18th, 2011,
-thanks to the sponsorship of StatPro.
+thanks to the sponsorship of <a href="http://www.statpro.com/">StatPro</a>.
 <ul>
 <li>Slides of <strong>Ferdinando Ametrano</strong>'s
 presentation, <em>Yield curves for forward Euribor estimation and
@@ -79,8 +127,9 @@ along with the corresponding spreadsheet.
 </li>
 <li>A screencast of <strong>Luigi Ballabio</strong>'s
 presentation, <em>Code Arbitrage: or, how to get features for free in
-QuantLib</em>, is available
-at <a href="http://archive.org/details/FirstQuantlibForum">http://archive.org/details/FirstQuantlibForum</a>.
+QuantLib</em>, is available in two parts
+at <a href="http://vimeo.com/lballabio/qlforum11-part1">http://vimeo.com/lballabio/qlforum11-part1</a>
+and <a href="http://vimeo.com/lballabio/qlforum11-part2">http://vimeo.com/lballabio/qlforum11-part2</a>.
 </li>
 <li>The brochure of the forum (just a historical curiosity by now) is
 available [<a href= "press/first-quantlib-forum.pdf">PDF</a>].
@@ -128,6 +177,10 @@ Firth, N.P. (2004)</li>
 Wilmott Magazine (September 2004)</li>
 </ul>
 
+</div>
+
+<div id="menuafter">
+<!--#include virtual="usermenu.inc"-->
 </div>
 
 <div class="footer">

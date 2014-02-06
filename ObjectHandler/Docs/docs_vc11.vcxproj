@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="All|Win32">
+      <Configuration>All</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>docs</ProjectName>
+    <ProjectGuid>{74479EEA-CD1C-487E-8D31-F3EBF506ED40}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='All|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='All|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='All|Win32'">build\vc\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='All|Win32'">build\vc\</IntDir>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc /a</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc /clean</NMakeCleanCommandLine>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='All|Win32'" />
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='All|Win32'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="pages\boost.docs" />
+    <None Include="pages\conventions.docs" />
+    <None Include="pages\design.docs" />
+    <None Include="pages\examples.docs" />
+    <None Include="pages\excelbinding.docs" />
+    <None Include="pages\functional.docs" />
+    <None Include="pages\garbage_collection.docs" />
+    <None Include="pages\history.docs" />
+    <None Include="pages\index.docs" />
+    <None Include="pages\installation.docs" />
+    <None Include="pages\license.docs" />
+    <None Include="pages\log_messages.docs" />
+    <None Include="pages\manual.docs" />
+    <None Include="pages\people.docs" />
+    <None Include="pages\references.docs" />
+    <None Include="pages\technical.docs" />
+    <None Include="auto.pages\allfunctions.docs" />
+    <None Include="auto.pages\categories.docs" />
+    <None Include="auto.pages\enumerations.docs" />
+    <None Include="auto.pages\garbagecollection.docs" />
+    <None Include="auto.pages\group.docs" />
+    <None Include="auto.pages\logging.docs" />
+    <None Include="auto.pages\objects.docs" />
+    <None Include="auto.pages\ohutils.docs" />
+    <None Include="auto.pages\range.docs" />
+    <None Include="auto.pages\serialization.docs" />
+    <None Include="auto.pages\valueobjects.docs" />
+    <None Include="doxygen.css" />
+    <None Include="Makefile.vc" />
+    <None Include="objecthandler.doxy" />
+    <None Include="oh_footer.html" />
+    <None Include="oh_header.html" />
+    <None Include="oh_headeronline.html" />
+    <None Include="ql.css" />
+    <None Include="tabs.css" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

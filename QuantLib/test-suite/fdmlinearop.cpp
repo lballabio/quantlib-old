@@ -585,7 +585,7 @@ void FdmLinearOpTest::testTripleBandMapSolve() {
 
 void FdmLinearOpTest::testFdmHestonBarrier() {
 
-    BOOST_TEST_MESSAGE("Testing FDM with Barrier option in Heston model...");
+    BOOST_TEST_MESSAGE("Testing FDM with barrier option in Heston model...");
 
     SavedSettings backup;
 
@@ -1080,7 +1080,8 @@ namespace {
 
 void FdmLinearOpTest::testBiCGstab() {
 #if !defined(QL_NO_UBLAS_SUPPORT)
-    BOOST_TEST_MESSAGE("Testing BiCGstab with Heston operator...");
+    BOOST_TEST_MESSAGE("Testing bi-conjugated gradient stabilized algorithm "
+                       "with Heston operator...");
 
     SavedSettings backup;
     
@@ -1276,7 +1277,6 @@ void FdmLinearOpTest::testSpareMatrixReference() {
 
 namespace {
 #ifndef QL_NO_UBLAS_SUPPORT
-#if BOOST_VERSION >= 103900
     Size nrElementsOfSparseMatrix(const SparseMatrix& m) {
         Size retVal = 0;
         for (SparseMatrix::const_iterator1 i1 = m.begin1();
@@ -1286,13 +1286,11 @@ namespace {
         return retVal;
     }
 #endif
-#endif
 }
 
 void FdmLinearOpTest::testSparseMatrixZeroAssignment() {
 #ifndef QL_NO_UBLAS_SUPPORT
-#if BOOST_VERSION >= 103900
-    BOOST_TEST_MESSAGE("Testing SparseMatrix zero assignment...");
+    BOOST_TEST_MESSAGE("Testing assignment to zero in sparse matrix...");
 
     SparseMatrix m(5,5);
     if (nrElementsOfSparseMatrix(m)) {
@@ -1310,7 +1308,6 @@ void FdmLinearOpTest::testSparseMatrixZeroAssignment() {
     if (nrElementsOfSparseMatrix(m) != 3) {
         BOOST_FAIL("three elements expected");
     }
-#endif
 #endif
 }
 

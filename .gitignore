@@ -114,12 +114,17 @@ Makefile.in
 *.pyc
 *.exe
 *.dll
+*.exp
+*.lib
+*.pdb
 *.class
 *~
 *.ncb
 *.suo
 *.vcproj.*.user
+*.vcxproj.user
 *.log
+*.sdf
 
 # Outputs
 QuantLib/Examples/BermudanSwaption/BermudanSwaption
