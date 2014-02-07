@@ -16,19 +16,25 @@ grep -o -E 'Compile *Include *= *".*"' CSharp/csharp/NQuantLib_vc8.csproj \
 | awk -F'"' '{ print $2 }' \
 | sort > csharp.vc8.files
 
-# 4) Same for VC9...
+# Same for VC9...
 
 grep -o -E 'Compile *Include *= *".*"' CSharp/csharp/NQuantLib_vc9.csproj \
 | awk -F'"' '{ print $2 }' \
 | sort > csharp.vc9.files
 
-# 5) ...and VC10.
+# ...VC10...
 
 grep -o -E 'Compile *Include *= *".*"' CSharp/csharp/NQuantLib_vc10.csproj \
 | awk -F'"' '{ print $2 }' \
 | sort > csharp.vc10.files
 
-# 6) write out differences...
+# ...and VC11.
+
+grep -o -E 'Compile *Include *= *".*"' CSharp/csharp/NQuantLib_vc11.csproj \
+| awk -F'"' '{ print $2 }' \
+| sort > csharp.vc11.files
+
+# Write out differences...
 
 echo 'Visual Studio 8:' > sync.report
 diff -b csharp.vc8.files csharp.ref.files >> sync.report
@@ -43,7 +49,12 @@ echo '' >> sync.report
 echo 'Visual Studio 10:' >> sync.report
 diff -b csharp.vc10.files csharp.ref.files >> sync.report
 
-# 7) and cleanup
+echo '' >> sync.report
+echo '' >> sync.report
+echo 'Visual Studio 11:' >> sync.report
+diff -b csharp.vc11.files csharp.ref.files >> sync.report
+
+# ...and cleanup
 rm -f csharp.*.files
 
 cat sync.report
