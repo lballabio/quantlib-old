@@ -7,8 +7,8 @@
 ; Constants
 
 !define APP "QuantLibXL"
-!define VER_NUMBER "1.3.0"
-!define VER_NUMBER_UNDERSCORE "1_3_0"
+!define VER_NUMBER "1.4.0"
+!define VER_NUMBER_UNDERSCORE "1_4_0"
 !define COMPILER "vc90"
 
 # Compiler Flags

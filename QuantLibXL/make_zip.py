@@ -34,8 +34,8 @@ zipFilePath = "zip/%s-%s.zip" % (QLXL_VERSION, datetime.datetime.now().strftime(
 zfile = zipfile.ZipFile(zipFilePath, "w", zipfile.ZIP_DEFLATED)
 
 # Zip up some specific files from the QuantLibXL directory.
-zfile.write("Docs/QuantLibXL-docs-1.3.0.chm", ROOT_DIR + "Docs/QuantLibXL-docs-1.3.0.chm")
-zfile.write("xll/QuantLibXLDynamic-vc90-mt-1_3_0.xll", ROOT_DIR + "xll/QuantLibXLDynamic-vc90-mt-1_3_0.xll")
+zfile.write("Docs/QuantLibXL-docs-1.4.0.chm", ROOT_DIR + "Docs/QuantLibXL-docs-1.4.0.chm")
+zfile.write("xll/QuantLibXLDynamic-vc90-mt-1_4_0.xll", ROOT_DIR + "xll/QuantLibXLDynamic-vc90-mt-1_4_0.xll")
 zfile.write("zip/README.txt", ROOT_DIR + "README.txt")
 # Recursively zip some subdirectories of the QuantLibXL directory.
 #os.path.walk("Data", visit, (zfile, ".gitignore", None))
@@ -43,7 +43,7 @@ os.path.walk("Data2/XLS", visit, (zfile, ".gitignore", None))
 os.path.walk("framework", visit, (zfile, "ReadMe.txt", None))
 #os.path.walk("Workbooks", visit, (zfile, None, None))
 # Zip up some files from other projects in the repo.
-zfile.write("../ObjectHandler/xll/ObjectHandler-xll-vc90-mt-1_3_0.xll", ROOT_DIR + "xll/ObjectHandler-xll-vc90-mt-1_3_0.xll")
+zfile.write("../ObjectHandler/xll/ObjectHandler-xll-vc90-mt-1_4_0.xll", ROOT_DIR + "xll/ObjectHandler-xll-vc90-mt-1_4_0.xll")
 os.path.walk("../QuantLibAddin/gensrc/metadata", visit, (zfile, None, "../QuantLibAddin/gensrc/"))
 zfile.write("../XL-Launcher/bin/Addin/Launcher.xla", ROOT_DIR + "Launcher.xla")
 zfile.write("../XL-Launcher/bin/Addin/session_file.HKD.xml", ROOT_DIR + "session_file.xml")

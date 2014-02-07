@@ -134,7 +134,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="ObjectHandler-xllib-vc90-mt-1_3_0.lib xlsdk-vc90-mt.lib QuantLib-vc90-mt.lib"
+				AdditionalDependencies="ObjectHandler-xllib-vc90-mt-1_4_0.lib xlsdk-vc90-mt.lib QuantLib-vc90-mt.lib"
 				OutputFile="$(OutDir)\$(ProjectName).xll"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\..\ObjectHandler\lib,..\..\..\QuantLib\lib"
