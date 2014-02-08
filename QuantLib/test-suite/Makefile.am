@@ -41,11 +41,11 @@ QL_TESTS = \
 	everestoption.hpp everestoption.cpp \
 	exchangerate.hpp exchangerate.cpp \
 	extendedtrees.hpp extendedtrees.cpp \
-	factorial.hpp factorial.cpp \
 	fastfouriertransform.hpp fastfouriertransform.cpp \
 	fdheston.hpp fdheston.cpp \
 	fdmlinearop.hpp fdmlinearop.cpp \
 	forwardoption.hpp forwardoption.cpp \
+	functions.hpp functions.cpp \
 	garch.hpp garch.cpp \
 	gaussianquadratures.hpp gaussianquadratures.cpp \
 	gjrgarchmodel.hpp gjrgarchmodel.cpp \
@@ -92,6 +92,7 @@ QL_TESTS = \
 	pathgenerator.hpp pathgenerator.cpp \
 	period.hpp period.cpp \
 	piecewiseyieldcurve.hpp piecewiseyieldcurve.cpp \
+	piecewisezerospreadedtermstructure.hpp piecewisezerospreadedtermstructure.cpp \
 	quantooption.hpp quantooption.cpp \
 	quotes.hpp quotes.cpp \
 	rangeaccrual.hpp rangeaccrual.cpp \
@@ -203,7 +204,6 @@ benchmark: quantlib-benchmark$(EXEEXT)
 
 EXTRA_DIST = \
 	README.txt \
-	testsuite_vc7.vcproj \
 	testsuite_vc8.vcproj \
 	testsuite_vc9.vcproj \
 	testsuite_vc10.vcxproj \
@@ -218,7 +218,6 @@ EXTRA_DIST = \
 	${QL_TESTS} \
 	quantlibbenchmark.cpp \
 	README.txt \
-	testsuite_vc7.vcproj \
 	testsuite_vc8.vcproj \
 	testsuite_vc9.vcproj \
 	testsuite_vc10.vcxproj \

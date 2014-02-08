@@ -78,6 +78,13 @@ function(x) print(summary(x)))
 %template(Instrument) boost::shared_ptr<Instrument>;
 IsObservable(boost::shared_ptr<Instrument>);
 
+#if defined(SWIGCSHARP)
+SWIG_STD_VECTOR_ENHANCED( boost::shared_ptr<Instrument> )
+#endif
+namespace std {
+    %template(InstrumentVector) vector<boost::shared_ptr<Instrument> >;
+}
+
 // actual instruments
 
 %{

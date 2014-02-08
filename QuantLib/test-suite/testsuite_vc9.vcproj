@@ -1016,7 +1016,7 @@
 				>
 			</File>
 			<File
-				RelativePath="factorial.cpp"
+				RelativePath="functions.cpp"
 				>
 			</File>
 			<File
@@ -1217,6 +1217,10 @@
 			</File>
 			<File
 				RelativePath=".\piecewiseyieldcurve.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\piecewisezerospreadedtermstructure.cpp"
 				>
 			</File>
 			<File
@@ -1513,7 +1517,7 @@
 				>
 			</File>
 			<File
-				RelativePath="factorial.hpp"
+				RelativePath="functions.hpp"
 				>
 			</File>
 			<File
@@ -1714,6 +1718,10 @@
 			</File>
 			<File
 				RelativePath=".\piecewiseyieldcurve.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\piecewisezerospreadedtermstructure.hpp"
 				>
 			</File>
 			<File

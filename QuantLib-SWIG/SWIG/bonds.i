@@ -91,8 +91,8 @@ class BondPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<Bond>(*self)
                 ->settlementDays();
         }
-        Date settlementDate() {
-            return boost::dynamic_pointer_cast<Bond>(*self)->settlementDate();
+        Date settlementDate(Date d = Date()) {
+            return boost::dynamic_pointer_cast<Bond>(*self)->settlementDate(d);
         }
         Date startDate() const {
             return boost::dynamic_pointer_cast<Bond>(*self)->startDate();

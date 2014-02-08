@@ -673,7 +673,7 @@
     <ClCompile Include="everestoption.cpp" />
     <ClCompile Include="exchangerate.cpp" />
     <ClCompile Include="extendedtrees.cpp" />
-    <ClCompile Include="factorial.cpp" />
+    <ClCompile Include="functions.cpp" />
     <ClCompile Include="fastfouriertransform.cpp" />
     <ClCompile Include="fdheston.cpp" />
     <ClCompile Include="fdmlinearop.cpp" />
@@ -724,6 +724,7 @@
     <ClCompile Include="pathgenerator.cpp" />
     <ClCompile Include="period.cpp" />
     <ClCompile Include="piecewiseyieldcurve.cpp" />
+    <ClCompile Include="piecewisezerospreadedtermstructure.cpp" />
     <ClCompile Include="quantooption.cpp" />
     <ClCompile Include="quotes.cpp" />
     <ClCompile Include="rangeaccrual.cpp" />
@@ -799,7 +800,7 @@
     <ClInclude Include="everestoption.hpp" />
     <ClInclude Include="exchangerate.hpp" />
     <ClInclude Include="extendedtrees.hpp" />
-    <ClInclude Include="factorial.hpp" />
+    <ClInclude Include="functions.hpp" />
     <ClInclude Include="fastfouriertransform.hpp" />
     <ClInclude Include="fdheston.hpp" />
     <ClInclude Include="fdmlinearop.hpp" />
@@ -850,6 +851,7 @@
     <ClInclude Include="pathgenerator.hpp" />
     <ClInclude Include="period.hpp" />
     <ClInclude Include="piecewiseyieldcurve.hpp" />
+    <ClInclude Include="piecewisezerospreadedtermstructure.hpp" />
     <ClInclude Include="quantooption.hpp" />
     <ClInclude Include="quotes.hpp" />
     <ClInclude Include="rangeaccrual.hpp" />

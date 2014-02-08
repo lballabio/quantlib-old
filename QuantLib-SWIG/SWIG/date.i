@@ -431,9 +431,22 @@ class Date {
 
 class DateParser {
   public:
-    static Date parse(const std::string& str, const std::string& fmt);
     static Date parseFormatted(const std::string& str, const std::string& fmt);
     static Date parseISO(const std::string& str);
+    %extend {
+        static Date parse(const std::string& str, std::string fmt) {
+            // convert our old format into the corresponding Boost one
+            _replace_format(fmt, "YYYY", "%Y");
+            _replace_format(fmt, "yyyy", "%Y");
+            _replace_format(fmt, "YY", "%y");
+            _replace_format(fmt, "yy", "%y");
+            _replace_format(fmt, "MM", "%m");
+            _replace_format(fmt, "mm", "%m");
+            _replace_format(fmt, "DD", "%d");
+            _replace_format(fmt, "dd", "%d");
+            return DateParser::parseFormatted(str,fmt);
+        }
+    }
 };
 
 class PeriodParser {
