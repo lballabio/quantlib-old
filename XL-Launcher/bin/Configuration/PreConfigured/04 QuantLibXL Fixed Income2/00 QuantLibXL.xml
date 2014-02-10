@@ -26,7 +26,12 @@
           <Item>Bloomberg</Item>
         </Items>
       </ComboBox>
-      <CheckBox text="Use Static Market Data" checked="True" enabled="True" />
+      <ComboBox label="Market Data" selectedItem="Static" enabled="True">
+        <Items>
+          <Item>Live</Item>
+          <Item>Static</Item>
+        </Items>
+      </ComboBox>
     </GroupBox>
   </StartupParameters>
   <Components>
