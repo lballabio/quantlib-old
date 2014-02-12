@@ -57,7 +57,7 @@ end
 
 
 # Current QuantLib version
-Version = "1.4"
+Version = "1.5"
 
 cfg = RbConfig::MAKEFILE_CONFIG
 
