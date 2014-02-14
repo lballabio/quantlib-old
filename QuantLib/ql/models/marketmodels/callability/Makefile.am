@@ -6,6 +6,7 @@ this_include_HEADERS = \
 	all.hpp \
 	bermudanswaptionexercisevalue.hpp \
 	collectnodedata.hpp \
+	custombasissystem.hpp \
 	exercisevalue.hpp \
 	lsstrategy.hpp \
 	marketmodelbasissystem.hpp \
@@ -22,6 +23,7 @@ this_include_HEADERS = \
 libMarketModelsCallability_la_SOURCES = \
 	bermudanswaptionexercisevalue.cpp \
 	collectnodedata.cpp \
+	custombasissystem.cpp \
 	lsstrategy.cpp \
 	nothingexercisevalue.cpp \
 	parametricexerciseadapter.cpp \

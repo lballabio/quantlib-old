@@ -4,6 +4,7 @@
 #include <ql/models/marketmodels/products/multistep/callspecifiedmultiproduct.hpp>
 #include <ql/models/marketmodels/products/multistep/cashrebate.hpp>
 #include <ql/models/marketmodels/products/multistep/exerciseadapter.hpp>
+#include <ql/models/marketmodels/products/multistep/multistepcmsswap.hpp>
 #include <ql/models/marketmodels/products/multistep/multistepcoinitialswaps.hpp>
 #include <ql/models/marketmodels/products/multistep/multistepcoterminalswaps.hpp>
 #include <ql/models/marketmodels/products/multistep/multistepcoterminalswaptions.hpp>
