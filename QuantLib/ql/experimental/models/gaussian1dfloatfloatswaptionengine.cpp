@@ -69,6 +69,7 @@ namespace QuantLib {
             arguments_.leg1ResetDates.begin();
 
         // very simple initial guess
+        // check guess for nominal and weighted maturity !
 
         Array initial(3);
         Real nominalSum1 = 0.0;
