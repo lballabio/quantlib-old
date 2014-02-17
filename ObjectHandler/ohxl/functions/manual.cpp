@@ -435,3 +435,15 @@ XLL_DEC char *ohRetrieveErrorImpl(XLOPER *xRange) {
         return 0;
     }
 }
+
+// The amount of space left on the stack.  Excel returns this value into an unsigned short.
+// Usually the amount of available stack space exceeds USHRT_MAX (65535).  So normally this
+// function always returns 65535.
+XLL_DEC long *ohStack() {
+    static long returnValue;
+    XLOPER xRes;
+    Excel4(xlStack, &xRes, 0);
+    xRes.xltype = xltypeNum;
+    returnValue = (long)(unsigned short) xRes.val.w;
+    return &returnValue;
+}
