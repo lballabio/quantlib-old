@@ -444,6 +444,6 @@ XLL_DEC long *ohStack() {
     XLOPER xRes;
     Excel4(xlStack, &xRes, 0);
     xRes.xltype = xltypeNum;
-    returnValue = (long)(unsigned short) xRes.val.w;
+    returnValue = static_cast<unsigned short>(xRes.val.w);
     return &returnValue;
 }
