@@ -67,7 +67,7 @@ namespace QuantLib {
     };
 
 
-    //! helper class building a sequence of capped/floored cms-rate coupons
+    //! helper class building a sequence of capped/floored cms-spread-rate coupons
     class CmsSpreadLeg {
       public:
         CmsSpreadLeg(const Schedule& schedule,
