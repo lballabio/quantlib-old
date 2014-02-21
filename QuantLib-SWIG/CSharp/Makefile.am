@@ -55,7 +55,6 @@ dist-hook: cpp/quantlib_wrap.cpp
 	cp ./examples/*.cs $(distdir)/examples
 
 EXTRA_DIST = \
-    QuantLib_vc7.sln \
     QuantLib_vc8.sln \
     QuantLib_vc9.sln \
     QuantLib_vc10.sln \

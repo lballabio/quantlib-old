@@ -251,7 +251,7 @@ void OptionletStripperTest::testFlatTermVolatilityStripping1() {
 
     BOOST_TEST_MESSAGE(
         "Testing forward/forward vol stripping from flat term vol "
-        "surface using optionletstripper1...");
+        "surface using OptionletStripper1 class...");
 
     CommonVars vars;
     Settings::instance().evaluationDate() = Date(28, October, 2013);
@@ -312,7 +312,7 @@ void OptionletStripperTest::testTermVolatilityStripping1() {
 
     BOOST_TEST_MESSAGE(
         "Testing forward/forward vol stripping from non-flat term "
-        "vol surface using optionletstripper1...");
+        "vol surface using OptionletStripper1 class...");
 
     CommonVars vars;
     Settings::instance().evaluationDate() = Date(28, October, 2013);
@@ -375,7 +375,7 @@ void OptionletStripperTest::testFlatTermVolatilityStripping2() {
 
   BOOST_TEST_MESSAGE(
         "Testing forward/forward vol stripping from flat term vol "
-        "surface using optionletstripper2...");
+        "surface using OptionletStripper2 class...");
 
   CommonVars vars;
   Settings::instance().evaluationDate() = Date::todaysDate();
@@ -442,7 +442,7 @@ void OptionletStripperTest::testTermVolatilityStripping2() {
 
   BOOST_TEST_MESSAGE(
         "Testing forward/forward vol stripping from non-flat term vol "
-        "surface using optionletstripper2...");
+        "surface using OptionletStripper2 class...");
 
   CommonVars vars;
   Settings::instance().evaluationDate() = Date::todaysDate();

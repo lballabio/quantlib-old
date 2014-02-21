@@ -205,7 +205,6 @@ benchmark: quantlib-benchmark$(EXEEXT)
 
 EXTRA_DIST = \
 	README.txt \
-	testsuite_vc7.vcproj \
 	testsuite_vc8.vcproj \
 	testsuite_vc9.vcproj \
 	testsuite_vc10.vcxproj \
@@ -220,7 +219,6 @@ EXTRA_DIST = \
 	${QL_TESTS} \
 	quantlibbenchmark.cpp \
 	README.txt \
-	testsuite_vc7.vcproj \
 	testsuite_vc8.vcproj \
 	testsuite_vc9.vcproj \
 	testsuite_vc10.vcxproj \
