@@ -416,6 +416,7 @@ AC_CONFIG_FILES([
     Examples/CallableBonds/Makefile
     Examples/CallableBonds2/Makefile
     Examples/CDS/Makefile
+    Examples/CmsMarket/Makefile
     Examples/CmsSwaption/Makefile
     Examples/ConvertibleBonds/Makefile
     Examples/CreditRiskPlus/Makefile
