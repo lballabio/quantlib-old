@@ -32,6 +32,8 @@ FUNCTIONALITY
   so that it knows its own name.
 - New function ohStack() which returns the amount of available stack
   space left to the XLL.
+- Fixed bug in which xlAutoClose() attempted to delete an
+  xltypeStr/xltypeMulti on which xlbitDLLFree had not been set.
 
 REQUIRED PACKAGES
 
