@@ -42,7 +42,8 @@ namespace QuantLib {
                  const std::vector<Time>& optionTimes,
                  const std::vector<Time>& swapLengths,
                  Size nLayers,
-                 bool extrapolation = true);
+                 bool extrapolation = true,
+                 bool backwardFlatBeta = false);
             Cube& operator=(const Cube& o);
             Cube(const Cube&);
             virtual ~Cube() {}
@@ -83,6 +84,7 @@ namespace QuantLib {
             std::vector<Matrix> points_;
             mutable std::vector<Disposable<Matrix> > transposedPoints_;
             bool extrapolation_;
+            bool backwardFlatBeta_;
             mutable std::vector< boost::shared_ptr<Interpolation2D> > interpolators_;
          };
       public:
@@ -105,7 +107,8 @@ namespace QuantLib {
                 = boost::shared_ptr<OptimizationMethod>(),
             const Real errorAccept = 0.0020,
             const bool useMaxError = false,
-            const Size maxGuesses = 50);
+            const Size maxGuesses = 50,
+            const bool backwardFlatBeta = false);
         //! \name LazyObject interface
         //@{
         void performCalculations() const;
@@ -131,7 +134,10 @@ namespace QuantLib {
                                     const Period& swapTenor) const;
         void recalibration(Real beta,
                            const Period& swapTenor);
-        void recalibration(std::vector<Real> &beta,
+        void recalibration(const std::vector<Real> &beta,
+                           const Period& swapTenor);
+        void recalibration(const std::vector<Period> &swapLengths,
+                           const std::vector<Real> &beta,
                            const Period& swapTenor);
         void updateAfterRecalibration();
      protected:
@@ -162,6 +168,7 @@ namespace QuantLib {
         const Real errorAccept_;
         const bool useMaxError_;
         const Size maxGuesses_;
+        const bool backwardFlatBeta_;
     };
 
 }
