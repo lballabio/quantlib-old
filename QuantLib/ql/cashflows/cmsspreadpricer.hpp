@@ -38,7 +38,7 @@ namespace QuantLib {
     /*! blah blah...
     */
 
-    class CmsSpreadPricer : public Observer, public Observable {
+    class CmsSpreadPricer : public FloatingRateCouponPricer {
 
       public:
 
