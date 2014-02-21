@@ -43,7 +43,7 @@ namespace ObjectHandler {
                 bool expandVector) {
             InputType inputItem = ObjectHandler::convert2<InputType>(ConvertOper(xIn));
             OutputType returnItem = loopFunction(inputItem);
-            scalarToOper(returnItem, xOut, true, expandVector);
+            scalarToOper(returnItem, xOut, expandVector);
         }
     };
 
@@ -57,7 +57,7 @@ namespace ObjectHandler {
                 bool expandVector) {
             InputType inputItem = ObjectHandler::convert2<InputType>(ConvertOper(xIn));
             loopFunction(inputItem);
-            scalarToOper(true, xOut, true, expandVector);
+            scalarToOper(true, xOut, expandVector);
         }
     };
 

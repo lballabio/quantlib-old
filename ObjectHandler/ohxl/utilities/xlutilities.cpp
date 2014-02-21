@@ -53,6 +53,6 @@ DLL_API bool isList(const OPER *xValue) {
 DLL_API void splitOper(const OPER *xFrom, OPER *xTo) {
     std::string text = ObjectHandler::ConvertOper(*xFrom);
     std::vector<std::string> vec = ObjectHandler::split(text, ",;", false);
-    ObjectHandler::vectorToOper(vec, *xTo, false);
+    ObjectHandler::vectorToOper(vec, *xTo);
 }
 
