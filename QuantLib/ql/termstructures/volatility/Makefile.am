@@ -10,6 +10,7 @@ this_include_HEADERS = \
     abcdcalibration.hpp \
     flatsmilesection.hpp \
     interpolatedsmilesection.hpp \
+	noarbsabr.hpp \
     sabr.hpp \
     sabrinterpolatedsmilesection.hpp \
     sabrsmilesection.hpp \
@@ -22,6 +23,7 @@ libVolTermStructures_la_SOURCES = \
     abcd.cpp \
     abcdcalibration.cpp \
     flatsmilesection.cpp \
+	noarbsabr.cpp \
     sabr.cpp \
     sabrinterpolatedsmilesection.cpp \
     sabrsmilesection.cpp \
