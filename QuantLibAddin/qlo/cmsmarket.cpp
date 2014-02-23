@@ -26,8 +26,6 @@
 using std::vector;
 using boost::shared_ptr;
 using QuantLib::Size;
-using QuantLib::CmsCouponPricer;
-using QuantLib::HaganPricer;
 using QuantLib::Matrix;
 using QuantLib::Handle;
 using QuantLib::Quote;
@@ -40,7 +38,7 @@ namespace QuantLibAddin {
         const vector<shared_ptr<QuantLib::SwapIndex> >& swapIndices,
         const shared_ptr<QuantLib::IborIndex>& iborIndex,
         const vector<vector<Handle<Quote> > >& bidAskSpreads,
-        const vector<shared_ptr<HaganPricer> >& pricers,
+        const vector<shared_ptr<QuantLib::CmsCouponPricer> >& pricers,
         const Handle<QuantLib::YieldTermStructure>& discountingTS,
         bool permanent)
     : ObjectHandler::LibraryObject<QuantLib::CmsMarket>(properties, permanent)
