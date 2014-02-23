@@ -34,12 +34,6 @@ namespace QuantLib {
 
     namespace detail {
 
-        const Real d0(const Real forward,
-                      const Real expiryTime,
-                      const Real alpha,
-                      const Real beta,
-                      const Real nu,
-                      const Real rho);
 
     }
     
