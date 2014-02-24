@@ -95,10 +95,10 @@ SUBSTITUTIONS = (
 #   (re.compile('abcDEFghi'), toLower),
 
 ##  Frequently used
-    (re.compile('1_3_0'), '1_4_0'),
-    (re.compile('1\.3\.0'), '1.4.0'),
-    (re.compile('0x010300'), '0x010400'),
-    (re.compile('R010301f0'), 'R010400f0'),
+    (re.compile('1_4_0'), '1_5_0'),
+    (re.compile('1\.4\.0'), '1.5.0'),
+    (re.compile('0x010400'), '0x010500'),
+    (re.compile('R010401f0'), 'R010500f0'),
 #   (re.compile('0\.10\.0c'), '0.10.0d'),
 )
 
