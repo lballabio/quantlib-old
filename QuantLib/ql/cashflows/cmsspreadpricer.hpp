@@ -38,7 +38,7 @@ namespace QuantLib {
     /*! blah blah...
     */
 
-    class CmsSpreadPricer : public FloatingRateCouponPricer {
+    class CmsSpreadPricer : public CmsSpreadCouponPricer {
 
       public:
 
@@ -56,13 +56,6 @@ namespace QuantLib {
         virtual Real floorletPrice(Rate effectiveFloor) const;
         virtual Rate floorletRate(Rate effectiveFloor) const;
         /* */
-        Real correlation() const;
-        void setCorrelation(const Handle<Quote> &correlation) {
-            unregisterWith(correlation_);
-            correlation_ = correlation;
-            registerWith(correlation_);
-            update();
-        }
 
       private:
 
@@ -72,7 +65,6 @@ namespace QuantLib {
         const Real integrand(const Real) const;
         
         boost::shared_ptr<CmsCouponPricer> cmsPricer_;
-        Handle<Quote> correlation_;
 
         Handle<YieldTermStructure> couponDiscountCurve_;
 

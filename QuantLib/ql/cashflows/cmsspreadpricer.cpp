@@ -33,14 +33,13 @@ namespace QuantLib {
         const Handle<Quote> &correlation,
         const Handle<YieldTermStructure> &couponDiscountCurve,
         const Size integrationPoints)
-        : cmsPricer_(cmsPricer), correlation_(correlation),
+        : CmsSpreadCouponPricer(correlation), cmsPricer_(cmsPricer),
           couponDiscountCurve_(couponDiscountCurve) {
 
         if (!couponDiscountCurve_.empty())
             registerWith(couponDiscountCurve_);
 
         registerWith(cmsPricer);
-        registerWith(correlation);
 
         QL_REQUIRE(integrationPoints > 4,
                    "at least 4 integration points should be used ("
@@ -87,6 +86,7 @@ namespace QuantLib {
 
         coupon_ = dynamic_cast<const CmsSpreadCoupon *>(&coupon);
         QL_REQUIRE(coupon_, "CMS spread coupon needed");
+        index_ = coupon_->swapSpreadIndex();
         gearing_ = coupon_->gearing();
         spread_ = coupon_->spread();
 
@@ -153,7 +153,7 @@ namespace QuantLib {
             mu1_ = 1.0 / fixingTime_ * std::log(adjustedRate1_ / swapRate1_);
             mu2_ = 1.0 / fixingTime_ * std::log(adjustedRate2_ / swapRate2_);
 
-            rho_ = correlation_->value();
+            rho_ = correlation()->value();
 
         }
     }
