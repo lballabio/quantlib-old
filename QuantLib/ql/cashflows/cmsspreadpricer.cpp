@@ -56,30 +56,34 @@ namespace QuantLib {
 
         Real v = sqrt(2.0) * x;
         Real h =
-            strike_ + gearing1_ * swapRate1_ *
-                          std::exp((mu1_ - 0.5 * vol1_ * vol1_) * fixingTime_ +
-                                   vol1_ * sqrt(fixingTime_) * v);
+            strike_ - gearing2_ * swapRate2_ *
+                          std::exp((mu2_ - 0.5 * vol2_ * vol2_) * fixingTime_ +
+                                   vol2_ * sqrt(fixingTime_) * v);
         Real phi1, phi2;
-        if (-gearing2_ * swapRate2_ / h > 0) {
-            phi1 = cnd_->operator()(phi_ * (std::log(-gearing2_ * swapRate2_ / h) +
-                                (mu2_ + (0.5 - rho_ * rho_) * vol2_ * vol2_) *
+        if (gearing1_ * swapRate1_ / h > 0) {
+            phi1 = cnd_->operator()(phi_ * (std::log(gearing1_ * swapRate1_ / h) +
+                                (mu1_ + (0.5 - rho_ * rho_) * vol1_ * vol1_) *
                                     fixingTime_ +
-                                rho_ * vol2_ * std::sqrt(fixingTime_) * v) /
-                        (vol2_ * sqrt(fixingTime_ * (1.0 - rho_ * rho_))));
-            phi2 = cnd_->operator()(phi_ * (std::log(-gearing2_ * swapRate2_ / h) +
-                                 (mu2_ - 0.5 * vol2_ * vol2_) * fixingTime_ +
-                                 rho_ * vol2_ * std::sqrt(fixingTime_) * v) /
-                        (vol2_ * sqrt(fixingTime_ * (1.0 - rho_ * rho_))));
+                                rho_ * vol1_ * std::sqrt(fixingTime_) * v) /
+                        (vol1_ * sqrt(fixingTime_ * (1.0 - rho_ * rho_))));
+            phi2 = cnd_->operator()(phi_ * (std::log(gearing1_ * swapRate1_ / h) +
+                                 (mu1_ - 0.5 * vol1_ * vol1_) * fixingTime_ +
+                                 rho_ * vol1_ * std::sqrt(fixingTime_) * v) /
+                        (vol1_ * sqrt(fixingTime_ * (1.0 - rho_ * rho_))));
         } else {
             phi1 = phi2 = phi_;
         }
-        Real f = gearing2_ * phi_ * swapRate2_ *
-                     std::exp(mu2_ * fixingTime_ -
-                              0.5 * rho_ * rho_ * vol2_ * vol2_ * fixingTime_ +
-                              rho_ * vol2_ * sqrt(fixingTime_) * v) *
+        Real f = gearing1_ * phi_ * swapRate1_ *
+                     std::exp(mu1_ * fixingTime_ -
+                              0.5 * rho_ * rho_ * vol1_ * vol1_ * fixingTime_ +
+                              rho_ * vol1_ * sqrt(fixingTime_) * v) *
                      phi1 -
             phi_ * h * phi2;
         return 1.0 / sqrt(M_PI) * std::exp(-x * x) * f;
+    }
+
+    void CmsSpreadPricer::flushCache() {
+        cache_.clear();
     }
 
     void CmsSpreadPricer::initialize(const FloatingRateCoupon &coupon) {
@@ -144,8 +148,19 @@ namespace QuantLib {
 
             swapRate1_ = c1_->indexFixing();
             swapRate2_ = c2_->indexFixing();
-            adjustedRate1_ = c1_->adjustedFixing();
-            adjustedRate2_ = c2_->adjustedFixing();
+
+            // costly part, look up in cache first
+            std::pair<std::string,Date> key = std::make_pair(index_->name(), fixingDate_);
+            CacheType::const_iterator k = cache_.find(key);
+            if(k != cache_.end()) {
+                adjustedRate1_ = k->second.first;
+                adjustedRate2_ = k->second.second;
+            }
+            else {
+                adjustedRate1_ = c1_->adjustedFixing();
+                adjustedRate2_ = c2_->adjustedFixing();
+                cache_.insert(std::make_pair(key,std::make_pair(adjustedRate1_,adjustedRate2_)));
+            }
 
             vol1_ = cmsPricer_->swaptionVolatility()->volatility(fixingDate_, index_->swapIndex1()->tenor(), swapRate1_);
             vol2_ = cmsPricer_->swaptionVolatility()->volatility(fixingDate_, index_->swapIndex2()->tenor(), swapRate2_);

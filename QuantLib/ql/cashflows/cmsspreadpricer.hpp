@@ -56,8 +56,12 @@ namespace QuantLib {
         virtual Real floorletPrice(Rate effectiveFloor) const;
         virtual Rate floorletRate(Rate effectiveFloor) const;
         /* */
+        void flushCache();
 
       private:
+
+        typedef std::map<std::pair<std::string,Date>,std::pair<Real,Real> > CacheType;
+
 
         void initialize(const FloatingRateCoupon &coupon);
         Real optionletPrice(Option::Type optionType, Real strike) const;
@@ -90,6 +94,8 @@ namespace QuantLib {
         Real rho_;
 
         boost::shared_ptr<CmsCoupon> c1_, c2_;
+
+        CacheType cache_;
 
     };
 }
