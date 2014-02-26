@@ -688,7 +688,7 @@ int main(int,char**) {
 
     std::vector<boost::shared_ptr<CmsCouponPricer> > pricers(5, linearTsr);
 
-    boost::shared_ptr<CmsMarket> cmsMarket = boost::make_shared<CmsMarket>(swapLengths, swapIndexes, euribor6m,
+    boost::shared_ptr<CmsMarket> cmsMarket = boost::make_shared<CmsMarket>(swapLengths, swapIndexes, euribor3m,
                                                                            bidAskSpreads, pricers, ytsEonia);
 
     // cms market calibration
