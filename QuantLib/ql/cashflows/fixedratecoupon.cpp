@@ -246,17 +246,19 @@ namespace QuantLib {
                 nominal = notionals_[N-2];
             else
                 nominal = notionals_.back();
-			InterestRate r( rate.rate(), lastPeriodDC_.empty() ? rate.dayCounter() : lastPeriodDC_ , rate.compounding(), rate.frequency() ); 
-            if (schedule_.isRegular(N-1)) {
-
+            InterestRate r(rate.rate(),
+                           lastPeriodDC_.empty() ? rate.dayCounter()
+                                                 : lastPeriodDC_,
+                           rate.compounding(), rate.frequency());
+            if (schedule_.isRegular(N - 1)) {
                 leg.push_back(shared_ptr<CashFlow>(new
                     FixedRateCoupon(paymentDate, nominal, r,
-                                    start, end, start, end)));
+                                    start, end, start, end, exCouponDate)));
             } else {
                 Date ref = start + schedule_.tenor();
                 ref = schCalendar.adjust(ref, schedule_.businessDayConvention());
                 leg.push_back(shared_ptr<CashFlow>(new
-                    FixedRateCoupon(paymentDate, nominal, rate,
+                    FixedRateCoupon(paymentDate, nominal, r,
                                     start, end, start, ref, exCouponDate)));
             }
         }

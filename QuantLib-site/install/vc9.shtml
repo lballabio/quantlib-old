@@ -29,8 +29,7 @@ procedure. Something that is obvious to one person might not be
 obvious to someone else. The only thing that I assume that you have on
 your computer is the Visual C++ 2008 IDE.</p>
 
-<p>These instructions should also work for Visual C++ 2005 and
-(possibly with some slight modification) for Visual C++ 2003.</p>
+<p>These instructions should also work for Visual C++ 2005.</p>
 
 <p>Before using QuantLib you need to install the Boost library on your
 computer. Detailed instructions follow in the next section. There are
@@ -41,52 +40,20 @@ libraries. This takes more time than the first option; installation
 instructions are provided in the Appendix.</p>
 
 <h2>Boost Installation</h2>
-<p>I suggest to use the installer provided by BoostPro
-Computing, that can be downloaded
-at <a href="http://www.boostpro.com/download">http://www.boostpro.com/download</a>.</p>
+<p>I suggest to use the binary installer provided by the Boost
+project, that can be downloaded
+at <a href="http://sourceforge.net/projects/boost/files/boost-binaries/">http://sourceforge.net/projects/boost/files/boost-binaries/</a>.</p>
 
-<p>At the time of this writing, the current version is the
-executable <tt>boost_1_39_setup.exe</tt> and can be downloaded after a
-free registration, which takes just a few seconds. Double clicking the
-installer yields the screen shown below. Select the download mirror of
-your choice.</p>
-
-<p class="center"><img src="pics/vc9/boost1.png" alt="Mirror selection"></p>
-
-<p>The next step asks you to select the binaries to download. Since we
-are using Visual Studio 2008, we will select this version in the left
-panel; select the appropriate version if you're using an earlier
-IDE. In the right panel, select Multithread, Multithread Debug,
-Multithread static runtime, and Multithread Debug static runtime (the
-others are not needed by QuantLib, but you might want to download them
-anyway.) The resulting screen is shown below.</p>
-
-<p class="center"><img src="pics/vc9/boost2.png" alt="Version selection"></p>
-
-<p>The next window asks you which libraries you'd like to install. You
-can add any library that you want besides the ones selected by
-default; the one needed for a complete QuantLib build is the unit test
-framework, which can be found at the end of the list. The
-corresponding screen follows.</p>
-
-<p class="center"><img src="pics/vc9/boost3.png" alt="Default library selection"></p>
-
-<p>Choose the VC9.0 version (or the one corresponding to your IDE) to
-include the unit test framework. You can also open the VC9.0 list and
-select specific build versions.</p>
-
-<p class="center"><img src="pics/vc9/boost3A.png" alt="Library selection"></p>
-
-<p>The next step asks for a destination folder. I will install
-everything in a folder called <tt>Boost</tt> on my
-<tt>C:</tt> drive. Feel free to choose your own folder.</p>
-
-<p class="center"><img src="pics/vc9/boost4.png" alt="Install location"></p>
-
-<p>Clicking Install starts the download, which takes a while. After
-finishing, the final screen should say:</p>
-
-<p class="center"><img src="pics/vc9/boost5.png" alt="Boost installed"></p>
+<p>You'll have to enter the folder corresponding to the release you
+want to download (at the time of this writing, the latest version is
+Boost 1.55.0) and then choose the installer corresponding to your
+compiler and platform; for
+instance, <tt>boost_1_55_0-msvc-9.0-64.exe</tt> for Visual C++ 9 on a
+64-bit system. Download and run the installer. The rest of this
+tutorial was written a while ago and assumes that you installed Boost
+1.39 into the <tt>C:\Boost\boost_1_39</tt> folder; replace that with
+whatever folder the installer creates for your newer version (for
+instance, <tt>C:\Boost\boost_1_55_0</tt>).</p>
 
 <h2>Boost Configuration</h2>
 
