@@ -58,7 +58,7 @@ namespace QuantLib {
         Real maxErrorTolerance,
         const boost::shared_ptr<OptimizationMethod> &optMethod,
         const Real errorAccept, const bool useMaxError, const Size maxGuesses,
-        const bool backwardFlatBeta)
+        const bool backwardFlat)
         : SwaptionVolatilityCube(atmVolStructure, optionTenors, swapTenors,
                                  strikeSpreads, volSpreads, swapIndexBase,
                                  shortSwapIndexBase, vegaWeightedSmileFit),
@@ -67,7 +67,7 @@ namespace QuantLib {
           isAtmCalibrated_(isAtmCalibrated), endCriteria_(endCriteria),
           optMethod_(optMethod), errorAccept_(errorAccept),
           useMaxError_(useMaxError), maxGuesses_(maxGuesses),
-          backwardFlatBeta_(backwardFlatBeta) {
+          backwardFlat_(backwardFlat) {
 
         if (maxErrorTolerance != Null<Rate>()) {
             maxErrorTolerance_ = maxErrorTolerance;
@@ -94,7 +94,7 @@ namespace QuantLib {
         //! set parametersGuess_ by parametersGuessQuotes_
         parametersGuess_ = Cube(optionDates_, swapTenors_,
                                 optionTimes_, swapLengths_, 4,
-                                true, backwardFlatBeta_);
+                                true, backwardFlat_);
         Size i;
         for (i=0; i<4; i++)
             for (Size j=0; j<nOptionTenors_ ; j++)
@@ -242,7 +242,7 @@ namespace QuantLib {
         }
         Cube sabrParametersCube(optionDates, swapTenors,
                                 optionTimes, swapLengths, 8,
-                                true, backwardFlatBeta_);
+                                true, backwardFlat_);
         sabrParametersCube.setLayer(0, alphas);
         sabrParametersCube.setLayer(1, betas);
         sabrParametersCube.setLayer(2, nus);
@@ -692,11 +692,11 @@ namespace QuantLib {
                                     const std::vector<Time>& swapLengths,
                                     Size nLayers,
                                     bool extrapolation,
-                                    bool backwardFlatBeta)
+                                    bool backwardFlat)
     : optionTimes_(optionTimes), swapLengths_(swapLengths),
       optionDates_(optionDates), swapTenors_(swapTenors),
         nLayers_(nLayers), extrapolation_(extrapolation),
-        backwardFlatBeta_(backwardFlatBeta) {
+        backwardFlat_(backwardFlat) {
 
         QL_REQUIRE(optionTimes.size()>1,"Cube::Cube(...): optionTimes.size()<2");
         QL_REQUIRE(swapLengths.size()>1,"Cube::Cube(...): swapLengths.size()<2");
@@ -711,7 +711,7 @@ namespace QuantLib {
         for (Size k=0;k<nLayers_;k++) {
             boost::shared_ptr<Interpolation2D> interpolation;
             transposedPoints_.push_back(transpose(points[k]));
-            if (k == 1 && backwardFlatBeta_)
+            if (k <= 4 && backwardFlat_)
                 interpolation =
                     boost::make_shared<BackwardflatLinearInterpolation>(
                         optionTimes_.begin(), optionTimes_.end(),
@@ -737,11 +737,11 @@ namespace QuantLib {
         swapTenors_ = o.swapTenors_;
         nLayers_ = o.nLayers_;
         extrapolation_ = o.extrapolation_;
-        backwardFlatBeta_ = o.backwardFlatBeta_;
+        backwardFlat_ = o.backwardFlat_;
         transposedPoints_ = o.transposedPoints_;
         for (Size k=0; k<nLayers_; ++k) {
             boost::shared_ptr<Interpolation2D> interpolation;
-            if (k == 1 && backwardFlatBeta_)
+            if (k <= 4 && backwardFlat_)
                 interpolation =
                     boost::make_shared<BackwardflatLinearInterpolation>(
                         optionTimes_.begin(), optionTimes_.end(),
@@ -768,11 +768,11 @@ namespace QuantLib {
         swapTenors_ = o.swapTenors_;
         nLayers_ = o.nLayers_;
         extrapolation_ = o.extrapolation_;
-        backwardFlatBeta_ = o.backwardFlatBeta_;
+        backwardFlat_ = o.backwardFlat_;
         transposedPoints_ = o.transposedPoints_;
         for(Size k=0;k<nLayers_;k++){
             boost::shared_ptr<Interpolation2D> interpolation;
-            if (k == 1 && backwardFlatBeta_)
+            if (k <= 4 && backwardFlat_)
                 interpolation =
                     boost::make_shared<BackwardflatLinearInterpolation>(
                         optionTimes_.begin(), optionTimes_.end(),
@@ -921,7 +921,7 @@ namespace QuantLib {
         for (Size k = 0; k < nLayers_; ++k) {
             transposedPoints_[k] = transpose(points_[k]);
             boost::shared_ptr<Interpolation2D> interpolation;
-            if (k == 1 && backwardFlatBeta_)
+            if (k <= 4 && backwardFlat_)
                 interpolation =
                     boost::make_shared<BackwardflatLinearInterpolation>(
                         optionTimes_.begin(), optionTimes_.end(),
