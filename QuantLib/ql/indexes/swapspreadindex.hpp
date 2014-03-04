@@ -54,7 +54,6 @@ namespace QuantLib {
 
 
     private:
-        std::string name_, familyName_;
         boost::shared_ptr<SwapIndex> swapIndex1_, swapIndex2_;
         Real gearing1_, gearing2_;
     };
