@@ -71,7 +71,7 @@ namespace QuantLib {
                                  rho_ * vol1_ * std::sqrt(fixingTime_) * v) /
                         (vol1_ * sqrt(fixingTime_ * (1.0 - rho_ * rho_))));
         } else {
-            phi1 = phi2 = phi_;
+            phi1 = phi2 = phi_; // TODO check this ...
         }
         Real f = gearing1_ * phi_ * swapRate1_ *
                      std::exp(mu1_ * fixingTime_ -
@@ -168,7 +168,7 @@ namespace QuantLib {
             mu1_ = 1.0 / fixingTime_ * std::log(adjustedRate1_ / swapRate1_);
             mu2_ = 1.0 / fixingTime_ * std::log(adjustedRate2_ / swapRate2_);
 
-            rho_ = correlation()->value();
+            rho_ = std::max(std::min(correlation()->value(),0.9999),-0.9999); // avoid division by zero in integrand
 
         }
     }
