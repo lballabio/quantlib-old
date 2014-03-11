@@ -414,10 +414,13 @@ XLL_DEC XLOPER *ohRangeRetrieveError(XLOPER *xRange) {
         XLOPER xTemp;
         Excel(xlCoerce, &xTemp, 1, xRange);
         static XLOPER xRet;
-        if (xTemp.xltype & xltypeErr)
+        if (xTemp.xltype & xltypeErr) {
             Excel(xlUDF, &xRet, 2, TempStrNoSize("\x13""ohRetrieveErrorImpl"), xRange);
-        else
+            xRet.xltype |= xlbitXLFree;
+        } else {
             ObjectHandler::scalarToOper(std::string(), xRet);
+        }
+        Excel(xlFree, 0, 1, &xTemp);
         return &xRet;
     } catch (...) {
         return 0;
