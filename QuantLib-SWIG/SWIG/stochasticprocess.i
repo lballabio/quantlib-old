@@ -316,9 +316,8 @@ class HullWhiteProcessPtr : public StochasticProcess1DPtr {
     %extend {
       HullWhiteProcessPtr(const Handle<YieldTermStructure>& riskFreeTS,
                           Real a, Real sigma) {
-		return new HullWhiteProcessPtr(
-			new HullWhiteProcess(riskFreeTS, a, sigma));	
-      }
+            return new HullWhiteProcessPtr(new HullWhiteProcess(riskFreeTS, a, sigma));	
+        }
     }
 };
 
