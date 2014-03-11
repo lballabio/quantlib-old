@@ -68,11 +68,10 @@ namespace ObjectHandler {
 
     ConvertOper::operator std::string() const {
         const OPER *xString;
-
+        Xloper xTemp;
         if (oper_->xltype & xltypeStr) {
             xString = oper_;
         } else {
-            Xloper xTemp;
             Excel(xlCoerce, &xTemp, 2, oper_, TempInt(xltypeStr));
             xString = &xTemp;
         }
