@@ -1,8 +1,8 @@
 
 EXTRA_DIST = \
-    docs-QuantLibXL_vc7.vcproj \
     docs-QuantLibXL_vc8.vcproj \
     docs-QuantLibXL_vc9.vcproj \
+    docs-QuantLibXL_vc10.vcproj \
     doxygen.css \
     Makefile.vc \
     ql.css \

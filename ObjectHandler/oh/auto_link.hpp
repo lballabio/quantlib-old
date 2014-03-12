@@ -24,12 +24,8 @@
 #include <oh/ohdefines.hpp>
 
 // select toolset:
-#if (_MSC_VER < 1300)
+#if (_MSC_VER < 1400)
 #  error "unsupported Microsoft compiler"
-#elif (_MSC_VER == 1300)
-#  define OBJHANDLER_LIB_TOOLSET "vc7"
-#elif (_MSC_VER == 1310)
-#  define OBJHANDLER_LIB_TOOLSET "vc71"
 #elif (_MSC_VER == 1400)
 #  define OBJHANDLER_LIB_TOOLSET "vc80"
 #elif (_MSC_VER == 1500)

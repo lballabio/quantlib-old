@@ -26,11 +26,9 @@ EXTRA_DIST = \
     LICENSE.TXT \
     NEWS.txt \
     ObjectHandler.nsi \
-    ObjectHandler_vc7.sln \
     ObjectHandler_vc8.sln \
     ObjectHandler_vc9.sln \
     ObjectHandler_vc10.sln \
-    ohlib_vc7.vcproj \
     ohlib_vc8.vcproj \
     ohlib_vc9.vcproj \
     ohlib_vc10.vcxproj \

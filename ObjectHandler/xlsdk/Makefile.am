@@ -7,7 +7,6 @@ EXTRA_DIST = \
     xlcall.h \
     xlsdkdefines.hpp \
     xlsdk.hpp \
-    xlsdk_vc7.vcproj \
     xlsdk_vc8.vcproj \
     xlsdk_vc9.vcproj \
     xlsdk_vc10.vcxproj
