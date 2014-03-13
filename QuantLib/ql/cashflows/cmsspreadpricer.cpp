@@ -41,7 +41,7 @@ namespace QuantLib {
 
         registerWith(cmsPricer);
 
-        QL_REQUIRE(integrationPoints > 4,
+        QL_REQUIRE(integrationPoints >= 4,
                    "at least 4 integration points should be used ("
                        << integrationPoints << ")");
         integrator_ =
