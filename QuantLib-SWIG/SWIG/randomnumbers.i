@@ -2,6 +2,7 @@
 /*
  Copyright (C) 2003 Ferdinando Ametrano
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2014 Felix Lee 
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -263,5 +264,31 @@ class GaussianLowDiscrepancySequenceGenerator {
     Size dimension() const;
 };
 
+/*************** PseudoRandomMT ******************/
+%{
+using QuantLib::GenericPseudoRandom;
+%}
+
+template <class URNG, class IC>
+struct GenericPseudoRandom {
+    // typedefs
+    typedef URNG urng_type;
+    typedef InverseCumulativeRng<urng_type,IC> rng_type;
+    typedef RandomSequenceGenerator<urng_type> ursg_type;
+    typedef InverseCumulativeRsg<ursg_type,IC> rsg_type;
+    // more traits
+    enum { allowsErrorEstimate = 1 };
+    // factory
+    static rsg_type make_sequence_generator(Size dimension,
+                                            BigNatural seed) {
+        ursg_type g(dimension, seed);
+        return (icInstance ? rsg_type(g, *icInstance) : rsg_type(g));
+    }
+    // data
+    static boost::shared_ptr<IC> icInstance;
+};
+
+%template(PseudoRandomMT)
+    GenericPseudoRandom<MersenneTwisterUniformRng,InverseCumulativeNormal>;
 
 #endif
