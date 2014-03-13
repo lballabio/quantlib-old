@@ -56,31 +56,29 @@ namespace QuantLib {
 
         Real v = sqrt(2.0) * x;
         Real h =
-            strike_ - gearing2_ * swapRate2_ *
-                          std::exp((mu2_ - 0.5 * vol2_ * vol2_) * fixingTime_ +
-                                   vol2_ * sqrt(fixingTime_) * v);
+            k_ - b_ * s2_ *
+                          std::exp((m2_ - 0.5 * v2_ * v2_) * fixingTime_ +
+                                   v2_ * sqrt(fixingTime_) * v);
         Real phi1, phi2;
-        if (gearing1_ * swapRate1_ / h > 0) {
-            phi1 = cnd_->operator()(phi_ * (std::log(gearing1_ * swapRate1_ / h) +
-                                (mu1_ + (0.5 - rho_ * rho_) * vol1_ * vol1_) *
-                                    fixingTime_ +
-                                rho_ * vol1_ * std::sqrt(fixingTime_) * v) /
-                        (vol1_ * sqrt(fixingTime_ * (1.0 - rho_ * rho_))));
-            phi2 = cnd_->operator()(phi_ * (std::log(gearing1_ * swapRate1_ / h) +
-                                 (mu1_ - 0.5 * vol1_ * vol1_) * fixingTime_ +
-                                 rho_ * vol1_ * std::sqrt(fixingTime_) * v) /
-                        (vol1_ * sqrt(fixingTime_ * (1.0 - rho_ * rho_))));
-        } else {
-            phi1 = phi2 = phi_; // TODO check this ...
-        }
-        Real f = gearing1_ * phi_ * swapRate1_ *
-                     std::exp(mu1_ * fixingTime_ -
-                              0.5 * rho_ * rho_ * vol1_ * vol1_ * fixingTime_ +
-                              rho_ * vol1_ * sqrt(fixingTime_) * v) *
+        phi1 = cnd_->operator()(
+            phi_ * (std::log(a_ * s1_ / h) +
+                    (m1_ + (0.5 - rho_ * rho_) * v1_ * v1_) * fixingTime_ +
+                    rho_ * v1_ * std::sqrt(fixingTime_) * v) /
+            (v1_ * sqrt(fixingTime_ * (1.0 - rho_ * rho_))));
+        phi2 = cnd_->operator()(
+            phi_ * (std::log(a_ * s1_ / h) +
+                    (m1_ - 0.5 * v1_ * v1_) * fixingTime_ +
+                    rho_ * v1_ * std::sqrt(fixingTime_) * v) /
+            (v1_ * sqrt(fixingTime_ * (1.0 - rho_ * rho_))));
+        Real f = a_ * phi_ * s1_ *
+                     std::exp(m1_ * fixingTime_ -
+                              0.5 * rho_ * rho_ * v1_ * v1_ * fixingTime_ +
+                              rho_ * v1_ * sqrt(fixingTime_) * v) *
                      phi1 -
-            phi_ * h * phi2;
+                 phi_ * h * phi2;
         return 1.0 / sqrt(M_PI) * std::exp(-x * x) * f;
-    }
+
+   }
 
     void CmsSpreadPricer::flushCache() {
         cache_.clear();
@@ -176,13 +174,33 @@ namespace QuantLib {
     Real CmsSpreadPricer::optionletPrice(Option::Type optionType,
                                          Real strike) const {
 
-        // compute the relevant integral
-
         phi_ = optionType == Option::Call ? 1.0 : -1.0;
-        strike_ = strike;
+        Real res = 0.0;
+        if(strike >= 0.0) {
+            a_ = gearing1_;
+            b_ = gearing2_;
+            s1_ = swapRate1_;
+            s2_ = swapRate2_;
+            m1_ = mu1_;
+            m2_ = mu2_;
+            v1_ = vol1_;
+            v2_ = vol2_;
+            k_ = strike;
+        }
+        else {
+            a_ = -gearing2_;
+            b_ = -gearing1_;
+            s1_ = swapRate2_;
+            s2_ = swapRate1_;
+            m1_ = mu2_;
+            m2_ = mu1_;
+            v1_ = vol2_;
+            v2_ = vol1_;
+            k_ = -strike;
+            res += phi_ * (swapletRate() - strike);
+        }
 
-        Real res = integrator_->operator()(std::bind1st(std::mem_fun(&CmsSpreadPricer::integrand),this));
-
+        res += integrator_->operator()(std::bind1st(std::mem_fun(&CmsSpreadPricer::integrand),this));
         return res * couponDiscountCurve_->discount(paymentDate_) * coupon_->accrualPeriod();
 
     }
@@ -241,8 +259,8 @@ namespace QuantLib {
 
     Real CmsSpreadPricer::swapletPrice() const {
 
-        return gearing_ *
-                   (gearing1_ * c1_->amount() + gearing2_ * c2_->amount()) +
+        return gearing_ * coupon_->accrualPeriod() *
+                   (gearing1_ * c1_->rate() + gearing2_ * c2_->rate()) +
                spreadLegValue_;
     }
 

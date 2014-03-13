@@ -89,9 +89,10 @@ namespace QuantLib {
         Real swapRate1_, swapRate2_, gearing1_, gearing2_;
         Real adjustedRate1_, adjustedRate2_;
         Real vol1_, vol2_;
-        mutable Real phi_, strike_;
         Real mu1_,mu2_;
         Real rho_;
+
+        mutable Real phi_, a_, b_, s1_, s2_, m1_, m2_, v1_, v2_, k_;
 
         boost::shared_ptr<CmsCoupon> c1_, c2_;
 
