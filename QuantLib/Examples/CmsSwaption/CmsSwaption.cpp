@@ -355,8 +355,76 @@ int example02() {
     }
 }
 
+int example03() {
+
+    Date refDate(13, November, 2013);
+    Date settlDate = TARGET().advance(refDate, 2 * Days);
+    Settings::instance().evaluationDate() = refDate;
+
+    Handle<Quote> rateLevel1(new SimpleQuote(0.0350));
+    Handle<Quote> rateLevel2(new SimpleQuote(0.0300));
+    Handle<YieldTermStructure> yts1(
+        new FlatForward(refDate, rateLevel1, Actual365Fixed()));
+    Handle<YieldTermStructure> yts2(
+        new FlatForward(refDate, rateLevel2, Actual365Fixed()));
+
+    boost::shared_ptr<IborIndex> iborIndex(new Euribor(6 * Months, yts1));
+    boost::shared_ptr<SwapIndex> swapIndex1(
+        new EuriborSwapIsdaFixA(10 * Years, yts1));
+    boost::shared_ptr<SwapIndex> swapIndex2(
+        new EuriborSwapIsdaFixA(2 * Years, yts2));
+
+    boost::shared_ptr<SwapSpreadIndex> swapSpreadIndex(
+        new SwapSpreadIndex("cms10_2", swapIndex1, swapIndex2));
+
+    Handle<Quote> volatilityLevel(new SimpleQuote(0.40)); // vol here !
+    Handle<SwaptionVolatilityStructure> swaptionVol(
+        new ConstantSwaptionVolatility(refDate, TARGET(), Following,
+                                       volatilityLevel, Actual365Fixed()));
+
+    // Handle<SwaptionVolatilityStructure> swaptionVol(
+    //     new SingleSabrSwaptionVolatility(refDate, TARGET(), Following,
+    // 0.15,
+    //                                      0.80, -0.30, 0.20,
+    //                                      Actual365Fixed(), swapIndex));
+
+    Handle<Quote> reversionLevel(new SimpleQuote(0.00)); // reversion here !
+
+    boost::shared_ptr<LinearTsrPricer> tsrPricer(new LinearTsrPricer(
+        swaptionVol, reversionLevel, Handle<YieldTermStructure>(),
+        LinearTsrPricer::Settings().withRateBound(0.0, 1.0)
+        //.withVegaRatio(0.01)
+        ));
+
+    Handle<Quote> correlation(new SimpleQuote(0.20)); // correlation here
+
+    boost::shared_ptr<CappedFlooredCmsSpreadCoupon> spreadCoupon(new CappedFlooredCmsSpreadCoupon(
+        Date(13, November, 2034), 1.0, Date(13, November, 2033),
+        Date(13, November, 2034), 2, swapSpreadIndex, 1.0, 0.0, Null<Real>(), 0.0050,
+        Date(), Date(), DayCounter(),false,true));
+    // boost::shared_ptr<CmsSpreadCoupon> spreadCoupon(new CmsSpreadCoupon(
+    //     Date(13, November, 2024), 1.0, Date(13, November, 2023),
+    //     Date(13, November, 2024), 2, swapSpreadIndex, 1.0, 0.0,
+    //     Date(), Date(), DayCounter(),false));
+
+    std::cout << "integration_points;rate" << std::setprecision(16) << std::endl;
+    for(Size i=4;i<64;i++) {
+
+        boost::shared_ptr<CmsSpreadPricer> spreadPricer(new CmsSpreadPricer(
+            tsrPricer, correlation, Handle<YieldTermStructure>(), i));
+
+        spreadCoupon->setPricer(spreadPricer);
+
+        std::cout << i << ";" << spreadCoupon->rate() << std::endl;
+    }
+
+    return 0;
+
+}
+
 int main(int, char * []) {
 
     // return example01();
-    return example02();
+    // return example02();
+    return example03();
 }
