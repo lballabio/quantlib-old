@@ -65,7 +65,7 @@ namespace QuantLib {
           parametersGuessQuotes_(parametersGuess),
           isParameterFixed_(isParameterFixed),
           isAtmCalibrated_(isAtmCalibrated), endCriteria_(endCriteria),
-          optMethod_(optMethod), errorAccept_(errorAccept),
+          optMethod_(optMethod),
           useMaxError_(useMaxError), maxGuesses_(maxGuesses),
           backwardFlat_(backwardFlat) {
 
@@ -75,8 +75,15 @@ namespace QuantLib {
             maxErrorTolerance_ = SWAPTIONVOLCUBE_TOL;
             if (vegaWeightedSmileFit_) maxErrorTolerance_ =  SWAPTIONVOLCUBE_VEGAWEIGHTED_TOL;
         }
+        if (errorAccept != Null<Rate>()) {
+            errorAccept_ = errorAccept;
+        } else{
+            errorAccept_ = maxErrorTolerance_ / 5.0;
+        }
+
         privateObserver_ = boost::make_shared<PrivateObserver>(this);
         registerWithParametersGuess();
+        setParameterGuess();
     }
 
     void SwaptionVolCube1::registerWithParametersGuess()

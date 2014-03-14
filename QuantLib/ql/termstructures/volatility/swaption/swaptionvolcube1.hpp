@@ -105,7 +105,7 @@ namespace QuantLib {
             Real maxErrorTolerance = Null<Real>(),
             const boost::shared_ptr<OptimizationMethod>& optMethod
                 = boost::shared_ptr<OptimizationMethod>(),
-            const Real errorAccept = 0.0020,
+            const Real errorAccept = Null<Real>(),
             const bool useMaxError = false,
             const Size maxGuesses = 50,
             const bool backwardFlat = false);
@@ -166,7 +166,7 @@ namespace QuantLib {
         const boost::shared_ptr<EndCriteria> endCriteria_;
         Real maxErrorTolerance_;
         const boost::shared_ptr<OptimizationMethod> optMethod_;
-        const Real errorAccept_;
+        Real errorAccept_;
         const bool useMaxError_;
         const Size maxGuesses_;
         const bool backwardFlat_;
