@@ -178,7 +178,6 @@ namespace QuantLib {
             void update() {
                 v_->setParameterGuess();
             }
-
           private:
             SwaptionVolCube1 *v_;
         };

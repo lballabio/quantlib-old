@@ -676,7 +676,7 @@ namespace QuantLib {
 
         LinearInterpolation betaInterpolation(betaTimes.begin(),
                                               betaTimes.end(), beta.begin());
- 
+
         std::vector<Real> cubeBeta;
         for (Size i = 0; i < optionTimes().size(); i++) {
             Real t = optionTimes()[i];

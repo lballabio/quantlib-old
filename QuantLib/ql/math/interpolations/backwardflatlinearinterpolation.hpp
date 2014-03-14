@@ -18,7 +18,7 @@
 */
 
 /*! \file bilinearinterpolation.hpp
-    \brief backflat interpolation in first component, after that linear in second component
+    \brief backflat interpolation in first component, linear in second component
 */
 
 #ifndef quantlib_backwardflatlinear_interpolation_hpp
@@ -71,7 +71,6 @@ namespace QuantLib {
 
     }
 
-    //! %bilinear interpolation between discrete points
     class BackwardflatLinearInterpolation : public Interpolation2D {
       public:
         /*! \pre the \f$ x \f$ and \f$ y \f$ values must be sorted. */
@@ -86,7 +85,6 @@ namespace QuantLib {
         }
     };
 
-    //! bilinear-interpolation factory
     class BackwardflatLinear {
       public:
         template <class I1, class I2, class M>
