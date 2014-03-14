@@ -46,7 +46,7 @@ namespace QuantLib {
                         const Handle<Quote> &correlation,
                         const Handle<YieldTermStructure> &couponDiscountCurve =
                             Handle<YieldTermStructure>(),
-                        const Size IntegrationPoints = 32);
+                        const Size IntegrationPoints = 16);
 
         /* */
         virtual Real swapletPrice() const;
@@ -60,8 +60,20 @@ namespace QuantLib {
 
       private:
 
-        typedef std::map<std::pair<std::string,Date>,std::pair<Real,Real> > CacheType;
+        class PrivateObserver : public Observer {
+          public:
+            PrivateObserver(CmsSpreadPricer *t)
+                : t_(t) {}
+            void update() {
+                t_->flushCache();
+            }
+          private:
+            CmsSpreadPricer *t_;
+        };
 
+        boost::shared_ptr<PrivateObserver> privateObserver_;
+
+        typedef std::map<std::pair<std::string,Date>,std::pair<Real,Real> > CacheType;
 
         void initialize(const FloatingRateCoupon &coupon);
         Real optionletPrice(Option::Type optionType, Real strike) const;
@@ -84,7 +96,7 @@ namespace QuantLib {
         boost::shared_ptr<SwapSpreadIndex> index_;
 
         boost::shared_ptr<CumulativeNormalDistribution> cnd_;
-        boost::shared_ptr<GaussHermiteIntegration> integrator_;
+        boost::shared_ptr<GaussianQuadrature> integrator_;
 
         Real swapRate1_, swapRate2_, gearing1_, gearing2_;
         Real adjustedRate1_, adjustedRate2_;

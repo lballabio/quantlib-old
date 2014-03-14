@@ -36,25 +36,27 @@ namespace QuantLib {
         : CmsSpreadCouponPricer(correlation), cmsPricer_(cmsPricer),
           couponDiscountCurve_(couponDiscountCurve) {
 
+        registerWith(correlation);
         if (!couponDiscountCurve_.empty())
             registerWith(couponDiscountCurve_);
 
-        registerWith(cmsPricer);
-
         QL_REQUIRE(integrationPoints >= 4,
                    "at least 4 integration points should be used ("
-                       << integrationPoints << ")");
+                   << integrationPoints << ")");
         integrator_ =
             boost::make_shared<GaussHermiteIntegration>(integrationPoints);
 
         cnd_ = boost::make_shared<CumulativeNormalDistribution>(0.0, 1.0);
+
+        privateObserver_ = boost::make_shared<PrivateObserver>(this);
+        privateObserver_->registerWith(cmsPricer_);
     }
 
     const Real CmsSpreadPricer::integrand(const Real x) const {
 
         // this is Brigo, 13.16.2 with x = v/sqrt(2)
 
-        Real v = sqrt(2.0) * x;
+        Real v = M_SQRT2 * x;
         Real h =
             k_ - b_ * s2_ *
                           std::exp((m2_ - 0.5 * v2_ * v2_) * fixingTime_ +
@@ -76,7 +78,7 @@ namespace QuantLib {
                               rho_ * v1_ * sqrt(fixingTime_) * v) *
                      phi1 -
                  phi_ * h * phi2;
-        return 1.0 / sqrt(M_PI) * std::exp(-x * x) * f;
+        return 1.0 / M_SQRTPI * std::exp(-x * x) * f;
 
    }
 
@@ -260,9 +262,8 @@ namespace QuantLib {
     Real CmsSpreadPricer::swapletPrice() const {
 
         return gearing_ * coupon_->accrualPeriod() *
+                   couponDiscountCurve_->discount(paymentDate_) *
                    (gearing1_ * c1_->rate() + gearing2_ * c2_->rate()) +
                spreadLegValue_;
     }
-
-
 }
