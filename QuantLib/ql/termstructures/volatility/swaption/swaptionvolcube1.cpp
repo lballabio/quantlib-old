@@ -75,8 +75,8 @@ namespace QuantLib {
             maxErrorTolerance_ = SWAPTIONVOLCUBE_TOL;
             if (vegaWeightedSmileFit_) maxErrorTolerance_ =  SWAPTIONVOLCUBE_VEGAWEIGHTED_TOL;
         }
-       registerWithParametersGuess();
-
+        privateObserver_ = boost::make_shared<PrivateObserver>(this);
+        registerWithParametersGuess();
     }
 
     void SwaptionVolCube1::registerWithParametersGuess()
@@ -84,12 +84,10 @@ namespace QuantLib {
         for (Size i=0; i<4; i++)
             for (Size j=0; j<nOptionTenors_; j++)
                 for (Size k=0; k<nSwapTenors_; k++)
-                    registerWith(parametersGuessQuotes_[j+k*nOptionTenors_][i]);
+                    privateObserver_->registerWith(parametersGuessQuotes_[j+k*nOptionTenors_][i]);
     }
 
-    void SwaptionVolCube1::performCalculations() const{
-
-        SwaptionVolatilityDiscrete::performCalculations();
+    void SwaptionVolCube1::setParameterGuess() const {
 
         //! set parametersGuess_ by parametersGuessQuotes_
         parametersGuess_ = Cube(optionDates_, swapTenors_,
@@ -103,6 +101,12 @@ namespace QuantLib {
                         parametersGuessQuotes_[j+k*nOptionTenors_][i]->value());
                 }
         parametersGuess_.updateInterpolators();
+
+    }
+
+    void SwaptionVolCube1::performCalculations() const {
+
+        SwaptionVolatilityDiscrete::performCalculations();
 
         //! set marketVolCube_ by volSpreads_ quotes
         marketVolCube_ = Cube(optionDates_, swapTenors_,

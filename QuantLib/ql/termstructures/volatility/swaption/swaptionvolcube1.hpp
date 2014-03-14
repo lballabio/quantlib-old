@@ -142,6 +142,7 @@ namespace QuantLib {
         void updateAfterRecalibration();
      protected:
         void registerWithParametersGuess();
+        void setParameterGuess() const;
         boost::shared_ptr<SmileSection> smileSection(
                                     Time optionTime,
                                     Time swapLength,
@@ -169,8 +170,22 @@ namespace QuantLib {
         const bool useMaxError_;
         const Size maxGuesses_;
         const bool backwardFlat_;
-    };
 
+        class PrivateObserver : public Observer {
+          public:
+            PrivateObserver(SwaptionVolCube1 *v)
+                : v_(v) {}
+            void update() {
+                v_->setParameterGuess();
+            }
+
+          private:
+            SwaptionVolCube1 *v_;
+        };
+
+       boost::shared_ptr<PrivateObserver> privateObserver_;
+
+    };
 }
 
 #endif
