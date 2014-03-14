@@ -9,145 +9,53 @@ using namespace QuantLib;
 using namespace boost::assign;
 
 int main(int,char**) {
-    
+
     boost::timer::auto_cpu_timer t;
-    
-    std::cout << "VolCube calibration to cms market (04-02-2014)" << std::endl;
 
-    //!todo add 3m curve and index to get a realistic calibration of cms margins ...
-
+    std::cout << "VolCube calibration to cms market (03-02-2014)" << std::endl;
 
     // set evalulation date
 
-    Date evalDate = Date(4, February, 2014);
+    Date evalDate = Date(3, February, 2014);
     Date settlDate = TARGET().advance(evalDate, 2 * Days);
     Settings::instance().evaluationDate() = evalDate;
 
-    // set up the interest rate curves (eoniaBt, 6m forward curve)
+    // set up the interest rate curves (eonia, 6m forward curve, 3m forward curve)
 
-    Real eoniaquotes[] = { 0.0013,  0.00156, 0.00163, 0.0016,  0.00163, 0.00147,
+    Real onquote = /*0.0013*/ 0.00228; // replace ON Depo by fixing
+    Real eoniaquotes[] = { 0.00156, 0.00163, 0.0016,  0.00163, 0.00147,
                            0.00139, 0.00131, 0.00125, 0.0012,  0.00117, 0.00114,
                            0.00112, 0.0011,  0.00111, 0.0011,  0.00111, 0.00117,
                            0.00127, 0.00143, 0.00264, 0.0045,  0.00656, 0.00866,
                            0.01065, 0.01247, 0.01411, 0.01558, 0.01687, 0.01799,
                            0.02051, 0.02238, 0.02302, 0.02322, 0.02322, 0.02322 };
 
+    Period eoniaperiods[] = { 1*Weeks, 2*Weeks, 3*Weeks, 1*Months, 2*Months, 3*Months,
+                              4*Months, 5*Months, 6*Months, 7*Months, 8*Months, 9*Months,
+                              10*Months, 11*Months, 1*Years, 15*Months, 18*Months, 21*Months,
+                              2*Years, 3*Years, 4*Years, 5*Years, 6*Years, 7*Years, 8*Years,
+                              9*Years, 10*Years, 11*Years, 12*Years, 15*Years, 20*Years,
+                              25*Years, 30*Years, 40*Years, 50*Years };
+
+    std::vector<boost::shared_ptr<RateHelper> > eoniaratehelpers;
+
     boost::shared_ptr<RateHelper> rhon = boost::make_shared<DepositRateHelper>(
-        eoniaquotes[0], 1 * Days, 0, TARGET(), Following, false, Actual360());
+        Handle<Quote>(boost::make_shared<SimpleQuote>(onquote), 1 * Days, 0,
+                      TARGET(), Following, false, Actual360()));
+
+    eoniaratehelpers.push_back(rhon);
 
     boost::shared_ptr<OvernightIndex> eoniaBt = boost::make_shared<Eonia>();
 
-    boost::shared_ptr<RateHelper> rhe1w = boost::make_shared<OISRateHelper>(
-        2, 1 * Weeks,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[1])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe2w = boost::make_shared<OISRateHelper>(
-        2, 2 * Weeks,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[2])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe3w = boost::make_shared<OISRateHelper>(
-        2, 3 * Weeks,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[3])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe1m = boost::make_shared<OISRateHelper>(
-        2, 1 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[4])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe2m = boost::make_shared<OISRateHelper>(
-        2, 2 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[5])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe3m = boost::make_shared<OISRateHelper>(
-        2, 3 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[6])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe4m = boost::make_shared<OISRateHelper>(
-        2, 4 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[7])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe5m = boost::make_shared<OISRateHelper>(
-        2, 5 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[8])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe6m = boost::make_shared<OISRateHelper>(
-        2, 6 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[9])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe7m = boost::make_shared<OISRateHelper>(
-        2, 7 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[10])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe8m = boost::make_shared<OISRateHelper>(
-        2, 8 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[11])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe9m = boost::make_shared<OISRateHelper>(
-        2, 9 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[12])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe10m = boost::make_shared<OISRateHelper>(
-        2, 10 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[13])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe11m = boost::make_shared<OISRateHelper>(
-        2, 11 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[14])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe1y = boost::make_shared<OISRateHelper>(
-        2, 1 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[15])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe15m = boost::make_shared<OISRateHelper>(
-        2, 15 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[16])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe18m = boost::make_shared<OISRateHelper>(
-        2, 18 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[17])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe21m = boost::make_shared<OISRateHelper>(
-        2, 21 * Months,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[18])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe2y = boost::make_shared<OISRateHelper>(
-        2, 2 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[19])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe3y = boost::make_shared<OISRateHelper>(
-        2, 3 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[20])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe4y = boost::make_shared<OISRateHelper>(
-        2, 4 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[21])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe5y = boost::make_shared<OISRateHelper>(
-        2, 5 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[22])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe6y = boost::make_shared<OISRateHelper>(
-        2, 6 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[23])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe7y = boost::make_shared<OISRateHelper>(
-        2, 7 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[24])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe8y = boost::make_shared<OISRateHelper>(
-        2, 8 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[25])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe9y = boost::make_shared<OISRateHelper>(
-        2, 9 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[26])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe10y = boost::make_shared<OISRateHelper>(
-        2, 10 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[27])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe11y = boost::make_shared<OISRateHelper>(
-        2, 11 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[28])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe12y = boost::make_shared<OISRateHelper>(
-        2, 12 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[29])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe15y = boost::make_shared<OISRateHelper>(
-        2, 15 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[30])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe20y = boost::make_shared<OISRateHelper>(
-        2, 20 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[31])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe25y = boost::make_shared<OISRateHelper>(
-        2, 25 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[32])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe30y = boost::make_shared<OISRateHelper>(
-        2, 30 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[33])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe40y = boost::make_shared<OISRateHelper>(
-        2, 40 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[34])), eoniaBt);
-    boost::shared_ptr<RateHelper> rhe50y = boost::make_shared<OISRateHelper>(
-        2, 50 * Years,
-        Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[35])), eoniaBt);
+    eoniaBt->addFixing(evalDate, 0.00228);
 
-    std::vector<boost::shared_ptr<RateHelper> > eoniaratehelpers;
-    eoniaratehelpers += rhon, rhe1w, rhe2w, rhe3w, rhe1m, rhe2m, rhe3m, rhe4m,
-        rhe5m, rhe6m, rhe7m, rhe8m, rhe9m, rhe10m, rhe11m, rhe1y, rhe15m,
-        rhe18m, rhe21m, rhe2y, rhe3y, rhe4y, rhe5y, rhe6y, rhe7y, rhe8y, rhe9y,
-        rhe10y, rhe11y, rhe12y, rhe15y, rhe20y, rhe30y, rhe40y, rhe50y;
+    for(Size i=0; i<34; ++i) {
+        boost::shared_ptr<RateHelper> rhtmp = boost::make_shared<OISRateHelper>(
+            2, eoniaperiods[i],
+            Handle<Quote>(boost::make_shared<SimpleQuote>(eoniaquotes[i])),
+            eoniaBt);
+        eoniaratehelpers.push_back(rhtmp);
+    }
 
     Handle<YieldTermStructure> ytsEonia(
         boost::make_shared<PiecewiseYieldCurve<Discount, LogLinear> >(
@@ -155,10 +63,8 @@ int main(int,char**) {
 
     ytsEonia->enableExtrapolation();
 
-    Real irquotes[] = {
-        0.0013,  0.0013,  0.0013,   0.0016,                   // ON, TN, SN, SW
-        // (replace 6m depo by fixing)
-        0.0019,  0.0022,  0.0025,   0.0028,  0.0031,  /*0.0035*/ 0.00387, // 1M ... 6M Depo
+    Real ir6quotes[] = {
+        /*0.0035*/ 0.00387, // replace 6M Depo by fixing
         0.00363, 0.00357, 0.000356, 0.00355, 0.00359, // 1-7 ... 5-11 FRA
         0.00381,                                      // 1y Swap
         0.0037,  0.00381, 0.00394,  0.00407, 0.00421, // 7-13 ... 11-17 FRA
@@ -178,27 +84,6 @@ int main(int,char**) {
 
     euribor6mBt->addFixing(evalDate, 0.00387); // todays fixing
 
-    // boost::shared_ptr<RateHelper> rhtn = boost::make_shared<DepositRateHelper>(
-    //     irquotes[1], 1 * Days, 1, TARGET(), Following, false, Actual360());
-    // boost::shared_ptr<RateHelper> rhsn = boost::make_shared<DepositRateHelper>(
-    //     irquotes[2], 1 * Days, 2, TARGET(), Following, false, Actual360());
-    // boost::shared_ptr<RateHelper> rhsw = boost::make_shared<DepositRateHelper>(
-    //     irquotes[3], 1 * Weeks, 2, TARGET(), Following, false, Actual360());
-    // boost::shared_ptr<RateHelper> rh1m = boost::make_shared<DepositRateHelper>(
-    //     irquotes[4], 1 * Months, 2, TARGET(), ModifiedFollowing, false,
-    //     Actual360());
-    // boost::shared_ptr<RateHelper> rh2m = boost::make_shared<DepositRateHelper>(
-    //     irquotes[5], 2 * Months, 2, TARGET(), ModifiedFollowing, false,
-    //     Actual360());
-    // boost::shared_ptr<RateHelper> rh3m = boost::make_shared<DepositRateHelper>(
-    //     irquotes[6], 3 * Months, 2, TARGET(), ModifiedFollowing, false,
-    //     Actual360());
-    // boost::shared_ptr<RateHelper> rh4m = boost::make_shared<DepositRateHelper>(
-    //     irquotes[7], 4 * Months, 2, TARGET(), ModifiedFollowing, false,
-    //     Actual360());
-    // boost::shared_ptr<RateHelper> rh5m = boost::make_shared<DepositRateHelper>(
-    //     irquotes[8], 5 * Months, 2, TARGET(), ModifiedFollowing, false,
-    //     Actual360());
     boost::shared_ptr<RateHelper> rh6m = boost::make_shared<DepositRateHelper>(
         irquotes[9], 6 * Months, 2, TARGET(), ModifiedFollowing, false,
         Actual360());
@@ -527,29 +412,29 @@ int main(int,char**) {
         0.05, 0.00001, 0.9, 0.0, // 2y und   // 3m
         0.05, 0.00001, 0.9, 0.0,             // 1
         0.05, 0.00001, 0.9, 0.0,             // 5
-        0.05, 0.00001, 0.9, 0.0,             // 10 
+        0.05, 0.00001, 0.9, 0.0,             // 10
         0.05, 0.00001, 0.9, 0.0,             // 20
         0.05, 0.00001, 0.9, 0.0,             // 30
         0.05, 0.80, 0.9, 0.0, // 5y
         0.05, 0.80, 0.9, 0.0,
         0.05, 0.80, 0.9, 0.0,
         0.05, 0.80, 0.9, 0.0,
-        0.05, 0.80, 0.9, 0.0, 
+        0.05, 0.80, 0.9, 0.0,
         0.05, 0.80, 0.9, 0.0,
         0.05, 0.955106, 0.9, 0.0, // 10y
         0.05, 0.955106, 0.9, 0.0,
         0.05, 0.955106, 0.9, 0.0,
-        0.05, 0.489027, 0.9, 0.0, 
+        0.05, 0.489027, 0.9, 0.0,
         0.05, 0.375866, 0.9, 0.0,
         0.05, 0.508918, 0.9, 0.0,
         0.05, 0.80, 0.9, 0.0, // 20y
         0.05, 0.80, 0.9, 0.0,
-        0.05, 0.80, 0.9, 0.0, 
         0.05, 0.80, 0.9, 0.0,
         0.05, 0.80, 0.9, 0.0,
-        0.05, 0.80, 0.9, 0.0, 
+        0.05, 0.80, 0.9, 0.0,
+        0.05, 0.80, 0.9, 0.0,
         0.05, 0.80, 0.9, 0.0, // 30y
-        0.05, 0.80, 0.9, 0.0, 
+        0.05, 0.80, 0.9, 0.0,
         0.05, 0.80, 0.9, 0.0,
         0.05, 0.80, 0.9, 0.0,
         0.05, 0.80, 0.9, 0.0,
@@ -610,7 +495,7 @@ int main(int,char**) {
 
     std::vector<Period> swapLengths;
     swapLengths += 5*Years, 10*Years, /*15*Years,*/ 20*Years, 30*Years;
-    
+
     std::vector<boost::shared_ptr<SwapIndex> > swapIndexes;
     swapIndexes += swap2y, swap5y, swap10y, swap20y, swap30y;
 
@@ -620,7 +505,7 @@ int main(int,char**) {
     std::vector<Handle<Quote> > margins20y;
     std::vector<Handle<Quote> > margins30y;
 
-    margins5y += 
+    margins5y +=
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00501)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00561)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.01077)),
@@ -631,7 +516,7 @@ int main(int,char**) {
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.02174)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.01921)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.02171));
-    margins10y += 
+    margins10y +=
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00453)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00513)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00885)),
@@ -642,7 +527,7 @@ int main(int,char**) {
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.01588)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.0134)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.0159));
-    margins15y += 
+    margins15y +=
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00373)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00433)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00682)),
@@ -653,7 +538,7 @@ int main(int,char**) {
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.01232)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.01021)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.01271));
-    margins20y += 
+    margins20y +=
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.0032)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.0038)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00574)),
@@ -664,7 +549,7 @@ int main(int,char**) {
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.01096)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00883)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.01183));
-    margins30y += 
+    margins30y +=
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00278)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00338)),
         Handle<Quote>(boost::make_shared<SimpleQuote>(0.00495)),
@@ -685,7 +570,7 @@ int main(int,char**) {
 
     boost::shared_ptr<CmsCouponPricer> linearTsr =
         boost::make_shared<LinearTsrPricer>(swaptionCube, reversion,
-                                            Handle<YieldTermStructure>(), 
+                                            Handle<YieldTermStructure>(),
                                             LinearTsrPricer::Settings().withVegaRatio(0.01));
 
     std::vector<boost::shared_ptr<CmsCouponPricer> > pricers(5, linearTsr);
@@ -694,10 +579,10 @@ int main(int,char**) {
                                                                            bidAskSpreads, pricers, ytsEonia);
 
     // cms market calibration
-    
+
     Matrix weights(4,5,1.0); // same weights
     CmsMarketCalibration cmsCalibration(swaptionCube, cmsMarket, weights, CmsMarketCalibration::OnSpread);
-    
+
     // Array guess(6,0.8); // beta guess (no termstructure)
     // guess[5] = 0.03;
     Matrix guess(4,5,0.8); // beta guess (termstructure)
@@ -799,5 +684,3 @@ int main(int,char**) {
         std::cout << std::endl;
     }
 }
-
-
