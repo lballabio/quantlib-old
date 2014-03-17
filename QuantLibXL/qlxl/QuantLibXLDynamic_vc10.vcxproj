@@ -63,7 +63,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -71,12 +71,12 @@
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\buildDynamic\vc100\$(Configuration)/</AssemblerListingLocation>
       <ObjectFileName>.\buildDynamic\vc100\$(Configuration)/</ObjectFileName>
       <ProgramDataBaseFileName>.\buildDynamic\vc100\$(Configuration)/</ProgramDataBaseFileName>
@@ -99,12 +99,12 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibAddinDynamic-vc100-mt-gd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic-vc100-mt-gd-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.bsc</OutputFile>
+      <OutputFile>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -117,7 +117,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -126,13 +126,13 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\buildDynamic\vc100\$(Configuration)/</AssemblerListingLocation>
       <ObjectFileName>.\buildDynamic\vc100\$(Configuration)/</ObjectFileName>
       <ProgramDataBaseFileName>.\buildDynamic\vc100\$(Configuration)/</ProgramDataBaseFileName>
@@ -154,14 +154,14 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibAddinDynamic-vc100-mt-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic-vc100-mt-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.bsc</OutputFile>
+      <OutputFile>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
