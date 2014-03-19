@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testsuite", "..\QuantLib\te
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qlgensrc", "..\QuantLibAddin\gensrc\qlgensrc_vc10.vcxproj", "{C8A6BB98-75CA-4EB9-A750-8BA3B3AA5969}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibObjects", "..\QuantLibAddin\QuantLibObjects_vc10.vcxproj", "{CAB8330C-6424-4455-9285-3654587EF71F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibObjects", "..\QuantLibAddin\QuantLibObjects4_vc10.vcxproj", "{CAB8330C-6424-4455-9285-3654587EF71F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xlsdk", "..\ObjectHandler\xlsdk\xlsdk_vc10.vcxproj", "{4BD77A1E-AAE9-47A4-81FE-2308E5A460AF}"
 EndProject

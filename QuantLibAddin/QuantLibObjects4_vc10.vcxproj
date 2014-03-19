@@ -760,7 +760,7 @@
     <ClInclude Include="qlo\vcconfig.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ObjectHandler\ohxl\ohxllib\ohxllib_vc10.vcxproj">
+    <ProjectReference Include="..\ObjectHandler\ohxl\ohxll\ohxll_vc10.vcxproj">
       <Project>{cd623fe5-3b3e-4511-80a9-a99d893349a4}</Project>
     </ProjectReference>
     <ProjectReference Include="..\QuantLib\QuantLib_vc10.vcxproj">
