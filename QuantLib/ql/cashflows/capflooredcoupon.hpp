@@ -27,7 +27,6 @@
 
 #include <ql/cashflows/iborcoupon.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
-#include <ql/cashflows/cmsspreadcoupon.hpp>
 #include <ql/utilities/null.hpp>
 
 namespace QuantLib {
@@ -60,8 +59,7 @@ namespace QuantLib {
         CappedFlooredCoupon(
                   const boost::shared_ptr<FloatingRateCoupon>& underlying,
                   Rate cap = Null<Rate>(),
-                  Rate floor = Null<Rate>(),
-                  bool capFloorPayoff = false);
+                  Rate floor = Null<Rate>());
         //! \name Coupon interface
         //@{
         Rate rate() const;
@@ -90,6 +88,8 @@ namespace QuantLib {
         void setPricer(
                    const boost::shared_ptr<FloatingRateCouponPricer>& pricer);
 
+        const boost::shared_ptr<FloatingRateCoupon> underlying() { return underlying_; }
+
     protected:
         // data
         boost::shared_ptr<FloatingRateCoupon> underlying_;
@@ -113,12 +113,11 @@ namespace QuantLib {
                   const Date& refPeriodStart = Date(),
                   const Date& refPeriodEnd = Date(),
                   const DayCounter& dayCounter = DayCounter(),
-                  bool isInArrears = false,
-                  bool capFloorPayoff = false)
+                  bool isInArrears = false)
         : CappedFlooredCoupon(boost::shared_ptr<FloatingRateCoupon>(new
             IborCoupon(paymentDate, nominal, startDate, endDate, fixingDays,
                        index, gearing, spread, refPeriodStart, refPeriodEnd,
-                       dayCounter, isInArrears)), cap, floor, capFloorPayoff) {}
+                       dayCounter, isInArrears)), cap, floor) {}
 
         virtual void accept(AcyclicVisitor& v) {
             Visitor<CappedFlooredIborCoupon>* v1 =
@@ -146,12 +145,11 @@ namespace QuantLib {
                   const Date& refPeriodStart = Date(),
                   const Date& refPeriodEnd = Date(),
                   const DayCounter& dayCounter = DayCounter(),
-                  bool isInArrears = false,
-                  bool capFloorPayoff = false)
+                  bool isInArrears = false)
         : CappedFlooredCoupon(boost::shared_ptr<FloatingRateCoupon>(new
             CmsCoupon(paymentDate, nominal, startDate, endDate, fixingDays,
                       index, gearing, spread, refPeriodStart, refPeriodEnd,
-                      dayCounter, isInArrears)), cap, floor, capFloorPayoff) {}
+                      dayCounter, isInArrears)), cap, floor) {}
 
         virtual void accept(AcyclicVisitor& v) {
             Visitor<CappedFlooredCmsCoupon>* v1 =
@@ -162,40 +160,6 @@ namespace QuantLib {
                 CappedFlooredCoupon::accept(v);
         }
     };
-
-    class CappedFlooredCmsSpreadCoupon : public CappedFlooredCoupon {
-      public:
-        CappedFlooredCmsSpreadCoupon(
-                  const Date& paymentDate,
-                  Real nominal,
-                  const Date& startDate,
-                  const Date& endDate,
-                  Natural fixingDays,
-                  const boost::shared_ptr<SwapSpreadIndex>& index,
-                  Real gearing = 1.0,
-                  Spread spread= 0.0,
-                  const Rate cap = Null<Rate>(),
-                  const Rate floor = Null<Rate>(),
-                  const Date& refPeriodStart = Date(),
-                  const Date& refPeriodEnd = Date(),
-                  const DayCounter& dayCounter = DayCounter(),
-                  bool isInArrears = false,
-                  bool capFloorPayoff = false)
-        : CappedFlooredCoupon(boost::shared_ptr<FloatingRateCoupon>(new
-            CmsSpreadCoupon(paymentDate, nominal, startDate, endDate, fixingDays,
-                      index, gearing, spread, refPeriodStart, refPeriodEnd,
-                      dayCounter, isInArrears)), cap, floor, capFloorPayoff) {}
-
-        virtual void accept(AcyclicVisitor& v) {
-            Visitor<CappedFlooredCmsSpreadCoupon>* v1 =
-                dynamic_cast<Visitor<CappedFlooredCmsSpreadCoupon>*>(&v);
-            if (v1 != 0)
-                v1->visit(*this);
-            else
-                CappedFlooredCoupon::accept(v);
-        }
-    };
-
 
 }
 

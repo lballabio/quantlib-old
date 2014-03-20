@@ -17,18 +17,18 @@
   or FITNESS FOR A PARTICULAR PURPOSE. See the license for more details.
 */
 
-/*! \file cmsspreadpricer.cpp
+/*! \file lognormalcmsspreadpricer.cpp
 */
 
 #include <boost/make_shared.hpp>
 
-#include <ql/cashflows/cmsspreadpricer.hpp>
-#include <ql/cashflows/cmsspreadcoupon.hpp>
+#include <ql/experimental/coupons/lognormalcmsspreadpricer.hpp>
+#include <ql/experimental/coupons/cmsspreadcoupon.hpp>
 #include <ql/math/integrals/kronrodintegral.hpp>
 
 namespace QuantLib {
 
-    CmsSpreadPricer::CmsSpreadPricer(
+    LognormalCmsSpreadPricer::LognormalCmsSpreadPricer(
         const boost::shared_ptr<CmsCouponPricer> cmsPricer,
         const Handle<Quote> &correlation,
         const Handle<YieldTermStructure> &couponDiscountCurve,
@@ -52,7 +52,7 @@ namespace QuantLib {
         privateObserver_->registerWith(cmsPricer_);
     }
 
-    const Real CmsSpreadPricer::integrand(const Real x) const {
+    const Real LognormalCmsSpreadPricer::integrand(const Real x) const {
 
         // this is Brigo, 13.16.2 with x = v/sqrt(2)
 
@@ -82,11 +82,11 @@ namespace QuantLib {
 
    }
 
-    void CmsSpreadPricer::flushCache() {
+    void LognormalCmsSpreadPricer::flushCache() {
         cache_.clear();
     }
 
-    void CmsSpreadPricer::initialize(const FloatingRateCoupon &coupon) {
+    void LognormalCmsSpreadPricer::initialize(const FloatingRateCoupon &coupon) {
 
         coupon_ = dynamic_cast<const CmsSpreadCoupon *>(&coupon);
         QL_REQUIRE(coupon_, "CMS spread coupon needed");
@@ -173,7 +173,7 @@ namespace QuantLib {
         }
     }
 
-    Real CmsSpreadPricer::optionletPrice(Option::Type optionType,
+    Real LognormalCmsSpreadPricer::optionletPrice(Option::Type optionType,
                                          Real strike) const {
 
         phi_ = optionType == Option::Call ? 1.0 : -1.0;
@@ -202,18 +202,18 @@ namespace QuantLib {
             res += phi_ * (swapletRate() - strike);
         }
 
-        res += integrator_->operator()(std::bind1st(std::mem_fun(&CmsSpreadPricer::integrand),this));
+        res += integrator_->operator()(std::bind1st(std::mem_fun(&LognormalCmsSpreadPricer::integrand),this));
         return res * couponDiscountCurve_->discount(paymentDate_) * coupon_->accrualPeriod();
 
     }
 
-    Rate CmsSpreadPricer::swapletRate() const {
+    Rate LognormalCmsSpreadPricer::swapletRate() const {
         return swapletPrice() /
                (coupon_->accrualPeriod() *
                 couponDiscountCurve_->discount(paymentDate_));
     }
 
-    Real CmsSpreadPricer::capletPrice(Rate effectiveCap) const {
+    Real LognormalCmsSpreadPricer::capletPrice(Rate effectiveCap) const {
         // caplet is equivalent to call option on fixing
         if (fixingDate_ <= today_) {
             // the fixing is determined
@@ -230,13 +230,13 @@ namespace QuantLib {
         }
     }
 
-    Rate CmsSpreadPricer::capletRate(Rate effectiveCap) const {
+    Rate LognormalCmsSpreadPricer::capletRate(Rate effectiveCap) const {
         return capletPrice(effectiveCap) /
                (coupon_->accrualPeriod() *
                 couponDiscountCurve_->discount(paymentDate_));
     }
 
-    Real CmsSpreadPricer::floorletPrice(Rate effectiveFloor) const {
+    Real LognormalCmsSpreadPricer::floorletPrice(Rate effectiveFloor) const {
         // floorlet is equivalent to put option on fixing
         if (fixingDate_ <= today_) {
             // the fixing is determined
@@ -253,13 +253,13 @@ namespace QuantLib {
         }
     }
 
-    Rate CmsSpreadPricer::floorletRate(Rate effectiveFloor) const {
+    Rate LognormalCmsSpreadPricer::floorletRate(Rate effectiveFloor) const {
         return floorletPrice(effectiveFloor) /
                (coupon_->accrualPeriod() *
                 couponDiscountCurve_->discount(paymentDate_));
     }
 
-    Real CmsSpreadPricer::swapletPrice() const {
+    Real LognormalCmsSpreadPricer::swapletPrice() const {
 
         return gearing_ * coupon_->accrualPeriod() *
                    couponDiscountCurve_->discount(paymentDate_) *

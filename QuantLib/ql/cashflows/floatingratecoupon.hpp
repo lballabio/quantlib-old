@@ -55,8 +55,7 @@ namespace QuantLib {
                            const Date& refPeriodStart = Date(),
                            const Date& refPeriodEnd = Date(),
                            const DayCounter& dayCounter = DayCounter(),
-                           bool isInArrears = false,
-                           bool capFloorPayoff = false);
+                           bool isInArrears = false);
 
         //! \name CashFlow interface
         //@{
@@ -114,7 +113,6 @@ namespace QuantLib {
         Real gearing_;
         Spread spread_;
         bool isInArrears_;
-        bool capFloorPayoff_;
         boost::shared_ptr<FloatingRateCouponPricer> pricer_;
     };
 

@@ -41,14 +41,13 @@ namespace QuantLib {
                             const Date& refPeriodStart,
                             const Date& refPeriodEnd,
                             const DayCounter& dayCounter,
-                            bool isInArrears,
-                            bool capFloorPayoff)
+                            bool isInArrears)
     : Coupon(paymentDate, nominal,
              startDate, endDate, refPeriodStart, refPeriodEnd),
       index_(index), dayCounter_(dayCounter),
       fixingDays_(fixingDays==Null<Natural>() ? index->fixingDays() : fixingDays),
       gearing_(gearing), spread_(spread),
-        isInArrears_(isInArrears), capFloorPayoff_(capFloorPayoff)
+      isInArrears_(isInArrears)
     {
         QL_REQUIRE(gearing_!=0, "Null gearing not allowed");
 
@@ -91,7 +90,7 @@ namespace QuantLib {
     Rate FloatingRateCoupon::rate() const {
         QL_REQUIRE(pricer_, "pricer not set");
         pricer_->initialize(*this);
-        return capFloorPayoff_ ? 0.0 : pricer_->swapletRate();
+        return pricer_->swapletRate();
     }
 
     Real FloatingRateCoupon::price(const Handle<YieldTermStructure>& discountingCurve) const {

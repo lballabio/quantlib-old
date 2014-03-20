@@ -20,6 +20,7 @@
 #include <ql/experimental/models/floatfloatswap.hpp>
 #include <ql/cashflows/iborcoupon.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
+#include <ql/experimental/coupons/cmsspreadcoupon.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
 #include <ql/cashflows/cashflows.hpp>

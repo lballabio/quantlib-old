@@ -12,8 +12,7 @@ this_include_HEADERS = \
     inflationindex.hpp \
     interestrateindex.hpp \
     region.hpp \
-    swapindex.hpp \
-	swapspreadindex.hpp
+    swapindex.hpp
 
 libIndexes_la_SOURCES = \
     bmaindex.cpp \
@@ -22,8 +21,7 @@ libIndexes_la_SOURCES = \
     inflationindex.cpp \
     interestrateindex.cpp \
     region.cpp \
-    swapindex.cpp \
-	swapspreadindex.cpp
+    swapindex.cpp
 
 libIndexes_la_LIBADD = \
     ibor/libIborIndexes.la \

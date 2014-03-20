@@ -26,7 +26,7 @@ namespace QuantLib {
 
     CappedFlooredCoupon::CappedFlooredCoupon(
                   const boost::shared_ptr<FloatingRateCoupon>& underlying,
-                  Rate cap, Rate floor, bool capFloorPayoff)
+                  Rate cap, Rate floor)
     : FloatingRateCoupon(underlying->date(),
                          underlying->nominal(),
                          underlying->accrualStartDate(),
@@ -38,10 +38,9 @@ namespace QuantLib {
                          underlying->referencePeriodStart(),
                          underlying->referencePeriodEnd(),
                          underlying->dayCounter(),
-                         underlying->isInArrears(),
-                         capFloorPayoff),
+                         underlying->isInArrears()),
       underlying_(underlying),
-        isCapped_(false), isFloored_(false) {
+      isCapped_(false), isFloored_(false) {
 
         if (gearing_ > 0) {
             if (cap != Null<Rate>()) {
@@ -87,7 +86,7 @@ namespace QuantLib {
         Rate capletRate = 0.;
         if(isCapped_)
             capletRate = underlying_->pricer()->capletRate(effectiveCap());
-        return capFloorPayoff_ ? floorletRate + capletRate : swapletRate + floorletRate - capletRate ;
+        return swapletRate + floorletRate - capletRate;
     }
 
     Rate CappedFlooredCoupon::convexityAdjustment() const {
@@ -131,8 +130,7 @@ namespace QuantLib {
     void CappedFlooredCoupon::accept(AcyclicVisitor& v) {
         typedef FloatingRateCoupon super;
         Visitor<CappedFlooredCoupon>* v1 =
-
-             dynamic_cast<Visitor<CappedFlooredCoupon>*>(&v);
+            dynamic_cast<Visitor<CappedFlooredCoupon>*>(&v);
         if (v1 != 0)
             v1->visit(*this);
         else

@@ -21,7 +21,7 @@
 
 #include <ql/cashflows/couponpricer.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
-#include <ql/cashflows/cmsspreadcoupon.hpp>
+#include <ql/experimental/coupons/cmsspreadcoupon.hpp>
 #include <ql/cashflows/digitalcoupon.hpp>
 #include <ql/cashflows/digitalcmscoupon.hpp>
 #include <ql/cashflows/digitaliborcoupon.hpp>

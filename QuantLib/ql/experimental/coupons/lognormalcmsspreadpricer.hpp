@@ -16,16 +16,16 @@
   WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
   or FITNESS FOR A PARTICULAR PURPOSE. See the license for more details. */
 
-/*! \file cmsspreadpricer.hpp
-    \brief cms spread coupon pricer as in Brigo, ...
+/*! \file lognormalcmsspreadpricer.hpp
+    \brief cms spread coupon pricer as in Brigo, Mercurio, 13.34
 */
 
-#ifndef quantlib_cmsspread_pricer_hpp
-#define quantlib_cmsspread_pricer_hpp
+#ifndef quantlib_lognormal_cmsspread_pricer_hpp
+#define quantlib_lognormal_cmsspread_pricer_hpp
 
 #include <ql/cashflows/couponpricer.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
-#include <ql/indexes/swapspreadindex.hpp>
+#include <ql/experimental/coupons/swapspreadindex.hpp>
 #include <ql/math/integrals/gaussianquadratures.hpp>
 #include <ql/math/distributions/normaldistribution.hpp>
 
@@ -38,11 +38,11 @@ namespace QuantLib {
     /*! blah blah...
     */
 
-    class CmsSpreadPricer : public CmsSpreadCouponPricer {
+    class LognormalCmsSpreadPricer : public CmsSpreadCouponPricer {
 
       public:
 
-        CmsSpreadPricer(const boost::shared_ptr<CmsCouponPricer> cmsPricer,
+        LognormalCmsSpreadPricer(const boost::shared_ptr<CmsCouponPricer> cmsPricer,
                         const Handle<Quote> &correlation,
                         const Handle<YieldTermStructure> &couponDiscountCurve =
                             Handle<YieldTermStructure>(),
@@ -62,13 +62,13 @@ namespace QuantLib {
 
         class PrivateObserver : public Observer {
           public:
-            PrivateObserver(CmsSpreadPricer *t)
+            PrivateObserver(LognormalCmsSpreadPricer *t)
                 : t_(t) {}
             void update() {
                 t_->flushCache();
             }
           private:
-            CmsSpreadPricer *t_;
+            LognormalCmsSpreadPricer *t_;
         };
 
         boost::shared_ptr<PrivateObserver> privateObserver_;

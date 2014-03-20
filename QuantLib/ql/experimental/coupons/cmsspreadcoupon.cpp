@@ -1,7 +1,4 @@
 /*
- Copyright (C) 2006 Giorgio Facchinetti
- Copyright (C) 2006 Mario Pucci
- Copyright (C) 2006, 2007 StatPro Italia srl
  Copyright (C) 2014 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -19,7 +16,7 @@
  or FITNESS FOR A PARTICULAR PURPOSE. See the license for more details.
 */
 
-#include <ql/cashflows/cmsspreadcoupon.hpp>
+#include <ql/experimental/coupons/cmsspreadcoupon.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
 #include <ql/indexes/swapspreadindex.hpp>

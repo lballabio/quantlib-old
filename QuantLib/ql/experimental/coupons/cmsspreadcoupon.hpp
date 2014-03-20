@@ -1,7 +1,4 @@
 /*
- Copyright (C) 2006 Giorgio Facchinetti
- Copyright (C) 2006 Mario Pucci
- Copyright (C) 2006, 2007 StatPro Italia srl
  Copyright (C) 2014 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
@@ -26,7 +23,8 @@
 #define quantlib_cmsspread_coupon_hpp
 
 #include <ql/cashflows/floatingratecoupon.hpp>
-#include <ql/indexes/swapspreadindex.hpp>
+#include <ql/cashflows/capflooredcoupon.hpp>
+#include <ql/experimental/coupons/swapspreadindex.hpp>
 #include <ql/time/schedule.hpp>
 
 namespace QuantLib {
@@ -66,6 +64,37 @@ namespace QuantLib {
         boost::shared_ptr<SwapSpreadIndex> index_;
     };
 
+    class CappedFlooredCmsSpreadCoupon : public CappedFlooredCoupon {
+      public:
+        CappedFlooredCmsSpreadCoupon(
+                  const Date& paymentDate,
+                  Real nominal,
+                  const Date& startDate,
+                  const Date& endDate,
+                  Natural fixingDays,
+                  const boost::shared_ptr<SwapSpreadIndex>& index,
+                  Real gearing = 1.0,
+                  Spread spread= 0.0,
+                  const Rate cap = Null<Rate>(),
+                  const Rate floor = Null<Rate>(),
+                  const Date& refPeriodStart = Date(),
+                  const Date& refPeriodEnd = Date(),
+                  const DayCounter& dayCounter = DayCounter(),
+                  bool isInArrears = false)
+        : CappedFlooredCoupon(boost::shared_ptr<FloatingRateCoupon>(new
+            CmsSpreadCoupon(paymentDate, nominal, startDate, endDate, fixingDays,
+                      index, gearing, spread, refPeriodStart, refPeriodEnd,
+                      dayCounter, isInArrears)), cap, floor) {}
+
+        virtual void accept(AcyclicVisitor& v) {
+            Visitor<CappedFlooredCmsSpreadCoupon>* v1 =
+                dynamic_cast<Visitor<CappedFlooredCmsSpreadCoupon>*>(&v);
+            if (v1 != 0)
+                v1->visit(*this);
+            else
+                CappedFlooredCoupon::accept(v);
+        }
+    };
 
     //! helper class building a sequence of capped/floored cms-spread-rate coupons
     class CmsSpreadLeg {
