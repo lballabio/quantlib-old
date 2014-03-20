@@ -204,7 +204,7 @@ namespace QuantLib {
             const boost::shared_ptr<CmsSpreadCouponPricer> cmsSpreadCouponPricer =
                 boost::dynamic_pointer_cast<CmsSpreadCouponPricer>(pricer_);
             QL_REQUIRE(cmsSpreadCouponPricer,
-                       "pricer not compatible with CMS coupon");
+                       "pricer not compatible with CMS spread coupon");
             c.setPricer(cmsSpreadCouponPricer);
         }
 
