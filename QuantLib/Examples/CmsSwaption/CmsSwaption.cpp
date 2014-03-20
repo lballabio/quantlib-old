@@ -291,27 +291,33 @@ int example02() {
             new CmsReplicationPricer(swaptionVol, reversionLevel));
 
         Real strike = 0.0001;
-        while (strike <= 0.10) {
+        while (strike <= 0.1000) {
 
-            auto cap = boost::shared_ptr<CappedFlooredCmsCoupon>(new CappedFlooredCmsCoupon(
+            auto tmpCap = boost::shared_ptr<CappedFlooredCoupon>(new CappedFlooredCmsCoupon(
                 Date(13, November, 2023), 100000.0, Date(13, November, 2022),
                 Date(13, November, 2023), 2, swapIndex, 1.0, 0.0, strike,
-                Null<Rate>(), Date(), Date(), DayCounter(), false, true));
-            auto floor = boost::shared_ptr<CappedFlooredCmsCoupon>(new CappedFlooredCmsCoupon(
-                Date(13, November, 2023), 100000.0, Date(13, November, 2022),
-                Date(13, November, 2023), 2, swapIndex, 1.0, 0.0, Null<Real>(),
-                strike, Date(), Date(), DayCounter(), false, true));
-            auto swaplet = boost::shared_ptr<CappedFlooredCmsCoupon>(new CappedFlooredCmsCoupon(
-                Date(13, November, 2023), 100000.0, Date(13, November, 2022),
-                Date(13, November, 2023), 2, swapIndex, 1.0, 0.0, Null<Rate>(),
-                Null<Rate>(), Date(), Date(), DayCounter(), false, false));
+                Null<Rate>(), Date(), Date(), DayCounter(), false));
+            auto cap = boost::make_shared<StrippedCappedFlooredCoupon>(tmpCap);
+            auto tmpFloor = boost::shared_ptr<CappedFlooredCoupon>(
+                new CappedFlooredCmsCoupon(
+                    Date(13, November, 2023), 100000.0,
+                    Date(13, November, 2022), Date(13, November, 2023), 2,
+                    swapIndex, 1.0, 0.0, Null<Real>(), strike, Date(), Date(),
+                    DayCounter(), false));
+            auto floor = boost::make_shared<StrippedCappedFlooredCoupon>(tmpFloor);
+            auto swaplet = boost::shared_ptr<CappedFlooredCmsCoupon>(
+                new CappedFlooredCmsCoupon(
+                    Date(13, November, 2023), 100000.0,
+                    Date(13, November, 2022), Date(13, November, 2023), 2,
+                    swapIndex, 1.0, 0.0, Null<Rate>(), Null<Rate>(), Date(),
+                    Date(), DayCounter(), false));
 
-            cap->setPricer(haganPricerN);
-            floor->setPricer(haganPricerN);
-            swaplet->setPricer(haganPricerN);
-            Real cap1 = cap->adjustedFixing();
-            Real floor1 = floor->adjustedFixing();
-            Real swaplet1 = swaplet->adjustedFixing();
+            // cap->setPricer(haganPricerN);
+            // floor->setPricer(haganPricerN);
+            // swaplet->setPricer(haganPricerN);
+            Real cap1 = 0.0;//cap->adjustedFixing();
+            Real floor1 = 0.0;//floor->adjustedFixing();
+            Real swaplet1 = 0.0;//swaplet->adjustedFixing();
 
             // cap->setPricer(haganPricerN);
             // floor->setPricer(haganPricerN);
@@ -319,12 +325,12 @@ int example02() {
             // Real cap2 = cap->adjustedFixing();
             // Real floor2 = floor->adjustedFixing();
             // Real swaplet2 = swaplet->adjustedFixing();
-            cap->setPricer(replPricer);
-            floor->setPricer(replPricer);
-            swaplet->setPricer(replPricer);
-            Real cap2 = cap->adjustedFixing();
-            Real floor2 = floor->adjustedFixing();
-            Real swaplet2 = swaplet->adjustedFixing();
+            // cap->setPricer(replPricer);
+            // floor->setPricer(replPricer);
+            // swaplet->setPricer(replPricer);
+            Real cap2 = 0.0;//cap->adjustedFixing();
+            Real floor2 = 0.0;//floor->adjustedFixing();
+            Real swaplet2 = 0.0;//swaplet->adjustedFixing();
 
             cap->setPricer(tsrPricer);
             floor->setPricer(tsrPricer);
@@ -357,69 +363,86 @@ int example02() {
 
 int example03() {
 
-    Date refDate(13, November, 2013);
-    Date settlDate = TARGET().advance(refDate, 2 * Days);
-    Settings::instance().evaluationDate() = refDate;
+    try {
 
-    Handle<Quote> rateLevel1(new SimpleQuote(0.0350));
-    Handle<Quote> rateLevel2(new SimpleQuote(0.0300));
-    Handle<YieldTermStructure> yts1(
-        new FlatForward(refDate, rateLevel1, Actual365Fixed()));
-    Handle<YieldTermStructure> yts2(
-        new FlatForward(refDate, rateLevel2, Actual365Fixed()));
+        Date refDate(13, November, 2013);
+        Date settlDate = TARGET().advance(refDate, 2 * Days);
+        Settings::instance().evaluationDate() = refDate;
 
-    boost::shared_ptr<IborIndex> iborIndex(new Euribor(6 * Months, yts1));
-    boost::shared_ptr<SwapIndex> swapIndex1(
-        new EuriborSwapIsdaFixA(10 * Years, yts1));
-    boost::shared_ptr<SwapIndex> swapIndex2(
-        new EuriborSwapIsdaFixA(2 * Years, yts2));
+        Handle<Quote> rateLevel1(new SimpleQuote(0.0350));
+        Handle<Quote> rateLevel2(new SimpleQuote(0.0300));
+        Handle<YieldTermStructure> yts1(
+            new FlatForward(refDate, rateLevel1, Actual365Fixed()));
+        Handle<YieldTermStructure> yts2(
+            new FlatForward(refDate, rateLevel2, Actual365Fixed()));
 
-    boost::shared_ptr<SwapSpreadIndex> swapSpreadIndex(
-        new SwapSpreadIndex("cms10_2", swapIndex1, swapIndex2));
+        boost::shared_ptr<IborIndex> iborIndex(new Euribor(6 * Months, yts1));
+        boost::shared_ptr<SwapIndex> swapIndex1(
+            new EuriborSwapIsdaFixA(10 * Years, yts1));
+        boost::shared_ptr<SwapIndex> swapIndex2(
+            new EuriborSwapIsdaFixA(2 * Years, yts2));
 
-    Handle<Quote> volatilityLevel(new SimpleQuote(0.40)); // vol here !
-    Handle<SwaptionVolatilityStructure> swaptionVol(
-        new ConstantSwaptionVolatility(refDate, TARGET(), Following,
-                                       volatilityLevel, Actual365Fixed()));
+        boost::shared_ptr<SwapSpreadIndex> swapSpreadIndex(
+            new SwapSpreadIndex("cms10_2", swapIndex1, swapIndex2));
 
-    // Handle<SwaptionVolatilityStructure> swaptionVol(
-    //     new SingleSabrSwaptionVolatility(refDate, TARGET(), Following,
-    // 0.15,
-    //                                      0.80, -0.30, 0.20,
-    //                                      Actual365Fixed(), swapIndex));
+        Handle<Quote> volatilityLevel(new SimpleQuote(0.40)); // vol here !
+        Handle<SwaptionVolatilityStructure> swaptionVol(
+            new ConstantSwaptionVolatility(refDate, TARGET(), Following,
+                                           volatilityLevel, Actual365Fixed()));
 
-    Handle<Quote> reversionLevel(new SimpleQuote(0.00)); // reversion here !
+        // Handle<SwaptionVolatilityStructure> swaptionVol(
+        //     new SingleSabrSwaptionVolatility(refDate, TARGET(), Following,
+        // 0.15,
+        //                                      0.80, -0.30, 0.20,
+        //                                      Actual365Fixed(), swapIndex));
 
-    boost::shared_ptr<LinearTsrPricer> tsrPricer(new LinearTsrPricer(
-        swaptionVol, reversionLevel, Handle<YieldTermStructure>(),
-        LinearTsrPricer::Settings().withRateBound(0.0, 1.0)
-        //.withVegaRatio(0.01)
-        ));
+        Handle<Quote> reversionLevel(new SimpleQuote(0.00)); // reversion here !
 
-    Handle<Quote> correlation(new SimpleQuote(0.20)); // correlation here
+        boost::shared_ptr<LinearTsrPricer> tsrPricer(new LinearTsrPricer(
+            swaptionVol, reversionLevel, Handle<YieldTermStructure>(),
+            LinearTsrPricer::Settings().withRateBound(0.0, 1.0)
+            //.withVegaRatio(0.01)
+            ));
 
-    boost::shared_ptr<CappedFlooredCmsSpreadCoupon> spreadCoupon(new CappedFlooredCmsSpreadCoupon(
-        Date(13, November, 2034), 1.0, Date(13, November, 2033),
-        Date(13, November, 2034), 2, swapSpreadIndex, 1.0, 0.0, Null<Real>(), 0.0050,
-        Date(), Date(), DayCounter(),false,true));
-    // boost::shared_ptr<CmsSpreadCoupon> spreadCoupon(new CmsSpreadCoupon(
-    //     Date(13, November, 2024), 1.0, Date(13, November, 2023),
-    //     Date(13, November, 2024), 2, swapSpreadIndex, 1.0, 0.0,
-    //     Date(), Date(), DayCounter(),false));
+        Handle<Quote> correlation(new SimpleQuote(0.20)); // correlation here
 
-    std::cout << "integration_points;rate" << std::setprecision(16) << std::endl;
-    for(Size i=4;i<64;i++) {
+        boost::shared_ptr<CappedFlooredCoupon> tmpSpreadCoupon(
+            new CappedFlooredCmsSpreadCoupon(
+                Date(13, November, 2034), 1.0, Date(13, November, 2033),
+                Date(13, November, 2034), 2, swapSpreadIndex, 1.0, 0.0,
+                Null<Real>(), 0.0050, Date(), Date(), DayCounter(), false));
 
-        boost::shared_ptr<CmsSpreadPricer> spreadPricer(new CmsSpreadPricer(
-            tsrPricer, correlation, Handle<YieldTermStructure>(), i));
+        boost::shared_ptr<StrippedCappedFlooredCoupon> spreadCoupon =
+            boost::make_shared<StrippedCappedFlooredCoupon>(tmpSpreadCoupon);
 
-        spreadCoupon->setPricer(spreadPricer);
+        // boost::shared_ptr<CmsSpreadCoupon> spreadCoupon(new CmsSpreadCoupon(
+        //     Date(13, November, 2024), 1.0, Date(13, November, 2023),
+        //     Date(13, November, 2024), 2, swapSpreadIndex, 1.0, 0.0,
+        //     Date(), Date(), DayCounter(),false));
 
-        std::cout << i << ";" << spreadCoupon->rate() << std::endl;
+        std::cout << "integration_points;rate" << std::setprecision(16)
+                  << std::endl;
+        for (Size i = 4; i < 64; i++) {
+
+            boost::shared_ptr<LognormalCmsSpreadPricer> spreadPricer(
+                new LognormalCmsSpreadPricer(tsrPricer, correlation,
+                                             Handle<YieldTermStructure>(), i));
+
+            spreadCoupon->setPricer(spreadPricer);
+
+            std::cout << i << ";" << spreadCoupon->rate() << std::endl;
+        }
+
+        return 0;
     }
-
-    return 0;
-
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
+    catch (...) {
+        std::cerr << "unknown error" << std::endl;
+        return 1;
+    }
 }
 
 int main(int, char * []) {
