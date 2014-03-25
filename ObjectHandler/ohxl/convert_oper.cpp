@@ -46,6 +46,16 @@ namespace ObjectHandler {
         }
     }
 
+    ConvertOper::operator unsigned int() const {
+        if (oper_->xltype & xltypeNum)
+            return static_cast<unsigned int>(oper_->val.num);
+        else {
+            OPER xLong;
+            Excel(xlCoerce, &xLong, 2, oper_, TempInt(xltypeInt));
+            return xLong.val.w;
+        }
+    }
+
     ConvertOper::operator double() const {
         if (oper_->xltype & xltypeNum)
             return oper_->val.num;
