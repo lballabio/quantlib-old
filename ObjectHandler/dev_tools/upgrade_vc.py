@@ -37,6 +37,8 @@ FILES = (
     "ObjectHandler/ohxl/ohxll/ohxll_vcxx.vcxproj",
     "ObjectHandler/ohxl/ohxllib/ohxllib_vcxx.vcxproj.filters",
     "ObjectHandler/ohxl/ohxllib/ohxllib_vcxx.vcxproj",
+    "ObjectHandler/ohxl/ohxllib/ohxllib2_vcxx.vcxproj.filters",
+    "ObjectHandler/ohxl/ohxllib/ohxllib2_vcxx.vcxproj",
     #"ObjectHandler/xlsdk/xlsdk_vcxx.vcxproj.filters",
     "ObjectHandler/xlsdk/xlsdk_vcxx.vcxproj",
 
@@ -55,6 +57,12 @@ FILES = (
     "QuantLibAddin/gensrc/qlgensrc_vcxx.vcxproj",
     "QuantLibAddin/QuantLibObjects_vcxx.vcxproj.filters",
     "QuantLibAddin/QuantLibObjects_vcxx.vcxproj",
+    "QuantLibAddin/QuantLibObjects2_vcxx.vcxproj.filters",
+    "QuantLibAddin/QuantLibObjects2_vcxx.vcxproj",
+    "QuantLibAddin/QuantLibObjects3_vcxx.vcxproj.filters",
+    "QuantLibAddin/QuantLibObjects3_vcxx.vcxproj",
+    "QuantLibAddin/QuantLibObjects4_vcxx.vcxproj.filters",
+    "QuantLibAddin/QuantLibObjects4_vcxx.vcxproj",
 
     "QuantLibXL/QuantLibAllDynamic_vcxx.sln",
     "QuantLibXL/QuantLibXL_basic_vcxx.sln",
@@ -65,6 +73,8 @@ FILES = (
     "QuantLibXL/qlxl/QuantLibXLDynamic_vcxx.vcxproj",
     "QuantLibXL/qlxl/QuantLibXLStatic_vcxx.vcxproj.filters",
     "QuantLibXL/qlxl/QuantLibXLStatic_vcxx.vcxproj",
+    "QuantLibXL/qlxl/QuantLibXLStatic2_vcxx.vcxproj.filters",
+    "QuantLibXL/qlxl/QuantLibXLStatic2_vcxx.vcxproj",
 )
 
 for fileName in FILES:

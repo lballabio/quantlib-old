@@ -761,7 +761,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ObjectHandler\ohxl\ohxll\ohxll_vc10.vcxproj">
-      <Project>{cd623fe5-3b3e-4511-80a9-a99d893349a4}</Project>
+      <Project>{04D7369F-47BC-46B0-A374-41635A9656D8}</Project>
     </ProjectReference>
     <ProjectReference Include="..\QuantLib\QuantLib_vc10.vcxproj">
       <Project>{ad0a27da-91da-46a2-acbd-296c419ed3aa}</Project>
