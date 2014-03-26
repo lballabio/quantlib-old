@@ -161,10 +161,10 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -172,6 +172,7 @@
     <Lib>
       <AdditionalDependencies>Mswsock.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">
@@ -185,10 +186,10 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -211,10 +212,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -222,6 +223,7 @@
     <Lib>
       <AdditionalDependencies>Mswsock.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">
@@ -237,10 +239,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -261,10 +263,10 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -272,6 +274,7 @@
     <Lib>
       <AdditionalDependencies>Mswsock.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -285,10 +288,10 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -311,10 +314,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -322,6 +325,7 @@
     <Lib>
       <AdditionalDependencies>Mswsock.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -337,10 +341,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>

@@ -284,7 +284,8 @@ class ExcelAddin(addin.Addin):
         exportSymbols = ''
         for cat in self.categoryList_.categories(self.name_, self.coreCategories_, self.addinCategories_, supportedplatform.MANUAL):
             for func in cat.functions(self.name_, supportedplatform.MANUAL):
-                exportSymbols += '#pragma comment (linker, "/export:_%s")\n' % func.name()
+                #exportSymbols += '#pragma comment (linker, "/export:_%s")\n' % func.name()
+                exportSymbols += '#pragma comment (linker, "/export:" EXPORT_PREFIX "%s")\n' % func.name()
         self.exportStub_.set({'exportSymbols' : exportSymbols})
         fileName = self.rootPath_ + 'functions/export.hpp'
         outputfile.OutputFile(self, fileName, self.copyright_, self.exportStub_)

@@ -161,10 +161,10 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -185,10 +185,10 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -211,10 +211,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
@@ -236,10 +236,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
@@ -259,10 +259,10 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -283,10 +283,10 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -309,10 +309,10 @@
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -335,10 +335,10 @@
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>

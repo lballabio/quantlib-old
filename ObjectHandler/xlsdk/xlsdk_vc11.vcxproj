@@ -118,37 +118,45 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">..\lib\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">..\build\vc110\xlsdk\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">false</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">..\lib\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">..\build\vc110\xlsdk\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">true</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\lib\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\build\vc110\xlsdk\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\lib\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\build\vc110\xlsdk\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</EmbedManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">..\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">..\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">xlsdk-vc110-mt</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">xlsdk-vc110-mt</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">xlsdk-vc110-x64-mt</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">xlsdk-vc110-mt-gd</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">xlsdk-vc110-mt-gd</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">xlsdk-vc110-x64-mt-gd</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">xlsdk-vc110-mt-sgd</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">xlsdk-vc110-mt-sgd</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">xlsdk-vc110-x64-mt-sgd</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">xlsdk-vc110-mt-s</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">xlsdk-vc110-mt-s</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">xlsdk-vc110-x64-mt-s</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
     <ClCompile>
@@ -162,10 +170,10 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc110\xlsdk\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Platform)\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -178,6 +186,7 @@
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -196,10 +205,10 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc110\xlsdk\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Platform)\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -228,10 +237,10 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc110\xlsdk\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Platform)\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -244,6 +253,7 @@
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -260,10 +270,10 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc110\xlsdk\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Platform)\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -294,10 +304,10 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc110\xlsdk\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Platform)\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -310,6 +320,7 @@
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -328,10 +339,10 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc110\xlsdk\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Platform)\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -360,10 +371,10 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc110\xlsdk\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Platform)\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -376,6 +387,7 @@
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -392,10 +404,10 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Configuration)\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc110\xlsdk\$(Configuration)\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc110\xlsdk\$(Platform)\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc110\xlsdk\$(Platform)\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -425,9 +437,25 @@
     <ClCompile Include="framewrk.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="x64\XLCALL32.LIB" />
+    <Library Include="x64\XLCALL32.LIB">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">false</ExcludedFromBuild>
+    </Library>
     <Library Include="xlcall32.lib">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">false</ExcludedFromBuild>
     </Library>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

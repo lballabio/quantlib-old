@@ -161,16 +161,17 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">
@@ -184,10 +185,10 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -209,15 +210,16 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">
@@ -233,10 +235,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
@@ -255,15 +257,16 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -277,10 +280,10 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
@@ -301,15 +304,16 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -325,10 +329,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <PrecompiledHeaderOutputFile>.\build\vc110\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
-      <ObjectFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc110\$(Platform)\$(Configuration)\aprutil\aprutil_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
