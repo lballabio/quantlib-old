@@ -133,14 +133,22 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</EmbedManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\build\vc110\$(Configuration)\aprutil\aprutil_obj\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">aprutil-vc110-mt-0_10_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">aprutil-vc110-mt-0_10_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">aprutil-vc110-x64-mt-0_10_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">aprutil-vc110-mt-gd-0_10_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">aprutil-vc110-mt-gd-0_10_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">aprutil-vc110-x64-mt-gd-0_10_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">aprutil-vc110-mt-sgd-0_10_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">aprutil-vc110-mt-sgd-0_10_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">aprutil-vc110-x64-mt-sgd-0_10_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">aprutil-vc110-mt-s-0_10_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">aprutil-vc110-mt-s-0_10_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">aprutil-vc110-x64-mt-s-0_10_0</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">
     <ClCompile>

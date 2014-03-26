@@ -133,14 +133,22 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</EmbedManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\build\vc110\$(Configuration)\log4cxx\log4cxx_obj\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">log4cxxs-vc110-mt-0_10_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">log4cxxs-vc110-mt-0_10_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">log4cxxs-vc110-x64-mt-0_10_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">log4cxxs-vc110-mt-gd-0_10_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">log4cxxs-vc110-mt-gd-0_10_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">log4cxxs-vc110-x64-mt-gd-0_10_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">log4cxxs-vc110-mt-sgd-0_10_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">log4cxxs-vc110-mt-sgd-0_10_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">log4cxxs-vc110-x64-mt-sgd-0_10_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">log4cxxs-vc110-mt-s-0_10_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">log4cxxs-vc110-mt-s-0_10_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">log4cxxs-vc110-x64-mt-s-0_10_0</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">
     <ClCompile>
@@ -187,7 +195,7 @@
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <TargetMachine>MachineX86</TargetMachine>
+      <TargetMachine>MachineX64</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
@@ -285,7 +293,7 @@
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <TargetMachine>MachineX86</TargetMachine>
+      <TargetMachine>MachineX64</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
