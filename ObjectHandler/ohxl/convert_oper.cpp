@@ -68,11 +68,13 @@ namespace ObjectHandler {
 
     ConvertOper::operator bool() const {
         if (oper_->xltype & xltypeBool)
-            return oper_->val.boolean != 0;
+            //return oper_->val.boolean != 0;
+            return oper_->val.xbool != 0;
         else {
             OPER xBool;
             Excel(xlCoerce, &xBool, 2, oper_, TempInt(xltypeBool));
-            return xBool.val.boolean != 0;
+            //return xBool.val.boolean != 0;
+            return xBool.val.xbool != 0;
         }
     }
 
@@ -109,7 +111,8 @@ namespace ObjectHandler {
         } else if (oper_->xltype & xltypeNum) {
             return oper_->val.num;
         } else if (oper_->xltype & xltypeBool) {
-            return oper_->val.boolean != 0;
+            //return oper_->val.boolean != 0;
+            return oper_->val.xbool != 0;
         } else if (oper_->xltype & xltypeStr) {
             return strConv(oper_);
         } else {

@@ -39,7 +39,8 @@ namespace ObjectHandler {
 
     DLL_API void scalarToOper(const bool &value, OPER &xBoolean, bool expandVector) {
         xBoolean.xltype = xltypeBool;
-        xBoolean.val.boolean = value;
+        //xBoolean.val.boolean = value;
+        xBoolean.val.xbool = value;
     }
 
     DLL_API void scalarToOper(const char *value, OPER &xChar, bool expandVector) {

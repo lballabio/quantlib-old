@@ -48,7 +48,8 @@ void operToOper(OPER *xTarget, const OPER *xSource) {
         return;
     } else if (xSource->xltype == xltypeBool) {
         xTarget->xltype = xltypeBool;
-        xTarget->val.boolean = xSource->val.boolean;
+        //xTarget->val.boolean = xSource->val.boolean;
+        xTarget->val.xbool = xSource->val.xbool;
         return;
     } else if (xSource->xltype == xltypeErr) {
         xTarget->xltype = xltypeErr;

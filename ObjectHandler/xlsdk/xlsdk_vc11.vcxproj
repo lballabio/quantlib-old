@@ -425,7 +425,10 @@
     <ClCompile Include="framewrk.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="xlcall32.lib" />
+    <Library Include="x64\XLCALL32.LIB" />
+    <Library Include="xlcall32.lib">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Library>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
