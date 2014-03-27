@@ -92,11 +92,7 @@ namespace QuantLibAddin {
         ret = QuantLib::Size(in);
     }
 
-    void cppToLibrary(const long &in, QuantLib::Natural &ret) {
-        ret = QuantLib::Natural(in);
-    }
-
-#if defined(__GNUC__) && defined(__x86_64__)
+#if defined(WAZOO_64_BIT)
     void cppToLibrary(const long &in, QuantLib::Natural &ret) {
         ret = QuantLib::Natural(in);
     }
