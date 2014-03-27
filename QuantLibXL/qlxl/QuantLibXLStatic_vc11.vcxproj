@@ -119,37 +119,45 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">..\xll\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\buildStatic\vc110\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\buildStatic\vc110\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\xll\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\buildStatic\vc110\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\buildStatic\vc110\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">..\xll\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\buildStatic\vc110\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\buildStatic\vc110\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\xll\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\buildStatic\vc110\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\buildStatic\vc110\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">..\xll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.\buildStatic\vc110\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\xll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\buildStatic\vc110\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">..\xll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">.\buildStatic\vc110\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\xll\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\buildStatic\vc110\$(Platform)\$(Configuration)\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibXL-vc110-mt-1_4_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QuantLibXL-vc110-mt-1_4_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QuantLibXL-vc110-x64-mt-1_4_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibXL-vc110-mt-gd-1_4_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QuantLibXL-vc110-mt-gd-1_4_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QuantLibXL-vc110-x64-mt-gd-1_4_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibXL-vc110-mt-sgd-1_4_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">QuantLibXL-vc110-mt-sgd-1_4_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">QuantLibXL-vc110-x64-mt-sgd-1_4_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibXL-vc110-mt-s-1_4_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">QuantLibXL-vc110-mt-s-1_4_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">QuantLibXL-vc110-x64-mt-s-1_4_0</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.xll</TargetExt>
@@ -165,7 +173,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildStatic\vc110\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -178,10 +186,10 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\buildStatic\vc110\$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>.\buildStatic\vc110\$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Configuration)/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc110\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -197,17 +205,17 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">
@@ -215,7 +223,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TypeLibraryName>.\buildStatic\vc110\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -228,10 +236,10 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\buildStatic\vc110\$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>.\buildStatic\vc110\$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Configuration)/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc110\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -247,16 +255,16 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.lib</ImportLibrary>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -265,7 +273,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildStatic\vc110\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -278,10 +286,10 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\buildStatic\vc110\$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>.\buildStatic\vc110\$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Configuration)/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc110\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -297,17 +305,17 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -315,7 +323,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TypeLibraryName>.\buildStatic\vc110\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -328,10 +336,10 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\buildStatic\vc110\$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>.\buildStatic\vc110\$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Configuration)/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc110\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -347,16 +355,16 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.lib</ImportLibrary>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
@@ -365,7 +373,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildStatic\vc110\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -380,10 +388,10 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\buildStatic\vc110\$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>.\buildStatic\vc110\$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Configuration)/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc110\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -397,17 +405,17 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">
@@ -415,7 +423,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TypeLibraryName>.\buildStatic\vc110\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -430,10 +438,10 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\buildStatic\vc110\$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>.\buildStatic\vc110\$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Configuration)/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc110\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -447,16 +455,16 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.lib</ImportLibrary>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -465,7 +473,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildStatic\vc110\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -480,10 +488,10 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\buildStatic\vc110\$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>.\buildStatic\vc110\$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Configuration)/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc110\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -497,17 +505,17 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -515,7 +523,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TypeLibraryName>.\buildStatic\vc110\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -530,10 +538,10 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\buildStatic\vc110\$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>.\buildStatic\vc110\$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Configuration)/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\buildStatic\vc110\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\buildStatic\vc110\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -547,16 +555,16 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.lib</ImportLibrary>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc110\$(Configuration)/QuantLibXL.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
