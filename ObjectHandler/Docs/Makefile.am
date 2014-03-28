@@ -1,6 +1,5 @@
 
 EXTRA_DIST = \
-    docs_vc7.vcproj \
     docs_vc8.vcproj \
     docs_vc9.vcproj \
     docs_vc10.vcxproj \

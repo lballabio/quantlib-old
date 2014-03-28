@@ -32,11 +32,11 @@
 // parameters registered with Excel as OPER (P) are declared as XLOPER
 #define OPER XLOPER
 
-typedef struct {
-    WORD rows;
-    WORD columns;
-    double array[1];
-} FP;
+//typedef struct {
+//    WORD rows;
+//    WORD columns;
+//    double array[1];
+//} FP;
 
 #endif
 

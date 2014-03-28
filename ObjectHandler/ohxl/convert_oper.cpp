@@ -46,6 +46,16 @@ namespace ObjectHandler {
         }
     }
 
+    ConvertOper::operator unsigned int() const {
+        if (oper_->xltype & xltypeNum)
+            return static_cast<unsigned int>(oper_->val.num);
+        else {
+            OPER xLong;
+            Excel(xlCoerce, &xLong, 2, oper_, TempInt(xltypeInt));
+            return xLong.val.w;
+        }
+    }
+
     ConvertOper::operator double() const {
         if (oper_->xltype & xltypeNum)
             return oper_->val.num;
@@ -58,21 +68,22 @@ namespace ObjectHandler {
 
     ConvertOper::operator bool() const {
         if (oper_->xltype & xltypeBool)
-            return oper_->val.boolean != 0;
+            //return oper_->val.boolean != 0;
+            return oper_->val.xbool != 0;
         else {
             OPER xBool;
             Excel(xlCoerce, &xBool, 2, oper_, TempInt(xltypeBool));
-            return xBool.val.boolean != 0;
+            //return xBool.val.boolean != 0;
+            return xBool.val.xbool != 0;
         }
     }
 
     ConvertOper::operator std::string() const {
         const OPER *xString;
-
+        Xloper xTemp;
         if (oper_->xltype & xltypeStr) {
             xString = oper_;
         } else {
-            Xloper xTemp;
             Excel(xlCoerce, &xTemp, 2, oper_, TempInt(xltypeStr));
             xString = &xTemp;
         }
@@ -100,7 +111,8 @@ namespace ObjectHandler {
         } else if (oper_->xltype & xltypeNum) {
             return oper_->val.num;
         } else if (oper_->xltype & xltypeBool) {
-            return oper_->val.boolean != 0;
+            //return oper_->val.boolean != 0;
+            return oper_->val.xbool != 0;
         } else if (oper_->xltype & xltypeStr) {
             return strConv(oper_);
         } else {

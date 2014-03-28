@@ -93,7 +93,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -101,12 +101,12 @@
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\buildStatic\vc100\$(Configuration)/</AssemblerListingLocation>
       <ObjectFileName>.\buildStatic\vc100\$(Configuration)/</ObjectFileName>
       <ProgramDataBaseFileName>.\buildStatic\vc100\$(Configuration)/</ProgramDataBaseFileName>
@@ -120,21 +120,21 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-sgd-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-sgd-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-sgd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-sgd-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -143,7 +143,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -151,12 +151,12 @@
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\buildStatic\vc100\$(Configuration)/</AssemblerListingLocation>
       <ObjectFileName>.\buildStatic\vc100\$(Configuration)/</ObjectFileName>
       <ProgramDataBaseFileName>.\buildStatic\vc100\$(Configuration)/</ProgramDataBaseFileName>
@@ -170,21 +170,21 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-gd-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-gd-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-gd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-gd-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
@@ -193,7 +193,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -202,13 +202,13 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\buildStatic\vc100\$(Configuration)/</AssemblerListingLocation>
       <ObjectFileName>.\buildStatic\vc100\$(Configuration)/</ObjectFileName>
       <ProgramDataBaseFileName>.\buildStatic\vc100\$(Configuration)/</ProgramDataBaseFileName>
@@ -221,20 +221,20 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-s-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-s-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-s-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-s-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -243,7 +243,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildStatic\vc100\$(Configuration)/QuantLibXL.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -252,13 +252,13 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\buildStatic\vc100\$(Configuration)/</AssemblerListingLocation>
       <ObjectFileName>.\buildStatic\vc100\$(Configuration)/</ObjectFileName>
       <ProgramDataBaseFileName>.\buildStatic\vc100\$(Configuration)/</ProgramDataBaseFileName>
@@ -271,20 +271,20 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-1_4_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibAddinStatic-vc100-mt-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
-      <OutputFile>.\buildStatic\vc100\$(Configuration)/AddinExcelStatic.bsc</OutputFile>
+      <OutputFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -427,6 +427,20 @@
     <ClInclude Include="conversions\scalartooper.hpp" />
     <ClInclude Include="conversions\vectortooper.hpp" />
     <ClInclude Include="session.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ObjectHandler\ohxl\ohxllib\ohxllib_vc10.vcxproj">
+      <Project>{66021664-4359-442c-acc7-7c82f51c9d5a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ObjectHandler\xlsdk\xlsdk_vc10.vcxproj">
+      <Project>{4bd77a1e-aae9-47a4-81fe-2308e5a460af}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QuantLibAddin\QuantLibObjects2_vc10.vcxproj">
+      <Project>{cab8330c-6424-4455-9285-3654587ef71f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QuantLib\QuantLib_vc10.vcxproj">
+      <Project>{ad0a27da-91da-46a2-acbd-296c419ed3aa}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

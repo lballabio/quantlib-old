@@ -48,7 +48,8 @@ void operToOper(OPER *xTarget, const OPER *xSource) {
         return;
     } else if (xSource->xltype == xltypeBool) {
         xTarget->xltype = xltypeBool;
-        xTarget->val.boolean = xSource->val.boolean;
+        //xTarget->val.boolean = xSource->val.boolean;
+        xTarget->val.xbool = xSource->val.xbool;
         return;
     } else if (xSource->xltype == xltypeErr) {
         xTarget->xltype = xltypeErr;
@@ -411,16 +412,15 @@ undocumented Excel bug.
 
 XLL_DEC XLOPER *ohRangeRetrieveError(XLOPER *xRange) {
     try {
-        XLOPER xTemp;
+        ObjectHandler::Xloper xTemp;
         Excel(xlCoerce, &xTemp, 1, xRange);
         static XLOPER xRet;
-        if (xTemp.xltype & xltypeErr) {
+        if (xTemp->xltype & xltypeErr) {
             Excel(xlUDF, &xRet, 2, TempStrNoSize("\x13""ohRetrieveErrorImpl"), xRange);
             xRet.xltype |= xlbitXLFree;
         } else {
             ObjectHandler::scalarToOper(std::string(), xRet);
         }
-        Excel(xlFree, 0, 1, &xTemp);
         return &xRet;
     } catch (...) {
         return 0;
