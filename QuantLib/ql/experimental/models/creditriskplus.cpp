@@ -57,6 +57,7 @@ namespace QuantLib {
                        << " must be equal to number of sectors (" << n_ << ")");
 
         el_ = 0.0;
+        el2_ = 0.0;
         for (Size i = 0; i < m_; i++) {
             QL_REQUIRE(exposure_[i] >= 0.0, "exposure #"
                                                 << i << " is negative ("
@@ -68,6 +69,7 @@ namespace QuantLib {
                                                    << (n_ - 1));
             exposureSum_ += exposure_[i];
             el_ += pd_[i] * exposure_[i];
+            el2_ += pd_[i] * exposure_[i]*exposure_[i];
         }
 
         QL_REQUIRE(unit_ > 0.0, "loss unit (" << unit_ << ") must be positive");
@@ -78,13 +80,16 @@ namespace QuantLib {
     Real CreditRiskPlus::lossQuantile(const Real p) {
 
         Size i = 0;
-        Real sum = 0.0;
-        do {
-            sum += loss_[i];
+        Real sum = loss_[0];
+        while(i < upperIndex_-1 && sum < p) {
             ++i;
-        } while (i < upperIndex_ && sum < p);
+            sum += loss_[i];
+        }
 
-        Real p1 = sum - loss_[i - 1];
+        if(loss_[0] >= p)
+            return 0.0;
+
+        Real p1 = sum - loss_[i];
         Real p2 = sum >= p ? sum : 1.0;
         Real l1 = (i - 1) * unit_;
         Real l2 = i * unit_;
