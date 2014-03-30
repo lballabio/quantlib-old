@@ -27,6 +27,7 @@
 
 FUNCTIONALITY
 
+- Support for 64-bit (thanks to Richard Gould)
 - Fixed bug which could cause Excel to crash at shutdown.
 - Fixed memory leak in function ohRangeRetrieveError().
 - Fixed bug in which xlAutoClose() attempted to delete an
