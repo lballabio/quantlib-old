@@ -104,6 +104,9 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
 
 
 export_piecewise_curve(PiecewiseFlatForward,ForwardRate,BackwardFlat);
+export_piecewise_curve(PiecewiseLinearForward,ForwardRate,Linear);
+export_piecewise_curve(PiecewiseLinearZero,ZeroYield,Linear);
+export_piecewise_curve(PiecewiseCubicZero,ZeroYield,Cubic);
 
 // combine traits as you wish, e.g.,
 // export_piecewise_curve(PiecewiseLinearForward,ForwardRate,Linear);
