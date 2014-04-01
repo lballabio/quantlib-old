@@ -36,10 +36,12 @@
 #endif
 
 /*** libraries to be linked ***/
-#ifdef _WIN64
-#  define XLSDK_ARCH "-x64"
+
+// select architecture:
+#ifdef _M_X64
+#  define XLSDK_LIB_PLATFORM "-x64"
 #else
-#  define XLSDK_ARCH
+#  define XLSDK_LIB_PLATFORM 
 #endif
 
 // select thread opt:
@@ -64,7 +66,7 @@
 #  endif
 #endif
 
-#define XLSDK_LIB_NAME "xlsdk-" XLSDK_LIB_TOOLSET XLSDK_ARCH XLSDK_LIB_THREAD_OPT XLSDK_LIB_RT_OPT ".lib"
+#define XLSDK_LIB_NAME "xlsdk-" XLSDK_LIB_TOOLSET XLSDK_LIB_PLATFORM XLSDK_LIB_THREAD_OPT XLSDK_LIB_RT_OPT ".lib"
 
 #pragma comment(lib, XLSDK_LIB_NAME)
 #ifdef BOOST_LIB_DIAGNOSTIC

@@ -31,6 +31,7 @@ QuantLibAddin project, please refer to
 <strong>Release 1.4.0 - MMM YYYY</strong>
 
 - ?? new functions / ???? in total
+- Support for 64-bit (thanks to Richard Gould)
 - Fixed bug which could cause Excel to crash at shutdown.
 - Fixed bug which could cause interpolation code to crash.
 - VBA Framework - fix bug in which exception is thrown by context sensitive
