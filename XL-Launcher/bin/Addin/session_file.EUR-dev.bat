@@ -1,5 +1,4 @@
 
-
 @REM Where the Launcher.xla is to be found
 SET LAUNCHER_DIR=.
 
