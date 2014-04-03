@@ -35,8 +35,8 @@
     </GroupBox>
   </StartupParameters>
   <Components>
-    <Component path="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\xll\ObjectHandler-xll-vc90-mt-1_3_0.xll" />
-    <Component path="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\xll\QuantLibXLDynamic-vc90-mt-1_3_0.xll" />
+    <Component path="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\xll\ObjectHandler-xll-vc90-mt-1_4_0.xll" />
+    <Component path="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\xll\QuantLibXLDynamic-vc90-mt-1_4_0.xll" />
     <Component path="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\framework\QuantLibXL.xla" />
   </Components>
   <EnvironmentVariables />
