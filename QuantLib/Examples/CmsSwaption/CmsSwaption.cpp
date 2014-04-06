@@ -445,9 +445,97 @@ int example03() {
     }
 }
 
+int example04() {
+
+    try {
+
+        Date refDate(13, November, 2013);
+        Date settlDate = TARGET().advance(refDate, 2 * Days);
+        Settings::instance().evaluationDate() = refDate;
+
+        Handle<Quote> rateLevel1(new SimpleQuote(0.0350));
+        Handle<YieldTermStructure> yts1(
+            new FlatForward(refDate, rateLevel1, Actual365Fixed()));
+        Handle<Quote> rateLevel2(new SimpleQuote(0.0300));
+        Handle<YieldTermStructure> yts2(
+            new FlatForward(refDate, rateLevel2, Actual365Fixed()));
+
+        boost::shared_ptr<IborIndex> iborIndex(new Euribor(6 * Months, yts1));
+        boost::shared_ptr<SwapIndex> swapIndex1(
+            new EuriborSwapIsdaFixA(10 * Years, yts1));
+        boost::shared_ptr<SwapIndex> swapIndex2(
+            new EuriborSwapIsdaFixA(2 * Years, yts2));
+
+        boost::shared_ptr<SwapSpreadIndex> swapSpreadIndex(
+            new SwapSpreadIndex("cms10_2", swapIndex1, swapIndex2));
+
+        Handle<Quote> volatilityLevel(new SimpleQuote(0.40)); // vol here !
+        Handle<SwaptionVolatilityStructure> swaptionVol(
+            new ConstantSwaptionVolatility(refDate, TARGET(), Following,
+                                           volatilityLevel, Actual365Fixed()));
+
+        Handle<Quote> reversionLevel(new SimpleQuote(0.00)); // reversion here !
+
+        Schedule sched(settlDate, settlDate + 10 * Years, 1 * Years, TARGET(),
+                       ModifiedFollowing, ModifiedFollowing,
+                       DateGeneration::Backward, false);
+
+        boost::shared_ptr<FloatFloatSwap> underlying(new FloatFloatSwap(VanillaSwap::Payer,
+                                                                        100.0,100.0,
+                                                                        sched,iborIndex,Actual360(),
+                                                                        sched,swapSpreadIndex,Thirty360(),
+                                                                        false,
+                                                                        false));
+
+        std::vector<Date> callDates = sched.dates();
+
+        std::cout << "call dates:" << std::endl;
+        for(Size i=0;i<callDates.size();i++)
+            std::cout << callDates[i] << std::endl;
+
+
+        boost::shared_ptr<Exercise> exercise = boost::make_shared<BermudanExercise>(callDates);
+
+        boost::shared_ptr<FloatFloatSwaption> swaption = boost::make_shared<FloatFloatSwaption>(underlying,exercise);
+
+        std::vector<Date> volStepDates;
+        std::vector<Real> vols(1,0.01);
+
+        boost::shared_ptr<Gaussian1dModel> model = boost::make_shared<Gsr>(yts1,volStepDates,
+                                                                           vols,0.01);
+
+        boost::shared_ptr<Gaussian1dFloatFloatSwaptionEngine> engine =
+            boost::make_shared<Gaussian1dFloatFloatSwaptionEngine>(
+                model, 64, 7.0, true, false, Handle<Quote>(),
+                Handle<YieldTermStructure>(), false,
+                Gaussian1dFloatFloatSwaptionEngine::Naive);
+
+        swaption->setPricingEngine(engine);
+
+        std::cout << "swaption npv = " << swaption->NPV() << std::endl;
+        
+        std::vector<Real> probs = swaption->result<std::vector<Real> >("probabilities");        
+        for(Size i=0;i<probs.size();i++) {
+            std::cout << i << " => " << probs[i] << std::endl;
+        }
+
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
+    catch (...) {
+        std::cerr << "unknown error" << std::endl;
+        return 1;
+    }
+
+    return 0;
+
+}
+
+
 int main(int, char * []) {
 
-    // return example01();
-    // return example02();
-    return example03();
+    return example04();
+    
 }
