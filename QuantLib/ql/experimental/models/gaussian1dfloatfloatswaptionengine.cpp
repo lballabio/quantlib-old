@@ -142,8 +142,15 @@ namespace QuantLib {
 
         // for probability computation
         std::vector<Array> npvp0, npvp1;
+        // how many active exercise dates are there ?
+        Size noEx =  arguments_.exercise->dates().size() -
+            (std::upper_bound(arguments_.exercise->dates().begin(),
+                         arguments_.exercise->dates().end(),
+                         expiry - (includeExerciseOnExpiry ? 1 : 0)) -
+             arguments_.exercise->dates().begin());
+        Size exIdx = noEx; // current exercise index
         if (considerProbabilities && probabilities_ != None) {
-            for (Size i = 0; i < idx + 2; ++i) {
+            for (Size i = 0; i < noEx+1 ; ++i) {
                 Array npvTmp0(2 * integrationPoints_ + 1, 0.0);
                 Array npvTmp1(2 * integrationPoints_ + 1, 0.0);
                 npvp0.push_back(npvTmp0);
@@ -542,14 +549,14 @@ namespace QuantLib {
                                                 cmsspread2->swapIndex1()
                                                     ->tenor(),
                                                 event0, zk,
-                                                cmsspread1->swapIndex1()) +
+                                                cmsspread2->swapIndex1()) +
                                         cmsspread2->gearing2() *
                                             model_->swapRate(
                                                 arguments_.leg2FixingDates[j],
                                                 cmsspread2->swapIndex2()
                                                     ->tenor(),
                                                 event0, zk,
-                                                cmsspread1->swapIndex2());
+                                                cmsspread2->swapIndex2());
                                 Real rate =
                                     arguments_.leg2Spreads[j] +
                                     arguments_.leg2Gearings[j] * estFixing;
@@ -608,12 +615,8 @@ namespace QuantLib {
                                 zSpreadDf / model_->numeraire(event0Time, zk,
                                                               discountCurve_);
 
-                        // for probability computation
-                        int idxTmp = std::max(idx, 0); // idx may be zero
-                                                       // although we are on a
-                                                       // event date (see above)
                         if (considerProbabilities && probabilities_ != None) {
-                            if (idx == events.size() - 1)
+                            if (exIdx == noEx) {
                                 // if true we are at the latest date,
                                 // so we init
                                 // the no call probability
@@ -626,8 +629,9 @@ namespace QuantLib {
                                                  model_->numeraire(
                                                      event0, z[k],
                                                      discountCurve_));
+                            }
                             if (exerciseValue >= npv0[k]) {
-                                npvp0[idxTmp][k] =
+                                npvp0[exIdx-1][k] =
                                     probabilities_ == Naive
                                         ? 1.0
                                         : 1.0 / (model_->zerobond(
@@ -636,8 +640,7 @@ namespace QuantLib {
                                                  model_->numeraire(
                                                      event0Time, z[k],
                                                      discountCurve_));
-                                for (Size ii = idxTmp + 1; ii < npvp0.size();
-                                     ii++)
+                                for (Size ii = exIdx; ii < noEx+1; ++ii)
                                     npvp0[ii][k] = 0.0;
                             }
                         }
@@ -648,8 +651,20 @@ namespace QuantLib {
                 }
             }
 
+            if(isExercise)
+                --exIdx;
+
             npv1.swap(npv0);
             npv1a.swap(npv0a);
+
+            // for probability computation
+            if(considerProbabilities && probabilities_ != None) {
+                for(Size i=0;i<npvp0.size();++i) {
+                    npvp1[i].swap(npvp0[i]);
+                }
+            }
+            // end probability computation
+
             event1 = event0;
             event1Time = event0Time;
 
@@ -662,8 +677,8 @@ namespace QuantLib {
 
         // for probability computation
         if (considerProbabilities && probabilities_ != None) {
-            std::vector<Real> prob(npvp0.size());
-            for (Size i = 0; i < npvp0.size(); i++) {
+            std::vector<Real> prob(noEx+1);
+            for (Size i = 0; i < noEx+1; i++) {
                 prob[i] = npvp1[i][0] *
                           (probabilities_ == Naive
                                ? 1.0
