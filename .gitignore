@@ -132,6 +132,7 @@ QuantLib/Examples/EquityOption/EquityOption
 QuantLib/Examples/FRA/FRA
 QuantLib/Examples/FittedBondCurve/FittedBondCurve
 QuantLib/Examples/MarketModels/MarketModels
+QuantLib/Examples/MultidimIntegral/MultidimIntegral
 QuantLib/Examples/Replication/Replication
 QuantLib/Examples/Repo/Repo
 QuantLib/Examples/Swap/SwapValuation
@@ -152,4 +153,5 @@ QuantLib-SWIG/Python/QuantLib/QuantLib.py
 QuantLib-SWIG/Python/build
 QuantLib-SWIG/R/R/QuantLib.R
 QuantLib-SWIG/R/QuantLib.RData
+
 
