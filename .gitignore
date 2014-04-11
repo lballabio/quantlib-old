@@ -131,6 +131,7 @@ QuantLib/Examples/DiscreteHedging/DiscreteHedging
 QuantLib/Examples/EquityOption/EquityOption
 QuantLib/Examples/FRA/FRA
 QuantLib/Examples/FittedBondCurve/FittedBondCurve
+QuantLib/Examples/LatentModel/LatentModel
 QuantLib/Examples/MarketModels/MarketModels
 QuantLib/Examples/MultidimIntegral/MultidimIntegral
 QuantLib/Examples/Replication/Replication
@@ -153,5 +154,6 @@ QuantLib-SWIG/Python/QuantLib/QuantLib.py
 QuantLib-SWIG/Python/build
 QuantLib-SWIG/R/R/QuantLib.R
 QuantLib-SWIG/R/QuantLib.RData
+
 
 
