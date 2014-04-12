@@ -80,7 +80,7 @@
 %{
 #include <ql/quantlib.hpp>
 
-#if QL_HEX_VERSION < 0x010400f0
+#if QL_HEX_VERSION < 0x010500f0
     #error using an old version of QuantLib, please update
 #endif
 
@@ -196,7 +196,6 @@
 %include stochasticprocess.i
 %include swap.i
 %include swaption.i
-%include surface.i
 %include termstructures.i
 %include timebasket.i
 %include timeseries.i
