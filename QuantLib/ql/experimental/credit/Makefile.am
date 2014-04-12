@@ -7,6 +7,8 @@ this_include_HEADERS = \
     basket.hpp \
     blackcdsoptionengine.hpp \
     cdo.hpp \
+    cdolight.hpp \
+    cdolightengines.hpp \
     cdsoption.hpp \
     defaultevent.hpp \
     defaultprobabilitykey.hpp \
@@ -36,6 +38,8 @@ libCredit_la_SOURCES = \
     basket.cpp \
     blackcdsoptionengine.cpp \
     cdo.cpp \
+    cdolight.cpp \
+    cdolightengines.cpp \
     cdsoption.cpp \
     defaultevent.cpp \
     defaultprobabilitykey.cpp \

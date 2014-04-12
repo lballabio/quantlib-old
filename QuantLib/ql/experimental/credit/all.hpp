@@ -4,6 +4,8 @@
 #include <ql/experimental/credit/basket.hpp>
 #include <ql/experimental/credit/blackcdsoptionengine.hpp>
 #include <ql/experimental/credit/cdo.hpp>
+#include <ql/experimental/credit/cdolight.hpp>
+#include <ql/experimental/credit/cdolightengines.hpp>
 #include <ql/experimental/credit/cdsoption.hpp>
 #include <ql/experimental/credit/defaultevent.hpp>
 #include <ql/experimental/credit/defaultprobabilitykey.hpp>
