@@ -37,9 +37,9 @@ CdoLight::CdoLight(Protection::Side side, const Schedule &schedule, Real spread,
 bool CdoLight::isExpired() const {
     Date lastPayment = schedule_.calendar().adjust(schedule_.dates().back(),
                                                    paymentConvention_);
-    return Settings::instance().includeTodaysCashFlows()
-               ? lastPayment > Settings::instance().evaluationDate()
-               : lastPayment > Settings::instance().evaluationDate();
+    return !(Settings::instance().includeTodaysCashFlows()
+                 ? lastPayment >= Settings::instance().evaluationDate()
+                 : lastPayment > Settings::instance().evaluationDate());
 }
 
 void CdoLight::setupExpired() const { Instrument::setupExpired(); }
@@ -51,10 +51,12 @@ void CdoLight::setupArguments(PricingEngine::arguments *args) const {
     arguments->schedule = schedule_;
     arguments->spread = spread_;
     arguments->dayCounter = dayCounter_;
+    arguments->nominals = nominals_;
     arguments->relativeAttachment = relativeAttachment_;
     arguments->relativeDetachment = relativeDetachment_;
     arguments->paymentConvention = paymentConvention_;
     arguments->accrualTimes.clear();
+    arguments->paymentDates.clear();
     for (Size i = 1; i < schedule_.size(); i++) {
         arguments->accrualTimes.push_back(
             dayCounter_.yearFraction(schedule_.date(i - 1), schedule_.date(i)));

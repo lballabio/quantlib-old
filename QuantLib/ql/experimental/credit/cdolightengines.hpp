@@ -58,6 +58,7 @@ class CdoLightMcEngine
     mutable std::vector<Real> periodTimes_;
     mutable std::vector<std::vector<Real>> periodDefaultProbs_;
     mutable Size firstPeriod_;
+    mutable Real attachment_, detachment_, poolNominal_;
 };
 }
 

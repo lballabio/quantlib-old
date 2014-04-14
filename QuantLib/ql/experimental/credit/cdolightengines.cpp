@@ -21,6 +21,8 @@
 #include <ql/math/statistics/incrementalstatistics.hpp>
 #include <ql/math/distributions/normaldistribution.hpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
 CdoLightMcEngine::CdoLightMcEngine(
@@ -53,6 +55,13 @@ void CdoLightMcEngine::calculate() const {
 
     Date today = Settings::instance().evaluationDate();
 
+    poolNominal_ = 0.0;
+    for(Size i=0;i<arguments_.nominals.size();++i) {
+        poolNominal_ += arguments_.nominals[i];
+    }
+    attachment_ = poolNominal_ * arguments_.relativeAttachment;
+    detachment_ = poolNominal_ * arguments_.relativeDetachment;
+
     firstPeriod_ = std::upper_bound(arguments_.paymentDates.begin(),
                                     arguments_.paymentDates.end(), today) -
                    arguments_.paymentDates.begin();
@@ -68,11 +77,12 @@ void CdoLightMcEngine::calculate() const {
             yieldCurve_->timeFromReference(arguments_.paymentDates[i]));
     }
 
+    periodDefaultProbs_.clear();
     for (Size i = 0; i < defaultCurves_.size(); ++i) {
         std::vector<Real> tmp(periodTimes_.size());
-        for (Size j = firstPeriod_; j < arguments_.paymentDates.size(); ++i) {
+        for (Size j = firstPeriod_; j < arguments_.paymentDates.size(); ++j) {
             tmp[j] = defaultCurves_[i]->defaultProbability(
-                arguments_.paymentDates[i]);
+                arguments_.paymentDates[j]);
         }
         periodDefaultProbs_.push_back(tmp);
     }
@@ -116,36 +126,42 @@ Real CdoLightMcEngine::pathPayoff() const {
     Real cumulativeCoupon = 0.0;
     Real cumulativeProtection = 0.0;
 
+    Real priorDefaultedNominal = 0.0;
+    Real priorTrancheLoss = 0.0;
+
     for (Size i = 0; i < arguments_.paymentDates.size() - firstPeriod_; ++i) {
 
-        Real coupon = 0.0;
-        Real protection = 0.0;
+        Real currentDefaultedNominal = 0.0;
 
         for (Size j = 0; j < defaultCurves_.size(); j++) {
-            if (defaultIndexes_[j] <= i) {
-                // we assume that the default happens on mid of period
-                if (defaultIndexes_[j] == i) {
-                    coupon += 0.5 * arguments_.nominals[j] *
-                        (1.0 - recoveryRates_[j]->value());
-                    protection +=
-                        arguments_.nominals[j] * (1.0 - (recoveryRates_[j]->value()));
-                }
-                coupon += arguments_.nominals[j] * recoveryRates_[j]->value();
-            } else {
-                coupon += arguments_.nominals[j];
+            if (defaultIndexes_[j] == i) {
+                currentDefaultedNominal += arguments_.nominals[j] * (1.0 - recoveryRates_[j]->value() );
             }
         }
 
+        Real trancheLoss = std::min( std::max( priorDefaultedNominal + currentDefaultedNominal - attachment_ , 0.0 ),
+                                     detachment_ - attachment_ );
+        
+        // we assume that the default happens on mid of period (so the current coupon is paid
+        // for half of the period in full, and for the other half with the current defaulted
+        // nominal accounted for)
+        
+        Real effectiveTrancheVolume = detachment_ - attachment_ - priorTrancheLoss - 0.5 * (trancheLoss-priorTrancheLoss);
+
         cumulativeCoupon +=
-            coupon * arguments_.spread *
+            effectiveTrancheVolume * arguments_.spread *
             arguments_.accrualTimes[i + firstPeriod_] *
             yieldCurve_->discount(arguments_.paymentDates[i + firstPeriod_]);
 
         cumulativeProtection +=
-            protection *
+            (trancheLoss - priorTrancheLoss) *
             yieldCurve_->discount(
                 i == 0 ? periodTimes_[0] / 2.0
                        : (periodTimes_[i - 1] + periodTimes_[i]) / 2.0);
+        
+        priorDefaultedNominal += currentDefaultedNominal;
+        priorTrancheLoss = trancheLoss;
+
     }
 
     return cumulativeProtection - cumulativeCoupon;
