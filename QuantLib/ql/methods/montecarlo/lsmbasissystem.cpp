@@ -34,8 +34,8 @@ namespace QuantLib {
     namespace {
 
         // makes typing a little easier
-        typedef std::vector<boost::function1<Real, Real> > VF_R;
-        typedef std::vector<boost::function1<Real, Array> > VF_A;
+        typedef std::vector<boost::function1<Real, const Real&> > VF_R;
+        typedef std::vector<boost::function1<Real, const Array&> > VF_A;
         typedef std::vector<std::vector<Size> > VV;
         Real (GaussianOrthogonalPolynomial::*ptr_w)(Size, Real) const =
             &GaussianOrthogonalPolynomial::weightedValue;
@@ -58,7 +58,7 @@ namespace QuantLib {
            to create [Array -> Real] functor */
         class MultiDimFct : public std::unary_function<Real, Array> {
           public:
-            MultiDimFct(const VF_R b): b_(b) {
+            MultiDimFct(const VF_R& b): b_(b) {
                 QL_REQUIRE(b_.size()>0, "zero size basis");
             }
             inline Real operator()(const Array& a) const {
