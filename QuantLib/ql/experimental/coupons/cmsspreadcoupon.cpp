@@ -25,15 +25,18 @@ namespace QuantLib {
     CmsSpreadCoupon::CmsSpreadCoupon(
         const Date &paymentDate, Real nominal, const Date &startDate,
         const Date &endDate, Natural fixingDays,
-        const boost::shared_ptr<SwapSpreadIndex> &index, Real gearing,
+        const boost::shared_ptr<SwapIndex> &index1,
+        const boost::shared_ptr<SwapIndex> &index2,
+        Real gearing1, gearing2,
         Spread spread, const Date &refPeriodStart,
         const Date &refPeriodEnd,
         const DayCounter &dayCounter, bool isInArrears)
         : FloatingRateCoupon(paymentDate, nominal, startDate, endDate,
-                             fixingDays, index, gearing, spread,
+                             fixingDays, index1, index2, 
+                             gearing1, gearing2, spread,
                              refPeriodStart, refPeriodEnd, dayCounter,
                              isInArrears),
-          index_(index) {}
+        index1_(index1), index2_(index2) {}
 
     void CmsSpreadCoupon::accept(AcyclicVisitor &v) {
         Visitor<CmsSpreadCoupon> *v1 = dynamic_cast<Visitor<CmsSpreadCoupon> *>(&v);
@@ -44,8 +47,10 @@ namespace QuantLib {
     }
 
     CmsSpreadLeg::CmsSpreadLeg(const Schedule &schedule,
-                               const boost::shared_ptr<SwapSpreadIndex> &index)
-        : schedule_(schedule), swapSpreadIndex_(index),
+                               const boost::shared_ptr<SwapIndex> &index1,
+                               const boost::shared_ptr<SwapIndex> &index2,
+                               Real gearing1, Real gearing2)
+        : schedule_(schedule), swapIndex1_(index1), swapIndex2_(index2),
           paymentAdjustment_(Following), inArrears_(false),
           zeroPayments_(false) {}
 
@@ -83,14 +88,17 @@ namespace QuantLib {
         return *this;
     }
 
-    CmsSpreadLeg &CmsSpreadLeg::withGearings(Real gearing) {
-        gearings_ = std::vector<Real>(1, gearing);
+    CmsSpreadLeg &CmsSpreadLeg::withGearings(Real gearing1, Real gearing2) {
+        gearings1_ = std::vector<Real>(1, gearing1);
+        gearings2_ = std::vector<Real>(1, gearing2);
         return *this;
     }
 
     CmsSpreadLeg &
-    CmsSpreadLeg::withGearings(const std::vector<Real> &gearings) {
-        gearings_ = gearings;
+    CmsSpreadLeg::withGearings(const std::vector<Real> &gearings1,
+                               const std::vector<Real> &gearings2) {
+        gearings1_ = gearings1;
+        gearings2_ = gearings2;
         return *this;
     }
 
@@ -138,7 +146,7 @@ namespace QuantLib {
     CmsSpreadLeg::operator Leg() const {
         return FloatingLeg<SwapSpreadIndex, CmsSpreadCoupon,
                            CappedFlooredCmsSpreadCoupon>(
-            schedule_, notionals_, swapSpreadIndex_, paymentDayCounter_,
+                                                         schedule_, notionals_, swapIndex1_, swapIndex2_, paymentDayCounter_,
             paymentAdjustment_, fixingDays_, gearings_, spreads_, caps_,
             floors_, inArrears_, zeroPayments_);
     }
