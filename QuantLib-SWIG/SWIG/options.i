@@ -670,6 +670,73 @@ class FDAmericanEnginePtr : public boost::shared_ptr<PricingEngine> {
     }
 };
 
+%{
+using QuantLib::FdBlackScholesVanillaEngine;
+typedef boost::shared_ptr<PricingEngine> FdBlackScholesVanillaEnginePtr;
+%}
+
+%rename(FdBlackScholesVanillaEngine) FdBlackScholesVanillaEnginePtr;
+class FdBlackScholesVanillaEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        FdBlackScholesVanillaEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
+                            Size tGrid = 100, Size xGrid = 100, Size dampingSteps = 0) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new FdBlackScholesVanillaEnginePtr(
+                            new FdBlackScholesVanillaEngine( bsProcess,tGrid, xGrid, dampingSteps));
+        }
+    }
+};
+
+
+%{
+using QuantLib::ContinuousArithmeticAsianLevyEngine;
+typedef boost::shared_ptr<PricingEngine> ContinuousArithmeticAsianLevyEnginePtr;
+%}
+
+%rename(ContinuousArithmeticAsianLevyEngine) ContinuousArithmeticAsianLevyEnginePtr;
+class ContinuousArithmeticAsianLevyEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        ContinuousArithmeticAsianLevyEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
+											   const Handle<Quote>& runningAverage,
+											   const Date& startDate) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new ContinuousArithmeticAsianLevyEnginePtr(
+                            new ContinuousArithmeticAsianLevyEngine(bsProcess,runningAverage, startDate));
+        }
+    }
+};
+
+%{
+using QuantLib::FdBlackScholesAsianEngine;
+typedef boost::shared_ptr<PricingEngine> FdBlackScholesAsianEnginePtr;
+%}
+
+%rename(FdBlackScholesAsianEngine) FdBlackScholesAsianEnginePtr;
+class FdBlackScholesAsianEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        FdBlackScholesAsianEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
+									 Size tGrid, Size xGrid, Size aGrid) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new FdBlackScholesAsianEnginePtr(
+                            new FdBlackScholesAsianEngine(bsProcess,tGrid, xGrid, aGrid));
+        }
+    }
+};
+
+
+
 %rename(FDShoutEngine) FDShoutEnginePtr;
 class FDShoutEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
