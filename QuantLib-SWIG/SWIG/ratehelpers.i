@@ -220,14 +220,17 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const DayCounter& fixedDayCount,
                 const IborIndexPtr& index,
                 const Handle<Quote>& spread = Handle<Quote>(),
-                const Period& fwdStart = 0*Days) {
+                const Period& fwdStart = 0*Days,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, tenor, calendar,
                                    fixedFrequency, fixedConvention,
                                    fixedDayCount, libor,
-                                   spread, fwdStart));
+                                   spread, fwdStart,
+                                   discountingCurve));
         }
         SwapRateHelperPtr(
                 Rate rate,
@@ -238,36 +241,45 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const DayCounter& fixedDayCount,
                 const IborIndexPtr& index,
                 const Handle<Quote>& spread = Handle<Quote>(),
-                const Period& fwdStart = 0*Days) {
+                const Period& fwdStart = 0*Days,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, tenor, calendar,
                                    fixedFrequency, fixedConvention,
                                    fixedDayCount, libor,
-                                   spread, fwdStart));
+                                   spread, fwdStart,
+                                   discountingCurve));
         }
         SwapRateHelperPtr(
                 const Handle<Quote>& rate,
                 const SwapIndexPtr& index,
                 const Handle<Quote>& spread = Handle<Quote>(),
-                const Period& fwdStart = 0*Days) {
+                const Period& fwdStart = 0*Days,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
             boost::shared_ptr<SwapIndex> swapIndex =
                 boost::dynamic_pointer_cast<SwapIndex>(index);
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, swapIndex,
-                                   spread, fwdStart));
+                                   spread, fwdStart,
+                                   discountingCurve));
         }
         SwapRateHelperPtr(
                 Rate rate,
                 const SwapIndexPtr& index,
                 const Handle<Quote>& spread = Handle<Quote>(),
-                const Period& fwdStart = 0*Days) {
+                const Period& fwdStart = 0*Days,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
             boost::shared_ptr<SwapIndex> swapIndex =
                 boost::dynamic_pointer_cast<SwapIndex>(index);
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, swapIndex,
-                                   spread, fwdStart));
+                                   spread, fwdStart,
+                                   discountingCurve));
         }
         VanillaSwapPtr swap() {
             return boost::dynamic_pointer_cast<SwapRateHelper>(*self)->swap();
