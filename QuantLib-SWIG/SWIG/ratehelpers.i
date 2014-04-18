@@ -36,11 +36,15 @@ using QuantLib::FraRateHelper;
 using QuantLib::FuturesRateHelper;
 using QuantLib::SwapRateHelper;
 using QuantLib::FixedRateBondHelper;
+using QuantLib::OISRateHelper;
+using QuantLib::DatedOISRateHelper;
 typedef boost::shared_ptr<RateHelper> DepositRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> FraRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> FuturesRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> SwapRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> FixedRateBondHelperPtr;
+typedef boost::shared_ptr<RateHelper> OISRateHelperPtr;
+typedef boost::shared_ptr<RateHelper> DatedOISRateHelperPtr;
 %}
 
 %ignore RateHelper;
@@ -310,6 +314,47 @@ class FixedRateBondHelperPtr : public boost::shared_ptr<RateHelper> {
 
         FixedRateBondPtr bond() {
             return FixedRateBondPtr(boost::dynamic_pointer_cast<FixedRateBondHelper>(*self)->bond());
+        }
+    }
+};
+
+
+%rename(OISRateHelper) OISRateHelperPtr;
+class OISRateHelperPtr : public boost::shared_ptr<RateHelper> {
+  public:
+    %extend {
+        OISRateHelperPtr(
+                Natural settlementDays,
+                const Period& tenor,
+                const Handle<Quote>& rate,
+                const OvernightIndexPtr& index,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
+            boost::shared_ptr<OvernightIndex> overnight =
+                boost::dynamic_pointer_cast<OvernightIndex>(index);
+            return new OISRateHelperPtr(
+                new OISRateHelper(settlementDays,tenor,rate,
+                                  overnight,discountingCurve));
+        }
+    }
+};
+
+%rename(DatedOISRateHelper) DatedOISRateHelperPtr;
+class DatedOISRateHelperPtr : public boost::shared_ptr<RateHelper> {
+  public:
+    %extend {
+        DatedOISRateHelperPtr(
+                const Date& startDate,
+                const Date& endDate,
+                const Handle<Quote>& rate,
+                const OvernightIndexPtr& index,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
+            boost::shared_ptr<OvernightIndex> overnight =
+                boost::dynamic_pointer_cast<OvernightIndex>(index);
+            return new DatedOISRateHelperPtr(
+                new DatedOISRateHelper(startDate,endDate,rate,
+                                       overnight,discountingCurve));
         }
     }
 };
