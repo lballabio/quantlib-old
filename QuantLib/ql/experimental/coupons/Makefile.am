@@ -10,8 +10,7 @@ this_include_HEADERS = \
     proxyibor.hpp \
     quantocouponpricer.hpp \
     strippedcapflooredcoupon.hpp \
-    subperiodcoupons.hpp \
-    swapspreadindex.hpp
+    subperiodcoupons.hpp
 
 libCoupons_la_SOURCES = \
     cmsspreadcoupon.cpp \
@@ -20,8 +19,7 @@ libCoupons_la_SOURCES = \
     proxyibor.cpp \
     quantocouponpricer.cpp \
     strippedcapflooredcoupon.cpp \
-    subperiodcoupons.cpp \
-    swapspreadindex.cpp
+    subperiodcoupons.cpp
 
 noinst_LTLIBRARIES = libCoupons.la
 

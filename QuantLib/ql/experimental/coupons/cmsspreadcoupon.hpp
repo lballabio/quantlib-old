@@ -24,11 +24,10 @@
 
 #include <ql/cashflows/floatingratecoupon.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
+#include <ql/indexes/swapindex.hpp>
 #include <ql/time/schedule.hpp>
 
 namespace QuantLib {
-
-class SwapIndex;
 
 //! CMS spread coupon class
 /*! \warning This class does not perform any date adjustment,
@@ -49,19 +48,24 @@ class CmsSpreadCoupon : public FloatingRateCoupon {
                     bool isInArrears = false);
     //! \name Inspectors
     //@{
-    const boost::shared_ptr<SwapSpreadIndex> &swapIndex1() const {
-        return index1_;
+    const boost::shared_ptr<SwapIndex> swapIndex1() const {
+        boost::shared_ptr<SwapIndex> i =
+            boost::static_pointer_cast<SwapIndex>(indexes_[0]);
+        return i;
     }
-    const boost::shared_ptr<SwapSpreadIndex> &swapIndex2() const {
-        return index2_;
+    const boost::shared_ptr<SwapIndex> swapIndex2() const {
+        boost::shared_ptr<SwapIndex> i =
+            boost::static_pointer_cast<SwapIndex>(indexes_[1]);
+        return i;
     }
+    const Real gearing1() const { return gearings_[0]; }
+    const Real gearing2() const { return gearings_[1]; }
     //@}
     //! \name Visitability
     //@{
     virtual void accept(AcyclicVisitor &);
     //@}
   private:
-    boost::shared_ptr<SwapIndex> index1_, index2_;
 };
 
 class CappedFlooredCmsSpreadCoupon : public CappedFlooredCoupon {
@@ -92,21 +96,66 @@ class CappedFlooredCmsSpreadCoupon : public CappedFlooredCoupon {
     }
 };
 
+//! factory class
+class CmsSpreadCouponFactory : public FloatingCouponFactory {
+  public:
+    CmsSpreadCouponFactory(const boost::shared_ptr<SwapIndex> &index1,
+                           const boost::shared_ptr<SwapIndex> &index2,
+                           Real gearing1, Real gearing2)
+        : index1_(index1), index2_(index2), gearing1_(gearing1),
+          gearing2_(gearing2) {}
+
+    boost::shared_ptr<FloatingRateCoupon>
+    plainCoupon(const Date &paymentDate, Real nominal, const Date &startDate,
+                const Date &endDate, Natural fixingDays, Real gearing,
+                Real spread, const Date &refPeriodStart,
+                const Date &refPeriodEnd, const DayCounter &dayCounter,
+                bool isInArrears) const {
+        return boost::shared_ptr<CmsSpreadCoupon>(new CmsSpreadCoupon(
+            paymentDate, nominal, startDate, endDate, fixingDays, index1_,
+            index2_, gearing * gearing1_, gearing * gearing2_, spread,
+            refPeriodStart, refPeriodEnd, dayCounter, isInArrears));
+    }
+
+    boost::shared_ptr<CappedFlooredCoupon>
+    cappedFlooredCoupon(const Date &paymentDate, Real nominal,
+                        const Date &startDate, const Date &endDate,
+                        Natural fixingDays, Real gearing, Real spread, Real cap,
+                        Real floor, const Date &refPeriodStart,
+                        const Date &refPeriodEnd, const DayCounter &dayCounter,
+                        bool isInArrears) const {
+        return boost::shared_ptr<CappedFlooredCmsSpreadCoupon>(
+            new CappedFlooredCmsSpreadCoupon(
+                paymentDate, nominal, startDate, endDate, fixingDays, index1_,
+                index2_, gearing * gearing1_, gearing * gearing2_, spread, cap,
+                floor, refPeriodStart, refPeriodEnd, dayCounter, isInArrears));
+    }
+
+    Natural defaultFixingDays() const {
+        return index1_->fixingDays(); // consistency check is done in coupon
+                                      // constructor anyway
+    }
+
+  private:
+    const boost::shared_ptr<SwapIndex> index1_, index2_;
+    Real gearing1_, gearing2_;
+};
+
 //! helper class building a sequence of capped/floored cms-spread-rate coupons
 class CmsSpreadLeg {
   public:
     CmsSpreadLeg(const Schedule &schedule,
-                 const boost::shared_ptr<SwapSpreadIndex> &swapIndex1,
-                 const boost::shared_ptr<SwapSpreadIndex> &swapIndex2,
-                 Real gearing1, gearing2);
+                 const boost::shared_ptr<SwapIndex> &index1,
+                 const boost::shared_ptr<SwapIndex> &index2, Real gearing1,
+                 Real gearing2);
     CmsSpreadLeg &withNotionals(Real notional);
     CmsSpreadLeg &withNotionals(const std::vector<Real> &notionals);
     CmsSpreadLeg &withPaymentDayCounter(const DayCounter &);
     CmsSpreadLeg &withPaymentAdjustment(BusinessDayConvention);
     CmsSpreadLeg &withFixingDays(Natural fixingDays);
     CmsSpreadLeg &withFixingDays(const std::vector<Natural> &fixingDays);
-    CmsSpreadLeg &withGearings(Real gearing1, Real gearing2);
-    CmsSpreadLeg &withGearings(const std::vector<Real> &gearings1, const std::vector<Rel> &gearings2);
+    CmsSpreadLeg &withGearings(Real gearing);
+    CmsSpreadLeg &withGearings(const std::vector<Real> &gearings);
     CmsSpreadLeg &withSpreads(Spread spread);
     CmsSpreadLeg &withSpreads(const std::vector<Spread> &spreads);
     CmsSpreadLeg &withCaps(Rate cap);
@@ -119,12 +168,13 @@ class CmsSpreadLeg {
 
   private:
     Schedule schedule_;
-    boost::shared_ptr<SwapIndex> swapIndex1_, swapIndex2_;
+    boost::shared_ptr<SwapIndex> index1_, index2_;
+    Real gearing1_, gearing2_;
     std::vector<Real> notionals_;
     DayCounter paymentDayCounter_;
     BusinessDayConvention paymentAdjustment_;
     std::vector<Natural> fixingDays_;
-    std::vector<Real> gearings1_, gearing2_;
+    std::vector<Real> gearings_;
     std::vector<Spread> spreads_;
     std::vector<Rate> caps_, floors_;
     bool inArrears_, zeroPayments_;
