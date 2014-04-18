@@ -41,6 +41,8 @@ namespace QuantLib {
         virtual Real value() const = 0;
         //! returns true if the Quote holds a valid value
         virtual bool isValid() const = 0;
+        //! cast operator to value
+        operator Real() { return value(); }
     };
 
 }
