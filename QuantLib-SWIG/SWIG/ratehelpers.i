@@ -86,6 +86,20 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                       calendar, convention,
                                       endOfMonth, dayCounter));
         }
+        DepositRateHelperPtr(const Handle<Quote>& rate,
+                             const IborIndexPtr& index) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new DepositRateHelperPtr(
+                new DepositRateHelper(rate, libor));
+        }
+        DepositRateHelperPtr(Rate rate,
+                             const IborIndexPtr& index) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new DepositRateHelperPtr(
+                new DepositRateHelper(rate, libor));
+        }
     }
 };
 
@@ -121,6 +135,22 @@ class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                   fixingDays,calendar,convention,
                                   endOfMonth,dayCounter));
         }
+        FraRateHelperPtr(const Handle<Quote>& rate,
+                         Natural monthsToStart,
+                         const IborIndexPtr& index) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new FraRateHelperPtr(
+                new FraRateHelper(rate,monthsToStart,libor));
+        }
+        FraRateHelperPtr(Rate rate,
+                         Natural monthsToStart,
+                         const IborIndexPtr& index) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new FraRateHelperPtr(
+                new FraRateHelper(rate,monthsToStart,libor));
+        }
     }
 };
 
@@ -151,6 +181,28 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 new FuturesRateHelper(price,immDate,nMonths,
                                       calendar,convention,endOfMonth,
                                       dayCounter,convexityAdjustment));
+        }
+        FuturesRateHelperPtr(
+                const Handle<Quote>& price,
+                const Date& immDate,
+                const IborIndexPtr& index,
+                const Handle<Quote>& convexityAdjustment) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new FuturesRateHelperPtr(
+                new FuturesRateHelper(price,immDate,libor,
+                                      convexityAdjustment));
+        }
+        FuturesRateHelperPtr(
+                Real price,
+                const Date& immDate,
+                const IborIndexPtr& index,
+                Real convexityAdjustment = 0.0) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new FuturesRateHelperPtr(
+                new FuturesRateHelper(price,immDate,libor,
+                                      convexityAdjustment));
         }
     }
 };
@@ -193,6 +245,28 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 new SwapRateHelper(rate, tenor, calendar,
                                    fixedFrequency, fixedConvention,
                                    fixedDayCount, libor,
+                                   spread, fwdStart));
+        }
+        SwapRateHelperPtr(
+                const Handle<Quote>& rate,
+                const SwapIndexPtr& index,
+                const Handle<Quote>& spread = Handle<Quote>(),
+                const Period& fwdStart = 0*Days) {
+            boost::shared_ptr<SwapIndex> swapIndex =
+                boost::dynamic_pointer_cast<SwapIndex>(index);
+            return new SwapRateHelperPtr(
+                new SwapRateHelper(rate, swapIndex,
+                                   spread, fwdStart));
+        }
+        SwapRateHelperPtr(
+                Rate rate,
+                const SwapIndexPtr& index,
+                const Handle<Quote>& spread = Handle<Quote>(),
+                const Period& fwdStart = 0*Days) {
+            boost::shared_ptr<SwapIndex> swapIndex =
+                boost::dynamic_pointer_cast<SwapIndex>(index);
+            return new SwapRateHelperPtr(
+                new SwapRateHelper(rate, swapIndex,
                                    spread, fwdStart));
         }
         VanillaSwapPtr swap() {
