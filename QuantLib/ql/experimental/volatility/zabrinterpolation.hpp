@@ -3,10 +3,11 @@
 /*
  Copyright (C) 2006 Ferdinando Ametrano
  Copyright (C) 2007 Marco Bianchetti
- Copyright (C) 2007 François du Vignaud
+ Copyright (C) 2007 FranÃ§ois du Vignaud
  Copyright (C) 2007 Giorgio Facchinetti
  Copyright (C) 2006 Mario Pucci
  Copyright (C) 2006 StatPro Italia srl
+ Copyright (C) 2014 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,12 +23,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file sabrinterpolation.hpp
-    \brief SABR interpolation interpolation between discrete points
+/*! \file zabrinterpolation.hpp
+    \brief ZABR interpolation interpolation between discrete points
+    (this is sabrinterpolation.hpp with some adjustments,
+    TODO refactor both interpolations into one more general one)
 */
 
-#ifndef quantlib_sabr_interpolation_hpp
-#define quantlib_sabr_interpolation_hpp
+#ifndef quantlib_zabr_interpolation_hpp
+#define quantlib_zabr_interpolation_hpp
 
 #include <ql/math/interpolation.hpp>
 #include <ql/math/optimization/method.hpp>
@@ -37,36 +40,43 @@
 #include <ql/utilities/null.hpp>
 #include <ql/utilities/dataformatters.hpp>
 #include <ql/termstructures/volatility/sabr.hpp>
+#include <ql/experimental/volatility/zabrsmilesection.hpp>
 #include <ql/math/optimization/projectedcostfunction.hpp>
 #include <ql/math/optimization/constraint.hpp>
 #include <ql/math/randomnumbers/haltonrsg.hpp>
+
+#include <boost/assign/list_of.hpp>
+#include <boost/make_shared.hpp>
 
 namespace QuantLib {
 
     namespace detail {
 
-        class SABRCoeffHolder {
+        class ZABRCoeffHolder {
           public:
-            SABRCoeffHolder(Time t,
+            ZABRCoeffHolder(Time t,
                             const Real& forward,
                             Real alpha,
                             Real beta,
                             Real nu,
                             Real rho,
+                            Real gamma,
                             bool alphaIsFixed,
                             bool betaIsFixed,
                             bool nuIsFixed,
-                            bool rhoIsFixed)
+                            bool rhoIsFixed,
+                            bool gammaIsFixed)
             : t_(t), forward_(forward),
-              alpha_(alpha), beta_(beta), nu_(nu), rho_(rho),
+              alpha_(alpha), beta_(beta), nu_(nu), rho_(rho), gamma_(gamma),
               alphaIsFixed_(false),
               betaIsFixed_(false),
               nuIsFixed_(false),
               rhoIsFixed_(false),
+              gammaIsFixed_(false),
               weights_(std::vector<Real>()),
               error_(Null<Real>()),
               maxError_(Null<Real>()),
-              SABREndCriteria_(EndCriteria::None)
+              ZABREndCriteria_(EndCriteria::None)
             {
                 QL_REQUIRE(t>0.0, "expiry time must be positive: "
                                   << t << " not allowed");
@@ -83,36 +93,42 @@ namespace QuantLib {
                     rhoIsFixed_ = rhoIsFixed;
                 else rho_ = 0.0;
                 validateSabrParameters(alpha_, beta_, nu_, rho_);
+                if (gamma_ != Null<Real>())
+                    gammaIsFixed_ = gammaIsFixed;
+                else gamma_ = 1.0;
+                QL_REQUIRE(gamma_ >= 0.0, "gamma (" << gamma_ << ") must be non negative");
             }
-            virtual ~SABRCoeffHolder() {}
+            virtual ~ZABRCoeffHolder() {}
 
             /*! Option expiry */
             Real t_;
             /*! */
             const Real& forward_;
-            /*! Sabr parameters */
-            Real alpha_, beta_, nu_, rho_;
-            bool alphaIsFixed_, betaIsFixed_, nuIsFixed_, rhoIsFixed_;
+            /*! Zabr parameters */
+            Real alpha_, beta_, nu_, rho_, gamma_;
+            bool alphaIsFixed_, betaIsFixed_, nuIsFixed_, rhoIsFixed_, gammaIsFixed_;
             std::vector<Real> weights_;
             /*! Sabr interpolation results */
             Real error_, maxError_;
-            EndCriteria::Type SABREndCriteria_;
+            EndCriteria::Type ZABREndCriteria_;
         };
 
         template <class I1, class I2>
-        class SABRInterpolationImpl : public Interpolation::templateImpl<I1,I2>,
-                                      public SABRCoeffHolder {
+        class ZABRInterpolationImpl : public Interpolation::templateImpl<I1,I2>,
+                                      public ZABRCoeffHolder {
           public:
-            SABRInterpolationImpl(
+            ZABRInterpolationImpl(
                 const I1& xBegin, const I1& xEnd,
                 const I2& yBegin,
                 Time t,
                 const Real& forward,
-                Real alpha, Real beta, Real nu, Real rho,
+                Real alpha, Real beta, Real nu, Real rho, Real gamma,
                 bool alphaIsFixed,
                 bool betaIsFixed,
                 bool nuIsFixed,
                 bool rhoIsFixed,
+                bool gammaIsFixed,
+                ZabrSmileSection::Evaluation evaluation,
                 bool vegaWeighted,
                 const boost::shared_ptr<EndCriteria>& endCriteria,
                 const boost::shared_ptr<OptimizationMethod>& optMethod,
@@ -120,12 +136,14 @@ namespace QuantLib {
                 const bool useMaxError,
                 const Size maxGuesses)
             : Interpolation::templateImpl<I1,I2>(xBegin, xEnd, yBegin),
-              SABRCoeffHolder(t, forward, alpha, beta, nu, rho,
-                              alphaIsFixed,betaIsFixed,nuIsFixed,rhoIsFixed),
+              ZABRCoeffHolder(t, forward, alpha, beta, nu, rho, gamma,
+                              alphaIsFixed,betaIsFixed,nuIsFixed,rhoIsFixed,
+                              gammaIsFixed),
               endCriteria_(endCriteria), optMethod_(optMethod),
               errorAccept_(errorAccept), useMaxError_(useMaxError),
               maxGuesses_(maxGuesses), forward_(forward),
-              vegaWeighted_(vegaWeighted)
+              vegaWeighted_(vegaWeighted),
+              evaluation_(evaluation)
             {
                 // if no optimization method or endCriteria is provided, we provide one
                 if (!optMethod_)
@@ -167,35 +185,37 @@ namespace QuantLib {
                 }
 
                 // there is nothing to optimize
-                if (alphaIsFixed_ && betaIsFixed_ && nuIsFixed_ && rhoIsFixed_) {
+                if (alphaIsFixed_ && betaIsFixed_ && nuIsFixed_ && rhoIsFixed_ && gammaIsFixed_) {
                     error_ = interpolationError();
                     maxError_ = interpolationMaxError();
-                    SABREndCriteria_ = EndCriteria::None;
+                    ZABREndCriteria_ = EndCriteria::None;
                     return;
 
                 } else {
 
-                    SABRError costFunction(this);
+                    ZABRError costFunction(this);
                     transformation_ = boost::shared_ptr<ParametersTransformation>(new
-                        SabrParametersTransformation);
+                        ZabrParametersTransformation);
 
-                    Array guess(4);
+                    Array guess(5);
                     guess[0] = alpha_;
                     guess[1] = beta_;
                     guess[2] = nu_;
                     guess[3] = rho_;
+                    guess[4] = gamma_;
 
-                    std::vector<bool> parameterAreFixed(4);
+                    std::vector<bool> parameterAreFixed(5);
                     parameterAreFixed[0] = alphaIsFixed_;
                     parameterAreFixed[1] = betaIsFixed_;
                     parameterAreFixed[2] = nuIsFixed_;
                     parameterAreFixed[3] = rhoIsFixed_;
+                    parameterAreFixed[4] = gammaIsFixed_;
 
                     Size iterations = 0;
                     Size freeParameters = 0;
                     Real bestError = QL_MAX_REAL;
                     Array bestParameters;
-                    for(Size i=0;i<4;i++) if(!parameterAreFixed[i]) freeParameters++;
+                    for(Size i=0;i<5;i++) if(!parameterAreFixed[i]) freeParameters++;
                     HaltonRsg halton(freeParameters,42);
                     EndCriteria::Type tmpEndCriteria;
                     Real tmpInterpolationError;
@@ -212,26 +232,28 @@ namespace QuantLib {
                             if(!parameterAreFixed[1]) guess[1] = (1.0-2E-6)*s.value[j++]+1E-6;
                             if(!parameterAreFixed[2]) guess[2] = 5.0*s.value[j++]+1E-6;
                             if(!parameterAreFixed[3]) guess[3] = (2.0*s.value[j++]-1.0)*(1.0-1E-6);
+                            if(!parameterAreFixed[4]) guess[4] = 5.0*s.value[j++]+1E-6;
                             guess = transformation_->direct(guess);
                             if(alphaIsFixed_) guess[0] = alpha_;
                             if(betaIsFixed_) guess[1] = beta_;
                             if(nuIsFixed_) guess[2] = nu_;
                             if(rhoIsFixed_) guess[3] = rho_;
+                            if(gammaIsFixed_) guess[4] = gamma_;
                         }
 
                         Array inversedTransformatedGuess(transformation_->inverse(guess));
 
-                        ProjectedCostFunction constrainedSABRError(costFunction,
+                        ProjectedCostFunction constrainedZABRError(costFunction,
                                         inversedTransformatedGuess, parameterAreFixed);
 
                         Array projectedGuess
-                            (constrainedSABRError.project(inversedTransformatedGuess));
+                            (constrainedZABRError.project(inversedTransformatedGuess));
 
                         NoConstraint constraint;
-                        Problem problem(constrainedSABRError, constraint, projectedGuess);
+                        Problem problem(constrainedZABRError, constraint, projectedGuess);
                         tmpEndCriteria = optMethod_->minimize(problem, *endCriteria_);
                         Array projectedResult(problem.currentValue());
-                        Array transfResult(constrainedSABRError.include(projectedResult));
+                        Array transfResult(constrainedZABRError.include(projectedResult));
 
                         Array result = transformation_->direct(transfResult);
 
@@ -240,7 +262,7 @@ namespace QuantLib {
                         if(tmpInterpolationError < bestError) {
                             bestError = tmpInterpolationError;
                             bestParameters = result;
-                            SABREndCriteria_ = tmpEndCriteria;
+                            ZABREndCriteria_ = tmpEndCriteria;
                         }
 
                     } while( ++iterations < maxGuesses_ && tmpInterpolationError > errorAccept_ );
@@ -249,27 +271,30 @@ namespace QuantLib {
                     beta_ = bestParameters[1];
                     nu_ = bestParameters[2];
                     rho_ = bestParameters[3];
+                    gamma_ = bestParameters[4];
                     error_ = interpolationError();
                     maxError_ = interpolationMaxError();
 
+                    section_ = boost::make_shared<ZabrSmileSection>(
+                        t_, forward_, boost::assign::list_of(alpha_)(beta_)(
+                                          nu_)(rho_)(gamma_),
+                        evaluation_);
                 }
-
             }
 
             Real value(Real x) const {
                 QL_REQUIRE(x>0.0, "strike must be positive: " <<
                                   io::rate(x) << " not allowed");
-                return sabrVolatility(x, forward_, t_,
-                                      alpha_, beta_, nu_, rho_);
+                return section_->volatility(x);
             }
             Real primitive(Real) const {
-                QL_FAIL("SABR primitive not implemented");
+                QL_FAIL("ZABR primitive not implemented");
             }
             Real derivative(Real) const {
-                QL_FAIL("SABR derivative not implemented");
+                QL_FAIL("ZABR derivative not implemented");
             }
             Real secondDerivative(Real) const {
-                QL_FAIL("SABR secondDerivative not implemented");
+                QL_FAIL("ZABR secondDerivative not implemented");
             }
             // calculate total squared weighted difference (L2 norm)
             Real interpolationSquaredError() const {
@@ -313,12 +338,12 @@ namespace QuantLib {
                 return maxError;
             }
           private:
-            class SabrParametersTransformation :
+            class ZabrParametersTransformation :
                   public ParametersTransformation {
                      mutable Array y_;
                      const Real eps1_, eps2_, dilationFactor_ ;
              public:
-                SabrParametersTransformation() : y_(Array(4)),
+                ZabrParametersTransformation() : y_(Array(5)),
                     eps1_(.0000001),
                     eps2_(.9999),
                     dilationFactor_(0.001){
@@ -330,6 +355,7 @@ namespace QuantLib {
                     y_[1] = std::fabs(x[1])<1000.0 ? std::exp(-(x[1]*x[1])) : eps1_;
                     y_[2] = std::fabs(x[2])<5.0 ? x[2]*x[2] + eps1_ : 25.0;
                     y_[3] = std::fabs(x[3])<10.0 ? eps2_ * std::sin(x[3]) : eps1_;
+                    y_[4] = std::fabs(x[2])<5.0 ? x[2]*x[2] + eps1_ : 25.0;
                     return y_;
                 }
 
@@ -339,36 +365,38 @@ namespace QuantLib {
                     y_[1] = std::sqrt(-std::log(x[1]));
                     y_[2] = std::sqrt(x[2] - eps1_);
                     y_[3] = std::asin(x[3]/eps2_);
-
+                    y_[4] = std::sqrt(x[4] - eps1_);
                     return y_;
                 }
             };
 
-            class SABRError : public CostFunction {
+            class ZABRError : public CostFunction {
               public:
-                SABRError(SABRInterpolationImpl* sabr)
-                : sabr_(sabr) {}
+                ZABRError(ZABRInterpolationImpl* zabr)
+                : zabr_(zabr) {}
 
                 Real value(const Array& x) const {
-                    const Array y = sabr_->transformation_->direct(x);
-                    sabr_->alpha_ = y[0];
-                    sabr_->beta_  = y[1];
-                    sabr_->nu_    = y[2];
-                    sabr_->rho_   = y[3];
-                    return sabr_->interpolationSquaredError();
+                    const Array y = zabr_->transformation_->direct(x);
+                    zabr_->alpha_ = y[0];
+                    zabr_->beta_  = y[1];
+                    zabr_->nu_    = y[2];
+                    zabr_->rho_   = y[3];
+                    zabr_->gamma_ = y[4];
+                    return zabr_->interpolationSquaredError();
                 }
 
                 Disposable<Array> values(const Array& x) const{
-                    const Array y = sabr_->transformation_->direct(x);
-                    sabr_->alpha_ = y[0];
-                    sabr_->beta_  = y[1];
-                    sabr_->nu_    = y[2];
-                    sabr_->rho_   = y[3];
-                    return sabr_->interpolationErrors(x);
+                    const Array y = zabr_->transformation_->direct(x);
+                    zabr_->alpha_ = y[0];
+                    zabr_->beta_  = y[1];
+                    zabr_->nu_    = y[2];
+                    zabr_->rho_   = y[3];
+                    zabr_->gamma_ = y[4];
+                    return zabr_->interpolationErrors(x);
                 }
 
               private:
-                SABRInterpolationImpl* sabr_;
+                ZABRInterpolationImpl* zabr_;
             };
             boost::shared_ptr<EndCriteria> endCriteria_;
             boost::shared_ptr<OptimizationMethod> optMethod_;
@@ -379,16 +407,17 @@ namespace QuantLib {
             bool vegaWeighted_;
             boost::shared_ptr<ParametersTransformation> transformation_;
             NoConstraint constraint_;
-
+            boost::shared_ptr<ZabrSmileSection> section_;
+            ZabrSmileSection::Evaluation evaluation_;
         };
 
     }
 
-    //! %SABR smile interpolation between discrete volatility points.
-    class SABRInterpolation : public Interpolation {
+    //! %ZABR smile interpolation between discrete volatility points.
+    class ZABRInterpolation : public Interpolation {
       public:
         template <class I1, class I2>
-        SABRInterpolation(const I1& xBegin,  // x = strikes
+        ZABRInterpolation(const I1& xBegin,  // x = strikes
                           const I1& xEnd,
                           const I2& yBegin,  // y = volatilities
                           Time t,            // option expiry
@@ -397,10 +426,13 @@ namespace QuantLib {
                           Real beta,
                           Real nu,
                           Real rho,
+                          Real gamma,
                           bool alphaIsFixed,
                           bool betaIsFixed,
                           bool nuIsFixed,
                           bool rhoIsFixed,
+                          bool gammaIsFixed,
+                          ZabrSmileSection::Evaluation evaluation = ZabrSmileSection::ShortMaturityLognormal,
                           bool vegaWeighted = true,
                           const boost::shared_ptr<EndCriteria>& endCriteria
                                   = boost::shared_ptr<EndCriteria>(),
@@ -411,17 +443,18 @@ namespace QuantLib {
                           const Size maxGuesses=50) {
 
             impl_ = boost::shared_ptr<Interpolation::Impl>(new
-                detail::SABRInterpolationImpl<I1,I2>(xBegin, xEnd, yBegin,
+                detail::ZABRInterpolationImpl<I1,I2>(xBegin, xEnd, yBegin,
                                                      t, forward,
-                                                     alpha, beta, nu, rho,
+                                                     alpha, beta, nu, rho, gamma,
                                                      alphaIsFixed, betaIsFixed,
-                                                     nuIsFixed, rhoIsFixed,
+                                                     nuIsFixed, rhoIsFixed, gammaIsFixed,
+                                                     evaluation,
                                                      vegaWeighted,
                                                      endCriteria,
                                                      optMethod,
                                                      errorAccept, useMaxError, maxGuesses));
             coeffs_ =
-                boost::dynamic_pointer_cast<detail::SABRCoeffHolder>(
+                boost::dynamic_pointer_cast<detail::ZABRCoeffHolder>(
                                                                        impl_);
         }
         Real expiry()  const { return coeffs_->t_; }
@@ -430,23 +463,25 @@ namespace QuantLib {
         Real beta()    const { return coeffs_->beta_; }
         Real nu()      const { return coeffs_->nu_; }
         Real rho()     const { return coeffs_->rho_; }
+        Real gamma()   const { return coeffs_->gamma_; }
         Real rmsError() const { return coeffs_->error_; }
         Real maxError() const { return coeffs_->maxError_; }
         const std::vector<Real>& interpolationWeights() const {
             return coeffs_->weights_; }
-        EndCriteria::Type endCriteria(){ return coeffs_->SABREndCriteria_; }
+        EndCriteria::Type endCriteria(){ return coeffs_->ZABREndCriteria_; }
 
       private:
-        boost::shared_ptr<detail::SABRCoeffHolder> coeffs_;
+        boost::shared_ptr<detail::ZABRCoeffHolder> coeffs_;
     };
 
-    //! %SABR interpolation factory and traits
-    class SABR {
+    //! %ZABR interpolation factory and traits
+    class ZABR {
       public:
-        SABR(Time t, Real forward,
-             Real alpha, Real beta, Real nu, Real rho,
+        ZABR(Time t, Real forward,
+             Real alpha, Real beta, Real nu, Real rho, Real gamma,
              bool alphaIsFixed, bool betaIsFixed,
-             bool nuIsFixed, bool rhoIsFixed,
+             bool nuIsFixed, bool rhoIsFixed, bool gammaIsFixed,
+             ZabrSmileSection::Evaluation evaluation = ZabrSmileSection::ShortMaturityLognormal,
              bool vegaWeighted = false,
              const boost::shared_ptr<EndCriteria> endCriteria
                  = boost::shared_ptr<EndCriteria>(),
@@ -455,20 +490,22 @@ namespace QuantLib {
              const Real errorAccept=0.0020, const bool useMaxError=false,
              const Size maxGuesses=50)
         : t_(t), forward_(forward),
-          alpha_(alpha), beta_(beta), nu_(nu), rho_(rho),
+          alpha_(alpha), beta_(beta), nu_(nu), rho_(rho), gamma_(gamma),
           alphaIsFixed_(alphaIsFixed), betaIsFixed_(betaIsFixed),
-          nuIsFixed_(nuIsFixed), rhoIsFixed_(rhoIsFixed),
+          nuIsFixed_(nuIsFixed), rhoIsFixed_(rhoIsFixed), gammaIsFixed_(gammaIsFixed),
+          evaluation_(evaluation),
           vegaWeighted_(vegaWeighted),
           endCriteria_(endCriteria),
           optMethod_(optMethod), errorAccept_(errorAccept), useMaxError_(useMaxError), maxGuesses_(maxGuesses) {}
         template <class I1, class I2>
         Interpolation interpolate(const I1& xBegin, const I1& xEnd,
                                   const I2& yBegin) const {
-            return SABRInterpolation(xBegin, xEnd, yBegin,
+            return ZABRInterpolation(xBegin, xEnd, yBegin,
                                      t_,  forward_,
-                                     alpha_, beta_, nu_, rho_,
+                                     alpha_, beta_, nu_, rho_, gamma_,
                                      alphaIsFixed_, betaIsFixed_,
-                                     nuIsFixed_, rhoIsFixed_,
+                                     nuIsFixed_, rhoIsFixed_, gammaIsFixed_,
+                                     evaluation_,
                                      vegaWeighted_,
                                      endCriteria_, optMethod_,
                                      errorAccept_, useMaxError_, maxGuesses_);
@@ -477,8 +514,9 @@ namespace QuantLib {
       private:
         Time t_;
         Real forward_;
-        Real alpha_, beta_, nu_, rho_;
-        bool alphaIsFixed_, betaIsFixed_, nuIsFixed_, rhoIsFixed_;
+        Real alpha_, beta_, nu_, rho_, gamma_;
+        bool alphaIsFixed_, betaIsFixed_, nuIsFixed_, rhoIsFixed_, gammaIsFixed_;
+        ZabrSmileSection::Evaluation evaluation_;
         bool vegaWeighted_;
         const boost::shared_ptr<EndCriteria> endCriteria_;
         const boost::shared_ptr<OptimizationMethod> optMethod_;

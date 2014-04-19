@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2013 Peter Caspers
+ Copyright (C) 2014 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,10 +17,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/termstructures/volatility/zabrsmilesection.hpp>
+#include <ql/experimental/volatility/zabrsmilesection.hpp>
 #include <ql/pricingengines/blackformula.hpp>
-
-#include <iostream>
 
 namespace QuantLib {
 
@@ -29,10 +27,10 @@ namespace QuantLib {
                                        const Evaluation evaluation,
                                        const std::vector<Real> &moneyness,
                                        const Size localVolRefinement)
-        : SmileSection(timeToExpiry, DayCounter(),
-                       false/*evaluation == ShortMaturityNormal*/ // at the moment with stick with lognormal sections
+        : SmileSection(timeToExpiry, DayCounter() /*, for the moment we only have lognormal sections in the lib ...
+                       evaluation == ShortMaturityNormal
                            ? SmileSection::Normal
-                           : SmileSection::ShiftedLognormal),
+                           : SmileSection::ShiftedLognormal*/),
           evaluation_(evaluation), forward_(forward), params_(zabrParams),
           localVolRefinement_(localVolRefinement) {
 
@@ -45,9 +43,9 @@ namespace QuantLib {
                                        const Evaluation evaluation,
                                        const std::vector<Real> &moneyness,
                                        const Size localVolRefinement)
-        : SmileSection(d, dc, Date(), false/*evaluation == ShortMaturityNormal*/ // at the moment we stick with lognormal sections
+        : SmileSection(d, dc, Date()/*, evaluation == ShortMaturityNormal 
                                           ? SmileSection::Normal
-                                          : SmileSection::ShiftedLognormal),
+                                          : SmileSection::ShiftedLognormal*/),
           evaluation_(evaluation), forward_(forward), params_(zabrParams),
           localVolRefinement_(localVolRefinement) {
 
@@ -89,10 +87,6 @@ namespace QuantLib {
             }
         }
 
-        //debug
-        // for(Size i=0;i<strikes_.size();i++)
-        //     std::cout << strikes_[i] << std::endl;
-
         model_ = boost::shared_ptr<ZabrModel>(
             new ZabrModel(exerciseTime(), forward_, params_[0], params_[1],
                           params_[2], params_[3], params_[4]));
@@ -125,8 +119,7 @@ namespace QuantLib {
             // on the right side we extrapolate exponetially (because spline
             // does not make sense)
             // we precompute the necessary parameters here
-            static const Real eps =
-                1E-5; // gap for first derivative computation
+            static const Real eps = 1E-5; // gap for first derivative computation
 
             Real c0 = callPriceFct_->operator()(strikes_.back());
             Real c0p =
@@ -139,28 +132,29 @@ namespace QuantLib {
 
     Real ZabrSmileSection::optionPrice(Rate strike, Option::Type type,
                                        Real discount) const {
-
         switch (evaluation_) {
 
         case ShortMaturityLognormal:
-        //case ShortMaturityNormal: // produce lognormal vol from normal expansion price
-            if(!(params_[1]<1.0) && strike <= 0.0) return forward_*discount;
-            else  return SmileSection::optionPrice(strike, type, discount);
+            // case ShortMaturityNormal: // this is not handled natively in the
+            // lib
+            return SmileSection::optionPrice(strike, type, discount);
 
         case ShortMaturityNormal:
-            return bachelierBlackFormula(
-                type, strike, forward_,
-                model_->normalVolatility(strike) * std::sqrt(exerciseTime()),
-                discount);
+            return bachelierBlackFormula(type, strike, forward_,
+                                         model_->normalVolatility(strike) *
+                                             std::sqrt(exerciseTime()),
+                                         discount);
 
         case LocalVolatility:
-        case FullFd:
-            QL_REQUIRE(type == Option::Call,
-                       "local volatility only supports calls at the moment");
-            if (strike <= strikes_.back())
-                return callPriceFct_->operator()(strike) * discount;
+        case FullFd: {
+            Real call = strike <= strikes_.back()
+                            ? callPriceFct_->operator()(strike)
+                            : exp(-a_ * strike + b_);
+            if (type == Option::Call)
+                return call * discount;
             else
-                return exp(-a_ * strike + b_) * discount;
+                return (call - (forward_ - strike)) * discount;
+        }
 
         default:
             QL_FAIL("Unknown evaluation (" << evaluation_ << ")");
@@ -177,7 +171,7 @@ namespace QuantLib {
         }
 
         // case ShortMaturityNormal: // at the moment we want to produce a lognormal vol from the normal expansion
-        //     if(!(params_[1]<1.0)) strike = std::max(1E-6,strike);
+        //     strike = std::max(1E-6, strike);
         //     return model_->normalVolatility(strike);
             
         case ShortMaturityNormal:
@@ -186,12 +180,8 @@ namespace QuantLib {
             Real impliedVol = 0.0;
             try {
                 Option::Type type;
-                if (strike >= model_->forward() ||
-                    evaluation_ == LocalVolatility ||
-                    evaluation_ == FullFd) // use otm option to imply
-                                                    // vol
-                    type = Option::Call; // todo: implement put price in
-                                         // zabrsmilesection for LocalVolatility
+                if (strike >= model_->forward())
+                    type = Option::Call;   
                 else
                     type = Option::Put;
                 impliedVol = blackFormulaImpliedStdDev(

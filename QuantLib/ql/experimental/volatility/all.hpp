@@ -9,5 +9,9 @@
 #include <ql/experimental/volatility/extendedblackvariancesurface.hpp>
 #include <ql/experimental/volatility/interestratevolsurface.hpp>
 #include <ql/experimental/volatility/sabrvolsurface.hpp>
+#include <ql/experimental/volatility/swaptionvolcube1b.cpp>
 #include <ql/experimental/volatility/volcube.hpp>
+#include <ql/experimental/volatility/zabr.hpp>
+#include <ql/experimental/volatility/zabrinterpolation.hpp>
+#include <ql/experimental/volatility/zabrsmilesection.hpp>
 

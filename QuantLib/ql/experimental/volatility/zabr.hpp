@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2012 Peter Caspers
+ Copyright (C) 2014 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -34,56 +34,53 @@
 
 namespace QuantLib {
 
-    class ZabrModel {
+class ZabrModel {
 
-      public:
+  public:
+    ZabrModel(const Real expiryTime, const Real forward, const Real alpha,
+              const Real beta, const Real nu, const Real rho, const Real gamma);
 
-        ZabrModel(const Real expiryTime, const Real forward, const Real alpha,
-                  const Real beta, const Real nu, const Real rho,
-                  const Real gamma);
+    Real localVolatility(const Real f) const;
+    Disposable<std::vector<Real>>
+    localVolatility(const std::vector<Real> &f) const;
 
-        Real localVolatility(const Real f) const;
-        Disposable<std::vector<Real> > localVolatility(const std::vector<Real> &f) const;
+    Real fdPrice(const Real strike) const;
+    Disposable<std::vector<Real>>
+    fdPrice(const std::vector<Real> &strikes) const;
 
-        Real fdPrice(const Real strike) const;
-        Disposable<std::vector<Real> > fdPrice(const std::vector<Real> &strikes) const;
+    Real fullFdPrice(const Real strike) const;
 
-        Real fullFdPrice(const Real strike) const;
+    Real lognormalVolatility(const Real strike) const;
+    Disposable<std::vector<Real>>
+    lognormalVolatility(const std::vector<Real> &strikes) const;
 
-        Real lognormalVolatility(const Real strike) const;
-        Disposable<std::vector<Real> > lognormalVolatility(const std::vector<Real> &strikes) const;
+    Real normalVolatility(const Real strike) const;
+    Disposable<std::vector<Real>>
+    normalVolatility(const std::vector<Real> &strikes) const;
 
-        Real normalVolatility(const Real strike) const;
-        Disposable<std::vector<Real> > normalVolatility(const std::vector<Real> &strikes) const;
+    Real forward() { return forward_; }
+    Real expiryTime() { return expiryTime_; }
+    Real alpha() { return alpha_; }
+    Real beta() { return beta_; }
+    Real nu() { return nu_; }
+    Real rho() { return rho_; }
+    Real gamma() { return gamma_; }
 
-        Real forward() { return forward_; }
-        Real expiryTime() { return expiryTime_; }
-        Real alpha() { return alpha_; }
-        Real beta() { return beta_; }
-        Real nu() { return nu_; }
-        Real rho() { return rho_; }
-        Real gamma() { return gamma_; }
+  private:
+    const Real expiryTime_, forward_;
+    const Real alpha_, beta_, nu_, rho_, gamma_; // nu_ here is a tranformed version of the input nu !
 
-      private:
+    Real x(const Real strike) const;
+    Disposable<std::vector<Real>> x(const std::vector<Real> &strikes) const;
 
-        const Real expiryTime_, forward_;
-        const Real alpha_, beta_, rho_, gamma_;
-        Real nu_; // we need to transform this to match the paper ... TODO clean this up ...
+    Real y(const Real strike) const;
 
-        Real x(const Real strike) const;
-        Disposable<std::vector<Real> >
-        x(const std::vector<Real> &strikes) const;
-        
-        Real y(const Real strike) const;
+    Real F(const Real y, const Real u) const;
 
-        Real F(const Real y, const Real u) const;
-
-        Real lognormalVolatilityHelper(const Real strike, const Real x) const;
-        Real normalVolatilityHelper(const Real strike, const Real x) const;
-        Real localVolatilityHelper(const Real f, const Real x) const;
-
-    };
-
+    Real lognormalVolatilityHelper(const Real strike, const Real x) const;
+    Real normalVolatilityHelper(const Real strike, const Real x) const;
+    Real localVolatilityHelper(const Real f, const Real x) const;
+};
 }
 
 #endif

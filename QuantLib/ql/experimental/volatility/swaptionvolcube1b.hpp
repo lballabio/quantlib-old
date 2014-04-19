@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2006, 2007 Giorgio Facchinetti
+ Copyright (C) 2014 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,14 +18,17 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file swaptionvolcube1.hpp
+/*! \file swaptionvolcube1b.hpp
     \brief Swaption volatility cube, fit-early-interpolate-later approach
+    same as swaptionvolcube1 but with zabr instead of sabr model
+    TODO refactor both cubes into one more general one
 */
 
-#ifndef quantlib_swaption_volcube_fit_early_interpolate_later_h
-#define quantlib_swaption_volcube_fit_early_interpolate_later_h
+#ifndef quantlib_swaption_volcube_fit_early_interpolate_later_b_h
+#define quantlib_swaption_volcube_fit_early_interpolate_later_b_h
 
 #include <ql/termstructures/volatility/swaption/swaptionvolcube.hpp>
+#include <ql/experimental/volatility/zabrsmilesection.hpp>
 #include <ql/math/matrix.hpp>
 
 namespace QuantLib {
@@ -33,7 +37,7 @@ namespace QuantLib {
     class EndCriteria;
     class OptimizationMethod;
 
-    class SwaptionVolCube1 : public SwaptionVolatilityCube {
+    class SwaptionVolCube1b : public SwaptionVolatilityCube {
         class Cube {
           public:
             Cube() {}
@@ -88,7 +92,7 @@ namespace QuantLib {
             mutable std::vector< boost::shared_ptr<Interpolation2D> > interpolators_;
          };
       public:
-        SwaptionVolCube1(
+        SwaptionVolCube1b(
             const Handle<SwaptionVolatilityStructure>& atmVolStructure,
             const std::vector<Period>& optionTenors,
             const std::vector<Period>& swapTenors,
@@ -100,6 +104,7 @@ namespace QuantLib {
             const std::vector<std::vector<Handle<Quote> > >& parametersGuess,
             const std::vector<bool>& isParameterFixed,
             bool isAtmCalibrated,
+            ZabrSmileSection::Evaluation evaluation = ZabrSmileSection::ShortMaturityLognormal,
             const boost::shared_ptr<EndCriteria>& endCriteria
                 = boost::shared_ptr<EndCriteria>(),
             Real maxErrorTolerance = Null<Real>(),
@@ -124,20 +129,20 @@ namespace QuantLib {
         const Matrix& marketVolCube(Size i) const {
             return marketVolCube_.points()[i];
         }
-        Matrix sparseSabrParameters()const;
-        Matrix denseSabrParameters() const;
+        Matrix sparseZabrParameters()const;
+        Matrix denseZabrParameters() const;
         Matrix marketVolCube() const;
         Matrix volCubeAtmCalibrated() const;
         //@}
-        void sabrCalibrationSection(const Cube& marketVolCube,
+        void zabrCalibrationSection(const Cube& marketVolCube,
                                     Cube& parametersCube,
                                     const Period& swapTenor) const;
-        void recalibration(Real beta,
+        void recalibration(Real gamma,
                            const Period& swapTenor);
-        void recalibration(const std::vector<Real> &beta,
+        void recalibration(const std::vector<Real> &gamma,
                            const Period& swapTenor);
         void recalibration(const std::vector<Period> &swapLengths,
-                           const std::vector<Real> &beta,
+                           const std::vector<Real> &gamma,
                            const Period& swapTenor);
         void updateAfterRecalibration();
      protected:
@@ -146,8 +151,8 @@ namespace QuantLib {
         boost::shared_ptr<SmileSection> smileSection(
                                     Time optionTime,
                                     Time swapLength,
-                                    const Cube& sabrParametersCube) const;
-        Cube sabrCalibration(const Cube& marketVolCube) const;
+                                    const Cube& zabrParametersCube) const;
+        Cube zabrCalibration(const Cube& marketVolCube) const;
         void fillVolatilityCube() const;
         void createSparseSmiles() const;
         std::vector<Real> spreadVolInterpolation(const Date& atmOptionDate,
@@ -160,6 +165,7 @@ namespace QuantLib {
         mutable std::vector< std::vector<boost::shared_ptr<SmileSection> > >
                                                                 sparseSmiles_;
         std::vector<std::vector<Handle<Quote> > > parametersGuessQuotes_;
+        ZabrSmileSection::Evaluation evaluation_;
         mutable Cube parametersGuess_;
         std::vector<bool> isParameterFixed_;
         bool isAtmCalibrated_;
@@ -173,14 +179,14 @@ namespace QuantLib {
 
         class PrivateObserver : public Observer {
           public:
-            PrivateObserver(SwaptionVolCube1 *v)
+            PrivateObserver(SwaptionVolCube1b *v)
                 : v_(v) {}
             void update() {
                 v_->setParameterGuess();
                 v_->update();
             }
           private:
-            SwaptionVolCube1 *v_;
+            SwaptionVolCube1b *v_;
         };
 
        boost::shared_ptr<PrivateObserver> privateObserver_;

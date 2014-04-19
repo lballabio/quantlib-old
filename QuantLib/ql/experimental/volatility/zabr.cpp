@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2012 Peter Caspers
+ Copyright (C) 2014 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/termstructures/volatility/zabr.hpp>
+#include <ql/experimental/volatility/zabr.hpp>
 #include <ql/termstructures/volatility/sabr.hpp>
 #include <ql/errors.hpp>
 #include <ql/math/comparison.hpp>
@@ -48,7 +48,7 @@ namespace QuantLib {
                          const Real alpha, const Real beta, const Real nu,
                          const Real rho, const Real gamma)
         : expiryTime_(expiryTime), forward_(forward), alpha_(alpha),
-          beta_(beta), nu_(nu), rho_(rho), gamma_(gamma) {
+          beta_(beta), nu_(nu*std::pow(alpha_,1.0-gamma)), rho_(rho), gamma_(gamma) {
 
         validateSabrParameters(alpha, beta, nu, rho);
         QL_REQUIRE(gamma >= 0.0 /*&& gamma<=1.0*/,
@@ -57,10 +57,6 @@ namespace QuantLib {
                                        << forward << " not allowed");
         QL_REQUIRE(expiryTime > 0.0, "expiry time must be positive: "
                                          << expiryTime << " not allowed");
-        
-        // for gamma != 1 we need a transformation of eta to match the
-        // notation in Andreasen's paper
-        nu_ = nu_*std::pow(alpha_,1.0-gamma_); // transform
 
     }
 
@@ -140,19 +136,20 @@ namespace QuantLib {
 
         // TODO check strikes to be increasing
 
-        // TODO put these magic numbers somewhere ...
+        // TODO put these parameters somewhere ...
         const Real start = std::min(0.00001,strikes.front()*0.5); // lowest strike for grid
-        const Real end = std::max(0.10,strikes.back() * 1.5); // highest strike for grid
-        const Size size = 5000;             // grid points (10bp steps)
-        //const Real density = 0.005;       // density for concentrating mesher
+        const Real end = std::max(0.10,strikes.back() * 1.5);     // highest strike for grid
+        const Size size = 5000;                                   // grid points 
+        //const Real density = 0.005;                             // density for concentrating mesher
         const Size steps =
-            (Size)std::ceil(expiryTime_ * 50); // number of steps in dimension t
-        const Size dampingSteps = 5;          // thereof damping steps
+            (Size)std::ceil(expiryTime_ * 50);                    // number of steps in dimension t
+        const Size dampingSteps = 5;                              // thereof damping steps
 
         // Layout
         std::vector<Size> dim(1, size);
         const boost::shared_ptr<FdmLinearOpLayout> layout(
             new FdmLinearOpLayout(dim));
+
         // Mesher
         // const boost::shared_ptr<Fdm1dMesher> m1(new Concentrating1dMesher(
         //                       start, end, size, std::pair<Real, Real>(forward_, density), true));
@@ -163,6 +160,7 @@ namespace QuantLib {
         const std::vector<boost::shared_ptr<Fdm1dMesher> > meshers(1, m1);
         const boost::shared_ptr<FdmMesher> mesher(
             new FdmMesherComposite(layout, meshers));
+
         // Boundary conditions
         FdmBoundaryConditionSet boundaries;
         // boundaries.push_back(boost::shared_ptr<BoundaryCondition<FdmLinearOp> >(
@@ -175,6 +173,7 @@ namespace QuantLib {
         //         mesher, forward_ - start, 0,
         //         FdmDirichletBoundary::Lower))); // for strike = -\infty call is
         //                                         // worth f-k
+
         // initial values
         Array rhs(mesher->layout()->size());
         for (FdmLinearOpIterator iter = layout->begin(); iter != layout->end();
@@ -182,6 +181,7 @@ namespace QuantLib {
             Real k = mesher->location(iter, 0);
             rhs[iter.index()] = std::max(forward_ - k, 0.0);
         }
+
         // local vols (TODO how can we avoid these Array / vector copying?)
         Array k = mesher->locations(0);
         std::vector<Real> kv(k.size());
@@ -189,6 +189,7 @@ namespace QuantLib {
         std::vector<Real> locVolv = localVolatility(kv);
         Array locVol(locVolv.size());
         std::copy(locVolv.begin(), locVolv.end(), locVol.begin());
+
         // solver
         boost::shared_ptr<FdmDupire1dOp> map(new FdmDupire1dOp(mesher, locVol));
         FdmBackwardSolver solver(map, boundaries,
@@ -214,15 +215,15 @@ namespace QuantLib {
 
     Real ZabrModel::fullFdPrice(const Real strike) const {
 
-        // TODO put these magic numbers somewhere ...
+        // TODO put these parameters somewhere ...
         const Real f0 = 0.00001, f1 = std::max(strike*2.0,0.10);  // forward
         const Real v0 = 0.00001, v1 = std::max(alpha_*2.0,0.10);  // volatility
-        const Size sizef = 100, sizev = 100;          // grid points (10bp steps)
-        const Real densityf = 0.01,
-                   densityv = 0.01; // density for concentrating mesher
+        const Size sizef = 100, sizev = 100;                      // grid points
+        //const Real densityf = 0.01,
+        //           densityv = 0.01;                               // density for concentrating mesher
         const Size steps =
             (Size)std::ceil(expiryTime_ * 50); // number of steps in dimension t
-        const Size dampingSteps = 5;          // thereof damping steps
+        const Size dampingSteps = 5;           // thereof damping steps
 
         QL_REQUIRE(strike >= f0 && strike <= f1,
                    "strike (" << strike << ") must be inside pde grid [" << f0
@@ -234,6 +235,7 @@ namespace QuantLib {
         dim.push_back(sizev);
         const boost::shared_ptr<FdmLinearOpLayout> layout(
             new FdmLinearOpLayout(dim));
+
         // Mesher
 
         // two concentrating mesher around f and k to get the mesher for the
@@ -270,6 +272,7 @@ namespace QuantLib {
         meshers.push_back(mv);
         const boost::shared_ptr<FdmMesher> mesher(
             new FdmMesherComposite(layout, meshers));
+
         // initial values
         Array rhs(mesher->layout()->size());
         std::vector<Real> f_;
@@ -286,6 +289,7 @@ namespace QuantLib {
         }
 
         // Boundary conditions
+
         FdmBoundaryConditionSet boundaries;
         // boost::shared_ptr<FdmDirichletBoundary> b_dirichlet(
         //     new FdmDirichletBoundary(
@@ -329,7 +333,7 @@ namespace QuantLib {
                                           << *(i - 1) << "," << *i << ")");
 
         AdaptiveRungeKutta<Real> rk(1.0E-8, 1.0E-5,
-                                    0.0); // TODO move the magic numbers here as
+                                    0.0); // TODO move the parameters here as
                                           // parameters with default values to
                                           // the constructor
         std::vector<Real> y(strikes.size()), result(strikes.size());
@@ -337,7 +341,7 @@ namespace QuantLib {
             strikes.rbegin(), strikes.rend(), y.begin(),
             boost::lambda::bind(&ZabrModel::y, this, boost::lambda::_1));
 
-        if (close(gamma_, 1.0)) { // debug use ode also for gamma=1
+        if (close(gamma_, 1.0)) { 
             for (Size m = 0; m < y.size(); m++) {
                 Real J = std::sqrt(1.0 + nu_ * nu_ * y[m] * y[m] -
                                    2.0 * rho_ * nu_ * y[m]);
