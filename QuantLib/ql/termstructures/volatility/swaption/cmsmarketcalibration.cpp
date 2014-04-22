@@ -350,9 +350,8 @@ namespace {
                 volCubeByZabr->recalibration(swapLengths, freeParam,
                                              swapTenors[i]);
         }
-    }
-    Real meanReversion =
-        smileAndCms_->reversionTransformDirect(x[3 * nSwapTenors]);
+        Real meanReversion =
+            smileAndCms_->reversionTransformDirect(x[3 * nSwapTenors]);
         cmsMarket_->reprice(volCube_, meanReversion);
     }
 }
