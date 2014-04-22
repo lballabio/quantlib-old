@@ -298,7 +298,7 @@ namespace {
             Real param0 = smileAndCms_->betaTransformDirect(x[1 + 3 * i]);
             Real decay = x[2 + 3 * i] * x[2 + 3 * i];
             std::vector<Real> freeParam(nSwapLengths);
-            for (Size i = 0; i < beta.size(); i++) {
+            for (Size i = 0; i < freeParam.size(); i++) {
                 Real t = smileAndCms_->volCube_->timeFromReference(
                     smileAndCms_->volCube_->optionDateFromTenor(swapLengths[i]));
                 freeParam[i] = paramInf + (param0 - paramInf) * std::exp(-decay * t);
@@ -336,7 +336,7 @@ namespace {
             Real param0 = smileAndCms_->betaTransformDirect(x[1 + 3 * i]);
             Real decay = x[2 + 3 * i] * x[2 + 3 * i];
             std::vector<Real> freeParam(nSwapLengths);
-            for (Size i = 0; i < beta.size(); i++) {
+            for (Size i = 0; i < freeParam.size(); i++) {
                 Real t = smileAndCms_->volCube_->timeFromReference(
                     smileAndCms_->volCube_->optionDateFromTenor(
                         swapLengths[i]));
@@ -436,7 +436,7 @@ namespace QuantLib {
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
         const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
-            boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
+            boost::dynamic_pointer_cast<SwaptionVolCube1a>(*volCube_);
         if(volCubeBySabr != NULL) {
             volCubeBySabr->updateAfterRecalibration();
             sparseXabrParameters_ = volCubeBySabr->sparseSabrParameters();
@@ -444,8 +444,8 @@ namespace QuantLib {
         }
         if(volCubeByZabr != NULL) {
             volCubeByZabr->updateAfterRecalibration();
-            sparseXabrParameters_ = volCubeByZabr->sparseSabrParameters();
-            denseXabrParameters_ = volCubeByZabr->denseSabrParameters();
+            sparseXabrParameters_ = volCubeByZabr->sparseZabrParameters();
+            denseXabrParameters_ = volCubeByZabr->denseZabrParameters();
         }
         browseCmsMarket_ = cmsMarket_->browse();
 
@@ -534,7 +534,7 @@ namespace QuantLib {
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
         const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
-            boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
+            boost::dynamic_pointer_cast<SwaptionVolCube1a>(*volCube_);
         if(volCubeBySabr != NULL) {
             volCubeBySabr->updateAfterRecalibration();
             sparseXabrParameters_ = volCubeBySabr->sparseSabrParameters();
@@ -542,8 +542,8 @@ namespace QuantLib {
         }
         if(volCubeByZabr != NULL) {
             volCubeByZabr->updateAfterRecalibration();
-            sparseXabrParameters_ = volCubeByZabr->sparseSabrParameters();
-            denseXabrParameters_ = volCubeByZabr->denseSabrParameters();
+            sparseXabrParameters_ = volCubeByZabr->sparseZabrParameters();
+            denseXabrParameters_ = volCubeByZabr->denseZabrParameters();
         }
         browseCmsMarket_ = cmsMarket_->browse();
 
@@ -638,7 +638,7 @@ namespace QuantLib {
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
         const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
-            boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
+            boost::dynamic_pointer_cast<SwaptionVolCube1a>(*volCube_);
         if(volCubeBySabr != NULL) {
             volCubeBySabr->updateAfterRecalibration();
             sparseXabrParameters_ = volCubeBySabr->sparseSabrParameters();
@@ -646,8 +646,8 @@ namespace QuantLib {
         }
         if(volCubeByZabr != NULL) {
             volCubeByZabr->updateAfterRecalibration();
-            sparseXabrParameters_ = volCubeByZabr->sparseSabrParameters();
-            denseXabrParameters_ = volCubeByZabr->denseSabrParameters();
+            sparseXabrParameters_ = volCubeByZabr->sparseZabrParameters();
+            denseXabrParameters_ = volCubeByZabr->denseZabrParameters();
         }
         browseCmsMarket_ = cmsMarket_->browse();
 
