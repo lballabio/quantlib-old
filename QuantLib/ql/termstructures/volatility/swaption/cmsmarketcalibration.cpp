@@ -22,6 +22,7 @@
 #include <ql/termstructures/volatility/swaption/cmsmarketcalibration.hpp>
 #include <ql/termstructures/volatility/swaption/cmsmarket.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolcube1.hpp>
+#include <ql/experimental/volatility/swaptionvolcube1a.hpp>
 #include <ql/math/optimization/problem.hpp>
 #include <ql/math/optimization/constraint.hpp>
 
@@ -129,9 +130,16 @@ namespace {
                    "bad calibration guess nSwapTenors+1 != x.size()");
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
-        for (Size i = 0; i < nSwapTenors; ++i)
-            volCubeBySabr->recalibration(
-                smileAndCms_->betaTransformDirect(x[i]), swapTenors[i]);
+        const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
+            boost::dynamic_pointer_cast<SwaptionVolCube1a>(*volCube_);
+        for (Size i = 0; i < nSwapTenors; ++i) {
+            if (volCubeBySabr != NULL)
+                volCubeBySabr->recalibration(
+                    smileAndCms_->betaTransformDirect(x[i]), swapTenors[i]);
+            if (volCubeByZabr != NULL)
+                volCubeByZabr->recalibration(
+                    smileAndCms_->gammaTransformDirect(x[i]), swapTenors[i]);
+        }
         Real meanReversion =
             smileAndCms_->reversionTransformDirect(x[nSwapTenors]);
         cmsMarket_->reprice(volCube_, meanReversion);
@@ -176,9 +184,16 @@ namespace {
                    "bad calibration guess nSwapTenors != x.size()");
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
-        for (Size i = 0; i < nSwapTenors; ++i)
-            volCubeBySabr->recalibration(
-                smileAndCms_->betaTransformDirect(x[i]), swapTenors[i]);
+        const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
+            boost::dynamic_pointer_cast<SwaptionVolCube1a>(*volCube_);
+        for (Size i = 0; i < nSwapTenors; ++i) {
+            if (volCubeBySabr != NULL)
+                volCubeBySabr->recalibration(
+                    smileAndCms_->betaTransformDirect(x[i]), swapTenors[i]);
+            if (volCubeByZabr != NULL)
+                volCubeByZabr->recalibration(
+                    smileAndCms_->gammaTransformDirect(x[i]), swapTenors[i]);
+        }
         cmsMarket_->reprice(
             volCube_,
             fixedMeanReversion_ == Null<Real>()
@@ -201,12 +216,22 @@ namespace {
             "bad calibration guess (nSwapLengths*nSwapTenors)+1 != x.size()");
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
+        const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
+            boost::dynamic_pointer_cast<SwaptionVolCube1a>(*volCube_);
         for (Size i = 0; i < nSwapTenors; ++i) {
-            std::vector<Real> beta(x.begin() + (i * nSwapLengths),
-                                   x.begin() + ((i + 1) * nSwapLengths));
-            for (Size j = 0; j < beta.size(); ++j)
-                beta[j] = smileAndCms_->betaTransformDirect(beta[j]);
-            volCubeBySabr->recalibration(swapLengths, beta, swapTenors[i]);
+            std::vector<Real> freeParam(x.begin() + (i * nSwapLengths),
+                                        x.begin() + ((i + 1) * nSwapLengths));
+            for (Size j = 0; j < freeParam.size(); ++j)
+                freeParam[j] =
+                    smileAndCms_->freeParamTransformDirect(freeParam[j]);
+            if (volCubeBySabr != NULL) {
+                volCubeBySabr->recalibration(swapLengths, freeParam,
+                                             swapTenors[i]);
+            }
+            if (volCubeByZabr != NULL) {
+                volCubeByZabr->recalibration(swapLengths, freeParam,
+                                             swapTenors[i]);
+            }
         }
         Real meanReversion = smileAndCms_->reversionTransformDirect(
             x[nSwapLengths + nSwapTenors]);
@@ -228,12 +253,22 @@ namespace {
             "bad calibration guess (nSwapLengths*nSwapTenors) != x.size()");
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
+        const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
+            boost::dynamic_pointer_cast<SwaptionVolCube1a>(*volCube_);
         for (Size i = 0; i < nSwapTenors; ++i) {
-            std::vector<Real> beta(x.begin() + (i * nSwapLengths),
-                                   x.begin() + ((i + 1) * nSwapLengths));
-            for (Size j = 0; j < beta.size(); ++j)
-                beta[j] = smileAndCms_->betaTransformDirect(beta[j]);
-            volCubeBySabr->recalibration(swapLengths, beta, swapTenors[i]);
+            std::vector<Real> freeParam(x.begin() + (i * nSwapLengths),
+                                        x.begin() + ((i + 1) * nSwapLengths));
+            for (Size j = 0; j < freeParam.size(); ++j)
+                freeParam[j] =
+                    smileAndCms_->freeParamTransformDirect(freeParam[j]);
+            if (volCubeBySabr != NULL) {
+                volCubeBySabr->recalibration(swapLengths, freeParam,
+                                             swapTenors[i]);
+            }
+            if (volCubeByZabr != NULL) {
+                volCubeByZabr->recalibration(swapLengths, freeParam,
+                                             swapTenors[i]);
+            }
         }
         cmsMarket_->reprice(
             volCube_,
@@ -256,17 +291,22 @@ namespace {
                    "bad calibration guess (3*nSwapTenors) != x.size()");
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
+        const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
+            boost::dynamic_pointer_cast<SwaptionVolCube1a>(*volCube_);
         for (Size i = 0; i < nSwapTenors; ++i) {
-            Real betaInf = smileAndCms_->betaTransformDirect(x[0 + 3 * i]);
-            Real beta0 = smileAndCms_->betaTransformDirect(x[1 + 3 * i]);
+            Real paramInf = smileAndCms_->betaTransformDirect(x[0 + 3 * i]);
+            Real param0 = smileAndCms_->betaTransformDirect(x[1 + 3 * i]);
             Real decay = x[2 + 3 * i] * x[2 + 3 * i];
-            std::vector<Real> beta(nSwapLengths);
+            std::vector<Real> freeParam(nSwapLengths);
             for (Size i = 0; i < beta.size(); i++) {
                 Real t = smileAndCms_->volCube_->timeFromReference(
                     smileAndCms_->volCube_->optionDateFromTenor(swapLengths[i]));
-                beta[i] = betaInf + (beta0 - betaInf) * std::exp(-decay * t);
+                freeParam[i] = paramInf + (param0 - paramInf) * std::exp(-decay * t);
             }
-            volCubeBySabr->recalibration(swapLengths, beta, swapTenors[i]);
+            if(volCubeBySabr != NULL)
+                volCubeBySabr->recalibration(swapLengths, freeParam, swapTenors[i]);
+            if(volCubeByZabr != NULL)
+                volCubeByZabr->recalibration(swapLengths, freeParam, swapTenors[i]);
         }
         cmsMarket_->reprice(
             volCube_,
@@ -289,20 +329,30 @@ namespace {
                    "bad calibration guess (3*nSwapTenors) != x.size()");
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
+        const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
+            boost::dynamic_pointer_cast<SwaptionVolCube1a>(*volCube_);
         for (Size i = 0; i < nSwapTenors; ++i) {
-            Real betaInf = smileAndCms_->betaTransformDirect(x[0 + 3 * i]);
-            Real beta0 = smileAndCms_->betaTransformDirect(x[1 + 3 * i]);
+            Real paramInf = smileAndCms_->betaTransformDirect(x[0 + 3 * i]);
+            Real param0 = smileAndCms_->betaTransformDirect(x[1 + 3 * i]);
             Real decay = x[2 + 3 * i] * x[2 + 3 * i];
-            std::vector<Real> beta(nSwapLengths);
+            std::vector<Real> freeParam(nSwapLengths);
             for (Size i = 0; i < beta.size(); i++) {
                 Real t = smileAndCms_->volCube_->timeFromReference(
-                    smileAndCms_->volCube_->optionDateFromTenor(swapLengths[i]));
-                beta[i] = betaInf + (beta0 - betaInf) * std::exp(-decay * t);
+                    smileAndCms_->volCube_->optionDateFromTenor(
+                        swapLengths[i]));
+                freeParam[i] =
+                    paramInf + (param0 - paramInf) * std::exp(-decay * t);
             }
-            volCubeBySabr->recalibration(swapLengths, beta, swapTenors[i]);
+            if (volCubeBySabr != NULL)
+                volCubeBySabr->recalibration(swapLengths, freeParam,
+                                             swapTenors[i]);
+            if (volCubeByZabr != NULL)
+                volCubeByZabr->recalibration(swapLengths, freeParam,
+                                             swapTenors[i]);
         }
-        Real meanReversion =
-            smileAndCms_->reversionTransformDirect(x[3 * nSwapTenors]);
+    }
+    Real meanReversion =
+        smileAndCms_->reversionTransformDirect(x[3 * nSwapTenors]);
         cmsMarket_->reprice(volCube_, meanReversion);
     }
 }
@@ -347,48 +397,57 @@ namespace QuantLib {
                                   << ") or greater by one if mean reversion is "
                                      "given as last element");
         bool isMeanReversionGiven = (nSwapTenors == guess.size() - 1);
-        Size nBeta = guess.size() - (isMeanReversionGiven ? 1 : 0);
+        Size nFreeParam = guess.size() - (isMeanReversionGiven ? 1 : 0);
         Array result;
         if (isMeanReversionFixed) {
             NoConstraint constraint;
             Real fixedMeanReversion =
-                isMeanReversionGiven ? guess[nBeta] : Null<Real>();
-            Array betasGuess(nBeta);
-            for (Size i = 0; i < nBeta; ++i)
-                betasGuess[i] = guess[i];
+                isMeanReversionGiven ? guess[nFreeParam] : Null<Real>();
+            Array freeParamsGuess(nFreeParam);
+            for (Size i = 0; i < nFreeParam; ++i)
+                freeParamsGuess[i] = guess[i];
             ObjectiveFunction2 costFunction(
                 this, fixedMeanReversion == Null<Real>()
                           ? Null<Real>()
                           : reversionTransformInverse(fixedMeanReversion));
-            Problem problem(costFunction, constraint, betasGuess);
+            Problem problem(costFunction, constraint, freeParamsGuess);
             endCriteria_ = method->minimize(problem, *endCriteria);
             Array tmp = problem.currentValue();
             error_ = costFunction.value(tmp);
-            result = Array(nBeta + (isMeanReversionGiven ? 1 : 0));
-            for (Size i = 0; i < nBeta; ++i)
-                result[i] = betaTransformDirect(tmp[i]);
+            result = Array(nFreeParam + (isMeanReversionGiven ? 1 : 0));
+            for (Size i = 0; i < nFreeParam; ++i)
+                result[i] = freeParamTransformDirect(tmp[i]);
             if (isMeanReversionGiven)
-                result[nBeta] = fixedMeanReversion;
+                result[nFreeParam] = fixedMeanReversion;
         } else {
             NoConstraint constraint;
             ObjectiveFunction costFunction(this);
-            Array betaReversionGuess(nBeta + 1);
-            for (Size i = 0; i < nBeta; ++i)
-                betaReversionGuess[i] = betaTransformInverse(guess[i]);
-            betaReversionGuess[nBeta] = reversionTransformInverse(guess[nBeta]);
-            Problem problem(costFunction, constraint, betaReversionGuess);
+            Array freeParamReversionGuess(nFreeParam + 1);
+            for (Size i = 0; i < nFreeParam; ++i)
+                freeParamReversionGuess[i] = freeParamTransformInverse(guess[i]);
+            freeParamReversionGuess[nFreeParam] = reversionTransformInverse(guess[nFreeParam]);
+            Problem problem(costFunction, constraint, freeParamReversionGuess);
             endCriteria_ = method->minimize(problem, *endCriteria);
             result = problem.currentValue();
             error_ = costFunction.value(result);
-            for (Size i = 0; i < nBeta; ++i)
-                result[i] = betaTransformDirect(result[i]);
-            result[nBeta] = reversionTransformDirect(result[nBeta]);
+            for (Size i = 0; i < nFreeParam; ++i)
+                result[i] = freeParamTransformDirect(result[i]);
+            result[nFreeParam] = reversionTransformDirect(result[nFreeParam]);
         }
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
-        volCubeBySabr->updateAfterRecalibration();
-        sparseSabrParameters_ = volCubeBySabr->sparseSabrParameters();
-        denseSabrParameters_ = volCubeBySabr->denseSabrParameters();
+        const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
+            boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
+        if(volCubeBySabr != NULL) {
+            volCubeBySabr->updateAfterRecalibration();
+            sparseXabrParameters_ = volCubeBySabr->sparseSabrParameters();
+            denseXabrParameters_ = volCubeBySabr->denseSabrParameters();
+        }
+        if(volCubeByZabr != NULL) {
+            volCubeByZabr->updateAfterRecalibration();
+            sparseXabrParameters_ = volCubeByZabr->sparseSabrParameters();
+            denseXabrParameters_ = volCubeByZabr->denseSabrParameters();
+        }
         browseCmsMarket_ = cmsMarket_->browse();
 
         return result;
@@ -414,21 +473,21 @@ namespace QuantLib {
                        << ") must be equal to number of guess rows ("
                        << guess.rows() << ")");
         Matrix result;
-        Size nBeta = nSwapTenors * nSwapLengths;
+        Size nFreeParam = nSwapTenors * nSwapLengths;
         if (isMeanReversionFixed) {
             NoConstraint constraint;
-            Array betasGuess(nBeta);
+            Array freeParamsGuess(nFreeParam);
             for (Size i = 0; i < nSwapTenors; ++i) {
                 for (Size j = 0; j < nSwapLengths; ++j) {
-                    betasGuess[i * nSwapLengths + j] =
-                        betaTransformInverse(guess[j][i]);
+                    freeParamsGuess[i * nSwapLengths + j] =
+                        freeParamTransformInverse(guess[j][i]);
                 }
             }
             ObjectiveFunction4 costFunction(
                 this, meanReversionGuess == Null<Real>()
                           ? meanReversionGuess
                           : reversionTransformInverse(meanReversionGuess));
-            Problem problem(costFunction, constraint, betasGuess);
+            Problem problem(costFunction, constraint, freeParamsGuess);
             endCriteria_ = method->minimize(problem, *endCriteria);
             Array tmp = problem.currentValue();
             error_ = costFunction.value(tmp);
@@ -438,7 +497,7 @@ namespace QuantLib {
             for (Size i = 0; i < nSwapTenors; ++i) {
                 for (Size j = 0; j < nSwapLengths; ++j) {
                     result[j][i] =
-                        betaTransformDirect(tmp[i * nSwapLengths + j]);
+                        freeParamTransformDirect(tmp[i * nSwapLengths + j]);
                 }
             }
             if (meanReversionGuess != Null<Real>()) {
@@ -448,17 +507,17 @@ namespace QuantLib {
             }
         } else {
             NoConstraint constraint;
-            Array betasReversionGuess(nBeta + 1);
+            Array freeParamsReversionGuess(nFreeParam + 1);
             for (Size i = 0; i < nSwapTenors; ++i) {
                 for (Size j = 0; j < nSwapLengths; ++j) {
-                    betasReversionGuess[i * nSwapLengths + j] =
-                        betaTransformInverse(guess[j][i]);
+                    freeParamsReversionGuess[i * nSwapLengths + j] =
+                        freeParamTransformInverse(guess[j][i]);
                 }
             }
-            betasReversionGuess[nBeta] =
+            freeParamsReversionGuess[nFreeParam] =
                 reversionTransformInverse(meanReversionGuess);
             ObjectiveFunction3 costFunction(this);
-            Problem problem(costFunction, constraint, betasReversionGuess);
+            Problem problem(costFunction, constraint, freeParamsReversionGuess);
             endCriteria_ = method->minimize(problem, *endCriteria);
             Array tmp = problem.currentValue();
             error_ = costFunction.value(tmp);
@@ -466,18 +525,27 @@ namespace QuantLib {
             for (Size i = 0; i < nSwapTenors; ++i) {
                 for (Size j = 0; j < nSwapLengths; ++j) {
                     result[j][i] =
-                        betaTransformDirect(tmp[i * nSwapLengths + j]);
+                        freeParamTransformDirect(tmp[i * nSwapLengths + j]);
                 }
             }
             for (Size j = 0; j < nSwapLengths; ++j) {
-                result[j][nSwapTenors] = reversionTransformDirect(tmp[nBeta]);
+                result[j][nSwapTenors] = reversionTransformDirect(tmp[nFreeParam]);
             }
         }
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
-        volCubeBySabr->updateAfterRecalibration();
-        sparseSabrParameters_ = volCubeBySabr->sparseSabrParameters();
-        denseSabrParameters_ = volCubeBySabr->denseSabrParameters();
+        const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
+            boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
+        if(volCubeBySabr != NULL) {
+            volCubeBySabr->updateAfterRecalibration();
+            sparseXabrParameters_ = volCubeBySabr->sparseSabrParameters();
+            denseXabrParameters_ = volCubeBySabr->denseSabrParameters();
+        }
+        if(volCubeByZabr != NULL) {
+            volCubeByZabr->updateAfterRecalibration();
+            sparseXabrParameters_ = volCubeByZabr->sparseSabrParameters();
+            denseXabrParameters_ = volCubeByZabr->denseSabrParameters();
+        }
         browseCmsMarket_ = cmsMarket_->browse();
 
         return result;
@@ -507,11 +575,11 @@ namespace QuantLib {
         Size nParams = nSwapTenors * 3;
         if (isMeanReversionFixed) {
             NoConstraint constraint;
-            Array betasGuess(nParams);
+            Array freeParamsGuess(nParams);
             for (Size i = 0; i < nSwapTenors; ++i) {
                 for (Size j = 0; j < nParams; ++j) {
-                    betasGuess[i * 3 + j] =
-                        (j == 0 || j == 1) ? betaTransformInverse(guess[j][i])
+                    freeParamsGuess[i * 3 + j] =
+                        (j == 0 || j == 1) ? freeParamTransformInverse(guess[j][i])
                                            : std::sqrt(guess[j][i]);
                 }
             }
@@ -519,7 +587,7 @@ namespace QuantLib {
                 this, meanReversionGuess == Null<Real>()
                           ? meanReversionGuess
                           : reversionTransformInverse(meanReversionGuess));
-            Problem problem(costFunction, constraint, betasGuess);
+            Problem problem(costFunction, constraint, freeParamsGuess);
             endCriteria_ = method->minimize(problem, *endCriteria);
             Array tmp = problem.currentValue();
             error_ = costFunction.value(tmp);
@@ -528,7 +596,7 @@ namespace QuantLib {
             for (Size i = 0; i < nSwapTenors; ++i) {
                 for (Size j = 0; j < 3; ++j) {
                     result[j][i] = (j == 0 || j == 1)
-                                       ? betaTransformDirect(tmp[i * 3 + j])
+                                       ? freeParamTransformDirect(tmp[i * 3 + j])
                                        : tmp[i * 3 + j] * tmp[i * 3 + j];
                 }
             }
@@ -539,18 +607,18 @@ namespace QuantLib {
             }
         } else {
             NoConstraint constraint;
-            Array betasReversionGuess(nParams + 1);
+            Array freeParamsReversionGuess(nParams + 1);
             for (Size i = 0; i < nSwapTenors; ++i) {
                 for (Size j = 0; j < nParams; ++j) {
-                    betasReversionGuess[i * nSwapLengths + j] =
-                        (j == 0 || j == 1) ? betaTransformInverse(guess[j][i])
+                    freeParamsReversionGuess[i * nSwapLengths + j] =
+                        (j == 0 || j == 1) ? freeParamTransformInverse(guess[j][i])
                                            : std::sqrt(guess[j][i]);
                 }
             }
-            betasReversionGuess[nParams] =
+            freeParamsReversionGuess[nParams] =
                 reversionTransformInverse(meanReversionGuess);
             ObjectiveFunction6 costFunction(this);
-            Problem problem(costFunction, constraint, betasReversionGuess);
+            Problem problem(costFunction, constraint, freeParamsReversionGuess);
             endCriteria_ = method->minimize(problem, *endCriteria);
             Array tmp = problem.currentValue();
             error_ = costFunction.value(tmp);
@@ -559,7 +627,7 @@ namespace QuantLib {
                 for (Size j = 0; j < 3; ++j) {
                     result[j][i] =
                         (j == 0 || j == 1)
-                            ? betaTransformDirect(tmp[i * nSwapLengths + j])
+                            ? freeParamTransformDirect(tmp[i * nSwapLengths + j])
                             : tmp[i * 3 + j] * tmp[i * 3 + j];
                 }
             }
@@ -570,9 +638,18 @@ namespace QuantLib {
 
         const boost::shared_ptr<SwaptionVolCube1> volCubeBySabr =
             boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
-        volCubeBySabr->updateAfterRecalibration();
-        sparseSabrParameters_ = volCubeBySabr->sparseSabrParameters();
-        denseSabrParameters_ = volCubeBySabr->denseSabrParameters();
+        const boost::shared_ptr<SwaptionVolCube1a> volCubeByZabr =
+            boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_);
+        if(volCubeBySabr != NULL) {
+            volCubeBySabr->updateAfterRecalibration();
+            sparseXabrParameters_ = volCubeBySabr->sparseSabrParameters();
+            denseXabrParameters_ = volCubeBySabr->denseSabrParameters();
+        }
+        if(volCubeByZabr != NULL) {
+            volCubeByZabr->updateAfterRecalibration();
+            sparseXabrParameters_ = volCubeByZabr->sparseSabrParameters();
+            denseXabrParameters_ = volCubeByZabr->denseSabrParameters();
+        }
         browseCmsMarket_ = cmsMarket_->browse();
 
         return result;

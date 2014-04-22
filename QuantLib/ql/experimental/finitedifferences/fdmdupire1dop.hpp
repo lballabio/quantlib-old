@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2012 Peter Caspers
+ Copyright (C) 2014 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -19,7 +19,7 @@
 
 /*! \file fdmdupire1d.hpp
     \brief Dupire local volatility pricing operator
-	Note that time is reversed in order to make backward solvers work
+        Note that time is reversed in order to make backward solvers work
 */
 
 #ifndef quantlib_fdm_dupire1d_op_hpp
@@ -32,33 +32,31 @@
 
 namespace QuantLib {
 
+class FdmDupire1dOp : public FdmLinearOpComposite {
+  public:
+    FdmDupire1dOp(const boost::shared_ptr<FdmMesher> &mesher,
+                  const Array &localVolatility);
 
-    class FdmDupire1dOp : public FdmLinearOpComposite {
-      public:
-        FdmDupire1dOp(const boost::shared_ptr<FdmMesher>& mesher, const Array& localVolatility);
+    Size size() const;
+    void setTime(Time t1, Time t2);
 
-        Size size() const;
-        void setTime(Time t1, Time t2);
+    Disposable<Array> apply(const Array &r) const;
+    Disposable<Array> apply_mixed(const Array &r) const;
 
-        Disposable<Array> apply(const Array& r) const;
-        Disposable<Array> apply_mixed(const Array& r) const;
-
-        Disposable<Array> apply_direction(Size direction,
-                                          const Array& r) const;
-        Disposable<Array> solve_splitting(Size direction,
-                                          const Array& r, Real s) const;
-        Disposable<Array> preconditioner(const Array& r, Real s) const;
+    Disposable<Array> apply_direction(Size direction, const Array &r) const;
+    Disposable<Array> solve_splitting(Size direction, const Array &r,
+                                      Real s) const;
+    Disposable<Array> preconditioner(const Array &r, Real s) const;
 
 #if !defined(QL_NO_UBLAS_SUPPORT)
-		Disposable<std::vector<SparseMatrix> > toMatrixDecomp() const; 
+    Disposable<std::vector<SparseMatrix>> toMatrixDecomp() const;
 #endif
-	  
-      private:
-		const boost::shared_ptr<FdmMesher> mesher_;
-		const Array localVolatility_;
-		TripleBandLinearOp mapT_;
-    };
 
+  private:
+    const boost::shared_ptr<FdmMesher> mesher_;
+    const Array localVolatility_;
+    TripleBandLinearOp mapT_;
+};
 }
 
 #endif

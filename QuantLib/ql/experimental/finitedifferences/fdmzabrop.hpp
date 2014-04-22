@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2012 Peter Caspers
+ Copyright (C) 2014 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -32,70 +32,69 @@
 
 namespace QuantLib {
 
-	class FdmZabrUnderlyingPart {
-      public:
-        FdmZabrUnderlyingPart(const boost::shared_ptr<FdmMesher>& mesher, const Real beta, const Real nu, const Real rho, const Real gamma);
+class FdmZabrUnderlyingPart {
+  public:
+    FdmZabrUnderlyingPart(const boost::shared_ptr<FdmMesher> &mesher,
+                          const Real beta, const Real nu, const Real rho,
+                          const Real gamma);
 
-        void setTime(Time t1, Time t2);
-        const TripleBandLinearOp& getMap() const;
+    void setTime(Time t1, Time t2);
+    const TripleBandLinearOp &getMap() const;
 
-      protected:
-        const Array volatilityValues_;
-		const Array forwardValues_;
-        TripleBandLinearOp mapT_;
+  protected:
+    const Array volatilityValues_;
+    const Array forwardValues_;
+    TripleBandLinearOp mapT_;
 
-        const boost::shared_ptr<FdmMesher> mesher_;
-    };
+    const boost::shared_ptr<FdmMesher> mesher_;
+};
 
-	class FdmZabrVolatilityPart {
-      public:
-        FdmZabrVolatilityPart(
-            const boost::shared_ptr<FdmMesher>& mesher,
-			const Real beta, const Real nu, const Real rho, const Real gamma);
+class FdmZabrVolatilityPart {
+  public:
+    FdmZabrVolatilityPart(const boost::shared_ptr<FdmMesher> &mesher,
+                          const Real beta, const Real nu, const Real rho,
+                          const Real gamma);
 
-        void setTime(Time t1, Time t2);
-        const TripleBandLinearOp& getMap() const;
+    void setTime(Time t1, Time t2);
+    const TripleBandLinearOp &getMap() const;
 
-      protected:
-  	    const Array volatilityValues_;
-		const Array forwardValues_;
-        TripleBandLinearOp mapT_;
+  protected:
+    const Array volatilityValues_;
+    const Array forwardValues_;
+    TripleBandLinearOp mapT_;
 
-        const boost::shared_ptr<FdmMesher> mesher_;
-	};
+    const boost::shared_ptr<FdmMesher> mesher_;
+};
 
+class FdmZabrOp : public FdmLinearOpComposite {
+  public:
+    FdmZabrOp(
+        const boost::shared_ptr<FdmMesher> &mesher, const Real beta,
+        const Real nu, const Real rho,
+        const Real gamma = 1.0); // gamma=1.0 recovers the classic sabr model
 
-    class FdmZabrOp : public FdmLinearOpComposite {
-      public:
-        FdmZabrOp(const boost::shared_ptr<FdmMesher>& mesher,
-			const Real beta,
-			const Real nu,
-			const Real rho,
-			const Real gamma = 1.0); // gamma=1.0 recovers the classic sabr model
+    Size size() const;
+    void setTime(Time t1, Time t2);
 
-        Size size() const;
-        void setTime(Time t1, Time t2);
+    Disposable<Array> apply(const Array &r) const;
+    Disposable<Array> apply_mixed(const Array &r) const;
 
-        Disposable<Array> apply(const Array& r) const;
-        Disposable<Array> apply_mixed(const Array& r) const;
-
-        Disposable<Array> apply_direction(Size direction,
-                                          const Array& r) const;
-        Disposable<Array> solve_splitting(Size direction,
-                                          const Array& r, Real s) const;
-        Disposable<Array> preconditioner(const Array& r, Real s) const;
+    Disposable<Array> apply_direction(Size direction, const Array &r) const;
+    Disposable<Array> solve_splitting(Size direction, const Array &r,
+                                      Real s) const;
+    Disposable<Array> preconditioner(const Array &r, Real s) const;
 
 #if !defined(QL_NO_UBLAS_SUPPORT)
-		Disposable<std::vector<SparseMatrix> > toMatrixDecomp() const; 
+    Disposable<std::vector<SparseMatrix>> toMatrixDecomp() const;
 #endif
 
-      private:
-	    const Array volatilityValues_;
-		const Array forwardValues_;
-        NinePointLinearOp dxyMap_;
-        FdmZabrUnderlyingPart dxMap_;
-        FdmZabrVolatilityPart dyMap_;
-    };
+  private:
+    const Array volatilityValues_;
+    const Array forwardValues_;
+    NinePointLinearOp dxyMap_;
+    FdmZabrUnderlyingPart dxMap_;
+    FdmZabrVolatilityPart dyMap_;
+};
 }
 
 #endif

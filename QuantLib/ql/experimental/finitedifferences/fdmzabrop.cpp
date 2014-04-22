@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2012 Peter Caspers
+ Copyright (C) 2014 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,108 +23,97 @@
 
 namespace QuantLib {
 
-    FdmZabrUnderlyingPart::FdmZabrUnderlyingPart(const boost::shared_ptr<FdmMesher>& mesher, const Real beta, const Real nu, const Real rho, const Real gamma) :
-      volatilityValues_(mesher->locations(1)),
-	  forwardValues_(mesher->locations(0)),
-      mapT_  (SecondDerivativeOp(0, mesher).mult(0.5*volatilityValues_*volatilityValues_*Pow(Abs(forwardValues_),2.0*beta))),
-      mesher_(mesher) {
-        
-    }
+FdmZabrUnderlyingPart::FdmZabrUnderlyingPart(
+    const boost::shared_ptr<FdmMesher> &mesher, const Real beta, const Real nu,
+    const Real rho, const Real gamma)
+    : volatilityValues_(mesher->locations(1)),
+      forwardValues_(mesher->locations(0)),
+      mapT_(SecondDerivativeOp(0, mesher)
+                .mult(0.5 * volatilityValues_ * volatilityValues_ *
+                      Pow(Abs(forwardValues_), 2.0 * beta))),
+      mesher_(mesher) {}
 
-    void FdmZabrUnderlyingPart::setTime(Time t1, Time t2) {
-		
-    }
+void FdmZabrUnderlyingPart::setTime(Time t1, Time t2) {}
 
-    const TripleBandLinearOp& FdmZabrUnderlyingPart::getMap() const {
-        return mapT_;
-    }
+const TripleBandLinearOp &FdmZabrUnderlyingPart::getMap() const {
+    return mapT_;
+}
 
-    FdmZabrVolatilityPart::FdmZabrVolatilityPart(
-            const boost::shared_ptr<FdmMesher>& mesher,
-			const Real beta, const Real nu, const Real rho, const Real gamma) :
-      volatilityValues_(mesher->locations(1)),
-	  forwardValues_(mesher->locations(0)),
-      mapT_(SecondDerivativeOp(1,mesher).mult(0.5*nu*nu*Pow(Abs(volatilityValues_),2.0*gamma))),
-	  mesher_(mesher) {
+FdmZabrVolatilityPart::FdmZabrVolatilityPart(
+    const boost::shared_ptr<FdmMesher> &mesher, const Real beta, const Real nu,
+    const Real rho, const Real gamma)
+    : volatilityValues_(mesher->locations(1)),
+      forwardValues_(mesher->locations(0)),
+      mapT_(SecondDerivativeOp(1, mesher).mult(
+          0.5 * nu * nu * Pow(Abs(volatilityValues_), 2.0 * gamma))),
+      mesher_(mesher) {}
 
-    }
+void FdmZabrVolatilityPart::setTime(Time t1, Time t2) {}
 
-    void FdmZabrVolatilityPart::setTime(Time t1, Time t2) {
+const TripleBandLinearOp &FdmZabrVolatilityPart::getMap() const {
+    return mapT_;
+}
 
-    }
+FdmZabrOp::FdmZabrOp(const boost::shared_ptr<FdmMesher> &mesher,
+                     const Real beta, const Real nu, const Real rho,
+                     const Real gamma)
+    : volatilityValues_(mesher->locations(1)),
+      forwardValues_(mesher->locations(0)),
+      dxyMap_(SecondOrderMixedDerivativeOp(0, 1, mesher)
+                  .mult(nu * rho * Pow(Abs(volatilityValues_), gamma + 1.0) *
+                        Pow(Abs(forwardValues_), beta))),
+      dxMap_(FdmZabrUnderlyingPart(mesher, beta, nu, rho, gamma)),
+      dyMap_(FdmZabrVolatilityPart(mesher, beta, nu, rho, gamma)) {}
 
-    const TripleBandLinearOp& FdmZabrVolatilityPart::getMap() const {
-        return mapT_;
-    }
+void FdmZabrOp::setTime(Time t1, Time t2) {
+    dxMap_.setTime(t1, t2);
+    dyMap_.setTime(t1, t2);
+}
 
-    FdmZabrOp::FdmZabrOp(const boost::shared_ptr<FdmMesher> &mesher,
-                         const Real beta, const Real nu, const Real rho,
-                         const Real gamma)
-        : volatilityValues_(mesher->locations(1)),
-          forwardValues_(mesher->locations(0)),
-          dxyMap_(SecondOrderMixedDerivativeOp(0, 1, mesher)
-                      .mult(nu * rho *
-                            Pow(Abs(volatilityValues_), gamma + 1.0) *
-                            Pow(Abs(forwardValues_), beta))),
-          dxMap_(FdmZabrUnderlyingPart(mesher, beta, nu, rho, gamma)),
-          dyMap_(FdmZabrVolatilityPart(mesher, beta, nu, rho, gamma)) {}
+Size FdmZabrOp::size() const { return 2; }
 
-    void FdmZabrOp::setTime(Time t1, Time t2) {
-        dxMap_.setTime(t1, t2);
-        dyMap_.setTime(t1, t2);
-    }
+Disposable<Array> FdmZabrOp::apply(const Array &u) const {
+    return dyMap_.getMap().apply(u) + dxMap_.getMap().apply(u) +
+           dxyMap_.apply(u);
+}
 
-    Size FdmZabrOp::size() const {
-        return 2;
-    }
+Disposable<Array> FdmZabrOp::apply_direction(Size direction,
+                                             const Array &r) const {
+    if (direction == 0)
+        return dxMap_.getMap().apply(r);
+    else if (direction == 1)
+        return dyMap_.getMap().apply(r);
+    else
+        QL_FAIL("direction too large");
+}
 
-    Disposable<Array> FdmZabrOp::apply(const Array& u) const {
-		return dyMap_.getMap().apply(u)+ dxMap_.getMap().apply(u) + dxyMap_.apply(u);
-    }
+Disposable<Array> FdmZabrOp::apply_mixed(const Array &r) const {
+    return dxyMap_.apply(r);
+}
 
-    Disposable<Array> FdmZabrOp::apply_direction(Size direction,
-                                                   const Array& r) const {
-        if (direction == 0)
-            return dxMap_.getMap().apply(r);
-        else if (direction == 1)
-            return dyMap_.getMap().apply(r);
-        else
-            QL_FAIL("direction too large");
-    }
+Disposable<Array> FdmZabrOp::solve_splitting(Size direction, const Array &r,
+                                             Real a) const {
 
-    Disposable<Array> FdmZabrOp::apply_mixed(const Array& r) const {
-        return dxyMap_.apply(r);
-    }
+    if (direction == 0) {
+        return dxMap_.getMap().solve_splitting(r, a, 1.0);
+    } else if (direction == 1) {
+        return dyMap_.getMap().solve_splitting(r, a, 1.0);
+    } else
+        QL_FAIL("direction too large");
+}
 
-    Disposable<Array>
-        FdmZabrOp::solve_splitting(Size direction,
-                                     const Array& r, Real a) const {
+Disposable<Array> FdmZabrOp::preconditioner(const Array &r, Real dt) const {
 
-        if (direction == 0) {
-            return dxMap_.getMap().solve_splitting(r, a, 1.0);
-        }
-        else if (direction == 1) {
-            return dyMap_.getMap().solve_splitting(r, a, 1.0);
-        }
-        else
-            QL_FAIL("direction too large");
-    }
-
-    Disposable<Array>
-        FdmZabrOp::preconditioner(const Array& r, Real dt) const {
-
-        return solve_splitting(0, r, dt);
-    }
+    return solve_splitting(0, r, dt);
+}
 
 #if !defined(QL_NO_UBLAS_SUPPORT)
-    Disposable<std::vector<SparseMatrix> >
-    FdmZabrOp::toMatrixDecomp() const {
-        std::vector<SparseMatrix> retVal(3);
-        retVal[0] = dxMap_.getMap().toMatrix();
-        retVal[1] = dyMap_.getMap().toMatrix();
-        retVal[2] = dxyMap_.toMatrix();
-        return retVal;
-    }
+Disposable<std::vector<SparseMatrix>> FdmZabrOp::toMatrixDecomp() const {
+    std::vector<SparseMatrix> retVal(3);
+    retVal[0] = dxMap_.getMap().toMatrix();
+    retVal[1] = dyMap_.getMap().toMatrix();
+    retVal[2] = dxyMap_.toMatrix();
+    return retVal;
+}
 #endif
-
 }
