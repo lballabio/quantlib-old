@@ -36,11 +36,15 @@ using QuantLib::FraRateHelper;
 using QuantLib::FuturesRateHelper;
 using QuantLib::SwapRateHelper;
 using QuantLib::FixedRateBondHelper;
+using QuantLib::OISRateHelper;
+using QuantLib::DatedOISRateHelper;
 typedef boost::shared_ptr<RateHelper> DepositRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> FraRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> FuturesRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> SwapRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> FixedRateBondHelperPtr;
+typedef boost::shared_ptr<RateHelper> OISRateHelperPtr;
+typedef boost::shared_ptr<RateHelper> DatedOISRateHelperPtr;
 %}
 
 %ignore RateHelper;
@@ -86,6 +90,20 @@ class DepositRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                       calendar, convention,
                                       endOfMonth, dayCounter));
         }
+        DepositRateHelperPtr(const Handle<Quote>& rate,
+                             const IborIndexPtr& index) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new DepositRateHelperPtr(
+                new DepositRateHelper(rate, libor));
+        }
+        DepositRateHelperPtr(Rate rate,
+                             const IborIndexPtr& index) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new DepositRateHelperPtr(
+                new DepositRateHelper(rate, libor));
+        }
     }
 };
 
@@ -121,6 +139,22 @@ class FraRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                   fixingDays,calendar,convention,
                                   endOfMonth,dayCounter));
         }
+        FraRateHelperPtr(const Handle<Quote>& rate,
+                         Natural monthsToStart,
+                         const IborIndexPtr& index) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new FraRateHelperPtr(
+                new FraRateHelper(rate,monthsToStart,libor));
+        }
+        FraRateHelperPtr(Rate rate,
+                         Natural monthsToStart,
+                         const IborIndexPtr& index) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new FraRateHelperPtr(
+                new FraRateHelper(rate,monthsToStart,libor));
+        }
     }
 };
 
@@ -152,6 +186,28 @@ class FuturesRateHelperPtr : public boost::shared_ptr<RateHelper> {
                                       calendar,convention,endOfMonth,
                                       dayCounter,convexityAdjustment));
         }
+        FuturesRateHelperPtr(
+                const Handle<Quote>& price,
+                const Date& immDate,
+                const IborIndexPtr& index,
+                const Handle<Quote>& convexityAdjustment) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new FuturesRateHelperPtr(
+                new FuturesRateHelper(price,immDate,libor,
+                                      convexityAdjustment));
+        }
+        FuturesRateHelperPtr(
+                Real price,
+                const Date& immDate,
+                const IborIndexPtr& index,
+                Real convexityAdjustment = 0.0) {
+            boost::shared_ptr<IborIndex> libor =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new FuturesRateHelperPtr(
+                new FuturesRateHelper(price,immDate,libor,
+                                      convexityAdjustment));
+        }
     }
 };
 
@@ -168,14 +224,17 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const DayCounter& fixedDayCount,
                 const IborIndexPtr& index,
                 const Handle<Quote>& spread = Handle<Quote>(),
-                const Period& fwdStart = 0*Days) {
+                const Period& fwdStart = 0*Days,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, tenor, calendar,
                                    fixedFrequency, fixedConvention,
                                    fixedDayCount, libor,
-                                   spread, fwdStart));
+                                   spread, fwdStart,
+                                   discountingCurve));
         }
         SwapRateHelperPtr(
                 Rate rate,
@@ -186,14 +245,45 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
                 const DayCounter& fixedDayCount,
                 const IborIndexPtr& index,
                 const Handle<Quote>& spread = Handle<Quote>(),
-                const Period& fwdStart = 0*Days) {
+                const Period& fwdStart = 0*Days,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new SwapRateHelperPtr(
                 new SwapRateHelper(rate, tenor, calendar,
                                    fixedFrequency, fixedConvention,
                                    fixedDayCount, libor,
-                                   spread, fwdStart));
+                                   spread, fwdStart,
+                                   discountingCurve));
+        }
+        SwapRateHelperPtr(
+                const Handle<Quote>& rate,
+                const SwapIndexPtr& index,
+                const Handle<Quote>& spread = Handle<Quote>(),
+                const Period& fwdStart = 0*Days,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
+            boost::shared_ptr<SwapIndex> swapIndex =
+                boost::dynamic_pointer_cast<SwapIndex>(index);
+            return new SwapRateHelperPtr(
+                new SwapRateHelper(rate, swapIndex,
+                                   spread, fwdStart,
+                                   discountingCurve));
+        }
+        SwapRateHelperPtr(
+                Rate rate,
+                const SwapIndexPtr& index,
+                const Handle<Quote>& spread = Handle<Quote>(),
+                const Period& fwdStart = 0*Days,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
+            boost::shared_ptr<SwapIndex> swapIndex =
+                boost::dynamic_pointer_cast<SwapIndex>(index);
+            return new SwapRateHelperPtr(
+                new SwapRateHelper(rate, swapIndex,
+                                   spread, fwdStart,
+                                   discountingCurve));
         }
         VanillaSwapPtr swap() {
             return boost::dynamic_pointer_cast<SwapRateHelper>(*self)->swap();
@@ -224,6 +314,47 @@ class FixedRateBondHelperPtr : public boost::shared_ptr<RateHelper> {
 
         FixedRateBondPtr bond() {
             return FixedRateBondPtr(boost::dynamic_pointer_cast<FixedRateBondHelper>(*self)->bond());
+        }
+    }
+};
+
+
+%rename(OISRateHelper) OISRateHelperPtr;
+class OISRateHelperPtr : public boost::shared_ptr<RateHelper> {
+  public:
+    %extend {
+        OISRateHelperPtr(
+                Natural settlementDays,
+                const Period& tenor,
+                const Handle<Quote>& rate,
+                const OvernightIndexPtr& index,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
+            boost::shared_ptr<OvernightIndex> overnight =
+                boost::dynamic_pointer_cast<OvernightIndex>(index);
+            return new OISRateHelperPtr(
+                new OISRateHelper(settlementDays,tenor,rate,
+                                  overnight,discountingCurve));
+        }
+    }
+};
+
+%rename(DatedOISRateHelper) DatedOISRateHelperPtr;
+class DatedOISRateHelperPtr : public boost::shared_ptr<RateHelper> {
+  public:
+    %extend {
+        DatedOISRateHelperPtr(
+                const Date& startDate,
+                const Date& endDate,
+                const Handle<Quote>& rate,
+                const OvernightIndexPtr& index,
+                const Handle<YieldTermStructure>& discountingCurve
+                                            = Handle<YieldTermStructure>()) {
+            boost::shared_ptr<OvernightIndex> overnight =
+                boost::dynamic_pointer_cast<OvernightIndex>(index);
+            return new DatedOISRateHelperPtr(
+                new DatedOISRateHelper(startDate,endDate,rate,
+                                       overnight,discountingCurve));
         }
     }
 };
