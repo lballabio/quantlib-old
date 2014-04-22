@@ -37,7 +37,7 @@ namespace QuantLib {
     class EndCriteria;
     class OptimizationMethod;
 
-    class SwaptionVolCube1b : public SwaptionVolatilityCube {
+    class SwaptionVolCube1a : public SwaptionVolatilityCube {
         class Cube {
           public:
             Cube() {}
@@ -92,7 +92,7 @@ namespace QuantLib {
             mutable std::vector< boost::shared_ptr<Interpolation2D> > interpolators_;
          };
       public:
-        SwaptionVolCube1b(
+        SwaptionVolCube1a(
             const Handle<SwaptionVolatilityStructure>& atmVolStructure,
             const std::vector<Period>& optionTenors,
             const std::vector<Period>& swapTenors,
@@ -179,14 +179,14 @@ namespace QuantLib {
 
         class PrivateObserver : public Observer {
           public:
-            PrivateObserver(SwaptionVolCube1b *v)
+            PrivateObserver(SwaptionVolCube1a *v)
                 : v_(v) {}
             void update() {
                 v_->setParameterGuess();
                 v_->update();
             }
           private:
-            SwaptionVolCube1b *v_;
+            SwaptionVolCube1a *v_;
         };
 
        boost::shared_ptr<PrivateObserver> privateObserver_;

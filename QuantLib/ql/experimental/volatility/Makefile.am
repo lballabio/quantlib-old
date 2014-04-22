@@ -12,7 +12,7 @@ this_include_HEADERS = \
     extendedblackvariancesurface.hpp \
     interestratevolsurface.hpp \
     sabrvolsurface.hpp \
-    swaptionvolcube1b.cpp \
+    swaptionvolcube1a.cpp \
     volcube.hpp \
     zabr.hpp \
     zabrinterpolation.hpp \
@@ -27,7 +27,7 @@ libVolatility_la_SOURCES = \
     extendedblackvariancesurface.cpp \
     interestratevolsurface.cpp \
     sabrvolsurface.cpp \
-    swaptionvolcube1b.cpp \
+    swaptionvolcube1a.cpp \
     volcube.cpp \
     zabr.cpp \
     zabrsmilesection.cpp
