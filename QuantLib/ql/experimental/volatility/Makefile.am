@@ -12,7 +12,7 @@ this_include_HEADERS = \
     extendedblackvariancesurface.hpp \
     interestratevolsurface.hpp \
     sabrvolsurface.hpp \
-    swaptionvolcube1a.cpp \
+    swaptionvolcube1a.hpp \
     volcube.hpp \
     zabr.hpp \
     zabrinterpolation.hpp \
