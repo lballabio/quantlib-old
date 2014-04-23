@@ -29,12 +29,12 @@
 #include <ql/math/matrix.hpp>
 #include <ql/math/array.hpp>
 #include <ql/handle.hpp>
+#include <ql/termstructures/volatility/swaption/swaptionvolcube1.hpp>
+#include <ql/experimental/volatility/swaptionvolcube1a.hpp>
 
 namespace QuantLib {
 
     class SwaptionVolatilityStructure;
-    class SwaptionVolCube1;
-    class SwaptionVolCube1a;
     class CmsMarket;
     class OptimizationMethod;
 
