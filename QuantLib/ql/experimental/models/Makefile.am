@@ -8,7 +8,6 @@ this_include_HEADERS = \
     atmsmilesection.hpp \
     basketgeneratingengine.hpp \
     bdksmilesection.hpp \
-    creditriskplus.hpp \
     floatfloatswap.hpp \
     floatfloatswaption.hpp \
     gaussian1dmodel.hpp \
@@ -36,7 +35,6 @@ libModels_la_SOURCES = \
 	bdksmilesection.cpp \
     floatfloatswap.cpp \
     floatfloatswaption.cpp \
-    creditriskplus.cpp \
     gaussian1dmodel.cpp \
     gaussian1dcapfloorengine.cpp \
     gaussian1dfloatfloatswaptionengine.cpp \

@@ -5,7 +5,6 @@
 #include <ql/experimental/models/atmsmilesection.hpp>
 #include <ql/experimental/models/basketgeneratingengine.hpp>
 #include <ql/experimental/models/bdksmilesection.hpp>
-#include <ql/experimental/models/creditriskplus.hpp>
 #include <ql/experimental/models/floatfloatswap.hpp>
 #include <ql/experimental/models/floatfloatswaption.hpp>
 #include <ql/experimental/models/gaussian1dmodel.hpp>
