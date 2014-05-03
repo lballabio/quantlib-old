@@ -16,6 +16,7 @@ SUBDIRS = \
     EquityOption \
     FittedBondCurve \
     FRA \
+    Gaussian1dModels \
 	InterestRateSmiles \
 	KahaleSmileSection \
     MarketModels \
