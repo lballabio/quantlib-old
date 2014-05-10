@@ -43,6 +43,7 @@ QuantLib-SWIG/Perl/blib/
 QuantLib-SWIG/Perl/pm_to_blib
 QuantLib-SWIG/Perl/quantlib_wrap.cpp
 QuantLib-SWIG/Perl/MYMETA.yml
+QuantLib-SWIG/Perl/MYMETA.json
 QuantLib-SWIG/Python/QuantLib/quantlib_wrap.cpp
 QuantLib-SWIG/R/src/QuantLib.cpp
 QuantLib-SWIG/R/makeRData.Rout
