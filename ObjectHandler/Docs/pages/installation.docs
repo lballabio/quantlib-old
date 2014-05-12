@@ -434,7 +434,7 @@ cd /home/erik/temp/apr-1.5.1
 make install
 cd /home/erik/temp/apr-util-1.5.3
 ./buildconf --with-apr=../apr-1.5.1
-./configure --prefix=/home/erik/install --with-apr=/home/erik/install
+./configure --prefix=/home/erik/install --with-apr=../apr-1.5.1
 make install
 \endverbatim
 
