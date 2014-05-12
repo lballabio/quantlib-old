@@ -18,3 +18,4 @@ src/main/include/log4cxx/log4cxx.h
 src/main/include/log4cxx/private/log4cxx_private.h
 src/site/doxy/Doxyfile
 src/test/cpp/testsuite
+src/site/doxy/manual/
