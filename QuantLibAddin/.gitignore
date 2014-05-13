@@ -4,3 +4,4 @@ libtool
 qlo/config.hpp
 qlo/config.hpp.in
 qlo/stamp-h1
+gensrc/.time-stamp
