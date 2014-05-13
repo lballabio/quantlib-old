@@ -1,2 +1,6 @@
 ipch
 x64
+libtool
+qlo/config.hpp
+qlo/config.hpp.in
+qlo/stamp-h1
