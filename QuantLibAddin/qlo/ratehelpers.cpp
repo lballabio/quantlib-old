@@ -366,13 +366,13 @@ namespace QuantLibAddin {
             qlarh->getLibraryObject(qlrh);
             string qlarh_id = convert2<string>(
                 qlarh->propertyValue("OBJECTID"));
-            bool isFutures = dynamic_pointer_cast<FuturesRateHelper>(qlarh);
+            bool isFutures = bool(dynamic_pointer_cast<FuturesRateHelper>(qlarh));
             bool isImmFutures = false, isSerialFutures = false;
             if (isFutures) {
                 isImmFutures = QuantLib::IMM::isIMMdate(qlrh->earliestDate());
                 isSerialFutures = !isImmFutures;
             }
-            bool isDepo = dynamic_pointer_cast<DepositRateHelper>(qlarh);
+            bool isDepo = bool(dynamic_pointer_cast<DepositRateHelper>(qlarh));
             rhsAll.push_back(RateHelperItem(isImmFutures,
                                             isSerialFutures,
                                             isDepo,
