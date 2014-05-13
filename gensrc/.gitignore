@@ -4,3 +4,4 @@ config.status
 config/
 configure
 gensrc-*.tar.gz
+.time-stamp
