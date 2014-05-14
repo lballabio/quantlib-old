@@ -132,6 +132,7 @@ QuantLib/Examples/EquityOption/EquityOption
 QuantLib/Examples/FRA/FRA
 QuantLib/Examples/FittedBondCurve/FittedBondCurve
 QuantLib/Examples/MarketModels/MarketModels
+QuantLib/Examples/Gaussian1dModels/Gaussian1dModels
 QuantLib/Examples/Replication/Replication
 QuantLib/Examples/Repo/Repo
 QuantLib/Examples/Swap/SwapValuation
