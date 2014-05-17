@@ -41,21 +41,21 @@ class ZabrModel {
               const Real beta, const Real nu, const Real rho, const Real gamma);
 
     Real localVolatility(const Real f) const;
-    Disposable<std::vector<Real>>
+    Disposable<std::vector<Real> >
     localVolatility(const std::vector<Real> &f) const;
 
     Real fdPrice(const Real strike) const;
-    Disposable<std::vector<Real>>
+    Disposable<std::vector<Real> >
     fdPrice(const std::vector<Real> &strikes) const;
 
     Real fullFdPrice(const Real strike) const;
 
     Real lognormalVolatility(const Real strike) const;
-    Disposable<std::vector<Real>>
+    Disposable<std::vector<Real> >
     lognormalVolatility(const std::vector<Real> &strikes) const;
 
     Real normalVolatility(const Real strike) const;
-    Disposable<std::vector<Real>>
+    Disposable<std::vector<Real> >
     normalVolatility(const std::vector<Real> &strikes) const;
 
     Real forward() { return forward_; }
@@ -71,7 +71,7 @@ class ZabrModel {
     const Real alpha_, beta_, nu_, rho_, gamma_; // nu_ here is a tranformed version of the input nu !
 
     Real x(const Real strike) const;
-    Disposable<std::vector<Real>> x(const std::vector<Real> &strikes) const;
+    Disposable<std::vector<Real> > x(const std::vector<Real> &strikes) const;
 
     Real y(const Real strike) const;
 

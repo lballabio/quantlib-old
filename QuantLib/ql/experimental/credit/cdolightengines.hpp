@@ -38,9 +38,9 @@ class CdoLightMcEngine
   public:
     CdoLightMcEngine(
         const Handle<YieldTermStructure> &yieldCurve,
-        const std::vector<Handle<DefaultProbabilityTermStructure>> &
+        const std::vector<Handle<DefaultProbabilityTermStructure> > &
             defaultCurves,
-        const std::vector<Handle<Quote>> &recoveryRates,
+        const std::vector<Handle<Quote> > &recoveryRates,
         const Handle<Quote> &correlaiton, Size paths, BigNatural seed);
     void calculate() const;
 
@@ -48,15 +48,15 @@ class CdoLightMcEngine
     void generateDefaultTimes() const;
     Real pathPayoff() const;
     const Handle<YieldTermStructure> yieldCurve_;
-    const std::vector<Handle<DefaultProbabilityTermStructure>> defaultCurves_;
-    const std::vector<Handle<Quote>> recoveryRates_;
+    const std::vector<Handle<DefaultProbabilityTermStructure> > defaultCurves_;
+    const std::vector<Handle<Quote> > recoveryRates_;
     const Handle<Quote> correlation_;
     Size paths_;
     BigNatural seed_;
     mutable PseudoRandom::rsg_type rsg_;
     mutable std::vector<Size> defaultIndexes_;
     mutable std::vector<Real> periodTimes_;
-    mutable std::vector<std::vector<Real>> periodDefaultProbs_;
+    mutable std::vector<std::vector<Real> > periodDefaultProbs_;
     mutable Size firstPeriod_;
     mutable Real attachment_, detachment_, poolNominal_;
 };
