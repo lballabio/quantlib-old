@@ -49,7 +49,7 @@ class FdmDupire1dOp : public FdmLinearOpComposite {
     Disposable<Array> preconditioner(const Array &r, Real s) const;
 
 #if !defined(QL_NO_UBLAS_SUPPORT)
-    Disposable<std::vector<SparseMatrix>> toMatrixDecomp() const;
+    Disposable<std::vector<SparseMatrix> > toMatrixDecomp() const;
 #endif
 
   private:
