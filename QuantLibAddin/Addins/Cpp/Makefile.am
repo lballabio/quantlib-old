@@ -146,3 +146,6 @@ endif
 libQuantLibAddinCpp_la_LIBADD = \
     ../../qlo/libQuantLibAddin.la
 
+libQuantLibAddinCpp_la_LDFLAGS = \
+-lQuantLib -lObjectHandler -lboost_filesystem -lboost_serialization -lboost_system -lboost_regex
+
