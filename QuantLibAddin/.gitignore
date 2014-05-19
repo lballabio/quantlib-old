@@ -5,3 +5,6 @@ qlo/config.hpp
 qlo/config.hpp.in
 qlo/stamp-h1
 gensrc/.time-stamp
+Clients/Cpp/QLADemo
+Clients/CppInstrumentIn/instrument_in
+Clients/CppSwapOut/swap_out
