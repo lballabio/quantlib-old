@@ -44,6 +44,19 @@ using std::string;
 
 namespace QuantLibAddin {
 
+    // Within each of the RateHelper classes we want to remember the ID
+    // of the associated Rate object.  So below we coerce that input
+    // into a string.  If the caller passed in a double instead of a
+    // Rate object then the coerce below will fail in which case we
+    // return an empty string.
+    std::string f(const ObjectHandler::property_t &p) {
+        try {
+            return convert2<string>(p);
+        } catch(...) {
+            return std::string();
+        }
+    }
+
     DepositRateHelper::DepositRateHelper(
             const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
@@ -52,7 +65,7 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::DepositRateHelper(rate, iborIndex));
-        quoteName_ = convert2<string>(properties->getSystemProperty("Rate"));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     DepositRateHelper::DepositRateHelper(
@@ -74,7 +87,7 @@ namespace QuantLibAddin {
                                         convention,
                                         endOfMonth,
                                         dayCounter));
-        quoteName_ = convert2<string>(properties->getSystemProperty("Rate"));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     FuturesRateHelper::FuturesRateHelper(
@@ -87,7 +100,7 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FuturesRateHelper(price, immDate, iborIndex, convAdj));
-        quoteName_ = convert2<string>(properties->getSystemProperty("Price"));
+        quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     FuturesRateHelper::FuturesRateHelper(
@@ -111,7 +124,7 @@ namespace QuantLibAddin {
                                         endOfMonth,
                                         dayCounter,
                                         convAdj));
-        quoteName_ = convert2<string>(properties->getSystemProperty("Price"));
+        quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     FuturesRateHelper::FuturesRateHelper(
@@ -129,7 +142,7 @@ namespace QuantLibAddin {
                                         endDate,
                                         dayCounter,
                                         convAdj));
-        quoteName_ = convert2<string>(properties->getSystemProperty("Price"));
+        quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     SwapRateHelper::SwapRateHelper(
@@ -145,7 +158,7 @@ namespace QuantLibAddin {
             QuantLib::SwapRateHelper(rate,
                                      swapIndex,
                                      spread, forwardStart, discount));
-        quoteName_ = convert2<string>(properties->getSystemProperty("Rate"));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     SwapRateHelper::SwapRateHelper(
@@ -166,7 +179,7 @@ namespace QuantLibAddin {
             QuantLib::SwapRateHelper(rate,
                                      p, cal, fixFreq, fixConv, fixDC, ibor,
                                      spread, forwardStart, discount));
-        quoteName_ = convert2<string>(properties->getSystemProperty("Rate"));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     FraRateHelper::FraRateHelper(
@@ -178,7 +191,7 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FraRateHelper(rate, periodToStart, iborIndex));
-        quoteName_ = convert2<string>(properties->getSystemProperty("Rate"));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     FraRateHelper::FraRateHelper(
@@ -202,7 +215,7 @@ namespace QuantLibAddin {
                                     convention,
                                     endOfMonth,
                                     dayCounter));
-        quoteName_ = convert2<string>(properties->getSystemProperty("Rate"));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     OISRateHelper::OISRateHelper(
@@ -219,7 +232,7 @@ namespace QuantLibAddin {
                                     tenor,
                                     fixedRate,
                                     overnightIndex));
-        quoteName_ = convert2<string>(properties->getSystemProperty("FixedRate"));
+        quoteName_ = f(properties->getSystemProperty("FixedRate"));
     }
 
     DatedOISRateHelper::DatedOISRateHelper(
@@ -235,7 +248,7 @@ namespace QuantLibAddin {
             QuantLib::DatedOISRateHelper(startDate, endDate,
                                          fixedRate,
                                          overnightIndex));
-        quoteName_ = convert2<string>(properties->getSystemProperty("FixedRate"));
+        quoteName_ = f(properties->getSystemProperty("FixedRate"));
     }
 
     BondHelper::BondHelper(
@@ -246,7 +259,7 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::BondHelper>(new
             QuantLib::BondHelper(cleanPrice, bond));
-        quoteName_ = convert2<string>(properties->getSystemProperty("CleanPrice"));
+        quoteName_ = f(properties->getSystemProperty("CleanPrice"));
     }
 
     FixedRateBondHelper::FixedRateBondHelper(
@@ -272,7 +285,7 @@ namespace QuantLibAddin {
                                           paymentConvention,
                                           redemption,
                                           issueDate));
-        quoteName_ = convert2<string>(properties->getSystemProperty("CleanPrice"));
+        quoteName_ = f(properties->getSystemProperty("CleanPrice"));
     }
 
     // helper class
