@@ -523,7 +523,7 @@
             <description>vector of dates, the first one being the one at which discount factor = 1.0</description>
           </Parameter>
           <Parameter name='Data' exampleValue ='1.0,0.99,0.96,0.94,0.9,0.8,0.7,0.6,0.4'>
-            <type>QuantLib::Quote</type>
+            <type>QuantLib::Real</type>
             <tensorRank>vector</tensorRank>
             <description>data vector. Each element should be of the type selected by TraitsID</description>
           </Parameter>
