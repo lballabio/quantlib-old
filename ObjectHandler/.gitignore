@@ -11,3 +11,5 @@ oh/config.hpp.in
 oh/stamp-h1
 ipch
 x64
+Docs/.time-stamp-html
+Examples/C++/account.xml
