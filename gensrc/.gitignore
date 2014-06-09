@@ -7,3 +7,4 @@ gensrc-*.tar.gz
 .time-stamp
 Docs/.time-stamp-online
 Docs/html-online
+Docs/*.chm
