@@ -198,7 +198,7 @@ namespace QuantLibAddin {
       public:
         FixedRateBondHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
+            const QuantLib::Handle<QuantLib::Quote>& price,
             QuantLib::Natural settlementDays,
             QuantLib::Real faceAmount,
             const boost::shared_ptr<QuantLib::Schedule>& schedule,
@@ -211,7 +211,7 @@ namespace QuantLibAddin {
             const QuantLib::Period& exCouponPeriod,
             const QuantLib::Calendar& exCouponCalendar,
             const QuantLib::BusinessDayConvention exCouponConvention,
-            bool exCouponEndOfMonth ,
+            bool exCouponEndOfMonth,
             const bool useCleanPrice,
             bool permanent);
     };
