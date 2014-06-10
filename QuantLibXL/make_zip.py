@@ -6,10 +6,67 @@ import datetime
 import glob
 import zipfile
 import argparse
+import re
 
-QLXL_VERSION = "QuantLibXL-1.4.0"
+QLXL = "QuantLibXL"
+VERSION = "1.4.0"
+QLXL_VERSION = QLXL + "-" + VERSION
 ROOT_DIR = QLXL_VERSION + "/"
-#ROOT_DIR = "QuantLibXL/"
+
+class Selector:
+
+    zFile = None
+    zipRoot = None
+    inputPath = None
+    incDirs = None
+    excDirs = None
+    incFiles = None
+    excFiles = None
+
+    def __init__(self, zFile, zipRoot, inputPath, incDirs=None, excDirs=None, incFiles=None, excFiles=None):
+        self.zFile = zFile
+        self.zipRoot = zipRoot + "\\"
+        self.inputPath = inputPath
+        self.incDirs = incDirs
+        self.excDirs = excDirs
+        self.incFiles = incFiles
+        self.excFiles = excFiles
+        self.process()
+
+    def process(self):
+        for root, dirs, files in os.walk(self.inputPath):
+            root += "\\"
+            for d in dirs:
+                if self.excludeDir(d):
+                    dirs.remove(d)
+            for f in files:
+                if self.includeFile(f):
+                    print root + f
+                    self.zFile.write(root + f, self.zipRoot + root + f)
+
+    def excludeDir(self, d):
+        if self.excDirs is None:
+            return False
+        if self.incDirs is not None:
+            for r in self.incDirs:
+                if r.match(d):
+                    return False
+        for r in self.excDirs:
+            if r.match(d):
+                return True
+        return False
+
+    def includeFile(self, f):
+        if self.excFiles is None:
+            return True
+        if self.incFiles is not None:
+            for r in self.incFiles:
+                if r.match(f):
+                    return True
+        for r in self.excFiles:
+            if r.match(f):
+                return False
+        return True
 
 def prompt_exit(msg='', status=0):
     if msg:
@@ -18,6 +75,7 @@ def prompt_exit(msg='', status=0):
         raw_input('press any key to exit')
     sys.exit(status)
 
+#DELETEME
 def visit(params, dirname, names):
     zfile = params[0]
     exclude = params[1]
@@ -62,11 +120,30 @@ def make_zip_nando():
     zfile.close()
 
 def make_zip_source():
-    zipFilePath = "zip/%s.zip" % QLXL_VERSION
-    zfile = zipfile.ZipFile(zipFilePath, "w", zipfile.ZIP_DEFLATED)
+    zipFilePath = "zip/" + QLXL_VERSION + ".zip"
+    zFile = zipfile.ZipFile(zipFilePath, "w", zipfile.ZIP_DEFLATED)
     for fileName in glob.glob("*.sln"):
-        zfile.write(fileName, "QuantLibXL/" + fileName)
-    os.path.walk("qlxl", visit, (zfile, None, None))
+        print fileName
+        zFile.write(fileName, QLXL + "\\" + fileName)
+    for fileName in glob.glob("*.txt"):
+        if "goodpractice.txt" != fileName:
+            print fileName
+            zFile.write(fileName, QLXL + "\\" + fileName)
+    s = Selector(
+        inputPath = 'qlxl',
+        zFile = zFile,
+        zipRoot = QLXL,
+        incDirs = None,
+        excDirs = (
+            re.compile('^build.*'),),
+        incFiles = None,
+        excFiles = (
+            re.compile('^.gitignore$'),
+            re.compile('^Makefile.am$'),
+            re.compile('^.*\.user$'),
+            re.compile('^.*\.filters$')),
+    )
+    zFile.close()
 
 parser = argparse.ArgumentParser(description='zip up QuantLibXL')
 parser.add_argument('-t','--target', help='target environment', required=True)
