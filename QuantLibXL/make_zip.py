@@ -8,8 +8,8 @@ import zipfile
 import argparse
 
 QLXL_VERSION = "QuantLibXL-1.4.0"
-#ROOT_DIR = QLXL_VERSION + "/"
-ROOT_DIR = "QuantLibXL/"
+ROOT_DIR = QLXL_VERSION + "/"
+#ROOT_DIR = "QuantLibXL/"
 
 def prompt_exit(msg='', status=0):
     if msg:
