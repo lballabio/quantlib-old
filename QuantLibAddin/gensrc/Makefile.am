@@ -107,6 +107,7 @@ EXTRA_DIST = .time-stamp \
              qlgensrc_vc8.vcproj \
              qlgensrc_vc9.vcproj \
              qlgensrc_vc10.vcxproj \
+             qlgensrc_vc11.vcxproj \
              Makefile.vc \
              $(GENSRC_INPUTS)
 

@@ -1,0 +1,7 @@
+Eric's notes to himself for next time.
+
+To create the log4cxx zip file for Windows, log in to Windows, open a git bash
+prompt in the root quantlib directory, and do:
+
+    git archive --output=log4cxx.zip R01040x-branch log4cxx
+

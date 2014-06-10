@@ -33,9 +33,11 @@ EXTRA_DIST = \
     QuantLibAddin_vc8.sln \
     QuantLibAddin_vc9.sln \
     QuantLibAddin_vc10.sln \
+    QuantLibAddin_vc11.sln \
     QuantLibObjects_vc8.vcproj \
     QuantLibObjects_vc9.vcproj \
     QuantLibObjects_vc10.vcxproj \
+    QuantLibObjects_vc11.vcxproj \
     README.txt \
     todo.txt
 

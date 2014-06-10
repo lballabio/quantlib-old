@@ -8,7 +8,8 @@ LDFLAGS = -lboost_filesystem -lboost_serialization -lboost_regex -lboost_system
 EXTRA_DIST = \
     ExampleCpp_vc8.vcproj \
     ExampleCpp_vc9.vcproj \
-    ExampleCpp_vc10.vcxproj
+    ExampleCpp_vc10.vcxproj \
+    ExampleCpp_vc11.vcxproj
 
 ExampleCpp_SOURCES = example.cpp
 

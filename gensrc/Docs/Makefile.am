@@ -3,6 +3,7 @@ EXTRA_DIST = \
     docs_vc8.vcproj \
     docs_vc9.vcproj \
     docs_vc10.vcxproj \
+    docs_vc11.vcxproj \
     doxygen.css \
     gensrc.doxy \
     gs_footer.html \
