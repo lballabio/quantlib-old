@@ -13,19 +13,41 @@ VERSION = "1.4.0"
 QLXL_VERSION = QLXL + "-" + VERSION
 ROOT_DIR = QLXL_VERSION + "/"
 
+class ZipFile:
+
+    root = None
+    zipFile = None
+
+    def __init__(self, path, root):
+        self.root = root
+        self.zipFile = zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED)
+
+    def __del__(self):
+        self.zipFile.close()
+
+    def zip(self, path):
+        print path
+        self.zipFile.write(path, self.root + path)
+
+    def zipGlob(self, path, excludeFiles = None):
+        for fileName in glob.glob(path):
+            if excludeFiles is not None:
+                for r in excludeFiles:
+                    if r.match(fileName):
+                        continue
+            self.zip(fileName)
+
 class Selector:
 
-    zFile = None
-    zipRoot = None
+    zipFile = None
     inputPath = None
     incDirs = None
     excDirs = None
     incFiles = None
     excFiles = None
 
-    def __init__(self, zFile, zipRoot, inputPath, incDirs=None, excDirs=None, incFiles=None, excFiles=None):
-        self.zFile = zFile
-        self.zipRoot = zipRoot + "\\"
+    def __init__(self, zipFile, inputPath, incDirs=None, excDirs=None, incFiles=None, excFiles=None):
+        self.zipFile = zipFile
         self.inputPath = inputPath
         self.incDirs = incDirs
         self.excDirs = excDirs
@@ -41,32 +63,33 @@ class Selector:
                     dirs.remove(d)
             for f in files:
                 if self.includeFile(f):
-                    print root + f
-                    self.zFile.write(root + f, self.zipRoot + root + f)
+                    self.zipFile.zip(root + f)
 
     def excludeDir(self, d):
-        if self.excDirs is None:
+        if self.excDirs is not None:
+            for r in self.excDirs:
+                if r.match(d):
+                    return True
+        if self.incDirs is None:
             return False
-        if self.incDirs is not None:
+        else:
             for r in self.incDirs:
                 if r.match(d):
                     return False
-        for r in self.excDirs:
-            if r.match(d):
-                return True
-        return False
+        return True
 
     def includeFile(self, f):
-        if self.excFiles is None:
+        if self.excFiles is not None:
+            for r in self.excFiles:
+                if r.match(f):
+                    return False
+        if self.incFiles is None:
             return True
-        if self.incFiles is not None:
+        else:
             for r in self.incFiles:
                 if r.match(f):
                     return True
-        for r in self.excFiles:
-            if r.match(f):
-                return False
-        return True
+        return False
 
 def prompt_exit(msg='', status=0):
     if msg:
@@ -90,7 +113,7 @@ def visit(params, dirname, names):
         targetPath = rootDir + "/" + name
         zfile.write(sourcePath, ROOT_DIR + targetPath)
 
-def make_zip_nando():
+def makeZipNando():
     zipFilePath = "zip/%s-%s.zip" % (QLXL_VERSION, datetime.datetime.now().strftime("%Y%m%d%H%M"))
     zfile = zipfile.ZipFile(zipFilePath, "w", zipfile.ZIP_DEFLATED)
 
@@ -119,40 +142,66 @@ def make_zip_nando():
 
     zfile.close()
 
-def make_zip_source():
-    zipFilePath = "zip/" + QLXL_VERSION + ".zip"
-    zFile = zipfile.ZipFile(zipFilePath, "w", zipfile.ZIP_DEFLATED)
-    for fileName in glob.glob("*.sln"):
-        print fileName
-        zFile.write(fileName, QLXL + "\\" + fileName)
-    for fileName in glob.glob("*.txt"):
-        if "goodpractice.txt" != fileName:
-            print fileName
-            zFile.write(fileName, QLXL + "\\" + fileName)
-    s = Selector(
+def zipBinaryFiles(zipFile):
+    zipFile.zip("xll\\QuantLibXL-vc90-mt-s-1_4_0.xll")
+    zipFile.zip("Docs\\QuantLibXL-docs-1.4.0.chm")
+    Selector(
+        inputPath = 'StandaloneExamples',
+        zipFile = zipFile,
+        incFiles = (
+            re.compile('^.*\.xlsx$'),),
+    )
+
+def zipFrameworkFiles(zipFile):
+    Selector(
+        inputPath = 'Data2',
+        zipFile = zipFile,
+    )
+    Selector(
+        inputPath = 'framework',
+        zipFile = zipFile,
+    )
+
+def zipSourceFiles(zipFile):
+    zipFile.zipGlob("*.sln")
+    zipFile.zipGlob("*.txt", (re.compile("^goodpractice.txt$"),))
+    Selector(
         inputPath = 'qlxl',
-        zFile = zFile,
-        zipRoot = QLXL,
-        incDirs = None,
+        zipFile = zipFile,
         excDirs = (
             re.compile('^build.*'),),
-        incFiles = None,
         excFiles = (
             re.compile('^.gitignore$'),
             re.compile('^Makefile.am$'),
             re.compile('^.*\.user$'),
             re.compile('^.*\.filters$')),
     )
-    zFile.close()
+
+def makeZipBinary():
+    zipFile = ZipFile("zip/" + QLXL_VERSION + "-bin.zip", ROOT_DIR)
+    zipBinaryFiles(zipFile)
+
+def makeZipFramework():
+    zipFile = ZipFile("zip/" + QLXL_VERSION + "-framework.zip", ROOT_DIR)
+    zipBinaryFiles(zipFile)
+    zipFrameworkFiles(zipFile)
+
+def makeZipSource():
+    zipFile = ZipFile("zip/" + QLXL_VERSION + ".zip", QLXL + "\\")
+    zipSourceFiles(zipFile)
 
 parser = argparse.ArgumentParser(description='zip up QuantLibXL')
 parser.add_argument('-t','--target', help='target environment', required=True)
 args = vars(parser.parse_args())
 
-if 'nando' == args['target']:
-    make_zip_nando()
+if 'binary' == args['target']:
+    makeZipBinary()
+elif 'framework' == args['target']:
+    makeZipFramework()
 elif 'source' == args['target']:
-    make_zip_source()
+    makeZipSource()
+elif 'nando' == args['target']:
+    makeZipNando()
 else:
-    print "error"
+    print "Error - unsupported target : " + args['target']
 
