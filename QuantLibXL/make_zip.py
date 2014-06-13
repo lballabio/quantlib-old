@@ -11,7 +11,7 @@ import re
 QLXL = "QuantLibXL"
 VERSION = "1.4.0"
 QLXL_VERSION = QLXL + "-" + VERSION
-ROOT_DIR = QLXL_VERSION + "/"
+ROOT_DIR = QLXL_VERSION + "\\"
 
 class ZipFile:
 
@@ -25,9 +25,11 @@ class ZipFile:
     def __del__(self):
         self.zipFile.close()
 
-    def zip(self, path):
-        print path
-        self.zipFile.write(path, self.root + path)
+    def zip(self, sourcePath, targetPath = None):
+        print sourcePath
+        if targetPath is None:
+            targetPath = self.root + sourcePath
+        self.zipFile.write(sourcePath, targetPath)
 
     def zipGlob(self, path, excludeFiles = None):
         for fileName in glob.glob(path):
@@ -143,7 +145,9 @@ def makeZipNando():
     zfile.close()
 
 def zipBinaryFiles(zipFile):
-    zipFile.zip("xll\\QuantLibXL-vc90-mt-s-1_4_0.xll")
+    zipFile.zip("zip\\README.txt", zipFile.root + "README.txt")
+    zipFile.zip("xll\\QuantLibXL-vc110-mt-s-1_4_0.xll")
+    zipFile.zip("xll\\QuantLibXL-vc110-x64-mt-s-1_4_0.xll")
     zipFile.zip("Docs\\QuantLibXL-docs-1.4.0.chm")
     Selector(
         inputPath = 'StandaloneExamples',
