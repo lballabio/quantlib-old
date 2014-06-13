@@ -256,7 +256,10 @@ namespace QuantLibAddin {
             bool exCouponEndOfMonth,
             const bool useCleanPrice,
             bool permanent)
-    : BondHelper(properties, price, shared_ptr<QuantLib::Bond>(), useCleanPrice, permanent) {
+    : BondHelper(properties, price, shared_ptr<QuantLib::Bond>(new
+        QuantLib::FixedRateBond(settlementDays, faceAmount, *schedule,
+                      coupons, paymentDayCounter, paymentConvention,
+                      redemption, issueDate)), useCleanPrice, permanent) {
         libraryObject_ = shared_ptr<QuantLib::FixedRateBondHelper>(new
             QuantLib::FixedRateBondHelper(price,
                                           settlementDays,
