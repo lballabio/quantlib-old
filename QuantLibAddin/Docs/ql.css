@@ -7,6 +7,20 @@ which causes images from this CSS file to be excluded.  A workaround
 is implemented in file license.docs.
 */
 
+/* begin - override some doxygen colors with QuantLibAddin colors */
+a {
+    color: #2E772E;
+}
+
+a:visited {
+    color: #2E772E;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #2E772E;
+}
+/* end - override some doxygen colors with QuantLibAddin colors */
+
 body {
     position: relative;
     font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
@@ -129,6 +143,7 @@ body {
     text-align: center;
     color: #1D6700;
     padding-top: 22px;
+    line-height: 125%;
 }
 
 #footer a, #footer a.focus, #footer a.hover, #footer a.active, #footer a.visited {
