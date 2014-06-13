@@ -129,6 +129,7 @@ body {
     text-align: center;
     color: #074BB4;
     padding-top: 22px;
+    line-height: 100%;
 }
 
 #footer a, #footer a.focus, #footer a.hover, #footer a.active, #footer a.visited {
