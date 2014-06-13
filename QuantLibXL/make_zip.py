@@ -157,6 +157,10 @@ def zipBinaryFiles(zipFile):
     )
 
 def zipFrameworkFiles(zipFile):
+    zipFile.zip("../XL-Launcher/bin/Addin/Launcher.xla", zipFile.root + "Launcher.xla")
+    zipFile.zip("../XL-Launcher/bin/Addin/session_file.public.live.xml", zipFile.root + "session_file.xml")
+    zipFile.zip("../XL-Launcher/bin/Addin/session_file.public.live.bat", zipFile.root + "session_file.public.live.bat")
+    zipFile.zip("../XL-Launcher/bin/Addin/session_file.public.live.xml", zipFile.root + "session_file.public.live.xml")
     Selector(
         inputPath = 'Data2',
         zipFile = zipFile,
