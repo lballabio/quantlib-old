@@ -37,6 +37,7 @@ class ZipFile:
                 for r in excludeFiles:
                     if r.match(fileName):
                         continue
+            print fileName
             self.zip(fileName)
 
 class Selector:
@@ -171,8 +172,22 @@ def zipFrameworkFiles(zipFile):
     )
 
 def zipSourceFiles(zipFile):
+
     zipFile.zipGlob("*.sln")
     zipFile.zipGlob("*.txt", (re.compile("^goodpractice.txt$"),))
+
+    zipFile.zip("Docs\\Makefile.vc")
+    zipFile.zip("Docs\\quantlibxl.doxy")
+    zipFile.zipGlob("Docs\\*.css")
+    zipFile.zipGlob("Docs\\*.html")
+    zipFile.zipGlob("Docs\\*.vcproj")
+    zipFile.zipGlob("Docs\\*.vcxproj")
+    zipFile.zipGlob("Docs\\images\\*.bmp")
+    zipFile.zipGlob("Docs\\images\\*.ico")
+    zipFile.zipGlob("Docs\\images\\*.jpg")
+    zipFile.zipGlob("Docs\\images\\*.png")
+    zipFile.zipGlob("Docs\\pages\\*.docs")
+
     Selector(
         inputPath = 'qlxl',
         zipFile = zipFile,
