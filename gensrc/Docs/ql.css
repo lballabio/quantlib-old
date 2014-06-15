@@ -7,20 +7,6 @@ which causes images from this CSS file to be excluded.  A workaround
 is implemented in file license.docs.
 */
 
-/* begin - override some doxygen colors with gensrc colors */
-a {
-    color: #CB232A;
-}
-
-a:visited {
-    color: #CB232A;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: #CB232A;
-}
-/* end - override some doxygen colors with gensrc colors */
-
 body {
     position: relative;
     font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;

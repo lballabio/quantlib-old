@@ -7,20 +7,6 @@ which causes images from this CSS file to be excluded.  A workaround
 is implemented in file license.docs.
 */
 
-/* begin - override some doxygen colors with QuantLibXL colors */
-a {
-    color: #6B834B;
-}
-
-a:visited {
-    color: #6B834B;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: #6B834B;
-}
-/* end - override some doxygen colors with QuantLibXL colors */
-
 body {
     position: relative;
     font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
