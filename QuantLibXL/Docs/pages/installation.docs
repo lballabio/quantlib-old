@@ -23,44 +23,30 @@
 
 /*! \page installation Installation
 
-Download QuantLibXL-bin-1.4.0.exe from the 
-<a href="http://sourceforge.net/project/showfiles.php?group_id=12740&package_id=260244">Downloads page</a>.
+Download QuantLibXL-1.4.0-bin.zip from the 
+<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.4.0/">Downloads page</a>.
 
-Run the installer to install QuantLibXL to your system.  You are given the
-option to install the \ref framework if desired.
+Copy the zip file to your hard drive and uncompress it.
 
 \section qlxl_install_usage Usage
 
 To use QuantLibXL:
 \li Start Excel
-\li Load the addin:
+\li Load the addin.  Two XLLs are provided, one 32-bit and one 64-bit, please
+load the one that is appropriate for your version of Excel:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc90-mt-s-1_4_0.xll
+QuantLibXL-1.4.0\xll\QuantLibXL-vc110-mt-s-1_4_0.xll
+QuantLibXL-1.4.0\xll\QuantLibXL-vc110-x64-mt-s-1_4_0.xll
 \endverbatim
-\li Load the example workbooks:
+\li Load some example workbooks, e.g:
 \verbatim
-QuantLibXL\Workbooks\StandaloneExamples\YieldCurveBootstrapping.xls
-QuantLibXL\Workbooks\StandaloneExamples\InterestRateDerivatives.xls
+QuantLibXL-1.4.0\Workbooks\StandaloneExamples\YieldCurveBootstrapping.xls
+QuantLibXL-1.4.0\Workbooks\StandaloneExamples\InterestRateDerivatives.xls
 \endverbatim
 \li Hit <tt>Ctrl-Alt-F9</tt> to force a full recalculation
-
-If you want to have QuantLibXL loaded every time you start Excel,
-you can accomplish this as follows:
-\li Start Excel
-\li Ensure that at least one workbook is loaded - creating a new empty workbook if necessary
-\li Do <tt>Tools | Add-Ins</tt>, and click the Browse button
-\li Browse your way to the QuantLibXL XLL and click OK
-
-\section qlxl_install_directories Directories
-
-The SerializationDemo directory contains a VBA application which implements a
-demo serialization environment as described in the following document:
-
-<a href="http://www.quantlibaddin.org/serialization.html">http://www.quantlibaddin.org/serialization.html</a>
-
-Apart from the StandaloneExamples directory, other subdirectories of the
-Workbooks directory contain workbooks that belong to the \ref framework
-application.
+\li Please see the StandaloneExamples file for other example workbooks.
+\li The help file is in the Docs directory.
+\li For further help, please use the mailing list: https://lists.sourceforge.net/lists/listinfo/quantlib-users
 
 */
 
