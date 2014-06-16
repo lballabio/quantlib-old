@@ -35,6 +35,7 @@ QuantLibAddin project, please refer to
 - Fixed bug which could cause Excel to crash at shutdown.
 - Fixed bug which could cause interpolation code to crash.
 - Fixed memory leak in function ohRangeRetrieveError().
+- Prevent potential crash in qlFixedRateBondHelper() (thanks to Francois Botha)
 - VBA Framework - fix bug in which exception is thrown by context sensitive
   menu when the active worksheet is a chart.
 - Added additional clones of Calendars to correspond to the output from

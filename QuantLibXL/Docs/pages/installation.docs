@@ -40,12 +40,12 @@ QuantLibXL-1.4.0\xll\QuantLibXL-vc110-x64-mt-s-1_4_0.xll
 \endverbatim
 \li Load some example workbooks, e.g:
 \verbatim
-QuantLibXL-1.4.0\Workbooks\StandaloneExamples\YieldCurveBootstrapping.xls
-QuantLibXL-1.4.0\Workbooks\StandaloneExamples\InterestRateDerivatives.xls
+QuantLibXL-1.4.0\StandaloneExamples\YieldCurveBootstrapping.xls
+QuantLibXL-1.4.0\StandaloneExamples\InterestRateDerivatives.xls
 \endverbatim
 \li Hit <tt>Ctrl-Alt-F9</tt> to force a full recalculation
-\li Please see the StandaloneExamples file for other example workbooks.
-\li The help file is in the Docs directory.
+\li Please see the <tt>StandaloneExamples</tt> directory for other example workbooks.
+\li The help file is in the <tt>Docs</tt> directory.
 \li For further help, please use the mailing list: https://lists.sourceforge.net/lists/listinfo/quantlib-users
 
 */
