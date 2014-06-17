@@ -65,6 +65,7 @@ malfunction under certain versions of Excel.
 
 \subsection fw_installation 1.2 Installation
 
+Download
 <a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.5.0/QuantLibXL-1.5.0-framework.zip/download">QuantLibXL-1.5.0-framework.zip</a>.
 Copy the zip file to your hard drive and uncompress it.
 
