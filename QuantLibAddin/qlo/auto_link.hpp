@@ -23,12 +23,8 @@
 #include <qlo/qladdindefines.hpp>
 
 // select toolset:
-#if (_MSC_VER < 1300)
+#if (_MSC_VER < 1400)
 #  error "unsupported Microsoft compiler"
-#elif (_MSC_VER == 1300)
-#  define QLADDIN_LIB_TOOLSET "vc7"
-#elif (_MSC_VER == 1310)
-#  define QLADDIN_LIB_TOOLSET "vc71"
 #elif (_MSC_VER == 1400)
 #  define QLADDIN_LIB_TOOLSET "vc80"
 #elif (_MSC_VER == 1500)
@@ -42,6 +38,13 @@
 #endif
 
 /*** libraries to be linked ***/
+
+// select architecture:
+#ifdef _M_X64
+#  define QLADDIN_LIB_PLATFORM "-x64"
+#else
+#  define QLADDIN_LIB_PLATFORM 
+#endif
 
 // select thread opt:
 #ifdef _MT
@@ -65,7 +68,7 @@
 #  endif
 #endif
 
-#define QLADDIN_LIB_NAME "QuantLibObjects-" QLADDIN_LIB_TOOLSET QLADDIN_LIB_THREAD_OPT QLADDIN_LIB_RT_OPT "-" QLADDIN_LIB_VERSION ".lib"
+#define QLADDIN_LIB_NAME "QuantLibObjects-" QLADDIN_LIB_TOOLSET QLADDIN_LIB_PLATFORM QLADDIN_LIB_THREAD_OPT QLADDIN_LIB_RT_OPT "-" QLADDIN_LIB_VERSION ".lib"
 
 #pragma comment(lib, QLADDIN_LIB_NAME)
 #ifdef BOOST_LIB_DIAGNOSTIC

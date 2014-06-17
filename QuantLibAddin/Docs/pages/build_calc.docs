@@ -20,6 +20,14 @@
 
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
 
+<table border="1" bgcolor="lightsteelblue">
+<tr>
+<td><b>NB:</b> This document is out of date, the Calc build has not been
+maintained.  For further information please refer to the %QuantLibAddin source
+code or send email to quantlib-users@lists.sf.net.</td>
+</tr>
+</table>
+
 \section build_calc_overview Overview
 
 This document summarizes special considerations for compiling %QuantLibAddin

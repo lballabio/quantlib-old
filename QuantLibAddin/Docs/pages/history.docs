@@ -23,7 +23,7 @@
 
 /*! \page history Version History
 
-<strong>Release 1.4.0 - MMM YYYY</strong>
+<strong>Release 1.4.0 - June 2014</strong>
 
 REQUIRED PACKAGES
 
@@ -33,7 +33,10 @@ REQUIRED PACKAGES
 
 FUNCTIONALITY
 
-- ?? new functions / ???? in total
+- 2 new functions / 1017 in total
+- Support for 64-bit (thanks to Richard Gould)
+- Prevent potential crash in constructor of FixedRateBondHelper (thanks to
+  Francois Botha)
 - Added additional clones of Calendars to correspond to the output from
   QuantLib::Calendar::name(). This allows us in Excel to ask a calendar for its
   name and then recreate the same calendar based on that string.

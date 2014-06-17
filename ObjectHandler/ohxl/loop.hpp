@@ -69,7 +69,7 @@ namespace ObjectHandler {
               OPER *xIn, 
               XLOPER &xOut) {
 
-        // FIXME declare xTemp as ObjectHandler::Xloper?
+        // FIXME - xTemp may not be cleaned up properly in the event of an exception.
         OPER xTemp, *xMulti;
         bool excelToFree = false;
         bool xllToFree = false;

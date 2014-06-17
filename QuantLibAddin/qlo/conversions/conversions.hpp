@@ -50,6 +50,12 @@ namespace QuantLibAddin {
     // conflicts with QuantLib::Size override.
     // FIXME Need a #define that specifically distinguishes 32/64-bit
 #if defined(__GNUC__) && defined(__x86_64__)
+#define WAZOO_64_BIT
+#endif
+#if defined(_WIN64)
+#define WAZOO_64_BIT
+#endif
+#if defined(WAZOO_64_BIT)
     void cppToLibrary(const long &in, QuantLib::Natural &ret);
 #endif
 

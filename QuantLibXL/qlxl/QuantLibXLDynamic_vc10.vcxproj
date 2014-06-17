@@ -42,10 +42,12 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\buildDynamic\vc100\$(Configuration)\</IntDir>
     <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreBuildEventUseInBuild>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\xll\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\buildDynamic\vc100\$(Configuration)\</IntDir>
     <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</PreBuildEventUseInBuild>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EmbedManifest>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.xll</TargetExt>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibXLDynamic-vc100-mt-gd-1_5_0</TargetName>
@@ -61,7 +63,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -69,12 +71,12 @@
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\buildDynamic\vc100\$(Configuration)/</AssemblerListingLocation>
       <ObjectFileName>.\buildDynamic\vc100\$(Configuration)/</ObjectFileName>
       <ProgramDataBaseFileName>.\buildDynamic\vc100\$(Configuration)/</ProgramDataBaseFileName>
@@ -88,7 +90,7 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -97,12 +99,12 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibAddinDynamic-vc100-mt-gd-1_5_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic-vc100-mt-gd-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.bsc</OutputFile>
+      <OutputFile>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -115,7 +117,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.tlb</TypeLibraryName>
+      <TypeLibraryName>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -124,13 +126,13 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_IMPORTS;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\buildDynamic\vc100\$(Configuration)/</AssemblerListingLocation>
       <ObjectFileName>.\buildDynamic\vc100\$(Configuration)/</ObjectFileName>
       <ProgramDataBaseFileName>.\buildDynamic\vc100\$(Configuration)/</ProgramDataBaseFileName>
@@ -144,7 +146,7 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -152,14 +154,14 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibAddinDynamic-vc100-mt-1_5_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic-vc100-mt-1_4_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\buildDynamic\vc100\$(Configuration)/AddinExcelDynamic.bsc</OutputFile>
+      <OutputFile>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -304,6 +306,20 @@
     <ClInclude Include="conversions\vectortooper.hpp" />
     <ClInclude Include="..\..\QuantLibAddin\qlo\serialization\serializationfactory.hpp" />
     <ClInclude Include="session.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ObjectHandler\ohxl\ohxll\ohxll_vc10.vcxproj">
+      <Project>{04d7369f-47bc-46b0-a374-41635a9656d8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ObjectHandler\xlsdk\xlsdk_vc10.vcxproj">
+      <Project>{4bd77a1e-aae9-47a4-81fe-2308e5a460af}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QuantLibAddin\QuantLibObjects4_vc10.vcxproj">
+      <Project>{cab8330c-6424-4455-9285-3654587ef71f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QuantLib\QuantLib_vc10.vcxproj">
+      <Project>{ad0a27da-91da-46a2-acbd-296c419ed3aa}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

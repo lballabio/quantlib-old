@@ -7,6 +7,7 @@ include_HEADERS = \
     group.hpp \
     iless.hpp \
     libraryobject.hpp \
+    logger.hpp \
     objecthandler.hpp \
     object.hpp \
     objectwrapper.hpp \
@@ -25,9 +26,10 @@ EXTRA_DIST = \
     auto_link.hpp
 
 lib_LTLIBRARIES = libObjectHandler.la
-LDFLAGS = -lboost_filesystem -lboost_regex -lboost_serialization -release $(PACKAGE_VERSION)
+LDFLAGS = -llog4cxx -lboost_filesystem -lboost_regex -lboost_serialization -release $(PACKAGE_VERSION)
 
 libObjectHandler_la_SOURCES = \
+    logger.cpp \
     processor.cpp \
     repository.cpp \
     serializationfactory.cpp \

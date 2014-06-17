@@ -30,7 +30,6 @@ Section
     File "README.txt"
     File "LICENSE.TXT"
     File "NEWS.txt"
-    File "ObjectHandler_vc7.sln"
     File "ObjectHandler_vc8.sln"
     File "ObjectHandler_vc9.sln"
     File "ObjectHandler_vc10.sln"
@@ -101,9 +100,6 @@ Section
 
     CreateShortCut "$SMPROGRAMS\ObjectHandler-${VER_NUMBER}\LICENSE.txt.lnk" \
                    "$INSTDIR\LICENSE.TXT"
-
-    CreateShortCut "$SMPROGRAMS\ObjectHandler-${VER_NUMBER}\ObjectHandler VC 7 project workspace.lnk" \
-                   "$INSTDIR\ObjectHandler_vc7.sln"
 
     CreateShortCut "$SMPROGRAMS\ObjectHandler-${VER_NUMBER}\ObjectHandler VC 8 project workspace.lnk" \
                    "$INSTDIR\ObjectHandler_vc8.sln"

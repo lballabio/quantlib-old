@@ -97,9 +97,6 @@ Section
                    "$INSTDIR\QuantLibXLUninstall.exe" "" \
                    "$INSTDIR\QuantLibXLUninstall.exe" 0
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 7 project workspace.lnk" \
-                   "$INSTDIR\QuantLibXL_basic_vc7.sln"
-
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 8 project workspace.lnk" \
                    "$INSTDIR\QuantLibXL_basic_vc8.sln"
 

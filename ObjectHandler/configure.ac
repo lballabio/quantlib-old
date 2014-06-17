@@ -86,6 +86,7 @@ AC_CONFIG_FILES([
     oh/valueobjects/Makefile
     oh/Makefile
     ohxl/Makefile
-    xlsdk/Makefile ])
+    xlsdk/Makefile
+    xlsdk/x64/Makefile ])
 AC_OUTPUT
 
