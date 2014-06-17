@@ -23,8 +23,8 @@
 
 /*! \page installation Installation
 
-Download QuantLibXL-1.4.0-bin.zip from the 
-<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.4.0/">Downloads page</a>.
+Download 
+<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.4.0/QuantLibXL-1.4.0-bin.zip/download">QuantLibXL-1.4.0-bin.zip</a>.
 
 Copy the zip file to your hard drive and uncompress it.
 
@@ -33,18 +33,18 @@ Copy the zip file to your hard drive and uncompress it.
 To use QuantLibXL:
 \li Start Excel
 \li Load the addin.  Two XLLs are provided, one 32-bit and one 64-bit, please
-load the one that is appropriate for your version of Excel:
+open the one that is appropriate for your version of Excel:
 \verbatim
 QuantLibXL-1.4.0\xll\QuantLibXL-vc110-mt-s-1_4_0.xll
 QuantLibXL-1.4.0\xll\QuantLibXL-vc110-x64-mt-s-1_4_0.xll
 \endverbatim
-\li Load some example workbooks, e.g:
+\li Load some example workbooks.  The best ones to start with are:
 \verbatim
 QuantLibXL-1.4.0\StandaloneExamples\YieldCurveBootstrapping.xls
 QuantLibXL-1.4.0\StandaloneExamples\InterestRateDerivatives.xls
 \endverbatim
 \li Hit <tt>Ctrl-Alt-F9</tt> to force a full recalculation
-\li Please see the <tt>StandaloneExamples</tt> directory for other example workbooks.
+\li Please see also the other example workbooks in the <tt>StandaloneExamples</tt> directory.
 \li The help file is in the <tt>Docs</tt> directory.
 \li For further help, please use the mailing list: https://lists.sourceforge.net/lists/listinfo/quantlib-users
 

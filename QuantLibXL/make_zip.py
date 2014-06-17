@@ -64,6 +64,7 @@ class Selector:
             for d in dirs:
                 if self.excludeDir(d):
                     dirs.remove(d)
+                    continue
             for f in files:
                 if self.includeFile(f):
                     self.zipFile.zip(root + f)

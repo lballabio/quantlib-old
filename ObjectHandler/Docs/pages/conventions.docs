@@ -73,7 +73,7 @@ project will be upgraded, but the dependencies will be wrong and the build will
 fail.
 
 In the installation instructions, solution files may be referred to as
-xxx_vc?.sln, where ? corresponds to 7, 8, 9 or 10 depending on the version of
+xxx_vc?.sln, where ? corresponds to 8, 9, 10, or 11 depending on the version of
 Visual C++ that you are using.
 
 \section conv_vc Visual C++ Runtime Libraries
