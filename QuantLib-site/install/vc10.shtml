@@ -30,7 +30,7 @@ procedure. Something that is obvious to one person might not be
 obvious to someone else. The only thing that I assume you have on
 your computer is the Visual C++ 2010 IDE (VC10).</p>
 
-<p>These instructions are for MS Visual C++ 2010 only. If you have
+<p>These instructions are for MS Visual C++ 2010 and later. If you have
 earlier versions of this IDE (2008, 2005...) then have a look
 at <a href="vc9.shtml">this page</a>.</p>
 
@@ -38,50 +38,20 @@ at <a href="vc9.shtml">this page</a>.</p>
 computer. Detailed instructions follow in the next section.</p>
 
 <h2>Boost Installation</h2>
-<p>We use the installer provided by BoostPro
-Computing, that can be downloaded
-at <a href="http://www.boostpro.com/download">http://www.boostpro.com/download</a>.</p>
+<p>We use the binary installer provided by the Boost
+project, that can be downloaded
+at <a href="http://sourceforge.net/projects/boost/files/boost-binaries/">http://sourceforge.net/projects/boost/files/boost-binaries/</a>.</p>
 
-<p>At the time of this writing, the current version is the
-executable <tt>boost_1_47_setup.exe</tt> and can be downloaded for
-free in just a few seconds. Double clicking the installer yields the
-screen shown below. Select the download mirror of your choice or
-"Nearest SourceForge Mirror" (recommended).</p>
-
-<p class="center"><img src="pics/vc10/boost01.png" alt="Mirror selection"></p>
-
-<p>The next step asks you to select the binaries to download. Since we
-are using Visual Studio 2010, we will select this version in the left
-panel. In the right panel, select Multithreaded, Multithreaded Debug,
-Multithreaded static runtime, and Multithreaded Debug static
-runtime. The others are not needed by QuantLib, but you might want to
-download them anyway. The resulting screen is shown below.</p>
-
-<p class="center"><img src="pics/vc10/boost02.png" alt="Version selection"></p>
-
-<p>The next window asks you which libraries you'd like to install. You
-can add any library that you want besides the ones selected by
-default; the one needed for a complete QuantLib build is the unit test
-framework, which can be found at the end of the list.  Here is the
-corresponding screen.</p>
-
-<p class="center"><img src="pics/vc10/boost03.png" alt="Default library selection"></p>
-
-<p>Choose the VC10.0 to include the unit test framework. You can also
-open the VC10.0 list and select specific build versions.</p>
-
-<p class="center"><img src="pics/vc10/boost04.png" alt="Library selection"></p>
-
-<p>The next step asks for a destination folder. I will install
-everything in the folder <tt>C:\Program
-Files\boost\boost_1_47</tt>. Feel free to choose your own folder.</p>
-
-<p class="center"><img src="pics/vc10/boost05.png" alt="Install location"></p>
-
-<p>Clicking Install starts the download, which takes a while. After
-finishing, the final screen should say:</p>
-
-<p class="center"><img src="pics/vc10/boost06.png" alt="Boost installed"></p>
+<p>You'll have to enter the folder corresponding to the release you
+want to download (at the time of this writing, the latest version is
+Boost 1.55.0) and then choose the installer corresponding to your
+compiler and platform; for
+instance, <tt>boost_1_55_0-msvc-10.0-64.exe</tt> for Visual C++ 10 on
+a 64-bit system. Download and run the installer. The rest of this
+tutorial was written a while ago and assumes that you installed Boost
+1.47 into the <tt>C:\Program Files\Boost\boost_1_47</tt> folder;
+replace that with whatever folder the installer creates for your newer
+version (for instance, <tt>C:\Boost\boost_1_55_0</tt>).</p>
 
 <h2>Boost and QuantLib Installation</h2>
 

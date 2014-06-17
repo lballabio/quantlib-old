@@ -253,18 +253,19 @@ namespace QuantLibAddin {
 
     BondHelper::BondHelper(
             const shared_ptr<ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
+            const QuantLib::Handle<QuantLib::Quote>& price,
             const shared_ptr<QuantLib::Bond>& bond,
+            const bool useCleanPrice,
             bool permanent)
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::BondHelper>(new
-            QuantLib::BondHelper(cleanPrice, bond));
+            QuantLib::BondHelper(price, bond, useCleanPrice));
         quoteName_ = f(properties->getSystemProperty("CleanPrice"));
     }
 
     FixedRateBondHelper::FixedRateBondHelper(
             const shared_ptr<ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
+            const QuantLib::Handle<QuantLib::Quote>& price,
             QuantLib::Natural settlementDays,
             QuantLib::Real faceAmount,
             const shared_ptr<QuantLib::Schedule>& schedule,
@@ -273,13 +274,19 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
+            const QuantLib::Calendar& paymentCalendar,
+            const QuantLib::Period& exCouponPeriod,
+            const QuantLib::Calendar& exCouponCalendar,
+            const QuantLib::BusinessDayConvention exCouponConvention,
+            bool exCouponEndOfMonth,
+            const bool useCleanPrice,
             bool permanent)
-    : BondHelper(properties, cleanPrice, shared_ptr<QuantLib::Bond>(new
+    : BondHelper(properties, price, shared_ptr<QuantLib::Bond>(new
         QuantLib::FixedRateBond(settlementDays, faceAmount, *schedule,
                       coupons, paymentDayCounter, paymentConvention,
-                      redemption, issueDate)), permanent) {
+                      redemption, issueDate)), useCleanPrice, permanent) {
         libraryObject_ = shared_ptr<QuantLib::FixedRateBondHelper>(new
-            QuantLib::FixedRateBondHelper(cleanPrice,
+            QuantLib::FixedRateBondHelper(price,
                                           settlementDays,
                                           faceAmount,
                                           *schedule,
@@ -287,7 +294,13 @@ namespace QuantLibAddin {
                                           paymentDayCounter,
                                           paymentConvention,
                                           redemption,
-                                          issueDate));
+                                          issueDate,
+                                          paymentCalendar,
+                                          exCouponPeriod,
+                                          exCouponCalendar,
+                                          exCouponConvention,
+                                          exCouponEndOfMonth,
+                                          useCleanPrice));
         quoteName_ = f(properties->getSystemProperty("CleanPrice"));
     }
 

@@ -305,7 +305,21 @@ class BatesProcessPtr : public HestonProcessPtr {
     }
 };
 
+%{
+using QuantLib::HullWhiteProcess;
+typedef boost::shared_ptr<StochasticProcess> HullWhiteProcessPtr;
+%}
 
+%rename(HullWhiteProcess) HullWhiteProcessPtr;
+class HullWhiteProcessPtr : public StochasticProcess1DPtr {
+  public:
+    %extend {
+      HullWhiteProcessPtr(const Handle<YieldTermStructure>& riskFreeTS,
+                          Real a, Real sigma) {
+            return new HullWhiteProcessPtr(new HullWhiteProcess(riskFreeTS, a, sigma));	
+        }
+    }
+};
 
 // allow use of diffusion process vectors
 #if defined(SWIGCSHARP)
