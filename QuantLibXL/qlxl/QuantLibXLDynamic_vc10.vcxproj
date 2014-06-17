@@ -99,7 +99,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic-vc100-mt-gd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic-vc100-mt-gd-1_5_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
@@ -154,7 +154,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic-vc100-mt-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildDynamic\vc100\$(Configuration)/QuantLibXLDynamic-vc100-mt-1_5_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>true</OptimizeReferences>

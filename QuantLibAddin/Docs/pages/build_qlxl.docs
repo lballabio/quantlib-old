@@ -88,7 +88,7 @@ projects:
 \li <a href="http://www.objecthandler.org">ObjectHandler</a> 1.5.0 - An object
     repository
 \li log4cxx 0.10.0e - A logging framework, used by ObjectHandler
-\li <a href="http://www.quantlibaddin.org">QuantLibAddin</a> 1.4.0 - Addins for
+\li <a href="http://www.quantlibaddin.org">QuantLibAddin</a> 1.5.0 - Addins for
     %QuantLib functionality
 \li <a href="http://www.quantlibxl.org">QuantLibXL</a> 1.5.0 - The Excel
     implementation of %QuantLibAddin
@@ -105,10 +105,10 @@ name of each project's parent directory must not include the version number
 
 Create a new empty folder on your hard drive to serve as the root directory for
 the build.  You can use any path, for purposes of this tutorial the build
-directory is <tt>C:\\build_ql_1_4_0</tt>.  As described below you should copy
+directory is <tt>C:\\build_ql_1_5_0</tt>.  As described below you should copy
 all of the required source code zip files to that directory and then unzip them
 in place.  After unzipping %QuantLib you must manually rename the target
-directory, removing the \c 1.4.0 suffix from the directory name.  After all of
+directory, removing the \c 1.5.0 suffix from the directory name.  After all of
 the source code is unzipped you should have the following directory structure:
 \verbatim
 C:\build_ql_1_5_0\gensrc (required only for the Full build)
@@ -128,19 +128,19 @@ Download <tt>QuantLib-1.5.0.zip</tt> and uncompress the package to
 <tt>C:\\build_ql_1_5_0\\%QuantLib</tt>.
 
 Download <tt>log4cxx-0.10.0e.zip</tt> and uncompress the package to
-<tt>C:\\build_ql_1_4_0\\log4cxx</tt>.
+<tt>C:\\build_ql_1_5_0\\log4cxx</tt>.
 
-Download <tt>ObjectHandler-1.4.0.zip</tt> and uncompress the package to
-<tt>C:\\build_ql_1_4_0\\ObjectHandler</tt>.
+Download <tt>ObjectHandler-1.5.0.zip</tt> and uncompress the package to
+<tt>C:\\build_ql_1_5_0\\ObjectHandler</tt>.
 
-Download <tt>QuantLibAddin-1.4.0.zip</tt> and uncompress the package to
-<tt>C:\\build_ql_1_4_0\\%QuantLibAddin</tt>.
+Download <tt>QuantLibAddin-1.5.0.zip</tt> and uncompress the package to
+<tt>C:\\build_ql_1_5_0\\%QuantLibAddin</tt>.
 
-Download <tt>QuantLibXL-src-1.4.0.zip</tt> and uncompress the package to
-<tt>C:\\build_ql_1_4_0\\QuantLibXL</tt>.
+Download <tt>QuantLibXL-src-1.5.0.zip</tt> and uncompress the package to
+<tt>C:\\build_ql_1_5_0\\QuantLibXL</tt>.
 
-<b>Full</b> build only - download <tt>gensrc-1.4.0.zip</tt> and uncompress the
-package to <tt>C:\\build_ql_1_4_0\\gensrc</tt>.
+<b>Full</b> build only - download <tt>gensrc-1.5.0.zip</tt> and uncompress the
+package to <tt>C:\\build_ql_1_5_0\\gensrc</tt>.
 
 \section build_qlxl_quantlibxl 5 Build QuantLibXL
 

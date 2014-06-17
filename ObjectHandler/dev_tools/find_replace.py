@@ -44,10 +44,10 @@ import shutil
 # you want the find/replace to begin.
 ROOT_DIRS = (
     #'C:/erik/ql/R01020x-branch/log4cxx',
-    'C:/Users/erik/Documents/repos/quantlib/gensrc',
-    'C:/Users/erik/Documents/repos/quantlib/ObjectHandler',
-    'C:/Users/erik/Documents/repos/quantlib/QuantLibAddin',
-    'C:/Users/erik/Documents/repos/quantlib/QuantLibXL'
+    '/media/windows/linux/repos/quantlib/gensrc',
+    '/media/windows/linux/repos/quantlib/ObjectHandler',
+    '/media/windows/linux/repos/quantlib/QuantLibAddin',
+    '/media/windows/linux/repos/quantlib/QuantLibXL'
 )
 
 # CALLBACK FUNCTIONS - Called from regexes which require multiple passes
@@ -99,7 +99,7 @@ SUBSTITUTIONS = (
     (re.compile('1\.4\.0'), '1.5.0'),
     (re.compile('0x010400'), '0x010500'),
     (re.compile('R010401f0'), 'R010500f0'),
-#   (re.compile('0\.10\.0c'), '0.10.0d'),
+    (re.compile('0\.10\.0d'), '0.10.0e'),
 )
 
 # INCLUDE_FILES

@@ -46,7 +46,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\buildXllDynamic1\vc100\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ExampleXllDynamic1-vc100-mt-1_4_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ExampleXllDynamic1-vc100-mt-1_5_0</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.xll</TargetExt>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ExampleXllDynamic1-vc100-mt-gd-1_5_0</TargetName>
