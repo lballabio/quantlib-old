@@ -23,7 +23,7 @@
 
 /*! \mainpage QuantLibAddin
 
-\section idx_project Project
+\section idx_overview Overview
 
 %QuantLibAddin exports the functionality of the
 <a href="http://quantlib.org">QuantLib</a> C++ analytics library to a variety
