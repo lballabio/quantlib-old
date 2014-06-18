@@ -207,8 +207,7 @@ extended to receive data from some live feed e.g. Reuters.
 \section fw_fi 3 Fixed Income
 
 The Fixed Income addin initializes a market environment which can be configured
-to accept live feeds from Reuters or Bloomberg in support of a real time
-trading environment.
+to accept live feeds from Reuters or Bloomberg in support of real time trading.
 
 <div class="center"><img src="images/framework_fixed_income.png"></div>
 
