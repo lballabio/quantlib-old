@@ -75,6 +75,11 @@
     <None Include="ql.css" />
     <None Include="tabs.css" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gensrc\ohgensrc_vc10.vcxproj">
+      <Project>{88be5568-6e55-41c5-a251-670fafb44336}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

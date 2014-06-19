@@ -171,3 +171,6 @@ libQuantLibAddin_la_LIBADD = \
     serialization/libSerialization.la \
     valueobjects/libValueObjects.la
 
+libQuantLibAddin_la_LDFLAGS = \
+-lQuantLib -lObjectHandler -lboost_filesystem -lboost_serialization -lboost_system -lboost_regex
+

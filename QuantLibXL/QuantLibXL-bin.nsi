@@ -7,8 +7,8 @@
 ; Constants
 
 !define APP "QuantLibXL"
-!define VER_NUMBER "1.1.0"
-!define VER_NUMBER_UNDERSCORE "1_1_0"
+!define VER_NUMBER "1.5.0"
+!define VER_NUMBER_UNDERSCORE "1_5_0"
 !define COMPILER "vc90"
 
 # Compiler Flags
@@ -109,17 +109,21 @@ SectionEnd
 Section /o Framework
 
     SetOutPath "$INSTDIR\framework"
-    File "framework\QuantLibXL.xml"
     File "framework\QuantLibXL.xla"
     File "framework\QuantLibXLA.cer"
-    File "framework\readme.txt"
+    File "framework\ReadMe.txt"
+    File /r "framework\*.txt"
+    File /r "framework\*.xla"
+    File /r "framework\*.xlam"
+    File /r "framework\*.xls"
+    File /r "framework\*.xml"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r "Workbooks\*.xls"
 
     SetOutPath "$INSTDIR\Data"
     File /r "Data\*.xls"
-    File /r "Data\*.xml"
+    #File /r "Data\*.xml"
 
     SetOutPath "$INSTDIR\metadata"
     File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
@@ -127,13 +131,6 @@ Section /o Framework
     # ObjectBuilder crashes if it can't find the icon
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\favicon.bmp"
-
-    SetOutPath "$INSTDIR\framework2"
-    File /r "framework2\*.txt"
-    File /r "framework2\*.xla"
-    File /r "framework2\*.xlam"
-    File /r "framework2\*.xls"
-    File /r "framework2\*.xml"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
                    "$INSTDIR\framework\QuantLibXL.xla"

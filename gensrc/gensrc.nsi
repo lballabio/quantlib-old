@@ -2,8 +2,8 @@
 # !defines
 
 !define APP "gensrc"
-!define VER_NUMBER "1.2.0"
-!define DEFAULT_PATH "C:\build_ql_1_2_0"
+!define VER_NUMBER "1.5.0"
+!define DEFAULT_PATH "C:\build_ql_1_5_0"
 
 # Compiler Flags
 
@@ -31,11 +31,9 @@ Section
     File "LICENSE.txt"
     File "NEWS.txt"
     File "Authors.txt"
-    File "gensrc_vc7.sln"
     File "gensrc_vc8.sln"
     File "gensrc_vc9.sln"
     File "gensrc_vc10.sln"
-    File "gensrc_vc7.vcproj"
     File "gensrc_vc8.vcproj"
     File "gensrc_vc9.vcproj"
     File "gensrc_vc10.vcxproj"
@@ -50,7 +48,6 @@ Section
 
     SetOutPath "$INSTDIR\Docs"
     #File "Docs\gensrc-docs-${VER_NUMBER}.chm"
-    File "Docs\docs_vc7.vcproj"
     File "Docs\docs_vc8.vcproj"
     File "Docs\docs_vc9.vcproj"
     File "Docs\docs_vc10.vcxproj"
@@ -94,9 +91,6 @@ Section
 
     CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\LICENSE.txt.lnk" \
                    "$INSTDIR\LICENSE.TXT"
-
-    CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc VC 7 project workspace.lnk" \
-                   "$INSTDIR\gensrc_vc7.sln"
 
     CreateShortCut "$SMPROGRAMS\gensrc-${VER_NUMBER}\gensrc VC 8 project workspace.lnk" \
                    "$INSTDIR\gensrc_vc8.sln"

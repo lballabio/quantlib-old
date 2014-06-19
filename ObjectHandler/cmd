@@ -1,0 +1,1 @@
+./configure --with-gensrc=/media/windows/linux/repos/quantlib/gensrc --prefix=$IDIR CPPFLAGS=-I$IDIR/include LDFLAGS=-L$IDIR/lib
