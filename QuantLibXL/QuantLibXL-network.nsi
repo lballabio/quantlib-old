@@ -12,8 +12,8 @@
 ; Constants
 
 !define APP "QuantLibXL"
-!define VER_NUMBER "1.1.0"
-!define VER_NUMBER_UNDERSCORE "1_1_0"
+!define VER_NUMBER "1.5.0"
+!define VER_NUMBER_UNDERSCORE "1_5_0"
 !define COMPILER "vc90"
 
 !define REV_NUMBER "Rev17994"

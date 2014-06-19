@@ -180,9 +180,9 @@ else
 fi
 
 AC_MSG_CHECKING([for wchar_t])
-AC_COMPILE_IFELSE(AC_LANG_SOURCE([[
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
                    #include <string>
-                   std::wstring w;]]), [have_wchar_t=yes], [have_wchar_t=no])
+                   std::wstring w;]])], [have_wchar_t=yes], [have_wchar_t=no])
 AC_MSG_RESULT($have_wchar_t)
 if test "$have_wchar_t" = "yes"
 then
@@ -333,9 +333,9 @@ AC_ARG_ENABLE(cfstring,
 if test "x$enable_cfstring" = xyes; then
         AC_MSG_CHECKING([for cfstring])
         CPPFLAGS="$CPPFLAGS -framework CoreFoundation"
-        AC_COMPILE_IFELSE(AC_LANG_SOURCE([[
+        AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
                    #include <CoreFoundation/CFString.h>
-                   CFStringRef x = CFSTR("Hello");]]), [have_cfstring_api=yes], [have_cfstring_api=no])
+                   CFStringRef x = CFSTR("Hello");]])], [have_cfstring_api=yes], [have_cfstring_api=no])
         AC_MSG_RESULT($have_cfstring_api)
 else
         have_cfstring_api=no

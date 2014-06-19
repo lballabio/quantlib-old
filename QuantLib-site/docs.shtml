@@ -59,6 +59,14 @@ along with the corresponding spreadsheets and additional material.
 </li>
 </ul>
 
+<h2 class="center">Videos</h2>
+<ul>
+<li><strong>The QuantLib Notebooks</strong>
+is <a href="https://vimeo.com/channels/qlnotebooks">a series of
+screencasts</a> by Luigi Ballabio using IPython notebooks to
+demonstrate features of the QuantLib library.</li>
+</ul>
+
 <h2 class="center" id="qlws13">QuantLib User Meeting 2013</h2>
 
 The QuantLib User Meeting was held in D&uuml;sseldorf on November 13th

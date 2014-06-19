@@ -1,0 +1,10 @@
+aclocal.m4
+autom4te.cache/
+config.status
+config/
+configure
+gensrc-*.tar.gz
+.time-stamp
+Docs/.time-stamp-online
+Docs/html-online
+Docs/*.chm

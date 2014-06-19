@@ -9,14 +9,14 @@ EXTRA_DIST = \
     dependencies.vc \
     gensrc.nsi \
     gensrc.py \
-    gensrc_vc7.sln \
-    gensrc_vc7.vcproj \
     gensrc_vc8.sln \
     gensrc_vc8.vcproj \
     gensrc_vc9.sln \
     gensrc_vc9.vcproj \
     gensrc_vc10.sln \
     gensrc_vc10.vcxproj \
+    gensrc_vc11.sln \
+    gensrc_vc11.vcxproj \
     LICENSE.TXT \
     NEWS.txt \
     README.txt \

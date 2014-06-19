@@ -27,32 +27,31 @@
 
 namespace ObjectHandler {
 
-    DLL_API void scalarToOper(const long &value, OPER &xLong, bool dllToFree, bool expandVector) {
+    DLL_API void scalarToOper(const long &value, OPER &xLong, bool expandVector) {
         xLong.xltype = xltypeNum;
         xLong.val.num = value;
     }
 
-    DLL_API void scalarToOper(const double &value, OPER &xDouble, bool dllToFree, bool expandVector) {
+    DLL_API void scalarToOper(const double &value, OPER &xDouble, bool expandVector) {
         xDouble.xltype = xltypeNum;
         xDouble.val.num = value;
     }
 
-    DLL_API void scalarToOper(const bool &value, OPER &xBoolean, bool dllToFree, bool expandVector) {
+    DLL_API void scalarToOper(const bool &value, OPER &xBoolean, bool expandVector) {
         xBoolean.xltype = xltypeBool;
-        xBoolean.val.boolean = value;
+        //xBoolean.val.boolean = value;
+        xBoolean.val.xbool = value;
     }
 
-    DLL_API void scalarToOper(const char *value, OPER &xChar, bool dllToFree, bool expandVector) {
-		scalarToOper(std::string(value), xChar, dllToFree, expandVector);
+    DLL_API void scalarToOper(const char *value, OPER &xChar, bool expandVector) {
+		scalarToOper(std::string(value), xChar, expandVector);
     }
 
-    DLL_API void scalarToOper(const std::string &value, OPER &xString, bool dllToFree, bool expandVector) {
+    DLL_API void scalarToOper(const std::string &value, OPER &xString, bool expandVector) {
         // Must use type unsigned char (BYTE) to process the 0th byte of Excel byte-counted string
         unsigned char len = __min(XL_MAX_STR_LEN - 1, value.length());
         xString.val.str = new char[len + 1];
-        xString.xltype = xltypeStr;
-        if (dllToFree)
-            xString.xltype |= xlbitDLLFree;
+        xString.xltype = xltypeStr | xlbitDLLFree;
         xString.val.str[0] = len;
         if (len)
             strncpy(xString.val.str + 1, value.c_str(), len);
@@ -94,7 +93,7 @@ namespace ObjectHandler {
         bool m_expand;
     };
 
-    DLL_API void scalarToOper(const ObjectHandler::property_t &value, OPER &xVariant, bool dllToFree, bool expandVector) {
+    DLL_API void scalarToOper(const ObjectHandler::property_t &value, OPER &xVariant, bool expandVector) {
         VariantToOper variantToOper(xVariant, expandVector);
         boost::apply_visitor(variantToOper, value);
     }
@@ -127,7 +126,7 @@ namespace ObjectHandler {
         scalarToOper("<MATRIX>", xAny);
     }
 
-    DLL_API void scalarToOper(const boost::any &value, OPER &xAny, bool dllToFree, bool expandVector) {
+    DLL_API void scalarToOper(const boost::any &value, OPER &xAny, bool expandVector) {
         if (value.type() == typeid(OPER)) {
             OPER xTemp = boost::any_cast<OPER>(value);
             Excel(xlCoerce, &xAny, 1, &xTemp);
