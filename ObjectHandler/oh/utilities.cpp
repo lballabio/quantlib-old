@@ -24,7 +24,9 @@
 #include <oh/config.hpp>
 #endif
 #include <oh/utilities.hpp>
+#ifdef HAVE_LOG4CXX
 #include <oh/logger.hpp>
+#endif
 #include <oh/repository.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
@@ -52,42 +54,64 @@ namespace ObjectHandler {
 
     std::string logSetFile(const std::string &logFileName,
                            const int &logLevel) {
-            Logger::instance().setFile(logFileName, logLevel);
-            return logFileName;
+#ifdef HAVE_LOG4CXX
+        Logger::instance().setFile(logFileName, logLevel);
+        return logFileName;
+#else
+        return std::string();
+#endif
     }
 
     DLL_API void logWriteMessage(const std::string &message,
                                  const int &level) {
-            Logger::instance().writeMessage(message, level);
+#ifdef HAVE_LOG4CXX
+        Logger::instance().writeMessage(message, level);
+#endif
     }
 
     void logSetLevel(const int &logLevel) {
+#ifdef HAVE_LOG4CXX
         Logger::instance().setLevel(logLevel);
+#endif
     }
 
     const std::string logFile(){
+#ifdef HAVE_LOG4CXX
         return Logger::instance().file();
+#else
+        return std::string();
+#endif
     }
 
     const int logLevel(){
+#ifdef HAVE_LOG4CXX
         return Logger::instance().level();
+#else
+        return 0;
+#endif
     }
 
     void logSetConsole(const int &console,
                       const int &logLevel) {
+#ifdef HAVE_LOG4CXX
             Logger::instance().setConsole(console, logLevel);
+#endif
     }
 
     void logObject(const std::string &objectID) {
+#ifdef HAVE_LOG4CXX
         std::ostringstream msg;
         Repository::instance().dumpObject(objectID, msg);
         Logger::instance().writeMessage(msg.str());
+#endif
     }
 
     void logAllObjects() {
+#ifdef HAVE_LOG4CXX
         std::ostringstream msg;
         Repository::instance().dump(msg);
         Logger::instance().writeMessage(msg.str());
+#endif
     }
 
     std::vector<std::string> split(const std::string& line,

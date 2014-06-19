@@ -232,6 +232,7 @@
     <Compile Include="ConstantOptionletVolatility.cs" />
     <Compile Include="ConstantSwaptionVolatility.cs" />
     <Compile Include="Constraint.cs" />
+    <Compile Include="ContinuousArithmeticAsianLevyEngine.cs" />
     <Compile Include="ContinuousAveragingAsianOption.cs" />
     <Compile Include="ConvertibleFixedCouponBond.cs" />
     <Compile Include="ConvertibleFloatingRateBond.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="CzechRepublic.cs" />
     <Compile Include="CZKCurrency.cs" />
     <Compile Include="Date.cs" />
+    <Compile Include="DatedOISRateHelper.cs" />
     <Compile Include="DateGeneration.cs" />
     <Compile Include="DateParser.cs" />
     <Compile Include="DateVector.cs" />
@@ -286,6 +288,7 @@
     <Compile Include="DZero.cs" />
     <Compile Include="EEKCurrency.cs" />
     <Compile Include="EndCriteria.cs" />
+    <Compile Include="Eonia.cs" />
     <Compile Include="ESPCurrency.cs" />
     <Compile Include="EUHICP.cs" />
     <Compile Include="EUHICPXT.cs" />
@@ -352,10 +355,13 @@
     <Compile Include="FalsePosition.cs" />
     <Compile Include="FDAmericanEngine.cs" />
     <Compile Include="FDBermudanEngine.cs" />
+    <Compile Include="FdBlackScholesAsianEngine.cs" />
+    <Compile Include="FdBlackScholesVanillaEngine.cs" />
     <Compile Include="FDDividendAmericanEngine.cs" />
     <Compile Include="FDDividendEuropeanEngine.cs" />
     <Compile Include="FDEuropeanEngine.cs" />
     <Compile Include="FDShoutEngine.cs" />
+    <Compile Include="FedFunds.cs" />
     <Compile Include="FFTVarianceGammaEngine.cs" />
     <Compile Include="FIMCurrency.cs" />
     <Compile Include="Finland.cs" />
@@ -432,6 +438,7 @@
     <Compile Include="HongKong.cs" />
     <Compile Include="HUFCurrency.cs" />
     <Compile Include="HullWhite.cs" />
+    <Compile Include="HullWhiteProcess.cs" />
     <Compile Include="Hungary.cs" />
     <Compile Include="IborCoupon.cs" />
     <Compile Include="IborCouponPricer.cs" />
@@ -559,12 +566,14 @@
     <Compile Include="NZDCurrency.cs" />
     <Compile Include="NZDLibor.cs" />
     <Compile Include="Observable.cs" />
+    <Compile Include="OISRateHelper.cs" />
     <Compile Include="OneDayCounter.cs" />
     <Compile Include="OptimizationMethod.cs" />
     <Compile Include="Optimizer.cs" />
     <Compile Include="Option.cs" />
     <Compile Include="OptionletVolatilityStructure.cs" />
     <Compile Include="OptionletVolatilityStructureHandle.cs" />
+    <Compile Include="OvernightIndex.cs" />
     <Compile Include="Parabolic.cs" />
     <Compile Include="ParkinsonSigma.cs" />
     <Compile Include="Path.cs" />
@@ -576,8 +585,11 @@
     <Compile Include="Period.cs" />
     <Compile Include="PeriodParser.cs" />
     <Compile Include="PeriodVector.cs" />
+    <Compile Include="PiecewiseCubicZero.cs" />
     <Compile Include="PiecewiseFlatForward.cs" />
     <Compile Include="PiecewiseFlatHazardRate.cs" />
+    <Compile Include="PiecewiseLinearForward.cs" />
+    <Compile Include="PiecewiseLinearZero.cs" />
     <Compile Include="PiecewiseYoYInflation.cs" />
     <Compile Include="PiecewiseZeroInflation.cs" />
     <Compile Include="PKRCurrency.cs" />
@@ -657,6 +669,7 @@
     <Compile Include="Slovakia.cs" />
     <Compile Include="SobolRsg.cs" />
     <Compile Include="SoftCallability.cs" />
+    <Compile Include="Sonia.cs" />
     <Compile Include="SouthAfrica.cs" />
     <Compile Include="SouthKorea.cs" />
     <Compile Include="SpreadCdsHelper.cs" />
@@ -672,7 +685,6 @@
     <Compile Include="StudentDistribution.cs" />
     <Compile Include="StulzEngine.cs" />
     <Compile Include="SuperSharePayoff.cs" />
-    <Compile Include="Surface.cs" />
     <Compile Include="SVD.cs" />
     <Compile Include="Swap.cs" />
     <Compile Include="SwapIndex.cs" />
@@ -686,7 +698,6 @@
     <Compile Include="SwaptionVolCube2.cs" />
     <Compile Include="Sweden.cs" />
     <Compile Include="SWIGTYPE_p_BlackVolTermStructure.cs" />
-    <Compile Include="SWIGTYPE_p_boost__shared_ptrT_Domain_t.cs" />
     <Compile Include="SWIGTYPE_p_boost__shared_ptrT_EndCriteria_t.cs" />
     <Compile Include="SWIGTYPE_p_boost__shared_ptrT_OptimizationMethod_t.cs" />
     <Compile Include="SWIGTYPE_p_CalibratedModel.cs" />
@@ -712,7 +723,6 @@
     <Compile Include="SWIGTYPE_p_ShortRateModel.cs" />
     <Compile Include="SWIGTYPE_p_std__size_t.cs" />
     <Compile Include="SWIGTYPE_p_StochasticProcess.cs" />
-    <Compile Include="SWIGTYPE_p_Surface.cs" />
     <Compile Include="SWIGTYPE_p_SwaptionVolatilityStructure.cs" />
     <Compile Include="SWIGTYPE_p_YieldTermStructure.cs" />
     <Compile Include="SWIGTYPE_p_YoYHelper.cs" />
@@ -722,7 +732,6 @@
     <Compile Include="Switzerland.cs" />
     <Compile Include="Taiwan.cs" />
     <Compile Include="TARGET.cs" />
-    <Compile Include="TestSurface.cs" />
     <Compile Include="THBCurrency.cs" />
     <Compile Include="Thirty360.cs" />
     <Compile Include="Tibor.cs" />

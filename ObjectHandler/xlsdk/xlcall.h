@@ -1,37 +1,45 @@
 /*
 **  Microsoft Excel Developer's Toolkit
-**  Version 5.0
+**  Version 15.0
 **
 **  File:           INCLUDE\XLCALL.H
-**  Description:    Header file for for Microsoft Excel callbacks
+**  Description:    Header file for for Excel callbacks
 **  Platform:       Microsoft Windows
 **
-**  This file defines the constants and 
+**  DEPENDENCY:
+**  Include <windows.h> before you include this.
+**
+**  This file defines the constants and
 **  data types which are used in the
-**  Microsoft Excel C API. Include
-**  <windows.h> before you include this.
+**  Microsoft Excel C API.
 **
 */
-#ifndef xlsdk_xlcall_hpp
-#define xlsdk_xlcall_hpp
 
-#ifdef __cplusplus
-extern "C" {
-#endif	/* __cplusplus */
+#pragma once
+
+/*
+** XL 12 Basic Datatypes 
+**/
+
+typedef INT32 BOOL;			/* Boolean */
+typedef WCHAR XCHAR;			/* Wide Character */
+typedef INT32 RW;			/* XL 12 Row */
+typedef INT32 COL;	 	      	/* XL 12 Column */
+typedef DWORD_PTR IDSHEET;		/* XL12 Sheet ID */
 
 /*
 ** XLREF structure 
 **
-** Describes a single rectangular reference
+** Describes a single rectangular reference.
 */
 
 typedef struct xlref 
 {
-    WORD rwFirst;
-    WORD rwLast;
-    BYTE colFirst;
-    BYTE colLast;
-} XLREF, FAR *LPXLREF;
+	WORD rwFirst;
+	WORD rwLast;
+	BYTE colFirst;
+	BYTE colLast;
+} XLREF, *LPXLREF;
 
 
 /*
@@ -44,9 +52,66 @@ typedef struct xlref
 
 typedef struct xlmref 
 {
-    WORD count;
-    XLREF reftbl[1];                        /* actually reftbl[count] */
-} XLMREF, FAR *LPXLMREF;
+	WORD count;
+	XLREF reftbl[1];					/* actually reftbl[count] */
+} XLMREF, *LPXLMREF;
+
+
+/*
+** XLREF12 structure 
+**
+** Describes a single XL 12 rectangular reference.
+*/
+
+typedef struct xlref12
+{
+	RW rwFirst;
+	RW rwLast;
+	COL colFirst;
+	COL colLast;
+} XLREF12, *LPXLREF12;
+
+
+/*
+** XLMREF12 structure
+**
+** Describes multiple rectangular XL 12 references.
+** This is a variable size structure, default 
+** size is 1 reference.
+*/
+
+typedef struct xlmref12
+{
+	WORD count;
+	XLREF12 reftbl[1];					/* actually reftbl[count] */
+} XLMREF12, *LPXLMREF12;
+
+
+/*
+** FP structure
+**
+** Describes FP structure.
+*/
+
+typedef struct _FP
+{
+    unsigned short int rows;
+    unsigned short int columns;
+    double array[1];        /* Actually, array[rows][columns] */
+} FP;
+
+/*
+** FP12 structure
+**
+** Describes FP structure capable of handling the big grid.
+*/
+
+typedef struct _FP12
+{
+    INT32 rows;
+    INT32 columns;
+    double array[1];        /* Actually, array[rows][columns] */
+} FP12;
 
 
 /*
@@ -59,61 +124,120 @@ typedef struct xlmref
 
 typedef struct xloper 
 {
-    union 
-    {
-        double num;                     /* xltypeNum */
-        LPSTR str;                      /* xltypeStr */
-        // bool is a reserved keyword
-        // WORD bool;                      /* xltypeBool */
-        WORD boolean;                      /* xltypeBool */
-        WORD err;                       /* xltypeErr */
-        short int w;                    /* xltypeInt */
-        struct 
-        {
-            WORD count;                 /* always = 1 */
-            XLREF ref;
-        } sref;                         /* xltypeSRef */
-        struct 
-        {
-            XLMREF far *lpmref;
-            DWORD idSheet;
-        } mref;                         /* xltypeRef */
-        struct 
-        {
-            struct xloper far *lparray;
-            WORD rows;
-            WORD columns;
-        } array;                        /* xltypeMulti */
-        struct 
-        {
-            union
-            {
-                short int level;        /* xlflowRestart */
-                short int tbctrl;       /* xlflowPause */
-                DWORD idSheet;          /* xlflowGoto */
-            } valflow;
-            WORD rw;                    /* xlflowGoto */
-            BYTE col;                   /* xlflowGoto */
-            BYTE xlflow;
-        } flow;                         /* xltypeFlow */
-        struct
-        {
-            union
-            {
-                BYTE far *lpbData;      /* data passed to XL */
-                HANDLE hdata;           /* data returned from XL */
-            } h;
-            long cbData;
-        } bigdata;                      /* xltypeBigData */
-    } val;
-    WORD xltype;
-} XLOPER, FAR *LPXLOPER;
-
+	union 
+	{
+		double num;					/* xltypeNum */
+		LPSTR str;					/* xltypeStr */
+#ifdef __cplusplus
+		WORD xbool;					/* xltypeBool */
+#else	
+		WORD bool;					/* xltypeBool */
+#endif	
+		WORD err;					/* xltypeErr */
+		short int w;					/* xltypeInt */
+		struct 
+		{
+			WORD count;				/* always = 1 */
+			XLREF ref;
+		} sref;						/* xltypeSRef */
+		struct 
+		{
+			XLMREF *lpmref;
+			IDSHEET idSheet;
+		} mref;						/* xltypeRef */
+		struct 
+		{
+			struct xloper *lparray;
+			WORD rows;
+			WORD columns;
+		} array;					/* xltypeMulti */
+		struct 
+		{
+			union
+			{
+				short int level;		/* xlflowRestart */
+				short int tbctrl;		/* xlflowPause */
+				IDSHEET idSheet;		/* xlflowGoto */
+			} valflow;
+			WORD rw;				/* xlflowGoto */
+			BYTE col;				/* xlflowGoto */
+			BYTE xlflow;
+		} flow;						/* xltypeFlow */
+		struct
+		{
+			union
+			{
+				BYTE *lpbData;			/* data passed to XL */
+				HANDLE hdata;			/* data returned from XL */
+			} h;
+			long cbData;
+		} bigdata;					/* xltypeBigData */
+	} val;
+	WORD xltype;
+} XLOPER, *LPXLOPER;
 
 /*
-** XLOPER data types
+** XLOPER12 structure 
 **
-** Used for xltype field of XLOPER structure
+** Excel 12's fundamental data type: can hold data
+** of any type. Use "U" as the argument type in the 
+** REGISTER function.
+**/
+
+typedef struct xloper12 
+{
+	union 
+	{
+		double num;				       	/* xltypeNum */
+		XCHAR *str;				       	/* xltypeStr */
+		BOOL xbool;				       	/* xltypeBool */
+		int err;				       	/* xltypeErr */
+		int w;
+		struct 
+		{
+			WORD count;			       	/* always = 1 */
+			XLREF12 ref;
+		} sref;						/* xltypeSRef */
+		struct 
+		{
+			XLMREF12 *lpmref;
+			IDSHEET idSheet;
+		} mref;						/* xltypeRef */
+		struct 
+		{
+			struct xloper12 *lparray;
+			RW rows;
+			COL columns;
+		} array;					/* xltypeMulti */
+		struct 
+		{
+			union
+			{
+				int level;			/* xlflowRestart */
+				int tbctrl;			/* xlflowPause */
+				IDSHEET idSheet;		/* xlflowGoto */
+			} valflow;
+			RW rw;				       	/* xlflowGoto */
+			COL col;			       	/* xlflowGoto */
+			BYTE xlflow;
+		} flow;						/* xltypeFlow */
+		struct
+		{
+			union
+			{
+				BYTE *lpbData;			/* data passed to XL */
+				HANDLE hdata;			/* data returned from XL */
+			} h;
+			long cbData;
+		} bigdata;					/* xltypeBigData */
+	} val;
+	DWORD xltype;
+} XLOPER12, *LPXLOPER12;
+
+/*
+** XLOPER and XLOPER12 data types
+**
+** Used for xltype field of XLOPER and XLOPER12 structures
 */
 
 #define xltypeNum        0x0001
@@ -127,17 +251,18 @@ typedef struct xloper
 #define xltypeNil        0x0100
 #define xltypeSRef       0x0400
 #define xltypeInt        0x0800
+
 #define xlbitXLFree      0x1000
 #define xlbitDLLFree     0x4000
 
-#define xltypeBigData    (xltypeStr | xltypeInt)
+#define xltypeBigData	(xltypeStr | xltypeInt)
 
 
 /*
 ** Error codes
 **
-** Used for val.err field of XLOPER structure
-** when constructing error XLOPERs
+** Used for val.err field of XLOPER and XLOPER12 structures
+** when constructing error XLOPERs and XLOPER12s
 */
 
 #define xlerrNull    0
@@ -147,13 +272,14 @@ typedef struct xloper
 #define xlerrName    29
 #define xlerrNum     36
 #define xlerrNA      42
+#define xlerrGettingData 43
 
 
 /* 
 ** Flow data types
 **
-** Used for val.flow.xlflow field of XLOPER structure
-** when constructing flow-control XLOPERs
+** Used for val.flow.xlflow field of XLOPER and XLOPER12 structures
+** when constructing flow-control XLOPERs and XLOPER12s
 **/
 
 #define xlflowHalt       1
@@ -164,30 +290,75 @@ typedef struct xloper
 
 
 /*
-** Function prototypes
+** Return codes
+**
+** These values can be returned from Excel4(), Excel4v(), Excel12() or Excel12v().
 */
 
-int far _cdecl Excel4(int xlfn, LPXLOPER operRes, int count,... ); 
-/* followed by count LPXLOPERs */
-
-int far pascal Excel4v(int xlfn, LPXLOPER operRes, int count, LPXLOPER far opers[]);
-int far pascal XLCallVer(void);
+#define xlretSuccess        0    /* success */ 
+#define xlretAbort          1    /* macro halted */
+#define xlretInvXlfn        2    /* invalid function number */ 
+#define xlretInvCount       4    /* invalid number of arguments */ 
+#define xlretInvXloper      8    /* invalid OPER structure */  
+#define xlretStackOvfl      16   /* stack overflow */  
+#define xlretFailed         32   /* command failed */  
+#define xlretUncalced       64   /* uncalced cell */
+#define xlretNotThreadSafe  128  /* not allowed during multi-threaded calc */
+#define xlretInvAsynchronousContext  256  /* invalid asynchronous function handle */
+#define xlretNotClusterSafe  512  /* not supported on cluster */
 
 
 /*
-** Return codes
+** XLL events
 **
-** These values can be returned from Excel4() or Excel4v().
+** Passed in to an xlEventRegister call to register a corresponding event.
 */
 
-#define xlretSuccess    0     /* success */ 
-#define xlretAbort      1     /* macro halted */
-#define xlretInvXlfn    2     /* invalid function number */ 
-#define xlretInvCount   4     /* invalid number of arguments */ 
-#define xlretInvXloper  8     /* invalid OPER structure */  
-#define xlretStackOvfl  16    /* stack overflow */  
-#define xlretFailed     32    /* command failed */  
-#define xlretUncalced   64    /* uncalced cell */
+#define xleventCalculationEnded      1    /* Fires at the end of calculation */ 
+#define xleventCalculationCanceled   2    /* Fires when calculation is interrupted */
+
+
+/*
+** Function prototypes
+*/
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int _cdecl Excel4(int xlfn, LPXLOPER operRes, int count,... ); 
+/* followed by count LPXLOPERs */
+
+int pascal Excel4v(int xlfn, LPXLOPER operRes, int count, LPXLOPER opers[]);
+
+int pascal XLCallVer(void);
+
+long pascal LPenHelper(int wCode, VOID *lpv);
+
+int _cdecl Excel12(int xlfn, LPXLOPER12 operRes, int count,... );
+/* followed by count LPXLOPER12s */
+
+int pascal Excel12v(int xlfn, LPXLOPER12 operRes, int count, LPXLOPER12 opers[]);
+
+#ifdef __cplusplus
+}
+#endif
+
+
+/*
+** Cluster Connector Async Callback
+*/
+
+typedef int (CALLBACK *PXL_HPC_ASYNC_CALLBACK)(LPXLOPER12 operAsyncHandle, LPXLOPER12 operReturn);
+
+
+/*
+** Cluster connector entry point return codes
+*/
+
+#define xlHpcRetSuccess            0
+#define xlHpcRetSessionIdInvalid  -1
+#define xlHpcRetCallFailed        -2
 
 
 /*
@@ -207,20 +378,104 @@ int far pascal XLCallVer(void);
 ** not from the Excel macro language.
 */
 
-#define xlFree             (0  | xlSpecial)
-#define xlStack            (1  | xlSpecial)
-#define xlCoerce           (2  | xlSpecial)
-#define xlSet              (3  | xlSpecial)
-#define xlSheetId          (4  | xlSpecial)
-#define xlSheetNm          (5  | xlSpecial)
-#define xlAbort            (6  | xlSpecial)
-#define xlGetInst          (7  | xlSpecial)
-#define xlGetHwnd          (8  | xlSpecial)
-#define xlGetName          (9  | xlSpecial)
-#define xlEnableXLMsgs     (10 | xlSpecial)
-#define xlDisableXLMsgs    (11 | xlSpecial)
+#define xlFree          (0  | xlSpecial)
+#define xlStack         (1  | xlSpecial)
+#define xlCoerce        (2  | xlSpecial)
+#define xlSet           (3  | xlSpecial)
+#define xlSheetId       (4  | xlSpecial)
+#define xlSheetNm       (5  | xlSpecial)
+#define xlAbort         (6  | xlSpecial)
+#define xlGetInst       (7  | xlSpecial) /* Returns application's hinstance as an integer value, supported on 32-bit platform only */
+#define xlGetHwnd       (8  | xlSpecial)
+#define xlGetName       (9  | xlSpecial)
+#define xlEnableXLMsgs  (10 | xlSpecial)
+#define xlDisableXLMsgs (11 | xlSpecial)
 #define xlDefineBinaryName (12 | xlSpecial)
-#define xlGetBinaryName    (13 | xlSpecial)
+#define xlGetBinaryName	(13 | xlSpecial)
+/* GetFooInfo are valid only for calls to LPenHelper */
+#define xlGetFmlaInfo	(14 | xlSpecial)
+#define xlGetMouseInfo	(15 | xlSpecial)
+#define xlAsyncReturn	(16 | xlSpecial)	/*Set return value from an asynchronous function call*/
+#define xlEventRegister	(17 | xlSpecial)	/*Register an XLL event*/
+#define xlRunningOnCluster	(18 | xlSpecial)	/*Returns true if running on Compute Cluster*/
+#define xlGetInstPtr	(19 | xlSpecial)	/* Returns application's hinstance as a handle, supported on both 32-bit and 64-bit platforms */
+
+/* edit modes */
+#define xlModeReady	0	// not in edit mode
+#define xlModeEnter	1	// enter mode
+#define xlModeEdit	2	// edit mode
+#define xlModePoint	4	// point mode
+
+/* document(page) types */
+#define dtNil 0x7f	// window is not a sheet, macro, chart or basic
+// OR window is not the selected window at idle state
+#define dtSheet 0	// sheet
+#define dtProc  1	// XLM macro
+#define dtChart 2	// Chart
+#define dtBasic 6	// VBA 
+
+/* hit test codes */
+#define htNone		0x00	// none of below
+#define htClient	0x01	// internal for "in the client are", should never see
+#define htVSplit	0x02	// vertical split area with split panes
+#define htHSplit	0x03	// horizontal split area
+#define htColWidth	0x04	// column width adjuster area
+#define htRwHeight	0x05	// row height adjuster area
+#define htRwColHdr	0x06	// the intersection of row and column headers
+#define htObject	0x07	// the body of an object
+// the following are for size handles of draw objects
+#define htTopLeft	0x08
+#define htBotLeft	0x09
+#define htLeft		0x0A
+#define htTopRight	0x0B
+#define htBotRight	0x0C
+#define htRight		0x0D
+#define htTop		0x0E
+#define htBot		0x0F
+// end size handles
+#define htRwGut		0x10	// row area of outline gutter
+#define htColGut	0x11	// column area of outline gutter
+#define htTextBox	0x12	// body of a text box (where we shouw I-Beam cursor)
+#define htRwLevels	0x13	// row levels buttons of outline gutter
+#define htColLevels	0x14	// column levels buttons of outline gutter
+#define htDman		0x15	// the drag/drop handle of the selection
+#define htDmanFill	0x16	// the auto-fill handle of the selection
+#define htXSplit	0x17	// the intersection of the horz & vert pane splits
+#define htVertex	0x18	// a vertex of a polygon draw object
+#define htAddVtx	0x19	// htVertex in add a vertex mode
+#define htDelVtx	0x1A	// htVertex in delete a vertex mode
+#define htRwHdr		0x1B	// row header
+#define htColHdr	0x1C	// column header
+#define htRwShow	0x1D	// Like htRowHeight except means grow a hidden column
+#define htColShow	0x1E	// column version of htRwShow
+#define htSizing	0x1F	// Internal use only
+#define htSxpivot	0x20	// a drag/drop tile in a pivot table
+#define htTabs		0x21	// the sheet paging tabs
+#define htEdit		0x22	// Internal use only
+
+typedef struct _fmlainfo
+{
+	int wPointMode;	// current edit mode.  0 => rest of struct undefined
+	int cch;	// count of characters in formula
+	char *lpch;	// pointer to formula characters.  READ ONLY!!!
+	int ichFirst;	// char offset to start of selection
+	int ichLast;	// char offset to end of selection (may be > cch)
+	int ichCaret;	// char offset to blinking caret
+} FMLAINFO;
+
+typedef struct _mouseinfo
+{
+	/* input section */
+	HWND hwnd;		// window to get info on
+	POINT pt;		// mouse position to get info on
+
+	/* output section */
+	int dt;			// document(page) type
+	int ht;			// hit test code
+	int rw;			// row @ mouse (-1 if #n/a)
+	int col;		// col @ mouse (-1 if #n/a)
+} MOUSEINFO;
+
 
 
 /* 
@@ -233,11 +488,12 @@ int far pascal XLCallVer(void);
 
 
 /*
-** Built-in Functions and Command Equivalents
+** Built-in Excel functions and command equivalents
 */
 
 
-/* Excel function numbers */
+// Excel function numbers
+
 #define xlfCount 0
 #define xlfIsna 2
 #define xlfIserror 3
@@ -577,6 +833,246 @@ int far pascal XLCallVer(void);
 #define xlfRoman 354
 #define xlfOpenDialog 355
 #define xlfSaveDialog 356
+#define xlfViewGet 357
+#define xlfGetpivotdata 358
+#define xlfHyperlink 359
+#define xlfPhonetic 360
+#define xlfAveragea 361
+#define xlfMaxa 362
+#define xlfMina 363
+#define xlfStdevpa 364
+#define xlfVarpa 365
+#define xlfStdeva 366
+#define xlfVara 367
+#define xlfBahttext 368
+#define xlfThaidayofweek 369
+#define xlfThaidigit 370
+#define xlfThaimonthofyear 371
+#define xlfThainumsound 372
+#define xlfThainumstring 373
+#define xlfThaistringlength 374
+#define xlfIsthaidigit 375
+#define xlfRoundbahtdown 376
+#define xlfRoundbahtup 377
+#define xlfThaiyear 378
+#define xlfRtd 379
+#define xlfCubevalue 380
+#define xlfCubemember 381
+#define xlfCubememberproperty 382
+#define xlfCuberankedmember 383
+#define xlfHex2bin 384
+#define xlfHex2dec 385
+#define xlfHex2oct 386
+#define xlfDec2bin 387
+#define xlfDec2hex 388
+#define xlfDec2oct 389
+#define xlfOct2bin 390
+#define xlfOct2hex 391
+#define xlfOct2dec 392
+#define xlfBin2dec 393
+#define xlfBin2oct 394
+#define xlfBin2hex 395
+#define xlfImsub 396
+#define xlfImdiv 397
+#define xlfImpower 398
+#define xlfImabs 399
+#define xlfImsqrt 400
+#define xlfImln 401
+#define xlfImlog2 402
+#define xlfImlog10 403
+#define xlfImsin 404
+#define xlfImcos 405
+#define xlfImexp 406
+#define xlfImargument 407
+#define xlfImconjugate 408
+#define xlfImaginary 409
+#define xlfImreal 410
+#define xlfComplex 411
+#define xlfImsum 412
+#define xlfImproduct 413
+#define xlfSeriessum 414
+#define xlfFactdouble 415
+#define xlfSqrtpi 416
+#define xlfQuotient 417
+#define xlfDelta 418
+#define xlfGestep 419
+#define xlfIseven 420
+#define xlfIsodd 421
+#define xlfMround 422
+#define xlfErf 423
+#define xlfErfc 424
+#define xlfBesselj 425
+#define xlfBesselk 426
+#define xlfBessely 427
+#define xlfBesseli 428
+#define xlfXirr 429
+#define xlfXnpv 430
+#define xlfPricemat 431
+#define xlfYieldmat 432
+#define xlfIntrate 433
+#define xlfReceived 434
+#define xlfDisc 435
+#define xlfPricedisc 436
+#define xlfYielddisc 437
+#define xlfTbilleq 438
+#define xlfTbillprice 439
+#define xlfTbillyield 440
+#define xlfPrice 441
+#define xlfYield 442
+#define xlfDollarde 443
+#define xlfDollarfr 444
+#define xlfNominal 445
+#define xlfEffect 446
+#define xlfCumprinc 447
+#define xlfCumipmt 448
+#define xlfEdate 449
+#define xlfEomonth 450
+#define xlfYearfrac 451
+#define xlfCoupdaybs 452
+#define xlfCoupdays 453
+#define xlfCoupdaysnc 454
+#define xlfCoupncd 455
+#define xlfCoupnum 456
+#define xlfCouppcd 457
+#define xlfDuration 458
+#define xlfMduration 459
+#define xlfOddlprice 460
+#define xlfOddlyield 461
+#define xlfOddfprice 462
+#define xlfOddfyield 463
+#define xlfRandbetween 464
+#define xlfWeeknum 465
+#define xlfAmordegrc 466
+#define xlfAmorlinc 467
+#define xlfConvert 468
+#define xlfAccrint 469
+#define xlfAccrintm 470
+#define xlfWorkday 471
+#define xlfNetworkdays 472
+#define xlfGcd 473
+#define xlfMultinomial 474
+#define xlfLcm 475
+#define xlfFvschedule 476
+#define xlfCubekpimember 477
+#define xlfCubeset 478
+#define xlfCubesetcount 479
+#define xlfIferror 480
+#define xlfCountifs 481
+#define xlfSumifs 482
+#define xlfAverageif 483
+#define xlfAverageifs 484
+#define xlfAggregate 485
+#define xlfBinom_dist 486
+#define xlfBinom_inv 487
+#define xlfConfidence_norm 488
+#define xlfConfidence_t 489
+#define xlfChisq_test 490
+#define xlfF_test 491
+#define xlfCovariance_p 492
+#define xlfCovariance_s 493
+#define xlfExpon_dist 494
+#define xlfGamma_dist 495
+#define xlfGamma_inv 496
+#define xlfMode_mult 497
+#define xlfMode_sngl 498
+#define xlfNorm_dist 499
+#define xlfNorm_inv 500
+#define xlfPercentile_exc 501
+#define xlfPercentile_inc 502
+#define xlfPercentrank_exc 503
+#define xlfPercentrank_inc 504
+#define xlfPoisson_dist 505
+#define xlfQuartile_exc 506
+#define xlfQuartile_inc 507
+#define xlfRank_avg 508
+#define xlfRank_eq 509
+#define xlfStdev_s 510
+#define xlfStdev_p 511
+#define xlfT_dist 512
+#define xlfT_dist_2t 513
+#define xlfT_dist_rt 514
+#define xlfT_inv 515
+#define xlfT_inv_2t 516
+#define xlfVar_s 517
+#define xlfVar_p 518
+#define xlfWeibull_dist 519
+#define xlfNetworkdays_intl 520
+#define xlfWorkday_intl 521
+#define xlfEcma_ceiling 522
+#define xlfIso_ceiling 523
+#define xlfBeta_dist 525
+#define xlfBeta_inv 526
+#define xlfChisq_dist 527
+#define xlfChisq_dist_rt 528
+#define xlfChisq_inv 529
+#define xlfChisq_inv_rt 530
+#define xlfF_dist 531
+#define xlfF_dist_rt 532
+#define xlfF_inv 533
+#define xlfF_inv_rt 534
+#define xlfHypgeom_dist 535
+#define xlfLognorm_dist 536
+#define xlfLognorm_inv 537
+#define xlfNegbinom_dist 538
+#define xlfNorm_s_dist 539
+#define xlfNorm_s_inv 540
+#define xlfT_test 541
+#define xlfZ_test 542
+#define xlfErf_precise 543
+#define xlfErfc_precise 544
+#define xlfGammaln_precise 545
+#define xlfCeiling_precise 546
+#define xlfFloor_precise 547
+#define xlfAcot 548
+#define xlfAcoth 549
+#define xlfCot 550
+#define xlfCoth 551
+#define xlfCsc 552
+#define xlfCsch 553
+#define xlfSec 554
+#define xlfSech 555
+#define xlfImtan 556
+#define xlfImcot 557
+#define xlfImcsc 558
+#define xlfImcsch 559
+#define xlfImsec 560
+#define xlfImsech 561
+#define xlfBitand 562
+#define xlfBitor 563
+#define xlfBitxor 564
+#define xlfBitlshift 565
+#define xlfBitrshift 566
+#define xlfPermutationa 567
+#define xlfCombina 568
+#define xlfXor 569
+#define xlfPduration 570
+#define xlfBase 571
+#define xlfDecimal 572
+#define xlfDays 573
+#define xlfBinom_dist_range 574
+#define xlfGamma 575
+#define xlfSkew_p 576
+#define xlfGauss 577
+#define xlfPhi 578
+#define xlfRri 579
+#define xlfUnichar 580
+#define xlfUnicode 581
+#define xlfMunit 582
+#define xlfArabic 583
+#define xlfIsoweeknum 584
+#define xlfNumbervalue 585
+#define xlfSheet 586
+#define xlfSheets 587
+#define xlfFormulatext 588
+#define xlfIsformula 589
+#define xlfIfna 590
+#define xlfCeiling_math 591
+#define xlfFloor_math 592
+#define xlfImsinh 593
+#define xlfImcosh 594
+#define xlfFilterxml 595
+#define xlfWebservice 596
+#define xlfEncodeurl 597
 
 /* Excel command numbers */
 #define xlcBeep (0 | xlCommand)
@@ -848,28 +1344,16 @@ int far pascal XLCallVer(void);
 #define xlcAddinManager (321 | xlCommand)
 #define xlcMenuEditor (322 | xlCommand)
 #define xlcAttachToolbars (323 | xlCommand)
-#define xlcVbaReset (324 | xlCommand)
+#define xlcVbaactivate (324 | xlCommand)
 #define xlcOptionsChart (325 | xlCommand)
-#define xlcStart (326 | xlCommand)
-#define xlcVbaEnd (327 | xlCommand)
 #define xlcVbaInsertFile (328 | xlCommand)
 #define xlcVbaProcedureDefinition (330 | xlCommand)
-#define xlcVbaReferences (331 | xlCommand)
-#define xlcVbaStepInto (332 | xlCommand)
-#define xlcVbaStepOver (333 | xlCommand)
-#define xlcVbaToggleBreakpoint (334 | xlCommand)
-#define xlcVbaClearBreakpoints (335 | xlCommand)
 #define xlcRoutingSlip (336 | xlCommand)
 #define xlcRouteDocument (338 | xlCommand)
 #define xlcMailLogon (339 | xlCommand)
 #define xlcInsertPicture (342 | xlCommand)
 #define xlcEditTool (343 | xlCommand)
 #define xlcGalleryDoughnut (344 | xlCommand)
-#define xlcVbaObjectBrowser (345 | xlCommand)
-#define xlcVbaDebugWindow (346 | xlCommand)
-#define xlcVbaAddWatch (347 | xlCommand)
-#define xlcVbaEditWatch (348 | xlCommand)
-#define xlcVbaInstantWatch (349 | xlCommand)
 #define xlcChartTrend (350 | xlCommand)
 #define xlcPivotItemProperties (352 | xlCommand)
 #define xlcWorkbookInsert (354 | xlCommand)
@@ -962,11 +1446,35 @@ int far pascal XLCallVer(void);
 #define xlcActiveCellFont (476 | xlCommand)
 #define xlcEnableTipwizard (477 | xlCommand)
 #define xlcVbaMakeAddin (478 | xlCommand)
+#define xlcInsertdatatable (480 | xlCommand)
+#define xlcWorkgroupOptions (481 | xlCommand)
 #define xlcMailSendMailer (482 | xlCommand)
-
-#ifdef __cplusplus
-}			/* End of extern "C" { */
-#endif	/* __cplusplus */
-
-#endif
-
+#define xlcAutocorrect (485 | xlCommand)
+#define xlcPostDocument (489 | xlCommand)
+#define xlcPicklist (491 | xlCommand)
+#define xlcViewShow (493 | xlCommand)
+#define xlcViewDefine (494 | xlCommand)
+#define xlcViewDelete (495 | xlCommand)
+#define xlcSheetBackground (509 | xlCommand)
+#define xlcInsertMapObject (510 | xlCommand)
+#define xlcOptionsMenono (511 | xlCommand)
+#define xlcNormal (518 | xlCommand)
+#define xlcLayout (519 | xlCommand)
+#define xlcRmPrintArea (520 | xlCommand)
+#define xlcClearPrintArea (521 | xlCommand)
+#define xlcAddPrintArea (522 | xlCommand)
+#define xlcMoveBrk (523 | xlCommand)
+#define xlcHidecurrNote (545 | xlCommand)
+#define xlcHideallNotes (546 | xlCommand)
+#define xlcDeleteNote (547 | xlCommand)
+#define xlcTraverseNotes (548 | xlCommand)
+#define xlcActivateNotes (549 | xlCommand)
+#define xlcProtectRevisions (620 | xlCommand)
+#define xlcUnprotectRevisions (621 | xlCommand)
+#define xlcOptionsMe (647 | xlCommand)
+#define xlcWebPublish (653 | xlCommand)
+#define xlcNewwebquery (667 | xlCommand)
+#define xlcPivotTableChart (673 | xlCommand)
+#define xlcOptionsSave (753 | xlCommand)
+#define xlcOptionsSpell (755 | xlCommand)
+#define xlcHideallInkannots (808 | xlCommand)
