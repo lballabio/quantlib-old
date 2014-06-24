@@ -27,7 +27,7 @@ OH_DIR := @oh_dir@
 DOXYGEN_CONFIG := $(PROJECTNAME).doxy
 DOXYGEN_CONFIG_TEMP := .$(DOXYGEN_CONFIG)
 DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css $(PROJECTINITIALS)_footer.html $(PROJECTINITIALS)_header.html $(PROJECTINITIALS)_headeronline.html 
-SCRIPT := $(OH_DIR)/dev_tools/preprocess_doxyfile.py
+SCRIPT := $(OH_DIR)/Docs/preprocess_doxyfile.py
 
 %.gz: %
 	rm -f $@

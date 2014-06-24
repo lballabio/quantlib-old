@@ -39,6 +39,7 @@ h1, h2, h3, h4, h5, h6 {
 	-o-transition: text-shadow 0.5s linear;
 	transition: text-shadow 0.5s linear;
 	margin-right: 15px;
+    color: #074BB4;
 }
 
 h1.glow, h2.glow, h3.glow, h4.glow, h5.glow, h6.glow {
@@ -110,13 +111,15 @@ div.navtab {
 /* @group Link Styling */
 
 a {
-	color: #3D578C;
+	/*color: #3D578C;*/
+    color: #074BB4;
 	font-weight: normal;
 	text-decoration: none;
 }
 
 .contents a:visited {
-	color: #4665A2;
+	/*color: #4665A2;*/
+    color: #074BB4;
 }
 
 a:hover {

@@ -38,6 +38,12 @@ EXTRA_DIST = \
     QuantLibObjects_vc9.vcproj \
     QuantLibObjects_vc10.vcxproj \
     QuantLibObjects_vc11.vcxproj \
+    QuantLibObjects2_vc10.vcxproj \
+    QuantLibObjects2_vc11.vcxproj \
+    QuantLibObjects3_vc10.vcxproj \
+    QuantLibObjects3_vc11.vcxproj \
+    QuantLibObjects4_vc10.vcxproj \
+    QuantLibObjects4_vc11.vcxproj \
     README.txt \
     todo.txt
 
