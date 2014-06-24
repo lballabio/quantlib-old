@@ -64,13 +64,15 @@ tested under versions of Excel prior to 2002 nor on Excel 2007.
 
 \subsection fw_installation 1.2 Installation
 
-Installation of the QuantLibXL Framework appears as an option for the installer
-as described in the standard \ref installation document.
+Download QuantLibXL-1.5.0-framework.zip from the 
+<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.5.0/">Downloads page</a>.
+
+Copy the zip file to your hard drive and uncompress it.
 
 \subsection fw_startup 1.3 Startup
 
 To load the Framework into Excel, double click on file
-QuantLibXL\\framework\\QuantLibXL.xla.
+QuantLibXL-1.5.0\\Launcher.xla.
 
 \subsection fw_ui 1.4 User Interface
 

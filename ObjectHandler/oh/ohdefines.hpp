@@ -34,15 +34,15 @@
 
 //! Version string.
 #ifdef _DEBUG
-    #define OBJHANDLER_VERSION "1.4.0-debug"
+    #define OBJHANDLER_VERSION "1.5.0-debug"
 #else
-    #define OBJHANDLER_VERSION "1.4.0"
+    #define OBJHANDLER_VERSION "1.5.0"
 #endif
 
 //! Version hexadecimal number.
-#define OBJHANDLER_HEX_VERSION 0x010400f0
+#define OBJHANDLER_HEX_VERSION 0x010500f0
 //! Version string for output lib name.
-#define OBJHANDLER_LIB_VERSION "1_4_0"
+#define OBJHANDLER_LIB_VERSION "1_5_0"
 
 #include <cctype>
 #if defined(BOOST_NO_STDC_NAMESPACE)
@@ -164,5 +164,8 @@ public ObjectHandler::LibraryObject<base_class> { \
 protected: \
 OH_LIB_CTOR(derived_class, base_class) \
 }
+
+// Comment this out to remove dependency on log4cxx
+#define HAVE_LOG4CXX
 
 #endif

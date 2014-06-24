@@ -150,14 +150,14 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">.\buildStatic\vc110\$(Platform)\$(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\xll\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\buildStatic\vc110\$(Platform)\$(Configuration)\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibXL-vc110-mt-1_4_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QuantLibXL-vc110-x64-mt-1_4_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibXL-vc110-mt-gd-1_4_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QuantLibXL-vc110-x64-mt-gd-1_4_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibXL-vc110-mt-sgd-1_4_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">QuantLibXL-vc110-x64-mt-sgd-1_4_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibXL-vc110-mt-s-1_4_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">QuantLibXL-vc110-x64-mt-s-1_4_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibXL-vc110-mt-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QuantLibXL-vc110-x64-mt-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibXL-vc110-mt-gd-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QuantLibXL-vc110-x64-mt-gd-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibXL-vc110-mt-sgd-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">QuantLibXL-vc110-x64-mt-sgd-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibXL-vc110-mt-s-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">QuantLibXL-vc110-x64-mt-s-1_5_0</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.xll</TargetExt>
@@ -200,17 +200,18 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_5_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_5_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
@@ -249,16 +250,17 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_5_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-sgd-1_5_0.lib</ImportLibrary>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
@@ -298,17 +300,18 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_5_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_5_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
@@ -347,16 +350,17 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_5_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-gd-1_5_0.lib</ImportLibrary>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
@@ -397,16 +401,17 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_5_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_5_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
@@ -446,15 +451,16 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_5_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-s-1_5_0.lib</ImportLibrary>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
@@ -495,16 +501,17 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_5_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_5_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>
@@ -544,15 +551,16 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;Ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_5_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_4_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc110\$(Platform)\$(Configuration)/QuantLibXL-vc110-mt-1_5_0.lib</ImportLibrary>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>

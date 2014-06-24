@@ -6,7 +6,8 @@ includedir = $(prefix)/include/qlo/Addins/Cpp
 EXTRA_DIST = \
     AddinCpp_vc8.vcproj \
     AddinCpp_vc9.vcproj \
-    AddinCpp_vc10.vcxproj
+    AddinCpp_vc10.vcxproj \
+    AddinCpp_vc11.vcxproj
 
 if BUILD_CPP
 lib_LTLIBRARIES = libQuantLibAddinCpp.la
@@ -145,4 +146,7 @@ endif
 
 libQuantLibAddinCpp_la_LIBADD = \
     ../../qlo/libQuantLibAddin.la
+
+libQuantLibAddinCpp_la_LDFLAGS = \
+-lQuantLib -lObjectHandler -lboost_filesystem -lboost_serialization -lboost_system -lboost_regex
 

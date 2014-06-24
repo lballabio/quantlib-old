@@ -3,6 +3,7 @@ EXTRA_DIST = \
     docs_vc8.vcproj \
     docs_vc9.vcproj \
     docs_vc10.vcxproj \
+    docs_vc11.vcxproj \
     Makefile.vc \
     objecthandler.doxy \
     oh_footer.html \
@@ -10,7 +11,8 @@ EXTRA_DIST = \
     oh_headeronline.html \
     doxygen.css \
     tabs.css \
-    ql.css
+    ql.css \
+    preprocess_doxyfile.py
 
 FILENAME := ObjectHandler-docs-$(VERSION)-html
 PROJECTNAME := objecthandler
@@ -26,7 +28,7 @@ OH_DIR := ..
 DOXYGEN_CONFIG := $(PROJECTNAME).doxy
 DOXYGEN_CONFIG_TEMP := .$(DOXYGEN_CONFIG)
 DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css $(PROJECTINITIALS)_footer.html $(PROJECTINITIALS)_header.html $(PROJECTINITIALS)_headeronline.html 
-SCRIPT := $(OH_DIR)/dev_tools/preprocess_doxyfile.py
+SCRIPT := $(OH_DIR)/Docs/preprocess_doxyfile.py
 
 %.gz: %
 	rm -f $@

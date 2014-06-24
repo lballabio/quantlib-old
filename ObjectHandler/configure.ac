@@ -1,7 +1,7 @@
 
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([ObjectHandler], [1.4.0],
+AC_INIT([ObjectHandler], [1.5.0],
         [quantlib-dev@lists.sourceforge.net],
         [ObjectHandler])
 AC_PREREQ(2.50)
@@ -86,6 +86,7 @@ AC_CONFIG_FILES([
     oh/valueobjects/Makefile
     oh/Makefile
     ohxl/Makefile
-    xlsdk/Makefile ])
+    xlsdk/Makefile
+    xlsdk/x64/Makefile ])
 AC_OUTPUT
 

@@ -7,6 +7,7 @@ EXTRA_DIST = \
     CppInstrumentIn_vc8.vcproj \
     CppInstrumentIn_vc9.vcproj \
     CppInstrumentIn_vc10.vcxproj \
+    CppInstrumentIn_vc11.vcxproj \
     price_Swap.bat \
     price_Swap.sh
 
