@@ -11,7 +11,8 @@ EXTRA_DIST = \
     oh_headeronline.html \
     doxygen.css \
     tabs.css \
-    ql.css
+    ql.css \
+    preprocess_doxyfile.py
 
 FILENAME := ObjectHandler-docs-$(VERSION)-html
 PROJECTNAME := objecthandler
@@ -27,7 +28,7 @@ OH_DIR := ..
 DOXYGEN_CONFIG := $(PROJECTNAME).doxy
 DOXYGEN_CONFIG_TEMP := .$(DOXYGEN_CONFIG)
 DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css $(PROJECTINITIALS)_footer.html $(PROJECTINITIALS)_header.html $(PROJECTINITIALS)_headeronline.html 
-SCRIPT := $(OH_DIR)/dev_tools/preprocess_doxyfile.py
+SCRIPT := $(OH_DIR)/Docs/preprocess_doxyfile.py
 
 %.gz: %
 	rm -f $@
