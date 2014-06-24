@@ -23,7 +23,7 @@
 
 /*! \mainpage QuantLibAddin
 
-\section idx_project Project
+\section idx_overview Overview
 
 %QuantLibAddin exports the functionality of the
 <a href="http://quantlib.org">QuantLib</a> C++ analytics library to a variety
@@ -77,7 +77,7 @@ structure with regard to distribution and licensing.  The mailing list for
 %QuantLibAddin is
 <a href="https://lists.sourceforge.net/lists/listinfo/quantlib-users">quantlib-users@lists.sf.net</a>.
 The list archives may be searched
-<a href="http://sourceforge.net/search/?group_id=12740&type_of_search=mlists">here</a>.
+<a href="https://sourceforge.net/p/quantlib/mailman/quantlib-users/">here</a>.
 
 */
 

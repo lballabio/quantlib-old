@@ -46,7 +46,7 @@ namespace QuantLib {
             const std::vector<boost::shared_ptr<SwapIndex> >& swapIndexes,
             const boost::shared_ptr<IborIndex>& iborIndex,
             const std::vector<std::vector<Handle<Quote> > >& bidAskSpreads,
-            const std::vector<boost::shared_ptr<HaganPricer> >& pricers,
+            const std::vector<boost::shared_ptr<CmsCouponPricer> >& pricers,
             const Handle<YieldTermStructure>& discountingTS);
         //! \name LazyObject interface
         //@{
@@ -57,6 +57,7 @@ namespace QuantLib {
                      Real meanReversion);
         // inspectors ...
         const std::vector<Period>& swapTenors() const { return swapTenors_;}
+        const std::vector<Period>& swapLengths() const { return swapLengths_;}
         const Matrix& impliedCmsSpreads() { return mdlSpreads_; }
         const Matrix& spreadErrors() { return errSpreads_; }
         Matrix browse() const;
@@ -80,7 +81,7 @@ namespace QuantLib {
         std::vector<boost::shared_ptr<SwapIndex> > swapIndexes_;
         boost::shared_ptr<IborIndex> iborIndex_;
         std::vector<std::vector<Handle<Quote> > > bidAskSpreads_;
-        std::vector<boost::shared_ptr<HaganPricer> > pricers_;
+        std::vector<boost::shared_ptr<CmsCouponPricer> > pricers_;
         Handle<YieldTermStructure> discTS_;
 
         Size nExercise_;

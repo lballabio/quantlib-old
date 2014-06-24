@@ -66,7 +66,7 @@ malfunction under certain versions of Excel.
 \subsection fw_installation 1.2 Installation
 
 Download
-<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.4.0/QuantLibXL-1.4.0-framework.zip/download">QuantLibXL-1.4.0-framework.zip</a>.
+<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.5.0/QuantLibXL-1.5.0-framework.zip/download">QuantLibXL-1.5.0-framework.zip</a>.
 Copy the zip file to your hard drive and uncompress it.
 
 \subsection fw_startup 1.3 Startup
@@ -74,7 +74,7 @@ Copy the zip file to your hard drive and uncompress it.
 <b>NB</b>: The Framework is configured for 32-bit Excel.  If you are running
 64-bit Excel then before starting the Framework you need to edit workbook
 <tt>framework\\config\\Loader.xls</tt> and change the value of cell
-<tt>Loader.xls!$C$17</tt> to <tt>QuantLibXL-vc110-x64-mt-s-1_4_0.xll</tt>.
+<tt>Loader.xls!$C$17</tt> to <tt>QuantLibXL-vc110-x64-mt-s-1_5_0.xll</tt>.
 
 To load the Framework into Excel, double click on file
 <tt>framework\\QuantLibXL.xla</tt>.
@@ -207,8 +207,7 @@ extended to receive data from some live feed e.g. Reuters.
 \section fw_fi 3 Fixed Income
 
 The Fixed Income addin initializes a market environment which can be configured
-to accept live feeds from Reuters or Bloomberg in support of a real time
-trading environment.
+to accept live feeds from Reuters or Bloomberg in support of real time trading.
 
 <div class="center"><img src="images/framework_fixed_income.png"></div>
 
