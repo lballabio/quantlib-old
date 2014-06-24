@@ -274,7 +274,10 @@ namespace QuantLibAddin {
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
             bool permanent)
-    : BondHelper(properties, cleanPrice, shared_ptr<QuantLib::Bond>(), permanent) {
+    : BondHelper(properties, cleanPrice, shared_ptr<QuantLib::Bond>(new
+        QuantLib::FixedRateBond(settlementDays, faceAmount, *schedule,
+                      coupons, paymentDayCounter, paymentConvention,
+                      redemption, issueDate)), permanent) {
         libraryObject_ = shared_ptr<QuantLib::FixedRateBondHelper>(new
             QuantLib::FixedRateBondHelper(cleanPrice,
                                           settlementDays,
