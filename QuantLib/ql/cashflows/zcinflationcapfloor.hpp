@@ -26,6 +26,7 @@
 
 #include <ql/cashflow.hpp>
 #include <ql/index.hpp>
+#include <ql/indexes/inflationindex.hpp>
 #include <ql/handle.hpp>
 #include <ql/option.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
@@ -35,73 +36,101 @@
 
 namespace QuantLib {
 
-    //! Cash flow dependent on an index ratio with cap floor payoff.
+//! Cash flow dependent on an index ratio with cap floor payoff.
 
-    /*! This cash flow is not a coupon, i.e., there's no accrual.  The
-        amount is E( max (i(T)/i(0) - 1 - k , 0) ).
+/*! This cash flow is not a coupon, i.e., there's no accrual.  The
+    amount is E( max (i(T)/i(0) - (1 + k)^T , 0) ), i.e. the strike
+    is annualized.
+*/
+class ZCInflationCapFloor : public CashFlow, public Observer {
+  public:
+    ZCInflationCapFloor(Real notional,
+                        const boost::shared_ptr<ZeroInflationIndex> &index,
+                        const Handle<YieldTermStructure> &nominalYts,
+                        const Handle<ZeroInflationTermStructure> &inflationYts,
+                        const Handle<BlackVolTermStructure> &inflationVol,
+                        const Date &baseDate, const Date &lastFixingDate,
+                        const Date &paymentDate, const Real strike,
+                        const Option::Type type)
+        : notional_(notional), index_(index), baseDate_(baseDate),
+          fixingDate_(lastFixingDate), paymentDate_(paymentDate),
+          nominalYts_(nominalYts), inflationYts_(inflationYts),
+          inflationVol_(inflationVol), strike_(strike), type_(type) {
 
-    */
-    class ZCInflationCapFloor : public CashFlow,
-                            public Observer {
-      public:
-        ZCInflationCapFloor(
-            Real notional, const boost::shared_ptr<Index> &index,
-            const Handle<YieldTermStructure> &nominalYts,
-            const Handle<ZeroInflationTermStructure> &inflationYts,
-            const Handle<BlackVolTermStructure> &inflationVol,
-            const Date &baseDate, const Date &fixingDate,
-            const Date &paymentDate, const Real strike, const Option::Type type)
-            : notional_(notional), index_(index), baseDate_(baseDate),
-              fixingDate_(fixingDate), paymentDate_(paymentDate),
-              nominalYts_(nominalYts), inflationYts_(inflationYts),
-              inflationVol_(inflationVol), strike_(strike), type_(type) {
-          // registerWith(index);
-          registerWith(nominalYts);
-          registerWith(inflationYts);
+        // compute actual fixing date out of last fixing date
+        if (index_->interpolated()) {
+            actualFixingDate_ = inflationYts_->calendar().advance(
+                fixingDate_, -inflationYts_->observationLag());
+        } else {
+            std::pair<Date, Date> dd =
+                inflationPeriod(fixingDate_ - inflationYts_->observationLag(),
+                                index_->frequency());
+            actualFixingDate_ = dd.first;
         }
-        //! \name Event interface
-        //@{
-        Date date() const { return paymentDate_; }
-        //@}
-        virtual Real notional() const { return notional_; }
-        virtual Date baseDate() const { return baseDate_; }
-        virtual Date fixingDate() const { return fixingDate_; }
-        //virtual boost::shared_ptr<Index> index() const { return index_; }
-        //! \name CashFlow interface
-        //@{
-        Real amount() const;    // already virtual
-        //@}
-        //! \name Visitability
-        //@{
-        virtual void accept(AcyclicVisitor&);
-        //@}
-        //! \name Observer interface
-        //@{
-        void update() { notifyObservers(); }
-        //@}
-      private:
-        Real notional_;
-        boost::shared_ptr<Index> index_;
-        Date baseDate_, fixingDate_, paymentDate_;
-		Handle<YieldTermStructure> nominalYts_;
-		Handle<ZeroInflationTermStructure> inflationYts_;
-		Handle<BlackVolTermStructure> inflationVol_;
-		Real strike_;
-		Option::Type type_;
-    };
+        fixingTime_ = inflationVol_->dayCounter().yearFraction(
+            baseDate_, actualFixingDate_);
 
-
-    // inline definitions
-
-    inline void ZCInflationCapFloor::accept(AcyclicVisitor& v) {
-        Visitor<ZCInflationCapFloor>* v1 =
-        dynamic_cast<Visitor<ZCInflationCapFloor>*>(&v);
-        if (v1 != 0)
-            v1->visit(*this);
-        else
-            CashFlow::accept(v);
+        // registerWith(index);
+        registerWith(nominalYts);
+        registerWith(inflationYts);
     }
+    //! \name Event interface
+    //@{
+    Date date() const { return paymentDate_; }
+    //@}
+    virtual Real notional() const { return notional_; }
+    virtual Date baseDate() const { return baseDate_; }
+    virtual Date fixingDate() const { return fixingDate_; }
+    // virtual boost::shared_ptr<Index> index() const { return index_; }
+    //! \name CashFlow interface
+    //@{
+    Real amount() const; // already virtual
+    //@}
+    // return implied unit displaced vol from undiscounted option price
+    Real impliedTotalVariance(Real undeflatedPrice) const;
+    //! \name Visitability
+    //@{
+    virtual void accept(AcyclicVisitor &);
+    //@}
+    //! \name Observer interface
+    //@{
+    void update() { notifyObservers(); }
+    //@}
+  private:
+    Real amount(Real totalVariance) const;
+    Real notional_;
+    boost::shared_ptr<ZeroInflationIndex> index_;
+    Date baseDate_, fixingDate_, paymentDate_;
+    Date actualFixingDate_;
+    Real fixingTime_;
+    Handle<YieldTermStructure> nominalYts_;
+    Handle<ZeroInflationTermStructure> inflationYts_;
+    Handle<BlackVolTermStructure> inflationVol_;
+    Real strike_;
+    Option::Type type_;
 
+    class ImpliedVarianceHelper {
+      public:
+        ImpliedVarianceHelper(const ZCInflationCapFloor *h, Real target)
+            : h_(h), target_(target) {}
+        Real operator()(Real v) const { return target_ - h_->amount(v); }
+
+      private:
+        const ZCInflationCapFloor *h_;
+        Real target_;
+    };
+};
+
+// inline definitions
+
+inline void ZCInflationCapFloor::accept(AcyclicVisitor &v) {
+    Visitor<ZCInflationCapFloor> *v1 =
+        dynamic_cast<Visitor<ZCInflationCapFloor> *>(&v);
+    if (v1 != 0)
+        v1->visit(*this);
+    else
+        CashFlow::accept(v);
+}
 }
 
 #endif
