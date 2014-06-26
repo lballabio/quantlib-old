@@ -26,13 +26,13 @@ namespace QuantLib {
                                        const std::vector<Real> &zabrParams,
                                        const Evaluation evaluation,
                                        const std::vector<Real> &moneyness,
-                                       const Size localVolRefinement)
+                                       const Size fdRefinement)
         : SmileSection(timeToExpiry, DayCounter() /*, for the moment we only have lognormal sections in the lib ...
                        evaluation == ShortMaturityNormal
                            ? SmileSection::Normal
                            : SmileSection::ShiftedLognormal*/),
           evaluation_(evaluation), forward_(forward), params_(zabrParams),
-          localVolRefinement_(localVolRefinement) {
+          fdRefinement_(fdRefinement) {
 
         init(moneyness);
     }
@@ -42,12 +42,12 @@ namespace QuantLib {
                                        const DayCounter &dc,
                                        const Evaluation evaluation,
                                        const std::vector<Real> &moneyness,
-                                       const Size localVolRefinement)
+                                       const Size fdRefinement)
         : SmileSection(d, dc, Date()/*, evaluation == ShortMaturityNormal 
                                           ? SmileSection::Normal
                                           : SmileSection::ShiftedLognormal*/),
           evaluation_(evaluation), forward_(forward), params_(zabrParams),
-          localVolRefinement_(localVolRefinement) {
+          fdRefinement_(fdRefinement) {
 
         init(moneyness);
     }
@@ -75,11 +75,11 @@ namespace QuantLib {
         for (Size i = 0; i < tmp.size(); i++) {
             Real f = tmp[i] * forward_;
             if (f > 0.0) {
-                if (evaluation_ == LocalVolatility && i > 0) {
-                    for (Size j = 1; j < localVolRefinement_; j++) {
+                if (i > 0) {
+                    for (Size j = 1; j < fdRefinement_; j++) {
                         strikes_.push_back(lastF +
                                            ((double)j) * (f - lastF) /
-                                               (localVolRefinement_ + 1));
+                                               (fdRefinement_ + 1));
                     }
                 }
                 lastF = f;
@@ -98,9 +98,10 @@ namespace QuantLib {
         }
 
         if (evaluation_ == FullFd) {
-            callPrices_.clear();
+            callPrices_.resize(strikes_.size());
+#pragma omp parallel for
             for (Size i = 0; i < strikes_.size(); i++) {
-                callPrices_.push_back(model_->fullFdPrice(strikes_[i]));
+                callPrices_[i] = model_->fullFdPrice(strikes_[i]);
             }
         }
 
