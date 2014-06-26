@@ -1,9 +1,12 @@
 #include <ql/quantlib.hpp>
 
+#include <boost/assign/std/vector.hpp>
+
 #include <iostream>
 #include <fstream>
 
 using namespace QuantLib;
+using namespace  boost::assign;
 
 
 void bdkSmile() {
@@ -31,9 +34,91 @@ void bdkSmile() {
             << bdk->optionPrice(strike) << " "
             << sabr->digitalOptionPrice(strike) << " "
             << bdk->digitalOptionPrice(strike) << " " << sabr->density(strike)
-            << " " << bdk->density(strike) << " " << sabr->volatility(strike) << " " << 
+            << " " << bdk->density(strike) << " " << sabr->volatility(strike) << " " <<
             bdk->volatility(strike) << std::endl;
         strike += 0.0001;
+    }
+
+    out.close();
+
+}
+
+void zabrExamples() {
+
+    Real forward = 0.03;
+    Real expiryTime = 15;
+
+    Real alpha = 0.10;
+    Real beta = 0.7;
+    Real nu = 0.20;
+    Real rho = -0.4;
+    Real gamma = 1.0;
+
+    std::vector<Real> sabrParams, zabrParams;
+
+    sabrParams += alpha, beta, nu, rho;
+    zabrParams += alpha, beta, nu, rho, gamma;
+
+    boost::shared_ptr<SabrSmileSection> sabr = boost::make_shared<SabrSmileSection>(expiryTime, forward, sabrParams);
+
+    boost::shared_ptr<ZabrSmileSection> zabrln =
+        boost::make_shared<ZabrSmileSection>(
+            expiryTime, forward, zabrParams,
+            ZabrSmileSection::ShortMaturityLognormal);
+
+    boost::shared_ptr<ZabrSmileSection> zabrfull =
+        boost::make_shared<ZabrSmileSection>(
+            expiryTime, forward, zabrParams,
+            ZabrSmileSection::FullFd, std::vector<Real>(), 2);
+
+    boost::shared_ptr<ZabrSmileSection> zabrfd =
+        boost::make_shared<ZabrSmileSection>(
+            expiryTime, forward, zabrParams,
+            ZabrSmileSection::LocalVolatility, std::vector<Real>(), 2);
+
+    // only for debug
+    boost::shared_ptr<ZabrModel> tmpZabrFull = boost::make_shared<ZabrModel>(
+        expiryTime, forward, alpha, beta, nu, rho, gamma);
+
+    std::ofstream out;
+    out.open("smiles.dat");
+
+    // debug full fd
+    std::vector<Real> tmpFullFd(100);
+    Size tmpIdx = 0;
+#pragma omp parallel for
+    for(Size i=0;i<100;++i)
+        tmpFullFd[i] = 0.0;//tmpZabrFull->fullFdPrice(0.0001+i*0.0010);
+    // end debug full fd
+
+    Real strike = 0.0001;
+    while (strike <= 1.00) {
+        // 1 strike
+        out << strike << " ";
+        // 2, 3, 4, 5  sabr
+        out << sabr->volatility(strike) << " "
+                  << sabr->optionPrice(strike) << " "
+                  << sabr->digitalOptionPrice(strike) << " "
+                  << sabr->density(strike) << " ";
+        // 6, 7, 8, 9  zabr (lognormal short mat)
+        out << zabrln->volatility(strike) << " "
+                  << zabrln->optionPrice(strike) << " "
+                  << zabrln->digitalOptionPrice(strike) << " "
+                  << zabrln->density(strike) << " ";
+        // 10, 11, 12, 13  zabr (full fd)
+        out <<zabrfull->volatility(strike) << " "
+                  << zabrfull->optionPrice(strike) << " "
+                  << zabrfull->digitalOptionPrice(strike) << " "
+                  << zabrfull->density(strike) << " ";
+        // 14, 15, 16, 17  zabr (fd)
+        out <<zabrfd->volatility(strike) << " "
+                  << zabrfd->optionPrice(strike) << " "
+                  << zabrfd->digitalOptionPrice(strike) << " "
+                  << zabrfd->density(strike) << " ";
+        // 14 zabr price full fd (debug)
+        out << tmpFullFd[tmpIdx++];
+        strike += 0.0010;
+        out << std::endl;
     }
 
     out.close();
@@ -247,13 +332,13 @@ void splineSmiles() {
             << flatSmileSection->optionPrice(strike) << " "                 // 3
             << flatSmileSection->digitalOptionPrice(strike) << " "          // 4
             << flatSmileSection->density(strike) << " "                     // 5
-            << spline->volatility(strike) << " "                // 6 
-            << spline->optionPrice(strike) << " "               // 7 
-            << spline->digitalOptionPrice(strike) << " "        // 8  
-            << spline->density(strike) << " "                   // 9 
+            << spline->volatility(strike) << " "                // 6
+            << spline->optionPrice(strike) << " "               // 7
+            << spline->digitalOptionPrice(strike) << " "        // 8
+            << spline->density(strike) << " "                   // 9
             // << referencePrice << " " // 5
             // << referenceDigital << " " //6
-            // << referenceDensity << " "  //7 
+            // << referenceDensity << " "  //7
             // << referenceDigital - spline->digitalOptionPrice(strike) << " " // 8
             << std::endl;
         strike += 0.0010;
@@ -292,14 +377,14 @@ void sbSmiles() {
 }
 
 void interpolation() {
-    
+
     std::ofstream out;
     out.open("sample.dat");
 
     Real x[] = { 0.0, 0.5, 1.0, 1.5, 2.0 };
     Real y1[] = { 0.0, 0.5, 1.0, 0.5, 0.0 };
     Real y2[] = { 0.0, 0.5, 0.2, 0.5, 0.0 };
-    
+
     std::vector<Real> xv(x,x+5);
     std::vector<Real> yv1(y1,y1+5);
     std::vector<Real> yv2(y2,y2+5);
@@ -321,6 +406,6 @@ void interpolation() {
 }
 
 int main(int, char * []) {
-    bdkSmile();
+    zabrExamples();
     // splineSmiles();
 }
