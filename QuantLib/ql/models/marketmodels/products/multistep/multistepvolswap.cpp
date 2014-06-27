@@ -39,11 +39,12 @@ namespace QuantLib {
 						 const Size referenceRateStep,
 						 const std::vector<Rate>& referenceRateFixings,
 					     bool payer) 
-	  : MultiProductMultiStep(rateTimes), rateTimes_(rateTimes),  structuredAccruals_(structuredAccruals), 
-        paymentTimes_(paymentTimes), obsTimes_(obsTimes),  floatingAccruals_(floatingAccruals),
+	  : MultiProductMultiStep(rateTimes),  structuredAccruals_(structuredAccruals),  floatingAccruals_(floatingAccruals), 
+        rateTimes_(rateTimes),
+fixedRate_(fixedRate), multiplier_(multiplier), floor_(floor), 
 	  structuredFixingIndices_(structuredFixingIndices), floatingFixingIndices_(floatingFixingIndices),
-	  structuredPaymentIndices_(structuredPaymentIndices), 
-	  fixedRate_(fixedRate), floatingPaymentIndices_(floatingPaymentIndices), multiplier_(multiplier), floor_(floor), 
+	  structuredPaymentIndices_(structuredPaymentIndices), floatingPaymentIndices_(floatingPaymentIndices), 
+	   
 	  referenceRateIndices_(referenceRateIndices), referenceRateStep_(referenceRateStep),
 	  referenceRateFixings0_(referenceRateFixings),
       /*lastIndex_(obsTimes.size()-1),*/ payer_(payer), filterStructuredIndex_(-1) {
@@ -99,7 +100,7 @@ namespace QuantLib {
 						  fabs(referenceRateFixings_[3]-referenceRateFixings_[7])+
 						  fabs(referenceRateFixings_[4]-referenceRateFixings_[8])) / 4.0;
 			genCashFlows[0][noCf].timeIndex = structuredPaymentIndices_[currentStructuredIndex_];
-			genCashFlows[0][noCf].amount = ( (currentStructuredIndex_== filterStructuredIndex_ || filterStructuredIndex_== -1) ? 1.0 : 0.0)*(payer_ ? -1.0 : 1.0)*structuredAccruals_[currentStructuredIndex_]*std::max(floor_,fixedRate_+multiplier_*volIdx);
+			genCashFlows[0][noCf].amount = ( (currentStructuredIndex_== (Size)filterStructuredIndex_ || filterStructuredIndex_== -1) ? 1.0 : 0.0)*(payer_ ? -1.0 : 1.0)*structuredAccruals_[currentStructuredIndex_]*std::max(floor_,fixedRate_+multiplier_*volIdx);
 			//genCashFlows[0][noCf].amount = (currentIndex_==structuredFixingIndices_[0] ? 1.0 : 0.0)*std::max(referenceRate-fixedRate_,0.0)*currentState.swapAnnuity(12,12,52,2); // TEST (plain vanilla swaption payoff)
 			noCf++;
 			currentStructuredIndex_++;
