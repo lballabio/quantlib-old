@@ -94,9 +94,9 @@ namespace QuantLib {
       private:
 	    const Array volatilityValues_;
 		const Array forwardValues_;
-        NinePointLinearOp dxyMap_;
         FdmSabrFpeUnderlyingPart dxMap_;
         FdmSabrFpeVolatilityPart dyMap_;
+        NinePointLinearOp dxyMap_;
     };
 }
 
