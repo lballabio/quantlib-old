@@ -43,13 +43,13 @@ namespace QuantLib {
                          const std::vector<Real> &zabrParameters,
                          const Evaluation evaluation = ShortMaturityLognormal,
                          const std::vector<Real> &moneyness = std::vector<Real>(),
-                         const Size localVolRefinement = 50);
+                         const Size fdRefinement = 50);
         ZabrSmileSection(const Date &d, Rate forward,
                          const std::vector<Real> &zabrParameters,
                          const DayCounter &dc = Actual365Fixed(),
                          const Evaluation evaluation = ShortMaturityLognormal,
                          const std::vector<Real> &moneyness = std::vector<Real>(),
-                         const Size localVolRefinement = 50);
+                         const Size fdRefinement = 50);
         Real minStrike() const { return 0.0; } // revisit later ...
         Real maxStrike() const { return QL_MAX_REAL; }
         Real atmLevel() const { return model_->forward(); }
@@ -67,7 +67,7 @@ namespace QuantLib {
         Evaluation evaluation_;
         Rate forward_;
         std::vector<Real> params_;
-        const Size localVolRefinement_;
+        const Size fdRefinement_;
         std::vector<Real> strikes_ , callPrices_;
         boost::shared_ptr<Interpolation> callPriceFct_;
         Real a_,b_;
