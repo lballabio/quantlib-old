@@ -271,12 +271,14 @@ export_zii_instance(EUHICPXT);
 export_zii_instance(FRHICP);
 export_zii_instance(UKRPI);
 export_zii_instance(USCPI);
+export_zii_instance(ZACPI);
 
 export_yii_instance(YYEUHICP);
 export_yii_instance(YYEUHICPXT);
 export_yii_instance(YYFRHICP);
 export_yii_instance(YYUKRPI);
 export_yii_instance(YYUSCPI);
+export_yii_instance(YYZACPI);
 
 // utilities
 
