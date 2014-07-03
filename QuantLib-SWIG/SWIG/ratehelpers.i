@@ -35,6 +35,7 @@ using QuantLib::DepositRateHelper;
 using QuantLib::FraRateHelper;
 using QuantLib::FuturesRateHelper;
 using QuantLib::SwapRateHelper;
+using QuantLib::BondHelper;
 using QuantLib::FixedRateBondHelper;
 using QuantLib::OISRateHelper;
 using QuantLib::DatedOISRateHelper;
@@ -42,6 +43,7 @@ typedef boost::shared_ptr<RateHelper> DepositRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> FraRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> FuturesRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> SwapRateHelperPtr;
+typedef boost::shared_ptr<RateHelper> BondHelperPtr;
 typedef boost::shared_ptr<RateHelper> FixedRateBondHelperPtr;
 typedef boost::shared_ptr<RateHelper> OISRateHelperPtr;
 typedef boost::shared_ptr<RateHelper> DatedOISRateHelperPtr;
@@ -291,8 +293,26 @@ class SwapRateHelperPtr : public boost::shared_ptr<RateHelper> {
     }
 };
 
+%rename(BondHelper) BondHelperPtr;
+class BondHelperPtr : public boost::shared_ptr<RateHelper> {
+  public:
+    %extend {
+        BondHelperPtr(const Handle<Quote>& cleanPrice,
+                      const BondPtr& bond,
+                      bool useCleanPrice = true) {
+            boost::shared_ptr<Bond> b = boost::dynamic_pointer_cast<Bond>(bond);
+            return new BondHelperPtr(
+                new BondHelper(cleanPrice, b, useCleanPrice));
+        }
+
+        BondPtr bond() {
+            return BondPtr(boost::dynamic_pointer_cast<BondHelper>(*self)->bond());
+        }
+    }
+};
+
 %rename(FixedRateBondHelper) FixedRateBondHelperPtr;
-class FixedRateBondHelperPtr : public boost::shared_ptr<RateHelper> {
+class FixedRateBondHelperPtr : public BondHelperPtr {
   public:
     %extend {
         FixedRateBondHelperPtr(
