@@ -324,12 +324,21 @@ class FixedRateBondHelperPtr : public BondHelperPtr {
                       const DayCounter& paymentDayCounter,
                       BusinessDayConvention paymentConvention = Following,
                       Real redemption = 100.0,
-                      const Date& issueDate = Date()) {
+                      const Date& issueDate = Date(),
+                      const Calendar& paymentCalendar = Calendar(),
+                      const Period& exCouponPeriod = Period(),
+                      const Calendar& exCouponCalendar = Calendar(),
+                      BusinessDayConvention exCouponConvention = Unadjusted,
+                      bool exCouponEndOfMonth = false,
+                      bool useCleanPrice = true) {
             return new FixedRateBondHelperPtr(
                 new FixedRateBondHelper(cleanPrice, settlementDays, faceAmount,
                                         schedule, coupons, paymentDayCounter,
                                         paymentConvention, redemption,
-                                        issueDate));
+                                        issueDate, paymentCalendar,
+                                        exCouponPeriod, exCouponCalendar,
+                                        exCouponConvention, exCouponEndOfMonth,
+                                        useCleanPrice));
         }
 
         FixedRateBondPtr bond() {
