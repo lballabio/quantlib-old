@@ -85,7 +85,7 @@ namespace QuantLib {
             Real value(const Array &x) const {
                 Real res = 0.0;
                 Array vals = values(x);
-                for (int i = 0; i < vals.size(); i++) {
+                for (Size i = 0; i < vals.size(); i++) {
                     res += vals[i] * vals[i];
                 }
                 return sqrt(res) / vals.size();
@@ -107,7 +107,7 @@ namespace QuantLib {
             Real value(const Array &x) const {
                 Real res = 0.0;
                 Array vals = values(x);
-                for (int i = 0; i < vals.size(); i++) {
+                for (Size i = 0; i < vals.size(); i++) {
                     res += vals[i] * vals[i];
                 }
                 return sqrt(res) / vals.size();
