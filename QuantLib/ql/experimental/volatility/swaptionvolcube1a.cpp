@@ -660,7 +660,7 @@ namespace QuantLib {
         QL_REQUIRE(k != swapTenors.size(), "swap tenor (" << swapTenor
                                                           << ") not found");
 
-        for (int i = 0; i < nOptionTenors_; ++i) {
+        for (Size i = 0; i < nOptionTenors_; ++i) {
             parametersGuess_.setElement(4, i, k, gamma[i]);
         }
 
