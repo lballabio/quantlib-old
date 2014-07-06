@@ -11,6 +11,7 @@ this_include_HEADERS = \
     extendedblackvariancecurve.hpp \
     extendedblackvariancesurface.hpp \
     interestratevolsurface.hpp \
+	noarbsabr.hpp \
     sabrvolsurface.hpp \
     swaptionvolcube1a.hpp \
     volcube.hpp \
@@ -26,6 +27,7 @@ libVolatility_la_SOURCES = \
     extendedblackvariancecurve.cpp \
     extendedblackvariancesurface.cpp \
     interestratevolsurface.cpp \
+	noarbsabr.cpp \
     sabrvolsurface.cpp \
     swaptionvolcube1a.cpp \
     volcube.cpp \
