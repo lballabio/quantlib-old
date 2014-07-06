@@ -5,7 +5,6 @@
 #include <ql/termstructures/volatility/abcdcalibration.hpp>
 #include <ql/termstructures/volatility/flatsmilesection.hpp>
 #include <ql/termstructures/volatility/interpolatedsmilesection.hpp>
-#include <ql/termstructures/volatility/noarbsabr.hpp>
 #include <ql/termstructures/volatility/sabr.hpp>
 #include <ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp>
 #include <ql/termstructures/volatility/sabrsmilesection.hpp>
