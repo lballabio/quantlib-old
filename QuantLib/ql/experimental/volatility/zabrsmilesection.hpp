@@ -43,13 +43,13 @@ namespace QuantLib {
                          const std::vector<Real> &zabrParameters,
                          const Evaluation evaluation = ShortMaturityLognormal,
                          const std::vector<Real> &moneyness = std::vector<Real>(),
-                         const Size fdRefinement = 50);
+                         const Size fdRefinement = 5);
         ZabrSmileSection(const Date &d, Rate forward,
                          const std::vector<Real> &zabrParameters,
                          const DayCounter &dc = Actual365Fixed(),
                          const Evaluation evaluation = ShortMaturityLognormal,
                          const std::vector<Real> &moneyness = std::vector<Real>(),
-                         const Size fdRefinement = 50);
+                         const Size fdRefinement = 5);
         Real minStrike() const { return 0.0; } // revisit later ...
         Real maxStrike() const { return QL_MAX_REAL; }
         Real atmLevel() const { return model_->forward(); }

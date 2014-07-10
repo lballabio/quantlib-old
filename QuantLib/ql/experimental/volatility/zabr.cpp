@@ -21,6 +21,7 @@
 #include <ql/termstructures/volatility/sabr.hpp>
 #include <ql/errors.hpp>
 #include <ql/math/comparison.hpp>
+#include <ql/math/distributions/normaldistribution.hpp>
 
 #include <boost/function.hpp>
 #include <boost/lambda/lambda.hpp>
@@ -139,10 +140,10 @@ namespace QuantLib {
         // TODO put these parameters somewhere ...
         const Real start = std::min(0.00001,strikes.front()*0.5); // lowest strike for grid
         const Real end = std::max(0.10,strikes.back() * 1.5);     // highest strike for grid
-        const Size size = 5000;                                   // grid points 
-        //const Real density = 0.005;                             // density for concentrating mesher
+        const Size size = 500;                                    // grid points 
+        const Real density = 0.1;                                 // density for concentrating mesher
         const Size steps =
-            (Size)std::ceil(expiryTime_ * 50);                    // number of steps in dimension t
+            (Size)std::ceil(expiryTime_ * 24);                    // number of steps in dimension t
         const Size dampingSteps = 5;                              // thereof damping steps
 
         // Layout
@@ -151,9 +152,9 @@ namespace QuantLib {
             new FdmLinearOpLayout(dim));
 
         // Mesher
-        // const boost::shared_ptr<Fdm1dMesher> m1(new Concentrating1dMesher(
-        //                       start, end, size, std::pair<Real, Real>(forward_, density), true));
-        const boost::shared_ptr<Fdm1dMesher> m1(new  Uniform1dMesher(start,end,size));
+        const boost::shared_ptr<Fdm1dMesher> m1(new Concentrating1dMesher(
+                              start, end, size, std::pair<Real, Real>(forward_, density), true));
+        // const boost::shared_ptr<Fdm1dMesher> m1(new  Uniform1dMesher(start,end,size));
         //const boost::shared_ptr<Fdm1dMesher> m1a(new Uniform1dMesher(start,0.03,101));
         //const boost::shared_ptr<Fdm1dMesher> m1b(new Uniform1dMesher(0.03,end,100));
         //const boost::shared_ptr<Fdm1dMesher> m1(new Glued1dMesher(*m1a,*m1b));
@@ -163,16 +164,11 @@ namespace QuantLib {
 
         // Boundary conditions
         FdmBoundaryConditionSet boundaries;
-        // boundaries.push_back(boost::shared_ptr<BoundaryCondition<FdmLinearOp> >(
-        //     new FdmDirichletBoundary(
-        //         mesher, 0.0, 0, FdmDirichletBoundary::Upper))); // for strike =
-        //                                                         // \infty call
-        //                                                         // is worth zero
-        // boundaries.push_back(boost::shared_ptr<BoundaryCondition<FdmLinearOp> >(
-        //     new FdmDirichletBoundary(
-        //         mesher, forward_ - start, 0,
-        //         FdmDirichletBoundary::Lower))); // for strike = -\infty call is
-        //                                         // worth f-k
+        boundaries.push_back(boost::shared_ptr<BoundaryCondition<FdmLinearOp> >(
+            new FdmDirichletBoundary(
+                mesher, forward_ - start, 0, FdmDirichletBoundary::Lower))); // for strike =
+                                                                // start call
+                                                                // is worth forward - start
 
         // initial values
         Array rhs(mesher->layout()->size());
@@ -215,15 +211,28 @@ namespace QuantLib {
 
     Real ZabrModel::fullFdPrice(const Real strike) const {
 
-        // TODO put these parameters somewhere ...
-        const Real f0 = 0.00001, f1 = std::max(strike*2.0,0.10);  // forward
-        const Real v0 = 0.00001, v1 = std::max(alpha_*2.0,0.10);  // volatility
-        const Size sizef = 100, sizev = 100;                      // grid points
-        //const Real densityf = 0.01,
-        //           densityv = 0.01;                               // density for concentrating mesher
-        const Size steps =
-            (Size)std::ceil(expiryTime_ * 50); // number of steps in dimension t
-        const Size dampingSteps = 5;           // thereof damping steps
+
+        Real eps = atof(getenv("EPSILON"));
+        Real scaleFactor = atof(getenv("SCALEFACTOR"));
+        Real normInvEps = InverseCumulativeNormal()(1-eps);
+        Real alphaI = alpha_ * std::pow(forward_, beta_-1.0);
+
+        // some heuristics to get the boundaries
+        Real v0 = alpha_ * std::exp(-scaleFactor*normInvEps*std::sqrt(expiryTime_)*nu_);
+        Real v1 = alpha_ * std::exp(scaleFactor*normInvEps*std::sqrt(expiryTime_)*nu_);
+        Real f0 = forward_ * std::exp(-scaleFactor*normInvEps*std::sqrt(expiryTime_)*alphaI);
+        Real f1 = forward_ * std::exp(scaleFactor*normInvEps*std::sqrt(expiryTime_)*alphaI);
+
+        v1 = std::min(v1, 2.0);
+        f0 = std::min(strike / 2.0, f0);
+        f1 = std::max(strike * 1.5, std::min(f1, std::max(2.0, strike * 1.5)));
+
+        const Size sizef = 100;
+        const Size sizev = 100;
+        const Size steps = 24 * expiryTime_;
+        const Size dampingSteps = 5;
+        const Real densityf = atof(getenv("DENSITY"));
+        const Real densityv = atof(getenv("DENSITY"));
 
         QL_REQUIRE(strike >= f0 && strike <= f1,
                    "strike (" << strike << ") must be inside pde grid [" << f0
@@ -254,18 +263,26 @@ namespace QuantLib {
         // Glued1dMesher(*mfa,*mfb));
 
         // concentraing mesher around k to get the forward mesher
-        // const boost::shared_ptr<Fdm1dMesher> mf(new Concentrating1dMesher(
-        //     f0, f1, sizef, std::pair<Real, Real>(strike, densityf), true));
+        const boost::shared_ptr<Fdm1dMesher> mf(new Concentrating1dMesher(
+            f0, f1, sizef, std::pair<Real, Real>(forward_, densityf), true));
 
-        // // volatility mesher
-        // const boost::shared_ptr<Fdm1dMesher> mv(new Concentrating1dMesher(
-        //     v0, v1, sizev, std::pair<Real, Real>(alpha_, densityv), true));
+        // volatility mesher
+        const boost::shared_ptr<Fdm1dMesher> mv(new Concentrating1dMesher(
+            v0, v1, sizev, std::pair<Real, Real>(alpha_, densityv), true));
+
+        //debug output
+        std::cout << "locations for f:" << std::endl;
+        for(Size i=0;i<mf->locations().size();++i)
+            std::cout << mf->locations()[i] << std::endl;
+        std::cout << "locations for v:" << std::endl;
+        for(Size i=0;i<mv->locations().size();++i)
+            std::cout << mv->locations()[i] << std::endl;
 
         // uniform meshers
-        const boost::shared_ptr<Fdm1dMesher> mf(new
-        Uniform1dMesher(f0,f1,sizef));
-        const boost::shared_ptr<Fdm1dMesher> mv(new
-        Uniform1dMesher(v0,v1,sizev));
+        // const boost::shared_ptr<Fdm1dMesher> mf(new
+        // Uniform1dMesher(f0,f1,sizef));
+        // const boost::shared_ptr<Fdm1dMesher> mv(new
+        // Uniform1dMesher(v0,v1,sizev));
 
         std::vector<boost::shared_ptr<Fdm1dMesher> > meshers;
         meshers.push_back(mf);
@@ -291,17 +308,17 @@ namespace QuantLib {
         // Boundary conditions
 
         FdmBoundaryConditionSet boundaries;
-        // boost::shared_ptr<FdmDirichletBoundary> b_dirichlet(
-        //     new FdmDirichletBoundary(
-        //         mesher, f1 - strike, 0,
-        //         FdmDirichletBoundary::Upper)); // put is worth zero for forward
-        //                                        // = \infty
-        //boundaries.push_back(b_dirichlet);
+        boost::shared_ptr<FdmDirichletBoundary> b_dirichlet(
+            new FdmDirichletBoundary(
+                mesher, 0.0, 0,
+                FdmDirichletBoundary::Lower)); // call is worth zero for forward = 0
+
+        boundaries.push_back(b_dirichlet);
         boost::shared_ptr<FdmZabrOp> map(
             new FdmZabrOp(mesher, beta_, nu_, rho_, gamma_));
         FdmBackwardSolver solver(map, boundaries,
                                  boost::shared_ptr<FdmStepConditionComposite>(),
-                                 FdmSchemeDesc::CraigSneyd());
+                                 FdmSchemeDesc::/*CraigSneyd()*/Hundsdorfer());
 
         solver.rollback(rhs, expiryTime_, 0.0, steps, dampingSteps);
 

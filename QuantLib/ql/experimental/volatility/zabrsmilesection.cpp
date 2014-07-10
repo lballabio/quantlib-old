@@ -20,6 +20,8 @@
 #include <ql/experimental/volatility/zabrsmilesection.hpp>
 #include <ql/pricingengines/blackformula.hpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
     ZabrSmileSection::ZabrSmileSection(Time timeToExpiry, Rate forward,
@@ -72,16 +74,18 @@ namespace QuantLib {
 
         strikes_.clear(); // should not be necessary, anyway
         Real lastF = 0.0;
+        bool firstStrike = true;
         for (Size i = 0; i < tmp.size(); i++) {
             Real f = tmp[i] * forward_;
             if (f > 0.0) {
-                if (i > 0) {
+                if (!firstStrike) {
                     for (Size j = 1; j < fdRefinement_; j++) {
                         strikes_.push_back(lastF +
                                            ((double)j) * (f - lastF) /
                                                (fdRefinement_ + 1));
                     }
                 }
+                firstStrike = false;
                 lastF = f;
                 strikes_.push_back(f);
             }
@@ -116,6 +120,11 @@ namespace QuantLib {
                     CubicInterpolation::Spline, true,
                     CubicInterpolation::SecondDerivative, 0.0,
                     CubicInterpolation::SecondDerivative, 0.0));
+            // callPriceFct_ =
+            //     boost::shared_ptr<Interpolation>(new LinearInterpolation(
+            //         strikes_.begin(), strikes_.end(), callPrices_.begin()));
+
+            callPriceFct_->enableExtrapolation();
 
             // on the right side we extrapolate exponetially (because spline
             // does not make sense)
