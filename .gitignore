@@ -128,6 +128,7 @@ Makefile.in
 *.sdf
 
 # Outputs
+QuantLib/Examples/BasketLosses/BasketLosses
 QuantLib/Examples/BermudanSwaption/BermudanSwaption
 QuantLib/Examples/Bonds/Bonds
 QuantLib/Examples/CDS/CDS
@@ -176,3 +177,4 @@ QuantLibAddin/Docs/*.chm
 QuantLibAddin/Docs/doxywarnings.txt
 QuantLibXL/Docs/*.chm
 QuantLibXL/Docs/doxywarnings.txt
+
