@@ -247,36 +247,36 @@ namespace QuantLib {
 
         // Mesher
 
-        // two concentrating mesher around f and k to get the mesher for the
-        // forward
-        // const Real x0 = std::min(forward_,strike);
-        // const Real x1 = std::max(forward_,strike);
-        // const Size sizefa =
-        // (Size)std::ceil(((x0+x1)/2.0-f0)/(f1-f0)*(Real)sizef);
-        // const Size sizefb = sizef-sizefa+1; // common point, so we can spend
+        // two concentrating mesher around f and k to get the mesher for f
+        const Real x0 = std::min(forward_,strike);
+        const Real x1 = std::max(forward_,strike);
+        const Size sizefa =
+            std::max<Size>(4,(Size)std::ceil(((x0+x1)/2.0-f0)/(f1-f0)*(Real)sizef));
+        const Size sizefb = sizef-sizefa+1; // common point, so we can spend
         // one more here
-        // const boost::shared_ptr<Fdm1dMesher> mfa(new
-        // Concentrating1dMesher(f0,(x0+x1)/2.0,sizefa,std::pair<Real,Real>(x0,densityf),true));
-        // const boost::shared_ptr<Fdm1dMesher> mfb(new
-        // Concentrating1dMesher((x0+x1)/2.0,f1,sizefb,std::pair<Real,Real>(x1,densityf),true));
-        // const boost::shared_ptr<Fdm1dMesher> mf(new
-        // Glued1dMesher(*mfa,*mfb));
+        const boost::shared_ptr<Fdm1dMesher> mfa(new
+        Concentrating1dMesher(f0,(x0+x1)/2.0,sizefa,std::pair<Real,Real>(x0,densityf),true));
+        const boost::shared_ptr<Fdm1dMesher> mfb(new
+        Concentrating1dMesher((x0+x1)/2.0,f1,sizefb,std::pair<Real,Real>(x1,densityf),true));
+        const boost::shared_ptr<Fdm1dMesher> mf(new
+        Glued1dMesher(*mfa,*mfb));
 
-        // concentraing mesher around k to get the forward mesher
-        const boost::shared_ptr<Fdm1dMesher> mf(new Concentrating1dMesher(
-            f0, f1, sizef, std::pair<Real, Real>(forward_, densityf), true));
+        // concentraing mesher around f to get the forward mesher
+        // const boost::shared_ptr<Fdm1dMesher> mf(new Concentrating1dMesher(
+        //     f0, f1, sizef, std::pair<Real, Real>(forward_, densityf), true));
 
-        // volatility mesher
+        // Volatility mesher
         const boost::shared_ptr<Fdm1dMesher> mv(new Concentrating1dMesher(
             v0, v1, sizev, std::pair<Real, Real>(alpha_, densityv), true));
 
         //debug output
-        std::cout << "locations for f:" << std::endl;
-        for(Size i=0;i<mf->locations().size();++i)
-            std::cout << mf->locations()[i] << std::endl;
-        std::cout << "locations for v:" << std::endl;
-        for(Size i=0;i<mv->locations().size();++i)
-            std::cout << mv->locations()[i] << std::endl;
+        // std::cout << "*******************************************************" << std::endl;
+        // std::cout << "f0=" << f0 << " f1=" << f1 << " strike=" << strike << " locations for f:" << std::endl;
+        // for(Size i=0;i<mf->locations().size();++i)
+        //     std::cout << mf->locations()[i] << std::endl;
+        // std::cout << "locations for v:" << std::endl;
+        // for(Size i=0;i<mv->locations().size();++i)
+        //     std::cout << mv->locations()[i] << std::endl;
 
         // uniform meshers
         // const boost::shared_ptr<Fdm1dMesher> mf(new
