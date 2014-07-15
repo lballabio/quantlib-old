@@ -17,8 +17,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/math/solvers1d/brent.hpp>
 #include <ql/experimental/volatility/noarbsabr.hpp>
+
+#include <ql/math/solvers1d/brent.hpp>
+#include <ql/math/solvers1d/finitedifferencenewtonsafe.hpp>
 
 #include <boost/make_shared.hpp>
 #include <boost/math/special_functions/gamma.hpp>
@@ -28,42 +30,119 @@
 #include <boost/assign/std/vector.hpp>
 
 #include <iostream>
-#include <ql/math/integrals/gausslobattointegral.hpp>
 
 namespace QuantLib {
+
+#define QL_NOARBSABR_PHI_ACCURACY 1E-6
+#define QL_NOARBSABR_BETA_CUTOFF 0.99
+#define QL_NOARBSABR_PHITAU_CUTOFF 150.0 // phi(d0)/tau
+#define QL_NOARBSABR_NSIM 2500000.0
+#define QL_NOARBSABR_TINY_PROB 1E-5
+#define QL_NOARBSABR_MINSTRIKE 0.00001
+#define QL_NOARBSABR_GL_ACCURACY 1E-6
+#define QL_NOARBSABR_GL_MAX_ITERATIONS 10000
+#define QL_NOARBSABR_FORWARD_ACCURACY 0.00001
+#define QL_NOARBSABR_FORWARD_SEARCH_STEP 0.0010
 
 NoArbSabr::NoArbSabr(const Real expiryTime, const Real forward,
                      const Real alpha, const Real beta, const Real nu,
                      const Real rho)
-    : expiryTime_(expiryTime), forward_(forward), alpha_(alpha), beta_(beta),
-      nu_(nu), rho_(rho) {
-    integrator_ = boost::make_shared<GaussLaguerreIntegration>(64);
-    numericalIntegralOverP_ = integrator_->operator()(boost::lambda::bind(&NoArbSabr::p, this, boost::lambda::_1));
+    : expiryTime_(expiryTime), externalForward_(forward), alpha_(alpha),
+      beta_(beta), nu_(nu), rho_(rho), forward_(forward) {
+
+    // determine a region which is numerically valid or at least manageable
+
+    if( boost::math::isinf( p(forward_, true) ) )
+        QL_FAIL("p is infinite at forward, giving up");
+
+    fmin_ = fmax_ = forward_;
+    bool back = false;
+    for (Real tmp = p(fmax_, false);
+         (tmp > 1.0e-10 && !back) || boost::math::isnan(tmp); tmp=p(fmax_,false)) {
+        if (boost::math::isinf(tmp) || boost::math::isnan(tmp)) {
+            fmax_ *= 0.75;
+            back = true;
+        } else {
+            fmax_ *= 2.0;
+        }
+    }
+    back = false;
+    for (Real tmp = p(fmin_, false);
+         (tmp > 1.0e-10 && !back) || boost::math::isnan(tmp); tmp=p(fmin_,false)) {
+        if (boost::math::isinf(tmp) || boost::math::isnan(tmp)) {
+            fmin_ *= 1.5;
+            back = true;
+        } else {
+            fmin_ *= 0.5;
+            if (fmin_ < QL_NOARBSABR_MINSTRIKE) {
+                fmin_ = QL_NOARBSABR_MINSTRIKE;
+                back = true;
+            }
+        }
+    }
+
+    std::cout << "fmin =" << fmin_ << " p =" << p(fmin_,false) << std::endl;
+    std::cout << "fmax =" << fmax_ << " p =" << p(fmax_,false) << std::endl;
+
+    integrator_ = boost::make_shared<GaussLobattoIntegral>(
+        QL_NOARBSABR_GL_MAX_ITERATIONS, QL_NOARBSABR_GL_ACCURACY);
+
     detail::D0Interpolator d0(forward_, expiryTime_, alpha_, beta_, nu_, rho_);
     absProb_ = d0();
-    Real numericalForward = integrator_->operator()(boost::lambda::bind(&NoArbSabr::integrand, this, 0.0, boost::lambda::_1));
 
-    GaussLobattoIntegral gl(10000,1E-4);
-    Real tmpIntP = gl(boost::lambda::bind(&NoArbSabr::p, this, boost::lambda::_1),0.00001,2000.0);
-    
-    //debug output
-    std::cout << "numerical integral over p =" << numericalIntegralOverP_ << " benchmark=" << tmpIntP << std::endl;
-    std::cout << "numerical forward = " << numericalForward << std::endl;
+    std::cout << "absprob is " << absProb_ << std::endl;
+
+    FiniteDifferenceNewtonSafe n;
+    forward_ = n.solve(
+        boost::lambda::bind(&NoArbSabr::forwardError, this, boost::lambda::_1),
+        QL_NOARBSABR_FORWARD_ACCURACY, externalForward_, QL_NOARBSABR_FORWARD_SEARCH_STEP);
+
+    forwardError(forward_); // make sure that the numericalIntegralOverP_ is consistent with found forward_
+
+    std::cout << "found forward" << forward_ << " absprob is " << absProb_ << std::endl;
 
 }
 
-Real NoArbSabr::price(const Real strike) const {
+Real NoArbSabr::optionPrice(const Real strike) const {
     return (1.0 - absProb_) *
-           integrator_->operator()(boost::lambda::bind(
-               &NoArbSabr::integrand, this, strike, boost::lambda::_1)) /
-        numericalIntegralOverP_;
+           integrator_->operator()(boost::lambda::bind(&NoArbSabr::integrand,
+                                                       this, strike,
+                                                       boost::lambda::_1),
+                                   fmin_, fmax_) /
+           numericalIntegralOverP_;
+}
+
+Real NoArbSabr::digitalOptionPrice(const Real strike) const {
+    
+    return strike < QL_EPSILON ? 1.0 : 
+        (1.0 - absProb_) *
+           integrator_->operator()(boost::lambda::bind(&NoArbSabr::p,
+                                                       this, boost::lambda::_1, true),
+                                   strike, fmax_) /
+           numericalIntegralOverP_;
+}
+
+Real NoArbSabr::forwardError(const Real forward) const {
+    forward_ = std::min(std::max(forward,fmin_),fmax_);
+    numericalIntegralOverP_ = integrator_->operator()(
+        boost::lambda::bind(&NoArbSabr::p, this, boost::lambda::_1, false),
+        fmin_, fmax_);
+    Real numericalForward = optionPrice(0.0);
+    std::cout << "*** Iteration, trying forward" << forward_ << std::endl;
+    std::cout << "numerical integral over p =" << numericalIntegralOverP_
+              << std::endl;
+    std::cout << "numerical forward = " << numericalForward << std::endl;
+    return numericalForward - externalForward_;
 }
 
 Real NoArbSabr::integrand(const Real strike, const Real f) const {
     return std::max(f - strike, 0.0) * p(f);
 }
 
-Real NoArbSabr::p(const Real f) const {
+Real NoArbSabr::p(const Real f, const bool checkNumericalLimits) const {
+
+    if (checkNumericalLimits && (f < fmin_ || f > fmax_))
+        return 0.0;
 
     Real fOmB = std::pow(f, 1.0 - beta_);
     Real FOmB = std::pow(forward_, 1.0 - beta_);
@@ -72,16 +151,16 @@ Real NoArbSabr::p(const Real f) const {
     Real zF = FOmB / (alpha_ * (1.0 - beta_));
     Real z = zF - zf;
 
-    //Real JzF = std::sqrt(1.0 - 2.0 * rho_ * nu_ * zF + nu_ * nu_ * zF * zF);
+    // Real JzF = std::sqrt(1.0 - 2.0 * rho_ * nu_ * zF + nu_ * nu_ * zF * zF);
     Real Jmzf = std::sqrt(1.0 + 2.0 * rho_ * nu_ * zf + nu_ * nu_ * zf * zf);
     Real Jz = std::sqrt(1.0 - 2.0 * rho_ * nu_ * z + nu_ * nu_ * z * z);
 
     Real xz = std::log((Jz - rho_ + nu_ * z) / (1.0 - rho_)) / nu_;
     Real Bp_B = beta_ / FOmB;
-    //Real Bpp_B = beta_ * (2.0 * beta_ - 1.0) / (FOmB * FOmB);
+    // Real Bpp_B = beta_ * (2.0 * beta_ - 1.0) / (FOmB * FOmB);
     Real kappa1 = 0.125 * nu_ * nu_ * (2.0 - 3.0 * rho_ * rho_) -
                   0.25 * rho_ * nu_ * alpha_ * Bp_B;
-    //Real kappa2 = alpha_ * alpha_ * (0.25 * Bpp_B - 0.375 * Bp_B * Bp_B);
+    // Real kappa2 = alpha_ * alpha_ * (0.25 * Bpp_B - 0.375 * Bp_B * Bp_B);
     Real gamma = 1.0 / (2.0 * (1.0 - beta_));
     Real sqrtOmR = std::sqrt(1.0 - rho_ * rho_);
     Real h = 0.5 * beta_ * rho_ / ((1.0 - beta_) * Jmzf * Jmzf) *
@@ -90,12 +169,20 @@ Real NoArbSabr::p(const Real f) const {
                   (std::atan((nu_ * z - rho_) / sqrtOmR) +
                    std::atan(rho_ / sqrtOmR)));
 
+    Real bes = boost::math::cyl_bessel_i<Real, Real>(
+        gamma, zF * zf / expiryTime_,
+        boost::math::policies::make_policy(
+            boost::math::policies::overflow_error<
+            boost::math::policies::ignore_error>()/*, // this works, but may be very slow
+            boost::math::policies::evaluation_error<
+            boost::math::policies::ignore_error>()*/));
+
     Real res = std::pow(Jz, -1.5) /
                (alpha_ * std::pow(f, beta_) * expiryTime_) *
                std::pow(zf, 1.0 - gamma) * std::pow(zF, gamma) *
                std::exp(-(xz * xz + 2.0 * zF * zf) / (2.0 * expiryTime_) +
-                        (h + kappa1)) *
-               boost::math::cyl_bessel_i(gamma, zF * zf / expiryTime_);
+                        (h + kappa1 * expiryTime_)) *
+               bes;
     return res;
 }
 
@@ -104,12 +191,6 @@ namespace detail {
 #include "noarbsabrabsprobs.dat"
 
 using namespace boost::assign;
-
-#define QL_NOARBSABR_PHI_ACCURACY 1E-6
-#define QL_NOARBSABR_BETA_CUTOFF 0.99
-#define QL_NOARBSABR_PHITAU_CUTOFF 150.0 // phi(d0)/tau
-#define QL_NOARBSABR_NSIM 2500000.0
-#define QL_NOARBSABR_TINY_PROB 1E-5
 
 D0Interpolator::D0Interpolator(const Real forward, const Real expiryTime,
                                const Real alpha, const Real beta, const Real nu,

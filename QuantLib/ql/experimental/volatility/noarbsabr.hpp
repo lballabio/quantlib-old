@@ -26,10 +26,10 @@
 
     The parameters are bounded as follows
 
-    beta [0.01, 0.99]
+    beta [0.01, 0.99] // beta > 0.8 may be already a numerical problem ... to be clarified ...
     expiryTime (0.0, 30.0]
     sigmaI = alpha*forward^(beta-1) [0.05, 1.0]
-    nu (0.0, 0.8] // bound nu away from zero  !!
+    nu (0.0, 0.8] // bound nu away from zero  !! to make analytical formulas safe here ...
     rho [-1.0, 1.0] // bound away from -1, 1 !!
 
     As suggested in the paper, d0 is interpolated (linearly)
@@ -44,7 +44,7 @@
 
 #include <ql/qldefines.hpp>
 #include <ql/types.hpp>
-#include <ql/math/integrals/gaussianquadratures.hpp>
+#include <ql/math/integrals/gausslobattointegral.hpp>
 
 namespace QuantLib {
 
@@ -54,22 +54,28 @@ class NoArbSabr {
     NoArbSabr(const Real expiryTime, const Real forward, const Real alpha,
               const Real beta, const Real nu, const Real rho);
 
-    Real price(const Real strike) const;
+    Real optionPrice(const Real strike) const;
+    Real digitalOptionPrice(const Real strike) const; 
+    Real density(const Real strike) const { return p(strike,true) * (1-absProb_) / numericalIntegralOverP_; }
 
-    Real forward() { return forward_; }
-    Real expiryTime() { return expiryTime_; }
-    Real alpha() { return alpha_; }
-    Real beta() { return beta_; }
-    Real nu() { return nu_; }
-    Real rho() { return rho_; }
+    Real forward() const { return forward_; }
+    Real expiryTime() const { return expiryTime_; }
+    Real alpha() const { return alpha_; }
+    Real beta() const { return beta_; }
+    Real nu() const { return nu_; }
+    Real rho() const { return rho_; }
 
-    Real p(const Real f) const;
-  private:
+    Real absorptionProbability() const { return absProb_; }
+
+    //private:
+    Real p(const Real f, const bool checkNumericalLimits = true) const;
+    Real forwardError(const Real forward) const;
     Real integrand(const Real strike, const Real f) const;
-    const Real expiryTime_, forward_;
+    const Real expiryTime_, externalForward_;
     const Real alpha_, beta_, nu_, rho_;
-    boost::shared_ptr<GaussianQuadrature> integrator_;
-    Real numericalIntegralOverP_, absProb_;
+    Real absProb_, fmin_, fmax_;
+    mutable Real forward_, numericalIntegralOverP_;
+    boost::shared_ptr<GaussLobattoIntegral> integrator_;
 };
 
 namespace detail {
