@@ -241,12 +241,19 @@ class FixedRateBondPtr : public BondPtr {
                 const DayCounter& paymentDayCounter,
                 BusinessDayConvention paymentConvention = QuantLib::Following,
                 Real redemption = 100.0,
-                Date issueDate = Date()) {
+                Date issueDate = Date(),
+                const Calendar& paymentCalendar = Calendar(),
+                const Period& exCouponPeriod = Period(),
+                const Calendar& exCouponCalendar = Calendar(),
+                BusinessDayConvention exCouponConvention = Unadjusted,
+                bool exCouponEndOfMonth = false) {
             return new FixedRateBondPtr(
                 new FixedRateBond(settlementDays, faceAmount,
                                   schedule, coupons, paymentDayCounter,
                                   paymentConvention, redemption,
-                                  issueDate));
+                                  issueDate, paymentCalendar,
+                                  exCouponPeriod, exCouponCalendar,
+                                  exCouponConvention, exCouponEndOfMonth));
         }
         Frequency frequency() const {
             return boost::dynamic_pointer_cast<FixedRateBond>(*self)
@@ -438,14 +445,21 @@ class CPIBondPtr : public BondPtr {
                 const std::vector<Rate>& coupons,
                 const DayCounter& accrualDayCounter,
                 BusinessDayConvention paymentConvention = ModifiedFollowing,
-                const Date& issueDate = Date()) {
+                const Date& issueDate = Date(),
+                const Calendar& paymentCalendar = Calendar(),
+                const Period& exCouponPeriod = Period(),
+                const Calendar& exCouponCalendar = Calendar(),
+                BusinessDayConvention exCouponConvention = Unadjusted,
+                bool exCouponEndOfMonth = false) {
             boost::shared_ptr<ZeroInflationIndex> zeroIndex =
                 boost::dynamic_pointer_cast<ZeroInflationIndex>(cpiIndex);
             return new CPIBondPtr(
                 new CPIBond(settlementDays, faceAmount, growthOnly, baseCPI,
                             observationLag, zeroIndex, observationInterpolation,
                             schedule, coupons, accrualDayCounter,
-                            paymentConvention, issueDate));
+                            paymentConvention, issueDate, paymentCalendar,
+                            exCouponPeriod, exCouponCalendar,
+                            exCouponConvention, exCouponEndOfMonth));
         }
     }
 };

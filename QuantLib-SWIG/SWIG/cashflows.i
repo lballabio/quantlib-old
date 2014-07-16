@@ -129,6 +129,10 @@ class CouponPtr : public boost::shared_ptr<CashFlow> {
             return boost::dynamic_pointer_cast<Coupon>(*self)
                 ->referencePeriodEnd();
         }
+        Date exCouponDate() {
+            return boost::dynamic_pointer_cast<Coupon>(*self)
+                ->exCouponDate();
+        }
         Real rate() {
             return boost::dynamic_pointer_cast<Coupon>(*self)->rate();
         }
@@ -167,11 +171,13 @@ class FixedRateCouponPtr : public CouponPtr {
                            Rate rate, const DayCounter& dayCounter,
                            const Date& startDate, const Date& endDate,
                            const Date& refPeriodStart = Date(),
-                           const Date& refPeriodEnd = Date()) {
+                           const Date& refPeriodEnd = Date(),
+                           const Date& exCouponDate = Date()) {
             return new FixedRateCouponPtr(
                 new FixedRateCoupon(paymentDate, nominal, rate,
                                     dayCounter, startDate, endDate,
-                                    refPeriodStart, refPeriodEnd));
+                                    refPeriodStart, refPeriodEnd,
+                                    exCouponDate));
         }
         InterestRate interestRate() {
             return boost::dynamic_pointer_cast<FixedRateCoupon>(*self)
