@@ -118,6 +118,7 @@ Makefile.in
 *.exp
 *.lib
 *.pdb
+*.ilk
 *.class
 *~
 *.ncb
