@@ -400,6 +400,11 @@ Download <tt>ObjectHandler-1.5.0.tgz</tt> and uncompress the package to
 
 \subsubsection inst_auto_log4cxx 3.2.1 Build log4cxx
 
+Support for log4cxx is optional.  If you do not require logging, then when you
+run \c configure (see below), pass in the argument \c --without-log4cxx.  In
+that case you can skip ahead to the next section, \ref inst_auto_oh.  If you
+need logging, read on.
+
 First you need to install apr and apr-utils.  Our copy of log4cxx includes
 source code for apr and apr-utils.  In the past we used to build them with
 these commands:
@@ -450,6 +455,9 @@ make install
 
 \subsubsection inst_auto_oh 3.2.2 Build ObjectHandler
 
+If you don't need logging, pass in the argument \c --without-log4cxx to
+\c configure.
+
 \verbatim
 cd /home/erik/build/ObjectHandler-1.5.0
 ./configure --with-gensrc=/home/erik/build/gensrc-1.5.0 \
@@ -465,7 +473,8 @@ cd /home/erik/build/ObjectHandler-1.5.0/Examples/C++
 ./ExampleCpp
 \endverbatim
 
-This should generate output similar to the following:
+If you have enabled logging, this should generate output similar to the
+following:
 
 \verbatim
 [erik@client2 C++]$ ./ExampleCpp 
