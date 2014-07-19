@@ -474,8 +474,7 @@ cd /home/erik/build/ObjectHandler-1.5.0/Examples/C++
 ./ExampleCpp
 \endverbatim
 
-If you have enabled logging, this should generate output similar to the
-following:
+This should generate output similar to the following:
 
 \verbatim
 [erik@client2 C++]$ ./ExampleCpp 
