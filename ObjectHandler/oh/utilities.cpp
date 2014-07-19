@@ -33,7 +33,8 @@
 #include <sstream>
 #include <ctime>
 #include <sys/timeb.h>
-#include <stdio.h>
+//#include <stdio.h>
+#include <iostream>
 
 #define            SECS_PER_DAY    (60 * 60 * 24)
 #define            MILLISECS_PER_DAY    (1000 * SECS_PER_DAY)
@@ -66,6 +67,8 @@ namespace ObjectHandler {
                                  const int &level) {
 #ifdef OH_INCLUDE_LOG4CXX
         Logger::instance().writeMessage(message, level);
+#else
+        std::cout << "LOG - " << message << std::endl;
 #endif
     }
 
@@ -99,18 +102,22 @@ namespace ObjectHandler {
     }
 
     void logObject(const std::string &objectID) {
-#ifdef OH_INCLUDE_LOG4CXX
         std::ostringstream msg;
         Repository::instance().dumpObject(objectID, msg);
+#ifdef OH_INCLUDE_LOG4CXX
         Logger::instance().writeMessage(msg.str());
+#else
+        std::cout << "LOG - " << msg.str() << std::endl;
 #endif
     }
 
     void logAllObjects() {
-#ifdef OH_INCLUDE_LOG4CXX
         std::ostringstream msg;
         Repository::instance().dump(msg);
+#ifdef OH_INCLUDE_LOG4CXX
         Logger::instance().writeMessage(msg.str());
+#else
+        std::cout << "LOG - " << msg.str() << std::endl;
 #endif
     }
 
