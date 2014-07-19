@@ -49,7 +49,7 @@ AC_LANG([C++])
 # Configure and validate the path to log4cxx
 
 AC_ARG_WITH([log4cxx],
-    [AS_HELP_STRING([--without-log4cxx], [disable support for log4cxx])],
+    [AS_HELP_STRING([--without-log4cxx], [disable support for log4cxx, write log messages to stdout])],
     [],
     [with_log4cxx=yes])
 AS_IF([test "x$with_log4cxx" != xno],
