@@ -18,7 +18,8 @@
 */
 
 /*! \file svismilesmilesection.hpp
-    \brief Arbitrage free smile section using the svi parametrization by Gatheral
+    \brief Arbitrage free smile section using the 
+           svi parametrization by Gatheral
 */
 
 #ifndef quantlib_svi_smile_section_hpp
@@ -33,79 +34,79 @@
 #include <ql/math/optimization/endcriteria.hpp>
 #include <ql/pricingengines/blackformula.hpp>
 
-#include <iostream>
-
-
-
 namespace QuantLib {
 
-    class SviSmileSection : public SmileSection {
+class SviSmileSection : public SmileSection {
 
-	  public:
-        SviSmileSection(const boost::shared_ptr<SmileSection> source, const Real atm = Null<Real>(),
-                        const std::vector<Real>& moneynessGrid = std::vector<Real>());
+  public:
+    SviSmileSection(
+        const boost::shared_ptr<SmileSection> source,
+        const Real atm = Null<Real>(),
+        const std::vector<Real> &moneynessGrid = std::vector<Real>());
 
-	    Real minStrike () const { return 0.0; }
-        Real maxStrike () const { return QL_MAX_REAL; }
-        Real atmLevel() const { return f_; }
+    Real minStrike() const { return 0.0; }
+    Real maxStrike() const { return QL_MAX_REAL; }
+    Real atmLevel() const { return f_; }
 
-      protected:
-		Volatility volatilityImpl(Rate strike) const;
-		Real varianceImpl(Rate strike) const;
-     
-	  private:
+  protected:
+    Volatility volatilityImpl(Rate strike) const;
+    Real varianceImpl(Rate strike) const;
 
-		class SviCostFunction : public CostFunction {
-			public:
-			SviCostFunction(SviSmileSection* sviSection) : svi_(sviSection) {}
-			 Real value(const Array& x) const {
-				 Real res=0.0;
-				 Array vals = values(x);
-				 for(Size i=0;i<vals.size();i++) {
-					 res += vals[i]*vals[i];
-				 }
-				 return sqrt(res) / vals.size();
-			 }
-			 Disposable<Array> values(const Array& x) const {
-				 svi_->a_=x[0];
-				 svi_->b_=x[1];
-				 svi_->s_=x[2];
-				 svi_->r_=x[3];
-				 svi_->m_=x[4];
-				 Array res(svi_->k_.size());
-				 for(Size i=0;i<svi_->k_.size();i++) {
-					 res[i] = svi_->source_->variance(svi_->k_[i]) - svi_->variance(svi_->k_[i]);
-				 }
-				 return res;
-			 }
-			private:
-			 SviSmileSection *svi_;
-		};
+  private:
+    class SviCostFunction : public CostFunction {
+      public:
+        SviCostFunction(SviSmileSection *sviSection) : svi_(sviSection) {}
+        Real value(const Array &x) const {
+            Real res = 0.0;
+            Array vals = values(x);
+            for (Size i = 0; i < vals.size(); i++) {
+                res += vals[i] * vals[i];
+            }
+            return sqrt(res) / vals.size();
+        }
+        Disposable<Array> values(const Array &x) const {
+            svi_->a_ = x[0];
+            svi_->b_ = x[1];
+            svi_->s_ = x[2];
+            svi_->r_ = x[3];
+            svi_->m_ = x[4];
+            Array res(svi_->k_.size());
+            for (Size i = 0; i < svi_->k_.size(); i++) {
+                res[i] = svi_->source_->variance(svi_->k_[i]) -
+                         svi_->variance(svi_->k_[i]);
+            }
+            return res;
+        }
 
-		class SviConstraint : public Constraint {
-			  private:
-				class Impl : public Constraint::Impl {
-				 private:
-					Real T_;
-				  public:
-					Impl(const Real T) : T_(T) {}
-					bool test(const Array& params) const {
-						return params[1] * ( 1.0 + fabs(params[3]) ) < 4.0 / T_;
-					}
-				};
-			  public:
-				SviConstraint(const Real T) : Constraint(boost::shared_ptr<Constraint::Impl>(
-                                             new SviConstraint::Impl(T))) {}
-	    };
-
-   	    void compute();
-		boost::shared_ptr<SmileSection> source_;
-		std::vector<Real> k_;
-		Real f_;
-		Real a_,b_,s_,r_,m_; // svi parameters
+      private:
+        SviSmileSection *svi_;
     };
 
+    class SviConstraint : public Constraint {
+      private:
+        class Impl : public Constraint::Impl {
+          private:
+            Real T_;
 
+          public:
+            Impl(const Real T) : T_(T) {}
+            bool test(const Array &params) const {
+                return params[1] * (1.0 + fabs(params[3])) < 4.0 / T_;
+            }
+        };
+
+      public:
+        SviConstraint(const Real T)
+            : Constraint(boost::shared_ptr<Constraint::Impl>(
+                  new SviConstraint::Impl(T))) {}
+    };
+
+    void compute();
+    boost::shared_ptr<SmileSection> source_;
+    std::vector<Real> k_;
+    Real f_;
+    Real a_, b_, s_, r_, m_; // svi parameters
+};
 }
 
 #endif

@@ -22,66 +22,62 @@
 
 namespace QuantLib {
 
-    SviSmileSection::SviSmileSection(const boost::shared_ptr<SmileSection> source, const Real atm,
-				     const std::vector<Real>& moneynessGrid)
-		: SmileSection(*source), source_(source) {
-		
-        SmileSectionUtils ssutils(*source_,moneynessGrid,atm);
-        k_ = ssutils.strikeGrid();
+SviSmileSection::SviSmileSection(const boost::shared_ptr<SmileSection> source,
+                                 const Real atm,
+                                 const std::vector<Real> &moneynessGrid)
+    : SmileSection(*source), source_(source) {
+    SmileSectionUtils ssutils(*source_, moneynessGrid, atm);
+    k_ = ssutils.strikeGrid();
+    QL_REQUIRE(k_.size() >= 5, "at least five strikes must be given ("
+                                   << k_.size() << ")");
+    QL_REQUIRE(k_[0] >= 0.0, "strikes must be non negative (" << k_[0] << ")");
+    f_ = ssutils.atmLevel();
+    compute();
+}
 
-		QL_REQUIRE(k_.size() >=5, "at least five strikes must be given (" << k_.size() <<")");
-		QL_REQUIRE(k_[0] >= 0.0,"strikes must be non negative (" << k_[0] << ")");
+void SviSmileSection::compute() {
+    // set default values for parameters
+    s_ = 0.1;
+    r_ = -0.4;
+    m_ = 0.0;
+    b_ = 2.0 / ((1.0 + fabs(r_)) * exerciseTime());
+    // a_=0.04;
+    a_ = source_->variance(f_) -
+         b_ * (r_ * (-m_) * sqrt((-m_) * (-m_) + s_ * s_));
 
-        f_ = ssutils.atmLevel();
+    SviCostFunction cost(this);
+    SviConstraint constraint(exerciseTime());
+    // NoConstraint constraint;
 
-		compute();
+    Array initial(5);
+    initial[0] = a_;
+    initial[1] = b_;
+    initial[2] = s_;
+    initial[3] = r_;
+    initial[4] = m_;
 
-    }
+    Problem p(cost, constraint, initial);
 
-	void SviSmileSection::compute() {
+    // LevenbergMarquardt lm;
+    // Simplex lm(0.01);
+    BFGS lm;
+    EndCriteria ec(5000, 100, 1e-8, 1e-8, 1e-8);
+    lm.minimize(p, ec);
+    Array res = p.currentValue();
+    a_ = res[0];
+    b_ = res[1];
+    s_ = res[2];
+    r_ = res[3];
+    m_ = res[4];
+}
 
-		// set default values for parameters
-		s_=0.1; r_=-0.4; m_=0.0; b_= 2.0 / ((1.0+fabs(r_))*exerciseTime());
-		//a_=0.04;
-		a_=source_->variance(f_)-b_*(r_*(-m_)*sqrt((-m_)*(-m_)+s_*s_));
+Real SviSmileSection::volatilityImpl(Rate strike) const {
+    return sqrt(variance(strike) / exerciseTime());
+}
 
-		SviCostFunction cost(this);
-		SviConstraint constraint(exerciseTime());
-		//NoConstraint constraint;
-
-		Array initial(5);
-		initial[0] = a_; initial[1] = b_; initial[2] = s_; initial[3] = r_; initial[4] = m_;
-
-		Problem p(cost,constraint,initial);
-		
-		//LevenbergMarquardt lm;
-		//Simplex lm(0.01);
-		BFGS lm;
-		EndCriteria ec(5000,100,1e-8,1e-8,1e-8);
-
-		EndCriteria::Type ret = lm.minimize(p,ec);
-		QL_REQUIRE(ret!=EndCriteria::MaxIterations,"Optimizer returns maxiterations");
-
-		Array res = p.currentValue();
-
-		a_ = res[0]; b_ = res[1]; s_= res[2]; r_ = res[3]; m_ = res[4];
-
-		std::cout << "SVI result: a=" << a_ << " b=" << b_ << " s=" << s_ << " r=" << r_ << " m=" << m_ << std::endl;
-		std::cout << "Constraint: " << b_*(1.0+fabs(r_)) << " <= " << 4.0/exerciseTime() << std::endl;
-
-	}
- 
-	
-    Real SviSmileSection::volatilityImpl(Rate strike) const {
-		return sqrt(variance(strike)/exerciseTime());
-    }
-
-	Real SviSmileSection::varianceImpl(Rate strike) const {
-		strike = std::max ( strike, QL_EPSILON );
-		Real k = log(strike/f_);
-		return a_+b_*(r_*(k-m_)+sqrt((k-m_)*(k-m_)+s_*s_));
-	}
-
-
-
+Real SviSmileSection::varianceImpl(Rate strike) const {
+    strike = std::max(strike, QL_EPSILON);
+    Real k = log(strike / f_);
+    return a_ + b_ * (r_ * (k - m_) + sqrt((k - m_) * (k - m_) + s_ * s_));
+}
 }
