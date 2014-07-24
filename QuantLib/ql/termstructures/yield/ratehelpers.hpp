@@ -144,8 +144,9 @@ namespace QuantLib {
             EvaluationDateCalendar() { impl_ = boost::make_shared<Impl>(); }
         };
         EvaluationDateCalendar evalDateCalendar_;
-        // original calendar with evaluation date always a business day
-        Calendar modifiedCalendar_;
+        // original calendar, modified calendar with evaluation date always
+        // a business day to allow for boostrap on holidays
+        Calendar calendar_, modifiedCalendar_;
         void initializeDates();
         Date fixingDate_;
         boost::shared_ptr<IborIndex> iborIndex_;
