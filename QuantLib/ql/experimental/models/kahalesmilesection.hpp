@@ -36,7 +36,14 @@
 #include <ql/pricingengines/blackformula.hpp>
 #include <ql/math/solvers1d/brent.hpp>
 #include <ql/experimental/models/smilesectionutils.hpp>
+#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#endif
 #include <boost/math/distributions/normal.hpp>
+#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#pragma GCC diagnostic pop
+#endif
 #include <vector>
 
 // numerical constants, still experimental
@@ -136,6 +143,10 @@ namespace QuantLib {
         Real minStrike() const { return 0.0; }
         Real maxStrike() const { return QL_MAX_REAL; }
         Real atmLevel() const { return f_; }
+        const Date& exerciseDate() const { return source_->exerciseDate(); }
+        Time exerciseTime() const { return source_->exerciseTime(); }
+        const DayCounter& dayCounter() const { return source_->dayCounter(); }
+        const Date& referenceDate() const { return source_->referenceDate(); }
 
         Real leftCoreStrike() const { return k_[leftIndex_]; }
         Real rightCoreStrike() const { return k_[rightIndex_]; }

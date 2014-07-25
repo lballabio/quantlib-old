@@ -43,6 +43,7 @@ QuantLib-SWIG/Perl/blib/
 QuantLib-SWIG/Perl/pm_to_blib
 QuantLib-SWIG/Perl/quantlib_wrap.cpp
 QuantLib-SWIG/Perl/MYMETA.yml
+QuantLib-SWIG/Perl/MYMETA.json
 QuantLib-SWIG/Python/QuantLib/quantlib_wrap.cpp
 QuantLib-SWIG/R/src/QuantLib.cpp
 QuantLib-SWIG/R/makeRData.Rout
@@ -95,9 +96,14 @@ QuantLibXL/qlxl/register/register_*.cpp
 QuantLibXL/xll/
 log4cxx/msvc/build/
 log4cxx/msvc/lib/
+XL-Launcher/bin/Configuration/UserConfigured/
+XL-Launcher/bin/Debug/
+XL-Launcher/bin/Release/
+XL-Launcher/obj/
 
 # Artifacts created in multiple directories
 Makefile
+!QuantLibAddin/swig/Makefile
 Makefile.in
 .deps
 .libs
@@ -132,6 +138,7 @@ QuantLib/Examples/EquityOption/EquityOption
 QuantLib/Examples/FRA/FRA
 QuantLib/Examples/FittedBondCurve/FittedBondCurve
 QuantLib/Examples/MarketModels/MarketModels
+QuantLib/Examples/Gaussian1dModels/Gaussian1dModels
 QuantLib/Examples/Replication/Replication
 QuantLib/Examples/Repo/Repo
 QuantLib/Examples/Swap/SwapValuation
@@ -152,4 +159,18 @@ QuantLib-SWIG/Python/QuantLib/QuantLib.py
 QuantLib-SWIG/Python/build
 QuantLib-SWIG/R/R/QuantLib.R
 QuantLib-SWIG/R/QuantLib.RData
-
+ObjectHandler/xll/
+QuantLib/test-suite/bin/*.exp
+QuantLib/test-suite/bin/*.lib
+QuantLib/test-suite/bin/*.pdb
+QuantLibAddin/Docs/.quantlibaddin.doxy
+QuantLibAddin/Docs/build/
+QuantLibAddin/Docs/html/
+QuantLibXL/Docs/.quantlibxl.doxy
+QuantLibXL/Docs/build/
+QuantLibXL/Docs/html/
+QuantLibXL/qlxl/buildDynamic/
+QuantLibAddin/Docs/*.chm
+QuantLibAddin/Docs/doxywarnings.txt
+QuantLibXL/Docs/*.chm
+QuantLibXL/Docs/doxywarnings.txt

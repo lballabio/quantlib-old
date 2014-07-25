@@ -156,6 +156,10 @@ DLLEXPORT int xlAutoClose() {
         // Deallocate the Enumeration Registry
         QuantLibAddin::unregisterEnumerations();
 
+#ifdef XLL_STATIC
+        ObjectHandler::RepositoryXL::instance().clear();
+#endif
+
         Excel(xlFree, 0, 1, &xDll);
 
         return 1;

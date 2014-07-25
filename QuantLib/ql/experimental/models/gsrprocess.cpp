@@ -40,10 +40,6 @@ namespace QuantLib {
                                                     << times[i] << "@" << i
                                                     << " , " << times[i + 1]
                                                     << "@" << i + 1 << ")");
-        for (int i = 0; i < (int)reversions.size(); i++)
-            // if (close(reversions[i], 0.0))
-            if (std::fabs(reversions[i]) < 1E-4)
-                revZero_[i] = true;
         flushCache();
     }
 
@@ -74,10 +70,20 @@ namespace QuantLib {
                    "t (" << t
                          << ") must not be greater than forward measure time ("
                          << getForwardMeasureTime() << ")");
+
         return expectationp1(w, xw, dt) + expectationp2(w, dt);
     }
 
     void GsrProcess::flushCache() const {
+        // this method must be called if parameters change (see the note
+        // in the header), so we can ensure here that the zero reversion
+        // flag is kept consistent, too
+        for (int i = 0; i < (int)reversions_.size(); i++)
+            // if (close(reversions_[i], 0.0))
+            if (std::fabs(reversions_[i]) < 1E-4)
+                revZero_[i] = true;
+            else
+                revZero_[i] = false;
         cache1_.clear();
         cache2_.clear();
         cache3_.clear();
@@ -348,15 +354,15 @@ namespace QuantLib {
     }
 
     const int GsrProcess::lowerIndex(Time t) const {
-        return std::upper_bound(times_.begin(), times_.end(), t) -
-               times_.begin();
+        return (const int)(std::upper_bound(times_.begin(), times_.end(), t) -
+                           times_.begin());
     }
 
     const int GsrProcess::upperIndex(Time t) const {
         if (t < QL_EPSILON)
             return 0;
-        return std::upper_bound(times_.begin(), times_.end(), t - QL_EPSILON) -
-               times_.begin() + 1;
+        return (const int)(std::upper_bound(times_.begin(), times_.end(), t - QL_EPSILON) -
+                           times_.begin() + 1);
     }
 
     const Real GsrProcess::cappedTime(Size index, Real cap) const {

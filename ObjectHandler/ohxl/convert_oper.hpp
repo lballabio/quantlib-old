@@ -67,6 +67,8 @@ namespace ObjectHandler {
         //@{
         //! Convert the OPER to a long.
         operator long() const;
+        //! Convert the OPER to an unsigned int.
+        operator unsigned int() const;
         //! Convert the OPER to a double.
         operator double() const;
         //! Convert the OPER to a boolean.

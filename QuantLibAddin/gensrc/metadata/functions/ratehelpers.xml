@@ -70,7 +70,24 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlRateHelperQuoteValue' type='QuantLib::RateHelper'>
+      <Member name='qlRateHelperQuoteName' type='QuantLibAddin::RateHelper'>
+          <description>returns the objectID of the Quote wrapped in the given RateHelper object.</description>
+          <libraryFunction>quoteName</libraryFunction>
+          <SupportedPlatforms>
+              <SupportedPlatform name='Excel'/>
+              <SupportedPlatform name='Calc'/>
+              <SupportedPlatform name='Cpp'/>
+          </SupportedPlatforms>
+          <ParameterList>
+              <Parameters/>
+          </ParameterList>
+          <ReturnValue>
+              <type>string</type>
+              <tensorRank>scalar</tensorRank>
+          </ReturnValue>
+      </Member>
+
+      <Member name='qlRateHelperQuoteValue' type='QuantLib::RateHelper'>
       <description>returns the value of the Quote wrapped in the given RateHelper object.</description>
       <libraryFunction>quote()->value</libraryFunction>
       <SupportedPlatforms>
@@ -532,16 +549,21 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='CleanPrice' exampleValue='100.4332'>
+          <Parameter name='Price' exampleValue='100.4332'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>cleanPrice.</description>
+            <description>price.</description>
           </Parameter>
           <Parameter name='Bond' exampleValue='DE0003088704'>
             <type>QuantLib::Bond</type>
             <tensorRank>scalar</tensorRank>
             <description>Bond object ID.</description>
+          </Parameter>
+          <Parameter name='UseCleanPrice' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Type of price specified (TRUE clean price, FALSE for dirty price).</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -557,11 +579,11 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='CleanPrice' exampleValue='100.4332'>
+          <Parameter name='Price' exampleValue='100.4332'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>cleanPrice.</description>
+            <description>Price - either clean or dirty.</description>
           </Parameter>
           <Parameter name='SettlementDays' exampleValue='3'>
             <type>QuantLib::Size</type>
@@ -603,6 +625,36 @@
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>issue date: the bond can't be traded until then.</description>
+          </Parameter>
+          <Parameter name='PaymentCalendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='ExCouponPeriod' exampleValue='10D'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Ex-coupon period.</description>
+          </Parameter>
+          <Parameter name='ExCouponCalendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Ex-coupon calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='ExCouponBDC' exampleValue='Modified Following'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Ex-coupon business day convention (e.g. Modified Following).</description>
+          </Parameter>
+          <Parameter name='ExCouponEndOfMonth' exampleValue='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Ex-coupon end of month rule (TRUE for end of month to end of month termination date, FALSE otherwise).</description>
+          </Parameter>
+          <Parameter name='UseCleanPrice' exampleValue='true' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Type of price specified (TRUE clean price, FALSE for dirty price).</description>
           </Parameter>
         </Parameters>
       </ParameterList>

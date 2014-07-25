@@ -59,12 +59,20 @@
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">true</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">log4cxxs-vc100-mt-0_10_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">log4cxxs-vc100-mt-gd-0_10_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">log4cxxs-vc100-mt-sgd-0_10_0</TargetName>
@@ -75,7 +83,7 @@
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;..\src\apr-util\include;..\src\apr-util\include\private\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -84,13 +92,14 @@
       <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
       <ObjectFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\vc100.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
@@ -98,7 +107,7 @@
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;..\src\apr-util\include;..\src\apr-util\include\private\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -109,12 +118,13 @@
       <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
       <ObjectFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\vc100.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -122,7 +132,7 @@
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;..\src\apr-util\include;..\src\apr-util\include\private\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -131,13 +141,14 @@
       <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
       <ObjectFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\vc100.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -145,7 +156,7 @@
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\src\main\include\log4cxx\win32;..\src\main\include;..\src\apr\include;..\src\apr\include\arch\win32;..\src\apr-util\include;..\src\apr-util\include\private\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_USRDLL;DLL_EXPORTS;LOG4CXX;LOG4CXX_STATIC;APR_DECLARE_STATIC;APU_DECLARE_STATIC;WIN32;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -156,13 +167,14 @@
       <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\log4cxx\log4cxx.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</AssemblerListingLocation>
       <ObjectFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\vc100.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\log4cxx\log4cxx_obj\</ProgramDataBaseFileName>
       <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -496,6 +508,14 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\src\main\resources\log4cxx.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="aprutil_vc10.vcxproj">
+      <Project>{0082d6a9-8051-4946-888b-4e52c17bf98e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="apr_vc10.vcxproj">
+      <Project>{a5eee6c6-c626-4f88-b0bd-551be9c577c5}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

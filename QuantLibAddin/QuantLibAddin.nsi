@@ -2,8 +2,8 @@
 # !defines
 
 !define APP "QuantLibAddin"
-!define VER_NUMBER "1.2.0"
-!define DEFAULT_PATH "c:\build_ql_1_2_0\${APP}"
+!define VER_NUMBER "1.5.0"
+!define DEFAULT_PATH "c:\build_ql_1_5_0\${APP}"
 
 # Compiler Flags
 
@@ -31,11 +31,9 @@ Section
     File "README.txt"
     File "LICENSE.TXT"
     File "NEWS.txt"
-    File "QuantLibAddin_vc7.sln"
     File "QuantLibAddin_vc8.sln"
     File "QuantLibAddin_vc9.sln"
     File "QuantLibAddin_vc10.sln"
-#    File "QuantLibAddinCalc_vc7.sln"
 
     File "*.txt"
     File "*.TXT"
@@ -105,9 +103,6 @@ Section
 
     CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\LICENSE.txt.lnk" \
                    "$INSTDIR\LICENSE.TXT"
-
-    CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\QuantLibAddin VC 7 project workspace.lnk" \
-                   "$INSTDIR\QuantLibAddin_vc7.sln"
 
     CreateShortCut "$SMPROGRAMS\QuantLibAddin-${VER_NUMBER}\QuantLibAddin VC 8 project workspace.lnk" \
                    "$INSTDIR\QuantLibAddin_vc8.sln"

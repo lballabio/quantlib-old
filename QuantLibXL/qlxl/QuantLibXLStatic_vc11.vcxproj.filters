@@ -391,6 +391,7 @@
       <Filter>conversions</Filter>
     </ClCompile>
     <ClCompile Include="session.cpp" />
+    <ClCompile Include="functions\credit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="register\register_all.hpp">
