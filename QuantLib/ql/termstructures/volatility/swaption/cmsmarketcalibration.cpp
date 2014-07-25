@@ -296,10 +296,10 @@ namespace {
             Real param0 = smileAndCms_->betaTransformDirect(x[1 + 3 * i]);
             Real decay = x[2 + 3 * i] * x[2 + 3 * i];
             std::vector<Real> freeParam(nSwapLengths);
-            for (Size i = 0; i < freeParam.size(); i++) {
+            for (Size j = 0; j < freeParam.size(); ++j) {
                 Real t = smileAndCms_->volCube_->timeFromReference(
-                    smileAndCms_->volCube_->optionDateFromTenor(swapLengths[i]));
-                freeParam[i] = paramInf + (param0 - paramInf) * std::exp(-decay * t);
+                    smileAndCms_->volCube_->optionDateFromTenor(swapLengths[j]));
+                freeParam[j] = paramInf + (param0 - paramInf) * std::exp(-decay * t);
             }
             if(volCubeBySabr != NULL)
                 volCubeBySabr->recalibration(swapLengths, freeParam, swapTenors[i]);
@@ -334,11 +334,11 @@ namespace {
             Real param0 = smileAndCms_->betaTransformDirect(x[1 + 3 * i]);
             Real decay = x[2 + 3 * i] * x[2 + 3 * i];
             std::vector<Real> freeParam(nSwapLengths);
-            for (Size i = 0; i < freeParam.size(); i++) {
+            for (Size j = 0; j < freeParam.size(); ++j) {
                 Real t = smileAndCms_->volCube_->timeFromReference(
                     smileAndCms_->volCube_->optionDateFromTenor(
-                        swapLengths[i]));
-                freeParam[i] =
+                        swapLengths[j]));
+                freeParam[j] =
                     paramInf + (param0 - paramInf) * std::exp(-decay * t);
             }
             if (volCubeBySabr != NULL)

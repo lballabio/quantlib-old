@@ -27,7 +27,6 @@ libSwaptionVol_la_SOURCES = \
     swaptiongaussian1dvol.cpp \
     swaptionsinglesabrvol.cpp \
     swaptionvolcube.cpp \
-    swaptionvolcube1.cpp \
     swaptionvolcube2.cpp \
     swaptionvoldiscrete.cpp \
     swaptionvolmatrix.cpp \
