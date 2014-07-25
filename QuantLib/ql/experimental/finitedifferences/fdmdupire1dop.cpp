@@ -67,7 +67,7 @@ Disposable<Array> FdmDupire1dOp::preconditioner(const Array &r, Real dt) const {
 }
 
 #if !defined(QL_NO_UBLAS_SUPPORT)
-Disposable<std::vector<SparseMatrix>> FdmDupire1dOp::toMatrixDecomp() const {
+Disposable<std::vector<SparseMatrix> > FdmDupire1dOp::toMatrixDecomp() const {
     std::vector<SparseMatrix> retVal(1);
     retVal[0] = mapT_.toMatrix();
     return retVal;

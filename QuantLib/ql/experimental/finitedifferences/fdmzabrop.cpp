@@ -108,7 +108,7 @@ Disposable<Array> FdmZabrOp::preconditioner(const Array &r, Real dt) const {
 }
 
 #if !defined(QL_NO_UBLAS_SUPPORT)
-Disposable<std::vector<SparseMatrix>> FdmZabrOp::toMatrixDecomp() const {
+Disposable<std::vector<SparseMatrix> > FdmZabrOp::toMatrixDecomp() const {
     std::vector<SparseMatrix> retVal(3);
     retVal[0] = dxMap_.getMap().toMatrix();
     retVal[1] = dyMap_.getMap().toMatrix();
