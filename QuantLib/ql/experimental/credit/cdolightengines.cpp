@@ -27,8 +27,8 @@ namespace QuantLib {
 
 CdoLightMcEngine::CdoLightMcEngine(
     const Handle<YieldTermStructure> &yieldCurve,
-    const std::vector<Handle<DefaultProbabilityTermStructure>> &defaultCurves,
-    const std::vector<Handle<Quote>> &recoveryRates,
+    const std::vector<Handle<DefaultProbabilityTermStructure> > &defaultCurves,
+    const std::vector<Handle<Quote> > &recoveryRates,
     const Handle<Quote> &correlation, Size paths, BigNatural seed)
     : yieldCurve_(yieldCurve), defaultCurves_(defaultCurves),
       recoveryRates_(recoveryRates), correlation_(correlation), paths_(paths),
@@ -41,7 +41,7 @@ CdoLightMcEngine::CdoLightMcEngine(
                                           "recovery rates size ("
                                        << recoveryRates_.size() << ")");
 
-    registerWith(yieldCurve);
+    registerWith(yieldCurve_);
     for (Size i = 0; i < defaultCurves_.size(); i++)
         registerWith(defaultCurves_[i]);
     for (Size i = 0; i < recoveryRates_.size(); i++)
