@@ -16,7 +16,6 @@ this_include_HEADERS = \
 	noarbsabrsmilesection.hpp \
 	noarbsabrinterpolatedsmilesection.hpp \
     sabrvolsurface.hpp \
-    swaptionvolcube1a.hpp \
     volcube.hpp \
     zabr.hpp \
     zabrinterpolation.hpp \
@@ -34,7 +33,6 @@ libVolatility_la_SOURCES = \
 	noarbsabrsmilesection.cpp \
 	noarbsabrinterpolatedsmilesection.cpp \
     sabrvolsurface.cpp \
-    swaptionvolcube1a.cpp \
     volcube.cpp \
     zabr.cpp \
     zabrsmilesection.cpp

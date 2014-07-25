@@ -30,7 +30,6 @@
 #include <ql/math/array.hpp>
 #include <ql/handle.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolcube1.hpp>
-#include <ql/experimental/volatility/swaptionvolcube1a.hpp>
 
 namespace QuantLib {
 

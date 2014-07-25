@@ -442,8 +442,8 @@ namespace QuantLib {
         }
         if(volCubeByZabr != NULL) {
             volCubeByZabr->updateAfterRecalibration();
-            sparseXabrParameters_ = volCubeByZabr->sparseZabrParameters();
-            denseXabrParameters_ = volCubeByZabr->denseZabrParameters();
+            sparseXabrParameters_ = volCubeByZabr->sparseSabrParameters();
+            denseXabrParameters_ = volCubeByZabr->denseSabrParameters();
         }
         browseCmsMarket_ = cmsMarket_->browse();
 
@@ -540,8 +540,8 @@ namespace QuantLib {
         }
         if(volCubeByZabr != NULL) {
             volCubeByZabr->updateAfterRecalibration();
-            sparseXabrParameters_ = volCubeByZabr->sparseZabrParameters();
-            denseXabrParameters_ = volCubeByZabr->denseZabrParameters();
+            sparseXabrParameters_ = volCubeByZabr->sparseSabrParameters();
+            denseXabrParameters_ = volCubeByZabr->denseSabrParameters();
         }
         browseCmsMarket_ = cmsMarket_->browse();
 
@@ -644,8 +644,8 @@ namespace QuantLib {
         }
         if(volCubeByZabr != NULL) {
             volCubeByZabr->updateAfterRecalibration();
-            sparseXabrParameters_ = volCubeByZabr->sparseZabrParameters();
-            denseXabrParameters_ = volCubeByZabr->denseZabrParameters();
+            sparseXabrParameters_ = volCubeByZabr->sparseSabrParameters();
+            denseXabrParameters_ = volCubeByZabr->denseSabrParameters();
         }
         browseCmsMarket_ = cmsMarket_->browse();
 
