@@ -164,6 +164,7 @@
 %include dividends.i
 %include exchangerates.i
 %include exercise.i
+%include fittedbondcurve.i
 %include forwardcurve.i
 %include fra.i
 %include functions.i

@@ -1,7 +1,7 @@
 <root>
 
   <enumeratedTypeCopyright>
-    Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008, 2014 Ferdinando Ametrano
     Copyright (C) 2007 Marco Bianchetti
     Copyright (C) 2005, 2006, 2007 Eric Ehlers
     Copyright (C) 2006 Giorgio Facchinetti
@@ -765,6 +765,14 @@
         <EnumeratedType>
           <string>MF</string>
           <value>QuantLib::ModifiedFollowing</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Half-Month Modified Following</string>
+          <value>QuantLib::HalfMonthModifiedFollowing</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>HMMF</string>
+          <value>QuantLib::HalfMonthModifiedFollowing</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Preceding</string>
