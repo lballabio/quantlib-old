@@ -1,0 +1,3 @@
+notes about logos.xcf:
+font: FreeSans
+size: 22
