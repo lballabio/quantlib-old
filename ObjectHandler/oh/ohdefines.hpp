@@ -165,7 +165,4 @@ protected: \
 OH_LIB_CTOR(derived_class, base_class) \
 }
 
-// Comment this out to remove dependency on log4cxx
-#define HAVE_LOG4CXX
-
 #endif
