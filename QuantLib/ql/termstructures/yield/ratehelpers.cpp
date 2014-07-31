@@ -30,6 +30,7 @@
 #ifdef QL_USE_INDEXED_COUPON
     #include <ql/cashflows/floatingratecoupon.hpp>
 #endif
+#include <ql/time/calendars/jointcalendar.hpp>
 
 using boost::shared_ptr;
 
@@ -91,7 +92,7 @@ namespace QuantLib {
             latestDate_ = IMM::nextDate(immDate, false);
             latestDate_ = IMM::nextDate(latestDate_, false);
             latestDate_ = IMM::nextDate(latestDate_, false);
-        } else { 
+        } else {
             QL_REQUIRE(endDate>immDate,
                        "end date (" << endDate <<
                        ") must be greater than IMM start date (" <<
@@ -115,12 +116,12 @@ namespace QuantLib {
         QL_REQUIRE(IMM::isIMMdate(immDate, false),
                    immDate << "is not a valid IMM date");
         earliestDate_ = immDate;
-        
+
         if (endDate==Date()) {
             latestDate_ = IMM::nextDate(immDate, false);
             latestDate_ = IMM::nextDate(latestDate_, false);
             latestDate_ = IMM::nextDate(latestDate_, false);
-        } else { 
+        } else {
             QL_REQUIRE(endDate>immDate,
                        "end date (" << endDate <<
                        ") must be greater than IMM start date (" <<
@@ -193,11 +194,13 @@ namespace QuantLib {
                                          BusinessDayConvention convention,
                                          bool endOfMonth,
                                          const DayCounter& dayCounter)
-    : RelativeDateRateHelper(rate) {
+    : RelativeDateRateHelper(rate), evalDateCalendar_(EvaluationDateCalendar()),
+      calendar_(calendar),
+      modifiedCalendar_(JointCalendar(evalDateCalendar_, calendar, JoinBusinessDays)) {
         iborIndex_ = shared_ptr<IborIndex>(new
             IborIndex("no-fix", // never take fixing into account
                       tenor, fixingDays,
-                      Currency(), calendar, convention,
+                      Currency(), modifiedCalendar_, convention,
                       endOfMonth, dayCounter, termStructureHandle_));
         initializeDates();
     }
@@ -209,35 +212,41 @@ namespace QuantLib {
                                          BusinessDayConvention convention,
                                          bool endOfMonth,
                                          const DayCounter& dayCounter)
-    : RelativeDateRateHelper(rate) {
+    : RelativeDateRateHelper(rate), evalDateCalendar_(EvaluationDateCalendar()),
+      calendar_(calendar),
+      modifiedCalendar_(JointCalendar(evalDateCalendar_, calendar, JoinBusinessDays)) {
         iborIndex_ = shared_ptr<IborIndex>(new
             IborIndex("no-fix", // never take fixing into account
                       tenor, fixingDays,
-                      Currency(), calendar, convention,
+                      Currency(), modifiedCalendar_, convention,
                       endOfMonth, dayCounter, termStructureHandle_));
         initializeDates();
     }
 
     DepositRateHelper::DepositRateHelper(const Handle<Quote>& rate,
                                          const shared_ptr<IborIndex>& i)
-    : RelativeDateRateHelper(rate) {
+    : RelativeDateRateHelper(rate), evalDateCalendar_(EvaluationDateCalendar()),
+      calendar_(i->fixingCalendar()),
+      modifiedCalendar_(JointCalendar(evalDateCalendar_, i->fixingCalendar(), JoinBusinessDays)) {
         // do not use clone, as we do not want to take fixing into account
         iborIndex_ = shared_ptr<IborIndex>(new
             IborIndex("no-fix", // never take fixing into account
                       i->tenor(), i->fixingDays(), Currency(),
-                      i->fixingCalendar(), i->businessDayConvention(),
+                      modifiedCalendar_, i->businessDayConvention(),
                       i->endOfMonth(), i->dayCounter(), termStructureHandle_));
         initializeDates();
     }
 
     DepositRateHelper::DepositRateHelper(Rate rate,
                                          const shared_ptr<IborIndex>& i)
-    : RelativeDateRateHelper(rate) {
+    : RelativeDateRateHelper(rate), evalDateCalendar_(EvaluationDateCalendar()),
+      calendar_(i->fixingCalendar()),
+      modifiedCalendar_(JointCalendar(evalDateCalendar_, i->fixingCalendar(), JoinBusinessDays)) {
         // do not use clone, as we do not want to take fixing into account
         iborIndex_ = shared_ptr<IborIndex>(new
             IborIndex("no-fix", // never take fixing into account
                       i->tenor(), i->fixingDays(), Currency(),
-                      i->fixingCalendar(), i->businessDayConvention(),
+                      modifiedCalendar_, i->businessDayConvention(),
                       i->endOfMonth(), i->dayCounter(), termStructureHandle_));
         initializeDates();
     }
@@ -257,7 +266,15 @@ namespace QuantLib {
 
     void DepositRateHelper::initializeDates() {
         earliestDate_ = iborIndex_->fixingCalendar().advance(
-            evaluationDate_, iborIndex_->fixingDays()*Days);
+            evaluationDate_, iborIndex_->fixingDays() * Days);
+        // if we are on a holiday and have zero fixing days
+        // we have to adjust manually because we use a
+        // modified fixing calendar with the evaluation date
+        // being a business day always
+        if (iborIndex_->fixingDays() == 0 &&
+            calendar_.isHoliday(evaluationDate_))
+            earliestDate_ = calendar_.adjust(
+                earliestDate_, iborIndex_->businessDayConvention());
         latestDate_ = iborIndex_->maturityDate(earliestDate_);
         fixingDate_ = iborIndex_->fixingDate(earliestDate_);
     }

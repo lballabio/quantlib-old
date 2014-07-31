@@ -33,6 +33,8 @@
 #include <ql/time/calendar.hpp>
 #include <ql/time/daycounter.hpp>
 
+#include <boost/make_shared.hpp>
+
 namespace QuantLib {
 
     class SwapIndex;
@@ -128,6 +130,23 @@ namespace QuantLib {
         void accept(AcyclicVisitor&);
         //@}
       private:
+        class EvaluationDateCalendar : public Calendar {
+        private:
+            class Impl : public Calendar::Impl {
+            public:
+                std::string name() const { return "EvaluationDateCalendar"; }
+                bool isWeekend(Weekday) const { return false; }
+                bool isBusinessDay(const Date &d) const {
+                    return d == Settings::instance().evaluationDate();
+                }
+            };
+        public:
+            EvaluationDateCalendar() { impl_ = boost::make_shared<Impl>(); }
+        };
+        EvaluationDateCalendar evalDateCalendar_;
+        // original calendar, modified calendar with evaluation date always
+        // a business day to allow for boostrap on holidays
+        Calendar calendar_, modifiedCalendar_;
         void initializeDates();
         Date fixingDate_;
         boost::shared_ptr<IborIndex> iborIndex_;
