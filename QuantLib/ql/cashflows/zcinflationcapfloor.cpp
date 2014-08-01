@@ -19,50 +19,37 @@
 
 #include <ql/cashflows/zcinflationcapfloor.hpp>
 #include <ql/math/solvers1d/brent.hpp>
+#include <ql/pricingengines/blackformula.hpp>
 
 namespace QuantLib {
 
 Real ZCInflationCapFloor::amount(Real totalVariance) const {
 
-    Real baseFixing = index_->fixing(baseDate_);
-    Real ytsBaseFixing = index_->fixing(inflationYts_->baseDate());
-    Real nominalRate = nominalYts_->zeroRate(fixingDate_, Actual365Fixed(),
-                                             QuantLib::Continuous);
-    Real inflationRate = inflationYts_->zeroRate(fixingDate_);
-    Real realRate = nominalRate - log(1.0 + inflationRate);
-    Real fwdDiscount = nominalYts_->discount(paymentDate_) /
-                       nominalYts_->discount(fixingDate_);
-    Real modStrike = baseFixing * std::pow(1.0 + strike_, fixingTime_);
-    Real vol = totalVariance == Null<Real>()
-                   ? inflationVol_->blackVol(fixingDate_, strike_)
-                   : std::sqrt(totalVariance / fixingTime_);
-    Real d1 = (log(ytsBaseFixing / modStrike) +
-               (nominalRate - realRate + vol * vol / 2.0) * fixingTime_) /
-              (vol * sqrt(fixingTime_));
-    Real d2 = d1 - vol * sqrt(fixingTime_);
-    CumulativeNormalDistribution cnd;
-    Real value = notional_ * fwdDiscount / baseFixing *
-                 (baseFixing * exp(-realRate * fixingTime_) * cnd(type_ * d1) -
-                  modStrike * exp(-nominalRate * fixingTime_) * cnd(type_ * d2)) *
-                 type_;
-    return value * exp(nominalRate * fixingTime_);
+    Real firstCpi = index_->fixing(actualFirstFixingDate_);
+    Real lastCpi = index_->fixing(actualLastFixingDate_);
+    Real rate = lastCpi/firstCpi;
+    Real dcf = dc_.yearFraction(firstFixingDate_, lastFixingDate_);
+    Real effectiveStrike = std::pow(1.0 + strike_, dcf);
+    Real stdDev = totalVariance == Null<Real>()
+                      ? inflationVol_->blackVol(lastFixingDate_, strike_) *
+                            std::sqrt(fixingTime_)
+                      : std::sqrt(totalVariance);
+    return notional_ * blackFormula(type_, effectiveStrike, rate, stdDev);
 }
 
 Real ZCInflationCapFloor::amount() const { return amount(Null<Real>()); }
 
 Real ZCInflationCapFloor::impliedTotalVariance(Real undeflatedPrice) const {
-
     ImpliedVarianceHelper h(this, undeflatedPrice);
     Brent b;
-    Real sqrtt = std::sqrt(fixingTime_);
-    Real guess = 0.02 * sqrtt;
-    Real min = 0.0 * sqrtt;
-    Real max = 0.20 * sqrtt;
-    Real var = b.solve(h, 1E-4, guess, min, max );
+    Real guess = 0.02 * 0.02 * fixingTime_;
+    Real min = 0.0;
+    Real max = 0.20 * 0.20 * fixingTime_;
+    Real var = b.solve(h, 1E-4, guess, min, max);
     return var;
-
 }
 
-
-
+Real ZCInflationCapFloor::impliedVolatility(Real undeflatedPrice) const {
+    return std::sqrt(impliedTotalVariance(undeflatedPrice) / fixingTime_);
+}
 }

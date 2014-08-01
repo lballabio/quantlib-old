@@ -41,7 +41,14 @@ namespace QuantLib {
 /*! This cash flow is not a coupon, i.e., there's no accrual.  The
     amount is E( max (i(T)/i(0) - (1 + k)^T , 0) ), i.e. the strike
     is annualized.
+
+    WARNING the volatility is taken from the black vol term structure
+    naively using strikeand lastFixingDate. If the firstFixingDate is
+    not the same as for quoted instruments (e.g. evalDate - 3m), this
+    leads to wrong results. Todo - adjust strike in this case before
+    reading off the vol from the ts
 */
+
 class ZCInflationCapFloor : public CashFlow, public Observer {
   public:
     ZCInflationCapFloor(Real notional,
@@ -49,38 +56,52 @@ class ZCInflationCapFloor : public CashFlow, public Observer {
                         const Handle<YieldTermStructure> &nominalYts,
                         const Handle<ZeroInflationTermStructure> &inflationYts,
                         const Handle<BlackVolTermStructure> &inflationVol,
-                        const Date &baseDate, const Date &lastFixingDate,
+                        const Date &firstFixingDate, const Date &lastFixingDate,
                         const Date &paymentDate, const Real strike,
-                        const Option::Type type)
-        : notional_(notional), index_(index), baseDate_(baseDate),
-          fixingDate_(lastFixingDate), paymentDate_(paymentDate),
+                        const Option::Type type,
+                        const DayCounter &dc = Actual365Fixed(),
+                        const Date &lastKnownFixingDate = Null<Date>()) // if not set, use base date from inflation ts
+    : notional_(notional), index_(index), firstFixingDate_(firstFixingDate),
+          lastFixingDate_(lastFixingDate), paymentDate_(paymentDate),
           nominalYts_(nominalYts), inflationYts_(inflationYts),
-          inflationVol_(inflationVol), strike_(strike), type_(type) {
+        inflationVol_(inflationVol), strike_(strike), type_(type),
+        dc_(dc) {
 
-        // compute actual fixing date out of last fixing date
+        // compute actual fixing dates out of first and last fixing dates
         if (index_->interpolated()) {
-            actualFixingDate_ = inflationYts_->calendar().advance(
-                fixingDate_, -inflationYts_->observationLag());
+            actualFirstFixingDate_ = inflationYts_->calendar().advance(
+                firstFixingDate_, -inflationYts_->observationLag());
+            actualLastFixingDate_ = inflationYts_->calendar().advance(
+                lastFixingDate_, -inflationYts_->observationLag());
+            
         } else {
             std::pair<Date, Date> dd =
-                inflationPeriod(fixingDate_ - inflationYts_->observationLag(),
+                inflationPeriod(firstFixingDate_ - inflationYts_->observationLag(),
                                 index_->frequency());
-            actualFixingDate_ = dd.first;
+            actualFirstFixingDate_ = dd.first;
+            dd = inflationPeriod(lastFixingDate_ -
+                                     inflationYts_->observationLag(),
+                                 index_->frequency());
+            actualLastFixingDate_ = dd.first;
         }
         fixingTime_ = inflationVol_->dayCounter().yearFraction(
-            baseDate_, actualFixingDate_);
+            lastKnownFixingDate == Null<Date>() ? inflationYts_->baseDate()
+                                                : lastKnownFixingDate,
+            actualLastFixingDate_);
 
         // registerWith(index);
         registerWith(nominalYts);
         registerWith(inflationYts);
+
     }
+
     //! \name Event interface
     //@{
     Date date() const { return paymentDate_; }
     //@}
     virtual Real notional() const { return notional_; }
-    virtual Date baseDate() const { return baseDate_; }
-    virtual Date fixingDate() const { return fixingDate_; }
+    virtual Date actualFirstFixingDate() const { return actualFirstFixingDate_; }
+    virtual Date actualLastFixingDate() const { return actualLastFixingDate_; }
     // virtual boost::shared_ptr<Index> index() const { return index_; }
     //! \name CashFlow interface
     //@{
@@ -88,6 +109,8 @@ class ZCInflationCapFloor : public CashFlow, public Observer {
     //@}
     // return implied unit displaced vol from undiscounted option price
     Real impliedTotalVariance(Real undeflatedPrice) const;
+    // return implied vol
+    Real impliedVolatility(Real undeflatedPrice) const;
     //! \name Visitability
     //@{
     virtual void accept(AcyclicVisitor &);
@@ -100,14 +123,15 @@ class ZCInflationCapFloor : public CashFlow, public Observer {
     Real amount(Real totalVariance) const;
     Real notional_;
     boost::shared_ptr<ZeroInflationIndex> index_;
-    Date baseDate_, fixingDate_, paymentDate_;
-    Date actualFixingDate_;
+    Date firstFixingDate_, lastFixingDate_, paymentDate_;
+    Date actualFirstFixingDate_, actualLastFixingDate_;
     Real fixingTime_;
     Handle<YieldTermStructure> nominalYts_;
     Handle<ZeroInflationTermStructure> inflationYts_;
     Handle<BlackVolTermStructure> inflationVol_;
     Real strike_;
     Option::Type type_;
+    DayCounter dc_;
 
     class ImpliedVarianceHelper {
       public:
