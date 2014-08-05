@@ -50,6 +50,16 @@ at a 100% Java port. At this time, it provides about 65% of QuantLib
 the <a href="https://github.com/enthought/pyql">PyQL</a> project by
 Didrik Pinte and Patrick Henaff.</p>
 
+<p><a href="https://code.google.com/p/qldds/">QLDDS</a> is a project
+that allows the functionality of the QuantLibAddin for C++ to be
+distributed via OpenDDS across multiple computers running different
+operating systems.</p>
+
+<p>QuantLib was integrated
+into <a href="http://www.ceemple.com/">Ceemple</a>, a solution
+enabling rapid C++ based technical computing via an optimizing
+Just-In-Time compiler.</p>
+
 <p>Other projects aim at ports in a functional language.
 <a href="http://sourceforge.net/projects/quanthas/">QuantHas</a>
 targets the Haskell language,

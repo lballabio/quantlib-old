@@ -109,7 +109,7 @@ namespace QuantLib {
             if (close(rate, 0.0))
                 rate = 0.03; // this value is at least better than zero
             weightedRate += arguments_.fixedNominal[i] * rate;
-            if (arguments_.fixedNominal[i] > 1.0)
+            if (arguments_.fixedNominal[i] > 1E-8) // exclude zero nominal periods
                 ind += 1.0;
         }
         Real nominalAvg = nominalSum / ind;
@@ -121,7 +121,8 @@ namespace QuantLib {
         weightedRate /= nominalSum;
         initial[0] = nominalAvg;
         initial[1] =
-            model_->termStructure()->timeFromReference(underlyingLastDate());
+            model_->termStructure()->timeFromReference(underlyingLastDate()) -
+            model_->termStructure()->timeFromReference(expiry);
         initial[2] = weightedRate;
 
         return initial;
@@ -145,10 +146,10 @@ namespace QuantLib {
             boost::dynamic_pointer_cast<RebatedExercise>(arguments_.exercise);
 
         int idx = arguments_.exercise->dates().size() - 1;
-        int minIdxAlive =
+        int minIdxAlive = static_cast<int>(
             std::upper_bound(arguments_.exercise->dates().begin(),
                              arguments_.exercise->dates().end(), settlement) -
-            arguments_.exercise->dates().begin();
+            arguments_.exercise->dates().begin());
 
         NonstandardSwap swap = *arguments_.swap;
         Option::Type type =
@@ -181,6 +182,8 @@ namespace QuantLib {
                 std::upper_bound(floatSchedule.dates().begin(),
                                  floatSchedule.dates().end(), expiry0 - 1) -
                 floatSchedule.dates().begin();
+
+            // todo add openmp support later on (as in gaussian1dswaptionengine)
 
             for (Size k = 0; k < (expiry0 > settlement ? npv0.size() : 1);
                  k++) {

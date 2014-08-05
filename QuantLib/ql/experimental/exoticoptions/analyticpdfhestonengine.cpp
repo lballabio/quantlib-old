@@ -26,7 +26,17 @@
 #include <ql/math/integrals/gausslobattointegral.hpp>
 #include <ql/experimental/exoticoptions/analyticpdfhestonengine.hpp>
 
+#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#endif
+
 #include <boost/bind.hpp>
+
+#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#pragma GCC diagnostic pop
+#endif
+
 #include <cmath>
 
 namespace QuantLib {
@@ -86,7 +96,8 @@ namespace QuantLib {
 
         const Time t = process->time(arguments_.exercise->lastDate());
 
-        const Real xMax = 10 * std::sqrt(process->theta()*t);
+        const Real xMax = 10 * std::sqrt(process->theta()*t
+        	+ (process->v0() - process->theta())*(1-std::exp(-process->kappa()*t)));
 
         results_.value = GaussLobattoIntegral(nIterations_, eps_)
             (boost::bind(&AnalyticPDFHestonEngine::weightedPayoff, this,_1, t),
