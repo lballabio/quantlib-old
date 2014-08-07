@@ -37,6 +37,12 @@ std::vector<boost::shared_ptr<BondHelper> > convert_bond_helpers(
 }
 %}
 
+class FittingMethod {
+  public:
+    virtual ~FittingMethod() = 0;
+    Array solution() const;
+};
+
 %rename(FittedBondDiscountCurve) FittedBondDiscountCurvePtr;
 class FittedBondDiscountCurvePtr
     : public boost::shared_ptr<YieldTermStructure> {
@@ -83,12 +89,12 @@ class FittedBondDiscountCurvePtr
                                             guess,
                                             simplexLambda));
         }
-    }
-};
 
-class FittingMethod {
-  public:
-    virtual ~FittingMethod() = 0;
+        const FittingMethod& fitResults() const {
+            return boost::dynamic_pointer_cast<FittedBondDiscountCurve>(*self)
+                ->fitResults();
+        }
+    }
 };
 
 
