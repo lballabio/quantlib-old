@@ -39,7 +39,7 @@ class SVIWrapper {
                const std::vector<Real> &params)
         : t_(t), forward_(forward), params_(params) {
         QL_REQUIRE(params[1] >= 0.0, "b (" << params[1]
-                                           << ") must be non negative");
+                   << ") must be non negative");
         QL_REQUIRE(std::fabs(params[3]) < 1.0,
                    "rho (" << params[3] << ") must be in (-1,1)");
         QL_REQUIRE(params[2] > 0.0, "sigma (" << params[2]
@@ -49,10 +49,10 @@ class SVIWrapper {
                                std::sqrt(1.0 - params[3] * params[3]) >=
                        0.0,
                    "a + bs sqrt(1-r^2) must be non negative");
-        QL_REQUIRE(params[1]*(1.0+std::fabs(params[3]) < 4.0,"b(1+|r|) must be less than 4");
+        QL_REQUIRE(params[1]*(1.0+std::fabs(params[3])) < 4.0,"b(1+|r|) must be less than 4");
     }
     Real volatility(const Real x) {
-        Real k = std::log(std::max(x, 1E-6)) / forward_;
+        Real k = std::log(std::max(x, 1E-6) / forward_);
         Real variance =
             params_[0] +
             params_[1] * (params_[3] * (k - params_[4]) +
@@ -68,8 +68,8 @@ class SVIWrapper {
 
 struct SVISpecs {
     Size dimension() { return 5; }
-    void defaultValues(std::vector<Real> &params, std::vector<bool> &,
-                       const Real &forward, const Real expiryTIme) {
+    void defaultValues(std::vector<Real> &params, std::vector<bool> &paramIsFixed,
+                       const Real &forward, const Real expiryTime) {
         if (params[2] == Null<Real>())
             params[2] = 0.1;
         if (params[3] == Null<Real>())
@@ -94,7 +94,7 @@ struct SVISpecs {
             values[3] = (2.0 * r[j++] - 1.0) * eps2();
         if (!paramIsFixed[4])
             values[4] = (2.0 * r[j++] - 1.0);
-        if (!paramsIsFixed[1])
+        if (!paramIsFixed[1])
             values[1] = r[j++] * 4.0 / (1.0 + std::fabs(values[3])) * eps2();
         if (!paramIsFixed[0])
             values[0] = r[j++] -
@@ -161,7 +161,7 @@ class SVIInterpolation : public Interpolation {
                      const Size maxGuesses = 50) {
 
         impl_ = boost::shared_ptr<Interpolation::Impl>(
-            new detail::XABRInterpolationImpl<I1, I2, detail::SABRSpecs>(
+            new detail::XABRInterpolationImpl<I1, I2, detail::SVISpecs>(
                 xBegin, xEnd, yBegin, t, forward,
                 boost::assign::list_of(a)(b)(sigma)(rho)(m),
                 boost::assign::list_of(aIsFixed)(bIsFixed)(sigmaIsFixed)(
@@ -169,7 +169,7 @@ class SVIInterpolation : public Interpolation {
                 vegaWeighted, endCriteria, optMethod, errorAccept, useMaxError,
                 maxGuesses));
         coeffs_ = boost::dynamic_pointer_cast<
-            detail::XABRCoeffHolder<detail::SABRSpecs>>(impl_);
+            detail::XABRCoeffHolder<detail::SVISpecs> >(impl_);
     }
     Real expiry() const { return coeffs_->t_; }
     Real forward() const { return coeffs_->forward_; }
@@ -186,13 +186,13 @@ class SVIInterpolation : public Interpolation {
     EndCriteria::Type endCriteria() { return coeffs_->XABREndCriteria_; }
 
   private:
-    boost::shared_ptr<detail::XABRCoeffHolder<detail::SABRSpecs>> coeffs_;
+    boost::shared_ptr<detail::XABRCoeffHolder<detail::SVISpecs> > coeffs_;
 };
 
 //! %SVI interpolation factory and traits
 class SVI {
   public:
-    SABR(Time t, Real forward, Real a, Real b, Real sigma, Real rho, Real m,
+    SVI(Time t, Real forward, Real a, Real b, Real sigma, Real rho, Real m,
          bool aIsFixed, bool bIsFixed, bool sigmaIsFixed, bool rhoIsFixed,
          bool mIsFixed, bool vegaWeighted = false,
          const boost::shared_ptr<EndCriteria> endCriteria =
@@ -211,7 +211,7 @@ class SVI {
     template <class I1, class I2>
     Interpolation interpolate(const I1 &xBegin, const I1 &xEnd,
                               const I2 &yBegin) const {
-        return SABRInterpolation(xBegin, xEnd, yBegin, t_, forward_, a_, b_,
+        return SVIInterpolation(xBegin, xEnd, yBegin, t_, forward_, a_, b_,
                                  sigma_, rho_, m_, aIsFixed_, bIsFixed_,
                                  sigmaIsFixed_, rhoIsFixed_, mIsFixed_,
                                  vegaWeighted_, endCriteria_, optMethod_,
