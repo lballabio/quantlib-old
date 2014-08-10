@@ -40,10 +40,10 @@ void SviSmileSection::compute() {
     s_ = 0.1;
     r_ = -0.4;
     m_ = 0.0;
-    b_ = 2.0 / ((1.0 + fabs(r_)) * exerciseTime());
+    b_ = 2.0 / (1.0 + fabs(r_));
     // a_=0.04;
     a_ = source_->variance(f_) -
-         b_ * (r_ * (-m_) * sqrt((-m_) * (-m_) + s_ * s_));
+         b_ * (r_ * (-m_) + sqrt((-m_) * (-m_) + s_ * s_));
 
     SviCostFunction cost(this);
     SviConstraint constraint;
