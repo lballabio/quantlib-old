@@ -103,7 +103,7 @@ struct SVISpecs {
     }
     Array inverse(const Array &y, const std::vector<bool> &,
                   const std::vector<Real> &, const Real) {
-        Array x(4);
+        Array x(5);
         x[2] = std::sqrt(y[2] - eps1());
         x[3] = std::asin(y[3] / eps2());
         x[4] = y[4];
@@ -117,7 +117,7 @@ struct SVISpecs {
     Real eps2() { return 0.999999; }
     Array direct(const Array &x, const std::vector<bool> &paramIsFixed,
                  const std::vector<Real> &params, const Real forward) {
-        Array y(4);
+        Array y(5);
         y[2] = x[2] * x[2] + eps1();
         y[3] = std::sin(x[3] * eps2());
         y[4] = x[4];
