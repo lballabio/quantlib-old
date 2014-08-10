@@ -46,7 +46,7 @@ void SviSmileSection::compute() {
          b_ * (r_ * (-m_) * sqrt((-m_) * (-m_) + s_ * s_));
 
     SviCostFunction cost(this);
-    SviConstraint constraint(exerciseTime());
+    SviConstraint constraint;
     // NoConstraint constraint;
 
     Array initial(5);

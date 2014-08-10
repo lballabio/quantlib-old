@@ -89,16 +89,16 @@ class SviSmileSection : public SmileSection {
             Real T_;
 
           public:
-            Impl(const Real T) : T_(T) {}
+            Impl() {}
             bool test(const Array &params) const {
-                return params[1] * (1.0 + fabs(params[3])) < 4.0 / T_;
+                return params[1] * (1.0 + fabs(params[3])) < 4.0;
             }
         };
 
       public:
-        SviConstraint(const Real T)
+        SviConstraint()
             : Constraint(boost::shared_ptr<Constraint::Impl>(
-                  new SviConstraint::Impl(T))) {}
+                  new SviConstraint::Impl())) {}
     };
 
     void compute();
