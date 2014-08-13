@@ -53,16 +53,16 @@ class SVIWrapper {
     }
     Real volatility(const Real x) {
         Real k = std::log(std::max(x, 1E-6) / forward_);
-        Real variance =
+        Real totalVariance =
             params_[0] +
             params_[1] * (params_[3] * (k - params_[4]) +
                           std::sqrt((k - params_[4]) * (k - params_[4]) +
                                     params_[2] * params_[2]));
-        return std::sqrt(std::max(0.0, variance));
+        return std::sqrt(std::max(0.0, totalVariance / t_));
     }
 
   private:
-    const Real &t_, &forward_;
+    const Real t_, &forward_;
     const std::vector<Real> &params_;
 };
 
