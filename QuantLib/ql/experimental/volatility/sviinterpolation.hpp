@@ -18,13 +18,14 @@
 */
 
 /*! \file sabrinterpolation.hpp
-    \brief SVI interpolation interpolation between discrete points
+    \brief Svi interpolation interpolation between discrete points
 */
 
 #ifndef quantlib_svi_interpolation_hpp
 #define quantlib_svi_interpolation_hpp
 
 #include <ql/math/interpolations/xabrinterpolation.hpp>
+#include <ql/experimental/volatility/svismilesection.hpp>
 
 #include <boost/make_shared.hpp>
 #include <boost/assign/list_of.hpp>
@@ -33,40 +34,49 @@ namespace QuantLib {
 
 namespace detail {
 
-class SVIWrapper {
-  public:
-    SVIWrapper(const Time t, const Real &forward,
-               const std::vector<Real> &params)
-        : t_(t), forward_(forward), params_(params) {
-        QL_REQUIRE(params[1] >= 0.0, "b (" << params[1]
-                   << ") must be non negative");
-        QL_REQUIRE(std::fabs(params[3]) < 1.0,
-                   "rho (" << params[3] << ") must be in (-1,1)");
-        QL_REQUIRE(params[2] > 0.0, "sigma (" << params[2]
-                                              << ") must be positive");
-        QL_REQUIRE(params[0] +
-                           params[1] * params[2] *
-                               std::sqrt(1.0 - params[3] * params[3]) >=
-                       0.0,
-                   "a + bs sqrt(1-r^2) must be non negative");
-        QL_REQUIRE(params[1]*(1.0+std::fabs(params[3])) < 4.0,"b(1+|r|) must be less than 4");
-    }
-    Real volatility(const Real x) {
-        Real k = std::log(std::max(x, 1E-6) / forward_);
-        Real totalVariance =
-            params_[0] +
-            params_[1] * (params_[3] * (k - params_[4]) +
-                          std::sqrt((k - params_[4]) * (k - params_[4]) +
-                                    params_[2] * params_[2]));
-        return std::sqrt(std::max(0.0, totalVariance / t_));
-    }
+void checkSviParameters(const Real a, const Real b, const Real sigma,
+                        const Real rho, const Real m) {
+    QL_REQUIRE(b >= 0.0, "b (" << b << ") must be non negative");
+    QL_REQUIRE(std::fabs(rho) < 1.0, "rho (" << rho << ") must be in (-1,1)");
+    QL_REQUIRE(sigma > 0.0, "sigma (" << sigma << ") must be positive");
+    QL_REQUIRE(a + b * sigma * std::sqrt(1.0 - rho * rho) >= 0.0,
+               "a + b sigma sqrt(1-rho^2) (a=" << a << ", b=" << b << ", sigma="
+                                               << sigma << ", rho=" << rho
+                                               << ") must be non negative");
+    QL_REQUIRE(b * (1.0 + std::fabs(rho)) < 4.0,
+               "b(1+|rho|) must be less than 4");
+    return;
+}
 
-  private:
-    const Real t_, &forward_;
-    const std::vector<Real> &params_;
-};
+Real sviTotalVariance(const Real a, const Real b, const Real sigma,
+                      const Real rho, const Real m, const Real k) {
+    return a +
+           b * (rho * (k - m) + std::sqrt((k - m) * (k - m) + sigma * sigma));
+}
 
-struct SVISpecs {
+typedef SviSmileSection SviWrapper;
+
+// class SviWrapper {
+//   public:
+//     SviWrapper(const Time t, const Real &forward,
+//                const std::vector<Real> &params)
+//         : t_(t), forward_(forward), params_(params) {
+//         checkSviParameters(params[0], params[1], params[2], params[3],
+//                            params[4]);
+//     }
+//     Real volatility(const Real x) {
+//         Real k = std::log(std::max(x, 1E-6) / forward_);
+//         Real totalVariance = sviTotalVariance(params[0], params[1], params[2],
+//                                               params[3], params[4]);
+//         return std::sqrt(std::max(0.0, totalVariance / t_));
+//     }
+
+//   private:
+//     const Real t_, &forward_;
+//     const std::vector<Real> &params_;
+// };
+
+struct SviSpecs {
     Size dimension() { return 5; }
     void defaultValues(std::vector<Real> &params, std::vector<bool> &paramIsFixed,
                        const Real &forward, const Real expiryTime) {
@@ -133,7 +143,7 @@ struct SVISpecs {
                    eps2() * y[1] * y[2] * std::sqrt(1.0 - y[3] * y[3]);
         return y;
     }
-    typedef SVIWrapper type;
+    typedef SviWrapper type;
     boost::shared_ptr<type> instance(const Time t, const Real &forward,
                                      const std::vector<Real> &params) {
         return boost::make_shared<type>(t, forward, params);
@@ -141,11 +151,11 @@ struct SVISpecs {
 };
 }
 
-//! %SVI smile interpolation between discrete volatility points.
-class SVIInterpolation : public Interpolation {
+//! %Svi smile interpolation between discrete volatility points.
+class SviInterpolation : public Interpolation {
   public:
     template <class I1, class I2>
-    SVIInterpolation(const I1 &xBegin, // x = strikes
+    SviInterpolation(const I1 &xBegin, // x = strikes
                      const I1 &xEnd,
                      const I2 &yBegin, // y = volatilities
                      Time t,           // option expiry
@@ -161,7 +171,7 @@ class SVIInterpolation : public Interpolation {
                      const Size maxGuesses = 50) {
 
         impl_ = boost::shared_ptr<Interpolation::Impl>(
-            new detail::XABRInterpolationImpl<I1, I2, detail::SVISpecs>(
+            new detail::XABRInterpolationImpl<I1, I2, detail::SviSpecs>(
                 xBegin, xEnd, yBegin, t, forward,
                 boost::assign::list_of(a)(b)(sigma)(rho)(m),
                 boost::assign::list_of(aIsFixed)(bIsFixed)(sigmaIsFixed)(
@@ -169,7 +179,7 @@ class SVIInterpolation : public Interpolation {
                 vegaWeighted, endCriteria, optMethod, errorAccept, useMaxError,
                 maxGuesses));
         coeffs_ = boost::dynamic_pointer_cast<
-            detail::XABRCoeffHolder<detail::SVISpecs> >(impl_);
+            detail::XABRCoeffHolder<detail::SviSpecs> >(impl_);
     }
     Real expiry() const { return coeffs_->t_; }
     Real forward() const { return coeffs_->forward_; }
@@ -186,13 +196,13 @@ class SVIInterpolation : public Interpolation {
     EndCriteria::Type endCriteria() { return coeffs_->XABREndCriteria_; }
 
   private:
-    boost::shared_ptr<detail::XABRCoeffHolder<detail::SVISpecs> > coeffs_;
+    boost::shared_ptr<detail::XABRCoeffHolder<detail::SviSpecs> > coeffs_;
 };
 
-//! %SVI interpolation factory and traits
-class SVI {
+//! %Svi interpolation factory and traits
+class Svi {
   public:
-    SVI(Time t, Real forward, Real a, Real b, Real sigma, Real rho, Real m,
+    Svi(Time t, Real forward, Real a, Real b, Real sigma, Real rho, Real m,
          bool aIsFixed, bool bIsFixed, bool sigmaIsFixed, bool rhoIsFixed,
          bool mIsFixed, bool vegaWeighted = false,
          const boost::shared_ptr<EndCriteria> endCriteria =
@@ -211,7 +221,7 @@ class SVI {
     template <class I1, class I2>
     Interpolation interpolate(const I1 &xBegin, const I1 &xEnd,
                               const I2 &yBegin) const {
-        return SVIInterpolation(xBegin, xEnd, yBegin, t_, forward_, a_, b_,
+        return SviInterpolation(xBegin, xEnd, yBegin, t_, forward_, a_, b_,
                                  sigma_, rho_, m_, aIsFixed_, bIsFixed_,
                                  sigmaIsFixed_, rhoIsFixed_, mIsFixed_,
                                  vegaWeighted_, endCriteria_, optMethod_,

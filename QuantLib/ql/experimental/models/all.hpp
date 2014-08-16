@@ -23,5 +23,4 @@
 #include <ql/experimental/models/sbsmilesection.hpp>
 #include <ql/experimental/models/smilesectionutils.hpp>
 #include <ql/experimental/models/splinedensitysmilesection.hpp>
-#include <ql/experimental/models/svismilesection.hpp>
 
