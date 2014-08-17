@@ -56,26 +56,6 @@ Real sviTotalVariance(const Real a, const Real b, const Real sigma,
 
 typedef SviSmileSection SviWrapper;
 
-// class SviWrapper {
-//   public:
-//     SviWrapper(const Time t, const Real &forward,
-//                const std::vector<Real> &params)
-//         : t_(t), forward_(forward), params_(params) {
-//         checkSviParameters(params[0], params[1], params[2], params[3],
-//                            params[4]);
-//     }
-//     Real volatility(const Real x) {
-//         Real k = std::log(std::max(x, 1E-6) / forward_);
-//         Real totalVariance = sviTotalVariance(params[0], params[1], params[2],
-//                                               params[3], params[4]);
-//         return std::sqrt(std::max(0.0, totalVariance / t_));
-//     }
-
-//   private:
-//     const Real t_, &forward_;
-//     const std::vector<Real> &params_;
-// };
-
 struct SviSpecs {
     Size dimension() { return 5; }
     void defaultValues(std::vector<Real> &params, std::vector<bool> &paramIsFixed,
@@ -88,11 +68,15 @@ struct SviSpecs {
             params[4] = 0.0;
         if (params[1] == Null<Real>())
             params[1] = 2.0 / (1.0 + std::fabs(params[3]));
-        if (params[0] == Null<Real>())
-            params[0] = 0.20 * 0.20 * expiryTime -
-                        params[1] * (params[3] * (-params[4]) +
-                                     std::sqrt((-params[4]) * (-params[4]) +
-                                               params[2] * params[2]));
+        if (params[0] == Null<Real>()) {
+            params[0] = std::max(
+                0.20 * 0.20 * expiryTime -
+                    params[1] * (params[3] * (-params[4]) +
+                                 std::sqrt((-params[4]) * (-params[4]) +
+                                           params[2] * params[2])),
+                -params[1] * params[2] *
+                std::sqrt(1.0 - params[3] * params[3]) + eps1());
+        }
     }
     void guess(Array &values, const std::vector<bool> &paramIsFixed,
                const Real &forward, const Real expiryTime,
@@ -107,7 +91,7 @@ struct SviSpecs {
         if (!paramIsFixed[1])
             values[1] = r[j++] * 4.0 / (1.0 + std::fabs(values[3])) * eps2();
         if (!paramIsFixed[0])
-            values[0] = r[j++] -
+            values[0] = r[j++] * expiryTime -
                         eps2() * (values[1] * values[2] *
                                   std::sqrt(1.0 - values[3] * values[3]));
     }
@@ -119,8 +103,8 @@ struct SviSpecs {
         x[4] = y[4];
         x[1] = std::tan(y[1] / 4.0 * (1.0 + std::fabs(y[3])) / eps2() * M_PI -
                         M_PI / 2.0);
-        x[0] = std::sqrt(y[0] +
-                         eps2() * y[1] * y[2] * std::sqrt(1.0 - y[3] * y[3]));
+        x[0] = std::sqrt(y[0] - eps1() +
+                         y[1] * y[2] * std::sqrt(1.0 - y[3] * y[3]));
         return x;
     }
     Real eps1() { return 0.000001; }
@@ -129,7 +113,7 @@ struct SviSpecs {
                  const std::vector<Real> &params, const Real forward) {
         Array y(5);
         y[2] = x[2] * x[2] + eps1();
-        y[3] = std::sin(x[3] * eps2());
+        y[3] = std::sin(x[3]) * eps2();
         y[4] = x[4];
         if (paramIsFixed[1])
             y[1] = params[1];
@@ -139,8 +123,8 @@ struct SviSpecs {
         if (paramIsFixed[0])
             y[0] = params[0];
         else
-            y[0] = x[0] * x[0] -
-                   eps2() * y[1] * y[2] * std::sqrt(1.0 - y[3] * y[3]);
+            y[0] = eps1() + x[0] * x[0] -
+                   y[1] * y[2] * std::sqrt(1.0 - y[3] * y[3]);
         return y;
     }
     typedef SviWrapper type;
