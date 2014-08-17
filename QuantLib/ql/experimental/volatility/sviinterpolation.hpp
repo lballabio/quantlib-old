@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file sabrinterpolation.hpp
+/*! \file sviinterpolation.hpp
     \brief Svi interpolation interpolation between discrete points
 */
 
