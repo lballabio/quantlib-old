@@ -17,8 +17,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file noarbsabrsmilesection.hpp
-    \brief no arbitrage sabr smile section
+/*! \file svismilesmilesection.hpp
+    \brief svi smile section
 */
 
 #ifndef quantlib_svi_smile_section_hpp
