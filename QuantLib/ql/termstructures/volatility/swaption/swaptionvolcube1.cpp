@@ -153,6 +153,7 @@ namespace QuantLib {
             denseParameters_ = sabrCalibration(volCubeAtmCalibrated_);
             denseParameters_.updateInterpolators();
         }
+        notifyObservers();
     }
 
     SwaptionVolCube1::Cube
@@ -657,6 +658,7 @@ namespace QuantLib {
                                    swapTenor);
         }
 
+        notifyObservers();
     }
 
     void SwaptionVolCube1::recalibration(const std::vector<Period> &swapLengths,
