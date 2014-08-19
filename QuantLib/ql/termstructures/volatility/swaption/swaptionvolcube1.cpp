@@ -652,6 +652,7 @@ namespace QuantLib {
         parametersGuess_.updateInterpolators();
         sabrCalibrationSection(marketVolCube_, sparseParameters_, swapTenor);
 
+        volCubeAtmCalibrated_ = marketVolCube_;
         if (isAtmCalibrated_) {
             fillVolatilityCube();
             sabrCalibrationSection(volCubeAtmCalibrated_, denseParameters_,
