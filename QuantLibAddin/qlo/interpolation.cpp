@@ -50,7 +50,7 @@ namespace QuantLibAddin {
           public:
             bool operator()(const pair<Real, Handle<Quote> >& h1,
                             const pair<Real, Handle<Quote> >& h2) const {
-                if (h1.first > h2.first)
+                if (h1.first >= h2.first)
                     return false;
                 return true;
             }

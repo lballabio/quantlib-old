@@ -45,7 +45,8 @@ namespace ObjectHandler {
             key_ = getKeyCount();
             XLOPER xRet;
             Excel(xlfSetName, &xRet, 2, TempStrStl(key_), FunctionCall::instance().callerReference());
-            OH_REQUIRE(xRet.xltype == xltypeBool && xRet.val.boolean, "Error on call to xlfSetName");
+            //OH_REQUIRE(xRet.xltype == xltypeBool && xRet.val.boolean, "Error on call to xlfSetName");
+            OH_REQUIRE(xRet.xltype == xltypeBool && xRet.val.xbool, "Error on call to xlfSetName");
         } else {
             key_ = "VBA";
         }

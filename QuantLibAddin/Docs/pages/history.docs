@@ -23,6 +23,27 @@
 
 /*! \page history Version History
 
+<strong>Release 1.4.0 - June 2014</strong>
+
+REQUIRED PACKAGES
+
+- %QuantLib version 1.4.0
+- ObjectHandler version 1.4.0
+- gensrc version 1.4.0
+
+FUNCTIONALITY
+
+- 2 new functions / 1017 in total
+- Support for 64-bit (thanks to Richard Gould)
+- Prevent potential crash in constructor of FixedRateBondHelper (thanks to
+  Francois Botha)
+- Added additional clones of Calendars to correspond to the output from
+  QuantLib::Calendar::name(). This allows us in Excel to ask a calendar for its
+  name and then recreate the same calendar based on that string.
+- Function qlRateHelperSelection() now works for anonymous objects thanks to a
+  bug fix in ObjectHandler.
+- Fixed bug which could cause interpolation code to crash
+
 <strong>Release 1.2.0 - July 2012</strong>
 
 REQUIRED PACKAGES

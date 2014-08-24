@@ -96,9 +96,14 @@ QuantLibXL/qlxl/register/register_*.cpp
 QuantLibXL/xll/
 log4cxx/msvc/build/
 log4cxx/msvc/lib/
+XL-Launcher/bin/Configuration/UserConfigured/
+XL-Launcher/bin/Debug/
+XL-Launcher/bin/Release/
+XL-Launcher/obj/
 
 # Artifacts created in multiple directories
 Makefile
+!QuantLibAddin/swig/Makefile
 Makefile.in
 .deps
 .libs
@@ -154,4 +159,18 @@ QuantLib-SWIG/Python/QuantLib/QuantLib.py
 QuantLib-SWIG/Python/build
 QuantLib-SWIG/R/R/QuantLib.R
 QuantLib-SWIG/R/QuantLib.RData
-
+ObjectHandler/xll/
+QuantLib/test-suite/bin/*.exp
+QuantLib/test-suite/bin/*.lib
+QuantLib/test-suite/bin/*.pdb
+QuantLibAddin/Docs/.quantlibaddin.doxy
+QuantLibAddin/Docs/build/
+QuantLibAddin/Docs/html/
+QuantLibXL/Docs/.quantlibxl.doxy
+QuantLibXL/Docs/build/
+QuantLibXL/Docs/html/
+QuantLibXL/qlxl/buildDynamic/
+QuantLibAddin/Docs/*.chm
+QuantLibAddin/Docs/doxywarnings.txt
+QuantLibXL/Docs/*.chm
+QuantLibXL/Docs/doxywarnings.txt

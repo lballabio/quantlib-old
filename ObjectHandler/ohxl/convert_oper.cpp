@@ -37,7 +37,7 @@ namespace ObjectHandler {
     }
 
     ConvertOper::operator long() const {
-        if (oper_->xltype == xltypeNum)
+        if (oper_->xltype & xltypeNum)
             return static_cast<long>(oper_->val.num);
         else {
             OPER xLong;
@@ -46,8 +46,18 @@ namespace ObjectHandler {
         }
     }
 
+    ConvertOper::operator unsigned int() const {
+        if (oper_->xltype & xltypeNum)
+            return static_cast<unsigned int>(oper_->val.num);
+        else {
+            OPER xLong;
+            Excel(xlCoerce, &xLong, 2, oper_, TempInt(xltypeInt));
+            return xLong.val.w;
+        }
+    }
+
     ConvertOper::operator double() const {
-        if (oper_->xltype == xltypeNum)
+        if (oper_->xltype & xltypeNum)
             return oper_->val.num;
         else {
             OPER xDouble;
@@ -57,22 +67,23 @@ namespace ObjectHandler {
     }
 
     ConvertOper::operator bool() const {
-        if (oper_->xltype == xltypeBool)
-            return oper_->val.boolean != 0;
+        if (oper_->xltype & xltypeBool)
+            //return oper_->val.boolean != 0;
+            return oper_->val.xbool != 0;
         else {
             OPER xBool;
             Excel(xlCoerce, &xBool, 2, oper_, TempInt(xltypeBool));
-            return xBool.val.boolean != 0;
+            //return xBool.val.boolean != 0;
+            return xBool.val.xbool != 0;
         }
     }
 
     ConvertOper::operator std::string() const {
         const OPER *xString;
-
-        if (oper_->xltype == xltypeStr) {
+        Xloper xTemp;
+        if (oper_->xltype & xltypeStr) {
             xString = oper_;
         } else {
-            Xloper xTemp;
             Excel(xlCoerce, &xTemp, 2, oper_, TempInt(xltypeStr));
             xString = &xTemp;
         }
@@ -80,11 +91,11 @@ namespace ObjectHandler {
     }
 
     const std::type_info& ConvertOper::type() const {
-        if(oper_->xltype == xltypeNum)
+        if(oper_->xltype & xltypeNum)
             return typeid(double);
-        else if(oper_->xltype == xltypeBool)
+        else if(oper_->xltype & xltypeBool)
             return typeid(bool);
-        else if(oper_->xltype == xltypeStr)
+        else if(oper_->xltype & xltypeStr)
             return typeid(std::string);
         else if(missing() || error())
             return typeid(empty_property_tag);
@@ -97,11 +108,12 @@ namespace ObjectHandler {
             return empty_property_tag();
         } else if (error()) {
             return empty_property_tag();
-        } else if (oper_->xltype == xltypeNum) {
+        } else if (oper_->xltype & xltypeNum) {
             return oper_->val.num;
-        } else if (oper_->xltype == xltypeBool) {
-            return oper_->val.boolean != 0;
-        } else if (oper_->xltype == xltypeStr) {
+        } else if (oper_->xltype & xltypeBool) {
+            //return oper_->val.boolean != 0;
+            return oper_->val.xbool != 0;
+        } else if (oper_->xltype & xltypeStr) {
             return strConv(oper_);
         } else {
             OH_FAIL("ConvertOper: unexpected datatype: " << oper_->xltype);
