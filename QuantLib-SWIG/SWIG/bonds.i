@@ -387,7 +387,7 @@ class CallableFixedRateBondPtr : public BondPtr {
                 BusinessDayConvention paymentConvention,
                 Real redemption,
                 Date issueDate,
-                const CallabilitySchedule &putCallSchedule) {
+                const std::vector<boost::shared_ptr<Callability> > &putCallSchedule) {
             return new CallableFixedRateBondPtr(
                 new CallableFixedRateBond(settlementDays, faceAmount,
                                           schedule, coupons, accrualDayCounter,
@@ -422,6 +422,64 @@ class TreeCallableFixedRateBondEnginePtr
         }
     }
 };
+
+%{
+using QuantLib::CallableZeroCouponBond;
+using QuantLib::TreeCallableZeroCouponBondEngine;
+typedef boost::shared_ptr<Instrument> CallableZeroCouponBondPtr;
+typedef boost::shared_ptr<PricingEngine> TreeCallableZeroCouponBondEnginePtr;
+%}
+
+%rename(CallableZeroCouponBond) CallableZeroCouponBondPtr;
+class CallableZeroCouponBondPtr : public BondPtr {
+    %feature("kwargs") CallableZeroCouponBondPtr;
+  public:
+    %extend {
+        CallableZeroCouponBondPtr(
+                               Natural settlementDays,
+                               Real faceAmount,
+                               const Calendar& calendar,
+			       	                    const Date& maturityDate,
+                               const DayCounter& dayCounter,
+                               BusinessDayConvention paymentConvention,
+                               Real redemption,
+                               const Date& issueDate,
+                               const std::vector<boost::shared_ptr<Callability> >& putCallSchedule) {
+            return new CallableZeroCouponBondPtr(
+                new CallableZeroCouponBond(settlementDays, faceAmount,
+                                          calendar, maturityDate, dayCounter,
+                                          paymentConvention, redemption,
+                                          issueDate, putCallSchedule));
+        }
+    }
+};
+
+%rename(TreeCallableZeroCouponBondEngine) TreeCallableZeroCouponBondEnginePtr;
+class TreeCallableZeroCouponBondEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        TreeCallableZeroCouponBondEnginePtr(
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         Size timeSteps,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
+            return new TreeCallableZeroCouponBondEnginePtr(
+                new TreeCallableZeroCouponBondEngine(model, timeSteps,
+                                                    termStructure));
+        }
+        TreeCallableZeroCouponBondEnginePtr(
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         const TimeGrid& grid,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
+            return new TreeCallableZeroCouponBondEnginePtr(
+                new TreeCallableZeroCouponBondEngine(model, grid,
+                                                    termStructure));
+        }
+    }
+};
+
 
 %{
 using QuantLib::CPIBond;

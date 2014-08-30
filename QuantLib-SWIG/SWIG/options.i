@@ -53,6 +53,7 @@ struct Barrier {
 %{
 using QuantLib::Payoff;
 using QuantLib::StrikedTypePayoff;
+using QuantLib::PercentageStrikePayoff;
 %}
 
 %ignore Payoff;
@@ -1547,6 +1548,144 @@ class FFTVarianceGammaEnginePtr
         void precalculate(const std::vector<boost::shared_ptr<Instrument> >& optionList)
         {
 			boost::dynamic_pointer_cast<FFTVarianceGammaEngine>(*self)->precalculate(optionList);
+        }
+    }
+};
+
+
+
+%{
+using QuantLib::CompoundOption;
+typedef boost::shared_ptr<Instrument> CompoundOptionPtr;
+%}
+
+%rename(CompoundOption) CompoundOptionPtr;
+class CompoundOptionPtr : public boost::shared_ptr<Instrument> {
+  public:
+    %extend {
+        CompoundOptionPtr(
+                const boost::shared_ptr<Payoff>& payoffMother,
+                const boost::shared_ptr<Exercise>& exerciseMother, 
+                const boost::shared_ptr<Payoff>& payoffDoughter,
+                const boost::shared_ptr<Exercise>& exerciseDoughter) {
+            boost::shared_ptr<StrikedTypePayoff> stPayoffMother =
+                 boost::dynamic_pointer_cast<StrikedTypePayoff>(payoffMother);
+
+            boost::shared_ptr<StrikedTypePayoff> stPayoffDoughter =
+                 boost::dynamic_pointer_cast<StrikedTypePayoff>(payoffDoughter);
+
+            QL_REQUIRE(stPayoffMother, "wrong mother payoff given");
+            QL_REQUIRE(stPayoffDoughter, "wrong doughter payoff given");
+            return new CompoundOptionPtr(new CompoundOption(stPayoffMother, exerciseMother, stPayoffDoughter, exerciseDoughter));
+        }
+    }
+};
+
+
+%{
+using QuantLib::AnalyticCompoundOptionEngine;
+typedef boost::shared_ptr<PricingEngine> AnalyticCompoundOptionEnginePtr;
+%}
+
+%rename(AnalyticCompoundOptionEngine) AnalyticCompoundOptionEnginePtr;
+class AnalyticCompoundOptionEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticCompoundOptionEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new AnalyticCompoundOptionEnginePtr(
+                                       new AnalyticCompoundOptionEngine(bsProcess));
+        }
+    }
+};
+
+
+
+%{
+using QuantLib::CliquetOption;
+typedef boost::shared_ptr<Instrument> CliquetOptionPtr;
+%}
+
+%rename(CliquetOption) CliquetOptionPtr;
+class CliquetOptionPtr : public boost::shared_ptr<Instrument> {
+  public:
+    %extend {
+        CliquetOptionPtr(
+                const boost::shared_ptr<Payoff>& payoff,
+                const boost::shared_ptr<Exercise>& exercise, 
+		      const std::vector<Date>& resets) {
+            boost::shared_ptr<PercentageStrikePayoff> pctPayoff =
+                 boost::dynamic_pointer_cast<PercentageStrikePayoff>(payoff);
+		     boost::shared_ptr<EuropeanExercise> euExercise = 
+		         				  boost::dynamic_pointer_cast<EuropeanExercise>(exercise);
+
+            QL_REQUIRE(pctPayoff, "wrong payoff given");
+            QL_REQUIRE(euExercise, "wrong exercise given");
+            return new CliquetOptionPtr(
+                          new CliquetOption(pctPayoff, euExercise, resets));
+        }
+    }
+};
+
+%{
+using QuantLib::AnalyticCliquetEngine;
+typedef boost::shared_ptr<PricingEngine> AnalyticCliquetEnginePtr;
+%}
+
+%rename(AnalyticCliquetEngine) AnalyticCliquetEnginePtr;
+class AnalyticCliquetEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticCliquetEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new AnalyticCliquetEnginePtr(
+                                       new AnalyticCliquetEngine(bsProcess));
+        }
+    }
+};
+
+
+%{
+using QuantLib::SimpleChooserOption;
+typedef boost::shared_ptr<Instrument> SimpleChooserOptionPtr;
+%}
+
+%rename(SimpleChooserOption) SimpleChooserOptionPtr;
+class SimpleChooserOptionPtr : public boost::shared_ptr<Instrument> {
+  public:
+    %extend {
+        SimpleChooserOptionPtr(Date choosing, Real strike, const boost::shared_ptr<Exercise>& exercise) {
+            return new SimpleChooserOptionPtr(new SimpleChooserOption(choosing, strike, exercise));
+        }
+    }
+};
+
+
+%{
+using QuantLib::AnalyticSimpleChooserEngine;
+typedef boost::shared_ptr<PricingEngine> AnalyticSimpleChooserEnginePtr;
+%}
+
+%rename(AnalyticSimpleChooserEngine) AnalyticSimpleChooserEnginePtr;
+class AnalyticSimpleChooserEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticSimpleChooserEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new AnalyticSimpleChooserEnginePtr(
+                                       new AnalyticSimpleChooserEngine(bsProcess));
         }
     }
 };
