@@ -46,7 +46,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <dynamiccreator.hpp>
+#include <ql/experimental/math/dynamiccreator.hpp>
 #include <ql/errors.hpp>
 #include <ql/math/randomnumbers/seedgenerator.hpp>
 #include <cstring>
@@ -118,10 +118,11 @@ MersenneTwisterDynamicRng::MersenneTwisterDynamicRng(
 MersenneTwisterDynamicRngDescription
 MersenneTwisterDynamicRng::description() const {
     QL_REQUIRE(m_ != NULL,"not a valid mt instance");
-    return {w_,         p_,         m_->aaa,    m_->mm,     m_->nn,
-            m_->rr,     m_->ww,     m_->wmask,  m_->umask,  m_->lmask,
-            m_->shift0, m_->shift1, m_->shiftB, m_->shiftC, m_->maskB,
-            m_->maskC,  m_->i};
+    MersenneTwisterDynamicRngDescription des = {
+        w_,         p_,         m_->aaa,   m_->mm,    m_->nn,     m_->rr,
+        m_->ww,     m_->wmask,  m_->umask, m_->lmask, m_->shift0, m_->shift1,
+        m_->shiftB, m_->shiftC, m_->maskB, m_->maskC, m_->i};
+    return des;
 }
 
 // original code
