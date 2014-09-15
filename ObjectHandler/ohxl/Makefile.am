@@ -24,7 +24,9 @@ dist-hook:
 	cp -p $(srcdir)/conversions/*.?pp $(distdir)/conversions
 	cp -p $(srcdir)/functions/*.?pp $(distdir)/functions
 	cp -p $(srcdir)/ohxll/*.vcproj $(distdir)/ohxll
+	cp -p $(srcdir)/ohxll/*.vcxproj $(distdir)/ohxll
 	cp -p $(srcdir)/ohxllib/*.vcproj $(distdir)/ohxllib
+	cp -p $(srcdir)/ohxllib/*.vcxproj $(distdir)/ohxllib
 	cp -p $(srcdir)/register/*.?pp $(distdir)/register
 	cp -p $(srcdir)/utilities/*.?pp $(distdir)/utilities
 
