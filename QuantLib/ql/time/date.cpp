@@ -432,8 +432,7 @@ namespace QuantLib {
 
 
     // date formatting
-	std::istream& operator >> (std::istream& in , Date& date){
- 
+	std::istream& operator>>(std::istream& in , Date& date) {
 	    Year  y;  Month m; Day   d;
 	    int month;
 	    in >> y >> month >> d;
@@ -442,6 +441,7 @@ namespace QuantLib {
 	    date = date_temp;
 	    return in;
 	}
+	
     std::ostream& operator<<(std::ostream& out, const Date& d) {
         return out << io::long_date(d);
     }
