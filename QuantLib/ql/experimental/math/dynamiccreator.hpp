@@ -59,6 +59,8 @@
 #define quantlib_dynamic_creator_hpp
 
 #include <ql/methods/montecarlo/sample.hpp>
+#include <ql/errors.hpp>
+#include <ql/math/randomnumbers/seedgenerator.hpp>
 #include <boost/cstdint.hpp>
 
 namespace QuantLib {
@@ -96,6 +98,11 @@ struct MersenneTwisterDynamicRngDescription {
     int i;
 };
 
+// Use this class only if you want to dynamically create a mt during runtime
+// It is faster to use precomputed instances with the class
+// MersenneTwisterCustomRng below. The constructor taking a description is
+// kept for convenience reasons here only
+
 class MersenneTwisterDynamicRng {
 
   public:
@@ -110,13 +117,11 @@ class MersenneTwisterDynamicRng {
     // usable p for periods 2^p-1 are 521   607  1279  2203
     // 2281  3217  4253  4423 9689  9941 11213 19937 21701
     // 23209 44497
-
     MersenneTwisterDynamicRng(const int w = 32, const int p = 521,
                               const uint32_t creatorSeed = 42,
                               const uint16_t id = 0, const uint32_t seed = 0);
 
     // create mt from saved description
-
     MersenneTwisterDynamicRng(const MersenneTwisterDynamicRngDescription &d,
                               const uint32_t seed = 0);
 
@@ -130,34 +135,275 @@ class MersenneTwisterDynamicRng {
 
   private:
     // hide copy and assignment constructors
-    MersenneTwisterDynamicRng(const MersenneTwisterDynamicRng &o);
-    MersenneTwisterDynamicRng &operator=(const MersenneTwisterDynamicRng &o);
+    MersenneTwisterDynamicRng(const MersenneTwisterDynamicRng &);
+    MersenneTwisterDynamicRng &operator=(const MersenneTwisterDynamicRng &);
     const int w_, p_;
     mt_detail::mt_struct *m_;
-
 };
+
+template <class Description> class MersenneTwisterCustomRng {
+
+  public:
+    typedef Sample<Real> sample_type;
+
+    // if given seed is 0 then a clock based seed is used
+    MersenneTwisterCustomRng(const uint32_t seed = 0);
+    ~MersenneTwisterCustomRng();
+
+    void resetSeed(const uint32_t seed);
+    sample_type next();
+    Real nextReal();
+    unsigned long nextInt32();
+
+  private:
+    // hide copy and assignment constructors
+    MersenneTwisterCustomRng(const MersenneTwisterCustomRng &);
+    MersenneTwisterCustomRng &operator=(const MersenneTwisterCustomRng &);
+    uint32_t *state_;
+    int i_;
+};
+
+template <class Description>
+MersenneTwisterCustomRng<Description>::MersenneTwisterCustomRng(
+    const uint32_t seed) {
+    state_ = (uint32_t *)malloc((Description::p / Description::w + 1) *
+                               sizeof(uint32_t));
+    QL_REQUIRE(state_ != NULL, "can not allocate state space");
+    resetSeed(seed);
+}
+
+template <class Description>
+MersenneTwisterCustomRng<Description>::~MersenneTwisterCustomRng() {
+    free(state_);
+}
+
+template <class Description>
+void MersenneTwisterCustomRng<Description>::resetSeed(const uint32_t seed) {
+    uint32_t tmpSeed = seed;
+    if (tmpSeed == 0)
+        tmpSeed = SeedGenerator::instance().get();
+    // sgenrand_mt
+    for (int i = 0; i < Description::nn; ++i) {
+        state_[i] = tmpSeed;
+        tmpSeed = (UINT32_C(1812433253) * (tmpSeed ^ (tmpSeed >> 30))) + i + 1;
+        /* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
+        /* In the previous versions, MSBs of the seed affect   */
+        /* only MSBs of the array mt[].                        */
+    }
+    i_ = Description::nn;
+    for (int i = 0; i < Description::nn; ++i)
+        state_[i] &= Description::wmask;
+    // end sgendrand_mt
+}
+
+template <class Description>
+typename MersenneTwisterCustomRng<Description>::sample_type
+MersenneTwisterCustomRng<Description>::next() {
+    return sample_type(nextReal(), 1.0);
+}
+
+template <class Description>
+Real MersenneTwisterCustomRng<Description>::nextReal() {
+    return (Real(nextInt32()) + 0.5) / 4294967296.0;
+}
+
+template <class Description>
+unsigned long MersenneTwisterCustomRng<Description>::nextInt32() {
+    // genrant_mt
+    uint32_t x;
+    int k;
+    if (i_ >= Description::nn) {
+        for (k = 0; k < Description::nn - Description::mm; ++k) {
+            x = (state_[k] & Description::umask) |
+                (state_[k + 1] & Description::lmask);
+            state_[k] = state_[k + Description::mm] ^ (x >> 1) ^
+                        (x & 1U ? Description::aaa : 0U);
+        }
+        for (; k < Description::nn - 1; ++k) {
+            x = (state_[k] & Description::umask) |
+                (state_[k + 1] & Description::lmask);
+            state_[k] = state_[k + Description::mm - Description::nn] ^
+                        (x >> 1) ^ (x & 1U ? Description::aaa : 0U);
+        }
+        x = (state_[Description::nn - 1] & Description::umask) |
+            (state_[0] & Description::lmask);
+        state_[Description::nn - 1] = state_[Description::mm - 1] ^ (x >> 1) ^
+                                      (x & 1U ? Description::aaa : 0U);
+        i_ = 0;
+    }
+    x = state_[i_];
+    ++i_;
+    x ^= x >> Description::shift0;
+    x ^= (x << Description::shiftB) & Description::maskB;
+    x ^= (x << Description::shiftC) & Description::maskC;
+    x ^= x >> Description::shift1;
+    return static_cast<unsigned long>(x);
+    // end genrand_mt
+}
 
 // precomputed instances
 // 8 instances with p=19937, w=32 created with creator-seed 42
 // and ids 4138, 4139, 4140, 4142, 4143, 4144, 4145, 4146
 
-const static struct MersenneTwisterDynamicRngDescription mtdesc_0_8_19937[8] = {
-    {32, 19937, 2760052778UL, 312, 624, 31, 32, 4294967295UL, 2147483648UL,
-     2147483647UL, 12, 18, 7, 15, 861204096UL, 3721887744UL, 624},
-    {32, 19937, 2708803627UL, 312, 624, 31, 32, 4294967295UL, 2147483648UL,
-     2147483647UL, 12, 18, 7, 15, 995441536UL, 4158029824UL, 624},
-    {32, 19937, 2902986796UL, 312, 624, 31, 32, 4294967295UL, 2147483648UL,
-     2147483647UL, 12, 18, 7, 15, 2607987584UL, 4149641216UL, 624},
-    {32, 19937, 3431665710UL, 312, 624, 31, 32, 4294967295UL, 2147483648UL,
-     2147483647UL, 12, 18, 7, 15, 827782784UL, 3621027840UL, 624},
-    {32, 19937, 3975614511UL, 312, 624, 31, 32, 4294967295UL, 2147483648UL,
-     2147483647UL, 12, 18, 7, 15, 3142380672UL, 4023877632UL, 624},
-    {32, 19937, 3342274608UL, 312, 624, 31, 32, 4294967295UL, 2147483648UL,
-     2147483647UL, 12, 18, 7, 15, 1860665216UL, 4117987328UL, 624},
-    {32, 19937, 2711425073UL, 312, 624, 31, 32, 4294967295UL, 2147483648UL,
-     2147483647UL, 12, 18, 7, 15, 4007967616UL, 2008121344UL, 624},
-    {32, 19937, 3279884338UL, 312, 624, 31, 32, 4294967295UL, 2147483648UL,
-     2147483647UL, 12, 18, 7, 15, 3151424896UL, 3749019648UL, 624}};
+struct Mtdesc19937_0 {
+    static const int w = 32;
+    static const int p = 19937;
+    static const uint32_t aaa = 2760052778UL;
+    static const int mm = 312;
+    static const int nn = 624;
+    static const int rr = 31;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 2147483648UL;
+    static const uint32_t lmask = 2147483647UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 861204096UL;
+    static const uint32_t maskC = 3721887744UL;
+    // static const int i = 624;
+};
+
+struct Mtdesc19937_1 {
+    static const int w = 32;
+    static const int p = 19937;
+    static const uint32_t aaa = 2708803627UL;
+    static const int mm = 312;
+    static const int nn = 624;
+    static const int rr = 31;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 2147483648UL;
+    static const uint32_t lmask = 2147483647UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 995441536UL;
+    static const uint32_t maskC = 4158029824UL;
+    // static const int i = 624;
+};
+
+struct Mtdesc19937_2 {
+    static const int w = 32;
+    static const int p = 19937;
+    static const uint32_t aaa = 2902986796UL;
+    static const int mm = 312;
+    static const int nn = 624;
+    static const int rr = 31;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 2147483648UL;
+    static const uint32_t lmask = 2147483647UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 2607987584UL;
+    static const uint32_t maskC = 4149641216UL;
+    // static const int i = 624;
+};
+
+struct Mtdesc19937_3 {
+    static const int w = 32;
+    static const int p = 19937;
+    static const uint32_t aaa = 3431665710UL;
+    static const int mm = 312;
+    static const int nn = 624;
+    static const int rr = 31;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 2147483648UL;
+    static const uint32_t lmask = 2147483647UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 827782784UL;
+    static const uint32_t maskC = 3621027840UL;
+    // static const int i = 624;
+};
+
+struct Mtdesc19937_4 {
+    static const int w = 32;
+    static const int p = 19937;
+    static const uint32_t aaa = 3975614511UL;
+    static const int mm = 312;
+    static const int nn = 624;
+    static const int rr = 31;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 2147483648UL;
+    static const uint32_t lmask = 2147483647UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 3142380672UL;
+    static const uint32_t maskC = 4023877632UL;
+    // static const int i = 624;
+};
+
+struct Mtdesc19937_5 {
+    static const int w = 32;
+    static const int p = 19937;
+    static const uint32_t aaa = 3342274608UL;
+    static const int mm = 312;
+    static const int nn = 624;
+    static const int rr = 31;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 2147483648UL;
+    static const uint32_t lmask = 2147483647UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 1860665216UL;
+    static const uint32_t maskC = 4117987328UL;
+    // static const int i = 624;
+};
+
+struct Mtdesc19937_6 {
+    static const int w = 32;
+    static const int p = 19937;
+    static const uint32_t aaa = 2711425073UL;
+    static const int mm = 312;
+    static const int nn = 624;
+    static const int rr = 31;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 2147483648UL;
+    static const uint32_t lmask = 2147483647UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 4007967616UL;
+    static const uint32_t maskC = 2008121344UL;
+    // static const int i = 624;
+};
+
+struct Mtdesc19937_7 {
+    static const int w = 32;
+    static const int p = 19937;
+    static const uint32_t aaa = 3279884338UL;
+    static const int mm = 312;
+    static const int nn = 624;
+    static const int rr = 31;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 2147483648UL;
+    static const uint32_t lmask = 2147483647UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 3151424896UL;
+    static const uint32_t maskC = 3749019648UL;
+    // static const int i = 624;
+};
 
 namespace mt_detail {
 

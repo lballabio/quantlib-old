@@ -47,8 +47,6 @@
 */
 
 #include <ql/experimental/math/dynamiccreator.hpp>
-#include <ql/errors.hpp>
-#include <ql/math/randomnumbers/seedgenerator.hpp>
 #include <cstring>
 
 namespace QuantLib {
@@ -62,11 +60,11 @@ MersenneTwisterDynamicRng::~MersenneTwisterDynamicRng() {
     mt_detail::free_mt_struct(m_);
 }
 
-void MersenneTwisterDynamicRng::resetSeed(uint32_t seed) {
+void MersenneTwisterDynamicRng::resetSeed(const uint32_t seed) {
     uint32_t tmpSeed = seed;
     if (tmpSeed == 0)
-        seed = SeedGenerator::instance().get();
-    sgenrand_mt(seed, m_);
+        tmpSeed = SeedGenerator::instance().get();
+    sgenrand_mt(tmpSeed, m_);
 }
 
 MersenneTwisterDynamicRng::sample_type MersenneTwisterDynamicRng::next() {
@@ -977,6 +975,7 @@ void sgenrand_mt(uint32_t seed, mt_struct *mts)
     for (i=0; i<mts->nn; i++)
     mts->state[i] &= mts->wmask;
 }
+
 
 uint32_t genrand_mt(mt_struct *mts)
 {
