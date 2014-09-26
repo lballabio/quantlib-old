@@ -16,7 +16,7 @@
 
         <!-- for FixedIncome (2) -->
         <StartupParameter name="Root Path" value=".\" />
-        <StartupParameter name="Open Contributor" value="False" />
+        <StartupParameter name="Open Contributor" value="True" />
 
         <!-- for FixedIncome (1) -->
         <StartupParameter name="Workbook Path" value=".\Workbooks" />
