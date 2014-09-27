@@ -304,8 +304,9 @@ class BlackVarianceSurface {
 %rename(BlackVarianceSurface) BlackVarianceSurfacePtr;
 class BlackVarianceSurfacePtr
     : public boost::shared_ptr<BlackVolTermStructure> {
+    %feature("kwargs") BlackVarianceSurfacePtr;
   public:
-    %extend {
+    %extend { 
         BlackVarianceSurfacePtr(
                 const Date& referenceDate,
                 const Calendar & cal,
@@ -316,11 +317,17 @@ class BlackVarianceSurfacePtr
                 BlackVarianceSurface::Extrapolation lower =
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation,
                 BlackVarianceSurface::Extrapolation upper =
-                    BlackVarianceSurface::InterpolatorDefaultExtrapolation) {
-            return new BlackVarianceSurfacePtr(
-                new BlackVarianceSurface(referenceDate,cal,
-                                         dates,strikes,
-                                         blackVols,dayCounter,lower,upper));
+                    BlackVarianceSurface::InterpolatorDefaultExtrapolation,
+                const std::string& interpolator = "") {
+            BlackVarianceSurface* surf =  new BlackVarianceSurface(referenceDate,cal,
+                                          dates,strikes,
+                                          blackVols,dayCounter,lower,upper);
+            std::string s = boost::algorithm::to_lower_copy(interpolator);
+            if (s == "bicubic") {
+       		surf->setInterpolation<QuantLib::Bicubic>();
+       	    }
+
+            return new BlackVarianceSurfacePtr(surf);
         }
         static const BlackVarianceSurface::Extrapolation
             ConstantExtrapolation =
