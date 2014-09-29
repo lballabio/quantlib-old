@@ -24,7 +24,7 @@
         <StartupParameter name="Metadata Path" value=".\QuantLibAddin\gensrc\metadata" />
         <StartupParameter name="Set Evaluation Date" value="False" />
         <StartupParameter name="Evaluation Date" value="2011-10-12" />
-        <StartupParameter name="Default Currency" value="CNH" />
+        <StartupParameter name="Default Currency" value="RMB" />
         <StartupParameter name="Initialization Data Source" value="Excel" />
         <StartupParameter name="Open Main Checks" value="true" />
         <StartupParameter name="Update Libor YTD Time Series (xls)" value="False" />
@@ -32,7 +32,7 @@
         <StartupParameter name="Load Index YTD Time Series (xml)" value="False" />
         <StartupParameter name="Bootstrap Yield Curves" value="TRUE" />
         <StartupParameter name="Real Time Feed" value="Reuters" />
-        <StartupParameter name="Market Data" value="Live" />
+        <StartupParameter name="Market Data" value="Static" />
       </StartupParameters>
     </Framework>
   </Frameworks>
