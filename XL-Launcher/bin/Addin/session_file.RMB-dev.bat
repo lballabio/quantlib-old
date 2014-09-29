@@ -5,6 +5,6 @@ SET LAUNCHER_DIR=.
 @REM This environment variable tells the launcher which session file to use.
 @REM If this variable is not set then Launcher.xla looks for a file called session_file.xml in the same directory.
 @REM If that file is not found then the launcher defaults to hard coded parameters.
-SET XL_LAUNCHER_PATH=%LAUNCHER_DIR%\session_file.CNH-dev.xml
+SET XL_LAUNCHER_PATH=%LAUNCHER_DIR%\session_file.RMB-dev.xml
 
 START "EXCEL" "C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE" /e /r "%LAUNCHER_DIR%\Launcher.xla"
