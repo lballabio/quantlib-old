@@ -50,10 +50,7 @@ namespace QuantLibAddin {
         vector<Real> v;
         for (Size i=0; i<values.size(); ++i) {
             // skip null fixings
-            if (values[i]!=0.0 && values[i]!=QuantLib::Null<Real>()) {
-                QL_REQUIRE(values[i]>0.0,
-                           "non positive fixing (" << values[i] <<
-                           ") at date " << dates[i] << " not allowed");
+            if (values[i]!= QuantLib::Null<Real>()) {
                 d.push_back(dates[i]);
                 v.push_back(values[i]);
             }
