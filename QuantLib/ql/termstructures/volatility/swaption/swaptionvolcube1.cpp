@@ -153,6 +153,7 @@ namespace QuantLib {
             denseParameters_ = sabrCalibration(volCubeAtmCalibrated_);
             denseParameters_.updateInterpolators();
         }
+        notifyObservers();
     }
 
     SwaptionVolCube1::Cube
@@ -651,12 +652,14 @@ namespace QuantLib {
         parametersGuess_.updateInterpolators();
         sabrCalibrationSection(marketVolCube_, sparseParameters_, swapTenor);
 
+        volCubeAtmCalibrated_ = marketVolCube_;
         if (isAtmCalibrated_) {
             fillVolatilityCube();
             sabrCalibrationSection(volCubeAtmCalibrated_, denseParameters_,
                                    swapTenor);
         }
 
+        notifyObservers();
     }
 
     void SwaptionVolCube1::recalibration(const std::vector<Period> &swapLengths,
