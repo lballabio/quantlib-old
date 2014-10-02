@@ -97,7 +97,7 @@ namespace QuantLibAddin {
         bool permanent) : PricingEngine(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
-            QuantLib::BlackCapFloorEngine(hYTS, vol, dayCounter));
+            QuantLib::BlackCapFloorEngine(hYTS, vol, dayCounter, displacement));
     }
 
     BlackCapFloorEngine::BlackCapFloorEngine(
@@ -108,7 +108,7 @@ namespace QuantLibAddin {
         bool permanent) : PricingEngine(properties, permanent)
     {
         libraryObject_ = boost::shared_ptr<QuantLib::PricingEngine>(new
-            QuantLib::BlackCapFloorEngine(hYTS, vol));
+			QuantLib::BlackCapFloorEngine(hYTS, vol, displacement));
     }
 
     AnalyticCapFloorEngine::AnalyticCapFloorEngine(
