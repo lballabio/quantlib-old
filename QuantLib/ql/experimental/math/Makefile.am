@@ -7,6 +7,7 @@ this_include_HEADERS = \
     adaptiverungekutta.hpp \
     claytoncopularng.hpp \
     convolvedstudentt.hpp \
+	dynamiccreator.hpp \
     expm.hpp \
     farliegumbelmorgensterncopularng.hpp \
     frankcopularng.hpp \
@@ -16,6 +17,7 @@ this_include_HEADERS = \
 
 libMath_la_SOURCES = \
     convolvedstudentt.cpp \
+	dynamiccreator.cpp \
 	expm.cpp \
     zigguratrng.cpp
 
