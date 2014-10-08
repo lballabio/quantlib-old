@@ -36,7 +36,8 @@ class Exercise {
   public:
     enum Type { American, Bermudan, European };
     Exercise::Type type() const;
-    std::vector<Date> dates() const;
+    const std::vector<Date>& dates() const;
+    Date lastDate() const { return dates_.back(); }
 #if defined(SWIGJAVA) || defined(SWIGCSHARP)
   private:
     Exercise();
