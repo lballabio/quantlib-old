@@ -319,14 +319,18 @@ class BlackVarianceSurfacePtr
                 BlackVarianceSurface::Extrapolation upper =
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation,
                 const std::string& interpolator = "") {
-            BlackVarianceSurface* surf =  new BlackVarianceSurface(referenceDate,cal,
-                                          dates,strikes,
-                                          blackVols,dayCounter,lower,upper);
+            BlackVarianceSurface* surf =
+                new BlackVarianceSurface(referenceDate,cal,
+                                         dates,strikes,
+                                         blackVols,dayCounter,lower,upper);
             std::string s = boost::algorithm::to_lower_copy(interpolator);
-            if (s == "bicubic") {
-       		surf->setInterpolation<QuantLib::Bicubic>();
-       	    }
-
+            if (s == "" || s == "bilinear") {
+                surf->setInterpolation<QuantLib::Bilinear>();
+            } else if (s == "bicubic") {
+                surf->setInterpolation<QuantLib::Bicubic>();
+            } else {
+                QL_FAIL("Unknown interpolator: " << interpolator);
+            }
             return new BlackVarianceSurfacePtr(surf);
         }
         static const BlackVarianceSurface::Extrapolation
