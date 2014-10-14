@@ -295,13 +295,14 @@ class UpfrontCdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
                 const DayCounter& dayCounter,
                 Real recoveryRate,
                 const Handle<YieldTermStructure>& discountCurve,
+                Natural upfrontSettlementDays=0,
                 bool settlesAccrual = true,
                 bool paysAtDefaultTime = true) {
             return new UpfrontCdsHelperPtr(
                 new UpfrontCdsHelper(upfront,spread,tenor,
                                      settlementDays,calendar,
                                      frequency,convention,rule,dayCounter,
-                                     recoveryRate,discountCurve,
+                                     recoveryRate,discountCurve,upfrontSettlementDays,
                                      settlesAccrual,paysAtDefaultTime));
         }
         UpfrontCdsHelperPtr(
@@ -316,13 +317,14 @@ class UpfrontCdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
                 const DayCounter& dayCounter,
                 Real recoveryRate,
                 const Handle<YieldTermStructure>& discountCurve,
+                Natural upfrontSettlementDays=0,
                 bool settlesAccrual = true,
                 bool paysAtDefaultTime = true) {
             return new UpfrontCdsHelperPtr(
                 new UpfrontCdsHelper(upfront,spread,tenor,
                                      settlementDays,calendar,
                                      frequency,convention,rule,dayCounter,
-                                     recoveryRate,discountCurve,
+                                     recoveryRate,discountCurve,upfrontSettlementDays,
                                      settlesAccrual,paysAtDefaultTime));
         }
     }
