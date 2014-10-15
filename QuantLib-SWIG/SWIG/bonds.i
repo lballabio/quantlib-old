@@ -271,20 +271,21 @@ class FloatingRateBondPtr : public BondPtr {
     %feature("kwargs") FloatingRateBondPtr;
   public:
     %extend {
-        FloatingRateBondPtr(Size settlementDays,
-                            Real faceAmount,
-                            const Schedule& schedule,
-                            const IborIndexPtr& index,
-                            const DayCounter& paymentDayCounter,
-                            BusinessDayConvention paymentConvention,
-                            Size fixingDays,
-                            const std::vector<Real>& gearings,
-                            const std::vector<Spread>& spreads,
-                            const std::vector<Rate>& caps,
-                            const std::vector<Rate>& floors,
-                            bool inArrears,
-                            Real redemption,
-                            const Date& issueDate) {
+        FloatingRateBondPtr(
+            Size settlementDays,
+            Real faceAmount,
+            const Schedule& schedule,
+            const IborIndexPtr& index,
+            const DayCounter& paymentDayCounter,
+            BusinessDayConvention paymentConvention = Following,
+            Size fixingDays = Null<Size>(),
+            const std::vector<Real>& gearings = std::vector<Real>(),
+            const std::vector<Spread>& spreads = std::vector<Spread>(),
+            const std::vector<Rate>& caps = std::vector<Rate>(),
+            const std::vector<Rate>& floors = std::vector<Rate>(),
+            bool inArrears = false,
+            Real redemption = 100.0,
+            const Date& issueDate = Date()) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new FloatingRateBondPtr(
