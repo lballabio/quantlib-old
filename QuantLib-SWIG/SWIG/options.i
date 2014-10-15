@@ -29,6 +29,7 @@
 %include instruments.i
 %include stl.i
 %include linearalgebra.i
+%include calibrationhelpers.i
 
 // option and barrier types
 %{
@@ -339,28 +340,10 @@ class AnalyticEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
 
 
 %{
-using QuantLib::CalibratedModel;
 using QuantLib::HestonModel;
 typedef boost::shared_ptr<CalibratedModel> HestonModelPtr;
 %}
 
-%ignore CalibratedModel;
-class CalibratedModel {
-    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE) || defined(SWIGRUBY)
-    %rename("calibrate!") calibrate;
-    #elif defined(SWIGCSHARP)
-    %rename("parameters") params;
-    #endif
-  public:
-    Array params() const;
-    void calibrate(
-        const std::vector<boost::shared_ptr<CalibrationHelper> >&,
-        OptimizationMethod&, const EndCriteria &,
-        const Constraint& constraint = Constraint(),
-        const std::vector<Real>& weights = std::vector<Real>());
-};
-
-%template(CalibratedModel) boost::shared_ptr<CalibratedModel>;
 %rename(HestonModel) HestonModelPtr;
 class HestonModelPtr : public boost::shared_ptr<CalibratedModel> {
   public:
@@ -373,6 +356,21 @@ class HestonModelPtr : public boost::shared_ptr<CalibratedModel> {
 
             return new HestonModelPtr(new HestonModel(hProcess));
         }
+		Real theta() const {
+			return boost::dynamic_pointer_cast<HestonModel>(*self)->theta();
+		}
+		Real kappa() const {
+			return boost::dynamic_pointer_cast<HestonModel>(*self)->kappa();
+		}
+		Real sigma() const {
+			return boost::dynamic_pointer_cast<HestonModel>(*self)->sigma();
+		}
+		Real rho() const {
+			return boost::dynamic_pointer_cast<HestonModel>(*self)->rho();
+		}
+		Real v0() const {
+			return boost::dynamic_pointer_cast<HestonModel>(*self)->v0();
+		}
 	}
 };
 
@@ -409,13 +407,17 @@ class AnalyticHestonEnginePtr : public boost::shared_ptr<PricingEngine> {
 };
 
 
+#if defined(SWIGPYTHON)
+%rename(lambda_parameter) lambda;
+#endif
+
 %{
 using QuantLib::BatesModel;
 typedef boost::shared_ptr<CalibratedModel> BatesModelPtr;
 %}
 
 %rename(BatesModel) BatesModelPtr;
-class BatesModelPtr : public boost::shared_ptr<CalibratedModel> {
+class BatesModelPtr : public HestonModelPtr {
   public:
     %extend {
         BatesModelPtr(const BatesProcessPtr&  process) {
@@ -426,6 +428,15 @@ class BatesModelPtr : public boost::shared_ptr<CalibratedModel> {
 
             return new BatesModelPtr(new BatesModel(bProcess));
         }
+		Real nu() const {
+			return boost::dynamic_pointer_cast<BatesModel>(*self)->nu();
+		}
+		Real delta() const {
+			return boost::dynamic_pointer_cast<BatesModel>(*self)->delta();
+		}
+		Real lambda() const {
+			return boost::dynamic_pointer_cast<BatesModel>(*self)->lambda();
+		}
     }
 };
 
