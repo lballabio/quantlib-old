@@ -304,7 +304,9 @@ class BlackVarianceSurface {
 %rename(BlackVarianceSurface) BlackVarianceSurfacePtr;
 class BlackVarianceSurfacePtr
     : public boost::shared_ptr<BlackVolTermStructure> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") BlackVarianceSurfacePtr;
+    #endif
   public:
     %extend { 
         BlackVarianceSurfacePtr(

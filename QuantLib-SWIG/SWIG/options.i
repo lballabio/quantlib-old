@@ -604,7 +604,9 @@ typedef boost::shared_ptr<PricingEngine> MCEuropeanEnginePtr;
 
 %rename(MCEuropeanEngine) MCEuropeanEnginePtr;
 class MCEuropeanEnginePtr : public boost::shared_ptr<PricingEngine> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") MCEuropeanEnginePtr;
+    #endif
   public:
     %extend {
         MCEuropeanEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
@@ -1046,7 +1048,9 @@ typedef boost::shared_ptr<PricingEngine> MCBarrierEnginePtr;
 
 %rename(MCBarrierEngine) MCBarrierEnginePtr;
 class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") MCBarrierEnginePtr;
+    #endif
   public:
     %extend {
         MCBarrierEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
@@ -1368,7 +1372,9 @@ typedef boost::shared_ptr<PricingEngine> MCDiscreteArithmeticAPEnginePtr;
 %rename(MCDiscreteArithmeticAPEngine) MCDiscreteArithmeticAPEnginePtr;
 class MCDiscreteArithmeticAPEnginePtr
     : public boost::shared_ptr<PricingEngine> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") MCDiscreteArithmeticAPEnginePtr;
+    #endif
   public:
     %extend {
         MCDiscreteArithmeticAPEnginePtr(
@@ -1423,7 +1429,9 @@ typedef boost::shared_ptr<PricingEngine> MCDiscreteArithmeticASEnginePtr;
 %rename(MCDiscreteArithmeticASEngine) MCDiscreteArithmeticASEnginePtr;
 class MCDiscreteArithmeticASEnginePtr
     : public boost::shared_ptr<PricingEngine> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") MCDiscreteArithmeticASEnginePtr;
+    #endif
   public:
     %extend {
         MCDiscreteArithmeticASEnginePtr(
@@ -1475,7 +1483,9 @@ typedef boost::shared_ptr<PricingEngine> MCDiscreteGeometricAPEnginePtr;
 %rename(MCDiscreteGeometricAPEngine) MCDiscreteGeometricAPEnginePtr;
 class MCDiscreteGeometricAPEnginePtr
     : public boost::shared_ptr<PricingEngine> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") MCDiscreteGeometricAPEnginePtr;
+    #endif
   public:
     %extend {
         MCDiscreteGeometricAPEnginePtr(
