@@ -25,7 +25,6 @@
 %include calendars.i
 %include daycounters.i
 %include cashflows.i
-%include grid.i
 %include marketelements.i
 %include termstructures.i
 %include optimizers.i
@@ -33,7 +32,6 @@
 %include linearalgebra.i
 %include types.i
 %include vectors.i
-%include calibrationhelpers.i
 
 %{
 using QuantLib::CalibrationHelper;

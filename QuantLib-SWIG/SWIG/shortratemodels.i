@@ -22,19 +22,8 @@
 #ifndef quantlib_short_rate_models_i
 #define quantlib_short_rate_models_i
 
-%include date.i
-%include calendars.i
-%include daycounters.i
-%include cashflows.i
+%include calibrationhelpers.i
 %include grid.i
-%include marketelements.i
-%include termstructures.i
-%include optimizers.i
-%include options.i
-%include linearalgebra.i
-%include types.i
-%include vectors.i
-
 
 // the base class for models
 %{

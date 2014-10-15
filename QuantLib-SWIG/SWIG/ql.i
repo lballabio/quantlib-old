@@ -149,6 +149,7 @@
 %include bonds.i
 %include bondfunctions.i
 %include calendars.i
+%include calibrationhelpers.i
 %include callability.i
 %include capfloor.i
 %include cashflows.i
