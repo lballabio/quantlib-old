@@ -164,7 +164,9 @@ class CouponPtr : public boost::shared_ptr<CashFlow> {
 
 %rename(FixedRateCoupon) FixedRateCouponPtr;
 class FixedRateCouponPtr : public CouponPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") FixedRateCouponPtr;
+    #endif
   public:
     %extend {
         FixedRateCouponPtr(const Date& paymentDate, Real nominal,
@@ -274,7 +276,9 @@ typedef boost::shared_ptr<CashFlow> CappedFlooredCouponPtr;
 
 %rename(CappedFlooredCoupon) CappedFlooredCouponPtr;
 class CappedFlooredCouponPtr : public FloatingRateCouponPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CappedFlooredCouponPtr;
+    #endif
   public:
     %extend {
         CappedFlooredCouponPtr(const FloatingRateCouponPtr& underlying,
@@ -321,7 +325,9 @@ class CappedFlooredCouponPtr : public FloatingRateCouponPtr {
 
 %rename(IborCoupon) IborCouponPtr;
 class IborCouponPtr : public FloatingRateCouponPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") IborCouponPtr;
+    #endif
   public:
     %extend {
         IborCouponPtr(const Date& paymentDate, Real nominal,
@@ -387,7 +393,9 @@ typedef boost::shared_ptr<CashFlow> CappedFlooredCmsCouponPtr;
 
 %rename(CmsCoupon) CmsCouponPtr;
 class CmsCouponPtr : public FloatingRateCouponPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CmsCouponPtr;
+    #endif
   public:
     %extend {
         CmsCouponPtr(const Date& paymentDate, Real nominal,
@@ -480,7 +488,9 @@ class NumericHaganPricerPtr : public CmsCouponPricerPtr {
 
 %rename(CappedFlooredCmsCoupon) CappedFlooredCmsCouponPtr;
 class CappedFlooredCmsCouponPtr: public CappedFlooredCouponPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CappedFlooredCouponPtr;
+    #endif
   public:
     %extend {
         CappedFlooredCmsCouponPtr(
@@ -522,7 +532,9 @@ Leg _FixedRateLeg(const Schedule& schedule,
         .withFirstPeriodDayCounter(firstPeriodDayCount);
 }
 %}
+#if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
 %feature("kwargs") _FixedRateLeg;
+#endif
 %rename(FixedRateLeg) _FixedRateLeg;
 Leg _FixedRateLeg(const Schedule& schedule,
                   const DayCounter& dayCount,
@@ -557,7 +569,9 @@ Leg _IborLeg(const std::vector<Real>& nominals,
         .inArrears(isInArrears);
 }
 %}
+#if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
 %feature("kwargs") _IborLeg;
+#endif
 %rename(IborLeg) _IborLeg;
 Leg _IborLeg(const std::vector<Real>& nominals,
              const Schedule& schedule,
@@ -597,7 +611,9 @@ Leg _CmsLeg(const std::vector<Real>& nominals,
         .inArrears(isInArrears);
 }
 %}
+#if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
 %feature("kwargs") _CmsLeg;
+#endif
 %rename(CmsLeg) _CmsLeg;
 Leg _CmsLeg(const std::vector<Real>& nominals,
             const Schedule& schedule,
@@ -636,7 +652,9 @@ Leg _CmsZeroLeg(const std::vector<Real>& nominals,
         .withZeroPayments();
 }
 %}
+#if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
 %feature("kwargs") _CmsZeroLeg;
+#endif
 %rename(CmsZeroLeg) _CmsZeroLeg;
 Leg _CmsZeroLeg(const std::vector<Real>& nominals,
                 const Schedule& schedule,
