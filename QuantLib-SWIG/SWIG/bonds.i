@@ -208,7 +208,9 @@ class BondPtr : public boost::shared_ptr<Instrument> {
 
 %rename(ZeroCouponBond) ZeroCouponBondPtr;
 class ZeroCouponBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") ZeroCouponBondPtr;
+    #endif
   public:
     %extend {
         ZeroCouponBondPtr(
@@ -230,7 +232,9 @@ class ZeroCouponBondPtr : public BondPtr {
 
 %rename(FixedRateBond) FixedRateBondPtr;
 class FixedRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") FixedRateBondPtr;
+    #endif
   public:
     %extend {
         FixedRateBondPtr(
@@ -268,23 +272,26 @@ class FixedRateBondPtr : public BondPtr {
 
 %rename(FloatingRateBond) FloatingRateBondPtr;
 class FloatingRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") FloatingRateBondPtr;
+    #endif
   public:
     %extend {
-        FloatingRateBondPtr(Size settlementDays,
-                            Real faceAmount,
-                            const Schedule& schedule,
-                            const IborIndexPtr& index,
-                            const DayCounter& paymentDayCounter,
-                            BusinessDayConvention paymentConvention,
-                            Size fixingDays,
-                            const std::vector<Real>& gearings,
-                            const std::vector<Spread>& spreads,
-                            const std::vector<Rate>& caps,
-                            const std::vector<Rate>& floors,
-                            bool inArrears,
-                            Real redemption,
-                            const Date& issueDate) {
+        FloatingRateBondPtr(
+            Size settlementDays,
+            Real faceAmount,
+            const Schedule& schedule,
+            const IborIndexPtr& index,
+            const DayCounter& paymentDayCounter,
+            BusinessDayConvention paymentConvention = Following,
+            Size fixingDays = Null<Size>(),
+            const std::vector<Real>& gearings = std::vector<Real>(),
+            const std::vector<Spread>& spreads = std::vector<Spread>(),
+            const std::vector<Rate>& caps = std::vector<Rate>(),
+            const std::vector<Rate>& floors = std::vector<Rate>(),
+            bool inArrears = false,
+            Real redemption = 100.0,
+            const Date& issueDate = Date()) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new FloatingRateBondPtr(
@@ -314,7 +321,9 @@ typedef boost::shared_ptr<Instrument> CmsRateBondPtr;
 
 %rename(CmsRateBond) CmsRateBondPtr;
 class CmsRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CmsRateBondPtr;
+    #endif
   public:
     %extend {
         CmsRateBondPtr(Size settlementDays,
@@ -375,7 +384,9 @@ typedef boost::shared_ptr<PricingEngine> TreeCallableFixedRateBondEnginePtr;
 
 %rename(CallableFixedRateBond) CallableFixedRateBondPtr;
 class CallableFixedRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CallableFixedRateBondPtr;
+    #endif
   public:
     %extend {
         CallableFixedRateBondPtr(
@@ -430,7 +441,9 @@ typedef boost::shared_ptr<Instrument> CPIBondPtr;
 
 %rename(CPIBond) CPIBondPtr;
 class CPIBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CPIBondPtr;
+    #endif
   public:
     %extend {
         CPIBondPtr(
