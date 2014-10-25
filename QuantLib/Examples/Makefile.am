@@ -3,6 +3,7 @@ AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 
 SUBDIRS = \
 	AswZSpreads \
+    BasketLosses \
     BermudanSwaption \
 	BermudanSwaption2 \
     Bonds \
@@ -22,6 +23,9 @@ SUBDIRS = \
     MarketModels \
 	MultitenorVols \
 	NonstandardSwaption \
+    LatentModel \
+    MarketModels \
+    MultidimIntegral \
     Replication \
     Repo \
 	SviSmileSection \

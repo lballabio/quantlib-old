@@ -409,6 +409,7 @@ AC_CONFIG_FILES([
     Docs/Makefile
     Examples/Makefile
     Examples/AswZSpreads/Makefile
+    Examples/BasketLosses/Makefile
     Examples/BermudanSwaption/Makefile
     Examples/BermudanSwaption2/Makefile
     Examples/Bonds/Makefile
@@ -423,6 +424,7 @@ AC_CONFIG_FILES([
     Examples/EquityOption/Makefile
     Examples/FittedBondCurve/Makefile
     Examples/FRA/Makefile
+    Examples/LatentModel/Makefile
     Examples/Gaussian1dModels/Makefile
     Examples/InterestRateSmiles/Makefile
     Examples/KahaleSmileSection/Makefile
@@ -430,6 +432,7 @@ AC_CONFIG_FILES([
     Examples/MarketModels/Makefile
     Examples/MultitenorVols/Makefile
     Examples/NonstandardSwaption/Makefile
+    Examples/MultidimIntegral/Makefile
     Examples/Replication/Makefile
     Examples/Repo/Makefile
     Examples/SimulatedAnnealing/Makefile

@@ -373,7 +373,9 @@ typedef boost::shared_ptr<ZeroInflationTermStructure> Name##Ptr;
 %}
 %rename(Name) Name##Ptr;
 class Name##Ptr : public boost::shared_ptr<ZeroInflationTermStructure> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") Name##Ptr;
+    #endif
   public:
     %extend {
         Name##Ptr(
@@ -420,7 +422,9 @@ typedef boost::shared_ptr<YoYInflationTermStructure> Name##Ptr;
 %}
 %rename(Name) Name##Ptr;
 class Name##Ptr : public boost::shared_ptr<YoYInflationTermStructure> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") Name##Ptr;
+    #endif
   public:
     %extend {
         Name##Ptr(

@@ -148,7 +148,9 @@ typedef boost::shared_ptr<Instrument> AssetSwapPtr;
 
 %rename(AssetSwap) AssetSwapPtr;
 class AssetSwapPtr : public SwapPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") AssetSwapPtr;
+    #endif
   public:
     %extend {
         AssetSwapPtr(bool payFixedRate,
