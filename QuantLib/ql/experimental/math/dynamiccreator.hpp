@@ -156,6 +156,7 @@ template <class Description> class MersenneTwisterCustomRng {
     unsigned long nextInt32();
 
   private:
+    void twist();
     // hide copy and assignment constructors
     MersenneTwisterCustomRng(const MersenneTwisterCustomRng &);
     MersenneTwisterCustomRng &operator=(const MersenneTwisterCustomRng &);
@@ -209,27 +210,10 @@ Real MersenneTwisterCustomRng<Description>::nextReal() {
 
 template <class Description>
 unsigned long MersenneTwisterCustomRng<Description>::nextInt32() {
-    static const uint32_t mag01[2]={0U, Description::aaa};
     // genrant_mt
     uint32_t x;
-    int k;
     if (i_ >= Description::nn) {
-        for (k = 0; k < Description::nn - Description::mm; ++k) {
-            x = (state_[k] & Description::umask) |
-                (state_[k + 1] & Description::lmask);
-            state_[k] = state_[k + Description::mm] ^ (x >> 1) ^ mag01[x & 1U];
-        }
-        for (; k < Description::nn - 1; ++k) {
-            x = (state_[k] & Description::umask) |
-                (state_[k + 1] & Description::lmask);
-            state_[k] = state_[k + Description::mm - Description::nn] ^
-                        (x >> 1) ^ mag01[x & 1U];
-        }
-        x = (state_[Description::nn - 1] & Description::umask) |
-            (state_[0] & Description::lmask);
-        state_[Description::nn - 1] =
-            state_[Description::mm - 1] ^ (x >> 1) ^ mag01[x & 1U];
-        i_ = 0;
+        twist();
     }
     x = state_[i_++];
     x ^= x >> Description::shift0;
@@ -238,6 +222,28 @@ unsigned long MersenneTwisterCustomRng<Description>::nextInt32() {
     x ^= x >> Description::shift1;
     return static_cast<unsigned long>(x);
     // end genrand_mt
+}
+
+template <class Description>
+void MersenneTwisterCustomRng<Description>::twist() {
+    uint32_t x;
+    int k;
+    for (k = 0; k < Description::nn - Description::mm; ++k) {
+        x = (state_[k] & Description::umask) |
+            (state_[k + 1] & Description::lmask);
+        state_[k] = state_[k + Description::mm] ^ (x >> 1) ^ (x & 1U ? Description::aaa : 0U);
+    }
+    for (; k < Description::nn - 1; ++k) {
+        x = (state_[k] & Description::umask) |
+            (state_[k + 1] & Description::lmask);
+        state_[k] = state_[k + Description::mm - Description::nn] ^ (x >> 1) ^
+            (x & 1U ? Description::aaa : 0U);
+    }
+    x = (state_[Description::nn - 1] & Description::umask) |
+        (state_[0] & Description::lmask);
+    state_[Description::nn - 1] =
+        state_[Description::mm - 1] ^ (x >> 1) ^  (x & 1U ? Description::aaa : 0U);
+    i_ = 0;
 }
 
 // precomputed instances
