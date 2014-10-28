@@ -33,23 +33,23 @@ grep -o -E 'RelativePath=".*"' test-suite/testsuite_vc9.vcproj \
 | awk -F'"' '{ print $2 }' | sed -e 's|\\|/|g' | sed -e 's|^./||' \
 | sed -e 's|^|test-suite/|' | sort > test-suite.vc9.files
 
-# ...VC11...
+# ...VC10 and above...
 
-grep -o -E 'Include=".*\.[hc]p*"' QuantLib_vc11.vcxproj \
+grep -o -E 'Include=".*\.[hc]p*"' QuantLib.vcxproj \
 | awk -F'"' '{ print $2 }' | sed -e 's|\\|/|g' | sed -e 's|^./||' \
-| sort > ql.vc11.files
+| sort > ql.vcx.files
 
-grep -o -E 'Include=".*\.[hc]p*"' test-suite/testsuite_vc11.vcxproj \
+grep -o -E 'Include=".*\.[hc]p*"' test-suite/testsuite.vcxproj \
 | awk -F'"' '{ print $2 }' | sed -e 's|\\|/|g' | sed -e 's|^./||' \
-| sed -e 's|^|test-suite/|' | sort > test-suite.vc11.files
+| sed -e 's|^|test-suite/|' | sort > test-suite.vcx.files
 
-grep -o -E 'Include=".*\.[hc]p*"' QuantLib_vc11.vcxproj.filters \
+grep -o -E 'Include=".*\.[hc]p*"' QuantLib.vcxproj.filters \
 | awk -F'"' '{ print $2 }' | sed -e 's|\\|/|g' | sed -e 's|^./||' \
-| sort > ql.vc11.filters
+| sort > ql.vcx.filters
 
-grep -o -E 'Include=".*\.[hc]p*"' test-suite/testsuite_vc11.vcxproj.filters \
+grep -o -E 'Include=".*\.[hc]p*"' test-suite/testsuite.vcxproj.filters \
 | awk -F'"' '{ print $2 }' | sed -e 's|\\|/|g' | sed -e 's|^./||' \
-| sed -e 's|^|test-suite/|' | sort > test-suite.vc11.filters
+| sed -e 's|^|test-suite/|' | sort > test-suite.vcx.filters
 
 # ...and Dev-C++.
 
@@ -77,13 +77,13 @@ diff -b test-suite.vc9.files test-suite.ref.files >> sync.report
 
 echo '' >> sync.report
 echo '' >> sync.report
-echo 'Visual Studio 11:' >> sync.report
+echo 'Visual Studio 10 and above:' >> sync.report
 echo 'project:' >> sync.report
-diff -b ql.vc11.files ql.ref.files >> sync.report
-diff -b test-suite.vc11.files test-suite.ref.files >> sync.report
+diff -b ql.vcx.files ql.ref.files >> sync.report
+diff -b test-suite.vcx.files test-suite.ref.files >> sync.report
 echo 'filters:' >> sync.report
-diff -b ql.vc11.filters ql.ref.files >> sync.report
-diff -b test-suite.vc11.filters test-suite.ref.files >> sync.report
+diff -b ql.vcx.filters ql.ref.files >> sync.report
+diff -b test-suite.vcx.filters test-suite.ref.files >> sync.report
 
 echo '' >> sync.report
 echo '' >> sync.report
@@ -95,8 +95,8 @@ diff -b test-suite.devcpp.files test-suite.ref.files >> sync.report
 rm -f ql.ref.files test-suite.ref.files
 rm -f ql.vc8.files test-suite.vc8.files
 rm -f ql.vc9.files test-suite.vc9.files
-rm -f ql.vc11.files test-suite.vc11.files
-rm -f ql.vc11.filters test-suite.vc11.filters
+rm -f ql.vcx.files test-suite.vcx.files
+rm -f ql.vcx.filters test-suite.vcx.filters
 rm -f ql.devcpp.files test-suite.devcpp.files
 
 cat sync.report
