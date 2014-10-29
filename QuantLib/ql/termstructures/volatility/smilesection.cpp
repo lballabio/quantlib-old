@@ -74,9 +74,9 @@ namespace QuantLib {
         // if lognormal or shifted lognormal,
         // for strike at -shift, return option price even if outside
         // minstrike, maxstrike interval
-        if(nature_ == ShiftedLognormal)
-            return blackFormula(type,strike,atm, fabs(strike+shift_) < QL_EPSILON ?
-                            0.2 : sqrt(variance(strike)),discount,shift_);
+        if(nature() == ShiftedLognormal)
+            return blackFormula(type,strike,atm, fabs(strike+shift()) < QL_EPSILON ?
+                            0.2 : sqrt(variance(strike)),discount,shift());
         else 
             return bachelierBlackFormula(type,strike,atm,sqrt(variance(strike)),discount);
     }
@@ -85,7 +85,7 @@ namespace QuantLib {
                                           Option::Type type,
                                           Real discount,
                                           Real gap) const {
-        Real m = nature_ == ShiftedLognormal ? -shift_ : -QL_MAX_REAL;
+        Real m = nature() == ShiftedLognormal ? -shift() : -QL_MAX_REAL;
         Real kl = std::max(strike-gap/2.0,m);
         Real kr = kl+gap;
         return (type==Option::Call ? 1.0 : -1.0) *
@@ -93,7 +93,7 @@ namespace QuantLib {
     }
     
     Real SmileSection::density(Rate strike, Real discount, Real gap) const {
-        Real m = nature_ == ShiftedLognormal ? -shift_ : -QL_MAX_REAL;
+        Real m = nature() == ShiftedLognormal ? -shift() : -QL_MAX_REAL;
         Real kl = std::max(strike-gap/2.0,m);
         Real kr = kl+gap;
         return (digitalOptionPrice(kl,Option::Call,discount,gap) -
@@ -104,7 +104,7 @@ namespace QuantLib {
         Real atm = atmLevel();
         QL_REQUIRE(atm != Null<Real>(),
                    "smile section must provide atm level to compute option vega");
-        if(nature_ == ShiftedLognormal)
+        if(nature() == ShiftedLognormal)
             return blackFormulaVolDerivative(strike,atmLevel(),
                                              sqrt(variance(strike)),
                                              exerciseTime(),discount)*0.01;
