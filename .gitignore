@@ -118,6 +118,7 @@ Makefile.in
 *.exp
 *.lib
 *.pdb
+*.ilk
 *.class
 *~
 *.ncb
@@ -126,8 +127,10 @@ Makefile.in
 *.vcxproj.user
 *.log
 *.sdf
+*.opensdf
 
 # Outputs
+QuantLib/Examples/BasketLosses/BasketLosses
 QuantLib/Examples/BermudanSwaption/BermudanSwaption
 QuantLib/Examples/Bonds/Bonds
 QuantLib/Examples/CDS/CDS
@@ -137,7 +140,9 @@ QuantLib/Examples/DiscreteHedging/DiscreteHedging
 QuantLib/Examples/EquityOption/EquityOption
 QuantLib/Examples/FRA/FRA
 QuantLib/Examples/FittedBondCurve/FittedBondCurve
+QuantLib/Examples/LatentModel/LatentModel
 QuantLib/Examples/MarketModels/MarketModels
+QuantLib/Examples/MultidimIntegral/MultidimIntegral
 QuantLib/Examples/Gaussian1dModels/Gaussian1dModels
 QuantLib/Examples/Replication/Replication
 QuantLib/Examples/Repo/Repo
@@ -174,3 +179,4 @@ QuantLibAddin/Docs/*.chm
 QuantLibAddin/Docs/doxywarnings.txt
 QuantLibXL/Docs/*.chm
 QuantLibXL/Docs/doxywarnings.txt
+

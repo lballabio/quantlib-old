@@ -211,14 +211,9 @@ floatingRateBond = FloatingRateBond(settlementDays,
                                     libor3m,
                                     Actual360(),
                                     ModifiedFollowing,
-                                    2,
-                                    [1.0],   # Gearings
-                                    [0.001], # Spreads
-                                    [],      # Caps
-                                    [],      # Floors
-                                    True,    # Fixing in arrears
-                                    100.0,
-                                    Date(21, October, 2005))
+                                    spreads=[0.001],
+                                    inArrears=True,
+                                    issueDate=Date(21, October, 2005))
 
 floatingRateBond.setPricingEngine(bondEngine);
 
