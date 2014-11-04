@@ -28,6 +28,13 @@ implementation of QuantLibAddin.  For a summary of updates to the core
 QuantLibAddin project, please refer to
 <a href="http://www.quantlibaddin.org/history.html">http://www.quantlibaddin.org/history.html</a>
 
+<strong>Release 1.5.0 - MMM YYYY</strong>
+
+- x new functions / xxxx in total
+- Refinements to the behavior of function qlSimpleQuoteSetValue().
+  For more information please refer to file
+  QuantLibXL\StandaloneExamples\Bugs\qlSimpleQuoteSetValue_BugFix.xlsx.
+
 <strong>Release 1.4.0 - June 2014</strong>
 
 - 2 new functions / 1017 in total
