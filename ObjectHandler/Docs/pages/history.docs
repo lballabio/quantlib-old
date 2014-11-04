@@ -29,7 +29,7 @@ CONFIGURATION
 
 - When building %ObjectHandler on linux it is now possible to disable support
   for log4cxx by passing the argument \c --without-log4cxx to \c configure.
-- Refinements were made to error handling in template function convert2().
+- Refinements were made to error handling in template function %convert2().
 
 <strong>Release 1.4.0 - June 2014</strong>
 
