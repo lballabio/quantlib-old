@@ -33,7 +33,7 @@ struct DateGeneration {
     enum Rule { Backward, Forward,
                 Zero, ThirdWednesday,
                 Twentieth, TwentiethIMM,
-                OldCDS };
+                OldCDS, CDS };
 };
 
 #if defined(SWIGRUBY)

@@ -1,0 +1,1 @@
+./configure --prefix=$IDIR --enable-addin-cpp     --with-gensrc=/media/windows/data/erik/linux/repos/quantlib/gensrc     --with-oh=/media/windows/data/erik/linux/repos/quantlib/ObjectHandler     CPPFLAGS=-I$IDIR/include LDFLAGS=-L$IDIR/lib
