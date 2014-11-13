@@ -19,14 +19,17 @@
 
 #include "integrals.hpp"
 #include "utilities.hpp"
+#include <ql/math/functional.hpp>
+#include <ql/math/integrals/filonintegral.hpp>
 #include <ql/math/integrals/segmentintegral.hpp>
 #include <ql/math/integrals/simpsonintegral.hpp>
 #include <ql/math/integrals/trapezoidintegral.hpp>
 #include <ql/math/integrals/kronrodintegral.hpp>
 #include <ql/math/integrals/gausslobattointegral.hpp>
+#include <ql/math/interpolations/bilinearinterpolation.hpp>
 #include <ql/math/distributions/normaldistribution.hpp>
-#include <ql/math/functional.hpp>
 #include <ql/termstructures/volatility/abcd.hpp>
+#include <ql/math/integrals/twodimensionalintegral.hpp>
 
 using namespace QuantLib;
 using namespace boost::unit_test_framework;
@@ -50,6 +53,8 @@ namespace {
 
     template <class T>
     void testSeveral(const T& I) {
+        testSingle(I, "f(x) = 0",
+                   constant<Real,Real>(0.0), 0.0, 1.0, 0.0);
         testSingle(I, "f(x) = 1",
                    constant<Real,Real>(1.0), 0.0, 1.0, 1.0);
         testSingle(I, "f(x) = x",
@@ -112,6 +117,84 @@ void IntegralTest::testGaussKronrodNonAdaptive() {
     testSeveral(gaussKronrodNonAdaptive);
 }
 
+void IntegralTest::testTwoDimensionalIntegration() {
+    BOOST_TEST_MESSAGE("Testing two dimensional adaptive "
+                       "Gauss-Lobatto integration...");
+
+    const Size maxEvaluations = 1000;
+    const Real calculated = TwoDimensionalIntegral(
+        boost::shared_ptr<Integrator>(
+            new TrapezoidIntegral<Default>(tolerance, maxEvaluations)),
+        boost::shared_ptr<Integrator>(
+            new TrapezoidIntegral<Default>(tolerance, maxEvaluations)))(
+        std::multiplies<Real>(),
+        std::make_pair(0.0, 0.0), std::make_pair(1.0, 2.0));
+
+    const Real expected = 1.0;
+    if (std::fabs(calculated-expected) > tolerance) {
+        BOOST_FAIL(std::setprecision(10)
+                   << "two dimensional integration: "
+                   << "\n    calculated: " << calculated
+                   << "\n    expected:   " << expected);
+    }
+}
+
+namespace {
+
+    class sineF {
+      public:
+        Real operator()(Real x) const {
+            return std::exp(-0.5*(x - M_PI_2/100));
+        }
+    };
+
+    class cosineF {
+      public:
+        Real operator()(Real x) const {
+            return std::exp(-0.5*x);
+        }
+    };
+
+}
+
+void IntegralTest::testFolinIntegration() {
+    BOOST_TEST_MESSAGE("Testing Folin's integral formulae...");
+
+    // Examples taken from
+    // http://www.tat.physik.uni-tuebingen.de/~kokkotas/Teaching/Num_Methods_files/Comp_Phys5.pdf
+    const Size nr[] = { 4, 8, 16, 128, 256, 1024, 2048 };
+    const Real expected[] = { 4.55229440e-5,4.72338540e-5, 4.72338540e-5,
+                              4.78308678e-5,4.78404787e-5, 4.78381120e-5,
+                              4.78381084e-5};
+
+    const Real t = 100;
+    const Real o = M_PI_2/t;
+
+    const Real tol = 1e-12;
+
+    for (Size i=0; i < LENGTH(nr); ++i) {
+        const Size n = nr[i];
+        const Real calculatedCosine
+            = FilonIntegral(FilonIntegral::Cosine, t, n)(cosineF(),0,2*M_PI);
+        const Real calculatedSine
+            = FilonIntegral(FilonIntegral::Sine, t, n)
+                (sineF(), o,2*M_PI + o);
+
+        if (std::fabs(calculatedCosine-expected[i]) > tol) {
+            BOOST_FAIL(std::setprecision(10)
+                << "Filon Cosine integration failed: "
+                << "\n    calculated: " << calculatedCosine
+                << "\n    expected:   " << expected[i]);
+        }
+        if (std::fabs(calculatedSine-expected[i]) > tol) {
+            BOOST_FAIL(std::setprecision(10)
+                << "Filon Sine integration failed: "
+                << "\n    calculated: " << calculatedCosine
+                << "\n    expected:   " << expected[i]);
+        }
+    }
+}
+
 
 test_suite* IntegralTest::suite() {
     test_suite* suite = BOOST_TEST_SUITE("Integration tests");
@@ -122,6 +205,8 @@ test_suite* IntegralTest::suite() {
     suite->add(QUANTLIB_TEST_CASE(&IntegralTest::testGaussKronrodAdaptive));
     suite->add(QUANTLIB_TEST_CASE(&IntegralTest::testGaussKronrodNonAdaptive));
     suite->add(QUANTLIB_TEST_CASE(&IntegralTest::testGaussLobatto));
+    suite->add(QUANTLIB_TEST_CASE(&IntegralTest::testTwoDimensionalIntegration));
+    suite->add(QUANTLIB_TEST_CASE(&IntegralTest::testFolinIntegration));
     return suite;
 }
 

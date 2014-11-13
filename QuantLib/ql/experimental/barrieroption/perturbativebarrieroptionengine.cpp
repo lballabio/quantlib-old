@@ -41,11 +41,7 @@ namespace {
     double H1, H2,  H3, R23, RUA, RUB, AR, RUC;
     int NUC;
 
-    // standard normal density function
-    double ndf(double t);
-
     // standard normal cumulative distribution function
-    double nc(double x);
     double PHID(double Z);
 
     // Functions used to compute the first order approximation
@@ -236,7 +232,6 @@ namespace {
             dtp=(taumax-tmp)/(double)(npoint2);
 
             for(j=1;j<=npoint2; j++) {
-                v2pp=0.0;
                 tmp1=tmp+dtp*(double)(2*j-1)*0.50;
                 s=0.50*integs(tmp1,taumax);
 
@@ -284,6 +279,7 @@ namespace {
                 v2pp=v2pp-exp(gm*s)*gm*hbarr*caux;
 
                 v2p=v2p+(alpha(tmp1)-gm*0.5*sigmaq(tmp1))*v2pp;
+                v2pp=0.0;
             }
 
             v2=v2+v2p*(alpha(tmp)-gm*0.5*sigmaq(tmp))*dtp;
@@ -292,29 +288,6 @@ namespace {
         v2=exp(disc)*et*v2*dt;
 
         return v0+v1+v2;
-    }
-
-
-    // standard normal density function
-    double ndf(double t) {
-        return 0.398942280401433*exp(-t*t/2);
-    }
-
-    // standard normal cumulative distribution function
-    double nc(double x){
-        double result;
-        if (x<-7.) {
-            result = ndf(x)/sqrt(1.+x*x);
-        } else if (x>7.) {
-            result = 1. - nc(-x);
-        } else {
-            result = 0.2316419;
-            static double a[5] = {0.31938153,-0.356563782,1.781477937,-1.821255978,1.330274429};
-            result=1./(1+result*fabs(x));
-            result=1-ndf(x)*(result*(a[0]+result*(a[1]+result*(a[2]+result*(a[3]+result*a[4])))));
-            if (x<=0.) result=1.-result;
-        }
-        return result;
     }
 
 
@@ -381,20 +354,6 @@ namespace {
 
         return(P);
     }
-
-
-
-    //function needed to calculate the two dimensional cumulative distribution function
-    double fxy(double x, double y, double a, double b, double rho) {
-        double a_s;
-        double b_s;
-        double result;
-        a_s = a / sqrt(2 * (1 - rho * rho));
-        b_s = b / sqrt(2 * (1 - rho * rho));
-        result = exp(a_s * (2 * x - a_s) + b_s * (2 * y - b_s) + 2 * rho * (x - a_s) * (y - b_s));
-        return result;
-    }
-
 
 
     /*
@@ -553,7 +512,6 @@ namespace {
         double result;
         double aa,caux,caux1;
         double sigmarho[4],limit[4],epsi;
-        double tvtl(int jj,double limit[4],double sigmarho[4],double epsi);
 
         epsi=1.e-12;
         limit[1]=(a+b*(tt-p))/POW(2.0*(tt-p),0.5);
@@ -650,8 +608,6 @@ namespace {
         static double sigmarho[4],limit[4];
         static int idx;
         double epsi;
-        double derivn3(double[],double[], int );
-        double tvtl(int ,double[],double[],double);
 
         epsi=1.e-12;
         limit[1]=(ax+bx*(tt-p))/POW(2.0*(tt-p),0.5);
@@ -947,22 +903,19 @@ namespace {
           Computes Plackett formula integrands
         */
 
-        static double  R12=0.0, RR2=0, R13=0.0, RR3=0.0, R=0.0, RR=0.0, ZRO=0.0;
-        static double result;
-
-        ZRO = 0.0;
-
-        result = 0.0;
+        static double R12=0.0, RR2=0, R13=0.0, RR3=0.0, R=0.0, RR=0.0;
+        const double ZRO = 0.0;
+        double result = 0.0;
 
         SINCS( RUA*X, R12, RR2 );
         SINCS( RUB*X, R13, RR3 );
 
-        if ( fabs(RUA)> 0 )  result = result + RUA*PNTGND( NUC, H1,H2,H3, R13,R23,R12,RR2);
-        if( fabs(RUB)>0 ) result = result + RUB*PNTGND( NUC, H1,H3,H2, R12,R23,R13,RR3 ) ;
+        if ( fabs(RUA)> 0 )  result += RUA*PNTGND( NUC, H1,H2,H3, R13,R23,R12,RR2);
+        if( fabs(RUB)>0 ) result += RUB*PNTGND( NUC, H1,H3,H2, R12,R23,R13,RR3 ) ;
         if ( NUC > 0 )
             {
                 SINCS( AR + RUC*X, R, RR );
-                result = result - RUC*PNTGND( NUC, H2, H3, H1, ZRO, ZRO, R, RR );
+                result -= RUC*PNTGND( NUC, H2, H3, H1, ZRO, ZRO, R, RR );
             }
         return(result);
     }
@@ -1043,7 +996,6 @@ namespace {
         //
         static double  T, CEN, FC, WID, RESG, RESK;
 
-        double  STUDNT(int, double );
         static double result;
         //
         //        The abscissae and weights are given for the interval (-1,1);
@@ -1195,7 +1147,6 @@ namespace {
         static double  TPI, ORS, HRK, KRH, BVT, SNU;
         static double  GMPH, GMPK, XNKH, XNHK, QHRK, HKN, HPK, HKRN;
         static double  BTNCKH, BTNCHK, BTPDKH, BTPDHK, ONE, EPS;
-        double STUDNT(int , double );
         static double result;
         ONE = 1;
         EPS = 1e-15;
@@ -1292,7 +1243,6 @@ namespace {
             Computes Plackett formula integrand
           */
           static double DT, FT, BT,result;
-          double STUDNT(int, double);
 
           result = 0.0;
           DT = RR*( RR - POW(( RA - RB ),2) - 2*RA*RB*( 1 - R ) );

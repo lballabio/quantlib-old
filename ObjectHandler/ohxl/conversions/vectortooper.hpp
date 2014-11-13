@@ -36,15 +36,15 @@ namespace ObjectHandler {
     /*! Extracts the begin and end iterators of the input vector.
     */
     template <class T>
-    void vectorToOper(const std::vector<T> &v, OPER &xVector, bool dllToFree = true) {
-        vectorToOper<std::vector<T>::const_iterator>(v.begin(), v.end(), xVector, dllToFree);
+    void vectorToOper(const std::vector<T> &v, OPER &xVector) {
+        vectorToOper<std::vector<T>::const_iterator>(v.begin(), v.end(), xVector);
     }
 
     //! Convert type std::vector<T> to an Excel OPER.
-    /*! If dllToFree is true then the function sets the xlbitDLLFree bit if necessary.
+    /*! The function sets the xlbitDLLFree bit.
     */
     template <class T>
-    void vectorToOper(T begin, T end, OPER &xVector, bool dllToFree = true) {
+    void vectorToOper(T begin, T end, OPER &xVector) {
         std::size_t size = end - begin;
         if (size == 0) {
             xVector.xltype = xltypeErr;
@@ -61,11 +61,9 @@ namespace ObjectHandler {
         }
 
         xVector.val.array.lparray = new OPER[size]; 
-        xVector.xltype = xltypeMulti;
-        if (dllToFree)
-            xVector.xltype |= xlbitDLLFree;
+        xVector.xltype = xltypeMulti | xlbitDLLFree;
         for (unsigned int i=0; i<size; ++i, ++begin)
-            scalarToOper(*begin, xVector.val.array.lparray[i], dllToFree, false);
+            scalarToOper(*begin, xVector.val.array.lparray[i], false);
     }
 
 }

@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT([QuantLib], [1.4],
+AC_INIT([QuantLib], [1.5],
         [quantlib-dev@lists.sourceforge.net],
         [QuantLib])
 AC_PREREQ(2.62)
@@ -236,19 +236,6 @@ if test "$ql_belt_and_braces" = "yes" ; then
 fi
 AC_MSG_RESULT([$ql_belt_and_braces])
 
-AC_MSG_CHECKING([whether to enable deprecated code])
-AC_ARG_ENABLE([deprecated-code],
-              AC_HELP_STRING([--enable-deprecated-code],
-                             [If enabled (the default), deprecated code
-                              will be included in the library.]),
-              [ql_use_deprecated_code=$enableval],
-              [ql_use_deprecated_code=yes])
-if test "$ql_use_deprecated_code" = "no" ; then
-   AC_DEFINE([QL_DISABLE_DEPRECATED],[1],
-             [Define this if you want to disable deprecated code.])
-fi
-AC_MSG_RESULT([$ql_use_deprecated_code])
-
 AC_MSG_CHECKING([whether to enable sessions])
 AC_ARG_ENABLE([sessions],
               AC_HELP_STRING([--enable-sessions],
@@ -315,11 +302,12 @@ AC_CONFIG_FILES([
     ql/experimental/amortizingbonds/Makefile
     ql/experimental/barrieroption/Makefile
     ql/experimental/callablebonds/Makefile
+    ql/experimental/catbonds/Makefile
     ql/experimental/commodities/Makefile
-    ql/experimental/compoundoption/Makefile
     ql/experimental/convertiblebonds/Makefile
     ql/experimental/coupons/Makefile
     ql/experimental/credit/Makefile
+    ql/experimental/exercise/Makefile
     ql/experimental/exoticoptions/Makefile
     ql/experimental/finitedifferences/Makefile
     ql/experimental/fx/Makefile
@@ -331,6 +319,7 @@ AC_CONFIG_FILES([
     ql/experimental/processes/Makefile
     ql/experimental/risk/Makefile
     ql/experimental/shortrate/Makefile
+    ql/experimental/swaptions/Makefile
     ql/experimental/variancegamma/Makefile
     ql/experimental/varianceoption/Makefile
     ql/experimental/volatility/Makefile
@@ -419,6 +408,7 @@ AC_CONFIG_FILES([
     m4/Makefile
     Docs/Makefile
     Examples/Makefile
+    Examples/BasketLosses/Makefile
     Examples/BermudanSwaption/Makefile
     Examples/Bonds/Makefile
     Examples/CallableBonds/Makefile
@@ -428,7 +418,10 @@ AC_CONFIG_FILES([
     Examples/EquityOption/Makefile
     Examples/FittedBondCurve/Makefile
     Examples/FRA/Makefile
+    Examples/LatentModel/Makefile
+    Examples/Gaussian1dModels/Makefile
     Examples/MarketModels/Makefile
+    Examples/MultidimIntegral/Makefile
     Examples/Replication/Makefile
     Examples/Repo/Makefile
     Examples/Swap/Makefile

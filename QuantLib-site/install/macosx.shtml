@@ -6,6 +6,7 @@
 <meta name="copyright" content=
 "Jack Harvard (c) 2010">
 <meta name="description" content="QuantLib Installation on Mac OS X">
+<link rel="stylesheet" href="/styles/nosplash.css" type="text/css">
 <title>QuantLib installation on Mac OS X</title>
 </head>
 <body>
@@ -62,6 +63,14 @@ g++ -I/opt/local/include/ -I/opt/local/include/boost BermudanSwaption.cpp \
 </p>
 
 <p>The whole process takes two hours if installing both Boost and QuantLib.</p>
+
+<h3>A note on Mac OS X 10.9 (Mavericks)</h3>
+
+<p>Users have reported linking problems under Mac OS X 10.9; the
+solution (thanks to Albert Azout for pointing it out) seems to be to
+set the environment flags <tt>CXXFLAGS</tt> and
+<tt>LDFLAGS</tt> to <tt>-stlib=libstdc++
+-mmacosx-version-min=10.6</tt> before compiling.</p>
 
 <h2>Appendix: Boost Configuration</h2>
 

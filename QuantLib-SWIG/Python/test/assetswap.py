@@ -1567,7 +1567,7 @@ class AssetSwapTest(unittest.TestCase):
                                   Unadjusted, Unadjusted,
                                   DateGeneration.Backward, False)
         cmsBondLeg1 = list(CmsLeg([self.faceAmount],cmsBondSchedule1, self.swapIndex,
-                             Thirty360(),Following,[fixingDays],[],[0.055],[0.025],[inArrears]))
+                             Thirty360(),Following,[fixingDays],[],[0.055],[0.025],[],inArrears))
         cmsbondRedemption1 = bondCalendar.adjust(cmsBondMaturityDate1, Following)
         cmsBondLeg1.append(SimpleCashFlow(100.0, cmsbondRedemption1))
         cmsBond1 = Bond(settlementDays, bondCalendar, self.faceAmount,
@@ -1605,7 +1605,7 @@ class AssetSwapTest(unittest.TestCase):
                                   Unadjusted, Unadjusted,
                                   DateGeneration.Backward, False)
         cmsBondLeg2 = list(CmsLeg([self.faceAmount],cmsBondSchedule2, self.swapIndex,
-                                  Thirty360(),Following,[fixingDays],[0.84],[],[],[],[inArrears]))
+                                  Thirty360(),Following,[fixingDays],[0.84],[],[],[],inArrears))
         cmsbondRedemption2 = bondCalendar.adjust(cmsBondMaturityDate2, Following)
         cmsBondLeg2.append(SimpleCashFlow(100.0, cmsbondRedemption2))
         cmsBond2 = Bond(settlementDays, bondCalendar, self.faceAmount,

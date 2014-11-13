@@ -59,6 +59,10 @@ namespace QuantLib {
         Date maxDate() const;
         Time maxTime() const;
         //@}
+        //! \name Observer interface
+        //@{
+        void update();
+        //@}
       protected:
         //! returns the spreaded zero yield rate
         Rate zeroYieldImpl(Time) const;
@@ -85,6 +89,7 @@ namespace QuantLib {
         //           ") must be the same of the curve to be spreaded (" <<
         //           originalCurve_->dayCounter() <<
         //           ")");
+        enableExtrapolation(originalCurve_->allowsExtrapolation());
         registerWith(originalCurve_);
         registerWith(spread_);
     }
@@ -111,6 +116,18 @@ namespace QuantLib {
 
     inline Time ZeroSpreadedTermStructure::maxTime() const {
         return originalCurve_->maxTime();
+    }
+
+    inline void ZeroSpreadedTermStructure::update() {
+        if (!originalCurve_.empty()) {
+            YieldTermStructure::update();
+        } else {
+            /* The implementation inherited from YieldTermStructure
+               asks for our reference date, which we don't have since
+               the original curve is still not set. Therefore, we skip
+               over that and just call the base-class behavior. */
+            TermStructure::update();
+        }
     }
 
     inline Rate ZeroSpreadedTermStructure::zeroYieldImpl(Time t) const {

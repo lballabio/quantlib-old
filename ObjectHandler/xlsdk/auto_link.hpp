@@ -21,12 +21,8 @@
 #define xlsdk_autolink_hpp
 
 // select toolset:
-#if (_MSC_VER < 1300)
+#if (_MSC_VER < 1400)
 #  error "unsupported Microsoft compiler"
-#elif (_MSC_VER == 1300)
-#  define XLSDK_LIB_TOOLSET "vc7"
-#elif (_MSC_VER == 1310)
-#  define XLSDK_LIB_TOOLSET "vc71"
 #elif (_MSC_VER == 1400)
 #  define XLSDK_LIB_TOOLSET "vc80"
 #elif (_MSC_VER == 1500)
@@ -40,6 +36,13 @@
 #endif
 
 /*** libraries to be linked ***/
+
+// select architecture:
+#ifdef _M_X64
+#  define XLSDK_LIB_PLATFORM "-x64"
+#else
+#  define XLSDK_LIB_PLATFORM 
+#endif
 
 // select thread opt:
 #ifdef _MT
@@ -63,7 +66,7 @@
 #  endif
 #endif
 
-#define XLSDK_LIB_NAME "xlsdk-" XLSDK_LIB_TOOLSET XLSDK_LIB_THREAD_OPT XLSDK_LIB_RT_OPT ".lib"
+#define XLSDK_LIB_NAME "xlsdk-" XLSDK_LIB_TOOLSET XLSDK_LIB_PLATFORM XLSDK_LIB_THREAD_OPT XLSDK_LIB_RT_OPT ".lib"
 
 #pragma comment(lib, XLSDK_LIB_NAME)
 #ifdef BOOST_LIB_DIAGNOSTIC

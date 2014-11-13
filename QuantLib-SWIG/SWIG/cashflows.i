@@ -57,6 +57,8 @@ typedef std::vector<boost::shared_ptr<CashFlow> > Leg;
 
 %{
 using QuantLib::SimpleCashFlow;
+using QuantLib::Redemption;
+using QuantLib::AmortizingPayment;
 using QuantLib::Coupon;
 using QuantLib::FixedRateCoupon;
 using QuantLib::IborCoupon;
@@ -64,6 +66,8 @@ using QuantLib::Leg;
 using QuantLib::FloatingRateCoupon;
 
 typedef boost::shared_ptr<CashFlow> SimpleCashFlowPtr;
+typedef boost::shared_ptr<CashFlow> RedemptionPtr;
+typedef boost::shared_ptr<CashFlow> AmortizingPaymentPtr;
 typedef boost::shared_ptr<CashFlow> CouponPtr;
 typedef boost::shared_ptr<CashFlow> IborCouponPtr;
 typedef boost::shared_ptr<CashFlow> FixedRateCouponPtr;
@@ -76,6 +80,26 @@ class SimpleCashFlowPtr : public boost::shared_ptr<CashFlow> {
     %extend {
         SimpleCashFlowPtr(Real amount, const Date& date) {
             return new SimpleCashFlowPtr(new SimpleCashFlow(amount,date));
+        }
+    }
+};
+
+%rename(Redemption) RedemptionPtr;
+class RedemptionPtr : public boost::shared_ptr<CashFlow> {
+  public:
+    %extend {
+        RedemptionPtr(Real amount, const Date& date) {
+            return new RedemptionPtr(new Redemption(amount,date));
+        }
+    }
+};
+
+%rename(AmortizingPayment) AmortizingPaymentPtr;
+class AmortizingPaymentPtr : public boost::shared_ptr<CashFlow> {
+  public:
+    %extend {
+        AmortizingPaymentPtr(Real amount, const Date& date) {
+            return new AmortizingPaymentPtr(new AmortizingPayment(amount,date));
         }
     }
 };
@@ -104,6 +128,10 @@ class CouponPtr : public boost::shared_ptr<CashFlow> {
         Date referencePeriodEnd() {
             return boost::dynamic_pointer_cast<Coupon>(*self)
                 ->referencePeriodEnd();
+        }
+        Date exCouponDate() {
+            return boost::dynamic_pointer_cast<Coupon>(*self)
+                ->exCouponDate();
         }
         Real rate() {
             return boost::dynamic_pointer_cast<Coupon>(*self)->rate();
@@ -136,18 +164,22 @@ class CouponPtr : public boost::shared_ptr<CashFlow> {
 
 %rename(FixedRateCoupon) FixedRateCouponPtr;
 class FixedRateCouponPtr : public CouponPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") FixedRateCouponPtr;
+    #endif
   public:
     %extend {
         FixedRateCouponPtr(const Date& paymentDate, Real nominal,
                            Rate rate, const DayCounter& dayCounter,
                            const Date& startDate, const Date& endDate,
                            const Date& refPeriodStart = Date(),
-                           const Date& refPeriodEnd = Date()) {
+                           const Date& refPeriodEnd = Date(),
+                           const Date& exCouponDate = Date()) {
             return new FixedRateCouponPtr(
                 new FixedRateCoupon(paymentDate, nominal, rate,
                                     dayCounter, startDate, endDate,
-                                    refPeriodStart, refPeriodEnd));
+                                    refPeriodStart, refPeriodEnd,
+                                    exCouponDate));
         }
         InterestRate interestRate() {
             return boost::dynamic_pointer_cast<FixedRateCoupon>(*self)
@@ -244,7 +276,9 @@ typedef boost::shared_ptr<CashFlow> CappedFlooredCouponPtr;
 
 %rename(CappedFlooredCoupon) CappedFlooredCouponPtr;
 class CappedFlooredCouponPtr : public FloatingRateCouponPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CappedFlooredCouponPtr;
+    #endif
   public:
     %extend {
         CappedFlooredCouponPtr(const FloatingRateCouponPtr& underlying,
@@ -291,7 +325,9 @@ class CappedFlooredCouponPtr : public FloatingRateCouponPtr {
 
 %rename(IborCoupon) IborCouponPtr;
 class IborCouponPtr : public FloatingRateCouponPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") IborCouponPtr;
+    #endif
   public:
     %extend {
         IborCouponPtr(const Date& paymentDate, Real nominal,
@@ -357,7 +393,9 @@ typedef boost::shared_ptr<CashFlow> CappedFlooredCmsCouponPtr;
 
 %rename(CmsCoupon) CmsCouponPtr;
 class CmsCouponPtr : public FloatingRateCouponPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CmsCouponPtr;
+    #endif
   public:
     %extend {
         CmsCouponPtr(const Date& paymentDate, Real nominal,
@@ -450,7 +488,9 @@ class NumericHaganPricerPtr : public CmsCouponPricerPtr {
 
 %rename(CappedFlooredCmsCoupon) CappedFlooredCmsCouponPtr;
 class CappedFlooredCmsCouponPtr: public CappedFlooredCouponPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CappedFlooredCouponPtr;
+    #endif
   public:
     %extend {
         CappedFlooredCmsCouponPtr(
@@ -492,7 +532,9 @@ Leg _FixedRateLeg(const Schedule& schedule,
         .withFirstPeriodDayCounter(firstPeriodDayCount);
 }
 %}
+#if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
 %feature("kwargs") _FixedRateLeg;
+#endif
 %rename(FixedRateLeg) _FixedRateLeg;
 Leg _FixedRateLeg(const Schedule& schedule,
                   const DayCounter& dayCount,
@@ -527,7 +569,9 @@ Leg _IborLeg(const std::vector<Real>& nominals,
         .inArrears(isInArrears);
 }
 %}
+#if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
 %feature("kwargs") _IborLeg;
+#endif
 %rename(IborLeg) _IborLeg;
 Leg _IborLeg(const std::vector<Real>& nominals,
              const Schedule& schedule,
@@ -567,7 +611,9 @@ Leg _CmsLeg(const std::vector<Real>& nominals,
         .inArrears(isInArrears);
 }
 %}
+#if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
 %feature("kwargs") _CmsLeg;
+#endif
 %rename(CmsLeg) _CmsLeg;
 Leg _CmsLeg(const std::vector<Real>& nominals,
             const Schedule& schedule,
@@ -606,7 +652,9 @@ Leg _CmsZeroLeg(const std::vector<Real>& nominals,
         .withZeroPayments();
 }
 %}
+#if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
 %feature("kwargs") _CmsZeroLeg;
+#endif
 %rename(CmsZeroLeg) _CmsZeroLeg;
 Leg _CmsZeroLeg(const std::vector<Real>& nominals,
                 const Schedule& schedule,
@@ -632,6 +680,9 @@ struct Duration {
 };
 
 class CashFlows {
+    #if defined(SWIGPYTHON)
+    %rename("yieldRate")   yield;
+    #endif
   private:
     CashFlows();
     CashFlows(const CashFlows&);

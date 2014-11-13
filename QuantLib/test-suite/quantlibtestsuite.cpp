@@ -43,6 +43,7 @@
 #include "utilities.hpp"
 
 #include "americanoption.hpp"
+#include "amortizingbond.hpp"
 #include "array.hpp"
 #include "asianoptions.hpp"
 #include "assetswap.hpp"
@@ -51,6 +52,7 @@
 #include "basketoption.hpp"
 #include "batesmodel.hpp"
 #include "bermudanswaption.hpp"
+#include "binaryoption.hpp"
 #include "blackdeltacalculator.hpp"
 #include "blackformula.hpp"
 #include "bonds.hpp"
@@ -59,6 +61,7 @@
 #include "capfloor.hpp"
 #include "capflooredcoupon.hpp"
 #include "cashflows.hpp"
+#include "catbonds.hpp"
 #include "cdo.hpp"
 #include "cdsoption.hpp"
 #include "chooseroption.hpp"
@@ -69,6 +72,7 @@
 #include "convertiblebonds.hpp"
 #include "covariance.hpp"
 #include "creditdefaultswap.hpp"
+#include "creditriskplus.hpp"
 #include "curvestates.hpp"
 #include "dates.hpp"
 #include "daycounters.hpp"
@@ -81,14 +85,16 @@
 #include "everestoption.hpp"
 #include "exchangerate.hpp"
 #include "extendedtrees.hpp"
-#include "factorial.hpp"
+#include "extensibleoptions.hpp"
 #include "fastfouriertransform.hpp"
 #include "fdheston.hpp"
 #include "fdmlinearop.hpp"
 #include "forwardoption.hpp"
+#include "functions.hpp"
 #include "gaussianquadratures.hpp"
 #include "garch.hpp"
 #include "gjrgarchmodel.hpp"
+#include "gsr.hpp"
 #include "hestonmodel.hpp"
 #include "himalayaoption.hpp"
 #include "hybridhestonhullwhiteprocess.hpp"
@@ -121,6 +127,7 @@
 #include "mclongstaffschwartzengine.hpp"
 #include "mersennetwister.hpp"
 #include "money.hpp"
+#include "noarbsabr.hpp"
 #include "nthtodefault.hpp"
 #include "ode.hpp"
 #include "operators.hpp"
@@ -128,9 +135,11 @@
 #include "optionletstripper.hpp"
 #include "overnightindexedswap.hpp"
 #include "pagodaoption.hpp"
+#include "partialtimebarrieroption.hpp"
 #include "pathgenerator.hpp"
 #include "period.hpp"
 #include "piecewiseyieldcurve.hpp"
+#include "piecewisezerospreadedtermstructure.hpp"
 #include "quantooption.hpp"
 #include "quotes.hpp"
 #include "riskstats.hpp"
@@ -142,7 +151,6 @@
 #include "solvers.hpp"
 #include "spreadoption.hpp"
 #include "swingoption.hpp"
-#include "surface.hpp"
 #include "stats.hpp"
 #include "swap.hpp"
 #include "swapforwardmappings.hpp"
@@ -155,12 +163,12 @@
 #include "tracing.hpp"
 #include "transformedgrid.hpp"
 #include "twoassetbarrieroption.hpp"
+#include "twoassetcorrelationoption.hpp"
 #include "variancegamma.hpp"
 #include "varianceoption.hpp"
 #include "varianceswaps.hpp"
 #include "volatilitymodels.hpp"
 #include "vpp.hpp"
-#include "writerextensibleoption.hpp"
 
 #include <iostream>
 #include <iomanip>
@@ -230,12 +238,6 @@ test_suite* init_unit_test_suite(int, char* []) {
             #else
             "undefined"
             #endif
-        "\n  QL_DISABLE_DEPRECATED "
-            #ifdef QL_DISABLE_DEPRECATED
-            "   defined"
-            #else
-            " undefined"
-            #endif
         "\n  QL_USE_INDEXED_COUPON "
             #ifdef QL_USE_INDEXED_COUPON
             "   defined"
@@ -253,7 +255,6 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(QUANTLIB_TEST_CASE(startTimer));
     test->add(QUANTLIB_TEST_CASE(configure));
 
-
     test->add(AmericanOptionTest::suite());
     test->add(ArrayTest::suite());
     test->add(AsianOptionTest::suite());
@@ -263,6 +264,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(BasketOptionTest::suite());
     test->add(BatesModelTest::suite());
     test->add(BermudanSwaptionTest::suite());
+    test->add(BinaryOptionTest::suite());
     test->add(BlackFormulaTest::suite());
     test->add(BondTest::suite());
     test->add(BrownianBridgeTest::suite());
@@ -285,11 +287,11 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(DividendOptionTest::suite());
     test->add(EuropeanOptionTest::suite());
     test->add(ExchangeRateTest::suite());
-    test->add(FactorialTest::suite());
     test->add(FastFourierTransformTest::suite());
     test->add(FdHestonTest::suite());
     test->add(FdmLinearOpTest::suite());
     test->add(ForwardOptionTest::suite());
+    test->add(FunctionsTest::suite());
     test->add(GARCHTest::suite());
     test->add(GaussianQuadraturesTest::suite());
     test->add(GJRGARCHModelTest::suite());
@@ -324,6 +326,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(PathGeneratorTest::suite());
     test->add(PeriodTest::suite());
     test->add(PiecewiseYieldCurveTest::suite());
+    test->add(PiecewiseZeroSpreadedTermStructureTest::suite());
     test->add(QuantoOptionTest::suite());
     test->add(QuoteTest::suite());
     test->add(RiskStatisticsTest::suite());
@@ -334,7 +337,6 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(ShortRateModelTest::suite()); // fails with QL_USE_INDEXED_COUPON
     test->add(Solver1DTest::suite());
     test->add(StatisticsTest::suite());
-    test->add(SurfaceTest::suite());
     test->add(SwapTest::suite());
     test->add(SwapForwardMappingsTest::suite());
     test->add(SwaptionTest::suite());
@@ -349,34 +351,42 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(VolatilityModelsTest::suite());
 
     // tests for experimental classes
+    test->add(AmortizingBondTest::suite());
     test->add(AsianOptionTest::experimental());
     test->add(BarrierOptionTest::experimental());
     test->add(BlackDeltaCalculatorTest::suite());
+    test->add(CatBondTest::suite());
     test->add(CdoTest::suite());
     test->add(CdsOptionTest::suite());
     test->add(ChooserOptionTest::suite());
     test->add(CommodityUnitOfMeasureTest::suite());
     test->add(CompoundOptionTest::suite());
     test->add(ConvertibleBondTest::suite());
+    test->add(CreditRiskPlusTest::suite());
     test->add(EuropeanOptionTest::experimental());
     test->add(EverestOptionTest::suite());
     test->add(ExtendedTreesTest::suite());
+    test->add(ExtensibleOptionsTest::suite());
     test->add(FdHestonTest::experimental());
+    test->add(GsrTest::suite());
+    test->add(HestonModelTest::experimental());
     test->add(HimalayaOptionTest::suite());
     test->add(InflationCPICapFloorTest::suite());
     test->add(InflationVolTest::suite());
     test->add(MargrabeOptionTest::suite());
     test->add(MarkovFunctionalTest::suite());
+    test->add(NoArbSabrTest::suite());
     test->add(NthToDefaultTest::suite());
     test->add(OdeTest::suite());
     test->add(PagodaOptionTest::suite());
+    test->add(PartialTimeBarrierOptionTest::suite());
     test->add(SpreadOptionTest::suite());
     test->add(SwingOptionTest::suite());
     test->add(TwoAssetBarrierOptionTest::suite());
+    test->add(TwoAssetCorrelationOptionTest::suite());
     test->add(VarianceGammaTest::suite());
     test->add(VarianceOptionTest::suite());
     test->add(VPPTest::suite());
-    test->add(WriterExtensibleOptionTest::suite());
 
     // tests for deprecated classes
     test->add(LiborMarketModelTest::suite());

@@ -21,19 +21,17 @@ EXTRA_DIST = \
 	LICENSE.TXT \
 	News.txt \
 	QuantLib.dev \
+	QuantLib.props \
 	QuantLib.spec \
-	QuantLib_vc7.sln \
-	QuantLib_vc7.vcproj \
 	QuantLib_vc8.sln \
 	QuantLib_vc8.vcproj \
 	QuantLib_vc9.sln \
 	QuantLib_vc9.vcproj \
 	QuantLib_vc10.sln \
-	QuantLib_vc10.vcxproj \
-	QuantLib_vc10.vcxproj.filters \
 	QuantLib_vc11.sln \
-	QuantLib_vc11.vcxproj \
-	QuantLib_vc11.vcxproj.filters \
+	QuantLib_vc12.sln \
+	QuantLib.vcxproj \
+	QuantLib.vcxproj.filters \
 	Readme.txt \
 	autogen.sh
 
@@ -54,8 +52,6 @@ html-local:
 	$(MAKE) -C Docs docs-html
 docs-man:
 	$(MAKE) -C Docs docs-man
-docs-online:
-	$(MAKE) -C Docs docs-online
 docs-dist:
 	$(MAKE) -C Docs docs-dist
 docs-clean:

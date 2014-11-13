@@ -59,12 +59,20 @@
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\build\vc100\$(Configuration)\apr\apr_obj\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">true</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\build\vc100\$(Configuration)\apr\apr_obj\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\build\vc100\$(Configuration)\apr\apr_obj\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\build\vc100\$(Configuration)\apr\apr_obj\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">apr-vc100-mt-0_10_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">apr-vc100-mt-gd-0_10_0</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">apr-vc100-mt-sgd-0_10_0</TargetName>
@@ -75,7 +83,7 @@
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\src\apr\include;..\src\apr\include\arch;..\src\apr\include\arch\win32;..\src\apr\include\arch\unix;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;APR_DECLARE_STATIC;WIN32=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;APR_DECLARE_STATIC;WIN32=1;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -84,9 +92,9 @@
       <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\build\vc100\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
       <ObjectFileName>.\build\vc100\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\apr\apr_obj\vc100.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Lib>
@@ -110,7 +118,7 @@
       <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\build\vc100\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
       <ObjectFileName>.\build\vc100\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\apr\apr_obj\vc100.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -134,9 +142,9 @@
       <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\build\vc100\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
       <ObjectFileName>.\build\vc100\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\apr\apr_obj\vc100.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Lib>
@@ -160,7 +168,7 @@
       <PrecompiledHeaderOutputFile>.\build\vc100\$(Configuration)\apr\apr.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\build\vc100\$(Configuration)\apr\apr_obj\</AssemblerListingLocation>
       <ObjectFileName>.\build\vc100\$(Configuration)\apr\apr_obj\</ObjectFileName>
-      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\apr\apr_obj\vc100.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>.\build\vc100\$(Configuration)\apr\apr_obj\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>

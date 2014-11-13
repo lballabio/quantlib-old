@@ -129,6 +129,7 @@ body {
     text-align: center;
     color: #87A65F;
     padding-top: 22px;
+    line-height: 125%;
 }
 
 #footer a, #footer a.focus, #footer a.hover, #footer a.active, #footer a.visited {

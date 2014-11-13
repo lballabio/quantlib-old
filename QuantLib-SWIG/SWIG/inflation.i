@@ -1,6 +1,6 @@
 /*
  Copyright (C) 2010 Joseph Wang
- Copyright (C) 2010, 2011 StatPro Italia srl
+ Copyright (C) 2010, 2011, 2014 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -150,14 +150,33 @@ IsObservable(Handle<ZeroInflationTermStructure>);
 
 // inflation indexes
 
-%{
+%fragment("zeroinflationindex", "header") {
+%#include <ql/indexes/inflationindex.hpp>
+%#include <ql/indexes/inflation/all.hpp>
+using QuantLib::Region;
+using QuantLib::CustomRegion;
 using QuantLib::InflationIndex;
 using QuantLib::ZeroInflationIndex;
 using QuantLib::YoYInflationIndex;
 typedef boost::shared_ptr<Index> InflationIndexPtr;
 typedef boost::shared_ptr<Index> ZeroInflationIndexPtr;
 typedef boost::shared_ptr<Index> YoYInflationIndexPtr;
-%}
+}
+%fragment("zeroinflationindex");
+
+class Region {
+  public:
+    std::string name() const;
+    std::string code() const;
+  protected:
+    Region();
+};
+
+class CustomRegion : public Region {
+  public:
+    CustomRegion(const std::string& name,
+                 const std::string& code);
+};
 
 %rename(InflationIndex) InflationIndexPtr;
 class InflationIndexPtr : public boost::shared_ptr<Index> {
@@ -186,8 +205,22 @@ class InflationIndexPtr : public boost::shared_ptr<Index> {
 
 %rename(ZeroInflationIndex) ZeroInflationIndexPtr;
 class ZeroInflationIndexPtr : public InflationIndexPtr {
-  protected:
-    ZeroInflationIndexPtr();
+  public:
+    %extend {
+      ZeroInflationIndexPtr(const std::string& familyName,
+                            const Region& region,
+                            bool revised,
+                            bool interpolated,
+                            Frequency frequency,
+                            const Period& availabilityLag,
+                            const Currency& currency,
+                            const Handle<ZeroInflationTermStructure>& h =
+                                       Handle<ZeroInflationTermStructure>()) {
+          return new ZeroInflationIndexPtr(
+              new ZeroInflationIndex(familyName, region, revised, interpolated,
+                                     frequency, availabilityLag, currency, h));
+      }
+    }
 };
 
 %rename(YoYInflationIndex) YoYInflationIndexPtr;
@@ -238,14 +271,24 @@ export_zii_instance(EUHICPXT);
 export_zii_instance(FRHICP);
 export_zii_instance(UKRPI);
 export_zii_instance(USCPI);
+export_zii_instance(ZACPI);
 
 export_yii_instance(YYEUHICP);
 export_yii_instance(YYEUHICPXT);
 export_yii_instance(YYFRHICP);
 export_yii_instance(YYUKRPI);
 export_yii_instance(YYUSCPI);
+export_yii_instance(YYZACPI);
 
+// utilities
 
+%{
+    using QuantLib::CPI;
+%}
+
+struct CPI {
+    enum InterpolationType { AsIndex, Flat, Linear };
+};
 
 // bootstrapped curves
 
@@ -330,7 +373,9 @@ typedef boost::shared_ptr<ZeroInflationTermStructure> Name##Ptr;
 %}
 %rename(Name) Name##Ptr;
 class Name##Ptr : public boost::shared_ptr<ZeroInflationTermStructure> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") Name##Ptr;
+    #endif
   public:
     %extend {
         Name##Ptr(
@@ -377,7 +422,9 @@ typedef boost::shared_ptr<YoYInflationTermStructure> Name##Ptr;
 %}
 %rename(Name) Name##Ptr;
 class Name##Ptr : public boost::shared_ptr<YoYInflationTermStructure> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") Name##Ptr;
+    #endif
   public:
     %extend {
         Name##Ptr(
@@ -417,9 +464,28 @@ class Name##Ptr : public boost::shared_ptr<YoYInflationTermStructure> {
 };
 %enddef
 
-export_piecewise_zero_inflation_curve(PiecewiseZeroInflation,BackwardFlat);
+export_piecewise_zero_inflation_curve(PiecewiseZeroInflation,Linear);
 
-export_piecewise_yoy_inflation_curve(PiecewiseYoYInflation,BackwardFlat);
+export_piecewise_yoy_inflation_curve(PiecewiseYoYInflation,Linear);
+
+
+// utilities
+
+%inline %{
+
+    Date inflationBaseDate(const Date& referenceDate,
+                           const Period& observationLag,
+                           Frequency frequency,
+                           bool indexIsInterpolated) {
+        if (indexIsInterpolated) {
+            return referenceDate - observationLag;
+        } else {
+            return QuantLib::inflationPeriod(referenceDate - observationLag,
+                                             frequency).first;
+        }
+    }
+
+%}
 
 
 // inflation instruments
@@ -482,6 +548,18 @@ class ZeroCouponInflationSwapPtr : public boost::shared_ptr<Instrument> {
         Rate fairRate() {
             return boost::dynamic_pointer_cast<ZeroCouponInflationSwap>(*self)
                 ->fairRate();
+        }
+        std::vector<boost::shared_ptr<CashFlow> > fixedLeg() {
+            return boost::dynamic_pointer_cast<ZeroCouponInflationSwap>(*self)
+                ->fixedLeg();
+        }
+        std::vector<boost::shared_ptr<CashFlow> > inflationLeg() {
+            return boost::dynamic_pointer_cast<ZeroCouponInflationSwap>(*self)
+                ->inflationLeg();
+        }
+        ZeroCouponInflationSwap::Type type() {
+            return boost::dynamic_pointer_cast<ZeroCouponInflationSwap>(*self)
+                ->type();
         }
     }
 };

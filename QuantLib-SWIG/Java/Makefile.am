@@ -3,7 +3,7 @@ CLEANFILES = quantlib_wrap.cpp libQuantLibJNI.@JNILIB_EXTENSION@ QuantLib.jar
 
 BUILT_SOURCES = quantlib_wrap.cpp quantlib_wrap.h
 
-EXAMPLES = DiscreteHedging EquityOptions FRA UnaryFunctions
+EXAMPLES = Bonds DiscreteHedging EquityOptions FRA UnaryFunctions
 
 if HAVE_JAVA
 if BUILD_JAVA

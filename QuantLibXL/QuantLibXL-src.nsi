@@ -2,10 +2,10 @@
 # !defines
 
 !define APP "QuantLibXL"
-!define VER_NUMBER "1.1.0"
-!define VER_NUMBER_UNDERSCORE "1_1_0"
+!define VER_NUMBER "1.5.0"
+!define VER_NUMBER_UNDERSCORE "1_5_0"
 !define COMPILER "vc90"
-!define DEFAULT_PATH "c:\build_ql_1_1_0\${APP}"
+!define DEFAULT_PATH "c:\build_ql_1_5_0\${APP}"
 
 # Compiler Flags
 
@@ -97,9 +97,6 @@ Section
                    "$INSTDIR\QuantLibXLUninstall.exe" "" \
                    "$INSTDIR\QuantLibXLUninstall.exe" 0
 
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 7 project workspace.lnk" \
-                   "$INSTDIR\QuantLibXL_basic_vc7.sln"
-
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 8 project workspace.lnk" \
                    "$INSTDIR\QuantLibXL_basic_vc8.sln"
 
@@ -108,9 +105,6 @@ Section
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL VC 10 project workspace.lnk" \
                    "$INSTDIR\QuantLibXL_basic_vc10.sln"
-
-    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
-                   "$INSTDIR\framework\QuantLibXL.xla"
 
     CreateShortCut "$SMPROGRAMS\QuantLibXL-src-${VER_NUMBER}\README.txt.lnk" \
                    "$INSTDIR\README.txt"
@@ -145,8 +139,15 @@ Section /o Framework
     File "xll\QuantLibXL-${COMPILER}-mt-s-${VER_NUMBER_UNDERSCORE}.xll"
 
     SetOutPath "$INSTDIR\framework"
+    #File "framework\QuantLibXL.xml"
     File "framework\QuantLibXL.xla"
     File "framework\QuantLibXLA.cer"
+    File "framework\ReadMe.txt"
+    File /r "framework\*.txt"
+    File /r "framework\*.xla"
+    #File /r "framework\*.xlam"
+    File /r "framework\*.xls"
+    File /r "framework\*.xml"
 
     SetOutPath "$INSTDIR\Workbooks"
     File /r "Workbooks\*.xls"
@@ -155,16 +156,15 @@ Section /o Framework
     File /r "Data\*.xls"
     File /r "Data\*.xml"
 
-    SetOutPath "$INSTDIR\framework2"
-    File /r "framework2\*.txt"
-    File /r "framework2\*.xla"
-    File /r "framework2\*.xlam"
-    File /r "framework2\*.xls"
-    File /r "framework2\*.xml"
+    SetOutPath "$INSTDIR\metadata"
+    File /r "..\QuantLibAddin\gensrc\metadata\*.xml"
 
     # ObjectBuilder crashes if it can't find the icon
     SetOutPath "$INSTDIR\Docs\images"
     File "Docs\images\favicon.bmp"
+
+    CreateShortCut "$SMPROGRAMS\QuantLibXL-${VER_NUMBER}\QuantLibXL.xla.lnk" \
+                   "$INSTDIR\framework\QuantLibXL.xla"
 
 SectionEnd
 

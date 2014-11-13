@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2007 Chris Kenyon
+ Copyright (C) 2014 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -20,6 +21,12 @@
 #include <ql/indexes/region.hpp>
 
 namespace QuantLib {
+
+    CustomRegion::CustomRegion(const std::string& name,
+                               const std::string& code) {
+        data_ = boost::shared_ptr<Data>(new Data(name,code));
+    }
+
 
     AustraliaRegion::AustraliaRegion() {
         static boost::shared_ptr<Data> AUdata(new Data("Australia","AU"));
@@ -42,8 +49,13 @@ namespace QuantLib {
     }
 
     USRegion::USRegion() {
-        static boost::shared_ptr<Data> UKdata(new Data("USA","US"));
-        data_ = UKdata;
+        static boost::shared_ptr<Data> USdata(new Data("USA","US"));
+        data_ = USdata;
+    }
+
+    ZARegion::ZARegion() {
+        static boost::shared_ptr<Data> ZAdata(new Data("South Africa","ZA"));
+        data_ = ZAdata;
     }
 
 

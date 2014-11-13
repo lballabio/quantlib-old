@@ -32,7 +32,10 @@
 #include <ql/math/solvers1d/brent.hpp>
 #include <ql/math/distributions/gammadistribution.hpp>
 #include <ql/math/interpolations/cubicinterpolation.hpp>
+#include <ql/math/interpolations/bilinearinterpolation.hpp>
 #include <ql/math/integrals/gausslobattointegral.hpp>
+#include <ql/math/integrals/trapezoidintegral.hpp>
+#include <ql/math/integrals/twodimensionalintegral.hpp>
 #include <ql/models/equity/hestonmodel.hpp>
 #include <ql/termstructures/yield/zerocurve.hpp>
 #include <ql/pricingengines/barrier/analyticbarrierengine.hpp>
@@ -53,11 +56,15 @@
 #include <ql/experimental/finitedifferences/fdmblackscholesfwdop.hpp>
 #include <ql/experimental/finitedifferences/fdmsquarerootfwdop.hpp>
 #include <ql/experimental/finitedifferences/fdmhestonfwdop.hpp>
-
-#include <boost/math/special_functions/gamma.hpp>
-#if BOOST_VERSION >= 103900
-#include <boost/math/distributions/non_central_chi_squared.hpp>
+#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #endif
+#include <boost/math/special_functions/gamma.hpp>
+#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#pragma GCC diagnostic pop
+#endif
+#include <boost/math/distributions/non_central_chi_squared.hpp>
 
 using namespace QuantLib;
 using boost::unit_test_framework::test_suite;
@@ -789,7 +796,6 @@ void FdHestonTest::testBlackScholesFokkerPlanckFwdEquation() {
 
 namespace {
 
-    #if BOOST_VERSION >= 103900
     Real squareRootGreensFct(Real v0, Real kappa, Real theta,
                              Real sigma, Real t, Real x) {
 
@@ -803,7 +809,6 @@ namespace {
 
         return boost::math::pdf(dist, x/k) / k;
     }
-    #endif
 
     Real stationaryProbabilityFct(Real kappa, Real theta,
                                    Real sigma, Real v) {
@@ -839,9 +844,7 @@ namespace {
 }
 
 void FdHestonTest::testSquareRootZeroFlowBC() {
-    #if BOOST_VERSION >= 103900
-
-    BOOST_TEST_MESSAGE("Testing Zero Flow BC for the square root process...");
+    BOOST_TEST_MESSAGE("Testing zero-flow BC for the square root process...");
 
     SavedSettings backup;
 
@@ -904,7 +907,6 @@ void FdHestonTest::testSquareRootZeroFlowBC() {
                        << "\n   tolerance:  " << tol);
         }
     }
-    #endif
 }
 
 
@@ -930,7 +932,7 @@ namespace {
 
 
 void FdHestonTest::testTransformedZeroFlowBC() {
-    BOOST_TEST_MESSAGE("Testing zero flow BC for transformed "
+    BOOST_TEST_MESSAGE("Testing zero-flow BC for transformed "
                        "Fokker-Planck forward equation...");
 
     SavedSettings backup;
@@ -1054,8 +1056,6 @@ void FdHestonTest::testSquareRootEvolveWithStationaryDensity() {
 }
 
 void FdHestonTest::testSquareRootFokkerPlanckFwdEquation() {
-    #if BOOST_VERSION >= 103900
-
     BOOST_TEST_MESSAGE("Testing Fokker-Planck forward equation "
                        "for the square root process with Dirac start...");
 
@@ -1120,7 +1120,6 @@ void FdHestonTest::testSquareRootFokkerPlanckFwdEquation() {
                        << "\n   tolerance:  " << tol);
         }
     }
-    #endif
 }
 
 
@@ -1146,22 +1145,20 @@ namespace {
             }
         }
 
-        Array intX(y.size(), 0.0);
-        for (Size i=0; i < y.size(); ++i) {
-            // check for zero function
-            const Real sum = std::accumulate(p.begin() + i*x.size(),
-                                             p.begin() + (i+1)*x.size(), 0.0);
+        Matrix m(y.size(), x.size());
+        std::copy(p.begin(), p.end(), m.begin());
 
-            if (sum > 100*QL_EPSILON) {
-            	CubicNaturalSpline f(x.begin(), x.end(), p.begin()+i*x.size());
-            	f.enableExtrapolation();
-                intX[i]=GaussLobattoIntegral(1000000, 1e-6)(f,x.front(),x.back());
-            }
-        }
+        const Real tolerance = 1e-3;
+        const Size maxEvaluations = 1000;
 
-        CubicNaturalSpline f(y.begin(), y.end(), intX.begin());
-        f.enableExtrapolation();
-        return GaussLobattoIntegral(1000000, 1e-6)(f, y.front(), y.back());
+        return TwoDimensionalIntegral(
+             boost::shared_ptr<Integrator>(
+                 new TrapezoidIntegral<Default>(tolerance, maxEvaluations)),
+             boost::shared_ptr<Integrator>(
+                 new TrapezoidIntegral<Default>(tolerance, maxEvaluations)))(
+             Bilinear().interpolate(x.begin(), x.end(), y.begin(), y.end(), m),
+             std::make_pair(x.front(), y.front()),
+             std::make_pair(x.back(), y.back()));
     }
 }
 
@@ -1310,16 +1307,12 @@ test_suite* FdHestonTest::experimental() {
     test_suite* suite = BOOST_TEST_SUITE("Finite Difference Heston tests");
     suite->add(QUANTLIB_TEST_CASE(
         &FdHestonTest::testBlackScholesFokkerPlanckFwdEquation));
-    #if BOOST_VERSION >= 103900
     suite->add(QUANTLIB_TEST_CASE(&FdHestonTest::testSquareRootZeroFlowBC));
-    #endif
     suite->add(QUANTLIB_TEST_CASE(&FdHestonTest::testTransformedZeroFlowBC));
     suite->add(QUANTLIB_TEST_CASE(
           &FdHestonTest::testSquareRootEvolveWithStationaryDensity));
-    #if BOOST_VERSION >= 103900
     suite->add(QUANTLIB_TEST_CASE(
         &FdHestonTest::testSquareRootFokkerPlanckFwdEquation));
-    #endif
     suite->add(QUANTLIB_TEST_CASE(
         &FdHestonTest::testHestonFokkerPlanckFwdEquation));
 

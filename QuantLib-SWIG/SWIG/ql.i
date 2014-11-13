@@ -80,7 +80,7 @@
 %{
 #include <ql/quantlib.hpp>
 
-#if QL_HEX_VERSION < 0x010400f0
+#if QL_HEX_VERSION < 0x010500f0
     #error using an old version of QuantLib, please update
 #endif
 
@@ -149,6 +149,7 @@
 %include bonds.i
 %include bondfunctions.i
 %include calendars.i
+%include calibrationhelpers.i
 %include callability.i
 %include capfloor.i
 %include cashflows.i
@@ -164,6 +165,7 @@
 %include dividends.i
 %include exchangerates.i
 %include exercise.i
+%include fittedbondcurve.i
 %include forwardcurve.i
 %include fra.i
 %include functions.i
@@ -196,7 +198,6 @@
 %include stochasticprocess.i
 %include swap.i
 %include swaption.i
-%include surface.i
 %include termstructures.i
 %include timebasket.i
 %include timeseries.i

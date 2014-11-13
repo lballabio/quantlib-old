@@ -860,6 +860,10 @@
 				>
 			</File>
 			<File
+				RelativePath="amortizingbond.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\array.cpp"
 				>
 			</File>
@@ -892,6 +896,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\binaryoption.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\blackdeltacalculator.cpp"
 				>
 			</File>
@@ -921,6 +929,10 @@
 			</File>
 			<File
 				RelativePath=".\cashflows.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\catbonds.cpp"
 				>
 			</File>
 			<File
@@ -961,6 +973,10 @@
 			</File>
 			<File
 				RelativePath=".\creditdefaultswap.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\creditriskplus.cpp"
 				>
 			</File>
 			<File
@@ -1012,7 +1028,11 @@
 				>
 			</File>
 			<File
-				RelativePath="factorial.cpp"
+				RelativePath=".\extensibleoptions.cpp"
+				>
+			</File>
+			<File
+				RelativePath="functions.cpp"
 				>
 			</File>
 			<File
@@ -1041,6 +1061,10 @@
 			</File>
 			<File
 				RelativePath=".\gjrgarchmodel.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\gsr.cpp"
 				>
 			</File>
 			<File
@@ -1172,6 +1196,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\noarbsabr.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\nthtodefault.cpp"
 				>
 			</File>
@@ -1200,6 +1228,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\partialtimebarrieroption.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\pathgenerator.cpp"
 				>
 			</File>
@@ -1209,6 +1241,10 @@
 			</File>
 			<File
 				RelativePath=".\piecewiseyieldcurve.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\piecewisezerospreadedtermstructure.cpp"
 				>
 			</File>
 			<File
@@ -1260,10 +1296,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\surface.cpp"
-				>
-			</File>
-			<File
 				RelativePath="swap.cpp"
 				>
 			</File>
@@ -1312,6 +1344,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\twoassetcorrelationoption.cpp"
+				>
+			</File>
+			<File
 				RelativePath="utilities.cpp"
 				>
 			</File>
@@ -1335,10 +1371,6 @@
 				RelativePath=".\vpp.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\writerextensibleoption.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1346,6 +1378,10 @@
 			>
 			<File
 				RelativePath="americanoption.hpp"
+				>
+			</File>
+			<File
+				RelativePath="amortizingbond.hpp"
 				>
 			</File>
 			<File
@@ -1381,6 +1417,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\binaryoption.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\blackdeltacalculator.hpp"
 				>
 			</File>
@@ -1410,6 +1450,10 @@
 			</File>
 			<File
 				RelativePath=".\cashflows.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\catbonds.hpp"
 				>
 			</File>
 			<File
@@ -1450,6 +1494,10 @@
 			</File>
 			<File
 				RelativePath=".\creditdefaultswap.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\creditriskplus.hpp"
 				>
 			</File>
 			<File
@@ -1501,7 +1549,11 @@
 				>
 			</File>
 			<File
-				RelativePath="factorial.hpp"
+				RelativePath=".\extensibleoptions.hpp"
+				>
+			</File>
+			<File
+				RelativePath="functions.hpp"
 				>
 			</File>
 			<File
@@ -1530,6 +1582,10 @@
 			</File>
 			<File
 				RelativePath=".\gjrgarchmodel.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\gsr.hpp"
 				>
 			</File>
 			<File
@@ -1661,6 +1717,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\noarbsabr.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\nthtodefault.hpp"
 				>
 			</File>
@@ -1689,6 +1749,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\partialtimebarrieroption.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\pathgenerator.hpp"
 				>
 			</File>
@@ -1698,6 +1762,10 @@
 			</File>
 			<File
 				RelativePath=".\piecewiseyieldcurve.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\piecewisezerospreadedtermstructure.hpp"
 				>
 			</File>
 			<File
@@ -1746,10 +1814,6 @@
 			</File>
 			<File
 				RelativePath="stats.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\surface.hpp"
 				>
 			</File>
 			<File
@@ -1805,6 +1869,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\twoassetcorrelationoption.hpp"
+				>
+			</File>
+			<File
 				RelativePath="utilities.hpp"
 				>
 			</File>
@@ -1826,10 +1894,6 @@
 			</File>
 			<File
 				RelativePath=".\vpp.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\writerextensibleoption.hpp"
 				>
 			</File>
 		</Filter>

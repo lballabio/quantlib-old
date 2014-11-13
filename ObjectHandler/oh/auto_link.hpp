@@ -24,12 +24,8 @@
 #include <oh/ohdefines.hpp>
 
 // select toolset:
-#if (_MSC_VER < 1300)
+#if (_MSC_VER < 1400)
 #  error "unsupported Microsoft compiler"
-#elif (_MSC_VER == 1300)
-#  define OBJHANDLER_LIB_TOOLSET "vc7"
-#elif (_MSC_VER == 1310)
-#  define OBJHANDLER_LIB_TOOLSET "vc71"
 #elif (_MSC_VER == 1400)
 #  define OBJHANDLER_LIB_TOOLSET "vc80"
 #elif (_MSC_VER == 1500)
@@ -43,6 +39,13 @@
 #endif
 
 /*** libraries to be linked ***/
+
+// select architecture:
+#ifdef _M_X64
+#  define OBJHANDLER_LIB_PLATFORM "-x64"
+#else
+#  define OBJHANDLER_LIB_PLATFORM 
+#endif
 
 // select thread opt:
 #ifdef _MT
@@ -76,7 +79,7 @@
 #endif
 
 
-#define OBJHANDLER_LIB_NAME "ObjectHandler" OBJHANDLER_LIB_TYPE "-" OBJHANDLER_LIB_TOOLSET OBJHANDLER_LIB_THREAD_OPT OBJHANDLER_LIB_RT_OPT "-" OBJHANDLER_LIB_VERSION ".lib"
+#define OBJHANDLER_LIB_NAME "ObjectHandler" OBJHANDLER_LIB_TYPE "-" OBJHANDLER_LIB_TOOLSET OBJHANDLER_LIB_PLATFORM OBJHANDLER_LIB_THREAD_OPT OBJHANDLER_LIB_RT_OPT "-" OBJHANDLER_LIB_VERSION ".lib"
 
 #pragma comment(lib, OBJHANDLER_LIB_NAME)
 #ifdef BOOST_LIB_DIAGNOSTIC

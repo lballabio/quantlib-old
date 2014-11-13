@@ -2,11 +2,13 @@
 QL_TESTS = \
 	quantlibtestsuite.cpp \
 	americanoption.hpp americanoption.cpp \
+	amortizingbond.hpp amortizingbond.cpp \
 	array.hpp array.cpp \
 	asianoptions.hpp asianoptions.cpp \
 	assetswap.hpp assetswap.cpp \
 	autocovariances.hpp autocovariances.cpp \
 	barrieroption.hpp barrieroption.cpp \
+	binaryoption.hpp binaryoption.cpp \
 	basketoption.hpp basketoption.cpp \
 	batesmodel.hpp batesmodel.cpp \
 	bermudanswaption.hpp bermudanswaption.cpp \
@@ -18,6 +20,7 @@ QL_TESTS = \
 	capfloor.hpp capfloor.cpp \
 	capflooredcoupon.hpp capflooredcoupon.cpp \
 	cashflows.hpp cashflows.cpp \
+	catbonds.hpp catbonds.cpp \
 	cdo.hpp cdo.cpp \
 	cdsoption.hpp cdsoption.cpp \
 	chooseroption.hpp chooseroption.cpp \
@@ -28,6 +31,7 @@ QL_TESTS = \
 	convertiblebonds.hpp convertiblebonds.cpp \
 	covariance.hpp covariance.cpp \
 	creditdefaultswap.hpp creditdefaultswap.cpp \
+	creditriskplus.hpp creditriskplus.cpp \
 	curvestates.hpp curvestates.cpp \
 	dates.hpp dates.cpp \
 	daycounters.hpp daycounters.cpp \
@@ -40,14 +44,16 @@ QL_TESTS = \
 	everestoption.hpp everestoption.cpp \
 	exchangerate.hpp exchangerate.cpp \
 	extendedtrees.hpp extendedtrees.cpp \
-	factorial.hpp factorial.cpp \
+	extensibleoptions.hpp extensibleoptions.cpp \
 	fastfouriertransform.hpp fastfouriertransform.cpp \
 	fdheston.hpp fdheston.cpp \
 	fdmlinearop.hpp fdmlinearop.cpp \
 	forwardoption.hpp forwardoption.cpp \
+	functions.hpp functions.cpp \
 	garch.hpp garch.cpp \
 	gaussianquadratures.hpp gaussianquadratures.cpp \
 	gjrgarchmodel.hpp gjrgarchmodel.cpp \
+	gsr.hpp gsr.cpp \
 	hestonmodel.hpp hestonmodel.cpp \
 	himalayaoption.hpp himalayaoption.cpp \
 	hybridhestonhullwhiteprocess.hpp hybridhestonhullwhiteprocess.cpp \
@@ -80,6 +86,7 @@ QL_TESTS = \
 	mclongstaffschwartzengine.hpp mclongstaffschwartzengine.cpp \
 	mersennetwister.hpp mersennetwister.cpp \
 	money.hpp money.cpp \
+	noarbsabr.hpp noarbsabr.cpp \
 	nthtodefault.hpp nthtodefault.cpp \
 	ode.hpp ode.cpp \
 	operators.hpp operators.cpp \
@@ -87,9 +94,11 @@ QL_TESTS = \
 	optionletstripper.hpp optionletstripper.cpp \
 	overnightindexedswap.hpp overnightindexedswap.cpp \
 	pagodaoption.hpp pagodaoption.cpp \
+	partialtimebarrieroption.hpp partialtimebarrieroption.cpp \
 	pathgenerator.hpp pathgenerator.cpp \
 	period.hpp period.cpp \
 	piecewiseyieldcurve.hpp piecewiseyieldcurve.cpp \
+	piecewisezerospreadedtermstructure.hpp piecewisezerospreadedtermstructure.cpp \
 	quantooption.hpp quantooption.cpp \
 	quotes.hpp quotes.cpp \
 	rangeaccrual.hpp rangeaccrual.cpp \
@@ -102,7 +111,6 @@ QL_TESTS = \
 	solvers.hpp solvers.cpp \
 	spreadoption.hpp spreadoption.cpp \
 	stats.hpp stats.cpp \
-	surface.hpp surface.cpp \
 	swap.hpp swap.cpp \
 	swapforwardmappings.hpp swapforwardmappings.cpp \
 	swaption.hpp swaption.cpp \
@@ -116,13 +124,13 @@ QL_TESTS = \
 	tqreigendecomposition.hpp tqreigendecomposition.cpp \
 	tracing.hpp tracing.cpp \
 	twoassetbarrieroption.hpp twoassetbarrieroption.cpp \
+	twoassetcorrelationoption.hpp twoassetcorrelationoption.cpp \
 	utilities.hpp utilities.cpp \
 	variancegamma.hpp variancegamma.cpp \
 	varianceoption.hpp varianceoption.cpp \
 	varianceswaps.hpp varianceswaps.cpp \
 	volatilitymodels.hpp volatilitymodels.cpp \
-	vpp.hpp vpp.cpp \
-	writerextensibleoption.hpp writerextensibleoption.cpp
+	vpp.hpp vpp.cpp
 
 QL_BENCHMARKS = \
 	quantlibbenchmark.cpp \
@@ -201,13 +209,10 @@ benchmark: quantlib-benchmark$(EXEEXT)
 
 EXTRA_DIST = \
 	README.txt \
-	testsuite_vc7.vcproj \
 	testsuite_vc8.vcproj \
 	testsuite_vc9.vcproj \
-	testsuite_vc10.vcxproj \
-	testsuite_vc10.vcxproj.filters \
-	testsuite_vc11.vcxproj \
-	testsuite_vc11.vcxproj.filters \
+	testsuite.vcxproj \
+	testsuite.vcxproj.filters \
 	testsuite.dev
 
 else
@@ -216,13 +221,10 @@ EXTRA_DIST = \
 	${QL_TESTS} \
 	quantlibbenchmark.cpp \
 	README.txt \
-	testsuite_vc7.vcproj \
 	testsuite_vc8.vcproj \
 	testsuite_vc9.vcproj \
-	testsuite_vc10.vcxproj \
-	testsuite_vc10.vcxproj.filters \
-	testsuite_vc11.vcxproj \
-	testsuite_vc11.vcxproj.filters \
+	testsuite.vcxproj \
+	testsuite.vcxproj.filters \
 	testsuite.dev
 
 endif

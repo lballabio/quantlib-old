@@ -23,6 +23,26 @@
 
 /*! \page history Version History
 
+<strong>Release 1.4.0 - June 2014</strong>
+
+FUNCTIONALITY
+
+- Support for 64-bit (thanks to Richard Gould)
+- Fixed bug which could cause Excel to crash at shutdown.
+- Fixed memory leak in function ohRangeRetrieveError().
+- Fixed bug in which xlAutoClose() attempted to delete an
+  xltypeStr/xltypeMulti on which xlbitDLLFree had not been set.
+- For anonymous objects in Excel, update the corresponding ValueObject
+  so that it knows its own name.
+- New function ohStack() which returns the amount of available stack
+  space left to the XLL.
+
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.10.0e
+- gensrc version 1.4.0
+
 <strong>Release 1.2.0 - July 2012</strong>
 
 REQUIRED PACKAGES

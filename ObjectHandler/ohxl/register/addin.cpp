@@ -69,13 +69,16 @@ DLLEXPORT int xlAutoClose() {
     static XLOPER xDll;
 
     try {
-
         // empty the ObjectHandler repository
         //Excel(xlUDF, 0, 1, TempStrNoSize("\x1c""ohRepositoryDeleteAllObjects"));
 
-        // unregister the addin functions
+        // Get the DLL name.
         Excel(xlGetName, &xDll, 0);
+        // Unregister the addin functions.
         unregisterOhFunctions(xDll);
+        // Clear the state of the Repository.
+        ObjectHandler::RepositoryXL::instance().clear();
+        // Release the DLL name.
         Excel(xlFree, 0, 1, &xDll);
 
         return 1;
@@ -114,7 +117,7 @@ DLLEXPORT XLOPER *xlAddInManagerInfo(XLOPER *xlAction) {
     // long name for the XLL. Any other value should result in the
     // return of a #VALUE! error.
     if (1 == xlReturn.val.w) {
-        ObjectHandler::scalarToOper(std::string("ObjectHandler 1.2.0"), xlLongName);
+        ObjectHandler::scalarToOper(std::string("ObjectHandler 1.5.0"), xlLongName);
     } else {
         xlLongName.xltype = xltypeErr;
         xlLongName.val.err = xlerrValue;

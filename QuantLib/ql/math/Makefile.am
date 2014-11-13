@@ -15,7 +15,6 @@ this_include_HEADERS = \
 	bspline.hpp \
 	comparison.hpp \
 	curve.hpp \
-	domain.hpp \
 	errorfunction.hpp \
 	factorial.hpp \
 	fastfouriertransform.hpp \
@@ -27,13 +26,13 @@ this_include_HEADERS = \
 	lexicographicalview.hpp \
 	linearleastsquaresregression.hpp \
 	matrix.hpp \
+	modifiedbessel.hpp \
 	primenumbers.hpp \
 	quadratic.hpp \
 	rounding.hpp \
 	richardsonextrapolation.hpp \
 	sampledcurve.hpp \
 	solver1d.hpp \
-	surface.hpp \
 	transformedgrid.hpp
 
 libMath_la_SOURCES = \
@@ -44,12 +43,12 @@ libMath_la_SOURCES = \
 	factorial.cpp \
 	incompletegamma.cpp \
 	matrix.cpp \
+	modifiedbessel.cpp \
 	primenumbers.cpp \
 	quadratic.cpp \
 	richardsonextrapolation.cpp \
 	rounding.cpp \
-	sampledcurve.cpp \
-	surface.cpp
+	sampledcurve.cpp
 
 libMath_la_LIBADD = \
     copulas/libCopulas.la \

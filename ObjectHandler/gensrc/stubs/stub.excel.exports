@@ -2,6 +2,12 @@
 #ifndef ohxl_export_hpp
 #define ohxl_export_hpp
 
+#ifdef _WIN64
+#  define EXPORT_PREFIX
+#else
+#  define EXPORT_PREFIX "_"
+#endif
+
 %(exportSymbols)s
 
 #endif

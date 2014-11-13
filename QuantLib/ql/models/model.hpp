@@ -3,6 +3,7 @@
 /*
  Copyright (C) 2001, 2002, 2003 Sadruddin Rejeb
  Copyright (C) 2005, 2007 StatPro Italia srl
+ Copyright (C) 2013 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -57,7 +58,7 @@ namespace QuantLib {
         virtual Real discountBondOption(Option::Type type,
                                         Real strike,
                                         Time maturity, Time bondStart,
-                                        Time bondMaturity) const { 
+                                        Time bondMaturity) const {
             return discountBondOption(type,strike,maturity,bondMaturity);
         }
 
@@ -97,12 +98,13 @@ namespace QuantLib {
         /*! An additional constraint can be passed which must be
             satisfied in addition to the constraints of the model.
         */
-        void calibrate(
+        virtual void calibrate(
                    const std::vector<boost::shared_ptr<CalibrationHelper> >&,
                    OptimizationMethod& method,
                    const EndCriteria& endCriteria,
                    const Constraint& constraint = Constraint(),
-                   const std::vector<Real>& weights = std::vector<Real>());
+                   const std::vector<Real>& weights = std::vector<Real>(),
+                   const std::vector<bool>& fixParameters = std::vector<bool>());
 
         Real value(const Array& params,
                    const std::vector<boost::shared_ptr<CalibrationHelper> >&);
@@ -150,6 +152,7 @@ namespace QuantLib {
           public:
             Impl(const std::vector<Parameter>& arguments)
             : arguments_(arguments) {}
+
             bool test(const Array& params) const {
                 Size k=0;
                 for (Size i=0; i<arguments_.size(); i++) {
@@ -162,6 +165,47 @@ namespace QuantLib {
                 }
                 return true;
             }
+
+            Array upperBound(const Array &params) const {
+                Size k = 0, k2 = 0;
+                Size totalSize = 0;
+                for (Size i = 0; i < arguments_.size(); i++) {
+                    totalSize += arguments_[i].size();
+                }
+                Array result(totalSize);
+                for (Size i = 0; i < arguments_.size(); i++) {
+                    Size size = arguments_[i].size();
+                    Array partialParams(size);
+                    for (Size j = 0; j < size; j++, k++)
+                        partialParams[j] = params[k];
+                    Array tmpBound =
+                        arguments_[i].constraint().upperBound(partialParams);
+                    for (Size j = 0; j < size; j++, k2++)
+                        result[k2] = tmpBound[j];
+                }
+                return result;
+            }
+
+            Array lowerBound(const Array &params) const {
+                Size k = 0, k2 = 0;
+                Size totalSize = 0;
+                for (Size i = 0; i < arguments_.size(); i++) {
+                    totalSize += arguments_[i].size();
+                }
+                Array result(totalSize);
+                for (Size i = 0; i < arguments_.size(); i++) {
+                    Size size = arguments_[i].size();
+                    Array partialParams(size);
+                    for (Size j = 0; j < size; j++, k++)
+                        partialParams[j] = params[k];
+                    Array tmpBound =
+                        arguments_[i].constraint().lowerBound(partialParams);
+                    for (Size j = 0; j < size; j++, k2++)
+                        result[k2] = tmpBound[j];
+                }
+                return result;
+            }
+
           private:
             const std::vector<Parameter>& arguments_;
         };

@@ -1,9 +1,9 @@
 
 EXTRA_DIST = \
-    docs_vc7.vcproj \
     docs_vc8.vcproj \
     docs_vc9.vcproj \
     docs_vc10.vcxproj \
+    docs_vc11.vcxproj \
     doxygen.css \
     gensrc.doxy \
     gs_footer.html \
@@ -25,7 +25,7 @@ OH_DIR := ../../ObjectHandler
 DOXYGEN_CONFIG := $(PROJECTNAME).doxy
 DOXYGEN_CONFIG_TEMP := .$(DOXYGEN_CONFIG)
 DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css $(PROJECTINITIALS)_footer.html $(PROJECTINITIALS)_header.html $(PROJECTINITIALS)_headeronline.html 
-SCRIPT := $(OH_DIR)/dev_tools/preprocess_doxyfile.py
+SCRIPT := $(OH_DIR)/Docs/preprocess_doxyfile.py
 
 %.gz: %
 	rm -f $@

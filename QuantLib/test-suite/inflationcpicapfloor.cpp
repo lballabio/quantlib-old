@@ -126,10 +126,10 @@ namespace {
         SavedSettings backup;
 
         // setup
-        CommonVars() {
+        CommonVars()
+        : nominals(1,1000000) {
             //std::cout <<"CommonVars" << std::endl;
             // option variables
-            nominals = std::vector<Real>(1,1000000);  // 1M
             frequency = Annual;
             // usual setup
             volatility = 0.01;
@@ -317,17 +317,9 @@ namespace {
                     (*fPriceUK)[i][j] = fPrice[j][i]/10000.0;
                 }
             }
-
-
-
         }
-
-
     };
 
-    bool checkAbsError(Real x1, Real x2, Real tolerance){
-        return std::fabs(x1 - x2) < tolerance;
-    }
 }
 
 
