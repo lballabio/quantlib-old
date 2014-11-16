@@ -57,7 +57,7 @@ int main(int, char* []) {
     // sabr smile fit
 
     Real atm = 0.03;
-    Real alpha = 0.08, beta = 0.90, nu = 0.30, rho = 0.30;
+    Real alpha = 0.15, beta = 0.90, nu = 0.30, rho = 0.30;
     Real t = 10.0;
 
     std::vector<Real> k, m, s;
@@ -79,12 +79,23 @@ int main(int, char* []) {
 
     boost::shared_ptr<SabrSmileSection> src(new SabrSmileSection(t,atm,sabr));
 
-    boost::shared_ptr<SviSmileSection> svi(new SviSmileSection(src,atm,m));
+    std::vector<Real> strikes, inputVols;
+    for(Size i=0;i<m.size();++i) {
+        strikes.push_back(m[i]*atm);
+        inputVols.push_back(src->volatility(strikes.back()));
+        std::cout << strikes.back() << " " << inputVols.back() << std::endl;
+    }
 
-    Real k0 = 0.0010;
+    SviInterpolation svi(strikes.begin(), strikes.end(), inputVols.begin(),
+                         t,atm,Null<Real>(),Null<Real>(),Null<Real>(),Null<Real>(),Null<Real>(),
+                         false,false,false,false,false);
+    svi.enableExtrapolation(true);
+    svi.update();    
+
+    Real k0 = 0.0001;
     while(k0<=0.10) {
-        std::cout << k0 << " " << src->volatility(k0) << " " << svi->volatility(k0) << std::endl;
-        k0 += 0.0010;
+        std::cout << k0 << " " << svi(k0) << std::endl;
+        k0 += 0.0001;
     }
 
 

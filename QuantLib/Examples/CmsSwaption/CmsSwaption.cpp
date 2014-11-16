@@ -30,7 +30,7 @@ int example01() {
         // Actual365Fixed()));
 
         Handle<SwaptionVolatilityStructure> swaptionVol(
-            new SingleSabrSwaptionVolatility(refDate, TARGET(), Following, 0.15,
+            new SingleSabrSwaptionVolatility(refDate, TARGET(), Following, 0.05,
                                              0.80, -0.30, 0.20,
                                              Actual365Fixed(), swapIndex));
 
@@ -231,22 +231,22 @@ int example02() {
         iborIndex->addFixing(refDate, 0.0200);
         swapIndex->addFixing(refDate, 0.0315);
 
-        Handle<Quote> volatilityLevel(new SimpleQuote(0.20)); // vol here !
-        Handle<SwaptionVolatilityStructure> swaptionVol(
-            new ConstantSwaptionVolatility(refDate, TARGET(), Following,
-                                           volatilityLevel, Actual365Fixed()));
-
+        // Handle<Quote> volatilityLevel(new SimpleQuote(0.20)); // vol here !
         // Handle<SwaptionVolatilityStructure> swaptionVol(
-        //     new SingleSabrSwaptionVolatility(refDate, TARGET(), Following,
-        // 0.15,
-        //                                      0.80, -0.30, 0.20,
-        //                                      Actual365Fixed(), swapIndex));
+        //     new ConstantSwaptionVolatility(refDate, TARGET(), Following,
+        //                                    volatilityLevel, Actual365Fixed()));
+
+        Handle<SwaptionVolatilityStructure> swaptionVol(
+            new SingleSabrSwaptionVolatility(refDate, TARGET(), Following,
+        0.10,
+                                             0.80, -0.30, 0.40,
+                                             Actual365Fixed(), swapIndex));
 
         // Real strike = 0.0001;
-        // while(strike < 1.0) {
+        // while(strike < 0.50) {
         //     std::cout << strike << " " <<
         // swaptionVol->volatility(10.0,10.0,strike) << std::endl;
-        //     strike += 0.0010;
+        //     strike += 0.0050;
         // }
         // return 0;
 
@@ -267,15 +267,15 @@ int example02() {
                 Thirty360(), sched2, iborIndex, Actual360(), false, false, 1.0,
                 0.00, Null<Real>(), Null<Real>(), 1.0, 0.0));
 
-        Handle<Quote> reversionLevel(new SimpleQuote(0.00)); // reversion here !
+        Handle<Quote> reversionLevel(new SimpleQuote(0.01)); // reversion here !
 
         boost::shared_ptr<NumericHaganPricer> haganPricerN(
             new NumericHaganPricer(swaptionVol,
-                                   GFunctionFactory::NonParallelShifts,
+                                   GFunctionFactory::Standard,
                                    reversionLevel));
         boost::shared_ptr<AnalyticHaganPricer> haganPricerA(
             new AnalyticHaganPricer(swaptionVol,
-                                    GFunctionFactory::NonParallelShifts,
+                                    GFunctionFactory::Standard,
                                     reversionLevel));
 
         // auto integrator =
@@ -312,12 +312,12 @@ int example02() {
                     swapIndex, 1.0, 0.0, Null<Rate>(), Null<Rate>(), Date(),
                     Date(), DayCounter(), false));
 
-            // cap->setPricer(haganPricerN);
-            // floor->setPricer(haganPricerN);
-            // swaplet->setPricer(haganPricerN);
-            Real cap1 = 0.0;//cap->adjustedFixing();
-            Real floor1 = 0.0;//floor->adjustedFixing();
-            Real swaplet1 = 0.0;//swaplet->adjustedFixing();
+            cap->setPricer(tsrPricer);
+            floor->setPricer(tsrPricer);
+            swaplet->setPricer(tsrPricer);
+            Real cap1 = cap->adjustedFixing();
+            Real floor1 = floor->adjustedFixing();
+            Real swaplet1 = swaplet->adjustedFixing();
 
             // cap->setPricer(haganPricerN);
             // floor->setPricer(haganPricerN);
@@ -328,25 +328,22 @@ int example02() {
             // cap->setPricer(replPricer);
             // floor->setPricer(replPricer);
             // swaplet->setPricer(replPricer);
-            Real cap2 = 0.0;//cap->adjustedFixing();
-            Real floor2 = 0.0;//floor->adjustedFixing();
-            Real swaplet2 = 0.0;//swaplet->adjustedFixing();
+            // Real cap2 = 0.0;//cap->adjustedFixing();
+            // Real floor2 = 0.0;//floor->adjustedFixing();
+            // Real swaplet2 = 0.0;//swaplet->adjustedFixing();
 
-            cap->setPricer(tsrPricer);
-            floor->setPricer(tsrPricer);
-            swaplet->setPricer(tsrPricer);
-            Real cap3 = cap->adjustedFixing();
-            Real floor3 = floor->adjustedFixing();
-            Real swaplet3 = swaplet->adjustedFixing();
+            // cap->setPricer(tsrPricer);
+            // floor->setPricer(tsrPricer);
+            // swaplet->setPricer(tsrPricer);
+            // Real cap3 = cap->adjustedFixing();
+            // Real floor3 = floor->adjustedFixing();
+            // Real swaplet3 = swaplet->adjustedFixing();
 
-            std::cout << strike << " " << cap1 << "/" << cap2 << "/" << cap3
-                      << " " << floor1 << "/" << floor2 << "/" << floor3 << " "
-                      << swaplet1 << "/" << swaplet2 << "/" << swaplet3 << " "
-                      << (cap1 - floor1 - (swaplet1 - strike)) << "/"
-                      << (cap2 - floor2 - (swaplet2 - strike)) << "/"
-                      << (cap3 - floor3 - (swaplet3 - strike)) << std::endl;
+            // std::cout << strike << " " << cap1 << " " 
+            //           << " " << floor1 << " "
+            //           << (cap1 - floor1 - (swaplet1 - strike)) << std::endl;
 
-            strike += 0.0010;
+            strike += 0.0001;
         }
 
         return 0;
