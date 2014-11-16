@@ -30,7 +30,7 @@ FdmZabrUnderlyingPart::FdmZabrUnderlyingPart(
       forwardValues_(mesher->locations(0)),
       mapT_(SecondDerivativeOp(0, mesher)
                 .mult(0.5 * volatilityValues_ * volatilityValues_ *
-                      Pow(Abs(forwardValues_), 2.0 * beta))),
+                      Pow(forwardValues_, 2.0 * beta))),
       mesher_(mesher) {}
 
 void FdmZabrUnderlyingPart::setTime(Time t1, Time t2) {}
@@ -45,7 +45,7 @@ FdmZabrVolatilityPart::FdmZabrVolatilityPart(
     : volatilityValues_(mesher->locations(1)),
       forwardValues_(mesher->locations(0)),
       mapT_(SecondDerivativeOp(1, mesher).mult(
-          0.5 * nu * nu * Pow(Abs(volatilityValues_), 2.0 * gamma))),
+          0.5 * nu * nu * Pow(volatilityValues_, 2.0 * gamma))),
       mesher_(mesher) {}
 
 void FdmZabrVolatilityPart::setTime(Time t1, Time t2) {}
@@ -61,7 +61,7 @@ FdmZabrOp::FdmZabrOp(const boost::shared_ptr<FdmMesher> &mesher,
       forwardValues_(mesher->locations(0)),
       dxyMap_(SecondOrderMixedDerivativeOp(0, 1, mesher)
                   .mult(nu * rho * Pow(Abs(volatilityValues_), gamma + 1.0) *
-                        Pow(Abs(forwardValues_), beta))),
+                        Pow(forwardValues_, beta))),
       dxMap_(FdmZabrUnderlyingPart(mesher, beta, nu, rho, gamma)),
       dyMap_(FdmZabrVolatilityPart(mesher, beta, nu, rho, gamma)) {}
 
