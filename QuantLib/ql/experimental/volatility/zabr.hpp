@@ -19,6 +19,8 @@
 
 /*! \file zabr.hpp
     \brief ZABR functions
+    Reference: Andreasen, Huge: ZABR - Expansions for the masses, Preliminary
+               Version, December 2011, http://ssrn.com/abstract=1980726
 */
 
 #ifndef quantlib_zabr_hpp

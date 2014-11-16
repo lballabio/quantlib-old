@@ -24,6 +24,7 @@
 #ifndef quantlib_zabr_smile_section_hpp
 #define quantlib_zabr_smile_section_hpp
 
+#include <ql/pricingengines/blackformula.hpp>
 #include <ql/termstructures/volatility/smilesection.hpp>
 #include <ql/time/daycounters/actual365fixed.hpp>
 #include <ql/experimental/volatility/zabr.hpp>

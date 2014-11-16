@@ -169,6 +169,7 @@
 #include "varianceswaps.hpp"
 #include "volatilitymodels.hpp"
 #include "vpp.hpp"
+#include "zabr.hpp"
 
 #include "gsr.hpp"
 
@@ -389,6 +390,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(VarianceGammaTest::suite());
     test->add(VarianceOptionTest::suite());
     test->add(VPPTest::suite());
+    test->add(ZabrTest::suite());
 
     // tests for deprecated classes
     test->add(LiborMarketModelTest::suite());
