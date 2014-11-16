@@ -127,6 +127,7 @@ Makefile.in
 *.vcxproj.user
 *.log
 *.sdf
+*.opensdf
 
 # Outputs
 QuantLib/Examples/BasketLosses/BasketLosses

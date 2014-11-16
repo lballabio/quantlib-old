@@ -2,6 +2,7 @@
 QL_TESTS = \
 	quantlibtestsuite.cpp \
 	americanoption.hpp americanoption.cpp \
+	amortizingbond.hpp amortizingbond.cpp \
 	array.hpp array.cpp \
 	asianoptions.hpp asianoptions.cpp \
 	assetswap.hpp assetswap.cpp \
@@ -210,10 +211,8 @@ EXTRA_DIST = \
 	README.txt \
 	testsuite_vc8.vcproj \
 	testsuite_vc9.vcproj \
-	testsuite_vc10.vcxproj \
-	testsuite_vc10.vcxproj.filters \
-	testsuite_vc11.vcxproj \
-	testsuite_vc11.vcxproj.filters \
+	testsuite.vcxproj \
+	testsuite.vcxproj.filters \
 	testsuite.dev
 
 else
@@ -224,10 +223,8 @@ EXTRA_DIST = \
 	README.txt \
 	testsuite_vc8.vcproj \
 	testsuite_vc9.vcproj \
-	testsuite_vc10.vcxproj \
-	testsuite_vc10.vcxproj.filters \
-	testsuite_vc11.vcxproj \
-	testsuite_vc11.vcxproj.filters \
+	testsuite.vcxproj \
+	testsuite.vcxproj.filters \
 	testsuite.dev
 
 endif
