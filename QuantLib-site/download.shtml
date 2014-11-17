@@ -18,7 +18,11 @@
 <div id="content">
 
 <h1 class="center">Download QuantLib</h1>
+<<<<<<< Updated upstream
 <p>The latest QuantLib release is version 1.3 (July 24th, 2013).</p>
+=======
+<p>The latest QuantLib release is version 1.4.1 (November 17th, 2014).</p>
+>>>>>>> Stashed changes
 <p>Source packages for <b>all platforms</b> are available from the SourceForge
 <a href= "http://sourceforge.net/project/showfiles.php?group_id=12740">download
 page</a> in a number of different formats.  Compiling QuantLib requires a
