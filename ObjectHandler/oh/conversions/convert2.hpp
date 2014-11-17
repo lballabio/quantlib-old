@@ -62,14 +62,14 @@ namespace ObjectHandler {
     template<class value_t, class container_t>
     value_t convert2(const container_t& c, const std::string &parameterName, 
             const value_t& defaultValue, const value_t& errorValue) {
-        //try {
+        try {
             if(c.error())    
                 return errorValue;
             return convert2<value_t, container_t>(c, parameterName, defaultValue);
-        //}
-        //catch(const std::exception&) {
-        //    return errorValue;
-        //}
+        }
+        catch(const std::exception&) {
+            return errorValue;
+        }
     }
 
 }

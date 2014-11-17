@@ -15,6 +15,10 @@ code12b = '''\
         ObjectHandler::property_t %(name)sCpp = ObjectHandler::convert2<ObjectHandler::property_t>(
             ObjectHandler::ConvertOper(*%(name)s));\n'''
 
+code12c = '''\
+        %(nativeType)s %(name)sCpp = ObjectHandler::convert2<%(nativeType)s>(
+            ObjectHandler::ConvertOper(*%(name)s), "%(name)s", %(defaultValue)s, %(errorValue)s);\n'''
+
 code13 = '''\
         std::vector<%(nativeType)s> %(name)sCpp =
             ObjectHandler::operToVector<%(nativeType)s>(*%(name)s, "%(name)s");\n'''
