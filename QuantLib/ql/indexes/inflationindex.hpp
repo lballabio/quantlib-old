@@ -55,6 +55,14 @@ namespace QuantLib {
                        Frequency frequency,
                        const Period& availabilitiyLag,
                        const Currency& currency);
+        InflationIndex(const std::string& familyName,
+                       const Region& region,
+                       bool revised,
+                       bool interpolated,
+                       bool fixesAtEndOfMonth,
+                       Frequency frequency,
+                       const Period& availabilitiyLag,
+                       const Currency& currency);
         //! \name Index interface
         //@{
         std::string name() const;
@@ -107,6 +115,7 @@ namespace QuantLib {
             the mid-period extrapolated value.
         */
         bool interpolated() const;
+        bool fixesAtEndOfMonth() const;
         Frequency frequency() const;
         /*! The availability lag describes when the index is
             <i>available</i>, not how it is used.  Specifically the
@@ -125,6 +134,7 @@ namespace QuantLib {
         Region region_;
         bool revised_;
         bool interpolated_;
+        bool fixesAtEndOfMonth_;
         Frequency frequency_;
         Period availabilityLag_;
         Currency currency_;
@@ -141,6 +151,17 @@ namespace QuantLib {
                            const Region& region,
                            bool revised,
                            bool interpolated,
+                           Frequency frequency,
+                           const Period& availabilityLag,
+                           const Currency& currency,
+                           const Handle<ZeroInflationTermStructure>& ts =
+                                        Handle<ZeroInflationTermStructure>());
+
+        ZeroInflationIndex(const std::string& familyName,
+                           const Region& region,
+                           bool revised,
+                           bool interpolated,
+                           bool fixesAtEndOfMonth,
                            Frequency frequency,
                            const Period& availabilityLag,
                            const Currency& currency,
@@ -231,6 +252,10 @@ namespace QuantLib {
 
     inline bool InflationIndex::interpolated() const {
         return interpolated_;
+    }
+
+    inline bool InflationIndex::fixesAtEndOfMonth() const {
+        return fixesAtEndOfMonth_;
     }
 
     inline Frequency InflationIndex::frequency() const {
