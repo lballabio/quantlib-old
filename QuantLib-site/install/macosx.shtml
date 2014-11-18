@@ -57,6 +57,7 @@ make && sudo make install
 </pre>
 and then try to compile the examples. For example,
 <pre>
+cd Examples/BermudanSwaption
 g++ -I/opt/local/include/ -I/opt/local/include/boost BermudanSwaption.cpp \
     -o bermudanswaption -L/opt/local/lib/ -lQuantLib
 </pre>
