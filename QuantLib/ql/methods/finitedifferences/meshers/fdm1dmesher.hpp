@@ -28,6 +28,7 @@
 
 #include <ql/types.hpp>
 #include <vector>
+#include <ql/utilities/null.hpp>
 
 namespace QuantLib {
 
@@ -41,6 +42,17 @@ namespace QuantLib {
         Real dminus(Size index) const {return dminus_[index];}
         Real location(Size index) const {return locations_[index];}
         const std::vector<Real>& locations() const {return locations_;}
+		void setExtLocations(const std::vector<Real>& newLocations) {
+
+			locations_ = newLocations;
+			dplus_.resize(locations_.size());
+			dminus_.resize(locations_.size());
+
+			for(Size i=0;i!=locations_.size()-1;++i)
+				dplus_[i] = dminus_[i+1] = locations_[i+1] - locations_[i];
+
+			 dplus_.back() = dminus_.front() = Null<Real>();
+		}
 
       protected:
         std::vector<Real> locations_;

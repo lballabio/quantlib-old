@@ -21,8 +21,38 @@
 */
 
 #include <ql/instruments/payoffs.hpp>
+#include <algorithm>
 
 namespace QuantLib {
+
+	namespace detail {
+
+		std::vector<Real> adjustGrids(double strike, const std::vector<Real>& candidateGrids,
+			const boost::function<double (double)>& functor) {
+
+				Real transformedStrike = functor(strike);
+				typedef std::vector<Real>::const_iterator citer;
+
+				citer i = std::lower_bound(candidateGrids.begin(), candidateGrids.end(), transformedStrike);
+
+				QL_ENSURE(i!= candidateGrids.end(), "Grids should include strike!");
+
+				// strike lies at the left end of the grids
+				if(i == candidateGrids.begin())
+					++i;
+
+				citer i_minus = i - 1;
+
+				Real moving = transformedStrike - (*i_minus) - ((*i) - (*i_minus))/2.0;
+
+				std::vector<Real> res(candidateGrids.size(), 0.0);
+
+				for(Size i=0; i!= res.size();++i)
+					res[i] =  candidateGrids[i] + moving;
+
+				return res;
+		}
+	}
 
     std::string NullPayoff::name() const {
         return "Null";
@@ -139,6 +169,12 @@ namespace QuantLib {
             Payoff::accept(v);
     }
 
+	std::vector<Real> AssetOrNothingPayoff::adjustGrids(const std::vector<Real>& candidateGrids,
+		const boost::function<double (double)>& functor) const {
+
+		return detail::adjustGrids(strike_, candidateGrids, functor);
+	}
+
     std::string CashOrNothingPayoff::description() const {
         std::ostringstream result;
         result << StrikedTypePayoff::description() << ", " << cashPayoff() << " cash payoff";
@@ -163,6 +199,12 @@ namespace QuantLib {
             v1->visit(*this);
         else
             Payoff::accept(v);}
+
+	std::vector<Real> CashOrNothingPayoff::adjustGrids(const std::vector<Real>& candidateGrids,
+		const boost::function<double (double)>& functor) const {
+
+		return detail::adjustGrids(strike_, candidateGrids, functor);
+	}
 
     std::string GapPayoff::description() const {
         std::ostringstream result;

@@ -29,6 +29,8 @@
 
 #include <ql/option.hpp>
 #include <ql/payoff.hpp>
+#include <boost/function.hpp>
+#include <vector>
 
 namespace QuantLib {
 
@@ -93,6 +95,16 @@ namespace QuantLib {
         std::string description() const;
         //@}
         Real strike() const { return strike_; };
+
+		/* 
+		* Adjusting PDE grids to let the discontinuity lies exactly between 2 nodes
+		* for most of the payoffs it simply return the original grids
+		*/
+		virtual std::vector<Real> adjustGrids(const std::vector<Real>& candidateGrids,
+			const boost::function<double (double)>& functor) const {
+				return candidateGrids;
+		}
+
       protected:
         StrikedTypePayoff(Option::Type type,
                           Real strike)
@@ -145,6 +157,9 @@ namespace QuantLib {
         Real operator()(Real price) const;
         virtual void accept(AcyclicVisitor&);
         //@}
+
+		virtual std::vector<Real> adjustGrids(const std::vector<Real>& candidateGrids,
+			const boost::function<double (double)>& functor) const;
     };
 
     //! Binary cash-or-nothing payoff
@@ -162,6 +177,10 @@ namespace QuantLib {
         virtual void accept(AcyclicVisitor&);
         //@}
         Real cashPayoff() const { return cashPayoff_;}
+
+		virtual std::vector<Real> adjustGrids(const std::vector<Real>& candidateGrids,
+			const boost::function<double (double)>& functor) const;
+
       protected:
         Real cashPayoff_;
     };
