@@ -153,7 +153,7 @@
 // specific values---these should fit into any Integer or Real
 #define QL_NULL_INTEGER        ((std::numeric_limits<int>::max)())
 #define QL_NULL_REAL           ((std::numeric_limits<float>::max)())
-    /*! @} */
+/*! @} */
 
 /*! @}  */
 
