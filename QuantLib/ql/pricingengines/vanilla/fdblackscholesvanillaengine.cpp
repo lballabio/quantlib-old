@@ -28,6 +28,8 @@
 #include <ql/methods/finitedifferences/meshers/fdmblackscholesmesher.hpp>
 #include <ql/methods/finitedifferences/stepconditions/fdmstepconditioncomposite.hpp>
 #include <ql/pricingengines/vanilla/fdblackscholesvanillaengine.hpp>
+#include <boost/function.hpp>
+#include <cmath>
 
 namespace QuantLib {
 
@@ -57,6 +59,10 @@ namespace QuantLib {
                     xGrid_, process_, maturity, payoff->strike(), 
                     Null<Real>(), Null<Real>(), 0.0001, 1.5, 
                     std::pair<Real, Real>(payoff->strike(), 0.1)));
+
+		double (*logFunc)(double) = &std::log;
+
+		equityMesher->setExtLocations(payoff->adjustGrids(equityMesher->locations(), boost::function<double (double)>(logFunc)));
         
         const boost::shared_ptr<FdmMesher> mesher (
             new FdmMesherComposite(equityMesher));
