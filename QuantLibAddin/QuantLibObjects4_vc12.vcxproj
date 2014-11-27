@@ -1,0 +1,986 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug (static runtime)|Win32">
+      <Configuration>Debug (static runtime)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug (static runtime)|x64">
+      <Configuration>Debug (static runtime)</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release (static runtime)|Win32">
+      <Configuration>Release (static runtime)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release (static runtime)|x64">
+      <Configuration>Release (static runtime)</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>QuantLibObjects</ProjectName>
+    <ProjectGuid>{CAB8330C-6424-4455-9285-3654587EF71F}</ProjectGuid>
+    <RootNamespace>QuantLibObjects</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\build\vc120\$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</EmbedManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.\build\vc120\$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">false</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">false</EmbedManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.\build\vc120\$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">true</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">false</EmbedManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\build\vc120\$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</EmbedManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\build\vc120\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">.\build\vc120\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.\build\vc120\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\build\vc120\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibObjects-vc120-mt-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QuantLibObjects-vc120-x64-mt-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibObjects-vc120-mt-gd-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QuantLibObjects-vc120-x64-mt-gd-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibObjects-vc120-mt-sgd-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">QuantLibObjects-vc120-x64-mt-sgd-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibObjects-vc120-mt-s-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">QuantLibObjects-vc120-x64-mt-s-1_5_0</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>.;../ObjectHandler;../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc120\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc120\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc120\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>.;../ObjectHandler;../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc120\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc120\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc120\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>.;../ObjectHandler;../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc120\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc120\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc120\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>.;../ObjectHandler;../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc120\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc120\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc120\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;../ObjectHandler;../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc120\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc120\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc120\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;../ObjectHandler;../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc120\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc120\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc120\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;../ObjectHandler;../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc120\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc120\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc120\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;../ObjectHandler;../QuantLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\build\vc120\$(Platform)\$(Configuration)/</AssemblerListingLocation>
+      <ObjectFileName>.\build\vc120\$(Platform)\$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\build\vc120\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+      <OutputFile>.\build\vc120\$(Platform)\$(Configuration)/QuantLibObjects.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="qlo\enumerations\register\register_all.cpp" />
+    <ClCompile Include="qlo\enumerations\register\register_classes.cpp" />
+    <ClCompile Include="qlo\enumerations\register\register_pairs.cpp" />
+    <ClCompile Include="qlo\enumerations\register\register_types.cpp" />
+    <ClCompile Include="qlo\enumerations\constructors\enumeratedclasses.cpp" />
+    <ClCompile Include="qlo\enumerations\constructors\enumeratedpairs.cpp" />
+    <ClCompile Include="qlo\enumerations\factories\calendarfactory.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_abcd.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_accountingengines.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_alphaform.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_assetswap.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_bonds.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_browniangenerators.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_btp.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_capfloor.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_capletvolstructure.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_cmsmarket.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_cmsmarketcalibration.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_correlation.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_couponvectors.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_credit.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_ctsmmcapletcalibration.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_curvestate.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_defaulttermstructures.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_driftcalculators.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_evolutiondescription.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_exercise.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_forwardrateagreement.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_index.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_interpolation.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_leg.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_marketmodelevolvers.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_marketmodels.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_mathf.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_optimization.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_options.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_overnightindexedswap.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_payoffs.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_piecewiseyieldcurve.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_pricingengines.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_processes.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_products.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_quotes.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_randomsequencegenerator.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_rangeaccrual.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_ratehelpers.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_schedule.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_sequencestatistics.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_shortratemodels.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_smilesection.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_statistics.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_swap.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_swaption.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_swaptionvolstructure.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_termstructures.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_timeseries.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_vanillaswap.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_volatilities.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_volatility.cpp" />
+    <ClCompile Include="qlo\piecewiseyieldcurve.cpp" />
+    <ClCompile Include="qlo\ratehelpers.cpp" />
+    <ClCompile Include="qlo\yieldtermstructures.cpp" />
+    <ClCompile Include="qlo\extrapolator.cpp" />
+    <ClCompile Include="qlo\getcovariance.cpp" />
+    <ClCompile Include="qlo\interpolation.cpp" />
+    <ClCompile Include="qlo\interpolation2D.cpp" />
+    <ClCompile Include="qlo\sequencestatistics.cpp" />
+    <ClCompile Include="qlo\statistics.cpp" />
+    <ClCompile Include="qlo\symmetricschurdecomposition.cpp" />
+    <ClCompile Include="qlo\randomsequencegenerator.cpp" />
+    <ClCompile Include="qlo\asianoption.cpp" />
+    <ClCompile Include="qlo\assetswap.cpp" />
+    <ClCompile Include="qlo\barrieroption.cpp" />
+    <ClCompile Include="qlo\baseinstruments.cpp" />
+    <ClCompile Include="qlo\bonds.cpp" />
+    <ClCompile Include="qlo\btp.cpp" />
+    <ClCompile Include="qlo\capfloor.cpp" />
+    <ClCompile Include="qlo\cliquetoption.cpp" />
+    <ClCompile Include="qlo\dividendvanillaoption.cpp" />
+    <ClCompile Include="qlo\europeanoption.cpp" />
+    <ClCompile Include="qlo\forwardrateagreement.cpp" />
+    <ClCompile Include="qlo\forwardvanillaoption.cpp" />
+    <ClCompile Include="qlo\overnightindexedswap.cpp" />
+    <ClCompile Include="qlo\payoffs.cpp" />
+    <ClCompile Include="qlo\quantoforwardvanillaoption.cpp" />
+    <ClCompile Include="qlo\quantovanillaoption.cpp" />
+    <ClCompile Include="qlo\stickyratchet.cpp" />
+    <ClCompile Include="qlo\swap.cpp" />
+    <ClCompile Include="qlo\swaption.cpp" />
+    <ClCompile Include="qlo\vanillaoption.cpp" />
+    <ClCompile Include="qlo\vanillaswap.cpp" />
+    <ClCompile Include="qlo\shortratemodels.cpp" />
+    <ClCompile Include="qlo\conundrumpricer.cpp" />
+    <ClCompile Include="qlo\couponvectors.cpp" />
+    <ClCompile Include="qlo\flowanalysis.cpp" />
+    <ClCompile Include="qlo\leg.cpp" />
+    <ClCompile Include="qlo\rangeaccrual.cpp" />
+    <ClCompile Include="qlo\pricingengines.cpp" />
+    <ClCompile Include="qlo\capletvolstructure.cpp" />
+    <ClCompile Include="qlo\cmsmarket.cpp" />
+    <ClCompile Include="qlo\cmsmarketcalibration.cpp" />
+    <ClCompile Include="qlo\smilesection.cpp" />
+    <ClCompile Include="qlo\swaptionvolstructure.cpp" />
+    <ClCompile Include="qlo\volatilities.cpp" />
+    <ClCompile Include="qlo\abcd.cpp" />
+    <ClCompile Include="qlo\accountingengines.cpp" />
+    <ClCompile Include="qlo\alphaform.cpp" />
+    <ClCompile Include="qlo\browniangenerators.cpp" />
+    <ClCompile Include="qlo\correlation.cpp" />
+    <ClCompile Include="qlo\ctsmmcapletcalibration.cpp" />
+    <ClCompile Include="qlo\curvestate.cpp" />
+    <ClCompile Include="qlo\driftcalculators.cpp" />
+    <ClCompile Include="qlo\evolutiondescription.cpp" />
+    <ClCompile Include="qlo\marketmodelevolvers.cpp" />
+    <ClCompile Include="qlo\marketmodels.cpp" />
+    <ClCompile Include="qlo\products.cpp" />
+    <ClCompile Include="qlo\volatility.cpp" />
+    <ClCompile Include="qlo\conversions\conversions.cpp" />
+    <ClCompile Include="qlo\optimization.cpp" />
+    <ClCompile Include="qlo\serialization\processor.cpp" />
+    <ClCompile Include="qlo\serialization\register_creators.cpp" />
+    <ClCompile Include="qlo\serialization\serializationfactory.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_abcd.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_accountingengines.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_alphaform.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_assetswap.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_bonds.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_browniangenerators.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_btp.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_capfloor.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_capletvolstructure.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_cmsmarket.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_cmsmarketcalibration.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_correlation.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_couponvectors.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_credit.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_ctsmmcapletcalibration.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_curvestate.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_defaulttermstructures.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_driftcalculators.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_evolutiondescription.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_exercise.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_forwardrateagreement.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_index.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_interpolation.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_leg.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_marketmodelevolvers.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_marketmodels.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_mathf.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_optimization.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_options.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_overnightindexedswap.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_payoffs.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_piecewiseyieldcurve.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_pricingengines.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_processes.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_products.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_quotes.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_randomsequencegenerator.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_rangeaccrual.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_ratehelpers.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_schedule.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_sequencestatistics.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_shortratemodels.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_smilesection.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_statistics.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_swap.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_swaption.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_swaptionvolstructure.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_termstructures.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_timeseries.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_vanillaswap.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_volatilities.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_volatility.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_abcd.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_accountingengines.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_alphaform.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_assetswap.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_bonds.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_browniangenerators.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_btp.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_capfloor.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_capletvolstructure.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_cmsmarket.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_cmsmarketcalibration.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_correlation.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_couponvectors.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_credit.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_ctsmmcapletcalibration.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_curvestate.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_defaulttermstructures.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_driftcalculators.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_evolutiondescription.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_exercise.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_forwardrateagreement.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_index.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_interpolation.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_leg.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_marketmodelevolvers.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_marketmodels.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_mathf.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_oh.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_optimization.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_options.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_overnightindexedswap.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_payoffs.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_piecewiseyieldcurve.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_pricingengines.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_processes.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_products.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_quotes.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_randomsequencegenerator.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_rangeaccrual.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_ratehelpers.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_schedule.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_sequencestatistics.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_shortratemodels.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_smilesection.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_statistics.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_swap.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_swaption.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_swaptionvolstructure.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_termstructures.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_timeseries.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_vanillaswap.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_volatilities.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_volatility.cpp" />
+    <ClCompile Include="qlo\indexes\bmaindex.cpp" />
+    <ClCompile Include="qlo\indexes\iborindex.cpp" />
+    <ClCompile Include="qlo\indexes\swapindex.cpp" />
+    <ClCompile Include="qlo\indexes\ibor\euribor.cpp" />
+    <ClCompile Include="qlo\indexes\ibor\libor.cpp" />
+    <ClCompile Include="qlo\indexes\swap\euriborswap.cpp" />
+    <ClCompile Include="qlo\indexes\swap\isdafixaswap.cpp" />
+    <ClCompile Include="qlo\indexes\swap\liborswap.cpp" />
+    <ClCompile Include="qlo\credit.cpp" />
+    <ClCompile Include="qlo\defaulttermstructures.cpp" />
+    <ClCompile Include="qlo\date.cpp" />
+    <ClCompile Include="qlo\exercise.cpp" />
+    <ClCompile Include="qlo\index.cpp" />
+    <ClCompile Include="qlo\processes.cpp" />
+    <ClCompile Include="qlo\quotes.cpp" />
+    <ClCompile Include="qlo\schedule.cpp" />
+    <ClCompile Include="qlo\settings.cpp" />
+    <ClCompile Include="qlo\timeseries.cpp" />
+    <ClCompile Include="qlo\utilities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="qlo\enumerations\register\register_all.hpp" />
+    <ClInclude Include="qlo\enumerations\constructors\enumeratedclasses.hpp" />
+    <ClInclude Include="qlo\enumerations\constructors\enumeratedpairs.hpp" />
+    <ClInclude Include="qlo\enumerations\factories\calendarfactory.hpp" />
+    <ClInclude Include="qlo\enumerations\factories\conundrumpricerfactory.hpp" />
+    <ClInclude Include="qlo\enumerations\factories\historicalforwardratesanalysisfactory.hpp" />
+    <ClInclude Include="qlo\enumerations\factories\iborcouponpricersfactory.hpp" />
+    <ClInclude Include="qlo\enumerations\factories\interpolationsfactory.hpp" />
+    <ClInclude Include="qlo\enumerations\factories\payoffsfactory.hpp" />
+    <ClInclude Include="qlo\enumerations\factories\pricingenginesfactory.hpp" />
+    <ClInclude Include="qlo\enumerations\factories\termstructuresfactory.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_abcd.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_accountingengines.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_all.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_alphaform.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_assetswap.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_bonds.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_browniangenerators.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_btp.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_capfloor.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_capletvolstructure.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_cmsmarket.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_cmsmarketcalibration.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_correlation.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_couponvectors.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_credit.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_ctsmmcapletcalibration.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_curvestate.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_defaulttermstructures.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_driftcalculators.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_evolutiondescription.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_exercise.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_forwardrateagreement.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_group.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_index.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_interpolation.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_leg.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_marketmodelevolvers.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_marketmodels.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_mathf.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_optimization.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_options.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_overnightindexedswap.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_payoffs.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_piecewiseyieldcurve.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_pricingengines.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_processes.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_products.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_quotes.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_randomsequencegenerator.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_range.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_rangeaccrual.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_ratehelpers.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_schedule.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_sequencestatistics.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_shortratemodels.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_smilesection.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_statistics.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_swap.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_swaption.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_swaptionvolstructure.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_termstructures.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_timeseries.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_vanillaswap.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_volatilities.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_volatility.hpp" />
+    <ClInclude Include="qlo\piecewiseyieldcurve.hpp" />
+    <ClInclude Include="qlo\ratehelpers.hpp" />
+    <ClInclude Include="qlo\yieldtermstructures.hpp" />
+    <ClInclude Include="qlo\extrapolator.hpp" />
+    <ClInclude Include="qlo\getcovariance.hpp" />
+    <ClInclude Include="qlo\interpolation.hpp" />
+    <ClInclude Include="qlo\interpolation2D.hpp" />
+    <ClInclude Include="qlo\mathf.hpp" />
+    <ClInclude Include="qlo\sequencestatistics.hpp" />
+    <ClInclude Include="qlo\statistics.hpp" />
+    <ClInclude Include="qlo\symmetricschurdecomposition.hpp" />
+    <ClInclude Include="qlo\randomsequencegenerator.hpp" />
+    <ClInclude Include="qlo\asianoption.hpp" />
+    <ClInclude Include="qlo\assetswap.hpp" />
+    <ClInclude Include="qlo\barrieroption.hpp" />
+    <ClInclude Include="qlo\baseinstruments.hpp" />
+    <ClInclude Include="qlo\bonds.hpp" />
+    <ClInclude Include="qlo\btp.hpp" />
+    <ClInclude Include="qlo\capfloor.hpp" />
+    <ClInclude Include="qlo\cliquetoption.hpp" />
+    <ClInclude Include="qlo\dividendvanillaoption.hpp" />
+    <ClInclude Include="qlo\europeanoption.hpp" />
+    <ClInclude Include="qlo\forwardrateagreement.hpp" />
+    <ClInclude Include="qlo\forwardvanillaoption.hpp" />
+    <ClInclude Include="qlo\options.hpp" />
+    <ClInclude Include="qlo\overnightindexedswap.hpp" />
+    <ClInclude Include="qlo\payoffs.hpp" />
+    <ClInclude Include="qlo\quantoforwardvanillaoption.hpp" />
+    <ClInclude Include="qlo\quantovanillaoption.hpp" />
+    <ClInclude Include="qlo\stickyratchet.hpp" />
+    <ClInclude Include="qlo\swap.hpp" />
+    <ClInclude Include="qlo\swaption.hpp" />
+    <ClInclude Include="qlo\vanillaoption.hpp" />
+    <ClInclude Include="qlo\vanillaswap.hpp" />
+    <ClInclude Include="qlo\shortratemodels.hpp" />
+    <ClInclude Include="qlo\conundrumpricer.hpp" />
+    <ClInclude Include="qlo\couponvectors.hpp" />
+    <ClInclude Include="qlo\flowanalysis.hpp" />
+    <ClInclude Include="qlo\leg.hpp" />
+    <ClInclude Include="qlo\rangeaccrual.hpp" />
+    <ClInclude Include="qlo\pricingengines.hpp" />
+    <ClInclude Include="qlo\capletvolstructure.hpp" />
+    <ClInclude Include="qlo\cmsmarket.hpp" />
+    <ClInclude Include="qlo\cmsmarketcalibration.hpp" />
+    <ClInclude Include="qlo\smilesection.hpp" />
+    <ClInclude Include="qlo\swaptionvolstructure.hpp" />
+    <ClInclude Include="qlo\volatilities.hpp" />
+    <ClInclude Include="qlo\abcd.hpp" />
+    <ClInclude Include="qlo\accountingengines.hpp" />
+    <ClInclude Include="qlo\alphaform.hpp" />
+    <ClInclude Include="qlo\browniangenerators.hpp" />
+    <ClInclude Include="qlo\correlation.hpp" />
+    <ClInclude Include="qlo\ctsmmcapletcalibration.hpp" />
+    <ClInclude Include="qlo\curvestate.hpp" />
+    <ClInclude Include="qlo\driftcalculators.hpp" />
+    <ClInclude Include="qlo\evolutiondescription.hpp" />
+    <ClInclude Include="qlo\marketmodelevolvers.hpp" />
+    <ClInclude Include="qlo\marketmodels.hpp" />
+    <ClInclude Include="qlo\products.hpp" />
+    <ClInclude Include="qlo\volatility.hpp" />
+    <ClInclude Include="qlo\loop\loop_abcd.hpp" />
+    <ClInclude Include="qlo\loop\loop_bonds.hpp" />
+    <ClInclude Include="qlo\loop\loop_calendar.hpp" />
+    <ClInclude Include="qlo\loop\loop_capletvolstructure.hpp" />
+    <ClInclude Include="qlo\loop\loop_date.hpp" />
+    <ClInclude Include="qlo\loop\loop_daycounter.hpp" />
+    <ClInclude Include="qlo\loop\loop_index.hpp" />
+    <ClInclude Include="qlo\loop\loop_interpolation.hpp" />
+    <ClInclude Include="qlo\loop\loop_swaptionvolstructure.hpp" />
+    <ClInclude Include="qlo\loop\loop_termstructures.hpp" />
+    <ClInclude Include="qlo\loop\loop_timeseries.hpp" />
+    <ClInclude Include="qlo\loop\loop_valueobject.hpp" />
+    <ClInclude Include="qlo\conversions\all.hpp" />
+    <ClInclude Include="qlo\conversions\coercehandle.hpp" />
+    <ClInclude Include="qlo\conversions\coercelibrarydifferent.hpp" />
+    <ClInclude Include="qlo\conversions\coercelibrarysame.hpp" />
+    <ClInclude Include="qlo\conversions\coerceobject.hpp" />
+    <ClInclude Include="qlo\conversions\coercequote.hpp" />
+    <ClInclude Include="qlo\conversions\coercetermstructure.hpp" />
+    <ClInclude Include="qlo\conversions\conversion_tmpl.hpp" />
+    <ClInclude Include="qlo\conversions\conversions.hpp" />
+    <ClInclude Include="qlo\conversions\varianttodate.hpp" />
+    <ClInclude Include="qlo\conversions\varianttoperiod.hpp" />
+    <ClInclude Include="qlo\conversions\varianttoquote.hpp" />
+    <ClInclude Include="qlo\conversions\varianttoquotehandle.hpp" />
+    <ClInclude Include="qlo\conversions\varianttosize.hpp" />
+    <ClInclude Include="qlo\conversions\varianttotimeseries.hpp" />
+    <ClInclude Include="qlo\optimization.hpp" />
+    <ClInclude Include="qlo\serialization\processor.hpp" />
+    <ClInclude Include="qlo\serialization\serializationfactory.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_abcd.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_accountingengines.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_all.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_alphaform.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_assetswap.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_bonds.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_browniangenerators.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_btp.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_capfloor.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_capletvolstructure.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_cmsmarket.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_cmsmarketcalibration.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_correlation.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_couponvectors.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_credit.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_ctsmmcapletcalibration.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_curvestate.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_defaulttermstructures.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_driftcalculators.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_evolutiondescription.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_exercise.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_forwardrateagreement.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_index.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_interpolation.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_leg.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_marketmodelevolvers.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_marketmodels.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_mathf.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_optimization.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_options.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_overnightindexedswap.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_payoffs.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_piecewiseyieldcurve.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_pricingengines.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_processes.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_products.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_quotes.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_randomsequencegenerator.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_rangeaccrual.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_ratehelpers.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_schedule.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_sequencestatistics.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_shortratemodels.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_smilesection.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_statistics.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_swap.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_swaption.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_swaptionvolstructure.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_termstructures.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_timeseries.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_vanillaswap.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_volatilities.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_volatility.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_abcd.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_accountingengines.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_all.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_alphaform.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_assetswap.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_bonds.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_browniangenerators.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_btp.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_capfloor.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_capletvolstructure.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_cmsmarket.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_cmsmarketcalibration.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_correlation.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_couponvectors.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_credit.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_ctsmmcapletcalibration.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_curvestate.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_defaulttermstructures.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_driftcalculators.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_evolutiondescription.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_exercise.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_forwardrateagreement.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_index.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_interpolation.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_leg.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_marketmodelevolvers.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_marketmodels.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_mathf.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_oh.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_optimization.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_options.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_overnightindexedswap.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_payoffs.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_piecewiseyieldcurve.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_pricingengines.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_processes.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_products.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_quotes.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_randomsequencegenerator.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_rangeaccrual.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_ratehelpers.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_register.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_schedule.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_sequencestatistics.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_shortratemodels.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_smilesection.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_statistics.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_swap.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_swaption.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_swaptionvolstructure.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_termstructures.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_timeseries.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_vanillaswap.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_volatilities.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_volatility.hpp" />
+    <ClInclude Include="qlo\indexes\bmaindex.hpp" />
+    <ClInclude Include="qlo\indexes\iborindex.hpp" />
+    <ClInclude Include="qlo\indexes\interestrateindex.hpp" />
+    <ClInclude Include="qlo\indexes\swapindex.hpp" />
+    <ClInclude Include="qlo\indexes\ibor\euribor.hpp" />
+    <ClInclude Include="qlo\indexes\ibor\libor.hpp" />
+    <ClInclude Include="qlo\indexes\swap\euriborswap.hpp" />
+    <ClInclude Include="qlo\indexes\swap\isdafixaswap.hpp" />
+    <ClInclude Include="qlo\indexes\swap\liborswap.hpp" />
+    <ClInclude Include="qlo\credit.hpp" />
+    <ClInclude Include="qlo\defaulttermstructures.hpp" />
+    <ClInclude Include="qlo\auto_link.hpp" />
+    <ClInclude Include="qlo\date.hpp" />
+    <ClInclude Include="qlo\exercise.hpp" />
+    <ClInclude Include="qlo\handle.hpp" />
+    <ClInclude Include="qlo\handleimpl.hpp" />
+    <ClInclude Include="qlo\index.hpp" />
+    <ClInclude Include="qlo\processes.hpp" />
+    <ClInclude Include="qlo\qladdin.hpp" />
+    <ClInclude Include="qlo\qladdindefines.hpp" />
+    <ClInclude Include="qlo\quote.hpp" />
+    <ClInclude Include="qlo\quotes.hpp" />
+    <ClInclude Include="qlo\schedule.hpp" />
+    <ClInclude Include="qlo\settings.hpp" />
+    <ClInclude Include="qlo\termstructures.hpp" />
+    <ClInclude Include="qlo\timeseries.hpp" />
+    <ClInclude Include="qlo\utilities.hpp" />
+    <ClInclude Include="qlo\vcconfig.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ObjectHandler\ohxl\ohxll\ohxll_vc12.vcxproj">
+      <Project>{04D7369F-47BC-46B0-A374-41635A9656D8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\QuantLib\QuantLib.vcxproj">
+      <Project>{ad0a27da-91da-46a2-acbd-296c419ed3aa}</Project>
+    </ProjectReference>
+    <ProjectReference Include="gensrc\qlgensrc_vc12.vcxproj">
+      <Project>{c8a6bb98-75ca-4eb9-a750-8ba3b3aa5969}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
