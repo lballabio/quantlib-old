@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="oh">
+      <UniqueIdentifier>{480a74d0-26d5-4bd9-b582-4797a2bf3889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oh\Classes">
+      <UniqueIdentifier>{b3c43394-3416-4237-a8ee-26ed83e10a8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oh\utilities">
+      <UniqueIdentifier>{60d793d1-4db7-45f1-848e-4a6da445715c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oh\conversions">
+      <UniqueIdentifier>{c790784d-68de-49fa-911a-49ee051b6f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oh\enumerations">
+      <UniqueIdentifier>{0c7c7ca1-ffa2-4392-8a29-184afa29c143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oh\valueobjects">
+      <UniqueIdentifier>{a312b589-73a6-4ded-a630-fe141778b935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xl">
+      <UniqueIdentifier>{207f3165-0598-4ab1-b23c-f2086eebc731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xl\conversions">
+      <UniqueIdentifier>{3fb49a55-3e9a-437a-be30-6cc94e4053d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xl\functions">
+      <UniqueIdentifier>{26450f62-8255-4394-a0c2-a1d799664648}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xl\register">
+      <UniqueIdentifier>{9599ea91-a228-4acc-aac7-d173fff08ff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xl\Classes">
+      <UniqueIdentifier>{89a41bc0-0270-4e5f-ade2-3f7d46747dfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xl\loop">
+      <UniqueIdentifier>{7c306aa7-2d01-4c65-af67-cc70a25e4bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xl\utilities">
+      <UniqueIdentifier>{02cbd38b-20df-423d-af94-db6d78a8667b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\oh\exception.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\group.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\iless.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\libraryobject.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\object.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\objecthandler.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\objectwrapper.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\observable.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\ohdefines.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\processor.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\property.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\range.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\repository.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\serializationfactory.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\singleton.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\valueobject.hpp">
+      <Filter>oh\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\auto_link.hpp">
+      <Filter>oh\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\logger.hpp">
+      <Filter>oh\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\utilities.hpp">
+      <Filter>oh\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\conversions\coerce.hpp">
+      <Filter>oh\conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\conversions\convert2.hpp">
+      <Filter>oh\conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\conversions\getobjectvector.hpp">
+      <Filter>oh\conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\enumerations\enumregistry.hpp">
+      <Filter>oh\enumerations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\enumerations\registry.hpp">
+      <Filter>oh\enumerations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\enumerations\typefactory.hpp">
+      <Filter>oh\enumerations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\valueobjects\vo_all.hpp">
+      <Filter>oh\valueobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\valueobjects\vo_group.hpp">
+      <Filter>oh\valueobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\oh\valueobjects\vo_range.hpp">
+      <Filter>oh\valueobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\conversions\all.hpp">
+      <Filter>xl\conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\conversions\matrixtooper.hpp">
+      <Filter>xl\conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\conversions\opertomatrix.hpp">
+      <Filter>xl\conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\conversions\opertovector.hpp">
+      <Filter>xl\conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\conversions\scalartooper.hpp">
+      <Filter>xl\conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\conversions\validations.hpp">
+      <Filter>xl\conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\conversions\vectortooper.hpp">
+      <Filter>xl\conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\functions\export.hpp">
+      <Filter>xl\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\functions\functioncount.hpp">
+      <Filter>xl\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\register\register_all.hpp">
+      <Filter>xl\register</Filter>
+    </ClInclude>
+    <ClInclude Include="..\callingrange.hpp">
+      <Filter>xl\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\configuration.hpp">
+      <Filter>xl\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\convert_oper.hpp">
+      <Filter>xl\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\functioncall.hpp">
+      <Filter>xl\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\objecthandlerxl.hpp">
+      <Filter>xl\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\objectwrapperxl.hpp">
+      <Filter>xl\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ohxldefines.hpp">
+      <Filter>xl\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rangereference.hpp">
+      <Filter>xl\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\repositoryxl.hpp">
+      <Filter>xl\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xloper.hpp">
+      <Filter>xl\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\loop.hpp">
+      <Filter>xl\loop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\xlutilities.hpp">
+      <Filter>xl\utilities</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\oh\processor.cpp">
+      <Filter>oh\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\oh\repository.cpp">
+      <Filter>oh\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\oh\serializationfactory.cpp">
+      <Filter>oh\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\oh\logger.cpp">
+      <Filter>oh\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\oh\utilities.cpp">
+      <Filter>oh\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\oh\enumerations\enumregistry.cpp">
+      <Filter>oh\enumerations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\conversions\scalartooper.cpp">
+      <Filter>xl\conversions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\conversions\validations.cpp">
+      <Filter>xl\conversions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\functions\enumerations.cpp">
+      <Filter>xl\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\functions\garbagecollection.cpp">
+      <Filter>xl\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\functions\group.cpp">
+      <Filter>xl\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\functions\logging.cpp">
+      <Filter>xl\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\functions\manual.cpp">
+      <Filter>xl\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\functions\objects.cpp">
+      <Filter>xl\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\functions\ohutils.cpp">
+      <Filter>xl\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\functions\range.cpp">
+      <Filter>xl\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\functions\serialization.cpp">
+      <Filter>xl\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\functions\valueobjects.cpp">
+      <Filter>xl\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\register\register_all.cpp">
+      <Filter>xl\register</Filter>
+    </ClCompile>
+    <ClCompile Include="..\register\register_enumerations.cpp">
+      <Filter>xl\register</Filter>
+    </ClCompile>
+    <ClCompile Include="..\register\register_garbagecollection.cpp">
+      <Filter>xl\register</Filter>
+    </ClCompile>
+    <ClCompile Include="..\register\register_group.cpp">
+      <Filter>xl\register</Filter>
+    </ClCompile>
+    <ClCompile Include="..\register\register_logging.cpp">
+      <Filter>xl\register</Filter>
+    </ClCompile>
+    <ClCompile Include="..\register\register_objects.cpp">
+      <Filter>xl\register</Filter>
+    </ClCompile>
+    <ClCompile Include="..\register\register_ohutils.cpp">
+      <Filter>xl\register</Filter>
+    </ClCompile>
+    <ClCompile Include="..\register\register_range.cpp">
+      <Filter>xl\register</Filter>
+    </ClCompile>
+    <ClCompile Include="..\register\register_serialization.cpp">
+      <Filter>xl\register</Filter>
+    </ClCompile>
+    <ClCompile Include="..\register\register_valueobjects.cpp">
+      <Filter>xl\register</Filter>
+    </ClCompile>
+    <ClCompile Include="..\callingrange.cpp">
+      <Filter>xl\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\configuration.cpp">
+      <Filter>xl\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\convert_oper.cpp">
+      <Filter>xl\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\functioncall.cpp">
+      <Filter>xl\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\objectwrapperxl.cpp">
+      <Filter>xl\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\rangereference.cpp">
+      <Filter>xl\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\repositoryxl.cpp">
+      <Filter>xl\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utilities\xlutilities.cpp">
+      <Filter>xl\utilities</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
