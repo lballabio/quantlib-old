@@ -62,15 +62,32 @@ along with the corresponding spreadsheets and additional material.
 <h2 class="center">Videos</h2>
 <ul>
 <li><strong>The QuantLib Notebooks</strong>
-is <a href="https://vimeo.com/channels/qlnotebooks">a series of
-screencasts</a> by Luigi Ballabio using IPython notebooks to
-demonstrate features of the QuantLib library.</li>
+is <a href="https://www.youtube.com/playlist?list=PLu_PrO8j6XAvOAlZND9WUPwTHY_GYhJVr">a
+series of screencasts</a> by Luigi Ballabio using IPython notebooks to
+demonstrate features of the QuantLib library. It is also available
+  on <a href="https://vimeo.com/channels/qlnotebooks">Vimeo</a>.</li>
+<li><strong>Introduction to QuantLib</strong> is
+another <a href="https://www.youtube.com/user/eefelix/videos">series
+of screencasts</a> by Felix Lee, covering installation and usage of
+the library.
 </ul>
 
-<h2 class="center" id="qlws13">QuantLib User Meeting 2013</h2>
+<h2 class="center">Blogs</h2>
+<ul>
+<li>Useful QuantLib-related posts appear in a few blogs, such as:<br>
+<strong>Klaus Spanderen's</strong> <a href="http://hpcquantlib.wordpress.com/">blog</a>;<br>
+<strong>Bojan Nikolic's</strong> <a href="http://www.bnikolic.co.uk/blog/">blog</a>;<br>
+<strong>&Eacute;douard Tallent's</strong> <a href="http://quantcorner.wordpress.com/">blog</a>;<br>
+<strong>Cogito Learning's</strong> <a href="http://cogitolearning.co.uk/?tag=quantlib-2">blog</a>;<br>
+<strong>Mick Hittesdorf's</strong> <a href="http://mhittesdorf.wordpress.com/category/quantlib/">blog</a>.<br>
+</li>
+</ul>
 
-The first QuantLib User Meeting was held in D&uuml;sseldorf on November 13th
-and 14th, 2013, thanks to the sponsorship of
+<h2 class="center" id="qlws13">Conference proceedings</h2>
+
+The <strong id="qlws13">first QuantLib User Meeting</strong> was held
+in D&uuml;sseldorf on November 13th and 14th, 2013, thanks to the
+sponsorship of
 <a href="http://www.ikb.de/">IKB</a>,
 <a href="http://www.quaternionrisk.com/">Quaternion</a> and
 <a href="http://www.d-fine.com/">d-fine</a>.  Most presentations from
@@ -117,10 +134,9 @@ the meeting are available:
 </li>
 </ul>
 
-<h2 class="center">QuantLib Forum 2011</h2>
-
-The first QuantLib forum was held in London on January 18th, 2011,
-thanks to the sponsorship of <a href="http://www.statpro.com/">StatPro</a>.
+The <strong>first QuantLib forum</strong> was held in London on
+January 18th, 2011, thanks to the sponsorship
+of <a href="http://www.statpro.com/">StatPro</a>.
 <ul>
 <li>Slides of <strong>Ferdinando Ametrano</strong>'s
 presentation, <em>Yield curves for forward Euribor estimation and
@@ -142,18 +158,6 @@ at <a href="https://vimeo.com/album/3082523/">https://vimeo.com/album/3082523/</
 available [<a href= "press/first-quantlib-forum.pdf">PDF</a>].
 </li>
 </ul>
-
-<h2 class="center">Blogs</h2>
-<ul>
-<li>Useful QuantLib-related posts appear in a few blogs, such as:<br>
-<strong>Klaus Spanderen's</strong> <a href="http://hpcquantlib.wordpress.com/">blog</a>;<br>
-<strong>Bojan Nikolic's</strong> <a href="http://www.bnikolic.co.uk/blog/">blog</a>;<br>
-<strong>&Eacute;douard Tallent's</strong> <a href="http://quantcorner.wordpress.com/">blog</a>;<br>
-<strong>Cogito Learning's</strong> <a href="http://cogitolearning.co.uk/?tag=quantlib-2">blog</a>;<br>
-<strong>Mick Hittesdorf's</strong> <a href="http://mhittesdorf.wordpress.com/category/quantlib/">blog</a>.<br>
-</li>
-</ul>
-
 
 <h2 class="center">Papers</h2>
 <ul>
