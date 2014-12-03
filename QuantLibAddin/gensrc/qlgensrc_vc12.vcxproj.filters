@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="addins">
+      <UniqueIdentifier>{415ba341-3a31-49ec-a5d3-8e23093cf667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="enumerations">
+      <UniqueIdentifier>{f42420de-719c-47db-87b9-94fac8334514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="functions">
+      <UniqueIdentifier>{5f95265d-b4e9-4c85-b0ce-5d9941a2f679}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="functions\marketmodels">
+      <UniqueIdentifier>{2692f01c-2739-4483-9fc8-ebd7165b1a30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rules">
+      <UniqueIdentifier>{6b29f80c-50cc-4697-a044-db1e4cf6441b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="types">
+      <UniqueIdentifier>{6efacb76-4054-4a0f-a318-c41dccb85710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code">
+      <UniqueIdentifier>{d4b0a549-146b-4345-9e35-c266794e6142}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{02a3ce74-612a-437b-b2c5-9c9274143be6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stubs">
+      <UniqueIdentifier>{0c5757d6-a742-49d0-87ff-18fb87277cef}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="metadata\addins\c.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\calc.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\cpp.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\doxygen.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\enumerations.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\excel.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\guile.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\loop.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\serialization.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\addins\valueobjects.xml">
+      <Filter>addins</Filter>
+    </None>
+    <None Include="metadata\enumerations\enumeratedclasses.xml">
+      <Filter>enumerations</Filter>
+    </None>
+    <None Include="metadata\enumerations\enumeratedpairs.xml">
+      <Filter>enumerations</Filter>
+    </None>
+    <None Include="metadata\enumerations\enumeratedtypes.xml">
+      <Filter>enumerations</Filter>
+    </None>
+    <None Include="metadata\functions\assetswap.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\bonds.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\btp.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\calendar.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\capfloor.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\capletvolstructure.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\cmsmarket.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\cmsmarketcalibration.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\couponvectors.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\date.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\daycounter.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\exercise.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\forwardrateagreement.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\handles.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\index.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\instruments.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\interpolation.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\leg.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\mathf.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\optimization.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\options.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\overnightindexedswap.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\payoffs.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\piecewiseyieldcurve.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\prices.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\pricingengines.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\processes.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\quotes.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\randomsequencegenerator.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\rangeaccrual.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\ratehelpers.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\schedule.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\sequencestatistics.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\settings.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\shortratemodels.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\smilesection.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\statistics.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\swap.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\swaption.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\swaptionvolstructure.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\termstructures.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\timeseries.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\utilities.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\vanillaswap.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\volatilities.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\abcd.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\accountingengines.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\alphaform.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\browniangenerators.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\correlation.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\ctsmmcapletcalibration.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\curvestate.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\driftcalculators.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\evolutiondescription.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\marketmodelevolvers.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\marketmodels.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\products.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\functions\volatility.xml">
+      <Filter>functions\marketmodels</Filter>
+    </None>
+    <None Include="metadata\rules\c.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\rules\calc.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\rules\cpp.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\rules\doxygen.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\rules\excel.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\rules\guile.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\rules\loop.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\rules\serialization.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\rules\valueobjects.xml">
+      <Filter>rules</Filter>
+    </None>
+    <None Include="metadata\types\supertypes.xml">
+      <Filter>types</Filter>
+    </None>
+    <None Include="metadata\types\types.xml">
+      <Filter>types</Filter>
+    </None>
+    <None Include="code\codedict.py">
+      <Filter>code</Filter>
+    </None>
+    <None Include="config\categories.xml">
+      <Filter>config</Filter>
+    </None>
+    <None Include="config\config.xml">
+      <Filter>config</Filter>
+    </None>
+    <None Include="stubs\stub.copyright">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="stubs\stub.cpp.body">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="stubs\stub.doxygen.enums">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="stubs\stub.enum.classes">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="stubs\stub.enum.pairs">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="stubs\stub.enum.types">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="stubs\stub.excel.includes">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="stubs\stub.serialization.includes">
+      <Filter>stubs</Filter>
+    </None>
+    <None Include="Makefile.vc" />
+  </ItemGroup>
+</Project>

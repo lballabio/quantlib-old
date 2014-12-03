@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="All|Win32">
+      <Configuration>All</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="All|x64">
+      <Configuration>All</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>qlgensrc</ProjectName>
+    <ProjectGuid>{C8A6BB98-75CA-4EB9-A750-8BA3B3AA5969}</ProjectGuid>
+    <RootNamespace>gensrc</RootNamespace>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='All|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='All|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='All|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='All|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='All|Win32'">build\vc\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='All|Win32'">build\vc\</IntDir>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|x64'">NMAKE /f Makefile.vc</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc /a</NMakeReBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='All|x64'">NMAKE /f Makefile.vc /a</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='All|Win32'">NMAKE /f Makefile.vc clean</NMakeCleanCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='All|x64'">NMAKE /f Makefile.vc clean</NMakeCleanCommandLine>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='All|Win32'" />
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='All|x64'" />
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='All|Win32'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='All|x64'">WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='All|x64'">$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='All|x64'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='All|x64'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='All|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='All|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="metadata\addins\c.xml" />
+    <None Include="metadata\addins\calc.xml" />
+    <None Include="metadata\addins\cpp.xml" />
+    <None Include="metadata\addins\doxygen.xml" />
+    <None Include="metadata\addins\enumerations.xml" />
+    <None Include="metadata\addins\excel.xml" />
+    <None Include="metadata\addins\guile.xml" />
+    <None Include="metadata\addins\loop.xml" />
+    <None Include="metadata\addins\serialization.xml" />
+    <None Include="metadata\addins\valueobjects.xml" />
+    <None Include="metadata\enumerations\enumeratedclasses.xml" />
+    <None Include="metadata\enumerations\enumeratedpairs.xml" />
+    <None Include="metadata\enumerations\enumeratedtypes.xml" />
+    <None Include="metadata\functions\assetswap.xml" />
+    <None Include="metadata\functions\bonds.xml" />
+    <None Include="metadata\functions\btp.xml" />
+    <None Include="metadata\functions\calendar.xml" />
+    <None Include="metadata\functions\capfloor.xml" />
+    <None Include="metadata\functions\capletvolstructure.xml" />
+    <None Include="metadata\functions\cmsmarket.xml" />
+    <None Include="metadata\functions\cmsmarketcalibration.xml" />
+    <None Include="metadata\functions\couponvectors.xml" />
+    <None Include="metadata\functions\date.xml" />
+    <None Include="metadata\functions\daycounter.xml" />
+    <None Include="metadata\functions\exercise.xml" />
+    <None Include="metadata\functions\forwardrateagreement.xml" />
+    <None Include="metadata\functions\handles.xml" />
+    <None Include="metadata\functions\index.xml" />
+    <None Include="metadata\functions\instruments.xml" />
+    <None Include="metadata\functions\interpolation.xml" />
+    <None Include="metadata\functions\leg.xml" />
+    <None Include="metadata\functions\mathf.xml" />
+    <None Include="metadata\functions\optimization.xml" />
+    <None Include="metadata\functions\options.xml" />
+    <None Include="metadata\functions\overnightindexedswap.xml" />
+    <None Include="metadata\functions\payoffs.xml" />
+    <None Include="metadata\functions\piecewiseyieldcurve.xml" />
+    <None Include="metadata\functions\prices.xml" />
+    <None Include="metadata\functions\pricingengines.xml" />
+    <None Include="metadata\functions\processes.xml" />
+    <None Include="metadata\functions\quotes.xml" />
+    <None Include="metadata\functions\randomsequencegenerator.xml" />
+    <None Include="metadata\functions\rangeaccrual.xml" />
+    <None Include="metadata\functions\ratehelpers.xml" />
+    <None Include="metadata\functions\schedule.xml" />
+    <None Include="metadata\functions\sequencestatistics.xml" />
+    <None Include="metadata\functions\settings.xml" />
+    <None Include="metadata\functions\shortratemodels.xml" />
+    <None Include="metadata\functions\smilesection.xml" />
+    <None Include="metadata\functions\statistics.xml" />
+    <None Include="metadata\functions\swap.xml" />
+    <None Include="metadata\functions\swaption.xml" />
+    <None Include="metadata\functions\swaptionvolstructure.xml" />
+    <None Include="metadata\functions\termstructures.xml" />
+    <None Include="metadata\functions\timeseries.xml" />
+    <None Include="metadata\functions\utilities.xml" />
+    <None Include="metadata\functions\vanillaswap.xml" />
+    <None Include="metadata\functions\volatilities.xml" />
+    <None Include="metadata\functions\abcd.xml" />
+    <None Include="metadata\functions\accountingengines.xml" />
+    <None Include="metadata\functions\alphaform.xml" />
+    <None Include="metadata\functions\browniangenerators.xml" />
+    <None Include="metadata\functions\correlation.xml" />
+    <None Include="metadata\functions\ctsmmcapletcalibration.xml" />
+    <None Include="metadata\functions\curvestate.xml" />
+    <None Include="metadata\functions\driftcalculators.xml" />
+    <None Include="metadata\functions\evolutiondescription.xml" />
+    <None Include="metadata\functions\marketmodelevolvers.xml" />
+    <None Include="metadata\functions\marketmodels.xml" />
+    <None Include="metadata\functions\products.xml" />
+    <None Include="metadata\functions\volatility.xml" />
+    <None Include="metadata\rules\c.xml" />
+    <None Include="metadata\rules\calc.xml" />
+    <None Include="metadata\rules\cpp.xml" />
+    <None Include="metadata\rules\doxygen.xml" />
+    <None Include="metadata\rules\excel.xml" />
+    <None Include="metadata\rules\guile.xml" />
+    <None Include="metadata\rules\loop.xml" />
+    <None Include="metadata\rules\serialization.xml" />
+    <None Include="metadata\rules\valueobjects.xml" />
+    <None Include="metadata\types\supertypes.xml" />
+    <None Include="metadata\types\types.xml" />
+    <None Include="code\codedict.py" />
+    <None Include="config\categories.xml" />
+    <None Include="config\config.xml" />
+    <None Include="stubs\stub.copyright" />
+    <None Include="stubs\stub.cpp.body" />
+    <None Include="stubs\stub.doxygen.enums" />
+    <None Include="stubs\stub.enum.classes" />
+    <None Include="stubs\stub.enum.pairs" />
+    <None Include="stubs\stub.enum.types" />
+    <None Include="stubs\stub.excel.includes" />
+    <None Include="stubs\stub.serialization.includes" />
+    <None Include="Makefile.vc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
