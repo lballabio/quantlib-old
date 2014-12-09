@@ -26,6 +26,9 @@
 
 #include <ql/compounding.hpp>
 #include <ql/time/daycounters/actual365fixed.hpp>
+#include <ql/utilities/dataformatters.hpp>
+#include <sstream>
+#include <iomanip>
 
 namespace QuantLib {
 
@@ -37,25 +40,25 @@ namespace QuantLib {
 
         \test Converted rates are checked against known good results
     */
-    class InterestRate {
+    template<class T=Rate> class InterestRate {
       public:
         //! \name constructors
         //@{
         //! Default constructor returning a null interest rate.
         InterestRate();
         //! Standard constructor
-        InterestRate(Rate r,
+        InterestRate(T r,
                      const DayCounter& dc,
                      Compounding comp,
                      Frequency freq);
         //@}
         //! \name conversions
         //@{
-        operator Rate() const { return r_; }
+        operator T() const { return r_; }
         //@}
         //! \name inspectors
         //@{
-        Rate rate() const { return r_; }
+        T rate() const { return r_; }
         const DayCounter& dayCounter() const { return dc_; }
         Compounding compounding() const { return comp_; }
         Frequency frequency() const {
@@ -69,12 +72,12 @@ namespace QuantLib {
         /*! \warning Time must be measured using InterestRate's own
                      day counter.
         */
-        DiscountFactor discountFactor(Time t) const {
+        T discountFactor(Time t) const {
             return 1.0/compoundFactor(t);
         }
 
         //! discount factor implied by the rate compounded between two dates
-        DiscountFactor discountFactor(const Date& d1,
+        T discountFactor(const Date& d1,
                                       const Date& d2,
                                       const Date& refStart = Date(),
                                       const Date& refEnd = Date()) const {
@@ -92,13 +95,13 @@ namespace QuantLib {
             \warning Time must be measured using InterestRate's own
                      day counter.
         */
-        Real compoundFactor(Time t) const;
+        T compoundFactor(Time t) const;
 
         //! compound factor implied by the rate compounded between two dates
         /*! returns the compound (a.k.a capitalization) factor
             implied by the rate compounded between two dates.
         */
-        Real compoundFactor(const Date& d1,
+        T compoundFactor(const Date& d1,
                             const Date& d2,
                             const Date& refStart = Date(),
                             const Date& refEnd = Date()) const {
@@ -119,7 +122,7 @@ namespace QuantLib {
             \warning Time must be measured using the day-counter provided
                      as input.
         */
-        static InterestRate impliedRate(Real compound,
+        static InterestRate impliedRate(T compound,
                                         const DayCounter& resultDC,
                                         Compounding comp,
                                         Frequency freq,
@@ -129,7 +132,7 @@ namespace QuantLib {
         /*! The resulting rate is calculated taking the required
             day-counting rule into account.
         */
-        static InterestRate impliedRate(Real compound,
+        static InterestRate impliedRate(T compound,
                                         const DayCounter& resultDC,
                                         Compounding comp,
                                         Frequency freq,
@@ -181,7 +184,7 @@ namespace QuantLib {
         }
         //@}
       private:
-        Rate r_;
+        T r_;
         DayCounter dc_;
         Compounding comp_;
         bool freqMakesSense_;
@@ -193,5 +196,126 @@ namespace QuantLib {
                              const InterestRate&);
 
 }
+
+    // constructors
+
+template<class T> InterestRate<T>::InterestRate()
+    : r_(Null<Real>()) {}
+
+template<class T> InterestRate<T>::InterestRate(T r,
+                               const DayCounter& dc,
+                               Compounding comp,
+                               Frequency freq)
+    : r_(r), dc_(dc), comp_(comp), freqMakesSense_(false) {
+
+        if (comp_==Compounded || comp_==SimpleThenCompounded) {
+            freqMakesSense_ = true;
+            QL_REQUIRE(freq!=Once && freq!=NoFrequency,
+                       "frequency not allowed for this interest rate");
+            freq_ = Real(freq);
+        }
+    }
+
+template<class T> T InterestRate<T>::compoundFactor(Time t) const {
+
+        QL_REQUIRE(t>=0.0, "negative time not allowed");
+        QL_REQUIRE(r_ != Null<Rate>(), "null interest rate");
+        switch (comp_) {
+          case Simple:
+            return 1.0 + r_*t;
+          case Compounded:
+            return std::pow(1.0+r_/freq_, freq_*t);
+          case Continuous:
+            return std::exp(r_*t);
+          case SimpleThenCompounded:
+            if (t<=1.0/Real(freq_))
+                return 1.0 + r_*t;
+            else
+                return std::pow(1.0+r_/freq_, freq_*t);
+          default:
+            QL_FAIL("unknown compounding convention");
+        }
+    }
+
+template<class T> InterestRate InterestRate::impliedRate(T compound,
+                                           const DayCounter& resultDC,
+                                           Compounding comp,
+                                           Frequency freq,
+                                           Time t) {
+
+        QL_REQUIRE(compound>0.0, "positive compound factor required");
+
+        T r;
+        if (compound==1.0) {
+            QL_REQUIRE(t>=0.0, "non negative time (" << t << ") required");
+            r = 0.0;
+        } else {
+            QL_REQUIRE(t>0.0, "positive time (" << t << ") required");
+            switch (comp) {
+              case Simple:
+                r = (compound - 1.0)/t;
+                break;
+              case Compounded:
+                r = (std::pow(compound, 1.0/(Real(freq)*t))-1.0)*Real(freq);
+                break;
+              case Continuous:
+                r = std::log(compound)/t;
+                break;
+              case SimpleThenCompounded:
+                if (t<=1.0/Real(freq))
+                    r = (compound - 1.0)/t;
+                else
+                    r = (std::pow(compound, 1.0/(Real(freq)*t))-1.0)*Real(freq);
+                break;
+              default:
+                QL_FAIL("unknown compounding convention ("
+                        << Integer(comp) << ")");
+            }
+        }
+        return InterestRate<T>(r, resultDC, comp, freq);
+    }
+
+
+    std::ostream& operator<<(std::ostream& out, const InterestRate& ir) {
+        if (ir.rate() == Null<Rate>())
+            return out << "null interest rate";
+
+        out << io::rate(ir.rate()) << " " << ir.dayCounter().name() << " ";
+        switch (ir.compounding()) {
+          case Simple:
+            out << "simple compounding";
+            break;
+          case Compounded:
+            switch (ir.frequency()) {
+              case NoFrequency:
+              case Once:
+                QL_FAIL(ir.frequency() << " frequency not allowed "
+                        "for this interest rate");
+              default:
+                out << ir.frequency() <<" compounding";
+            }
+            break;
+          case Continuous:
+            out << "continuous compounding";
+            break;
+          case SimpleThenCompounded:
+            switch (ir.frequency()) {
+              case NoFrequency:
+              case Once:
+                QL_FAIL(ir.frequency() << " frequency not allowed "
+                        "for this interest rate");
+              default:
+                out << "simple compounding up to "
+                    << Integer(12/ir.frequency()) << " months, then "
+                    << ir.frequency() << " compounding";
+            }
+            break;
+          default:
+            QL_FAIL("unknown compounding convention ("
+                    << Integer(ir.compounding()) << ")");
+        }
+        return out;
+    }
+
 
 #endif
