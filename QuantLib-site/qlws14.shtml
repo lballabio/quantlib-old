@@ -29,7 +29,7 @@ The slides for the talks are available by clicking on their title.
 <table>
   <tr><td>Ferdinando Ametrano, <i><a href="https://speakerdeck.com/nando1970/open-source-finance-quantlib-opengamma-bitcoin">Open Source Finance: QuantLib, OpenGamma, and Bitcoin</a></i> (Keynote)</td></tr>
   <tr><td>Roland Lichters, <i><a href="/slides/qlws14/lichters.pdf">American Monte Carlo for Bermudan CVA</a></i></td></tr>
-  <tr><td>Michael von der Driesch and Matthias Groncki, <i><a href="/slides/qlws14/groncki.pdf">ECB calls for lighter treatment of high-quality ABS. How QuantLib might help?</a></i></td></tr>
+  <tr><td>Michael von der Driesch and Matthias Groncki, <i><a href="/slides/qlws14/groncki.pdf">ECB calls for lighter treatment of high-quality ABS. How QuantLib might help?</a></i> (with the accompanying <a href="/slides/qlws14/groncki.html">IPython notebook</a>)</td></tr>
   <tr><td>Dirk Eddelbuettel, <i><a href="http://dirk.eddelbuettel.com/papers/r_and_quantlib_2014.pdf">QuantLib, R and Rcpp</a></i></td></tr>
   <tr><td>Sebastian Schlenkrich, <i><a href="/slides/qlws14/schlenkrich.pdf">Choosing the Right Spread</a></i></td></tr>
   <tr><td>Peter Caspers, <i><a href="/slides/qlws14/caspers.pdf">QuantLib Erlk&ouml;nige - A walk through some recent contributions</a></i></td></tr>
