@@ -175,6 +175,7 @@
     <Compile Include="BlackVolTermStructureHandle.cs" />
     <Compile Include="Bond.cs" />
     <Compile Include="BondFunctions.cs" />
+    <Compile Include="BondHelper.cs" />
     <Compile Include="BoolVector.cs" />
     <Compile Include="BoundaryCondition.cs" />
     <Compile Include="BoundaryConstraint.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="CADLibor.cs" />
     <Compile Include="Calendar.cs" />
     <Compile Include="CalibratedModel.cs" />
+    <Compile Include="CalibratedModelHandle.cs" />
     <Compile Include="CalibrationHelper.cs" />
     <Compile Include="CalibrationHelperVector.cs" />
     <Compile Include="Callability.cs" />
@@ -243,6 +245,7 @@
     <Compile Include="CPIBond.cs" />
     <Compile Include="CreditDefaultSwap.cs" />
     <Compile Include="Cubic.cs" />
+    <Compile Include="CubicBSplinesFitting.cs" />
     <Compile Include="CubicNaturalSpline.cs" />
     <Compile Include="CumulativeBinomialDistribution.cs" />
     <Compile Include="CumulativeNormalDistribution.cs" />
@@ -352,6 +355,7 @@
     <Compile Include="ExchangeRate.cs" />
     <Compile Include="ExchangeRateManager.cs" />
     <Compile Include="Exercise.cs" />
+    <Compile Include="ExponentialSplinesFitting.cs" />
     <Compile Include="FalsePosition.cs" />
     <Compile Include="FDAmericanEngine.cs" />
     <Compile Include="FDBermudanEngine.cs" />
@@ -365,6 +369,8 @@
     <Compile Include="FFTVarianceGammaEngine.cs" />
     <Compile Include="FIMCurrency.cs" />
     <Compile Include="Finland.cs" />
+    <Compile Include="FittedBondDiscountCurve.cs" />
+    <Compile Include="FittingMethod.cs" />
     <Compile Include="FixedDividend.cs" />
     <Compile Include="FixedRateBond.cs" />
     <Compile Include="FixedRateBondHelper.cs" />
@@ -457,6 +463,7 @@
     <Compile Include="INRCurrency.cs" />
     <Compile Include="Instrument.cs" />
     <Compile Include="InstrumentVector.cs" />
+    <Compile Include="IntegralCdsEngine.cs" />
     <Compile Include="IntegralEngine.cs" />
     <Compile Include="InterestRate.cs" />
     <Compile Include="InterestRateIndex.cs" />
@@ -503,6 +510,7 @@
     <Compile Include="LocalConstantVol.cs" />
     <Compile Include="LocalVolTermStructure.cs" />
     <Compile Include="LocalVolTermStructureHandle.cs" />
+    <Compile Include="LogCubic.cs" />
     <Compile Include="LogCubicNaturalSpline.cs" />
     <Compile Include="LogLinear.cs" />
     <Compile Include="LogLinearInterpolation.cs" />
@@ -528,7 +536,9 @@
     <Compile Include="MidPointCdsEngine.cs" />
     <Compile Include="MinBasketPayoff.cs" />
     <Compile Include="Money.cs" />
+    <Compile Include="MonotonicCubic.cs" />
     <Compile Include="MonotonicCubicNaturalSpline.cs" />
+    <Compile Include="MonotonicLogCubic.cs" />
     <Compile Include="MonotonicLogCubicNaturalSpline.cs" />
     <Compile Include="MonotonicLogParabolic.cs" />
     <Compile Include="MonotonicParabolic.cs" />
@@ -548,6 +558,7 @@
     <Compile Include="MultipleStatistics.cs" />
     <Compile Include="MultiplicativePriceSeasonalityPtr.cs" />
     <Compile Include="MXNCurrency.cs" />
+    <Compile Include="NelsonSiegelFitting.cs" />
     <Compile Include="NeumannBC.cs" />
     <Compile Include="NewZealand.cs" />
     <Compile Include="NLGCurrency.cs" />
@@ -590,6 +601,7 @@
     <Compile Include="PiecewiseFlatHazardRate.cs" />
     <Compile Include="PiecewiseLinearForward.cs" />
     <Compile Include="PiecewiseLinearZero.cs" />
+    <Compile Include="PiecewiseLogCubicDiscount.cs" />
     <Compile Include="PiecewiseYoYInflation.cs" />
     <Compile Include="PiecewiseZeroInflation.cs" />
     <Compile Include="PKRCurrency.cs" />
@@ -619,6 +631,7 @@
     <Compile Include="Redemption.cs" />
     <Compile Include="Region.cs" />
     <Compile Include="RelinkableBlackVolTermStructureHandle.cs" />
+    <Compile Include="RelinkableCalibratedModelHandle.cs" />
     <Compile Include="RelinkableCapFloorTermVolatilityStructureHandle.cs" />
     <Compile Include="RelinkableDefaultProbabilityTermStructureHandle.cs" />
     <Compile Include="RelinkableLocalVolTermStructureHandle.cs" />
@@ -660,6 +673,7 @@
     <Compile Include="ShortRateModelHandle.cs" />
     <Compile Include="SimpleCashFlow.cs" />
     <Compile Include="SimpleDayCounter.cs" />
+    <Compile Include="SimplePolynomialFitting.cs" />
     <Compile Include="SimpleQuote.cs" />
     <Compile Include="Simplex.cs" />
     <Compile Include="SimpsonIntegral.cs" />
@@ -686,6 +700,7 @@
     <Compile Include="StulzEngine.cs" />
     <Compile Include="SuperSharePayoff.cs" />
     <Compile Include="SVD.cs" />
+    <Compile Include="SvenssonFitting.cs" />
     <Compile Include="Swap.cs" />
     <Compile Include="SwapIndex.cs" />
     <Compile Include="SwapRateHelper.cs" />
@@ -789,6 +804,8 @@
     <Compile Include="YYFRHICP.cs" />
     <Compile Include="YYUKRPI.cs" />
     <Compile Include="YYUSCPI.cs" />
+    <Compile Include="YYZACPI.cs" />
+    <Compile Include="ZACPI.cs" />
     <Compile Include="ZARCurrency.cs" />
     <Compile Include="ZeroCouponBond.cs" />
     <Compile Include="ZeroCouponInflationSwap.cs" />
