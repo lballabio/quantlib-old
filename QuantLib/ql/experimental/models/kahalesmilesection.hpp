@@ -147,6 +147,7 @@ namespace QuantLib {
         Time exerciseTime() const { return source_->exerciseTime(); }
         const DayCounter& dayCounter() const { return source_->dayCounter(); }
         const Date& referenceDate() const { return source_->referenceDate(); }
+        const SmileSection::Nature nature() const { return source_->nature(); }
 
         Real leftCoreStrike() const { return k_[leftIndex_]; }
         Real rightCoreStrike() const { return k_[rightIndex_]; }
