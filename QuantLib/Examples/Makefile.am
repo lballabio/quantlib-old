@@ -24,7 +24,6 @@ SUBDIRS = \
 	MultitenorVols \
 	NonstandardSwaption \
     LatentModel \
-    MarketModels \
     MultidimIntegral \
     Replication \
     Repo \
