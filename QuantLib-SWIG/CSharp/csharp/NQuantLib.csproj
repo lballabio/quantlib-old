@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="../QuantLib.props" />
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.30729</ProductVersion>
@@ -47,7 +48,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\vc110\Debug\</OutputPath>
+    <OutputPath>bin\$(qlCompilerTag)\Debug\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -72,7 +73,7 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\vc110\Release\</OutputPath>
+    <OutputPath>bin\$(qlCompilerTag)\Release\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -174,8 +175,8 @@
     <Compile Include="BlackVolTermStructure.cs" />
     <Compile Include="BlackVolTermStructureHandle.cs" />
     <Compile Include="Bond.cs" />
-    <Compile Include="BondHelper.cs" />
     <Compile Include="BondFunctions.cs" />
+    <Compile Include="BondHelper.cs" />
     <Compile Include="BoolVector.cs" />
     <Compile Include="BoundaryCondition.cs" />
     <Compile Include="BoundaryConstraint.cs" />
