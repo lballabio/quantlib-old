@@ -102,7 +102,7 @@ namespace QuantLib {
             spot repo rate. For FRA's, this should reproduce the
             relevant zero rate at the FRA's maturityDate_;
         */
-        InterestRate impliedYield(Real underlyingSpotValue,
+        InterestRate<> impliedYield(Real underlyingSpotValue,
                                   Real forwardValue,
                                   Date settlementDate,
                                   Compounding compoundingConvention,

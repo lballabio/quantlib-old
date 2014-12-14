@@ -89,7 +89,7 @@ namespace QuantLib {
         Handle<Quote> forward_;
         Compounding compounding_;
         Frequency frequency_;
-        mutable InterestRate rate_;
+        mutable InterestRate<> rate_;
     };
 
     // inline definitions
@@ -105,7 +105,7 @@ namespace QuantLib {
     }
   
     inline void FlatForward::performCalculations() const {
-        rate_ = InterestRate(forward_->value(), dayCounter(),
+        rate_ = InterestRate<>(forward_->value(), dayCounter(),
                              compounding_, frequency_);
     }
 

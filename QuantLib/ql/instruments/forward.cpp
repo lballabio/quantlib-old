@@ -64,7 +64,7 @@ namespace QuantLib {
     }
 
 
-    InterestRate Forward::impliedYield(Real underlyingSpotValue,
+    InterestRate<> Forward::impliedYield(Real underlyingSpotValue,
                                        Real forwardValue,
                                        Date settlementDate,
                                        Compounding comp,
@@ -73,7 +73,7 @@ namespace QuantLib {
         Time t = dayCounter.yearFraction(settlementDate,maturityDate_) ;
         Real compoundingFactor = forwardValue/
             (underlyingSpotValue-spotIncome(incomeDiscountCurve_)) ;
-        return InterestRate::impliedRate(compoundingFactor,
+        return InterestRate<>::impliedRate(compoundingFactor,
                                          dayCounter, comp, Annual,
                                          t);
     }

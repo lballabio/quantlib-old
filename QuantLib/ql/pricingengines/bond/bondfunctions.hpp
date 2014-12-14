@@ -118,7 +118,7 @@ namespace QuantLib {
         //! \name Yield (a.k.a. Internal Rate of Return, i.e. IRR) functions
         //@{
         static Real cleanPrice(const Bond& bond,
-                               const InterestRate& yield,
+                               const InterestRate<>& yield,
                                Date settlementDate = Date());
         static Real cleanPrice(const Bond& bond,
                                Rate yield,
@@ -127,7 +127,7 @@ namespace QuantLib {
                                Frequency frequency,
                                Date settlementDate = Date());
         static Real dirtyPrice(const Bond& bond,
-                               const InterestRate& yield,
+                               const InterestRate<>& yield,
                                Date settlementDate = Date());
         static Real dirtyPrice(const Bond& bond,
                                Rate yield,
@@ -136,7 +136,7 @@ namespace QuantLib {
                                Frequency frequency,
                                Date settlementDate = Date());
         static Real bps(const Bond& bond,
-                        const InterestRate& yield,
+                        const InterestRate<>& yield,
                         Date settlementDate = Date());
         static Real bps(const Bond& bond,
                         Rate yield,
@@ -154,7 +154,7 @@ namespace QuantLib {
                           Size maxIterations = 100,
                           Rate guess = 0.05);
         static Time duration(const Bond& bond,
-                             const InterestRate& yield,
+                             const InterestRate<>& yield,
                              Duration::Type type = Duration::Modified,
                              Date settlementDate = Date() );
         static Time duration(const Bond& bond,
@@ -165,7 +165,7 @@ namespace QuantLib {
                              Duration::Type type = Duration::Modified,
                              Date settlementDate = Date() );
         static Real convexity(const Bond& bond,
-                              const InterestRate& yield,
+                              const InterestRate<>& yield,
                               Date settlementDate = Date());
         static Real convexity(const Bond& bond,
                               Rate yield,
@@ -174,7 +174,7 @@ namespace QuantLib {
                               Frequency frequency,
                               Date settlementDate = Date());
         static Real basisPointValue(const Bond& bond,
-                                    const InterestRate& yield,
+                                    const InterestRate<>& yield,
                                     Date settlementDate = Date());
         static Real basisPointValue(const Bond& bond,
                                     Rate yield,
@@ -183,7 +183,7 @@ namespace QuantLib {
                                     Frequency frequency,
                                     Date settlementDate = Date());
         static Real yieldValueBasisPoint(const Bond& bond,
-                                         const InterestRate& yield,
+                                         const InterestRate<>& yield,
                                          Date settlementDate = Date());
         static Real yieldValueBasisPoint(const Bond& bond,
                                          Rate yield,

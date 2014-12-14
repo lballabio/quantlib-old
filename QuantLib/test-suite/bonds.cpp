@@ -980,12 +980,12 @@ void BondTest::testBrazilianCached() {
     prices[4] = 1028.33383817;
     prices[5] = 1026.19716497;
 
-    std::vector<InterestRate> couponRates(1);
-    couponRates[0] = InterestRate(0.1, Thirty360(), Compounded,Annual);
+    std::vector<InterestRate<> > couponRates(1);
+    couponRates[0] = InterestRate<>(0.1, Thirty360(), Compounded,Annual);
 
     for (Size bondIndex = 0; bondIndex < maturityDates.size(); bondIndex++) {
 
-        InterestRate yield(yields[bondIndex],
+        InterestRate<> yield(yields[bondIndex],
                            Business252(Brazil()),
                            Compounded, Annual);
 

@@ -143,8 +143,8 @@ namespace QuantLib {
     inline Rate
     InterpolatedPiecewiseZeroSpreadedTermStructure<T>::zeroYieldImpl(Time t) const {
         Spread spread = calcSpread(t);
-        InterestRate zeroRate = originalCurve_->zeroRate(t, comp_, freq_, true);
-        InterestRate spreadedRate(zeroRate + spread,
+        InterestRate<> zeroRate = originalCurve_->zeroRate(t, comp_, freq_, true);
+        InterestRate<> spreadedRate(zeroRate + spread,
                                   zeroRate.dayCounter(),
                                   zeroRate.compounding(),
                                   zeroRate.frequency());

@@ -85,7 +85,7 @@ namespace QuantLib {
         FixedRateBond(Natural settlementDays,
                       Real faceAmount,
                       const Schedule& schedule,
-                      const std::vector<InterestRate>& coupons,
+                      const std::vector<InterestRate<> >& coupons,
                       BusinessDayConvention paymentConvention = Following,
                       Real redemption = 100.0,
                       const Date& issueDate = Date(),

@@ -109,7 +109,7 @@ namespace QuantLib {
 
     }
 
-    InterestRate YieldTermStructure::zeroRate(const Date& d,
+    InterestRate<> YieldTermStructure::zeroRate(const Date& d,
                                               const DayCounter& dayCounter,
                                               Compounding comp,
                                               Frequency freq,
@@ -118,28 +118,28 @@ namespace QuantLib {
             Real compound = 1.0/discount(dt, extrapolate);
             // t has been calculated with a possibly different daycounter
             // but the difference should not matter for very small times
-            return InterestRate::impliedRate(compound,
+            return InterestRate<>::impliedRate(compound,
                                              dayCounter, comp, freq,
                                              dt);
         }
         Real compound = 1.0/discount(d, extrapolate);
-        return InterestRate::impliedRate(compound,
+        return InterestRate<>::impliedRate(compound,
                                          dayCounter, comp, freq,
                                          referenceDate(), d);
     }
 
-    InterestRate YieldTermStructure::zeroRate(Time t,
+    InterestRate<> YieldTermStructure::zeroRate(Time t,
                                               Compounding comp,
                                               Frequency freq,
                                               bool extrapolate) const {
         if (t==0.0) t = dt;
         Real compound = 1.0/discount(t, extrapolate);
-        return InterestRate::impliedRate(compound,
+        return InterestRate<>::impliedRate(compound,
                                          dayCounter(), comp, freq,
                                          t);
     }
 
-    InterestRate YieldTermStructure::forwardRate(const Date& d1,
+    InterestRate<> YieldTermStructure::forwardRate(const Date& d1,
                                                  const Date& d2,
                                                  const DayCounter& dayCounter,
                                                  Compounding comp,
@@ -153,18 +153,18 @@ namespace QuantLib {
                 discount(t1, true)/discount(t2, true);
             // times have been calculated with a possibly different daycounter
             // but the difference should not matter for very small times
-            return InterestRate::impliedRate(compound,
+            return InterestRate<>::impliedRate(compound,
                                              dayCounter, comp, freq,
                                              dt);
         }
         QL_REQUIRE(d1 < d2,  d1 << " later than " << d2);
         Real compound = discount(d1, extrapolate)/discount(d2, extrapolate);
-        return InterestRate::impliedRate(compound,
+        return InterestRate<>::impliedRate(compound,
                                          dayCounter, comp, freq,
                                          d1, d2);
     }
 
-    InterestRate YieldTermStructure::forwardRate(Time t1,
+    InterestRate<> YieldTermStructure::forwardRate(Time t1,
                                                  Time t2,
                                                  Compounding comp,
                                                  Frequency freq,
@@ -179,7 +179,7 @@ namespace QuantLib {
             QL_REQUIRE(t2>t1, "t2 (" << t2 << ") < t1 (" << t2 << ")");
             compound = discount(t1, extrapolate)/discount(t2, extrapolate);
         }
-        return InterestRate::impliedRate(compound,
+        return InterestRate<>::impliedRate(compound,
                                          dayCounter(), comp, freq,
                                          t2-t1);
     }

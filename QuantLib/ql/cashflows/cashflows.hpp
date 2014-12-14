@@ -197,7 +197,7 @@ namespace QuantLib {
             and the relative frequency and day counter.
         */
         static Real npv(const Leg& leg,
-                        const InterestRate& yield,
+                        const InterestRate<>& yield,
                         bool includeSettlementDateFlows,
                         Date settlementDate = Date(),
                         Date npvDate = Date());
@@ -218,7 +218,7 @@ namespace QuantLib {
             and the relative frequency and day counter.
         */
         static Real bps(const Leg& leg,
-                        const InterestRate& yield,
+                        const InterestRate<>& yield,
                         bool includeSettlementDateFlows,
                         Date settlementDate = Date(),
                         Date npvDate = Date());
@@ -272,7 +272,7 @@ namespace QuantLib {
             cash flows per year.
         */
         static Time duration(const Leg& leg,
-                             const InterestRate& yield,
+                             const InterestRate<>& yield,
                              Duration::Type type,
                              bool includeSettlementDateFlows,
                              Date settlementDate = Date(),
@@ -296,7 +296,7 @@ namespace QuantLib {
             according to the given IRR \f$ y \f$.
         */
         static Real convexity(const Leg& leg,
-                              const InterestRate& yield,
+                              const InterestRate<>& yield,
                               bool includeSettlementDateFlows,
                               Date settlementDate = Date(),
                               Date npvDate = Date());
@@ -314,7 +314,7 @@ namespace QuantLib {
             series expansion.
         */
         static Real basisPointValue(const Leg& leg,
-                                    const InterestRate& yield,
+                                    const InterestRate<>& yield,
                                     bool includeSettlementDateFlows,
                                     Date settlementDate = Date(),
                                     Date npvDate = Date());
@@ -333,7 +333,7 @@ namespace QuantLib {
             multiplied by 0.01
         */
         static Real yieldValueBasisPoint(const Leg& leg,
-                                         const InterestRate& yield,
+                                         const InterestRate<>& yield,
                                          bool includeSettlementDateFlows,
                                          Date settlementDate = Date(),
                                          Date npvDate = Date());

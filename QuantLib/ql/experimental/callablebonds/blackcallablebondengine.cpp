@@ -99,7 +99,7 @@ namespace QuantLib {
                                        frequency,
                                        false, exerciseDate);
 
-        InterestRate fwdRate(fwdYtm,
+        InterestRate<> fwdRate(fwdYtm,
                              dayCounter,
                              Compounded,
                              frequency);

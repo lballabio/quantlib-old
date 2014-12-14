@@ -89,7 +89,7 @@ namespace QuantLib {
         /*! The resulting interest rate has the required daycounting
             rule.
         */
-        InterestRate zeroRate(const Date& d,
+        InterestRate<> zeroRate(const Date& d,
                               const DayCounter& resultDayCounter,
                               Compounding comp,
                               Frequency freq = Annual,
@@ -99,7 +99,7 @@ namespace QuantLib {
             used by the term structure. The same rule should be used
             for calculating the passed time t.
         */
-        InterestRate zeroRate(Time t,
+        InterestRate<> zeroRate(Time t,
                               Compounding comp,
                               Frequency freq = Annual,
                               bool extrapolate = false) const;
@@ -118,7 +118,7 @@ namespace QuantLib {
         /*! The resulting interest rate has the required day-counting
             rule.
         */
-        InterestRate forwardRate(const Date& d1,
+        InterestRate<> forwardRate(const Date& d1,
                                  const Date& d2,
                                  const DayCounter& resultDayCounter,
                                  Compounding comp,
@@ -128,7 +128,7 @@ namespace QuantLib {
             rule.
             \warning dates are not adjusted for holidays
         */
-        InterestRate forwardRate(const Date& d,
+        InterestRate<> forwardRate(const Date& d,
                                  const Period& p,
                                  const DayCounter& resultDayCounter,
                                  Compounding comp,
@@ -139,7 +139,7 @@ namespace QuantLib {
             used by the term structure. The same rule should be used
             for calculating the passed times t1 and t2.
         */
-        InterestRate forwardRate(Time t1,
+        InterestRate<> forwardRate(Time t1,
                                  Time t2,
                                  Compounding comp,
                                  Frequency freq = Annual,
@@ -188,7 +188,7 @@ namespace QuantLib {
     }
 
     inline
-    InterestRate YieldTermStructure::forwardRate(const Date& d,
+    InterestRate<> YieldTermStructure::forwardRate(const Date& d,
                                                  const Period& p,
                                                  const DayCounter& dayCounter,
                                                  Compounding comp,

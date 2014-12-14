@@ -39,11 +39,11 @@ namespace QuantLib {
                                      const Date& exCouponDate)
     : Coupon(paymentDate, nominal, accrualStartDate, accrualEndDate,
              refPeriodStart, refPeriodEnd, exCouponDate),
-      rate_(InterestRate(rate, dayCounter, Simple, Annual)) {}
+      rate_(InterestRate<>(rate, dayCounter, Simple, Annual)) {}
 
     FixedRateCoupon::FixedRateCoupon(const Date& paymentDate,
                                      Real nominal,
-                                     const InterestRate& interestRate,
+                                     const InterestRate<>& interestRate,
                                      const Date& accrualStartDate,
                                      const Date& accrualEndDate,
                                      const Date& refPeriodStart,
@@ -96,11 +96,11 @@ namespace QuantLib {
                                                 Compounding comp,
                                                 Frequency freq) {
         couponRates_.resize(1);
-        couponRates_[0] = InterestRate(rate, dc, comp, freq);
+        couponRates_[0] = InterestRate<>(rate, dc, comp, freq);
         return *this;
     }
 
-    FixedRateLeg& FixedRateLeg::withCouponRates(const InterestRate& i) {
+    FixedRateLeg& FixedRateLeg::withCouponRates(const InterestRate<>& i) {
         couponRates_.resize(1);
         couponRates_[0] = i;
         return *this;
@@ -112,12 +112,12 @@ namespace QuantLib {
                                                 Frequency freq) {
         couponRates_.resize(rates.size());
         for (Size i=0; i<rates.size(); ++i)
-            couponRates_[i] = InterestRate(rates[i], dc, comp, freq);
+            couponRates_[i] = InterestRate<>(rates[i], dc, comp, freq);
         return *this;
     }
 
     FixedRateLeg& FixedRateLeg::withCouponRates(
-                                const vector<InterestRate>& interestRates) {
+                                const vector<InterestRate<>>& interestRates) {
         couponRates_ = interestRates;
         return *this;
     }
@@ -165,7 +165,7 @@ namespace QuantLib {
         Date start = schedule_.date(0), end = schedule_.date(1);
         Date paymentDate = calendar_.adjust(end, paymentAdjustment_);
         Date exCouponDate;
-        InterestRate rate = couponRates_[0];
+        InterestRate<> rate = couponRates_[0];
         Real nominal = notionals_[0];
 
         if (exCouponPeriod_ != Period())
@@ -188,7 +188,7 @@ namespace QuantLib {
         } else {
             Date ref = end - schedule_.tenor();
             ref = schCalendar.adjust(ref, schedule_.businessDayConvention());
-            InterestRate r(rate.rate(),
+            InterestRate<> r(rate.rate(),
                            firstPeriodDC_.empty() ? rate.dayCounter()
                                                   : firstPeriodDC_,
                            rate.compounding(), rate.frequency());

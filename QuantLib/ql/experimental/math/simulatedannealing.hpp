@@ -31,6 +31,8 @@
 #include <ql/math/optimization/constraint.hpp>
 #include <boost/math/special_functions/fpclassify.hpp>
 
+#include <fstream>
+
 namespace QuantLib {
 
     /*! Class RNG must implement the following interface:
@@ -52,9 +54,10 @@ namespace QuantLib {
         /*! reduce temperature T by a factor of \f$ (1-\epsilon) \f$ after m moves */
         SimulatedAnnealing(const Real lambda, const Real T0,
                            const Real epsilon, const Size m,
-                           const RNG &rng = RNG())
+                           const RNG &rng = RNG(),
+                           std::ofstream *out=NULL)
             : scheme_(ConstantFactor), lambda_(lambda), T0_(T0),
-              epsilon_(epsilon), alpha_(0.0), K_(0), rng_(rng), m_(m) {}
+              epsilon_(epsilon), alpha_(0.0), K_(0), rng_(rng), m_(m), out_(out) {}
 
         /*! budget a total of K moves, set temperature T to the initial
           temperature times \f$ ( 1 - k/K )^\alpha \f$ with k being the total number
@@ -75,6 +78,7 @@ namespace QuantLib {
         const Real lambda_, T0_, epsilon_, alpha_;
         const Size K_;
         const RNG rng_;
+        std::ofstream *out_;
 
         Real simplexSize();
         void amotsa(Problem &, Real);
@@ -167,7 +171,7 @@ namespace QuantLib {
         }
 
         // minimize
-
+        Size counter=0;
         T_ = T0_;
         yb_ = QL_MAX_REAL;
         pb_ = Array(n_, 0.0);
@@ -183,6 +187,8 @@ namespace QuantLib {
                 ynhi_ = values_[0] + tt_ * std::log(rng_.next().value);
                 ylo_ = ynhi_;
                 yhi_ = values_[1] + tt_ * std::log(rng_.next().value);
+                if(out_)
+                (*out_) << counter++ << " " << vertices_[0][0] << " " << ynhi_ << std::endl;
                 if (ylo_ > yhi_) {
                     ihi_ = 0;
                     ilo_ = 1;
