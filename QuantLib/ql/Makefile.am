@@ -66,7 +66,6 @@ libQuantLib_la_SOURCES = \
 	exchangerate.cpp \
 	exercise.cpp \
     index.cpp \
-    interestrate.cpp \
     money.cpp \
     position.cpp \
     prices.cpp \
