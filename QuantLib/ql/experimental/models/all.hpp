@@ -20,6 +20,7 @@
 #include <ql/experimental/models/mfstateprocess.hpp>
 #include <ql/experimental/models/nonstandardswap.hpp>
 #include <ql/experimental/models/nonstandardswaption.hpp>
+#include <ql/experimental/models/quadraticlfm.hpp>
 #include <ql/experimental/models/sbsmilesection.hpp>
 #include <ql/experimental/models/smilesectionutils.hpp>
 #include <ql/experimental/models/splinedensitysmilesection.hpp>
