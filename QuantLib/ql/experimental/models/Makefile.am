@@ -23,6 +23,7 @@ this_include_HEADERS = \
     mfstateprocess.hpp \
     nonstandardswap.hpp \
     nonstandardswaption.hpp \
+	quadraticlfm.hpp \
     sbsmilesection.hpp \
     smilesectionutils.hpp \
     splinedensitysmilesection.hpp
@@ -47,6 +48,7 @@ libModels_la_SOURCES = \
     mfstateprocess.cpp \
     nonstandardswap.cpp \
     nonstandardswaption.cpp \
+	quadraticlfm.cpp \
     sbsmilesection.cpp \
     smilesectionutils.cpp \
     splinedensitysmilesection.cpp
