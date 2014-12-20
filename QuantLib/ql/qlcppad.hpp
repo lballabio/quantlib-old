@@ -26,8 +26,19 @@
 
 #include <cppad/cppad.hpp>
 
+namespace CppAD {
+
+    template<class Base> CppAD::AD<Base> max(CppAD::AD<Base> x,CppAD::AD<Base> y) {
+        return CppAD::CondExpGt(x,y,x,y);
+    }
+
+}
+
 using CppAD::pow;
 using CppAD::log;
 using CppAD::exp;
+using CppAD::CondExpEq;
+using CppAD::max;
+using CppAD::abs;
 
 #endif

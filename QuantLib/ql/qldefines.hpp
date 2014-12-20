@@ -159,5 +159,8 @@
 #define QL_DEPRECATED
 #endif
 
+// used for cppad-ized function implementations
+inline double CondExpGt(double x, double y, double a, double b) { return x >= y ? a : b; }
+inline double CondExpEq(double x, double y, double a, double b) { return x == y ? a : b; }
 
 #endif
