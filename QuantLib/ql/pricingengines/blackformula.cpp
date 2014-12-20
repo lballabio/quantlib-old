@@ -34,23 +34,23 @@
 #pragma GCC diagnostic pop
 #endif
 
-namespace {
-    void checkParameters(QuantLib::Real strike,
-                         QuantLib::Real forward,
-                         QuantLib::Real displacement)
-    {
-        QL_REQUIRE(displacement >= 0.0, "displacement ("
-                                            << displacement
-                                            << ") must be non-negative");
-        QL_REQUIRE(strike + displacement >= 0.0,
-                   "strike + displacement (" << strike << " + " << displacement
-                                             << ") must be non-negative");
-        QL_REQUIRE(forward + displacement > 0.0, "forward + displacement ("
-                                                     << forward << " + "
-                                                     << displacement
-                                                     << ") must be positive");
-    }
-}
+// namespace {
+//     void checkParameters(QuantLib::Real strike,
+//                          QuantLib::Real forward,
+//                          QuantLib::Real displacement)
+//     {
+//         QL_REQUIRE(displacement >= 0.0, "displacement ("
+//                                             << displacement
+//                                             << ") must be non-negative");
+//         QL_REQUIRE(strike + displacement >= 0.0,
+//                    "strike + displacement (" << strike << " + " << displacement
+//                                              << ") must be non-negative");
+//         QL_REQUIRE(forward + displacement > 0.0, "forward + displacement ("
+//                                                      << forward << " + "
+//                                                      << displacement
+//                                                      << ") must be positive");
+//     }
+// }
 
 namespace QuantLib {
 
@@ -83,6 +83,7 @@ namespace QuantLib {
         CumulativeNormalDistribution phi;
         Real nd1 = phi(optionType*d1);
         Real nd2 = phi(optionType*d2);
+
         Real result = discount * optionType * (forward*nd1 - strike*nd2);
         QL_ENSURE(result>=0.0,
                   "negative value (" << result << ") for " <<

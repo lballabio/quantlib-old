@@ -32,19 +32,68 @@
 
 #include <ql/option.hpp>
 #include <ql/instruments/payoffs.hpp>
+#include <ql/math/errorfunction.hpp>
+
+namespace {
+template <class T> void checkParameters(T strike, T forward, T displacement) {
+    QL_REQUIRE(displacement >= 0.0,
+               "displacement (" << displacement << ") must be non-negative");
+    QL_REQUIRE(strike + displacement >= 0.0,
+               "strike + displacement (" << strike << " + " << displacement
+                                         << ") must be non-negative");
+    QL_REQUIRE(forward + displacement > 0.0,
+               "forward + displacement (" << forward << " + " << displacement
+                                          << ") must be positive");
+}
+}
 
 namespace QuantLib {
+
+    using std::log;
+    using std::max;
 
     /*! Black 1976 formula
         \warning instead of volatility it uses standard deviation,
                  i.e. volatility*sqrt(timeToMaturity)
     */
-    Real blackFormula(Option::Type optionType,
-                      Real strike,
-                      Real forward,
-                      Real stdDev,
-                      Real discount = 1.0,
+    Real blackFormula(Option::Type optionType, Real strike, Real forward,
+                      Real stdDev, Real discount = 1.0,
                       Real displacement = 0.0);
+
+    /* ! Black 1976 formula, templated */
+    template <class T = Real>
+    T blackFormula2(Option::Type optionType, T strike, T forward, T stdDev,
+                   T discount = 1.0, T displacement = 0.0) {
+        checkParameters(strike, forward, displacement);
+        QL_REQUIRE(stdDev >= 0.0, "stdDev (" << stdDev
+                                             << ") must be non-negative");
+        QL_REQUIRE(discount > 0.0, "discount (" << discount
+                                                << ") must be positive");
+
+        T result0a, result0b, result;
+        result0a = max<T>((forward - strike) * optionType, 0.0) * discount;
+        forward = forward + displacement;
+        strike = strike + displacement;
+
+        // since displacement is non-negative strike==0 iff displacement==0
+        // so returning forward*discount is OK
+        result0b = (optionType == Option::Call ? forward * discount : 0.0);
+
+        T d1 = log(forward / strike) / stdDev + 0.5 * stdDev;
+        T d2 = d1 - stdDev;
+        ErrorFunction<T> erf;
+        T nd1 = 0.5 + 0.5 * erf(optionType * d1 * M_SQRT1_2);
+        T nd2 = 0.5 + 0.5 * erf(optionType * d2 * M_SQRT1_2);
+        result = discount * optionType * (forward * nd1 - strike * nd2);
+        QL_ENSURE(result >= 0.0, "negative value ("
+                                     << result << ") for " << stdDev
+                                     << " stdDev, " << optionType << " option, "
+                                     << strike << " strike , " << forward
+                                     << " forward");
+        T ret = CondExpEq(stdDev, T(0.0), result0a,
+                          CondExpEq(T(strike), T(0.0), result0b, result));
+        return ret;
+    }
 
     /*! Black 1976 formula
         \warning instead of volatility it uses standard deviation,
