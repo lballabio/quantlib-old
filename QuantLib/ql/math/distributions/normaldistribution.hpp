@@ -76,7 +76,7 @@ namespace QuantLib {
       private:
         Real average_, sigma_;
         NormalDistribution gaussian_;
-        ErrorFunction errorFunction_;
+        ErrorFunction<> errorFunction_;
     };
 
 

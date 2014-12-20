@@ -39,7 +39,6 @@ libMath_la_SOURCES = \
 	bernsteinpolynomial.cpp \
 	beta.cpp \
 	bspline.cpp \
-	errorfunction.cpp \
 	factorial.cpp \
 	incompletegamma.cpp \
 	matrix.cpp \
