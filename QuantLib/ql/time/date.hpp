@@ -96,6 +96,9 @@ namespace QuantLib {
         explicit Date(BigInteger serialNumber);
         //! More traditional constructor.
         Date(Day d, Month m, Year y);
+
+        // virtual destructor
+        virtual ~Date() {};
         //@}
         //! \name inspectors
         //@{
@@ -106,6 +109,9 @@ namespace QuantLib {
         Month month() const;
         Year year() const;
         BigInteger serialNumber() const;
+
+        //! dayFraction
+        virtual Time dayFraction() const;
         //@}
 
         //! \name date algebra

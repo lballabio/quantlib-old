@@ -404,6 +404,10 @@ namespace QuantLib {
                    minDate() << "-" << maxDate() << "]");
     }
 
+    Time Date::dayFraction() const {
+        return 0.0;
+    }
+
     // month formatting
 
     std::ostream& operator<<(std::ostream& out, Month m) {
