@@ -69,7 +69,6 @@ using std::sqrt;
 /*! Black 1976 formula
     \warning instead of volatility it uses standard deviation,
              i.e. volatility*sqrt(timeToMaturity)
-    tape safe implementation
 */
 template <class T = Real>
 T blackFormula(Option::Type optionType, T strike, T forward, T stdDev,
@@ -79,34 +78,32 @@ T blackFormula(Option::Type optionType, T strike, T forward, T stdDev,
     QL_REQUIRE(discount > 0.0, "discount (" << discount
                                             << ") must be positive");
 
-    T result0a, result0b, result;
-    result0a = max<T>((forward - strike) * optionType, 0.0) * discount;
+    if (stdDev == 0.0)
+        return max<T>((forward - strike) * optionType, 0.0) * discount;
     forward = forward + displacement;
     strike = strike + displacement;
 
     // since displacement is non-negative strike==0 iff displacement==0
     // so returning forward*discount is OK
-    result0b = (optionType == Option::Call ? forward * discount : 0.0);
+    if (strike == 0.0)
+        return (optionType == Option::Call ? forward * discount : 0.0);
 
     T d1 = log(forward / strike) / stdDev + 0.5 * stdDev;
     T d2 = d1 - stdDev;
-    ErrorFunction_t<T> erf;
-    T nd1 = 0.5 + 0.5 * erf(optionType * d1 * M_SQRT1_2);
-    T nd2 = 0.5 + 0.5 * erf(optionType * d2 * M_SQRT1_2);
-    result = discount * optionType * (forward * nd1 - strike * nd2);
+    CumulativeNormalDistribution_t<T> phi;
+    T nd1 = phi(optionType * d1);
+    T nd2 = phi(optionType * d2);
+    T result = discount * optionType * (forward * nd1 - strike * nd2);
     QL_ENSURE(result >= 0.0, "negative value ("
                                  << result << ") for " << stdDev << " stdDev, "
                                  << optionType << " option, " << strike
                                  << " strike , " << forward << " forward");
-    T ret = CondExpEq(stdDev, T(0.0), result0a,
-                      CondExpEq(T(strike), T(0.0), result0b, result));
-    return ret;
+    return result;
 }
 
 /*! Black 1976 formula
     \warning instead of volatility it uses standard deviation,
              i.e. volatility*sqrt(timeToMaturity)
-    tape safe implementation
 */
 template <class T = Real>
 T blackFormula(const boost::shared_ptr<PlainVanillaPayoff> &payoff, T forward,
@@ -123,6 +120,7 @@ T blackFormula(const boost::shared_ptr<PlainVanillaPayoff> &payoff, T forward,
     extended moneyness approximation by Corrado and Miller (1996)
     tape safe implementation
 */
+
 template <class T = Real>
 T blackFormulaImpliedStdDevApproximation(Option::Type optionType, T strike,
                                          T forward, T blackPrice,
@@ -138,7 +136,7 @@ T blackFormulaImpliedStdDevApproximation(Option::Type optionType, T strike,
     strike = strike + displacement;
 
     // Brenner-Subrahmanyan (1988) and Feinstein (1988) ATM approx.
-    T result0 = blackPrice / discount * std::sqrt(2.0 * M_PI) / forward;
+    T result0 = blackPrice / discount * sqrt(2.0 * M_PI) / forward;
 
     // Corrado and Miller extended moneyness approximation
     T moneynessDelta = optionType * (forward - strike);
@@ -200,7 +198,7 @@ template <class T> class BlackImpliedStdDevHelper_t {
                                              << ") must be non-negative");
 #endif
         if (stdDev == 0.0)
-            return std::max(signedForward_ - signedStrike_, Real(0.0)) -
+            return max<T>(signedForward_ - signedStrike_, Real(0.0)) -
                    undiscountedBlackPrice_;
         T temp = halfOptionType_ * stdDev;
         T d = signedMoneyness_ / stdDev;
@@ -208,7 +206,7 @@ template <class T> class BlackImpliedStdDevHelper_t {
         T signedD2 = d - temp;
         T result = signedForward_ * N_(signedD1) - signedStrike_ * N_(signedD2);
         // numerical inaccuracies can yield a negative answer
-        return std::max(T(0.0), result) - undiscountedBlackPrice_;
+        return max<T>(T(0.0), result) - undiscountedBlackPrice_;
     }
     T derivative(T stdDev) const {
 #if defined(QL_EXTRA_SAFETY_CHECKS)
