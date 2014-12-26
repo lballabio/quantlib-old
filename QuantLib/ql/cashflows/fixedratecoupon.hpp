@@ -51,7 +51,7 @@ namespace QuantLib {
                         const Date& exCouponDate = Date());
         FixedRateCoupon(const Date& paymentDate,
                         Real nominal,
-                        const InterestRate<>& interestRate,
+                        const InterestRate& interestRate,
                         const Date& accrualStartDate,
                         const Date& accrualEndDate,
                         const Date& refPeriodStart = Date(),
@@ -65,7 +65,7 @@ namespace QuantLib {
         //! \name Coupon interface
         //@{
         Rate rate() const { return rate_; }
-        InterestRate<> interestRate() const { return rate_; }
+        InterestRate interestRate() const { return rate_; }
         DayCounter dayCounter() const { return rate_.dayCounter(); }
         Real accruedAmount(const Date&) const;
         //@}
@@ -74,7 +74,7 @@ namespace QuantLib {
         virtual void accept(AcyclicVisitor&);
         //@}
       private:
-        InterestRate<> rate_;
+        InterestRate rate_;
     };
 
 
@@ -93,8 +93,8 @@ namespace QuantLib {
                                       const DayCounter& paymentDayCounter,
                                       Compounding comp = Simple,
                                       Frequency freq = Annual);
-        FixedRateLeg& withCouponRates(const InterestRate<>&);
-        FixedRateLeg& withCouponRates(const std::vector<InterestRate<> >&);
+        FixedRateLeg& withCouponRates(const InterestRate&);
+        FixedRateLeg& withCouponRates(const std::vector<InterestRate>&);
         FixedRateLeg& withPaymentAdjustment(BusinessDayConvention);
         FixedRateLeg& withFirstPeriodDayCounter(const DayCounter&);
         FixedRateLeg& withPaymentCalendar(const Calendar&);
@@ -107,7 +107,7 @@ namespace QuantLib {
         Schedule schedule_;
         Calendar calendar_;
         std::vector<Real> notionals_;
-        std::vector<InterestRate<> > couponRates_;
+        std::vector<InterestRate> couponRates_;
         DayCounter firstPeriodDC_;
         BusinessDayConvention paymentAdjustment_;
         Period exCouponPeriod_;

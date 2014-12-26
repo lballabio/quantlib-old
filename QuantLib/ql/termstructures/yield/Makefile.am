@@ -31,7 +31,6 @@ libYieldTermStructures_la_SOURCES = \
     forwardstructure.cpp \
     nonlinearfittingmethods.cpp \
     oisratehelper.cpp \
-    ratehelpers.cpp \
     zeroyieldstructure.cpp
 
 noinst_LTLIBRARIES = libYieldTermStructures.la

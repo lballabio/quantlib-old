@@ -26,11 +26,10 @@
 
 #include <ql/pricingengine.hpp>
 #include <ql/experimental/finitedifferences/vanillavppoption.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 #include <vector>
 
 namespace QuantLib {
-
-    class YieldTermStructure;
 
     class DynProgVPPIntrinsicValueEngine
         : public GenericEngine<VanillaVPPOption::arguments,

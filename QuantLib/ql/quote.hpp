@@ -3,6 +3,7 @@
 /*
  Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -31,17 +32,19 @@
 
 namespace QuantLib {
 
-    //! purely virtual base class for market observables
-    /*! \test the observability of class instances is tested.
-     */
-    class Quote : public virtual Observable {
-      public:
-        virtual ~Quote() {}
-        //! returns the current value
-        virtual Real value() const = 0;
-        //! returns true if the Quote holds a valid value
-        virtual bool isValid() const = 0;
-    };
+//! purely virtual base class for market observables
+/*! \test the observability of class instances is tested.
+ */
+template <class T = Real> class Quote_t : public virtual Observable {
+  public:
+    virtual ~Quote_t() {}
+    //! returns the current value
+    virtual T value() const = 0;
+    //! returns true if the Quote holds a valid value
+    virtual bool isValid() const = 0;
+};
+
+typedef Quote_t<Real> Quote;
 
 }
 

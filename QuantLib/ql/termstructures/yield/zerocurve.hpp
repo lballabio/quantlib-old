@@ -264,7 +264,7 @@ namespace QuantLib {
             // The first time is 0.0, so we can't use it.
             // We fall back to about one day.
             Time dt = 1.0/365;
-            InterestRate<> r(this->data_[0], dayCounter(), compounding, frequency);
+            InterestRate r(this->data_[0], dayCounter(), compounding, frequency);
             this->data_[0] = r.equivalentRate(Continuous, NoFrequency, dt);
             #if !defined(QL_NEGATIVE_RATES)
             QL_REQUIRE(this->data_[0] > 0.0, "non-positive yield");
@@ -283,7 +283,7 @@ namespace QuantLib {
 			// adjusting zero rates to match continuous compounding
             if (compounding != Continuous)
             {
-                InterestRate<> r(this->data_[i], dayCounter(), compounding, frequency);
+                InterestRate r(this->data_[i], dayCounter(), compounding, frequency);
                 this->data_[i] = r.equivalentRate(Continuous, NoFrequency, this->times_[i]);
             }
 

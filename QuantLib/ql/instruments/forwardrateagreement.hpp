@@ -98,16 +98,16 @@ namespace QuantLib {
         /*! This has always a positive value (asset), even if short the FRA */
         Real spotValue() const;
         //! Returns the relevant forward rate associated with the FRA term
-        InterestRate<> forwardRate() const;
+        InterestRate forwardRate() const;
         //@}
 
       protected:
         void performCalculations() const;
         Position::Type fraType_;
         //! aka FRA rate (the market forward rate)
-        mutable InterestRate<> forwardRate_;
+        mutable InterestRate forwardRate_;
         //! aka FRA fixing rate, contract rate
-        InterestRate<> strikeForwardRate_;
+        InterestRate strikeForwardRate_;
         Real notionalAmount_;
         boost::shared_ptr<IborIndex> index_;
     };

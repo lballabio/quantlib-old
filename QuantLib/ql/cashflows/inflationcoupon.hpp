@@ -28,11 +28,11 @@
 #include <ql/patterns/visitor.hpp>
 #include <ql/time/daycounter.hpp>
 #include <ql/handle.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
     class InflationIndex;
-    class YieldTermStructure;
     class InflationCouponPricer;
 
     //! Base inflation-coupon class

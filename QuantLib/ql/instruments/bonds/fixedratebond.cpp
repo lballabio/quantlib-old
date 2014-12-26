@@ -117,15 +117,14 @@ namespace QuantLib {
                           rule, endOfMonth,
                           firstDate, nextToLastDate);
 
-        cashflows_ = FixedRateLeg(schedule)
-            .withNotionals(faceAmount)
-            .withCouponRates(coupons, accrualDayCounter)
-            .withPaymentCalendar(calendar_)
-            .withPaymentAdjustment(paymentConvention)
-            .withExCouponPeriod(exCouponPeriod,
-                                exCouponCalendar,
-                                exCouponConvention,
-                                exCouponEndOfMonth);
+        cashflows_ =
+            FixedRateLeg(schedule)
+                .withNotionals(faceAmount)
+                .withCouponRates(coupons, accrualDayCounter)
+                .withPaymentCalendar(calendar_)
+                .withPaymentAdjustment(paymentConvention)
+                .withExCouponPeriod(exCouponPeriod, exCouponCalendar,
+                                    exCouponConvention, exCouponEndOfMonth);
 
         addRedemptionsToCashflows(std::vector<Real>(1, redemption));
 
@@ -136,7 +135,7 @@ namespace QuantLib {
     FixedRateBond::FixedRateBond(Natural settlementDays,
                                  Real faceAmount,
                                  const Schedule& schedule,
-                                 const std::vector<InterestRate<> >& coupons,
+                                 const std::vector<InterestRate >& coupons,
                                  BusinessDayConvention paymentConvention,
                                  Real redemption,
                                  const Date& issueDate,

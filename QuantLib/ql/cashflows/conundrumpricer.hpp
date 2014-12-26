@@ -25,12 +25,12 @@
 
 #include <ql/cashflows/couponpricer.hpp>
 #include <ql/instruments/payoffs.hpp>
+#include <ql/quote.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
     class CmsCoupon;
-    class YieldTermStructure;
-    class Quote;
 
     class VanillaOptionPricer {
       public:

@@ -23,10 +23,9 @@
 #define quantlib_midpoint_cdo_engine_hpp
 
 #include <ql/experimental/credit/syntheticcdo.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
-
-    class YieldTermStructure;
 
     //! CDO base engine taking schedule steps
 

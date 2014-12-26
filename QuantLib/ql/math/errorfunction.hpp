@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2003 Ferdinando Ametrano
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -31,18 +32,17 @@
 namespace QuantLib {
 
     //! %Error function
-    // only c++11 (init constants in constructor ?)
-    // not tape-safe
     /*! formula here ...
         Used to calculate the cumulative normal distribution function
+        Only compiles with c++11
     */
 
     using std::fabs;
     using std::exp;
 
-    template<class T = Real> class ErrorFunction : public std::unary_function<T,T> {
+    template<class T = Real> class ErrorFunction_t : public std::unary_function<T,T> {
       public:
-        ErrorFunction() {}
+        ErrorFunction_t() {}
         // function
         T operator()(T x) const;
       private:
@@ -117,15 +117,6 @@ namespace QuantLib {
         sb5  =  2.55305040643316442583e+03, /* 0x40A3F219, 0xCEDF3BE6 */
         sb6  =  4.74528541206955367215e+02, /* 0x407DA874, 0xE79FE763 */
         sb7  = -2.24409524465858183362e+01; /* 0xC03670E2, 0x42712D62 */
-        // static const Real tiny, one, erx, efx, efx8;
-        // static const Real pp0, pp1,pp2,pp3,pp4;
-        // static const Real qq1,qq2,qq3,qq4,qq5;
-        // static const Real pa0,pa1,pa2,pa3,pa4,pa5,pa6;
-        // static const Real qa1,qa2,qa3,qa4,qa5,qa6;
-        // static const Real ra0,ra1,ra2,ra3,ra4,ra5,ra6,ra7;
-        // static const Real sa1,sa2,sa3,sa4,sa5,sa6,sa7,sa8;
-        // static const Real rb0,rb1,rb2,rb3,rb4,rb5,rb6;
-        // static const Real sb1,sb2,sb3,sb4,sb5,sb6,sb7;
     };
 
     //                 x
@@ -219,80 +210,7 @@ namespace QuantLib {
     //  erfc(0) = 1, erfc(inf) = 0, erfc(-inf) = 2,
     //      erfc/erf(NaN) is NaN
 
-    // template<class T> const Real
-    // ErrorFunction<T>::tiny =  QL_EPSILON,
-    //     one =  1.00000000000000000000e+00, /* 0x3FF00000, 0x00000000 */
-    //     /* c = (float)0.84506291151 */
-    //     ErrorFunction::erx =  8.45062911510467529297e-01, /* 0x3FEB0AC1, 0x60000000 */
-    //     //
-    //     // Coefficients for approximation to  erf on [0,0.84375]
-    //     //
-    //     ErrorFunction::efx  =  1.28379167095512586316e-01, /* 0x3FC06EBA, 0x8214DB69 */
-    //     ErrorFunction::efx8 =  1.02703333676410069053e+00, /* 0x3FF06EBA, 0x8214DB69 */
-    //     ErrorFunction::pp0  =  1.28379167095512558561e-01, /* 0x3FC06EBA, 0x8214DB68 */
-    //     ErrorFunction::pp1  = -3.25042107247001499370e-01, /* 0xBFD4CD7D, 0x691CB913 */
-    //     ErrorFunction::pp2  = -2.84817495755985104766e-02, /* 0xBF9D2A51, 0xDBD7194F */
-    //     ErrorFunction::pp3  = -5.77027029648944159157e-03, /* 0xBF77A291, 0x236668E4 */
-    //     ErrorFunction::pp4  = -2.37630166566501626084e-05, /* 0xBEF8EAD6, 0x120016AC */
-    //     ErrorFunction::qq1  =  3.97917223959155352819e-01, /* 0x3FD97779, 0xCDDADC09 */
-    //     ErrorFunction::qq2  =  6.50222499887672944485e-02, /* 0x3FB0A54C, 0x5536CEBA */
-    //     ErrorFunction::qq3  =  5.08130628187576562776e-03, /* 0x3F74D022, 0xC4D36B0F */
-    //     ErrorFunction::qq4  =  1.32494738004321644526e-04, /* 0x3F215DC9, 0x221C1A10 */
-    //     ErrorFunction::qq5  = -3.96022827877536812320e-06, /* 0xBED09C43, 0x42A26120 */
-    //     //
-    //     // Coefficients for approximation to  erf  in [0.84375,1.25]
-    //     //
-    //     ErrorFunction::pa0  = -2.36211856075265944077e-03, /* 0xBF6359B8, 0xBEF77538 */
-    //     ErrorFunction::pa1  =  4.14856118683748331666e-01, /* 0x3FDA8D00, 0xAD92B34D */
-    //     ErrorFunction::pa2  = -3.72207876035701323847e-01, /* 0xBFD7D240, 0xFBB8C3F1 */
-    //     ErrorFunction::pa3  =  3.18346619901161753674e-01, /* 0x3FD45FCA, 0x805120E4 */
-    //     ErrorFunction::pa4  = -1.10894694282396677476e-01, /* 0xBFBC6398, 0x3D3E28EC */
-    //     ErrorFunction::pa5  =  3.54783043256182359371e-02, /* 0x3FA22A36, 0x599795EB */
-    //     ErrorFunction::pa6  = -2.16637559486879084300e-03, /* 0xBF61BF38, 0x0A96073F */
-    //     ErrorFunction::qa1  =  1.06420880400844228286e-01, /* 0x3FBB3E66, 0x18EEE323 */
-    //     ErrorFunction::qa2  =  5.40397917702171048937e-01, /* 0x3FE14AF0, 0x92EB6F33 */
-    //     ErrorFunction::qa3  =  7.18286544141962662868e-02, /* 0x3FB2635C, 0xD99FE9A7 */
-    //     ErrorFunction::qa4  =  1.26171219808761642112e-01, /* 0x3FC02660, 0xE763351F */
-    //     ErrorFunction::qa5  =  1.36370839120290507362e-02, /* 0x3F8BEDC2, 0x6B51DD1C */
-    //     ErrorFunction::qa6  =  1.19844998467991074170e-02, /* 0x3F888B54, 0x5735151D */
-    //     //
-    //     // Coefficients for approximation to  erfc in [1.25,1/0.35]
-    //     //
-    //     ErrorFunction::ra0  = -9.86494403484714822705e-03, /* 0xBF843412, 0x600D6435 */
-    //     ErrorFunction::ra1  = -6.93858572707181764372e-01, /* 0xBFE63416, 0xE4BA7360 */
-    //     ErrorFunction::ra2  = -1.05586262253232909814e+01, /* 0xC0251E04, 0x41B0E726 */
-    //     ErrorFunction::ra3  = -6.23753324503260060396e+01, /* 0xC04F300A, 0xE4CBA38D */
-    //     ErrorFunction::ra4  = -1.62396669462573470355e+02, /* 0xC0644CB1, 0x84282266 */
-    //     ErrorFunction::ra5  = -1.84605092906711035994e+02, /* 0xC067135C, 0xEBCCABB2 */
-    //     ErrorFunction::ra6  = -8.12874355063065934246e+01, /* 0xC0545265, 0x57E4D2F2 */
-    //     ErrorFunction::ra7  = -9.81432934416914548592e+00, /* 0xC023A0EF, 0xC69AC25C */
-    //     ErrorFunction::sa1  =  1.96512716674392571292e+01, /* 0x4033A6B9, 0xBD707687 */
-    //     ErrorFunction::sa2  =  1.37657754143519042600e+02, /* 0x4061350C, 0x526AE721 */
-    //     ErrorFunction::sa3  =  4.34565877475229228821e+02, /* 0x407B290D, 0xD58A1A71 */
-    //     ErrorFunction::sa4  =  6.45387271733267880336e+02, /* 0x40842B19, 0x21EC2868 */
-    //     ErrorFunction::sa5  =  4.29008140027567833386e+02, /* 0x407AD021, 0x57700314 */
-    //     ErrorFunction::sa6  =  1.08635005541779435134e+02, /* 0x405B28A3, 0xEE48AE2C */
-    //     ErrorFunction::sa7  =  6.57024977031928170135e+00, /* 0x401A47EF, 0x8E484A93 */
-    //     ErrorFunction::sa8  = -6.04244152148580987438e-02, /* 0xBFAEEFF2, 0xEE749A62 */
-    //     //
-    //     // Coefficients for approximation to  erfc in [1/.35,28]
-    //     //
-    //     ErrorFunction::rb0  = -9.86494292470009928597e-03, /* 0xBF843412, 0x39E86F4A */
-    //     ErrorFunction::rb1  = -7.99283237680523006574e-01, /* 0xBFE993BA, 0x70C285DE */
-    //     ErrorFunction::rb2  = -1.77579549177547519889e+01, /* 0xC031C209, 0x555F995A */
-    //     ErrorFunction::rb3  = -1.60636384855821916062e+02, /* 0xC064145D, 0x43C5ED98 */
-    //     ErrorFunction::rb4  = -6.37566443368389627722e+02, /* 0xC083EC88, 0x1375F228 */
-    //     ErrorFunction::rb5  = -1.02509513161107724954e+03, /* 0xC0900461, 0x6A2E5992 */
-    //     ErrorFunction::rb6  = -4.83519191608651397019e+02, /* 0xC07E384E, 0x9BDC383F */
-    //     ErrorFunction::sb1  =  3.03380607434824582924e+01, /* 0x403E568B, 0x261D5190 */
-    //     ErrorFunction::sb2  =  3.25792512996573918826e+02, /* 0x40745CAE, 0x221B9F0A */
-    //     ErrorFunction::sb3  =  1.53672958608443695994e+03, /* 0x409802EB, 0x189D5118 */
-    //     ErrorFunction::sb4  =  3.19985821950859553908e+03, /* 0x40A8FFB7, 0x688C246A */
-    //     ErrorFunction::sb5  =  2.55305040643316442583e+03, /* 0x40A3F219, 0xCEDF3BE6 */
-    //     ErrorFunction::sb6  =  4.74528541206955367215e+02, /* 0x407DA874, 0xE79FE763 */
-    //     ErrorFunction::sb7  = -2.24409524465858183362e+01; /* 0xC03670E2, 0x42712D62 */
-
-    template<class T> T ErrorFunction<T>::operator()(T x) const {
+    template<class T> T ErrorFunction_t<T>::operator()(T x) const {
 
         T R,S,P,Q,s,y,z,r, ax;
 
@@ -350,6 +268,8 @@ namespace QuantLib {
         if(x>=0) return one-r/ax; else return  r/ax-one;
 
     }
+
+    typedef ErrorFunction_t<Real> ErrorFunction;
 
 }
 

@@ -28,10 +28,11 @@
 #include <ql/pricingengine.hpp>
 #include <ql/instruments/vanillaoption.hpp>
 #include <ql/methods/finitedifferences/solvers/fdmbackwardsolver.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
+
 
 namespace QuantLib {
 
-    class YieldTermStructure;
     class ExtOUWithJumpsProcess;
 
     class FdExtOUJumpVanillaEngine

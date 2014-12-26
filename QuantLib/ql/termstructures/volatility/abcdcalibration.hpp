@@ -26,13 +26,13 @@
 #include <ql/math/optimization/endcriteria.hpp>
 #include <ql/math/optimization/projectedcostfunction.hpp>
 #include <ql/math/array.hpp>
+#include <ql/quote.hpp>
 #include <boost/shared_ptr.hpp>
 #include <vector>
 
 
 namespace QuantLib {
     
-    class Quote;
     class OptimizationMethod;
     class ParametersTransformation;
 

@@ -26,10 +26,9 @@
 
 #include <ql/experimental/callablebonds/callablebondvolstructure.hpp>
 #include <ql/time/period.hpp>
+#include <ql/quote.hpp>
 
 namespace QuantLib {
-
-    class Quote;
 
     //! Constant callable-bond volatility, no time-strike dependence
     class CallableBondConstantVolatility

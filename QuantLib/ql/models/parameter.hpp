@@ -27,11 +27,10 @@
 #include <ql/qldefines.hpp>
 #include <ql/handle.hpp>
 #include <ql/math/optimization/constraint.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 #include <vector>
 
 namespace QuantLib {
-
-    class YieldTermStructure;
 
     //! Base class for model arguments
     class Parameter {

@@ -25,12 +25,12 @@
 #define quantlib_localvolsurface_hpp
 
 #include <ql/termstructures/volatility/equityfx/localvoltermstructure.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
+#include <ql/quote.hpp>
 
 namespace QuantLib {
 
     class BlackVolTermStructure;
-    class YieldTermStructure;
-    class Quote;
 
     //! Local volatility surface derived from a Black vol surface
     /*! For details about this implementation refer to

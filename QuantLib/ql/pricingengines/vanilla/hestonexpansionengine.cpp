@@ -113,7 +113,7 @@ namespace QuantLib {
             QL_FAIL("unknown expansion formula");
         }
         const Real price = blackFormula(payoff, forward, vol*sqrt(term),
-                                        riskFreeDiscount, 0);
+                                        riskFreeDiscount, 0.0);
         results_.value = price;
     }
 

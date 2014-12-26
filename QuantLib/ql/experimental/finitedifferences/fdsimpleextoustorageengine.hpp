@@ -28,11 +28,12 @@
 #include <ql/pricingengine.hpp>
 #include <ql/instruments/vanillastorageoption.hpp>
 #include <ql/methods/finitedifferences/solvers/fdmbackwardsolver.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
+
 
 namespace QuantLib {
 
     class ExtendedOrnsteinUhlenbeckProcess;
-    class YieldTermStructure;
 
     class FdSimpleExtOUStorageEngine
         : public GenericEngine<VanillaStorageOption::arguments,

@@ -28,12 +28,13 @@
 #include <ql/experimental/finitedifferences/vanillavppoption.hpp>
 #include <ql/methods/finitedifferences/solvers/fdmbackwardsolver.hpp>
 #include <ql/experimental/finitedifferences/fdmextoujumpmodelinnervalue.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
+
 
 namespace QuantLib {
 
     //! Finite-Differences engine for simple vpp options
 
-    class YieldTermStructure;
     class KlugeExtOUProcess;
 
     class FdSimpleKlugeExtOUVPPEngine

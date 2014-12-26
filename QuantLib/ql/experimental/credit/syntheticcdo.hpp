@@ -30,10 +30,9 @@
 
 #include <ql/experimental/credit/basket.hpp>
 #include <ql/cashflows/fixedratecoupon.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
-
-    class YieldTermStructure;
 
     //! Synthetic Collateralized Debt Obligation
     /*!

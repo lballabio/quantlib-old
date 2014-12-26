@@ -29,12 +29,11 @@
 #include <ql/termstructures/volatility/swaption/swaptionvoldiscrete.hpp>
 #include <ql/math/interpolations/interpolation2d.hpp>
 #include <ql/math/matrix.hpp>
+#include <ql/quote.hpp>
 #include <boost/noncopyable.hpp>
 #include <vector>
 
 namespace QuantLib {
-
-    class Quote;
 
     //! At-the-money swaption-volatility matrix
     /*! This class provides the at-the-money volatility for a given

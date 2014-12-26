@@ -19,8 +19,7 @@ this_include_HEADERS = \
 libTermStructures_la_SOURCES = \
 	defaulttermstructure.cpp \
 	inflationtermstructure.cpp \
-	voltermstructure.cpp \
-	yieldtermstructure.cpp
+	voltermstructure.cpp
 
 libTermStructures_la_LIBADD = \
     credit/libDefaultTermStructures.la \

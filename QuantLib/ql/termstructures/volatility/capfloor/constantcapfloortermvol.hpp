@@ -25,10 +25,9 @@
 #define quantlib_constant_capfloor_term_volatility_hpp
 
 #include <ql/termstructures/volatility/capfloor/capfloortermvolatilitystructure.hpp>
+#include <ql/quote.hpp>
 
 namespace QuantLib {
-
-    class Quote;
 
     //! Constant caplet volatility, no time-strike dependence
     class ConstantCapFloorTermVolatility : public CapFloorTermVolatilityStructure {

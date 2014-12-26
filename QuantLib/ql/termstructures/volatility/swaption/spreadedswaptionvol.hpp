@@ -26,10 +26,9 @@
 #define quantlib_spreaded_swaption_volstructure_h
 
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
+#include <ql/quote.hpp>
 
 namespace QuantLib {
-
-    class Quote;
 
     class SpreadedSwaptionVolatility : public SwaptionVolatilityStructure {
       public:

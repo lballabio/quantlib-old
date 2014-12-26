@@ -27,12 +27,12 @@
 #include <ql/methods/finitedifferences/operators/ninepointlinearop.hpp>
 #include <ql/methods/finitedifferences/operators/fdmlinearopcomposite.hpp>
 #include <ql/methods/finitedifferences/utilities/fdmboundaryconditionset.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 
 namespace QuantLib {
 
     class FdmMesher;
-    class YieldTermStructure;
     class KlugeExtOUProcess;
     class ExtOUWithJumpsProcess;
     class FdmExtOUJumpOp;

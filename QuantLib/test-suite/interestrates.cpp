@@ -92,13 +92,13 @@ void InterestRateTest::testConversions() {
     Rounding roundingPrecision;
     Rate r3, r2;
     Date d1 = Date::todaysDate(), d2;
-    InterestRate<> ir, ir2, ir3, expectedIR;
+    InterestRate ir, ir2, ir3, expectedIR;
     Real compoundf, error;
     DiscountFactor disc;
 
 
     for (Size i=0; i<LENGTH(cases); i++) {
-        ir = InterestRate<>(cases[i].r, Actual360(),
+        ir = InterestRate(cases[i].r, Actual360(),
                           cases[i].comp, cases[i].freq);
         d2 = d1+Integer(360*cases[i].t+0.5)*Days;
         roundingPrecision = Rounding(cases[i].precision);
@@ -157,7 +157,7 @@ void InterestRateTest::testConversions() {
         ir3 = ir.equivalentRate(ir.dayCounter(),
                                 cases[i].comp2, cases[i].freq2,
                                 d1, d2);
-        expectedIR = InterestRate<>(cases[i].expected, ir.dayCounter(),
+        expectedIR = InterestRate(cases[i].expected, ir.dayCounter(),
                                   cases[i].comp2, cases[i].freq2);
         r3 = roundingPrecision(ir3.rate());
         error = std::fabs(r3-expectedIR.rate());

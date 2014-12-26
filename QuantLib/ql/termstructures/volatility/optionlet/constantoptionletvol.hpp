@@ -26,10 +26,9 @@
 #define quantlib_caplet_constant_volatility_hpp
 
 #include <ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp>
+#include <ql/quote.hpp>
 
 namespace QuantLib {
-
-    class Quote;
 
     //! Constant caplet volatility, no time-strike dependence
     class ConstantOptionletVolatility : public OptionletVolatilityStructure {

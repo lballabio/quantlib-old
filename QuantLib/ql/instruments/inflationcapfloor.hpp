@@ -27,10 +27,10 @@
 #include <ql/instrument.hpp>
 #include <ql/cashflows/yoyinflationcoupon.hpp>
 #include <ql/handle.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
+
 
 namespace QuantLib {
-
-    class YieldTermStructure;
 
     //! Base class for yoy inflation cap-like instruments
     /*! \ingroup instruments

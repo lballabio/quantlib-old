@@ -29,6 +29,7 @@
 #include <ql/cashflows/conundrumpricer.hpp>
 #include <ql/math/matrix.hpp>
 #include <ql/quote.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
@@ -36,7 +37,6 @@ namespace QuantLib {
     class Swap;
     class SwapIndex;
     class IborIndex;
-    class YieldTermStructure;
 
     //! set of CMS quotes
     class CmsMarket: public LazyObject{

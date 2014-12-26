@@ -28,11 +28,11 @@
 #include <ql/instruments/payoffs.hpp>
 #include <ql/indexes/swapindex.hpp>
 #include <ql/math/integrals/integral.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
     class CmsCoupon;
-    class YieldTermStructure;
 
     //! CMS-coupon pricer
     /*! Prices a cms coupon using a linear terminal swap rate model

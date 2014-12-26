@@ -30,10 +30,11 @@ Copyright (C) 2006 François du Vignaud
 #include <ql/termstructures/volatility/smilesection.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/time/daycounters/actual365fixed.hpp>
+#include <ql/quote.hpp>
+
 
 namespace QuantLib {
 
-    class Quote;
     class SabrInterpolatedSmileSection : public SmileSection,
                                          public LazyObject {
       public:

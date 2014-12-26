@@ -26,12 +26,13 @@
 #define quantlib_optionletstripper2_hpp
 
 #include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
+#include <ql/quotes/simplequote.hpp>
+
 
 namespace QuantLib {
 
     class CapFloorTermVolCurve;
     class OptionletStripper1;
-    class SimpleQuote;
     class CapFloor;
 
     /*! Helper class to extend an OptionletStripper1 object stripping

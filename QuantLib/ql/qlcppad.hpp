@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2014 Peter Caspers
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -34,11 +34,18 @@ namespace CppAD {
 
 }
 
+using CppAD::max;
+
 using CppAD::pow;
 using CppAD::log;
 using CppAD::exp;
-using CppAD::CondExpEq;
-using CppAD::max;
 using CppAD::abs;
+using CppAD::sqrt;
+
+using CppAD::CondExpLt;
+using CppAD::CondExpLe;
+using CppAD::CondExpGt;
+using CppAD::CondExpGe;
+using CppAD::CondExpEq;
 
 #endif

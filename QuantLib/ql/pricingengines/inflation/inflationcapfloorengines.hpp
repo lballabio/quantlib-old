@@ -27,10 +27,11 @@
 #include <ql/instruments/inflationcapfloor.hpp>
 #include <ql/termstructures/volatility/inflation/yoyinflationoptionletvolatilitystructure.hpp>
 #include <ql/option.hpp>
+#include <ql/quote.hpp>
+
 
 namespace QuantLib {
 
-    class Quote;
     class YoYOptionletVolatilitySurface;
     class YoYInflationIndex;
 

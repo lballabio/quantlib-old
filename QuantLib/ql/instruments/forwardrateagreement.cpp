@@ -43,10 +43,10 @@ namespace QuantLib {
         // valueDate_ = calendar_.adjust(valueDate_,businessDayConvention_);
         Date fixingDate = calendar_.advance(valueDate_,
             -static_cast<Integer>(settlementDays_), Days);
-        forwardRate_ = InterestRate<>(index->fixing(fixingDate),
+        forwardRate_ = InterestRate(index->fixing(fixingDate),
                                     index->dayCounter(),
                                     Simple, Once);
-        strikeForwardRate_ = InterestRate<>(strikeForwardRate,
+        strikeForwardRate_ = InterestRate(strikeForwardRate,
                                           index->dayCounter(),
                                           Simple, Once);
         Real strike = notionalAmount_ *
@@ -88,7 +88,7 @@ namespace QuantLib {
                discountCurve_->discount(maturityDate_);
     }
 
-    InterestRate<> ForwardRateAgreement::forwardRate() const {
+    InterestRate ForwardRateAgreement::forwardRate() const {
         calculate();
         return forwardRate_;
     }
@@ -96,7 +96,7 @@ namespace QuantLib {
     void ForwardRateAgreement::performCalculations() const {
         Date fixingDate = calendar_.advance(valueDate_,
             -static_cast<Integer>(settlementDays_), Days);
-        forwardRate_ = InterestRate<>(index_->fixing(fixingDate),
+        forwardRate_ = InterestRate(index_->fixing(fixingDate),
                                     index_->dayCounter(),
                                     Simple, Once);
         underlyingSpotValue_ = spotValue();

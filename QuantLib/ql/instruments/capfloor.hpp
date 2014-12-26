@@ -30,10 +30,9 @@
 #include <ql/instrument.hpp>
 #include <ql/cashflows/iborcoupon.hpp>
 #include <ql/handle.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
-
-    class YieldTermStructure;
 
     //! Base class for cap-like instruments
     /*! \ingroup instruments

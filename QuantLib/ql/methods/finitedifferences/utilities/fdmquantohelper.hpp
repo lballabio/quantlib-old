@@ -27,10 +27,10 @@
 
 #include <ql/math/array.hpp>
 #include <ql/patterns/observable.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
-    class YieldTermStructure;
     class BlackVolTermStructure;
 
     class FdmQuantoHelper : public Observable {

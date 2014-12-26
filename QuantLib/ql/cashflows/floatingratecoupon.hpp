@@ -33,11 +33,11 @@
 #include <ql/patterns/visitor.hpp>
 #include <ql/time/daycounter.hpp>
 #include <ql/handle.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
     class InterestRateIndex;
-    class YieldTermStructure;
     class FloatingRateCouponPricer;
 
     //! base floating-rate coupon class

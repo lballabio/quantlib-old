@@ -30,10 +30,10 @@
 #include <ql/termstructures/defaulttermstructure.hpp>
 #include <ql/experimental/credit/onefactorcopula.hpp>
 #include <ql/time/schedule.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
-    class YieldTermStructure;
     class Claim;
     class Basket;
 

@@ -30,10 +30,10 @@
 #include <ql/termstructures/defaulttermstructure.hpp>
 #include <ql/termstructures/bootstraphelper.hpp>
 #include <ql/time/schedule.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
-    class YieldTermStructure;
     class CreditDefaultSwap;
 
     //! alias for default-probability bootstrap helpers

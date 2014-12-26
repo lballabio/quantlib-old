@@ -28,11 +28,12 @@
 #define quantlib_optionletstripper1_hpp
 
 #include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
+#include <ql/quotes/simplequote.hpp>
+
 
 namespace QuantLib {
 
     class CapFloor;
-    class SimpleQuote;
 
     typedef std::vector<std::vector<boost::shared_ptr<CapFloor> > > CapFloorMatrix;
 

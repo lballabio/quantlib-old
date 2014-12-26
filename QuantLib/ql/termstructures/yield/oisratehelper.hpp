@@ -30,71 +30,68 @@
 
 namespace QuantLib {
 
-    //! Rate helper for bootstrapping over Overnight Indexed Swap rates
-    class OISRateHelper : public RelativeDateRateHelper {
-      public:
-        OISRateHelper(Natural settlementDays,
-                      const Period& tenor, // swap maturity
-                      const Handle<Quote>& fixedRate,
-                      const boost::shared_ptr<OvernightIndex>& overnightIndex,
-                      // exogenous discounting curve
-                      const Handle<YieldTermStructure>& discountingCurve
-                                            = Handle<YieldTermStructure>());
-        //! \name RateHelper interface
-        //@{
-        Real impliedQuote() const;
-        void setTermStructure(YieldTermStructure*);
-        //@}
-        //! \name inspectors
-        //@{
-        boost::shared_ptr<OvernightIndexedSwap> swap() const { return swap_; }
-        //@}
-        //! \name Visitability
-        //@{
-        void accept(AcyclicVisitor&);
-        //@}
-    protected:
-        void initializeDates();
+//! Rate helper for bootstrapping over Overnight Indexed Swap rates
+class OISRateHelper : public RelativeDateRateHelper {
+  public:
+    OISRateHelper(Natural settlementDays,
+                  const Period &tenor, // swap maturity
+                  const Handle<Quote> &fixedRate,
+                  const boost::shared_ptr<OvernightIndex> &overnightIndex,
+                  // exogenous discounting curve
+                  const Handle<YieldTermStructure> &discountingCurve =
+                      Handle<YieldTermStructure>());
+    //! \name RateHelper interface
+    //@{
+    Real impliedQuote() const;
+    void setTermStructure(YieldTermStructure *);
+    //@}
+    //! \name inspectors
+    //@{
+    boost::shared_ptr<OvernightIndexedSwap> swap() const { return swap_; }
+    //@}
+    //! \name Visitability
+    //@{
+    void accept(AcyclicVisitor &);
+    //@}
+  protected:
+    void initializeDates();
 
-        Natural settlementDays_;
-        Period tenor_;
-        boost::shared_ptr<OvernightIndex> overnightIndex_;
+    Natural settlementDays_;
+    Period tenor_;
+    boost::shared_ptr<OvernightIndex> overnightIndex_;
 
-        boost::shared_ptr<OvernightIndexedSwap> swap_;
-        RelinkableHandle<YieldTermStructure> termStructureHandle_;
+    boost::shared_ptr<OvernightIndexedSwap> swap_;
+    RelinkableHandle<YieldTermStructure> termStructureHandle_;
 
-        Handle<YieldTermStructure> discountHandle_;
-        RelinkableHandle<YieldTermStructure> discountRelinkableHandle_;
-    };
+    Handle<YieldTermStructure> discountHandle_;
+    RelinkableHandle<YieldTermStructure> discountRelinkableHandle_;
+};
 
-    //! Rate helper for bootstrapping over Overnight Indexed Swap rates
-    class DatedOISRateHelper : public RateHelper {
-      public:
-        DatedOISRateHelper(
-                    const Date& startDate,
-                    const Date& endDate,
-                    const Handle<Quote>& fixedRate,
-                    const boost::shared_ptr<OvernightIndex>& overnightIndex,
-                      // exogenous discounting curve
-                      const Handle<YieldTermStructure>& discountingCurve
-                                            = Handle<YieldTermStructure>());
-        //! \name RateHelper interface
-        //@{
-        Real impliedQuote() const;
-        void setTermStructure(YieldTermStructure*);
-        //@}
-        //! \name Visitability
-        //@{
-        void accept(AcyclicVisitor&);
-        //@}
-    protected:
-        boost::shared_ptr<OvernightIndexedSwap> swap_;
-        RelinkableHandle<YieldTermStructure> termStructureHandle_;
+//! Rate helper for bootstrapping over Overnight Indexed Swap rates
+class DatedOISRateHelper : public RateHelper {
+  public:
+    DatedOISRateHelper(const Date &startDate, const Date &endDate,
+                       const Handle<Quote> &fixedRate,
+                       const boost::shared_ptr<OvernightIndex> &overnightIndex,
+                       // exogenous discounting curve
+                       const Handle<YieldTermStructure> &discountingCurve =
+                           Handle<YieldTermStructure>());
+    //! \name RateHelper interface
+    //@{
+    Real impliedQuote() const;
+    void setTermStructure(YieldTermStructure *);
+    //@}
+    //! \name Visitability
+    //@{
+    void accept(AcyclicVisitor &);
+    //@}
+  protected:
+    boost::shared_ptr<OvernightIndexedSwap> swap_;
+    RelinkableHandle<YieldTermStructure> termStructureHandle_;
 
-        Handle<YieldTermStructure> discountHandle_;
-        RelinkableHandle<YieldTermStructure> discountRelinkableHandle_;
-    };
-
+    Handle<YieldTermStructure> discountHandle_;
+    RelinkableHandle<YieldTermStructure> discountRelinkableHandle_;
+};
 }
 
 #endif

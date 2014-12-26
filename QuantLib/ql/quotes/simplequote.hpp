@@ -3,6 +3,7 @@
 /*
  Copyright (C) 2007 Ferdinando Ametrano
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,52 +30,54 @@
 
 namespace QuantLib {
 
-    //! market element returning a stored value
-    class SimpleQuote : public Quote {
-      public:
-        SimpleQuote(Real value = Null<Real>());
-        //! \name Quote interface
-        //@{
-        Real value() const;
-        bool isValid() const;
-        //@}
-        //! \name Modifiers
-        //@{
-        //! returns the difference between the new value and the old value
-        Real setValue(Real value = Null<Real>());
-        void reset();
-        //@}
-      private:
-        Real value_;
-    };
+//! market element returning a stored value
+template <class T = Real> class SimpleQuote_t : public Quote_t<T> {
+  public:
+    SimpleQuote_t(T value = Null<Real>());
+    //! \name Quote interface
+    //@{
+    T value() const;
+    bool isValid() const;
+    //@}
+    //! \name Modifiers
+    //@{
+    //! returns the difference between the new value and the old value
+    T setValue(T value = Null<Real>());
+    void reset();
+    //@}
+  private:
+    T value_;
+};
 
-    // inline definitions
+typedef SimpleQuote_t<Real> SimpleQuote;
 
-    inline SimpleQuote::SimpleQuote(Real value)
+// inline definitions
+
+template <class T>
+inline SimpleQuote_t<T>::SimpleQuote_t(T value)
     : value_(value) {}
 
-    inline Real SimpleQuote::value() const {
-        QL_ENSURE(isValid(), "invalid SimpleQuote");
-        return value_;
-    }
-
-    inline bool SimpleQuote::isValid() const {
-        return value_!=Null<Real>();
-    }
-
-    inline Real SimpleQuote::setValue(Real value) {
-        Real diff = value-value_;
-        if (diff != 0.0) {
-            value_ = value;
-            notifyObservers();
-        }
-        return diff;
-    }
-
-    inline void SimpleQuote::reset() {
-        setValue(Null<Real>());
-    }
-
+template <class T> inline T SimpleQuote_t<T>::value() const {
+    QL_ENSURE(isValid(), "invalid SimpleQuote");
+    return value_;
 }
+
+template <class T> inline bool SimpleQuote_t<T>::isValid() const {
+    return value_ != Null<Real>();
+}
+
+template <class T> inline T SimpleQuote_t<T>::setValue(T value) {
+    T diff = value - value_;
+    if (diff != 0.0) {
+        value_ = value;
+        SimpleQuote_t<T>::notifyObservers();
+    }
+    return diff;
+}
+
+template <class T> inline void SimpleQuote_t<T>::reset() {
+    setValue(Null<Real>());
+}
+} // namespace QuantLib
 
 #endif

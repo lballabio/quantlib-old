@@ -29,11 +29,11 @@
 #include <ql/methods/finitedifferences/operators/triplebandlinearop.hpp>
 #include <ql/methods/finitedifferences/operators/fdmlinearopcomposite.hpp>
 #include <ql/methods/finitedifferences/utilities/fdmboundaryconditionset.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
     
     class FdmMesher;
-    class YieldTermStructure;
     class LinearInterpolation;
     class ExtOUWithJumpsProcess;
     class FdmExtendedOrnsteinUhlenbackOp;

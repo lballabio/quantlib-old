@@ -31,10 +31,10 @@
 #include <ql/default.hpp>
 #include <ql/termstructures/defaulttermstructure.hpp>
 #include <ql/time/schedule.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
-    class YieldTermStructure;
     class Claim;
 
     //! Credit default swap

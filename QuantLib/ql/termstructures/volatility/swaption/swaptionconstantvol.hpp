@@ -27,10 +27,9 @@
 
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
 #include <ql/time/period.hpp>
+#include <ql/quote.hpp>
 
 namespace QuantLib {
-
-    class Quote;
 
     //! Constant swaption volatility, no time-strike dependence
     class ConstantSwaptionVolatility : public SwaptionVolatilityStructure {

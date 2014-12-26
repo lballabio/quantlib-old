@@ -23,10 +23,9 @@
 #define quantlib_integral_cdo_engine_hpp
 
 #include <ql/experimental/credit/syntheticcdo.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
-
-    class YieldTermStructure;
 
     class IntegralCDOEngine : public SyntheticCDO::engine {
     public:

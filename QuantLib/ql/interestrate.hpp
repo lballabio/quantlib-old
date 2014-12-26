@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2004 Ferdinando Ametrano
- Copyright (C) 2014 Peter Caspers
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -46,14 +46,14 @@ using std::pow;
 using std::exp;
 using std::log;
 
-template <class T = Rate> class InterestRate {
+template <class T = Rate> class InterestRate_t {
   public:
     //! \name constructors
     //@{
     //! Default constructor returning a null interest rate.
-    InterestRate();
+    InterestRate_t();
     //! Standard constructor
-    InterestRate(T r, const DayCounter &dc, Compounding comp, Frequency freq);
+    InterestRate_t(T r, const DayCounter &dc, Compounding comp, Frequency freq);
     //@}
     //! \name conversions
     //@{
@@ -72,7 +72,7 @@ template <class T = Rate> class InterestRate {
     //! \name discount/compound factor calculations
     //@{
     //! discount factor implied by the rate compounded at time t.
-    /*! \warning Time must be measured using InterestRate's own
+    /*! \warning Time must be measured using InterestRate_t's own
                  day counter.
     */
     T discountFactor(Time t) const { return 1.0 / compoundFactor(t); }
@@ -119,7 +119,7 @@ template <class T = Rate> class InterestRate {
         \warning Time must be measured using the day-counter provided
                  as input.
     */
-    static InterestRate<T> impliedRate(T compound, const DayCounter &resultDC,
+    static InterestRate_t<T> impliedRate(T compound, const DayCounter &resultDC,
                                        Compounding comp, Frequency freq,
                                        Time t);
 
@@ -127,7 +127,7 @@ template <class T = Rate> class InterestRate {
     /*! The resulting rate is calculated taking the required
         day-counting rule into account.
     */
-    static InterestRate<T> impliedRate(T compound, const DayCounter &resultDC,
+    static InterestRate_t<T> impliedRate(T compound, const DayCounter &resultDC,
                                        Compounding comp, Frequency freq,
                                        const Date &d1, const Date &d2,
                                        const Date &refStart = Date(),
@@ -149,7 +149,7 @@ template <class T = Rate> class InterestRate {
         \warning Time must be measured using the InterestRate's
                  own day counter.
     */
-    InterestRate<T> equivalentRate(Compounding comp, Frequency freq,
+    InterestRate_t<T> equivalentRate(Compounding comp, Frequency freq,
                                    Time t) const {
         return impliedRate(compoundFactor(t), dc_, comp, freq, t);
     }
@@ -158,7 +158,7 @@ template <class T = Rate> class InterestRate {
     /*! The resulting rate is calculated taking the required
         day-counting rule into account.
     */
-    InterestRate<T> equivalentRate(const DayCounter &resultDC, Compounding comp,
+    InterestRate_t<T> equivalentRate(const DayCounter &resultDC, Compounding comp,
                                    Frequency freq, Date d1, Date d2,
                                    const Date &refStart = Date(),
                                    const Date &refEnd = Date()) const {
@@ -179,14 +179,14 @@ template <class T = Rate> class InterestRate {
 
 /*! \relates InterestRate */
 template <class T>
-std::ostream &operator<<(std::ostream &, const InterestRate<T> &);
+std::ostream &operator<<(std::ostream &, const InterestRate_t<T> &);
 
 // constructors
 
-template <class T> InterestRate<T>::InterestRate() : r_(Null<Real>()) {}
+template <class T> InterestRate_t<T>::InterestRate_t() : r_(Null<Real>()) {}
 
 template <class T>
-InterestRate<T>::InterestRate(T r, const DayCounter &dc, Compounding comp,
+InterestRate_t<T>::InterestRate_t(T r, const DayCounter &dc, Compounding comp,
                               Frequency freq)
     : r_(r), dc_(dc), comp_(comp), freqMakesSense_(false) {
 
@@ -198,7 +198,7 @@ InterestRate<T>::InterestRate(T r, const DayCounter &dc, Compounding comp,
     }
 }
 
-template <class T> T InterestRate<T>::compoundFactor(Time t) const {
+template <class T> T InterestRate_t<T>::compoundFactor(Time t) const {
 
     QL_REQUIRE(t >= 0.0, "negative time not allowed");
     QL_REQUIRE(r_ != Null<Rate>(), "null interest rate");
@@ -220,7 +220,7 @@ template <class T> T InterestRate<T>::compoundFactor(Time t) const {
 }
 
 template <class T>
-InterestRate<T> InterestRate<T>::impliedRate(T compound, const DayCounter &resultDC,
+InterestRate_t<T> InterestRate_t<T>::impliedRate(T compound, const DayCounter &resultDC,
                                        Compounding comp, Frequency freq,
                                        Time t) {
 
@@ -252,11 +252,11 @@ InterestRate<T> InterestRate<T>::impliedRate(T compound, const DayCounter &resul
             QL_FAIL("unknown compounding convention (" << Integer(comp) << ")");
         }
     }
-    return InterestRate<T>(r, resultDC, comp, freq);
+    return InterestRate_t<T>(r, resultDC, comp, freq);
 }
 
 template <class T>
-std::ostream &operator<<(std::ostream &out, const InterestRate<T> &ir) {
+std::ostream &operator<<(std::ostream &out, const InterestRate_t<T> &ir) {
     if (ir.rate() == Null<Rate>())
         return out << "null interest rate";
 
@@ -295,6 +295,8 @@ std::ostream &operator<<(std::ostream &out, const InterestRate<T> &ir) {
     }
     return out;
 }
+
+typedef InterestRate_t<Real> InterestRate;
 
 } // namespace QuantLib
 

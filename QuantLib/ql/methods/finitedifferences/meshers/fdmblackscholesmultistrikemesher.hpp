@@ -28,10 +28,10 @@
 #include <ql/methods/finitedifferences/meshers/fdm1dmesher.hpp>
 #include <ql/handle.hpp>
 #include <ql/quote.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
-    class YieldTermStructure;
     class GeneralizedBlackScholesProcess;
 
     class FdmBlackScholesMultiStrikeMesher : public Fdm1dMesher {

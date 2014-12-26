@@ -28,10 +28,10 @@
 
 #include <ql/instruments/capfloor.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp>
+#include <ql/quote.hpp>
+
 
 namespace QuantLib {
-
-    class Quote;
 
     //! Black-formula cap/floor engine
     /*! \ingroup capfloorengines */

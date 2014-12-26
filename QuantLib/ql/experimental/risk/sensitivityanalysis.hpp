@@ -28,13 +28,13 @@
 #include <ql/utilities/null.hpp>
 #include <boost/shared_ptr.hpp>
 #include <vector>
+#include <ql/quotes/simplequote.hpp>
+
 
 namespace QuantLib {
 
     template <class T>
     class Handle;
-    class Quote;
-    class SimpleQuote;
     class Instrument;
 
     //! Finite differences calculation

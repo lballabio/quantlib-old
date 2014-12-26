@@ -26,10 +26,9 @@
 
 #include <ql/termstructures/volatility/smilesection.hpp>
 #include <ql/handle.hpp>
+#include <ql/quote.hpp>
 
 namespace QuantLib {
-
-    class Quote;
 
     class SpreadedSmileSection : public SmileSection {
       public:

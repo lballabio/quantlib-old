@@ -28,10 +28,9 @@
 
 #include <ql/instruments/swaption.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
+#include <ql/quote.hpp>
 
 namespace QuantLib {
-
-    class Quote;
 
     //! Black-formula swaption engine
     /*! \ingroup swaptionengines

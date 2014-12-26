@@ -294,7 +294,7 @@ namespace QuantLib {
     }
 
     Real BondFunctions::cleanPrice(const Bond& bond,
-                                   const InterestRate<>& yield,
+                                   const InterestRate& yield,
                                    Date settlement) {
         return dirtyPrice(bond, yield, settlement) - bond.accruedAmount(settlement);
     }
@@ -305,12 +305,12 @@ namespace QuantLib {
                                    Compounding compounding,
                                    Frequency frequency,
                                    Date settlement) {
-        InterestRate<> y(yield, dayCounter, compounding, frequency);
+        InterestRate y(yield, dayCounter, compounding, frequency);
         return cleanPrice(bond, y, settlement);
     }
 
     Real BondFunctions::dirtyPrice(const Bond& bond,
-                                   const InterestRate<>& yield,
+                                   const InterestRate& yield,
                                    Date settlement) {
         if (settlement == Date())
             settlement = bond.settlementDate();
@@ -331,12 +331,12 @@ namespace QuantLib {
                                    Compounding compounding,
                                    Frequency frequency,
                                    Date settlement) {
-        InterestRate<> y(yield, dayCounter, compounding, frequency);
+        InterestRate y(yield, dayCounter, compounding, frequency);
         return dirtyPrice(bond, y, settlement);
     }
 
     Real BondFunctions::bps(const Bond& bond,
-                            const InterestRate<>& yield,
+                            const InterestRate& yield,
                             Date settlement) {
         if (settlement == Date())
             settlement = bond.settlementDate();
@@ -356,7 +356,7 @@ namespace QuantLib {
                             Compounding compounding,
                             Frequency frequency,
                             Date settlement) {
-        InterestRate<> y(yield, dayCounter, compounding, frequency);
+        InterestRate y(yield, dayCounter, compounding, frequency);
         return bps(bond, y, settlement);
     }
 
@@ -386,7 +386,7 @@ namespace QuantLib {
     }
 
     Time BondFunctions::duration(const Bond& bond,
-                                 const InterestRate<>& yield,
+                                 const InterestRate& yield,
                                  Duration::Type type,
                                  Date settlement) {
         if (settlement == Date())
@@ -408,12 +408,12 @@ namespace QuantLib {
                                  Frequency frequency,
                                  Duration::Type type,
                                  Date settlement) {
-        InterestRate<> y(yield, dayCounter, compounding, frequency);
+        InterestRate y(yield, dayCounter, compounding, frequency);
         return duration(bond, y, type, settlement);
     }
 
     Real BondFunctions::convexity(const Bond& bond,
-                                  const InterestRate<>& yield,
+                                  const InterestRate& yield,
                                   Date settlement) {
         if (settlement == Date())
             settlement = bond.settlementDate();
@@ -432,12 +432,12 @@ namespace QuantLib {
                                   Compounding compounding,
                                   Frequency frequency,
                                   Date settlement) {
-        InterestRate<> y(yield, dayCounter, compounding, frequency);
+        InterestRate y(yield, dayCounter, compounding, frequency);
         return convexity(bond, y, settlement);
     }
 
     Real BondFunctions::basisPointValue(const Bond& bond,
-                                        const InterestRate<>& yield,
+                                        const InterestRate& yield,
                                         Date settlement) {
         if (settlement == Date())
             settlement = bond.settlementDate();
@@ -456,13 +456,13 @@ namespace QuantLib {
                               Compounding compounding,
                               Frequency frequency,
                                         Date settlement) {
-        InterestRate<> y(yield, dayCounter, compounding, frequency);
+        InterestRate y(yield, dayCounter, compounding, frequency);
         return CashFlows::basisPointValue(bond.cashflows(), y,
                                           false, settlement);
     }
 
     Real BondFunctions::yieldValueBasisPoint(const Bond& bond,
-                                             const InterestRate<>& yield,
+                                             const InterestRate& yield,
                                              Date settlement) {
         if (settlement == Date())
             settlement = bond.settlementDate();
@@ -481,7 +481,7 @@ namespace QuantLib {
                                              Compounding compounding,
                                              Frequency frequency,
                                              Date settlement) {
-        InterestRate<> y(yield, dayCounter, compounding, frequency);
+        InterestRate y(yield, dayCounter, compounding, frequency);
         return CashFlows::yieldValueBasisPoint(bond.cashflows(), y,
                                                false, settlement);
     }

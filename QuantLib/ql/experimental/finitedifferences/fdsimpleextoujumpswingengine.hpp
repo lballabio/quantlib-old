@@ -28,12 +28,13 @@
 #include <ql/instruments/vanillaswingoption.hpp>
 #include <ql/methods/finitedifferences/solvers/fdmbackwardsolver.hpp>
 #include <ql/experimental/finitedifferences/fdmextoujumpmodelinnervalue.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
+
 
 namespace QuantLib {
 
     //! Finite-Differences engine for simple swing options
 
-    class YieldTermStructure;
     class ExtOUWithJumpsProcess;
 
     class FdSimpleExtOUJumpSwingEngine

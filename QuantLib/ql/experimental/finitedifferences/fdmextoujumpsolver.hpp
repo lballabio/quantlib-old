@@ -27,12 +27,13 @@
 #include <ql/patterns/lazyobject.hpp>
 #include <ql/methods/finitedifferences/solvers/fdmsolverdesc.hpp>
 #include <ql/methods/finitedifferences/solvers/fdmbackwardsolver.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
+
 
 namespace QuantLib {
 
     class Fdm2DimSolver;
     class ExtOUWithJumpsProcess;
-    class YieldTermStructure;
 
     class FdmExtOUJumpSolver : public LazyObject {
       public:

@@ -21,10 +21,9 @@
 #define quantlib_integral_ntd_engine_hpp
 
 #include <ql/experimental/credit/nthtodefault.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
-
-    class YieldTermStructure;
 
     // Varying recoveries allowed, allow now for heterogeneous notionals
     class IntegralNtdEngine : public NthToDefault::engine {

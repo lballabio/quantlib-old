@@ -26,10 +26,10 @@
 
 #include <ql/experimental/finitedifferences/fdmsquarerootfwdop.hpp>
 #include <ql/methods/finitedifferences/operators/fdmlinearopcomposite.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
 
-    class YieldTermStructure;
     class FdmMesher;
     class HestonProcess;
     class FirstDerivativeOp;

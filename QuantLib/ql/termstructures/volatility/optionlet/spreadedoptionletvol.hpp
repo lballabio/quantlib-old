@@ -26,10 +26,9 @@
 #define quantlib_spreaded_caplet_volstructure_h
 
 #include <ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp>
+#include <ql/quote.hpp>
 
 namespace QuantLib {
-
-    class Quote;
 
     class SpreadedOptionletVolatility : public OptionletVolatilityStructure {
       public:

@@ -28,10 +28,9 @@
 #include <ql/experimental/volatility/blackatmvolcurve.hpp>
 #include <ql/patterns/lazyobject.hpp>
 #include <ql/math/interpolations/abcdinterpolation.hpp>
+#include <ql/quote.hpp>
 
 namespace QuantLib {
-
-    class Quote;
 
     //! Abcd-interpolated at-the-money (no-smile) volatility curve
     /*! blah blah

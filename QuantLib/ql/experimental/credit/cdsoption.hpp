@@ -27,11 +27,10 @@
 
 #include <ql/option.hpp>
 #include <ql/instruments/creditdefaultswap.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
+#include <ql/quote.hpp>
 
 namespace QuantLib {
-
-    class Quote;
-    class YieldTermStructure;
 
     //! CDS option
     /*! The side of the swaption is set by choosing the side of the CDS.
