@@ -4,6 +4,7 @@
  Copyright (C) 2005, 2007 StatPro Italia srl
  Copyright (C) 2011 Ferdinando Ametrano
  Copyright (C) 2007 Chris Kenyon
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -33,277 +34,252 @@
 
 namespace QuantLib {
 
-    namespace detail {
-        const Real avgRate = 0.05;
-        const Real maxRate = 1.0;
+using std::log;
+using std::exp;
+
+namespace detail {
+const Real avgRate = 0.05;
+const Real maxRate = 1.0;
+}
+
+//! Discount-curve traits
+template <class T = Real> struct Discount_t {
+    // interpolated curve type
+    template <class Interpolator> struct curve {
+        typedef InterpolatedDiscountCurve_t<Interpolator, T> type;
+    };
+    // helper class
+    typedef BootstrapHelper<YieldTermStructure_t<T> > helper;
+
+    // start of curve data
+    static Date initialDate(const YieldTermStructure_t<T> *c) {
+        return c->referenceDate();
+    }
+    // value at reference date
+    static T initialValue(const YieldTermStructure_t<T> *) { return 1.0; }
+
+    // guesses
+    template <class C>
+    static T guess(Size i, const C *c, bool validData,
+                   Size) // firstAliveHelper
+    {
+        if (validData) // previous iteration value
+            return c->data()[i];
+
+        if (i == 1) // first pillar
+            return 1.0 / (1.0 + detail::avgRate * c->times()[1]);
+
+        // flat rate extrapolation
+        Real r = -log(c->data()[i - 1]) / c->times()[i - 1];
+        return exp(-r * c->times()[i]);
     }
 
-    //! Discount-curve traits
-    struct Discount {
-        // interpolated curve type
-        template <class Interpolator>
-        struct curve {
-            typedef InterpolatedDiscountCurve<Interpolator> type;
-        };
-        // helper class
-        typedef BootstrapHelper<YieldTermStructure> helper;
-
-        // start of curve data
-        static Date initialDate(const YieldTermStructure* c) {
-            return c->referenceDate();
+    // possible constraints based on previous values
+    template <class C>
+    static T minValueAfter(Size i, const C *c, bool validData,
+                           Size) // firstAliveHelper
+    {
+        if (validData) {
+#if defined(QL_NEGATIVE_RATES)
+            return *(std::min_element(c->data().begin(), c->data().end())) /
+                   2.0;
+#else
+            return c->data().back() / 2.0;
+#endif
         }
-        // value at reference date
-        static Real initialValue(const YieldTermStructure*) {
-            return 1.0;
-        }
+        Time dt = c->times()[i] - c->times()[i - 1];
+        return c->data()[i - 1] * exp(-detail::maxRate * dt);
+    }
+    template <class C>
+    static T maxValueAfter(Size i, const C *c, bool validData,
+                           Size) // firstAliveHelper
+    {
+#if defined(QL_NEGATIVE_RATES)
+        Time dt = c->times()[i] - c->times()[i - 1];
+        return c->data()[i - 1] * exp(detail::maxRate * dt);
+#else
+        // discounts cannot increase
+        return c->data()[i - 1];
+#endif
+    }
 
-        // guesses
-        template <class C>
-        static Real guess(Size i,
-                          const C* c,
-                          bool validData,
-                          Size) // firstAliveHelper
-        {
-            if (validData) // previous iteration value
-                return c->data()[i];
+    // root-finding update
+    static void updateGuess(std::vector<T> &data, T discount, Size i) {
+        data[i] = discount;
+    }
+    // upper bound for convergence loop
+    static Size maxIterations() { return 100; }
+};
 
-            if (i==1) // first pillar
-                return 1.0/(1.0+detail::avgRate*c->times()[1]);
+typedef Discount_t<Real> Discount;
 
-            // flat rate extrapolation
-            Real r = -std::log(c->data()[i-1])/c->times()[i-1];
-            return std::exp(-r * c->times()[i]);
-        }
-
-        // possible constraints based on previous values
-        template <class C>
-        static Real minValueAfter(Size i,
-                                  const C* c,
-                                  bool validData,
-                                  Size) // firstAliveHelper
-        {
-            if (validData) {
-                #if defined(QL_NEGATIVE_RATES)
-                return *(std::min_element(c->data().begin(),
-                                          c->data().end()))/2.0;
-                #else
-                return c->data().back()/2.0;
-                #endif
-            }
-            Time dt = c->times()[i] - c->times()[i-1];
-            return c->data()[i-1] * std::exp(- detail::maxRate * dt);
-        }
-        template <class C>
-        static Real maxValueAfter(Size i,
-                                  const C* c,
-                                  bool validData,
-                                  Size) // firstAliveHelper
-        {
-            #if defined(QL_NEGATIVE_RATES)
-            Time dt = c->times()[i] - c->times()[i-1];
-            return c->data()[i-1] * std::exp(detail::maxRate * dt);
-            #else
-            // discounts cannot increase
-            return c->data()[i-1];
-            #endif
-        }
-
-        // root-finding update
-        static void updateGuess(std::vector<Real>& data,
-                                Real discount,
-                                Size i) {
-            data[i] = discount;
-        }
-        // upper bound for convergence loop
-        static Size maxIterations() { return 100; }
+//! Zero-curve traits
+template <class T> struct ZeroYield_t {
+    // interpolated curve type
+    template <class Interpolator> struct curve {
+        typedef InterpolatedZeroCurve_t<Interpolator, T> type;
     };
+    // helper class
+    typedef BootstrapHelper<YieldTermStructure_t<T> > helper;
 
+    // start of curve data
+    static Date initialDate(const YieldTermStructure_t<T> *c) {
+        return c->referenceDate();
+    }
+    // dummy value at reference date
+    static T initialValue(const YieldTermStructure_t<T> *) {
+        return detail::avgRate;
+    }
 
-    //! Zero-curve traits
-    struct ZeroYield {
-        // interpolated curve type
-        template <class Interpolator>
-        struct curve {
-            typedef InterpolatedZeroCurve<Interpolator> type;
-        };
-        // helper class
-        typedef BootstrapHelper<YieldTermStructure> helper;
+    // guesses
+    template <class C>
+    static T guess(Size i, const C *c, bool validData,
+                   Size) // firstAliveHelper
+    {
+        if (validData) // previous iteration value
+            return c->data()[i];
 
-        // start of curve data
-        static Date initialDate(const YieldTermStructure* c) {
-            return c->referenceDate();
-        }
-        // dummy value at reference date
-        static Real initialValue(const YieldTermStructure*) {
+        if (i == 1) // first pillar
             return detail::avgRate;
-        }
 
-        // guesses
-        template <class C>
-        static Real guess(Size i,
-                          const C* c,
-                          bool validData,
-                          Size) // firstAliveHelper
-        {
-            if (validData) // previous iteration value
-                return c->data()[i];
+        // extrapolate
+        Date d = c->dates()[i];
+        return c->zeroRate(d, c->dayCounter(), Continuous, Annual, true);
+    }
 
-            if (i==1) // first pillar
-                return detail::avgRate;
+    // possible constraints based on previous values
+    template <class C>
+    static T minValueAfter(Size, const C *c, bool validData,
+                           Size) // firstAliveHelper
+    {
+        if (validData) {
+            Real r = *(std::min_element(c->data().begin(), c->data().end()));
+#if defined(QL_NEGATIVE_RATES)
+            return r < 0.0 ? r * 2.0 : r / 2.0;
+#else
+            return r / 2.0;
+#endif
+        }
+#if defined(QL_NEGATIVE_RATES)
+        // no constraints.
+        // We choose as min a value very unlikely to be exceeded.
+        return -detail::maxRate;
+#else
+        return QL_EPSILON;
+#endif
+    }
+    template <class C>
+    static T maxValueAfter(Size, const C *c, bool validData,
+                           Size) // firstAliveHelper
+    {
+        if (validData) {
+            Real r = *(std::max_element(c->data().begin(), c->data().end()));
+#if defined(QL_NEGATIVE_RATES)
+            return r < 0.0 ? r / 2.0 : r * 2.0;
+#else
+            return r * 2.0;
+#endif
+        }
+        // no constraints.
+        // We choose as max a value very unlikely to be exceeded.
+        return detail::maxRate;
+    }
 
-            // extrapolate
-            Date d = c->dates()[i]; 
-            return c->zeroRate(d, c->dayCounter(),
-                               Continuous, Annual, true);
-        }
+    // root-finding update
+    static void updateGuess(std::vector<T> &data, T rate, Size i) {
+        data[i] = rate;
+        if (i == 1)
+            data[0] = rate; // first point is updated as well
+    }
+    // upper bound for convergence loop
+    static Size maxIterations() { return 100; }
+};
 
-        // possible constraints based on previous values
-        template <class C>
-        static Real minValueAfter(Size,
-                                  const C* c,
-                                  bool validData,
-                                  Size) // firstAliveHelper
-        {
-            if (validData) {
-                Real r = *(std::min_element(c->data().begin(), c->data().end()));
-                #if defined(QL_NEGATIVE_RATES)
-                return r<0.0 ? r*2.0 : r/2.0;
-                #else
-                return r/2.0;
-                #endif
-            }
-            #if defined(QL_NEGATIVE_RATES)
-            // no constraints.
-            // We choose as min a value very unlikely to be exceeded.
-            return -detail::maxRate;
-            #else
-            return QL_EPSILON;
-            #endif
-        }
-        template <class C>
-        static Real maxValueAfter(Size,
-                                  const C* c,
-                                  bool validData,
-                                  Size) // firstAliveHelper
-        {
-            if (validData) {
-                Real r = *(std::max_element(c->data().begin(), c->data().end()));
-                #if defined(QL_NEGATIVE_RATES)
-                return r<0.0 ? r/2.0 : r*2.0;
-                #else
-                return r*2.0;
-                #endif
-            }
-            // no constraints.
-            // We choose as max a value very unlikely to be exceeded.
-            return detail::maxRate;
-        }
+typedef ZeroYield_t<Real> ZeroYield;
 
-        // root-finding update
-        static void updateGuess(std::vector<Real>& data,
-                                Real rate,
-                                Size i) {
-            data[i] = rate;
-            if (i==1)
-                data[0] = rate; // first point is updated as well
-        }
-        // upper bound for convergence loop
-        static Size maxIterations() { return 100; }
+//! Forward-curve traits
+template <class T> struct ForwardRate_t {
+    // interpolated curve type
+    template <class Interpolator> struct curve {
+        typedef InterpolatedForwardCurve_t<Interpolator, T> type;
     };
+    // helper class
+    typedef BootstrapHelper<YieldTermStructure_t<T> > helper;
 
+    // start of curve data
+    static Date initialDate(const YieldTermStructure_t<T> *c) {
+        return c->referenceDate();
+    }
+    // dummy value at reference date
+    static T initialValue(const YieldTermStructure_t<T> *) {
+        return detail::avgRate;
+    }
 
-    //! Forward-curve traits
-    struct ForwardRate {
-        // interpolated curve type
-        template <class Interpolator>
-        struct curve {
-            typedef InterpolatedForwardCurve<Interpolator> type;
-        };
-        // helper class
-        typedef BootstrapHelper<YieldTermStructure> helper;
+    // guesses
+    template <class C>
+    static T guess(Size i, const C *c, bool validData,
+                   Size) // firstAliveHelper
+    {
+        if (validData) // previous iteration value
+            return c->data()[i];
 
-        // start of curve data
-        static Date initialDate(const YieldTermStructure* c) {
-            return c->referenceDate();
-        }
-        // dummy value at reference date
-        static Real initialValue(const YieldTermStructure*) {
+        if (i == 1) // first pillar
             return detail::avgRate;
+
+        // extrapolate
+        Date d = c->dates()[i];
+        return c->forwardRate(d, d, c->dayCounter(), Continuous, Annual, true);
+    }
+
+    // possible constraints based on previous values
+    template <class C>
+    static T minValueAfter(Size, const C *c, bool validData,
+                           Size) // firstAliveHelper
+    {
+        if (validData) {
+            Real r = *(std::min_element(c->data().begin(), c->data().end()));
+#if defined(QL_NEGATIVE_RATES)
+            return r < 0.0 ? r * 2.0 : r / 2.0;
+#else
+            return r / 2.0;
+#endif
         }
-
-        // guesses
-        template <class C>
-        static Real guess(Size i,
-                          const C* c,
-                          bool validData,
-                          Size) // firstAliveHelper
-        {
-            if (validData) // previous iteration value
-                return c->data()[i];
-
-            if (i==1) // first pillar
-                return detail::avgRate;
-
-            // extrapolate
-            Date d = c->dates()[i];
-            return c->forwardRate(d, d, c->dayCounter(),
-                                  Continuous, Annual, true);
+#if defined(QL_NEGATIVE_RATES)
+        // no constraints.
+        // We choose as min a value very unlikely to be exceeded.
+        return -detail::maxRate;
+#else
+        return QL_EPSILON;
+#endif
+    }
+    template <class C>
+    static T maxValueAfter(Size, const C *c, bool validData,
+                           Size) // firstAliveHelper
+    {
+        if (validData) {
+            Real r = *(std::max_element(c->data().begin(), c->data().end()));
+#if defined(QL_NEGATIVE_RATES)
+            return r < 0.0 ? r / 2.0 : r * 2.0;
+#else
+            return r * 2.0;
+#endif
         }
+        // no constraints.
+        // We choose as max a value very unlikely to be exceeded.
+        return detail::maxRate;
+    }
 
-        // possible constraints based on previous values
-        template <class C>
-        static Real minValueAfter(Size,
-                                  const C* c,
-                                  bool validData,
-                                  Size) // firstAliveHelper
-        {
-            if (validData) {
-                Real r = *(std::min_element(c->data().begin(), c->data().end()));
-                #if defined(QL_NEGATIVE_RATES)
-                return r<0.0 ? r*2.0 : r/2.0;
-                #else
-                return r/2.0;
-                #endif
-            }
-            #if defined(QL_NEGATIVE_RATES)
-            // no constraints.
-            // We choose as min a value very unlikely to be exceeded.
-            return -detail::maxRate;
-            #else
-            return QL_EPSILON;
-            #endif
-        }
-        template <class C>
-        static Real maxValueAfter(Size,
-                                  const C* c,
-                                  bool validData,
-                                  Size) // firstAliveHelper
-        {
-            if (validData) {
-                Real r = *(std::max_element(c->data().begin(), c->data().end()));
-                #if defined(QL_NEGATIVE_RATES)
-                return r<0.0 ? r/2.0 : r*2.0;
-                #else
-                return r*2.0;
-                #endif
-            }
-            // no constraints.
-            // We choose as max a value very unlikely to be exceeded.
-            return detail::maxRate;
-        }
+    // root-finding update
+    static void updateGuess(std::vector<T> &data, Real forward, Size i) {
+        data[i] = forward;
+        if (i == 1)
+            data[0] = forward; // first point is updated as well
+    }
+    // upper bound for convergence loop
+    static Size maxIterations() { return 100; }
+};
 
-        // root-finding update
-        static void updateGuess(std::vector<Real>& data,
-                                Real forward,
-                                Size i) {
-            data[i] = forward;
-            if (i==1)
-                data[0] = forward; // first point is updated as well
-        }
-        // upper bound for convergence loop
-        static Size maxIterations() { return 100; }
-    };
-
+typedef ForwardRate_t<Real> ForwardRate;
 }
 
 #endif

@@ -37,7 +37,7 @@ namespace QuantLib {
     template <class Interpolator>
     class InterpolatedDefaultDensityCurve
         : public DefaultDensityStructure,
-          protected InterpolatedCurve<Interpolator> {
+          protected InterpolatedCurve<Interpolator>::Type {
       public:
         InterpolatedDefaultDensityCurve(
             const std::vector<Date>& dates,
@@ -181,7 +181,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : DefaultDensityStructure(dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(interpolator) {}
+      InterpolatedCurve<T>::Type(interpolator) {}
 
     template <class T>
     InterpolatedDefaultDensityCurve<T>::InterpolatedDefaultDensityCurve(
@@ -191,7 +191,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : DefaultDensityStructure(referenceDate, Calendar(), dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(interpolator) {}
+      InterpolatedCurve<T>::Type(interpolator) {}
 
     template <class T>
     InterpolatedDefaultDensityCurve<T>::InterpolatedDefaultDensityCurve(
@@ -202,7 +202,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : DefaultDensityStructure(settlementDays, calendar, dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(interpolator) {}
+      InterpolatedCurve<T>::Type(interpolator) {}
 
     template <class T>
     InterpolatedDefaultDensityCurve<T>::InterpolatedDefaultDensityCurve(
@@ -214,7 +214,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : DefaultDensityStructure(dates.at(0), calendar, dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(std::vector<Time>(), densities, interpolator),
+      InterpolatedCurve<T>::Type(std::vector<Time>(), densities, interpolator),
       dates_(dates)
     {
         initialize(dates, densities, dayCounter);
@@ -228,7 +228,7 @@ namespace QuantLib {
             const Calendar& calendar,
             const T& interpolator)
     : DefaultDensityStructure(dates.at(0), calendar, dayCounter),
-      InterpolatedCurve<T>(std::vector<Time>(), densities, interpolator),
+      InterpolatedCurve<T>::Type(std::vector<Time>(), densities, interpolator),
       dates_(dates)
     {
         initialize(dates, densities, dayCounter);
@@ -241,7 +241,7 @@ namespace QuantLib {
             const DayCounter& dayCounter,
             const T& interpolator)
     : DefaultDensityStructure(dates.at(0), Calendar(), dayCounter),
-      InterpolatedCurve<T>(std::vector<Time>(), densities, interpolator),
+      InterpolatedCurve<T>::Type(std::vector<Time>(), densities, interpolator),
       dates_(dates)
     {
         initialize(dates, densities, dayCounter);

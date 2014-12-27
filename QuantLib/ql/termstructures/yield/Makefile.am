@@ -28,10 +28,8 @@ libYieldTermStructures_la_SOURCES = \
     bondhelpers.cpp \
     fittedbonddiscountcurve.cpp \
     flatforward.cpp \
-    forwardstructure.cpp \
     nonlinearfittingmethods.cpp \
-    oisratehelper.cpp \
-    zeroyieldstructure.cpp
+    oisratehelper.cpp
 
 noinst_LTLIBRARIES = libYieldTermStructures.la
 

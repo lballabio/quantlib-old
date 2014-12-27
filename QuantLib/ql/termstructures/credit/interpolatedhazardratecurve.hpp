@@ -38,7 +38,7 @@ namespace QuantLib {
     template <class Interpolator>
     class InterpolatedHazardRateCurve
         : public HazardRateStructure,
-          protected InterpolatedCurve<Interpolator> {
+          protected InterpolatedCurve<Interpolator>::Type {
       public:
         InterpolatedHazardRateCurve(
             const std::vector<Date>& dates,
@@ -179,7 +179,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : HazardRateStructure(dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(interpolator) {}
+      InterpolatedCurve<T>::Type(interpolator) {}
 
     template <class T>
     InterpolatedHazardRateCurve<T>::InterpolatedHazardRateCurve(
@@ -189,7 +189,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : HazardRateStructure(referenceDate, Calendar(), dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(interpolator) {}
+      InterpolatedCurve<T>::Type(interpolator) {}
 
     template <class T>
     InterpolatedHazardRateCurve<T>::InterpolatedHazardRateCurve(
@@ -200,7 +200,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : HazardRateStructure(settlementDays, calendar, dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(interpolator) {}
+      InterpolatedCurve<T>::Type(interpolator) {}
 
     template <class T>
     InterpolatedHazardRateCurve<T>::InterpolatedHazardRateCurve(
@@ -212,7 +212,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : HazardRateStructure(dates.at(0), calendar, dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(std::vector<Time>(), hazardRates, interpolator),
+        InterpolatedCurve<T>::Type(std::vector<Time>(), hazardRates, interpolator),
       dates_(dates)
     {
         initialize();

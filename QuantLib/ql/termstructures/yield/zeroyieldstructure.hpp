@@ -30,73 +30,101 @@
 
 namespace QuantLib {
 
-    //! Zero-yield term structure
-    /*! This abstract class acts as an adapter to YieldTermStructure
-        allowing the programmer to implement only the
-        <tt>zeroYieldImpl(Time)</tt> method in derived classes.
+//! Zero-yield term structure
+/*! This abstract class acts as an adapter to YieldTermStructure
+    allowing the programmer to implement only the
+    <tt>zeroYieldImpl(Time)</tt> method in derived classes.
 
-        Discount and forward are calculated from zero yields.
+    Discount and forward are calculated from zero yields.
 
-        Zero rates are assumed to be annual continuous compounding.
+    Zero rates are assumed to be annual continuous compounding.
 
-        \ingroup yieldtermstructures
+    \ingroup yieldtermstructures
+*/
+
+using std::exp;
+
+template <class T> class ZeroYieldStructure_t : public YieldTermStructure_t<T> {
+  public:
+    /*! \name Constructors
+        See the TermStructure documentation for issues regarding
+        constructors.
     */
-    class ZeroYieldStructure : public YieldTermStructure {
-      public:
-        /*! \name Constructors
-            See the TermStructure documentation for issues regarding
-            constructors.
-        */
-        //@{
-        ZeroYieldStructure(
-            const DayCounter& dc = DayCounter(),
-            const std::vector<Handle<Quote> >& jumps = std::vector<Handle<Quote> >(),
-            const std::vector<Date>& jumpDates = std::vector<Date>());
-        ZeroYieldStructure(
-            const Date& referenceDate,
-            const Calendar& calendar = Calendar(),
-            const DayCounter& dc = DayCounter(),
-            const std::vector<Handle<Quote> >& jumps = std::vector<Handle<Quote> >(),
-            const std::vector<Date>& jumpDates = std::vector<Date>());
-        ZeroYieldStructure(
-            Natural settlementDays,
-            const Calendar& calendar,
-            const DayCounter& dc = DayCounter(),
-            const std::vector<Handle<Quote> >& jumps = std::vector<Handle<Quote> >(),
-            const std::vector<Date>& jumpDates = std::vector<Date>());
-        //@}
-      protected:
-        /*! \name Calculations
+    //@{
+    ZeroYieldStructure_t(
+        const DayCounter &dc = DayCounter(),
+        const std::vector<Handle<Quote_t<T> > > &jumps =
+            std::vector<Handle<Quote> >(),
+        const std::vector<Date> &jumpDates = std::vector<Date>());
+    ZeroYieldStructure_t(
+        const Date &referenceDate, const Calendar &calendar = Calendar(),
+        const DayCounter &dc = DayCounter(),
+        const std::vector<Handle<Quote_t<T> > > &jumps =
+            std::vector<Handle<Quote> >(),
+        const std::vector<Date> &jumpDates = std::vector<Date>());
+    ZeroYieldStructure_t(
+        Natural settlementDays, const Calendar &calendar,
+        const DayCounter &dc = DayCounter(),
+        const std::vector<Handle<Quote_t<T> > > &jumps =
+            std::vector<Handle<Quote> >(),
+        const std::vector<Date> &jumpDates = std::vector<Date>());
+    //@}
+  protected:
+    /*! \name Calculations
 
-            This method must be implemented in derived classes to
-            perform the actual calculations. When it is called,
-            range check has already been performed; therefore, it
-            must assume that extrapolation is required.
-        */
-        //@{
-        //! zero-yield calculation
-        virtual Rate zeroYieldImpl(Time) const = 0;
-        //@}
+        This method must be implemented in derived classes to
+        perform the actual calculations. When it is called,
+        range check has already been performed; therefore, it
+        must assume that extrapolation is required.
+    */
+    //@{
+    //! zero-yield calculation
+    virtual T zeroYieldImpl(Time) const = 0;
+    //@}
 
-        //! \name YieldTermStructure implementation
-        //@{
-        /*! Returns the discount factor for the given date calculating it
-            from the zero yield.
-        */
-        DiscountFactor discountImpl(Time) const;
-        //@}
-    };
+    //! \name YieldTermStructure implementation
+    //@{
+    /*! Returns the discount factor for the given date calculating it
+        from the zero yield.
+    */
+    T discountImpl(Time) const;
+    //@}
+};
 
-    // inline definitions
+typedef ZeroYieldStructure_t<Real> ZeroYieldStructure;
 
-    inline DiscountFactor ZeroYieldStructure::discountImpl(Time t) const {
-        if (t == 0.0)     // this acts as a safe guard in cases where
-            return 1.0;   // zeroYieldImpl(0.0) would throw.
+// inline definitions
 
-        Rate r = zeroYieldImpl(t);
-        return DiscountFactor(std::exp(-r*t));
-    }
+template <class T>
+inline T ZeroYieldStructure_t<T>::discountImpl(Time t) const {
+    if (t == 0.0)   // this acts as a safe guard in cases where
+        return 1.0; // zeroYieldImpl(0.0) would throw.
 
+    T r = zeroYieldImpl(t);
+    return T(exp(-r * t));
+}
+
+// implementations
+
+template <class T>
+ZeroYieldStructure_t<T>::ZeroYieldStructure_t(
+    const DayCounter &dc, const std::vector<Handle<Quote_t<T> > > &jumps,
+    const std::vector<Date> &jumpDates)
+    : YieldTermStructure_t<T>(dc, jumps, jumpDates) {}
+
+template <class T>
+ZeroYieldStructure_t<T>::ZeroYieldStructure_t(
+    const Date &refDate, const Calendar &cal, const DayCounter &dc,
+    const std::vector<Handle<Quote_t<T> > > &jumps,
+    const std::vector<Date> &jumpDates)
+    : YieldTermStructure_t<T>(refDate, cal, dc, jumps, jumpDates) {}
+
+template <class T>
+ZeroYieldStructure_t<T>::ZeroYieldStructure_t(
+    Natural settlementDays, const Calendar &cal, const DayCounter &dc,
+    const std::vector<Handle<Quote_t<T> > > &jumps,
+    const std::vector<Date> &jumpDates)
+    : YieldTermStructure_t<T>(settlementDays, cal, dc, jumps, jumpDates) {}
 }
 
 #endif

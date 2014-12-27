@@ -29,11 +29,11 @@ namespace QuantLib {
 
     namespace {
 
-        class PiecewiseLinearCurve : public InterpolatedCurve<Linear> {
+        class PiecewiseLinearCurve : public InterpolatedCurve<Linear>::Type {
           public:
             PiecewiseLinearCurve(const std::vector<Time>& times,
                                  const std::vector<Real>& data)
-            : InterpolatedCurve<Linear>(times, data) {
+            : InterpolatedCurve<Linear>::Type(times, data) {
                 setupInterpolation();
             }
 

@@ -42,7 +42,7 @@ namespace QuantLib {
     template<class Interpolator>
     class InterpolatedYoYInflationCurve
         : public YoYInflationTermStructure,
-          protected InterpolatedCurve<Interpolator> {
+          protected InterpolatedCurve<Interpolator>::Type {
       public:
         InterpolatedYoYInflationCurve(const Date& referenceDate,
                                       const Calendar& calendar,
@@ -114,7 +114,7 @@ namespace QuantLib {
                                   const Interpolator& interpolator)
     : YoYInflationTermStructure(referenceDate, calendar, dayCounter, rates[0],
                                 lag, frequency, indexIsInterpolated,  yTS),
-      InterpolatedCurve<Interpolator>(std::vector<Time>(), rates, interpolator),
+        InterpolatedCurve<Interpolator>::Type(std::vector<Time>(), rates, interpolator),
       dates_(dates) {
 
         QL_REQUIRE(dates_.size()>1, "too few dates: " << dates_.size());
@@ -171,7 +171,7 @@ namespace QuantLib {
                                   const Interpolator& interpolator)
     : YoYInflationTermStructure(referenceDate, calendar, dayCounter, baseYoYRate,
                                 lag, frequency, indexIsInterpolated, yTS),
-      InterpolatedCurve<Interpolator>(interpolator) {}
+      InterpolatedCurve<Interpolator>::Type(interpolator) {}
 
 
     template <class T>

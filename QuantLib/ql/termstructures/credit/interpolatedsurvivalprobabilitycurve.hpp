@@ -35,7 +35,7 @@ namespace QuantLib {
     template <class Interpolator>
     class InterpolatedSurvivalProbabilityCurve
         : public SurvivalProbabilityStructure,
-          protected InterpolatedCurve<Interpolator> {
+          protected InterpolatedCurve<Interpolator>::Type {
       public:
         InterpolatedSurvivalProbabilityCurve(
             const std::vector<Date>& dates,
@@ -162,7 +162,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : SurvivalProbabilityStructure(dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(interpolator) {}
+      InterpolatedCurve<T>::Type(interpolator) {}
 
     template <class T>
     InterpolatedSurvivalProbabilityCurve<T>::InterpolatedSurvivalProbabilityCurve(
@@ -172,7 +172,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : SurvivalProbabilityStructure(referenceDate, Calendar(), dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(interpolator) {}
+      InterpolatedCurve<T>::Type(interpolator) {}
 
     template <class T>
     InterpolatedSurvivalProbabilityCurve<T>::InterpolatedSurvivalProbabilityCurve(
@@ -183,7 +183,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : SurvivalProbabilityStructure(settlementDays, calendar, dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(interpolator) {}
+      InterpolatedCurve<T>::Type(interpolator) {}
 
     template <class T>
     InterpolatedSurvivalProbabilityCurve<T>::InterpolatedSurvivalProbabilityCurve(
@@ -195,7 +195,7 @@ namespace QuantLib {
                                     const std::vector<Date>& jumpDates,
                                     const T& interpolator)
     : SurvivalProbabilityStructure(dates.at(0), calendar, dayCounter, jumps, jumpDates),
-      InterpolatedCurve<T>(std::vector<Time>(), probabilities, interpolator),
+      InterpolatedCurve<T>::Type(std::vector<Time>(), probabilities, interpolator),
       dates_(dates)
     {
         QL_REQUIRE(dates_.size() >= T::requiredPoints,

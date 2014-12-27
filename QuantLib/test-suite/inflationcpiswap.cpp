@@ -195,8 +195,8 @@ namespace {
                 nomR.push_back(nominalData[i].rate/100.0);
             }
             boost::shared_ptr<YieldTermStructure> nominal =
-            boost::shared_ptr<InterpolatedZeroCurve<Linear>
-            >(new InterpolatedZeroCurve<Linear>(nomD,nomR,dcNominal));
+                boost::shared_ptr<InterpolatedZeroCurve<Linear>::Type
+                                  >(new InterpolatedZeroCurve<Linear>::Type(nomD,nomR,dcNominal));
 
 
             nominalTS.linkTo(nominal);

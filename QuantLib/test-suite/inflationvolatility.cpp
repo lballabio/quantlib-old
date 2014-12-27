@@ -146,8 +146,8 @@ namespace {
             d.push_back( dd );
         }
 
-        boost::shared_ptr<InterpolatedZeroCurve<Cubic> >
-            euriborTS(new InterpolatedZeroCurve<Cubic>(d, r, Actual365Fixed()));
+        boost::shared_ptr<InterpolatedZeroCurve<Cubic>::Type >
+            euriborTS(new InterpolatedZeroCurve<Cubic>::Type(d, r, Actual365Fixed()));
         Handle<YieldTermStructure> nominalHeur(euriborTS, false);
         nominalEUR = nominalHeur;   // copy to global
 
@@ -161,8 +161,8 @@ namespace {
             d.push_back( dd );
         }
 
-        boost::shared_ptr<InterpolatedZeroCurve<Cubic> >
-            gbpLiborTS(new InterpolatedZeroCurve<Cubic>(d, r, Actual365Fixed()));
+        boost::shared_ptr<InterpolatedZeroCurve<Cubic>::Type >
+            gbpLiborTS(new InterpolatedZeroCurve<Cubic>::Type(d, r, Actual365Fixed()));
         Handle<YieldTermStructure> nominalHgbp(gbpLiborTS, false);
         nominalGBP = nominalHgbp;   // copy to global
 
