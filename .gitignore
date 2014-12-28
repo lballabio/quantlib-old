@@ -31,6 +31,10 @@ QuantLib/test-suite/build/
 QuantLib/test-suite/*.trs
 QuantLib-SWIG/config/
 QuantLib-SWIG/CSharp/cpp/quantlib_wrap.cpp
+QuantLib-SWIG/CSharp/cpp/build
+QuantLib-SWIG/CSharp/csharp/obj
+QuantLib-SWIG/CSharp/examples/bin
+QuantLib-SWIG/CSharp/examples/obj
 QuantLib-SWIG/Guile/quantlib_wrap.cpp
 QuantLib-SWIG/Java/bin/
 QuantLib-SWIG/Java/quantlib_wrap.cpp
