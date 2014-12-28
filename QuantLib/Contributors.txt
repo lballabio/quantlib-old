@@ -93,6 +93,7 @@ Yasmine Lahlou
 Fabien Le Floc'h
 James Lee
 Samuel Lerouge
+Bernd Lewerenz
 Cheng Li
 Gang Liang
 Robert Lopez
@@ -146,6 +147,7 @@ Eugene Shevkoplyas
 Enrico Sirola
 Leon Sit
 Dale Smith
+Tim Smith
 Maxim Sokolov
 Niels Elken Sønderby
 Andreas Spengler

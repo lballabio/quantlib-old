@@ -57,6 +57,7 @@ make && sudo make install
 </pre>
 and then try to compile the examples. For example,
 <pre>
+cd Examples/BermudanSwaption
 g++ -I/opt/local/include/ -I/opt/local/include/boost BermudanSwaption.cpp \
     -o bermudanswaption -L/opt/local/lib/ -lQuantLib
 </pre>
@@ -69,7 +70,7 @@ g++ -I/opt/local/include/ -I/opt/local/include/boost BermudanSwaption.cpp \
 <p>Users have reported linking problems under Mac OS X 10.9; the
 solution (thanks to Albert Azout for pointing it out) seems to be to
 set the environment flags <tt>CXXFLAGS</tt> and
-<tt>LDFLAGS</tt> to <tt>-stlib=libstdc++
+<tt>LDFLAGS</tt> to <tt>-stdlib=libstdc++
 -mmacosx-version-min=10.6</tt> before compiling.</p>
 
 <h2>Appendix: Boost Configuration</h2>

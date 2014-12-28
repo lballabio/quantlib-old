@@ -201,7 +201,7 @@ class CalibratedModel {
 %template(CalibratedModel) boost::shared_ptr<CalibratedModel>;
 IsObservable(boost::shared_ptr<CalibratedModel>);
 
-%template(SCalibratedModelHandle) Handle<CalibratedModel>;
+%template(CalibratedModelHandle) Handle<CalibratedModel>;
 IsObservable(Handle<CalibratedModel>);
 %template(RelinkableCalibratedModelHandle)
 RelinkableHandle<CalibratedModel>;
