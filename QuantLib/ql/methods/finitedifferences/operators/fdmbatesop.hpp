@@ -27,10 +27,10 @@
 #include <ql/math/integrals/gaussianquadratures.hpp>
 #include <ql/methods/finitedifferences/operators/fdmhestonop.hpp>
 #include <ql/methods/finitedifferences/utilities/fdmboundaryconditionset.hpp>
+#include <ql/math/interpolations/linearinterpolation.hpp>
 
 namespace QuantLib {
 
-    class LinearInterpolation;
     class BatesProcess;
     
     class FdmBatesOp : public FdmLinearOpComposite {

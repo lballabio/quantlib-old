@@ -29,6 +29,8 @@
 
 namespace QuantLib {
 
+    using std::abs;
+
     /*! Follows somewhat the advice of Knuth on checking for floating-point
         equality. The closeness relationship is:
         \f[
@@ -37,9 +39,11 @@ namespace QuantLib {
         \f]
         where \f$ \varepsilon \f$ is \f$ n \f$ times the machine accuracy;
         \f$ n \f$ equals 42 if not given.
+
+        T must be consistent with machine accuracy QL_EPSILON to make sense
     */
-    bool close(Real x, Real y);
-    bool close(Real x, Real y, Size n);
+    template<class T = Real> bool close(T x, T y);
+    template<class T = Real> bool close(T x, T y, Size n);
 
     /*! Follows somewhat the advice of Knuth on checking for floating-point
         equality. The closeness relationship is:
@@ -50,40 +54,40 @@ namespace QuantLib {
         where \f$ \varepsilon \f$ is \f$ n \f$ times the machine accuracy;
         \f$ n \f$ equals 42 if not given.
     */
-    bool close_enough(Real x, Real y);
-    bool close_enough(Real x, Real y, Size n);
+    template<class T = Real> bool close_enough(T x, T y);
+    template<class T = Real> bool close_enough(T x, T y, Size n);
 
 
     // inline definitions
 
-    inline bool close(Real x, Real y) {
-        return close(x,y,42);
+    template<class T = Real> inline bool close(T x, T y) {
+        return close<T>(x,y,42);
     }
 
-    inline bool close(Real x, Real y, Size n) {
+    template<class T = Real> inline bool close(T x, T y, Size n) {
         // Deals with +infinity and -infinity representations etc.
         if (x == y)
             return true;
 
-        Real diff = std::fabs(x-y), tolerance = n * QL_EPSILON;
+        T diff = abs(x-y), tolerance = n * QL_EPSILON;
 
         if (x * y == 0.0) // x or y = 0.0
             return diff < (tolerance * tolerance);
 
-        return diff <= tolerance*std::fabs(x) &&
-               diff <= tolerance*std::fabs(y);
+        return diff <= tolerance*abs(x) &&
+               diff <= tolerance*abs(y);
     }
 
-    inline bool close_enough(Real x, Real y) {
-        return close_enough(x,y,42);
+    template<class T = Real> inline bool close_enough(T x, T y) {
+        return close_enough<T>(x,y,42);
     }
 
-    inline bool close_enough(Real x, Real y, Size n) {
+    template<class T = Real> inline bool close_enough(T x, T y, Size n) {
         // Deals with +infinity and -infinity representations etc.
         if (x == y)
             return true;
 
-        Real diff = std::fabs(x-y), tolerance = n * QL_EPSILON;
+        T diff = abs(x-y), tolerance = n * QL_EPSILON;
 
         if (x * y == 0.0) // x or y = 0.0
             return diff < (tolerance * tolerance);

@@ -76,18 +76,18 @@ class InterpolatedZeroCurve_t : public ZeroYieldStructure_t<T>,
     std::vector<std::pair<Date, T> > nodes() const;
     //@}
   protected:
-    InterpolatedZeroCurve_t<T>(
+    InterpolatedZeroCurve_t(
         const DayCounter &, const std::vector<Handle<Quote_t<T> > > &jumps =
                                 std::vector<Handle<Quote_t<T> > >(),
         const std::vector<Date> &jumpDates = std::vector<Date>(),
         const Interpolator &interpolator = Interpolator());
-    InterpolatedZeroCurve_t<T>(
+    InterpolatedZeroCurve_t(
         const Date &referenceDate, const DayCounter &,
         const std::vector<Handle<Quote_t<T> > > &jumps =
             std::vector<Handle<Quote_t<T> > >(),
         const std::vector<Date> &jumpDates = std::vector<Date>(),
         const Interpolator &interpolator = Interpolator());
-    InterpolatedZeroCurve_t<T>(
+    InterpolatedZeroCurve_t(
         Natural settlementDays, const Calendar &, const DayCounter &,
         const std::vector<Handle<Quote_t<T> > > &jumps =
             std::vector<Handle<Quote_t<T> > >(),

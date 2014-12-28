@@ -276,7 +276,7 @@ T blackFormulaImpliedStdDev(Option::Type optionType, T strike, T forward,
                                                   << ") must be non-negative");
     BlackImpliedStdDevHelper f(optionType, strike, forward,
                                blackPrice / discount);
-    NewtonSafe solver;
+    NewtonSafe_t<T> solver;
     solver.setMaxEvaluations(maxIterations);
     T minSdtDev = 0.0, maxStdDev = 24.0; // 24 = 300% * sqrt(60)
     T stdDev = solver.solve(f, accuracy, guess, minSdtDev, maxStdDev);

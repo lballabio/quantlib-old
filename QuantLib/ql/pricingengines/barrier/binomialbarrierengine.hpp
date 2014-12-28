@@ -130,7 +130,7 @@ namespace QuantLib {
                divisor = std::pow(std::log(s0 / arguments_.barrier), 2);
             else
                divisor = std::pow(std::log(arguments_.barrier / s0), 2);
-            if (!close(divisor,0)) {
+            if (!close(divisor,0.)) {
                 for (Size i=1; i < timeSteps_ ; ++i) {
                     Size optimum = Size(( i*i * v*v * maturity) / divisor);
                     if (timeSteps_ < optimum) {

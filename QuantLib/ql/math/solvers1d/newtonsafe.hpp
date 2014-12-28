@@ -35,11 +35,15 @@ namespace QuantLib {
         \test the correctness of the returned values is tested by
               checking them against known good results.
     */
-    class NewtonSafe : public Solver1D<NewtonSafe> {
+
+    using std::abs;
+
+    template<class T>
+    class NewtonSafe_t : public Solver1D<NewtonSafe_t<T>,T> {
       public:
         template <class F>
-        Real solveImpl(const F& f,
-                       Real xAccuracy) const {
+        T solveImpl(const F& f,
+                       T xAccuracy) const {
 
             /* The implementation of the algorithm was inspired by
                Press, Teukolsky, Vetterling, and Flannery,
@@ -47,65 +51,67 @@ namespace QuantLib {
                Cambridge University Press
             */
 
-            Real froot, dfroot, dx, dxold;
-            Real xh, xl;
+            T froot, dfroot, dx, dxold;
+            T xh, xl;
 
             // Orient the search so that f(xl) < 0
-            if (fxMin_ < 0.0) {
-                xl = xMin_;
-                xh = xMax_;
+            if (this->fxMin_ < 0.0) {
+                xl = this->xMin_;
+                xh = this->xMax_;
             } else {
-                xh = xMin_;
-                xl = xMax_;
+                xh = this->xMin_;
+                xl = this->xMax_;
             }
 
             // the "stepsize before last"
-            dxold = xMax_-xMin_;
+            dxold = this->xMax_-this->xMin_;
             // it was dxold=std::fabs(xMax_-xMin_); in Numerical Recipes
             // here (xMax_-xMin_ > 0) is verified in the constructor
 
             // and the last step
             dx = dxold;
 
-            froot = f(root_);
-            dfroot = f.derivative(root_);
+            froot = f(this->root_);
+            dfroot = f.derivative(this->root_);
             QL_REQUIRE(dfroot != Null<Real>(),
                        "NewtonSafe requires function's derivative");
-            ++evaluationNumber_;
+            ++this->evaluationNumber_;
 
-            while (evaluationNumber_<=maxEvaluations_) {
+            while (this->evaluationNumber_<=this->maxEvaluations_) {
                 // Bisect if (out of range || not decreasing fast enough)
-                if ((((root_-xh)*dfroot-froot)*
-                     ((root_-xl)*dfroot-froot) > 0.0)
-                    || (std::fabs(2.0*froot) > std::fabs(dxold*dfroot))) {
+                if ((((this->root_-xh)*dfroot-froot)*
+                     ((this->root_-xl)*dfroot-froot) > 0.0)
+                    || (abs(2.0*froot) > std::fabs(dxold*dfroot))) {
 
                     dxold = dx;
                     dx = (xh-xl)/2.0;
-                    root_=xl+dx;
+                    this->root_=xl+dx;
                 } else {
                     dxold = dx;
                     dx = froot/dfroot;
-                    root_ -= dx;
+                    this->root_ -= dx;
                 }
                 // Convergence criterion
-                if (std::fabs(dx) < xAccuracy) {
-                    f(root_);
-                    ++evaluationNumber_;
-                    return root_;
+                if (abs(dx) < xAccuracy) {
+                    f(this->root_);
+                    ++this->evaluationNumber_;
+                    return this->root_;
                 }
-                froot = f(root_);
-                dfroot = f.derivative(root_);
-                ++evaluationNumber_;
+                froot = f(this->root_);
+                dfroot = f.derivative(this->root_);
+                ++this->evaluationNumber_;
                 if (froot < 0.0)
-                    xl=root_;
+                    xl=this->root_;
                 else
-                    xh=root_;
+                    xh=this->root_;
             }
 
             QL_FAIL("maximum number of function evaluations ("
-                    << maxEvaluations_ << ") exceeded");
+                    << this->maxEvaluations_ << ") exceeded");
         }
     };
+
+    typedef NewtonSafe_t<Real> NewtonSafe;
 
 }
 

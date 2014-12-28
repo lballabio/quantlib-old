@@ -35,11 +35,15 @@ namespace QuantLib {
         \test the correctness of the returned values is tested by
               checking them against known good results.
     */
-    class Newton : public Solver1D<Newton> {
+
+    using std::abs;
+
+    template<class T>
+    class Newton_t : public Solver1D<Newton_t<T>,T> {
       public:
         template <class F>
-        Real solveImpl(const F& f,
-                       Real xAccuracy) const {
+        T solveImpl(const F& f,
+                       T xAccuracy) const {
 
             /* The implementation of the algorithm was inspired by
                Press, Teukolsky, Vetterling, and Flannery,
@@ -47,37 +51,39 @@ namespace QuantLib {
                Cambridge University Press
             */
 
-            Real froot, dfroot, dx;
+            T froot, dfroot, dx;
 
-            froot = f(root_);
-            dfroot = f.derivative(root_);
+            froot = f(this->root_);
+            dfroot = f.derivative(this->root_);
             QL_REQUIRE(dfroot != Null<Real>(),
                        "Newton requires function's derivative");
-            ++evaluationNumber_;
+            ++this->evaluationNumber_;
 
-            while (evaluationNumber_<=maxEvaluations_) {
+            while (this->evaluationNumber_<=this->maxEvaluations_) {
                 dx = froot/dfroot;
-                root_ -= dx;
+                this->root_ -= dx;
                 // jumped out of brackets, switch to NewtonSafe
-                if ((xMin_-root_)*(root_-xMax_) < 0.0) {
-                    NewtonSafe s;
-                    s.setMaxEvaluations(maxEvaluations_-evaluationNumber_);
-                    return s.solve(f, xAccuracy, root_+dx, xMin_, xMax_);
+                if ((this->xMin_-this->root_)*(this->root_-this->xMax_) < 0.0) {
+                    NewtonSafe_t<T> s;
+                    s.setMaxEvaluations(this->maxEvaluations_-this->evaluationNumber_);
+                    return s.solve(f, xAccuracy, this->root_+dx, this->xMin_, this->xMax_);
                 }
-                if (std::fabs(dx) < xAccuracy) {
-                    f(root_);
-                    ++evaluationNumber_;
-                    return root_;
+                if (abs(dx) < xAccuracy) {
+                    f(this->root_);
+                    ++this->evaluationNumber_;
+                    return this->root_;
                 }
-                froot = f(root_);
-                dfroot = f.derivative(root_);
-                ++evaluationNumber_;
+                froot = f(this->root_);
+                dfroot = f.derivative(this->root_);
+                ++this->evaluationNumber_;
             }
 
             QL_FAIL("maximum number of function evaluations ("
-                    << maxEvaluations_ << ") exceeded");
+                    << this->maxEvaluations_ << ") exceeded");
         }
     };
+
+    typedef Newton_t<Real> Newton;
 
 }
 

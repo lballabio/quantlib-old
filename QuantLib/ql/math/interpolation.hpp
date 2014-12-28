@@ -39,27 +39,28 @@ namespace QuantLib {
         discretized values of a variable and a function of the former,
         respectively.
     */
-    class Interpolation : public Extrapolator {
+    template <class T = Real>
+    class Interpolation_t : public Extrapolator {
       protected:
         //! abstract base class for interpolation implementations
         class Impl {
           public:
             virtual ~Impl() {}
             virtual void update() = 0;
-            virtual Real xMin() const = 0;
-            virtual Real xMax() const = 0;
-            virtual std::vector<Real> xValues() const = 0;
-            virtual std::vector<Real> yValues() const = 0;
-            virtual bool isInRange(Real) const = 0;
-            virtual Real value(Real) const = 0;
-            virtual Real primitive(Real) const = 0;
-            virtual Real derivative(Real) const = 0;
-            virtual Real secondDerivative(Real) const = 0;
+            virtual T xMin() const = 0;
+            virtual T xMax() const = 0;
+            virtual std::vector<T> xValues() const = 0;
+            virtual std::vector<T> yValues() const = 0;
+            virtual bool isInRange(T) const = 0;
+            virtual Real value(T) const = 0;
+            virtual Real primitive(T) const = 0;
+            virtual Real derivative(T) const = 0;
+            virtual Real secondDerivative(T) const = 0;
         };
         boost::shared_ptr<Impl> impl_;
       public:
-        typedef Real argument_type;
-        typedef Real result_type;
+        typedef T argument_type;
+        typedef T result_type;
         //! basic template implementation
         template <class I1, class I2>
         class templateImpl : public Impl {
@@ -70,24 +71,24 @@ namespace QuantLib {
                            "not enough points to interpolate: at least 2 "
                            "required, " << static_cast<int>(xEnd_-xBegin_)<< " provided");
             }
-            Real xMin() const {
+            T xMin() const {
                 return *xBegin_;
             }
-            Real xMax() const {
+            T xMax() const {
                 return *(xEnd_-1);
             }
-            std::vector<Real> xValues() const {
-                return std::vector<Real>(xBegin_,xEnd_);
+            std::vector<T> xValues() const {
+                return std::vector<T>(xBegin_,xEnd_);
             }
-            std::vector<Real> yValues() const {
-                return std::vector<Real>(yBegin_,yBegin_+(xEnd_-xBegin_));
+            std::vector<T> yValues() const {
+                return std::vector<T>(yBegin_,yBegin_+(xEnd_-xBegin_));
             }
-            bool isInRange(Real x) const {
+            bool isInRange(T x) const {
                 #if defined(QL_EXTRA_SAFETY_CHECKS)
                 for (I1 i=xBegin_, j=xBegin_+1; j!=xEnd_; ++i, ++j)
                     QL_REQUIRE(*j > *i, "unsorted x values");
                 #endif
-                Real x1 = xMin(), x2 = xMax();
+                T x1 = xMin(), x2 = xMax();
                 return (x >= x1 && x <= x2) || close(x,x1) || close(x,x2);
             }
           protected:
@@ -107,29 +108,29 @@ namespace QuantLib {
             I2 yBegin_;
         };
       public:
-        Interpolation() {}
-        virtual ~Interpolation() {}
+        Interpolation_t() {}
+        virtual ~Interpolation_t() {}
         bool empty() const { return !impl_; }
-        Real operator()(Real x, bool allowExtrapolation = false) const {
+        T operator()(T x, bool allowExtrapolation = false) const {
             checkRange(x,allowExtrapolation);
             return impl_->value(x);
         }
-        Real primitive(Real x, bool allowExtrapolation = false) const {
+        T primitive(T x, bool allowExtrapolation = false) const {
             checkRange(x,allowExtrapolation);
             return impl_->primitive(x);
         }
-        Real derivative(Real x, bool allowExtrapolation = false) const {
+        T derivative(T x, bool allowExtrapolation = false) const {
             checkRange(x,allowExtrapolation);
             return impl_->derivative(x);
         }
-        Real secondDerivative(Real x, bool allowExtrapolation = false) const {
+        T secondDerivative(T x, bool allowExtrapolation = false) const {
             checkRange(x,allowExtrapolation);
             return impl_->secondDerivative(x);
         }
-        Real xMin() const {
+        T xMin() const {
             return impl_->xMin();
         }
-        Real xMax() const {
+        T xMax() const {
             return impl_->xMax();
         }
         bool isInRange(Real x) const {
@@ -139,7 +140,7 @@ namespace QuantLib {
             impl_->update();
         }
       protected:
-        void checkRange(Real x, bool extrapolate) const {
+        void checkRange(T x, bool extrapolate) const {
             QL_REQUIRE(extrapolate || allowsExtrapolation() ||
                        impl_->isInRange(x),
                        "interpolation range is ["
@@ -147,6 +148,8 @@ namespace QuantLib {
                        << "]: extrapolation at " << x << " not allowed");
         }
     };
+
+    typedef Interpolation_t<Real> Interpolation;
 
 }
 
