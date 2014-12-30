@@ -31,12 +31,40 @@ rationale is that the factory method  is more used internally in the
 library, in the client code it should rather appear as a template
 parameter (e.g. as the interpolation trait in PiecewiseYieldCurve).
 
+Similarly, bootstrap traits change their meaning becoming now templated
+by a type T in addition. PiecewiseYieldTermStructure takes an
+additional type T. Similarly, bootstrap helper, bootstrap error, bootstrap.
+
 Functions are generalized to templates, because we believe that in
 most cases the inference for the template parameters should work when
 not explicitly given. This is not always the case, e.g. close(a,0)
 worked for a double, but now does not compile, because 0 is
 interpreted as an integer. close(a,0.) does work however.
 
-Notes, Todos The constants in the error function do only compile with
+Not all variables are template'ized, typically e.g. Time inputs stay
+to be of type Time = double. However, since all the work is done, it
+would be easy to extend the template type to them as well. 
+
+Notes: The constants in the error function do only compile with
 c++11 at the moment, we should generalize this to handle both c++03
 and 11.
+
+Done:
+
+PiecewiseYieldCurve etc.
+PiecewiseYoYInflationCurve, PiecewiseZeroInflaitonCurve etc.
+
+LinearInterpolation
+
+
+Todo:
+
+CreditCurves
+Voltermstructures
+
+Other 1d interpolations
+
+LocalBootstrap
+
+
+
