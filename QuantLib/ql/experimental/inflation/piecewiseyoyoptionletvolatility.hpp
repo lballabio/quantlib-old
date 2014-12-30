@@ -34,7 +34,7 @@ namespace QuantLib {
     //! traits for inflation-volatility bootstrap
     class YoYInflationVolatilityTraits {
       public:
-        typedef BootstrapHelper<YoYOptionletVolatilitySurface> helper;
+        typedef BootstrapHelper<YoYOptionletVolatilitySurface,Real> helper;
 
         // start of curve data
         static Date initialDate(const YoYOptionletVolatilitySurface *s) {
@@ -101,8 +101,8 @@ namespace QuantLib {
         classes.  We only need to add special attention for the start
         where there is usually no data, only assumptions.
     */
-    template <class Interpolator,
-              template <class> class Bootstrap = IterativeBootstrap,
+    template <template<class> class Interpolator,
+              template <class,class> class Bootstrap = IterativeBootstrap,
               class Traits = YoYInflationVolatilityTraits>
     class PiecewiseYoYOptionletVolatilityCurve
         : public InterpolatedYoYOptionletVolatilityCurve<Interpolator>,
@@ -115,7 +115,7 @@ namespace QuantLib {
                                                      Traits> this_curve;
       public:
         typedef Traits traits_type;
-        typedef Interpolator interpolator_type;
+        typedef Interpolator<Real> interpolator_type;
 
         PiecewiseYoYOptionletVolatilityCurve(
               Natural settlementDays,
@@ -131,7 +131,7 @@ namespace QuantLib {
               const std::vector<boost::shared_ptr<typename Traits::helper> >&
                                                                   instruments,
               Real accuracy = 1.0e-12,
-              const Interpolator &interpolator = Interpolator())
+              const Interpolator<Real> &interpolator = Interpolator<Real>())
         : base_curve(settlementDays, cal, bdc, dc, lag,
                      frequency, indexIsInterpolated,
                      minStrike, maxStrike,
@@ -163,61 +163,61 @@ namespace QuantLib {
         std::vector<boost::shared_ptr<typename Traits::helper> > instruments_;
         Real accuracy_;
 
-        friend class Bootstrap<this_curve>;
-        friend class BootstrapError<this_curve>;
-        Bootstrap<this_curve> bootstrap_;
+        friend class Bootstrap<this_curve,Real>;
+        friend class BootstrapError<this_curve,Real>;
+        Bootstrap<this_curve,Real> bootstrap_;
     };
 
 
     // inline and template definitions
 
-    template <class I, template <class> class B, class T>
+    template <template<class> class I, template <class,class> class B, class T>
     inline Date PiecewiseYoYOptionletVolatilityCurve<I,B,T>::baseDate() const {
         this->calculate();
         return base_curve::baseDate();
     }
 
-    template <class I, template <class> class B, class T>
+    template <template<class> class I, template <class,class> class B, class T>
     inline Date PiecewiseYoYOptionletVolatilityCurve<I,B,T>::maxDate() const {
         this->calculate();
         return base_curve::maxDate();
     }
 
-    template <class I, template <class> class B, class T>
+    template <template<class> class I, template <class,class> class B, class T>
     const std::vector<Time>&
     PiecewiseYoYOptionletVolatilityCurve<I,B,T>::times() const {
         calculate();
         return base_curve::times();
     }
 
-    template <class I, template <class> class B, class T>
+    template <template<class> class I, template <class,class> class B, class T>
     const std::vector<Date>&
     PiecewiseYoYOptionletVolatilityCurve<I,B,T>::dates() const {
         calculate();
         return base_curve::dates();
     }
 
-    template <class I, template <class> class B, class T>
+    template <template<class> class I, template <class,class> class B, class T>
     const std::vector<Real>&
     PiecewiseYoYOptionletVolatilityCurve<I,B,T>::data() const {
         calculate();
         return base_curve::data();
     }
 
-    template <class I, template <class> class B, class T>
+    template <template<class> class I, template <class,class> class B, class T>
     std::vector<std::pair<Date, Real> >
     PiecewiseYoYOptionletVolatilityCurve<I,B,T>::nodes() const {
         calculate();
         return base_curve::nodes();
     }
 
-    template <class I, template <class> class B, class T>
+    template <template<class> class I, template <class,class> class B, class T>
     void
     PiecewiseYoYOptionletVolatilityCurve<I,B,T>::performCalculations() const {
         bootstrap_.calculate();
     }
 
-    template <class I, template <class> class B, class T>
+    template <template<class> class I, template <class,class> class B, class T>
     void PiecewiseYoYOptionletVolatilityCurve<I,B,T>::update() {
         base_curve::update();
         LazyObject::update();

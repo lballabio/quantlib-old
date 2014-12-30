@@ -43,12 +43,12 @@ namespace QuantLib {
     //! Survival-Probability-curve traits
     struct SurvivalProbability {
         // interpolated curve type
-        template <class Interpolator>
+        template <template<class> class Interpolator>
         struct curve {
             typedef InterpolatedSurvivalProbabilityCurve<Interpolator> type;
         };
         // helper class
-        typedef BootstrapHelper<DefaultProbabilityTermStructure> helper;
+        typedef BootstrapHelper<DefaultProbabilityTermStructure,Real> helper;
 
         // start of curve data
         static Date initialDate(const DefaultProbabilityTermStructure* c) {
@@ -114,12 +114,12 @@ namespace QuantLib {
     //! Hazard-rate-curve traits
     struct HazardRate {
         // interpolated curve type
-        template <class Interpolator>
+        template <template<class> class Interpolator>
         struct curve {
             typedef InterpolatedHazardRateCurve<Interpolator> type;
         };
         // helper class
-        typedef BootstrapHelper<DefaultProbabilityTermStructure> helper;
+        typedef BootstrapHelper<DefaultProbabilityTermStructure,Real> helper;
 
         // start of curve data
         static Date initialDate(const DefaultProbabilityTermStructure* c) {
@@ -191,12 +191,12 @@ namespace QuantLib {
     //! Default-density-curve traits
     struct DefaultDensity {
         // interpolated curve type
-        template <class Interpolator>
+        template <template<class> class Interpolator>
         struct curve {
             typedef InterpolatedDefaultDensityCurve<Interpolator> type;
         };
         // helper class
-        typedef BootstrapHelper<DefaultProbabilityTermStructure> helper;
+        typedef BootstrapHelper<DefaultProbabilityTermStructure,Real> helper;
         // start of curve data
         static Date initialDate(const DefaultProbabilityTermStructure* c) {
             return c->referenceDate();

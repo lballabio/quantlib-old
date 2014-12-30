@@ -38,12 +38,12 @@ namespace QuantLib {
     }
 
     //! Bootstrap traits to use for PiecewiseZeroInflationCurve
-    class ZeroInflationTraits {
+    template <class T = Real> class ZeroInflationTraits {
       public:
-        typedef BootstrapHelper<ZeroInflationTermStructure> helper;
+        typedef BootstrapHelper<ZeroInflationTermStructure_t<T> > helper;
 
         // start of curve data
-        static Date initialDate(const ZeroInflationTermStructure* t) {
+        static Date initialDate(const ZeroInflationTermStructure_t<T>* t) {
             if (t->indexIsInterpolated()) {
                 return t->referenceDate() - t->observationLag();
             } else {
@@ -52,13 +52,13 @@ namespace QuantLib {
             }
         }
         // value at reference date
-        static Rate initialValue(const ZeroInflationTermStructure* t) {
+        static T initialValue(const ZeroInflationTermStructure_t<T>* t) {
             return t->baseRate();
         }
 
         // guesses
         template <class C>
-        static Rate guess(Size i,
+        static T guess(Size i,
                           const C* c,
                           bool validData,
                           Size) // firstAliveHelper
@@ -75,7 +75,7 @@ namespace QuantLib {
 
         // constraints
         template <class C>
-        static Rate minValueAfter(Size i,
+        static T minValueAfter(Size i,
                                   const C* c,
                                   bool validData,
                                   Size) // firstAliveHelper
@@ -87,7 +87,7 @@ namespace QuantLib {
             return -detail::maxInflation;
         }
         template <class C>
-        static Rate maxValueAfter(Size i,
+        static T maxValueAfter(Size i,
                                   const C* c,
                                   bool validData,
                                   Size) // firstAliveHelper
@@ -102,7 +102,7 @@ namespace QuantLib {
         }
 
         // update with new guess
-        static void updateGuess(std::vector<Rate>& data,
+        static void updateGuess(std::vector<T>& data,
                                 Rate level,
                                 Size i) {
             data[i] = level;
@@ -113,13 +113,14 @@ namespace QuantLib {
     };
 
     //! Bootstrap traits to use for PiecewiseZeroInflationCurve
+    template <class T>
     class YoYInflationTraits {
       public:
         // helper class
-        typedef BootstrapHelper<YoYInflationTermStructure> helper;
+        typedef BootstrapHelper<YoYInflationTermStructure_t<T>> helper;
 
         // start of curve data
-        static Date initialDate(const YoYInflationTermStructure* t) {
+        static Date initialDate(const YoYInflationTermStructure_t<T>* t) {
             if (t->indexIsInterpolated()) {
                 return t->referenceDate() - t->observationLag();
             } else {
@@ -128,13 +129,13 @@ namespace QuantLib {
             }
         }
         // value at reference date
-        static Rate initialValue(const YoYInflationTermStructure* t) {
+        static T initialValue(const YoYInflationTermStructure_t<T>* t) {
             return t->baseRate();
         }
 
         // guesses
         template <class C>
-        static Rate guess(Size i,
+        static T guess(Size i,
                           const C* c,
                           bool validData,
                           Size) // firstAliveHelper
@@ -151,7 +152,7 @@ namespace QuantLib {
 
         // constraints
         template <class C>
-        static Rate minValueAfter(Size i,
+        static T minValueAfter(Size i,
                                   const C* c,
                                   bool validData,
                                   Size) // firstAliveHelper
@@ -163,7 +164,7 @@ namespace QuantLib {
             return -detail::maxInflation;
         }
         template <class C>
-        static Rate maxValueAfter(Size i,
+        static T maxValueAfter(Size i,
                                   const C* c,
                                   bool validData,
                                   Size) // firstAliveHelper

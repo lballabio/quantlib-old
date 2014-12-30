@@ -36,7 +36,7 @@
 namespace QuantLib {
 
     // penalty function class for solving using a multi-dimensional solver
-    template <class Curve>
+    template <class Curve, class T = Real>
     class PenaltyFunction : public CostFunction {
         typedef typename Curve::traits_type Traits;
         typedef typename Traits::helper helper;
@@ -82,7 +82,7 @@ namespace QuantLib {
         whilst using a smoother interpolation method. Particularly
         good for the convex-monotone spline method.
     */
-    template <class Curve>
+    template <class Curve, class T = Real>
     class LocalBootstrap {
         typedef typename Curve::traits_type Traits;
         typedef typename Curve::interpolator_type Interpolator;
@@ -103,15 +103,15 @@ namespace QuantLib {
 
     // template definitions
 
-    template <class Curve>
-    LocalBootstrap<Curve>::LocalBootstrap(Size localisation,
+    template <class Curve, class T>
+    LocalBootstrap<Curve,T>::LocalBootstrap(Size localisation,
                                           bool forcePositive)
     : validCurve_(false), ts_(0), localisation_(localisation),
       forcePositive_(forcePositive)
     {}
 
-    template <class Curve>
-    void LocalBootstrap<Curve>::setup(Curve* ts) {
+    template <class Curve, class T>
+    void LocalBootstrap<Curve,T>::setup(Curve* ts) {
 
         ts_ = ts;
 
@@ -129,8 +129,8 @@ namespace QuantLib {
         }
     }
 
-    template <class Curve>
-    void LocalBootstrap<Curve>::calculate() const {
+    template <class Curve, class T>
+    void LocalBootstrap<Curve,T>::calculate() const {
 
         validCurve_ = false;
         Size nInsts = ts_->instruments_.size();
@@ -227,7 +227,7 @@ namespace QuantLib {
                 startArray[localisation_-dataAdjust] = ts_->data_[0];
             }
 
-            PenaltyFunction<Curve> currentCost(
+            PenaltyFunction<Curve,T> currentCost(
                         ts_,
                         initialDataPt,
                         ts_->instruments_.begin() + ((iInst+1) - localisation_),
@@ -247,8 +247,8 @@ namespace QuantLib {
     }
 
 
-    template <class Curve>
-    Real PenaltyFunction<Curve>::value(const Array& x) const {
+    template <class Curve, class T>
+    Real PenaltyFunction<Curve,T>::value(const Array& x) const {
         Size i = initialIndex_;
         Array::const_iterator guessIt = x.begin();
         while (guessIt != x.end()) {
@@ -269,8 +269,8 @@ namespace QuantLib {
         return penalty;
     }
 
-    template <class Curve>
-    Disposable<Array> PenaltyFunction<Curve>::values(const Array& x) const {
+    template <class Curve, class T>
+    Disposable<Array> PenaltyFunction<Curve,T>::values(const Array& x) const {
         Array::const_iterator guessIt = x.begin();
         Size i = initialIndex_;
         while (guessIt != x.end()) {

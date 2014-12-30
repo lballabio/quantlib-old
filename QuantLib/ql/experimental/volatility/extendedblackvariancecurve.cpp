@@ -22,63 +22,57 @@
 
 namespace QuantLib {
 
-    ExtendedBlackVarianceCurve::ExtendedBlackVarianceCurve(
-                              const Date& referenceDate,
-                              const std::vector<Date>& dates,
-                              const std::vector<Handle<Quote> >& volatilities,
-                              const DayCounter& dayCounter,
-                              bool forceMonotoneVariance)
-    : BlackVarianceTermStructure(referenceDate),
-      dayCounter_(dayCounter), maxDate_(dates.back()),
-      volatilities_(volatilities),
+ExtendedBlackVarianceCurve::ExtendedBlackVarianceCurve(
+    const Date &referenceDate, const std::vector<Date> &dates,
+    const std::vector<Handle<Quote> > &volatilities,
+    const DayCounter &dayCounter, bool forceMonotoneVariance)
+    : BlackVarianceTermStructure(referenceDate), dayCounter_(dayCounter),
+      maxDate_(dates.back()), volatilities_(volatilities),
       forceMonotoneVariance_(forceMonotoneVariance) {
-        QL_REQUIRE(dates.size() == volatilities_.size(),
-                   "size mismatch between dates and volatilities");
+    QL_REQUIRE(dates.size() == volatilities_.size(),
+               "size mismatch between dates and volatilities");
 
-        QL_REQUIRE(dates[0] > referenceDate,
-                   "cannot have dates_[0] <= referenceDate");
+    QL_REQUIRE(dates[0] > referenceDate,
+               "cannot have dates_[0] <= referenceDate");
 
-        variances_ = std::vector<Real>(dates.size()+1);
-        times_ = std::vector<Time>(dates.size()+1);
+    variances_ = std::vector<Real>(dates.size() + 1);
+    times_ = std::vector<Time>(dates.size() + 1);
 
-        times_[0] = 0.0;
-        for (Size j=1; j<=dates.size(); ++j) {
-            times_[j] = timeFromReference(dates[j-1]);
-            QL_REQUIRE(times_[j]>times_[j-1],
-                       "dates must be sorted unique!");
-        }
-
-        setVariances();
-        setInterpolation<Linear>();
-
-        for (Size j=0; j<volatilities_.size(); ++j)
-            registerWith(volatilities_[j]);
+    times_[0] = 0.0;
+    for (Size j = 1; j <= dates.size(); ++j) {
+        times_[j] = timeFromReference(dates[j - 1]);
+        QL_REQUIRE(times_[j] > times_[j - 1], "dates must be sorted unique!");
     }
 
-    void ExtendedBlackVarianceCurve::setVariances() {
-        variances_[0] = 0.0;
-        for (Size j=1; j<=volatilities_.size(); j++) {
-            Volatility sigma = volatilities_[j-1]->value();
-            variances_[j] = times_[j] * sigma * sigma;
-            QL_REQUIRE(variances_[j]>=variances_[j-1]
-                       || !forceMonotoneVariance_,
-                       "variance must be non-decreasing");
-        }
-    }
+    setVariances();
+    setInterpolation<Linear>();
 
-    void ExtendedBlackVarianceCurve::update() {
-        setVariances();
-        varianceCurve_.update();
-        notifyObservers();
-    }
-
-    Real ExtendedBlackVarianceCurve::blackVarianceImpl(Time t, Real) const {
-        if (t<=times_.back()) {
-            return varianceCurve_(t, true);
-        } else {
-            return varianceCurve_(times_.back(), true)*t/times_.back();
-        }
-    }
-
+    for (Size j = 0; j < volatilities_.size(); ++j)
+        registerWith(volatilities_[j]);
 }
 
+void ExtendedBlackVarianceCurve::setVariances() {
+    variances_[0] = 0.0;
+    for (Size j = 1; j <= volatilities_.size(); j++) {
+        Volatility sigma = volatilities_[j - 1]->value();
+        variances_[j] = times_[j] * sigma * sigma;
+        QL_REQUIRE(variances_[j] >= variances_[j - 1] ||
+                       !forceMonotoneVariance_,
+                   "variance must be non-decreasing");
+    }
+}
+
+void ExtendedBlackVarianceCurve::update() {
+    setVariances();
+    varianceCurve_.update();
+    notifyObservers();
+}
+
+Real ExtendedBlackVarianceCurve::blackVarianceImpl(Time t, Real) const {
+    if (t <= times_.back()) {
+        return varianceCurve_(t, true);
+    } else {
+        return varianceCurve_(times_.back(), true) * t / times_.back();
+    }
+}
+}

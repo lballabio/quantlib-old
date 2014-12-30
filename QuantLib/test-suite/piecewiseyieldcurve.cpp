@@ -267,9 +267,9 @@ namespace {
     };
 
 
-    template <class T, class I, template<class C> class B>
+    template <template<class> class T, template<class> class I, template<class,class> class B>
     void testCurveConsistency(CommonVars& vars,
-                              const I& interpolator = I(),
+                              const I<Real>& interpolator = I<Real>(),
                               Real tolerance = 1.0e-9) {
 
         vars.termStructure = boost::shared_ptr<YieldTermStructure>(new
@@ -393,9 +393,9 @@ namespace {
     }
 
 
-    template <class T, class I, template<class C> class B>
+    template <template<class> class T, template<class> class I, template<class,class> class B>
     void testBMACurveConsistency(CommonVars& vars,
-                                 const I& interpolator = I(),
+                                 const I<Real>& interpolator = I<Real>(),
                                  Real tolerance = 1.0e-9) {
 
         // re-adjust settlement
@@ -500,12 +500,12 @@ void PiecewiseYieldCurveTest::testLogCubicDiscountConsistency() {
 
     testCurveConsistency<Discount,LogCubic,IterativeBootstrap>(
         vars,
-        LogCubic(CubicInterpolation::Spline, true,
+        LogCubic<Real>(CubicInterpolation::Spline, true,
                  CubicInterpolation::SecondDerivative, 0.0,
                  CubicInterpolation::SecondDerivative, 0.0));
     testBMACurveConsistency<Discount,LogCubic,IterativeBootstrap>(
         vars,
-        LogCubic(CubicInterpolation::Spline, true,
+        LogCubic<Real>(CubicInterpolation::Spline, true,
                  CubicInterpolation::SecondDerivative, 0.0,
                  CubicInterpolation::SecondDerivative, 0.0));
 }
@@ -563,12 +563,12 @@ void PiecewiseYieldCurveTest::testSplineZeroConsistency() {
 
     testCurveConsistency<ZeroYield,Cubic,IterativeBootstrap>(
                    vars,
-                   Cubic(CubicInterpolation::Spline, true,
+                   Cubic<Real>(CubicInterpolation::Spline, true,
                          CubicInterpolation::SecondDerivative, 0.0,
                          CubicInterpolation::SecondDerivative, 0.0));
     testBMACurveConsistency<ZeroYield,Cubic,IterativeBootstrap>(
                    vars,
-                   Cubic(CubicInterpolation::Spline, true,
+                   Cubic<Real>(CubicInterpolation::Spline, true,
                          CubicInterpolation::SecondDerivative, 0.0,
                          CubicInterpolation::SecondDerivative, 0.0));
 }
@@ -604,12 +604,12 @@ void PiecewiseYieldCurveTest::testSplineForwardConsistency() {
 
     testCurveConsistency<ForwardRate,Cubic,IterativeBootstrap>(
                    vars,
-                   Cubic(CubicInterpolation::Spline, true,
+                   Cubic<Real>(CubicInterpolation::Spline, true,
                          CubicInterpolation::SecondDerivative, 0.0,
                          CubicInterpolation::SecondDerivative, 0.0));
     testBMACurveConsistency<ForwardRate,Cubic,IterativeBootstrap>(
                    vars,
-                   Cubic(CubicInterpolation::Spline, true,
+                   Cubic<Real>(CubicInterpolation::Spline, true,
                          CubicInterpolation::SecondDerivative, 0.0,
                          CubicInterpolation::SecondDerivative, 0.0));
 }
@@ -632,9 +632,9 @@ void PiecewiseYieldCurveTest::testLocalBootstrapConsistency() {
 
     CommonVars vars;
     testCurveConsistency<ForwardRate,ConvexMonotone,LocalBootstrap>(
-                                              vars, ConvexMonotone(), 1.0e-7);
+        vars, ConvexMonotone<Real>(), 1.0e-7);
     testBMACurveConsistency<ForwardRate,ConvexMonotone,LocalBootstrap>(
-                                              vars, ConvexMonotone(), 1.0e-7);
+        vars, ConvexMonotone<Real>(), 1.0e-7);
 }
 
 
@@ -841,9 +841,9 @@ void PiecewiseYieldCurveTest::testJpyLibor() {
 
 namespace {
 
-    template <class T, class I>
+    template <template<class> class T, template<class> class I>
     void testCurveCopy(CommonVars& vars,
-                       const I& interpolator = I()) {
+                       const I<Real>& interpolator = I<Real>()) {
 
         PiecewiseYieldCurve<T,I> curve(vars.settlement, vars.instruments,
                                        Actual360(),
@@ -852,7 +852,7 @@ namespace {
         // necessary to trigger bootstrap
         curve.recalculate();
 
-        typedef typename T::template curve<I>::type base_curve;
+        typedef typename T<Real>::template curve<I>::type base_curve;
 
         base_curve copiedCurve = curve;
 

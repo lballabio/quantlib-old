@@ -39,7 +39,7 @@
 
 namespace QuantLib {
 
-    template<class Traits, class Interpolator>
+    template<template<class> class Traits, template<class> class Interpolator>
     void historicalForwardRatesAnalysis(
                 SequenceStatistics& statistics,
                 std::vector<Date>& skippedDates,
@@ -57,7 +57,7 @@ namespace QuantLib {
                 const std::vector<boost::shared_ptr<SwapIndex> >& swapIndexes,
                 const DayCounter& yieldCurveDayCounter,
                 Real yieldCurveAccuracy = 1.0e-12,
-                const Interpolator& i = Interpolator()) {
+                const Interpolator<Real>& i = Interpolator<Real>()) {
 
 
         statistics.reset();
@@ -203,7 +203,7 @@ namespace QuantLib {
     };
 
     //! %Historical correlation class
-    template<class Traits, class Interpolator>
+    template<class Traits, template<class> class Interpolator>
     class HistoricalForwardRatesAnalysisImpl : public HistoricalForwardRatesAnalysis {
       public:
         HistoricalForwardRatesAnalysisImpl(
@@ -236,31 +236,31 @@ namespace QuantLib {
     };
 
     // inline
-    template<class Traits, class Interpolator>
+    template<class Traits, template<class> class Interpolator>
     const std::vector<Period>&
     HistoricalForwardRatesAnalysisImpl<Traits, Interpolator>::fixingPeriods() const {
         return fixingPeriods_;
     }
 
-    template<class Traits, class Interpolator>
+    template<class Traits, template<class> class Interpolator>
     inline const std::vector<Date>&
     HistoricalForwardRatesAnalysisImpl<Traits, Interpolator>::skippedDates() const {
         return skippedDates_;
     }
 
-    template<class Traits, class Interpolator>
+    template<class Traits, template<class> class Interpolator>
     inline const std::vector<std::string>&
     HistoricalForwardRatesAnalysisImpl<Traits, Interpolator>::skippedDatesErrorMessage() const {
         return skippedDatesErrorMessage_;
     }
 
-    template<class Traits, class Interpolator>
+    template<class Traits, template<class> class Interpolator>
     inline const std::vector<Date>&
     HistoricalForwardRatesAnalysisImpl<Traits, Interpolator>::failedDates() const {
         return failedDates_;
     }
 
-    template<class Traits, class Interpolator>
+    template<class Traits, template<class> class Interpolator>
     inline const std::vector<std::string>&
     HistoricalForwardRatesAnalysisImpl<Traits, Interpolator>::failedDatesErrorMessage() const {
         return failedDatesErrorMessage_;
@@ -270,7 +270,7 @@ namespace QuantLib {
     //HistoricalForwardRatesAnalysis::stats() const {
     //    return stats_;
     //}
-    template<class Traits, class Interpolator>
+    template<class Traits, template<class> class Interpolator>
     HistoricalForwardRatesAnalysisImpl<Traits, Interpolator>::HistoricalForwardRatesAnalysisImpl(
                 const boost::shared_ptr<SequenceStatistics>& stats,
                 const Date& startDate,

@@ -303,6 +303,7 @@ namespace QuantLib {
     };
 
     //! %Cubic interpolation factory and traits
+    template<class T = Real>
     class Cubic {
       public:
         Cubic(CubicInterpolation::DerivativeApprox da

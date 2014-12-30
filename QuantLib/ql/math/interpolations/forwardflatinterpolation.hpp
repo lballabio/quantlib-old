@@ -86,6 +86,7 @@ namespace QuantLib {
     };
 
     //! Forward-flat interpolation factory and traits
+    template <class T = Real>
     class ForwardFlat {
       public:
         template <class I1, class I2>

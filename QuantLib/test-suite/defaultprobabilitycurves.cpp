@@ -139,7 +139,7 @@ void DefaultProbabilityCurveTest::testFlatHazardRate() {
 
 namespace {
 
-    template <class T, class I>
+    template <class T, template<class> class I>
     void testBootstrapFromSpread() {
 
         Calendar calendar = TARGET();
@@ -223,7 +223,7 @@ namespace {
     }
 
 
-    template <class T, class I>
+    template <class T, template<class> class I>
     void testBootstrapFromUpfront() {
 
         Calendar calendar = TARGET();

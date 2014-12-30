@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2011 Ferdinando Ametrano
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,78 +29,84 @@
 
 namespace QuantLib {
 
-    //! safe %Newton 1-D solver with finite difference derivatives
-    /*!
-        \test the correctness of the returned values is tested by
-              checking them against known good results.
-    */
-    class FiniteDifferenceNewtonSafe : public Solver1D<FiniteDifferenceNewtonSafe> {
-      public:
-        template <class F>
-        Real solveImpl(const F& f,
-                       Real xAccuracy) const {
+//! safe %Newton 1-D solver with finite difference derivatives
+/*!
+    \test the correctness of the returned values is tested by
+          checking them against known good results.
+*/
 
-            // Orient the search so that f(xl) < 0
-            Real xh, xl;
-            if (fxMin_ < 0.0) {
-                xl = xMin_;
-                xh = xMax_;
-            } else {
-                xh = xMin_;
-                xl = xMax_;
-            }
+using std::abs;
 
-            Real froot = f(root_);
-            ++evaluationNumber_;
-            // first order finite difference derivative
-            Real dfroot = xMax_-root_ < root_-xMin_ ?
-                (fxMax_-froot)/(xMax_-root_) :
-                (fxMin_-froot)/(xMin_-root_) ;
+template <class T>
+class FiniteDifferenceNewtonSafe_t
+    : public Solver1D<FiniteDifferenceNewtonSafe_t<T>, T> {
+  public:
+    template <class F>
+    T solveImpl(const F &f, T xAccuracy) const {
 
-            // xMax_-xMin_>0 is verified in the constructor
-            Real dx = xMax_-xMin_;
-            while (evaluationNumber_<=maxEvaluations_) {
-                Real frootold = froot;
-                Real rootold = root_;
-                Real dxold = dx;
-                // Bisect if (out of range || not decreasing fast enough)
-                if ((((root_-xh)*dfroot-froot)*
-                     ((root_-xl)*dfroot-froot) > 0.0)
-                    || (std::fabs(2.0*froot) > std::fabs(dxold*dfroot))) {
-                    dx = (xh-xl)/2.0;
-                    root_ = xl+dx;
-                    // if the root estimate just computed is close to the
-                    // previous one, we should calculate dfroot at root and
-                    // xh rather than root and rootold (xl instead of xh would
-                    // be just as good)
-                    if (close(root_, rootold, 2500)) {
-                        rootold = xh;
-                        frootold = f(xh);
-                    }
-                } else { // Newton
-                    dx = froot/dfroot;
-                    root_ -= dx;
-                }
-
-                // Convergence criterion
-                if (std::fabs(dx) < xAccuracy)
-                    return root_;
-
-                froot = f(root_);
-                ++evaluationNumber_;
-                dfroot = (frootold-froot)/(rootold-root_);
-
-                if (froot < 0.0)
-                    xl=root_;
-                else
-                    xh=root_;
-            }
-
-            QL_FAIL("maximum number of function evaluations ("
-                    << maxEvaluations_ << ") exceeded");
+        // Orient the search so that f(xl) < 0
+        T xh, xl;
+        if (this->fxMin_ < 0.0) {
+            xl = this->xMin_;
+            xh = this->xMax_;
+        } else {
+            xh = this->xMin_;
+            xl = this->xMax_;
         }
-    };
 
+        T froot = f(this->root_);
+        ++this->evaluationNumber_;
+        // first order finite difference derivative
+        T dfroot = this->xMax_ - this->root_ < this->root_ - this->xMin_
+                       ? (this->fxMax_ - froot) / (this->xMax_ - this->root_)
+                       : (this->fxMin_ - froot) / (this->xMin_ - this->root_);
+
+        // xMax_-xMin_>0 is verified in the constructor
+        T dx = this->xMax_ - this->xMin_;
+        while (this->evaluationNumber_ <= this->maxEvaluations_) {
+            T frootold = froot;
+            T rootold = this->root_;
+            T dxold = dx;
+            // Bisect if (out of range || not decreasing fast enough)
+            if ((((this->root_ - xh) * dfroot - froot) *
+                     ((this->root_ - xl) * dfroot - froot) >
+                 0.0) ||
+                (std::fabs(2.0 * froot) > std::fabs(dxold * dfroot))) {
+                dx = (xh - xl) / 2.0;
+                this->root_ = xl + dx;
+                // if the root estimate just computed is close to the
+                // previous one, we should calculate dfroot at root and
+                // xh rather than root and rootold (xl instead of xh would
+                // be just as good)
+                if (close(this->root_, rootold, 2500)) {
+                    rootold = xh;
+                    frootold = f(xh);
+                }
+            } else { // Newton
+                dx = froot / dfroot;
+                this->root_ -= dx;
+            }
+
+            // Convergence criterion
+            if (abs(dx) < xAccuracy)
+                return this->root_;
+
+            froot = f(this->root_);
+            ++this->evaluationNumber_;
+            dfroot = (frootold - froot) / (rootold - this->root_);
+
+            if (froot < 0.0)
+                xl = this->root_;
+            else
+                xh = this->root_;
+        }
+
+        QL_FAIL("maximum number of function evaluations ("
+                << this->maxEvaluations_ << ") exceeded");
+    }
+};
+
+typedef FiniteDifferenceNewtonSafe_t<Real> FiniteDifferenceNewtonSafe;
 }
 
 #endif

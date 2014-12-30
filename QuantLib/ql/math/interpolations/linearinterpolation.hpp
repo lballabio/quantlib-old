@@ -85,7 +85,7 @@ template <class T> class LinearInterpolation_t : public Interpolation_t<T> {
 typedef LinearInterpolation_t<Real> LinearInterpolation;
 
 //! %Linear-interpolation factory and traits
-template <class T> class Linear_t {
+template <class T = Real> class Linear {
   public:
     template <class I1, class I2>
     Interpolation_t<T> interpolate(const I1 &xBegin, const I1 &xEnd,
@@ -96,7 +96,6 @@ template <class T> class Linear_t {
     static const Size requiredPoints = 2;
 };
 
-typedef Linear_t<Real> Linear;
 }
 
 #endif

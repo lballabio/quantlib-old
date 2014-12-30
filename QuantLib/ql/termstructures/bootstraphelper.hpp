@@ -3,6 +3,7 @@
 /*
  Copyright (C) 2005, 2006, 2007, 2008 StatPro Italia srl
  Copyright (C) 2007, 2009 Ferdinando Ametrano
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -55,7 +56,7 @@ class BootstrapHelper : public Observer, public Observable {
     //@{
     const Handle<Quote_t<T> > &quote() const { return quote_; }
     virtual T impliedQuote() const = 0;
-    Real quoteError() const { return quote_->value() - impliedQuote(); }
+    T quoteError() const { return quote_->value() - impliedQuote(); }
     //! sets the term structure to be used for pricing
     /*! \warning Being a pointer and not a shared_ptr, the term
                  structure is not guaranteed to remain allocated

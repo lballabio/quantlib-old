@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyritht (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,113 +29,115 @@
 
 namespace QuantLib {
 
-    //! %Brent 1-D solver
-    /*! \test the correctness of the returned values is tested by
-              checking them against known good results.
-    */
-    class Brent : public Solver1D<Brent> {
-      public:
-        template <class F>
-        Real solveImpl(const F& f,
-                       Real xAccuracy) const {
+//! %Brent 1-D solver
+/*! \test the correctness of the returned values is tested by
+          checking them against known good results.
+*/
 
-            /* The implementation of the algorithm was inspired by
-               Press, Teukolsky, Vetterling, and Flannery,
-               "Numerical Recipes in C", 2nd edition, Cambridge
-               University Press
-            */
+using std::abs;
 
-            Real min1, min2;
-            Real froot, p, q, r, s, xAcc1, xMid;
+template <class T = Real> class Brent_t : public Solver1D<Brent_t<T>, T> {
+  public:
+    template <class F> T solveImpl(const F &f, T xAccuracy) const {
 
-            // we want to start with root_ (which equals the guess) on
-            // one side of the bracket and both xMin_ and xMax_ on the
-            // other.
-            froot = f(root_);
-            ++evaluationNumber_;
-            if (froot * fxMin_ < 0) {
-                xMax_ = xMin_;
-                fxMax_ = fxMin_;
-            } else {
-                xMin_ = xMax_;
-                fxMin_ = fxMax_;
+        /* The implementation of the algorithm was inspired by
+           Press, Teukolsky, Vetterling, and Flannery,
+           "Numerical Recipes in C", 2nd edition, Cambridge
+           University Press
+        */
+
+        T min1, min2;
+        T froot, p, q, r, s, xAcc1, xMid;
+
+        // we want to start with root_ (which equals the guess) on
+        // one side of the bracket and both xMin_ and xMax_ on the
+        // other.
+        froot = f(this->root_);
+        ++this->evaluationNumber_;
+        if (froot * this->fxMin_ < 0) {
+            this->xMax_ = this->xMin_;
+            this->fxMax_ = this->fxMin_;
+        } else {
+            this->xMin_ = this->xMax_;
+            this->fxMin_ = this->fxMax_;
+        }
+        T d = this->root_ - this->xMax_;
+        T e = d;
+
+        while (this->evaluationNumber_ <= this->maxEvaluations_) {
+            if ((froot > 0.0 && this->fxMax_ > 0.0) ||
+                (froot < 0.0 && this->fxMax_ < 0.0)) {
+
+                // Rename xMin_, root_, xMax_ and adjust bounds
+                this->xMax_ = this->xMin_;
+                this->fxMax_ = this->fxMin_;
+                e = d = this->root_ - this->xMin_;
             }
-            Real d = root_- xMax_;
-            Real e = d;
+            if (abs(this->fxMax_) < abs(froot)) {
+                this->xMin_ = this->root_;
+                this->root_ = this->xMax_;
+                this->xMax_ = this->xMin_;
+                this->fxMin_ = froot;
+                froot = this->fxMax_;
+                this->fxMax_ = this->fxMin_;
+            }
+            // Convergence check
+            xAcc1 = 2.0 * QL_EPSILON * abs(this->root_) + 0.5 * xAccuracy;
+            xMid = (this->xMax_ - this->root_) / 2.0;
+            if (abs(xMid) <= xAcc1 || (close<T>(froot, 0.0))) {
+                f(this->root_);
+                ++this->evaluationNumber_;
+                return this->root_;
+            }
+            if (abs(e) >= xAcc1 && abs(this->fxMin_) > abs(froot)) {
 
-            while (evaluationNumber_<=maxEvaluations_) {
-                if ((froot > 0.0 && fxMax_ > 0.0) ||
-                    (froot < 0.0 && fxMax_ < 0.0)) {
-
-                    // Rename xMin_, root_, xMax_ and adjust bounds
-                    xMax_=xMin_;
-                    fxMax_=fxMin_;
-                    e=d=root_-xMin_;
-                }
-                if (std::fabs(fxMax_) < std::fabs(froot)) {
-                    xMin_=root_;
-                    root_=xMax_;
-                    xMax_=xMin_;
-                    fxMin_=froot;
-                    froot=fxMax_;
-                    fxMax_=fxMin_;
-                }
-                // Convergence check
-                xAcc1=2.0*QL_EPSILON*std::fabs(root_)+0.5*xAccuracy;
-                xMid=(xMax_-root_)/2.0;
-                if (std::fabs(xMid) <= xAcc1 || (close(froot, 0.0))) {
-                    f(root_);
-                    ++evaluationNumber_;
-                    return root_;
-                }
-                if (std::fabs(e) >= xAcc1 &&
-                    std::fabs(fxMin_) > std::fabs(froot)) {
-
-                    // Attempt inverse quadratic interpolation
-                    s=froot/fxMin_;
-                    if (close(xMin_,xMax_)) {
-                        p=2.0*xMid*s;
-                        q=1.0-s;
-                    } else {
-                        q=fxMin_/fxMax_;
-                        r=froot/fxMax_;
-                        p=s*(2.0*xMid*q*(q-r)-(root_-xMin_)*(r-1.0));
-                        q=(q-1.0)*(r-1.0)*(s-1.0);
-                    }
-                    if (p > 0.0) q = -q;  // Check whether in bounds
-                    p=std::fabs(p);
-                    min1=3.0*xMid*q-std::fabs(xAcc1*q);
-                    min2=std::fabs(e*q);
-                    if (2.0*p < (min1 < min2 ? min1 : min2)) {
-                        e=d;                // Accept interpolation
-                        d=p/q;
-                    } else {
-                        d=xMid;  // Interpolation failed, use bisection
-                        e=d;
-                    }
+                // Attempt inverse quadratic interpolation
+                s = froot / this->fxMin_;
+                if (close(this->xMin_, this->xMax_)) {
+                    p = 2.0 * xMid * s;
+                    q = 1.0 - s;
                 } else {
-                    // Bounds decreasing too slowly, use bisection
-                    d=xMid;
-                    e=d;
+                    q = this->fxMin_ / this->fxMax_;
+                    r = froot / this->fxMax_;
+                    p = s * (2.0 * xMid * q * (q - r) -
+                             (this->root_ - this->xMin_) * (r - 1.0));
+                    q = (q - 1.0) * (r - 1.0) * (s - 1.0);
                 }
-                xMin_=root_;
-                fxMin_=froot;
-                if (std::fabs(d) > xAcc1)
-                    root_ += d;
-                else
-                    root_ += sign(xAcc1,xMid);
-                froot=f(root_);
-                ++evaluationNumber_;
+                if (p > 0.0)
+                    q = -q; // Check whether in bounds
+                p = abs(p);
+                min1 = 3.0 * xMid * q - abs(xAcc1 * q);
+                min2 = abs(e * q);
+                if (2.0 * p < (min1 < min2 ? min1 : min2)) {
+                    e = d; // Accept interpolation
+                    d = p / q;
+                } else {
+                    d = xMid; // Interpolation failed, use bisection
+                    e = d;
+                }
+            } else {
+                // Bounds decreasing too slowly, use bisection
+                d = xMid;
+                e = d;
             }
-            QL_FAIL("maximum number of function evaluations ("
-                    << maxEvaluations_ << ") exceeded");
+            this->xMin_ = this->root_;
+            this->fxMin_ = froot;
+            if (abs(d) > xAcc1)
+                this->root_ += d;
+            else
+                this->root_ += sign(xAcc1, xMid);
+            froot = f(this->root_);
+            ++this->evaluationNumber_;
         }
-      private:
-        Real sign(Real a, Real b) const {
-            return b >= 0.0 ? std::fabs(a) : -std::fabs(a);
-        }
-    };
+        QL_FAIL("maximum number of function evaluations ("
+                << this->maxEvaluations_ << ") exceeded");
+    }
 
+  private:
+    T sign(T a, T b) const { return b >= 0.0 ? abs(a) : -abs(a); }
+};
+
+typedef Brent_t<Real> Brent;
 }
 
 #endif

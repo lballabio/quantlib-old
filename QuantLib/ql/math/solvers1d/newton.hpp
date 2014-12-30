@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -28,63 +29,62 @@
 
 namespace QuantLib {
 
-    //! %Newton 1-D solver
-    /*! \note This solver requires that the passed function object
-              implement a method <tt>Real derivative(Real)</tt>.
+//! %Newton 1-D solver
+/*! \note This solver requires that the passed function object
+          implement a method <tt>Real derivative(Real)</tt>.
 
-        \test the correctness of the returned values is tested by
-              checking them against known good results.
-    */
+    \test the correctness of the returned values is tested by
+          checking them against known good results.
+*/
 
-    using std::abs;
+using std::abs;
 
-    template<class T>
-    class Newton_t : public Solver1D<Newton_t<T>,T> {
-      public:
-        template <class F>
-        T solveImpl(const F& f,
-                       T xAccuracy) const {
+template <class T> class Newton_t : public Solver1D<Newton_t<T>, T> {
+  public:
+    template <class F> T solveImpl(const F &f, T xAccuracy) const {
 
-            /* The implementation of the algorithm was inspired by
-               Press, Teukolsky, Vetterling, and Flannery,
-               "Numerical Recipes in C", 2nd edition,
-               Cambridge University Press
-            */
+        /* The implementation of the algorithm was inspired by
+           Press, Teukolsky, Vetterling, and Flannery,
+           "Numerical Recipes in C", 2nd edition,
+           Cambridge University Press
+        */
 
-            T froot, dfroot, dx;
+        T froot, dfroot, dx;
 
+        froot = f(this->root_);
+        dfroot = f.derivative(this->root_);
+        QL_REQUIRE(dfroot != Null<Real>(),
+                   "Newton requires function's derivative");
+        ++this->evaluationNumber_;
+
+        while (this->evaluationNumber_ <= this->maxEvaluations_) {
+            dx = froot / dfroot;
+            this->root_ -= dx;
+            // jumped out of brackets, switch to NewtonSafe
+            if ((this->xMin_ - this->root_) * (this->root_ - this->xMax_) <
+                0.0) {
+                NewtonSafe_t<T> s;
+                s.setMaxEvaluations(this->maxEvaluations_ -
+                                    this->evaluationNumber_);
+                return s.solve(f, xAccuracy, this->root_ + dx, this->xMin_,
+                               this->xMax_);
+            }
+            if (abs(dx) < xAccuracy) {
+                f(this->root_);
+                ++this->evaluationNumber_;
+                return this->root_;
+            }
             froot = f(this->root_);
             dfroot = f.derivative(this->root_);
-            QL_REQUIRE(dfroot != Null<Real>(),
-                       "Newton requires function's derivative");
             ++this->evaluationNumber_;
-
-            while (this->evaluationNumber_<=this->maxEvaluations_) {
-                dx = froot/dfroot;
-                this->root_ -= dx;
-                // jumped out of brackets, switch to NewtonSafe
-                if ((this->xMin_-this->root_)*(this->root_-this->xMax_) < 0.0) {
-                    NewtonSafe_t<T> s;
-                    s.setMaxEvaluations(this->maxEvaluations_-this->evaluationNumber_);
-                    return s.solve(f, xAccuracy, this->root_+dx, this->xMin_, this->xMax_);
-                }
-                if (abs(dx) < xAccuracy) {
-                    f(this->root_);
-                    ++this->evaluationNumber_;
-                    return this->root_;
-                }
-                froot = f(this->root_);
-                dfroot = f.derivative(this->root_);
-                ++this->evaluationNumber_;
-            }
-
-            QL_FAIL("maximum number of function evaluations ("
-                    << this->maxEvaluations_ << ") exceeded");
         }
-    };
 
-    typedef Newton_t<Real> Newton;
+        QL_FAIL("maximum number of function evaluations ("
+                << this->maxEvaluations_ << ") exceeded");
+    }
+};
 
+typedef Newton_t<Real> Newton;
 }
 
 #endif

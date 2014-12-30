@@ -33,7 +33,7 @@ namespace QuantLib {
     : TermStructure(dates[0], calendar, dayCounter),
       name_(name), commodityType_(commodityType), unitOfMeasure_(unitOfMeasure),
       currency_(currency), dates_(dates), data_(prices),
-      interpolator_(ForwardFlat()), basisOfCurveUomConversionFactor_(1) {
+        interpolator_(ForwardFlat<Real>()), basisOfCurveUomConversionFactor_(1) {
 
         QL_REQUIRE(dates_.size()>1, "too few dates");
         QL_REQUIRE(data_.size()==dates_.size(), "dates/prices count mismatch");
@@ -61,7 +61,7 @@ namespace QuantLib {
                                    const DayCounter& dayCounter)
     : TermStructure(0, calendar, dayCounter),
       name_(name), commodityType_(commodityType), unitOfMeasure_(unitOfMeasure),
-      currency_(currency), interpolator_(ForwardFlat()),
+      currency_(currency), interpolator_(ForwardFlat<Real>()),
       basisOfCurveUomConversionFactor_(1) {}
 
     void CommodityCurve::setPrices(std::map<Date, Real>& prices) {

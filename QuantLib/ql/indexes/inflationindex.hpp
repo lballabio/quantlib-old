@@ -32,9 +32,6 @@
 
 namespace QuantLib {
 
-    class ZeroInflationTermStructure;
-    class YoYInflationTermStructure;
-
     //! Base class for inflation-rate indexes,
     class InflationIndex : public Index, public Observer {
       public:

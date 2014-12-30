@@ -35,7 +35,7 @@ namespace QuantLib {
 
     //! DefaultProbabilityTermStructure based on interpolation of hazard rates
     /*! \ingroup defaultprobabilitytermstructures */
-    template <class Interpolator>
+    template <template<class> class Interpolator>
     class InterpolatedHazardRateCurve
         : public HazardRateStructure,
           protected InterpolatedCurve<Interpolator>::Type {
@@ -48,18 +48,18 @@ namespace QuantLib {
             const std::vector<Handle<Quote> >& jumps =
                                                 std::vector<Handle<Quote> >(),
             const std::vector<Date>& jumpDates = std::vector<Date>(),
-            const Interpolator& interpolator = Interpolator());
+            const Interpolator<Real>& interpolator = Interpolator<Real>());
         InterpolatedHazardRateCurve(
             const std::vector<Date>& dates,
             const std::vector<Rate>& hazardRates,
             const DayCounter& dayCounter,
             const Calendar& calendar,
-            const Interpolator& interpolator);
+            const Interpolator<Real>& interpolator);
         InterpolatedHazardRateCurve(
             const std::vector<Date>& dates,
             const std::vector<Rate>& hazardRates,
             const DayCounter& dayCounter,
-            const Interpolator& interpolator);
+            const Interpolator<Real>& interpolator);
         //! \name TermStructure interface
         //@{
         Date maxDate() const;
@@ -77,20 +77,20 @@ namespace QuantLib {
             const DayCounter&,
             const std::vector<Handle<Quote> >& jumps = std::vector<Handle<Quote> >(),
             const std::vector<Date>& jumpDates = std::vector<Date>(),
-            const Interpolator& interpolator = Interpolator());
+            const Interpolator<Real>& interpolator = Interpolator<Real>());
         InterpolatedHazardRateCurve(
             const Date& referenceDate,
             const DayCounter&,
             const std::vector<Handle<Quote> >& jumps = std::vector<Handle<Quote> >(),
             const std::vector<Date>& jumpDates = std::vector<Date>(),
-            const Interpolator& interpolator = Interpolator());
+            const Interpolator<Real>& interpolator = Interpolator<Real>());
         InterpolatedHazardRateCurve(
             Natural settlementDays,
             const Calendar&,
             const DayCounter&,
             const std::vector<Handle<Quote> >& jumps = std::vector<Handle<Quote> >(),
             const std::vector<Date>& jumpDates = std::vector<Date>(),
-            const Interpolator& interpolator = Interpolator());
+            const Interpolator<Real>& interpolator = Interpolator<Real>());
         //! \name DefaultProbabilityTermStructure implementation
         //@{
         Real hazardRateImpl(Time) const;
@@ -104,36 +104,36 @@ namespace QuantLib {
 
     // inline definitions
 
-    template <class T>
+    template <template<class> class T>
     inline Date InterpolatedHazardRateCurve<T>::maxDate() const {
         return dates_.back();
     }
 
-    template <class T>
+    template <template<class> class T>
     inline const std::vector<Time>&
     InterpolatedHazardRateCurve<T>::times() const {
         return this->times_;
     }
 
-    template <class T>
+    template <template<class> class T>
     inline const std::vector<Date>&
     InterpolatedHazardRateCurve<T>::dates() const {
         return dates_;
     }
 
-    template <class T>
+    template <template<class> class T>
     inline const std::vector<Real>&
     InterpolatedHazardRateCurve<T>::data() const {
         return this->data_;
     }
 
-    template <class T>
+    template <template<class> class T>
     inline const std::vector<Rate>&
     InterpolatedHazardRateCurve<T>::hazardRates() const {
         return this->data_;
     }
 
-    template <class T>
+    template <template<class> class T>
     inline std::vector<std::pair<Date, Real> >
     InterpolatedHazardRateCurve<T>::nodes() const {
         std::vector<std::pair<Date, Real> > results(dates_.size());
@@ -146,7 +146,7 @@ namespace QuantLib {
 
     // template definitions
 
-    template <class T>
+    template <template<class> class T>
     Real InterpolatedHazardRateCurve<T>::hazardRateImpl(Time t) const {
         if (t <= this->times_.back())
             return this->interpolation_(t, true);
@@ -155,7 +155,7 @@ namespace QuantLib {
         return this->data_.back();
     }
 
-    template <class T>
+    template <template<class> class T>
     Probability
     InterpolatedHazardRateCurve<T>::survivalProbabilityImpl(Time t) const {
         if (t == 0.0)
@@ -172,37 +172,37 @@ namespace QuantLib {
         return std::exp(-integral);
     }
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedHazardRateCurve<T>::InterpolatedHazardRateCurve(
                                     const DayCounter& dayCounter,
                                     const std::vector<Handle<Quote> >& jumps,
                                     const std::vector<Date>& jumpDates,
-                                    const T& interpolator)
+                                    const T<Real>& interpolator)
     : HazardRateStructure(dayCounter, jumps, jumpDates),
       InterpolatedCurve<T>::Type(interpolator) {}
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedHazardRateCurve<T>::InterpolatedHazardRateCurve(
                                     const Date& referenceDate,
                                     const DayCounter& dayCounter,
                                     const std::vector<Handle<Quote> >& jumps,
                                     const std::vector<Date>& jumpDates,
-                                    const T& interpolator)
+                                    const T<Real>& interpolator)
     : HazardRateStructure(referenceDate, Calendar(), dayCounter, jumps, jumpDates),
       InterpolatedCurve<T>::Type(interpolator) {}
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedHazardRateCurve<T>::InterpolatedHazardRateCurve(
                                     Natural settlementDays,
                                     const Calendar& calendar,
                                     const DayCounter& dayCounter,
                                     const std::vector<Handle<Quote> >& jumps,
                                     const std::vector<Date>& jumpDates,
-                                    const T& interpolator)
+                                    const T<Real>& interpolator)
     : HazardRateStructure(settlementDays, calendar, dayCounter, jumps, jumpDates),
       InterpolatedCurve<T>::Type(interpolator) {}
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedHazardRateCurve<T>::InterpolatedHazardRateCurve(
                                     const std::vector<Date>& dates,
                                     const std::vector<Rate>& hazardRates,
@@ -210,7 +210,7 @@ namespace QuantLib {
                                     const Calendar& calendar,
                                     const std::vector<Handle<Quote> >& jumps,
                                     const std::vector<Date>& jumpDates,
-                                    const T& interpolator)
+                                    const T<Real>& interpolator)
     : HazardRateStructure(dates.at(0), calendar, dayCounter, jumps, jumpDates),
         InterpolatedCurve<T>::Type(std::vector<Time>(), hazardRates, interpolator),
       dates_(dates)
@@ -218,13 +218,13 @@ namespace QuantLib {
         initialize();
     }
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedHazardRateCurve<T>::InterpolatedHazardRateCurve(
             const std::vector<Date>& dates,
             const std::vector<Rate>& hazardRates,
             const DayCounter& dayCounter,
             const Calendar& calendar,
-            const T& interpolator)
+            const T<Real>& interpolator)
     : HazardRateStructure(dates.at(0), calendar, dayCounter),
       InterpolatedCurve<T>(std::vector<Time>(), hazardRates, interpolator),
       dates_(dates)
@@ -232,12 +232,12 @@ namespace QuantLib {
         initialize();
     }
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedHazardRateCurve<T>::InterpolatedHazardRateCurve(
             const std::vector<Date>& dates,
             const std::vector<Rate>& hazardRates,
             const DayCounter& dayCounter,
-            const T& interpolator)
+            const T<Real>& interpolator)
     : HazardRateStructure(dates.at(0), Calendar(), dayCounter),
       InterpolatedCurve<T>(std::vector<Time>(), hazardRates, interpolator),
       dates_(dates)
@@ -247,10 +247,10 @@ namespace QuantLib {
 
     #endif
 
-    template <class T>
+    template <template<class> class T>
     void InterpolatedHazardRateCurve<T>::initialize()
     {
-        QL_REQUIRE(dates_.size() >= T::requiredPoints,
+        QL_REQUIRE(dates_.size() >= T<Real>::requiredPoints,
                    "not enough input dates given");
         QL_REQUIRE(this->data_.size() == dates_.size(),
                    "dates/data count mismatch");

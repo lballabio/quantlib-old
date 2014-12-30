@@ -36,7 +36,7 @@ namespace QuantLib {
 
 //! YieldTermStructure based on interpolation of discount factors
 /*! \ingroup yieldtermstructures */
-template <class Interpolator, class T = Real>
+template <template <class> class Interpolator, class T = Real>
 class InterpolatedDiscountCurve_t
     : public YieldTermStructure_t<T>,
       protected InterpolatedCurve_t<Interpolator, T> {
@@ -47,16 +47,16 @@ class InterpolatedDiscountCurve_t
         const std::vector<Handle<Quote_t<T> > > &jumps =
             std::vector<Handle<Quote_t<T> > >(),
         const std::vector<Date> &jumpDates = std::vector<Date>(),
-        const Interpolator &interpolator = Interpolator());
+        const Interpolator<T> &interpolator = Interpolator<T>());
     InterpolatedDiscountCurve_t(const std::vector<Date> &dates,
                                 const std::vector<T> &dfs,
                                 const DayCounter &dayCounter,
                                 const Calendar &calendar,
-                                const Interpolator &interpolator);
+                                const Interpolator<T> &interpolator);
     InterpolatedDiscountCurve_t(const std::vector<Date> &dates,
                                 const std::vector<T> &dfs,
                                 const DayCounter &dayCounter,
-                                const Interpolator &interpolator);
+                                const Interpolator<T> &interpolator);
     //! \name TermStructure interface
     //@{
     Date maxDate() const;
@@ -74,19 +74,19 @@ class InterpolatedDiscountCurve_t
         const DayCounter &, const std::vector<Handle<Quote_t<T> > > &jumps =
                                 std::vector<Handle<Quote_t<T> > >(),
         const std::vector<Date> &jumpDates = std::vector<Date>(),
-        const Interpolator &interpolator = Interpolator());
+        const Interpolator<T> &interpolator = Interpolator<T>());
     InterpolatedDiscountCurve_t(
         const Date &referenceDate, const DayCounter &,
         const std::vector<Handle<Quote_t<T> > > &jumps =
             std::vector<Handle<Quote_t<T> > >(),
         const std::vector<Date> &jumpDates = std::vector<Date>(),
-        const Interpolator &interpolator = Interpolator());
+        const Interpolator<T> &interpolator = Interpolator<T>());
     InterpolatedDiscountCurve_t(
         Natural settlementDays, const Calendar &, const DayCounter &,
         const std::vector<Handle<Quote_t<T> > > &jumps =
             std::vector<Handle<Quote_t<T> > >(),
         const std::vector<Date> &jumpDates = std::vector<Date>(),
-        const Interpolator &interpolator = Interpolator());
+        const Interpolator<T> &interpolator = Interpolator<T>());
     //! \name YieldTermStructure implementation
     //@{
     T discountImpl(Time) const;
@@ -107,36 +107,36 @@ typedef InterpolatedDiscountCurve_t<LogLinear, Real> DiscountCurve;
 
 // inline definitions
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 inline Date InterpolatedDiscountCurve_t<Interpolator, T>::maxDate() const {
     return dates_.back();
 }
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 inline const std::vector<Time> &
 InterpolatedDiscountCurve_t<Interpolator, T>::times() const {
     return this->times_;
 }
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 inline const std::vector<Date> &
 InterpolatedDiscountCurve_t<Interpolator, T>::dates() const {
     return dates_;
 }
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 inline const std::vector<T> &
 InterpolatedDiscountCurve_t<Interpolator, T>::data() const {
     return this->data_;
 }
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 inline const std::vector<T> &
 InterpolatedDiscountCurve_t<Interpolator, T>::discounts() const {
     return this->data_;
 }
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 inline std::vector<std::pair<Date, T> >
 InterpolatedDiscountCurve_t<Interpolator, T>::nodes() const {
     std::vector<std::pair<Date, T> > results(dates_.size());
@@ -149,7 +149,7 @@ InterpolatedDiscountCurve_t<Interpolator, T>::nodes() const {
 
 // template definitions
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 T InterpolatedDiscountCurve_t<Interpolator, T>::discountImpl(Time t) const {
     if (t <= this->times_.back())
         return this->interpolation_(t, true);
@@ -161,39 +161,39 @@ T InterpolatedDiscountCurve_t<Interpolator, T>::discountImpl(Time t) const {
     return dMax * std::exp(-instFwdMax * (t - tMax));
 }
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 InterpolatedDiscountCurve_t<Interpolator, T>::InterpolatedDiscountCurve_t(
     const DayCounter &dayCounter,
     const std::vector<Handle<Quote_t<T> > > &jumps,
-    const std::vector<Date> &jumpDates, const Interpolator &interpolator)
+    const std::vector<Date> &jumpDates, const Interpolator<T> &interpolator)
     : YieldTermStructure_t<T>(dayCounter, jumps, jumpDates),
       InterpolatedCurve_t<Interpolator, T>(interpolator) {}
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 InterpolatedDiscountCurve_t<Interpolator, T>::InterpolatedDiscountCurve_t(
     const Date &referenceDate, const DayCounter &dayCounter,
     const std::vector<Handle<Quote_t<T> > > &jumps,
-    const std::vector<Date> &jumpDates, const Interpolator &interpolator)
+    const std::vector<Date> &jumpDates, const Interpolator<T> &interpolator)
     : YieldTermStructure_t<T>(referenceDate, Calendar(), dayCounter, jumps,
                               jumpDates),
       InterpolatedCurve_t<Interpolator, T>(interpolator) {}
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 InterpolatedDiscountCurve_t<Interpolator, T>::InterpolatedDiscountCurve_t(
     Natural settlementDays, const Calendar &calendar,
     const DayCounter &dayCounter,
     const std::vector<Handle<Quote_t<T> > > &jumps,
-    const std::vector<Date> &jumpDates, const Interpolator &interpolator)
+    const std::vector<Date> &jumpDates, const Interpolator<T> &interpolator)
     : YieldTermStructure_t<T>(settlementDays, calendar, dayCounter, jumps,
                               jumpDates),
       InterpolatedCurve_t<Interpolator, T>(interpolator) {}
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 InterpolatedDiscountCurve_t<Interpolator, T>::InterpolatedDiscountCurve_t(
     const std::vector<Date> &dates, const std::vector<T> &discounts,
     const DayCounter &dayCounter, const Calendar &calendar,
     const std::vector<Handle<Quote_t<T> > > &jumps,
-    const std::vector<Date> &jumpDates, const Interpolator &interpolator)
+    const std::vector<Date> &jumpDates, const Interpolator<T> &interpolator)
     : YieldTermStructure_t<T>(dates.at(0), calendar, dayCounter, jumps,
                               jumpDates),
       InterpolatedCurve_t<Interpolator, T>(std::vector<Time>(), discounts,
@@ -202,11 +202,11 @@ InterpolatedDiscountCurve_t<Interpolator, T>::InterpolatedDiscountCurve_t(
     initialize();
 }
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 InterpolatedDiscountCurve_t<Interpolator, T>::InterpolatedDiscountCurve_t(
     const std::vector<Date> &dates, const std::vector<T> &discounts,
     const DayCounter &dayCounter, const Calendar &calendar,
-    const Interpolator &interpolator)
+    const Interpolator<T> &interpolator)
     : YieldTermStructure_t<T>(dates.at(0), calendar, dayCounter),
       InterpolatedCurve_t<Interpolator, T>(std::vector<Time>(), discounts,
                                            interpolator),
@@ -214,10 +214,10 @@ InterpolatedDiscountCurve_t<Interpolator, T>::InterpolatedDiscountCurve_t(
     initialize();
 }
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 InterpolatedDiscountCurve_t<Interpolator, T>::InterpolatedDiscountCurve_t(
     const std::vector<Date> &dates, const std::vector<T> &discounts,
-    const DayCounter &dayCounter, const Interpolator &interpolator)
+    const DayCounter &dayCounter, const Interpolator<T> &interpolator)
     : YieldTermStructure_t<T>(dates.at(0), Calendar(), dayCounter),
       InterpolatedCurve_t<Interpolator, T>(std::vector<Time>(), discounts,
                                            interpolator),
@@ -227,9 +227,9 @@ InterpolatedDiscountCurve_t<Interpolator, T>::InterpolatedDiscountCurve_t(
 
 #endif
 
-template <class Interpolator, class T>
+template <template <class> class Interpolator, class T>
 void InterpolatedDiscountCurve_t<Interpolator, T>::initialize() {
-    QL_REQUIRE(dates_.size() >= Interpolator::requiredPoints,
+    QL_REQUIRE(dates_.size() >= Interpolator<T>::requiredPoints,
                "not enough input dates given");
     QL_REQUIRE(this->data_.size() == dates_.size(),
                "dates/data count mismatch");
@@ -263,7 +263,8 @@ void InterpolatedDiscountCurve_t<Interpolator, T>::initialize() {
     this->interpolation_.update();
 }
 
-template <class Interpolator> struct InterpolatedDiscountCurve {
+template <template <class> class Interpolator>
+struct InterpolatedDiscountCurve {
     typedef InterpolatedDiscountCurve_t<Interpolator, Real> Type;
 };
 

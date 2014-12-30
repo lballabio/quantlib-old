@@ -193,8 +193,8 @@ namespace {
         bool indexIsInterpolated = true;    // actually false for UKRPI but smooth surfaces are
                                             // better for finding intersections etc
 
-        boost::shared_ptr<InterpolatedYoYInflationCurve<Linear> >
-            pYTSEU( new InterpolatedYoYInflationCurve<Linear>(
+        boost::shared_ptr<InterpolatedYoYInflationCurve<Linear>::Type >
+            pYTSEU( new InterpolatedYoYInflationCurve<Linear>::Type(
                     eval, TARGET(), Actual365Fixed(), Period(2,Months), Monthly,
                     indexIsInterpolated, nominalGBP, d, r) );
         yoyEU.linkTo(pYTSEU);

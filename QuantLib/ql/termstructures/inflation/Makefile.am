@@ -12,9 +12,7 @@ this_include_HEADERS = \
     piecewisezeroinflationcurve.hpp \
     seasonality.hpp
 
-libInflationTermStructures_la_SOURCES = \
-    inflationhelpers.cpp \
-    seasonality.cpp
+libInflationTermStructures_la_SOURCES =
 
 noinst_LTLIBRARIES = libInflationTermStructures.la
 

@@ -34,7 +34,7 @@ namespace QuantLib {
 
     //! DefaultProbabilityTermStructure based on interpolation of default densities
     /*! \ingroup defaultprobabilitytermstructures */
-    template <class Interpolator>
+    template <template<class> class Interpolator>
     class InterpolatedDefaultDensityCurve
         : public DefaultDensityStructure,
           protected InterpolatedCurve<Interpolator>::Type {
@@ -47,18 +47,18 @@ namespace QuantLib {
             const std::vector<Handle<Quote> >& jumps =
                                                 std::vector<Handle<Quote> >(),
             const std::vector<Date>& jumpDates = std::vector<Date>(),
-            const Interpolator& interpolator = Interpolator());
+            const Interpolator<Real>& interpolator = Interpolator<Real>());
         InterpolatedDefaultDensityCurve(
             const std::vector<Date>& dates,
             const std::vector<Real>& densities,
             const DayCounter& dayCounter,
             const Calendar& calendar,
-            const Interpolator& interpolator);
+            const Interpolator<Real>& interpolator);
         InterpolatedDefaultDensityCurve(
             const std::vector<Date>& dates,
             const std::vector<Real>& densities,
             const DayCounter& dayCounter,
-            const Interpolator& interpolator);
+            const Interpolator<Real>& interpolator);
         //! \name TermStructure interface
         //@{
         Date maxDate() const;
@@ -76,20 +76,20 @@ namespace QuantLib {
             const DayCounter&,
             const std::vector<Handle<Quote> >& jumps = std::vector<Handle<Quote> >(),
             const std::vector<Date>& jumpDates = std::vector<Date>(),
-            const Interpolator& interpolator = Interpolator());
+            const Interpolator<Real>& interpolator = Interpolator<Real>());
         InterpolatedDefaultDensityCurve(
             const Date& referenceDate,
             const DayCounter&,
             const std::vector<Handle<Quote> >& jumps = std::vector<Handle<Quote> >(),
             const std::vector<Date>& jumpDates = std::vector<Date>(),
-            const Interpolator& interpolator = Interpolator());
+            const Interpolator<Real>& interpolator = Interpolator<Real>());
         InterpolatedDefaultDensityCurve(
             Natural settlementDays,
             const Calendar&,
             const DayCounter&,
             const std::vector<Handle<Quote> >& jumps = std::vector<Handle<Quote> >(),
             const std::vector<Date>& jumpDates = std::vector<Date>(),
-            const Interpolator& interpolator = Interpolator());
+            const Interpolator<Real>& interpolator = Interpolator<Real>());
         //! \name DefaultDensityStructure implementation
         //@{
         Real defaultDensityImpl(Time) const;
@@ -104,36 +104,36 @@ namespace QuantLib {
 
     // inline definitions
 
-    template <class T>
+    template <template<class> class T>
     inline Date InterpolatedDefaultDensityCurve<T>::maxDate() const {
         return dates_.back();
     }
 
-    template <class T>
+    template <template<class> class T>
     inline const std::vector<Time>&
     InterpolatedDefaultDensityCurve<T>::times() const {
         return this->times_;
     }
 
-    template <class T>
+    template <template<class> class T>
     inline const std::vector<Date>&
     InterpolatedDefaultDensityCurve<T>::dates() const {
         return dates_;
     }
 
-    template <class T>
+    template <template<class> class T>
     inline const std::vector<Real>&
     InterpolatedDefaultDensityCurve<T>::data() const {
         return this->data_;
     }
 
-    template <class T>
+    template <template<class> class T>
     inline const std::vector<Real>&
     InterpolatedDefaultDensityCurve<T>::defaultDensities() const {
         return this->data_;
     }
 
-    template <class T>
+    template <template<class> class T>
     inline std::vector<std::pair<Date, Real> >
     InterpolatedDefaultDensityCurve<T>::nodes() const {
         std::vector<std::pair<Date, Real> > results(dates_.size());
@@ -146,7 +146,7 @@ namespace QuantLib {
 
     // template definitions
 
-    template <class T>
+    template <template<class> class T>
     Real InterpolatedDefaultDensityCurve<T>::defaultDensityImpl(Time t) const {
         if (t <= this->times_.back())
             return this->interpolation_(t, true);
@@ -155,7 +155,7 @@ namespace QuantLib {
         return this->data_.back();
     }
 
-    template <class T>
+    template <template<class> class T>
     Probability
     InterpolatedDefaultDensityCurve<T>::survivalProbabilityImpl(Time t) const {
         if (t == 0.0)
@@ -174,37 +174,37 @@ namespace QuantLib {
         return std::max<Real>(P, 0.0);
     }
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedDefaultDensityCurve<T>::InterpolatedDefaultDensityCurve(
                                     const DayCounter& dayCounter,
                                     const std::vector<Handle<Quote> >& jumps,
                                     const std::vector<Date>& jumpDates,
-                                    const T& interpolator)
+                                    const T<Real>& interpolator)
     : DefaultDensityStructure(dayCounter, jumps, jumpDates),
       InterpolatedCurve<T>::Type(interpolator) {}
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedDefaultDensityCurve<T>::InterpolatedDefaultDensityCurve(
                                     const Date& referenceDate,
                                     const DayCounter& dayCounter,
                                     const std::vector<Handle<Quote> >& jumps,
                                     const std::vector<Date>& jumpDates,
-                                    const T& interpolator)
+                                    const T<Real>& interpolator)
     : DefaultDensityStructure(referenceDate, Calendar(), dayCounter, jumps, jumpDates),
       InterpolatedCurve<T>::Type(interpolator) {}
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedDefaultDensityCurve<T>::InterpolatedDefaultDensityCurve(
                                     Natural settlementDays,
                                     const Calendar& calendar,
                                     const DayCounter& dayCounter,
                                     const std::vector<Handle<Quote> >& jumps,
                                     const std::vector<Date>& jumpDates,
-                                    const T& interpolator)
+                                    const T<Real>& interpolator)
     : DefaultDensityStructure(settlementDays, calendar, dayCounter, jumps, jumpDates),
       InterpolatedCurve<T>::Type(interpolator) {}
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedDefaultDensityCurve<T>::InterpolatedDefaultDensityCurve(
                                     const std::vector<Date>& dates,
                                     const std::vector<Real>& densities,
@@ -212,7 +212,7 @@ namespace QuantLib {
                                     const Calendar& calendar,
                                     const std::vector<Handle<Quote> >& jumps,
                                     const std::vector<Date>& jumpDates,
-                                    const T& interpolator)
+                                    const T<Real>& interpolator)
     : DefaultDensityStructure(dates.at(0), calendar, dayCounter, jumps, jumpDates),
       InterpolatedCurve<T>::Type(std::vector<Time>(), densities, interpolator),
       dates_(dates)
@@ -220,13 +220,13 @@ namespace QuantLib {
         initialize(dates, densities, dayCounter);
     }
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedDefaultDensityCurve<T>::InterpolatedDefaultDensityCurve(
             const std::vector<Date>& dates,
             const std::vector<Real>& densities,
             const DayCounter& dayCounter,
             const Calendar& calendar,
-            const T& interpolator)
+            const T<Real>& interpolator)
     : DefaultDensityStructure(dates.at(0), calendar, dayCounter),
       InterpolatedCurve<T>::Type(std::vector<Time>(), densities, interpolator),
       dates_(dates)
@@ -234,12 +234,12 @@ namespace QuantLib {
         initialize(dates, densities, dayCounter);
     }
 
-    template <class T>
+    template <template<class> class T>
     InterpolatedDefaultDensityCurve<T>::InterpolatedDefaultDensityCurve(
             const std::vector<Date>& dates,
             const std::vector<Real>& densities,
             const DayCounter& dayCounter,
-            const T& interpolator)
+            const T<Real>& interpolator)
     : DefaultDensityStructure(dates.at(0), Calendar(), dayCounter),
       InterpolatedCurve<T>::Type(std::vector<Time>(), densities, interpolator),
       dates_(dates)
@@ -251,13 +251,13 @@ namespace QuantLib {
     #endif
 
 
-    template <class T>
+    template <template<class> class T>
     void InterpolatedDefaultDensityCurve<T>::initialize(
                                     const std::vector<Date>& dates,
                                     const std::vector<Real>& densities,
                                     const DayCounter& dayCounter)
     {
-        QL_REQUIRE(dates_.size() >= T::requiredPoints,
+        QL_REQUIRE(dates_.size() >= T<Real>::requiredPoints,
                    "not enough input dates given");
         QL_REQUIRE(this->data_.size() == dates_.size(),
                    "dates/data count mismatch");

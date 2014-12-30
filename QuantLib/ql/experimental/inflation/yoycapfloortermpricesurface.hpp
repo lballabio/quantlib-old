@@ -142,7 +142,7 @@ namespace QuantLib {
     };
 
 
-    template<class Interpolator2D, class Interpolator1D>
+    template<class Interpolator2D, template<class> class Interpolator1D>
     class InterpolatedYoYCapFloorTermPriceSurface
         : public YoYCapFloorTermPriceSurface {
       public:
@@ -161,7 +161,7 @@ namespace QuantLib {
                       const Matrix &cPrice,
                       const Matrix &fPrice,
                       const Interpolator2D &interpolator2d = Interpolator2D(),
-                      const Interpolator1D &interpolator1d = Interpolator1D());
+                      const Interpolator1D<Real> &interpolator1d = Interpolator1D<Real>());
 
         //! inflation term structure interface
         //@{
@@ -227,7 +227,7 @@ namespace QuantLib {
         mutable Interpolation2D floorPrice2_;
         mutable Interpolator2D interpolator2d_;
         mutable Interpolation atmYoYSwapRateCurve_;
-        mutable Interpolator1D interpolator1d_;
+        mutable Interpolator1D<Real> interpolator1d_;
     };
 
 
@@ -236,7 +236,7 @@ namespace QuantLib {
 
     #ifndef __DOXYGEN__
 
-    template<class I2D, class I1D>
+    template<class I2D, template<class> class I1D>
     InterpolatedYoYCapFloorTermPriceSurface<I2D,I1D>::
     InterpolatedYoYCapFloorTermPriceSurface(
                                     Natural fixingDays,
@@ -253,7 +253,7 @@ namespace QuantLib {
                                     const Matrix &cPrice,
                                     const Matrix &fPrice,
                                     const I2D &interpolator2d,
-                                    const I1D &interpolator1d)
+                                    const I1D<Real> &interpolator1d)
     : YoYCapFloorTermPriceSurface(fixingDays, yyLag, yii,
                                   baseRate, nominal, dc, cal, bdc,
                                   cStrikes, fStrikes, cfMaturities,
@@ -264,14 +264,14 @@ namespace QuantLib {
 
     #endif
 
-    template<class I2D, class I1D>
+    template<class I2D, template<class> class I1D>
     void InterpolatedYoYCapFloorTermPriceSurface<I2D,I1D>::
     update() {
         notifyObservers();
     }
 
 
-    template<class I2D, class I1D>
+    template<class I2D, template<class> class I1D>
     void InterpolatedYoYCapFloorTermPriceSurface<I2D,I1D>::
     performCalculations() const {
         // calculate all the useful things
@@ -284,7 +284,7 @@ namespace QuantLib {
     }
 
 
-    template<class I2D, class I1D>
+    template<class I2D, template<class> class I1D>
     InterpolatedYoYCapFloorTermPriceSurface<I2D,I1D>::ObjectiveFunction::
     ObjectiveFunction(const Time t,
                       const Interpolation2D &a,
@@ -294,7 +294,7 @@ namespace QuantLib {
     }
 
 
-    template<class I2D, class I1D>
+    template<class I2D, template<class> class I1D>
     Rate InterpolatedYoYCapFloorTermPriceSurface<I2D,I1D>::
     price(const Date &d, const Rate k) const {
         Rate atm = atmYoYSwapRate(d);
@@ -302,7 +302,7 @@ namespace QuantLib {
     }
 
 
-    template<class I2D, class I1D>
+    template<class I2D, template<class> class I1D>
     Rate InterpolatedYoYCapFloorTermPriceSurface<I2D,I1D>::
     capPrice(const Date &d, const Rate k) const {
         Time t = timeFromReference(d);
@@ -310,7 +310,7 @@ namespace QuantLib {
     }
 
 
-    template<class I2D, class I1D>
+    template<class I2D, template<class> class I1D>
     Rate InterpolatedYoYCapFloorTermPriceSurface<I2D,I1D>::
     floorPrice(const Date &d, const Rate k) const {
         Time t = timeFromReference(d);
@@ -318,7 +318,7 @@ namespace QuantLib {
     }
 
 
-    template<class I2D, class I1D>
+    template<class I2D, template<class> class I1D>
     Real InterpolatedYoYCapFloorTermPriceSurface<I2D,I1D>::ObjectiveFunction::
     operator()(Rate guess) const {
         // allow extrapolation because the overlap is typically insufficient
@@ -327,7 +327,7 @@ namespace QuantLib {
     }
 
 
-    template<class I2D, class I1D>
+    template<class I2D, template<class> class I1D>
     void InterpolatedYoYCapFloorTermPriceSurface<I2D,I1D>::
     intersect() const {
 
@@ -504,7 +504,7 @@ namespace QuantLib {
     }
 
 
-    template<class I2D, class I1D>
+    template<class I2D, template<class> class I1D>
     void InterpolatedYoYCapFloorTermPriceSurface<I2D,I1D>::
     calculateYoYTermStructure() const {
 

@@ -47,28 +47,28 @@ struct NoArbSabrSpecs {
         // check if alpha / beta is admissable, otherwise adjust
         // if possible (i.e. not fixed, otherwise an exception will
         // be thrown from the model constructor anyway)
-        Real sigmaI = params[0] * std::pow(forward,params[1] - 1.0);
+        Real sigmaI = params[0] * std::pow(forward, params[1] - 1.0);
         if (sigmaI < detail::NoArbSabrModel::sigmaI_min) {
             if (!paramIsFixed[0])
-                params[0] = detail::NoArbSabrModel::sigmaI_min * (1.0+eps()) /
+                params[0] = detail::NoArbSabrModel::sigmaI_min * (1.0 + eps()) /
                             std::pow(forward, params[1] - 1.0);
             else {
                 if (!paramIsFixed[1])
                     params[1] = 1.0 +
                                 std::log(detail::NoArbSabrModel::sigmaI_min *
-                                         (1.0+eps()) / params[0]) /
+                                         (1.0 + eps()) / params[0]) /
                                     std::log(forward);
             }
         }
         if (sigmaI > detail::NoArbSabrModel::sigmaI_max) {
             if (!paramIsFixed[0])
-                params[0] = detail::NoArbSabrModel::sigmaI_max * (1.0-eps()) /
+                params[0] = detail::NoArbSabrModel::sigmaI_max * (1.0 - eps()) /
                             std::pow(forward, params[1] - 1.0);
             else {
                 if (!paramIsFixed[1])
                     params[1] = 1.0 +
                                 std::log(detail::NoArbSabrModel::sigmaI_max *
-                                         (1.0-eps()) / params[0]) /
+                                         (1.0 - eps()) / params[0]) /
                                     std::log(forward);
             }
         }
@@ -87,7 +87,7 @@ struct NoArbSabrSpecs {
                           (detail::NoArbSabrModel::sigmaI_max -
                            detail::NoArbSabrModel::sigmaI_min) *
                               r[j++];
-            sigmaI *= (1.0-eps());
+            sigmaI *= (1.0 - eps());
             sigmaI += eps() / 2.0;
             values[0] = sigmaI / std::pow(forward, values[1] - 1.0);
         }
@@ -147,13 +147,13 @@ struct NoArbSabrSpecs {
             if (sigmaI < detail::NoArbSabrModel::sigmaI_min) {
                 y[1] = (1.0 +
                         std::log(detail::NoArbSabrModel::sigmaI_min *
-                                 (1.0+eps()) / y[0]) /
+                                 (1.0 + eps()) / y[0]) /
                             std::log(forward));
             }
             if (sigmaI > detail::NoArbSabrModel::sigmaI_max) {
                 y[1] = (1.0 +
                         std::log(detail::NoArbSabrModel::sigmaI_max *
-                                 (1.0-eps()) / y[0]) /
+                                 (1.0 - eps()) / y[0]) /
                             std::log(forward));
             }
         } else {
@@ -235,7 +235,7 @@ class NoArbSabrInterpolation : public Interpolation {
 };
 
 //! no arbtrage sabr interpolation factory and traits
-class NoArbSabr {
+template <class T = Real> class NoArbSabr {
   public:
     NoArbSabr(Time t, Real forward, Real alpha, Real beta, Real nu, Real rho,
               bool alphaIsFixed, bool betaIsFixed, bool nuIsFixed,

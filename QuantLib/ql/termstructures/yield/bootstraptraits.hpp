@@ -43,9 +43,9 @@ const Real maxRate = 1.0;
 }
 
 //! Discount-curve traits
-template <class T = Real> struct Discount_t {
+template <class T = Real> struct Discount {
     // interpolated curve type
-    template <class Interpolator> struct curve {
+    template <template <class> class Interpolator> struct curve {
         typedef InterpolatedDiscountCurve_t<Interpolator, T> type;
     };
     // helper class
@@ -70,7 +70,7 @@ template <class T = Real> struct Discount_t {
             return 1.0 / (1.0 + detail::avgRate * c->times()[1]);
 
         // flat rate extrapolation
-        Real r = -log(c->data()[i - 1]) / c->times()[i - 1];
+        T r = -log(c->data()[i - 1]) / c->times()[i - 1];
         return exp(-r * c->times()[i]);
     }
 
@@ -111,12 +111,10 @@ template <class T = Real> struct Discount_t {
     static Size maxIterations() { return 100; }
 };
 
-typedef Discount_t<Real> Discount;
-
 //! Zero-curve traits
-template <class T> struct ZeroYield_t {
+template <class T> struct ZeroYield {
     // interpolated curve type
-    template <class Interpolator> struct curve {
+    template <template <class> class Interpolator> struct curve {
         typedef InterpolatedZeroCurve_t<Interpolator, T> type;
     };
     // helper class
@@ -153,7 +151,7 @@ template <class T> struct ZeroYield_t {
                            Size) // firstAliveHelper
     {
         if (validData) {
-            Real r = *(std::min_element(c->data().begin(), c->data().end()));
+            T r = *(std::min_element(c->data().begin(), c->data().end()));
 #if defined(QL_NEGATIVE_RATES)
             return r < 0.0 ? r * 2.0 : r / 2.0;
 #else
@@ -173,7 +171,7 @@ template <class T> struct ZeroYield_t {
                            Size) // firstAliveHelper
     {
         if (validData) {
-            Real r = *(std::max_element(c->data().begin(), c->data().end()));
+            T r = *(std::max_element(c->data().begin(), c->data().end()));
 #if defined(QL_NEGATIVE_RATES)
             return r < 0.0 ? r / 2.0 : r * 2.0;
 #else
@@ -195,12 +193,10 @@ template <class T> struct ZeroYield_t {
     static Size maxIterations() { return 100; }
 };
 
-typedef ZeroYield_t<Real> ZeroYield;
-
 //! Forward-curve traits
-template <class T> struct ForwardRate_t {
+template <class T> struct ForwardRate {
     // interpolated curve type
-    template <class Interpolator> struct curve {
+    template <template <class> class Interpolator> struct curve {
         typedef InterpolatedForwardCurve_t<Interpolator, T> type;
     };
     // helper class
@@ -237,7 +233,7 @@ template <class T> struct ForwardRate_t {
                            Size) // firstAliveHelper
     {
         if (validData) {
-            Real r = *(std::min_element(c->data().begin(), c->data().end()));
+            T r = *(std::min_element(c->data().begin(), c->data().end()));
 #if defined(QL_NEGATIVE_RATES)
             return r < 0.0 ? r * 2.0 : r / 2.0;
 #else
@@ -257,7 +253,7 @@ template <class T> struct ForwardRate_t {
                            Size) // firstAliveHelper
     {
         if (validData) {
-            Real r = *(std::max_element(c->data().begin(), c->data().end()));
+            T r = *(std::max_element(c->data().begin(), c->data().end()));
 #if defined(QL_NEGATIVE_RATES)
             return r < 0.0 ? r / 2.0 : r * 2.0;
 #else
@@ -270,7 +266,7 @@ template <class T> struct ForwardRate_t {
     }
 
     // root-finding update
-    static void updateGuess(std::vector<T> &data, Real forward, Size i) {
+    static void updateGuess(std::vector<T> &data, T forward, Size i) {
         data[i] = forward;
         if (i == 1)
             data[0] = forward; // first point is updated as well
@@ -278,8 +274,6 @@ template <class T> struct ForwardRate_t {
     // upper bound for convergence loop
     static Size maxIterations() { return 100; }
 };
-
-typedef ForwardRate_t<Real> ForwardRate;
 }
 
 #endif

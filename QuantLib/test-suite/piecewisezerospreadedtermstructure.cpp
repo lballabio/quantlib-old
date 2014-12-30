@@ -390,8 +390,8 @@ void PiecewiseZeroSpreadedTermStructureTest::testSetInterpolationFactory() {
 
     Frequency freq = NoFrequency;
 
-    Cubic factory;
-    factory = Cubic(CubicInterpolation::Spline, false);
+    Cubic<Real> factory;
+    factory = Cubic<Real>(CubicInterpolation::Spline, false);
 
     spreadedTermStructure =
         boost::make_shared<InterpolatedPiecewiseZeroSpreadedTermStructure<Cubic> >(

@@ -121,7 +121,7 @@ namespace QuantLib {
          vols.push_back(atmVol_->value());
          strikes.push_back(call25Strike);
          vols.push_back(call25Vol);
-         VannaVolga vannaVolga(x0Quote->value(), foreignTS_->discount(T_), foreignTS_->discount(T_), T_);
+         VannaVolga<Real> vannaVolga(x0Quote->value(), foreignTS_->discount(T_), foreignTS_->discount(T_), T_);
          Interpolation interpolation = vannaVolga.interpolate(strikes.begin(), strikes.end(), vols.begin());
          interpolation.enableExtrapolation();
          const boost::shared_ptr<StrikedTypePayoff> payoff =

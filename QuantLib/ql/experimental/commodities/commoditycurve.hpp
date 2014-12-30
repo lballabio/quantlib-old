@@ -96,7 +96,7 @@ namespace QuantLib {
         mutable std::vector<Time> times_;
         mutable std::vector<Real> data_;
         mutable Interpolation interpolation_;
-        ForwardFlat interpolator_;
+        ForwardFlat<Real> interpolator_;
         boost::shared_ptr<CommodityCurve> basisOfCurve_;
         Real basisOfCurveUomConversionFactor_;
 

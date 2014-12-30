@@ -33,7 +33,7 @@
 
 namespace QuantLib {
 
-    template<class Interpolator>
+    template<template<class> class Interpolator>
     class InterpolatedSmileSection : public SmileSection,
                                      public LazyObject {
       public:
@@ -42,14 +42,14 @@ namespace QuantLib {
                            const std::vector<Rate>& strikes,
                            const std::vector<Handle<Quote> >& stdDevHandles,
                            const Handle<Quote>& atmLevel,
-                           const Interpolator& interpolator = Interpolator(),
+                           const Interpolator<Real>& interpolator = Interpolator<Real>(),
                            const DayCounter& dc = Actual365Fixed());
         InterpolatedSmileSection(
                            Time expiryTime,
                            const std::vector<Rate>& strikes,
                            const std::vector<Real>& stdDevs,
                            Real atmLevel,
-                           const Interpolator& interpolator = Interpolator(),
+                           const Interpolator<Real>& interpolator = Interpolator<Real>(),
                            const DayCounter& dc = Actual365Fixed());
 
         InterpolatedSmileSection(
@@ -58,7 +58,7 @@ namespace QuantLib {
                            const std::vector<Handle<Quote> >& stdDevHandles,
                            const Handle<Quote>& atmLevel,
                            const DayCounter& dc = Actual365Fixed(),
-                           const Interpolator& interpolator = Interpolator(),
+                           const Interpolator<Real>& interpolator = Interpolator<Real>(),
                            const Date& referenceDate = Date());
         InterpolatedSmileSection(
                            const Date& d,
@@ -66,7 +66,7 @@ namespace QuantLib {
                            const std::vector<Real>& stdDevs,
                            Real atmLevel,
                            const DayCounter& dc = Actual365Fixed(),
-                           const Interpolator& interpolator = Interpolator(),
+                           const Interpolator<Real>& interpolator = Interpolator<Real>(),
                            const Date& referenceDate = Date());
         void performCalculations() const;
         Real varianceImpl(Rate strike) const;
@@ -85,13 +85,13 @@ namespace QuantLib {
     };
 
 
-    template<class Interpolator>
+    template<template<class> class Interpolator>
     InterpolatedSmileSection<Interpolator>::InterpolatedSmileSection(
                                Time timeToExpiry,
                                const std::vector<Rate>& strikes,
                                const std::vector<Handle<Quote> >& stdDevHandles,
                                const Handle<Quote>& atmLevel,
-                               const Interpolator& interpolator,
+                               const Interpolator<Real>& interpolator,
                                const DayCounter& dc)
     : SmileSection(timeToExpiry, dc),
       exerciseTimeSquareRoot_(std::sqrt(exerciseTime())), strikes_(strikes),
@@ -107,13 +107,13 @@ namespace QuantLib {
                                                   vols_.begin());
     }
 
-    template<class Interpolator>
+    template<template<class> class Interpolator>
     InterpolatedSmileSection<Interpolator>::InterpolatedSmileSection(
                                 Time timeToExpiry,
                                 const std::vector<Rate>& strikes,
                                 const std::vector<Real>& stdDevs,
                                 Real atmLevel,
-                                const Interpolator& interpolator,
+                                const Interpolator<Real>& interpolator,
                                 const DayCounter& dc)
     : SmileSection(timeToExpiry, dc),
       exerciseTimeSquareRoot_(std::sqrt(exerciseTime())), strikes_(strikes),
@@ -132,14 +132,14 @@ namespace QuantLib {
                                                   vols_.begin());
     }
 
-    template <class Interpolator>
+    template <template<class> class Interpolator>
     InterpolatedSmileSection<Interpolator>::InterpolatedSmileSection(
                            const Date& d,
                            const std::vector<Rate>& strikes,
                            const std::vector<Handle<Quote> >& stdDevHandles,
                            const Handle<Quote>& atmLevel,
                            const DayCounter& dc,
-                           const Interpolator& interpolator,
+                           const Interpolator<Real>& interpolator,
                            const Date& referenceDate)
     : SmileSection(d, dc, referenceDate),
       exerciseTimeSquareRoot_(std::sqrt(exerciseTime())), strikes_(strikes),
@@ -154,14 +154,14 @@ namespace QuantLib {
                                                   vols_.begin());
     }
 
-    template <class Interpolator>
+    template <template<class> class Interpolator>
     InterpolatedSmileSection<Interpolator>::InterpolatedSmileSection(
                            const Date& d,
                            const std::vector<Rate>& strikes,
                            const std::vector<Real>& stdDevs,
                            Real atmLevel,
                            const DayCounter& dc,
-                           const Interpolator& interpolator,
+                           const Interpolator<Real>& interpolator,
                            const Date& referenceDate)
     : SmileSection(d, dc, referenceDate),
       exerciseTimeSquareRoot_(std::sqrt(exerciseTime())), strikes_(strikes),
@@ -180,7 +180,7 @@ namespace QuantLib {
                                                   vols_.begin());
     }
 
-    template <class Interpolator>
+    template <template<class> class Interpolator>
     inline void InterpolatedSmileSection<Interpolator>::performCalculations()
                                                                       const {
         for (Size i=0; i<stdDevHandles_.size(); ++i)
@@ -189,20 +189,20 @@ namespace QuantLib {
     }
 
     #ifndef __DOXYGEN__
-    template <class Interpolator>
+    template <template<class> class Interpolator>
     Real InterpolatedSmileSection<Interpolator>::varianceImpl(Real strike) const {
         calculate();
         Real v = interpolation_(strike, true);
         return v*v*exerciseTime();
     }
 
-    template <class Interpolator>
+    template <template<class> class Interpolator>
     Real InterpolatedSmileSection<Interpolator>::volatilityImpl(Real strike) const {
         calculate();
         return interpolation_(strike, true);
     }
 
-    template <class Interpolator>
+    template <template<class> class Interpolator>
     void InterpolatedSmileSection<Interpolator>::update() {
         LazyObject::update();
         SmileSection::update();

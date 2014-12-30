@@ -49,8 +49,8 @@ namespace QuantLib {
         Real minStrike() const;
         Real maxStrike() const;
 
-        template <class Interpolator>
-        void setInterpolation(const Interpolator& i = Interpolator()) {
+        template <template<class> class Interpolator>
+        void setInterpolation(const Interpolator<Real>& i = Interpolator<Real>()) {
             varianceCurve_ = i.interpolate(times_.begin(), times_.end(),
                                            variances_.begin());
             varianceCurve_.update();

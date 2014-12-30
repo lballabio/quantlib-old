@@ -41,7 +41,7 @@ namespace QuantLib {
 
         \bug Tests currently fail.
     */
-    template<class Interpolator1D>
+    template<template<class> class Interpolator1D>
     class KInterpolatedYoYOptionletVolatilitySurface
         : public YoYOptionletVolatilitySurface {
       public:
@@ -57,7 +57,7 @@ namespace QuantLib {
            const boost::shared_ptr<YoYInflationCapFloorEngine> &pricer,
            const boost::shared_ptr<YoYOptionletStripper> &yoyOptionletStripper,
            const Real slope,
-           const Interpolator1D &interpolator = Interpolator1D());
+           const Interpolator1D<Real> &interpolator = Interpolator1D<Real>());
 
         virtual Real minStrike() const;
         virtual Real maxStrike() const;
@@ -76,7 +76,7 @@ namespace QuantLib {
         boost::shared_ptr<YoYInflationCapFloorEngine> yoyInflationCouponPricer_;
         boost::shared_ptr<YoYOptionletStripper> yoyOptionletStripper_;
 
-        mutable Interpolator1D factory1D_;
+        mutable Interpolator1D<Real> factory1D_;
         mutable Real slope_;
         mutable bool lastDateisSet_;
         mutable Date lastDate_;
@@ -89,7 +89,7 @@ namespace QuantLib {
 
     // template definitions
 
-    template<class Interpolator1D>
+    template<template<class> class Interpolator1D>
     KInterpolatedYoYOptionletVolatilitySurface<Interpolator1D>::
     KInterpolatedYoYOptionletVolatilitySurface(
          const Natural settlementDays,
@@ -101,7 +101,7 @@ namespace QuantLib {
          const boost::shared_ptr<YoYInflationCapFloorEngine> &pricer,
          const boost::shared_ptr<YoYOptionletStripper> &yoyOptionletStripper,
          const Real slope,
-         const Interpolator1D &interpolator)
+         const Interpolator1D<Real> &interpolator)
     : YoYOptionletVolatilitySurface(settlementDays, cal, bdc, dc, lag,
                                     capFloorPrices->yoyIndex()->frequency(),
                                     capFloorPrices->yoyIndex()->interpolated()),
@@ -112,7 +112,7 @@ namespace QuantLib {
     }
 
 
-    template<class Interpolator1D>
+    template<template<class> class Interpolator1D>
     Date KInterpolatedYoYOptionletVolatilitySurface<Interpolator1D>::
     maxDate() const {
         Size n = capFloorPrices_->maturities().size();
@@ -120,21 +120,21 @@ namespace QuantLib {
     }
 
 
-    template<class Interpolator1D>
+    template<template<class> class Interpolator1D>
     Real KInterpolatedYoYOptionletVolatilitySurface<Interpolator1D>::
     minStrike() const {
         return capFloorPrices_->strikes().front();
     }
 
 
-    template<class Interpolator1D>
+    template<template<class> class Interpolator1D>
     Real KInterpolatedYoYOptionletVolatilitySurface<Interpolator1D>::
     maxStrike() const {
         return capFloorPrices_->strikes().back();
     }
 
 
-    template<class Interpolator1D>
+    template<template<class> class Interpolator1D>
     void KInterpolatedYoYOptionletVolatilitySurface<Interpolator1D>::
     performCalculations() const {
 
@@ -145,7 +145,7 @@ namespace QuantLib {
     }
 
 
-    template<class Interpolator1D>
+    template<template<class> class Interpolator1D>
     Volatility KInterpolatedYoYOptionletVolatilitySurface<Interpolator1D>::
     volatilityImpl(const Date &d, Rate strike) const {
         updateSlice(d);
@@ -153,7 +153,7 @@ namespace QuantLib {
     }
 
 
-    template<class Interpolator1D>
+    template<template<class> class Interpolator1D>
     std::pair<std::vector<Rate>, std::vector<Volatility> >
     KInterpolatedYoYOptionletVolatilitySurface<Interpolator1D>::
     Dslice(const Date &d) const {
@@ -162,7 +162,7 @@ namespace QuantLib {
     }
 
 
-    template<class Interpolator1D>
+    template<template<class> class Interpolator1D>
     Volatility KInterpolatedYoYOptionletVolatilitySurface<Interpolator1D>::
     volatilityImpl(Time length,  Rate strike) const {
 
@@ -173,7 +173,7 @@ namespace QuantLib {
         return this->volatilityImpl(d, strike);
     }
 
-    template<class Interpolator1D>
+    template<template<class> class Interpolator1D>
     void KInterpolatedYoYOptionletVolatilitySurface<Interpolator1D>::
     updateSlice(const Date &d) const {
 

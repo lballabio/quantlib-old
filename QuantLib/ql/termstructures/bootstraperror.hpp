@@ -32,7 +32,7 @@
 namespace QuantLib {
 
     //! bootstrap error
-    template <class Curve>
+    template <class Curve, class T = Real>
     class BootstrapError {
         typedef typename Curve::traits_type Traits;
       public:
@@ -40,7 +40,7 @@ namespace QuantLib {
                  const Curve* curve,
                  const boost::shared_ptr<typename Traits::helper>& instrument,
                  Size segment);
-        Real operator()(Rate guess) const;
+        T operator()(T guess) const;
         const boost::shared_ptr<typename Traits::helper>& helper() {
             return helper_;
         }
@@ -53,16 +53,16 @@ namespace QuantLib {
 
     // template definitions
 
-    template <class Curve>
-    BootstrapError<Curve>::BootstrapError(
+    template <class Curve, class T>
+    BootstrapError<Curve,T>::BootstrapError(
                      const Curve* curve,
                      const boost::shared_ptr<typename Traits::helper>& helper,
                      Size segment)
     : curve_(curve), helper_(helper), segment_(segment) {}
 
     #ifndef __DOXYGEN__
-    template <class Curve>
-    Real BootstrapError<Curve>::operator()(Real guess) const {
+    template <class Curve, class T>
+    T BootstrapError<Curve,T>::operator()(T guess) const {
         Traits::updateGuess(curve_->data_, guess, segment_);
         curve_->interpolation_.update();
         return helper_->quoteError();

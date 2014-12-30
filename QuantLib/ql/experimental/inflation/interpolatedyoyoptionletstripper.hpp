@@ -40,7 +40,7 @@ namespace QuantLib {
 
         \bug Tests currently fail.
     */
-    template <class Interpolator1D>
+    template <template<class> class Interpolator1D>
     class InterpolatedYoYOptionletStripper : public YoYOptionletStripper {
       public:
 
@@ -100,7 +100,7 @@ namespace QuantLib {
 
     // template definitions
 
-    template <class Interpolator1D>
+    template <template<class> class Interpolator1D>
     InterpolatedYoYOptionletStripper<Interpolator1D>::
     ObjectiveFunction::ObjectiveFunction(
                    YoYInflationCapFloor::Type type,
@@ -149,7 +149,7 @@ namespace QuantLib {
     }
 
 
-    template <class Interpolator1D>
+    template <template<class> class Interpolator1D>
     Real InterpolatedYoYOptionletStripper<Interpolator1D>::
     ObjectiveFunction::operator()(Volatility guess) const {
 
@@ -171,7 +171,7 @@ namespace QuantLib {
     }
 
 
-    template <class Interpolator1D>
+    template <template<class> class Interpolator1D>
     void InterpolatedYoYOptionletStripper<Interpolator1D>::
     initialize(const boost::shared_ptr<YoYCapFloorTermPriceSurface> &s,
                const boost::shared_ptr<YoYInflationCapFloorEngine> &p,
@@ -287,7 +287,7 @@ namespace QuantLib {
     }
 
 
-    template <class Interpolator1D>
+    template <template<class> class Interpolator1D>
     std::pair<std::vector<Rate>, std::vector<Volatility> >
     InterpolatedYoYOptionletStripper<Interpolator1D>::slice(
                                                         const Date &d) const {

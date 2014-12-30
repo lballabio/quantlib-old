@@ -32,128 +32,131 @@
 
 namespace QuantLib {
 
-    //! Piecewise zero-inflation term structure
-    template <class Interpolator,
-              template <class> class Bootstrap = IterativeBootstrap,
-              class Traits = ZeroInflationTraits>
-    class PiecewiseZeroInflationCurve
-        : public InterpolatedZeroInflationCurve<Interpolator>,
-          public LazyObject {
-      private:
-        typedef InterpolatedZeroInflationCurve<Interpolator> base_curve;
-        typedef PiecewiseZeroInflationCurve<Interpolator,Bootstrap,Traits>
-                                                                   this_curve;
-      public:
-        typedef Traits traits_type;
-        typedef Interpolator interpolator_type;
-        //! \name Constructors
-        //@{
-        PiecewiseZeroInflationCurve(
-               const Date& referenceDate,
-               const Calendar& calendar,
-               const DayCounter& dayCounter,
-               const Period& lag,
-               Frequency frequency,
-               bool indexIsInterpolated,
-               Rate baseZeroRate,
-               const Handle<YieldTermStructure>& nominalTS,
-               const std::vector<boost::shared_ptr<typename Traits::helper> >&
-                                                                  instruments,
-               Real accuracy = 1.0e-12,
-               const Interpolator& i = Interpolator())
-        : base_curve(referenceDate, calendar, dayCounter,
-                     lag, frequency, indexIsInterpolated, baseZeroRate,
-                     nominalTS, i),
+//! Piecewise zero-inflation term structure
+template <template <class> class Interpolator,
+          template <class, class> class Bootstrap = IterativeBootstrap,
+          template <class> class Traits = ZeroInflationTraits, class T = Real>
+class PiecewiseZeroInflationCurve
+    : public InterpolatedZeroInflationCurve_t<Interpolator,T>,
+      public LazyObject {
+  private:
+    typedef InterpolatedZeroInflationCurve_t<Interpolator,T> base_curve;
+    typedef PiecewiseZeroInflationCurve<Interpolator, Bootstrap, Traits>
+        this_curve;
+
+  public:
+    typedef Traits<T> traits_type;
+    typedef Interpolator<T> interpolator_type;
+    //! \name Constructors
+    //@{
+    PiecewiseZeroInflationCurve(
+        const Date &referenceDate, const Calendar &calendar,
+        const DayCounter &dayCounter, const Period &lag, Frequency frequency,
+        bool indexIsInterpolated, T baseZeroRate,
+        const Handle<YieldTermStructure_t<T> > &nominalTS,
+        const std::vector<boost::shared_ptr<typename Traits<T>::helper> > &
+            instruments,
+        Real accuracy = 1.0e-12, const Interpolator<T> &i = Interpolator<T>())
+        : base_curve(referenceDate, calendar, dayCounter, lag, frequency,
+                     indexIsInterpolated, baseZeroRate, nominalTS, i),
           instruments_(instruments), accuracy_(accuracy) {
-            bootstrap_.setup(this);
-        }
-        //@}
-        //! \name Inflation interface
-        //@{
-        Date baseDate() const;
-        Date maxDate() const;
-        //@
-        //! \name Inspectors
-        //@{
-        const std::vector<Time>& times() const;
-        const std::vector<Date>& dates() const;
-        const std::vector<Real>& data() const;
-        std::vector<std::pair<Date, Real> > nodes() const;
-        //@}
-        //! \name Observer interface
-        //@{
-        void update();
-        //@}
-      private:
-        // methods
-        void performCalculations() const;
-        // data members
-        std::vector<boost::shared_ptr<typename Traits::helper> > instruments_;
-        Real accuracy_;
-
-        #if !defined(QL_PATCH_MSVC90)
-        // this avoids defining another name...
-        friend class Bootstrap<this_curve>;
-        #else
-        // ...but VC++ 9 cannot digest it in some contexts.
-        typedef typename Bootstrap<this_curve> bootstrapper;
-        friend class bootstrapper;
-        #endif
-        friend class BootstrapError<this_curve>;
-        Bootstrap<this_curve> bootstrap_;
-    };
-
-
-    // inline and template definitions
-
-    template <class I, template <class> class B, class T>
-    inline Date PiecewiseZeroInflationCurve<I,B,T>::baseDate() const {
-        this->calculate();
-        return base_curve::baseDate();
+        bootstrap_.setup(this);
     }
+    //@}
+    //! \name Inflation interface
+    //@{
+    Date baseDate() const;
+    Date maxDate() const;
+    //@
+    //! \name Inspectors
+    //@{
+    const std::vector<Time> &times() const;
+    const std::vector<Date> &dates() const;
+    const std::vector<T> &data() const;
+    std::vector<std::pair<Date, T> > nodes() const;
+    //@}
+    //! \name Observer interface
+    //@{
+    void update();
+    //@}
+  private:
+    // methods
+    void performCalculations() const;
+    // data members
+    std::vector<boost::shared_ptr<typename Traits<T>::helper> > instruments_;
+    T accuracy_;
 
-    template <class I, template <class> class B, class T>
-    inline Date PiecewiseZeroInflationCurve<I,B,T>::maxDate() const {
-        this->calculate();
-        return base_curve::maxDate();
-    }
+#if !defined(QL_PATCH_MSVC90)
+    // this avoids defining another name...
+    friend class Bootstrap<this_curve, T>;
+#else
+    // ...but VC++ 9 cannot digest it in some contexts.
+    typedef typename Bootstrap<this_curve, T> bootstrapper;
+    friend class bootstrapper;
+#endif
+    friend class BootstrapError<this_curve, T>;
+    Bootstrap<this_curve, T> bootstrap_;
+};
 
-    template <class I, template <class> class B, class T>
-    const std::vector<Time>& PiecewiseZeroInflationCurve<I,B,T>::times() const {
-        calculate();
-        return base_curve::times();
-    }
+// inline and template definitions
 
-    template <class I, template <class> class B, class T>
-    const std::vector<Date>& PiecewiseZeroInflationCurve<I,B,T>::dates() const {
-        calculate();
-        return base_curve::dates();
-    }
+template <template <class> class I, template <class, class> class B,
+          template <class> class U, class T>
+inline Date PiecewiseZeroInflationCurve<I, B, U, T>::baseDate() const {
+    this->calculate();
+    return base_curve::baseDate();
+}
 
-    template <class I, template <class> class B, class T>
-    const std::vector<Real>& PiecewiseZeroInflationCurve<I,B,T>::data() const {
-        calculate();
-        return base_curve::rates();
-    }
+template <template <class> class I, template <class, class> class B,
+          template <class> class U, class T>
+inline Date PiecewiseZeroInflationCurve<I, B, U, T>::maxDate() const {
+    this->calculate();
+    return base_curve::maxDate();
+}
 
-    template <class I, template <class> class B, class T>
-    std::vector<std::pair<Date, Real> >
-    PiecewiseZeroInflationCurve<I,B,T>::nodes() const {
-        calculate();
-        return base_curve::nodes();
-    }
+template <template <class> class I, template <class, class> class B,
+          template <class> class U, class T>
+const std::vector<Time> &
+PiecewiseZeroInflationCurve<I, B, U, T>::times() const {
+    calculate();
+    return base_curve::times();
+}
 
-    template <class I, template <class> class B, class T>
-    void PiecewiseZeroInflationCurve<I,B,T>::performCalculations() const {
-        bootstrap_.calculate();
-    }
+template <template <class> class I, template <class, class> class B,
+          template <class> class U, class T>
+const std::vector<Date> &
+PiecewiseZeroInflationCurve<I, B, U, T>::dates() const {
+    calculate();
+    return base_curve::dates();
+}
 
-    template <class I, template<class> class B, class T>
-    void PiecewiseZeroInflationCurve<I,B,T>::update() {
-        base_curve::update();
-        LazyObject::update();
-    }
+template <template <class> class I, template <class, class> class B,
+          template <class> class U, class T>
+const std::vector<T> &PiecewiseZeroInflationCurve<I, B, U, T>::data() const {
+    calculate();
+    return base_curve::rates();
+}
 
+template <template <class> class I, template <class, class> class B,
+          template <class> class U, class T>
+std::vector<std::pair<Date, T> >
+PiecewiseZeroInflationCurve<I, B, U, T>::nodes() const {
+    calculate();
+    return base_curve::nodes();
+}
+
+template <template <class> class I, template <class, class> class B,
+          template <class> class U, class T>
+void PiecewiseZeroInflationCurve<I, B, U, T>::performCalculations() const {
+    bootstrap_.calculate();
+}
+
+template <template <class> class I, template <class, class> class B,
+          template <class> class U, class T>
+void PiecewiseZeroInflationCurve<I, B, U, T>::update() {
+    base_curve::update();
+    LazyObject::update();
+}
 }
 
 #endif

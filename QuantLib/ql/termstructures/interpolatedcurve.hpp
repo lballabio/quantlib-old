@@ -34,34 +34,36 @@ namespace QuantLib {
     inheritance from this class to obtain the relevant data
     members and implement correct copy behavior.
 */
-template <class Interpolator, class T = Real> class InterpolatedCurve_t {
+template <template <class> class Interpolator, class T = Real>
+class InterpolatedCurve_t {
   protected:
     //! \name Building
     //@{
     InterpolatedCurve_t(const std::vector<Time> &times,
                         const std::vector<T> &data,
-                        const Interpolator &i = Interpolator())
+                        const Interpolator<T> &i = Interpolator<T>())
         : times_(times), data_(data), interpolator_(i) {}
 
     InterpolatedCurve_t(const std::vector<Time> &times,
-                        const Interpolator &i = Interpolator())
+                        const Interpolator<T> &i = Interpolator<T>())
         : times_(times), data_(times.size()), interpolator_(i) {}
 
-    InterpolatedCurve_t(Size n, const Interpolator &i = Interpolator())
+    InterpolatedCurve_t(Size n, const Interpolator<T> &i = Interpolator<T>())
         : times_(n), data_(n), interpolator_(i) {}
 
-    InterpolatedCurve_t(const Interpolator &i = Interpolator())
+    InterpolatedCurve_t(const Interpolator<T> &i = Interpolator<T>())
         : interpolator_(i) {}
     //@}
 
     //! \name Copying
     //@{
-    InterpolatedCurve_t(const InterpolatedCurve_t &c)
+    InterpolatedCurve_t(const InterpolatedCurve_t<Interpolator, T> &c)
         : times_(c.times_), data_(c.data_), interpolator_(c.interpolator_) {
         setupInterpolation();
     }
 
-    InterpolatedCurve_t &operator=(const InterpolatedCurve_t &c) {
+    InterpolatedCurve_t &
+    operator=(const InterpolatedCurve_t<Interpolator, T> &c) {
         times_ = c.times_;
         data_ = c.data_;
         interpolator_ = c.interpolator_;
@@ -78,10 +80,10 @@ template <class Interpolator, class T = Real> class InterpolatedCurve_t {
     mutable std::vector<Time> times_;
     mutable std::vector<T> data_;
     mutable Interpolation interpolation_;
-    Interpolator interpolator_;
+    Interpolator<T> interpolator_;
 };
 
-template <class Interpolator> struct InterpolatedCurve {
+template <template <class> class Interpolator> struct InterpolatedCurve {
     typedef InterpolatedCurve_t<Interpolator, Real> Type;
 };
 
