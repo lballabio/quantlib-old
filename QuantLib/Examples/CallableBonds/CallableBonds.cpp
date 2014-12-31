@@ -108,7 +108,7 @@ int main(int, char* [])
 
         Rate bbCurveRate = 0.055;
         DayCounter bbDayCounter = ActualActual(ActualActual::Bond);
-        InterestRate<> bbIR(bbCurveRate,bbDayCounter,Compounded,Semiannual);
+        InterestRate bbIR(bbCurveRate,bbDayCounter,Compounded,Semiannual);
 
         Handle<YieldTermStructure> termStructure(flatRate(today,
                                                           bbIR.rate(),
