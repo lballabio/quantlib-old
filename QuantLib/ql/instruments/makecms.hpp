@@ -30,7 +30,8 @@
 
 namespace QuantLib {
 
-    class Swap;
+    template<class> class Swap_t;
+    typedef Swap_t<Real> Swap;
     template<class> class IborIndex_t;
     typedef IborIndex_t<Real> IborIndex;
 

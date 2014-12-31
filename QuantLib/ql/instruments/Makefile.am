@@ -99,7 +99,6 @@ libInstruments_la_SOURCES = \
     quantovanillaoption.cpp \
     stickyratchet.cpp \
     stock.cpp \
-    swap.cpp \
     swaption.cpp \
     vanillaoption.cpp \
     vanillaswap.cpp \

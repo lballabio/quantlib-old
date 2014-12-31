@@ -35,7 +35,8 @@ namespace QuantLib {
 
     template<class> class CmsCouponPricer_t;
     typedef CmsCouponPricer_t<Real> CmsCouponPricer;
-    class Swap;
+    template<class> class Swap_t;
+    typedef Swap_t<Real> Swap;
     template<class> class SwapIndex_t;
     typedef SwapIndex_t<Real> SwapIndex;
     template<class> class IborIndex_t;

@@ -3,6 +3,7 @@
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -41,22 +42,23 @@ namespace QuantLib {
 
         \test observability of class instances is checked.
     */
-    class Instrument : public LazyObject {
+    template<class T>
+    class Instrument_t : public LazyObject {
       public:
         class results;
-        Instrument();
+        Instrument_t();
         //! \name Inspectors
         //@{
 
         //! returns the net present value of the instrument.
-        Real NPV() const;
+        T NPV() const;
         //! returns the error estimate on the NPV when available.
-        Real errorEstimate() const;
+        T errorEstimate() const;
         //! returns the date the net present value refers to.
         const Date& valuationDate() const;
 
         //! returns any additional result returned by the pricing engine.
-        template <typename T> T result(const std::string& tag) const;
+        template <typename R> R result(const std::string& tag) const;
         //! returns all additional result returned by the pricing engine.
         const std::map<std::string,boost::any>& additionalResults() const;
 
@@ -103,34 +105,38 @@ namespace QuantLib {
             classes might declare must be set during calculation.
         */
         //@{
-        mutable Real NPV_, errorEstimate_;
+        mutable T NPV_, errorEstimate_;
         mutable Date valuationDate_;
         mutable std::map<std::string,boost::any> additionalResults_;
         //@}
         boost::shared_ptr<PricingEngine> engine_;
     };
 
-    class Instrument::results : public virtual PricingEngine::results {
+    template<class T>
+    class Instrument_t<T>::results : public virtual PricingEngine::results {
       public:
         void reset() {
             value = errorEstimate = Null<Real>();
             valuationDate = Date();
             additionalResults.clear();
         }
-        Real value;
-        Real errorEstimate;
+        T value;
+        T errorEstimate;
         Date valuationDate;
         std::map<std::string,boost::any> additionalResults;
     };
 
+    typedef Instrument_t<Real> Instrument;
 
     // inline definitions
 
-    inline Instrument::Instrument()
+    template<class T>
+    inline Instrument_t<T>::Instrument_t()
     : NPV_(Null<Real>()), errorEstimate_(Null<Real>()),
       valuationDate_(Date()) {}
 
-    inline void Instrument::setPricingEngine(
+    template<class T>
+    inline void Instrument_t<T>::setPricingEngine(
                                   const boost::shared_ptr<PricingEngine>& e) {
         if (engine_)
             unregisterWith(engine_);
@@ -141,11 +147,13 @@ namespace QuantLib {
         update();
     }
 
-    inline void Instrument::setupArguments(PricingEngine::arguments*) const {
+    template<class T>
+    inline void Instrument_t<T>::setupArguments(PricingEngine::arguments*) const {
         QL_FAIL("Instrument::setupArguments() not implemented");
     }
 
-    inline void Instrument::calculate() const {
+    template<class T>
+    inline void Instrument_t<T>::calculate() const {
         if (isExpired()) {
             setupExpired();
             calculated_ = true;
@@ -154,13 +162,15 @@ namespace QuantLib {
         }
     }
 
-    inline void Instrument::setupExpired() const {
+    template<class T>
+    inline void Instrument_t<T>::setupExpired() const {
         NPV_ = errorEstimate_ = 0.0;
         valuationDate_ = Date();
         additionalResults_.clear();
     }
 
-    inline void Instrument::performCalculations() const {
+    template<class T>
+    inline void Instrument_t<T>::performCalculations() const {
         QL_REQUIRE(engine_, "null pricing engine");
         engine_->reset();
         setupArguments(engine_->getArguments());
@@ -169,9 +179,10 @@ namespace QuantLib {
         fetchResults(engine_->getResults());
     }
 
-    inline void Instrument::fetchResults(
+    template<class T>
+    inline void Instrument_t<T>::fetchResults(
                                       const PricingEngine::results* r) const {
-        const Instrument::results* results =
+        const Instrument_t<T>::results* results =
             dynamic_cast<const Instrument::results*>(r);
         QL_ENSURE(results != 0,
                   "no results returned from pricing engine");
@@ -183,38 +194,42 @@ namespace QuantLib {
         additionalResults_ = results->additionalResults;
     }
 
-    inline Real Instrument::NPV() const {
+    template<class T>
+    inline T Instrument_t<T>::NPV() const {
         calculate();
         QL_REQUIRE(NPV_ != Null<Real>(), "NPV not provided");
         return NPV_;
     }
 
-    inline Real Instrument::errorEstimate() const {
+    template<class T>
+    inline T Instrument_t<T>::errorEstimate() const {
         calculate();
         QL_REQUIRE(errorEstimate_ != Null<Real>(),
                    "error estimate not provided");
         return errorEstimate_;
     }
 
-    inline const Date& Instrument::valuationDate() const {
+    template<class T>
+    inline const Date& Instrument_t<T>::valuationDate() const {
         calculate();
         QL_REQUIRE(valuationDate_ != Date(),
                    "valuation date not provided");
         return valuationDate_;
     }
 
-    template <class T>
-    inline T Instrument::result(const std::string& tag) const {
+    template <class T> template <class R>
+    inline R Instrument_t<T>::result(const std::string& tag) const {
         calculate();
         std::map<std::string,boost::any>::const_iterator value =
             additionalResults_.find(tag);
         QL_REQUIRE(value != additionalResults_.end(),
                    tag << " not provided");
-        return boost::any_cast<T>(value->second);
+        return boost::any_cast<R>(value->second);
     }
 
+    template<class T>
     inline const std::map<std::string,boost::any>&
-    Instrument::additionalResults() const {
+    Instrument_t<T>::additionalResults() const {
         return additionalResults_;
     }
 
