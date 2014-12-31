@@ -29,11 +29,10 @@
 #include <ql/instruments/swap.hpp>
 #include <ql/time/daycounter.hpp>
 #include <ql/time/schedule.hpp>
+#include <ql/indexes/iborindex.hpp>
 #include <boost/optional.hpp>
 
 namespace QuantLib {
-
-    class IborIndex;
 
     //! Plain-vanilla swap: fix vs floating leg
     /*! \ingroup instruments

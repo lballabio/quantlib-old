@@ -7,8 +7,10 @@
 #include <ql/cashflows/cashflows.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
 #include <ql/cashflows/cmscoupon.hpp>
+#include <ql/cashflows/cmscouponbase.hpp>
 #include <ql/cashflows/conundrumpricer.hpp>
 #include <ql/cashflows/coupon.hpp>
+#include <ql/cashflows/couponpricerbase.hpp>
 #include <ql/cashflows/couponpricer.hpp>
 #include <ql/cashflows/cpicoupon.hpp>
 #include <ql/cashflows/cpicouponpricer.hpp>
@@ -20,6 +22,7 @@
 #include <ql/cashflows/fixedratecoupon.hpp>
 #include <ql/cashflows/floatingratecoupon.hpp>
 #include <ql/cashflows/iborcoupon.hpp>
+#include <ql/cashflows/iborcouponbase.hpp>
 #include <ql/cashflows/indexedcashflow.hpp>
 #include <ql/cashflows/inflationcoupon.hpp>
 #include <ql/cashflows/inflationcouponpricer.hpp>

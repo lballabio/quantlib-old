@@ -30,7 +30,8 @@
 namespace QuantLib {
 
     class Schedule;
-    class SwapIndex;
+    template<class> class SwapIndex_t;
+    typedef SwapIndex_t<Real> SwapIndex;
 
     //! CMS-rate bond
     /*! \ingroup instruments

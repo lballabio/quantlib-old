@@ -832,7 +832,7 @@ void BondTest::testCachedFloating() {
         new DiscountingBondEngine(riskFreeRate));
     bond1.setPricingEngine(bondEngine);
 
-    setCouponPricer(bond1.cashflows(), pricer);
+    setCouponPricer<Real>(bond1.cashflows(), pricer);
 
 #if defined(QL_USE_INDEXED_COUPON)
     Real cachedPrice1 = 99.874645;
@@ -860,7 +860,7 @@ void BondTest::testCachedFloating() {
         new DiscountingBondEngine(discountCurve));
     bond2.setPricingEngine(bondEngine2);
 
-    setCouponPricer(bond2.cashflows(), pricer);
+    setCouponPricer<Real>(bond2.cashflows(), pricer);
 
 #if defined(QL_USE_INDEXED_COUPON)
     Real cachedPrice2 = 97.955904;
@@ -892,7 +892,7 @@ void BondTest::testCachedFloating() {
 
     bond3.setPricingEngine(bondEngine2);
 
-    setCouponPricer(bond3.cashflows(), pricer);
+    setCouponPricer<Real>(bond3.cashflows(), pricer);
 
 #if defined(QL_USE_INDEXED_COUPON)
     Real cachedPrice3 = 98.495458;

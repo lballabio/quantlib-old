@@ -36,7 +36,8 @@
 
 namespace QuantLib {
 
-    class IborIndex;
+    template<class> class IborIndex_t;
+    typedef IborIndex_t<Real> IborIndex;
 
     //! Irregular swap: fixed vs floating leg
     class IrregularSwap : public Swap {

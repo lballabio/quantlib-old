@@ -25,15 +25,12 @@
 #ifndef quantlib_sub_period_coupons_hpp
 #define quantlib_sub_period_coupons_hpp
 
-#include <ql/cashflows/couponpricer.hpp>
 #include <ql/cashflows/floatingratecoupon.hpp>
 #include <ql/time/schedule.hpp>
+#include <ql/indexes/iborindex.hpp>
 #include <vector>
 
 namespace QuantLib {
-
-    class IborIndex;
-    class AveragingRatePricer;
 
     class SubPeriodsCoupon: public FloatingRateCoupon {
       public:
@@ -95,44 +92,6 @@ namespace QuantLib {
         Rate rateSpread_;
     };
 
-    class SubPeriodsPricer: public FloatingRateCouponPricer {
-      public:
-        virtual Rate swapletRate() const;
-        virtual Real capletPrice(Rate effectiveCap) const;
-        virtual Rate capletRate(Rate effectiveCap) const;
-        virtual Real floorletPrice(Rate effectiveFloor) const;
-        virtual Rate floorletRate(Rate effectiveFloor) const;
-        void initialize(const FloatingRateCoupon& coupon);
-
-      protected:
-        const SubPeriodsCoupon* coupon_;
-        Real startTime_;
-        Real endTime_;
-        Real accrualFactor_;
-        std::vector<Real> observationTimes_;
-        std::vector<Real> observationCvg_;
-        std::vector<Real> initialValues_;
-
-        std::vector<Date> observationIndexStartDates_;
-        std::vector<Date> observationIndexEndDates_;
-
-        Size observations_;
-        Real discount_;
-        Real gearing_;
-        Spread spread_;
-        Real spreadLegValue_;
-
-    };
-
-    class AveragingRatePricer: public SubPeriodsPricer {
-      public:
-        Real swapletPrice() const;
-    };
-
-    class CompoundingRatePricer: public SubPeriodsPricer {
-      public:
-        Real swapletPrice() const;
-    };
 
 }
 

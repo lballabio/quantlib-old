@@ -1,259 +1,121 @@
-/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
-
-/*
- Copyright (C) 2007 Giorgio Facchinetti
- Copyright (C) 2007 Cristina Duminuco
- Copyright (C) 2011 Ferdinando Ametrano
-
- This file is part of QuantLib, a free-software/open-source library
- for financial quantitative analysts and developers - http://quantlib.org/
-
- QuantLib is free software: you can redistribute it and/or modify it
- under the terms of the QuantLib license.  You should have received a
- copy of the license along with this program; if not, please email
- <quantlib-dev@lists.sf.net>. The license is also available online at
- <http://quantlib.org/license.shtml>.
-
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE.  See the license for more details.
-*/
+//todo move to header, once template'zed
 
 #include <ql/cashflows/couponpricer.hpp>
-#include <ql/cashflows/capflooredcoupon.hpp>
-#include <ql/cashflows/digitalcoupon.hpp>
-#include <ql/cashflows/digitalcmscoupon.hpp>
-#include <ql/cashflows/digitaliborcoupon.hpp>
-#include <ql/cashflows/rangeaccrual.hpp>
-#include <ql/experimental/coupons/subperiodcoupons.hpp> /* internal */
-#include <ql/pricingengines/blackformula.hpp>
-#include <ql/termstructures/yieldtermstructure.hpp>
-
-using boost::dynamic_pointer_cast;
 
 namespace QuantLib {
 
-//===========================================================================//
-//                              BlackIborCouponPricer                        //
-//===========================================================================//
+    void SubPeriodsPricer::initialize(const FloatingRateCoupon& coupon) {
+        coupon_ =  dynamic_cast<const SubPeriodsCoupon*>(&coupon);
+        QL_REQUIRE(coupon_, "sub-periods coupon required");
+        gearing_ = coupon_->gearing();
+        spread_ = coupon_->spread();
 
-    void BlackIborCouponPricer::initialize(const FloatingRateCoupon& coupon) {
+        Date paymentDate = coupon_->date();
 
-        gearing_ = coupon.gearing();
-        spread_ = coupon.spread();
-        accrualPeriod_ = coupon.accrualPeriod();
-        QL_REQUIRE(accrualPeriod_ != 0.0, "null accrual period");
+        boost::shared_ptr<IborIndex> index =
+            boost::dynamic_pointer_cast<IborIndex>(coupon_->index());
+        const Handle<YieldTermStructure>& rateCurve =
+            index->forwardingTermStructure();
+        discount_ = rateCurve->discount(paymentDate);
+        accrualFactor_ = coupon_->accrualPeriod();
+        spreadLegValue_ = spread_ * accrualFactor_* discount_;
 
-        index_ = dynamic_pointer_cast<IborIndex>(coupon.index());
-        if (!index_) {
-            // check if the coupon was right
-            const IborCoupon* c = dynamic_cast<const IborCoupon*>(&coupon);
-            QL_REQUIRE(c, "IborCoupon required");
-            // coupon was right, index is not
-            QL_FAIL("IborIndex required");
-        }
-        Handle<YieldTermStructure> rateCurve =
-                                            index_->forwardingTermStructure();
+        startTime_ = coupon_->startTime();
+        endTime_ = coupon_->endTime();
+        observationTimes_ = coupon_->observationTimes();
+        observations_ = coupon_->observations();
 
-        Date paymentDate = coupon.date();
-        if (paymentDate > rateCurve->referenceDate())
-            discount_ = rateCurve->discount(paymentDate);
-        else
-            discount_ = 1.0;
+        const std::vector<Date>& observationDates =
+            coupon_->observationsSchedule()->dates();
 
-        spreadLegValue_ = spread_ * accrualPeriod_ * discount_;
+        QL_REQUIRE(observationDates.size()==observations_+2,
+                   "incompatible size of initialValues vector");
 
-        coupon_ = &coupon;
-    }
+        initialValues_ = std::vector<Real>(observationDates.size(),0.);
 
-    Real BlackIborCouponPricer::optionletPrice(Option::Type optionType,
-                                               Real effStrike) const {
-        Date fixingDate = coupon_->fixingDate();
-        if (fixingDate <= Settings::instance().evaluationDate()) {
-            // the amount is determined
-            Real a, b;
-            if (optionType==Option::Call) {
-                a = coupon_->indexFixing();
-                b = effStrike;
-            } else {
-                a = effStrike;
-                b = coupon_->indexFixing();
-            }
-            return std::max(a - b, 0.0)* accrualPeriod_*discount_;
-        } else {
-            // not yet determined, use Black model
-            QL_REQUIRE(!capletVolatility().empty(),
-                       "missing optionlet volatility");
-            Real stdDev =
-                std::sqrt(capletVolatility()->blackVariance(fixingDate,
-                                                            effStrike));
-            Rate fixing = blackFormula(optionType,
-                                       effStrike,
-                                       adjustedFixing(),
-                                       stdDev);
-            return fixing * accrualPeriod_ * discount_;
+        observationCvg_ = std::vector<Real>(observationDates.size(),0.);
+
+        observationIndexStartDates_ =
+            std::vector<Date>(observationDates.size());
+        observationIndexEndDates_ =
+            std::vector<Date>(observationDates.size());
+
+        Calendar calendar = index->fixingCalendar();
+
+        for(Size i=0; i<observationDates.size(); i++) {
+            Date fixingDate = calendar.advance(
+                                 observationDates[i],
+                                 -static_cast<Integer>(coupon_->fixingDays()),
+                                 Days);
+
+            initialValues_[i] =
+                index->fixing(fixingDate) + coupon_->rateSpread();
+
+            Date fixingValueDate = index->valueDate(fixingDate);
+            Date endValueDate = index->maturityDate(fixingValueDate);
+
+            observationIndexStartDates_[i] = fixingValueDate;
+            observationIndexEndDates_[i] = endValueDate;
+
+            observationCvg_[i] =
+                index->dayCounter().yearFraction(fixingValueDate, endValueDate);
         }
     }
 
-    Rate BlackIborCouponPricer::adjustedFixing(Rate fixing) const {
-
-        if (fixing == Null<Rate>())
-            fixing = coupon_->indexFixing();
-
-        if (!coupon_->isInArrears())
-            return fixing;
-
-        QL_REQUIRE(!capletVolatility().empty(),
-                   "missing optionlet volatility");
-        Date d1 = coupon_->fixingDate();
-        Date referenceDate = capletVolatility()->referenceDate();
-        if (d1 <= referenceDate)
-            return fixing;
-
-        // see Hull, 4th ed., page 550
-        Date d2 = index_->valueDate(d1);
-        Date d3 = index_->maturityDate(d2);
-        Time tau = index_->dayCounter().yearFraction(d2, d3);
-        Real variance = capletVolatility()->blackVariance(d1, fixing);
-        Spread adjustement = fixing*fixing*variance*tau/(1.0+fixing*tau);
-        return fixing + adjustement;
+    Real SubPeriodsPricer::swapletRate() const {
+        return swapletPrice()/(accrualFactor_*discount_);
     }
 
-//===========================================================================//
-//                         CouponSelectorToSetPricer                         //
-//===========================================================================//
-
-    namespace {
-
-        class PricerSetter : public AcyclicVisitor,
-                             public Visitor<CashFlow>,
-                             public Visitor<Coupon>,
-                             public Visitor<IborCoupon>,
-                             public Visitor<CmsCoupon>,
-                             public Visitor<CappedFlooredIborCoupon>,
-                             public Visitor<CappedFlooredCmsCoupon>,
-                             public Visitor<DigitalIborCoupon>,
-                             public Visitor<DigitalCmsCoupon>,
-                             public Visitor<RangeAccrualFloatersCoupon>,
-                             public Visitor<SubPeriodsCoupon> {
-          private:
-            const boost::shared_ptr<FloatingRateCouponPricer> pricer_;
-          public:
-            PricerSetter(
-                    const boost::shared_ptr<FloatingRateCouponPricer>& pricer)
-            : pricer_(pricer) {}
-
-            void visit(CashFlow& c);
-            void visit(Coupon& c);
-            void visit(IborCoupon& c);
-            void visit(CappedFlooredIborCoupon& c);
-            void visit(DigitalIborCoupon& c);
-            void visit(CmsCoupon& c);
-            void visit(CappedFlooredCmsCoupon& c);
-            void visit(DigitalCmsCoupon& c);
-            void visit(RangeAccrualFloatersCoupon& c);
-            void visit(SubPeriodsCoupon& c);
-        };
-
-        void PricerSetter::visit(CashFlow&) {
-            // nothing to do
-        }
-
-        void PricerSetter::visit(Coupon&) {
-            // nothing to do
-        }
-
-        void PricerSetter::visit(IborCoupon& c) {
-            const boost::shared_ptr<IborCouponPricer> iborCouponPricer =
-                boost::dynamic_pointer_cast<IborCouponPricer>(pricer_);
-            QL_REQUIRE(iborCouponPricer,
-                       "pricer not compatible with Ibor coupon");
-            c.setPricer(iborCouponPricer);
-        }
-
-        void PricerSetter::visit(DigitalIborCoupon& c) {
-            const boost::shared_ptr<IborCouponPricer> iborCouponPricer =
-                boost::dynamic_pointer_cast<IborCouponPricer>(pricer_);
-            QL_REQUIRE(iborCouponPricer,
-                       "pricer not compatible with Ibor coupon");
-            c.setPricer(iborCouponPricer);
-        }
-
-        void PricerSetter::visit(CappedFlooredIborCoupon& c) {
-            const boost::shared_ptr<IborCouponPricer> iborCouponPricer =
-                boost::dynamic_pointer_cast<IborCouponPricer>(pricer_);
-            QL_REQUIRE(iborCouponPricer,
-                       "pricer not compatible with Ibor coupon");
-            c.setPricer(iborCouponPricer);
-        }
-
-        void PricerSetter::visit(CmsCoupon& c) {
-            const boost::shared_ptr<CmsCouponPricer> cmsCouponPricer =
-                boost::dynamic_pointer_cast<CmsCouponPricer>(pricer_);
-            QL_REQUIRE(cmsCouponPricer,
-                       "pricer not compatible with CMS coupon");
-            c.setPricer(cmsCouponPricer);
-        }
-
-        void PricerSetter::visit(CappedFlooredCmsCoupon& c) {
-            const boost::shared_ptr<CmsCouponPricer> cmsCouponPricer =
-                boost::dynamic_pointer_cast<CmsCouponPricer>(pricer_);
-            QL_REQUIRE(cmsCouponPricer,
-                       "pricer not compatible with CMS coupon");
-            c.setPricer(cmsCouponPricer);
-        }
-
-        void PricerSetter::visit(DigitalCmsCoupon& c) {
-            const boost::shared_ptr<CmsCouponPricer> cmsCouponPricer =
-                boost::dynamic_pointer_cast<CmsCouponPricer>(pricer_);
-            QL_REQUIRE(cmsCouponPricer,
-                       "pricer not compatible with CMS coupon");
-            c.setPricer(cmsCouponPricer);
-        }
-
-        void PricerSetter::visit(RangeAccrualFloatersCoupon& c) {
-            const boost::shared_ptr<RangeAccrualPricer> rangeAccrualPricer =
-                boost::dynamic_pointer_cast<RangeAccrualPricer>(pricer_);
-            QL_REQUIRE(rangeAccrualPricer,
-                       "pricer not compatible with range-accrual coupon");
-            c.setPricer(rangeAccrualPricer);
-        }
-
-        void PricerSetter::visit(SubPeriodsCoupon& c) {
-            const boost::shared_ptr<SubPeriodsPricer> subPeriodsPricer =
-                boost::dynamic_pointer_cast<SubPeriodsPricer>(pricer_);
-            QL_REQUIRE(subPeriodsPricer,
-                       "pricer not compatible with sub-period coupon");
-            c.setPricer(subPeriodsPricer);
-        }
-
+    Real SubPeriodsPricer::capletPrice(Rate) const {
+        QL_FAIL("SubPeriodsPricer::capletPrice not implemented");
     }
 
-    void setCouponPricer(
-                  const Leg& leg,
-                  const boost::shared_ptr<FloatingRateCouponPricer>& pricer) {
-        PricerSetter setter(pricer);
-        for (Size i=0; i<leg.size(); ++i) {
-            leg[i]->accept(setter);
-        }
+    Rate SubPeriodsPricer::capletRate(Rate) const {
+        QL_FAIL("SubPeriodsPricer::capletRate not implemented");
     }
 
-    void setCouponPricers(
-            const Leg& leg,
-            const std::vector<boost::shared_ptr<FloatingRateCouponPricer> >&
-                                                                    pricers) {
-        Size nCashFlows = leg.size();
-        QL_REQUIRE(nCashFlows>0, "no cashflows");
-
-        Size nPricers = pricers.size();
-        QL_REQUIRE(nCashFlows >= nPricers,
-                   "mismatch between leg size (" << nCashFlows <<
-                   ") and number of pricers (" << nPricers << ")");
-
-        for (Size i=0; i<nCashFlows; ++i) {
-            PricerSetter setter(i<nPricers ? pricers[i] : pricers[nPricers-1]);
-            leg[i]->accept(setter);
-        }
+    Real SubPeriodsPricer::floorletPrice(Rate) const {
+        QL_FAIL("SubPeriodsPricer::floorletPrice not implemented");
     }
+
+    Rate SubPeriodsPricer::floorletRate(Rate) const {
+        QL_FAIL("SubPeriodsPricer::floorletRate not implemented");
+    }
+
+    Real AveragingRatePricer::swapletPrice() const {
+        // past or future fixing is managed in InterestRateIndex::fixing()
+
+        Size nCount = initialValues_.size();
+        double dAvgRate = 0.0, dTotalCvg = 0.0, dTotalPayment = 0.0;
+        for (Size i=0; i<nCount; i++) {
+            dTotalPayment += initialValues_[i] * observationCvg_[i];
+            dTotalCvg += observationCvg_[i];
+        }
+
+        dAvgRate =  dTotalPayment/dTotalCvg;
+
+        Real swapletPrice = dAvgRate*coupon_->accrualPeriod()*discount_;
+        return gearing_ * swapletPrice + spreadLegValue_;
+    }
+
+    Real CompoundingRatePricer::swapletPrice() const {
+        // past or future fixing is managed in InterestRateIndex::fixing()
+
+        double dNotional = 1.0;
+
+        Size nCount = initialValues_.size();
+        double dCompRate = 0.0, dTotalCvg = 0.0, dTotalPayment = 0.0;
+        for (Size i=0; i<nCount; i++) {
+            dTotalPayment = initialValues_[i] * observationCvg_[i]*dNotional;
+            dNotional += dTotalPayment;
+            dTotalCvg += observationCvg_[i];
+        }
+
+        dCompRate = (dNotional - 1.0)/dTotalCvg;
+
+        Real swapletPrice = dCompRate*coupon_->accrualPeriod()*discount_;
+        return gearing_ * swapletPrice + spreadLegValue_;
+    }
+
 
 }

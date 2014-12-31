@@ -25,11 +25,11 @@
 #define quantlib_amortizing_floating_rate_bond_hpp
 
 #include <ql/instruments/bond.hpp>
+#include <ql/indexes/iborindex.hpp>
 
 namespace QuantLib {
 
     class Schedule;
-    class IborIndex;
 
     //! amortizing floating-rate bond (possibly capped and/or floored)
     class AmortizingFloatingRateBond : public Bond {

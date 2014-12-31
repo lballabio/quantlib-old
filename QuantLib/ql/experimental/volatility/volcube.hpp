@@ -33,7 +33,9 @@ namespace QuantLib {
     class Period;
     class AbcdAtmVolCurve;
     class InterestRateVolSurface;
-    class InterestRateIndex;
+    
+    template<class> class InterestRateIndex_t;
+    typedef InterestRateIndex_t<Real> InterestRateIndex;
 
     class VolatilityCube {
       public:

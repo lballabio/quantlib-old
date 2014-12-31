@@ -33,7 +33,6 @@
 #include <ql/settings.hpp>
 
 using namespace QuantLib;
-using namespace boost;
 using namespace boost::unit_test_framework;
 
 void CashFlowsTest::testSettings() {
@@ -62,7 +61,7 @@ void CashFlowsTest::testSettings() {
     //         today's date
 
     Settings::instance().includeReferenceDateEvents() = false;
-    Settings::instance().includeTodaysCashFlows() = none;
+    Settings::instance().includeTodaysCashFlows() = boost::none;
 
     CHECK_INCLUSION(0, 0, false);
     CHECK_INCLUSION(0, 1, false);
@@ -95,7 +94,7 @@ void CashFlowsTest::testSettings() {
     //         today's date
 
     Settings::instance().includeReferenceDateEvents() = true;
-    Settings::instance().includeTodaysCashFlows() = none;
+    Settings::instance().includeTodaysCashFlows() = boost::none;
 
     CHECK_INCLUSION(0, 0, true);
     CHECK_INCLUSION(0, 1, false);
@@ -157,7 +156,7 @@ void CashFlowsTest::testSettings() {
     } while (false);
 
     // no override
-    Settings::instance().includeTodaysCashFlows() = none;
+    Settings::instance().includeTodaysCashFlows() = boost::none;
 
     CHECK_NPV(false, 2.0);
     CHECK_NPV(true, 3.0);

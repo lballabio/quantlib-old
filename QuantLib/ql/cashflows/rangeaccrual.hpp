@@ -27,17 +27,17 @@
 #define quantlib_range_accrual_h
 
 #include <ql/termstructures/volatility/smilesection.hpp>
-#include <ql/cashflows/couponpricer.hpp>
+#include <ql/cashflows/couponpricerbase.hpp>
 #include <ql/cashflows/floatingratecoupon.hpp>
+#include <ql/indexes/iborindex.hpp>
 #include <ql/time/schedule.hpp>
 #include <vector>
 
 namespace QuantLib {
 
-    class IborIndex;
     class RangeAccrualPricer;
 
-    class RangeAccrualFloatersCoupon: public FloatingRateCoupon {
+    class RangeAccrualFloatersCoupon: public FloatingRateCoupon_t<Real> {
 
       public:
 
@@ -92,7 +92,7 @@ namespace QuantLib {
         Real upperTrigger_;
      };
 
-    class RangeAccrualPricer: public FloatingRateCouponPricer {
+    class RangeAccrualPricer: public FloatingRateCouponPricer_t<Real> {
       public:
         //! \name Observer interface
         //@{

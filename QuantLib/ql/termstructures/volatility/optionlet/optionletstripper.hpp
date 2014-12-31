@@ -31,7 +31,8 @@
 
 namespace QuantLib {
 
-    class IborIndex;
+    template<class> class IborIndex_t;
+    typedef IborIndex_t<Real> IborIndex;
 
     /*! StrippedOptionletBase specialization. It's up to derived
         classes to implement LazyObject::performCalculations

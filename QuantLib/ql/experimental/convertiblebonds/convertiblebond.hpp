@@ -32,10 +32,10 @@
 #include <ql/time/schedule.hpp>
 #include <ql/time/daycounter.hpp>
 #include <ql/quote.hpp>
+#include <ql/indexes/iborindex.hpp>
 
 namespace QuantLib {
 
-    class IborIndex;
     class PricingEngine;
 
     //! %callability leaving to the holder the possibility to convert

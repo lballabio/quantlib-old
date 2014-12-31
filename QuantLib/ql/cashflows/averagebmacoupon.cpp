@@ -19,7 +19,7 @@
 */
 
 #include <ql/cashflows/averagebmacoupon.hpp>
-#include <ql/cashflows/couponpricer.hpp>
+#include <ql/cashflows/couponpricerbase.hpp>
 #include <ql/utilities/vectors.hpp>
 
 namespace QuantLib {

@@ -33,7 +33,8 @@
 
 namespace QuantLib {
 
-    class IborIndex;
+    template<class> class IborIndex_t;
+    typedef IborIndex_t<Real> IborIndex;
 
     //! Bullet bond vs %Libor swap
     /*! for mechanics of par asset swap and market asset swap, refer to

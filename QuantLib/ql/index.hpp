@@ -33,102 +33,120 @@
 
 namespace QuantLib {
 
-    //! purely virtual base class for indexes
-    /*! \warning this class performs no check that the
-                 provided/requested fixings are for dates in the past,
-                 i.e. for dates less than or equal to the evaluation
-                 date. It is up to the client code to take care of
-                 possible inconsistencies due to "seeing in the
-                 future"
+//! purely virtual base class for indexes
+/*! \warning this class performs no check that the
+             provided/requested fixings are for dates in the past,
+             i.e. for dates less than or equal to the evaluation
+             date. It is up to the client code to take care of
+             possible inconsistencies due to "seeing in the
+             future"
+*/
+template <class T = Real> class Index_t : public Observable {
+  public:
+    virtual ~Index_t() {}
+    //! Returns the name of the index.
+    /*! \warning This method is used for output and comparison
+                 between indexes. It is <b>not</b> meant to be
+                 used for writing switch-on-type code.
     */
-    class Index : public Observable {
-      public:
-        virtual ~Index() {}
-        //! Returns the name of the index.
-        /*! \warning This method is used for output and comparison
-                     between indexes. It is <b>not</b> meant to be
-                     used for writing switch-on-type code.
-        */
-        virtual std::string name() const = 0;
-        //! returns the calendar defining valid fixing dates
-        virtual Calendar fixingCalendar() const = 0;
-        //! returns TRUE if the fixing date is a valid one
-        virtual bool isValidFixingDate(const Date& fixingDate) const = 0;
-        //! returns the fixing at the given date
-        /*! the date passed as arguments must be the actual calendar
-            date of the fixing; no settlement days must be used.
-        */
-        virtual Real fixing(const Date& fixingDate,
-                            bool forecastTodaysFixing = false) const = 0;
-        //! returns the fixing TimeSeries
-        const TimeSeries<Real>& timeSeries() const {
-            return IndexManager::instance().getHistory(name());
-        }
-        //! stores the historical fixing at the given date
-        /*! the date passed as arguments must be the actual calendar
-            date of the fixing; no settlement days must be used.
-        */
-        virtual void addFixing(const Date& fixingDate,
-                               Real fixing,
-                               bool forceOverwrite = false);
-        //! stores historical fixings from a TimeSeries
-        /*! the dates in the TimeSeries must be the actual calendar
-            dates of the fixings; no settlement days must be used.
-        */
-        void addFixings(const TimeSeries<Real>& t,
-                        bool forceOverwrite = false);
-        //! stores historical fixings at the given dates
-        /*! the dates passed as arguments must be the actual calendar
-            dates of the fixings; no settlement days must be used.
-        */
-        template <class DateIterator, class ValueIterator>
-        void addFixings(DateIterator dBegin, DateIterator dEnd,
-                        ValueIterator vBegin,
-                        bool forceOverwrite = false) {
-            std::string tag = name();
-            TimeSeries<Real> h = IndexManager::instance().getHistory(tag);
-            bool missingFixing, validFixing;
-            bool noInvalidFixing = true, noDuplicatedFixing = true;
-            Date invalidDate, duplicatedDate;
-            Real nullValue = Null<Real>();
-            Real invalidValue = Null<Real>();
-            Real duplicatedValue = Null<Real>();
-            while (dBegin != dEnd) {
-                validFixing = isValidFixingDate(*dBegin);
-                Real currentValue = h[*dBegin];
-                missingFixing = forceOverwrite || currentValue == nullValue;
-                if (validFixing) {
-                    if (missingFixing)
-                        h[*(dBegin++)] = *(vBegin++);
-                    else if (close(currentValue,*(vBegin))) {
-                        ++dBegin;
-                        ++vBegin;
-                    } else {
-                        noDuplicatedFixing = false;
-                        duplicatedDate = *(dBegin++);
-                        duplicatedValue = *(vBegin++);
-                    }
+    virtual std::string name() const = 0;
+    //! returns the calendar defining valid fixing dates
+    virtual Calendar fixingCalendar() const = 0;
+    //! returns TRUE if the fixing date is a valid one
+    virtual bool isValidFixingDate(const Date &fixingDate) const = 0;
+    //! returns the fixing at the given date
+    /*! the date passed as arguments must be the actual calendar
+        date of the fixing; no settlement days must be used.
+    */
+    virtual T fixing(const Date &fixingDate,
+                     bool forecastTodaysFixing = false) const = 0;
+    //! returns the fixing TimeSeries
+    const TimeSeries<T> &timeSeries() const {
+        return IndexManager::instance().getHistory(name());
+    }
+    //! stores the historical fixing at the given date
+    /*! the date passed as arguments must be the actual calendar
+        date of the fixing; no settlement days must be used.
+    */
+    virtual void addFixing(const Date &fixingDate, T fixing,
+                           bool forceOverwrite = false);
+    //! stores historical fixings from a TimeSeries
+    /*! the dates in the TimeSeries must be the actual calendar
+        dates of the fixings; no settlement days must be used.
+    */
+    void addFixings(const TimeSeries<T> &t, bool forceOverwrite = false);
+    //! stores historical fixings at the given dates
+    /*! the dates passed as arguments must be the actual calendar
+        dates of the fixings; no settlement days must be used.
+    */
+    template <class DateIterator, class ValueIterator>
+    void addFixings(DateIterator dBegin, DateIterator dEnd,
+                    ValueIterator vBegin, bool forceOverwrite = false) {
+        std::string tag = name();
+        TimeSeries<T> h = IndexManager_t<T>::instance().getHistory(tag);
+        bool missingFixing, validFixing;
+        bool noInvalidFixing = true, noDuplicatedFixing = true;
+        Date invalidDate, duplicatedDate;
+        Real nullValue = Null<Real>();
+        Real invalidValue = Null<Real>();
+        Real duplicatedValue = Null<Real>();
+        while (dBegin != dEnd) {
+            validFixing = isValidFixingDate(*dBegin);
+            T currentValue = h[*dBegin];
+            missingFixing = forceOverwrite || currentValue == nullValue;
+            if (validFixing) {
+                if (missingFixing)
+                    h[*(dBegin++)] = *(vBegin++);
+                else if (close(currentValue, *(vBegin))) {
+                    ++dBegin;
+                    ++vBegin;
                 } else {
-                    noInvalidFixing = false;
-                    invalidDate = *(dBegin++);
-                    invalidValue = *(vBegin++);
+                    noDuplicatedFixing = false;
+                    duplicatedDate = *(dBegin++);
+                    duplicatedValue = *(vBegin++);
                 }
+            } else {
+                noInvalidFixing = false;
+                invalidDate = *(dBegin++);
+                invalidValue = *(vBegin++);
             }
-            IndexManager::instance().setHistory(tag, h);
-            QL_REQUIRE(noInvalidFixing,
-                       "At least one invalid fixing provided: " <<
-                       invalidDate.weekday() << " " << invalidDate <<
-                       ", " << invalidValue);
-            QL_REQUIRE(noDuplicatedFixing,
-                       "At least one duplicated fixing provided: " <<
-                       duplicatedDate << ", " << duplicatedValue <<
-                       " while " << h[duplicatedDate] <<
-                       " value is already present");
         }
-        //! clears all stored historical fixings
-        void clearFixings();
-    };
+        IndexManager_t<T>::instance().setHistory(tag, h);
+        QL_REQUIRE(noInvalidFixing, "At least one invalid fixing provided: "
+                                        << invalidDate.weekday() << " "
+                                        << invalidDate << ", " << invalidValue);
+        QL_REQUIRE(noDuplicatedFixing,
+                   "At least one duplicated fixing provided: "
+                       << duplicatedDate << ", " << duplicatedValue << " while "
+                       << h[duplicatedDate] << " value is already present");
+    }
+    //! clears all stored historical fixings
+    void clearFixings();
+};
 
+typedef Index_t<Real> Index;
+
+// implementation
+
+template <class T>
+void Index_t<T>::addFixing(const Date &fixingDate, T fixing,
+                           bool forceOverwrite) {
+    addFixings(&fixingDate, (&fixingDate) + 1, &fixing, forceOverwrite);
+}
+
+template <class T>
+void Index_t<T>::addFixings(const TimeSeries<T> &t, bool forceOverwrite) {
+    // is there a way of iterating over dates and values
+    // without having to make a copy?
+    std::vector<Date> dates = t.dates();
+    std::vector<T> values = t.values();
+    addFixings(dates.begin(), dates.end(), values.begin(), forceOverwrite);
+}
+
+template <class T>
+void Index_t<T>::clearFixings() {
+    IndexManager::instance().clearHistory(this->name());
+}
 }
 
 #endif

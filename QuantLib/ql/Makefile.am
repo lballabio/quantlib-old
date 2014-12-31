@@ -58,14 +58,12 @@ this_include_HEADERS = \
 	volatilitymodel.hpp
 
 libQuantLib_la_SOURCES = \
-    cashflow.cpp \
     currency.cpp \
 	discretizedasset.cpp \
 	errors.cpp \
 	event.cpp \
 	exchangerate.cpp \
 	exercise.cpp \
-    index.cpp \
     money.cpp \
     position.cpp \
     prices.cpp \

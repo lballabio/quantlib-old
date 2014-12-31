@@ -32,9 +32,14 @@ namespace CppAD {
         return CppAD::CondExpGt(x,y,x,y);
     }
 
+    template<class Base> CppAD::AD<Base> min(CppAD::AD<Base> x,CppAD::AD<Base> y) {
+        return CppAD::CondExpLt(x,y,x,y);
+    }
+
 }
 
 using CppAD::max;
+using CppAD::min;
 
 using CppAD::pow;
 using CppAD::log;

@@ -239,7 +239,7 @@ namespace QuantLib {
         boost::shared_ptr<IborCouponPricer>
             fictitiousPricer(new
                 BlackIborCouponPricer(Handle<OptionletVolatilityStructure>()));
-        setCouponPricer(leg_,fictitiousPricer);
+        setCouponPricer<Real>(leg_,fictitiousPricer);
     }
 
     std::vector<boost::shared_ptr<CashFlow> > RiskyFloatingBond::cashflows()

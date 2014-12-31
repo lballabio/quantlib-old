@@ -19,7 +19,7 @@
 */
 
 #include <ql/cashflows/overnightindexedcoupon.hpp>
-#include <ql/cashflows/couponpricer.hpp>
+#include <ql/cashflows/couponpricerbase.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 #include <ql/utilities/vectors.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>

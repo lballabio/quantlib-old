@@ -25,11 +25,11 @@
 #define quantlib_amortizing_cms_rate_bond_hpp
 
 #include <ql/instruments/bond.hpp>
+#include <ql/indexes/swapindex.hpp>
 
 namespace QuantLib {
 
     class Schedule;
-    class SwapIndex;
 
     //! amortizing CMS-rate bond
     class AmortizingCmsRateBond : public Bond {

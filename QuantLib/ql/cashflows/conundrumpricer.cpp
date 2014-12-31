@@ -27,7 +27,7 @@
 #include <ql/pricingengines/blackformula.hpp>
 #include <ql/math/solvers1d/newton.hpp>
 #include <ql/termstructures/volatility/smilesection.hpp>
-#include <ql/cashflows/cmscoupon.hpp>
+#include <ql/cashflows/cmscouponbase.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 #include <ql/quotes/simplequote.hpp>
 #include <ql/indexes/swapindex.hpp>

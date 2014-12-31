@@ -27,11 +27,11 @@
 
 #include <ql/instruments/bond.hpp>
 #include <ql/time/dategenerationrule.hpp>
+#include <ql/indexes/iborindex.hpp>
 
 namespace QuantLib {
 
     class Schedule;
-    class IborIndex;
 
     //! floating-rate bond (possibly capped and/or floored)
     /*! \ingroup instruments

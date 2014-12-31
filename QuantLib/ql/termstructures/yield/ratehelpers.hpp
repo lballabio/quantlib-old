@@ -49,7 +49,7 @@ namespace QuantLib {
 
 using boost::shared_ptr;
 
-class SwapIndex;
+template <class> class SwapIndex_t;
 
 template <class T> struct RateHelper_t {
     typedef BootstrapHelper<YieldTermStructure_t<T> > Type;
@@ -323,7 +323,7 @@ inline const Period &SwapRateHelper_t<T>::forwardStart() const {
 }
 
 namespace {
-template <class T> void no_deletion(YieldTermStructure_t<T>*){};
+template <class T> void no_deletion(YieldTermStructure_t<T> *){};
 }
 
 // implementation

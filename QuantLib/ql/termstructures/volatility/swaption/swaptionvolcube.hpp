@@ -30,7 +30,8 @@
 
 namespace QuantLib {
 
-    class SwapIndex;
+    template<class> class SwapIndex_t;
+    typedef SwapIndex_t<Real> SwapIndex;
 
     //! swaption-volatility cube
     /*! \warning this class is not finalized and its interface might

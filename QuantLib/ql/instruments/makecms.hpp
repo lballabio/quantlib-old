@@ -31,7 +31,8 @@
 namespace QuantLib {
 
     class Swap;
-    class IborIndex;
+    template<class> class IborIndex_t;
+    typedef IborIndex_t<Real> IborIndex;
 
     //! helper class for instantiating CMS
     /*! This class provides a more comfortable way

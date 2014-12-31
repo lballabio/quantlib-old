@@ -5,6 +5,7 @@
  Copyright (C) 2007 Giorgio Facchinetti
  Copyright (C) 2007 Cristina Duminuco
  Copyright (C) 2007 StatPro Italia srl
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -27,84 +28,168 @@
 #ifndef quantlib_ibor_coupon_hpp
 #define quantlib_ibor_coupon_hpp
 
-#include <ql/cashflows/floatingratecoupon.hpp>
-#include <ql/indexes/iborindex.hpp>
-#include <ql/time/schedule.hpp>
+#include <ql/cashflows/iborcouponbase.hpp>
+#include <ql/cashflows/couponpricer.hpp>
 
 namespace QuantLib {
 
-    //! %Coupon paying a Libor-type index
-    class IborCoupon : public FloatingRateCoupon {
-      public:
-        IborCoupon(const Date& paymentDate,
-                   Real nominal,
-                   const Date& startDate,
-                   const Date& endDate,
-                   Natural fixingDays,
-                   const boost::shared_ptr<IborIndex>& index,
-                   Real gearing = 1.0,
-                   Spread spread = 0.0,
-                   const Date& refPeriodStart = Date(),
-                   const Date& refPeriodEnd = Date(),
-                   const DayCounter& dayCounter = DayCounter(),
-                   bool isInArrears = false);
-        //! \name Inspectors
-        //@{
-        const boost::shared_ptr<IborIndex>& iborIndex() const {
-            return iborIndex_;
-        }
-        //@}
-        //! \name FloatingRateCoupon interface
-        //@{
-        //! Implemented in order to manage the case of par coupon
-        Rate indexFixing() const;
-        //@}
-        //! \name Visitability
-        //@{
-        virtual void accept(AcyclicVisitor&);
-        //@}
-      private:
-        boost::shared_ptr<IborIndex> iborIndex_;
-        Date fixingDate_, fixingValueDate_, fixingEndDate_;
-        Time spanningTime_;
-    };
+using boost::shared_ptr;
 
+//! helper class building a sequence of capped/floored ibor-rate coupons
+template <class T = Real> class IborLeg_t {
+  public:
+    IborLeg_t(const Schedule &schedule,
+              const boost::shared_ptr<IborIndex_t<T> > &index);
+    IborLeg_t &withNotionals(T notional);
+    IborLeg_t &withNotionals(const std::vector<T> &notionals);
+    IborLeg_t &withPaymentDayCounter(const DayCounter &);
+    IborLeg_t &withPaymentAdjustment(BusinessDayConvention);
+    IborLeg_t &withFixingDays(Natural fixingDays);
+    IborLeg_t &withFixingDays(const std::vector<Natural> &fixingDays);
+    IborLeg_t &withGearings(T gearing);
+    IborLeg_t &withGearings(const std::vector<T> &gearings);
+    IborLeg_t &withSpreads(T spread);
+    IborLeg_t &withSpreads(const std::vector<T> &spreads);
+    IborLeg_t &withCaps(T cap);
+    IborLeg_t &withCaps(const std::vector<T> &caps);
+    IborLeg_t &withFloors(T floor);
+    IborLeg_t &withFloors(const std::vector<T> &floors);
+    IborLeg_t &inArrears(bool flag = true);
+    IborLeg_t &withZeroPayments(bool flag = true);
+    operator Leg() const;
 
-    //! helper class building a sequence of capped/floored ibor-rate coupons
-    class IborLeg {
-      public:
-        IborLeg(const Schedule& schedule,
-                const boost::shared_ptr<IborIndex>& index);
-        IborLeg& withNotionals(Real notional);
-        IborLeg& withNotionals(const std::vector<Real>& notionals);
-        IborLeg& withPaymentDayCounter(const DayCounter&);
-        IborLeg& withPaymentAdjustment(BusinessDayConvention);
-        IborLeg& withFixingDays(Natural fixingDays);
-        IborLeg& withFixingDays(const std::vector<Natural>& fixingDays);
-        IborLeg& withGearings(Real gearing);
-        IborLeg& withGearings(const std::vector<Real>& gearings);
-        IborLeg& withSpreads(Spread spread);
-        IborLeg& withSpreads(const std::vector<Spread>& spreads);
-        IborLeg& withCaps(Rate cap);
-        IborLeg& withCaps(const std::vector<Rate>& caps);
-        IborLeg& withFloors(Rate floor);
-        IborLeg& withFloors(const std::vector<Rate>& floors);
-        IborLeg& inArrears(bool flag = true);
-        IborLeg& withZeroPayments(bool flag = true);
-        operator Leg() const;
-      private:
-        Schedule schedule_;
-        boost::shared_ptr<IborIndex> index_;
-        std::vector<Real> notionals_;
-        DayCounter paymentDayCounter_;
-        BusinessDayConvention paymentAdjustment_;
-        std::vector<Natural> fixingDays_;
-        std::vector<Real> gearings_;
-        std::vector<Spread> spreads_;
-        std::vector<Rate> caps_, floors_;
-        bool inArrears_, zeroPayments_;
-    };
+  private:
+    Schedule schedule_;
+    boost::shared_ptr<IborIndex> index_;
+    std::vector<T> notionals_;
+    DayCounter paymentDayCounter_;
+    BusinessDayConvention paymentAdjustment_;
+    std::vector<Natural> fixingDays_;
+    std::vector<T> gearings_;
+    std::vector<T> spreads_;
+    std::vector<T> caps_, floors_;
+    bool inArrears_, zeroPayments_;
+};
 
+typedef IborLeg_t<Real> IborLeg;
+
+// implementation
+
+template <class T>
+IborLeg_t<T>::IborLeg_t(const Schedule &schedule,
+                        const shared_ptr<IborIndex_t<T> > &index)
+    : schedule_(schedule), index_(index), paymentAdjustment_(Following),
+      inArrears_(false), zeroPayments_(false) {}
+
+template <class T> IborLeg_t<T> &IborLeg_t<T>::withNotionals(T notional) {
+    notionals_ = std::vector<T>(1, notional);
+    return *this;
 }
+
+template <class T>
+IborLeg_t<T> &IborLeg_t<T>::withNotionals(const std::vector<T> &notionals) {
+    notionals_ = notionals;
+    return *this;
+}
+
+template <class T>
+IborLeg_t<T> &
+IborLeg_t<T>::withPaymentDayCounter(const DayCounter &dayCounter) {
+    paymentDayCounter_ = dayCounter;
+    return *this;
+}
+
+template <class T>
+IborLeg_t<T> &
+IborLeg_t<T>::withPaymentAdjustment(BusinessDayConvention convention) {
+    paymentAdjustment_ = convention;
+    return *this;
+}
+
+template <class T>
+IborLeg_t<T> &IborLeg_t<T>::withFixingDays(Natural fixingDays) {
+    fixingDays_ = std::vector<Natural>(1, fixingDays);
+    return *this;
+}
+
+template <class T>
+IborLeg_t<T> &
+IborLeg_t<T>::withFixingDays(const std::vector<Natural> &fixingDays) {
+    fixingDays_ = fixingDays;
+    return *this;
+}
+
+template <class T> IborLeg_t<T> &IborLeg_t<T>::withGearings(T gearing) {
+    gearings_ = std::vector<Real>(1, gearing);
+    return *this;
+}
+
+template <class T>
+IborLeg_t<T> &IborLeg_t<T>::withGearings(const std::vector<T> &gearings) {
+    gearings_ = gearings;
+    return *this;
+}
+
+template <class T> IborLeg_t<T> &IborLeg_t<T>::withSpreads(T spread) {
+    spreads_ = std::vector<Spread>(1, spread);
+    return *this;
+}
+
+template <class T>
+IborLeg_t<T> &IborLeg_t<T>::withSpreads(const std::vector<T> &spreads) {
+    spreads_ = spreads;
+    return *this;
+}
+
+template <class T> IborLeg_t<T> &IborLeg_t<T>::withCaps(T cap) {
+    caps_ = std::vector<Rate>(1, cap);
+    return *this;
+}
+
+template <class T>
+IborLeg_t<T> &IborLeg_t<T>::withCaps(const std::vector<T> &caps) {
+    caps_ = caps;
+    return *this;
+}
+
+template <class T> IborLeg_t<T> &IborLeg_t<T>::withFloors(T floor) {
+    floors_ = std::vector<Rate>(1, floor);
+    return *this;
+}
+
+template <class T>
+IborLeg_t<T> &IborLeg_t<T>::withFloors(const std::vector<T> &floors) {
+    floors_ = floors;
+    return *this;
+}
+
+template <class T> IborLeg_t<T> &IborLeg_t<T>::inArrears(bool flag) {
+    inArrears_ = flag;
+    return *this;
+}
+
+template <class T> IborLeg_t<T> &IborLeg_t<T>::withZeroPayments(bool flag) {
+    zeroPayments_ = flag;
+    return *this;
+}
+
+template <class T> IborLeg_t<T>::operator Leg() const {
+
+    typename Leg_t<T>::Type leg =
+        FloatingLeg<IborIndex_t, IborCoupon_t, CappedFlooredIborCoupon_t, T>(
+            schedule_, notionals_, index_, paymentDayCounter_,
+            paymentAdjustment_, fixingDays_, gearings_, spreads_, caps_,
+            floors_, inArrears_, zeroPayments_);
+
+    if (caps_.empty() && floors_.empty() && !inArrears_) {
+        shared_ptr<IborCouponPricer_t<T> > pricer(
+            new BlackIborCouponPricer_t<T>);
+        setCouponPricer<T>(leg, pricer);
+    }
+
+    return leg;
+}
+
+} // namespace QuantLib
 
 #endif

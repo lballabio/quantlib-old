@@ -49,6 +49,22 @@ Notes: The constants in the error function do only compile with
 c++11 at the moment, we should generalize this to handle both c++03
 and 11.
 
+FloatingLeg, DigitalFloatingLeg template classes change their
+meaning. However, these are internal helper classes only, so this
+should not be harmful.
+
+couponpricer.hpp was subdivided into couponpricerbase.hpp and
+couponpricer.hpp. Since the latter includes the former, no external
+change is introducd.
+
+Likewise iborcoupon.hpp was subdivided into iborcouponbase.hpp and
+iborcoupon.hpp.
+
+setCouponPricers must often be changed to setCouponPricers<Real>,
+because infering the template types does not work => investigate why.
+
+Move subperiodcouponpricer to couponpricer.
+
 Done:
 
 PiecewiseYieldCurve etc.

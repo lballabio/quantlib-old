@@ -72,7 +72,10 @@ namespace QuantLib {
 
         \ingroup instruments
     */
-    class IborIndex;
+
+    template<class> class IborIndex_t;
+    typedef IborIndex_t<Real> IborIndex;
+
     class ForwardRateAgreement: public Forward {
       public:
         ForwardRateAgreement(const Date& valueDate,

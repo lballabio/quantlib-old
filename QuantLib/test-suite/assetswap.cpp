@@ -623,7 +623,7 @@ void AssetSwapTest::testImpliedValue() {
 
     floatingBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond1->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond1->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(27,March,2007), 0.0402);
     Real floatingBondPrice1 = floatingBond1->cleanPrice();
     AssetSwap floatingBondAssetSwap1(payFixedRate,
@@ -668,7 +668,7 @@ void AssetSwapTest::testImpliedValue() {
 
     floatingBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond2->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond2->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(22,March,2007), 0.04013);
     Real currentCoupon=0.04013+0.0025;
     Rate floatingCurrentCoupon= floatingBond2->nextCouponRate();
@@ -728,7 +728,7 @@ void AssetSwapTest::testImpliedValue() {
 
     cmsBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond1->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond1->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(18,August,2006), 0.04158);
     Real cmsBondPrice1 = cmsBond1->cleanPrice();
     AssetSwap cmsBondAssetSwap1(payFixedRate,
@@ -770,7 +770,7 @@ void AssetSwapTest::testImpliedValue() {
 
     cmsBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond2->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond2->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(04,May,2006), 0.04217);
     Real cmsBondPrice2 = cmsBond2->cleanPrice();
     AssetSwap cmsBondAssetSwap2(payFixedRate,
@@ -997,7 +997,7 @@ void AssetSwapTest::testMarketASWSpread() {
 
     floatingBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond1->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond1->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(27,March,2007), 0.0402);
     // market price observed on 7th June 2007
     Real floatingBondMktPrice1 = 101.64 ;
@@ -1055,7 +1055,7 @@ void AssetSwapTest::testMarketASWSpread() {
 
     floatingBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond2->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond2->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(22,March,2007), 0.04013);
     // market price observed on 7th June 2007
     Real floatingBondMktPrice2 = 101.248 ;
@@ -1112,7 +1112,7 @@ void AssetSwapTest::testMarketASWSpread() {
 
     cmsBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond1->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond1->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(18,August,2006), 0.04158);
     Real cmsBondMktPrice1 = 88.45 ; // market price observed on 7th June 2007
     Real cmsBondMktFullPrice1 = cmsBondMktPrice1+cmsBond1->accruedAmount();
@@ -1165,7 +1165,7 @@ void AssetSwapTest::testMarketASWSpread() {
 
     cmsBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond2->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond2->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(04,May,2006), 0.04217);
     Real cmsBondMktPrice2 = 94.08 ; // market price observed on 7th June 2007
     Real cmsBondMktFullPrice2 = cmsBondMktPrice2+cmsBond2->accruedAmount();
@@ -1401,7 +1401,7 @@ void AssetSwapTest::testZSpread() {
 
     floatingBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond1->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond1->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(27,March,2007), 0.0402);
     Real floatingBondImpliedValue1 = floatingBond1->cleanPrice();
     // standard market conventions:
@@ -1442,7 +1442,7 @@ void AssetSwapTest::testZSpread() {
 
     floatingBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond2->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond2->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(22,March,2007), 0.04013);
     Real floatingBondImpliedValue2 = floatingBond2->cleanPrice();
     // standard market conventions:
@@ -1482,7 +1482,7 @@ void AssetSwapTest::testZSpread() {
 
     cmsBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond1->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond1->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(18,August,2006), 0.04158);
     Real cmsBondImpliedValue1 = cmsBond1->cleanPrice();
     Date cmsBondSettlementDate1= cmsBond1->settlementDate();
@@ -1522,7 +1522,7 @@ void AssetSwapTest::testZSpread() {
 
     cmsBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond2->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond2->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(04,May,2006), 0.04217);
     Real cmsBondImpliedValue2 = cmsBond2->cleanPrice();
     Date cmsBondSettlementDate2= cmsBond2->settlementDate();
@@ -1742,7 +1742,7 @@ void AssetSwapTest::testGenericBondImplied() {
              floatingBondLeg1));
     floatingBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond1->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond1->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(27,March,2007), 0.0402);
     Real floatingBondPrice1 = floatingBond1->cleanPrice();
     AssetSwap floatingBondAssetSwap1(payFixedRate,
@@ -1792,7 +1792,7 @@ void AssetSwapTest::testGenericBondImplied() {
              floatingBondLeg2));
     floatingBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond2->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond2->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(22,March,2007), 0.04013);
     Real currentCoupon=0.04013+0.0025;
     Rate floatingCurrentCoupon= floatingBond2->nextCouponRate();
@@ -1856,7 +1856,7 @@ void AssetSwapTest::testGenericBondImplied() {
              cmsBondMaturityDate1, cmsBondStartDate1, cmsBondLeg1));
     cmsBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond1->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond1->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(18,August,2006), 0.04158);
     Real cmsBondPrice1 = cmsBond1->cleanPrice();
     AssetSwap cmsBondAssetSwap1(payFixedRate,
@@ -1903,7 +1903,7 @@ void AssetSwapTest::testGenericBondImplied() {
              cmsBondMaturityDate2, cmsBondStartDate2, cmsBondLeg2));
     cmsBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond2->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond2->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(04,May,2006), 0.04217);
     Real cmsBondPrice2 = cmsBond2->cleanPrice();
     AssetSwap cmsBondAssetSwap2(payFixedRate,
@@ -2150,7 +2150,7 @@ void AssetSwapTest::testMASWWithGenericBond() {
              floatingBondLeg1));
     floatingBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond1->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond1->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(27,March,2007), 0.0402);
     // market price observed on 7th June 2007
     Real floatingBondMktPrice1 = 101.64 ;
@@ -2214,7 +2214,7 @@ void AssetSwapTest::testMASWWithGenericBond() {
              floatingBondLeg2));
     floatingBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond2->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond2->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(22,March,2007), 0.04013);
     // market price observed on 7th June 2007
     Real floatingBondMktPrice2 = 101.248 ;
@@ -2277,7 +2277,7 @@ void AssetSwapTest::testMASWWithGenericBond() {
              cmsBondMaturityDate1, cmsBondStartDate1, cmsBondLeg1));
     cmsBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond1->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond1->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(18,August,2006), 0.04158);
     Real cmsBondMktPrice1 = 88.45 ; // market price observed on 7th June 2007
     Real cmsBondMktFullPrice1 = cmsBondMktPrice1+cmsBond1->accruedAmount();
@@ -2335,7 +2335,7 @@ void AssetSwapTest::testMASWWithGenericBond() {
              cmsBondMaturityDate2, cmsBondStartDate2, cmsBondLeg2));
     cmsBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond2->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond2->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(04,May,2006), 0.04217);
     Real cmsBondMktPrice2 = 94.08 ; // market price observed on 7th June 2007
     Real cmsBondMktFullPrice2 = cmsBondMktPrice2+cmsBond2->accruedAmount();
@@ -2592,7 +2592,7 @@ void AssetSwapTest::testZSpreadWithGenericBond() {
              floatingBondLeg1));
     floatingBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond1->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond1->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(27,March,2007), 0.0402);
     Real floatingBondImpliedValue1 = floatingBond1->cleanPrice();
     // standard market conventions:
@@ -2640,7 +2640,7 @@ void AssetSwapTest::testZSpreadWithGenericBond() {
              floatingBondLeg2));
     floatingBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond2->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond2->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(22,March,2007), 0.04013);
     Real floatingBondImpliedValue2 = floatingBond2->cleanPrice();
     // standard market conventions:
@@ -2687,7 +2687,7 @@ void AssetSwapTest::testZSpreadWithGenericBond() {
              cmsBondMaturityDate1, cmsBondStartDate1, cmsBondLeg1));
     cmsBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond1->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond1->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(18,August,2006), 0.04158);
     Real cmsBondImpliedValue1 = cmsBond1->cleanPrice();
     Date cmsBondSettlementDate1= cmsBond1->settlementDate();
@@ -2733,7 +2733,7 @@ void AssetSwapTest::testZSpreadWithGenericBond() {
              cmsBondMaturityDate2, cmsBondStartDate2, cmsBondLeg2));
     cmsBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond2->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond2->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(04,May,2006), 0.04217);
     Real cmsBondImpliedValue2 = cmsBond2->cleanPrice();
     Date cmsBondSettlementDate2= cmsBond2->settlementDate();
@@ -3008,8 +3008,8 @@ void AssetSwapTest::testSpecializedBondVsGenericBond() {
                             100.0, Date(29,September,2003)));
     floatingSpecializedBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond1->cashflows(), vars.pricer);
-    setCouponPricer(floatingSpecializedBond1->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond1->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingSpecializedBond1->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(27,March,2007), 0.0402);
     Real floatingBondTheoValue1 = floatingBond1->cleanPrice();
     Real floatingSpecializedBondTheoValue1 =
@@ -3087,8 +3087,8 @@ void AssetSwapTest::testSpecializedBondVsGenericBond() {
                          100.0, Date(24,September,2004)));
     floatingSpecializedBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond2->cashflows(), vars.pricer);
-    setCouponPricer(floatingSpecializedBond2->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond2->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingSpecializedBond2->cashflows(), vars.pricer);
 
     vars.iborIndex->addFixing(Date(22,March,2007), 0.04013);
 
@@ -3166,8 +3166,8 @@ void AssetSwapTest::testSpecializedBondVsGenericBond() {
                 100.0, Date(22,August,2005)));
     cmsSpecializedBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond1->cashflows(), vars.cmspricer);
-    setCouponPricer(cmsSpecializedBond1->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond1->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsSpecializedBond1->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(18,August,2006), 0.04158);
     Real cmsBondTheoValue1 = cmsBond1->cleanPrice();
     Real cmsSpecializedBondTheoValue1 = cmsSpecializedBond1->cleanPrice();
@@ -3235,8 +3235,8 @@ void AssetSwapTest::testSpecializedBondVsGenericBond() {
                 100.0, Date(06,May,2005)));
     cmsSpecializedBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond2->cashflows(), vars.cmspricer);
-    setCouponPricer(cmsSpecializedBond2->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond2->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsSpecializedBond2->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(04,May,2006), 0.04217);
     Real cmsBondTheoValue2 = cmsBond2->cleanPrice();
     Real cmsSpecializedBondTheoValue2 = cmsSpecializedBond2->cleanPrice();
@@ -3644,8 +3644,8 @@ void AssetSwapTest::testSpecializedBondVsGenericBondUsingAsw() {
                             100.0, Date(29,September,2003)));
     floatingSpecializedBond1->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond1->cashflows(), vars.pricer);
-    setCouponPricer(floatingSpecializedBond1->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond1->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingSpecializedBond1->cashflows(), vars.pricer);
     vars.iborIndex->addFixing(Date(27,March,2007), 0.0402);
     Real floatingBondPrice1 = floatingBond1->cleanPrice();
     Real floatingSpecializedBondPrice1= floatingSpecializedBond1->cleanPrice();
@@ -3756,8 +3756,8 @@ void AssetSwapTest::testSpecializedBondVsGenericBondUsingAsw() {
                          100.0, Date(24,September,2004)));
     floatingSpecializedBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(floatingBond2->cashflows(), vars.pricer);
-    setCouponPricer(floatingSpecializedBond2->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingBond2->cashflows(), vars.pricer);
+    setCouponPricer<Real>(floatingSpecializedBond2->cashflows(), vars.pricer);
 
     vars.iborIndex->addFixing(Date(22,March,2007), 0.04013);
 
@@ -3867,8 +3867,8 @@ void AssetSwapTest::testSpecializedBondVsGenericBondUsingAsw() {
     cmsSpecializedBond1->setPricingEngine(bondEngine);
 
 
-    setCouponPricer(cmsBond1->cashflows(), vars.cmspricer);
-    setCouponPricer(cmsSpecializedBond1->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond1->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsSpecializedBond1->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(18,August,2006), 0.04158);
     Real cmsBondPrice1 = cmsBond1->cleanPrice();
     Real cmsSpecializedBondPrice1 = cmsSpecializedBond1->cleanPrice();
@@ -3968,8 +3968,8 @@ void AssetSwapTest::testSpecializedBondVsGenericBondUsingAsw() {
                 100.0, Date(06,May,2005)));
     cmsSpecializedBond2->setPricingEngine(bondEngine);
 
-    setCouponPricer(cmsBond2->cashflows(), vars.cmspricer);
-    setCouponPricer(cmsSpecializedBond2->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsBond2->cashflows(), vars.cmspricer);
+    setCouponPricer<Real>(cmsSpecializedBond2->cashflows(), vars.cmspricer);
     vars.swapIndex->addFixing(Date(04,May,2006), 0.04217);
     Real cmsBondPrice2 = cmsBond2->cleanPrice();
     Real cmsSpecializedBondPrice2 = cmsSpecializedBond2->cleanPrice();

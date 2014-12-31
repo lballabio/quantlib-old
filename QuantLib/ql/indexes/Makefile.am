@@ -16,12 +16,10 @@ this_include_HEADERS = \
 
 libIndexes_la_SOURCES = \
     bmaindex.cpp \
-    iborindex.cpp \
-    indexmanager.cpp \
+	iborindex.cpp \
     inflationindex.cpp \
-    interestrateindex.cpp \
     region.cpp \
-    swapindex.cpp
+	swapindex.cpp
 
 libIndexes_la_LIBADD = \
     ibor/libIborIndexes.la \

@@ -24,13 +24,12 @@
 #define quantlib_conundrum_pricer_hpp
 
 #include <ql/cashflows/couponpricer.hpp>
+#include <ql/cashflows/cmscouponbase.hpp>
 #include <ql/instruments/payoffs.hpp>
 #include <ql/quote.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 
 namespace QuantLib {
-
-    class CmsCoupon;
 
     class VanillaOptionPricer {
       public:

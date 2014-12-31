@@ -24,6 +24,7 @@
 #include <ql/utilities/dataformatters.hpp>
 #include <ql/cashflows/digitalcoupon.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
+#include <ql/cashflows/couponpricer.hpp>
 #include <ql/settings.hpp>
 #include <ql/quotes/simplequote.hpp>
 #include <ql/termstructures/volatility/optionlet/constantoptionletvol.hpp>

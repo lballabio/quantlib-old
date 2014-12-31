@@ -375,9 +375,9 @@ void CmsTest::testCmsSwap() {
         vars.numericalPricers[j]->setSwaptionVolatility(vars.atmVol);
         vars.analyticPricers[j]->setSwaptionVolatility(vars.atmVol);
         for (Size sl=0; sl<n; ++sl) {
-            setCouponPricer(cms[sl]->leg(0), vars.numericalPricers[j]);
+            setCouponPricer<Real>(cms[sl]->leg(0), vars.numericalPricers[j]);
             Real priceNum = cms[sl]->NPV();
-            setCouponPricer(cms[sl]->leg(0), vars.analyticPricers[j]);
+            setCouponPricer<Real>(cms[sl]->leg(0), vars.analyticPricers[j]);
             Real priceAn = cms[sl]->NPV();
 
             Real difference =  std::fabs(priceNum-priceAn);

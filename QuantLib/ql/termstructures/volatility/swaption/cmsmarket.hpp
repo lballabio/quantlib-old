@@ -33,10 +33,13 @@
 
 namespace QuantLib {
 
-    class CmsCouponPricer;
+    template<class> class CmsCouponPricer_t;
+    typedef CmsCouponPricer_t<Real> CmsCouponPricer;
     class Swap;
-    class SwapIndex;
-    class IborIndex;
+    template<class> class SwapIndex_t;
+    typedef SwapIndex_t<Real> SwapIndex;
+    template<class> class IborIndex_t;
+    typedef IborIndex_t<Real> IborIndex;
 
     //! set of CMS quotes
     class CmsMarket: public LazyObject{
