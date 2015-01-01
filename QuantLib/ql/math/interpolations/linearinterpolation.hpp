@@ -42,27 +42,27 @@ class LinearInterpolationImpl
     void update() {
         primitiveConst_[0] = 0.0;
         for (Size i = 1; i < Size(this->xEnd_ - this->xBegin_); ++i) {
-            Real dx = this->xBegin_[i] - this->xBegin_[i - 1];
+            T dx = this->xBegin_[i] - this->xBegin_[i - 1];
             s_[i - 1] = (this->yBegin_[i] - this->yBegin_[i - 1]) / dx;
             primitiveConst_[i] =
                 primitiveConst_[i - 1] +
                 dx * (this->yBegin_[i - 1] + 0.5 * dx * s_[i - 1]);
         }
     }
-    T value(Real x) const {
+    T value(T x) const {
         Size i = this->locate(x);
         return this->yBegin_[i] + (x - this->xBegin_[i]) * s_[i];
     }
-    T primitive(Real x) const {
+    T primitive(T x) const {
         Size i = this->locate(x);
         T dx = x - this->xBegin_[i];
         return primitiveConst_[i] + dx * (this->yBegin_[i] + 0.5 * dx * s_[i]);
     }
-    T derivative(Real x) const {
+    T derivative(T x) const {
         Size i = this->locate(x);
         return s_[i];
     }
-    T secondDerivative(Real) const { return 0.0; }
+    T secondDerivative(T) const { return 0.0; }
 
   private:
     std::vector<T> primitiveConst_, s_;

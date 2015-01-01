@@ -79,7 +79,7 @@ class InterpolatedCurve_t {
 
     mutable std::vector<Time> times_;
     mutable std::vector<T> data_;
-    mutable Interpolation interpolation_;
+    mutable Interpolation_t<T> interpolation_;
     Interpolator<T> interpolator_;
 };
 

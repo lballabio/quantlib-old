@@ -63,7 +63,10 @@ iborcoupon.hpp.
 setCouponPricers must often be changed to setCouponPricers<Real>,
 because infering the template types does not work => investigate why.
 
-Move subperiodcouponpricer to couponpricer.
+Moved subperiodcouponpricer to couponpricer.
+
+IndexManager is a singleton for each type. Fixings are not copied from the double instance to the AD<double> instance !
+
 
 Done:
 

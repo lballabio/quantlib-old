@@ -85,8 +85,7 @@ class Solver1D : public CuriouslyRecurringTemplate<Impl> {
         initial guess must be supplied as well as a step used to
         scan the range of the possible bracketing values.
     */
-    template <class F>
-    Real solve(const F &f, T accuracy, T guess, T step) const {
+    template <class F> T solve(const F &f, T accuracy, T guess, T step) const {
 
         QL_REQUIRE(accuracy > 0.0, "accuracy (" << accuracy
                                                 << ") must be positive");
@@ -163,8 +162,7 @@ class Solver1D : public CuriouslyRecurringTemplate<Impl> {
         be true).
     */
     template <class F>
-    Real solve(const F &f, Real accuracy, Real guess, Real xMin,
-               Real xMax) const {
+    T solve(const F &f, T accuracy, T guess, T xMin, T xMax) const {
 
         QL_REQUIRE(accuracy > 0.0, "accuracy (" << accuracy
                                                 << ") must be positive");
@@ -185,11 +183,11 @@ class Solver1D : public CuriouslyRecurringTemplate<Impl> {
                              << upperBound_ << ")");
 
         fxMin_ = f(xMin_);
-        if (close(fxMin_, 0.0))
+        if (close<T>(fxMin_, 0.0))
             return xMin_;
 
         fxMax_ = f(xMax_);
-        if (close(fxMax_, 0.0))
+        if (close<T>(fxMax_, 0.0))
             return xMax_;
 
         evaluationNumber_ = 2;

@@ -49,7 +49,7 @@ template <class T = Real> struct Discount {
         typedef InterpolatedDiscountCurve_t<Interpolator, T> type;
     };
     // helper class
-    typedef BootstrapHelper<YieldTermStructure_t<T> > helper;
+    typedef BootstrapHelper<YieldTermStructure_t<T>, T> helper;
 
     // start of curve data
     static Date initialDate(const YieldTermStructure_t<T> *c) {
@@ -118,7 +118,7 @@ template <class T> struct ZeroYield {
         typedef InterpolatedZeroCurve_t<Interpolator, T> type;
     };
     // helper class
-    typedef BootstrapHelper<YieldTermStructure_t<T> > helper;
+    typedef BootstrapHelper<YieldTermStructure_t<T>, T> helper;
 
     // start of curve data
     static Date initialDate(const YieldTermStructure_t<T> *c) {
@@ -200,7 +200,7 @@ template <class T> struct ForwardRate {
         typedef InterpolatedForwardCurve_t<Interpolator, T> type;
     };
     // helper class
-    typedef BootstrapHelper<YieldTermStructure_t<T> > helper;
+    typedef BootstrapHelper<YieldTermStructure_t<T>, T> helper;
 
     // start of curve data
     static Date initialDate(const YieldTermStructure_t<T> *c) {

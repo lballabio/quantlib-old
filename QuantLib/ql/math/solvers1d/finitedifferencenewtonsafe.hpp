@@ -71,7 +71,7 @@ class FiniteDifferenceNewtonSafe_t
             if ((((this->root_ - xh) * dfroot - froot) *
                      ((this->root_ - xl) * dfroot - froot) >
                  0.0) ||
-                (std::fabs(2.0 * froot) > std::fabs(dxold * dfroot))) {
+                (abs(2.0 * froot) > abs(dxold * dfroot))) {
                 dx = (xh - xl) / 2.0;
                 this->root_ = xl + dx;
                 // if the root estimate just computed is close to the

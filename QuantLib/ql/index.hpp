@@ -62,7 +62,7 @@ template <class T = Real> class Index_t : public Observable {
                      bool forecastTodaysFixing = false) const = 0;
     //! returns the fixing TimeSeries
     const TimeSeries<T> &timeSeries() const {
-        return IndexManager::instance().getHistory(name());
+        return IndexManager_t<T>::instance().getHistory(name());
     }
     //! stores the historical fixing at the given date
     /*! the date passed as arguments must be the actual calendar
@@ -87,9 +87,9 @@ template <class T = Real> class Index_t : public Observable {
         bool missingFixing, validFixing;
         bool noInvalidFixing = true, noDuplicatedFixing = true;
         Date invalidDate, duplicatedDate;
-        Real nullValue = Null<Real>();
-        Real invalidValue = Null<Real>();
-        Real duplicatedValue = Null<Real>();
+        T nullValue = Null<T>();
+        T invalidValue = Null<T>();
+        T duplicatedValue = Null<T>();
         while (dBegin != dEnd) {
             validFixing = isValidFixingDate(*dBegin);
             T currentValue = h[*dBegin];
@@ -131,7 +131,7 @@ typedef Index_t<Real> Index;
 template <class T>
 void Index_t<T>::addFixing(const Date &fixingDate, T fixing,
                            bool forceOverwrite) {
-    addFixings(&fixingDate, (&fixingDate) + 1, &fixing, forceOverwrite);
+    this->addFixings(&fixingDate, (&fixingDate) + 1, &fixing, forceOverwrite);
 }
 
 template <class T>
@@ -140,12 +140,12 @@ void Index_t<T>::addFixings(const TimeSeries<T> &t, bool forceOverwrite) {
     // without having to make a copy?
     std::vector<Date> dates = t.dates();
     std::vector<T> values = t.values();
-    addFixings(dates.begin(), dates.end(), values.begin(), forceOverwrite);
+    this->addFixings(dates.begin(), dates.end(), values.begin(), forceOverwrite);
 }
 
 template <class T>
 void Index_t<T>::clearFixings() {
-    IndexManager::instance().clearHistory(this->name());
+    IndexManager_t<T>::instance().clearHistory(this->name());
 }
 }
 

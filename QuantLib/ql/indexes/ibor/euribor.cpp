@@ -19,14 +19,10 @@
 */
 
 #include <ql/indexes/ibor/euribor.hpp>
-#include <ql/time/calendars/target.hpp>
-#include <ql/time/daycounters/actual360.hpp>
-#include <ql/time/daycounters/actual365fixed.hpp>
-#include <ql/currencies/europe.hpp>
 
 namespace QuantLib {
 
-    namespace {
+    namespace detail {
 
         BusinessDayConvention euriborConvention(const Period& p) {
             switch (p.units()) {
@@ -56,28 +52,5 @@ namespace QuantLib {
 
     }
 
-    Euribor::Euribor(const Period& tenor,
-                     const Handle<YieldTermStructure>& h)
-    : IborIndex("Euribor", tenor,
-                2, // settlement days
-                EURCurrency(), TARGET(),
-                euriborConvention(tenor), euriborEOM(tenor),
-                Actual360(), h) {
-        QL_REQUIRE(this->tenor().units()!=Days,
-                   "for daily tenors (" << this->tenor() <<
-                   ") dedicated DailyTenor constructor must be used");
-    }
-
-    Euribor365::Euribor365(const Period& tenor,
-                           const Handle<YieldTermStructure>& h)
-    : IborIndex("Euribor365", tenor,
-                2, // settlement days
-                EURCurrency(), TARGET(),
-                euriborConvention(tenor), euriborEOM(tenor),
-                Actual365Fixed(), h) {
-        QL_REQUIRE(this->tenor().units()!=Days,
-                   "for daily tenors (" << this->tenor() <<
-                   ") dedicated DailyTenor constructor must be used");
-    }
 
 }

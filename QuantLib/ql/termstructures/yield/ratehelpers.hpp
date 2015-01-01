@@ -52,11 +52,11 @@ using boost::shared_ptr;
 template <class> class SwapIndex_t;
 
 template <class T> struct RateHelper_t {
-    typedef BootstrapHelper<YieldTermStructure_t<T> > Type;
+    typedef BootstrapHelper<YieldTermStructure_t<T>, T> Type;
 };
 
 template <class T> struct RelativeDateRateHelper_t {
-    typedef RelativeDateBootstrapHelper<YieldTermStructure_t<T> > Type;
+    typedef RelativeDateBootstrapHelper<YieldTermStructure_t<T>, T> Type;
 };
 
 typedef RateHelper_t<Real>::Type RateHelper;
@@ -86,10 +86,10 @@ class FuturesRateHelper_t : public RateHelper_t<T>::Type {
                         T convexityAdjustment = 0.0);
     FuturesRateHelper_t(
         const Handle<Quote_t<T> > &price, const Date &immDate,
-        const boost::shared_ptr<IborIndex> &iborIndex,
+        const boost::shared_ptr<IborIndex_t<T> > &iborIndex,
         const Handle<Quote_t<T> > &convexityAdjustment = Handle<Quote_t<T> >());
     FuturesRateHelper_t(T price, const Date &immDate,
-                        const boost::shared_ptr<IborIndex> &iborIndex,
+                        const boost::shared_ptr<IborIndex_t<T> > &iborIndex,
                         T convexityAdjustment = 0.0);
     //! \name RateHelper interface
     //@{
@@ -123,8 +123,9 @@ class DepositRateHelper_t : public RelativeDateRateHelper_t<T>::Type {
                         BusinessDayConvention convention, bool endOfMonth,
                         const DayCounter &dayCounter);
     DepositRateHelper_t(const Handle<Quote_t<T> > &rate,
-                        const boost::shared_ptr<IborIndex> &iborIndex);
-    DepositRateHelper_t(T rate, const boost::shared_ptr<IborIndex> &iborIndex);
+                        const boost::shared_ptr<IborIndex_t<T> > &iborIndex);
+    DepositRateHelper_t(T rate,
+                        const boost::shared_ptr<IborIndex_t<T> > &iborIndex);
     //! \name RateHelper interface
     //@{
     T impliedQuote() const;
@@ -137,7 +138,7 @@ class DepositRateHelper_t : public RelativeDateRateHelper_t<T>::Type {
   private:
     void initializeDates();
     Date fixingDate_;
-    boost::shared_ptr<IborIndex> iborIndex_;
+    boost::shared_ptr<IborIndex_t<T> > iborIndex_;
     RelinkableHandle<YieldTermStructure_t<T> > termStructureHandle_;
 };
 
@@ -156,9 +157,9 @@ class FraRateHelper_t : public RelativeDateRateHelper_t<T>::Type {
                     BusinessDayConvention convention, bool endOfMonth,
                     const DayCounter &dayCounter);
     FraRateHelper_t(const Handle<Quote_t<T> > &rate, Natural monthsToStart,
-                    const boost::shared_ptr<IborIndex> &iborIndex);
+                    const boost::shared_ptr<IborIndex_t<T> > &iborIndex);
     FraRateHelper_t(T rate, Natural monthsToStart,
-                    const boost::shared_ptr<IborIndex> &iborIndex);
+                    const boost::shared_ptr<IborIndex_t<T> > &iborIndex);
     FraRateHelper_t(const Handle<Quote_t<T> > &rate, Period periodToStart,
                     Natural lengthInMonths, Natural fixingDays,
                     const Calendar &calendar, BusinessDayConvention convention,
@@ -168,9 +169,9 @@ class FraRateHelper_t : public RelativeDateRateHelper_t<T>::Type {
                     BusinessDayConvention convention, bool endOfMonth,
                     const DayCounter &dayCounter);
     FraRateHelper_t(const Handle<Quote_t<T> > &rate, Period periodToStart,
-                    const boost::shared_ptr<IborIndex> &iborIndex);
+                    const boost::shared_ptr<IborIndex_t<T> > &iborIndex);
     FraRateHelper_t(T rate, Period periodToStart,
-                    const boost::shared_ptr<IborIndex> &iborIndex);
+                    const boost::shared_ptr<IborIndex_t<T> > &iborIndex);
     //! \name RateHelper interface
     //@{
     T impliedQuote() const;
@@ -184,7 +185,7 @@ class FraRateHelper_t : public RelativeDateRateHelper_t<T>::Type {
     void initializeDates();
     Date fixingDate_;
     Period periodToStart_;
-    boost::shared_ptr<IborIndex> iborIndex_;
+    boost::shared_ptr<IborIndex_t<T> > iborIndex_;
     RelinkableHandle<YieldTermStructure_t<T> > termStructureHandle_;
 };
 
@@ -209,7 +210,7 @@ class SwapRateHelper_t : public RelativeDateRateHelper_t<T>::Type {
                      BusinessDayConvention fixedConvention,
                      const DayCounter &fixedDayCount,
                      // floating leg
-                     const boost::shared_ptr<IborIndex> &iborIndex,
+                     const boost::shared_ptr<IborIndex_t<T> > &iborIndex,
                      const Handle<Quote_t<T> > &spread = Handle<Quote_t<T> >(),
                      const Period &fwdStart = 0 * Days,
                      // exogenous discounting curve
@@ -221,7 +222,7 @@ class SwapRateHelper_t : public RelativeDateRateHelper_t<T>::Type {
                      BusinessDayConvention fixedConvention,
                      const DayCounter &fixedDayCount,
                      // floating leg
-                     const boost::shared_ptr<IborIndex> &iborIndex,
+                     const boost::shared_ptr<IborIndex_t<T> > &iborIndex,
                      const Handle<Quote_t<T> > &spread = Handle<Quote_t<T> >(),
                      const Period &fwdStart = 0 * Days,
                      // exogenous discounting curve
@@ -255,7 +256,7 @@ class SwapRateHelper_t : public RelativeDateRateHelper_t<T>::Type {
     BusinessDayConvention fixedConvention_;
     Frequency fixedFrequency_;
     DayCounter fixedDayCount_;
-    boost::shared_ptr<IborIndex> iborIndex_;
+    boost::shared_ptr<IborIndex_t<T> > iborIndex_;
     boost::shared_ptr<VanillaSwap> swap_;
     RelinkableHandle<YieldTermStructure_t<T> > termStructureHandle_;
     Handle<Quote_t<T> > spread_;
@@ -279,7 +280,7 @@ class BMASwapRateHelper_t : public RelativeDateRateHelper {
                         const DayCounter &bmaDayCount,
                         const boost::shared_ptr<BMAIndex> &bmaIndex,
                         // ibor leg
-                        const boost::shared_ptr<IborIndex> &index);
+                        const boost::shared_ptr<IborIndex_t<T> > &index);
     //! \name RateHelper interface
     //@{
     T impliedQuote() const;
@@ -298,7 +299,7 @@ class BMASwapRateHelper_t : public RelativeDateRateHelper {
     BusinessDayConvention bmaConvention_;
     DayCounter bmaDayCount_;
     boost::shared_ptr<BMAIndex> bmaIndex_;
-    boost::shared_ptr<IborIndex> iborIndex_;
+    boost::shared_ptr<IborIndex_t<T> > iborIndex_;
 
     boost::shared_ptr<BMASwap> swap_;
     RelinkableHandle<YieldTermStructure_t<T> > termStructureHandle_;
@@ -421,10 +422,9 @@ FuturesRateHelper_t<T>::FuturesRateHelper_t(T price, const Date &immDate,
 }
 
 template <class T>
-FuturesRateHelper_t<T>::FuturesRateHelper_t(const Handle<Quote_t<T> > &price,
-                                            const Date &immDate,
-                                            const shared_ptr<IborIndex> &i,
-                                            const Handle<Quote_t<T> > &convAdj)
+FuturesRateHelper_t<T>::FuturesRateHelper_t(
+    const Handle<Quote_t<T> > &price, const Date &immDate,
+    const shared_ptr<IborIndex_t<T> > &i, const Handle<Quote_t<T> > &convAdj)
     : RateHelper_t<T>::Type(price), convAdj_(convAdj) {
     QL_REQUIRE(IMM::isIMMdate(immDate, false),
                immDate << "is not a valid IMM date");
@@ -439,9 +439,9 @@ FuturesRateHelper_t<T>::FuturesRateHelper_t(const Handle<Quote_t<T> > &price,
 }
 
 template <class T>
-FuturesRateHelper_t<T>::FuturesRateHelper_t(T price, const Date &immDate,
-                                            const shared_ptr<IborIndex> &i,
-                                            T convAdj)
+FuturesRateHelper_t<T>::FuturesRateHelper_t(
+    T price, const Date &immDate, const shared_ptr<IborIndex_t<T> > &i,
+    T convAdj)
     : RateHelper_t<T>::Type(price),
       convAdj_(Handle<Quote_t<T> >(
           shared_ptr<Quote_t<T> >(new SimpleQuote_t<T>(convAdj)))) {
@@ -487,10 +487,10 @@ DepositRateHelper_t<T>::DepositRateHelper_t(
     const Calendar &calendar, BusinessDayConvention convention, bool endOfMonth,
     const DayCounter &dayCounter)
     : RelativeDateRateHelper_t<T>::Type(rate) {
-    iborIndex_ = shared_ptr<IborIndex>(
-        new IborIndex("no-fix", // never take fixing into account
-                      tenor, fixingDays, Currency(), calendar, convention,
-                      endOfMonth, dayCounter, termStructureHandle_));
+    iborIndex_ = shared_ptr<IborIndex_t<T> >(
+        new IborIndex_t<T>("no-fix", // never take fixing into account
+                           tenor, fixingDays, Currency(), calendar, convention,
+                           endOfMonth, dayCounter, termStructureHandle_));
     initializeDates();
 }
 
@@ -502,36 +502,36 @@ DepositRateHelper_t<T>::DepositRateHelper_t(T rate, const Period &tenor,
                                             bool endOfMonth,
                                             const DayCounter &dayCounter)
     : RelativeDateRateHelper_t<T>::Type(rate) {
-    iborIndex_ = shared_ptr<IborIndex>(
-        new IborIndex("no-fix", // never take fixing into account
-                      tenor, fixingDays, Currency(), calendar, convention,
-                      endOfMonth, dayCounter, termStructureHandle_));
+    iborIndex_ = shared_ptr<IborIndex_t<T> >(
+        new IborIndex_t<T>("no-fix", // never take fixing into account
+                           tenor, fixingDays, Currency(), calendar, convention,
+                           endOfMonth, dayCounter, termStructureHandle_));
     initializeDates();
 }
 
 template <class T>
-DepositRateHelper_t<T>::DepositRateHelper_t(const Handle<Quote_t<T> > &rate,
-                                            const shared_ptr<IborIndex> &i)
+DepositRateHelper_t<T>::DepositRateHelper_t(
+    const Handle<Quote_t<T> > &rate, const shared_ptr<IborIndex_t<T> > &i)
     : RelativeDateRateHelper_t<T>::Type(rate) {
     // do not use clone, as we do not want to take fixing into account
-    iborIndex_ = shared_ptr<IborIndex>(
-        new IborIndex("no-fix", // never take fixing into account
-                      i->tenor(), i->fixingDays(), Currency(),
-                      i->fixingCalendar(), i->businessDayConvention(),
-                      i->endOfMonth(), i->dayCounter(), termStructureHandle_));
+    iborIndex_ = shared_ptr<IborIndex_t<T> >(new IborIndex_t<T>(
+        "no-fix", // never take fixing into account
+        i->tenor(), i->fixingDays(), Currency(), i->fixingCalendar(),
+        i->businessDayConvention(), i->endOfMonth(), i->dayCounter(),
+        termStructureHandle_));
     initializeDates();
 }
 
 template <class T>
-DepositRateHelper_t<T>::DepositRateHelper_t(T rate,
-                                            const shared_ptr<IborIndex> &i)
+DepositRateHelper_t<T>::DepositRateHelper_t(
+    T rate, const shared_ptr<IborIndex_t<T> > &i)
     : RelativeDateRateHelper_t<T>::Type(rate) {
     // do not use clone, as we do not want to take fixing into account
-    iborIndex_ = shared_ptr<IborIndex>(
-        new IborIndex("no-fix", // never take fixing into account
-                      i->tenor(), i->fixingDays(), Currency(),
-                      i->fixingCalendar(), i->businessDayConvention(),
-                      i->endOfMonth(), i->dayCounter(), termStructureHandle_));
+    iborIndex_ = shared_ptr<IborIndex_t<T> >(new IborIndex_t<T>(
+        "no-fix", // never take fixing into account
+        i->tenor(), i->fixingDays(), Currency(), i->fixingCalendar(),
+        i->businessDayConvention(), i->endOfMonth(), i->dayCounter(),
+        termStructureHandle_));
     initializeDates();
 }
 
@@ -560,8 +560,8 @@ template <class T> void DepositRateHelper_t<T>::initializeDates() {
 }
 
 template <class T> void DepositRateHelper_t<T>::accept(AcyclicVisitor &v) {
-    Visitor<DepositRateHelper> *v1 =
-        dynamic_cast<Visitor<DepositRateHelper> *>(&v);
+    Visitor<DepositRateHelper_t<T> > *v1 =
+        dynamic_cast<Visitor<DepositRateHelper_t<T> > *>(&v);
     if (v1 != 0)
         v1->visit(*this);
     else
@@ -584,7 +584,7 @@ FraRateHelper_t<T>::FraRateHelper_t(const Handle<Quote_t<T> > &rate,
                                << monthsToStart << ")");
     // no way to take fixing into account,
     // even if we would like to for FRA over today
-    iborIndex_ = shared_ptr<IborIndex>(new IborIndex(
+    iborIndex_ = shared_ptr<IborIndex_t<T> >(new IborIndex_t<T>(
         "no-fix", // correct family name would be needed
         (monthsToEnd - monthsToStart) * Months, fixingDays, Currency(),
         calendar, convention, endOfMonth, dayCounter, termStructureHandle_));
@@ -606,7 +606,7 @@ FraRateHelper_t<T>::FraRateHelper_t(T rate, Natural monthsToStart,
                                << monthsToStart << ")");
     // no way to take fixing into account,
     // even if we would like to for FRA over today
-    iborIndex_ = shared_ptr<IborIndex>(new IborIndex(
+    iborIndex_ = shared_ptr<IborIndex_t<T> >(new IborIndex_t<T>(
         "no-fix", // correct family name would be needed
         (monthsToEnd - monthsToStart) * Months, fixingDays, Currency(),
         calendar, convention, endOfMonth, dayCounter, termStructureHandle_));
@@ -616,7 +616,7 @@ FraRateHelper_t<T>::FraRateHelper_t(T rate, Natural monthsToStart,
 template <class T>
 FraRateHelper_t<T>::FraRateHelper_t(const Handle<Quote_t<T> > &rate,
                                     Natural monthsToStart,
-                                    const shared_ptr<IborIndex> &i)
+                                    const shared_ptr<IborIndex_t<T> > &i)
     : RelativeDateRateHelper_t<T>::Type(rate),
       periodToStart_(monthsToStart * Months) {
     // take fixing into account
@@ -631,7 +631,7 @@ FraRateHelper_t<T>::FraRateHelper_t(const Handle<Quote_t<T> > &rate,
 
 template <class T>
 FraRateHelper_t<T>::FraRateHelper_t(T rate, Natural monthsToStart,
-                                    const shared_ptr<IborIndex> &i)
+                                    const shared_ptr<IborIndex_t<T> > &i)
     : RelativeDateRateHelper_t<T>::Type(rate),
       periodToStart_(monthsToStart * Months) {
     // take fixing into account
@@ -653,7 +653,7 @@ FraRateHelper_t<T>::FraRateHelper_t(const Handle<Quote_t<T> > &rate,
     : RelativeDateRateHelper_t<T>::Type(rate), periodToStart_(periodToStart) {
     // no way to take fixing into account,
     // even if we would like to for FRA over today
-    iborIndex_ = shared_ptr<IborIndex>(new IborIndex(
+    iborIndex_ = shared_ptr<IborIndex_t<T> >(new IborIndex_t<T>(
         "no-fix", // correct family name would be needed
         lengthInMonths * Months, fixingDays, Currency(), calendar, convention,
         endOfMonth, dayCounter, termStructureHandle_));
@@ -670,7 +670,7 @@ FraRateHelper_t<T>::FraRateHelper_t(T rate, Period periodToStart,
     : RelativeDateRateHelper_t<T>::Type(rate), periodToStart_(periodToStart) {
     // no way to take fixing into account,
     // even if we would like to for FRA over today
-    iborIndex_ = shared_ptr<IborIndex>(new IborIndex(
+    iborIndex_ = shared_ptr<IborIndex_t<T> >(new IborIndex_t<T>(
         "no-fix", // correct family name would be needed
         lengthInMonths * Months, fixingDays, Currency(), calendar, convention,
         endOfMonth, dayCounter, termStructureHandle_));
@@ -680,7 +680,7 @@ FraRateHelper_t<T>::FraRateHelper_t(T rate, Period periodToStart,
 template <class T>
 FraRateHelper_t<T>::FraRateHelper_t(const Handle<Quote_t<T> > &rate,
                                     Period periodToStart,
-                                    const shared_ptr<IborIndex> &i)
+                                    const shared_ptr<IborIndex_t<T> > &i)
     : RelativeDateRateHelper_t<T>::Type(rate), periodToStart_(periodToStart) {
     // take fixing into account
     iborIndex_ = i->clone(termStructureHandle_);
@@ -692,7 +692,7 @@ FraRateHelper_t<T>::FraRateHelper_t(const Handle<Quote_t<T> > &rate,
 
 template <class T>
 FraRateHelper_t<T>::FraRateHelper_t(T rate, Period periodToStart,
-                                    const shared_ptr<IborIndex> &i)
+                                    const shared_ptr<IborIndex_t<T> > &i)
     : RelativeDateRateHelper_t<T>::Type(rate), periodToStart_(periodToStart) {
     // take fixing into account
     iborIndex_ = i->clone(termStructureHandle_);
@@ -767,8 +767,9 @@ SwapRateHelper_t<T>::SwapRateHelper_t(
     const Handle<Quote_t<T> > &rate, const Period &tenor,
     const Calendar &calendar, Frequency fixedFrequency,
     BusinessDayConvention fixedConvention, const DayCounter &fixedDayCount,
-    const shared_ptr<IborIndex> &iborIndex, const Handle<Quote_t<T> > &spread,
-    const Period &fwdStart, const Handle<YieldTermStructure_t<T> > &discount)
+    const shared_ptr<IborIndex_t<T> > &iborIndex,
+    const Handle<Quote_t<T> > &spread, const Period &fwdStart,
+    const Handle<YieldTermStructure_t<T> > &discount)
     : RelativeDateRateHelper_t<T>::Type(rate), tenor_(tenor),
       calendar_(calendar), fixedConvention_(fixedConvention),
       fixedFrequency_(fixedFrequency), fixedDayCount_(fixedDayCount),
@@ -790,7 +791,8 @@ template <class T>
 SwapRateHelper_t<T>::SwapRateHelper_t(
     T rate, const Period &tenor, const Calendar &calendar,
     Frequency fixedFrequency, BusinessDayConvention fixedConvention,
-    const DayCounter &fixedDayCount, const shared_ptr<IborIndex> &iborIndex,
+    const DayCounter &fixedDayCount,
+    const shared_ptr<IborIndex_t<T> > &iborIndex,
     const Handle<Quote_t<T> > &spread, const Period &fwdStart,
     const Handle<YieldTermStructure_t<T> > &discount)
     : RelativeDateRateHelper_t<T>::Type(rate), tenor_(tenor),
@@ -913,7 +915,7 @@ BMASwapRateHelper_t<T>::BMASwapRateHelper_t(
     const Period &bmaPeriod, BusinessDayConvention bmaConvention,
     const DayCounter &bmaDayCount, const shared_ptr<BMAIndex> &bmaIndex,
     // libor leg
-    const shared_ptr<IborIndex> &iborIndex)
+    const shared_ptr<IborIndex_t<T> > &iborIndex)
     : RelativeDateRateHelper(liborFraction), tenor_(tenor),
       settlementDays_(settlementDays), calendar_(calendar),
       bmaPeriod_(bmaPeriod), bmaConvention_(bmaConvention),

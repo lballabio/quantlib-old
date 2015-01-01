@@ -52,10 +52,10 @@ namespace QuantLib {
             virtual std::vector<T> xValues() const = 0;
             virtual std::vector<T> yValues() const = 0;
             virtual bool isInRange(T) const = 0;
-            virtual Real value(T) const = 0;
-            virtual Real primitive(T) const = 0;
-            virtual Real derivative(T) const = 0;
-            virtual Real secondDerivative(T) const = 0;
+            virtual T value(T) const = 0;
+            virtual T primitive(T) const = 0;
+            virtual T derivative(T) const = 0;
+            virtual T secondDerivative(T) const = 0;
         };
         boost::shared_ptr<Impl> impl_;
       public:
@@ -92,7 +92,7 @@ namespace QuantLib {
                 return (x >= x1 && x <= x2) || close(x,x1) || close(x,x2);
             }
           protected:
-            Size locate(Real x) const {
+            Size locate(T x) const {
                 #if defined(QL_EXTRA_SAFETY_CHECKS)
                 for (I1 i=xBegin_, j=xBegin_+1; j!=xEnd_; ++i, ++j)
                     QL_REQUIRE(*j > *i, "unsorted x values");

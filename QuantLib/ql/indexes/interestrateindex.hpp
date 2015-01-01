@@ -195,7 +195,7 @@ namespace QuantLib {
             Settings::instance().enforcesTodaysHistoricFixings()) {
             // must have been fixed
             // do not catch exceptions
-            Rate result = pastFixing(fixingDate);
+            T result = pastFixing(fixingDate);
             QL_REQUIRE(result != Null<Real>(),
                        "Missing " << name() << " fixing for " << fixingDate);
             return result;
@@ -203,7 +203,7 @@ namespace QuantLib {
 
         try {
             // might have been fixed
-            Rate result = pastFixing(fixingDate);
+            T result = pastFixing(fixingDate);
             if (result!=Null<Real>())
                 return result;
             else

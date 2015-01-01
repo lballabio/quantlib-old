@@ -162,7 +162,7 @@ template <class T = Real> class YieldTermStructure_t : public TermStructure {
     */
     //@{
     //! discount factor calculation
-    virtual DiscountFactor discountImpl(Time) const = 0;
+    virtual T discountImpl(Time) const = 0;
     //@}
   private:
     // methods
@@ -267,12 +267,12 @@ T YieldTermStructure_t<T>::discount(Time t, bool extrapolate) const {
     if (jumps_.empty())
         return discountImpl(t);
 
-    DiscountFactor jumpEffect = 1.0;
+    T jumpEffect = 1.0;
     for (Size i = 0; i < nJumps_; ++i) {
         if (jumpTimes_[i] > 0 && jumpTimes_[i] < t) {
             QL_REQUIRE(jumps_[i]->isValid(), "invalid " << io::ordinal(i + 1)
                                                         << " jump quote");
-            DiscountFactor thisJump = jumps_[i]->value();
+            T thisJump = jumps_[i]->value();
             QL_REQUIRE(thisJump > 0.0 && thisJump <= 1.0,
                        "invalid " << io::ordinal(i + 1)
                                   << " jump value: " << thisJump);

@@ -62,9 +62,8 @@ class PiecewiseYieldCurve
     : public Traits<T>::template curve<Interpolator>::type,
       public LazyObject {
   private:
-    typedef
-        typename Traits<T>::template curve<Interpolator>::type base_curve;
-    typedef PiecewiseYieldCurve<Traits, Interpolator, Bootstrap> this_curve;
+    typedef typename Traits<T>::template curve<Interpolator>::type base_curve;
+    typedef PiecewiseYieldCurve<Traits, Interpolator, Bootstrap, T> this_curve;
 
   public:
     typedef Traits<T> traits_type;
@@ -75,8 +74,9 @@ class PiecewiseYieldCurve
         const Date &referenceDate,
         const std::vector<boost::shared_ptr<typename Traits<T>::helper> > &
             instruments,
-        const DayCounter &dayCounter, const std::vector<Handle<Quote> > &jumps =
-                                          std::vector<Handle<Quote> >(),
+        const DayCounter &dayCounter,
+        const std::vector<Handle<Quote_t<T> > > &jumps =
+            std::vector<Handle<Quote_t<T> > >(),
         const std::vector<Date> &jumpDates = std::vector<Date>(),
         Real accuracy = 1.0e-12, const Interpolator<T> &i = Interpolator<T>(),
         const Bootstrap<this_curve, T> &bootstrap = Bootstrap<this_curve, T>())
@@ -161,7 +161,7 @@ class PiecewiseYieldCurve
     //@{
     const std::vector<Time> &times() const;
     const std::vector<Date> &dates() const;
-    const std::vector<Real> &data() const;
+    const std::vector<T> &data() const;
     std::vector<std::pair<Date, T> > nodes() const;
     //@}
     //! \name Observer interface
@@ -174,7 +174,7 @@ class PiecewiseYieldCurve
     void performCalculations() const;
     //@}
     // methods
-    DiscountFactor discountImpl(Time) const;
+    T discountImpl(Time) const;
     // data members
     std::vector<boost::shared_ptr<typename Traits<T>::helper> > instruments_;
     Real accuracy_;
@@ -214,7 +214,7 @@ inline const std::vector<Date> &PiecewiseYieldCurve<C, I, B, T>::dates() const {
 
 template <template <class> class C, template <class> class I,
           template <class, class> class B, class T>
-inline const std::vector<Real> &PiecewiseYieldCurve<C, I, B, T>::data() const {
+inline const std::vector<T> &PiecewiseYieldCurve<C, I, B, T>::data() const {
     calculate();
     return base_curve::data();
 }
@@ -243,7 +243,7 @@ inline void PiecewiseYieldCurve<C, I, B, T>::update() {
 
 template <template <class> class C, template <class> class I,
           template <class, class> class B, class T>
-inline DiscountFactor PiecewiseYieldCurve<C, I, B, T>::discountImpl(Time t) const {
+inline T PiecewiseYieldCurve<C, I, B, T>::discountImpl(Time t) const {
     calculate();
     return base_curve::discountImpl(t);
 }
