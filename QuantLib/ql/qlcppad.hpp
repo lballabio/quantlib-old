@@ -53,4 +53,21 @@ using CppAD::CondExpGt;
 using CppAD::CondExpGe;
 using CppAD::CondExpEq;
 
+namespace QuantLib {
+
+    template <class Base>
+    class Null<CppAD::AD<Base> > {
+      public:
+        Null() {}
+        operator CppAD::AD<Base>() const {
+            return CppAD::AD<Base>(static_cast<Base>(Null<Base>()));
+        }
+        operator Base() const {
+            return static_cast<Base>(Null<Base>());
+        }
+    };
+
+
+}
+
 #endif
