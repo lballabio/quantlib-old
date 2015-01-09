@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="qlmeta.inc"-->
+<meta name="author" content="StatPro Italia srl">
+<meta name="copyright" content="StatPro Italia srl (c) 2014">
+<meta name="description" content="Second QuantLib Workshop">
+<link rel="stylesheet" href="./styles/nosplash.css" type="text/css">
+<title>QuantLib User Meeting 2013</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="header.inc"-->
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
+<h1 class="center" id="qlws14">QuantLib User Meeting 2013</h1>
+
+The first QuantLib User Meeting was held
+in D&uuml;sseldorf on November 13th and 14th, 2013, thanks to the
+sponsorship of
+<a href="http://www.ikb.de/">IKB</a>,
+<a href="http://www.quaternionrisk.com/">Quaternion</a> and
+<a href="http://www.d-fine.com/">d-fine</a>.<br>
+
+The slides for most talks are available:
+
+<ul>
+<li><strong>Luigi Ballabio</strong>'s
+<a href="https://vimeo.com/lballabio/qlws13">opening keynote</a>;
+</li>
+<li><strong>Michael von den Driesch</strong>'s talk,
+<a href="slides/qlws13/von-den-driesch.pdf">
+<em>QuantLib at IKB</em></a>;
+</li>
+<li><strong>Roland Lichters</strong>'s talk,
+<a href="slides/qlws13/lichters.pdf">
+<em>Cross Asset CVA Application</em></a>;
+</li>
+<li><strong>Andr&eacute; Miemiec</strong>'s talk,
+<a href="slides/qlws13/miemiec.pdf">
+<em>Pricing of Accreting Swaptions using QuantLib</em></a>;
+</li>
+<li><strong>Peter Caspers</strong>'s talk,
+<a href="slides/qlws13/caspers.pdf">
+<em>Markov Functional Model</em></a>;
+</li>
+<li><strong>Sarp Kaya Acar</strong>'s talk,
+<a href="slides/qlws13/acar.pdf">
+<em>Inflation Modeling</em></a>;
+</li>
+<li><strong>Henning Segger</strong>'s talk,
+<a href="slides/qlws13/segger.pdf">
+<em>(J)CIR(++) Hazard Rate Model</em></a>;
+</li>
+<li><strong>Martin Dietrich</strong>'s talk,
+<a href="slides/qlws13/dietrich.pdf">
+<em>QuantLib Integration into Scala and Excel</em></a>;
+</li>
+<li><strong>Klaus Spanderen</strong>'s talk,
+<a href="slides/qlws13/spanderen.pdf">
+<em>Beyond Simple Monte-Carlo: Parallel Computing with QuantLib</em></a>;
+</li>
+<li><strong>Sebastian Schlenkrich</strong>'s talk,
+<a href="slides/qlws13/schlenkrich.pdf">
+<em>Design Patterns for Algorithmic Differentiation</em></a>.
+</li>
+</ul>
+
+</div>
+
+<div id="menuafter">
+<!--#include virtual="usermenu.inc"-->
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>
