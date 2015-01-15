@@ -43,6 +43,9 @@ class DayCounter {
     Time yearFraction(const Date& d1, const Date& d2,
                       const Date& startRef = Date(),
                       const Date& endRef = Date()) const;
+    Time timeFraction(const Date& d1, const Date& d2,
+                      const Date& startRef = Date(),
+                      const Date& endRef = Date()) const;
     std::string name() const;
     %extend {
         #if !defined(SWIGPERL)
@@ -90,6 +93,14 @@ namespace QuantLib {
     class OneDayCounter : public DayCounter {};
     class SimpleDayCounter : public DayCounter {};
     class Business252 : public DayCounter {};
+    class ContinuousTime : public DayCounter {
+    public:
+      ContinuousTime(TimeUnit);
+      static ContinuousTime perYear();
+      static ContinuousTime perMonth();
+      static ContinuousTime perWeek();
+      static ContinuousTime perDay();
+    };
 }
 
 
