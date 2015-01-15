@@ -77,6 +77,22 @@ namespace QuantLib {
     /*! \ingroup Date */
     typedef Integer Year;
 
+    //! Hour number
+    /*! \ingroup Date */
+    typedef Integer Hour;
+
+    //! Minute number
+    /*! \ingroup Date */
+    typedef Integer Minute;
+
+    //! Second number
+    /*! \ingroup Date */
+    typedef Integer Second;
+
+    //! Millisecond number
+    /*! \ingroup Date */
+    typedef Integer Millisecond;
+
     //! Concrete Date class
     /*! This class provides methods to inspect Dates as well as methods and
         operators which implement a limited Date algebra (increasing and
@@ -115,9 +131,9 @@ namespace QuantLib {
         Day dayOfYear() const;
         Month month() const;
         Year year() const;
-        Integer hours() const;
-        Integer minutes() const;
-        Integer seconds() const;
+        Hour hours() const;
+        Minute minutes() const;
+        Second seconds() const;
         Time fractionOfDay() const;
         Time fractionOfSecond() const;
         BigInteger serialNumber() const;

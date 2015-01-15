@@ -10,13 +10,15 @@ this_include_HEADERS = \
 	actualactual.hpp \
 	business252.hpp \
 	one.hpp \
+        continuoustime.hpp \
 	simpledaycounter.hpp \
 	thirty360.hpp
 
 libDayCounters_la_SOURCES = \
     actualactual.cpp \
     business252.cpp \
-	simpledaycounter.cpp \
+    continuoustime.cpp \
+    simpledaycounter.cpp \
     thirty360.cpp
 
 noinst_LTLIBRARIES = libDayCounters.la
