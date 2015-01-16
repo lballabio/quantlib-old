@@ -15,6 +15,7 @@ this_include_HEADERS = \
     gaussian1dfloatfloatswaptionengine.hpp \
     gaussian1djamshidianswaptionengine.hpp \
     gaussian1dnonstandardswaptionengine.hpp \
+	gaussian1dsmilesection.hpp \
     gaussian1dswaptionengine.hpp \
     gsr.hpp \
     gsrprocess.hpp \
@@ -36,6 +37,7 @@ libModels_la_SOURCES = \
     floatfloatswap.cpp \
     floatfloatswaption.cpp \
     gaussian1dmodel.cpp \
+	gaussian1dsmilesection.cpp \
     gaussian1dcapfloorengine.cpp \
     gaussian1dfloatfloatswaptionengine.cpp \
     gaussian1djamshidianswaptionengine.cpp \
