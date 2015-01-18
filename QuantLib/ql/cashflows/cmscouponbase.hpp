@@ -32,72 +32,60 @@
 
 namespace QuantLib {
 
-    //! CMS coupon class
-    /*! \warning This class does not perform any date adjustment,
-                 i.e., the start and end date passed upon construction
-                 should be already rolled to a business day.
-    */
-    template<class T>
-    class CmsCoupon_t : public FloatingRateCoupon_t<T> {
-      public:
-        CmsCoupon_t(const Date& paymentDate,
-                  T nominal,
-                  const Date& startDate,
-                  const Date& endDate,
-                  Natural fixingDays,
-                  const boost::shared_ptr<SwapIndex_t<T>>& index,
-                  T gearing = 1.0,
-                  T spread = 0.0,
-                  const Date& refPeriodStart = Date(),
-                  const Date& refPeriodEnd = Date(),
-                  const DayCounter& dayCounter = DayCounter(),
-                  bool isInArrears = false);
-        //! \name Inspectors
-        //@{
-        const boost::shared_ptr<SwapIndex_t<T>>& swapIndex() const {
-            return swapIndex_;
-        }
-        //@}
-        //! \name Visitability
-        //@{
-        virtual void accept(AcyclicVisitor&);
-        //@}
-      private:
-        boost::shared_ptr<SwapIndex_t<T>> swapIndex_;
-    };
+//! CMS coupon class
+/*! \warning This class does not perform any date adjustment,
+             i.e., the start and end date passed upon construction
+             should be already rolled to a business day.
+*/
+template <class T> class CmsCoupon_t : public FloatingRateCoupon_t<T> {
+  public:
+    CmsCoupon_t(const Date &paymentDate, T nominal, const Date &startDate,
+                const Date &endDate, Natural fixingDays,
+                const boost::shared_ptr<SwapIndex_t<T> > &index,
+                T gearing = 1.0, T spread = 0.0,
+                const Date &refPeriodStart = Date(),
+                const Date &refPeriodEnd = Date(),
+                const DayCounter &dayCounter = DayCounter(),
+                bool isInArrears = false);
+    //! \name Inspectors
+    //@{
+    const boost::shared_ptr<SwapIndex_t<T> > &swapIndex() const {
+        return swapIndex_;
+    }
+    //@}
+    //! \name Visitability
+    //@{
+    virtual void accept(AcyclicVisitor &);
+    //@}
+  private:
+    boost::shared_ptr<SwapIndex_t<T> > swapIndex_;
+};
 
-    typedef CmsCoupon_t<Real> CmsCoupon;
+typedef CmsCoupon_t<Real> CmsCoupon;
 
-    // implementation
+// implementation
 
-    template<class T>
-    CmsCoupon_t<T>::CmsCoupon_t(const Date& paymentDate,
-                         T nominal,
-                         const Date& startDate,
-                         const Date& endDate,
-                         Natural fixingDays,
-                         const boost::shared_ptr<SwapIndex_t<T>>& swapIndex,
-                         T gearing,
-                         T spread,
-                         const Date& refPeriodStart,
-                         const Date& refPeriodEnd,
-                         const DayCounter& dayCounter,
-                         bool isInArrears)
+template <class T>
+CmsCoupon_t<T>::CmsCoupon_t(const Date &paymentDate, T nominal,
+                            const Date &startDate, const Date &endDate,
+                            Natural fixingDays,
+                            const boost::shared_ptr<SwapIndex_t<T> > &swapIndex,
+                            T gearing, T spread, const Date &refPeriodStart,
+                            const Date &refPeriodEnd,
+                            const DayCounter &dayCounter, bool isInArrears)
     : FloatingRateCoupon_t<T>(paymentDate, nominal, startDate, endDate,
-                         fixingDays, swapIndex, gearing, spread,
-                         refPeriodStart, refPeriodEnd,
-                         dayCounter, isInArrears),
+                              fixingDays, swapIndex, gearing, spread,
+                              refPeriodStart, refPeriodEnd, dayCounter,
+                              isInArrears),
       swapIndex_(swapIndex) {}
 
-    template<class T>
-    void CmsCoupon_t<T>::accept(AcyclicVisitor& v) {
-        Visitor<CmsCoupon_t<T>>* v1 = dynamic_cast<Visitor<CmsCoupon_t<T>>*>(&v);
-        if (v1 != 0)
-            v1->visit(*this);
-        else
-            FloatingRateCoupon_t<T>::accept(v);
-    }
-
+template <class T> void CmsCoupon_t<T>::accept(AcyclicVisitor &v) {
+    Visitor<CmsCoupon_t<T> > *v1 = dynamic_cast<Visitor<CmsCoupon_t<T> > *>(&v);
+    if (v1 != 0)
+        v1->visit(*this);
+    else
+        FloatingRateCoupon_t<T>::accept(v);
+}
 }
 
 #endif

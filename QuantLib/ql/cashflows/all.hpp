@@ -3,6 +3,7 @@
 
 #include <ql/cashflows/averagebmacoupon.hpp>
 #include <ql/cashflows/capflooredcoupon.hpp>
+#include <ql/cashflows/capflooredcouponbase.hpp>
 #include <ql/cashflows/capflooredinflationcoupon.hpp>
 #include <ql/cashflows/cashflows.hpp>
 #include <ql/cashflows/cashflowvectors.hpp>
@@ -11,6 +12,7 @@
 #include <ql/cashflows/conundrumpricer.hpp>
 #include <ql/cashflows/coupon.hpp>
 #include <ql/cashflows/couponpricerbase.hpp>
+#include <ql/cashflows/couponpricerbase2.hpp>
 #include <ql/cashflows/couponpricer.hpp>
 #include <ql/cashflows/cpicoupon.hpp>
 #include <ql/cashflows/cpicouponpricer.hpp>

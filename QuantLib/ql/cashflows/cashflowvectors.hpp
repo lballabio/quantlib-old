@@ -31,6 +31,7 @@
 #define quantlib_cash_flow_vectors_hpp
 
 #include <ql/cashflows/fixedratecoupon.hpp>
+//#include <ql/cashflows/capflooredcoupon.hpp>
 #include <ql/cashflows/replication.hpp>
 #include <ql/time/schedule.hpp>
 #include <ql/utilities/null.hpp>

@@ -9,7 +9,6 @@ this_include_HEADERS = \
     treeswapengine.hpp
 
 libSwapEngines_la_SOURCES = \
-    discountingswapengine.cpp \
     discretizedswap.cpp \
     treeswapengine.cpp
 

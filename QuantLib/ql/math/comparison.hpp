@@ -60,11 +60,11 @@ namespace QuantLib {
 
     // inline definitions
 
-    template<class T = Real> inline bool close(T x, T y) {
+    template<class T> inline bool close(T x, T y) {
         return close<T>(x,y,42);
     }
 
-    template<class T = Real> inline bool close(T x, T y, Size n) {
+    template<class T> inline bool close(T x, T y, Size n) {
         // Deals with +infinity and -infinity representations etc.
         if (x == y)
             return true;
@@ -78,11 +78,11 @@ namespace QuantLib {
                diff <= tolerance*abs(y);
     }
 
-    template<class T = Real> inline bool close_enough(T x, T y) {
+    template<class T> inline bool close_enough(T x, T y) {
         return close_enough<T>(x,y,42);
     }
 
-    template<class T = Real> inline bool close_enough(T x, T y, Size n) {
+    template<class T> inline bool close_enough(T x, T y, Size n) {
         // Deals with +infinity and -infinity representations etc.
         if (x == y)
             return true;

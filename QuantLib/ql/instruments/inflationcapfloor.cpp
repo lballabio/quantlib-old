@@ -100,11 +100,11 @@ namespace QuantLib {
     }
 
     Date YoYInflationCapFloor::startDate() const {
-        return CashFlows::startDate(yoyLeg_);
+        return CashFlows::startDate<Real>(yoyLeg_);
     }
 
     Date YoYInflationCapFloor::maturityDate() const {
-        return CashFlows::maturityDate(yoyLeg_);
+        return CashFlows::maturityDate<Real>(yoyLeg_);
     }
 
     shared_ptr<YoYInflationCoupon>

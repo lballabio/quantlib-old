@@ -77,7 +77,7 @@ namespace QuantLib {
                       earlier_than<shared_ptr<CashFlow> >());
 
             if (maturityDate_ == Date())
-                maturityDate_ = CashFlows::maturityDate(cashflows);
+                maturityDate_ = CashFlows::maturityDate<Real>(cashflows);
 
             if (issueDate_ != Date()) {
                 QL_REQUIRE(issueDate_<cashflows_[0]->date(),
@@ -105,7 +105,7 @@ namespace QuantLib {
         // this is the Instrument interface, so it doesn't use
         // BondFunctions, and includeSettlementDateFlows is true
         // (unless QL_TODAY_PAYMENTS will set it to false later on)
-        return CashFlows::isExpired(cashflows_,
+        return CashFlows::isExpired<Real>(cashflows_,
                                     true,
                                     Settings::instance().evaluationDate());
     }

@@ -101,7 +101,6 @@ libInstruments_la_SOURCES = \
     stock.cpp \
     swaption.cpp \
     vanillaoption.cpp \
-    vanillaswap.cpp \
     vanillaswingoption.cpp \
     varianceswap.cpp \
     yearonyearinflationswap.cpp \

@@ -92,7 +92,7 @@ namespace QuantLib {
         if (frequency == NoFrequency || frequency == Once)
             frequency = Annual;
 
-        Rate fwdYtm = CashFlows::yield(fixedLeg,
+        Rate fwdYtm = CashFlows::yield<Real>(fixedLeg,
                                        fwdNpv,
                                        dayCounter,
                                        Compounded,
@@ -104,7 +104,7 @@ namespace QuantLib {
                              Compounded,
                              frequency);
 
-        Time fwdDur = CashFlows::duration(fixedLeg,
+        Time fwdDur = CashFlows::duration<Real>(fixedLeg,
                                           fwdRate,
                                           Duration::Modified,
                                           false, exerciseDate);

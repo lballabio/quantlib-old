@@ -6,6 +6,7 @@ this_include_HEADERS = \
     all.hpp \
     averagebmacoupon.hpp \
     capflooredcoupon.hpp \
+    capflooredcouponbase.hpp \
     capflooredinflationcoupon.hpp \
     cashflows.hpp \
     cashflowvectors.hpp \
@@ -14,6 +15,7 @@ this_include_HEADERS = \
     conundrumpricer.hpp \
     coupon.hpp \
     couponpricerbase.hpp \
+    couponpricerbase2.hpp \
     couponpricer.hpp \
     cpicoupon.hpp \
     cpicouponpricer.hpp \
@@ -39,7 +41,6 @@ this_include_HEADERS = \
 libCashFlows_la_SOURCES = \
     averagebmacoupon.cpp \
     capflooredinflationcoupon.cpp \
-    cashflows.cpp \
     cashflowvectors.cpp \
     conundrumpricer.cpp \
 	couponpricer.cpp \
@@ -47,7 +48,6 @@ libCashFlows_la_SOURCES = \
     cpicouponpricer.cpp \
     dividend.cpp \
     duration.cpp \
-    fixedratecoupon.cpp \
     indexedcashflow.cpp \
     inflationcoupon.cpp \
     inflationcouponpricer.cpp \

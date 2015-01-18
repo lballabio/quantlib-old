@@ -29,7 +29,8 @@
 #define quantlib_ibor_coupon_hpp
 
 #include <ql/cashflows/iborcouponbase.hpp>
-#include <ql/cashflows/couponpricer.hpp>
+#include <ql/cashflows/couponpricerbase2.hpp>
+#include <ql/cashflows/capflooredcouponbase.hpp>
 
 namespace QuantLib {
 
@@ -184,7 +185,9 @@ template <class T> IborLeg_t<T>::operator Leg() const {
     if (caps_.empty() && floors_.empty() && !inArrears_) {
         shared_ptr<IborCouponPricer_t<T> > pricer(
             new BlackIborCouponPricer_t<T>);
-        setCouponPricer<T>(leg, pricer);
+        for (typename Leg_t<T>::Type::iterator i = leg.begin(); i != leg.end();
+             ++i)
+            boost::dynamic_pointer_cast<IborCoupon_t<T> >(*i)->setPricer(pricer);
     }
 
     return leg;

@@ -67,6 +67,8 @@ Moved subperiodcouponpricer to couponpricer.
 
 IndexManager is a singleton for each type. Fixings are not copied from the double instance to the AD<double> instance !
 
+CashFlows:: methods are template'ized => replace by _t versions and implement a Real instance ?
+
 
 Done:
 

@@ -163,11 +163,11 @@ namespace QuantLib {
     }
 
     Date CapFloor::startDate() const {
-        return CashFlows::startDate(floatingLeg_);
+        return CashFlows::startDate<Real>(floatingLeg_);
     }
 
     Date CapFloor::maturityDate() const {
-        return CashFlows::maturityDate(floatingLeg_);
+        return CashFlows::maturityDate<Real>(floatingLeg_);
     }
 
     shared_ptr<FloatingRateCoupon>

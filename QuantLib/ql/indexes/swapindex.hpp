@@ -39,7 +39,8 @@ using boost::shared_ptr;
 
 class Schedule;
 
-class VanillaSwap;
+template <class T> class VanillaSwap_t;
+typedef VanillaSwap_t<Real> VanillaSwap;
 
 class OvernightIndex;
 class OvernightIndexedSwap;
@@ -270,15 +271,15 @@ shared_ptr<SwapIndex_t<T> > SwapIndex_t<T>::clone(const Period &tenor) const {
 
     if (exogenousDiscount_)
         return shared_ptr<SwapIndex_t<T> >(new SwapIndex_t<T>(
-            this->familyName(), tenor, this->fixingDays(), this->currency(), this->fixingCalendar(),
-            fixedLegTenor(), fixedLegConvention(), this->dayCounter(), iborIndex(),
-            discountingTermStructure()));
+            this->familyName(), tenor, this->fixingDays(), this->currency(),
+            this->fixingCalendar(), fixedLegTenor(), fixedLegConvention(),
+            this->dayCounter(), iborIndex(), discountingTermStructure()));
     else
         return shared_ptr<SwapIndex_t<T> >(new SwapIndex_t<T>(
-            this->familyName(), tenor, this->fixingDays(), this->currency(), this->fixingCalendar(),
-            fixedLegTenor(), fixedLegConvention(), this->dayCounter(), iborIndex()));
+            this->familyName(), tenor, this->fixingDays(), this->currency(),
+            this->fixingCalendar(), fixedLegTenor(), fixedLegConvention(),
+            this->dayCounter(), iborIndex()));
 }
-
 }
 
 #endif

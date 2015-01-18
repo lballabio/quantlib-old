@@ -266,17 +266,17 @@ void Swap_t<T>::fetchResults(const PricingEngine::results *r) const {
 
 template <class T> Date Swap_t<T>::startDate() const {
     QL_REQUIRE(!legs_.empty(), "no legs given");
-    Date d = CashFlows::startDate(legs_[0]);
+    Date d = CashFlows::startDate<T>(legs_[0]);
     for (Size j = 1; j < legs_.size(); ++j)
-        d = std::min(d, CashFlows::startDate(legs_[j]));
+        d = std::min(d, CashFlows::startDate<T>(legs_[j]));
     return d;
 }
 
 template <class T> Date Swap_t<T>::maturityDate() const {
     QL_REQUIRE(!legs_.empty(), "no legs given");
-    Date d = CashFlows::maturityDate(legs_[0]);
+    Date d = CashFlows::maturityDate<T>(legs_[0]);
     for (Size j = 1; j < legs_.size(); ++j)
-        d = max(d, CashFlows::maturityDate(legs_[j]));
+        d = max(d, CashFlows::maturityDate<T>(legs_[j]));
     return d;
 }
 
