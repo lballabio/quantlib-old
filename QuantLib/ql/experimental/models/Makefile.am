@@ -43,6 +43,7 @@ libModels_la_SOURCES = \
     gaussian1dfloatfloatswaptionengine.cpp \
     gaussian1djamshidianswaptionengine.cpp \
     gaussian1dnonstandardswaptionengine.cpp \
+	gaussian1dsmilesection.cpp \
     gaussian1dswaptionengine.cpp \
 	gaussian1dswaptionvolatility.cpp \
     gsr.cpp \
