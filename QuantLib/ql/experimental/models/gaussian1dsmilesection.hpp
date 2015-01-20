@@ -40,26 +40,28 @@ namespace QuantLib {
 
 class Gaussian1dSmileSection : public SmileSection {
   public:
-    Gaussian1dSmileSection(const Date &fixingDate,
-                           const boost::shared_ptr<SwapIndex> swapIndex,
-                           const boost::shared_ptr<Gaussian1dModel> &model,
-                           const boost::shared_ptr<Gaussian1dSwaptionEngine>
-                               swaptionEngine = NULL);
-    Gaussian1dSmileSection(const Date &fixingDate,
-                           const boost::shared_ptr<IborIndex> iborIndex,
-                           const boost::shared_ptr<Gaussian1dModel> &model,
-                           const boost::shared_ptr<Gaussian1dCapFloorEngine>
-                               swaptionEngine = NULL);
+    Gaussian1dSmileSection(
+        const Date &fixingDate, const boost::shared_ptr<SwapIndex> &swapIndex,
+        const boost::shared_ptr<Gaussian1dModel> &model, const DayCounter &dc,
+        const boost::shared_ptr<Gaussian1dSwaptionEngine> swaptionEngine =
+            boost::shared_ptr<Gaussian1dSwaptionEngine>());
+    Gaussian1dSmileSection(
+        const Date &fixingDate, const boost::shared_ptr<IborIndex> &swapIndex,
+        const boost::shared_ptr<Gaussian1dModel> &model, const DayCounter &dc,
+        const boost::shared_ptr<Gaussian1dCapFloorEngine> swaptionEngine =
+            boost::shared_ptr<Gaussian1dCapFloorEngine>());
 
-    // the minimum strike is zero only because we are returning a lognormal section
-    Real minStrike() { return 0.0; }
-    Real maxStrike() { return QL_MAX_REAL; }
+    // the minimum strike is zero only because we are
+    // returning a lognormal section
+    Real minStrike() const { return 0.0; }
+    Real maxStrike() const { return QL_MAX_REAL; }
 
-    Real atmLevel();
-    Real optionPrice(Rate strike, Option::Type = Option::Call, Real discount=1.0);
+    Real atmLevel() const;
+    Real optionPrice(Rate strike, Option::Type = Option::Call,
+                     Real discount = 1.0) const;
 
   protected:
-    Real volatilityImpl(Rate strike);
+    Real volatilityImpl(Rate strike) const;
 
   private:
     Real atm_, annuity_;
@@ -68,7 +70,6 @@ class Gaussian1dSmileSection : public SmileSection {
     boost::shared_ptr<IborIndex> iborIndex_;
     boost::shared_ptr<Gaussian1dModel> model_;
     boost::shared_ptr<PricingEngine> engine_;
-
 };
 }
 

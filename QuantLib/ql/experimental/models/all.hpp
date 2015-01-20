@@ -14,6 +14,7 @@
 #include <ql/experimental/models/gaussian1dnonstandardswaptionengine.hpp>
 #include <ql/experimental/models/gaussian1dsmilesection.hpp>
 #include <ql/experimental/models/gaussian1dswaptionengine.hpp>
+#include <ql/experimental/models/gaussian1dswaptionvolatility.hpp>
 #include <ql/experimental/models/gsr.hpp>
 #include <ql/experimental/models/gsrprocess.hpp>
 #include <ql/experimental/models/kahalesmilesection.hpp>

@@ -27,11 +27,14 @@
 namespace QuantLib {
 
 Gaussian1dSmileSection::Gaussian1dSmileSection(
-    const Date &fixingDate, const boost::shared_ptr<SwapIndex> swapIndex,
+    const Date &fixingDate, const boost::shared_ptr<SwapIndex> &swapIndex,
     const boost::shared_ptr<Gaussian1dModel> &model,
+    const DayCounter &dc,
     const boost::shared_ptr<Gaussian1dSwaptionEngine> swaptionEngine)
-    : SmileSection(fixingDate), fixingDate_(fixingDate), swapIndex_(swapIndex),
-      iborIndex_(NULL), model_(model), engine_(swaptionEngine) {
+    : SmileSection(fixingDate, dc, model->termStructure()->referenceDate()),
+      fixingDate_(fixingDate), swapIndex_(swapIndex),
+      iborIndex_(boost::shared_ptr<IborIndex>()), model_(model),
+      engine_(swaptionEngine) {
 
     atm_ = model_->swapRate(fixingDate_, swapIndex_->tenor(), Null<Date>(), 0.0,
                             swapIndex_);
@@ -46,10 +49,12 @@ Gaussian1dSmileSection::Gaussian1dSmileSection(
 }
 
 Gaussian1dSmileSection::Gaussian1dSmileSection(
-    const Date &fixingDate, const boost::shared_ptr<IborIndex> iborIndex,
+    const Date &fixingDate, const boost::shared_ptr<IborIndex> &iborIndex,
     const boost::shared_ptr<Gaussian1dModel> &model,
+    const DayCounter &dc,
     const boost::shared_ptr<Gaussian1dCapFloorEngine> capEngine)
-    : SmileSection(fixingDate), fixingDate_(fixingDate), swapIndex_(NULL),
+    : SmileSection(fixingDate, dc, model->termStructure()->referenceDate()),
+      fixingDate_(fixingDate), swapIndex_(boost::shared_ptr<SwapIndex>()),
       iborIndex_(iborIndex), model_(model), engine_(capEngine) {
 
     atm_ = model_->forwardRate(fixingDate_, Null<Date>(), 0.0, iborIndex_);
@@ -67,10 +72,10 @@ Gaussian1dSmileSection::Gaussian1dSmileSection(
     }
 }
 
-Real Gaussian1dSmileSection::atmLevel() { return atm_; }
+Real Gaussian1dSmileSection::atmLevel() const { return atm_; }
 
 Real Gaussian1dSmileSection::optionPrice(Rate strike, Option::Type type,
-                                         Real discount) {
+                                         Real discount) const {
 
     if (swapIndex_ != NULL) {
         Swaption s = MakeSwaption(swapIndex_, fixingDate_, strike)
@@ -91,7 +96,7 @@ Real Gaussian1dSmileSection::optionPrice(Rate strike, Option::Type type,
     }
 }
 
-Real Gaussian1dSmileSection::volatilityImpl(Rate strike) {
+Real Gaussian1dSmileSection::volatilityImpl(Rate strike) const {
     Real vol = 0.0;
     try {
         Option::Type type = strike >= atm_ ? Option::Call : Option::Put;

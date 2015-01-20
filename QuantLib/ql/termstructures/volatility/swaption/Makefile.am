@@ -6,10 +6,8 @@ this_include_HEADERS = \
     all.hpp \
     cmsmarket.hpp \
     cmsmarketcalibration.hpp \
-    gaussian1dswaptionsmilesection.hpp \
     spreadedswaptionvol.hpp \
     swaptionconstantvol.hpp \
-    swaptiongaussian1dvol.hpp \
     swaptionsinglesabrvol.hpp \
     swaptionvolcube.hpp \
     swaptionvolcube1.hpp \
@@ -21,10 +19,8 @@ this_include_HEADERS = \
 libSwaptionVol_la_SOURCES = \
     cmsmarket.cpp \
     cmsmarketcalibration.cpp \
-    gaussian1dswaptionsmilesection.cpp \
     spreadedswaptionvol.cpp \
     swaptionconstantvol.cpp \
-    swaptiongaussian1dvol.cpp \
     swaptionsinglesabrvol.cpp \
     swaptionvolcube.cpp \
     swaptionvolcube2.cpp \

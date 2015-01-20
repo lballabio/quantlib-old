@@ -17,6 +17,7 @@ this_include_HEADERS = \
     gaussian1dnonstandardswaptionengine.hpp \
 	gaussian1dsmilesection.hpp \
     gaussian1dswaptionengine.hpp \
+	gaussian1dswaptionvolatility.hpp \
     gsr.hpp \
     gsrprocess.hpp \
     kahalesmilesection.hpp \
@@ -43,6 +44,7 @@ libModels_la_SOURCES = \
     gaussian1djamshidianswaptionengine.cpp \
     gaussian1dnonstandardswaptionengine.cpp \
     gaussian1dswaptionengine.cpp \
+	gaussian1dswaptionvolatility.cpp \
     gsr.cpp \
     gsrprocess.cpp \
     kahalesmilesection.cpp \
