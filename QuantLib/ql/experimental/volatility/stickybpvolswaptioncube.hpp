@@ -24,7 +24,6 @@
 #ifndef quantlib_sticky_bpvol_swaptioncube_hpp
 #define quantlib_sticky_bpvol_swaptioncube_hpp
 
-#include <ql/experimental/volatility/stickybpvolswaptioncube.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolcube.hpp>
 #include <ql/math/interpolations/interpolation2d.hpp>
 
