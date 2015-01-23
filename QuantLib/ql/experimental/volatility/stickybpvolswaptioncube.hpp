@@ -21,8 +21,8 @@
     \brief swaption cube that holds atm bp vol constant
 */
 
-#ifndef quantlib_swaption_gaussian1d_swaption_volatility_hpp
-#define quantlib_swaption_gaussian1d_swaption_volatility_hpp
+#ifndef quantlib_sticky_bpvol_swaptioncube_hpp
+#define quantlib_sticky_bpvol_swaptioncube_hpp
 
 #include <ql/experimental/volatility/stickybpvolswaptioncube.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolcube.hpp>
@@ -41,7 +41,7 @@ class StickyBpVolSwaptionCube : public SwaptionVolatilityCube {
   public:
     StickyBpVolSwaptionCube(
         const boost::shared_ptr<SwaptionVolatilityCube> &sourceCube,
-        Handle<Quote> &atmVolatilitySpread);
+        Handle<Quote> atmVolatilitySpread = Handle<Quote>());
 
   protected:
     boost::shared_ptr<SmileSection> smileSectionImpl(const Date &,

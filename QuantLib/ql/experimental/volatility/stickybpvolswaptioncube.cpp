@@ -29,7 +29,7 @@ namespace QuantLib {
 
 StickyBpVolSwaptionCube::StickyBpVolSwaptionCube(
     const boost::shared_ptr<SwaptionVolatilityCube> &sourceCube,
-    Handle<Quote> &atmVolatilitySpread)
+    Handle<Quote> atmVolatilitySpread)
     : SwaptionVolatilityCube(
           sourceCube->atmVol(), sourceCube->optionTenors(),
           sourceCube->swapTenors(), sourceCube->strikeSpreads(),
@@ -71,7 +71,12 @@ StickyBpVolSwaptionCube::smileSectionImpl(Time optionTime,
                "source smile section does not provide atm level");
 
     Real mul = originalAtm_(optionTime, swapLength) / newAtm;
-    Real add = atmVolatilitySpread_->value() * mul;
+    Real add = 0.0;
+    if(!atmVolatilitySpread_.empty()) {
+        if(atmVolatilitySpread_->isValid()) {
+            add = atmVolatilitySpread_->value() * mul;
+        }
+    }
 
     boost::shared_ptr<SmileSection> tmp =
         boost::make_shared<MultiplicativeSmileSection>(
