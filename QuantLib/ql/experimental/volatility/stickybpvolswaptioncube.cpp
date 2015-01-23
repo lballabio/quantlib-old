@@ -67,7 +67,7 @@ StickyBpVolSwaptionCube::smileSectionImpl(Time optionTime,
                                           Time swapLength) const {
 
     boost::shared_ptr<SmileSection> source =
-        sourceCube_->smileSection(optionTime, swapLength);
+        sourceCube_->smileSection(optionTime, swapLength, true);
 
     Real newAtm = source->atmLevel();
 
