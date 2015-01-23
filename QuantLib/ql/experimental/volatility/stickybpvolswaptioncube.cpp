@@ -35,6 +35,7 @@ StickyBpVolSwaptionCube::StickyBpVolSwaptionCube(
           sourceCube->swapTenors(), sourceCube->strikeSpreads(),
           sourceCube->volSpreads(), sourceCube->swapIndexBase(),
           sourceCube->shortSwapIndexBase(), sourceCube->vegaWeightedSmileFit()),
+      sourceCube_(sourceCube),
       atmVolatilitySpread_(atmVolatilitySpread) {
 
     registerWith(atmVolatilitySpread);
@@ -63,7 +64,7 @@ StickyBpVolSwaptionCube::smileSectionImpl(Time optionTime,
                                           Time swapLength) const {
 
     boost::shared_ptr<SmileSection> source =
-        SwaptionVolatilityCube::smileSectionImpl(optionTime, swapLength);
+        sourceCube_->smileSection(optionTime, swapLength);
 
     Real newAtm = source->atmLevel();
 

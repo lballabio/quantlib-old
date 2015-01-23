@@ -47,6 +47,7 @@ class StickyBpVolSwaptionCube : public SwaptionVolatilityCube {
     Volatility volatilityImpl(Time, Time, Rate) const;
 
   private:
+    const boost::shared_ptr<SwaptionVolatilityCube> sourceCube_;
     Handle<Quote> atmVolatilitySpread_;
     Interpolation2D originalAtm_;
     Matrix atmLevel_;
