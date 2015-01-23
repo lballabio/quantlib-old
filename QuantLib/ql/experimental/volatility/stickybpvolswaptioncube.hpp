@@ -44,10 +44,7 @@ class StickyBpVolSwaptionCube : public SwaptionVolatilityCube {
         Handle<Quote> atmVolatilitySpread = Handle<Quote>());
 
   protected:
-    boost::shared_ptr<SmileSection> smileSectionImpl(const Date &,
-                                                     const Period &) const;
     boost::shared_ptr<SmileSection> smileSectionImpl(Time, Time) const;
-    Volatility volatilityImpl(const Date &, const Period &, Rate) const;
     Volatility volatilityImpl(Time, Time, Rate) const;
 
   private:
