@@ -41,7 +41,7 @@ and 5th, thanks to the sponsorship of
 <h3>Friday, December 5th</h3>
 <table>
   <tr><td>Daniel Duffy, <i><a href="/slides/qlws14/duffy.pdf">A PDE/FDM Software Framework in C++11 based on the Layers Software Pattern</a></i></td></tr>
-  <tr><td>Paolo Mazzocchi, <i><a href="https://speakerdeck.com/nando1970/overnight-jumps-and-proper-forward-rate-curves">Overnight Jumps and Proper Forward Rate Curves</a></i></td></tr>
+  <tr><td>Paolo Mazzocchi, <i><a href="https://speakerdeck.com/nando1970/eonia-jumps-and-proper-euribor-forwarding">Overnight Jumps and Proper Euribor Forwarding</a></i></td></tr>
   <tr><td>Bernd Lewerenz, <i><a href="/slides/qlws14/lewerenz.pdf">A new pricing engine for arithmetic average price options</a></i></td></tr>
   <tr><td>Eric Ehlers, <i><a href="/slides/qlws14/ehlers.pdf">The Reposit Project: An Improved Solution For Autogenerating QuantLibXL Source Code</a></i></td></tr>
   <tr><td>Klaus Spanderen and Johannes G&ouml;ttker-Schnetmann, <i><a href="/slides/qlws14/spanderen.pdf">Towards a Stochastic Local Volatility Calibration in QuantLib</a></i></td></tr>
