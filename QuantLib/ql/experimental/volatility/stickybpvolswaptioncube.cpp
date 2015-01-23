@@ -38,7 +38,8 @@ StickyBpVolSwaptionCube::StickyBpVolSwaptionCube(
       sourceCube_(sourceCube),
       atmVolatilitySpread_(atmVolatilitySpread) {
 
-    registerWith(atmVolatilitySpread);
+    registerWith(sourceCube_);
+    registerWith(atmVolatilitySpread_);
 
     boost::shared_ptr<SwaptionVolatilityDiscrete> atm =
         boost::dynamic_pointer_cast<SwaptionVolatilityDiscrete>(
@@ -57,6 +58,8 @@ StickyBpVolSwaptionCube::StickyBpVolSwaptionCube(
     originalAtm_ = FlatExtrapolator2D(boost::make_shared<BilinearInterpolation>(
         atm->swapLengths().begin(), atm->swapLengths().end(),
         atm->optionTimes().begin(), atm->optionTimes().end(), atmLevel_));
+
+    originalAtm_.enableExtrapolation();
 }
 
 boost::shared_ptr<SmileSection>
