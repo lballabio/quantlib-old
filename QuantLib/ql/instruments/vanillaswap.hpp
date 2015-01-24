@@ -123,7 +123,7 @@ template <class T> class VanillaSwap_t : public Swap_t<T> {
     T fixedRate_;
     DayCounter fixedDayCount_;
     Schedule floatingSchedule_;
-    boost::shared_ptr<IborIndex> iborIndex_;
+    boost::shared_ptr<IborIndex_t<T> > iborIndex_;
     T spread_;
     DayCounter floatingDayCount_;
     BusinessDayConvention paymentConvention_;
@@ -238,9 +238,10 @@ VanillaSwap_t<T>::VanillaSwap_t(
     const boost::shared_ptr<IborIndex_t<T> > &iborIndex, T spread,
     const DayCounter &floatingDayCount,
     boost::optional<BusinessDayConvention> paymentConvention)
-    : Swap(2), type_(type), nominal_(nominal), fixedSchedule_(fixedSchedule),
-      fixedRate_(fixedRate), fixedDayCount_(fixedDayCount),
-      floatingSchedule_(floatSchedule), iborIndex_(iborIndex), spread_(spread),
+    : Swap_t<T>(2), type_(type), nominal_(nominal),
+      fixedSchedule_(fixedSchedule), fixedRate_(fixedRate),
+      fixedDayCount_(fixedDayCount), floatingSchedule_(floatSchedule),
+      iborIndex_(iborIndex), spread_(spread),
       floatingDayCount_(floatingDayCount) {
 
     if (paymentConvention)
@@ -295,7 +296,7 @@ void VanillaSwap_t<T>::setupArguments(PricingEngine::arguments *args) const {
 
     arguments->fixedResetDates = arguments->fixedPayDates =
         std::vector<Date>(fixedCoupons.size());
-    arguments->fixedCoupons = std::vector<Real>(fixedCoupons.size());
+    arguments->fixedCoupons = std::vector<T>(fixedCoupons.size());
 
     for (Size i = 0; i < fixedCoupons.size(); ++i) {
         boost::shared_ptr<FixedRateCoupon_t<T> > coupon =
@@ -369,10 +370,10 @@ template <class T> T VanillaSwap_t<T>::floatingLegNPV() const {
 }
 
 template <class T> void VanillaSwap_t<T>::setupExpired() const {
-    Swap::setupExpired();
+    Swap_t<T>::setupExpired();
     this->legBPS_[0] = this->legBPS_[1] = 0.0;
-    fairRate_ = Null<Rate>();
-    fairSpread_ = Null<Spread>();
+    fairRate_ = Null<T>();
+    fairSpread_ = Null<T>();
 }
 
 template <class T>

@@ -26,7 +26,7 @@ namespace QuantLib {
 
         BusinessDayConvention euriborConvention(const Period& p) {
             switch (p.units()) {
-              case Days:
+            case Days:
               case Weeks:
                 return Following;
               case Months:

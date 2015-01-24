@@ -105,9 +105,9 @@ template <class T> T CumulativeNormalDistribution_t<T>::operator()(T z) const {
             a = g * (x - y);
             sum -= a;
             g *= y;
-            ++i;
+            i+=1.0;
             a = abs(a);
-        } while (lasta > a && a >= std::fabs(sum * QL_EPSILON));
+        } while (lasta > a && a >= abs(sum * QL_EPSILON));
         result = -gaussian_(z) / z * sum;
     }
     return result;

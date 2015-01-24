@@ -29,7 +29,8 @@
 
 namespace QuantLib {
 
-    class SmileSection;
+    template<class T> class SmileSection_t;
+    typedef SmileSection_t<Real> SmileSection;
 
     //! Black volatility (smile) surface
     /*! This abstract class defines the interface of concrete

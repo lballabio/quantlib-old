@@ -107,10 +107,11 @@ typename Leg_t<T>::Type FloatingLeg(
             refEnd = calendar.adjust(start + schedule.tenor(), bdc);
         }
         if (detail::get(gearings, i, 1.0) == 0.0) { // fixed coupon
-            leg.push_back(boost::shared_ptr<CashFlow_t<T> >(new FixedRateCoupon(
-                paymentDate, detail::get(nominals, i, 1.0),
-                detail::effectiveFixedRate(spreads, caps, floors, i),
-                paymentDayCounter, start, end, refStart, refEnd)));
+            leg.push_back(
+                boost::shared_ptr<CashFlow_t<T> >(new FixedRateCoupon_t<T>(
+                    paymentDate, detail::get(nominals, i, 1.0),
+                    detail::effectiveFixedRate(spreads, caps, floors, i),
+                    paymentDayCounter, start, end, refStart, refEnd)));
         } else { // floating coupon
             if (detail::noOption(caps, floors, i))
                 leg.push_back(
@@ -190,7 +191,7 @@ typename Leg_t<T>::Leg FloatingDigitalLeg(
             refEnd = calendar.adjust(start + schedule.tenor(), bdc);
         }
         if (detail::get(gearings, i, 1.0) == 0.0) { // fixed coupon
-            leg.push_back(boost::shared_ptr<CashFlow>(new FixedRateCoupon(
+            leg.push_back(boost::shared_ptr<CashFlow>(new FixedRateCoupon_t<T>(
                 paymentDate, detail::get(nominals, i, 1.0),
                 detail::get(spreads, i, 1.0), paymentDayCounter, start, end,
                 refStart, refEnd)));

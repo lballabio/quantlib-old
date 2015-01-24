@@ -208,21 +208,21 @@ template <class T> T CappedFlooredCoupon_t<T>::floor() const {
         return floor_;
     if ((this->gearing_ < 0) && isCapped_)
         return cap_;
-    return Null<Rate>();
+    return Null<T>();
 }
 
 template <class T> T CappedFlooredCoupon_t<T>::effectiveCap() const {
     if (isCapped_)
         return (cap_ - this->spread()) / this->gearing();
     else
-        return Null<Rate>();
+        return Null<T>();
 }
 
 template <class T> T CappedFlooredCoupon_t<T>::effectiveFloor() const {
     if (isFloored_)
         return (floor_ - this->spread()) / this->gearing();
     else
-        return Null<Rate>();
+        return Null<T>();
 }
 
 template <class T> void CappedFlooredCoupon_t<T>::update() {

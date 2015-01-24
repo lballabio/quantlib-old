@@ -13,7 +13,6 @@ this_include_HEADERS = \
 
 libSwapIndexes_la_SOURCES = \
     chfliborswap.cpp \
-    euriborswap.cpp \
     eurliborswap.cpp \
     gbpliborswap.cpp \
     jpyliborswap.cpp \

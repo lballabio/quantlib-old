@@ -20,7 +20,6 @@ libOptionletVol_la_SOURCES = \
     optionletstripper.cpp \
     optionletstripper1.cpp \
     optionletstripper2.cpp \
-    optionletvolatilitystructure.cpp \
     spreadedoptionletvol.cpp \
     strippedoptionlet.cpp \
     strippedoptionletadapter.cpp

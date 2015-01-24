@@ -183,7 +183,7 @@ namespace QuantLib {
     inline void Instrument_t<T>::fetchResults(
                                       const PricingEngine::results* r) const {
         const Instrument_t<T>::results* results =
-            dynamic_cast<const Instrument::results*>(r);
+            dynamic_cast<const Instrument_t<T>::results*>(r);
         QL_ENSURE(results != 0,
                   "no results returned from pricing engine");
 

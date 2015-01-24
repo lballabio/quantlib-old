@@ -44,10 +44,10 @@ template <class T> class Coupon_t : public CashFlow_t<T> {
     /*! \warning the coupon does not adjust the payment date which
                  must already be a business day.
     */
-    Coupon_t(const Date &paymentDate, Real nominal, const Date &accrualStartDate,
-           const Date &accrualEndDate, const Date &refPeriodStart = Date(),
-           const Date &refPeriodEnd = Date(),
-           const Date &exCouponDate = Date());
+    Coupon_t(const Date &paymentDate, T nominal, const Date &accrualStartDate,
+             const Date &accrualEndDate, const Date &refPeriodStart = Date(),
+             const Date &refPeriodEnd = Date(),
+             const Date &exCouponDate = Date());
     //! \name Event interface
     //@{
     Date date() const { return paymentDate_; }
@@ -119,7 +119,7 @@ template <class T> inline const Date &Coupon_t<T>::referencePeriodEnd() const {
 // implementation
 
 template <class T>
-Coupon_t<T>::Coupon_t(const Date &paymentDate, Real nominal,
+Coupon_t<T>::Coupon_t(const Date &paymentDate, T nominal,
                       const Date &accrualStartDate, const Date &accrualEndDate,
                       const Date &refPeriodStart, const Date &refPeriodEnd,
                       const Date &exCouponDate)
@@ -162,11 +162,11 @@ template <class T> BigInteger Coupon_t<T>::accruedDays(const Date &d) const {
 }
 
 template <class T> void Coupon_t<T>::accept(AcyclicVisitor &v) {
-    Visitor<Coupon> *v1 = dynamic_cast<Visitor<Coupon> *>(&v);
+    Visitor<Coupon_t<T> > *v1 = dynamic_cast<Visitor<Coupon_t<T> > *>(&v);
     if (v1 != 0)
         v1->visit(*this);
     else
-        CashFlow::accept(v);
+        CashFlow_t<T>::accept(v);
 }
 }
 

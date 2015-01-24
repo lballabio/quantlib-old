@@ -88,7 +88,6 @@ libInstruments_la_SOURCES = \
     makecms.cpp \
     makeois.cpp \
     makeswaption.cpp \
-    makevanillaswap.cpp \
     makeyoyinflationcapfloor.cpp \
     multiassetoption.cpp \
     oneassetoption.cpp \

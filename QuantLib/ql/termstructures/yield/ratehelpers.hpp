@@ -197,7 +197,7 @@ template <class T = Real>
 class SwapRateHelper_t : public RelativeDateRateHelper_t<T>::Type {
   public:
     SwapRateHelper_t(const Handle<Quote_t<T> > &rate,
-                     const boost::shared_ptr<SwapIndex> &swapIndex,
+                     const boost::shared_ptr<SwapIndex_t<T> > &swapIndex,
                      const Handle<Quote_t<T> > &spread = Handle<Quote_t<T> >(),
                      const Period &fwdStart = 0 * Days,
                      // exogenous discounting curve
@@ -228,7 +228,8 @@ class SwapRateHelper_t : public RelativeDateRateHelper_t<T>::Type {
                      // exogenous discounting curve
                      const Handle<YieldTermStructure_t<T> > &discountingCurve =
                          Handle<YieldTermStructure_t<T> >());
-    SwapRateHelper_t(T rate, const boost::shared_ptr<SwapIndex> &swapIndex,
+    SwapRateHelper_t(T rate,
+                     const boost::shared_ptr<SwapIndex_t<T> > &swapIndex,
                      const Handle<Quote_t<T> > &spread = Handle<Quote_t<T> >(),
                      const Period &fwdStart = 0 * Days,
                      // exogenous discounting curve
@@ -257,7 +258,7 @@ class SwapRateHelper_t : public RelativeDateRateHelper_t<T>::Type {
     Frequency fixedFrequency_;
     DayCounter fixedDayCount_;
     boost::shared_ptr<IborIndex_t<T> > iborIndex_;
-    boost::shared_ptr<VanillaSwap> swap_;
+    boost::shared_ptr<VanillaSwap_t<T> > swap_;
     RelinkableHandle<YieldTermStructure_t<T> > termStructureHandle_;
     Handle<Quote_t<T> > spread_;
     Period fwdStart_;
@@ -740,7 +741,8 @@ template <class T> void FraRateHelper_t<T>::accept(AcyclicVisitor &v) {
 
 template <class T>
 SwapRateHelper_t<T>::SwapRateHelper_t(
-    const Handle<Quote_t<T> > &rate, const shared_ptr<SwapIndex> &swapIndex,
+    const Handle<Quote_t<T> > &rate,
+    const shared_ptr<SwapIndex_t<T> > &swapIndex,
     const Handle<Quote_t<T> > &spread, const Period &fwdStart,
     const Handle<YieldTermStructure_t<T> > &discount)
     : RelativeDateRateHelper_t<T>::Type(rate), tenor_(swapIndex->tenor()),
@@ -814,7 +816,7 @@ SwapRateHelper_t<T>::SwapRateHelper_t(
 
 template <class T>
 SwapRateHelper_t<T>::SwapRateHelper_t(
-    T rate, const shared_ptr<SwapIndex> &swapIndex,
+    T rate, const shared_ptr<SwapIndex_t<T> > &swapIndex,
     const Handle<Quote_t<T> > &spread, const Period &fwdStart,
     const Handle<YieldTermStructure_t<T> > &discount)
     : RelativeDateRateHelper_t<T>::Type(rate), tenor_(swapIndex->tenor()),
@@ -842,7 +844,7 @@ template <class T> void SwapRateHelper_t<T>::initializeDates() {
     //    i.e. it can dinamically change
     // 2. input discount curve Handle might be empty now but it could
     //    be assigned a curve later; use a RelinkableHandle here
-    swap_ = MakeVanillaSwap(tenor_, iborIndex_, 0.0, fwdStart_)
+    swap_ = MakeVanillaSwap_t<T>(tenor_, iborIndex_, 0.0, fwdStart_)
                 .withDiscountingTermStructure(discountRelinkableHandle_)
                 .withFixedLegDayCount(fixedDayCount_)
                 .withFixedLegTenor(Period(fixedFrequency_))

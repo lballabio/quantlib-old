@@ -875,7 +875,7 @@ void CashFlows::npvbps(const typename Leg_t<T>::Type &leg,
 
     BPSCalculator<T> calc(discountCurve);
     for (Size i = 0; i < leg.size(); ++i) {
-        CashFlow &cf = *leg[i];
+        CashFlow_t<T> &cf = *leg[i];
         if (!cf.hasOccurred(settlementDate, includeSettlementDateFlows) &&
             !cf.tradingExCoupon(settlementDate)) {
             npv += cf.amount() * discountCurve.discount(cf.date());

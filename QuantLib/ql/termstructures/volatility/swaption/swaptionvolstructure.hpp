@@ -30,7 +30,8 @@
 
 namespace QuantLib {
 
-    class SmileSection;
+    template<class T> class SmileSection_t;
+    typedef SmileSection_t<Real> SmileSection;
 
     //! %Swaption-volatility structure
     /*! This abstract class defines the interface of concrete swaption

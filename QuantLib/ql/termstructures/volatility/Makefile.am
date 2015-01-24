@@ -23,7 +23,6 @@ libVolTermStructures_la_SOURCES = \
     sabr.cpp \
     sabrinterpolatedsmilesection.cpp \
     sabrsmilesection.cpp \
-    smilesection.cpp \
     spreadedsmilesection.cpp
 
 libVolTermStructures_la_LIBADD = \

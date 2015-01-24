@@ -57,11 +57,11 @@ template <class T = Real> class IborLeg_t {
     IborLeg_t &withFloors(const std::vector<T> &floors);
     IborLeg_t &inArrears(bool flag = true);
     IborLeg_t &withZeroPayments(bool flag = true);
-    operator Leg() const;
+    operator typename Leg_t<T>::Type() const;
 
   private:
     Schedule schedule_;
-    boost::shared_ptr<IborIndex> index_;
+    boost::shared_ptr<IborIndex_t<T> > index_;
     std::vector<T> notionals_;
     DayCounter paymentDayCounter_;
     BusinessDayConvention paymentAdjustment_;
@@ -132,7 +132,7 @@ IborLeg_t<T> &IborLeg_t<T>::withGearings(const std::vector<T> &gearings) {
 }
 
 template <class T> IborLeg_t<T> &IborLeg_t<T>::withSpreads(T spread) {
-    spreads_ = std::vector<Spread>(1, spread);
+    spreads_ = std::vector<T>(1, spread);
     return *this;
 }
 
@@ -143,7 +143,7 @@ IborLeg_t<T> &IborLeg_t<T>::withSpreads(const std::vector<T> &spreads) {
 }
 
 template <class T> IborLeg_t<T> &IborLeg_t<T>::withCaps(T cap) {
-    caps_ = std::vector<Rate>(1, cap);
+    caps_ = std::vector<T>(1, cap);
     return *this;
 }
 
@@ -154,7 +154,7 @@ IborLeg_t<T> &IborLeg_t<T>::withCaps(const std::vector<T> &caps) {
 }
 
 template <class T> IborLeg_t<T> &IborLeg_t<T>::withFloors(T floor) {
-    floors_ = std::vector<Rate>(1, floor);
+    floors_ = std::vector<T>(1, floor);
     return *this;
 }
 
@@ -174,7 +174,7 @@ template <class T> IborLeg_t<T> &IborLeg_t<T>::withZeroPayments(bool flag) {
     return *this;
 }
 
-template <class T> IborLeg_t<T>::operator Leg() const {
+template <class T> IborLeg_t<T>::operator typename Leg_t<T>::Type() const {
 
     typename Leg_t<T>::Type leg =
         FloatingLeg<IborIndex_t, IborCoupon_t, CappedFlooredIborCoupon_t, T>(
@@ -187,7 +187,8 @@ template <class T> IborLeg_t<T>::operator Leg() const {
             new BlackIborCouponPricer_t<T>);
         for (typename Leg_t<T>::Type::iterator i = leg.begin(); i != leg.end();
              ++i)
-            boost::dynamic_pointer_cast<IborCoupon_t<T> >(*i)->setPricer(pricer);
+            boost::dynamic_pointer_cast<IborCoupon_t<T> >(*i)
+                ->setPricer(pricer);
     }
 
     return leg;

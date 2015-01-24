@@ -49,17 +49,18 @@ using boost::dynamic_pointer_cast;
 template <class T>
 class IborCouponPricer_t : public FloatingRateCouponPricer_t<T> {
   public:
-    IborCouponPricer_t(const Handle<OptionletVolatilityStructure> &v =
-                           Handle<OptionletVolatilityStructure>())
+    IborCouponPricer_t(const Handle<OptionletVolatilityStructure_t<T> > &v =
+                           Handle<OptionletVolatilityStructure_t<T> >())
         : capletVol_(v) {
         this->registerWith(capletVol_);
     }
 
-    Handle<OptionletVolatilityStructure> capletVolatility() const {
+    Handle<OptionletVolatilityStructure_t<T> > capletVolatility() const {
         return capletVol_;
     }
-    void setCapletVolatility(const Handle<OptionletVolatilityStructure> &v =
-                                 Handle<OptionletVolatilityStructure>()) {
+    void
+    setCapletVolatility(const Handle<OptionletVolatilityStructure_t<T> > &v =
+                            Handle<OptionletVolatilityStructure_t<T> >()) {
         this->unregisterWith(capletVol_);
         capletVol_ = v;
         this->registerWith(capletVol_);
@@ -67,7 +68,7 @@ class IborCouponPricer_t : public FloatingRateCouponPricer_t<T> {
     }
 
   private:
-    Handle<OptionletVolatilityStructure> capletVol_;
+    Handle<OptionletVolatilityStructure_t<T> > capletVol_;
 };
 
 typedef IborCouponPricer_t<Real> IborCouponPricer;
@@ -76,8 +77,9 @@ typedef IborCouponPricer_t<Real> IborCouponPricer;
 template <class T>
 class BlackIborCouponPricer_t : public IborCouponPricer_t<T> {
   public:
-    BlackIborCouponPricer_t(const Handle<OptionletVolatilityStructure> &v =
-                                Handle<OptionletVolatilityStructure>())
+    BlackIborCouponPricer_t(
+        const Handle<OptionletVolatilityStructure_t<T> > &v =
+            Handle<OptionletVolatilityStructure_t<T> >())
         : IborCouponPricer_t<T>(v){};
     virtual void initialize(const FloatingRateCoupon_t<T> &coupon);
     /* */
@@ -91,7 +93,7 @@ class BlackIborCouponPricer_t : public IborCouponPricer_t<T> {
   protected:
     T optionletPrice(Option::Type optionType, T effStrike) const;
 
-    virtual T adjustedFixing(T fixing = Null<Rate>()) const;
+    virtual T adjustedFixing(T fixing = Null<T>()) const;
 
     T gearing_;
     T spread_;
@@ -155,7 +157,7 @@ void BlackIborCouponPricer_t<T>::initialize(
     accrualPeriod_ = coupon.accrualPeriod();
     QL_REQUIRE(accrualPeriod_ != 0.0, "null accrual period");
 
-    index_ = dynamic_pointer_cast<IborIndex>(coupon.index());
+    index_ = dynamic_pointer_cast<IborIndex_t<T> >(coupon.index());
     if (!index_) {
         // check if the coupon was right
         const IborCoupon_t<T> *c =
@@ -192,7 +194,7 @@ T BlackIborCouponPricer_t<T>::optionletPrice(Option::Type optionType,
             a = effStrike;
             b = coupon_->indexFixing();
         }
-        return max(a - b, 0.0) * accrualPeriod_ * discount_;
+        return max(a - b, T(0.0)) * accrualPeriod_ * discount_;
     } else {
         // not yet determined, use Black model
         QL_REQUIRE(!this->capletVolatility().empty(),

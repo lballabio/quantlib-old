@@ -124,7 +124,7 @@ template <class T> inline void FixedRateCoupon_t<T>::accept(AcyclicVisitor &v) {
     if (v1 != 0)
         v1->visit(*this);
     else
-        Coupon::accept(v);
+        Coupon_t<T>::accept(v);
 }
 
 typedef FixedRateCoupon_t<Real> FixedRateCoupon;
@@ -139,9 +139,9 @@ FixedRateCoupon_t<T>::FixedRateCoupon_t(const Date &paymentDate, T nominal,
                                         const Date &refPeriodStart,
                                         const Date &refPeriodEnd,
                                         const Date &exCouponDate)
-    : Coupon(paymentDate, nominal, accrualStartDate, accrualEndDate,
-             refPeriodStart, refPeriodEnd, exCouponDate),
-      rate_(InterestRate(rate, dayCounter, Simple, Annual)) {}
+    : Coupon_t<T>(paymentDate, nominal, accrualStartDate, accrualEndDate,
+                  refPeriodStart, refPeriodEnd, exCouponDate),
+      rate_(InterestRate_t<T>(rate, dayCounter, Simple, Annual)) {}
 
 template <class T>
 FixedRateCoupon_t<T>::FixedRateCoupon_t(const Date &paymentDate, T nominal,
@@ -151,8 +151,8 @@ FixedRateCoupon_t<T>::FixedRateCoupon_t(const Date &paymentDate, T nominal,
                                         const Date &refPeriodStart,
                                         const Date &refPeriodEnd,
                                         const Date &exCouponDate)
-    : Coupon(paymentDate, nominal, accrualStartDate, accrualEndDate,
-             refPeriodStart, refPeriodEnd, exCouponDate),
+    : Coupon_t<T>(paymentDate, nominal, accrualStartDate, accrualEndDate,
+                  refPeriodStart, refPeriodEnd, exCouponDate),
       rate_(interestRate) {}
 
 template <class T> T FixedRateCoupon_t<T>::amount() const {
@@ -187,7 +187,7 @@ FixedRateLeg_t<T>::FixedRateLeg_t(const Schedule &schedule)
 
 template <class T>
 FixedRateLeg_t<T> &FixedRateLeg_t<T>::withNotionals(T notional) {
-    notionals_ = vector<Real>(1, notional);
+    notionals_ = vector<T>(1, notional);
     return *this;
 }
 
@@ -203,7 +203,7 @@ FixedRateLeg_t<T> &
 FixedRateLeg_t<T>::withCouponRates(T rate, const DayCounter &dc,
                                    Compounding comp, Frequency freq) {
     couponRates_.resize(1);
-    couponRates_[0] = InterestRate(rate, dc, comp, freq);
+    couponRates_[0] = InterestRate_t<T>(rate, dc, comp, freq);
     return *this;
 }
 
@@ -221,7 +221,7 @@ FixedRateLeg_t<T>::withCouponRates(const vector<T> &rates, const DayCounter &dc,
                                    Compounding comp, Frequency freq) {
     couponRates_.resize(rates.size());
     for (Size i = 0; i < rates.size(); ++i)
-        couponRates_[i] = InterestRate(rates[i], dc, comp, freq);
+        couponRates_[i] = InterestRate_t<T>(rates[i], dc, comp, freq);
     return *this;
 }
 
@@ -302,7 +302,7 @@ template <class T> FixedRateLeg_t<T>::operator typename Leg_t<T>::Type() const {
                             firstPeriodDC_.empty() ? rate.dayCounter()
                                                    : firstPeriodDC_,
                             rate.compounding(), rate.frequency());
-        leg.push_back(shared_ptr<CashFlow>(new FixedRateCoupon(
+        leg.push_back(shared_ptr<CashFlow_t<T> >(new FixedRateCoupon_t<T>(
             paymentDate, nominal, r, start, end, ref, end, exCouponDate)));
     }
     // regular periods
@@ -323,7 +323,7 @@ template <class T> FixedRateLeg_t<T>::operator typename Leg_t<T>::Type() const {
             nominal = notionals_[i - 1];
         else
             nominal = notionals_.back();
-        leg.push_back(shared_ptr<CashFlow>(new FixedRateCoupon(
+        leg.push_back(shared_ptr<CashFlow_t<T> >(new FixedRateCoupon_t<T>(
             paymentDate, nominal, rate, start, end, start, end, exCouponDate)));
     }
     if (schedule_.size() > 2) {
