@@ -44,7 +44,7 @@ int main() {
     // settings
 
     bool outputStatsOnly = false;
-    bool outputDeltas = false;
+    bool outputDeltas = true;
 
     Real h = 1.0E-4; // step size for finite differences
 
