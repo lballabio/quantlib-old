@@ -1,324 +1,329 @@
 #include <ql/quantlib.hpp>
+#include <ql/qlcppad.hpp>
+
 #include <boost/assign/std/vector.hpp>
+#include <boost/timer/timer.hpp>
 
 using namespace QuantLib;
 using namespace boost::assign;
 
-// comment or uncomment this macro
-#define YES_I_WANT_TO_USE_AD
+// helper class for timing
 
-// cppad utilities
-#ifdef YES_I_WANT_TO_USE_AD
-#include <ql/qlcppad.hpp>
-#endif
+class Timer {
+    boost::timer::cpu_timer timer_;
+    double elapsed_;
+
+  public:
+    void start() {
+        timer_ = boost::timer::cpu_timer();
+        timer_.start();
+    }
+    void stop() {
+        timer_.stop();
+        elapsed_ = timer_.elapsed().user;
+    }
+    double elapsed() const { return elapsed_ / 1000000.0; }
+};
 
 int main() {
 
-    //Size psize = atoi(getenv("PSIZE"));
-    Size psize = 1000;
-    std::cout << "Example with psize=" << psize << std::endl;
-
-// define the double type to be used
-
-#ifdef YES_I_WANT_TO_USE_AD
-    std::cout << "Example with AD enabled" << std::endl;
-    typedef CppAD::AD<double> dbltype;
-#else
-    std::cout << "Example with AD disabled, use finite differences"
-              << std::endl;
-    typedef double dbltype;
-#endif
-
     // some typedefs to keep notation simple
 
-    typedef RateHelper_t<dbltype>::Type RateHelperAD;
+    typedef RateHelper_t<CppAD::AD<double> >::Type RateHelperAD;
+    typedef DepositRateHelper_t<CppAD::AD<double> > DepositRateHelperAD;
+    typedef FraRateHelper_t<CppAD::AD<double> > FraRateHelperAD;
+    typedef SwapRateHelper_t<CppAD::AD<double> > SwapRateHelperAD;
+    typedef SimpleQuote_t<CppAD::AD<double> > SimpleQuoteAD;
+    typedef Quote_t<CppAD::AD<double> > QuoteAD;
+    typedef SwapIndex_t<CppAD::AD<double> > SwapIndexAD;
+    typedef Euribor_t<CppAD::AD<double> > EuriborAD;
+    typedef YieldTermStructure_t<CppAD::AD<double> > YieldTermStructureAD;
+    typedef VanillaSwap_t<CppAD::AD<double> > VanillaSwapAD;
+    typedef DiscountingSwapEngine_t<CppAD::AD<double> > DiscountingSwapEngineAD;
 
-    typedef DepositRateHelper_t<dbltype> DepositRateHelperAD;
-    typedef FraRateHelper_t<dbltype> FraRateHelperAD;
-    typedef SwapRateHelper_t<dbltype> SwapRateHelperAD;
+    // settings
 
-    typedef SimpleQuote_t<dbltype> SimpleQuoteAD;
-    typedef Quote_t<dbltype> QuoteAD;
+    bool outputDeltas = false;
 
-    typedef SwapIndex_t<dbltype> SwapIndexAD;
-    typedef Euribor_t<dbltype> EuriborAD;
+    Real h = 1.0E-4; // step size for finite differences
 
-    typedef YieldTermStructure_t<dbltype> YieldTermStructureAD;
+    std::vector<Size> portfolioSize;
+    std::vector<Size> maximumMaturity;
 
-    typedef VanillaSwap_t<dbltype> VanillaSwapAD;
-    typedef DiscountingSwapEngine_t<dbltype> DiscountingSwapEngineAD;
+    portfolioSize += 1, 10, 100, 1000, 5000, 10000;
+    maximumMaturity += 10, 20, 30, 50, 70;
 
     // the reference date
 
     Date referenceDate(2, January, 2015);
     Settings::instance().evaluationDate() = referenceDate;
 
-    // declare the independent variables (sample market quotes)
-    std::vector<dbltype> x;
-    // on, tn, sn, sw, 1m, 2m, 3m, 4m, 5m, 6m
-    x += 0.0010, 0.0012, 0.0015, 0.0020, 0.0030, 0.0035, 0.0040, 0.0045, 0.0050,
-        0.0055;
-    // 1m-7m, 2m-8m, 3m-9m, 4m-10m, 5m-11m
-    x += 0.0060, 0.0062, 0.0064, 0.0066, 0.0068;
-    // 1y, 2y, 3y, 4y, 5y, 7y, 10y, 20y, 30y
-    x += 0.0100, 0.0110, 0.0120, 0.0130, 0.0140, 0.0145, 0.0150, 0.0160, 0.0185,
-        0.0200, 0.0205, 0.0210, 0.0215, 0.0220, 0.0225, 0.0230, 0.0235, 0.0240,
-        0.0245, 0.0250, 0.0255, 0.0260, 0.0265, 0.0270, 0.0275, 0.0280, 0.0285,
-        0.0290, 0.0295, 0.0300;
-    // 40y - 70y
-    for(Size m = 40; m<=70;++m)
-        x += 0.0300+(m-39.0)/10000.0;
+    // start the test runs
 
-#ifdef YES_I_WANT_TO_USE_AD
-    CppAD::Independent(x);
-#endif
+    Timer timer;
 
-    std::vector<boost::shared_ptr<SimpleQuoteAD> > quotes;
-    for (Size i = 0; i < x.size(); ++i)
-        quotes += boost::make_shared<SimpleQuoteAD>(x[i]);
+    for (Size ii = 0; ii < maximumMaturity.size(); ++ii) {
+        for (Size jj = 0; jj < portfolioSize.size(); ++jj) {
 
-#ifndef YES_I_WANT_TO_USE_AD
-    Real h = 1e-6;
-    std::vector<boost::shared_ptr<SimpleQuoteAD> > quotes_h;
-    for (Size i = 0; i < x.size(); ++i)
-        quotes_h += boost::make_shared<SimpleQuoteAD>(x[i] + h);
-#endif
+            // market quotes
 
-    // build a piecewise curve
+            std::vector<double> x;
 
-    std::vector<RelinkableHandle<QuoteAD> > qHandles;
-    for (Size i = 0; i < x.size(); ++i)
-        qHandles += RelinkableHandle<QuoteAD>(quotes[i]);
+            // deposit quotes on, tn, sn, sw, 1m, ... , 6m
+            for (Size i = 0; i < 10; ++i)
+                x += 0.0010 + i * 0.0002;
+            // fra quotes 1-7, ... , 5-11
+            for (Size i = 0; i < 5; ++i)
+                x += 0.0030 + i * 0.0005;
+            // swap quotes 1y, ... , maximum maturity
+            for (Size i = 0; i < maximumMaturity[ii]; ++i)
+                x += 0.0060 + i * 0.0001;
 
-    auto dpon = boost::make_shared<DepositRateHelperAD>(
-        qHandles[0], 1 * Days, 0, TARGET(), ModifiedFollowing, false,
-        Actual360());
-    auto dptn = boost::make_shared<DepositRateHelperAD>(
-        qHandles[1], 1 * Days, 1, TARGET(), ModifiedFollowing, false,
-        Actual360());
-    auto dpsn = boost::make_shared<DepositRateHelperAD>(
-        qHandles[2], 1 * Days, 2, TARGET(), ModifiedFollowing, false,
-        Actual360());
-    auto dpsw = boost::make_shared<DepositRateHelperAD>(
-        qHandles[3], 1 * Weeks, 2, TARGET(), ModifiedFollowing, false,
-        Actual360());
-    auto dp1m = boost::make_shared<DepositRateHelperAD>(
-        qHandles[4], 1 * Months, 2, TARGET(), ModifiedFollowing, false,
-        Actual360());
-    auto dp2m = boost::make_shared<DepositRateHelperAD>(
-        qHandles[5], 2 * Months, 2, TARGET(), ModifiedFollowing, false,
-        Actual360());
-    auto dp3m = boost::make_shared<DepositRateHelperAD>(
-        qHandles[6], 3 * Months, 0, TARGET(), ModifiedFollowing, false,
-        Actual360());
-    auto dp4m = boost::make_shared<DepositRateHelperAD>(
-        qHandles[7], 4 * Months, 0, TARGET(), ModifiedFollowing, false,
-        Actual360());
-    auto dp5m = boost::make_shared<DepositRateHelperAD>(
-        qHandles[8], 5 * Months, 0, TARGET(), ModifiedFollowing, false,
-        Actual360());
-    auto dp6m = boost::make_shared<DepositRateHelperAD>(
-        qHandles[9], 6 * Months, 0, TARGET(), ModifiedFollowing, false,
-        Actual360());
+            // market quotes for AD
 
-    auto fra17 = boost::make_shared<FraRateHelperAD>(
-        qHandles[10], 1, 7, 2, TARGET(), ModifiedFollowing, false, Actual360());
-    auto fra28 = boost::make_shared<FraRateHelperAD>(
-        qHandles[11], 2, 8, 2, TARGET(), ModifiedFollowing, false, Actual360());
-    auto fra39 = boost::make_shared<FraRateHelperAD>(
-        qHandles[12], 3, 9, 2, TARGET(), ModifiedFollowing, false, Actual360());
-    auto fra410 = boost::make_shared<FraRateHelperAD>(
-        qHandles[13], 4, 10, 2, TARGET(), ModifiedFollowing, false,
-        Actual360());
-    auto fra511 = boost::make_shared<FraRateHelperAD>(
-        qHandles[14], 5, 11, 2, TARGET(), ModifiedFollowing, false,
-        Actual360());
+            std::vector<CppAD::AD<double> > xAD;
 
-    auto euribor6m = boost::make_shared<EuriborAD>(6 * Months);
+            for (Size i = 0; i < x.size(); ++i)
+                xAD += CppAD::AD<double>(x[i]);
 
-    auto swap1y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[15], 1 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap2y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[16], 2 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap3y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[17], 3 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap4y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[18], 4 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap5y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[19], 5 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap6y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[20], 6 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap7y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[21], 7 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap8y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[22], 8 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap9y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[23], 9 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap10y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[24], 10 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap11y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[25], 11 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap12y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[26], 12 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap13y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[27], 13 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap14y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[28], 14 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap15y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[29], 15 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap16y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[30], 16 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap17y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[31], 17 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap18y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[32], 18 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap19y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[33], 19 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap20y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[34], 20 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap21y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[35], 21 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap22y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[36], 22 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap23y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[37], 23 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap24y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[38], 24 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap25y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[39], 25 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap26y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[40], 26 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap27y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[41], 27 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap28y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[42], 28 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap29y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[43], 29 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
-    auto swap30y = boost::make_shared<SwapRateHelperAD>(
-        qHandles[44], 30 * Years, TARGET(), Annual, ModifiedFollowing,
-        Thirty360(), euribor6m);
+            // declare the independent variables
 
-    std::vector<boost::shared_ptr<RateHelperAD> > instruments;
-    instruments += dpon, dptn, dpsn, dpsw, dp1m, dp2m, dp3m, dp4m, dp5m, dp6m,
-        fra17, fra28, fra39, fra410, fra511, swap1y, swap2y, swap3y, swap4y,
-        swap5y, swap6y, swap7y, swap8y, swap9y, swap10y, swap11y, swap12y,
-        swap13y, swap14y, swap15y, swap16y, swap17y, swap18y, swap19y, swap20y,
-        swap21y, swap22y, swap23y, swap24y, swap25y, swap26y, swap27y, swap28y,
-        swap29y, swap30y;
+            CppAD::Independent(xAD);
 
-    for(Size m=40;m<=70;++m) {
-        auto swap = boost::make_shared<SwapRateHelperAD>(
-            qHandles[m+5], m * Years, TARGET(), Annual, ModifiedFollowing,
-            Thirty360(), euribor6m);
-        instruments += swap;
-    }
+            // build quotes
 
-    typedef PiecewiseYieldCurve<ZeroYield, Linear, IterativeBootstrap, dbltype>
-        curve_type;
+            std::vector<boost::shared_ptr<SimpleQuote> > quotes;
+            std::vector<boost::shared_ptr<SimpleQuoteAD> > quotesAD;
+            for (Size i = 0; i < x.size(); ++i) {
+                quotes += boost::make_shared<SimpleQuote>(x[i]);
+                quotesAD += boost::make_shared<SimpleQuoteAD>(xAD[i]);
+            }
 
-    auto curve = boost::make_shared<curve_type>(referenceDate, instruments,
-                                                Actual365Fixed());
+            std::vector<boost::shared_ptr<SimpleQuote> > quotes_h;
+            for (Size i = 0; i < x.size(); ++i)
+                quotes_h += boost::make_shared<SimpleQuote>(x[i] + h);
 
-    Handle<YieldTermStructureAD> curveHandle(curve);
+            std::vector<RelinkableHandle<Quote> > quoteHandles;
+            std::vector<RelinkableHandle<QuoteAD> > quoteHandlesAD;
+            for (Size i = 0; i < x.size(); ++i) {
+                quoteHandles += RelinkableHandle<Quote>(quotes[i]);
+                quoteHandlesAD += RelinkableHandle<QuoteAD>(quotesAD[i]);
+            }
 
-    auto euribor6m_yts = boost::make_shared<EuriborAD>(6 * Months, curveHandle);
+            // rate helpers
 
-    // set up a vanilla swap portfolio
+            std::vector<boost::shared_ptr<RateHelper> > instruments;
+            std::vector<boost::shared_ptr<RateHelperAD> > instrumentsAD;
 
-    euribor6m_yts->addFixing(Date(2, October, 2014), 0.0040);
-    euribor6m_yts->addFixing(Date(3, October, 2014), 0.0040);
-    euribor6m_yts->addFixing(Date(6, October, 2014), 0.0040);
-    auto discEngine = boost::make_shared<DiscountingSwapEngineAD>(curveHandle);
-    std::vector<boost::shared_ptr<VanillaSwapAD> > portfolio;
-    MersenneTwisterUniformRng mt(42);
+            // depos
+            for (Size i = 0; i < 10; ++i) {
+                Period matTmp;
+                Size fixingDays = 2;
+                switch (i) {
+                case 0:
+                    matTmp = 1 * Days;
+                    fixingDays = 0;
+                    break;
+                case 1:
+                    matTmp = 1 * Days;
+                    fixingDays = 1;
+                    break;
+                case 2:
+                    matTmp = 1 * Days;
+                    break;
+                case 3:
+                    matTmp = 1 * Weeks;
+                    break;
+                default:
+                    matTmp = (i - 3) * Months;
+                    break;
+                }
+                auto depoTmp = boost::make_shared<DepositRateHelper>(
+                    quoteHandles[i], matTmp, fixingDays, TARGET(),
+                    ModifiedFollowing, false, Actual360());
+                auto depoTmpAD = boost::make_shared<DepositRateHelperAD>(
+                    quoteHandlesAD[i], matTmp, fixingDays, TARGET(),
+                    ModifiedFollowing, false, Actual360());
+                instruments += depoTmp;
+                instrumentsAD += depoTmpAD;
+            }
 
-    for (Size j = 0; j < psize; ++j) {
+            // fras
 
-        Real fixedRate = mt.nextReal() * 0.10;
-        Date effective(6, October, 2014);
-        Date termination = TARGET().advance(
-            effective, static_cast<Size>(mt.nextReal() * 69 + 1) * Years);
+            for (Size i = 0; i < 5; ++i) {
+                auto fraTmp = boost::make_shared<FraRateHelper>(
+                    quoteHandles[10 + i], (i + 1), (i + 7), 2, TARGET(),
+                    ModifiedFollowing, false, Actual360());
+                auto fraTmpAD = boost::make_shared<FraRateHelperAD>(
+                    quoteHandlesAD[10 + i], (i + 1), (i + 7), 2, TARGET(),
+                    ModifiedFollowing, false, Actual360());
+                instruments += fraTmp;
+                instrumentsAD += fraTmpAD;
+            }
 
-        Schedule fixedSchedule(effective, termination, 1 * Years, TARGET(),
-                               ModifiedFollowing, Following,
-                               DateGeneration::Backward, false);
-        Schedule floatSchedule(effective, termination, 6 * Months, TARGET(),
-                               ModifiedFollowing, Following,
-                               DateGeneration::Backward, false);
+            // swaps
 
-        auto swap = boost::make_shared<VanillaSwapAD>(
-            VanillaSwapAD::Payer, 100000000.0, fixedSchedule, fixedRate,
-            Thirty360(), floatSchedule, euribor6m_yts, 0.0, Actual360());
+            auto euribor6m = boost::make_shared<Euribor>(6 * Months);
+            auto euribor6mAD = boost::make_shared<EuriborAD>(6 * Months);
 
-        swap->setPricingEngine(discEngine);
+            for (Size i = 0; i < maximumMaturity[ii]; ++i) {
+                auto swapTmp = boost::make_shared<SwapRateHelper>(
+                    quoteHandles[15 + i], (i + 1) * Years, TARGET(), Annual,
+                    ModifiedFollowing, Thirty360(), euribor6m);
+                auto swapTmpAD = boost::make_shared<SwapRateHelperAD>(
+                    quoteHandlesAD[15 + i], (i + 1) * Years, TARGET(), Annual,
+                    ModifiedFollowing, Thirty360(), euribor6mAD);
+                instruments += swapTmp;
+                instrumentsAD += swapTmpAD;
+            }
 
-        portfolio.push_back(swap);
-    }
+            // build a piecewise yield curve
 
-    // price the portfolio
+            typedef PiecewiseYieldCurve<ZeroYield, Linear, IterativeBootstrap,
+                                        double> CurveType;
+            typedef PiecewiseYieldCurve<ZeroYield, Linear, IterativeBootstrap,
+                                        CppAD::AD<double> > CurveTypeAD;
 
-    std::vector<dbltype> y(1);
+            auto curve = boost::make_shared<CurveType>(
+                referenceDate, instruments, Actual365Fixed());
+            auto curveAD = boost::make_shared<CurveTypeAD>(
+                referenceDate, instrumentsAD, Actual365Fixed());
 
-    for (Size j = 0; j < portfolio.size(); ++j) {
-        y[0] = y[0] + portfolio[j]->NPV();
-    }
+            Handle<YieldTermStructure> curveHandle(curve);
+            Handle<YieldTermStructureAD> curveHandleAD(curveAD);
 
-    std::cout << std::setprecision(16);
-    std::cout << "portfolio npv = " << y[0] << std::endl;
+            auto euribor6mYts =
+                boost::make_shared<Euribor>(6 * Months, curveHandle);
+            auto euribor6mYtsAD =
+                boost::make_shared<EuriborAD>(6 * Months, curveHandleAD);
 
-#ifdef YES_I_WANT_TO_USE_AD
-    // define the operation sequence
-    CppAD::ADFun<Real> f(x, y);
-    std::vector<Real> dw(x.size()), w(1, 1.0);
-    // gradient computation
-    dw = f.Reverse(1, w);
-    std::cout << "deltas (AD):" << std::endl;
-    for (Size i = 0; i < x.size(); ++i) {
-        std::cout << i << ";" << dw[i] / 10000.0 << std::endl;
-    }
-#else
-    Real ytemp = y[0];
-    std::cout << "deltas (FD):" << std::endl;
-    for (Size i = 0; i < x.size(); ++i) {
-        qHandles[i].linkTo(quotes_h[i]);
-        Real yh = 0.0;
-        for (Size j = 0; j < portfolio.size(); ++j) {
-            yh += portfolio[j]->NPV();
-        }
-        // qHandles[i].linkTo(quotes[i]);
-        std::cout << i << ";" << (yh - ytemp) / 10000.0 / h << std::endl;
-        ytemp = yh;
-    }
-#endif
+            // set up a vanilla swap portfolio
+
+            euribor6mYts->addFixing(Date(2, October, 2014), 0.0040);
+            euribor6mYts->addFixing(Date(3, October, 2014), 0.0040);
+            euribor6mYts->addFixing(Date(6, October, 2014), 0.0040);
+            euribor6mYtsAD->addFixing(Date(2, October, 2014), 0.0040);
+            euribor6mYtsAD->addFixing(Date(3, October, 2014), 0.0040);
+            euribor6mYtsAD->addFixing(Date(6, October, 2014), 0.0040);
+
+            auto discEngine =
+                boost::make_shared<DiscountingSwapEngine>(curveHandle);
+            auto discEngineAD =
+                boost::make_shared<DiscountingSwapEngineAD>(curveHandleAD);
+
+            std::vector<boost::shared_ptr<VanillaSwap> > portfolio;
+            std::vector<boost::shared_ptr<VanillaSwapAD> > portfolioAD;
+            MersenneTwisterUniformRng mt(42);
+
+            for (Size j = 0; j < portfolioSize[jj]; ++j) {
+                Real fixedRate = mt.nextReal() * 0.10;
+                Date effective(6, October, 2014);
+                Date termination = TARGET().advance(
+                    effective,
+                    static_cast<Size>(mt.nextReal() * maximumMaturity[ii] + 1) *
+                        Years);
+                Schedule fixedSchedule(effective, termination, 1 * Years,
+                                       TARGET(), ModifiedFollowing, Following,
+                                       DateGeneration::Backward, false);
+                Schedule floatSchedule(effective, termination, 6 * Months,
+                                       TARGET(), ModifiedFollowing, Following,
+                                       DateGeneration::Backward, false);
+                auto swap = boost::make_shared<VanillaSwap>(
+                    VanillaSwap::Payer, 100000000.0 / portfolioSize[jj],
+                    fixedSchedule, fixedRate, Thirty360(), floatSchedule,
+                    euribor6mYts, 0.0, Actual360());
+                auto swapAD = boost::make_shared<VanillaSwapAD>(
+                    VanillaSwapAD::Payer, 100000000.0 / portfolioSize[jj],
+                    fixedSchedule, fixedRate, Thirty360(), floatSchedule,
+                    euribor6mYtsAD, 0.0, Actual360());
+                swap->setPricingEngine(discEngine);
+                swapAD->setPricingEngine(discEngineAD);
+                portfolio.push_back(swap);
+                portfolioAD.push_back(swapAD);
+            }
+
+            // price the portfolio
+
+            double y = 0.0;
+            for (Size j = 0; j < portfolio.size(); ++j) {
+                y += portfolio[j]->NPV();
+            }
+            timer.stop();
+            Real timePricing = timer.elapsed();
+
+            timer.start();
+            std::vector<CppAD::AD<double> > yAD(1, 0.0);
+            for (Size j = 0; j < portfolio.size(); ++j) {
+                yAD[0] = yAD[0] + portfolioAD[j]->NPV();
+            }
+            timer.stop();
+            Real timePricingAD = timer.elapsed();
+
+            // delta vector computation
+
+            timer.start();
+            std::vector<double> deltas;
+            Real ytemp = y;
+            for (Size i = 0; i < x.size(); ++i) {
+                quoteHandles[i].linkTo(quotes_h[i]);
+                Real yh = 0.0;
+                for (Size j = 0; j < portfolio.size(); ++j) {
+                    yh += portfolio[j]->NPV();
+                }
+                deltas.push_back((yh - ytemp) / h);
+                ytemp = yh;
+            }
+            timer.stop();
+            Real timeDeltas = timer.elapsed();
+
+            timer.start();
+            CppAD::ADFun<Real> f(xAD, yAD);
+            std::vector<Real> deltasAD(xAD.size()), w(1, 1.0);
+            deltasAD = f.Reverse(1, w);
+            timer.stop();
+            Real timeDeltasAD = timer.elapsed();
+
+            // output results
+
+            std::cout << "====================================================="
+                         "=============================" << std::endl;
+            std::cout << "maximum maturity        " << std::setw(5)
+                      << maximumMaturity[ii] << " years" << std::endl;
+            std::cout << "portfolio size     " << std::setw(10)
+                      << portfolioSize[jj] << " swaps" << std::endl;
+            std::cout << "delta vector size  " << std::setw(10) << x.size()
+                      << " pillars" << std::endl;
+            std::cout << std::endl << "timings (ms)            double     "
+                                      "AD<double>         factor     #NPVs"
+                      << std::endl;
+            std::cout << "   pricing          " << std::setw(10) << timePricing
+                      << std::setw(15) << timePricingAD << std::endl;
+            std::cout << "   deltas           " << std::setw(10) << timeDeltas
+                      << std::setw(15) << timeDeltasAD << std::endl;
+            std::cout << "   total            " << std::setw(10)
+                      << timePricing + timeDeltas << std::setw(15)
+                      << timePricingAD + timeDeltasAD << std::setw(15)
+                      << (timePricing + timeDeltas) /
+                             (timePricingAD + timeDeltasAD) << std::setw(10)
+                      << (timePricingAD + timeDeltasAD) /
+                             (timePricing + timeDeltas) * x.size() << std::endl;
+            std::cout << std::endl
+                      << "results:                double     AD<double>     "
+                         "difference" << std::endl;
+            std::cout << "   NPV         " << std::fixed << std::setprecision(2)
+                      << std::setw(15) << y << std::setw(15) << yAD[0]
+                      << std::setw(15) << (y - yAD[0]) << std::endl;
+            if (outputDeltas)
+                for (Size i = 0; i < x.size(); ++i) {
+                    std::cout
+                        << "   Delta #" << std::setw(5) << (i + 1)
+                        << std::setw(15) << deltas[i] / 10000.0 << std::setw(15)
+                        << deltasAD[i] / 10000.0 << std::setw(15)
+                        << (deltas[i] - deltasAD[i]) / 10000.0 << std::endl;
+                }
+
+        } // loop portfolio size
+    }     // lopp maximum maturity
 
     return 0;
 }
