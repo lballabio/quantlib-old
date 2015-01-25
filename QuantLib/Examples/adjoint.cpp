@@ -2,7 +2,7 @@
 #include <ql/qlcppad.hpp>
 
 #include <boost/assign/std/vector.hpp>
-#include <boost/timer/timer.hpp>
+#include <boost/timer.hpp>
 
 using namespace QuantLib;
 using namespace boost::assign;
@@ -10,19 +10,17 @@ using namespace boost::assign;
 // helper class for timing
 
 class Timer {
-    boost::timer::cpu_timer timer_;
+    boost::timer timer_;
     double elapsed_;
 
   public:
     void start() {
-        timer_ = boost::timer::cpu_timer();
-        timer_.start();
+        timer_ = boost::timer();
     }
     void stop() {
-        timer_.stop();
-        elapsed_ = timer_.elapsed().user;
+        elapsed_ = timer_.elapsed();
     }
-    double elapsed() const { return elapsed_ / 1000000.0; }
+    double elapsed() const { return elapsed_ * 1000.0; }
 };
 
 int main() {
