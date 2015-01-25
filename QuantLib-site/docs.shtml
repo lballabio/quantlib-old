@@ -69,7 +69,12 @@ demonstrate features of the QuantLib library. It is also available
 <li><strong>Introduction to QuantLib</strong> is
 another <a href="https://www.youtube.com/user/eefelix/videos">series
 of screencasts</a> by Felix Lee, covering installation and usage of
-the library.
+the library.</li>
+<li><strong>A Look at QuantLib Usage and Development</strong> is the
+recording of <a href="http://quantshub.com/qhworkshopview/63">a
+one-day workshop</a> given by Luigi Ballabio for Quants Hub. It is
+available for purchase separately or as part of their subscription
+service.</li>
 </ul>
 
 <h2 class="center">Blogs</h2>
