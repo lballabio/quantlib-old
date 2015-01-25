@@ -41,8 +41,8 @@ int main() {
 
     // settings
 
-    bool outputStatsOnly = false;
-    bool outputDeltas = true;
+    bool outputStatsOnly = true;
+    bool outputDeltas = false;
 
     Real h = 1.0E-4; // step size for finite differences
 
@@ -247,6 +247,7 @@ int main() {
 
             // price the portfolio
 
+            timer.start();
             double y = 0.0;
             for (Size j = 0; j < portfolio.size(); ++j) {
                 y += portfolio[j]->NPV();
