@@ -43,6 +43,7 @@ int main() {
 
     // settings
 
+    bool outputStatsOnly = false;
     bool outputDeltas = false;
 
     Real h = 1.0E-4; // step size for finite differences
@@ -61,6 +62,10 @@ int main() {
     // start the test runs
 
     Timer timer;
+
+    if (outputStatsOnly)
+        std::cout << "portfolioSize;numberofPillars;effectiveNumberNPVCalcs"
+                  << std::endl;
 
     for (Size ii = 0; ii < maximumMaturity.size(); ++ii) {
         for (Size jj = 0; jj < portfolioSize.size(); ++jj) {
@@ -285,42 +290,56 @@ int main() {
 
             // output results
 
-            std::cout << "====================================================="
-                         "=============================" << std::endl;
-            std::cout << "maximum maturity        " << std::setw(5)
-                      << maximumMaturity[ii] << " years" << std::endl;
-            std::cout << "portfolio size     " << std::setw(10)
-                      << portfolioSize[jj] << " swaps" << std::endl;
-            std::cout << "delta vector size  " << std::setw(10) << x.size()
-                      << " pillars" << std::endl;
-            std::cout << std::endl << "timings (ms)            double     "
-                                      "AD<double>         factor     #NPVs"
-                      << std::endl;
-            std::cout << "   pricing          " << std::setw(10) << timePricing
-                      << std::setw(15) << timePricingAD << std::endl;
-            std::cout << "   deltas           " << std::setw(10) << timeDeltas
-                      << std::setw(15) << timeDeltasAD << std::endl;
-            std::cout << "   total            " << std::setw(10)
-                      << timePricing + timeDeltas << std::setw(15)
-                      << timePricingAD + timeDeltasAD << std::setw(15)
-                      << (timePricing + timeDeltas) /
-                             (timePricingAD + timeDeltasAD) << std::setw(10)
-                      << (timePricingAD + timeDeltasAD) /
-                             (timePricing + timeDeltas) * x.size() << std::endl;
-            std::cout << std::endl
-                      << "results:                double     AD<double>     "
-                         "difference" << std::endl;
-            std::cout << "   NPV         " << std::fixed << std::setprecision(2)
-                      << std::setw(15) << y << std::setw(15) << yAD[0]
-                      << std::setw(15) << (y - yAD[0]) << std::endl;
-            if (outputDeltas)
-                for (Size i = 0; i < x.size(); ++i) {
-                    std::cout
-                        << "   Delta #" << std::setw(5) << (i + 1)
-                        << std::setw(15) << deltas[i] / 10000.0 << std::setw(15)
-                        << deltasAD[i] / 10000.0 << std::setw(15)
-                        << (deltas[i] - deltasAD[i]) / 10000.0 << std::endl;
-                }
+            if (outputStatsOnly) {
+                std::cout << portfolioSize[jj] << ";" << x.size() << ";"
+                          << (timePricingAD + timeDeltasAD) /
+                                 (timePricing + timeDeltas) * x.size()
+                          << std::endl;
+            } else {
+                std::cout
+                    << "====================================================="
+                       "=============================" << std::endl;
+                std::cout << "maximum maturity        " << std::setw(5)
+                          << maximumMaturity[ii] << " years" << std::endl;
+                std::cout << "portfolio size     " << std::setw(10)
+                          << portfolioSize[jj] << " swaps" << std::endl;
+                std::cout << "delta vector size  " << std::setw(10) << x.size()
+                          << " pillars" << std::endl;
+                std::cout << std::endl << "timings (ms)            double     "
+                                          "AD<double>         factor  eff#NPVs"
+                          << std::endl;
+                std::cout << "   pricing          " << std::setw(10)
+                          << timePricing << std::setw(15) << timePricingAD
+                          << std::endl;
+                std::cout << "   deltas           " << std::setw(10)
+                          << timeDeltas << std::setw(15) << timeDeltasAD
+                          << std::endl;
+                std::cout << "   total            " << std::setw(10)
+                          << timePricing + timeDeltas << std::setw(15)
+                          << timePricingAD + timeDeltasAD << std::setw(15)
+                          << (timePricing + timeDeltas) /
+                                 (timePricingAD + timeDeltasAD) << std::setw(10)
+                          << (timePricingAD + timeDeltasAD) /
+                                 (timePricing + timeDeltas) * x.size()
+                          << std::endl;
+                std::cout
+                    << std::endl
+                    << "results:                double     AD<double>     "
+                       "difference" << std::endl;
+                std::cout << "   NPV         " << std::fixed
+                          << std::setprecision(2) << std::setw(15) << y
+                          << std::setw(15) << yAD[0] << std::setw(15)
+                          << (y - yAD[0]) << std::endl;
+                if (outputDeltas)
+                    for (Size i = 0; i < x.size(); ++i) {
+                        std::cout << "   Delta #" << std::setw(5) << (i + 1)
+                                  << std::setw(15) << deltas[i] / 10000.0
+                                  << std::setw(15) << deltasAD[i] / 10000.0
+                                  << std::setw(15)
+                                  << (deltas[i] - deltasAD[i]) / 10000.0
+                                  << std::endl;
+                    }
+            }
 
         } // loop portfolio size
     }     // lopp maximum maturity
