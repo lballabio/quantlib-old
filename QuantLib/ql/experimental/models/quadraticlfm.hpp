@@ -39,17 +39,20 @@ class QuadraticLfm {
                  const std::vector<Real> &initialForwards,
                  const std::vector<Real> &)
         : rateTimes_(rateTimes), initialForwards_(initialForwards) {
-        
-        n_ = rateTimes.size();
-        QL_REQUIRE(n_ == initialForwards_.size()+1,
+
+        N_ = rateTimes.size();
+        QL_REQUIRE(N_ - 1 == initialForwards_.size(),
                    "rateTimes size ("
-                       << n_
+                       << N_
                        << ") minus 1 must be equal to number of forwards ("
                        << initialForwards_.size() << ")");
     }
 
     /* markovian projection local volatility \eta(t,S) */
     Real eta(const Real t, const Real S);
+
+    /* S_{n,m} */
+    Real S(const Size n, const Size m, const Size step = 1);
 
     /* dS_{n,m} / dL_i freezed at time zero */
     Real dSdL(const Size n, const Size m, const Size step, const Size i);
@@ -59,7 +62,7 @@ class QuadraticLfm {
 
   private:
     std::vector<Real> rateTimes_, initialForwards_;
-    Size n_;
+    Size N_;
 };
 }
 
