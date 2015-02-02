@@ -42,8 +42,8 @@ namespace QuantLib {
 
         T must be consistent with machine accuracy QL_EPSILON to make sense
     */
-    template<class T = Real> bool close(T x, T y);
-    template<class T = Real> bool close(T x, T y, Size n);
+    template<class T> bool close(T x, T y);
+    template<class T> bool close(T x, T y, Size n);
 
     /*! Follows somewhat the advice of Knuth on checking for floating-point
         equality. The closeness relationship is:
@@ -54,8 +54,8 @@ namespace QuantLib {
         where \f$ \varepsilon \f$ is \f$ n \f$ times the machine accuracy;
         \f$ n \f$ equals 42 if not given.
     */
-    template<class T = Real> bool close_enough(T x, T y);
-    template<class T = Real> bool close_enough(T x, T y, Size n);
+    template<class T> bool close_enough(T x, T y);
+    template<class T> bool close_enough(T x, T y, Size n);
 
 
     // inline definitions

@@ -70,7 +70,7 @@ using std::sqrt;
     \warning instead of volatility it uses standard deviation,
              i.e. volatility*sqrt(timeToMaturity)
 */
-template <class T = Real>
+template <class T>
 T blackFormula(Option::Type optionType, T strike, T forward, T stdDev,
                T discount = 1.0, T displacement = 0.0) {
     checkParameters(strike, forward, displacement);
@@ -105,7 +105,7 @@ T blackFormula(Option::Type optionType, T strike, T forward, T stdDev,
     \warning instead of volatility it uses standard deviation,
              i.e. volatility*sqrt(timeToMaturity)
 */
-template <class T = Real>
+template <class T>
 T blackFormula(const boost::shared_ptr<PlainVanillaPayoff> &payoff, T forward,
                T stdDev, T discount = 1.0, T displacement = 0.0) {
     return blackFormula<T>(payoff->optionType(), payoff->strike(), forward,
@@ -121,7 +121,7 @@ T blackFormula(const boost::shared_ptr<PlainVanillaPayoff> &payoff, T forward,
     tape safe implementation
 */
 
-template <class T = Real>
+template <class T>
 T blackFormulaImpliedStdDevApproximation(Option::Type optionType, T strike,
                                          T forward, T blackPrice,
                                          T discount = 1.0,
@@ -167,7 +167,7 @@ T blackFormulaImpliedStdDevApproximation(Option::Type optionType, T strike,
     extended moneyness approximation by Corrado and Miller (1996)
     tape safe implementation
 */
-template <class T = Real>
+template <class T>
 T blackFormulaImpliedStdDevApproximation(
     const boost::shared_ptr<PlainVanillaPayoff> &payoff, T forward,
     T blackPrice, T discount = 1.0, T displacement = 0.0) {
@@ -229,7 +229,7 @@ typedef BlackImpliedStdDevHelper_t<Real> BlackImpliedStdDevHelper;
 /*! Black 1976 implied standard deviation,
     i.e. volatility*sqrt(timeToMaturity)
 */
-template <class T = Real>
+template <class T>
 T blackFormulaImpliedStdDev(Option::Type optionType, T strike, T forward,
                             T blackPrice, T discount = 1.0,
                             T displacement = 0.0, T guess = Null<Real>(),
@@ -287,7 +287,7 @@ T blackFormulaImpliedStdDev(Option::Type optionType, T strike, T forward,
 /*! Black 1976 implied standard deviation,
     i.e. volatility*sqrt(timeToMaturity)
 */
-template <class T = Real>
+template <class T>
 T blackFormulaImpliedStdDev(const boost::shared_ptr<PlainVanillaPayoff> &payoff,
                             T forward, T blackPrice, T discount = 1.0,
                             T displacement = 0.0, T guess = Null<Real>(),

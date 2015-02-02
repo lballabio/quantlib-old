@@ -56,7 +56,7 @@ using std::min;
 
 template <template <class> class InterestRateIndexType,
           template <class> class FloatingCouponType,
-          template <class> class CappedFlooredCouponType, class T = Real>
+          template <class> class CappedFlooredCouponType, class T>
 typename Leg_t<T>::Type FloatingLeg(
     const Schedule &schedule, const std::vector<T> &nominals,
     const boost::shared_ptr<InterestRateIndexType<T> > &index,
@@ -139,7 +139,7 @@ typename Leg_t<T>::Type FloatingLeg(
 
 template <template <class> class InterestRateIndexType,
           template <class> class FloatingCouponType,
-          template <class> class DigitalCouponType, class T = Real>
+          template <class> class DigitalCouponType, class T>
 typename Leg_t<T>::Leg FloatingDigitalLeg(
     const Schedule &schedule, const std::vector<T> &nominals,
     const boost::shared_ptr<InterestRateIndexType<T> > &index,

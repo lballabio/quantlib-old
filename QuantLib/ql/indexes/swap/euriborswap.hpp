@@ -102,21 +102,6 @@ template <class T>
 EuriborSwapIsdaFixA_t<T>::EuriborSwapIsdaFixA_t(
     const Period &tenor,
     const Handle<YieldTermStructure_t<T> > &h)
-    : SwapIndex("EuriborSwapIsdaFixA", // familyName
-                tenor,
-                2, // settlementDays
-                EURCurrency(), TARGET(),
-                1 * Years,                       // fixedLegTenor
-                ModifiedFollowing,               // fixedLegConvention
-                Thirty360(Thirty360::BondBasis), // fixedLegDaycounter
-                tenor > 1 * Years
-                    ? shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(6 * Months, h))
-                    : shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(3 * Months, h))) {}
-
-template <class T>
-EuriborSwapIsdaFixA_t<T>::EuriborSwapIsdaFixA_t(
-    const Period &tenor, const Handle<YieldTermStructure_t<T> > &forwarding,
-    const Handle<YieldTermStructure_t<T> > &discounting)
     : SwapIndex(
           "EuriborSwapIsdaFixA", // familyName
           tenor,
@@ -126,15 +111,14 @@ EuriborSwapIsdaFixA_t<T>::EuriborSwapIsdaFixA_t(
           ModifiedFollowing,               // fixedLegConvention
           Thirty360(Thirty360::BondBasis), // fixedLegDaycounter
           tenor > 1 * Years
-              ? shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(6 * Months, forwarding))
-              : shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(3 * Months, forwarding)),
-          discounting) {}
+              ? shared_ptr<IborIndex_t<T> >(new Euribor_t<T>(6 * Months, h))
+              : shared_ptr<IborIndex_t<T> >(new Euribor_t<T>(3 * Months, h))) {}
 
 template <class T>
-EuriborSwapIsdaFixB_t<T>::EuriborSwapIsdaFixB_t(
-    const Period &tenor,
-    const Handle<YieldTermStructure_t<T> > &h)
-    : SwapIndex("EuriborSwapIsdaFixB", // familyName
+EuriborSwapIsdaFixA_t<T>::EuriborSwapIsdaFixA_t(
+    const Period &tenor, const Handle<YieldTermStructure_t<T> > &forwarding,
+    const Handle<YieldTermStructure_t<T> > &discounting)
+    : SwapIndex("EuriborSwapIsdaFixA", // familyName
                 tenor,
                 2, // settlementDays
                 EURCurrency(), TARGET(),
@@ -142,13 +126,16 @@ EuriborSwapIsdaFixB_t<T>::EuriborSwapIsdaFixB_t(
                 ModifiedFollowing,               // fixedLegConvention
                 Thirty360(Thirty360::BondBasis), // fixedLegDaycounter
                 tenor > 1 * Years
-                    ? shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(6 * Months, h))
-                    : shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(3 * Months, h))) {}
+                    ? shared_ptr<IborIndex_t<T> >(
+                          new Euribor_t<T>(6 * Months, forwarding))
+                    : shared_ptr<IborIndex_t<T> >(
+                          new Euribor_t<T>(3 * Months, forwarding)),
+                discounting) {}
 
 template <class T>
 EuriborSwapIsdaFixB_t<T>::EuriborSwapIsdaFixB_t(
-    const Period &tenor, const Handle<YieldTermStructure_t<T> > &forwarding,
-    const Handle<YieldTermStructure_t<T> > &discounting)
+    const Period &tenor,
+    const Handle<YieldTermStructure_t<T> > &h)
     : SwapIndex(
           "EuriborSwapIsdaFixB", // familyName
           tenor,
@@ -158,15 +145,14 @@ EuriborSwapIsdaFixB_t<T>::EuriborSwapIsdaFixB_t(
           ModifiedFollowing,               // fixedLegConvention
           Thirty360(Thirty360::BondBasis), // fixedLegDaycounter
           tenor > 1 * Years
-              ? shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(6 * Months, forwarding))
-              : shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(3 * Months, forwarding)),
-          discounting) {}
+              ? shared_ptr<IborIndex_t<T> >(new Euribor_t<T>(6 * Months, h))
+              : shared_ptr<IborIndex_t<T> >(new Euribor_t<T>(3 * Months, h))) {}
 
 template <class T>
-EuriborSwapIfrFix_t<T>::EuriborSwapIfrFix_t(
-    const Period &tenor,
-    const Handle<YieldTermStructure_t<T> > &h)
-    : SwapIndex("EuriborSwapIfrFix", // familyName
+EuriborSwapIsdaFixB_t<T>::EuriborSwapIsdaFixB_t(
+    const Period &tenor, const Handle<YieldTermStructure_t<T> > &forwarding,
+    const Handle<YieldTermStructure_t<T> > &discounting)
+    : SwapIndex("EuriborSwapIsdaFixB", // familyName
                 tenor,
                 2, // settlementDays
                 EURCurrency(), TARGET(),
@@ -174,13 +160,16 @@ EuriborSwapIfrFix_t<T>::EuriborSwapIfrFix_t(
                 ModifiedFollowing,               // fixedLegConvention
                 Thirty360(Thirty360::BondBasis), // fixedLegDaycounter
                 tenor > 1 * Years
-                    ? shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(6 * Months, h))
-                    : shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(3 * Months, h))) {}
+                    ? shared_ptr<IborIndex_t<T> >(
+                          new Euribor_t<T>(6 * Months, forwarding))
+                    : shared_ptr<IborIndex_t<T> >(
+                          new Euribor_t<T>(3 * Months, forwarding)),
+                discounting) {}
 
 template <class T>
 EuriborSwapIfrFix_t<T>::EuriborSwapIfrFix_t(
-    const Period &tenor, const Handle<YieldTermStructure_t<T> > &forwarding,
-    const Handle<YieldTermStructure_t<T> > &discounting)
+    const Period &tenor,
+    const Handle<YieldTermStructure_t<T> > &h)
     : SwapIndex(
           "EuriborSwapIfrFix", // familyName
           tenor,
@@ -190,9 +179,26 @@ EuriborSwapIfrFix_t<T>::EuriborSwapIfrFix_t(
           ModifiedFollowing,               // fixedLegConvention
           Thirty360(Thirty360::BondBasis), // fixedLegDaycounter
           tenor > 1 * Years
-              ? shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(6 * Months, forwarding))
-              : shared_ptr<IborIndex_t<T>>(new Euribor_t<T>(3 * Months, forwarding)),
-          discounting) {}
+              ? shared_ptr<IborIndex_t<T> >(new Euribor_t<T>(6 * Months, h))
+              : shared_ptr<IborIndex_t<T> >(new Euribor_t<T>(3 * Months, h))) {}
+
+template <class T>
+EuriborSwapIfrFix_t<T>::EuriborSwapIfrFix_t(
+    const Period &tenor, const Handle<YieldTermStructure_t<T> > &forwarding,
+    const Handle<YieldTermStructure_t<T> > &discounting)
+    : SwapIndex("EuriborSwapIfrFix", // familyName
+                tenor,
+                2, // settlementDays
+                EURCurrency(), TARGET(),
+                1 * Years,                       // fixedLegTenor
+                ModifiedFollowing,               // fixedLegConvention
+                Thirty360(Thirty360::BondBasis), // fixedLegDaycounter
+                tenor > 1 * Years
+                    ? shared_ptr<IborIndex_t<T> >(
+                          new Euribor_t<T>(6 * Months, forwarding))
+                    : shared_ptr<IborIndex_t<T> >(
+                          new Euribor_t<T>(3 * Months, forwarding)),
+                discounting) {}
 }
 
 #endif

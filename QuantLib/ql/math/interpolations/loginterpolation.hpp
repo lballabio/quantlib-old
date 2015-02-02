@@ -108,10 +108,10 @@ class LogCubicInterpolation : public Interpolation {
                           CubicInterpolation::BoundaryCondition rightC,
                           Real rightConditionValue) {
         impl_ = boost::shared_ptr<Interpolation::Impl>(
-            new detail::LogInterpolationImpl<I1, I2, Cubic<Real>>(
+            new detail::LogInterpolationImpl<I1, I2, Cubic<Real> >(
                 xBegin, xEnd, yBegin,
                 Cubic<Real>(da, monotonic, leftC, leftConditionValue, rightC,
-                      rightConditionValue)));
+                            rightConditionValue)));
         impl_->update();
     }
 };

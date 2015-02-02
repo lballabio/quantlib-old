@@ -241,7 +241,7 @@ template <class T> void PricerSetter<T>::visit(SubPeriodsCoupon &c) {
 }
 } // namespace {}
 
-template <class T = Real>
+template <class T>
 void setCouponPricer(
     const typename Leg_t<T>::Type &leg,
     const boost::shared_ptr<FloatingRateCouponPricer_t<T> > &pricer) {
@@ -251,7 +251,7 @@ void setCouponPricer(
     }
 }
 
-template <class T = Real>
+template <class T>
 void setCouponPricers(
     const typename Leg_t<T>::Type &leg,
     const std::vector<boost::shared_ptr<FloatingRateCouponPricer_t<T> > > &
