@@ -32,162 +32,144 @@
 
 namespace QuantLib {
 
-    namespace detail {
-        const Rate avgInflation = 0.02;
-        const Rate maxInflation = 0.5;
+namespace detail {
+const Rate avgInflation = 0.02;
+const Rate maxInflation = 0.5;
+}
+
+//! Bootstrap traits to use for PiecewiseZeroInflationCurve
+template <class T = Real> class ZeroInflationTraits {
+  public:
+    typedef BootstrapHelper<ZeroInflationTermStructure_t<T>, T> helper;
+
+    // start of curve data
+    static Date initialDate(const ZeroInflationTermStructure_t<T> *t) {
+        if (t->indexIsInterpolated()) {
+            return t->referenceDate() - t->observationLag();
+        } else {
+            return inflationPeriod(t->referenceDate() - t->observationLag(),
+                                   t->frequency()).first;
+        }
+    }
+    // value at reference date
+    static T initialValue(const ZeroInflationTermStructure_t<T> *t) {
+        return t->baseRate();
     }
 
-    //! Bootstrap traits to use for PiecewiseZeroInflationCurve
-    template <class T = Real> class ZeroInflationTraits {
-      public:
-        typedef BootstrapHelper<ZeroInflationTermStructure_t<T> > helper;
+    // guesses
+    template <class C>
+    static T guess(Size i, const C *c, bool validData,
+                   Size) // firstAliveHelper
+    {
+        if (validData) // previous iteration value
+            return c->data()[i];
 
-        // start of curve data
-        static Date initialDate(const ZeroInflationTermStructure_t<T>* t) {
-            if (t->indexIsInterpolated()) {
-                return t->referenceDate() - t->observationLag();
-            } else {
-                return inflationPeriod(t->referenceDate() - t->observationLag(),
-                                       t->frequency()).first;
-            }
-        }
-        // value at reference date
-        static T initialValue(const ZeroInflationTermStructure_t<T>* t) {
-            return t->baseRate();
-        }
-
-        // guesses
-        template <class C>
-        static T guess(Size i,
-                          const C* c,
-                          bool validData,
-                          Size) // firstAliveHelper
-        {
-            if (validData) // previous iteration value
-                return c->data()[i];
-
-            if (i==1) // first pillar
-                return detail::avgInflation;
-
-            // could/should extrapolate
+        if (i == 1) // first pillar
             return detail::avgInflation;
-        }
 
-        // constraints
-        template <class C>
-        static T minValueAfter(Size i,
-                                  const C* c,
-                                  bool validData,
-                                  Size) // firstAliveHelper
-        {
-            if (validData) {
-                Rate r = *(std::min_element(c->data().begin(), c->data().end()));
-                return r<0.0 ? r*2.0 : r/2.0;
-            }
-            return -detail::maxInflation;
-        }
-        template <class C>
-        static T maxValueAfter(Size i,
-                                  const C* c,
-                                  bool validData,
-                                  Size) // firstAliveHelper
-        {
-            if (validData) {
-                Rate r = *(std::max_element(c->data().begin(), c->data().end()));
-                return r<0.0 ? r/2.0 : r*2.0;
-            }
-            // no constraints.
-            // We choose as max a value very unlikely to be exceeded.
-            return detail::maxInflation;
-        }
+        // could/should extrapolate
+        return detail::avgInflation;
+    }
 
-        // update with new guess
-        static void updateGuess(std::vector<T>& data,
-                                Rate level,
-                                Size i) {
-            data[i] = level;
+    // constraints
+    template <class C>
+    static T minValueAfter(Size i, const C *c, bool validData,
+                           Size) // firstAliveHelper
+    {
+        if (validData) {
+            Rate r = *(std::min_element(c->data().begin(), c->data().end()));
+            return r < 0.0 ? r * 2.0 : r / 2.0;
         }
-        // upper bound for convergence loop
-        // calibration is trivial, should be immediate
-        static Size maxIterations() { return 5; }
-    };
-
-    //! Bootstrap traits to use for PiecewiseZeroInflationCurve
-    template <class T>
-    class YoYInflationTraits {
-      public:
-        // helper class
-        typedef BootstrapHelper<YoYInflationTermStructure_t<T>> helper;
-
-        // start of curve data
-        static Date initialDate(const YoYInflationTermStructure_t<T>* t) {
-            if (t->indexIsInterpolated()) {
-                return t->referenceDate() - t->observationLag();
-            } else {
-                return inflationPeriod(t->referenceDate() - t->observationLag(),
-                                       t->frequency()).first;
-            }
+        return -detail::maxInflation;
+    }
+    template <class C>
+    static T maxValueAfter(Size i, const C *c, bool validData,
+                           Size) // firstAliveHelper
+    {
+        if (validData) {
+            Rate r = *(std::max_element(c->data().begin(), c->data().end()));
+            return r < 0.0 ? r / 2.0 : r * 2.0;
         }
-        // value at reference date
-        static T initialValue(const YoYInflationTermStructure_t<T>* t) {
-            return t->baseRate();
+        // no constraints.
+        // We choose as max a value very unlikely to be exceeded.
+        return detail::maxInflation;
+    }
+
+    // update with new guess
+    static void updateGuess(std::vector<T> &data, Rate level, Size i) {
+        data[i] = level;
+    }
+    // upper bound for convergence loop
+    // calibration is trivial, should be immediate
+    static Size maxIterations() { return 5; }
+};
+
+//! Bootstrap traits to use for PiecewiseZeroInflationCurve
+template <class T> class YoYInflationTraits {
+  public:
+    // helper class
+    typedef BootstrapHelper<YoYInflationTermStructure_t<T>, T> helper;
+
+    // start of curve data
+    static Date initialDate(const YoYInflationTermStructure_t<T> *t) {
+        if (t->indexIsInterpolated()) {
+            return t->referenceDate() - t->observationLag();
+        } else {
+            return inflationPeriod(t->referenceDate() - t->observationLag(),
+                                   t->frequency()).first;
         }
+    }
+    // value at reference date
+    static T initialValue(const YoYInflationTermStructure_t<T> *t) {
+        return t->baseRate();
+    }
 
-        // guesses
-        template <class C>
-        static T guess(Size i,
-                          const C* c,
-                          bool validData,
-                          Size) // firstAliveHelper
-        {
-            if (validData) // previous iteration value
-                return c->data()[i];
+    // guesses
+    template <class C>
+    static T guess(Size i, const C *c, bool validData,
+                   Size) // firstAliveHelper
+    {
+        if (validData) // previous iteration value
+            return c->data()[i];
 
-            if (i==1) // first pillar
-                return detail::avgInflation;
-        
-            // could/should extrapolate
+        if (i == 1) // first pillar
             return detail::avgInflation;
-        }
 
-        // constraints
-        template <class C>
-        static T minValueAfter(Size i,
-                                  const C* c,
-                                  bool validData,
-                                  Size) // firstAliveHelper
-        {
-            if (validData) {
-                Rate r = *(std::min_element(c->data().begin(), c->data().end()));
-                return r<0.0 ? r*2.0 : r/2.0;
-            }
-            return -detail::maxInflation;
-        }
-        template <class C>
-        static T maxValueAfter(Size i,
-                                  const C* c,
-                                  bool validData,
-                                  Size) // firstAliveHelper
-        {
-            if (validData) {
-                Rate r = *(std::max_element(c->data().begin(), c->data().end()));
-                return r<0.0 ? r/2.0 : r*2.0;
-            }
-            // no constraints.
-            // We choose as max a value very unlikely to be exceeded.
-            return detail::maxInflation;
-        }
+        // could/should extrapolate
+        return detail::avgInflation;
+    }
 
-        // update with new guess
-        static void updateGuess(std::vector<Rate>& data,
-                                Rate level,
-                                Size i) {
-            data[i] = level;
+    // constraints
+    template <class C>
+    static T minValueAfter(Size i, const C *c, bool validData,
+                           Size) // firstAliveHelper
+    {
+        if (validData) {
+            Rate r = *(std::min_element(c->data().begin(), c->data().end()));
+            return r < 0.0 ? r * 2.0 : r / 2.0;
         }
-        // upper bound for convergence loop
-        static Size maxIterations() { return 40; }
-    };
+        return -detail::maxInflation;
+    }
+    template <class C>
+    static T maxValueAfter(Size i, const C *c, bool validData,
+                           Size) // firstAliveHelper
+    {
+        if (validData) {
+            Rate r = *(std::max_element(c->data().begin(), c->data().end()));
+            return r < 0.0 ? r / 2.0 : r * 2.0;
+        }
+        // no constraints.
+        // We choose as max a value very unlikely to be exceeded.
+        return detail::maxInflation;
+    }
 
+    // update with new guess
+    static void updateGuess(std::vector<Rate> &data, Rate level, Size i) {
+        data[i] = level;
+    }
+    // upper bound for convergence loop
+    static Size maxIterations() { return 40; }
+};
 }
 
 #endif

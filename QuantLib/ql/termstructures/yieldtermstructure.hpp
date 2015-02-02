@@ -232,7 +232,7 @@ YieldTermStructure_t<T>::YieldTermStructure_t(
 template <class T>
 YieldTermStructure_t<T>::YieldTermStructure_t(
     Natural settlementDays, const Calendar &cal, const DayCounter &dc,
-    const std::vector<Handle<Quote_t<T>> > &jumps,
+    const std::vector<Handle<Quote_t<T> > > &jumps,
     const std::vector<Date> &jumpDates)
     : TermStructure(settlementDays, cal, dc), jumps_(jumps),
       jumpDates_(jumpDates), jumpTimes_(jumpDates.size()),
@@ -292,21 +292,22 @@ YieldTermStructure_t<T>::zeroRate(const Date &d, const DayCounter &dayCounter,
         // t has been calculated with a possibly different daycounter
         // but the difference should not matter for very small times
         return InterestRate_t<T>::impliedRate(compound, dayCounter, comp, freq,
-                                            dt);
+                                              dt);
     }
     T compound = 1.0 / discount(d, extrapolate);
     return InterestRate_t<T>::impliedRate(compound, dayCounter, comp, freq,
-                                        referenceDate(), d);
+                                          referenceDate(), d);
 }
 
 template <class T>
 InterestRate_t<T> YieldTermStructure_t<T>::zeroRate(Time t, Compounding comp,
-                                                  Frequency freq,
-                                                  bool extrapolate) const {
+                                                    Frequency freq,
+                                                    bool extrapolate) const {
     if (t == 0.0)
         t = dt;
     T compound = 1.0 / discount(t, extrapolate);
-    return InterestRate_t<T>::impliedRate(compound, dayCounter(), comp, freq, t);
+    return InterestRate_t<T>::impliedRate(compound, dayCounter(), comp, freq,
+                                          t);
 }
 
 template <class T>
@@ -321,12 +322,12 @@ InterestRate_t<T> YieldTermStructure_t<T>::forwardRate(
         // times have been calculated with a possibly different daycounter
         // but the difference should not matter for very small times
         return InterestRate_t<T>::impliedRate(compound, dayCounter, comp, freq,
-                                            dt);
+                                              dt);
     }
     QL_REQUIRE(d1 < d2, d1 << " later than " << d2);
     Real compound = discount(d1, extrapolate) / discount(d2, extrapolate);
     return InterestRate_t<T>::impliedRate(compound, dayCounter, comp, freq, d1,
-                                       d2);
+                                          d2);
 }
 
 template <class T>
@@ -344,7 +345,7 @@ YieldTermStructure_t<T>::forwardRate(Time t1, Time t2, Compounding comp,
         compound = discount(t1, extrapolate) / discount(t2, extrapolate);
     }
     return InterestRate_t<T>::impliedRate(compound, dayCounter(), comp, freq,
-                                        t2 - t1);
+                                          t2 - t1);
 }
 
 template <class T> void YieldTermStructure_t<T>::update() {
