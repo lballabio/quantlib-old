@@ -72,7 +72,7 @@ MersenneTwisterDynamicRng::sample_type MersenneTwisterDynamicRng::next() {
 }
 
 Real MersenneTwisterDynamicRng::nextReal() {
-    return (Real(nextInt32()) + 0.5) / 4294967296.0;
+    return (Real(nextInt32()) + 0.5) / (w_ == 32 ? 4294967296.0 : 2147483648.0);
 }
 
 unsigned long MersenneTwisterDynamicRng::nextInt32() {
