@@ -205,7 +205,8 @@ MersenneTwisterCustomRng<Description>::next() {
 
 template <class Description>
 Real MersenneTwisterCustomRng<Description>::nextReal() {
-    return (Real(nextInt32()) + 0.5) / 4294967296.0;
+    return (Real(nextInt32()) + 0.5) /
+           (Description::w == 32 ? 4294967296.0 : 2147483648.0);
 }
 
 template <class Description>
