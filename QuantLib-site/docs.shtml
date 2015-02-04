@@ -69,13 +69,19 @@ demonstrate features of the QuantLib library. It is also available
 <li><strong>Introduction to QuantLib</strong> is
 another <a href="https://www.youtube.com/user/eefelix/videos">series
 of screencasts</a> by Felix Lee, covering installation and usage of
-the library.
+the library.</li>
+<li><strong>A Look at QuantLib Usage and Development</strong> is the
+recording of <a href="http://quantshub.com/qhworkshopview/63">a
+one-day workshop</a> given by Luigi Ballabio for Quants Hub. It is
+available for purchase separately or as part of their subscription
+service.</li>
 </ul>
 
 <h2 class="center">Blogs</h2>
 <ul>
 <li>Useful QuantLib-related posts appear in a few blogs, such as:<br>
 <strong>Klaus Spanderen's</strong> <a href="http://hpcquantlib.wordpress.com/">blog</a>;<br>
+<strong>Peter Caspers's</strong> <a href="http://quantlib.wordpress.com/">blog</a>;<br>
 <strong>Bojan Nikolic's</strong> <a href="http://www.bnikolic.co.uk/blog/">blog</a>;<br>
 <strong>&Eacute;douard Tallent's</strong> <a href="http://quantcorner.wordpress.com/">blog</a>;<br>
 <strong>Cogito Learning's</strong> <a href="http://cogitolearning.co.uk/?tag=quantlib-2">blog</a>;<br>
