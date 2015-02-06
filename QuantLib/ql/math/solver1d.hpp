@@ -115,9 +115,9 @@ class Solver1D : public CuriouslyRecurringTemplate<Impl> {
         evaluationNumber_ = 2;
         while (evaluationNumber_ <= maxEvaluations_) {
             if (fxMin_ * fxMax_ <= 0.0) {
-                if (close(fxMin_, 0.0))
+                if (close<T>(fxMin_, 0.0))
                     return xMin_;
-                if (close(fxMax_, 0.0))
+                if (close<T>(fxMax_, 0.0))
                     return xMax_;
                 root_ = (xMax_ + xMin_) / 2.0;
                 return this->impl().solveImpl(f, accuracy);

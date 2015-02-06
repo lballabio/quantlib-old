@@ -15,7 +15,6 @@ libBonds_la_SOURCES = \
     btp.cpp \
     cmsratebond.cpp \
     cpibond.cpp \
-    fixedratebond.cpp \
     floatingratebond.cpp \
     zerocouponbond.cpp
 

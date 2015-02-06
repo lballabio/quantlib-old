@@ -54,19 +54,19 @@ template <class T> class ZeroYieldStructure_t : public YieldTermStructure_t<T> {
     ZeroYieldStructure_t(
         const DayCounter &dc = DayCounter(),
         const std::vector<Handle<Quote_t<T> > > &jumps =
-            std::vector<Handle<Quote> >(),
+            std::vector<Handle<Quote_t<T> > >(),
         const std::vector<Date> &jumpDates = std::vector<Date>());
     ZeroYieldStructure_t(
         const Date &referenceDate, const Calendar &calendar = Calendar(),
         const DayCounter &dc = DayCounter(),
         const std::vector<Handle<Quote_t<T> > > &jumps =
-            std::vector<Handle<Quote> >(),
+            std::vector<Handle<Quote_t<T> > >(),
         const std::vector<Date> &jumpDates = std::vector<Date>());
     ZeroYieldStructure_t(
         Natural settlementDays, const Calendar &calendar,
         const DayCounter &dc = DayCounter(),
         const std::vector<Handle<Quote_t<T> > > &jumps =
-            std::vector<Handle<Quote> >(),
+            std::vector<Handle<Quote_t<T> > >(),
         const std::vector<Date> &jumpDates = std::vector<Date>());
     //@}
   protected:

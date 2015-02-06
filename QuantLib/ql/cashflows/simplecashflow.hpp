@@ -3,6 +3,7 @@
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2010 StatPro Italia srl
+ Copyright (C) 2015 Cheng Li
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -30,90 +31,102 @@
 
 namespace QuantLib {
 
-    //! Predetermined cash flow
-    /*! This cash flow pays a predetermined amount at a given date. */
-    class SimpleCashFlow : public CashFlow {
-      public:
-        SimpleCashFlow(Real amount,
-                       const Date& date);
-        //! \name Event interface
-        //@{
-        Date date() const { return date_; }
-        //@}
-        //! \name CashFlow interface
-        //@{
-        Real amount() const { return amount_; }
-        //@}
-        //! \name Visitability
-        //@{
-        virtual void accept(AcyclicVisitor&);
-        //@}
-      private:
-        Real amount_;
-        Date date_;
-    };
+//! Predetermined cash flow
+/*! This cash flow pays a predetermined amount at a given date. */
+template <class T = Real> class SimpleCashFlow_t : public CashFlow_t<T> {
+  public:
+    SimpleCashFlow_t(T amount, const Date &date);
+    //! \name Event interface
+    //@{
+    Date date() const { return date_; }
+    void setDate(const Date &newDate) { date_ = newDate; }
+    //@}
+    //! \name CashFlow interface
+    //@{
+    T amount() const { return amount_; }
 
+    //@}
+    //! \name Visitability
+    //@{
+    virtual void accept(AcyclicVisitor &);
+    //@}
+  private:
+    T amount_;
+    Date date_;
+};
 
-    //! Bond redemption
-    /*! This class specializes SimpleCashFlow so that visitors
-        can perform more detailed cash-flow analysis.
-    */
-    class Redemption : public SimpleCashFlow {
-      public:
-        Redemption(Real amount,
-                   const Date& date)
-        : SimpleCashFlow(amount, date) {}
-        //! \name Visitability
-        //@{
-        virtual void accept(AcyclicVisitor&);
-        //@}
-    };
+typedef SimpleCashFlow_t<Real> SimpleCashFlow;
 
-    //! Amortizing payment
-    /*! This class specializes SimpleCashFlow so that visitors
-        can perform more detailed cash-flow analysis.
-    */
-    class AmortizingPayment : public SimpleCashFlow {
-      public:
-        AmortizingPayment(Real amount,
-                          const Date& date)
-        : SimpleCashFlow(amount, date) {}
-        //! \name Visitability
-        //@{
-        virtual void accept(AcyclicVisitor&);
-        //@}
-    };
+template <class T>
+SimpleCashFlow_t<T>::SimpleCashFlow_t(T amount, const Date &date)
+    : amount_(amount), date_(date) {
+    QL_REQUIRE(date_ != Date(), "null date SimpleCashFlow");
 
+    QL_REQUIRE(amount_ != Null<Real>(), "null amount SimpleCashFlow");
+}
 
-    // inline definitions
+//! Bond redemption
+/*! This class specializes SimpleCashFlow so that visitors
+    can perform more detailed cash-flow analysis.
+*/
 
-    inline void SimpleCashFlow::accept(AcyclicVisitor& v) {
-        Visitor<SimpleCashFlow>* v1 =
-            dynamic_cast<Visitor<SimpleCashFlow>*>(&v);
-        if (v1 != 0)
-            v1->visit(*this);
-        else
-            CashFlow::accept(v);
-    }
+template <class T = Real> class Redemption_t : public SimpleCashFlow_t<T> {
+  public:
+    Redemption_t(T amount, const Date &date)
+        : SimpleCashFlow_t<T>(amount, date) {}
+    //! \name Visitability
+    //@{
+    virtual void accept(AcyclicVisitor &);
+    //@}
+};
 
-    inline void Redemption::accept(AcyclicVisitor& v) {
-        Visitor<Redemption>* v1 =
-            dynamic_cast<Visitor<Redemption>*>(&v);
-        if (v1 != 0)
-            v1->visit(*this);
-        else
-            SimpleCashFlow::accept(v);
-    }
+typedef Redemption_t<Real> Redemption;
 
-    inline void AmortizingPayment::accept(AcyclicVisitor& v) {
-        Visitor<AmortizingPayment>* v1 =
-            dynamic_cast<Visitor<AmortizingPayment>*>(&v);
-        if (v1 != 0)
-            v1->visit(*this);
-        else
-            SimpleCashFlow::accept(v);
-    }
+//! Amortizing payment
+/*! This class specializes SimpleCashFlow so that visitors
+    can perform more detailed cash-flow analysis.
+*/
+template <class T = Real>
+class AmortizingPayment_t : public SimpleCashFlow_t<T> {
+  public:
+    AmortizingPayment_t(T amount, const Date &date)
+        : SimpleCashFlow_t<T>(amount, date) {}
+    //! \name Visitability
+    //@{
+    virtual void accept(AcyclicVisitor &);
+    //@}
+};
 
+typedef AmortizingPayment_t<Real> AmortizingPayment;
+
+// inline definitions
+template <class T> inline void SimpleCashFlow_t<T>::accept(AcyclicVisitor &v) {
+    Visitor<SimpleCashFlow_t<T> > *v1 =
+        dynamic_cast<Visitor<SimpleCashFlow_t<T> > *>(&v);
+    if (v1 != 0)
+        v1->visit(*this);
+    else
+        CashFlow_t<T>::accept(v);
+}
+
+template <class T> inline void Redemption_t<T>::accept(AcyclicVisitor &v) {
+    Visitor<Redemption_t<T> > *v1 =
+        dynamic_cast<Visitor<Redemption_t<T> > *>(&v);
+    if (v1 != 0)
+        v1->visit(*this);
+    else
+        SimpleCashFlow_t<T>::accept(v);
+}
+
+template <class T>
+inline void AmortizingPayment_t<T>::accept(AcyclicVisitor &v) {
+    Visitor<AmortizingPayment_t<T> > *v1 =
+        dynamic_cast<Visitor<AmortizingPayment_t<T> > *>(&v);
+    if (v1 != 0)
+        v1->visit(*this);
+    else
+        SimpleCashFlow_t<T>::accept(v);
+}
 }
 
 #endif
