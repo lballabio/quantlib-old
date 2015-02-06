@@ -66,7 +66,6 @@ libInstruments_la_SOURCES = \
     barriertype.cpp \
     basketoption.cpp \
     bmaswap.cpp \
-    bond.cpp \
     capfloor.cpp \
     claim.cpp \
     cliquetoption.cpp \

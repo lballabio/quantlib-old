@@ -144,7 +144,7 @@ inline T ZeroSpreadedTermStructure_t<T>::zeroYieldImpl(Time t) const {
     InterestRate_t<T> zeroRate =
         originalCurve_->zeroRate(t, comp_, freq_, true);
     InterestRate_t<T> spreadedRate(
-        zeroRate + spread_->value(), zeroRate.dayCounter(),
+        zeroRate.rate() + spread_->value(), zeroRate.dayCounter(),
         zeroRate.compounding(), zeroRate.frequency());
     return spreadedRate.equivalentRate(Continuous, NoFrequency, t);
 }

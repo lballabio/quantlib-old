@@ -187,7 +187,7 @@ int main() {
             typedef PiecewiseYieldCurve<ZeroYield, Linear, IterativeBootstrap,
                                         CppAD::AD<double> > CurveTypeAD;
 
-            bost::shared_ptr<CurveType> curve = boost::make_shared<CurveType>(
+            boost::shared_ptr<CurveType> curve = boost::make_shared<CurveType>(
                 referenceDate, instruments, Actual365Fixed());
             boost::shared_ptr<CurveTypeAD> curveAD = boost::make_shared<CurveTypeAD>(
                 referenceDate, instrumentsAD, Actual365Fixed());

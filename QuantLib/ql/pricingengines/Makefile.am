@@ -32,7 +32,6 @@ libPricingEngines_la_LIBADD = \
     asian/libAsianEngines.la \
     barrier/libBarrierEngines.la \
     basket/libBasketEngines.la \
-    bond/libBondEngines.la \
     capfloor/libCapFloorEngines.la \
     cliquet/libCliquetEngines.la \
     credit/libCreditEngines.la \
