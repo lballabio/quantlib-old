@@ -32,86 +32,111 @@ namespace QuantLib {
 
     //! Predetermined cash flow
     /*! This cash flow pays a predetermined amount at a given date. */
-    class SimpleCashFlow : public CashFlow {
+	template<class T = Real>
+    class SimpleCashFlow_t : public CashFlow_t<T> {
       public:
-        SimpleCashFlow(Real amount,
+        SimpleCashFlow_t(T amount,
                        const Date& date);
         //! \name Event interface
         //@{
         Date date() const { return date_; }
+		void setDate(const Date& newDate) {
+			date_ = newDate;
+		}
         //@}
         //! \name CashFlow interface
         //@{
-        Real amount() const { return amount_; }
+        T amount() const { return amount_; }
+
         //@}
         //! \name Visitability
         //@{
         virtual void accept(AcyclicVisitor&);
         //@}
       private:
-        Real amount_;
+        T amount_;
         Date date_;
     };
+
+	typedef SimpleCashFlow_t<Real> SimpleCashFlow;
+
+	template<class T>
+	SimpleCashFlow_t<T>::SimpleCashFlow_t(T amount,
+		const Date& date)
+		: amount_(amount), date_(date)
+	{
+		QL_REQUIRE(date_ != Date(), "null date SimpleCashFlow");
+
+		QL_REQUIRE(amount_ != Null<Real>(), "null amount SimpleCashFlow");
+	}
 
 
     //! Bond redemption
     /*! This class specializes SimpleCashFlow so that visitors
         can perform more detailed cash-flow analysis.
     */
-    class Redemption : public SimpleCashFlow {
+
+	template<class T = Real>
+    class Redemption_t : public SimpleCashFlow_t<T> {
       public:
-        Redemption(Real amount,
+        Redemption_t(T amount,
                    const Date& date)
-        : SimpleCashFlow(amount, date) {}
+        : SimpleCashFlow_t<T>(amount, date) {}
         //! \name Visitability
         //@{
         virtual void accept(AcyclicVisitor&);
         //@}
     };
+
+	typedef Redemption_t<Real> Redemption;
 
     //! Amortizing payment
     /*! This class specializes SimpleCashFlow so that visitors
         can perform more detailed cash-flow analysis.
     */
-    class AmortizingPayment : public SimpleCashFlow {
+	template<class T = Real>
+    class AmortizingPayment_t : public SimpleCashFlow_t<T> {
       public:
-        AmortizingPayment(Real amount,
+        AmortizingPayment_t(T amount,
                           const Date& date)
-        : SimpleCashFlow(amount, date) {}
+        : SimpleCashFlow_t<T>(amount, date) {}
         //! \name Visitability
         //@{
         virtual void accept(AcyclicVisitor&);
         //@}
     };
 
+	typedef AmortizingPayment_t<Real> AmortizingPayment;
 
     // inline definitions
-
-    inline void SimpleCashFlow::accept(AcyclicVisitor& v) {
-        Visitor<SimpleCashFlow>* v1 =
-            dynamic_cast<Visitor<SimpleCashFlow>*>(&v);
+	template<class T>
+    inline void SimpleCashFlow_t<T>::accept(AcyclicVisitor& v) {
+        Visitor<SimpleCashFlow_t<T> >* v1 =
+            dynamic_cast<Visitor<SimpleCashFlow_t<T> >*>(&v);
         if (v1 != 0)
             v1->visit(*this);
         else
-            CashFlow::accept(v);
+            CashFlow_t<T>::accept(v);
     }
 
-    inline void Redemption::accept(AcyclicVisitor& v) {
-        Visitor<Redemption>* v1 =
-            dynamic_cast<Visitor<Redemption>*>(&v);
+	template<class T>
+    inline void Redemption_t<T>::accept(AcyclicVisitor& v) {
+        Visitor<Redemption_t<T> >* v1 =
+            dynamic_cast<Visitor<Redemption_t<T> >*>(&v);
         if (v1 != 0)
             v1->visit(*this);
         else
-            SimpleCashFlow::accept(v);
+            SimpleCashFlow_t<T>::accept(v);
     }
 
-    inline void AmortizingPayment::accept(AcyclicVisitor& v) {
-        Visitor<AmortizingPayment>* v1 =
-            dynamic_cast<Visitor<AmortizingPayment>*>(&v);
+	template<class T>
+    inline void AmortizingPayment_t<T>::accept(AcyclicVisitor& v) {
+		Visitor<AmortizingPayment_t<T> >* v1 =
+			dynamic_cast<Visitor<AmortizingPayment_t<T> >*>(&v);
         if (v1 != 0)
             v1->visit(*this);
         else
-            SimpleCashFlow::accept(v);
+			SimpleCashFlow_t<T>::accept(v);
     }
 
 }

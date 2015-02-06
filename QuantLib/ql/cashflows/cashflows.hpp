@@ -1493,7 +1493,7 @@ template <class T> class ZSpreadFinder : public std::unary_function<T, T> {
                   T npv, const DayCounter &dc, Compounding comp, Frequency freq,
                   bool includeSettlementDateFlows, Date settlementDate,
                   Date npvDate)
-        : leg_(leg), npv_(npv), zSpread_(new SimpleQuote(0.0)),
+        : leg_(leg), npv_(npv), zSpread_(new SimpleQuote_t<T>(0.0)),
           curve_(Handle<YieldTermStructure_t<T> >(discountCurve),
                  Handle<Quote_t<T> >(zSpread_), comp, freq, dc),
           includeSettlementDateFlows_(includeSettlementDateFlows),
