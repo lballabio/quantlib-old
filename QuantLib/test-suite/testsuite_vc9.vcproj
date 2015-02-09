@@ -860,6 +860,10 @@
 				>
 			</File>
 			<File
+				RelativePath="amortizingbond.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\array.cpp"
 				>
 			</File>
@@ -889,6 +893,10 @@
 			</File>
 			<File
 				RelativePath=".\bermudanswaption.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\binaryoption.cpp"
 				>
 			</File>
 			<File
@@ -1188,6 +1196,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\noarbsabr.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\nthtodefault.cpp"
 				>
 			</File>
@@ -1369,6 +1381,10 @@
 				>
 			</File>
 			<File
+				RelativePath="amortizingbond.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\array.hpp"
 				>
 			</File>
@@ -1398,6 +1414,10 @@
 			</File>
 			<File
 				RelativePath=".\bermudanswaption.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\binaryoption.hpp"
 				>
 			</File>
 			<File
@@ -1694,6 +1714,10 @@
 			</File>
 			<File
 				RelativePath=".\money.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\noarbsabr.hpp"
 				>
 			</File>
 			<File

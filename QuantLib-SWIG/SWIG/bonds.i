@@ -208,7 +208,9 @@ class BondPtr : public boost::shared_ptr<Instrument> {
 
 %rename(ZeroCouponBond) ZeroCouponBondPtr;
 class ZeroCouponBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") ZeroCouponBondPtr;
+    #endif
   public:
     %extend {
         ZeroCouponBondPtr(
@@ -230,7 +232,9 @@ class ZeroCouponBondPtr : public BondPtr {
 
 %rename(FixedRateBond) FixedRateBondPtr;
 class FixedRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") FixedRateBondPtr;
+    #endif
   public:
     %extend {
         FixedRateBondPtr(
@@ -241,12 +245,19 @@ class FixedRateBondPtr : public BondPtr {
                 const DayCounter& paymentDayCounter,
                 BusinessDayConvention paymentConvention = QuantLib::Following,
                 Real redemption = 100.0,
-                Date issueDate = Date()) {
+                Date issueDate = Date(),
+                const Calendar& paymentCalendar = Calendar(),
+                const Period& exCouponPeriod = Period(),
+                const Calendar& exCouponCalendar = Calendar(),
+                BusinessDayConvention exCouponConvention = Unadjusted,
+                bool exCouponEndOfMonth = false) {
             return new FixedRateBondPtr(
                 new FixedRateBond(settlementDays, faceAmount,
                                   schedule, coupons, paymentDayCounter,
                                   paymentConvention, redemption,
-                                  issueDate));
+                                  issueDate, paymentCalendar,
+                                  exCouponPeriod, exCouponCalendar,
+                                  exCouponConvention, exCouponEndOfMonth));
         }
         Frequency frequency() const {
             return boost::dynamic_pointer_cast<FixedRateBond>(*self)
@@ -261,23 +272,26 @@ class FixedRateBondPtr : public BondPtr {
 
 %rename(FloatingRateBond) FloatingRateBondPtr;
 class FloatingRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") FloatingRateBondPtr;
+    #endif
   public:
     %extend {
-        FloatingRateBondPtr(Size settlementDays,
-                            Real faceAmount,
-                            const Schedule& schedule,
-                            const IborIndexPtr& index,
-                            const DayCounter& paymentDayCounter,
-                            BusinessDayConvention paymentConvention,
-                            Size fixingDays,
-                            const std::vector<Real>& gearings,
-                            const std::vector<Spread>& spreads,
-                            const std::vector<Rate>& caps,
-                            const std::vector<Rate>& floors,
-                            bool inArrears,
-                            Real redemption,
-                            const Date& issueDate) {
+        FloatingRateBondPtr(
+            Size settlementDays,
+            Real faceAmount,
+            const Schedule& schedule,
+            const IborIndexPtr& index,
+            const DayCounter& paymentDayCounter,
+            BusinessDayConvention paymentConvention = Following,
+            Size fixingDays = Null<Size>(),
+            const std::vector<Real>& gearings = std::vector<Real>(),
+            const std::vector<Spread>& spreads = std::vector<Spread>(),
+            const std::vector<Rate>& caps = std::vector<Rate>(),
+            const std::vector<Rate>& floors = std::vector<Rate>(),
+            bool inArrears = false,
+            Real redemption = 100.0,
+            const Date& issueDate = Date()) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new FloatingRateBondPtr(
@@ -307,7 +321,9 @@ typedef boost::shared_ptr<Instrument> CmsRateBondPtr;
 
 %rename(CmsRateBond) CmsRateBondPtr;
 class CmsRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CmsRateBondPtr;
+    #endif
   public:
     %extend {
         CmsRateBondPtr(Size settlementDays,
@@ -368,7 +384,9 @@ typedef boost::shared_ptr<PricingEngine> TreeCallableFixedRateBondEnginePtr;
 
 %rename(CallableFixedRateBond) CallableFixedRateBondPtr;
 class CallableFixedRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CallableFixedRateBondPtr;
+    #endif
   public:
     %extend {
         CallableFixedRateBondPtr(
@@ -423,7 +441,9 @@ typedef boost::shared_ptr<Instrument> CPIBondPtr;
 
 %rename(CPIBond) CPIBondPtr;
 class CPIBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CPIBondPtr;
+    #endif
   public:
     %extend {
         CPIBondPtr(
@@ -438,14 +458,21 @@ class CPIBondPtr : public BondPtr {
                 const std::vector<Rate>& coupons,
                 const DayCounter& accrualDayCounter,
                 BusinessDayConvention paymentConvention = ModifiedFollowing,
-                const Date& issueDate = Date()) {
+                const Date& issueDate = Date(),
+                const Calendar& paymentCalendar = Calendar(),
+                const Period& exCouponPeriod = Period(),
+                const Calendar& exCouponCalendar = Calendar(),
+                BusinessDayConvention exCouponConvention = Unadjusted,
+                bool exCouponEndOfMonth = false) {
             boost::shared_ptr<ZeroInflationIndex> zeroIndex =
                 boost::dynamic_pointer_cast<ZeroInflationIndex>(cpiIndex);
             return new CPIBondPtr(
                 new CPIBond(settlementDays, faceAmount, growthOnly, baseCPI,
                             observationLag, zeroIndex, observationInterpolation,
                             schedule, coupons, accrualDayCounter,
-                            paymentConvention, issueDate));
+                            paymentConvention, issueDate, paymentCalendar,
+                            exCouponPeriod, exCouponCalendar,
+                            exCouponConvention, exCouponEndOfMonth));
         }
     }
 };

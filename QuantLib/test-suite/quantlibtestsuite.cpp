@@ -43,6 +43,7 @@
 #include "utilities.hpp"
 
 #include "americanoption.hpp"
+#include "amortizingbond.hpp"
 #include "array.hpp"
 #include "asianoptions.hpp"
 #include "assetswap.hpp"
@@ -51,6 +52,7 @@
 #include "basketoption.hpp"
 #include "batesmodel.hpp"
 #include "bermudanswaption.hpp"
+#include "binaryoption.hpp"
 #include "blackdeltacalculator.hpp"
 #include "blackformula.hpp"
 #include "bonds.hpp"
@@ -125,6 +127,7 @@
 #include "mclongstaffschwartzengine.hpp"
 #include "mersennetwister.hpp"
 #include "money.hpp"
+#include "noarbsabr.hpp"
 #include "nthtodefault.hpp"
 #include "ode.hpp"
 #include "operators.hpp"
@@ -261,6 +264,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(BasketOptionTest::suite());
     test->add(BatesModelTest::suite());
     test->add(BermudanSwaptionTest::suite());
+    test->add(BinaryOptionTest::suite());
     test->add(BlackFormulaTest::suite());
     test->add(BondTest::suite());
     test->add(BrownianBridgeTest::suite());
@@ -347,6 +351,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(VolatilityModelsTest::suite());
 
     // tests for experimental classes
+    test->add(AmortizingBondTest::suite());
     test->add(AsianOptionTest::experimental());
     test->add(BarrierOptionTest::experimental());
     test->add(BlackDeltaCalculatorTest::suite());
@@ -370,6 +375,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(InflationVolTest::suite());
     test->add(MargrabeOptionTest::suite());
     test->add(MarkovFunctionalTest::suite());
+    test->add(NoArbSabrTest::suite());
     test->add(NthToDefaultTest::suite());
     test->add(OdeTest::suite());
     test->add(PagodaOptionTest::suite());

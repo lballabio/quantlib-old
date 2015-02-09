@@ -304,8 +304,11 @@ class BlackVarianceSurface {
 %rename(BlackVarianceSurface) BlackVarianceSurfacePtr;
 class BlackVarianceSurfacePtr
     : public boost::shared_ptr<BlackVolTermStructure> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
+    %feature("kwargs") BlackVarianceSurfacePtr;
+    #endif
   public:
-    %extend {
+    %extend { 
         BlackVarianceSurfacePtr(
                 const Date& referenceDate,
                 const Calendar & cal,
@@ -316,11 +319,21 @@ class BlackVarianceSurfacePtr
                 BlackVarianceSurface::Extrapolation lower =
                     BlackVarianceSurface::InterpolatorDefaultExtrapolation,
                 BlackVarianceSurface::Extrapolation upper =
-                    BlackVarianceSurface::InterpolatorDefaultExtrapolation) {
-            return new BlackVarianceSurfacePtr(
+                    BlackVarianceSurface::InterpolatorDefaultExtrapolation,
+                const std::string& interpolator = "") {
+            BlackVarianceSurface* surf =
                 new BlackVarianceSurface(referenceDate,cal,
                                          dates,strikes,
-                                         blackVols,dayCounter,lower,upper));
+                                         blackVols,dayCounter,lower,upper);
+            std::string s = boost::algorithm::to_lower_copy(interpolator);
+            if (s == "" || s == "bilinear") {
+                surf->setInterpolation<QuantLib::Bilinear>();
+            } else if (s == "bicubic") {
+                surf->setInterpolation<QuantLib::Bicubic>();
+            } else {
+                QL_FAIL("Unknown interpolator: " << interpolator);
+            }
+            return new BlackVarianceSurfacePtr(surf);
         }
         static const BlackVarianceSurface::Extrapolation
             ConstantExtrapolation =

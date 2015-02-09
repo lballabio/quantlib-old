@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="/styles/print.css" type="text/css" media="print">
 <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-<link href='http://fonts.googleapis.com/css?family=Merriweather:900|Open+Sans:400|Merriweather+Sans:800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Merriweather:900|Open+Sans:400,700|Merriweather+Sans:800' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 <!-- hiding
 if (self != window.top) {

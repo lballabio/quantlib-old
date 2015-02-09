@@ -26,9 +26,11 @@
 %{
 using QuantLib::CreditDefaultSwap;
 using QuantLib::MidPointCdsEngine;
+using QuantLib::IntegralCdsEngine;
 
 typedef boost::shared_ptr<Instrument> CreditDefaultSwapPtr;
 typedef boost::shared_ptr<PricingEngine> MidPointCdsEnginePtr;
+typedef boost::shared_ptr<PricingEngine> IntegralCdsEnginePtr;
 %}
 
 %rename(CreditDefaultSwap) CreditDefaultSwapPtr;
@@ -148,6 +150,24 @@ class MidPointCdsEnginePtr : public boost::shared_ptr<PricingEngine> {
             return new MidPointCdsEnginePtr(
                               new MidPointCdsEngine(probability, recoveryRate,
                                                     discountCurve));
+        }
+    }
+};
+
+%rename(IntegralCdsEngine) IntegralCdsEnginePtr;
+class IntegralCdsEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        IntegralCdsEnginePtr(
+				   const Period &integrationStep,
+                   const Handle<DefaultProbabilityTermStructure>& probability,
+                   Real recoveryRate,
+                   const Handle<YieldTermStructure>& discountCurve,
+				   bool includeSettlementDateFlows = false) {
+            return new IntegralCdsEnginePtr(
+                              new IntegralCdsEngine(integrationStep, probability,
+                                                    recoveryRate, discountCurve,
+													includeSettlementDateFlows));
         }
     }
 };
