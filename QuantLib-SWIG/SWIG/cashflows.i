@@ -663,6 +663,10 @@ class CashFlows {
     CashFlows();
     CashFlows(const CashFlows&);
   public:
+    static Real accruedAmount(const Leg & leg,
+                              bool includeSettlementDateFlows,
+                              Date settlementDate=Date()
+                              );
     static Date startDate(const Leg &);
     static Date maturityDate(const Leg &);
     %extend {

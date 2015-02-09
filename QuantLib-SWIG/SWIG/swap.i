@@ -108,11 +108,17 @@ class VanillaSwapPtr : public SwapPtr {
             return boost::dynamic_pointer_cast<VanillaSwap>(*self)
                  ->floatingLegBPS();
         }
+<<<<<<< HEAD
 	
 
 	Real fixedLegNPV() {
 	            return boost::dynamic_pointer_cast<VanillaSwap>(*self)
 	                 ->fixedLegNPV();
+=======
+	Real fixedLegNPV() {
+	    return boost::dynamic_pointer_cast<VanillaSwap>(*self)
+	          ->fixedLegNPV();
+>>>>>>> FETCH_HEAD
         }
         Real floatingLegNPV() {
             return boost::dynamic_pointer_cast<VanillaSwap>(*self)
@@ -126,7 +132,10 @@ class VanillaSwapPtr : public SwapPtr {
             return boost::dynamic_pointer_cast<VanillaSwap>(*self)
                 ->floatingLeg();
         }
+<<<<<<< HEAD
 	
+=======
+>>>>>>> FETCH_HEAD
     }
 };
 
