@@ -1,0 +1,25 @@
+Source: quantlibswig
+Priority: optional
+Section: interpreters
+Maintainer: Dirk Eddelbuettel <edd@debian.org>
+Standards-Version: 3.9.5
+XS-Python-Version: current
+Build-Depends: debhelper (>= 7.0.0), python, python-all-dev (>= 2.6.6-3), libquantlib0-dev (>= 1.4), gcc (>= 4:4.0), g++ (>= 4:4.0), libboost-dev (>= 1.34.0), libboost-test-dev (>= 1.34.0)
+
+Package: quantlib-python
+Section: python
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Provides: ${python:Provides}
+Description: Python bindings for the Quantlib Quantitative Finance library
+ The QuantLib project is aimed to provide a comprehensive software framework
+ for quantitative finance. The goal is to provide a standard free/open source
+ library to quantitative analysts and developers for modeling, trading, and
+ risk management in real-life.
+ .
+ QuantLib plans to offer tools that are useful for both practical
+ implementation, with features such as market conventions, solvers, PDEs,
+ etc., and advanced modeling, e.g., exotic options and interest rate models.
+ .
+ This package provides Python bindings to parts of the QuantLib library.
+

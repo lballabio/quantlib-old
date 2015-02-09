@@ -1,0 +1,210 @@
+#! /usr/bin/make -f
+#                                                       -*- makefile -*-
+# debian/rules file for the Debian Linux quantlib-swig package
+# Copyright (C) 2001 - 2011 by Dirk Eddelbuettel <edd@debian.org>
+
+#package	:= $(shell grep Package debian/control | sed 's/^Package: //')
+pypackage	= quantlib-python
+rbpackage	= quantlib-ruby
+rrpackage	= quantlib-r
+version		:= $(shell head -1 debian/changelog | \
+			perl -nle 'm/\S+\s+\((\S+)\)/ && print $$1')
+pydeb		:= $(CURDIR)/debian/$(pypackage)
+rbdeb		:= $(CURDIR)/debian/$(rbpackage)
+rrdeb		:= $(CURDIR)/debian/$(rrpackage)
+
+#arch 		:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+## edd 01 Nov 2005 use DEB_BUILD_ARCH_CPU, not DEB_BUILD_GNU_TYPE 
+##                 updated rules throughout
+arch		:= $(shell dpkg-architecture -qDEB_BUILD_ARCH_CPU)
+cpu		:= $(shell dpkg-architecture -qDEB_HOST_GNU_CPU)
+
+PYTHON  	:= $(shell pyversions -d)
+RUBY		:= ruby
+
+#export DH_VERBOSE=1
+
+## edd 29 Nov 2001	Default to g++
+cxxcompiler	= g++
+
+## edd 14 Jan 2003	no longer change g++ as g++-3.2 is now default
+# 			but use g++-3.0 on ia64
+#ifneq "$(findstring $(arch), ia64)" ""
+#cxxcompiler	= g++-3.0
+#endif
+
+## edd 01 Feb 2002  	allow -ffunction-sections on hppa 
+## edd 26 Oct 2007      turn strict aliasing warning off
+## edd 01 May 2011      add -fpermissive as g++ is more of a stickler
+## edd 06 May 2011      remove -fpermissive with QL 1.1 betas
+compilerflags	= -O2 -Wall -Wno-strict-aliasing
+ifeq ($(cpu),hppa)
+compilerflags   = -O2 -ffunction-sections
+#cxxcompiler	= g++-3.0
+endif
+
+## edd 18 May 2002	no optimisation or debugging on baby systems
+## edd 14 May 2005	don't do it on mipsel or mips either
+## edd 01 Jun 2007      no longer activate this on mips/mipsel
+## edd 26 Jun 2007 	use cpu test, not arch test -- thanks to Riku via #430709
+## edd 26 Oct 2007      s390+powerpc also die, so add'em (and remove mips(el), see next item)
+## edd 27 May 2012      added mips/mipsel/armel/armhf here too
+ifneq "$(findstring $(cpu), m68k arm armeb s390 powerpc armel armhf mips mipsel)" ""
+compilerflags   = -O0 -g0
+endif
+
+## edd 26 Oct 2007      really reset mips/mips to -O2 (see #419742)
+## edd 27 May 2012      move to previos section
+#ifneq "$(findstring $(cpu), mipsel mips)" ""
+#compilerflags   = -O2 -g0 
+#endif
+
+
+## edd 25 Dec 2002  g++-3.2 for s390
+
+#ifneq "$(findstring $(arch), s390)" ""
+#cxxcompiler	= g++-3.2
+#endif
+
+upstream: get-orig-source
+get-orig-source:
+	        lynx http://quantlib.org
+
+build: build-arch build-indep
+build-arch: build-stamp
+build-indep: build-stamp
+build-stamp:
+	dh_testdir
+	@echo "*** Running on arch $(arch) and cpu $(cpu)"
+
+        # need to build the Makefile for R (and Ruby ?)
+	./configure 	--prefix=/usr 				\
+			--build $(arch)
+
+        # $(MAKE)
+	(cd Python && 						\
+			CC="$(cxxcompiler)"			\
+			CXX="$(cxxcompiler)" 			\
+			CFLAGS="$(compilerflags)" 		\
+			CXXFLAGS="$(compilerflags)"		\
+			$(PYTHON) setup.py build		)
+
+	# (cd Ruby &&						\
+	# 		CC="$(cxxcompiler)"			\
+	# 		CXX="$(cxxcompiler)"			\
+	# 		CFLAGS="$(compilerflags)"		\
+	# 		CXXFLAGS="$(compilerflags)"		\
+	# 		$(RUBY) setup.rb build                  )
+
+#	(cd R &&						\
+#			CC="$(cxxcompiler)"			\
+#			CXX="$(cxxcompiler)"			\
+#			CFLAGS="$(compilerflags)"		\
+#			CXXFLAGS="$(compilerflags)"		\
+#			make					)
+
+	touch build-stamp
+
+test:	build test-stamp
+test-stamp:
+## edd 01 Nov 2005  run check only on i386
+#ifeq "$(findstring $(arch), m68k arm)" ""
+ifeq ($(cpu),i486)
+        # -$(MAKE) test
+	(cd Python && $(PYTHON) setup.py test			)
+	#(cd Ruby && $(RUBY) setup.rb test 			)
+endif
+	touch test-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp test-stamp install-stamp
+	-test -f Makefile && $(MAKE) realclean
+	(cd Python && 						\
+			$(PYTHON) setup.py clean --all	&&	\
+			rm -f QuantLib/*.pyc			)
+#	(cd Ruby &&						\
+#			rm -f quantlib_wrap.o QuantLibc.so 	)
+	dh_clean
+
+install: test install-stamp
+install-stamp: 
+	dh_testdir
+	dh_testroot
+	dh_prep 
+	dh_installdirs	-p$(pypackage)	usr/share/$(pypackage)
+        #$(MAKE) install PREFIX=$(debtmp)/usr
+	(cd Python && 						\
+		$(PYTHON) setup.py 				\
+			install --prefix=$(pydeb)/usr 		\
+				--install-layout=deb		)
+
+        # edd 2005-Apr-14  copy swig file manually instead
+	cp -vax SWIG/* 	$(pydeb)/usr/share/$(pypackage)/
+	rm -fv 	Python/test/*.pyc
+        # remove Docs installed by Python, we do that below
+	rm -frv $(pydeb)/usr/share/doc/QuantLib-Python
+        # remove .pyc which Lintian doesn't like
+	rm -frv $(pydeb)/usr/lib/python*/site-packages/QuantLib/*.pyc
+
+	#dh_installdirs -p$(rbpackage)	usr/share/$(rbpackage)
+        ## $(MAKE) install PREFIX=$(debtmp)/usr
+	#(cd Ruby &&							\
+	#	CXX="$(cxxcompiler)" 					\
+	#	CFLAGS="$(compilerflags)" 				\
+	#	CXXFLAGS="$(compilerflags)" 				\
+	#	$(RUBY) setup.rb install				\
+	#		--prefix=$(rbdeb)/usr --debian                  )
+        ## fix mode, lintian complain about 755 and no #! line
+	#chmod 644 debian/$(rbpackage)/usr/lib/ruby/*/QuantLib.rb
+        ## edd 2007-Dec-20  copy swig file manually instead as well
+	#cp -vax SWIG/*	$(rbdeb)/usr/share/$(rbpackage)/
+	#touch install-stamp
+
+	#dh_installdirs -p$(rrpackage)	usr/lib/$(rrpackage) usr/share/$(rrpackage) 
+        ## $(MAKE) install PREFIX=$(debtmp)/usr
+	#cp -vax R/QuantLib.so R/QuantLib.RData R/QuantLib.R R/README.txt $(rrdeb)/usr/lib/$(rrpackage)/
+	#cp -vax SWIG/*	$(rrdeb)/usr/share/$(rrpackage)/
+
+	touch install-stamp
+
+binary-indep: build test install
+
+binary-arch: build test install
+	dh_testdir
+	dh_testroot
+#	dh_installdebconf
+	dh_installdocs	-A	Readme.txt News.txt 
+	dh_installexamples -p$(pypackage) Python/test/ Python/examples/*.py
+	#dh_installexamples -p$(rbpackage) Ruby/test/ Ruby/examples/*.rb
+	#dh_installexamples -p$(rrpackage) R/examples/*.R
+#	dh_installmenu
+#	dh_installemacsen
+#	dh_installpam
+#	dh_installinit
+#	dh_installcron
+#	dh_installmanpages
+#	dh_installinfo		
+#	dh_undocumented
+	dh_installchangelogs -A	ChangeLog.txt
+#	dh_link
+	dh_compress
+	dh_fixperms
+	dh_strip
+#	dh_suidregister
+#	dh_pycentral	-p$(pypackage)
+#	dh_python	-p$(pypackage)
+	dh_python2 
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+#	dh_md5sums
+	dh_builddeb
+
+source diff:                                                                  
+	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install test
