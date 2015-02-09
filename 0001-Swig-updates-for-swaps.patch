@@ -1,0 +1,55 @@
+From ec43271ad5f0e099199903836dc4d2be4bf0c336 Mon Sep 17 00:00:00 2001
+From: mmport80 <john.orford@gmail.com>
+Date: Mon, 4 Aug 2014 11:52:35 +0800
+Subject: [PATCH] Swig updates for swaps
+
+---
+ QuantLib-SWIG/SWIG/cashflows.i |  4 ++++
+ QuantLib-SWIG/SWIG/swap.i      | 16 ++++++++++++++++
+ 2 files changed, 20 insertions(+)
+
+diff --git a/QuantLib-SWIG/SWIG/cashflows.i b/QuantLib-SWIG/SWIG/cashflows.i
+index 64f4fcc..1261fc5 100644
+--- a/QuantLib-SWIG/SWIG/cashflows.i
++++ b/QuantLib-SWIG/SWIG/cashflows.i
+@@ -663,6 +663,10 @@ class CashFlows {
+     CashFlows();
+     CashFlows(const CashFlows&);
+   public:
++    static Real accruedAmount(const Leg & leg,
++                              bool includeSettlementDateFlows,
++                              Date settlementDate=Date()
++                              );
+     static Date startDate(const Leg &);
+     static Date maturityDate(const Leg &);
+     %extend {
+diff --git a/QuantLib-SWIG/SWIG/swap.i b/QuantLib-SWIG/SWIG/swap.i
+index d8c4ecf..9b59c10 100644
+--- a/QuantLib-SWIG/SWIG/swap.i
++++ b/QuantLib-SWIG/SWIG/swap.i
+@@ -108,6 +108,22 @@ class VanillaSwapPtr : public SwapPtr {
+             return boost::dynamic_pointer_cast<VanillaSwap>(*self)
+                  ->floatingLegBPS();
+         }
++	Real fixedLegNPV() {
++	    return boost::dynamic_pointer_cast<VanillaSwap>(*self)
++	          ->fixedLegNPV();
++        }
++        Real floatingLegNPV() {
++            return boost::dynamic_pointer_cast<VanillaSwap>(*self)
++                 ->floatingLegNPV();
++        }
++        std::vector<boost::shared_ptr<CashFlow> > fixedLeg() {
++            return boost::dynamic_pointer_cast<VanillaSwap>(*self)
++                ->fixedLeg();
++        }
++        std::vector<boost::shared_ptr<CashFlow> > floatingLeg() {
++            return boost::dynamic_pointer_cast<VanillaSwap>(*self)
++                ->floatingLeg();
++        }
+     }
+ };
+ 
+-- 
+1.9.1
+
