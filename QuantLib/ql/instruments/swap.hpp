@@ -138,8 +138,8 @@ template <class T> class Swap_t<T>::results : public Instrument_t<T>::results {
 };
 
 template <class T>
-class Swap_t<T>::engine
-    : public GenericEngine<Swap_t<T>::arguments, Swap_t<T>::results> {};
+class Swap_t<T>::engine : public GenericEngine<typename Swap_t<T>::arguments,
+                                               typename Swap_t<T>::results> {};
 
 typedef Swap_t<Real> Swap;
 
@@ -154,11 +154,11 @@ Swap_t<T>::Swap_t(const typename Leg_t<T>::Type &firstLeg,
     legs_[1] = secondLeg;
     payer_[0] = -1.0;
     payer_[1] = 1.0;
-    for (typename Leg_t<T>::Type::iterator i = legs_[0].begin(); i != legs_[0].end();
-         ++i)
+    for (typename Leg_t<T>::Type::iterator i = legs_[0].begin();
+         i != legs_[0].end(); ++i)
         this->registerWith(*i);
-    for (typename Leg_t<T>::Type::iterator i = legs_[1].begin(); i != legs_[1].end();
-         ++i)
+    for (typename Leg_t<T>::Type::iterator i = legs_[1].begin();
+         i != legs_[1].end(); ++i)
         this->registerWith(*i);
 }
 
@@ -174,8 +174,8 @@ Swap_t<T>::Swap_t(const std::vector<typename Leg_t<T>::Type> &legs,
     for (Size j = 0; j < legs_.size(); ++j) {
         if (payer[j])
             payer_[j] = -1.0;
-        for (typename Leg_t<T>::Type::iterator i = legs_[j].begin(); i != legs_[j].end();
-             ++i)
+        for (typename Leg_t<T>::Type::iterator i = legs_[j].begin();
+             i != legs_[j].end(); ++i)
             this->registerWith(*i);
     }
 }

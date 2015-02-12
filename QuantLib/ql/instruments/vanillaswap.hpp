@@ -165,8 +165,8 @@ template <class T> class VanillaSwap_t<T>::results : public Swap_t<T>::results {
 
 template <class T>
 class VanillaSwap_t<T>::engine
-    : public GenericEngine<VanillaSwap_t<T>::arguments,
-                           VanillaSwap_t<T>::results> {};
+    : public GenericEngine<typename VanillaSwap_t<T>::arguments,
+                           typename VanillaSwap_t<T>::results> {};
 
 // inline definitions
 
