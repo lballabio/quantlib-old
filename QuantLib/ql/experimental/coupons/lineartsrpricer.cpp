@@ -132,6 +132,10 @@ namespace QuantLib {
             boost::shared_ptr<SmileSection> sectionTmp =
                 swaptionVolatility()->smileSection(fixingDate_, swapTenor_);
 
+            // adjust bounds by section's shift
+            settings_.lowerRateBound_ -= sectionTmp->shift();
+            settings_.upperRateBound_ -= sectionTmp->shift();
+
             // if the section does not provide an atm level, we enhance it to
             // have one, no need to exit with an exception ...
 

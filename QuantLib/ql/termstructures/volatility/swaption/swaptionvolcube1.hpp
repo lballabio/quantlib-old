@@ -131,7 +131,8 @@ namespace QuantLib {
             const bool useMaxError = false,
             const Size maxGuesses = 50,
             const bool backwardFlat = false,
-            const Real cutoffStrike = 0.0001);
+            const Real cutoffStrike = 0.0001
+        );
         //! \name LazyObject interface
         //@{
         void performCalculations() const;
@@ -353,11 +354,12 @@ namespace QuantLib {
         for (Size j=0; j<optionTimes.size(); j++) {
             for (Size k=0; k<swapLengths.size(); k++) {
                 Rate atmForward = atmStrike(optionDates[j], swapTenors[k]);
+                Real shiftTmp = atmVol_->shift(optionTimes[j], swapLengths[k]);
                 strikes.clear();
                 volatilities.clear();
                 for (Size i=0; i<nStrikes_; i++){
                     Real strike = atmForward+strikeSpreads_[i];
-                    if(strike>=cutoffStrike_) {
+                    if(strike + shiftTmp >=cutoffStrike_) {
                         strikes.push_back(strike);
                         volatilities.push_back(tmpMarketVolCube[i][j][k]);
                     }
@@ -382,7 +384,8 @@ namespace QuantLib {
                                           optMethod_,
                                           errorAccept_,
                                           useMaxError_,
-                                          maxGuesses_));
+                                          maxGuesses_,
+                                          shiftTmp));
                 sabrInterpolation->update();
 
                 Real rmsError = sabrInterpolation->rmsError();
@@ -463,11 +466,12 @@ namespace QuantLib {
 
         for (Size j=0; j<optionTimes.size(); j++) {
             Rate atmForward = atmStrike(optionDates[j], swapTenors[k]);
+            Real shiftTmp = atmVol_->shift(optionTimes[j], swapLengths[k]);
             strikes.clear();
             volatilities.clear();
             for (Size i=0; i<nStrikes_; i++){
                 Real strike = atmForward+strikeSpreads_[i];
-                if(strike>=cutoffStrike_) {
+                if(strike+shiftTmp>=cutoffStrike_) {
                     strikes.push_back(strike);
                     volatilities.push_back(tmpMarketVolCube[i][j][k]);
                 }
@@ -476,9 +480,9 @@ namespace QuantLib {
             const std::vector<Real>& guess = parametersGuess_.operator()(
                 optionTimes[j], swapLengths[k]);
 
-            const boost::shared_ptr<SABRInterpolation> sabrInterpolation =
-                boost::shared_ptr<SABRInterpolation>(new
-                    SABRInterpolation(strikes.begin(), strikes.end(),
+                const boost::shared_ptr<typename Model::Interpolation> sabrInterpolation =
+                    boost::shared_ptr<typename Model::Interpolation>(new
+                                          (typename Model::Interpolation)(strikes.begin(), strikes.end(),
                                       volatilities.begin(),
                                       optionTimes[j], atmForward,
                                       guess[0], guess[1],
@@ -492,7 +496,8 @@ namespace QuantLib {
                                       optMethod_,
                                       errorAccept_,
                                       useMaxError_,
-                                      maxGuesses_));
+                                      maxGuesses_,
+                                      shiftTmp));
 
             sabrInterpolation->update();
             Real interpolationError = sabrInterpolation->rmsError();
@@ -763,8 +768,9 @@ namespace QuantLib {
         calculate();
         const std::vector<Real> sabrParameters =
             sabrParametersCube(optionTime, swapLength);
+        Real shiftTmp = this->shift(optionTime,swapLength);
         return boost::shared_ptr<SmileSection>(new (typename Model::SmileSection)(
-            optionTime, sabrParameters[4], sabrParameters));
+                          optionTime, sabrParameters[4], sabrParameters,shiftTmp));
     }
 
     template<class Model> boost::shared_ptr<SmileSection>

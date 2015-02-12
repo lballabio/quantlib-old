@@ -107,7 +107,7 @@ namespace QuantLib {
         if(nature() == ShiftedLognormal)
             return blackFormulaVolDerivative(strike,atmLevel(),
                                              sqrt(variance(strike)),
-                                             exerciseTime(),discount)*0.01;
+                                             exerciseTime(),discount,shift())*0.01;
         else
             QL_FAIL("vega for normal smilesection not yet implemented");
     }
