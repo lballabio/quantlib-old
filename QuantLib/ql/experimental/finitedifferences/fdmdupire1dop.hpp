@@ -30,13 +30,21 @@
 #include <ql/methods/finitedifferences/operators/triplebandlinearop.hpp>
 #include <ql/methods/finitedifferences/operators/fdmlinearopcomposite.hpp>
 
+#include <boost/function.hpp>
+
 namespace QuantLib {
 
 class FdmDupire1dOp : public FdmLinearOpComposite {
   public:
+
+    // time independent local volatility
     FdmDupire1dOp(const boost::shared_ptr<FdmMesher> &mesher,
                   const Array &localVolatility);
 
+    // time dependent local volatility
+    FdmDupire1dOp(const boost::shared_ptr<FdmMesher> &mesher,
+                  const boost::function<Disposable<Array>(Real)> &localVolatility);
+    
     Size size() const;
     void setTime(Time t1, Time t2);
 
@@ -54,7 +62,8 @@ class FdmDupire1dOp : public FdmLinearOpComposite {
 
   private:
     const boost::shared_ptr<FdmMesher> mesher_;
-    const Array localVolatility_;
+    const boost::function<Disposable<Array>(Real)> localVolatilityFct_;
+    const bool fct_;
     TripleBandLinearOp mapT_;
 };
 }

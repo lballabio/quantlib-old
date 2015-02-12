@@ -39,38 +39,12 @@ class QuadraticLfm {
                  std::vector<Real> &initialForwards,
                  std::vector<std::vector<std::vector<Real> > > &sigma,
                  std::vector<std::vector<Real> > &b,
-                 std::vector<std::vector<Real> > &c)
-        : rateTimes_(rateTimes), initialForwards_(initialForwards),
-          sigma_(sigma), b_(b), c_(c) {
-        N_ = rateTimes.size();
-        QL_REQUIRE(N_ - 1 == initialForwards_.size(),
-                   "rateTimes size ("
-                       << N_
-                       << ") minus 1 must be equal to number of forwards ("
-                       << initialForwards_.size() << ")");
-        K_ = sigma_.size();
-        QL_REQUIRE(K_ >= 1, "number of factors ("
-                                << K_ << ") must be greater or equal to one");
-        for (Size k = 0; k < K_; ++k) {
-            QL_REQUIRE(N_ - 1 == sigma_[k].size(),
-                       "for factor k ("
-                           << k << ") the number of sigma functions ("
-                           << sigma_[k].size()
-                           << ") must be equal to the number of forwards N-1 ("
-                           << (N_ - 1) << ")");
-            for (Size i = 0; i < N_ - 1; ++i) {
-                QL_REQUIRE(N_ - 1 == sigma_[k][i].size(),
-                           "for factor k (" << k << ") and Libor i (" << i
-                                            << ") the piecewise sigma function "
-                                               "must consist of N-1 ("
-                                            << (N_ - 1) << ") values, but is ("
-                                            << sigma_[k][i].size() << ")");
-            }
-        }
-    }
+                 std::vector<std::vector<Real> > &c);
 
-    /* markovian projection local volatility \eta(t,S) */
-    Real eta(const Real t, const Real S);
+    /* markovian projection local volatility \eta(t,s) */
+    /* uses cached values */
+    Real eta(const Size n, const Size m, const Size step, const Real t,
+             const Real s);
 
     /* dS_{n,m} / dL_i freezed at time zero */
     Real dSdL(const Size n, const Size m, const Size step, const Size i,
@@ -84,6 +58,10 @@ class QuadraticLfm {
 
     /* t_{q-1} <= t < t_q */
     int q(const Real t);
+
+    /* refresh cached values after changes in the parameters given
+       in the constructor */
+    void refreshCache();
 
   private:
     std::vector<Real> &rateTimes_, initialForwards_;
