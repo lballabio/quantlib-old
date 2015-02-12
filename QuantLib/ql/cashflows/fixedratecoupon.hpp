@@ -292,7 +292,7 @@ template <class T> FixedRateLeg_t<T>::operator typename Leg_t<T>::Type() const {
                        firstPeriodDC_ == rate.dayCounter(),
                    "regular first coupon "
                    "does not allow a first-period day count");
-        shared_ptr<CashFlow_t<T> > temp(new FixedRateCoupon_t<T>(
+        boost::shared_ptr<CashFlow_t<T> > temp(new FixedRateCoupon_t<T>(
             paymentDate, nominal, rate, start, end, start, end, exCouponDate));
         leg.push_back(temp);
     } else {
@@ -302,7 +302,7 @@ template <class T> FixedRateLeg_t<T>::operator typename Leg_t<T>::Type() const {
                             firstPeriodDC_.empty() ? rate.dayCounter()
                                                    : firstPeriodDC_,
                             rate.compounding(), rate.frequency());
-        leg.push_back(shared_ptr<CashFlow_t<T> >(new FixedRateCoupon_t<T>(
+        leg.push_back(boost::shared_ptr<CashFlow_t<T> >(new FixedRateCoupon_t<T>(
             paymentDate, nominal, r, start, end, ref, end, exCouponDate)));
     }
     // regular periods
@@ -323,7 +323,7 @@ template <class T> FixedRateLeg_t<T>::operator typename Leg_t<T>::Type() const {
             nominal = notionals_[i - 1];
         else
             nominal = notionals_.back();
-        leg.push_back(shared_ptr<CashFlow_t<T> >(new FixedRateCoupon_t<T>(
+        leg.push_back(boost::shared_ptr<CashFlow_t<T> >(new FixedRateCoupon_t<T>(
             paymentDate, nominal, rate, start, end, start, end, exCouponDate)));
     }
     if (schedule_.size() > 2) {
@@ -346,13 +346,13 @@ template <class T> FixedRateLeg_t<T>::operator typename Leg_t<T>::Type() const {
         else
             nominal = notionals_.back();
         if (schedule_.isRegular(N - 1)) {
-            leg.push_back(shared_ptr<CashFlow_t<T> >(
+            leg.push_back(boost::shared_ptr<CashFlow_t<T> >(
                 new FixedRateCoupon_t<T>(paymentDate, nominal, rate, start, end,
                                          start, end, exCouponDate)));
         } else {
             Date ref = start + schedule_.tenor();
             ref = schCalendar.adjust(ref, schedule_.businessDayConvention());
-            leg.push_back(shared_ptr<CashFlow_t<T> >(
+            leg.push_back(boost::shared_ptr<CashFlow_t<T> >(
                 new FixedRateCoupon_t<T>(paymentDate, nominal, rate, start, end,
                                          start, ref, exCouponDate)));
         }

@@ -46,9 +46,6 @@
 
 namespace QuantLib {
 
-using std::max;
-using std::sqrt;
-
 using boost::dynamic_pointer_cast;
 
 //! base pricer for vanilla CMS coupons

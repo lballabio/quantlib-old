@@ -34,9 +34,6 @@
 
 namespace QuantLib {
 
-using std::log;
-using std::exp;
-
 namespace detail {
 const Real avgRate = 0.05;
 const Real maxRate = 1.0;
@@ -70,8 +67,8 @@ template <class T = Real> struct Discount {
             return 1.0 / (1.0 + detail::avgRate * c->times()[1]);
 
         // flat rate extrapolation
-        T r = -log(c->data()[i - 1]) / c->times()[i - 1];
-        return exp(-r * c->times()[i]);
+        T r = -QLFCT::log(c->data()[i - 1]) / c->times()[i - 1];
+        return QLFCT::exp(-r * c->times()[i]);
     }
 
     // possible constraints based on previous values
@@ -88,7 +85,7 @@ template <class T = Real> struct Discount {
 #endif
         }
         Time dt = c->times()[i] - c->times()[i - 1];
-        return c->data()[i - 1] * exp(-detail::maxRate * dt);
+        return c->data()[i - 1] * QLFCT::exp(-detail::maxRate * dt);
     }
     template <class C>
     static T maxValueAfter(Size i, const C *c, bool validData,
@@ -96,7 +93,7 @@ template <class T = Real> struct Discount {
     {
 #if defined(QL_NEGATIVE_RATES)
         Time dt = c->times()[i] - c->times()[i - 1];
-        return c->data()[i - 1] * exp(detail::maxRate * dt);
+        return c->data()[i - 1] * QLFCT::exp(detail::maxRate * dt);
 #else
         // discounts cannot increase
         return c->data()[i - 1];

@@ -194,7 +194,7 @@ T BlackIborCouponPricer_t<T>::optionletPrice(Option::Type optionType,
             a = effStrike;
             b = coupon_->indexFixing();
         }
-        return max(a - b, T(0.0)) * accrualPeriod_ * discount_;
+        return QLFCT::max<T>(a - b, T(0.0)) * accrualPeriod_ * discount_;
     } else {
         // not yet determined, use Black model
         QL_REQUIRE(!this->capletVolatility().empty(),

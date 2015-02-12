@@ -42,8 +42,6 @@ namespace QuantLib {
     \ingroup instruments
 */
 
-using std::max;
-
 template <class T> class Swap_t : public Instrument_t<T> {
   public:
     class arguments;
@@ -276,7 +274,7 @@ template <class T> Date Swap_t<T>::maturityDate() const {
     QL_REQUIRE(!legs_.empty(), "no legs given");
     Date d = CashFlows::maturityDate<T>(legs_[0]);
     for (Size j = 1; j < legs_.size(); ++j)
-        d = max(d, CashFlows::maturityDate<T>(legs_[j]));
+        d = std::max(d, CashFlows::maturityDate<T>(legs_[j]));
     return d;
 }
 

@@ -35,8 +35,6 @@ namespace QuantLib {
           checking them against known good results.
 */
 
-using std::abs;
-
 template <class T>
 class FiniteDifferenceNewtonSafe_t
     : public Solver1D<FiniteDifferenceNewtonSafe_t<T>, T> {
@@ -71,7 +69,7 @@ class FiniteDifferenceNewtonSafe_t
             if ((((this->root_ - xh) * dfroot - froot) *
                      ((this->root_ - xl) * dfroot - froot) >
                  0.0) ||
-                (abs(2.0 * froot) > abs(dxold * dfroot))) {
+                (QLFCT::abs(2.0 * froot) > QLFCT::abs(dxold * dfroot))) {
                 dx = (xh - xl) / 2.0;
                 this->root_ = xl + dx;
                 // if the root estimate just computed is close to the
@@ -88,7 +86,7 @@ class FiniteDifferenceNewtonSafe_t
             }
 
             // Convergence criterion
-            if (abs(dx) < xAccuracy)
+            if (QLFCT::abs(dx) < xAccuracy)
                 return this->root_;
 
             froot = f(this->root_);

@@ -266,7 +266,7 @@ T atmRate(const Bond_t<T> &bond, const YieldTermStructure_t<T> &discountCurve,
     T result0 = Null<Real>();
     T result1 = cleanPrice + bond.accruedAmount(settlement);
     T pred = Null<Real>();
-    T dirtyPrice = CondExpEq(cleanPrice, pred, result0, result1);
+    T dirtyPrice = QLFCT::CondExpEq(cleanPrice, pred, result0, result1);
     T currentNotional = bond.notional(settlement);
     T npv = dirtyPrice / 100.0 * currentNotional;
 

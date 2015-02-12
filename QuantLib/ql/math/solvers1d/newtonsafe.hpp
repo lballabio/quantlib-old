@@ -36,8 +36,6 @@ namespace QuantLib {
               checking them against known good results.
     */
 
-    using std::abs;
-
     template<class T>
     class NewtonSafe_t : public Solver1D<NewtonSafe_t<T>,T> {
       public:
@@ -81,7 +79,7 @@ namespace QuantLib {
                 // Bisect if (out of range || not decreasing fast enough)
                 if ((((this->root_-xh)*dfroot-froot)*
                      ((this->root_-xl)*dfroot-froot) > 0.0)
-                    || (abs(2.0*froot) > std::fabs(dxold*dfroot))) {
+                    || (QLFCT::abs(2.0*froot) > QLFCT::abs(dxold*dfroot))) {
 
                     dxold = dx;
                     dx = (xh-xl)/2.0;
@@ -92,7 +90,7 @@ namespace QuantLib {
                     this->root_ -= dx;
                 }
                 // Convergence criterion
-                if (abs(dx) < xAccuracy) {
+                if (QLFCT::abs(dx) < xAccuracy) {
                     f(this->root_);
                     ++this->evaluationNumber_;
                     return this->root_;

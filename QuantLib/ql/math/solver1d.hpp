@@ -63,9 +63,6 @@ namespace QuantLib {
     - add target value (now the target value is 0.0)
 */
 
-using std::max;
-using std::abs;
-
 template <class Impl, class T = Real>
 class Solver1D : public CuriouslyRecurringTemplate<Impl> {
   public:
@@ -90,7 +87,7 @@ class Solver1D : public CuriouslyRecurringTemplate<Impl> {
         QL_REQUIRE(accuracy > 0.0, "accuracy (" << accuracy
                                                 << ") must be positive");
         // check whether we really want to use epsilon
-        accuracy = max<T>(accuracy, QL_EPSILON);
+        accuracy = QLFCT::max<T>(accuracy, QL_EPSILON);
 
         const Real growthFactor = 1.6;
         Integer flipflop = -1;
@@ -122,10 +119,10 @@ class Solver1D : public CuriouslyRecurringTemplate<Impl> {
                 root_ = (xMax_ + xMin_) / 2.0;
                 return this->impl().solveImpl(f, accuracy);
             }
-            if (abs(fxMin_) < abs(fxMax_)) {
+            if (QLFCT::abs(fxMin_) < QLFCT::abs(fxMax_)) {
                 xMin_ = enforceBounds_(xMin_ + growthFactor * (xMin_ - xMax_));
                 fxMin_ = f(xMin_);
-            } else if (abs(fxMin_) > abs(fxMax_)) {
+            } else if (QLFCT::abs(fxMin_) > QLFCT::abs(fxMax_)) {
                 xMax_ = enforceBounds_(xMax_ + growthFactor * (xMax_ - xMin_));
                 fxMax_ = f(xMax_);
             } else if (flipflop == -1) {
@@ -167,7 +164,7 @@ class Solver1D : public CuriouslyRecurringTemplate<Impl> {
         QL_REQUIRE(accuracy > 0.0, "accuracy (" << accuracy
                                                 << ") must be positive");
         // check whether we really want to use epsilon
-        accuracy = max<T>(accuracy, QL_EPSILON);
+        accuracy = QLFCT::max<T>(accuracy, QL_EPSILON);
 
         xMin_ = xMin;
         xMax_ = xMax;

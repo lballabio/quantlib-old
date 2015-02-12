@@ -51,9 +51,6 @@ template <class T>
 bool noOption(const std::vector<T> &caps, const std::vector<T> &floors, Size i);
 }
 
-using std::max;
-using std::min;
-
 template <template <class> class InterestRateIndexType,
           template <class> class FloatingCouponType,
           template <class> class CappedFlooredCouponType, class T>
@@ -224,10 +221,10 @@ T effectiveFixedRate(const std::vector<T> &spreads, const std::vector<T> &caps,
     T result = get(spreads, i, 0.0);
     T floor = get(floors, i, Null<Rate>());
     if (floor != Null<Rate>())
-        result = max(floor, result);
+        result = QLFCT::max<T>(floor, result);
     T cap = get(caps, i, Null<Rate>());
     if (cap != Null<Rate>())
-        result = min(cap, result);
+        result = QLFCT::min<T>(cap, result);
     return result;
 }
 

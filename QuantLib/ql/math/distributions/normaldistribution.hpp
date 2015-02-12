@@ -32,9 +32,6 @@
 
 namespace QuantLib {
 
-using std::exp;
-using std::abs;
-
 //! Normal distribution function
 /*! Given x, it returns its probability in a Gaussian normal distribution.
     It provides the first derivative too.
@@ -106,8 +103,8 @@ template <class T> T CumulativeNormalDistribution_t<T>::operator()(T z) const {
             sum -= a;
             g *= y;
             i+=1.0;
-            a = abs(a);
-        } while (lasta > a && a >= abs(sum * QL_EPSILON));
+            a = QLFCT::abs(a);
+        } while (lasta > a && a >= QLFCT::abs(sum * QL_EPSILON));
         result = -gaussian_(z) / z * sum;
     }
     return result;
@@ -162,7 +159,7 @@ class InverseCumulativeNormal : public std::unary_function<Real, Real> {
 // #define REFINE_TO_FULL_MACHINE_PRECISION_USING_HALLEYS_METHOD
 #ifdef REFINE_TO_FULL_MACHINE_PRECISION_USING_HALLEYS_METHOD
         // error (f_(z) - x) divided by the cumulative's derivative
-        const Real r = (f_(z) - x) * M_SQRT2 * M_SQRTPI * exp(0.5 * z * z);
+        const Real r = (f_(z) - x) * M_SQRT2 * M_SQRTPI * QLFCT::exp(0.5 * z * z);
         //  Halley's method
         z -= r / (1 + 0.5 * z * r);
 #endif
@@ -309,7 +306,7 @@ template <class T> inline T NormalDistribution_t<T>::operator()(T x) const {
     T exponent = -(deltax * deltax) / denominator_;
     // debian alpha had some strange problem in the very-low range
     return exponent <= -690.0 ? 0.0 : // exp(x) < 1.0e-300 anyway
-               normalizationFactor_ * exp(exponent);
+               normalizationFactor_ * QLFCT::exp(exponent);
 }
 
 template <class T> inline T NormalDistribution_t<T>::derivative(T x) const {

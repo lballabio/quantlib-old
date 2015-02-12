@@ -34,8 +34,6 @@ namespace QuantLib {
           checking them against known good results.
 */
 
-using std::abs;
-
 template <class T = Real> class Brent_t : public Solver1D<Brent_t<T>, T> {
   public:
     template <class F> T solveImpl(const F &f, T xAccuracy) const {
@@ -73,7 +71,7 @@ template <class T = Real> class Brent_t : public Solver1D<Brent_t<T>, T> {
                 this->fxMax_ = this->fxMin_;
                 e = d = this->root_ - this->xMin_;
             }
-            if (abs(this->fxMax_) < abs(froot)) {
+            if (QLFCT::abs(this->fxMax_) < QLFCT::abs(froot)) {
                 this->xMin_ = this->root_;
                 this->root_ = this->xMax_;
                 this->xMax_ = this->xMin_;
@@ -82,14 +80,14 @@ template <class T = Real> class Brent_t : public Solver1D<Brent_t<T>, T> {
                 this->fxMax_ = this->fxMin_;
             }
             // Convergence check
-            xAcc1 = 2.0 * QL_EPSILON * abs(this->root_) + 0.5 * xAccuracy;
+            xAcc1 = 2.0 * QL_EPSILON * QLFCT::abs(this->root_) + 0.5 * xAccuracy;
             xMid = (this->xMax_ - this->root_) / 2.0;
-            if (abs(xMid) <= xAcc1 || (close<T>(froot, 0.0))) {
+            if (QLFCT::abs(xMid) <= xAcc1 || (close<T>(froot, 0.0))) {
                 f(this->root_);
                 ++this->evaluationNumber_;
                 return this->root_;
             }
-            if (abs(e) >= xAcc1 && abs(this->fxMin_) > abs(froot)) {
+            if (QLFCT::abs(e) >= xAcc1 && QLFCT::abs(this->fxMin_) > QLFCT::abs(froot)) {
 
                 // Attempt inverse quadratic interpolation
                 s = froot / this->fxMin_;
@@ -105,9 +103,9 @@ template <class T = Real> class Brent_t : public Solver1D<Brent_t<T>, T> {
                 }
                 if (p > 0.0)
                     q = -q; // Check whether in bounds
-                p = abs(p);
-                min1 = 3.0 * xMid * q - abs(xAcc1 * q);
-                min2 = abs(e * q);
+                p = QLFCT::abs(p);
+                min1 = 3.0 * xMid * q - QLFCT::abs(xAcc1 * q);
+                min2 = QLFCT::abs(e * q);
                 if (2.0 * p < (min1 < min2 ? min1 : min2)) {
                     e = d; // Accept interpolation
                     d = p / q;
@@ -122,7 +120,7 @@ template <class T = Real> class Brent_t : public Solver1D<Brent_t<T>, T> {
             }
             this->xMin_ = this->root_;
             this->fxMin_ = froot;
-            if (abs(d) > xAcc1)
+            if (QLFCT::abs(d) > xAcc1)
                 this->root_ += d;
             else
                 this->root_ += sign(xAcc1, xMid);
@@ -134,7 +132,7 @@ template <class T = Real> class Brent_t : public Solver1D<Brent_t<T>, T> {
     }
 
   private:
-    T sign(T a, T b) const { return b >= 0.0 ? abs(a) : -abs(a); }
+    T sign(T a, T b) const { return b >= 0.0 ? QLFCT::abs(a) : -QLFCT::abs(a); }
 };
 
 typedef Brent_t<Real> Brent;
