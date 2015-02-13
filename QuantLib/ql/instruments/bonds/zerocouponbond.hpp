@@ -26,6 +26,7 @@
 #define quantlib_zero_coupon_bond_hpp
 
 #include <ql/instruments/bond.hpp>
+#include <ql/cashflows/simplecashflow.hpp>
 
 namespace QuantLib {
 
@@ -35,16 +36,37 @@ namespace QuantLib {
         \test calculations are tested by checking results against
               cached values.
     */
-    class ZeroCouponBond : public Bond {
+	template<class T = Real>
+    class ZeroCouponBond_t : public Bond_t<T> {
       public:
-        ZeroCouponBond(Natural settlementDays,
+        ZeroCouponBond_t(Natural settlementDays,
                        const Calendar& calendar,
-                       Real faceAmount,
+                       T faceAmount,
                        const Date& maturityDate,
                        BusinessDayConvention paymentConvention = Following,
-                       Real redemption = 100.0,
+                       T redemption = 100.0,
                        const Date& issueDate = Date());
     };
+
+	typedef ZeroCouponBond_t<Real> ZeroCouponBond;
+
+    // Implementation
+
+	template<class T>
+	ZeroCouponBond_t<T>::ZeroCouponBond_t(Natural settlementDays,
+		const Calendar& calendar,
+		T faceAmount,
+		const Date& maturityDate,
+		BusinessDayConvention paymentConvention,
+		T redemption,
+		const Date& issueDate)
+		: Bond_t<T>(settlementDays, calendar, issueDate) {
+
+			this->maturityDate_ = maturityDate;
+			Date redemptionDate = this->calendar_.adjust(maturityDate,
+				paymentConvention);
+			this->setSingleRedemption(faceAmount, redemption, redemptionDate);
+	}
 
 }
 

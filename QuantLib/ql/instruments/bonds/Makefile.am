@@ -14,9 +14,7 @@ this_include_HEADERS = \
 libBonds_la_SOURCES = \
     btp.cpp \
     cmsratebond.cpp \
-    cpibond.cpp \
-    floatingratebond.cpp \
-    zerocouponbond.cpp
+    cpibond.cpp
 
 noinst_LTLIBRARIES = libBonds.la
 

@@ -39,7 +39,7 @@ int main() {
 	typedef DiscountingBondEngine_t<CppAD::AD<double> > DiscountingBondEngineAD;
 	typedef FlatForward_t<CppAD::AD<double> > FlatForwardAD;
 
-	Real h = 1.0E-4; // step size for finite differences
+	Real h = 1.0E-6; // step size for finite differences
 
 	Date referenceDate(2, January, 2015);
 	Settings::instance().evaluationDate() = referenceDate;

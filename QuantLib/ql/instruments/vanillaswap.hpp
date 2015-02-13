@@ -372,8 +372,8 @@ template <class T> T VanillaSwap_t<T>::floatingLegNPV() const {
 template <class T> void VanillaSwap_t<T>::setupExpired() const {
     Swap_t<T>::setupExpired();
     this->legBPS_[0] = this->legBPS_[1] = 0.0;
-    fairRate_ = Null<T>();
-    fairSpread_ = Null<T>();
+    fairRate_ = Null<Real>();
+    fairSpread_ = Null<Real>();
 }
 
 template <class T>

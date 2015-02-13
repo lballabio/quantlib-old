@@ -41,10 +41,10 @@ int main() {
 
     // settings
 
-    bool outputStatsOnly = true;
-    bool outputDeltas = false;
+    bool outputStatsOnly = false;
+    bool outputDeltas = true;
 
-    Real h = 1.0E-4; // step size for finite differences
+    Real h = 1.0E-6; // step size for finite differences
 
     std::vector<Size> portfolioSize;
     std::vector<Size> maximumMaturity;
