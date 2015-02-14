@@ -1,5 +1,7 @@
 #include <ql/quantlib.hpp>
 
+#include <boost/make_shared.hpp>
+
 #include <iostream>
 #include <fstream>
 
@@ -19,9 +21,9 @@ void spreads() {
     Handle<Quote> forward0(rateLevel0);
     Handle<Quote> forward(rateLevel);
     Handle<YieldTermStructure> yts0(
-        new FlatForward(refDate, forward0, Actual365Fixed()));
+        boost::make_shared<FlatForward>(refDate, forward0, Actual365Fixed()));
     Handle<YieldTermStructure> yts(
-        new FlatForward(refDate, forward, Actual365Fixed()));
+        boost::make_shared<FlatForward>(refDate, forward, Actual365Fixed()));
 
     boost::shared_ptr<IborIndex> euribor6m(new Euribor(6 * Months, yts));
 
