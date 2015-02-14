@@ -75,6 +75,7 @@ namespace QuantLib {
         virtual Real density(Rate strike,
                              Real discount=1.0,
                              Real gap=1.0E-4) const;
+        Volatility volatility(Rate strike, Nature nature, Real shift=0.0) const;
       protected:
         virtual void initializeExerciseTime() const;
         virtual Real varianceImpl(Rate strike) const;

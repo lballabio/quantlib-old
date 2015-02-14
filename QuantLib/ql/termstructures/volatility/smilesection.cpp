@@ -21,6 +21,7 @@
 #include <ql/termstructures/volatility/smilesection.hpp>
 #include <ql/pricingengines/blackformula.hpp>
 #include <ql/settings.hpp>
+#include <ql/math/comparison.hpp>
 
 namespace QuantLib {
 
@@ -112,4 +113,27 @@ namespace QuantLib {
             QL_FAIL("vega for normal smilesection not yet implemented");
     }
 
+    Real SmileSection::volatility(Rate strike, Nature nature, Real shift) const {
+        if(nature == nature_ && close(shift,this->shift()))
+            return volatility(strike);
+        Real atm = atmLevel();
+        QL_REQUIRE(atm != Null<Real>(),
+                   "smile section must provide atm level to compute converted volatilties");
+        Option::Type type = strike >= atm ? Option::Call : Option::Put;
+        Real premium = optionPrice(strike,type);
+        if (nature == SmileSection::ShiftedLognormal) {
+            try {
+                return blackFormulaImpliedStdDev(type, strike, atm, premium,
+                                                 1.0, shift) /
+                       std::sqrt(exerciseTime());
+            } catch(...) {
+                return blackFormulaImpliedStdDevApproximation(
+                           type, strike, atm, premium, 1.0, shift) /
+                       std::sqrt(exerciseTime());
+            }
+        } else {
+                return bachelierBlackFormulaImpliedVol(type, strike, atm,
+                                                       exerciseTime(), premium);
+            }
+    }
 }
