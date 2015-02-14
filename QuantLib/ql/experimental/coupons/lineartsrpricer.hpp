@@ -46,6 +46,10 @@ namespace QuantLib {
         - by defining the lower and upper bound to be the strike where
           undeflated (!) payer resp. receiver prices are below a given
           threshold
+        - by specificying a number of standard deviations to cover
+          using a Black Scholes process with an atm volatility as
+          a benchmark
+        In every case the lower and upper bound are applied though.
     */
 
     class LinearTsrPricer : public CmsCouponPricer, public MeanRevertingPricer {
@@ -87,15 +91,27 @@ namespace QuantLib {
                 return *this;
             }
 
+            Settings &withBSStdDevs(const Real stdDevs = 3.0,
+                                    const Real lowerRateBound = 0.0001,
+                                    const Real upperRateBound = 2.0000) {
+                strategy_ = BSStdDevs;
+                stdDevs_ = stdDevs;
+                lowerRateBound_ = lowerRateBound;
+                upperRateBound_ = upperRateBound;
+                return *this;
+            }
+
             enum Strategy {
                 RateBound,
                 VegaRatio,
-                PriceThreshold
+                PriceThreshold,
+                BSStdDevs
             };
 
             Strategy strategy_;
             Real vegaRatio_;
             Real priceThreshold_;
+            Real stdDevs_;
             Real lowerRateBound_, upperRateBound_;
         };
 

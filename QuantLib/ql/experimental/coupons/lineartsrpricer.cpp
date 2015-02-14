@@ -277,6 +277,20 @@ namespace QuantLib {
             break;
         }
 
+        case Settings::BSStdDevs : {
+            Real atm = smileSection_->atmLevel();
+            Real atmVol = smileSection_->volatility(atm);
+            Real upperTmp = atm * std::exp(settings_.stdDevs_ * atmVol -
+                                           0.5 * atmVol * atmVol *
+                                               smileSection_->exerciseTime());
+            Real lowerTmp = atm * std::exp(-settings_.stdDevs_ * atmVol -
+                                           0.5 * atmVol * atmVol *
+                                               smileSection_->exerciseTime());
+            upper = std::min(upperTmp, settings_.upperRateBound_);
+            lower = std::max(lowerTmp, settings_.lowerRateBound_);
+            break;
+        }
+
         default:
             QL_FAIL("Unknown strategy (" << settings_.strategy_ << ")");
         }
