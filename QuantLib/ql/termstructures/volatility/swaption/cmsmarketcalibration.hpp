@@ -29,7 +29,6 @@
 #include <ql/math/matrix.hpp>
 #include <ql/math/array.hpp>
 #include <ql/handle.hpp>
-#include <ql/termstructures/volatility/swaption/swaptionvolcube1.hpp>
 
 namespace QuantLib {
 
@@ -51,7 +50,7 @@ namespace QuantLib {
         boost::shared_ptr<CmsMarket> cmsMarket_;
         Matrix weights_;
         CalibrationType calibrationType_;
-        Matrix sparseXabrParameters_, denseXabrParameters_, browseCmsMarket_;
+        Matrix sparseSabrParameters_, denseSabrParameters_, browseCmsMarket_;
 
         Array compute(const boost::shared_ptr<EndCriteria>& endCriteria,
                       const boost::shared_ptr<OptimizationMethod>& method,
@@ -73,21 +72,6 @@ namespace QuantLib {
         Real error() { return error_; }
         EndCriteria::Type endCriteria() { return endCriteria_; };
 
-        Real freeParamTransformInverse(Real p) {
-            if(boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_) != NULL)
-                return betaTransformInverse(p);
-            if(boost::dynamic_pointer_cast<SwaptionVolCube1a>(*volCube_) != NULL)
-                return gammaTransformInverse(p);
-            QL_FAIL("unknown swaption vol cube type for cms calibration");
-        }
-        Real freeParamTransformDirect(Real y) {
-            if(boost::dynamic_pointer_cast<SwaptionVolCube1>(*volCube_) != NULL)
-                return betaTransformDirect(y);
-            if(boost::dynamic_pointer_cast<SwaptionVolCube1a>(*volCube_) != NULL)
-                return gammaTransformDirect(y);
-            QL_FAIL("unknown swaption vol cube type for cms calibration");
-        }
-
         static Real betaTransformInverse(Real beta) {
             return std::sqrt(-std::log(beta));
         }
@@ -97,15 +81,6 @@ namespace QuantLib {
                          0.999999),
                 0.000001);
         }
-
-        static Real gammaTransformInverse(Real gamma) {
-            return std::sqrt(gamma - 0.000001);
-        }
-        static Real gammaTransformDirect(Real y) {
-            return std::fabs(y) < 10.0 ? y*y + 0.000001 : 100.0;
-        }
-
-
         static Real reversionTransformInverse(Real reversion) {
             return reversion * reversion;
         }
