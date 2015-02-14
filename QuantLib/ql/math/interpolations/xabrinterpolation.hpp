@@ -269,7 +269,7 @@ class XABRInterpolationImpl : public Interpolation::templateImpl<I1, I2>,
     Real interpolationError() const {
         Size n = this->xEnd_ - this->xBegin_;
         Real squaredError = interpolationSquaredError();
-        return std::sqrt(n * squaredError / (n - 1));
+        return std::sqrt(n * squaredError / (n==1 ? 1 : (n - 1)));
     }
 
     Real interpolationMaxError() const {
