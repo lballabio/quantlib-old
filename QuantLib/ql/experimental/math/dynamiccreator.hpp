@@ -130,6 +130,7 @@ class MersenneTwisterDynamicRng {
     void resetSeed(const uint32_t seed);
     sample_type next();
     Real nextReal();
+    Real operator()();
     unsigned long nextInt32();
     MersenneTwisterDynamicRngDescription description() const;
 
@@ -140,6 +141,10 @@ class MersenneTwisterDynamicRng {
     const int w_, p_;
     mt_detail::mt_struct *m_;
 };
+
+inline Real MersenneTwisterDynamicRng::operator()() {
+    return nextReal();
+}
 
 template <class Description> class MersenneTwisterCustomRng {
 
@@ -153,6 +158,7 @@ template <class Description> class MersenneTwisterCustomRng {
     void resetSeed(const uint32_t seed);
     sample_type next();
     Real nextReal();
+    Real operator()();
     unsigned long nextInt32();
 
   private:
@@ -165,10 +171,15 @@ template <class Description> class MersenneTwisterCustomRng {
 };
 
 template <class Description>
+inline Real MersenneTwisterCustomRng<Description>::operator()() {
+    return nextReal();
+}
+
+template <class Description>
 MersenneTwisterCustomRng<Description>::MersenneTwisterCustomRng(
     const uint32_t seed) {
     state_ = (uint32_t *)malloc((Description::p / Description::w + 1) *
-                               sizeof(uint32_t));
+                                sizeof(uint32_t));
     QL_REQUIRE(state_ != NULL, "can not allocate state space");
     resetSeed(seed);
 }
@@ -232,18 +243,19 @@ void MersenneTwisterCustomRng<Description>::twist() {
     for (k = 0; k < Description::nn - Description::mm; ++k) {
         x = (state_[k] & Description::umask) |
             (state_[k + 1] & Description::lmask);
-        state_[k] = state_[k + Description::mm] ^ (x >> 1) ^ (x & 1U ? Description::aaa : 0U);
+        state_[k] = state_[k + Description::mm] ^ (x >> 1) ^
+                    (x & 1U ? Description::aaa : 0U);
     }
     for (; k < Description::nn - 1; ++k) {
         x = (state_[k] & Description::umask) |
             (state_[k + 1] & Description::lmask);
         state_[k] = state_[k + Description::mm - Description::nn] ^ (x >> 1) ^
-            (x & 1U ? Description::aaa : 0U);
+                    (x & 1U ? Description::aaa : 0U);
     }
     x = (state_[Description::nn - 1] & Description::umask) |
         (state_[0] & Description::lmask);
-    state_[Description::nn - 1] =
-        state_[Description::mm - 1] ^ (x >> 1) ^  (x & 1U ? Description::aaa : 0U);
+    state_[Description::nn - 1] = state_[Description::mm - 1] ^ (x >> 1) ^
+                                  (x & 1U ? Description::aaa : 0U);
     i_ = 0;
 }
 
@@ -416,326 +428,326 @@ struct Mtdesc19937_7 {
 // and ids 4138, 4139, 4140, 4141, 4142, 4143, 4144, 4145
 
 struct Mtdesc9941_0 {
-static const int w = 32;
-static const int p = 9941;
-static const uint32_t aaa = 3834843177UL;
-static const int mm = 155;
-static const int nn= 311;
-static const int rr= 11;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4294965248UL;
-static const uint32_t lmask= 2047UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 2599779968UL;
-static const uint32_t maskC= 4160585728UL;
-//static const int i = 311;
+    static const int w = 32;
+    static const int p = 9941;
+    static const uint32_t aaa = 3834843177UL;
+    static const int mm = 155;
+    static const int nn = 311;
+    static const int rr = 11;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4294965248UL;
+    static const uint32_t lmask = 2047UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 2599779968UL;
+    static const uint32_t maskC = 4160585728UL;
+    // static const int i = 311;
 };
 
 struct Mtdesc9941_1 {
-static const int w = 32;
-static const int p = 9941;
-static const uint32_t aaa = 3864399914UL;
-static const int mm = 155;
-static const int nn= 311;
-static const int rr= 11;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4294965248UL;
-static const uint32_t lmask= 2047UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 2339864448UL;
-static const uint32_t maskC= 4009656320UL;
-//static const int i = 311;
+    static const int w = 32;
+    static const int p = 9941;
+    static const uint32_t aaa = 3864399914UL;
+    static const int mm = 155;
+    static const int nn = 311;
+    static const int rr = 11;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4294965248UL;
+    static const uint32_t lmask = 2047UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 2339864448UL;
+    static const uint32_t maskC = 4009656320UL;
+    // static const int i = 311;
 };
 
 struct Mtdesc9941_2 {
-static const int w = 32;
-static const int p = 9941;
-static const uint32_t aaa = 2904821803UL;
-static const int mm = 155;
-static const int nn= 311;
-static const int rr= 11;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4294965248UL;
-static const uint32_t lmask= 2047UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 3668671104UL;
-static const uint32_t maskC= 4022960128UL;
-//static const int i = 311;
+    static const int w = 32;
+    static const int p = 9941;
+    static const uint32_t aaa = 2904821803UL;
+    static const int mm = 155;
+    static const int nn = 311;
+    static const int rr = 11;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4294965248UL;
+    static const uint32_t lmask = 2047UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 3668671104UL;
+    static const uint32_t maskC = 4022960128UL;
+    // static const int i = 311;
 };
 
 struct Mtdesc9941_3 {
-static const int w = 32;
-static const int p = 9941;
-static const uint32_t aaa = 2782138412UL;
-static const int mm = 155;
-static const int nn= 311;
-static const int rr= 11;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4294965248UL;
-static const uint32_t lmask= 2047UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 981172096UL;
-static const uint32_t maskC= 4140892160UL;
-//static const int i = 311;
+    static const int w = 32;
+    static const int p = 9941;
+    static const uint32_t aaa = 2782138412UL;
+    static const int mm = 155;
+    static const int nn = 311;
+    static const int rr = 11;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4294965248UL;
+    static const uint32_t lmask = 2047UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 981172096UL;
+    static const uint32_t maskC = 4140892160UL;
+    // static const int i = 311;
 };
 
 struct Mtdesc9941_4 {
-static const int w = 32;
-static const int p = 9941;
-static const uint32_t aaa = 2208960557UL;
-static const int mm = 155;
-static const int nn= 311;
-static const int rr= 11;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4294965248UL;
-static const uint32_t lmask= 2047UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 1721326464UL;
-static const uint32_t maskC= 4025843712UL;
-//static const int i = 311;
+    static const int w = 32;
+    static const int p = 9941;
+    static const uint32_t aaa = 2208960557UL;
+    static const int mm = 155;
+    static const int nn = 311;
+    static const int rr = 11;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4294965248UL;
+    static const uint32_t lmask = 2047UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 1721326464UL;
+    static const uint32_t maskC = 4025843712UL;
+    // static const int i = 311;
 };
 
 struct Mtdesc9941_5 {
-static const int w = 32;
-static const int p = 9941;
-static const uint32_t aaa = 3664318510UL;
-static const int mm = 155;
-static const int nn= 311;
-static const int rr= 11;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4294965248UL;
-static const uint32_t lmask= 2047UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 1701666688UL;
-static const uint32_t maskC= 3203727360UL;
-//static const int i = 311;
+    static const int w = 32;
+    static const int p = 9941;
+    static const uint32_t aaa = 3664318510UL;
+    static const int mm = 155;
+    static const int nn = 311;
+    static const int rr = 11;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4294965248UL;
+    static const uint32_t lmask = 2047UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 1701666688UL;
+    static const uint32_t maskC = 3203727360UL;
+    // static const int i = 311;
 };
 
 struct Mtdesc9941_6 {
-static const int w = 32;
-static const int p = 9941;
-static const uint32_t aaa = 3040612399UL;
-static const int mm = 155;
-static const int nn= 311;
-static const int rr= 11;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4294965248UL;
-static const uint32_t lmask= 2047UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 1933540096UL;
-static const uint32_t maskC= 4157898752UL;
-//static const int i = 311;
+    static const int w = 32;
+    static const int p = 9941;
+    static const uint32_t aaa = 3040612399UL;
+    static const int mm = 155;
+    static const int nn = 311;
+    static const int rr = 11;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4294965248UL;
+    static const uint32_t lmask = 2047UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 1933540096UL;
+    static const uint32_t maskC = 4157898752UL;
+    // static const int i = 311;
 };
 
 struct Mtdesc9941_7 {
-static const int w = 32;
-static const int p = 9941;
-static const uint32_t aaa = 2874019888UL;
-static const int mm = 155;
-static const int nn= 311;
-static const int rr= 11;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4294965248UL;
-static const uint32_t lmask= 2047UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 592805760UL;
-static const uint32_t maskC= 4008509440UL;
-//static const int i = 311;
+    static const int w = 32;
+    static const int p = 9941;
+    static const uint32_t aaa = 2874019888UL;
+    static const int mm = 155;
+    static const int nn = 311;
+    static const int rr = 11;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4294965248UL;
+    static const uint32_t lmask = 2047UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 592805760UL;
+    static const uint32_t maskC = 4008509440UL;
+    // static const int i = 311;
 };
 
 // 8 instances with p=521, w=32 created with creator-seed 42
 // and ids 4138, 4139, 4140, 4141, 4142, 4143, 4144, 4145
 
 struct Mtdesc521_0 {
-static const int w = 32;
-static const int p = 521;
-static const uint32_t aaa = 3900969001UL;
-static const int mm = 8;
-static const int nn= 17;
-static const int rr= 23;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4286578688UL;
-static const uint32_t lmask= 8388607UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 3954522752UL;
-static const uint32_t maskC= 4292182016UL;
-//static const int i = 17;
+    static const int w = 32;
+    static const int p = 521;
+    static const uint32_t aaa = 3900969001UL;
+    static const int mm = 8;
+    static const int nn = 17;
+    static const int rr = 23;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4286578688UL;
+    static const uint32_t lmask = 8388607UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 3954522752UL;
+    static const uint32_t maskC = 4292182016UL;
+    // static const int i = 17;
 };
 
 struct Mtdesc521_1 {
-static const int w = 32;
-static const int p = 521;
-static const uint32_t aaa = 3929280554UL;
-static const int mm = 8;
-static const int nn= 17;
-static const int rr= 23;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4286578688UL;
-static const uint32_t lmask= 8388607UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 653613952UL;
-static const uint32_t maskC= 4288479232UL;
-//static const int i = 17;
+    static const int w = 32;
+    static const int p = 521;
+    static const uint32_t aaa = 3929280554UL;
+    static const int mm = 8;
+    static const int nn = 17;
+    static const int rr = 23;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4286578688UL;
+    static const uint32_t lmask = 8388607UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 653613952UL;
+    static const uint32_t maskC = 4288479232UL;
+    // static const int i = 17;
 };
 
 struct Mtdesc521_2 {
-static const int w = 32;
-static const int p = 521;
-static const uint32_t aaa = 2886799403UL;
-static const int mm = 8;
-static const int nn= 17;
-static const int rr= 23;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4286578688UL;
-static const uint32_t lmask= 8388607UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 1991326336UL;
-static const uint32_t maskC= 4294901760UL;
-//static const int i = 17;
+    static const int w = 32;
+    static const int p = 521;
+    static const uint32_t aaa = 2886799403UL;
+    static const int mm = 8;
+    static const int nn = 17;
+    static const int rr = 23;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4286578688UL;
+    static const uint32_t lmask = 8388607UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 1991326336UL;
+    static const uint32_t maskC = 4294901760UL;
+    // static const int i = 17;
 };
 
 struct Mtdesc521_3 {
-static const int w = 32;
-static const int p = 521;
-static const uint32_t aaa = 3792113708UL;
-static const int mm = 8;
-static const int nn= 17;
-static const int rr= 23;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4286578688UL;
-static const uint32_t lmask= 8388607UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 1999985280UL;
-static const uint32_t maskC= 4292182016UL;
-//static const int i = 17;
+    static const int w = 32;
+    static const int p = 521;
+    static const uint32_t aaa = 3792113708UL;
+    static const int mm = 8;
+    static const int nn = 17;
+    static const int rr = 23;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4286578688UL;
+    static const uint32_t lmask = 8388607UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 1999985280UL;
+    static const uint32_t maskC = 4292182016UL;
+    // static const int i = 17;
 };
 
 struct Mtdesc521_4 {
-static const int w = 32;
-static const int p = 521;
-static const uint32_t aaa = 3332837421UL;
-static const int mm = 8;
-static const int nn= 17;
-static const int rr= 23;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4286578688UL;
-static const uint32_t lmask= 8388607UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 2006399872UL;
-static const uint32_t maskC= 4284841984UL;
-//static const int i = 17;
+    static const int w = 32;
+    static const int p = 521;
+    static const uint32_t aaa = 3332837421UL;
+    static const int mm = 8;
+    static const int nn = 17;
+    static const int rr = 23;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4286578688UL;
+    static const uint32_t lmask = 8388607UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 2006399872UL;
+    static const uint32_t maskC = 4284841984UL;
+    // static const int i = 17;
 };
 
 struct Mtdesc521_5 {
-static const int w = 32;
-static const int p = 521;
-static const uint32_t aaa = 3349024814UL;
-static const int mm = 8;
-static const int nn= 17;
-static const int rr= 23;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4286578688UL;
-static const uint32_t lmask= 8388607UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 3061111680UL;
-static const uint32_t maskC= 4288479232UL;
-//static const int i = 17;
+    static const int w = 32;
+    static const int p = 521;
+    static const uint32_t aaa = 3349024814UL;
+    static const int mm = 8;
+    static const int nn = 17;
+    static const int rr = 23;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4286578688UL;
+    static const uint32_t lmask = 8388607UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 3061111680UL;
+    static const uint32_t maskC = 4288479232UL;
+    // static const int i = 17;
 };
 
 struct Mtdesc521_6 {
-static const int w = 32;
-static const int p = 521;
-static const uint32_t aaa = 3498119215UL;
-static const int mm = 8;
-static const int nn= 17;
-static const int rr= 23;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4286578688UL;
-static const uint32_t lmask= 8388607UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 1987918464UL;
-static const uint32_t maskC= 4292182016UL;
-//static const int i = 17;
+    static const int w = 32;
+    static const int p = 521;
+    static const uint32_t aaa = 3498119215UL;
+    static const int mm = 8;
+    static const int nn = 17;
+    static const int rr = 23;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4286578688UL;
+    static const uint32_t lmask = 8388607UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 1987918464UL;
+    static const uint32_t maskC = 4292182016UL;
+    // static const int i = 17;
 };
 
 struct Mtdesc521_7 {
-static const int w = 32;
-static const int p = 521;
-static const uint32_t aaa = 3774287920UL;
-static const int mm = 8;
-static const int nn= 17;
-static const int rr= 23;
-static const int ww= 32;
-static const uint32_t wmask= 4294967295UL;
-static const uint32_t umask= 4286578688UL;
-static const uint32_t lmask= 8388607UL;
-static const int shift0= 12;
-static const int shift1= 18;
-static const int shiftB= 7;
-static const int shiftC= 15;
-static const uint32_t maskB= 662134656UL;
-static const uint32_t maskC= 4257546240UL;
-//static const int i = 17;
+    static const int w = 32;
+    static const int p = 521;
+    static const uint32_t aaa = 3774287920UL;
+    static const int mm = 8;
+    static const int nn = 17;
+    static const int rr = 23;
+    static const int ww = 32;
+    static const uint32_t wmask = 4294967295UL;
+    static const uint32_t umask = 4286578688UL;
+    static const uint32_t lmask = 8388607UL;
+    static const int shift0 = 12;
+    static const int shift1 = 18;
+    static const int shiftB = 7;
+    static const int shiftC = 15;
+    static const uint32_t maskB = 662134656UL;
+    static const uint32_t maskC = 4257546240UL;
+    // static const int i = 17;
 };
 
 namespace mt_detail {
@@ -794,7 +806,10 @@ uint32_t _genrand_dc(_org_state *st);
 #define NONREDU 1
 
 extern _org_state global_mt19937;
-typedef struct {int *x; int deg;} Polynomial;
+typedef struct {
+    int *x;
+    int deg;
+} Polynomial;
 
 typedef struct PRESCR_T {
     int sizeofA; /* parameter size */
@@ -822,19 +837,19 @@ typedef struct EQDEG_T {
     int rrr;
     int www;
     uint32_t aaa[2];
-    uint32_t gupper_mask;   /** most significant  (WWW - RRR) bits **/
-    uint32_t glower_mask;	/** least significant RRR bits **/
-    uint32_t greal_mask;	/** upper WWW bitmask **/
+    uint32_t gupper_mask; /** most significant  (WWW - RRR) bits **/
+    uint32_t glower_mask; /** least significant RRR bits **/
+    uint32_t greal_mask;  /** upper WWW bitmask **/
     int ggap; /** difference between machine wordsize and dest wordsize **/
-    int gcur_maxlengs[32];	/** for optimize_v_hard **/
+    int gcur_maxlengs[32]; /** for optimize_v_hard **/
     uint32_t gmax_b, gmax_c;
 } eqdeg_t;
 
 int _prescreening_dc(prescr_t *pre, uint32_t aaa);
 void _InitPrescreening_dc(prescr_t *pre, int m, int n, int r, int w);
 void _EndPrescreening_dc(prescr_t *pre);
-int _CheckPeriod_dc(check32_t *ck, _org_state *st,
-            uint32_t a, int m, int n, int r, int w);
+int _CheckPeriod_dc(check32_t *ck, _org_state *st, uint32_t a, int m, int n,
+                    int r, int w);
 void _get_tempering_parameter_dc(mt_struct *mts);
 void _get_tempering_parameter_hard_dc(mt_struct *mts);
 void _InitCheck32_dc(check32_t *ck, int r, int w);
