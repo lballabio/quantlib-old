@@ -33,7 +33,7 @@
 
 
 ; current QuantLib version
-(define version "1.5")
+(define version "1.6")
 
 ; utilities
 (define (string-split s c)

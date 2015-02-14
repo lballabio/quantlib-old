@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT([QuantLib-SWIG], [1.5],
+AC_INIT([QuantLib-SWIG], [1.6],
         [quantlib-dev@lists.sourceforge.net],
         [QuantLib-SWIG])
 AC_PREREQ(2.50)
@@ -172,6 +172,7 @@ AC_CONFIG_FILES([
     Perl/Makefile
     Python/Makefile
     R/Makefile
-    Ruby/Makefile])
+    Ruby/Makefile
+    Scala/Makefile])
 AC_OUTPUT
 
