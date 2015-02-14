@@ -709,13 +709,16 @@ namespace QuantLib {
         swapTenorNodes[1] = swapTenors[swapLengthsPreviousIndex+1];
 
         Rate atmForward = atmStrike(atmOptionDate, atmSwapTenor);
+        Real shift = atmVol_->shift(atmOptionTime, atmTimeLength);
 
         Matrix atmForwards(2, 2, 0.0);
+        Matrix atmShifts(2,2,0.0);
         Matrix atmVols(2, 2, 0.0);
         for (Size i=0; i<2; i++) {
             for (Size j=0; j<2; j++) {
                 atmForwards[i][j] = atmStrike(optionsDateNodes[i],
                                               swapTenorNodes[j]);
+                atmShifts[i][j] = atmVol_->shift(optionsNodes[i], swapLengthsNodes[j]);
                 // atmVols[i][j] = smiles[i][j]->volatility(atmForwards[i][j]);
                 atmVols[i][j] = atmVol_->volatility(
                     optionsDateNodes[i], swapTenorNodes[j], atmForwards[i][j]);
@@ -739,14 +742,14 @@ namespace QuantLib {
         }
 
         for (Size k=0; k<nStrikes_; k++){
-            const Real strike = std::max(atmForward + strikeSpreads_[k],cutoffStrike_);
-            const Real moneyness = atmForward/strike;
+            const Real strike = std::max(atmForward + strikeSpreads_[k],cutoffStrike_-shift);
+            const Real moneyness = (atmForward+shift)/strike;
 
             Matrix strikes(2,2,0.);
             Matrix spreadVols(2,2,0.);
             for (Size i=0; i<2; i++){
                 for (Size j=0; j<2; j++){
-                    strikes[i][j] = atmForwards[i][j]/moneyness;
+                    strikes[i][j] = (atmForwards[i][j]+shift)/moneyness;
                     spreadVols[i][j] =
                         smiles[i][j]->volatility(strikes[i][j]) - atmVols[i][j];
                 }
