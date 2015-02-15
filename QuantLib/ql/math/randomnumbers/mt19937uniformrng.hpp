@@ -56,7 +56,7 @@ namespace QuantLib {
         Real nextReal() const {
             return (Real(nextInt32()) + 0.5)/4294967296.0;
         }
-        Real operator()() const;
+        unsigned long operator()() const;
         //! return a random integer in the [0,0xffffffff]-interval
         unsigned long nextInt32() const  {
             if (mti==N)
@@ -79,7 +79,7 @@ namespace QuantLib {
         static const unsigned long MATRIX_A, UPPER_MASK, LOWER_MASK;
     };
 
-    inline  Real MersenneTwisterUniformRng::operator()() const { return nextReal(); }
+    inline unsigned long MersenneTwisterUniformRng::operator()() const { return nextInt32(); }
 
 }
 
