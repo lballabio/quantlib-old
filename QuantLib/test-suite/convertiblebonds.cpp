@@ -279,7 +279,7 @@ void ConvertibleBondTest::testBond() {
                               vars.redemption, vars.issueDate);
 
     floating.setPricingEngine(bondEngine);
-    setCouponPricer<Real>(floating.cashflows(),pricer);
+    setCouponPricer(floating.cashflows(),pricer);
 
     tolerance = 2.0e-2 * (vars.faceAmount/100.0);
 

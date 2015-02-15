@@ -247,11 +247,11 @@ void CatBondTest::testRiskFreeAgainstFloatingRateBond() {
     shared_ptr<PricingEngine> bondEngine(
                                      new DiscountingBondEngine(riskFreeRate));
     bond1.setPricingEngine(bondEngine);
-    setCouponPricer<Real>(bond1.cashflows(),pricer);
+    setCouponPricer(bond1.cashflows(),pricer);
 
     shared_ptr<PricingEngine> catBondEngine(new MonteCarloCatBondEngine(noCatRisk, riskFreeRate));
     catBond1.setPricingEngine(catBondEngine);
-    setCouponPricer<Real>(catBond1.cashflows(),pricer);
+    setCouponPricer(catBond1.cashflows(),pricer);
 
     #if defined(QL_USE_INDEXED_COUPON)
     Real cachedPrice1 = 99.874645;
@@ -295,11 +295,11 @@ void CatBondTest::testRiskFreeAgainstFloatingRateBond() {
     shared_ptr<PricingEngine> bondEngine2(
                                     new DiscountingBondEngine(discountCurve));
     bond2.setPricingEngine(bondEngine2);
-    setCouponPricer<Real>(bond2.cashflows(),pricer);
+    setCouponPricer(bond2.cashflows(),pricer);
 
     shared_ptr<PricingEngine> catBondEngine2(new MonteCarloCatBondEngine(noCatRisk, discountCurve));
     catBond2.setPricingEngine(catBondEngine2);
-    setCouponPricer<Real>(catBond2.cashflows(),pricer);
+    setCouponPricer(catBond2.cashflows(),pricer);
 
     #if defined(QL_USE_INDEXED_COUPON)
     Real cachedPrice2 = 97.955904;
@@ -344,10 +344,10 @@ void CatBondTest::testRiskFreeAgainstFloatingRateBond() {
                            100.0, Date(30,November,2004));
 
     bond3.setPricingEngine(bondEngine2);
-    setCouponPricer<Real>(bond3.cashflows(),pricer);
+    setCouponPricer(bond3.cashflows(),pricer);
 
     catBond3.setPricingEngine(catBondEngine2);
-    setCouponPricer<Real>(catBond3.cashflows(),pricer);
+    setCouponPricer(catBond3.cashflows(),pricer);
 
     #if defined(QL_USE_INDEXED_COUPON)
     Real cachedPrice3 = 98.495458;
@@ -417,7 +417,7 @@ void CatBondTest::testCatBondInDoomScenario() {
 
     shared_ptr<PricingEngine> catBondEngine(new MonteCarloCatBondEngine(doomCatRisk, discountCurve));
     catBond.setPricingEngine(catBondEngine);
-    setCouponPricer<Real>(catBond.cashflows(),pricer);
+    setCouponPricer(catBond.cashflows(),pricer);
 
     Real price = catBond.cleanPrice();
     BOOST_CHECK_EQUAL(0, price);
@@ -484,7 +484,7 @@ void CatBondTest::testCatBondWithDoomOnceInTenYears() {
 
     shared_ptr<PricingEngine> catBondEngine(new MonteCarloCatBondEngine(doomCatRisk, discountCurve));
     catBond.setPricingEngine(catBondEngine);
-    setCouponPricer<Real>(catBond.cashflows(),pricer);
+    setCouponPricer(catBond.cashflows(),pricer);
 
     Real price = catBond.cleanPrice();
     Real yield = catBond.yield(ActualActual(ActualActual::ISMA), Simple, Annual);
@@ -565,7 +565,7 @@ void CatBondTest::testCatBondWithDoomOnceInTenYearsProportional() {
 
     shared_ptr<PricingEngine> catBondEngine(new MonteCarloCatBondEngine(doomCatRisk, discountCurve));
     catBond.setPricingEngine(catBondEngine);
-    setCouponPricer<Real>(catBond.cashflows(),pricer);
+    setCouponPricer(catBond.cashflows(),pricer);
 
     Real price = catBond.cleanPrice();
     Real yield = catBond.yield(ActualActual(ActualActual::ISMA), Simple, Annual);
@@ -641,7 +641,7 @@ void CatBondTest::testCatBondWithGeneratedEventsProportional() {
 
     shared_ptr<PricingEngine> catBondEngine(new MonteCarloCatBondEngine(betaCatRisk, discountCurve));
     catBond.setPricingEngine(catBondEngine);
-    setCouponPricer<Real>(catBond.cashflows(),pricer);
+    setCouponPricer(catBond.cashflows(),pricer);
 
     Real price = catBond.cleanPrice();
     Real yield = catBond.yield(ActualActual(ActualActual::ISMA), Simple, Annual);

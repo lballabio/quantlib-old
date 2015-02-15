@@ -553,8 +553,8 @@ int main(int argc, char *argv[]) {
         boost::shared_ptr<IborCouponPricer> iborPricer =
             boost::make_shared<BlackIborCouponPricer>();
 
-        setCouponPricer<Real>(leg0, cmsPricer);
-        setCouponPricer<Real>(leg1, iborPricer);
+        setCouponPricer(leg0, cmsPricer);
+        setCouponPricer(leg1, iborPricer);
 
         boost::shared_ptr<PricingEngine> swapPricer =
             boost::make_shared<DiscountingSwapEngine>(ytsOis);

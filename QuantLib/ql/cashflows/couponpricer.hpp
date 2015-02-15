@@ -44,6 +44,8 @@
 #include <ql/pricingengines/blackformula.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 
+#include <boost/type_traits.hpp>
+
 namespace QuantLib {
 
 using boost::dynamic_pointer_cast;
@@ -123,15 +125,18 @@ class CompoundingRatePricer : public SubPeriodsPricer {
     Real swapletPrice() const;
 };
 
-template <class T>
-void setCouponPricer(const typename Leg_t<T>::Type &leg,
-                     const boost::shared_ptr<FloatingRateCouponPricer_t<T> > &);
+template <template <class> class S, class T>
+void setCouponPricer(
+    const typename Leg_t<T>::Type &leg, const boost::shared_ptr<S<T> > &pricer,
+    typename boost::enable_if<boost::is_base_of<FloatingRateCouponPricer_t<T>,
+                                                S<T> > >::type *dummy = 0);
 
-template <class T>
+template <template <class> class S, class T>
 void setCouponPricers(
     const typename Leg_t<T>::Type &leg,
-    const std::vector<boost::shared_ptr<FloatingRateCouponPricer_t<T> > > &);
-
+    const std::vector<boost::shared_ptr<S<T> > > &pricers,
+    typename boost::enable_if<boost::is_base_of<FloatingRateCouponPricer_t<T>,
+                                                S<T> > >::type *dummy = 0);
 //===========================================================================//
 //                         CouponSelectorToSetPricer                         //
 //===========================================================================//
@@ -238,21 +243,23 @@ template <class T> void PricerSetter<T>::visit(SubPeriodsCoupon &c) {
 }
 } // namespace {}
 
-template <class T>
+template <template <class> class S, class T>
 void setCouponPricer(
-    const typename Leg_t<T>::Type &leg,
-    const boost::shared_ptr<FloatingRateCouponPricer_t<T> > &pricer) {
+    const typename Leg_t<T>::Type &leg, const boost::shared_ptr<S<T> > &pricer,
+    typename boost::enable_if<boost::is_base_of<FloatingRateCouponPricer_t<T>,
+                                                S<T> > >::type *dummy = 0) {
     PricerSetter<T> setter(pricer);
     for (Size i = 0; i < leg.size(); ++i) {
         leg[i]->accept(setter);
     }
 }
 
-template <class T>
+template <template <class> class S, class T>
 void setCouponPricers(
     const typename Leg_t<T>::Type &leg,
-    const std::vector<boost::shared_ptr<FloatingRateCouponPricer_t<T> > > &
-        pricers) {
+    const std::vector<boost::shared_ptr<S<T> > > &pricers,
+    typename boost::enable_if<boost::is_base_of<FloatingRateCouponPricer_t<T>,
+                                                S<T> > >::type *dummy = 0) {
     Size nCashFlows = leg.size();
     QL_REQUIRE(nCashFlows > 0, "no cashflows");
 

@@ -281,7 +281,7 @@ void SwapTest::testInArrears() {
         .withGearings(gearings)
         .withSpreads(spreads)
         .inArrears();
-    setCouponPricer<Real>(floatingLeg, pricer);
+    setCouponPricer(floatingLeg, pricer);
 
     Swap swap(floatingLeg,fixedLeg);
     swap.setPricingEngine(boost::shared_ptr<PricingEngine>(
