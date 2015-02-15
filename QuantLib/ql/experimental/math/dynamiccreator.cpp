@@ -79,6 +79,11 @@ unsigned long MersenneTwisterDynamicRng::nextInt32() {
     return static_cast<unsigned long>(genrand_mt(m_));
 }
 
+void MersenneTwisterDynamicRng::discard(uint64_t z) {
+    for(;z!=0ULL;--z)
+        genrand_mt(m_);
+}
+
 MersenneTwisterDynamicRng::MersenneTwisterDynamicRng(const int w, const int p,
                                                      const uint32_t creatorSeed,
                                                      const uint16_t id, const uint32_t seed)

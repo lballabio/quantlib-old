@@ -130,8 +130,9 @@ class MersenneTwisterDynamicRng {
     void resetSeed(const uint32_t seed);
     sample_type next();
     Real nextReal();
-    Real operator()();
+    unsigned long operator()();
     unsigned long nextInt32();
+    void discard(uint64_t z);
     MersenneTwisterDynamicRngDescription description() const;
 
   private:
@@ -142,8 +143,8 @@ class MersenneTwisterDynamicRng {
     mt_detail::mt_struct *m_;
 };
 
-inline Real MersenneTwisterDynamicRng::operator()() {
-    return nextReal();
+inline unsigned long MersenneTwisterDynamicRng::operator()() {
+    return nextInt32();
 }
 
 template <class Description> class MersenneTwisterCustomRng {
@@ -158,8 +159,9 @@ template <class Description> class MersenneTwisterCustomRng {
     void resetSeed(const uint32_t seed);
     sample_type next();
     Real nextReal();
-    Real operator()();
+    unsigned long operator()();
     unsigned long nextInt32();
+    void discard(uint64_t z);
 
   private:
     void twist();
@@ -171,8 +173,8 @@ template <class Description> class MersenneTwisterCustomRng {
 };
 
 template <class Description>
-inline Real MersenneTwisterCustomRng<Description>::operator()() {
-    return nextReal();
+inline unsigned long MersenneTwisterCustomRng<Description>::operator()() {
+    return nextInt32();
 }
 
 template <class Description>
@@ -218,6 +220,16 @@ template <class Description>
 Real MersenneTwisterCustomRng<Description>::nextReal() {
     return (Real(nextInt32()) + 0.5) /
            (Description::w == 32 ? 4294967296.0 : 2147483648.0);
+}
+
+template <class Description>
+void MersenneTwisterCustomRng<Description>::discard(uint64_t z) {
+    for(;z!=0ULL;--z)
+        // genrant_mt
+        if (i_++ >= Description::nn) {
+            twist();
+        }
+    // end genrand_mt
 }
 
 template <class Description>
