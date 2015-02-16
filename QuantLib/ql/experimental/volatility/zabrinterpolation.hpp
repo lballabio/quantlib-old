@@ -39,7 +39,7 @@ template <typename Evaluation> struct ZabrSpecs {
     Real eps() { return 0.000001; }
     void defaultValues(std::vector<Real> &params,
                        std::vector<bool> &paramIsFixed, const Real &forward,
-                       const Real expiryTime) {
+                       const Real expiryTime, const std::vector<Real>& addParams) {
         if (params[1] == Null<Real>())
             params[1] = 0.5;
         if (params[0] == Null<Real>())
@@ -56,7 +56,7 @@ template <typename Evaluation> struct ZabrSpecs {
     }
     void guess(Array &values, const std::vector<bool> &paramIsFixed,
                const Real &forward, const Real expiryTime,
-               const std::vector<Real> &r) {
+               const std::vector<Real> &r, const std::vector<Real>& addParams) {
         Size j = 0;
         if (!paramIsFixed[1])
             values[1] = (1.0 - 2E-6) * r[j++] + 1E-6;
@@ -86,7 +86,7 @@ template <typename Evaluation> struct ZabrSpecs {
         x[2] = y[2] < 25.0 + eps1() ? std::sqrt(y[2] - eps1())
                                     : (y[2] - eps1() + 25.0) / 10.0;
         x[3] = std::asin(y[3] / eps2());
-        x[4] = std::sqrt(y[0]);
+        x[4] = y[4] < 4.0 ? std::sqrt(y[4]) : (y[4] + 4.0) / 4.0;
         return x;
     }
     Array direct(const Array &x, const std::vector<bool> &,
@@ -103,12 +103,17 @@ template <typename Evaluation> struct ZabrSpecs {
         y[3] = std::fabs(x[3]) < 2.5 * M_PI
                    ? eps2() * std::sin(x[3])
                    : eps2() * (x[3] > 0.0 ? 1.0 : (-1.0));
-        y[4] = std::fabs(x[4]) < 2.0 ? x[0] * x[0] : 4.0 * x[0] - 4.0;
+        y[4] = std::fabs(x[4]) < 2.0 ? x[4] * x[4] : 4.0 * std::fabs(x[4]) - 4.0;
         return y;
+    }
+    Real weight(const Real strike, const Real forward, const Real stdDev,
+                const std::vector<Real> &addParams) {
+        return blackFormulaStdDevDerivative(strike, forward, stdDev, 1.0);
     }
     typedef ZabrSmileSection<Evaluation> type;
     boost::shared_ptr<type> instance(const Time t, const Real &forward,
-                                     const std::vector<Real> &params) {
+                                     const std::vector<Real> &params,
+                                     const std::vector<Real> &addParams) {
         return boost::make_shared<type>(t, forward, params);
     }
 };
