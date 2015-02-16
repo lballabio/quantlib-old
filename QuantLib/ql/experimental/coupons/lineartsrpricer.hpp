@@ -50,6 +50,10 @@ namespace QuantLib {
           using a Black Scholes process with an atm volatility as
           a benchmark
         In every case the lower and upper bound are applied though.
+        In case the smile section is shifted lognormal, the specified
+        lower and upper bound are applied to strike + shift so that
+        e.g. a zero lower bound always refers to the lower bound of
+        the rates in the shifted lognormal model.
     */
 
     class LinearTsrPricer : public CmsCouponPricer, public MeanRevertingPricer {
