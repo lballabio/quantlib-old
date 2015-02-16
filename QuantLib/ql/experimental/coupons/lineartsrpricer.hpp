@@ -200,6 +200,8 @@ namespace QuantLib {
         Settings settings_;
         DayCounter volDayCounter_;
         boost::shared_ptr<Integrator> integrator_;
+
+        Real shiftedLowerBound_, shiftedUpperBound_;
     };
 }
 
