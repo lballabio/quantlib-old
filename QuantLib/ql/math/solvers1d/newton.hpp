@@ -37,8 +37,6 @@ namespace QuantLib {
           checking them against known good results.
 */
 
-using std::abs;
-
 template <class T> class Newton_t : public Solver1D<Newton_t<T>, T> {
   public:
     template <class F> T solveImpl(const F &f, T xAccuracy) const {
@@ -69,7 +67,7 @@ template <class T> class Newton_t : public Solver1D<Newton_t<T>, T> {
                 return s.solve(f, xAccuracy, this->root_ + dx, this->xMin_,
                                this->xMax_);
             }
-            if (abs(dx) < xAccuracy) {
+            if (QLFCT::abs(dx) < xAccuracy) {
                 f(this->root_);
                 ++this->evaluationNumber_;
                 return this->root_;

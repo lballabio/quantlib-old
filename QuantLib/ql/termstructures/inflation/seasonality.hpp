@@ -52,8 +52,6 @@ namespace QuantLib {
     affects.  Additive seasonality is not implemented.
 */
 
-using std::abs;
-
 template <class T> class InflationTermStructure_t;
 std::pair<Date, Date> inflationPeriod(const Date &d, Frequency frequency);
 
@@ -234,7 +232,7 @@ bool MultiplicativePriceSeasonality_t<T>::isConsistent(
     for (Size i = 1; i < nTest; i++) {
         Real factorAt =
             this->seasonalityFactor(curveBaseDate + Period(i, Years));
-        QL_REQUIRE(std::fabs(factorAt - factorBase) < eps,
+        QL_REQUIRE(QLFCT::abs(factorAt - factorBase) < eps,
                    "seasonality is inconsistent with inflation term structure, "
                    "factors "
                        << factorBase << " and later factor " << factorAt << ", "
@@ -311,7 +309,7 @@ T MultiplicativePriceSeasonality_t<T>::seasonalityFactor(const Date &to) const {
         which = 0;
     } else {
         // days, weeks, months, years are the only time unit possibilities
-        Integer diffDays = abs(to - from); // in days
+        Integer diffDays = static_cast<Integer>(QLFCT::abs(static_cast<double>(to - from))); // in days
         Integer dir = 1;
         if (from > to)
             dir = -1;

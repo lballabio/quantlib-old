@@ -1,5 +1,4 @@
 #include <ql/quantlib.hpp>
-#include <ql/qlcppad.hpp>
 
 #include <boost/assign/std/vector.hpp>
 #include <boost/timer.hpp>
@@ -25,6 +24,8 @@ class Timer {
 
 int main() {
 
+    try {
+
     // some typedefs to keep notation simple
 
     typedef RateHelper_t<CppAD::AD<double> >::Type RateHelperAD;
@@ -44,7 +45,7 @@ int main() {
     bool outputStatsOnly = false;
     bool outputDeltas = true;
 
-    Real h = 1.0E-6; // step size for finite differences
+    Real h = 1.0E-4; // step size for finite differences
 
     std::vector<Size> portfolioSize;
     std::vector<Size> maximumMaturity;
@@ -342,6 +343,12 @@ int main() {
 
         } // loop portfolio size
     }     // lopp maximum maturity
+
+    } catch(QuantLib::Error e) {
+        std::cout << e.what() << std::endl;
+    } catch(std::exception e) {
+        std::cout << e.what() << std::endl;
+    }
 
     return 0;
 }

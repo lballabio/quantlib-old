@@ -36,9 +36,6 @@
 
 namespace QuantLib {
 
-using std::abs;
-using std::max;
-
 //! Universal piecewise-term-structure boostrapper.
 template <class Curve, class T = Real> class IterativeBootstrap {
     typedef typename Curve::traits_type Traits;
@@ -222,9 +219,9 @@ void IterativeBootstrap<Curve,T>::calculate() const {
             continue; // at least one more iteration to convergence check
 
         // exit condition
-        T change = abs(data[1] - previousData_[1]);
+        T change = QLFCT::abs(data[1] - previousData_[1]);
         for (Size i = 2; i <= alive_; ++i)
-            change = max<T>(change, abs(data[i] - previousData_[i]));
+            change = QLFCT::max<T>(change, QLFCT::abs(data[i] - previousData_[i]));
         if (change <= accuracy) // convergence reached
             break;
 

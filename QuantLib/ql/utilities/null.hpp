@@ -80,6 +80,23 @@ namespace QuantLib {
         }
     };
 
+#ifdef QLCPPAD
+	template <class Base> class Null<CppAD::AD<Base> > {
+  public:
+    Null() {}
+    operator CppAD::AD<Base>() const {
+        return CppAD::AD<Base>(static_cast<Base>(Null<Base>()));
+    }
+    // this is needed, because in ad_assign.hpp line 124ff
+    // assignment from T to AD<Base> is done via conversion from T
+    // to Base and then to AD<Base>. If for example
+    // T = Null<CppAD::AD<double>> we need to be able to convert
+    // to double so that then conversion to AD<double> from this
+    // works.
+    operator Base() const { return static_cast<Base>(Null<Base>()); }
+};
+#endif
+
 }
 
 

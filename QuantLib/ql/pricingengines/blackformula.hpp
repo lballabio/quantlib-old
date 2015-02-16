@@ -62,10 +62,6 @@ template <class T> void checkParameters(T strike, T forward, T displacement) {
 
 namespace QuantLib {
 
-using std::log;
-using std::max;
-using std::sqrt;
-
 /*! Black 1976 formula
     \warning instead of volatility it uses standard deviation,
              i.e. volatility*sqrt(timeToMaturity)
@@ -79,7 +75,7 @@ T blackFormula(Option::Type optionType, T strike, T forward, T stdDev,
                                             << ") must be positive");
 
     if (stdDev == 0.0)
-        return max<T>((forward - strike) * optionType, 0.0) * discount;
+        return QLFCT::max<T>(T((forward - strike) * optionType), T(0.0)) * discount;
     forward = forward + displacement;
     strike = strike + displacement;
 
@@ -88,7 +84,7 @@ T blackFormula(Option::Type optionType, T strike, T forward, T stdDev,
     if (strike == 0.0)
         return (optionType == Option::Call ? forward * discount : 0.0);
 
-    T d1 = log(forward / strike) / stdDev + 0.5 * stdDev;
+    T d1 = QLFCT::log(forward / strike) / stdDev + 0.5 * stdDev;
     T d2 = d1 - stdDev;
     CumulativeNormalDistribution_t<T> phi;
     T nd1 = phi(optionType * d1);
@@ -136,7 +132,7 @@ T blackFormulaImpliedStdDevApproximation(Option::Type optionType, T strike,
     strike = strike + displacement;
 
     // Brenner-Subrahmanyan (1988) and Feinstein (1988) ATM approx.
-    T result0 = blackPrice / discount * sqrt(2.0 * M_PI) / forward;
+    T result0 = blackPrice / discount * QLFCT::sqrt(2.0 * M_PI) / forward;
 
     // Corrado and Miller extended moneyness approximation
     T moneynessDelta = optionType * (forward - strike);
@@ -146,15 +142,15 @@ T blackFormulaImpliedStdDevApproximation(Option::Type optionType, T strike,
     T temp2 = temp * temp - moneynessDelta_PI;
     // approximation breaks down, 2 alternatives:
     // 1. zero it
-    temp2 = CondExpLt(temp2, 0.0, 0.0, temp2);
+    temp2 = QLFCT::CondExpLt(temp2, 0.0, 0.0, temp2);
     // 2. Manaster-Koehler (1982) efficient Newton-Raphson seed
     // return std::fabs(std::log(forward/strike))*std::sqrt(2.0);
-    temp2 = sqrt(temp2);
+    temp2 = QLFCT::sqrt(temp2);
     temp += temp2;
-    temp *= sqrt(2.0 * M_PI);
+    temp *= QLFCT::sqrt(2.0 * M_PI);
     T result1 = temp / (forward + strike);
 
-    T stdDev = CondExpEq(strike, forward, result0, result1);
+    T stdDev = QLFCT::CondExpEq(strike, forward, result0, result1);
     QL_ENSURE(stdDev >= 0.0, "stdDev (" << stdDev << ") must be non-negative");
     return stdDev;
 }
@@ -189,7 +185,7 @@ template <class T> class BlackImpliedStdDevHelper_t {
         QL_REQUIRE(undiscountedBlackPrice >= 0.0,
                    "undiscounted Black price (" << undiscountedBlackPrice
                                                 << ") must be non-negative");
-        signedMoneyness_ = optionType * log((forward + displacement) /
+        signedMoneyness_ = optionType * QLFCT::log((forward + displacement) /
                                             (strike + displacement));
     }
     T operator()(T stdDev) const {
@@ -198,7 +194,7 @@ template <class T> class BlackImpliedStdDevHelper_t {
                                              << ") must be non-negative");
 #endif
         if (stdDev == 0.0)
-            return max<T>(signedForward_ - signedStrike_, Real(0.0)) -
+            return QLFCT::max<T>(signedForward_ - signedStrike_, Real(0.0)) -
                    undiscountedBlackPrice_;
         T temp = halfOptionType_ * stdDev;
         T d = signedMoneyness_ / stdDev;
@@ -206,7 +202,7 @@ template <class T> class BlackImpliedStdDevHelper_t {
         T signedD2 = d - temp;
         T result = signedForward_ * N_(signedD1) - signedStrike_ * N_(signedD2);
         // numerical inaccuracies can yield a negative answer
-        return max<T>(T(0.0), result) - undiscountedBlackPrice_;
+        return QLFCT::max<T>(T(0.0), result) - undiscountedBlackPrice_;
     }
     T derivative(T stdDev) const {
 #if defined(QL_EXTRA_SAFETY_CHECKS)

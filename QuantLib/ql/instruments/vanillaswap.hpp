@@ -165,8 +165,8 @@ template <class T> class VanillaSwap_t<T>::results : public Swap_t<T>::results {
 
 template <class T>
 class VanillaSwap_t<T>::engine
-    : public GenericEngine<VanillaSwap_t<T>::arguments,
-                           VanillaSwap_t<T>::results> {};
+    : public GenericEngine<typename VanillaSwap_t<T>::arguments,
+                           typename VanillaSwap_t<T>::results> {};
 
 // inline definitions
 
@@ -372,8 +372,8 @@ template <class T> T VanillaSwap_t<T>::floatingLegNPV() const {
 template <class T> void VanillaSwap_t<T>::setupExpired() const {
     Swap_t<T>::setupExpired();
     this->legBPS_[0] = this->legBPS_[1] = 0.0;
-    fairRate_ = Null<Real>();
-    fairSpread_ = Null<Real>();
+    fairRate_ = Null<T>();
+    fairSpread_ = Null<T>();
 }
 
 template <class T>

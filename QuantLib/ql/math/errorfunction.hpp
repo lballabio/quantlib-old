@@ -36,9 +36,6 @@ namespace QuantLib {
         Used to calculate the cumulative normal distribution function
     */
 
-    using std::fabs;
-    using std::exp;
-
     template<class T = Real> class ErrorFunction_t : public std::unary_function<T,T> {
       public:
         ErrorFunction_t() {}
@@ -359,7 +356,7 @@ namespace QuantLib {
 
         */
 
-        ax = fabs(x);
+        ax = QLFCT::abs(x);
 
         if(ax < 0.84375) {      /* |x|<0.84375 */
             if(ax < 3.7252902984e-09) { /* |x|<2**-28 */
@@ -393,7 +390,7 @@ namespace QuantLib {
             R=rb0+s*(rb1+s*(rb2+s*(rb3+s*(rb4+s*(rb5+s*rb6)))));
             S=one+s*(sb1+s*(sb2+s*(sb3+s*(sb4+s*(sb5+s*(sb6+s*sb7))))));
         }
-        r = exp( -ax*ax-0.5625 +R/S);
+        r = QLFCT::exp( -ax*ax-0.5625 +R/S);
         if(x>=0) return one-r/ax; else return  r/ax-one;
 
     }

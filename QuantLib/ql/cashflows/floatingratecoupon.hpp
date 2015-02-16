@@ -43,8 +43,6 @@ namespace QuantLib {
 template <class T> class InterestRateIndex_t;
 template <class T> class FloatingRateCouponPricer_t;
 
-using std::min;
-
 //! base floating-rate coupon class
 template <class T = Real>
 class FloatingRateCoupon_t : public Coupon_t<T>, public Observer {
@@ -201,7 +199,7 @@ T FloatingRateCoupon_t<T>::accruedAmount(const Date &d) const {
     } else {
         return this->nominal() * this->rate() *
                this->dayCounter().yearFraction(
-                   this->accrualStartDate_, min(d, this->accrualEndDate_),
+                   this->accrualStartDate_, std::min(d, this->accrualEndDate_),
                    this->refPeriodStart_, this->refPeriodEnd_);
     }
 }

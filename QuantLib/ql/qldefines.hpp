@@ -159,11 +159,23 @@
 #define QL_DEPRECATED
 #endif
 
-// used for cppad-ized function implementations
-inline double CondExpLt(double x, double y, double a, double b) { return x < y ? a : b; }
-inline double CondExpLe(double x, double y, double a, double b) { return x <= y ? a : b; }
-inline double CondExpGt(double x, double y, double a, double b) { return x > y ? a : b; }
-inline double CondExpGe(double x, double y, double a, double b) { return x >= y ? a : b; }
-inline double CondExpEq(double x, double y, double a, double b) { return x == y ? a : b; }
+// cppad support
+#define QLCPPAD
+
+#ifdef QLCPPAD
+#include <ql/qlcppad.hpp>
+#else
+namespace QLFCT {
+	using std::pow; using std::log;
+	using std::exp; using std::abs; using std::sqrt;
+	template<class T> const T CondExpLt(const T& x, const T& y, const T& a, const T& b) { return x < y ? a : b; }
+	template<class T> const T CondExpLe(const T& x, const T& y, const T& a, const T& b) { return x <= y ? a : b; }
+	template<class T> const T CondExpGt(const T& x, const T& y, const T& a, const T& b) { return x > y ? a : b; }
+	template<class T> const T CondExpGe(const T& x, const T& y, const T& a, const T& b) { return x >= y ? a : b; }
+	template<class T> const T CondExpEq(const T& x, const T& y, const T& a, const T& b) { return x == y ? a : b; }
+	template<class T> const T max(const T& x, const T& y) { return QLFCT::CondExpGt(x, y, x, y); }
+	template<class T> const T min(const T& x, const T& y) { return QLFCT::CondExpLt(x, y, x, y); }
+}
+#endif
 
 #endif

@@ -395,7 +395,7 @@ Date CashFlows::startDate(const typename Leg_t<T>::Type &leg) {
 
     Date d = Date::maxDate();
     for (Size i = 0; i < leg.size(); ++i) {
-        shared_ptr<Coupon_t<T> > c = dynamic_pointer_cast<Coupon_t<T> >(leg[i]);
+        boost::shared_ptr<Coupon_t<T> > c = dynamic_pointer_cast<Coupon_t<T> >(leg[i]);
         if (c)
             d = std::min(d, c->accrualStartDate());
         else
@@ -410,7 +410,7 @@ Date CashFlows::maturityDate(const typename Leg_t<T>::Type &leg) {
 
     Date d = Date::minDate();
     for (Size i = 0; i < leg.size(); ++i) {
-        shared_ptr<Coupon_t<T> > c = dynamic_pointer_cast<Coupon_t<T> >(leg[i]);
+        boost::shared_ptr<Coupon_t<T> > c = dynamic_pointer_cast<Coupon_t<T> >(leg[i]);
         if (c)
             d = std::max(d, c->accrualEndDate());
         else
@@ -548,7 +548,7 @@ T aggregateRate(const typename Leg_t<T>::Type &leg, Iter first, Iter last) {
     DayCounter dc;
     T result = 0.0;
     for (; first < last && (*first)->date() == paymentDate; ++first) {
-        shared_ptr<Coupon_t<T> > cp =
+        boost::shared_ptr<Coupon_t<T> > cp =
             dynamic_pointer_cast<Coupon_t<T> >(*first);
         if (cp) {
             if (firstCouponFound) {
@@ -604,7 +604,7 @@ T CashFlows::nominal(const typename Leg_t<T>::Type &leg,
 
     Date paymentDate = (*cf)->date();
     for (; cf < leg.end() && (*cf)->date() == paymentDate; ++cf) {
-        shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
+        boost::shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
         if (cp)
             return cp->nominal();
     }
@@ -622,7 +622,7 @@ Date CashFlows::accrualStartDate(const typename Leg_t<T>::Type &leg,
 
     Date paymentDate = (*cf)->date();
     for (; cf < leg.end() && (*cf)->date() == paymentDate; ++cf) {
-        shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
+        boost::shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
         if (cp)
             return cp->accrualStartDate();
     }
@@ -640,7 +640,7 @@ Date CashFlows::accrualEndDate(const typename Leg_t<T>::Type &leg,
 
     Date paymentDate = (*cf)->date();
     for (; cf < leg.end() && (*cf)->date() == paymentDate; ++cf) {
-        shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
+        boost::shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
         if (cp)
             return cp->accrualEndDate();
     }
@@ -658,7 +658,7 @@ Date CashFlows::referencePeriodStart(const typename Leg_t<T>::Type &leg,
 
     Date paymentDate = (*cf)->date();
     for (; cf < leg.end() && (*cf)->date() == paymentDate; ++cf) {
-        shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
+        boost::shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
         if (cp)
             return cp->referencePeriodStart();
     }
@@ -676,7 +676,7 @@ Date CashFlows::referencePeriodEnd(const typename Leg_t<T>::Type &leg,
 
     Date paymentDate = (*cf)->date();
     for (; cf < leg.end() && (*cf)->date() == paymentDate; ++cf) {
-        shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
+        boost::shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
         if (cp)
             return cp->referencePeriodEnd();
     }
@@ -694,7 +694,7 @@ Time CashFlows::accrualPeriod(const typename Leg_t<T>::Type &leg,
 
     Date paymentDate = (*cf)->date();
     for (; cf < leg.end() && (*cf)->date() == paymentDate; ++cf) {
-        shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
+        boost::shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
         if (cp)
             return cp->accrualPeriod();
     }
@@ -712,7 +712,7 @@ BigInteger CashFlows::accrualDays(const typename Leg_t<T>::Type &leg,
 
     Date paymentDate = (*cf)->date();
     for (; cf < leg.end() && (*cf)->date() == paymentDate; ++cf) {
-        shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
+        boost::shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
         if (cp)
             return cp->accrualDays();
     }
@@ -733,7 +733,7 @@ Time CashFlows::accruedPeriod(const typename Leg_t<T>::Type &leg,
 
     Date paymentDate = (*cf)->date();
     for (; cf < leg.end() && (*cf)->date() == paymentDate; ++cf) {
-        shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
+        boost::shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
         if (cp)
             return cp->accruedPeriod(settlementDate);
     }
@@ -754,7 +754,7 @@ BigInteger CashFlows::accruedDays(const typename Leg_t<T>::Type &leg,
 
     Date paymentDate = (*cf)->date();
     for (; cf < leg.end() && (*cf)->date() == paymentDate; ++cf) {
-        shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
+        boost::shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
         if (cp)
             return cp->accruedDays(settlementDate);
     }
@@ -776,7 +776,7 @@ T CashFlows::accruedAmount(const typename Leg_t<T>::Type &leg,
     Date paymentDate = (*cf)->date();
     T result = 0.0;
     for (; cf < leg.end() && (*cf)->date() == paymentDate; ++cf) {
-        shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
+        boost::shared_ptr<Coupon_t<T> > cp = dynamic_pointer_cast<Coupon_t<T> >(*cf);
         if (cp)
             result += cp->accruedAmount(settlementDate);
     }
@@ -968,7 +968,7 @@ T simpleDuration(const typename Leg_t<T>::Type &leg, const InterestRate &y,
         }
 
         Date couponDate = leg[i]->date();
-        shared_ptr<Coupon> coupon = boost::dynamic_pointer_cast<Coupon>(leg[i]);
+        boost::shared_ptr<Coupon> coupon = boost::dynamic_pointer_cast<Coupon>(leg[i]);
         if (coupon) {
             refStartDate = coupon->referencePeriodStart();
             refEndDate = coupon->referencePeriodEnd();
@@ -1027,7 +1027,7 @@ T modifiedDuration(const typename Leg_t<T>::Type &leg, const InterestRate &y,
         }
 
         Date couponDate = leg[i]->date();
-        shared_ptr<Coupon> coupon = boost::dynamic_pointer_cast<Coupon>(leg[i]);
+        boost::shared_ptr<Coupon> coupon = boost::dynamic_pointer_cast<Coupon>(leg[i]);
         if (coupon) {
             refStartDate = coupon->referencePeriodStart();
             refEndDate = coupon->referencePeriodEnd();
@@ -1199,7 +1199,7 @@ T CashFlows::npv(const typename Leg_t<T>::Type &leg, const InterestRate_t<T> &y,
             amount = 0.0;
         }
 
-        shared_ptr<Coupon> coupon = boost::dynamic_pointer_cast<Coupon>(leg[i]);
+        boost::shared_ptr<Coupon> coupon = boost::dynamic_pointer_cast<Coupon>(leg[i]);
         if (coupon) {
             refStartDate = coupon->referencePeriodStart();
             refEndDate = coupon->referencePeriodEnd();
@@ -1349,7 +1349,7 @@ T CashFlows::convexity(const typename Leg_t<T>::Type &leg,
         }
 
         Date couponDate = leg[i]->date();
-        shared_ptr<Coupon> coupon = boost::dynamic_pointer_cast<Coupon>(leg[i]);
+        boost::shared_ptr<Coupon> coupon = boost::dynamic_pointer_cast<Coupon>(leg[i]);
         if (coupon) {
             refStartDate = coupon->referencePeriodStart();
             refEndDate = coupon->referencePeriodEnd();
@@ -1489,7 +1489,7 @@ namespace {
 template <class T> class ZSpreadFinder : public std::unary_function<T, T> {
   public:
     ZSpreadFinder(const typename Leg_t<T>::Type &leg,
-                  const shared_ptr<YieldTermStructure_t<T> > &discountCurve,
+                  const boost::shared_ptr<YieldTermStructure_t<T> > &discountCurve,
                   T npv, const DayCounter &dc, Compounding comp, Frequency freq,
                   bool includeSettlementDateFlows, Date settlementDate,
                   Date npvDate)
@@ -1519,7 +1519,7 @@ template <class T> class ZSpreadFinder : public std::unary_function<T, T> {
   private:
     const typename Leg_t<T>::Type &leg_;
     T npv_;
-    shared_ptr<SimpleQuote_t<T> > zSpread_;
+    boost::shared_ptr<SimpleQuote_t<T> > zSpread_;
     ZeroSpreadedTermStructure_t<T> curve_;
     bool includeSettlementDateFlows_;
     Date settlementDate_, npvDate_;
@@ -1529,7 +1529,7 @@ template <class T> class ZSpreadFinder : public std::unary_function<T, T> {
 
 template <class T>
 T CashFlows::npv(const typename Leg_t<T>::Type &leg,
-                 const shared_ptr<YieldTermStructure_t<T> > &discountCurve,
+                 const boost::shared_ptr<YieldTermStructure_t<T> > &discountCurve,
                  T zSpread, const DayCounter &dc, Compounding comp,
                  Frequency freq, bool includeSettlementDateFlows,
                  Date settlementDate, Date npvDate) {
@@ -1545,7 +1545,7 @@ T CashFlows::npv(const typename Leg_t<T>::Type &leg,
 
     Handle<YieldTermStructure> discountCurveHandle(discountCurve);
     Handle<Quote> zSpreadQuoteHandle(
-        shared_ptr<Quote>(new SimpleQuote(zSpread)));
+        boost::shared_ptr<Quote>(new SimpleQuote(zSpread)));
 
     ZeroSpreadedTermStructure spreadedCurve(discountCurveHandle,
                                             zSpreadQuoteHandle, comp, freq, dc);
@@ -1559,7 +1559,7 @@ T CashFlows::npv(const typename Leg_t<T>::Type &leg,
 
 template <class T>
 T CashFlows::zSpread(const typename Leg_t<T>::Type &leg, T npv,
-                     const shared_ptr<YieldTermStructure_t<T> > &discount,
+                     const boost::shared_ptr<YieldTermStructure_t<T> > &discount,
                      const DayCounter &dayCounter, Compounding compounding,
                      Frequency frequency, bool includeSettlementDateFlows,
                      Date settlementDate, Date npvDate, T accuracy,

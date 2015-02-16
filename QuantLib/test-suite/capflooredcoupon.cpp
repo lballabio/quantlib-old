@@ -147,7 +147,7 @@ namespace {
                 .withSpreads(spreadVector)
                 .withCaps(caps)
                 .withFloors(floors);
-            setCouponPricer<Real>(iborLeg, pricer);
+            setCouponPricer(iborLeg, pricer);
             return iborLeg;
         }
 

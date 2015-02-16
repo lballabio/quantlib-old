@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="methods">
@@ -3903,6 +3903,10 @@
     <ClInclude Include="ql\pricingengines\vanilla\analytich1hwengine.hpp">
       <Filter>pricingengines\vanilla</Filter>
     </ClInclude>
+    <ClInclude Include="ql\pricingengines\bond\bondfunctionsimpl.hpp">
+      <Filter>pricingengines\bond</Filter>
+    </ClInclude>
+    <ClInclude Include="ql\qlcppad.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -3935,52 +3939,22 @@
     <ClCompile Include="ql\cashflows\averagebmacoupon.cpp">
       <Filter>cashflows</Filter>
     </ClCompile>
-    <ClCompile Include="ql\cashflows\capflooredcoupon.cpp">
-      <Filter>cashflows</Filter>
-    </ClCompile>
     <ClCompile Include="ql\cashflows\capflooredinflationcoupon.cpp">
-      <Filter>cashflows</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\cashflows\cashflows.cpp">
       <Filter>cashflows</Filter>
     </ClCompile>
     <ClCompile Include="ql\cashflows\cashflowvectors.cpp">
       <Filter>cashflows</Filter>
     </ClCompile>
-    <ClCompile Include="ql\cashflows\cmscoupon.cpp">
-      <Filter>cashflows</Filter>
-    </ClCompile>
     <ClCompile Include="ql\cashflows\conundrumpricer.cpp">
       <Filter>cashflows</Filter>
     </ClCompile>
-    <ClCompile Include="ql\cashflows\coupon.cpp">
-      <Filter>cashflows</Filter>
-    </ClCompile>
     <ClCompile Include="ql\cashflows\couponpricer.cpp">
-      <Filter>cashflows</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\cashflows\digitalcmscoupon.cpp">
-      <Filter>cashflows</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\cashflows\digitalcoupon.cpp">
-      <Filter>cashflows</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\cashflows\digitaliborcoupon.cpp">
       <Filter>cashflows</Filter>
     </ClCompile>
     <ClCompile Include="ql\cashflows\dividend.cpp">
       <Filter>cashflows</Filter>
     </ClCompile>
     <ClCompile Include="ql\cashflows\duration.cpp">
-      <Filter>cashflows</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\cashflows\fixedratecoupon.cpp">
-      <Filter>cashflows</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\cashflows\floatingratecoupon.cpp">
-      <Filter>cashflows</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\cashflows\iborcoupon.cpp">
       <Filter>cashflows</Filter>
     </ClCompile>
     <ClCompile Include="ql\cashflows\indexedcashflow.cpp">
@@ -4001,9 +3975,6 @@
     <ClCompile Include="ql\cashflows\replication.cpp">
       <Filter>cashflows</Filter>
     </ClCompile>
-    <ClCompile Include="ql\cashflows\simplecashflow.cpp">
-      <Filter>cashflows</Filter>
-    </ClCompile>
     <ClCompile Include="ql\cashflows\timebasket.cpp">
       <Filter>cashflows</Filter>
     </ClCompile>
@@ -4016,13 +3987,7 @@
     <ClCompile Include="ql\indexes\iborindex.cpp">
       <Filter>indexes</Filter>
     </ClCompile>
-    <ClCompile Include="ql\indexes\indexmanager.cpp">
-      <Filter>indexes</Filter>
-    </ClCompile>
     <ClCompile Include="ql\indexes\inflationindex.cpp">
-      <Filter>indexes</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\indexes\interestrateindex.cpp">
       <Filter>indexes</Filter>
     </ClCompile>
     <ClCompile Include="ql\indexes\region.cpp">
@@ -4053,9 +4018,6 @@
       <Filter>indexes\ibor</Filter>
     </ClCompile>
     <ClCompile Include="ql\indexes\swap\chfliborswap.cpp">
-      <Filter>indexes\swap</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\indexes\swap\euriborswap.cpp">
       <Filter>indexes\swap</Filter>
     </ClCompile>
     <ClCompile Include="ql\indexes\swap\eurliborswap.cpp">
@@ -4089,9 +4051,6 @@
       <Filter>instruments</Filter>
     </ClCompile>
     <ClCompile Include="ql\instruments\bmaswap.cpp">
-      <Filter>instruments</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\instruments\bond.cpp">
       <Filter>instruments</Filter>
     </ClCompile>
     <ClCompile Include="ql\instruments\capfloor.cpp">
@@ -4148,9 +4107,6 @@
     <ClCompile Include="ql\instruments\makeswaption.cpp">
       <Filter>instruments</Filter>
     </ClCompile>
-    <ClCompile Include="ql\instruments\makevanillaswap.cpp">
-      <Filter>instruments</Filter>
-    </ClCompile>
     <ClCompile Include="ql\instruments\makeyoyinflationcapfloor.cpp">
       <Filter>instruments</Filter>
     </ClCompile>
@@ -4181,16 +4137,10 @@
     <ClCompile Include="ql\instruments\stock.cpp">
       <Filter>instruments</Filter>
     </ClCompile>
-    <ClCompile Include="ql\instruments\swap.cpp">
-      <Filter>instruments</Filter>
-    </ClCompile>
     <ClCompile Include="ql\instruments\swaption.cpp">
       <Filter>instruments</Filter>
     </ClCompile>
     <ClCompile Include="ql\instruments\vanillaoption.cpp">
-      <Filter>instruments</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\instruments\vanillaswap.cpp">
       <Filter>instruments</Filter>
     </ClCompile>
     <ClCompile Include="ql\instruments\varianceswap.cpp">
@@ -4208,9 +4158,6 @@
     <ClCompile Include="ql\instruments\bonds\cmsratebond.cpp">
       <Filter>instruments\bonds</Filter>
     </ClCompile>
-    <ClCompile Include="ql\instruments\bonds\fixedratebond.cpp">
-      <Filter>instruments\bonds</Filter>
-    </ClCompile>
     <ClCompile Include="ql\instruments\bonds\floatingratebond.cpp">
       <Filter>instruments\bonds</Filter>
     </ClCompile>
@@ -4224,9 +4171,6 @@
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="ql\math\bspline.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\math\errorfunction.cpp">
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="ql\math\factorial.cpp">
@@ -4808,12 +4752,6 @@
     <ClCompile Include="ql\termstructures\inflationtermstructure.cpp">
       <Filter>termstructures</Filter>
     </ClCompile>
-    <ClCompile Include="ql\termstructures\voltermstructure.cpp">
-      <Filter>termstructures</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\termstructures\yieldtermstructure.cpp">
-      <Filter>termstructures</Filter>
-    </ClCompile>
     <ClCompile Include="ql\termstructures\volatility\abcd.cpp">
       <Filter>termstructures\volatility</Filter>
     </ClCompile>
@@ -4830,9 +4768,6 @@
       <Filter>termstructures\volatility</Filter>
     </ClCompile>
     <ClCompile Include="ql\termstructures\volatility\sabrsmilesection.cpp">
-      <Filter>termstructures\volatility</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\termstructures\volatility\smilesection.cpp">
       <Filter>termstructures\volatility</Filter>
     </ClCompile>
     <ClCompile Include="ql\termstructures\volatility\spreadedsmilesection.cpp">
@@ -4875,9 +4810,6 @@
       <Filter>termstructures\volatility\optionlet</Filter>
     </ClCompile>
     <ClCompile Include="ql\termstructures\volatility\optionlet\optionletstripper2.cpp">
-      <Filter>termstructures\volatility\optionlet</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\termstructures\volatility\optionlet\optionletvolatilitystructure.cpp">
       <Filter>termstructures\volatility\optionlet</Filter>
     </ClCompile>
     <ClCompile Include="ql\termstructures\volatility\optionlet\spreadedoptionletvol.cpp">
@@ -4931,26 +4863,11 @@
     <ClCompile Include="ql\termstructures\yield\fittedbonddiscountcurve.cpp">
       <Filter>termstructures\yield</Filter>
     </ClCompile>
-    <ClCompile Include="ql\termstructures\yield\flatforward.cpp">
-      <Filter>termstructures\yield</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\termstructures\yield\forwardstructure.cpp">
-      <Filter>termstructures\yield</Filter>
-    </ClCompile>
     <ClCompile Include="ql\termstructures\yield\nonlinearfittingmethods.cpp">
       <Filter>termstructures\yield</Filter>
     </ClCompile>
     <ClCompile Include="ql\termstructures\yield\oisratehelper.cpp">
       <Filter>termstructures\yield</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\termstructures\yield\ratehelpers.cpp">
-      <Filter>termstructures\yield</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\termstructures\yield\zeroyieldstructure.cpp">
-      <Filter>termstructures\yield</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\termstructures\inflation\inflationhelpers.cpp">
-      <Filter>termstructures\inflation</Filter>
     </ClCompile>
     <ClCompile Include="ql\termstructures\inflation\seasonality.cpp">
       <Filter>termstructures\inflation</Filter>
@@ -5206,15 +5123,6 @@
     </ClCompile>
     <ClCompile Include="ql\pricingengines\lookback\analyticcontinuouspartialfloatinglookback.cpp">
       <Filter>pricingengines\lookback</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\pricingengines\bond\bondfunctions.cpp">
-      <Filter>pricingengines\bond</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\pricingengines\bond\discountingbondengine.cpp">
-      <Filter>pricingengines\bond</Filter>
-    </ClCompile>
-    <ClCompile Include="ql\pricingengines\swap\discountingswapengine.cpp">
-      <Filter>pricingengines\swap</Filter>
     </ClCompile>
     <ClCompile Include="ql\pricingengines\swap\discretizedswap.cpp">
       <Filter>pricingengines\swap</Filter>
@@ -5945,15 +5853,12 @@
     <ClCompile Include="ql\experimental\math\zigguratrng.cpp">
       <Filter>experimental\math</Filter>
     </ClCompile>
-    <ClCompile Include="ql\cashflow.cpp" />
     <ClCompile Include="ql\currency.cpp" />
     <ClCompile Include="ql\discretizedasset.cpp" />
     <ClCompile Include="ql\errors.cpp" />
     <ClCompile Include="ql\event.cpp" />
     <ClCompile Include="ql\exchangerate.cpp" />
     <ClCompile Include="ql\exercise.cpp" />
-    <ClCompile Include="ql\index.cpp" />
-    <ClCompile Include="ql\interestrate.cpp" />
     <ClCompile Include="ql\money.cpp" />
     <ClCompile Include="ql\position.cpp" />
     <ClCompile Include="ql\prices.cpp" />
@@ -6243,7 +6148,6 @@
     <ClCompile Include="ql\experimental\finitedifferences\glued1dmesher.cpp">
       <Filter>experimental\finitedifferences</Filter>
     </ClCompile>
-
     <ClCompile Include="ql\experimental\finitedifferences\fdmblackscholesfwdop.cpp">
       <Filter>experimental\finitedifferences</Filter>
     </ClCompile>

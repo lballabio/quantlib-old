@@ -461,7 +461,7 @@ int main(int, char* []) {
                                  Actual365Fixed())));
 
          pricer->setCapletVolatility(vol);
-         setCouponPricer<Real>(floatingRateBond.cashflows(),pricer);
+         setCouponPricer(floatingRateBond.cashflows(),pricer);
 
          // Yield curve bootstrapping
          forecastingTermStructure.linkTo(depoSwapTermStructure);

@@ -37,8 +37,6 @@ template <class T> class FloatingRateCoupon_t;
 template <class T> class FloatingRateCouponPricer_t;
 template <class T> class CappedFlooredCoupon_t;
 
-using std::abs;
-
 //! Digital-payoff coupon
 /*! Implementation of a floating-rate coupon with digital call/put option.
     Payoffs:
@@ -468,7 +466,7 @@ template <class T> T DigitalCoupon_t<T>::callPayoff() const {
             payoff = isCallCashOrNothing_ ? callDigitalPayoff_ : underlyingRate;
         } else {
             if (isCallATMIncluded_) {
-                if (std::abs(callStrike_ - underlyingRate) <= 1.e-16)
+                if (QLFCT::abs(callStrike_ - underlyingRate) <= 1.e-16)
                     payoff = isCallCashOrNothing_ ? callDigitalPayoff_
                                                   : underlyingRate;
             }

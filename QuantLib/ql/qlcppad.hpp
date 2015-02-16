@@ -28,48 +28,26 @@
 
 namespace CppAD {
 
-template <class Base>
-CppAD::AD<Base> max(CppAD::AD<Base> x, CppAD::AD<Base> y) {
+template <class T>
+const T max(const  T& x, const T& y) {
     return CppAD::CondExpGt(x, y, x, y);
 }
 
-template <class Base>
-CppAD::AD<Base> min(CppAD::AD<Base> x, CppAD::AD<Base> y) {
+template <class T>
+const T min(const T& x, const T& y) {
     return CppAD::CondExpLt(x, y, x, y);
 }
+
 }
 
-using CppAD::max;
-using CppAD::min;
+namespace QLFCT {
 
-using CppAD::pow;
-using CppAD::log;
-using CppAD::exp;
-using CppAD::abs;
-using CppAD::sqrt;
-
-using CppAD::CondExpLt;
-using CppAD::CondExpLe;
-using CppAD::CondExpGt;
-using CppAD::CondExpGe;
+using CppAD::max; using CppAD::min; using CppAD::pow; using CppAD::log;
+using CppAD::exp; using CppAD::abs; using CppAD::sqrt;
+using CppAD::CondExpLt; using CppAD::CondExpLe;
+using CppAD::CondExpGt; using CppAD::CondExpGe;
 using CppAD::CondExpEq;
 
-namespace QuantLib {
-
-template <class Base> class Null<CppAD::AD<Base> > {
-  public:
-    Null() {}
-    operator CppAD::AD<Base>() const {
-        return CppAD::AD<Base>(static_cast<Base>(Null<Base>()));
-    }
-    // this is needed, because in ad_assign.hpp line 124ff
-    // assignment from T to AD<Base> is done via conversion from T
-    // to Base and then to AD<Base>. If for example
-    // T = Null<CppAD::AD<double>> we need to be able to convert
-    // to double so that then conversion to AD<double> from this
-    // works.
-    operator Base() const { return static_cast<Base>(Null<Base>()); }
-};
 }
 
 #endif

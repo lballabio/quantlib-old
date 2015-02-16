@@ -29,8 +29,6 @@
 
 namespace QuantLib {
 
-    using std::abs;
-
     /*! Follows somewhat the advice of Knuth on checking for floating-point
         equality. The closeness relationship is:
         \f[
@@ -69,13 +67,13 @@ namespace QuantLib {
         if (x == y)
             return true;
 
-        T diff = abs(x-y), tolerance = n * QL_EPSILON;
+        T diff = QLFCT::abs(x-y), tolerance = n * QL_EPSILON;
 
         if (x * y == 0.0) // x or y = 0.0
             return diff < (tolerance * tolerance);
 
-        return diff <= tolerance*abs(x) &&
-               diff <= tolerance*abs(y);
+        return diff <= tolerance*QLFCT::abs(x) &&
+               diff <= tolerance*QLFCT::abs(y);
     }
 
     template<class T> inline bool close_enough(T x, T y) {
@@ -87,13 +85,13 @@ namespace QuantLib {
         if (x == y)
             return true;
 
-        T diff = abs(x-y), tolerance = n * QL_EPSILON;
+        T diff = QLFCT::abs(x-y), tolerance = n * QL_EPSILON;
 
         if (x * y == 0.0) // x or y = 0.0
             return diff < (tolerance * tolerance);
 
-        return diff <= tolerance*std::fabs(x) ||
-               diff <= tolerance*std::fabs(y);
+        return diff <= tolerance*QLFCT::abs(x) ||
+               diff <= tolerance*QLFCT::abs(y);
     }
 
 
