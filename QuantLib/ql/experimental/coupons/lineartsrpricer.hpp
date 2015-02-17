@@ -64,8 +64,8 @@ namespace QuantLib {
 
             Settings()
                 : strategy_(RateBound), vegaRatio_(0.01),
-                  priceThreshold_(1.0E-8), lowerRateBound_(0.0001),
-                  upperRateBound_(2.0000) {}
+                  priceThreshold_(1.0E-8), stdDevs_(3.0),
+                  lowerRateBound_(0.0001), upperRateBound_(2.0000) {}
 
             Settings &withRateBound(const Real lowerRateBound = 0.0001,
                                     const Real upperRateBound = 2.0000) {
