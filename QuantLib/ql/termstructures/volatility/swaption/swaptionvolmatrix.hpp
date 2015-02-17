@@ -148,7 +148,7 @@ namespace QuantLib {
                                   Rate strike) const;
         Real shift(Time optionTime, Time swapLength) const {
             calculate();
-            Real tmp = interpolationShifts_(optionTime, swapLength,true);
+            Real tmp = interpolationShifts_(swapLength, optionTime, true);
             return tmp;
         }
       private:
