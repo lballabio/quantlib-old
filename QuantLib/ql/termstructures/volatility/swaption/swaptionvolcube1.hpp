@@ -770,7 +770,7 @@ namespace QuantLib {
         calculate();
         const std::vector<Real> sabrParameters =
             sabrParametersCube(optionTime, swapLength);
-        Real shiftTmp = this->shift(optionTime,swapLength);
+        Real shiftTmp = atmVol_->shift(optionTime,swapLength);
         return boost::shared_ptr<SmileSection>(new (typename Model::SmileSection)(
                           optionTime, sabrParameters[4], sabrParameters,shiftTmp));
     }
