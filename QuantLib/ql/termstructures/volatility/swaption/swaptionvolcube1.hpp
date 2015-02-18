@@ -130,7 +130,8 @@ namespace QuantLib {
             const bool useMaxError = false,
             const Size maxGuesses = 50,
             const bool backwardFlat = false,
-            const Real cutoffStrike = 0.0001
+            const Real cutoffStrike = 0.0001,
+            const bool dontCalibrate = false
         );
         //! \name LazyObject interface
         //@{
@@ -170,7 +171,8 @@ namespace QuantLib {
                                     Time optionTime,
                                     Time swapLength,
                                     const Cube& sabrParametersCube) const;
-        Cube sabrCalibration(const Cube& marketVolCube) const;
+        Cube sabrCalibration(const Cube &marketVolCube,
+                             const bool dontCalibrate = false) const;
         void fillVolatilityCube() const;
         void createSparseSmiles() const;
         std::vector<Real> spreadVolInterpolation(const Date& atmOptionDate,
@@ -194,6 +196,7 @@ namespace QuantLib {
         const Size maxGuesses_;
         const bool backwardFlat_;
         const Real cutoffStrike_;
+        const bool dontCalibrate_;
 
         class PrivateObserver : public Observer {
           public:
@@ -231,7 +234,8 @@ namespace QuantLib {
         const boost::shared_ptr<OptimizationMethod> &optMethod,
         const Real errorAccept, const bool useMaxError, const Size maxGuesses,
         const bool backwardFlat,
-        const Real cutoffStrike)
+        const Real cutoffStrike,
+        const bool dontCalibrate)
         : SwaptionVolatilityCube(atmVolStructure, optionTenors, swapTenors,
                                  strikeSpreads, volSpreads, swapIndexBase,
                                  shortSwapIndexBase, vegaWeightedSmileFit),
@@ -240,7 +244,8 @@ namespace QuantLib {
           isAtmCalibrated_(isAtmCalibrated), endCriteria_(endCriteria),
           optMethod_(optMethod),
           useMaxError_(useMaxError), maxGuesses_(maxGuesses),
-          backwardFlat_(backwardFlat), cutoffStrike_(cutoffStrike) {
+          backwardFlat_(backwardFlat), cutoffStrike_(cutoffStrike),
+          dontCalibrate_(dontCalibrate) {
 
         if (maxErrorTolerance != Null<Rate>()) {
             maxErrorTolerance_ = maxErrorTolerance;
@@ -306,7 +311,7 @@ namespace QuantLib {
         }
         marketVolCube_.updateInterpolators();
 
-        sparseParameters_ = sabrCalibration(marketVolCube_);
+        sparseParameters_ = sabrCalibration(marketVolCube_, dontCalibrate_);
         //parametersGuess_ = sparseParameters_;
         sparseParameters_.updateInterpolators();
         //parametersGuess_.updateInterpolators();
@@ -314,7 +319,7 @@ namespace QuantLib {
 
         if(isAtmCalibrated_){
             fillVolatilityCube();
-            denseParameters_ = sabrCalibration(volCubeAtmCalibrated_);
+            denseParameters_ = sabrCalibration(volCubeAtmCalibrated_, false);
             denseParameters_.updateInterpolators();
         }
     }
@@ -329,8 +334,10 @@ namespace QuantLib {
         notifyObservers();
     }
 
-    template<class Model> typename SwaptionVolCube1x<Model>::Cube
-    SwaptionVolCube1x<Model>::sabrCalibration(const Cube& marketVolCube) const {
+    template <class Model>
+    typename SwaptionVolCube1x<Model>::Cube
+    SwaptionVolCube1x<Model>::sabrCalibration(const Cube &marketVolCube,
+                                              const bool dontCalibrate) const {
 
         const std::vector<Time>& optionTimes = marketVolCube.optionTimes();
         const std::vector<Time>& swapLengths = marketVolCube.swapLengths();
@@ -374,10 +381,10 @@ namespace QuantLib {
                                           optionTimes[j], atmForward,
                                           guess[0], guess[1],
                                           guess[2], guess[3],
-                                          isParameterFixed_[0],
-                                          isParameterFixed_[1],
-                                          isParameterFixed_[2],
-                                          isParameterFixed_[3],
+                                          isParameterFixed_[0] | dontCalibrate,
+                                          isParameterFixed_[1] | dontCalibrate,
+                                          isParameterFixed_[2] | dontCalibrate,
+                                          isParameterFixed_[3] | dontCalibrate,
                                           vegaWeightedSmileFit_,
                                           endCriteria_,
                                           optMethod_,
@@ -417,7 +424,7 @@ namespace QuantLib {
                       ", swap tenor " << swapTenors[k] <<
                       (useMaxError_ ? ": max error " : ": error") <<
                       (useMaxError_ ? maxError : rmsError) <<
-                          "   alpha = " <<  alphas[j][k] << "n" <<
+                          "   alpha = " <<  alphas[j][k] << "\n" <<
                           "   beta = " <<  betas[j][k] << "\n" <<
                           "   nu = " <<  nus[j][k]   << "\n" <<
                           "   rho = " <<  rhos[j][k]  << "\n" <<
