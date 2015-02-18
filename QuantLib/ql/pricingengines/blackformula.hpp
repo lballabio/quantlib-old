@@ -85,6 +85,21 @@ namespace QuantLib {
                         Real discount = 1.0,
                         Real displacement = 0.0);
 
+    /*! Approximated Black 1976 implied standard deviation,
+        i.e. volatility*sqrt(timeToMaturity).
+
+        It is calculated following "An improved approach to computing
+        implied volatility", Chambers, Nawalkha, The Financial Review,
+        2001, 89-100. The atm option price must be known to use this
+        method.
+    */
+    Real blackFormulaImpliedStdDevApproximationChambers(Option::Type optionType,
+                                                Real strike,
+                                                Real forward,
+                                                Real blackPrice,
+                                                Real blackAtmPrice,
+                                                Real discount = 1.0,
+                                                Real displacement = 0.0);
 
     /*! Black 1976 implied standard deviation,
         i.e. volatility*sqrt(timeToMaturity)
@@ -188,6 +203,16 @@ namespace QuantLib {
                         Real discount = 1.0,
                         Real displacement = 0.0);
 
+    /*! Black 1976 formula for second derivative by standard deviation 
+        \warning instead of volatility it uses standard deviation, i.e.
+                 volatility*sqrt(timeToMaturity), and it returns the
+                 derivative with respect to the standard deviation.
+    */
+    Real blackFormulaStdDevSecondDerivative(Rate strike,
+                                            Rate forward,
+                                            Real stdDev,
+                                            Real discount,
+                                            Real displacement);
 
     /*! Black style formula when forward is normal rather than
         log-normal. This is essentially the model of Bachelier.

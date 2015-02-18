@@ -34,6 +34,8 @@
 #pragma GCC diagnostic pop
 #endif
 
+#include <iostream>
+
 namespace {
     void checkParameters(QuantLib::Real strike,
                          QuantLib::Real forward,
@@ -153,6 +155,47 @@ namespace QuantLib {
             payoff->strike(), forward, blackPrice, discount, displacement);
     }
 
+    Real blackFormulaImpliedStdDevApproximationChambers(Option::Type optionType,
+                                                Real strike,
+                                                Real forward,
+                                                Real blackPrice,
+                                                Real blackAtmPrice,
+                                                Real discount,
+                                                Real displacement) {
+
+        checkParameters(strike, forward, displacement);
+        QL_REQUIRE(blackPrice>=0.0,
+                   "blackPrice (" << blackPrice << ") must be non-negative");
+        QL_REQUIRE(blackAtmPrice>=0.0,
+                   "blackAtmPrice (" << blackAtmPrice << ") must be non-negative");
+        QL_REQUIRE(discount>0.0,
+                   "discount (" << discount << ") must be positive");
+
+        Real stdDev;
+
+        forward = forward + displacement;
+        strike = strike + displacement;
+
+        Real dc = (blackPrice - blackAtmPrice) / discount;
+        Real s0 = M_SQRT2 * M_SQRTPI * blackAtmPrice; // Brenner-Subrahmanyam formula
+
+        if(close(dc,0.0))
+            stdDev = s0;
+        else {
+            Real d1 =
+                blackFormulaStdDevDerivative(strike, forward, s0, 1.0, 0.0);
+            Real d2 = blackFormulaStdDevSecondDerivative(strike, forward, s0,
+                                                         1.0, 0.0);
+            std::cout << "dc=" << dc << " d1=" << d1 << " d2=" << d2 << std::endl;
+            Real ds = -d1 / d2 + std::sqrt(d1 * d1 / (d2 * d2) + 2.0 * dc / d2);
+            stdDev = s0 +ds;
+        }
+
+        QL_ENSURE(stdDev>=0.0,
+                  "stdDev (" << stdDev << ") must be non-negative");
+        return stdDev;
+
+    }
 
     class BlackImpliedStdDevHelper {
       public:
@@ -382,6 +425,28 @@ namespace QuantLib {
                                      stdDev, discount, displacement);
     }
 
+    Real blackFormulaStdDevSecondDerivative(Rate strike,
+                                            Rate forward,
+                                            Real stdDev,
+                                            Real discount,
+                                            Real displacement)
+    {
+        checkParameters(strike, forward, displacement);
+        QL_REQUIRE(stdDev>=0.0,
+                   "stdDev (" << stdDev << ") must be non-negative");
+        QL_REQUIRE(discount>0.0,
+                   "discount (" << discount << ") must be positive");
+
+        forward = forward + displacement;
+        strike = strike + displacement;
+
+        if (stdDev==0.0 || strike==0.0)
+            return 0.0;
+
+        Real d1p = -std::log(forward/strike)/(stdDev*stdDev) + .5;
+        return discount * forward *
+            NormalDistribution().derivative(d1p);
+    }
 
     Real bachelierBlackFormula(Option::Type optionType,
                                Real strike,
