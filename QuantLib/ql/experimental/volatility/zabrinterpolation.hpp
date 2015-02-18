@@ -83,10 +83,12 @@ template <typename Evaluation> struct ZabrSpecs {
                                     : (y[0] - eps1() + 25.0) / 10.0;
         // y_[1] = std::tan(M_PI*(x[1] - 0.5))/dilationFactor();
         x[1] = std::sqrt(-std::log(y[1]));
-        x[2] = y[2] < 25.0 + eps1() ? std::sqrt(y[2] - eps1())
-                                    : (y[2] - eps1() + 25.0) / 10.0;
+        // x[2] = y[2] < 25.0 + eps1() ? std::sqrt(y[2] - eps1())
+        //                             : (y[2] - eps1() + 25.0) / 10.0;
+        x[2] = std::tan(M_PI*(y[4]/5.0-0.5));
         x[3] = std::asin(y[3] / eps2());
-        x[4] = y[4] < 4.0 ? std::sqrt(y[4]) : (y[4] + 4.0) / 4.0;
+        x[4] = std::tan(M_PI*(y[4]/3.0-0.5));
+        // x[4] = y[4] < 4.0 ? std::sqrt(y[4]) : (y[4] + 4.0) / 4.0;
         return x;
     }
     Array direct(const Array &x, const std::vector<bool> &,
@@ -98,12 +100,14 @@ template <typename Evaluation> struct ZabrSpecs {
         y[1] = std::fabs(x[1]) < std::sqrt(-std::log(eps1()))
                    ? std::exp(-(x[1] * x[1]))
                    : eps1();
-        y[2] = std::fabs(x[2]) < 5.0 ? x[2] * x[2] + eps1()
-                                     : (10.0 * std::fabs(x[2]) - 25.0) + eps1();
+        // y[2] = std::fabs(x[2]) < 5.0 ? x[2] * x[2] + eps1()
+        //                              : (10.0 * std::fabs(x[2]) - 25.0) + eps1();
+        y[2] = (std::atan(x[2])/M_PI + 0.5) * 5.0;
         y[3] = std::fabs(x[3]) < 2.5 * M_PI
                    ? eps2() * std::sin(x[3])
                    : eps2() * (x[3] > 0.0 ? 1.0 : (-1.0));
-        y[4] = std::fabs(x[4]) < 2.0 ? x[4] * x[4] : 4.0 * std::fabs(x[4]) - 4.0;
+        y[4] = (std::atan(x[4])/M_PI + 0.5) * 3.0;
+        // y[4] = std::fabs(x[4]) < 2.0 ? x[4] * x[4] : 4.0 * std::fabs(x[4]) - 4.0;
         return y;
     }
     Real weight(const Real strike, const Real forward, const Real stdDev,
