@@ -94,7 +94,12 @@ namespace QuantLib {
       input smile or accumulating numerical errors in very long term calibrations.
       The former point is adressed by smile pretreatment options. The latter point
       may be tackled by higher values for the numerical parameters possibly
-      together with NTL high precision computing. */
+      together with NTL high precision computing. 
+
+      When using a shifted lognormal smile input the lower rate bound is adjusted
+      by the shift so that a lower bound of 0.0 always corresponds to the lower
+      bound of the shifted distribution.
+*/
 
     class MarkovFunctional : public Gaussian1dModel, public CalibratedModel {
 
@@ -358,7 +363,8 @@ namespace QuantLib {
 
         const Real marketSwapRate(const Date &expiry, const CalibrationPoint &p,
                                   const Real digitalPrice,
-                                  const Real guess = 0.03) const;
+                                  const Real guess = 0.03,
+                                  const Real shift = 0.0) const;
         const Real marketDigitalPrice(const Date &expiry,
                                       const CalibrationPoint &p,
                                       const Option::Type &type,

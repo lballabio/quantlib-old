@@ -20,6 +20,8 @@
 #include <ql/experimental/models/markovfunctional.hpp>
 #include <ql/experimental/models/smilesectionutils.hpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
     MarkovFunctional::MarkovFunctional(
@@ -370,11 +372,16 @@ namespace QuantLib {
 
                     // TODO should we fix beta to avoid numerical instabilities
                     // during calibration ?
-                    boost::shared_ptr<SabrInterpolatedSmileSection>
-                    sabrSection(new SabrInterpolatedSmileSection(
-                        i->first, i->second.atm_, k, false,
-                        i->second.rawSmileSection_->volatility(i->second.atm_),
-                        v, 0.03, 0.80, 0.50, 0.00, false, false, false, false));
+                    boost::shared_ptr<SabrInterpolatedSmileSection> sabrSection(
+                        new SabrInterpolatedSmileSection(
+                            i->first, i->second.atm_, k, false,
+                            i->second.rawSmileSection_->volatility(
+                                i->second.atm_),
+                            v, 0.03, 0.80, 0.50, 0.00, false, false, false,
+                            false, true, boost::shared_ptr<EndCriteria>(),
+                            boost::shared_ptr<OptimizationMethod>(),
+                            Actual365Fixed(),
+                                i->second.rawSmileSection_->shift()));
 
                     // we make the sabr section arbitrage free by superimposing
                     // a kahalesection
@@ -397,65 +404,69 @@ namespace QuantLib {
 
             i->second.minRateDigital_ =
                 i->second.smileSection_->digitalOptionPrice(
-                    modelSettings_.lowerRateBound_, Option::Call,
-                    i->second.annuity_, modelSettings_.digitalGap_);
+                    modelSettings_.lowerRateBound_ -
+                        i->second.smileSection_->shift(),
+                    Option::Call, i->second.annuity_,
+                    modelSettings_.digitalGap_);
             i->second.maxRateDigital_ =
                 i->second.smileSection_->digitalOptionPrice(
-                    modelSettings_.upperRateBound_, Option::Call,
-                    i->second.annuity_, modelSettings_.digitalGap_);
+                    modelSettings_.upperRateBound_ -
+                        i->second.smileSection_->shift(),
+                    Option::Call, i->second.annuity_,
+                    modelSettings_.digitalGap_);
 
             // output smile for testing
-            // boost::shared_ptr<SmileSection> sec1 =
-            // i->second.rawSmileSection_;
-            // boost::shared_ptr<KahaleSmileSection> sec2 =
-            //     boost::dynamic_pointer_cast<KahaleSmileSection>(i->second.smileSection_);
-            // const std::vector<double> &money =
-            // modelSettings_.smileMoneynessCheckpoints_;
-            // SmileSectionUtils sutils(*sec1, money);
-            // std::cout
-            //     <<
-            // "-------------------------------------------------------------------"
-            //     << std::endl;
-            // std::cout << "Smile for expiry " << i->first << " tenor " <<
-            // i->second.tenor_
-            //           << " atm is " << i->second.atm_ << std::endl;
-            // std::cout << "Arbitrage free region " <<
-            // sutils.arbitragefreeRegion().first
-            //           << " ... " << sutils.arbitragefreeRegion().second <<
-            // std::endl;
-            // if (sec2)
-            //     std::cout << "Kahale core region    " <<
-            // sec2->leftCoreStrike()
-            //               << " ... " << sec2->rightCoreStrike() << std::endl;
-            // std::cout <<
-            // "strike;rawVol;rawVar;rawCall;Call;rawDigial;Digital;"
-            //     "rawDensity;Density;callDiff;Arb" << std::endl;
-            // Real strike = 0.00001;
-            // while (strike <= 0.20 + 1E-8) {
-            //     std::cout << strike << ";" << sec1->volatility(strike) << ";"
-            //               << sec1->variance(strike) << ";" <<
-            // sec1->optionPrice(strike)
-            //               << ";" << (sec2 ? sec2->optionPrice(strike) : 0.0)
-            // << ";"
-            //               << sec1->digitalOptionPrice(strike) << ";"
-            //               << (sec2 ? sec2->digitalOptionPrice(strike) : 0.0)
-            // << ";"
-            //               << sec1->density(strike) << ";"
-            //               << (sec2 ? sec2->density(strike) : 0.0) << ";"
-            //               << (sec2
-            //                   ? sec1->optionPrice(strike) -
-            // sec2->optionPrice(strike)
-            //                   : 0.0) << ";" << ((sec2 ? sec2->density(strike)
-            //                                      : sec1->density(strike)) <
-            // 0.0
-            //                                     ? "**********"
-            //                                     : "") << std::endl;
-            //     strike += 0.0010;
-            // }
-            // std::cout
-            //     <<
-            // "-------------------------------------------------------------------"
-            //     << std::endl;
+            boost::shared_ptr<SmileSection> sec1 =
+            i->second.rawSmileSection_;
+            boost::shared_ptr<KahaleSmileSection> sec2 =
+                boost::dynamic_pointer_cast<KahaleSmileSection>(i->second.smileSection_);
+            const std::vector<double> &money =
+            modelSettings_.smileMoneynessCheckpoints_;
+            SmileSectionUtils sutils(*sec1, money);
+            std::cout
+                <<
+            "-------------------------------------------------------------------"
+                << std::endl;
+            std::cout << "Smile for expiry " << i->first << " tenor " <<
+            i->second.tenor_
+                      << " atm is " << i->second.atm_ << std::endl;
+            std::cout << "Arbitrage free region " <<
+            sutils.arbitragefreeRegion().first
+                      << " ... " << sutils.arbitragefreeRegion().second <<
+            std::endl;
+            if (sec2)
+                std::cout << "Kahale core region    " <<
+            sec2->leftCoreStrike()
+                          << " ... " << sec2->rightCoreStrike() << std::endl;
+            std::cout <<
+            "strike;rawVol;rawVar;rawCall;Call;rawDigial;Digital;"
+                "rawDensity;Density;callDiff;Arb" << std::endl;
+            Real strike = 0.00001 - sec1->shift();
+            while (strike <= 0.20 + 1E-8) {
+                std::cout << strike << ";" << sec1->volatility(strike) << ";"
+                          << sec1->variance(strike) << ";" <<
+            sec1->optionPrice(strike)
+                          << ";" << (sec2 ? sec2->optionPrice(strike) : 0.0)
+            << ";"
+                          << sec1->digitalOptionPrice(strike) << ";"
+                          << (sec2 ? sec2->digitalOptionPrice(strike) : 0.0)
+            << ";"
+                          << sec1->density(strike) << ";"
+                          << (sec2 ? sec2->density(strike) : 0.0) << ";"
+                          << (sec2
+                              ? sec1->optionPrice(strike) -
+            sec2->optionPrice(strike)
+                              : 0.0) << ";" << ((sec2 ? sec2->density(strike)
+                                                 : sec1->density(strike)) <
+            0.0
+                                                ? "**********"
+                                                : "") << std::endl;
+                strike += 0.0010;
+            }
+            std::cout
+                <<
+            "-------------------------------------------------------------------"
+                << std::endl;
             // end output smile
         }
     }
@@ -564,13 +575,15 @@ namespace QuantLib {
                     digital += integral * numeraire0 * digitalsCorrectionFactor;
 
                     if (digital >= i->second.minRateDigital_)
-                        swapRate = modelSettings_.lowerRateBound_;
+                        swapRate = modelSettings_.lowerRateBound_ -
+                                   i->second.rawSmileSection_->shift();
                     else {
                         if (digital <= i->second.maxRateDigital_)
                             swapRate = modelSettings_.upperRateBound_;
                         else {
-                            swapRate = marketSwapRate(i->first, i->second,
-                                                      digital, swapRate0);
+                            swapRate = marketSwapRate(
+                                i->first, i->second, digital, swapRate0,
+                                i->second.rawSmileSection_->shift());
                             if (j < (int)y_.size() - 1 &&
                                 swapRate > swapRate0) {
                                 QL_MFMESSAGE(
@@ -832,14 +845,15 @@ namespace QuantLib {
     const Real MarkovFunctional::marketSwapRate(const Date &expiry,
                                                 const CalibrationPoint &p,
                                                 const Real digitalPrice,
-                                                const Real guess) const {
+                                                const Real guess,
+                                                const Real shift) const {
 
         ZeroHelper z(this, expiry, p, digitalPrice);
         Brent b;
         Real solution = b.solve(
             z, modelSettings_.marketRateAccuracy_,
             std::max(std::min(guess, modelSettings_.upperRateBound_ - 0.00001),
-                     modelSettings_.lowerRateBound_ + 0.00001),
+                     modelSettings_.lowerRateBound_ - shift + 0.00001),
             modelSettings_.lowerRateBound_, modelSettings_.upperRateBound_);
         return solution;
     }

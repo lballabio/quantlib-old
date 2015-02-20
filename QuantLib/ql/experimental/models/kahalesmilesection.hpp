@@ -27,6 +27,8 @@
    replaced by the extrapolating functional forms, so if you are sure that the
    input smile is globally arbitrage free and you do not want to change it in
    these strike regions you should not use this class at all.
+   Input smile sections with a shift are handled accordingly, normal input
+   smile section are not possible though.
 */
 
 #ifndef quantlib_kahale_smile_section_hpp
@@ -148,6 +150,7 @@ namespace QuantLib {
         const DayCounter& dayCounter() const { return source_->dayCounter(); }
         const Date& referenceDate() const { return source_->referenceDate(); }
         const SmileSection::Nature nature() const { return source_->nature(); }
+        const Real shift() const { return source_->shift(); }
 
         Real leftCoreStrike() const { return k_[leftIndex_]; }
         Real rightCoreStrike() const { return k_[rightIndex_]; }
