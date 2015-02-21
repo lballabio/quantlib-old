@@ -188,10 +188,11 @@ namespace QuantLib {
             Real d2 = blackFormulaStdDevSecondDerivative(strike, forward, s0,
                                                          1.0, 0.0);
             Real ds;
-            if(std::fabs(d2) > 1E-10)
-                ds = (-d1 + std::sqrt(d1 * d1 + 2.0 * d2 * dc)) / d2;
+            Real tmp = d1 * d1 + 2.0 * d2 * dc;
+            if (std::fabs(d2) > 1E-10 && tmp >= 0.0)
+                ds = (-d1 + std::sqrt(tmp)) / d2; // second order approximation
             else
-                ds = dc / d1;
+                ds = dc / d1; // first order approximation
             stdDev = s0 + ds;
         }
 
