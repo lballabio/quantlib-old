@@ -181,7 +181,6 @@ namespace QuantLib {
                         Real stdDev,
                         Real displacement = 0.0);
 
-
     /*! Black 1976 formula for standard deviation derivative
         \warning instead of volatility it uses standard deviation, i.e.
                  volatility*sqrt(timeToMaturity), and it returns the

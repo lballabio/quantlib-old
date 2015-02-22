@@ -377,8 +377,6 @@ namespace QuantLib {
         return phi(optionType*d1);
     }
 
-
-
     Real blackFormulaCashItmProbability(
                         const boost::shared_ptr<PlainVanillaPayoff>& payoff,
                         Real forward,
@@ -396,8 +394,6 @@ namespace QuantLib {
         return blackFormulaAssetItmProbability(payoff->optionType(),
             payoff->strike(), forward, stdDev , displacement);
     }
-
-
 
     Real blackFormulaVolDerivative(Rate strike,
                                       Rate forward,
