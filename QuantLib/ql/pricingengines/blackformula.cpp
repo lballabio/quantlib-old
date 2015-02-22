@@ -173,12 +173,14 @@ namespace QuantLib {
 
         forward = forward + displacement;
         strike = strike + displacement;
+        blackPrice /= discount;
+        blackAtmPrice /= discount;
 
         Real s0 = M_SQRT2 * M_SQRTPI * blackAtmPrice /
                   forward; // Brenner-Subrahmanyam formula
         Real priceAtmVol =
             blackFormula(optionType, strike, forward, s0, 1.0, 0.0);
-        Real dc = (blackPrice - priceAtmVol) / discount;
+        Real dc = blackPrice - priceAtmVol;
 
         if (close(dc, 0.0)) {
             stdDev = s0;
