@@ -749,13 +749,13 @@ namespace QuantLib {
 
         for (Size k=0; k<nStrikes_; k++){
             const Real strike = std::max(atmForward + strikeSpreads_[k],cutoffStrike_-shift);
-            const Real moneyness = (atmForward+shift)/strike;
+            const Real moneyness = (atmForward+shift)/(strike+shift);
 
             Matrix strikes(2,2,0.);
             Matrix spreadVols(2,2,0.);
             for (Size i=0; i<2; i++){
                 for (Size j=0; j<2; j++){
-                    strikes[i][j] = (atmForwards[i][j]+shift)/moneyness;
+                    strikes[i][j] = (atmForwards[i][j]+atmShifts[i][j])/moneyness - atmShifts[i][j];
                     spreadVols[i][j] =
                         smiles[i][j]->volatility(strikes[i][j]) - atmVols[i][j];
                 }
