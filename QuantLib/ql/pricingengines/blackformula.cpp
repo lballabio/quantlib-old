@@ -7,6 +7,8 @@
  Copyright (C) 2006 StatPro Italia srl
  Copyright (C) 2007 Cristina Duminuco
  Copyright (C) 2007 Chiara Fornarola
+ Copyright (C) 2013 Gary Kennedy
+ Copyright (C) 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -153,7 +155,7 @@ namespace QuantLib {
             payoff->strike(), forward, blackPrice, discount, displacement);
     }
 
-    Real blackFormulaImpliedStdDevApproximationChambers(Option::Type optionType,
+    Real blackFormulaImpliedStdDevChambers(Option::Type optionType,
                                                 Real strike,
                                                 Real forward,
                                                 Real blackPrice,
@@ -189,18 +191,31 @@ namespace QuantLib {
                 blackFormulaStdDevDerivative(strike, forward, s0, 1.0, 0.0);
             Real d2 = blackFormulaStdDevSecondDerivative(strike, forward, s0,
                                                          1.0, 0.0);
-            Real ds;
+            Real ds = 0.0;
             Real tmp = d1 * d1 + 2.0 * d2 * dc;
             if (std::fabs(d2) > 1E-10 && tmp >= 0.0)
                 ds = (-d1 + std::sqrt(tmp)) / d2; // second order approximation
             else
-                ds = dc / d1; // first order approximation
+                if(std::fabs(d1) > 1E-10)
+                    ds = dc / d1; // first order approximation
             stdDev = s0 + ds;
         }
 
         QL_ENSURE(stdDev >= 0.0, "stdDev (" << stdDev
                                             << ") must be non-negative");
         return stdDev;
+    }
+
+    Real blackFormulaImpliedStdDevChambers(
+        const boost::shared_ptr<PlainVanillaPayoff> &payoff,
+        Real forward,
+        Real blackPrice,
+        Real blackAtmPrice,
+        Real discount,
+        Real displacement) {
+        return blackFormulaImpliedStdDevChambers(
+            payoff->optionType(), payoff->strike(), forward, blackPrice,
+            blackAtmPrice, discount, displacement);
     }
 
     class BlackImpliedStdDevHelper {
@@ -453,6 +468,16 @@ namespace QuantLib {
         Real d1p = -std::log(forward/strike)/(stdDev*stdDev) + .5;
         return discount * forward *
             NormalDistribution().derivative(d1) * d1p;
+    }
+
+    Real blackFormulaStdDevSecondDerivative(
+                        const boost::shared_ptr<PlainVanillaPayoff>& payoff,
+                        Real forward,
+                        Real stdDev,
+                        Real discount,
+                        Real displacement) {
+        return blackFormulaStdDevSecondDerivative(payoff->strike(), forward,
+                                     stdDev, discount, displacement);
     }
 
     Real bachelierBlackFormula(Option::Type optionType,
