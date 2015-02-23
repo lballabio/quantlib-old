@@ -416,57 +416,57 @@ namespace QuantLib {
                     modelSettings_.digitalGap_);
 
             // output smile for testing
-            boost::shared_ptr<SmileSection> sec1 =
-            i->second.rawSmileSection_;
-            boost::shared_ptr<KahaleSmileSection> sec2 =
-                boost::dynamic_pointer_cast<KahaleSmileSection>(i->second.smileSection_);
-            const std::vector<double> &money =
-            modelSettings_.smileMoneynessCheckpoints_;
-            SmileSectionUtils sutils(*sec1, money);
-            std::cout
-                <<
-            "-------------------------------------------------------------------"
-                << std::endl;
-            std::cout << "Smile for expiry " << i->first << " tenor " <<
-            i->second.tenor_
-                      << " atm is " << i->second.atm_ << std::endl;
-            std::cout << "Arbitrage free region " <<
-            sutils.arbitragefreeRegion().first
-                      << " ... " << sutils.arbitragefreeRegion().second <<
-            std::endl;
-            if (sec2)
-                std::cout << "Kahale core region    " <<
-            sec2->leftCoreStrike()
-                          << " ... " << sec2->rightCoreStrike() << std::endl;
-            std::cout <<
-            "strike;rawVol;rawVar;rawCall;Call;rawDigial;Digital;"
-                "rawDensity;Density;callDiff;Arb" << std::endl;
-            Real strike = 0.00001 - sec1->shift();
-            while (strike <= 0.20 + 1E-8) {
-                std::cout << strike << ";" << sec1->volatility(strike) << ";"
-                          << sec1->variance(strike) << ";" <<
-            sec1->optionPrice(strike)
-                          << ";" << (sec2 ? sec2->optionPrice(strike) : 0.0)
-            << ";"
-                          << sec1->digitalOptionPrice(strike) << ";"
-                          << (sec2 ? sec2->digitalOptionPrice(strike) : 0.0)
-            << ";"
-                          << sec1->density(strike) << ";"
-                          << (sec2 ? sec2->density(strike) : 0.0) << ";"
-                          << (sec2
-                              ? sec1->optionPrice(strike) -
-            sec2->optionPrice(strike)
-                              : 0.0) << ";" << ((sec2 ? sec2->density(strike)
-                                                 : sec1->density(strike)) <
-            0.0
-                                                ? "**********"
-                                                : "") << std::endl;
-                strike += 0.0010;
-            }
-            std::cout
-                <<
-            "-------------------------------------------------------------------"
-                << std::endl;
+            // boost::shared_ptr<SmileSection> sec1 =
+            // i->second.rawSmileSection_;
+            // boost::shared_ptr<KahaleSmileSection> sec2 =
+            //     boost::dynamic_pointer_cast<KahaleSmileSection>(i->second.smileSection_);
+            // const std::vector<double> &money =
+            // modelSettings_.smileMoneynessCheckpoints_;
+            // SmileSectionUtils sutils(*sec1, money);
+            // std::cout
+            //     <<
+            // "-------------------------------------------------------------------"
+            //     << std::endl;
+            // std::cout << "Smile for expiry " << i->first << " tenor " <<
+            // i->second.tenor_
+            //           << " atm is " << i->second.atm_ << std::endl;
+            // std::cout << "Arbitrage free region " <<
+            // sutils.arbitragefreeRegion().first
+            //           << " ... " << sutils.arbitragefreeRegion().second <<
+            // std::endl;
+            // if (sec2)
+            //     std::cout << "Kahale core region    " <<
+            // sec2->leftCoreStrike()
+            //               << " ... " << sec2->rightCoreStrike() << std::endl;
+            // std::cout <<
+            // "strike;rawVol;rawVar;rawCall;Call;rawDigial;Digital;"
+            //     "rawDensity;Density;callDiff;Arb" << std::endl;
+            // Real strike = 0.00001 - sec1->shift();
+            // while (strike <= 0.20 + 1E-8) {
+            //     std::cout << strike << ";" << sec1->volatility(strike) << ";"
+            //               << sec1->variance(strike) << ";" <<
+            // sec1->optionPrice(strike)
+            //               << ";" << (sec2 ? sec2->optionPrice(strike) : 0.0)
+            // << ";"
+            //               << sec1->digitalOptionPrice(strike) << ";"
+            //               << (sec2 ? sec2->digitalOptionPrice(strike) : 0.0)
+            // << ";"
+            //               << sec1->density(strike) << ";"
+            //               << (sec2 ? sec2->density(strike) : 0.0) << ";"
+            //               << (sec2
+            //                   ? sec1->optionPrice(strike) -
+            // sec2->optionPrice(strike)
+            //                   : 0.0) << ";" << ((sec2 ? sec2->density(strike)
+            //                                      : sec1->density(strike)) <
+            // 0.0
+            //                                     ? "**********"
+            //                                     : "") << std::endl;
+            //     strike += 0.0010;
+            // }
+            // std::cout
+            //     <<
+            // "-------------------------------------------------------------------"
+            //     << std::endl;
             // end output smile
         }
     }
