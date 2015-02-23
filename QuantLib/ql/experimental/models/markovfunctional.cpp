@@ -20,7 +20,7 @@
 #include <ql/experimental/models/markovfunctional.hpp>
 #include <ql/experimental/models/smilesectionutils.hpp>
 
-#include <iostream>
+//#include <iostream>
 
 namespace QuantLib {
 
@@ -854,7 +854,7 @@ namespace QuantLib {
             z, modelSettings_.marketRateAccuracy_,
             std::max(std::min(guess, modelSettings_.upperRateBound_ - 0.00001),
                      modelSettings_.lowerRateBound_ - shift + 0.00001),
-            modelSettings_.lowerRateBound_, modelSettings_.upperRateBound_);
+            modelSettings_.lowerRateBound_ - shift, modelSettings_.upperRateBound_);
         return solution;
     }
 
