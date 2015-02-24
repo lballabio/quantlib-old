@@ -121,14 +121,15 @@ namespace QuantLib {
                    "smile section must provide atm level to compute converted volatilties");
         Option::Type type = strike >= atm ? Option::Call : Option::Put;
         Real premium = optionPrice(strike,type);
+        Real premiumAtm = optionPrice(atm,type);
         if (nature == SmileSection::ShiftedLognormal) {
             try {
                 return blackFormulaImpliedStdDev(type, strike, atm, premium,
                                                  1.0, shift) /
                        std::sqrt(exerciseTime());
             } catch(...) {
-                return blackFormulaImpliedStdDevApproximation(
-                           type, strike, atm, premium, 1.0, shift) /
+                return blackFormulaImpliedStdDevChambers(
+                    type, strike, atm, premium, premiumAtm, 1.0, shift) /
                        std::sqrt(exerciseTime());
             }
         } else {
