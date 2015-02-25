@@ -44,7 +44,8 @@ namespace QuantLib {
                                    const Real rho,
                                    const Real nu,
                                    const DayCounter& dc,
-                                   const boost::shared_ptr<SwapIndex>& indexBase);
+                                   const boost::shared_ptr<SwapIndex>& indexBase,
+                                   const Real shift = 0.0 );
         //! fixed reference date
         SingleSabrSwaptionVolatility(const Date& referenceDate,
                                    const Calendar& cal,
@@ -54,7 +55,8 @@ namespace QuantLib {
                                    const Real rho,
                                    const Real nu,
                                    const DayCounter& dc,
-                                   const boost::shared_ptr<SwapIndex>& indexBase);
+                                   const boost::shared_ptr<SwapIndex>& indexBase,
+                                   const Real shift = 0.0 );
         //@{
         Date maxDate() const;
         //@}
@@ -82,6 +84,7 @@ namespace QuantLib {
         const Real alpha_,beta_,nu_,rho_;
         const Period maxSwapTenor_;
         const boost::shared_ptr<SwapIndex> indexBase_;
+        const Real shift_;
 
         class DateHelper;
         friend class DateHelper;
@@ -114,7 +117,7 @@ namespace QuantLib {
     }
 
     inline Real SingleSabrSwaptionVolatility::minStrike() const {
-        return 0.0;
+        return -shift_;
     }
 
     inline Real SingleSabrSwaptionVolatility::maxStrike() const {

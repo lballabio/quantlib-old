@@ -33,9 +33,10 @@ namespace QuantLib {
                                    const Real rho,
                                    const Real nu,
                                    const DayCounter& dc,
-                                   const boost::shared_ptr<SwapIndex>& indexBase)
+                                   const boost::shared_ptr<SwapIndex>& indexBase,
+                                   const Real shift)
     : SwaptionVolatilityStructure(settlementDays, cal, bdc, dc),
-        alpha_(alpha), beta_(beta), nu_(nu), rho_(rho), maxSwapTenor_(100*Years), indexBase_(indexBase)  {
+        alpha_(alpha), beta_(beta), nu_(nu), rho_(rho), maxSwapTenor_(100*Years), indexBase_(indexBase), shift_(shift)  {
     }
 
     // fixed reference date
@@ -47,9 +48,10 @@ namespace QuantLib {
                                    const Real rho,
                                    const Real nu,
                                    const DayCounter& dc,
-                                   const boost::shared_ptr<SwapIndex>& indexBase)
+                                   const boost::shared_ptr<SwapIndex>& indexBase,
+                                   const Real shift)
     : SwaptionVolatilityStructure(referenceDate, cal, bdc, dc),
-        alpha_(alpha), beta_(beta), nu_(nu), rho_(rho), maxSwapTenor_(100*Years), indexBase_(indexBase) {
+        alpha_(alpha), beta_(beta), nu_(nu), rho_(rho), maxSwapTenor_(100*Years), indexBase_(indexBase), shift_(shift) {
     }
 
     boost::shared_ptr<SmileSection>
@@ -61,7 +63,7 @@ namespace QuantLib {
         params[2] = nu_;
         params[3] = rho_;
         Real forward = indexBase_->clone(tenor)->fixing(d);
-        boost::shared_ptr<SmileSection> raw(new SabrSmileSection(d,forward,params));
+        boost::shared_ptr<SmileSection> raw(new SabrSmileSection(d,forward,params,dayCounter(),shift_));
         // make it arbitrage free
         //boost::shared_ptr<SmileSection> af(new KahaleSmileSection(raw));
         //return af;
@@ -78,12 +80,14 @@ namespace QuantLib {
         params[3] = rho_;
         DateHelper hlp(*this,optionTime);
         NewtonSafe newton;
-        Date d(static_cast<BigInteger>(newton.solve(hlp, 0.1, 
-                                                    365.25*optionTime+static_cast<Real>(referenceDate().serialNumber()),1.0)));
+        Date d(static_cast<BigInteger>(newton.solve(
+            hlp, 0.1, 365.25 * optionTime +
+                          static_cast<Real>(referenceDate().serialNumber()),
+            1.0)));
         Period tenor(static_cast<Integer>(Rounding(0).operator()(swapLength*12.0)), Months);
         d = indexBase_->fixingCalendar().adjust(d);
         Real forward = indexBase_->clone(tenor)->fixing(d);
-        boost::shared_ptr<SmileSection> raw(new SabrSmileSection(optionTime,forward,params));
+        boost::shared_ptr<SmileSection> raw(new SabrSmileSection(optionTime,forward,params,shift_));
         // make it arbitrage free
         //boost::shared_ptr<SmileSection> af(new KahaleSmileSection(raw));
         //return af;
