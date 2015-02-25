@@ -100,10 +100,14 @@ namespace QuantLib {
             stdDevs.push_back(exerciseTimeSqrt*(
                 atmVol + volSpreadsInterpolator_[i](length, optionTime)));
         }
+        Real shift = atmVol_->shift(optionTime,length);
         return boost::shared_ptr<SmileSection>(new
             InterpolatedSmileSection<Linear>(optionTime,
                                              strikes,
                                              stdDevs,
-                                             atmForward));
+                                             atmForward,
+                                             Linear(),
+                                             Actual365Fixed(),
+                                             shift));
     }
 }
