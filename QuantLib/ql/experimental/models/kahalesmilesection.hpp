@@ -47,6 +47,7 @@
 #pragma GCC diagnostic pop
 #endif
 #include <vector>
+#include <utility>
 
 // numerical constants, still experimental
 #define QL_KAHALE_FMAX QL_MAX_REAL
@@ -140,7 +141,9 @@ namespace QuantLib {
                            const bool deleteArbitragePoints = false,
                            const std::vector<Real> &moneynessGrid =
                                std::vector<Real>(),
-                           const Real gap = 1.0E-5);
+                           const Real gap = 1.0E-5,
+                           const int forcedLeftIndex = -1,
+                           const int forcedRightIndex = QL_MAX_INTEGER);
 
         Real minStrike() const { return 0.0; }
         Real maxStrike() const { return QL_MAX_REAL; }
@@ -154,6 +157,10 @@ namespace QuantLib {
 
         Real leftCoreStrike() const { return k_[leftIndex_]; }
         Real rightCoreStrike() const { return k_[rightIndex_]; }
+
+        std::pair<Size, Size> coreIndices() const {
+            return std::make_pair(leftIndex_, rightIndex_);
+        }
 
         Real optionPrice(Rate strike, Option::Type type = Option::Call,
                          Real discount = 1.0) const;
@@ -169,6 +176,7 @@ namespace QuantLib {
         Real f_;
         const Real gap_;
         Size leftIndex_, rightIndex_;
+        int forcedLeftIndex_, forcedRightIndex_;
         std::vector<boost::shared_ptr<cFunction> > cFunctions_;
         const bool interpolate_, exponentialExtrapolation_;
         boost::shared_ptr<SmileSectionUtils> ssutils_;

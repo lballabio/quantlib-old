@@ -317,6 +317,19 @@ namespace QuantLib {
             LazyObject::update();
         }
 
+        // returns the indices of the af region from the last smile update
+        const std::vector<std::pair<Size,Size> > arbitrageIndices() const {
+            calculate();
+            return arbitrageIndices_;
+        }
+
+        // forces the indices of the af region (useful for sensitivity calculation)
+        // if an empty vector is given, the dynamic calculation is used again
+        void forceArbitrageIndices(const std::vector<std::pair<Size,Size> >& indices) {
+            forcedArbitrageIndices_ = indices;
+            this->update();
+        }
+
       protected:
 
         const Real numeraireImpl(const Time t, const Real y,
@@ -476,6 +489,9 @@ namespace QuantLib {
 
         Array normalIntegralX_;
         Array normalIntegralW_;
+
+        mutable std::vector<std::pair<Size,Size> > arbitrageIndices_;
+        std::vector<std::pair<Size,Size> > forcedArbitrageIndices_;
     };
 
     std::ostream &operator<<(std::ostream &out,

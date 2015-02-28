@@ -302,6 +302,10 @@ namespace QuantLib {
         QL_MFMESSAGE(modelOutputs_, "updating smiles");
         modelOutputs_.dirty_ = true;
 
+        arbitrageIndices_.clear();
+
+        Size pointIndex = 0;
+
         for (std::map<Date, CalibrationPoint>::reverse_iterator i =
                  calibrationPoints_.rbegin();
              i != calibrationPoints_.rend(); ++i) {
@@ -336,6 +340,13 @@ namespace QuantLib {
             i->second.rawSmileSection_ = boost::shared_ptr<SmileSection>(
                 new AtmSmileSection(smileSection, i->second.atm_));
 
+            int forcedLeftIndex = -1;
+            int forcedRightIndex = QL_MAX_INTEGER;
+            if(forcedArbitrageIndices_.size() > pointIndex) {
+                forcedLeftIndex = forcedArbitrageIndices_[pointIndex].first;
+                forcedRightIndex = forcedArbitrageIndices_[pointIndex].second;
+            }
+
             if (modelSettings_.adjustments_ & ModelSettings::KahaleSmile) {
 
                 i->second.smileSection_ = boost::shared_ptr<KahaleSmileSection>(
@@ -348,7 +359,12 @@ namespace QuantLib {
                         (modelSettings_.adjustments_ &
                          ModelSettings::SmileDeleteArbitragePoints) != 0,
                         modelSettings_.smileMoneynessCheckpoints_,
-                        modelSettings_.digitalGap_));
+                        modelSettings_.digitalGap_,
+                        forcedLeftIndex, forcedRightIndex));
+
+                arbitrageIndices_.push_back(
+                    boost::dynamic_pointer_cast<KahaleSmileSection>(
+                        i->second.smileSection_)->coreIndices());
 
             } else {
 
@@ -394,7 +410,12 @@ namespace QuantLib {
                         (modelSettings_.adjustments_ &
                          ModelSettings::SmileDeleteArbitragePoints) != 0,
                         modelSettings_.smileMoneynessCheckpoints_,
-                        modelSettings_.digitalGap_));
+                        modelSettings_.digitalGap_,
+                        forcedLeftIndex, forcedRightIndex));
+
+                    arbitrageIndices_.push_back(
+                        boost::dynamic_pointer_cast<KahaleSmileSection>(
+                            i->second.smileSection_)->coreIndices());
 
                 } else { // no smile pretreatment
 
@@ -468,6 +489,8 @@ namespace QuantLib {
             // "-------------------------------------------------------------------"
             //     << std::endl;
             // end output smile
+
+            ++pointIndex;
         }
     }
 

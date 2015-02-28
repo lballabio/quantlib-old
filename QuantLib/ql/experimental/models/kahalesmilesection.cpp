@@ -25,10 +25,12 @@ namespace QuantLib {
         const boost::shared_ptr<SmileSection> source, const Real atm,
         const bool interpolate, const bool exponentialExtrapolation,
         const bool deleteArbitragePoints,
-        const std::vector<Real> &moneynessGrid, const Real gap)
+        const std::vector<Real> &moneynessGrid, const Real gap,
+        const int forcedLeftIndex, const int forcedRightIndex)
         : SmileSection(*source), source_(source), moneynessGrid_(moneynessGrid),
           gap_(gap), interpolate_(interpolate),
-          exponentialExtrapolation_(exponentialExtrapolation) {
+          exponentialExtrapolation_(exponentialExtrapolation),
+        forcedLeftIndex_(forcedLeftIndex), forcedRightIndex_(forcedRightIndex) {
 
         // only shifted lognormal smile sections are supported
 
@@ -105,6 +107,10 @@ namespace QuantLib {
                 Real dig = digitalOptionPrice((k1 - shift()) / 2.0, Option::Call,
                                               1.0, gap_);
                 QL_REQUIRE(dig >= -c1p && dig <= 1.0, "dummy");
+                if(static_cast<int>(leftIndex_) < forcedLeftIndex_) {
+                    leftIndex_++;
+                    success = false;
+                }
             }
             catch (...) {
                 leftIndex_++;
@@ -201,6 +207,10 @@ namespace QuantLib {
                 cFunctions_[rightIndex_ - leftIndex_ + 1] = cFct;
             }
             catch (...) {
+                rightIndex_--;
+                success = false;
+            }
+            if(static_cast<int>(rightIndex_) > forcedRightIndex_) {
                 rightIndex_--;
                 success = false;
             }
