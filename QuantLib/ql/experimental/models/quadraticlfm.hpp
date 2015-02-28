@@ -26,8 +26,10 @@
 
 #include <ql/types.hpp>
 #include <ql/errors.hpp>
-#include <vector>
+#include <ql/utilities/disposable.hpp>
+#include <ql/math/array.hpp>
 
+#include <vector>
 #include <iostream>
 
 namespace QuantLib {
@@ -35,16 +37,19 @@ namespace QuantLib {
 class QuadraticLfm {
 
   public:
-    QuadraticLfm(std::vector<Real> &rateTimes,
-                 std::vector<Real> &initialForwards,
-                 std::vector<std::vector<std::vector<Real> > > &sigma,
-                 std::vector<std::vector<Real> > &b,
-                 std::vector<std::vector<Real> > &c);
+    /*! sigma, b and c are stored as references, i.e. if they change outside this class,
+        the class reflects this change in computed values */
+    QuadraticLfm(const std::vector<Real> &rateTimes,
+                 const std::vector<Real> &initialForwards,
+                 const std::vector<std::vector<std::vector<Real> > > &sigma,
+                 const std::vector<std::vector<Real> > &b,
+                 const std::vector<std::vector<Real> > &c);
 
     /* markovian projection local volatility \eta(t,s) */
-    /* uses cached values */
-    Real eta(const Size n, const Size m, const Size step, const Real t,
-             const Real s);
+    Disposable<Array> eta(const Size n, const Size m, const Size step, const Real t,
+             const Array& s);
+
+    Real eta(const Size n, const Size m, const Size step, const Real t, const Real s);
 
     /* dS_{n,m} / dL_i freezed at time zero */
     Real dSdL(const Size n, const Size m, const Size step, const Size i,
@@ -59,14 +64,11 @@ class QuadraticLfm {
     /* t_{q-1} <= t < t_q */
     int q(const Real t);
 
-    /* refresh cached values after changes in the parameters given
-       in the constructor */
-    void refreshCache();
-
   private:
-    std::vector<Real> &rateTimes_, initialForwards_;
-    std::vector<std::vector<std::vector<Real> > > &sigma_;
-    std::vector<std::vector<Real> > &b_, &c_;
+    const std::vector<Real> rateTimes_;
+    std::vector<Real> initialForwards_;
+    const std::vector<std::vector<std::vector<Real> > > &sigma_;
+    const std::vector<std::vector<Real> > &b_, &c_;
     Size N_, K_;
 };
 }
