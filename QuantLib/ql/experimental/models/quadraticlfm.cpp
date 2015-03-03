@@ -17,17 +17,28 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
+#include <ql/math/interpolations/cubicinterpolation.hpp>
+#include <ql/methods/finitedifferences/meshers/concentrating1dmesher.hpp>
+#include <ql/methods/finitedifferences/meshers/fdmmeshercomposite.hpp>
+#include <ql/methods/finitedifferences/utilities/fdmdirichletboundary.hpp>
+#include <ql/methods/finitedifferences/utilities/fdmboundaryconditionset.hpp>
+#include <ql/methods/finitedifferences/boundarycondition.hpp>
+#include <ql/methods/finitedifferences/solvers/fdmbackwardsolver.hpp>
 #include <ql/experimental/models/quadraticlfm.hpp>
+#include <ql/experimental/finitedifferences/fdmdupire1dop.hpp>
+
+#include <boost/function.hpp>
 
 #include <algorithm>
 
 namespace QuantLib {
 
-QuadraticLfm::QuadraticLfm(const std::vector<Real> &rateTimes,
-                           const std::vector<Real> &initialForwards,
-                           const std::vector<std::vector<std::vector<Real> > > &sigma,
-                           const std::vector<std::vector<Real> > &b,
-                           const std::vector<std::vector<Real> > &c)
+QuadraticLfm::QuadraticLfm(
+    const std::vector<Real> &rateTimes,
+    const std::vector<Real> &initialForwards,
+    const std::vector<std::vector<std::vector<Real> > > &sigma,
+    const std::vector<std::vector<Real> > &b,
+    const std::vector<std::vector<Real> > &c)
     : rateTimes_(rateTimes), initialForwards_(initialForwards), sigma_(sigma),
       b_(b), c_(c) {
     N_ = rateTimes.size();
@@ -56,6 +67,17 @@ QuadraticLfm::QuadraticLfm(const std::vector<Real> &rateTimes,
     }
 }
 
+const void QuadraticLfm::checkSwapParameters(const Size n, const Size m,
+                                             const Size step) {
+    QL_REQUIRE(N_ - 1 >= m && m > n && n >= 0,
+               "for a swap rate 0 <= n (" << n << ") < m (" << m << ") <= N-1 ("
+                                          << (N_ - 1) << ") must hold");
+    QL_REQUIRE((m - n) % step == 0,
+               "m (" << m << ") minus n (" << n << ") = " << (m - n)
+                     << " must be divisible by step (" << step << ")");
+    return;
+}
+
 int QuadraticLfm::q(const Real t) {
     QL_REQUIRE(t >= 0.0 && t < rateTimes_[N_ - 2],
                "at time " << t << " all forwards are dead");
@@ -78,12 +100,7 @@ Real QuadraticLfm::P(const Size n, const Size m) {
 }
 
 Real QuadraticLfm::S(const Size n, const Size m, const Size step) {
-    QL_REQUIRE(N_ - 1 >= m && m > n && n >= 0,
-               "for a swap rate 0 <= n (" << n << ") < m (" << m << ") <= N-1 ("
-                                          << (N_ - 1) << ") must hold");
-    QL_REQUIRE((m - n) % step == 0,
-               "m (" << m << ") minus n (" << n << ") = " << (m - n)
-                     << " must be divisible by step (" << step << ")");
+    checkSwapParameters(n, m, step);
     Real annuity = 0.0;
     for (Size i = n + step; i <= m; i += step)
         annuity += P(n, i) * (rateTimes_[i] - rateTimes_[i - step]);
@@ -92,6 +109,7 @@ Real QuadraticLfm::S(const Size n, const Size m, const Size step) {
 
 Real QuadraticLfm::dSdL(const Size n, const Size m, const Size step,
                         const Size i, const Real h) {
+    checkSwapParameters(n, m, step);
     QL_REQUIRE(N_ - 2 >= i && i >= 0, "for dSdL, 0 <= i (" << i << ") <= N-2 ("
                                                            << (N_ - 2)
                                                            << ") must hold");
@@ -110,9 +128,10 @@ Real QuadraticLfm::eta(const Size n, const Size m, const Size step,
     return eta(n, m, step, t, sVec)[0];
 }
 
-Disposable<Array> QuadraticLfm::eta(const Size n, const Size m,
-                                                 const Size step, const Real t,
-                                                 const Array& s) {
+Disposable<Array> QuadraticLfm::eta(const Size n, const Size m, const Size step,
+                                    const Real t, const Array &s) {
+
+    checkSwapParameters(n, m, step);
 
     int ind = q(t);
     Real s0 = S(n, m, step);
@@ -211,18 +230,88 @@ Disposable<Array> QuadraticLfm::eta(const Size n, const Size m,
                             b_[j][ind] * Ei[j - n] * (s[k] - s0) +
                             (c_[i][ind] * Ei[i - n] * Ei[i - n] +
                              c_[j][ind] * Ei[j - n] * Ei[j - n]) *
-                            (s[k] - s0) * (s[k] - s0));
+                                (s[k] - s0) * (s[k] - s0));
             }
         }
     }
 
-    for(Size k=0;k<s.size();++k) {
+    for (Size k = 0; k < s.size(); ++k) {
         // through the approximation for eta2 it may get negative (?)
-        eta2[k] = std::sqrt(std::max(eta2[k],0.0));
+        eta2[k] = std::sqrt(std::max(eta2[k], 0.0));
     }
 
     return eta2;
 
 } // eta
+
+Disposable<std::vector<Real> >
+QuadraticLfm::callPrices(const Size n, const Size m, const Size step,
+                         const std::vector<Real> &strikes) {
+
+    checkSwapParameters(n, m, step);
+
+    // expiry time
+    Real expiryTime = rateTimes_[n];
+
+    // forward swap rate
+    Real forward = S(n, m, step);
+
+    // grid parameters (hardcoded here ... !)
+    const Real start = std::min(0.00001, strikes.front() * 0.5);
+    const Real end = std::max(0.10, strikes.back() * 1.5);
+    const Size size = 500;
+    const Real density = 0.1;
+    const Size steps = static_cast<Size>(std::ceil(expiryTime * 24));
+    const Size dampingSteps = 5;
+
+    // Layout
+    std::vector<Size> dim(1, size);
+    const boost::shared_ptr<FdmLinearOpLayout> layout(
+        new FdmLinearOpLayout(dim));
+
+    // Mesher
+    const boost::shared_ptr<Fdm1dMesher> m1(new Concentrating1dMesher(
+        start, end, size, std::pair<Real, Real>(forward, density), true));
+    const std::vector<boost::shared_ptr<Fdm1dMesher> > meshers(1, m1);
+    const boost::shared_ptr<FdmMesher> mesher(
+        new FdmMesherComposite(layout, meshers));
+
+    // Boundary conditions
+    FdmBoundaryConditionSet boundaries;
+
+    // initial values
+    Array rhs(mesher->layout()->size());
+    for (FdmLinearOpIterator iter = layout->begin(); iter != layout->end();
+         ++iter) {
+        Real k = mesher->location(iter, 0);
+        rhs[iter.index()] = std::max(forward - k, 0.0);
+    }
+
+    // strike grid
+    const Array strikeGrid = mesher->locations(0);
+
+    // local vol function
+    LocalVolHelper localVol(this,n,m,step,strikeGrid);
+
+    // solver
+    boost::shared_ptr<FdmDupire1dOp> map(new FdmDupire1dOp(mesher, localVol));
+    FdmBackwardSolver solver(map, boundaries,
+                             boost::shared_ptr<FdmStepConditionComposite>(),
+                             FdmSchemeDesc::Douglas());
+    solver.rollback(rhs, expiryTime, 0.0, steps, dampingSteps);
+
+    // interpolate solution
+    boost::shared_ptr<Interpolation> solution(new CubicInterpolation(
+        strikeGrid.begin(), strikeGrid.end(), rhs.begin(), CubicInterpolation::Spline, true,
+        CubicInterpolation::SecondDerivative, 0.0,
+        CubicInterpolation::SecondDerivative, 0.0));
+    // boost::shared_ptr<Interpolation> solution(new
+    // LinearInterpolation(k.begin(),k.end(),rhs.begin()));
+    solution->disableExtrapolation();
+    std::vector<Real> result(strikes.size());
+    std::transform(strikes.begin(), strikes.end(), result.begin(), *solution);
+    return result;
+
+} // callPrices
 
 } // namespace QuantLib
