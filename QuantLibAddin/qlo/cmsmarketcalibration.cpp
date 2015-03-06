@@ -52,12 +52,12 @@ namespace QuantLibAddin {
         
     std::vector<std::vector<ObjectHandler::property_t> >
     CmsMarketCalibration::getSparseSabrParameters() {
-        return getSabrParameters(libraryObject_->sparseXabrParameters_);
+        return getSabrParameters(libraryObject_->sparseSabrParameters_);
     }
 
     std::vector<std::vector<ObjectHandler::property_t> >
     CmsMarketCalibration::getDenseSabrParameters() {
-        return getSabrParameters(libraryObject_->denseXabrParameters_);
+        return getSabrParameters(libraryObject_->denseSabrParameters_);
     }
 
     std::vector<std::vector<ObjectHandler::property_t> >
