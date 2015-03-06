@@ -139,7 +139,7 @@ Disposable<Array> QuadraticLfm::eta(const Size n, const Size m, const Size step,
     // set up vectors
 
     std::vector<Real> qi(m - n, 0.0);
-    std::vector<std::vector<Real> > sij, intsi;
+    std::vector<std::vector<Real> > sij; //, intsi;
     std::vector<std::vector<std::vector<Real> > > intsisj;
     for (Size j = n; j < m; ++j) {
         std::vector<Real> sijtmp(m - n, 0.0);
@@ -147,7 +147,6 @@ Disposable<Array> QuadraticLfm::eta(const Size n, const Size m, const Size step,
     }
     for (Size k = 0; k < K_; ++k) {
         std::vector<Real> intsitmp(m - n, 0.0);
-        intsi.push_back(intsitmp);
         std::vector<std::vector<Real> > intsisjtmp;
         for (Size i = n; i < m; ++i) {
             std::vector<Real> intsisjtmp2(m - n, 0.0);
@@ -160,14 +159,6 @@ Disposable<Array> QuadraticLfm::eta(const Size n, const Size m, const Size step,
 
     for (Size i = n; i < m; ++i) {
         qi[i - n] = dSdL(n, m, step, i);
-        for (Size k = 0; k < K_; ++k) {
-            intsi[k][i - n] =
-                ind >= 0 ? sigma_[k][i - n][ind] * (t - rateTimes_[ind]) : 0.0;
-            for (int ii = 0; ii < ind; ++ii) {
-                intsi[k][i - n] += sigma_[k][i - n][ii] *
-                                   (rateTimes_[ii + 1] - rateTimes_[ii]);
-            }
-        }
         for (Size k = 0; k < K_; ++k) {
             for (Size j = n; j < m; ++j) {
                 sij[i - n][j - n] +=
@@ -196,26 +187,25 @@ Disposable<Array> QuadraticLfm::eta(const Size n, const Size m, const Size step,
     Real denom = 0.0;
     for (Size i = n; i < m; ++i) {
         for (Size j = n; j < m; ++j) {
-            denom += initialForwards_[i] * initialForwards_[j] * qi[i - n] *
-                     qi[j - n];
             Real tmp = 0.0;
             for (Size k = 0; k < K_; ++k) {
                 tmp += intsisj[k][i - n][j - n];
             }
+            denom += initialForwards_[i] * initialForwards_[j] * qi[i - n] *
+                     qi[j - n] * tmp;
         }
     }
 
     for (Size i = n; i < m; ++i) {
-        Real tmp2 = 0.0;
+        Real tmp1 = 0.0;
         for (Size k = 0; k < K_; ++k) {
-            Real tmp1 = 0.0;
             for (Size j = n; j < m; ++j) {
-                tmp1 += initialForwards_[j] * qi[j - n] * intsi[k][j - n];
+                tmp1 +=
+                    initialForwards_[j] * qi[j - n] * intsisj[k][i - n][j - n];
             }
-            tmp2 += tmp1 * intsi[k][i - n];
         }
-        tmp2 *= initialForwards_[i];
-        Ei[i - n] = tmp2 / denom;
+        tmp1 *= initialForwards_[i];
+        Ei[i - n] = tmp1 / denom;
     }
 
     // eta squared
@@ -226,10 +216,10 @@ Disposable<Array> QuadraticLfm::eta(const Size n, const Size m, const Size step,
             for (Size k = 0; k < s.size(); ++k) {
                 eta2[k] += qi[i - n] * qi[j - n] * sij[i - n][j - n] *
                            (initialForwards_[i] * initialForwards_[j] +
-                            b_[i][ind] * Ei[i - n] * (s[k] - s0) +
-                            b_[j][ind] * Ei[j - n] * (s[k] - s0) +
-                            (c_[i][ind] * Ei[i - n] * Ei[i - n] +
-                             c_[j][ind] * Ei[j - n] * Ei[j - n]) *
+                            b_[i][ind] * Ei[i - n] * initialForwards_[j] * (s[k] - s0) +
+                            b_[j][ind] * Ei[j - n] * initialForwards_[i] * (s[k] - s0) +
+                            (c_[i][ind] * Ei[i - n] * Ei[i - n] * initialForwards_[j] +
+                             c_[j][ind] * Ei[j - n] * Ei[j - n] * initialForwards_[i]) *
                                 (s[k] - s0) * (s[k] - s0));
             }
         }
@@ -291,7 +281,7 @@ QuadraticLfm::callPrices(const Size n, const Size m, const Size step,
     const Array strikeGrid = mesher->locations(0);
 
     // local vol function
-    LocalVolHelper localVol(this,n,m,step,strikeGrid);
+    LocalVolHelper localVol(this, n, m, step, strikeGrid);
 
     // solver
     boost::shared_ptr<FdmDupire1dOp> map(new FdmDupire1dOp(mesher, localVol));
@@ -302,9 +292,9 @@ QuadraticLfm::callPrices(const Size n, const Size m, const Size step,
 
     // interpolate solution
     boost::shared_ptr<Interpolation> solution(new CubicInterpolation(
-        strikeGrid.begin(), strikeGrid.end(), rhs.begin(), CubicInterpolation::Spline, true,
-        CubicInterpolation::SecondDerivative, 0.0,
-        CubicInterpolation::SecondDerivative, 0.0));
+        strikeGrid.begin(), strikeGrid.end(), rhs.begin(),
+        CubicInterpolation::Spline, true, CubicInterpolation::SecondDerivative,
+        0.0, CubicInterpolation::SecondDerivative, 0.0));
     // boost::shared_ptr<Interpolation> solution(new
     // LinearInterpolation(k.begin(),k.end(),rhs.begin()));
     solution->disableExtrapolation();
