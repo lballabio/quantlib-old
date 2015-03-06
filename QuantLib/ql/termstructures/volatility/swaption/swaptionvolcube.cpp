@@ -49,7 +49,7 @@ namespace QuantLib {
     {
         QL_REQUIRE(!atmVol.empty(), "atm vol handle not linked to anything");
 
-        QL_REQUIRE(nStrikes_>1, "too few strikes (" << nStrikes_ << ")");
+        QL_REQUIRE(nStrikes_>= requiredNumberOfStrikes(), "too few strikes (" << nStrikes_ << ")");
         for (Size i=1; i<nStrikes_; ++i)
             QL_REQUIRE(strikeSpreads_[i-1]<strikeSpreads_[i],
                        "non increasing strike spreads: " <<

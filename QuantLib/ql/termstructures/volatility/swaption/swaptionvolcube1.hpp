@@ -178,6 +178,7 @@ namespace QuantLib {
         std::vector<Real> spreadVolInterpolation(const Date& atmOptionDate,
                                                  const Period& atmSwapTenor) const;
       private:
+        Size requiredNumberOfStrikes() const { return 1; }
         mutable Cube marketVolCube_;
         mutable Cube volCubeAtmCalibrated_;
         mutable Cube sparseParameters_;

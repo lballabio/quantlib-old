@@ -82,6 +82,7 @@ namespace QuantLib {
         //@}
       protected:
         void registerWithVolatilitySpread();
+        virtual Size requiredNumberOfStrikes() const { return 2; }
         Volatility volatilityImpl(Time optionTime,
                                   Time swapLength,
                                   Rate strike) const;
