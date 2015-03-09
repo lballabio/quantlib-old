@@ -30,9 +30,9 @@ page</a>.
 
 <h2 class="center">Books</h2>
 <ul>
-<li><strong>Implementing QuantLib</strong> (in progress)<br>
-Ballabio, L.<br>
-Available from <a href="http://implementingquantlib.blogspot.com/">the
+<li>Luigi Ballabio, <strong>Implementing QuantLib</strong> (in progress)<br>
+Available as an ebook from <a href="https://leanpub.com/implementingquantlib/">Leanpub</a>.
+Drafts are also posted on <a href="http://implementingquantlib.blogspot.com/">the
 accompanying blog</a>.
 </li>
 </ul>
