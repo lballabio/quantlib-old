@@ -97,6 +97,8 @@ namespace QuantLib {
         std::vector<std::vector<Handle<Quote> > > volSpreads_;
         boost::shared_ptr<SwapIndex> swapIndexBase_, shortSwapIndexBase_;
         bool vegaWeightedSmileFit_;
+      private:
+        void initialize();
     };
 
     // inline
