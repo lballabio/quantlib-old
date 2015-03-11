@@ -133,7 +133,7 @@ namespace QuantLib {
                     addAdjustment(KahaleSmile);
 
                 if ((adjustments_ & KahaleSmile) != 0 &&
-                    (adjustments_ & SmileDeleteArbitragePoints)) {
+                    (adjustments_ & SmileDeleteArbitragePoints) != 0) {
                     addAdjustment(KahaleInterpolation);
                 }
 
