@@ -45,7 +45,7 @@ namespace QuantLib {
 
     void SwaptionVolCube2::performCalculations() const{
 
-        SwaptionVolatilityDiscrete::performCalculations();
+        SwaptionVolatilityCube::performCalculations();
         //! set volSpreadsMatrix_ by volSpreads_ quotes
         for (Size i=0; i<nStrikes_; i++) 
             for (Size j=0; j<nOptionTenors_; j++)

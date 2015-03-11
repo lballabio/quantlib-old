@@ -47,13 +47,7 @@ namespace QuantLib {
       shortSwapIndexBase_(shortSwapIndexBase),
       vegaWeightedSmileFit_(vegaWeightedSmileFit)
     {
-        initialize();
-    }
-
-    void SwaptionVolatilityCube::initialize() {
         QL_REQUIRE(!atmVol_.empty(), "atm vol handle not linked to anything");
-        QL_REQUIRE(nStrikes_>= requiredNumberOfStrikes(), "too few strikes (" << nStrikes_ << ")");
-
         for (Size i=1; i<nStrikes_; ++i)
             QL_REQUIRE(strikeSpreads_[i-1]<strikeSpreads_[i],
                        "non increasing strike spreads: " <<

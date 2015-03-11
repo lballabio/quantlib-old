@@ -292,7 +292,7 @@ namespace QuantLib {
 
     template<class Model> void SwaptionVolCube1x<Model>::performCalculations() const {
 
-        SwaptionVolatilityDiscrete::performCalculations();
+        SwaptionVolatilityCube::performCalculations();
 
         //! set marketVolCube_ by volSpreads_ quotes
         marketVolCube_ = Cube(optionDates_, swapTenors_,
