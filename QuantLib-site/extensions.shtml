@@ -34,6 +34,10 @@ procedural interface to a number of platforms including Microsoft
 Excel (see the <a href="http://quantlibxl.org">QuantLibXL</a> site)
 and OpenOffice.org Calc.</p>
 
+<p><a href="http://www.deriscope.com/index.html">Deriscope</a> is
+another project that aims at exporting QuantLib functionality to
+Excel.</p>
+
 <p>GNU R support is provided by means of <a href=
 "http://dirk.eddelbuettel.com/code/rquantlib.html">RQuantLib</a> by
 Dirk Eddelbuettel.</p>
