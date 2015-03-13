@@ -696,11 +696,13 @@ namespace QuantLib {
                 SmileSectionUtils ssutils(
                     *sec, modelSettings_.smileMoneynessCheckpoints_,
                     i->second.atm_);
+                Real shift = sec->shift();
                 std::vector<Real> money = ssutils.moneyGrid();
                 std::vector<Real> strikes, marketCall, marketPut, modelCall,
                     modelPut, marketVega, marketRawCall, marketRawPut;
                 for (Size j = 0; j < money.size(); j++) {
-                    strikes.push_back(money[j] * i->second.atm_);
+                    strikes.push_back(money[j] * (i->second.atm_ + shift) -
+                                      shift);
                     try {
                         marketRawCall.push_back(rawSec->optionPrice(
                             strikes[j], Option::Call, i->second.annuity_));
