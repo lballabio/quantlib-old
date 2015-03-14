@@ -133,46 +133,48 @@ Disposable<Array> QuadraticLfm::eta(const Size n, const Size m, const Size step,
 
     checkSwapParameters(n, m, step);
 
-    int ind = q(t);
+    Size ind = static_cast<Size>(q(t) + 1);
     Real s0 = S(n, m, step);
 
     // set up vectors
 
     std::vector<Real> qi(m - n, 0.0);
-    std::vector<std::vector<Real> > sij; //, intsi;
-    std::vector<std::vector<std::vector<Real> > > intsisj;
+    std::vector<Real> Qi(m - n, 0.0);
+    std::vector<Real> intQi(m - n, 0.0);
+    std::vector<std::vector<Real> > sij;
+    std::vector<std::vector<Real> > intsisj;
+    // std::vector<std::vector<std::vector<Real> > > intsisj;
     for (Size j = n; j < m; ++j) {
         std::vector<Real> sijtmp(m - n, 0.0);
         sij.push_back(sijtmp);
     }
-    for (Size k = 0; k < K_; ++k) {
+    for (Size j = n; j < m; ++j) {
         std::vector<Real> intsitmp(m - n, 0.0);
-        std::vector<std::vector<Real> > intsisjtmp;
-        for (Size i = n; i < m; ++i) {
-            std::vector<Real> intsisjtmp2(m - n, 0.0);
-            intsisjtmp.push_back(intsisjtmp2);
-        }
-        intsisj.push_back(intsisjtmp);
+        // std::vector<std::vector<Real> > intsisjtmp;
+        // for (Size i = n; i < m; ++i) {
+        //     std::vector<Real> intsisjtmp2(m - n, 0.0);
+        //     intsisjtmp.push_back(intsisjtmp2);
+        // }
+        intsisj.push_back(intsitmp);
     }
 
     // precompute results
 
     for (Size i = n; i < m; ++i) {
-        qi[i - n] = dSdL(n, m, step, i);
+        qi[i - n] = dSdL(n, m, step, i) * initialForwards_[i] / s0;
         for (Size k = 0; k < K_; ++k) {
             for (Size j = n; j < m; ++j) {
                 sij[i - n][j - n] +=
-                    ind >= 0 ? sigma_[k][i - n][ind] * sigma_[k][j - n][ind]
-                             : 0.0;
+                    sigma_[k][i - n][ind] * sigma_[k][j - n][ind];
             }
         }
         for (Size j = n; j < m; ++j) {
             for (Size k = 0; k < K_; ++k) {
-                intsisj[k][i - n][j - n] += sigma_[k][i - n][ind] *
-                                            sigma_[k][j - n][ind] *
-                                            (t - rateTimes_[ind]);
-                for (int ii = 0; ii < ind; ++ii) {
-                    intsisj[k][i - n][j - n] +=
+                intsisj[i - n][j - n] += sigma_[k][i - n][ind] *
+                                         sigma_[k][j - n][ind] *
+                                         (t - rateTimes_[ind]);
+                for (Size ii = 0; ii < ind; ++ii) {
+                    intsisj[i - n][j - n] +=
                         sigma_[k][i - n][ii] * sigma_[k][j - n][ii] *
                         (rateTimes_[ii + 1] - rateTimes_[ii]);
                 }
@@ -180,54 +182,125 @@ Disposable<Array> QuadraticLfm::eta(const Size n, const Size m, const Size step,
         }
     }
 
-    // E_i
-
-    std::vector<Real> Ei(m - n, 0.0);
-
-    Real denom = 0.0;
     for (Size i = n; i < m; ++i) {
         for (Size j = n; j < m; ++j) {
-            Real tmp = 0.0;
+            Qi[i - n] += qi[j - n] * sij[i - n][j - n];
             for (Size k = 0; k < K_; ++k) {
-                tmp += intsisj[k][i - n][j - n];
+                intQi[i - n] += qi[j - n] * sigma_[k][i - n][ind] *
+                                sigma_[k][j - n][ind] * (t - rateTimes_[ind]);
+                for (Size ii = 0; ii < ind; ++ii) {
+                    intQi[i - n] += qi[j - n] * sigma_[k][i - n][ii] *
+                                    sigma_[k][j - n][ii] *
+                                    (t - rateTimes_[ii]) *
+                                    (rateTimes_[ii + 1] - rateTimes_[ii]);
+                }
             }
-            denom += initialForwards_[i] * initialForwards_[j] * qi[i - n] *
-                     qi[j - n] * tmp;
         }
     }
 
-    for (Size i = n; i < m; ++i) {
-        Real tmp1 = 0.0;
-        for (Size k = 0; k < K_; ++k) {
-            for (Size j = n; j < m; ++j) {
-                tmp1 +=
-                    initialForwards_[j] * qi[j - n] * intsisj[k][i - n][j - n];
-            }
-        }
-        tmp1 *= initialForwards_[i];
-        Ei[i - n] = tmp1 / denom;
-    }
+    // =================================================================================
+    // my own derivation (needs work ...)
+    // =================================================================================
 
-    // eta squared
+    // // E_i
+
+    // std::vector<Real> Ei(m - n, 0.0);
+
+    // Real denom = 0.0;
+    // for (Size i = n; i < m; ++i) {
+    //     for (Size j = n; j < m; ++j) {
+    //         Real tmp = 0.0;
+    //         for (Size k = 0; k < K_; ++k) {
+    //             tmp += intsisj[k][i - n][j - n];
+    //         }
+    //         denom += initialForwards_[i] * initialForwards_[j] * qi[i -
+    //         n] *
+    //                  qi[j - n] * tmp;
+    //     }
+    // }
+
+    // for (Size i = n; i < m; ++i) {
+    //     Real tmp1 = 0.0;
+    //     for (Size k = 0; k < K_; ++k) {
+    //         for (Size j = n; j < m; ++j) {
+    //             tmp1 +=
+    //                 initialForwards_[j] * qi[j - n] * intsisj[k][i - n][j
+    //                 -
+    //                 n];
+    //         }
+    //     }
+    //     tmp1 *= initialForwards_[i];
+    //     Ei[i - n] = tmp1 / denom;
+    // }
+
+    // // eta squared
 
     Array eta2(s.size(), 0.0);
+    // for (Size i = n; i < m; ++i) {
+    //     for (Size j = n; j < m; ++j) {
+    //         for (Size k = 0; k < s.size(); ++k) {
+    //             if (i != j) {
+    //                 eta2[k] += qi[i - n] * qi[j - n] * sij[i - n][j - n]
+    //                 *
+    //                            (initialForwards_[i] * initialForwards_[j]
+    //                            +
+    //                             b_[i][ind] * Ei[i - n] *
+    //                             initialForwards_[j]
+    //                             *
+    //                                 (s[k] - s0) +
+    //                             b_[j][ind] * Ei[j - n] *
+    //                             initialForwards_[i]
+    //                             *
+    //                                 (s[k] - s0) +
+    //                             (c_[i][ind] * Ei[i - n] * Ei[i - n] *
+    //                                  initialForwards_[j] +
+    //                              c_[j][ind] * Ei[j - n] * Ei[j - n] *
+    //                                  initialForwards_[i]) *
+    //                                 (s[k] - s0) * (s[k] - s0));
+    //             } else {
+    //                 eta2[k] += qi[i - n] * qi[i - n] * sij[i - n][i - n]
+    //                 *
+    //                            (initialForwards_[i] * initialForwards_[i]
+    //                            +
+    //                             2.0 * b_[i][ind] * initialForwards_[i] *
+    //                                 Ei[i - n] * (s[k] - s0) +
+    //                             (b_[i][ind] * b_[i][ind] +
+    //                              2.0 * c_[i][ind] * Ei[i - n] * Ei[i - n]
+    //                              *
+    //                                  (s[k] - s0) * (s[k] - s0)));
+    //             }
+    //         }
+    //     }
+    // }
+
+    // =================================================================================
+    // Jonathan's derivation
+    // =================================================================================
+
+    Real sigma2 = 0.0, intSigma2 = 0.0;
     for (Size i = n; i < m; ++i) {
         for (Size j = n; j < m; ++j) {
-            for (Size k = 0; k < s.size(); ++k) {
-                eta2[k] += qi[i - n] * qi[j - n] * sij[i - n][j - n] *
-                           (initialForwards_[i] * initialForwards_[j] +
-                            b_[i][ind] * Ei[i - n] * initialForwards_[j] * (s[k] - s0) +
-                            b_[j][ind] * Ei[j - n] * initialForwards_[i] * (s[k] - s0) +
-                            (c_[i][ind] * Ei[i - n] * Ei[i - n] * initialForwards_[j] +
-                             c_[j][ind] * Ei[j - n] * Ei[j - n] * initialForwards_[i]) *
-                                (s[k] - s0) * (s[k] - s0));
-            }
+            sigma2 += qi[i - n] * qi[j - n] * sij[i - n][j - n];
+            intSigma2 += qi[i - n] * qi[j - n] * intsisj[i - n][j - n];
         }
+    }
+
+    Real b = 0.0, c = 0.0;
+    for (Size i = n; i < m; ++i) {
+        b += b_[i][ind] * qi[i - n] * Qi[i - n] * intQi[i - n] /
+             (sigma2 * intSigma2);
+        c += c_[i][ind] * qi[i - n] * Qi[i - n] * intQi[i - n] * intQi[i - n] /
+             (sigma2 * intSigma2 * intSigma2);
+    }
+
+    for (Size k = 0; k < s.size(); ++k) {
+        Real x = (s[k] - s0) / s0;
+        eta2[k] = s0 * (1.0 + b * x + c * x * x) * std::sqrt(sigma2);
     }
 
     for (Size k = 0; k < s.size(); ++k) {
         // through the approximation for eta2 it may get negative (?)
-        eta2[k] = std::sqrt(std::max(eta2[k], 0.0));
+        eta2[k] = std::max(eta2[k], 0.0);
     }
 
     return eta2;
