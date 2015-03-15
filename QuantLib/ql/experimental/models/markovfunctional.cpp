@@ -846,9 +846,10 @@ namespace QuantLib {
                                termStructure()->discount(numeraireTime())));
     }
 
-    const Real MarkovFunctional::zerobondImpl(
-        const Time T, const Time t, const Real y,
-        const Handle<YieldTermStructure> &yts) const {
+    const Real
+    MarkovFunctional::zerobondImpl(const Time T, const Time t, const Real y,
+                                   const Handle<YieldTermStructure> &yts,
+                                   const bool adjusted) const {
 
         if (t == 0.0)
             return yts.empty() ? this->termStructure()->discount(T, true)

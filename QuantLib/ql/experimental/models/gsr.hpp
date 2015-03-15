@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2013 Peter Caspers
+ Copyright (C) 2013, 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -73,20 +73,37 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
 
     const Array &reversion() const { return reversion_.params(); }
     const Array &volatility() const { return sigma_.params(); }
+    const Array &adjuster() const { return adjuster_.params(); }
 
     // calibration constraints
 
+    // fixed reversions and adjusters, only volatilities are free
     Disposable<std::vector<bool> > FixedReversions() {
         std::vector<bool> res(reversions_.size(), true);
         std::vector<bool> vol(volatilities_.size(), false);
+        std::vector<bool> adj(adjusters_.size(), true);
         res.insert(res.end(), vol.begin(), vol.end());
+        res.insert(res.end(), adj.begin(), adj.end());
         return res;
     }
 
+    // fixed volatilities and adjusters, only reversions are free
     Disposable<std::vector<bool> > FixedVolatilities() {
         std::vector<bool> res(reversions_.size(), false);
         std::vector<bool> vol(volatilities_.size(), true);
+        std::vector<bool> adj(adjusters_.size(), true);
         res.insert(res.end(), vol.begin(), vol.end());
+        res.insert(res.end(), adj.begin(), adj.end());
+        return res;
+    }
+
+    // fixed adjusters, volatilities and reversions are free
+    Disposable<std::vector<bool> > FixedAdjusters() {
+        std::vector<bool> res(reversions_.size(), false);
+        std::vector<bool> vol(volatilities_.size(), false);
+        std::vector<bool> adj(adjusters_.size(), true);
+        res.insert(res.end(), vol.begin(), vol.end());
+        res.insert(res.end(), adj.begin(), adj.end());
         return res;
     }
 
@@ -94,7 +111,9 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
         QL_REQUIRE(i < volatilities_.size(),
                    "volatility with index " << i << " does not exist (0..."
                                             << volatilities_.size() - 1 << ")");
-        std::vector<bool> res(reversions_.size() + volatilities_.size(), true);
+        std::vector<bool> res(reversions_.size() + volatilities_.size() +
+                                  adjusters_.size(),
+                              true);
         res[reversions_.size() + i] = false;
         return res;
     }
@@ -103,8 +122,20 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
         QL_REQUIRE(i < reversions_.size(),
                    "reversion with index " << i << " does not exist (0..."
                                            << reversions_.size() - 1 << ")");
-        std::vector<bool> res(reversions_.size() + volatilities_.size(), true);
+        std::vector<bool> res(reversions_.size() + volatilities_.size() +
+                                  adjusters_.size(),
+                              true);
         res[i] = false;
+        return res;
+    }
+
+    Disposable<std::vector<bool> > MoveAdjuster(Size i) {
+        QL_REQUIRE(i < volatilities_.size(),
+                   "adjuster with index " << i << " does not exist (0..."
+                                          << adjusters_.size() - 1 << ")");
+        std::vector<bool> res(
+            adjusters_.size() + volatilities_.size() + adjusters_.size(), true);
+        res[reversions_.size() + volatilities_.size()] = false;
         return res;
     }
 
@@ -143,12 +174,27 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
         }
     }
 
+    // Calibrate the adjsuters one by one to the given helpers
+    void calibrateAdjustersIterative(
+        const std::vector<boost::shared_ptr<CalibrationHelper> > &helpers,
+        OptimizationMethod &method, const EndCriteria &endCriteria,
+        const Constraint &constraint = Constraint(),
+        const std::vector<Real> &weights = std::vector<Real>()) {
+
+        for (Size i = 0; i < helpers.size(); i++) {
+            std::vector<boost::shared_ptr<CalibrationHelper> > h(1, helpers[i]);
+            calibrate(h, method, endCriteria, constraint, weights,
+                      MoveAdjuster(i));
+        }
+    }
+
   protected:
     const Real numeraireImpl(const Time t, const Real y,
                              const Handle<YieldTermStructure> &yts) const;
 
     const Real zerobondImpl(const Time T, const Time t, const Real y,
-                            const Handle<YieldTermStructure> &yts) const;
+                            const Handle<YieldTermStructure> &yts,
+                            const bool adjusted) const;
 
     void generateArguments() {
         boost::static_pointer_cast<GsrProcess>(stateProcess_)->flushCache();
@@ -169,6 +215,7 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
     void initialize(Real);
 
     Parameter &reversion_, &sigma_, &adjuster_;
+    Parameter unitAdjuster_;
 
     std::vector<Handle<Quote> > volatilities_;
     std::vector<Handle<Quote> > reversions_;
@@ -179,6 +226,7 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
     mutable std::vector<Time> volsteptimes_;
     mutable Array volsteptimesArray_; // FIXME this is redundant (just a copy of
                                       // volsteptimes_)
+    boost::shared_ptr<StochasticProcess1D> adjustedStateProcess_;    
 };
 
 inline const Real Gsr::numeraireTime() const {

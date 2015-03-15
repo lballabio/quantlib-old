@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2013 Peter Caspers
+ Copyright (C) 2013, 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,13 +21,19 @@
 
 namespace QuantLib {
 
-    GsrProcess::GsrProcess(const Array &times, const Array &vols,
-                           const Array &reversions, const Real T)
-        : ForwardMeasureProcess1D(T), times_(times), vols_(vols),
-          reversions_(reversions), revZero_(reversions.size(), false) {
+GsrProcess::GsrProcess(const Array &times, const Array &vols,
+                       const Array &reversions, const Array &adjusters,
+                       const Real T)
+    : ForwardMeasureProcess1D(T), times_(times), vols_(vols),
+      reversions_(reversions), adjusters_(adjusters),
+      revZero_(reversions.size(), false) {
         QL_REQUIRE(times.size() == vols.size() - 1,
                    "number of volatilities ("
                        << vols.size() << ") compared to number of times ("
+                       << times_.size() << " must be bigger by one");
+        QL_REQUIRE(times.size() == adjusters.size() - 1,
+                   "number of adjusters ("
+                       << adjusters.size() << ") compared to number of times ("
                        << times_.size() << " must be bigger by one");
         QL_REQUIRE(times.size() == reversions.size() - 1 ||
                        reversions.size() == 1,
@@ -386,8 +392,8 @@ namespace QuantLib {
 
     const Real GsrProcess::vol(Size index) const {
         if (index >= vols_.size())
-            return vols_.back();
-        return vols_[index];
+            return vols_.back() * adjusters_.back();
+        return vols_[index] * adjusters_[index];
     }
 
     const Real GsrProcess::rev(Size index) const {

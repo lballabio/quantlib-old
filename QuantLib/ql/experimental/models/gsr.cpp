@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2013 Peter Caspers
+ Copyright (C) 2013, 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -53,7 +53,7 @@ Gsr::Gsr(const Handle<YieldTermStructure> &termStructure,
          const std::vector<Real> &volatilities,
          const std::vector<Real> &reversions, const Real T,
          const std::vector<Real> &adjusters)
-    : Gaussian1dModel(termStructure), CalibratedModel(2),
+    : Gaussian1dModel(termStructure), CalibratedModel(3),
       reversion_(arguments_[0]), sigma_(arguments_[1]),
       adjuster_(arguments_[2]), volstepdates_(volstepdates) {
 
@@ -81,7 +81,7 @@ Gsr::Gsr(const Handle<YieldTermStructure> &termStructure,
          const std::vector<Handle<Quote> > &volatilities,
          const Handle<Quote> reversion, const Real T,
          const std::vector<Handle<Quote> > &adjusters)
-    : Gaussian1dModel(termStructure), CalibratedModel(2),
+    : Gaussian1dModel(termStructure), CalibratedModel(3),
       reversion_(arguments_[0]), sigma_(arguments_[1]),
       adjuster_(arguments_[2]), volatilities_(volatilities),
       reversions_(std::vector<Handle<Quote> >(1, reversion)),
@@ -102,7 +102,7 @@ Gsr::Gsr(const Handle<YieldTermStructure> &termStructure,
          const std::vector<Handle<Quote> > &volatilities,
          const std::vector<Handle<Quote> > &reversions, const Real T,
          const std::vector<Handle<Quote> > &adjusters)
-    : Gaussian1dModel(termStructure), CalibratedModel(2),
+    : Gaussian1dModel(termStructure), CalibratedModel(3),
       reversion_(arguments_[0]), sigma_(arguments_[1]),
       adjuster_(arguments_[2]), volatilities_(volatilities),
       reversions_(reversions),
@@ -166,6 +166,7 @@ void Gsr::initialize(Real T) {
     // PiecewiseConstantParameter(volsteptimes_,PositiveConstraint());
     sigma_ = PiecewiseConstantParameter(volsteptimes_, NoConstraint());
     adjuster_ = PiecewiseConstantParameter(volsteptimes_, PositiveConstraint());
+    unitAdjuster_ = PiecewiseConstantParameter(volsteptimes_, PositiveConstraint());
 
     QL_REQUIRE(reversions_.size() == 1 ||
                    reversions_.size() == volsteptimes_.size() + 1,
@@ -183,13 +184,19 @@ void Gsr::initialize(Real T) {
     }
     for (Size i = 0; i < adjuster_.size(); i++) {
         adjuster_.setParam(i, adjusters_[i]->value());
+        unitAdjuster_.setParam(i,1.0);
     }
     for (Size i = 0; i < reversion_.size(); i++) {
         reversion_.setParam(i, reversions_[i]->value());
     }
 
-    stateProcess_ = boost::shared_ptr<GsrProcess>(new GsrProcess(
-        volsteptimesArray_, sigma_.params(), reversion_.params(), T));
+    stateProcess_ = boost::shared_ptr<GsrProcess>(
+        new GsrProcess(volsteptimesArray_, sigma_.params(), reversion_.params(),
+                       unitAdjuster_.params(), T));
+
+    adjustedStateProcess_ = boost::shared_ptr<GsrProcess>(
+        new GsrProcess(volsteptimesArray_, sigma_.params(), reversion_.params(),
+                       adjuster_.params(), T));
 
     registerWith(termStructure());
 
@@ -205,7 +212,8 @@ void Gsr::initialize(Real T) {
 }
 
 const Real Gsr::zerobondImpl(const Time T, const Time t, const Real y,
-                             const Handle<YieldTermStructure> &yts) const {
+                             const Handle<YieldTermStructure> &yts,
+                             const bool adjusted) const {
 
     calculate();
 
@@ -213,7 +221,8 @@ const Real Gsr::zerobondImpl(const Time T, const Time t, const Real y,
         return yts.empty() ? this->termStructure()->discount(T, true)
                            : yts->discount(T, true);
 
-    boost::shared_ptr<GsrProcess> p =
+    boost::shared_ptr<GsrProcess> p = adjusted ?
+        boost::dynamic_pointer_cast<GsrProcess>(adjustedStateProcess_) :
         boost::dynamic_pointer_cast<GsrProcess>(stateProcess_);
 
     Real x = y * p->stdDeviation(0.0, 0.0, t) +
@@ -241,6 +250,6 @@ const Real Gsr::numeraireImpl(const Time t, const Real y,
                    ? this->termStructure()->discount(p->getForwardMeasureTime(),
                                                      true)
                    : yts->discount(p->getForwardMeasureTime());
-    return zerobond(p->getForwardMeasureTime(), t, y, yts);
+    return zerobond(p->getForwardMeasureTime(), t, y, yts, false);
 }
 }
