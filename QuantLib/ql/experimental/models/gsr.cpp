@@ -41,7 +41,7 @@ Gsr::Gsr(const Handle<YieldTermStructure> &termStructure,
     reversions_[0] = Handle<Quote>(boost::make_shared<SimpleQuote>(reversion));
     adjusters_.resize(adjusters.size() > 0 ? adjusters.size()
                                            : volatilities.size());
-    for (Size i = 0; i < adjusters.size(); ++i)
+    for (Size i = 0; i < adjusters_.size(); ++i)
         adjusters_[i] = Handle<Quote>(boost::make_shared<SimpleQuote>(
             adjusters.size() > i ? adjusters[i] : 1.0));
 
@@ -69,7 +69,7 @@ Gsr::Gsr(const Handle<YieldTermStructure> &termStructure,
         reversions_[i] =
             Handle<Quote>(boost::make_shared<SimpleQuote>(reversions[i]));
     adjusters_.resize(volatilities.size());
-    for (Size i = 0; i < adjusters.size(); ++i)
+    for (Size i = 0; i < adjusters_.size(); ++i)
         adjusters_[i] = Handle<Quote>(boost::make_shared<SimpleQuote>(
             adjusters.size() > i ? adjusters[i] : 1.0));
 
