@@ -133,9 +133,10 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
         QL_REQUIRE(i < volatilities_.size(),
                    "adjuster with index " << i << " does not exist (0..."
                                           << adjusters_.size() - 1 << ")");
-        std::vector<bool> res(
-            adjusters_.size() + volatilities_.size() + adjusters_.size(), true);
-        res[reversions_.size() + volatilities_.size()] = false;
+        std::vector<bool> res(reversions_.size() + volatilities_.size() +
+                                  adjusters_.size(),
+                              true);
+        res[reversions_.size() + volatilities_.size() + i] = false;
         return res;
     }
 
@@ -174,15 +175,18 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
         }
     }
 
-    // Calibrate the adjsuters one by one to the given helpers
+    // Calibrate the adjsuters one by one to the given helpers.
+    // As for the iterative volatility calibration the step
+    // dates should be chosen according to the fixing dates
+    // of the coupon to adjust the model to.
     void calibrateAdjustersIterative(
-        const std::vector<boost::shared_ptr<CalibrationHelper> > &helpers,
+        const std::vector<boost::shared_ptr<CalibrationHelperBase> > &helpers,
         OptimizationMethod &method, const EndCriteria &endCriteria,
         const Constraint &constraint = Constraint(),
         const std::vector<Real> &weights = std::vector<Real>()) {
 
         for (Size i = 0; i < helpers.size(); i++) {
-            std::vector<boost::shared_ptr<CalibrationHelper> > h(1, helpers[i]);
+            std::vector<boost::shared_ptr<CalibrationHelperBase> > h(1, helpers[i]);
             calibrate(h, method, endCriteria, constraint, weights,
                       MoveAdjuster(i));
         }
@@ -198,6 +202,8 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
 
     void generateArguments() {
         boost::static_pointer_cast<GsrProcess>(stateProcess_)->flushCache();
+        boost::static_pointer_cast<GsrProcess>(adjustedStateProcess_)
+            ->flushCache();
         notifyObservers();
     }
 

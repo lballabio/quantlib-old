@@ -225,7 +225,7 @@ const Real Gsr::zerobondImpl(const Time T, const Time t, const Real y,
         boost::dynamic_pointer_cast<GsrProcess>(adjustedStateProcess_) :
         boost::dynamic_pointer_cast<GsrProcess>(stateProcess_);
 
-    Real x = y * p->stdDeviation(0.0, 0.0, t) +
+    Real x = y * stateProcess_->stdDeviation(0.0, 0.0, t) +
              stateProcess_->expectation(0.0, 0.0, t);
     Real gtT = p->G(t, T, x);
 
