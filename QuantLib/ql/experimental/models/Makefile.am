@@ -4,6 +4,7 @@ AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 this_includedir=${includedir}/${subdir}
 this_include_HEADERS = \
     all.hpp \
+    adjusterhelper.hpp \
     atmadjustedsmilesection.hpp \
     atmsmilesection.hpp \
     basketgeneratingengine.hpp \
@@ -25,16 +26,17 @@ this_include_HEADERS = \
     mfstateprocess.hpp \
     nonstandardswap.hpp \
     nonstandardswaption.hpp \
-	quadraticlfm.hpp \
+    quadraticlfm.hpp \
     sbsmilesection.hpp \
     smilesectionutils.hpp \
     splinedensitysmilesection.hpp
 
 libModels_la_SOURCES = \
+    adjusterhelper.cpp \
     atmadjustedsmilesection.cpp \
     atmsmilesection.cpp \
     basketgeneratingengine.cpp \
-	bdksmilesection.cpp \
+    bdksmilesection.cpp \
     floatfloatswap.cpp \
     floatfloatswaption.cpp \
     gaussian1dmodel.cpp \
@@ -52,7 +54,7 @@ libModels_la_SOURCES = \
     mfstateprocess.cpp \
     nonstandardswap.cpp \
     nonstandardswaption.cpp \
-	quadraticlfm.cpp \
+    quadraticlfm.cpp \
     sbsmilesection.cpp \
     smilesectionutils.cpp \
     splinedensitysmilesection.cpp
