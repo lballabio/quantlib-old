@@ -27,7 +27,9 @@ namespace QuantLib {
         Date settlement = model_->termStructure()->referenceDate();
 
         if (arguments_.exercise->dates().back() <=
-            settlement) { // swaption is expired, possibly generated swap is not
+            settlement) { // swaption is expired,
+                          // possibly generated swap
+                          // is not
                           // valued
             results_.value = 0.0;
             return;
@@ -460,10 +462,17 @@ namespace QuantLib {
                                 amount = arguments_.leg1Coupons[j];
                             } else {
                                 Real estFixing = 0.0;
-                                if(ibor1 != NULL)
-                                    estFixing = model_->forwardRate(arguments_.leg1FixingDates[j],event0,zk,ibor1);
-                                if(cms1 != NULL)
-                                    estFixing = model_->swapRate(arguments_.leg1FixingDates[j],cms1->tenor(),event0,zk,cms1);
+                                if(ibor1 != NULL) {
+                                    estFixing = model_->forwardRate(
+                                        arguments_.leg1FixingDates[j], event0,
+                                        zk, ibor1, adjusted_);
+                                }
+                                if(cms1 != NULL) {
+                                    estFixing = model_->swapRate(
+                                        arguments_.leg1FixingDates[j],
+                                        cms1->tenor(), event0, zk, cms1,
+                                        adjusted_);
+                                }
                                 if (cmsspread1 != NULL)
                                     estFixing =
                                         cmsspread1->gearing1() *
@@ -472,14 +481,16 @@ namespace QuantLib {
                                                 cmsspread1->swapIndex1()
                                                     ->tenor(),
                                                 event0, zk,
-                                                cmsspread1->swapIndex1()) +
+                                                cmsspread1->swapIndex1(),
+                                                adjusted_) +
                                         cmsspread1->gearing2() *
                                             model_->swapRate(
                                                 arguments_.leg1FixingDates[j],
                                                 cmsspread1->swapIndex2()
                                                     ->tenor(),
                                                 event0, zk,
-                                                cmsspread1->swapIndex2());
+                                                cmsspread1->swapIndex2(),
+                                                adjusted_);
                                 Real rate =
                                     arguments_.leg1Spreads[j] +
                                     arguments_.leg1Gearings[j] * estFixing;
