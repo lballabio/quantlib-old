@@ -38,8 +38,7 @@ class QuadraticLfm {
 
   public:
     /*! sigma, b and c are stored as references, i.e. if they change outside
-       this class,
-        the class reflects this change in computed values */
+        this class, the class reflects this change in computed values */
     QuadraticLfm(const std::vector<Real> &rateTimes,
                  const std::vector<Real> &initialForwards,
                  const std::vector<std::vector<std::vector<Real> > > &sigma,
@@ -53,7 +52,8 @@ class QuadraticLfm {
              const Real s);
 
     // test
-    Real E1(const Size n, const Size m, const Size step, const Real t, const Size i);
+    Real E1(const Size n, const Size m, const Size step, const Real t,
+            const Size i);
 
     /* smile slice for a european swaption based on \eta(t,s) and Dupire pricing
        the call prices are non deflated, i.e. the annuity used for discounting
