@@ -44,17 +44,58 @@ namespace QuantLib {
                             bool isInArrears)
     : Coupon(paymentDate, nominal,
              startDate, endDate, refPeriodStart, refPeriodEnd),
-      index_(index), dayCounter_(dayCounter),
+        indexes_(std::vector<boost::shared_ptr<InterestRateIndex> >(1,index)), dayCounter_(dayCounter),
       fixingDays_(fixingDays==Null<Natural>() ? index->fixingDays() : fixingDays),
-      gearing_(gearing), spread_(spread),
+        gearings_(std::vector<Real>(1,gearing)), spread_(spread),
       isInArrears_(isInArrears)
     {
         QL_REQUIRE(gearing_!=0, "Null gearing not allowed");
 
         if (dayCounter_.empty())
-            dayCounter_ = index_->dayCounter();
+            dayCounter_ = indexes_[0]->dayCounter();
 
-        registerWith(index_);
+        registerWith(indexes_[0]);
+        registerWith(Settings::instance().evaluationDate());
+    }
+
+    FloatingRateCoupon(
+        const Date &paymentDate, Real nominal, const Date &startDate,
+        const Date &endDate, Natural fixingDays,
+        const std::vector<boost::shared_ptr<InterestRateIndex>> &indexes,
+        const std::vector<Real> gearings, Spread spread,
+        const Date &refPeriodStart, const Date &refPeriodEnd,
+        const DayCounter &dayCounter, bool isInArrears)
+        : Coupon(paymentDate, nominal, startDate, endDate, refPeriodStart,
+                 refPeriodEnd),
+          indexes_(indexes), dayCounter_(dayCounter), {
+
+        QL_REQUIRE(indexes_.size() > 0, "at least one index must be given");
+        QL_REQIURE(indexes_.size() == gearings_.size(),
+                   "number of indexes (" << indexes_.size() <
+                       ")"
+                       "must be equal to number of gearings ("
+                           << gearings_.size() << ")");
+
+        for (Size i = 1; i < indexes_.size(); ++i) {
+            QL_REQUIRE(indexes_[i]->fixingDays() == indexes_[0]->fixingDays(),
+                       "all indexes must have the same number of fixing days");
+            QL_REQUIRE(indexes_[i]->fixingCalendar() == indexes_[0]->fixingCalendar(),
+                       "all indexes must have the same fixing calendar");
+            QL_REQUIRE(indexes_[i]->dayCounter() == indexes_[0]->dayCounter(),
+                       "all indexes must have the same day counter");
+        }
+
+        if (fixingDays == Null<Natural>())
+            fixingDays_ = indexes_[0]->fixingDays();
+        else
+            fixingDays_ = fixingDays;
+
+        if (dayCounter_.empty())
+            dayCounter_ = indexes_[0]->dayCounter();
+
+        for (Size i = 0; i < indexes_.size(); ++i)
+            registerWith(indexes_[i]);
+
         registerWith(Settings::instance().evaluationDate());
     }
 
@@ -83,7 +124,7 @@ namespace QuantLib {
     Date FloatingRateCoupon::fixingDate() const {
         // if isInArrears_ fix at the end of period
         Date refDate = isInArrears_ ? accrualEndDate_ : accrualStartDate_;
-        return index_->fixingCalendar().advance(refDate,
+        return indexes_[0]->fixingCalendar().advance(refDate,
             -static_cast<Integer>(fixingDays_), Days, Preceding);
     }
 
@@ -98,7 +139,10 @@ namespace QuantLib {
     }
 
     Rate FloatingRateCoupon::indexFixing() const {
-        return index_->fixing(fixingDate());
+        Real fixing = 0.0;
+        for(Size i=0; i<indexes_.size(); ++i)
+            fixing += gearings_[i]*indexes_[i]->fixing(fixingDate());
+        return fixing;
     }
 
 }

@@ -30,6 +30,9 @@
 #define quantlib_cash_flow_vectors_hpp
 
 #include <ql/cashflows/fixedratecoupon.hpp>
+#include <ql/cashflows/floatingratecoupon.hpp>
+#include <ql/cashflows/capflooredcoupon.hpp>
+#include <ql/cashflows/digitalcoupon.hpp>
 #include <ql/cashflows/replication.hpp>
 #include <ql/time/schedule.hpp>
 #include <ql/utilities/null.hpp>
@@ -52,13 +55,9 @@ namespace QuantLib {
 
     }
 
-
-    template <typename InterestRateIndexType,
-              typename FloatingCouponType,
-              typename CappedFlooredCouponType>
-    Leg FloatingLeg(const Schedule& schedule,
+    Leg FloatingLeg(const FloatingCouponFactory& factory,
+                    const Schedule& schedule,
                     const std::vector<Real>& nominals,
-                    const boost::shared_ptr<InterestRateIndexType>& index,
                     const DayCounter& paymentDayCounter,
                     BusinessDayConvention paymentAdj,
                     const std::vector<Natural>& fixingDays,
@@ -120,32 +119,28 @@ namespace QuantLib {
                                     start, end, refStart, refEnd)));
             } else { // floating coupon
                 if (detail::noOption(caps, floors, i))
-                    leg.push_back(boost::shared_ptr<CashFlow>(new
-                        FloatingCouponType(
+                    leg.push_back(factory.plainCoupon(
                             paymentDate,
                             detail::get(nominals, i, 1.0),
                             start, end,
-                            detail::get(fixingDays, i, index->fixingDays()),
-                            index,
+                            detail::get(fixingDays, i, factory.defaultFixingDays()),
                             detail::get(gearings, i, 1.0),
                             detail::get(spreads, i, 0.0),
                             refStart, refEnd,
-                            paymentDayCounter, isInArrears)));
+                            paymentDayCounter, isInArrears));
                 else {
-                    leg.push_back(boost::shared_ptr<CashFlow>(new
-                        CappedFlooredCouponType(
+                    leg.push_back(factory.cappedFlooredCoupon(
                                paymentDate,
                                detail::get(nominals, i, 1.0),
                                start, end,
-                               detail::get(fixingDays, i, index->fixingDays()),
-                               index,
+                               detail::get(fixingDays, i, factory.defaultFixingDays()),
                                detail::get(gearings, i, 1.0),
                                detail::get(spreads, i, 0.0),
                                detail::get(caps,   i, Null<Rate>()),
                                detail::get(floors, i, Null<Rate>()),
                                refStart, refEnd,
                                paymentDayCounter,
-                               isInArrears)));
+                               isInArrears));
                 }
             }
         }
@@ -153,13 +148,9 @@ namespace QuantLib {
     }
 
 
-    template <typename InterestRateIndexType,
-              typename FloatingCouponType,
-              typename DigitalCouponType>
-    Leg FloatingDigitalLeg(
+    Leg FloatingDigitalLeg(const FloatingCouponFactory& factory,
                         const Schedule& schedule,
                         const std::vector<Real>& nominals,
-                        const boost::shared_ptr<InterestRateIndexType>& index,
                         const DayCounter& paymentDayCounter,
                         BusinessDayConvention paymentAdj,
                         const std::vector<Natural>& fixingDays,
@@ -222,28 +213,20 @@ namespace QuantLib {
                                     paymentDayCounter,
                                     start, end, refStart, refEnd)));
             } else { // floating digital coupon
-                boost::shared_ptr<FloatingCouponType> underlying(new
-                    FloatingCouponType(paymentDate,
-                                       detail::get(nominals, i, 1.0),
-                                       start, end,
-                                       detail::get(fixingDays, i, index->fixingDays()),
-                                       index,
-                                       detail::get(gearings, i, 1.0),
-                                       detail::get(spreads, i, 0.0),
-                                       refStart, refEnd,
-                                       paymentDayCounter, isInArrears));
-                leg.push_back(boost::shared_ptr<CashFlow>(new
-                    DigitalCouponType(
-                             underlying,
-                             detail::get(callStrikes, i, Null<Real>()),
-                             callPosition,
-                             isCallATMIncluded,
-                             detail::get(callDigitalPayoffs, i, Null<Real>()),
-                             detail::get(putStrikes, i, Null<Real>()),
-                             putPosition,
-                             isPutATMIncluded,
-                             detail::get(putDigitalPayoffs, i, Null<Real>()),
-                             replication)));
+                leg.push_back(boost::shared_ptr<CashFlow>(
+                    factory.digitalCoupon(
+                        paymentDate, detail::get(nominals, i, 1.0), start, end,
+                        detail::get(fixingDays, i, factory.defaultFixingDays()),
+                        detail::get(gearings, i, 1.0),
+                        detail::get(spreads, i, 0.0), refStart, refEnd,
+                        paymentDayCounter, isInArrears,
+                        detail::get(callStrikes, i, Null<Real>()), callPosition,
+                        isCallATMIncluded,
+                        detail::get(callDigitalPayoffs, i, Null<Real>()),
+                        detail::get(putStrikes, i, Null<Real>()), putPosition,
+                        isPutATMIncluded,
+                        detail::get(putDigitalPayoffs, i, Null<Real>()),
+                        replication)));
             }
         }
         return leg;

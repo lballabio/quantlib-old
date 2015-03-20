@@ -30,6 +30,7 @@
 #define quantlib_floating_rate_coupon_hpp
 
 #include <ql/cashflows/coupon.hpp>
+#include <ql/position.hpp>
 #include <ql/patterns/visitor.hpp>
 #include <ql/time/daycounter.hpp>
 #include <ql/handle.hpp>
@@ -57,6 +58,19 @@ namespace QuantLib {
                            const DayCounter& dayCounter = DayCounter(),
                            bool isInArrears = false);
 
+        FloatingRateCoupon(const Date& paymentDate,
+                           Real nominal,
+                           const Date& startDate,
+                           const Date& endDate,
+                           Natural fixingDays,
+                           const std::vector<boost::shared_ptr<InterestRateIndex> >& indexes,
+                           const std::vector<Real>& gearings = std::vector<Real>(),
+                           Spread spread = 0.0,
+                           const Date& refPeriodStart = Date(),
+                           const Date& refPeriodEnd = Date(),
+                           const DayCounter& dayCounter = DayCounter(),
+                           bool isInArrears = false);
+
         //! \name CashFlow interface
         //@{
         Real amount() const { return rate() * accrualPeriod() * nominal(); }
@@ -74,12 +88,14 @@ namespace QuantLib {
         //@{
         //! floating index
         const boost::shared_ptr<InterestRateIndex>& index() const;
+        const std::vector<boost::shared_ptr<InterestRateIndex> >& indexes() const;
         //! fixing days
         Natural fixingDays() const { return fixingDays_; }
         //! fixing date
         virtual Date fixingDate() const;
         //! index gearing, i.e. multiplicative coefficient for the index
-        Real gearing() const { return gearing_; }
+        Real gearing() const;
+        const std::vector<Real>& gearings() const;
         //! spread paid over the fixing of the underlying index
         Spread spread() const { return spread_; }
         //! fixing of the underlying index
@@ -107,10 +123,10 @@ namespace QuantLib {
       protected:
         //! convexity adjustment for the given index fixing
         Rate convexityAdjustmentImpl(Rate fixing) const;
-        boost::shared_ptr<InterestRateIndex> index_;
+        const std::vector<boost::shared_ptr<InterestRateIndex>> indexes_;
         DayCounter dayCounter_;
         Natural fixingDays_;
-        Real gearing_;
+        const std::vector<Real> gearings_;
         Spread spread_;
         bool isInArrears_;
         boost::shared_ptr<FloatingRateCouponPricer> pricer_;
@@ -118,9 +134,24 @@ namespace QuantLib {
 
     // inline definitions
 
+    inline Real FloatingRateCoupon::gearing() const {
+        QL_REQUIRE(gearings_.size() == 1,"multiple index coupon can not return single gearing");
+        return gearings_[0];
+    }
+
+    inline const std::vector<Real>& FloatingRateCoupon::gearings() const {
+        return gearings_;
+    }
+
     inline const boost::shared_ptr<InterestRateIndex>&
     FloatingRateCoupon::index() const {
-        return index_;
+        QL_REQUIRE(indexes_.size() == 1,"multiple index coupon can not return single index")
+        return indexes_[0];
+    }
+
+    inline const std::vector<boost::shared_ptr<InterestRateIndex> >&
+    FloatingRateCoupon::indexes() const {
+        return indexes_;
     }
 
     inline Rate FloatingRateCoupon::convexityAdjustment() const {
@@ -150,6 +181,52 @@ namespace QuantLib {
             Coupon::accept(v);
     }
 
+    //! base factory class
+    class CappedFlooredCoupon;
+    class DigitalCoupon;
+    class DigitalReplication;
+
+    class FloatingCouponFactory {
+
+    public:
+
+        virtual ~FloatingCouponFactory() {}
+
+        virtual boost::shared_ptr<FloatingRateCoupon>
+        plainCoupon(const Date &paymentDate, Real nominal,
+                    const Date &startDate, const Date &endDate,
+                    Natural fixingDays, Real gearing, Real spread,
+                    const Date &refPeriodStart, const Date &refPeriodEnd,
+                    const DayCounter &dayCounter, bool isInArrears) const {
+            QL_FAIL("plain coupon not implemented");
+        }
+
+        virtual boost::shared_ptr<CappedFlooredCoupon>
+        cappedFlooredCoupon(const Date &paymentDate, Real nominal,
+                            const Date &startDate, const Date &endDate,
+                            Natural fixingDays, Real gearing, Real spread,
+                            Real cap, Real floor, const Date &refPeriodStart,
+                            const Date &refPeriodEnd,
+                            const DayCounter &dayCounter, bool isInArrears) const {
+            QL_FAIL("capped floored coupon not implemented");
+        }
+
+        virtual boost::shared_ptr<DigitalCoupon> digitalCoupon(
+            const Date &paymentDate, Real nominal, const Date &startDate,
+            const Date &endDate, Natural fixingDays, Real gearing, Real spread,
+            const Date &refPeriodStart, const Date &refPeriodEnd,
+            const DayCounter &dayCounter, bool isInArrears,
+            Rate callStrike, Position::Type callPosition,
+            bool isCallATMIncluded, Real callDigitalPayoff,
+            const Rate putStrike, Position::Type putPosition,
+            bool isPutATMIncluded, Rate putDigitalPayoff,
+            const boost::shared_ptr<DigitalReplication> &replication) const {
+            QL_FAIL("digital coupon not implemented");
+        }
+
+        virtual Natural defaultFixingDays() const = 0;
+
+    };
 }
 
 #endif
