@@ -39,6 +39,22 @@ namespace QuantLib {
         registerWith(IndexManager::instance().notifier(name()));
     }
 
+    InflationIndex::InflationIndex(const std::string& familyName,
+                                   const Region& region,
+                                   bool revised,
+                                   bool interpolated,
+                                   bool fixesAtEndOfMonth,
+                                   Frequency frequency,
+                                   const Period& availabilityLag,
+                                   const Currency& currency)
+    : familyName_(familyName), region_(region),
+      revised_(revised), interpolated_(interpolated),
+      fixesAtEndOfMonth_(fixesAtEndOfMonth), frequency_(frequency),
+      availabilityLag_(availabilityLag), currency_(currency) {
+        name_ = region_.name() + " " + familyName_;
+        registerWith(Settings::instance().evaluationDate());
+        registerWith(IndexManager::instance().notifier(name()));
+    }
 
     Calendar InflationIndex::fixingCalendar() const {
         static NullCalendar c;
@@ -99,8 +115,11 @@ namespace QuantLib {
                                "Missing " << name() << " fixing for " << fixingDate2);
                     // now linearly interpolate
                     Real daysInPeriod = lim.second+1 - lim.first;
+                    Real daysElapsed = aFixingDate-lim.first;
+                    if (fixesAtEndOfMonth_)
+                        daysElapsed += 1;
                     theFixing = pastFixing
-                        + (pastFixing2-pastFixing)*(aFixingDate-lim.first)/daysInPeriod;
+                        + (pastFixing2-pastFixing)*daysElapsed/daysInPeriod;
                 }
             }
             return theFixing;
