@@ -21,10 +21,14 @@
 #include <ql/termstructures/volatility/optionlet/strippedoptionletadapter.hpp>
 #include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
 #include <ql/termstructures/volatility/capfloor/capfloortermvolsurface.hpp>
+#include <ql/termstructures/volatility/sabrsmilesection.hpp>
 #include <ql/math/interpolations/linearinterpolation.hpp>
 #include <ql/math/interpolations/sabrinterpolation.hpp>
 #include <ql/termstructures/volatility/interpolatedsmilesection.hpp>
 #include <ql/math/interpolations/cubicinterpolation.hpp>
+#include <ql/math/interpolations/sabrinterpolation.hpp>
+
+#include <boost/assign/list_of.hpp>
 
 namespace QuantLib {
 
@@ -42,15 +46,41 @@ namespace QuantLib {
 
     boost::shared_ptr<SmileSection>
     StrippedOptionletAdapter::smileSectionImpl(Time t) const {
-         std::vector<Rate> optionletStrikes = optionletStripper_->optionletStrikes(0); // strikes are the same for all times ?!
-         std::vector<Real> stddevs;
-         for(Size i=0;i<optionletStrikes.size();i++) {
-             stddevs.push_back(volatilityImpl(t,optionletStrikes[i])*std::sqrt(t));
-         }
-         // Extrapolation may be a problem with splines, but since minStrike() and maxStrike() are set, we assume that no one will use stddevs for strikes outside these strikes
-         CubicInterpolation::BoundaryCondition bc = optionletStrikes.size()>=4 ? CubicInterpolation::Lagrange : CubicInterpolation::SecondDerivative;
-         return boost::shared_ptr<SmileSection>(new InterpolatedSmileSection<Cubic>(t,optionletStrikes,stddevs,Null<Real>(),
-                                                            Cubic(CubicInterpolation::Spline,false,bc,0.0,bc,0.0)));
+        std::vector<Rate> optionletStrikes =
+            optionletStripper_->optionletStrikes(
+                0); // strikes are the same for all times ?!
+        std::vector<Real> stddevs;
+        std::vector<Real> vols;
+        for (Size i = 0; i < optionletStrikes.size(); i++) {
+            vols.push_back(volatilityImpl(t, optionletStrikes[i]));
+            stddevs.push_back(vols.back() * std::sqrt(t));
+        }
+        const std::vector<Time>& optionletTimes =
+                                    optionletStripper_->optionletFixingTimes();
+        Real atm = (*atmInterpolation_)(std::max(
+            std::min(t, optionletTimes.back()), optionletTimes.front()));
+        // ----------------------
+        // cubic splines
+        // ----------------------
+        Extrapolation may be a problem with splines, but since minStrike()
+        and maxStrike() are set, we assume that no one will use stddevs for
+        strikes outside these strikes
+        CubicInterpolation::BoundaryCondition bc =
+            optionletStrikes.size() >= 4 ? CubicInterpolation::Lagrange
+                                         : CubicInterpolation::SecondDerivative;
+        return boost::shared_ptr<SmileSection>(
+            new InterpolatedSmileSection<Cubic>(
+                t, optionletStrikes, stddevs, atm,
+                Cubic(CubicInterpolation::Spline, false, bc, 0.0, bc, 0.0)));
+        // ----------------------
+        // SABR
+        // ----------------------
+        // SABRInterpolation sabr(optionletStrikes.begin(), optionletStrikes.end(),
+        //                        vols.begin(), t, atm, 0.03, 0.8, 0.10, 0.0,
+        //                        false, false, false, false);
+        // return boost::shared_ptr<SmileSection>(new SabrSmileSection(
+        //     t, atm, boost::assign::list_of(sabr.alpha())(sabr.beta())(
+        //                 sabr.nu())(sabr.rho())));
     }
 
     Volatility StrippedOptionletAdapter::volatilityImpl(Time length,
@@ -71,8 +101,8 @@ namespace QuantLib {
 
     void StrippedOptionletAdapter::performCalculations() const {
 
-        //const std::vector<Rate>& atmForward = optionletStripper_->atmOptionletRate();
-        //const std::vector<Time>& optionletTimes = optionletStripper_->optionletTimes();
+        const std::vector<Rate>& atmForward = optionletStripper_->atmOptionletRates();
+        const std::vector<Time>& optionletTimes = optionletStripper_->optionletFixingTimes();
 
         for (Size i=0; i<nInterpolations_; ++i) {
             const std::vector<Rate>& optionletStrikes =
@@ -113,6 +143,9 @@ namespace QuantLib {
             //              );
 
         }
+        atmInterpolation_ = boost::shared_ptr<LinearInterpolation>(
+            new LinearInterpolation(optionletTimes.begin(),
+                                    optionletTimes.end(), atmForward.begin()));
     }
 
     Rate StrippedOptionletAdapter::minStrike() const {

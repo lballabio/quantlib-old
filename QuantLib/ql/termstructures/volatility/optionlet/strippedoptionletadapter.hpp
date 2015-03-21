@@ -68,6 +68,7 @@ namespace QuantLib {
         const boost::shared_ptr<StrippedOptionletBase> optionletStripper_;
         Size nInterpolations_;
         mutable std::vector<boost::shared_ptr<Interpolation> > strikeInterpolations_;
+        mutable boost::shared_ptr<Interpolation> atmInterpolation_;
     };
 
     inline void StrippedOptionletAdapter::update() {
