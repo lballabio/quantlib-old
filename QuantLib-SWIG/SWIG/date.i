@@ -4,6 +4,7 @@
  Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
  Copyright (C) 2005 Johan Witters
  Copyright (C) 2013 Simon Shakeshaft
+ Copyright (C) 2014 Bitquant Research Laboratories (Asia) Ltd.
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,10 +30,19 @@
 %{
 using QuantLib::Day;
 using QuantLib::Year;
+using QuantLib::Hour;
+using QuantLib::Minute;
+using QuantLib::Second;
+using QuantLib::Millisecond;
 %}
 
 typedef Integer Day;
 typedef Integer Year;
+typedef Integer Hour;
+typedef Integer Minute;
+typedef Integer Second;
+typedef Integer Millisecond;
+
 
 #if defined(SWIGJAVA)
 %javaconst(1);
@@ -209,6 +219,7 @@ namespace std {
 %{
 using QuantLib::Date;
 using QuantLib::DateParser;
+ using QuantLib::TimeStamp;
 %}
 
 #if defined(SWIGR)
@@ -427,6 +438,19 @@ class Date {
         }
         #endif
     }
+};
+
+class TimeStamp : public Date {
+ public:
+  TimeStamp();
+  TimeStamp(Day d, Month m, Year y, Hour h, 
+    Minute mt, Second s, Millisecond ms = 0);
+  TimeStamp(Date d, Minute mt, Second s, Millisecond ms = 0);
+  static TimeStamp now() const;
+  Hour hour();
+  Minute minute();
+  Second second();
+  Millisecond millisecond();
 };
 
 class DateParser {

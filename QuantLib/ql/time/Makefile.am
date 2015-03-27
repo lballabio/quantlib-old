@@ -10,12 +10,13 @@ this_include_HEADERS = \
     calendar.hpp \
     date.hpp \
     dategenerationrule.hpp \
-	daycounter.hpp \
-	ecb.hpp \
+    daycounter.hpp \
+    ecb.hpp \
     frequency.hpp \
     imm.hpp \
     period.hpp \
     schedule.hpp \
+    timestamp.hpp \
     timeunit.hpp \
     weekday.hpp
 
@@ -29,6 +30,7 @@ libTime_la_SOURCES = \
     imm.cpp \
     period.cpp \
     schedule.cpp \
+    timestamp.cpp \
     timeunit.cpp \
     weekday.cpp
 

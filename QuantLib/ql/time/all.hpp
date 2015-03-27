@@ -11,6 +11,7 @@
 #include <ql/time/imm.hpp>
 #include <ql/time/period.hpp>
 #include <ql/time/schedule.hpp>
+#include <ql/time/timestamp.hpp>
 #include <ql/time/timeunit.hpp>
 #include <ql/time/weekday.hpp>
 

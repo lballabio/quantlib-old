@@ -3,6 +3,7 @@
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005 StatPro Italia srl
  Copyright (C) 2005 Johan Witters
+ Copyright (C) 2014 Bitquant Research Laboratories (Asia) Ltd.
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -44,6 +45,7 @@ class DayCounter {
                       const Date& startRef = Date(),
                       const Date& endRef = Date()) const;
     std::string name() const;
+
     %extend {
         #if !defined(SWIGPERL)
         std::string __str__() {
@@ -90,6 +92,14 @@ namespace QuantLib {
     class OneDayCounter : public DayCounter {};
     class SimpleDayCounter : public DayCounter {};
     class Business252 : public DayCounter {};
+    class ContinuousTime : public DayCounter {
+    public:
+      ContinuousTime(TimeUnit);
+      static ContinuousTime perYear();
+      static ContinuousTime perMonth();
+      static ContinuousTime perWeek();
+      static ContinuousTime perDay();
+    };
 }
 
 
