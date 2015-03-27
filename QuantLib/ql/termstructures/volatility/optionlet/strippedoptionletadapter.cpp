@@ -62,9 +62,9 @@ namespace QuantLib {
         // ----------------------
         // cubic splines
         // ----------------------
-        Extrapolation may be a problem with splines, but since minStrike()
-        and maxStrike() are set, we assume that no one will use stddevs for
-        strikes outside these strikes
+        // Extrapolation may be a problem with splines, but since minStrike()
+        // and maxStrike() are set, we assume that no one will use stddevs for
+        // strikes outside these strikes
         CubicInterpolation::BoundaryCondition bc =
             optionletStrikes.size() >= 4 ? CubicInterpolation::Lagrange
                                          : CubicInterpolation::SecondDerivative;
