@@ -66,6 +66,9 @@ class AdjusterHelper : public CalibrationHelperBase, public LazyObject {
 
     Real calibrationError() { return referenceValue() - modelValue(); }
 
+    const Date fixingDate() { return fixingDate_; }
+    const Date paymentDate() { return paymentDate_; }
+
   private:
     boost::shared_ptr<InterestRateIndex> index_;
     const Date fixingDate_, paymentDate_;
