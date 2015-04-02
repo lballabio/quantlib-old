@@ -30,8 +30,6 @@
 #include <ql/cashflows/iborcoupon.hpp>
 #include <ql/time/schedule.hpp>
 
-#include <boost/make_shared.hpp>
-
 namespace QuantLib {
 
     //! Ibor rate coupon with digital digital call/put option
@@ -45,10 +43,10 @@ namespace QuantLib {
             Rate callDigitalPayoff = Null<Rate>(),
             Rate putStrike = Null<Rate>(),
             Position::Type putPosition = Position::Long,
-            bool isPutATMIncluded = false, Rate putDigitalPayoff = Null<Rate>(),
+            bool isPutATMIncluded = false,
+            Rate putDigitalPayoff = Null<Rate>(),
             const boost::shared_ptr<DigitalReplication> &replication =
-                boost::shared_ptr<DigitalReplication>(
-                    new DigitalReplication()));
+                boost::shared_ptr<DigitalReplication>(new DigitalReplication));
 
         //! \name Visitability
         //@{
@@ -87,8 +85,7 @@ namespace QuantLib {
         DigitalIborLeg& withPutPayoffs(const std::vector<Rate>& payoffs);
         DigitalIborLeg &withReplication(
             const boost::shared_ptr<DigitalReplication> &replication =
-                boost::shared_ptr<DigitalReplication>(
-                    new DigitalReplication()));
+                boost::shared_ptr<DigitalReplication>(new DigitalReplication));
         operator Leg() const;
       private:
         Schedule schedule_;

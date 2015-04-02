@@ -23,6 +23,8 @@
 #include <ql/settings.hpp>
 #include <ql/math/comparison.hpp>
 
+using std::sqrt;
+
 namespace QuantLib {
 
     void SmileSection::update() {

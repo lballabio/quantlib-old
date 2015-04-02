@@ -43,6 +43,7 @@ libVolatility_la_SOURCES = \
     noarbsabrsmilesection.cpp \
     sabrvolsurface.cpp \
     stickybpvolswaptioncube.cpp \
+    sviinterpolatedsmilesection.cpp \
     svismilesection.cpp \
     volcube.cpp \
     zabr.cpp

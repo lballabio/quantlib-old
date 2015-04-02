@@ -799,6 +799,14 @@
           <string>Indifferent</string>
           <value>QuantLib::Unadjusted</value>
         </EnumeratedType>
+        <EnumeratedType>
+          <string>Nearest</string>
+          <value>QuantLib::Nearest</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>N</string>
+          <value>QuantLib::Nearest</value>
+        </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 

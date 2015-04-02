@@ -156,7 +156,7 @@ namespace QuantLib {
           public:
             VegaRatioHelper(const SmileSection *section, const Real targetVega)
                 : section_(section), targetVega_(targetVega) {}
-            double operator()(double strike) const {
+            Real operator()(Real strike) const {
                 return section_->vega(strike) - targetVega_;
             };
             const SmileSection *section_;
@@ -168,7 +168,7 @@ namespace QuantLib {
             PriceHelper(const SmileSection *section, const Option::Type type,
                         const Real targetPrice)
                 : section_(section), targetPrice_(targetPrice), type_(type) {}
-            double operator()(double strike) const {
+            Real operator()(Real strike) const {
                 return section_->optionPrice(strike, type_) - targetPrice_;
             };
             const SmileSection *section_;
