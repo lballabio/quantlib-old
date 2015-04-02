@@ -90,6 +90,9 @@ namespace QuantLib {
             SwaptionVolatilityDiscrete::performCalculations();
         }
         //@}
+        Real shift(Time optionTime, Time swapLength) const {
+            return atmVol_->shift(optionTime,swapLength);
+        }
       protected:
         void registerWithVolatilitySpread();
         virtual Size requiredNumberOfStrikes() const { return 2; }
