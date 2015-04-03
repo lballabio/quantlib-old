@@ -973,7 +973,7 @@
     <ProjectReference Include="..\ObjectHandler\ohlib_vc11.vcxproj">
       <Project>{cd623fe5-3b3e-4511-80a9-a99d893349a4}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\QuantLib\QuantLib_vc11.vcxproj">
+    <ProjectReference Include="..\QuantLib\QuantLib.vcxproj">
       <Project>{ad0a27da-91da-46a2-acbd-296c419ed3aa}</Project>
     </ProjectReference>
     <ProjectReference Include="gensrc\qlgensrc_vc11.vcxproj">
