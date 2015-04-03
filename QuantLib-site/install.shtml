@@ -19,12 +19,12 @@
 
 <h1 class="center">QuantLib Installation</h1>
 
-<p>At this time, installation instructions are available
+<p>Installation instructions are available
 for <a href="/install/vc9.shtml">Microsoft Visual C++ 2008 and earlier</a>,
 <a href="/install/vc10.shtml">Microsoft Visual C++ 2010 and later</a>,
-and <a href="/install/macosx.shtml">Mac OS X.</a></p>
-
-<p>Instructions for other platforms are in the works.</p>
+<a href="/install/macosx.shtml">Mac OS X</a> and
+<a href="/install/linux.shtml">Linux/Unix</a>.
+</p>
 
 </div>
 

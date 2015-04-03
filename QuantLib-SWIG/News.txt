@@ -1,23 +1,31 @@
 
-Release 1.4 - February 2014
-Notable changes since release 1.3:
-- in sync with QuantLib 1.4;
-- upgraded to SWIG 2.0.11;
-- support for Visual C# 2003 (VC++7) was dropped;
-- added Visual C# 2012 solution;
-- made wrappers compatible with both Python 2 and 3 syntax;
-- the R extension is now built as a standard R package;
-- enabled building under Ruby 1.9. However, scripts using the Ruby
-  wrappers crash; help debugging the problem would be welcome;
-- exported Redemption and AmortizingPayment cash flows;
-- exported ZeroInflationIndex constructor to create custom instances;
-- set default interpolation to Linear for piecewise inflation curves;
-- export more inspectors for ZeroCouponInflationSwap;
-- renamed CashFlows::yield to yieldRate in Python to avoid keyword;
-- exported utility class for creating custom Region instance;
-- exported callable fixed-rate bond and CPI bond (thanks to Simon
-  Mazzucca);
-- exported new actual/365 (no leap) day counter;
-- added UnaryFunction support to Java interfaces for root finding and
-  integrals (thanks to Klaus Spanderen); added Java example for
-  UnaryFunction callback;
+Release 1.5 - February 2015
+Notable changes since release 1.4:
+- in sync with QuantLib 1.5;
+- upgraded to SWIG 3.0.2;
+- added Visual C# 2013 solution;
+- exported monotonic log-discount curve and added a few more traits
+  for cubic interpolations;
+- exported OIS rate helpers;
+- exported swap-helper constructors with exogenous discounting curve;
+- exported index-based constructors for rate helpers;
+- added method to return calibration parameters for Heston and Bates
+  models (thanks to Riccardo Ghetta);
+- added default arguments to exported FloatingRateBond constructor;
+- added parameter to set interpolation method for Black volatility surface;
+- exported CDS date-generation rule and IntegralCdsEngine, added
+  missing parameter to UpfrontCdsHelper (thanks to Riccardo Ghetta);
+- exported fitted bond curve;
+- added new constructor parameters to InterpolatedZeroCurve (thanks to
+  Alexandre Radicchi);
+- exported overnight indexes;
+- exported new South-African CPI index;
+- exported new Fed Funds index;
+- exported new interbank Chinese calendar;
+- exported additional bond constructor parameters for ex-coupon dates;
+- exported FdBlackScholesVanillaEngine, FdBlackScholesAsianEngine and
+  ContinuousArithmeticAsianLevyEngine (thanks to Klaus Spanderen);
+- exported Hull-White process (thanks to Alexandre Radicchi);
+- translated CDS example to Python (thanks to Riccardo Ghetta);
+- added new CPI bond example for Scala (thanks to Klaus Spanderen);
+- translated Bonds example to Java (thanks to Giacomo Sergio).

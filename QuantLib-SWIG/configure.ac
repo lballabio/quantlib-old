@@ -172,6 +172,7 @@ AC_CONFIG_FILES([
     Perl/Makefile
     Python/Makefile
     R/Makefile
-    Ruby/Makefile])
+    Ruby/Makefile
+    Scala/Makefile])
 AC_OUTPUT
 
