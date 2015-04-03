@@ -94,7 +94,7 @@ namespace QuantLib {
         return (type==Option::Call ? 1.0 : -1.0) *
             (optionPrice(kl,type,discount)-optionPrice(kr,type,discount)) / gap;
     }
-    
+
     Real SmileSection::density(Rate strike, Real discount, Real gap) const {
         Real m = nature() == ShiftedLognormal ? -shift() : -QL_MAX_REAL;
         Real kl = std::max(strike-gap/2.0,m);

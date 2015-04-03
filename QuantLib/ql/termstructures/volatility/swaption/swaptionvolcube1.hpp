@@ -171,8 +171,12 @@ namespace QuantLib {
                                     Time optionTime,
                                     Time swapLength,
                                     const Cube& sabrParametersCube) const;
+<<<<<<< HEAD
         Cube sabrCalibration(const Cube &marketVolCube,
                              const bool dontCalibrate = false) const;
+=======
+        Cube sabrCalibration(const Cube &marketVolCube) const;
+>>>>>>> slnVolsAdjuster
         void fillVolatilityCube() const;
         void createSparseSmiles() const;
         std::vector<Real> spreadVolInterpolation(const Date& atmOptionDate,
@@ -337,8 +341,12 @@ namespace QuantLib {
 
     template <class Model>
     typename SwaptionVolCube1x<Model>::Cube
+<<<<<<< HEAD
     SwaptionVolCube1x<Model>::sabrCalibration(const Cube &marketVolCube,
                                               const bool dontCalibrate) const {
+=======
+    SwaptionVolCube1x<Model>::sabrCalibration(const Cube &marketVolCube) const {
+>>>>>>> slnVolsAdjuster
 
         const std::vector<Time>& optionTimes = marketVolCube.optionTimes();
         const std::vector<Time>& swapLengths = marketVolCube.swapLengths();

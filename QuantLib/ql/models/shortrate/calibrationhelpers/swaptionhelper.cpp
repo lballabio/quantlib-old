@@ -86,7 +86,7 @@ namespace QuantLib {
         exerciseDate_(exerciseDate), endDate_(endDate),
         maturity_(0*Days), length_(0*Days), fixedLegTenor_(fixedLegTenor), index_(index),
         fixedLegDayCounter_(fixedLegDayCounter), floatingLegDayCounter_(floatingLegDayCounter),
-        strike_(strike), nominal_(nominal), shift_(shift) 
+        strike_(strike), nominal_(nominal), shift_(shift)
     {
 
         registerWith(index_);
