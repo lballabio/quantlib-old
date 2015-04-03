@@ -30,7 +30,7 @@ namespace QuantLib {
                                        const Date& referenceDate,
                                        Real atmLevel,
                                        Real shift)
-        : SmileSection(d, dc, referenceDate, SmileSection::ShiftedLognormal, shift),
+        : SmileSection(d, dc, referenceDate, ShiftedLognormal, shift),
       vol_(vol), atmLevel_(atmLevel) {}
 
     FlatSmileSection::FlatSmileSection(Time exerciseTime,
@@ -38,7 +38,7 @@ namespace QuantLib {
                                        const DayCounter& dc,
                                        Real atmLevel,
                                        Real shift)
-        : SmileSection(exerciseTime, dc, SmileSection::ShiftedLognormal, shift),
+        : SmileSection(exerciseTime, dc, ShiftedLognormal, shift),
       vol_(vol), atmLevel_(atmLevel) {}
 
 }

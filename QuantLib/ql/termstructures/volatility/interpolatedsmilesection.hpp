@@ -97,7 +97,7 @@ namespace QuantLib {
                                const Interpolator& interpolator,
                                const DayCounter& dc,
                                const Real shift)
-    : SmileSection(timeToExpiry, dc, SmileSection::ShiftedLognormal, shift),
+    : SmileSection(timeToExpiry, dc, ShiftedLognormal, shift),
       exerciseTimeSquareRoot_(std::sqrt(exerciseTime())), strikes_(strikes),
       stdDevHandles_(stdDevHandles), atmLevel_(atmLevel),
       vols_(stdDevHandles.size())
@@ -120,7 +120,7 @@ namespace QuantLib {
                                 const Interpolator& interpolator,
                                 const DayCounter& dc,
                                 const Real shift)
-    : SmileSection(timeToExpiry, dc, SmileSection::ShiftedLognormal, shift),
+    : SmileSection(timeToExpiry, dc, ShiftedLognormal, shift),
       exerciseTimeSquareRoot_(std::sqrt(exerciseTime())), strikes_(strikes),
       stdDevHandles_(stdDevs.size()), vols_(stdDevs.size())
     {
@@ -147,7 +147,7 @@ namespace QuantLib {
                            const Interpolator& interpolator,
                            const Date& referenceDate,
                            const Real shift)
-    : SmileSection(d, dc, referenceDate, SmileSection::ShiftedLognormal, shift),
+    : SmileSection(d, dc, referenceDate, ShiftedLognormal, shift),
       exerciseTimeSquareRoot_(std::sqrt(exerciseTime())), strikes_(strikes),
       stdDevHandles_(stdDevHandles), atmLevel_(atmLevel), vols_(stdDevHandles.size())
     {
@@ -170,7 +170,7 @@ namespace QuantLib {
                            const Interpolator& interpolator,
                            const Date& referenceDate,
                            const Real shift)
-    : SmileSection(d, dc, referenceDate, SmileSection::ShiftedLognormal, shift),
+    : SmileSection(d, dc, referenceDate, ShiftedLognormal, shift),
       exerciseTimeSquareRoot_(std::sqrt(exerciseTime())), strikes_(strikes),
       stdDevHandles_(stdDevs.size()), vols_(stdDevs.size())
     {

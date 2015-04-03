@@ -29,7 +29,7 @@ namespace QuantLib {
                                        const std::vector<Real>& sabrParams,
                                        const Real shift)
         : SmileSection(timeToExpiry,DayCounter(),
-                       SmileSection::ShiftedLognormal,shift),
+                       ShiftedLognormal,shift),
           forward_(forward), shift_(shift) {
 
         alpha_ = sabrParams[0];
@@ -50,7 +50,7 @@ namespace QuantLib {
                                        const std::vector<Real>& sabrParams,
                                        const DayCounter& dc,
                                        const Real shift)
-        : SmileSection(d, dc,Date(),SmileSection::ShiftedLognormal,shift),
+        : SmileSection(d, dc,Date(),ShiftedLognormal,shift),
           forward_(forward), shift_(shift) {
 
         alpha_ = sabrParams[0];

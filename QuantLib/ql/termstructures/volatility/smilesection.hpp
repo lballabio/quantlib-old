@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2006 Mario Pucci
- Copyright (C) 2013 Peter Caspers
+ Copyright (C) 2013, 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,6 +29,7 @@
 #include <ql/time/daycounter.hpp>
 #include <ql/utilities/null.hpp>
 #include <ql/option.hpp>
+#include <ql/termstructures/volatility/volatilitynature.hpp>
 
 namespace QuantLib {
 
@@ -37,15 +38,14 @@ namespace QuantLib {
     class SmileSection : public virtual Observable,
                          public virtual Observer {
       public:
-        enum Nature { ShiftedLognormal, Normal };
         SmileSection(const Date& d,
                      const DayCounter& dc = DayCounter(),
                      const Date& referenceDate = Date(),
-                     const Nature nature = ShiftedLognormal,
+                     const VolatilityNature nature = ShiftedLognormal,
                      const Rate shift = 0.0);
         SmileSection(Time exerciseTime,
                      const DayCounter& dc = DayCounter(),
-                     const Nature nature = ShiftedLognormal,
+                     const VolatilityNature nature = ShiftedLognormal,
                      const Rate shift = 0.0);
         SmileSection() {}
 
@@ -58,7 +58,7 @@ namespace QuantLib {
         Volatility volatility(Rate strike) const;
         virtual Real atmLevel() const = 0;
         virtual const Date& exerciseDate() const { return exerciseDate_; }
-        virtual const Nature nature() const { return nature_; }
+        virtual const VolatilityNature nature() const { return nature_; }
         virtual const Rate shift() const { return shift_; }
         virtual const Date& referenceDate() const;
         virtual Time exerciseTime() const { return exerciseTime_; }
@@ -75,7 +75,7 @@ namespace QuantLib {
         virtual Real density(Rate strike,
                              Real discount=1.0,
                              Real gap=1.0E-4) const;
-        Volatility volatility(Rate strike, Nature nature, Real shift=0.0) const;
+        Volatility volatility(Rate strike, VolatilityNature nature, Real shift=0.0) const;
       protected:
         virtual void initializeExerciseTime() const;
         virtual Real varianceImpl(Rate strike) const;
@@ -86,7 +86,7 @@ namespace QuantLib {
         Date exerciseDate_;
         DayCounter dc_;
         mutable Time exerciseTime_;
-        Nature nature_;
+        VolatilityNature nature_;
         Rate shift_;
     };
 

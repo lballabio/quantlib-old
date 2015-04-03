@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2006 Mario Pucci
- Copyright (C) 2013 Peter Caspers
+ Copyright (C) 2013, 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -45,7 +45,7 @@ namespace QuantLib {
     SmileSection::SmileSection(const Date& d,
                                const DayCounter& dc,
                                const Date& referenceDate,
-                               const Nature nature,
+                               const VolatilityNature nature,
                                const Rate shift)
         : exerciseDate_(d), dc_(dc), nature_(nature), shift_(shift) {
         isFloating_ = referenceDate==Date();
@@ -59,7 +59,7 @@ namespace QuantLib {
 
     SmileSection::SmileSection(Time exerciseTime,
                                const DayCounter& dc,
-                               const Nature nature,
+                               const VolatilityNature nature,
                                const Rate shift)
     : isFloating_(false), referenceDate_(Date()),
       dc_(dc), exerciseTime_(exerciseTime), nature_(nature), shift_(shift) {
@@ -115,7 +115,7 @@ namespace QuantLib {
             QL_FAIL("vega for normal smilesection not yet implemented");
     }
 
-    Real SmileSection::volatility(Rate strike, Nature nature, Real shift) const {
+    Real SmileSection::volatility(Rate strike, VolatilityNature nature, Real shift) const {
         if(nature == nature_ && close(shift,this->shift()))
             return volatility(strike);
         Real atm = atmLevel();
@@ -124,7 +124,7 @@ namespace QuantLib {
         Option::Type type = strike >= atm ? Option::Call : Option::Put;
         Real premium = optionPrice(strike,type);
         Real premiumAtm = optionPrice(atm,type);
-        if (nature == SmileSection::ShiftedLognormal) {
+        if (nature == ShiftedLognormal) {
             try {
                 return blackFormulaImpliedStdDev(type, strike, atm, premium,
                                                  1.0, shift) /

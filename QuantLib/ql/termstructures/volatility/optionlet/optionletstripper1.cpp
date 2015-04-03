@@ -40,9 +40,9 @@ namespace QuantLib {
             Real accuracy,
             Natural maxIter,
             const Handle<YieldTermStructure>& discount,
-            Model model,
+            VolatilityNature nature,
             Real displacement)
-    : OptionletStripper(termVolSurface, index, discount, model, displacement),
+    : OptionletStripper(termVolSurface, index, discount, nature, displacement),
       volQuotes_(nOptionletTenors_,
                  std::vector<shared_ptr<SimpleQuote> >(nStrikes_)),
       floatingSwitchStrike_(switchStrike==Null<Rate>() ? true : false),
@@ -111,7 +111,7 @@ namespace QuantLib {
                 for (Size i=0; i<nOptionletTenors_; ++i) {
                     volQuotes_[i][j] = shared_ptr<SimpleQuote>(new
                                                                 SimpleQuote());
-                    if (model_ == ShiftedLognormal) {
+                    if (nature_ == ShiftedLognormal) {
                       shared_ptr<BlackCapFloorEngine> engine(
                           new BlackCapFloorEngine(
                               discountCurve, Handle<Quote>(volQuotes_[i][j]),
@@ -120,7 +120,7 @@ namespace QuantLib {
                           MakeCapFloor(capFloorType, capFloorLengths_[i],
                                        iborIndex_, strikes[j],
                                        0 * Days).withPricingEngine(engine);
-                    } else if (model_ == Normal) {
+                    } else if (nature_ == Normal) {
                       shared_ptr<BachelierCapFloorEngine> engine(
                           new BachelierCapFloorEngine(
                               discountCurve, Handle<Quote>(volQuotes_[i][j]),
@@ -130,7 +130,7 @@ namespace QuantLib {
                                        iborIndex_, strikes[j],
                                        0 * Days).withPricingEngine(engine);
                     } else {
-                      QL_FAIL("unknown model: " << model_);
+                      QL_FAIL("unknown volatility nature: " << nature_);
                     }
                 }
             }
@@ -157,12 +157,12 @@ namespace QuantLib {
                     discountCurve->discount(optionletPaymentDates_[i]);
                 DiscountFactor optionletAnnuity=optionletAccrualPeriods_[i]*d;
                 try {
-                  if (model_ == ShiftedLognormal) {
+                  if (nature_ == ShiftedLognormal) {
                     optionletStDevs_[i][j] = blackFormulaImpliedStdDev(
                         optionletType, strikes[j], atmOptionletRate_[i],
                         optionletPrices_[i][j], optionletAnnuity, displacement_,
                         optionletStDevs_[i][j], accuracy_, maxIter_);
-                  } else if (model_ == Normal) {
+                  } else if (nature_ == Normal) {
                     optionletStDevs_[i][j] =
                         std::sqrt(optionletTimes_[i]) *
                         bachelierBlackFormulaImpliedVol(
@@ -170,7 +170,7 @@ namespace QuantLib {
                             optionletTimes_[i], optionletPrices_[i][j],
                             optionletAnnuity);
                   } else {
-                    QL_FAIL("Unknown model: " << model_);
+                    QL_FAIL("Unknown model: " << nature_);
                   }
                 }
                 catch (std::exception &e) {

@@ -44,7 +44,7 @@ namespace QuantLib {
         Time exerciseTime() const { return source_->exerciseTime(); }
         const DayCounter& dayCounter() const { return source_->dayCounter(); }
         const Date& referenceDate() const { return source_->referenceDate(); }
-        const SmileSection::Nature nature() const { return source_->nature(); }
+        const VolatilityNature nature() const { return source_->nature(); }
         const Rate shift() const { return source_->shift(); }
 
         Real optionPrice(Rate strike, Option::Type type = Option::Call,

@@ -176,11 +176,11 @@ namespace QuantLib {
                 vol1_ = swcub->smileSection(fixingDate_,
                                             index_->swapIndex1()->tenor())
                             ->volatility(swapRate1_,
-                                         SmileSection::ShiftedLognormal, 0.0);
+                                         ShiftedLognormal, 0.0);
                 vol2_ = swcub->smileSection(fixingDate_,
                                             index_->swapIndex2()->tenor())
                             ->volatility(swapRate2_,
-                                         SmileSection::ShiftedLognormal, 0.0);
+                                         ShiftedLognormal, 0.0);
             }
 
             mu1_ = 1.0 / fixingTime_ * std::log(adjustedRate1_ / swapRate1_);
