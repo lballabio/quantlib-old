@@ -20,6 +20,7 @@ this_include_HEADERS = \
     gaussian1dsmilesection.hpp \
     gaussian1dswaptionengine.hpp \
     gaussian1dswaptionvolatility.hpp \
+    gaussian1dyieldtermstructure.hpp \
     gsr.hpp \
     gsrprocess.hpp \
     kahalesmilesection.hpp \

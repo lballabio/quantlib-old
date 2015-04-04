@@ -156,6 +156,13 @@ class Gaussian1dModel : public TermStructureConsistentModel, public LazyObject {
                                   const Real T = 1.0, const Real t = 0,
                                   const Real y = 0) const;
 
+    /*! Computes the standardized model state from the original one
+        We use that the standard deviation is independent of $x$ here ! */
+    const Real y(const Real x, const Time t) {
+        return (x - stateProcess_->expectation(0.0, 0.0, t)) /
+               stateProcess_->stdDeviation(0.0, 0.0, t);
+    }
+
   private:
     // It is of great importance for performance reasons to cache underlying
     // swaps generated from indexes. In addition the indexes may only be given

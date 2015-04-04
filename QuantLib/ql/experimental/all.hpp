@@ -9,6 +9,7 @@
 #include <ql/experimental/convertiblebonds/all.hpp>
 #include <ql/experimental/coupons/all.hpp>
 #include <ql/experimental/credit/all.hpp>
+#include <ql/experimental/exercise/all.hpp>
 #include <ql/experimental/exoticoptions/all.hpp>
 #include <ql/experimental/finitedifferences/all.hpp>
 #include <ql/experimental/fx/all.hpp>
@@ -24,3 +25,4 @@
 #include <ql/experimental/variancegamma/all.hpp>
 #include <ql/experimental/varianceoption/all.hpp>
 #include <ql/experimental/volatility/all.hpp>
+#include <ql/experimental/xva/all.hpp>

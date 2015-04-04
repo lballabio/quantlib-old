@@ -2,6 +2,7 @@
 /* Add the files to be included into Makefile.am instead. */
 
 #include <ql/experimental/models/adjusterhelper.hpp>
+#include <ql/experimental/models/adjusterhelper.hpp>
 #include <ql/experimental/models/atmadjustedsmilesection.hpp>
 #include <ql/experimental/models/atmsmilesection.hpp>
 #include <ql/experimental/models/basketgeneratingengine.hpp>
@@ -16,6 +17,7 @@
 #include <ql/experimental/models/gaussian1dsmilesection.hpp>
 #include <ql/experimental/models/gaussian1dswaptionengine.hpp>
 #include <ql/experimental/models/gaussian1dswaptionvolatility.hpp>
+#include <ql/experimental/models/gaussian1dyieldtermstructure.hpp>
 #include <ql/experimental/models/gsr.hpp>
 #include <ql/experimental/models/gsrprocess.hpp>
 #include <ql/experimental/models/kahalesmilesection.hpp>
