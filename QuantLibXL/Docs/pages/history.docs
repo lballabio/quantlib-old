@@ -38,7 +38,9 @@ REQUIRED PACKAGES
 
 FUNCTIONALITY
 
-- 1 new function / 1018 in total
+- 10 new functions / 1027 in total
+- Additional Credit functionality exported from QuantLib to QuantLibXL.  Thanks
+  to Jose Aparicio
 - Bug fix.  In the past, if you called function qlSimpleQuoteSetValue() with an
   invalid value, the call failed.  This led to bugs, if you opened a
   spreadsheet with stale rates, a quote could be set with an input that was

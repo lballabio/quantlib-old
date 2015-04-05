@@ -2458,6 +2458,14 @@
 			Name="credit"
 			>
 			<File
+				RelativePath=".\qlo\cdsoption.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\cdsoption.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\credit.cpp"
 				>
 			</File>

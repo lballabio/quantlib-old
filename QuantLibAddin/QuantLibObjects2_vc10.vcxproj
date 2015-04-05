@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug (static runtime)|Win32">
@@ -453,6 +453,7 @@
     <ClCompile Include="qlo\indexes\swap\euriborswap.cpp" />
     <ClCompile Include="qlo\indexes\swap\isdafixaswap.cpp" />
     <ClCompile Include="qlo\indexes\swap\liborswap.cpp" />
+    <ClCompile Include="qlo\cdsoption.cpp" />
     <ClCompile Include="qlo\credit.cpp" />
     <ClCompile Include="qlo\defaulttermstructures.cpp" />
     <ClCompile Include="qlo\date.cpp" />
@@ -739,6 +740,7 @@
     <ClInclude Include="qlo\indexes\swap\euriborswap.hpp" />
     <ClInclude Include="qlo\indexes\swap\isdafixaswap.hpp" />
     <ClInclude Include="qlo\indexes\swap\liborswap.hpp" />
+    <ClInclude Include="qlo\cdsoption.hpp" />
     <ClInclude Include="qlo\credit.hpp" />
     <ClInclude Include="qlo\defaulttermstructures.hpp" />
     <ClInclude Include="qlo\auto_link.hpp" />
