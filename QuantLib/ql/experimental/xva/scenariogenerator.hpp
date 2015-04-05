@@ -54,7 +54,7 @@ template <class State> class ScenarioGenerator {
     // return the current state of the world.
     virtual const boost::shared_ptr<State> state() const = 0;
 
-    // return the time of the scenario
+    // return the time of the scenario (or null if invalid)
     virtual const Time time() const;
 
   protected:
