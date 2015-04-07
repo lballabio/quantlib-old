@@ -112,9 +112,17 @@ the sponsorship of <a href="http://www.statpro.com/">StatPro</a>.</li>
 
 <h2 class="center">Papers</h2>
 <ul>
-<li><strong>Markov Functional One Factor Interest Rate Model Implementation in QuantLib</strong>
+<li><strong>Derivatives Pricing using QuantLib: An Introduction</strong>
+[<a href="https://vineetv.wordpress.com/2015/04/03/wp-derivatives-pricing-using-quantlib/">abstract/download</a>]<br>
+Jayanth R. Varma, Vineet Virmani (2015)</li>
+<li><strong>Markov Functional One Factor Interest Rate Model
+Implementation in QuantLib</strong>
 [<a href="http://ssrn.com/abstract=2183721">abstract/download</a>]<br>
 Peter Caspers (2013)</li>
+<li><strong>Everything You Always Wanted to Know About Multiple
+Interest Rate Curve Bootstrapping but Were Afraid to Ask</strong>
+[<a href="http://ssrn.com/abstract=2219548">abstract/download</a>]<br>
+Ferdinando Ametrano, Marco Bianchetti (2013)</li>
 <li><strong>Option Engine: A Grid-Enabled Software Package to Evaluate
 Financial Options</strong> [<a href=
 "http://www.hpcwire.com/features/Option-Engine-A-Grid-Enabled-Software-Package-to-Evaluate-Financial-Options-59669252.html?viewAll=y">HTML</a>]<br>
