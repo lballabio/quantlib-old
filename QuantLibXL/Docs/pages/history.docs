@@ -36,6 +36,10 @@ REQUIRED PACKAGES
 - ObjectHandler version 1.5.0
 - gensrc version 1.5.0
 
+BUILD
+
+- Introduce support for VC12 (Visual Studio 2013)
+
 FUNCTIONALITY
 
 - 10 new functions / 1027 in total

@@ -25,8 +25,9 @@
 
 <strong>Release 1.5.0 - MMM YYYY</strong>
 
-CONFIGURATION
+BUILD
 
+- Introduce support for VC12 (Visual Studio 2013)
 - When building %ObjectHandler on linux it is now possible to disable support
   for log4cxx by passing the argument \c --without-log4cxx to \c configure.
 
