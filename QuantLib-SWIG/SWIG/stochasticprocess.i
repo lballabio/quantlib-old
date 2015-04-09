@@ -388,7 +388,8 @@ class GsrProcessPtr : public StochasticProcess1DPtr {
 };
 
 %inline %{
-    GsrProcessPtr as_GsrProcess(const boost::shared_ptr<StochasticProcess>& proc) {
+    GsrProcessPtr as_gsr_process(
+                           const boost::shared_ptr<StochasticProcess>& proc) {
         return boost::dynamic_pointer_cast<GsrProcess>(proc);
     }
 %}
