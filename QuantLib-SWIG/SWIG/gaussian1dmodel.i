@@ -33,7 +33,7 @@ using QuantLib::Gaussian1dModel;
 %ignore Gaussian1dModel;
 class Gaussian1dModel {
 	public:
-		const boost::shared_ptr<StochasticProcess1D> stateProcess() const;
+		const StochasticProcess1DPtr stateProcess() const;
 
 		const Real numeraire(const Time t, const Real y = 0.0,
                              const Handle<YieldTermStructure> &yts =
