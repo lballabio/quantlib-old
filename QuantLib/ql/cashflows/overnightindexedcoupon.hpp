@@ -3,6 +3,7 @@
 /*
  Copyright (C) 2009 Roland Lichters
  Copyright (C) 2009 Ferdinando Ametrano
+ Copyright (C) 2014 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -32,7 +33,11 @@
 namespace QuantLib {
 
     //! overnight coupon
-    /*! %Coupon paying the compounded interest due to daily overnight fixings. */
+    /*! %Coupon paying the compounded interest due to daily overnight fixings.
+        \warning telescopicValueDates optimizes the schedule for calculation speed,
+        but might fail to produce correct results if the coupon ages and new
+        O/N fixings come into play on which the couopon then depends
+    */
     class OvernightIndexedCoupon : public FloatingRateCoupon {
       public:
         OvernightIndexedCoupon(
@@ -45,7 +50,8 @@ namespace QuantLib {
                     Spread spread = 0.0,
                     const Date& refPeriodStart = Date(),
                     const Date& refPeriodEnd = Date(),
-                    const DayCounter& dayCounter = DayCounter());
+                    const DayCounter& dayCounter = DayCounter(),
+                    const bool telescopicValueDates = false);
         //! \name Inspectors
         //@{
         //! fixing dates for the rates to be compounded
@@ -87,6 +93,7 @@ namespace QuantLib {
         OvernightLeg& withGearings(const std::vector<Real>& gearings);
         OvernightLeg& withSpreads(Spread spread);
         OvernightLeg& withSpreads(const std::vector<Spread>& spreads);
+        OvernightLeg& withTelescopicValueDates(const bool telescopicValueDates);
         operator Leg() const;
       private:
         Schedule schedule_;
@@ -96,6 +103,7 @@ namespace QuantLib {
         BusinessDayConvention paymentAdjustment_;
         std::vector<Real> gearings_;
         std::vector<Spread> spreads_;
+        bool telescopicValueDates_;
     };
 
 }
