@@ -695,7 +695,14 @@ int main(int argc, char *argv[]) {
                   << "\nit will most probably underestimate the market value"
                   << "\nby construction." << std::endl;
 
-        std::cout << "\n ADJUSTER ... " << std::endl;
+        std::cout << "\nThere is a way to enforce the underlying match"
+                  << "\nwe saw in the Markov model also in the Gsr model"
+                  << "\nby so called internal adjusters. These are factors"
+                  << "\nfor the model volatility used in case the exotic"
+                  << "\ncoupons in question (here the CMS coupons) are"
+                  << "\nevaluated. The factors are calibrated such that"
+                  << "\na reference market price (here the price from"
+                  << "\nthe linear replication model) is matched." << std::endl;
 
         swaption4->setPricingEngine(floatSwaptionEngine);
 
@@ -713,11 +720,17 @@ int main(int argc, char *argv[]) {
             }
         }
 
+        std::cout << "\nWe calibrate adjusters in our setup here:" << std::endl;
+
         timer.start();
         gsr->calibrateAdjustersIterative(adjusterBasket, method, ec);
         timer.stop();
         printModelAdjuster(adjusterBasket, gsr->adjuster());
         printTiming(timer);
+
+        std::cout << "\nThe resulting option and underlying value" 
+                  << "\nin the adjusted Gsr model are:" << std::endl;
+
         Real npv9 = swaption4->NPV();
         Real npv10 = swaption4->result<Real>("underlyingValue");
         std::cout << std::setprecision(6)
