@@ -544,9 +544,11 @@ namespace QuantLibAddin {
             void visit(QuantLib::FuturesRateHelper& h) {
                 QuantLib::Rate futureRate = 1.0 - h.quote()->value()/100.0;
                 QuantLib::Rate convAdj = h.convexityAdjustment();
-                QL_ENSURE(convAdj >= 0.0,
-                          "Negative (" << convAdj <<
-                          ") futures convexity adjustment");
+                // There are more things in heaven and earth, Horatio,
+                // Than are dreamt of in your philosophy.
+                // QL_ENSURE(convAdj >= 0.0,
+                //           "Negative (" << convAdj <<
+                //           ") futures convexity adjustment");
                 rate_ = futureRate - convAdj;
             }
             void visit(QuantLib::SwapRateHelper& h) {
