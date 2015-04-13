@@ -16,6 +16,7 @@ QL_TESTS = \
 	blackformula.hpp blackformula.cpp \
 	bonds.hpp bonds.cpp \
 	brownianbridge.hpp brownianbridge.cpp \
+	businessdayconventions.hpp businessdayconventions.cpp \
 	calendars.hpp calendars.cpp \
 	capfloor.hpp capfloor.cpp \
 	capflooredcoupon.hpp capflooredcoupon.cpp \
@@ -40,6 +41,8 @@ QL_TESTS = \
 	digitaloption.hpp digitaloption.cpp \
 	distributions.hpp distributions.cpp \
 	dividendoption.hpp dividendoption.cpp \
+	doublebarrieroption.hpp doublebarrieroption.cpp \
+	doublebinaryoption.hpp doublebinaryoption.cpp \
 	europeanoption.hpp europeanoption.cpp \
 	everestoption.hpp everestoption.cpp \
 	exchangerate.hpp exchangerate.cpp \
@@ -138,6 +141,7 @@ QL_BENCHMARKS = \
 	americanoption.hpp americanoption.cpp \
 	asianoptions.hpp asianoptions.cpp \
 	barrieroption.hpp barrieroption.cpp \
+	doublebarrieroption.hpp doublebarrieroption.cpp \
 	basketoption.hpp basketoption.cpp \
 	batesmodel.hpp batesmodel.cpp \
 	convertiblebonds.hpp convertiblebonds.cpp \
