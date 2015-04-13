@@ -370,16 +370,16 @@ class GsrProcessPtr : public StochasticProcess1DPtr {
             return new GsrProcessPtr(new GsrProcess(times, vols, reversions, T));
         }
         Real sigma(Time t) {
-            boost::dynamic_pointer_cast<GsrProcess>(*self)->sigma(t);
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->sigma(t);
         }
         Real reversion(Time t){
-            boost::dynamic_pointer_cast<GsrProcess>(*self)->reversion(t);
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->reversion(t);
         }
         Real y(Time t) {
-            boost::dynamic_pointer_cast<GsrProcess>(*self)->y(t);
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->y(t);
         }
         Real G(Time t, Time T, Real x){
-            boost::dynamic_pointer_cast<GsrProcess>(*self)->G(t, T, x);
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->G(t, T, x);
         }
         void setForwardMeasureTime(Time t) {
             boost::dynamic_pointer_cast<GsrProcess>(*self)->setForwardMeasureTime(t);
