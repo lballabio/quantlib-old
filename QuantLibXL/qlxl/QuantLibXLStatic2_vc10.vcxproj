@@ -438,7 +438,7 @@
     <ProjectReference Include="..\..\QuantLibAddin\QuantLibObjects3_vc10.vcxproj">
       <Project>{cab8330c-6424-4455-9285-3654587ef71f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\QuantLib\QuantLib_vc10.vcxproj">
+    <ProjectReference Include="..\..\QuantLib\QuantLib.vcxproj">
       <Project>{ad0a27da-91da-46a2-acbd-296c419ed3aa}</Project>
     </ProjectReference>
   </ItemGroup>

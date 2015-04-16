@@ -765,7 +765,7 @@
     <ProjectReference Include="..\ObjectHandler\ohxl\ohxllib\ohxllib2_vc10.vcxproj">
       <Project>{66021664-4359-442C-ACC7-7C82F51C9D5A}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\QuantLib\QuantLib_vc10.vcxproj">
+    <ProjectReference Include="..\QuantLib\QuantLib.vcxproj">
       <Project>{ad0a27da-91da-46a2-acbd-296c419ed3aa}</Project>
     </ProjectReference>
   </ItemGroup>
