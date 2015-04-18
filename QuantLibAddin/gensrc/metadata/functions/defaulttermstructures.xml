@@ -101,5 +101,37 @@
       </ParameterList>
     </Constructor>
 
+    <Procedure name='qlProbabilityToHR'>
+      <description>Turns a given probability into a flat hazard rate.</description>
+      <alias>QuantLibAddin::probabilityToHazardRate</alias>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Probability'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Probability.</description>
+          </Parameter>
+          <Parameter name='Date'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Date of the probability given.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
   </Functions>
 </Category>

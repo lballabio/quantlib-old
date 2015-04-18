@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2010 Roland Lichters
+ Copyright (C) 2014 Jose Aparicio
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -42,6 +43,7 @@
 namespace QuantLib {
     class Quote;
     class Date;
+    class Basket;
 }
 
 namespace QuantLibAddin {
@@ -88,23 +90,23 @@ namespace QuantLibAddin {
         boost::shared_ptr<QuantLib::RecoveryRateQuote> recoveryQuote_;
     };
 
-    class CreditDefaultSwap : public Instrument {
-    public:
-        CreditDefaultSwap(
-              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-              QuantLib::Protection::Side side,
-              QuantLib::Real notional,
-              QuantLib::Rate upfront,
-              QuantLib::Rate spread,
-              const boost::shared_ptr<QuantLib::Schedule>& schedule,
-              QuantLib::BusinessDayConvention paymentConvention,
-              const QuantLib::DayCounter& dayCounter,
-              bool settlesAccrual,
-              bool paysAtDefaultTime,
-              const QuantLib::Date& protectionStart,
-              const QuantLib::Date& upfrontDate,
-              bool permanent);
-    };
+    //class CreditDefaultSwap : public Instrument {
+    //public:
+    //    CreditDefaultSwap(
+    //          const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+    //          QuantLib::Protection::Side side,
+    //          QuantLib::Real notional,
+    //          QuantLib::Rate upfront,
+    //          QuantLib::Rate spread,
+    //          const boost::shared_ptr<QuantLib::Schedule>& schedule,
+    //          QuantLib::BusinessDayConvention paymentConvention,
+    //          const QuantLib::DayCounter& dayCounter,
+    //          bool settlesAccrual,
+    //          bool paysAtDefaultTime,
+    //          const QuantLib::Date& protectionStart,
+    //          const QuantLib::Date& upfrontDate,
+    //          bool permanent);
+    //};
 
     class MidPointCdsEngine : public PricingEngine {
       public:
@@ -268,6 +270,59 @@ namespace QuantLibAddin {
             QuantLib::Date npvDate,
             bool permanent);
     };
+
+
+
+    class SyntheticCDO : public Instrument {
+    public:
+        SyntheticCDO(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+              const boost::shared_ptr<QuantLib::Basket>& bskt,
+              QuantLib::Protection::Side side,
+              const boost::shared_ptr<QuantLib::Schedule>& schedule,
+              QuantLib::Rate upfront,
+              QuantLib::Rate spread,
+              const QuantLib::DayCounter& dayCounter,
+              QuantLib::BusinessDayConvention paymentConvention,
+              bool permanent);
+    };
+
+
+    class MidPointCDOEngine : public PricingEngine {
+      public:
+        MidPointCDOEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>&,
+            bool permanent);
+    };
+
+    class NthToDefault : public Instrument {
+    public:
+        NthToDefault(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+              const boost::shared_ptr<QuantLib::Basket>& bskt,
+              QuantLib::Size order,
+              QuantLib::Protection::Side side,
+              const boost::shared_ptr<QuantLib::Schedule>& schedule,
+              QuantLib::Rate upfront,
+              QuantLib::Rate spread,
+              const QuantLib::DayCounter& dayCounter,
+              QuantLib::Real notional,
+              bool paysAccrual,
+              bool permanent);
+    };
+
+
+    class IntegralNtdEngine : public PricingEngine {
+      public:
+        IntegralNtdEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Period& step,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>&,
+            bool permanent);
+    };
+
+
 
 }
 

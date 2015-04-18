@@ -72,6 +72,9 @@
     <None Include="metadata\functions\assetswap.xml">
       <Filter>functions</Filter>
     </None>
+    <None Include="metadata\functions\basketlossmodels.xml">
+      <Filter>functions</Filter>
+    </None>
     <None Include="metadata\functions\bonds.xml">
       <Filter>functions</Filter>
     </None>
@@ -102,6 +105,12 @@
     <None Include="metadata\functions\daycounter.xml">
       <Filter>functions</Filter>
     </None>
+    <None Include="metadata\functions\defaultbasket.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\defaulttermstructures.xml">
+      <Filter>functions</Filter>
+    </None>
     <None Include="metadata\functions\exercise.xml">
       <Filter>functions</Filter>
     </None>
@@ -118,6 +127,9 @@
       <Filter>functions</Filter>
     </None>
     <None Include="metadata\functions\interpolation.xml">
+      <Filter>functions</Filter>
+    </None>
+    <None Include="metadata\functions\latentmodels.xml">
       <Filter>functions</Filter>
     </None>
     <None Include="metadata\functions\leg.xml">

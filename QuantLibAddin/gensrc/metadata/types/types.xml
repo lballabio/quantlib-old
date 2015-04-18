@@ -75,10 +75,12 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::CmsCouponPricer</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CmsMarket</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CmsMarketCalibration</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLib::CorrelationTermStructure</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CoterminalSwapCurveState</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CovarianceDecomposition</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CubicInterpolation</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CurveState</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::DefaultLossModel</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::DigitalReplication</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::EndCriteria</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Eonia</DataType>
@@ -113,6 +115,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::MarketModelMultiProduct</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::MultiProductComposite</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::NumericHaganPricer</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::NthToDefault</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::OneAssetOption</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::OptimizationMethod</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::OptionletStripper1</DataType>
@@ -147,6 +150,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::SwapRateHelper</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Swaption</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::SymmetricSchurDecomposition</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::SyntheticCDO</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::TimeHomogeneousForwardCorrelation</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::TimeSeriesDef</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::TypePayoff</DataType>
@@ -154,6 +158,11 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::VanillaSwap</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::VolatilityTermStructure</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::CreditDefaultSwap</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::CdsOption</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::Basket</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::Basket</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::GaussianDefProbLM</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::TDefProbLM</DataType>
     <!--RL ADD 2010-07-22-->
     <DataType defaultSuperType='libraryClass'>QuantLib::DefaultProbabilityHelper</DataType>
     <!--RL ADD 2010-07-22-->
@@ -163,7 +172,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::Issuer</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::DefaultEventSet</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Seniority</DataType>
-
+    
     <DataType defaultSuperType='libraryQuote'>QuantLib::FuturesConvAdjustmentQuote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::Quote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::SimpleQuote</DataType>
@@ -176,6 +185,8 @@
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityStructure</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityDiscrete</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityCube</DataType>
+
+    <DataType defaultSuperType='libraryTermStructure'>QuantLibAddin::BaseCorrelationTermStructure</DataType>
 
     <DataType defaultSuperType='libraryType' nativeType='double'>QuantLib::Array</DataType>
     <DataType defaultSuperType='libraryType' nativeType='double'>QuantLib::Matrix</DataType>
@@ -207,6 +218,7 @@
     <DataType defaultSuperType='objectClass'>QuantLibAddin::CmsMarket</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::CmsMarketCalibration</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Extrapolator</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::GaussianLHPLossModel</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Handle</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::HistoricalForwardRatesAnalysis</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Index</DataType>

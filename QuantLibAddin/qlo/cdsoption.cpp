@@ -25,7 +25,7 @@
 
 namespace QuantLibAddin {
 
-    SingleNameCDSOption::SingleNameCDSOption(
+    CdsOption::CdsOption(
         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
         const boost::shared_ptr<QuantLib::CreditDefaultSwap>& swap,
         const boost::shared_ptr<QuantLib::Exercise>& exercise,

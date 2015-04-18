@@ -30,9 +30,9 @@ namespace QuantLib {
 
 namespace QuantLibAddin {
 
-    class SingleNameCDSOption : public Instrument {
+    class CdsOption : public Instrument {
     public:
-        SingleNameCDSOption(
+        CdsOption(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const boost::shared_ptr<QuantLib::CreditDefaultSwap>& swap,
             const boost::shared_ptr<QuantLib::Exercise>& exercise,
