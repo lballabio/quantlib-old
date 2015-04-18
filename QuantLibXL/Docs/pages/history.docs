@@ -45,6 +45,8 @@ FUNCTIONALITY
 - 55 new functions / 1072 in total
 - Additional Credit functionality exported from QuantLib to QuantLibXL.
   Thanks to Jose Aparicio.
+- Example workbook StandaloneExamples/Analytics/InterestRateDerivatives.xlsx
+  now functions correctly on non working days.  Thanks to Paolo Mazzocchi.
 - Bug fix.  In the past, if you called function qlSimpleQuoteSetValue() with an
   invalid value, the call failed.  This led to bugs, if you opened a
   spreadsheet with stale rates, a quote could be set with an input that was
