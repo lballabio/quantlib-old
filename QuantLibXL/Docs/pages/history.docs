@@ -30,18 +30,6 @@ QuantLibAddin project, please refer to
 
 <strong>Release 1.5.0 - MMM 2015</strong>
 
-REQUIRED PACKAGES
-
-- %QuantLib version 1.5.0
-- ObjectHandler version 1.5.0
-- gensrc version 1.5.0
-
-BUILD
-
-- Introduce support for VC12 (Visual Studio 2013)
-
-FUNCTIONALITY
-
 - 55 new functions / 1072 in total
 - Additional Credit functionality exported from QuantLib to QuantLibXL.
   Thanks to Jose Aparicio.
@@ -54,6 +42,7 @@ FUNCTIONALITY
   failed, leaving the quote with an old stale value.  Now, if you call
   qlSimpleQuoteSetValue() with an invalid input such as #NA, the quote object is
   invalidated.
+- The VBA Framework has not been updated for this release
 
 <strong>Release 1.4.0 - June 2014</strong>
 
