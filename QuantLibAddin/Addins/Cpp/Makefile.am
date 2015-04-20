@@ -27,6 +27,7 @@ include_HEADERS = \
     addincpp.hpp \
     alphaform.hpp \
     assetswap.hpp \
+    basketlossmodels.hpp \
     bonds.hpp \
     browniangenerators.hpp \
     btp.hpp \
@@ -91,6 +92,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     accountingengines.cpp \
     alphaform.cpp \
     assetswap.cpp \
+    basketlossmodels.cpp \
     bonds.cpp \
     browniangenerators.cpp \
     btp.cpp \
