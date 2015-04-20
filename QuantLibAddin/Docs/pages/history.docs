@@ -34,6 +34,8 @@ REQUIRED PACKAGES
 BUILD
 
 - Introduce support for VC12 (Visual Studio 2013)
+- Modified the VC make files for gensrc to make the invocation of Python more
+  explicit (thanks to Francois Botha).
 
 FUNCTIONALITY
 

@@ -93,6 +93,24 @@ Before rebuilding %ObjectHandler you need to have Python 2.x installed on your
 machine.  Here is the link to the Python website:
 <a href="http://www.python.org/">http://www.python.org/</a>.
 
+If Python is installed on your machine so that .py files are associated with
+the Python executable, then the gensrc scripts should build OK with no
+modification required.
+
+Otherwise, after you install gensrc (below), you might need to edit this
+file...
+
+\verbatim
+    ObjectHandler\gensrc\Makefile.vc
+\endverbatim
+
+...and set the PYTHON variable equal to the location of the Python executable
+on your machine, e.g:
+
+\verbatim
+    PYTHON=C:\Python27\python.exe
+\endverbatim
+
 \section inst_win 2 Windows
 
 \subsection inst_win_download 2.1 Download
