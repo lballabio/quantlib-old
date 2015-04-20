@@ -10,8 +10,8 @@ EXTRA_DIST = \
     AddinCpp_vc10.vcxproj.filters \
     AddinCpp_vc11.vcxproj \
     AddinCpp_vc11.vcxproj.filters \
-    AddinCpp_vc11.vcxproj \
-    AddinCpp_vc11.vcxproj.filters
+    AddinCpp_vc12.vcxproj \
+    AddinCpp_vc12.vcxproj.filters
 
 if BUILD_CPP
 lib_LTLIBRARIES = libQuantLibAddinCpp.la
