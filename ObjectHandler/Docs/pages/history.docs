@@ -33,6 +33,12 @@ BUILD
 - When building %ObjectHandler on linux it is now possible to disable support
   for log4cxx by passing the argument \c --without-log4cxx to \c configure.
 
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.10.0f (now optional on linux)
+- gensrc version 1.5.0
+
 <strong>Release 1.4.0 - June 2014</strong>
 
 FUNCTIONALITY
