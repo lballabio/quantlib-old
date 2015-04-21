@@ -74,7 +74,7 @@ Copy the zip file to your hard drive and uncompress it.
 <b>NB</b>: The Framework is configured for 32-bit Excel.  If you are running
 64-bit Excel then before starting the Framework you need to edit workbook
 <tt>framework\\config\\Loader.xls</tt> and change the value of cell
-<tt>Loader.xls!$C$17</tt> to <tt>QuantLibXL-vc110-x64-mt-s-1_5_0.xll</tt>.
+<tt>Loader.xls!$C$17</tt> to <tt>QuantLibXL-vc110-x64-mt-s-1_6_0.xll</tt>.
 
 To load the Framework into Excel, double click on file
 <tt>framework\\QuantLibXL.xla</tt>.

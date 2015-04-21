@@ -166,13 +166,19 @@ AC_CONFIG_FILES([
     Makefile
     CSharp/Makefile
     Guile/Makefile
+    Guile/setup.scm
     Java/Makefile
     MzScheme/Makefile
+    MzScheme/setup.scm
     OCaml/Makefile
     Perl/Makefile
+    Perl/Makefile.PL
     Python/Makefile
+    Python/setup.py
     R/Makefile
+    R/DESCRIPTION
     Ruby/Makefile
+    Ruby/setup.rb
     Scala/Makefile])
 AC_OUTPUT
 

@@ -7,7 +7,8 @@ EXTRA_DIST = \
     ClientCppSwapOut_vc8.vcproj \
     ClientCppSwapOut_vc9.vcproj \
     ClientCppSwapOut_vc10.vcxproj \
-    ClientCppSwapOut_vc11.vcxproj
+    ClientCppSwapOut_vc11.vcxproj \
+    ClientCppSwapOut_vc12.vcxproj
 
 swap_out_SOURCES = swap_out.cpp
 
