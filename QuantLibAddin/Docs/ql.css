@@ -157,6 +157,7 @@ body {
 }
 
 #reposit_logo {
+    outline : none;
     display: block;
     margin: 0 auto;
     width: 88px;
@@ -165,6 +166,7 @@ body {
 }
 
 #reposit_logo:hover {
+    outline : none;
     display: block;
     margin: 0 auto;
     width: 88px;
