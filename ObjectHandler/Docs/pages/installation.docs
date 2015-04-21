@@ -120,10 +120,13 @@ on your machine, e.g:
 The Visual C++ project files for %ObjectHandler rely on relative pathnames
 to refer to prerequisite projects gensrc and log4cxx.  In order for this
 to work, these projects must reside side by side in the directory tree.
-By default the installer for each project uncompresses the source code to
-<tt>C:\\build_ql_1_6_0</tt>.  For purposes of this tutorial we assume the
-packages have been installed in this way:
 
+Create a new empty folder on your hard drive to serve as the root directory for
+the build.  You can use any path, for purposes of this tutorial the build
+directory is <tt>C:\\build_ql_1_5_0</tt>.  As described below you should copy
+all of the required source code zip files to that directory and then unzip them
+in place.  After all of the source code is unzipped you should have the
+following directory structure:
 \verbatim
 C:\build_ql_1_6_0\gensrc
 C:\build_ql_1_6_0\log4cxx
