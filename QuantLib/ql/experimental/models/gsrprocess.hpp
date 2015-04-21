@@ -51,12 +51,11 @@ namespace QuantLib {
         Real expectation(Time t0, Real x0, Time dt) const;
         Real stdDeviation(Time t0, Real x0, Time dt) const;
         Real variance(Time t0, Real, Time dt) const;
-
+        //@}
         Real sigma(Time t) const;
         Real reversion(Time t) const;
         Real y(Time t) const;
         Real G(Time t, Time T, Real x) const;
-        //@}
         void setForwardMeasureTime(Time t) {
             flushCache();
             ForwardMeasureProcess1D::setForwardMeasureTime(t);
