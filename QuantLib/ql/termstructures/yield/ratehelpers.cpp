@@ -167,11 +167,9 @@ namespace QuantLib {
         Rate forwardRate = (termStructure_->discount(earliestDate_) /
             termStructure_->discount(latestDate_)-1.0)/yearFraction_;
         Rate convAdj = convAdj_.empty() ? 0.0 : convAdj_->value();
-        // There are more things in heaven and earth, Horatio,
-        // Than are dreamt of in your philosophy.
-        // QL_ENSURE(convAdj >= 0.0,
-        //           "Negative (" << convAdj <<
-        //           ") futures convexity adjustment");
+        // don't ensure positive convAdj:
+        // 'There are more things in heaven and earth, Horatio,
+        //  Than are dreamt of in your philosophy.'
         Rate futureRate = forwardRate + convAdj;
         return 100.0 * (1.0 - futureRate);
     }
