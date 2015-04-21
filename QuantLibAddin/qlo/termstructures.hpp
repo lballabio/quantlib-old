@@ -47,6 +47,7 @@ namespace QuantLibAddin {
     OH_OBJ_CLASS(TermStructure, Extrapolator);
         OH_OBJ_CLASS(YieldTermStructure,              TermStructure);
         OH_OBJ_CLASS(DefaultProbabilityTermStructure, TermStructure);
+        OH_OBJ_CLASS(CorrelationTermStructure, TermStructure);
         OH_OBJ_CLASS(InflationTermStructure,          TermStructure);
         OH_OBJ_CLASS(VolatilityTermStructure,         TermStructure);
             OH_OBJ_CLASS(BlackAtmVolCurve,                VolatilityTermStructure);

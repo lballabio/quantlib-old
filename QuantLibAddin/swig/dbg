@@ -1,2 +1,0 @@
-export SWIG_LIB=/home/erik/repos/swig/swig/Lib
-gdb --args ../../../swig/swig -prefix ql -c++ -objecthandler quantlib.i

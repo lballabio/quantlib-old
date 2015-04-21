@@ -148,13 +148,14 @@ def makeZipNando():
 
 def zipBinaryFiles(zipFile):
     zipFile.zip("zip\\README.txt", zipFile.root + "README.txt")
-    zipFile.zip("xll\\QuantLibXL-vc110-mt-s-1_5_0.xll")
-    zipFile.zip("xll\\QuantLibXL-vc110-x64-mt-s-1_5_0.xll")
+    zipFile.zip("xll\\QuantLibXL-vc120-mt-s-1_5_0.xll")
+    zipFile.zip("xll\\QuantLibXL-vc120-x64-mt-s-1_5_0.xll")
     zipFile.zip("Docs\\QuantLibXL-docs-1.5.0.chm")
     Selector(
         inputPath = 'StandaloneExamples',
         zipFile = zipFile,
         incFiles = (
+            re.compile('^.*\.xls$'),
             re.compile('^.*\.xlsx$'),),
     )
 

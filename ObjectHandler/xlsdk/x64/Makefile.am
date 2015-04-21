@@ -1,0 +1,4 @@
+
+EXTRA_DIST = \
+    XLCALL32.LIB
+

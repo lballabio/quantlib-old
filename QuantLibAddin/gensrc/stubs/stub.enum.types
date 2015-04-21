@@ -28,6 +28,7 @@
 #include <ql/time/daycounters/all.hpp>
 #include <ql/prices.hpp>
 #include <ql/default.hpp> // RL ADD 2010-07-15
+#include <ql/experimental/credit/defaulttype.hpp>
 
 #include <oh/enumerations/typefactory.hpp>
 

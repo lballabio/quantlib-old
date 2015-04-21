@@ -31,6 +31,8 @@
 #  define XLSDK_LIB_TOOLSET "vc100"
 #elif (_MSC_VER == 1700)
 #  define XLSDK_LIB_TOOLSET "vc110"
+#elif (_MSC_VER == 1800)
+#  define XLSDK_LIB_TOOLSET "vc120"
 #else
 #  error "unknown Microsoft compiler"
 #endif
