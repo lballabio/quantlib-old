@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Library">
+      <UniqueIdentifier>{7175ebf4-1c0d-43d5-aca9-f5d0647d5e74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{948ee485-c293-4694-a05b-51981078c488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ValueObjects">
+      <UniqueIdentifier>{4c2cc039-8579-4abf-a434-45c49b0c2a46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enumerations">
+      <UniqueIdentifier>{af267e6b-df8a-4e6d-a49f-51525f189763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Serialization">
+      <UniqueIdentifier>{3e5715d5-a455-45f3-b6ad-dbaec8c66239}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Library\account.hpp">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\customer.hpp">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\accountobject.hpp">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\customerobject.hpp">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ValueObjects\accountvalueobject.hpp">
+      <Filter>ValueObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="ValueObjects\customervalueobject.hpp">
+      <Filter>ValueObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Enumerations\accountenumerations.hpp">
+      <Filter>Enumerations</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialization\creators.hpp">
+      <Filter>Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialization\serializationfactory.hpp">
+      <Filter>Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="accountexample.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ValueObjects\accountvalueobject.cpp">
+      <Filter>ValueObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ValueObjects\customervalueobject.cpp">
+      <Filter>ValueObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Enumerations\accountenumerations.cpp">
+      <Filter>Enumerations</Filter>
+    </ClCompile>
+    <ClCompile Include="Serialization\creators.cpp">
+      <Filter>Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="Serialization\serializationfactory.cpp">
+      <Filter>Serialization</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

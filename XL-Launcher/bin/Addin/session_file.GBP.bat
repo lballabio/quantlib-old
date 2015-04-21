@@ -7,4 +7,4 @@ SET LAUNCHER_DIR=.
 @REM If that file is not found then the launcher defaults to hard coded parameters.
 SET XL_LAUNCHER_PATH=%LAUNCHER_DIR%\session_file.GBP.xml
 
-START "EXCEL" "C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE" /e /r "%LAUNCHER_DIR%\Launcher.xla"
+START "EXCEL" "EXCEL.EXE" /e /r "%LAUNCHER_DIR%\Launcher.xla"
