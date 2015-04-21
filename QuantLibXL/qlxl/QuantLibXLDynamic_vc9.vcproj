@@ -246,6 +246,10 @@
 				>
 			</File>
 			<File
+				RelativePath="functions\basketlossmodels.cpp"
+				>
+			</File>
+			<File
 				RelativePath="functions\bonds.cpp"
 				>
 			</File>
@@ -306,6 +310,10 @@
 				>
 			</File>
 			<File
+				RelativePath="functions\defaultbasket.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\functions\defaulttermstructures.cpp"
 				>
 			</File>
@@ -343,6 +351,10 @@
 			</File>
 			<File
 				RelativePath="functions\interpolation.cpp"
+				>
+			</File>
+			<File
+				RelativePath="functions\latentmodels.cpp"
 				>
 			</File>
 			<File
@@ -514,6 +526,10 @@
 				>
 			</File>
 			<File
+				RelativePath="register\register_basketlossmodels.cpp"
+				>
+			</File>
+			<File
 				RelativePath="register\register_bonds.cpp"
 				>
 			</File>
@@ -574,6 +590,10 @@
 				>
 			</File>
 			<File
+				RelativePath="register\register_defaultbasket.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\register\register_defaulttermstructures.cpp"
 				>
 			</File>
@@ -607,6 +627,10 @@
 			</File>
 			<File
 				RelativePath="register\register_interpolation.cpp"
+				>
+			</File>
+			<File
+				RelativePath="register\register_latentmodels.cpp"
 				>
 			</File>
 			<File

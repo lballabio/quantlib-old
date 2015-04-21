@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ohgensrc", "..\ObjectHandler\gensrc\ohgensrc_vc8.vcproj", "{88BE5568-6E55-41C5-A251-670FAFB44336}"

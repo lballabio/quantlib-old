@@ -3,7 +3,11 @@ EXTRA_DIST = \
     docs_vc8.vcproj \
     docs_vc9.vcproj \
     docs_vc10.vcxproj \
+    docs_vc10.vcxproj.filters \
     docs_vc11.vcxproj \
+    docs_vc11.vcxproj.filters \
+    docs_vc12.vcxproj \
+    docs_vc12.vcxproj.filters \
     Makefile.vc \
     objecthandler.doxy \
     oh_footer.html \

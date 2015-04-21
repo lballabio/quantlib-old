@@ -14,6 +14,7 @@ include_HEADERS = \
     alphaform.hpp \
     asianoption.hpp \
     assetswap.hpp \
+    basketlossmodels.hpp \
     barrieroption.hpp \
     baseinstruments.hpp \
     bonds.hpp \
@@ -21,6 +22,7 @@ include_HEADERS = \
     btp.hpp \
     capfloor.hpp \
     capletvolstructure.hpp \
+    cdsoption.hpp \
     cliquetoption.hpp \
     cmsmarketcalibration.hpp \
     cmsmarket.hpp \
@@ -29,9 +31,11 @@ include_HEADERS = \
     correlation.hpp \
     couponvectors.hpp \
     credit.hpp \
+    creditdefaultswap.hpp \
     ctsmmcapletcalibration.hpp \
     curvestate.hpp \
     date.hpp \
+    defaultbasket.hpp \
     defaulttermstructures.hpp \
     dividendvanillaoption.hpp \
     driftcalculators.hpp \
@@ -48,6 +52,7 @@ include_HEADERS = \
     index.hpp \
     interpolation2D.hpp \
     interpolation.hpp \
+    latentmodels.hpp \
     leg.hpp \
     marketmodelevolvers.hpp \
     marketmodels.hpp \
@@ -96,6 +101,7 @@ libQuantLibAddin_la_SOURCES = \
     alphaform.cpp \
     asianoption.cpp \
     assetswap.cpp \
+    basketlossmodels.cpp \
     barrieroption.cpp \
     baseinstruments.cpp \
     bonds.cpp \
@@ -103,6 +109,7 @@ libQuantLibAddin_la_SOURCES = \
     btp.cpp \
     capfloor.cpp \
     capletvolstructure.cpp \
+    cdsoption.cpp \
     cliquetoption.cpp \
     cmsmarketcalibration.cpp \
     cmsmarket.cpp \
@@ -110,9 +117,11 @@ libQuantLibAddin_la_SOURCES = \
     correlation.cpp \
     couponvectors.cpp \
     credit.cpp \
+    creditdefaultswap.cpp \
     ctsmmcapletcalibration.cpp \
     curvestate.cpp \
     date.cpp \
+    defaultbasket.cpp \
     defaulttermstructures.cpp \
     dividendvanillaoption.cpp \
     driftcalculators.cpp \
@@ -127,6 +136,7 @@ libQuantLibAddin_la_SOURCES = \
     index.cpp \
     interpolation2D.cpp \
     interpolation.cpp \
+    latentmodels.cpp \
     leg.cpp \
     marketmodelevolvers.cpp \
     marketmodels.cpp \
