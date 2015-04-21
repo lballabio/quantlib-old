@@ -190,15 +190,6 @@ QuantLibAddin\lib\QuantLibObjects-vc80-mt-s-1.5.0.lib
 
 \section build_cpp_auto 3 Autoconf
 
-<b>A Note on APR:</b> ObjectHandler requires log4cxx version 0.10.0, which
-requires apr and apr-utils, the Apache Portable Runtime library.  apr tarballs
-are not provided and you must acquire apr elsewhere.  Your distribution
-probably provides a development build of apr (libs and headers) with no need to
-compile from source.  On Ubuntu this can be accomplished with
-\verbatim
-sudo apt-get install libapr1-dev libaprutil1-dev
-\endverbatim
-
 \subsection build_cpp_auto_download 3.2 Download
 
 \subsubsection build_cpp_auto_directories 3.2.1 Directories
@@ -239,6 +230,12 @@ Download <tt>QuantLibAddin-1.5.0.tgz</tt> and uncompress the package to
 
 \subsubsection build_cpp_auto_log4cxx 3.3.1 Build log4cxx
 
+Support for log4cxx is optional.  If you do not require logging, then when you
+run \c configure (see below), pass in the argument \c --without-log4cxx, which
+will cause log messages to be written to stdout instead of the the log file.
+In that case you can skip ahead to the next section, \ref build_cpp_auto_oh.
+If you need logging, read on.
+
 First you need to install apr and apr-utils.  Our copy of log4cxx includes
 source code for apr and apr-utils.  In the past we used to build them with
 these commands:
@@ -254,11 +251,12 @@ cd /home/erik/build/log4cxx-0.10.0/src/apr-util
 make install
 \endverbatim
 
-But those commands no longer seem to work on new linux systems.  On ubuntu you
-might try something like this:
+But those commands no longer seem to work on new linux systems.  There might be
+a binary release available for your platform, on ubuntu you might try something
+like this:
 
 \verbatim
-sudo apt-get install apr apr-utils
+sudo apt-get install libapr1-dev libaprutil1-dev
 \endverbatim
 
 Another possibility is to go to the apache web site and download the latest
@@ -289,11 +287,15 @@ make install
 
 \subsubsection build_cpp_auto_oh 3.3.2 Build ObjectHandler
 
+If you don't need logging, pass in the argument \c --without-log4cxx to
+\c configure.
+
 \verbatim
 cd /home/erik/build/ObjectHandler-1.5.0
 ./configure --with-gensrc=/home/erik/build/gensrc-1.5.0 \
     --prefix=/home/erik/install \
-    CPPFLAGS=-I/home/erik/install/include LDFLAGS=-L/home/erik/install/lib
+    CPPFLAGS=-I/home/erik/install/include \
+    LDFLAGS=-L/home/erik/install/lib
 make install
 \endverbatim
 
@@ -312,7 +314,8 @@ cd /home/erik/build/QuantLibAddin-1.5.0
 ./configure --prefix=/home/erik/install --enable-addin-cpp \
     --with-gensrc=/home/erik/build/gensrc-1.5.0 \
     --with-oh=/home/erik/build/ObjectHandler-1.5.0 \
-    CPPFLAGS=-I/home/erik/install/include LDFLAGS=-L/home/erik/install/lib
+    CPPFLAGS=-I/home/erik/install/include \
+    LDFLAGS=-L/home/erik/install/lib
 make install
 \endverbatim
 

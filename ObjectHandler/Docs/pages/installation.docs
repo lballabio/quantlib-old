@@ -409,7 +409,7 @@ Go to the
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
 
 Download <tt>log4cxx-0.10.0f.tar.gz</tt> and uncompress the package to
-<tt>/home/erik/build/log4cxx-0.10.0</tt>.
+<tt>/home/erik/build/log4cxx-0.10.0f</tt>.
 
 Download <tt>gensrc-1.5.0.tgz</tt> and uncompress the package to
 <tt>/home/erik/build/gensrc-1.5.0</tt>.
@@ -442,11 +442,12 @@ cd /home/erik/build/log4cxx-0.10.0/src/apr-util
 make install
 \endverbatim
 
-But those commands no longer seem to work on new linux systems.  On ubuntu you
-might try something like this:
+But those commands no longer seem to work on new linux systems.  There might be
+a binary release available for your platform, on ubuntu you might try something
+like this:
 
 \verbatim
-sudo apt-get install apr apr-utils
+sudo apt-get install libapr1-dev libaprutil1-dev
 \endverbatim
 
 Another possibility is to go to the apache web site and download the latest
@@ -484,7 +485,8 @@ If you don't need logging, pass in the argument \c --without-log4cxx to
 cd /home/erik/build/ObjectHandler-1.5.0
 ./configure --with-gensrc=/home/erik/build/gensrc-1.5.0 \
     --prefix=/home/erik/install \
-    CPPFLAGS=-I/home/erik/install/include LDFLAGS=-L/home/erik/install/lib
+    CPPFLAGS=-I/home/erik/install/include \
+    LDFLAGS=-L/home/erik/install/lib
 make install
 \endverbatim
 
