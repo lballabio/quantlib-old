@@ -1,29 +1,41 @@
 <Category name='credit'>
   <description>QuantLib Credit</description>
   <displayName>QuantLib Credit</displayName>
-  <xlFunctionWizardCategory>QuantLib Credit</xlFunctionWizardCategory>
+  <xlFunctionWizardCategory>QuantLib - Credit</xlFunctionWizardCategory>
   <addinIncludes>
     <include>qlo/credit.hpp</include>
+    <include>qlo/creditdefaultswap.hpp</include>
+    <include>qlo/cdsoption.hpp</include>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/handleimpl.hpp</include>
     <include>qlo/conversions/coercetermstructure.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
+    <include>qlo/defaultbasket.hpp</include>
+    <include>qlo/exercise.hpp</include>
 
     <include>ql/termstructures/credit/defaultprobabilityhelpers.hpp</include>
     <include>ql/pricingengines/credit/midpointcdsengine.hpp</include>
+    <include>ql/experimental/credit/basket.hpp</include>
+    <include>ql/experimental/credit/cdsoption.hpp</include>
   </addinIncludes>
   <serializationIncludes>
     <include>qlo/credit.hpp</include>
+    <include>qlo/creditdefaultswap.hpp</include>
+    <include>qlo/cdsoption.hpp</include>
     <include>qlo/pricingengines.hpp</include>
     <include>qlo/schedule.hpp</include>
     <include>qlo/termstructures.hpp</include>
     <include>qlo/conversions/coercetermstructure.hpp</include>
     <include>qlo/ratehelpers.hpp</include>
+    <include>qlo/defaultbasket.hpp</include>
+    <include>qlo/exercise.hpp</include>
 
     <include>ql/termstructures/yieldtermstructure.hpp</include>
     <include>ql/termstructures/defaulttermstructure.hpp</include>
     <include>ql/time/daycounter.hpp</include>
+    <include>ql/experimental/credit/basket.hpp</include>
+    <include>ql/experimental/credit/cdsoption.hpp</include>
   </serializationIncludes>
   <copyright>
     Copyright (C) 2010 Roland Lichters
@@ -35,7 +47,7 @@
       <libraryFunction>CreditDefaultSwap</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-	<SupportedPlatform name='Calc'/>
+	      <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -95,6 +107,11 @@
             <tensorRank>scalar</tensorRank>
             <description>upfront date.</description>
           </Parameter>
+          <!--<Parameter name='RebatesAccr' default='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Seller pays the first accrued coupon up to trade.</description>
+          </Parameter>-->
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -131,6 +148,7 @@
     </Constructor>
 
     <Constructor name='qlHazardRateCurve'>
+      <description>Creates a backward flat interpolated hazard rate curve.</description>
       <libraryFunction>HazardRateCurve</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -143,7 +161,7 @@
           <Parameter name='CurveDates' exampleValue ="'2M,3M,4M,5M,6M">
             <type>QuantLib::Date</type>
             <tensorRank>vector</tensorRank>
-            <description>dates of the curve.</description>
+            <description>dates of the curve. First date corresponds to a survival probability of one.</description>
           </Parameter>
           <Parameter name='CurveRates' exampleValue ='0.02,0.02,0.02,0.02,0.02'>
             <type>QuantLib::Rate</type>
@@ -290,23 +308,23 @@
             <tensorRank>scalar</tensorRank>
             <description>day counter (e.g. Actual/360).</description>
           </Parameter>
-          <Parameter name='RecoveryRate'>
+          <Parameter name='RecRate'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>recovery rate</description>
           </Parameter>
-          <Parameter name='DiscountingCurve'>
+          <Parameter name='DiscCurve'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>discounting YieldTermStructure object ID.</description>
           </Parameter>
-          <Parameter name='UpfrontSettlementDays'>
+          <Parameter name='UpfSettlDays'>
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>upfront settlement days</description>
           </Parameter>
-          <Parameter name='SettleAccrual' const='False' default='true'>
+          <Parameter name='SettlAccr' const='False' default='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE ensures settlement of accural.</description>
@@ -320,21 +338,92 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlPiecewiseFlatHazardRateCurve'>
-      <libraryFunction>PiecewiseFlatHazardRateCurve</libraryFunction>
+    <Member name='qlCdsCouponLegNPV' type='QuantLib::CreditDefaultSwap'>
+      <description>Returns the CL NPV.</description>
+      <libraryFunction>couponLegNPV</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Coupon leg NPV</description>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCdsDefaultLegNPV' type='QuantLib::CreditDefaultSwap'>
+      <description>Returns the DL NPV.</description>
+      <libraryFunction>defaultLegNPV</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Default leg NPV</description>
+      </ReturnValue>
+    </Member>
+
+
+    <Member name='qlCdsFairSpread' type='QuantLib::CreditDefaultSwap'>
+      <description>Returns the running spread that, given the quoted recovery rate, will make the running-only CDS have an NPV of 0.</description>
+      <libraryFunction>fairSpread</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+        <description>fair spread.</description>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCdsFairUpfront' type='QuantLib::CreditDefaultSwap'>
+      <description>Returns the upfront spread that, given the running spread and the quoted recovery rate, will make the instrument have an NPV of 0.</description>
+      <libraryFunction>fairUpfront</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Rate</type>
+        <tensorRank>scalar</tensorRank>
+        <description>fair upfront.</description>
+      </ReturnValue>
+    </Member>
+
+    <Constructor name='qlPiecewiseHazardRateCurve'>
+      <libraryFunction>PiecewiseHazardRateCurve</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-	<SupportedPlatform name='Calc'/>
+	      <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <!-- relative date now
           <Parameter name='ReferenceDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>term structure reference date.</description>
           </Parameter>
+          -->
           <Parameter name='Helpers' exampleValue ='CDS1Y, CDS5Y, CDS10Y'>
             <type>QuantLib::DefaultProbabilityHelper</type>
             <tensorRank>vector</tensorRank>
@@ -345,6 +434,16 @@
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID.</description>
           </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='Interpolation' exampleValue='LINEAR, BACKWARDFLAT'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The interpolator for hazard rates.</description>
+          </Parameter>
           <Parameter name='Accuracy' default='1.0e-12'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
@@ -354,12 +453,45 @@
       </ParameterList>
     </Constructor>
 
+    <!--Avoids the template in library:-->
+    <Member name='qlHRDates' type='QuantLibAddin::PiecewiseHazardRateCurve'>
+      <description>Dates on which the hazard rate interpolation is performed.</description>
+      <libraryFunction>dates</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlHRates' type='QuantLibAddin::PiecewiseHazardRateCurve'>
+      <description>Dates on which the hazard rate interpolation is performed.</description>
+      <libraryFunction>data</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Member>
+
     <Constructor name='qlPiecewiseFlatForwardCurve'>
       <libraryFunction>PiecewiseFlatForwardCurve</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-	<SupportedPlatform name='Calc'/>
+	      <SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
@@ -387,6 +519,497 @@
         </Parameters>
       </ParameterList>
     </Constructor>
+
+    <Constructor name='qlRiskyFixedBond'>
+      <libraryFunction>RiskyFixedBond</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Bondname'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Bonds id.</description>
+          </Parameter>
+          <Parameter name='Currency'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Curency of the reference bond affected.</description>
+          </Parameter>
+          <Parameter name='Recovery'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Recovery Rate.</description>
+          </Parameter>
+
+          <Parameter name='DefaultCurve'>
+            <type>QuantLib::DefaultProbabilityTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>default term structure object ID.</description>
+          </Parameter>
+
+          <Parameter name='Schedule'>
+            <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Schedule.</description>
+          </Parameter>
+          <Parameter name='Rate'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Rate.</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>premium leg day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <Parameter name='PaymentConvention' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment dates' business day convention.</description>
+          </Parameter>
+          <Parameter name='Notional'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Notional.</description>
+          </Parameter>
+          <Parameter name='DiscountingCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='PricingDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>desired npv date.</description>
+          </Parameter>
+
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- Limited by now to one curve/event_type pair and one default event-->
+    <Constructor name='qlIssuer'>
+      <libraryFunction>Issuer</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='DefaultCurves' default='""'>
+            <type>QuantLib::DefaultProbabilityTermStructure</type>
+            <superType>libraryClass</superType>
+            <superType>libraryTermStructure</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Default probability curve. By now it is associated to SeniorSec, EUR and NorthAmericaCorpDefaultKey</description>
+          </Parameter>
+          <Parameter name='DefaultEvents'>
+            <type>QuantLib::DefaultEventSet</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Credit events affecting this issuer.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlDefaultEvent'>
+      <libraryFunction>DefaultEventSet</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EventType' 
+                     exampleValue='FailureToPayEvent, BankruptcyEvent'
+                     default='"NONE"'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The type of default event.</description>
+          </Parameter>
+          <Parameter name='EventDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Event date.</description>
+          </Parameter>
+          <Parameter name='Currency' default='"Currency"'>
+            <type>QuantLib::Currency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Curency of the reference bond affected.</description>
+          </Parameter>
+          <Parameter name='Seniority' exampleValue='SeniorSec' 
+                     default='"NoSeniority"'>
+            <type>QuantLib::Seniority</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Seniority of the bond affected.</description>
+          </Parameter>
+          <Parameter name='SettlementDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Event settlement date.</description>
+          </Parameter>
+          <Parameter name='SettledRecovery' default='0.0'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Event settlement recovery rate.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+
+
+    <Constructor name='qlSyntheticCDO'>
+      <libraryFunction>SyntheticCDO</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Basket'>
+            <type>QuantLib::Basket</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Underlying tranched portfolio.</description>
+          </Parameter>
+          <Parameter name='BuyerSeller' default='"Buyer"'>
+            <type>QuantLib::Protection::Side</type>
+            <tensorRank>scalar</tensorRank>
+            <description>BUYER for bought, SELLER for sold protection.</description>
+          </Parameter>
+          <Parameter name='PremiumSchedule'>
+            <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>premium leg Schedule object ID.</description>
+          </Parameter>
+          <Parameter name='Upfront'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>upfront in fractional units</description>
+          </Parameter>
+          <Parameter name='Spread'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>running spread in fractional units</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>premium leg day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <Parameter name='PaymentConvention' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment dates' business day convention.</description>
+          </Parameter>
+          <!--LEVERAGE: <Parameter name='Notional'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Nominal amount</description>
+          </Parameter>-->
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+    <Constructor name='qlMidPointCDOEngine'>
+      <libraryFunction>MidPointCDOEngine</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='YieldCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+    <Constructor name='qlNthToDefault'>
+      <libraryFunction>NthToDefault</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Basket'>
+            <type>QuantLib::Basket</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Underlying tranched portfolio.</description>
+          </Parameter>
+          <Parameter name='Order'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Contract default order.</description>
+          </Parameter>
+          <Parameter name='BuyerSeller' default='"Buyer"'>
+            <type>QuantLib::Protection::Side</type>
+            <tensorRank>scalar</tensorRank>
+            <description>BUYER for bought, SELLER for sold protection.</description>
+          </Parameter>
+          <Parameter name='PremiumSchedule'>
+            <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>premium leg Schedule object ID.</description>
+          </Parameter>
+          <Parameter name='Upfront'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>upfront in fractional units</description>
+          </Parameter>
+          <Parameter name='Spread'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>running spread in fractional units</description>
+          </Parameter>
+          <Parameter name='DayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>premium leg day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <!--<Parameter name='PaymentConvention' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment dates' business day convention.</description>
+          </Parameter>-->
+          <Parameter name='Notional'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Nominal amount</description>
+          </Parameter>
+          <Parameter name='SettlesAccrual'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Accrual settled at default.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+    <Constructor name='qlIntegralNtdEngine'>
+      <libraryFunction>IntegralNtdEngine</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='IntegrationStep' exampleValue='3M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Integration step period.</description>
+          </Parameter>
+          <Parameter name='YieldCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+    <Constructor name='qlBlackCdsOptionEngine'>
+      <libraryFunction>BlackCdsOptionEngine</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='DefaultCurve'>
+            <type>QuantLib::DefaultProbabilityTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>default term structure object ID.</description>
+          </Parameter>
+          <Parameter name='RecoveryRate'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>constant recovery rate</description>
+          </Parameter>
+          <Parameter name='YieldCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID.</description>
+          </Parameter>
+          <Parameter name='BlackVol' >
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Black Volatility.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    
+    <Constructor name='qlCDSOption'>
+      <libraryFunction>CdsOption</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='UnderlyingCDS'>
+            <type>QuantLib::CreditDefaultSwap</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The CDS underlying the option.</description>
+          </Parameter>
+          <Parameter name='Exercise'>
+            <type>QuantLib::Exercise</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Exercise object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlCdsOptionImpliedVol' type='QuantLib::CdsOption'>
+      <description>Implied black CDS option volatility.</description>
+      <libraryFunction>impliedVolatility</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Price'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Market price.</description>
+          </Parameter>
+          <Parameter name='YieldCurve'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting yield term structure object ID.</description>
+          </Parameter>
+          <Parameter name='DefaultCurve'>
+            <type>QuantLib::DefaultProbabilityTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>default term structure object ID.</description>
+          </Parameter>
+          <Parameter name='RecoveryRate'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>constant recovery rate</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Volatility</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Implied volatility.</description>
+      </ReturnValue>
+    </Member>
+    
+    <!-- Move to term structures file?-->
+    <Constructor name='qlBaseCorrelationTermStructure'>
+      <libraryFunction>BaseCorrelationTermStructure</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+
+          <Parameter name='InterpolatorType' exampleValue='BILIN, BICUBIC'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The bidimensional interpolation policy over the correlation surface.</description>
+          </Parameter>
+          <Parameter name='SettlementDays'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Numebr of settlement days.</description>
+          </Parameter>
+          <Parameter name='Calendar'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Calendar.</description>
+          </Parameter>
+          <Parameter name='Convention' exampleValue='ModifiedFollowing'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Time convention.</description>
+          </Parameter>
+          <Parameter name='Tenors'>
+            <type>QuantLib::Period</type>
+            <tensorRank>vector</tensorRank>
+            <description>Surface tenors</description>
+          </Parameter>
+          <Parameter name='LossLevel'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>Surface loss levels as a fraction of the underlying portfolio.</description>
+          </Parameter>
+          <Parameter name='Correlations'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>matrix</tensorRank>
+            <description>Correlation quotes.</description>
+          </Parameter>
+          <Parameter name='DayCounter' default='"Actual/365 (Fixed)"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>DayCounter ID.</description>
+          </Parameter>
+
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlBaseCorrelationValue' type='QuantLibAddin::BaseCorrelationTermStructure' superType='objectClass'>
+      <description>Returns the interpolated base correlation value.</description>
+      <libraryFunction>correlation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Interpolation date.</description>
+          </Parameter>
+          <Parameter name='LossLevel'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Interpolation loss level.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
 
   </Functions>
 
