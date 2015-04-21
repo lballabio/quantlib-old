@@ -82,20 +82,39 @@ Python script.  Before rebuilding %QuantLibXL you need to have Python 2.x
 installed on your machine.  Here is the link to the Python website:
 <a href="http://www.python.org/">http://www.python.org/</a>.
 
+If Python is installed on your machine so that .py files are associated with
+the Python executable, then the gensrc scripts should build OK with no
+modification required.
+
+Otherwise, after you install gensrc (below), you might need to edit these
+files...
+
+\verbatim
+    ObjectHandler\gensrc\Makefile.vc
+    QuantLibAddin\gensrc\Makefile.vc
+\endverbatim
+
+...and set the PYTHON variable equal to the location of the Python executable
+on your machine, e.g:
+
+\verbatim
+    PYTHON=C:\Python27\python.exe
+\endverbatim
+
 \section build_qlxl_directories 3 A Note on Directories
 
 You are now ready to proceed with the build.  You need to install the following
 projects:
-\li <a href="http://quantlib.org/">QuantLib</a> 1.5.0 - The core C++ analytics
+\li <a href="http://quantlib.org/">QuantLib</a> 1.6.0 - The core C++ analytics
     library
-\li <a href="http://www.objecthandler.org">ObjectHandler</a> 1.5.0 - An object
+\li <a href="http://www.objecthandler.org">ObjectHandler</a> 1.6.0 - An object
     repository
-\li log4cxx 0.10.0f - A logging framework, used by ObjectHandler
-\li <a href="http://www.quantlibaddin.org">QuantLibAddin</a> 1.5.0 - Addins for
+\li log4cxx 0.10.0g - A logging framework, used by ObjectHandler
+\li <a href="http://www.quantlibaddin.org">QuantLibAddin</a> 1.6.0 - Addins for
     %QuantLib functionality
-\li <a href="http://www.quantlibxl.org">QuantLibXL</a> 1.5.0 - The Excel
+\li <a href="http://www.quantlibxl.org">QuantLibXL</a> 1.6.0 - The Excel
     implementation of %QuantLibAddin
-\li <a href="http://www.gensrc.org">gensrc</a> 1.5.0 - A Python application for
+\li <a href="http://www.gensrc.org">gensrc</a> 1.6.0 - A Python application for
     autogenerating source code (Full build only)
 
 The build uses a VC solution (see below) which allows QuantLibXL and its
@@ -104,22 +123,22 @@ refer to the prerequisite projects %QuantLib, log4cxx, ObjectHandler,
 %QuantLibAddin, and (for the Full build only) gensrc.  In order for this to
 work, these projects must reside side by side in the directory tree, and the
 name of each project's parent directory must not include the version number
-(e.g. \c %QuantLib not \c QuantLib-1.5.0).
+(e.g. \c %QuantLib not \c QuantLib-1.6.0).
 
 Create a new empty folder on your hard drive to serve as the root directory for
 the build.  You can use any path, for purposes of this tutorial the build
-directory is <tt>C:\\build_ql_1_5_0</tt>.  As described below you should copy
+directory is <tt>C:\\build_ql_1_6_0</tt>.  As described below you should copy
 all of the required source code zip files to that directory and then unzip them
 in place.  After unzipping %QuantLib you must manually rename the target
-directory, removing the \c 1.5.0 suffix from the directory name.  After all of
+directory, removing the \c 1.6.0 suffix from the directory name.  After all of
 the source code is unzipped you should have the following directory structure:
 \verbatim
-C:\build_ql_1_5_0\gensrc (required only for the Full build)
-C:\build_ql_1_5_0\log4cxx
-C:\build_ql_1_5_0\ObjectHandler
-C:\build_ql_1_5_0\QuantLib
-C:\build_ql_1_5_0\QuantLibAddin
-C:\build_ql_1_5_0\QuantLibXL
+C:\build_ql_1_6_0\gensrc (required only for the Full build)
+C:\build_ql_1_6_0\log4cxx
+C:\build_ql_1_6_0\ObjectHandler
+C:\build_ql_1_6_0\QuantLib
+C:\build_ql_1_6_0\QuantLibAddin
+C:\build_ql_1_6_0\QuantLibXL
 \endverbatim
 
 \section build_qlxl_source 4 Install the Source Code
@@ -127,23 +146,23 @@ C:\build_ql_1_5_0\QuantLibXL
 Go to the
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
 
-Download <tt>QuantLib-1.5.0.zip</tt> and uncompress the package to
-<tt>C:\\build_ql_1_5_0\\%QuantLib</tt>.
+Download <tt>QuantLib-1.6.0.zip</tt> and uncompress the package to
+<tt>C:\\build_ql_1_6_0\\%QuantLib</tt>.
 
-Download <tt>log4cxx-0.10.0f.zip</tt> and uncompress the package to
-<tt>C:\\build_ql_1_5_0\\log4cxx</tt>.
+Download <tt>log4cxx-0.10.0g.zip</tt> and uncompress the package to
+<tt>C:\\build_ql_1_6_0\\log4cxx</tt>.
 
-Download <tt>ObjectHandler-1.5.0.zip</tt> and uncompress the package to
-<tt>C:\\build_ql_1_5_0\\ObjectHandler</tt>.
+Download <tt>ObjectHandler-1.6.0.zip</tt> and uncompress the package to
+<tt>C:\\build_ql_1_6_0\\ObjectHandler</tt>.
 
-Download <tt>QuantLibAddin-1.5.0.zip</tt> and uncompress the package to
-<tt>C:\\build_ql_1_5_0\\%QuantLibAddin</tt>.
+Download <tt>QuantLibAddin-1.6.0.zip</tt> and uncompress the package to
+<tt>C:\\build_ql_1_6_0\\%QuantLibAddin</tt>.
 
-Download <tt>QuantLibXL-src-1.5.0.zip</tt> and uncompress the package to
-<tt>C:\\build_ql_1_5_0\\QuantLibXL</tt>.
+Download <tt>QuantLibXL-src-1.6.0.zip</tt> and uncompress the package to
+<tt>C:\\build_ql_1_6_0\\QuantLibXL</tt>.
 
-<b>Full</b> build only - download <tt>gensrc-1.5.0.zip</tt> and uncompress the
-package to <tt>C:\\build_ql_1_5_0\\gensrc</tt>.
+<b>Full</b> build only - download <tt>gensrc-1.6.0.zip</tt> and uncompress the
+package to <tt>C:\\build_ql_1_6_0\\gensrc</tt>.
 
 \section build_qlxl_quantlibxl 5 Build QuantLibXL
 
@@ -156,7 +175,7 @@ package to <tt>C:\\build_ql_1_5_0\\gensrc</tt>.
 Choose configuration <tt>Release (static runtime)</tt> and do <tt>Build | Build Solution</tt>.
 
 The build process creates the %QuantLibAddin XLL file
-<tt>QuantLibXL\\xll\\QuantLibXL-vc??-mt-s-1_5_0.xll</tt>.  Instructions for
+<tt>QuantLibXL\\xll\\QuantLibXL-vc??-mt-s-1_6_0.xll</tt>.  Instructions for
 loading the addin are provided in the QuantLibXL installation document:
 <a href="http://www.quantlibxl.org/installation.html">http://www.quantlibxl.org/installation.html</a>
 

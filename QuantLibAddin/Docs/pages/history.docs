@@ -23,6 +23,33 @@
 
 /*! \page history Version History
 
+<strong>Release 1.5.0 - April 2015</strong>
+
+REQUIRED PACKAGES
+
+- %QuantLib version 1.5.0
+- ObjectHandler version 1.5.0
+- gensrc version 1.5.0
+
+BUILD
+
+- Introduce support for VC12 (Visual Studio 2013)
+- Modified the VC make files for gensrc to make the invocation of Python more
+  explicit (thanks to Francois Botha).
+
+FUNCTIONALITY
+
+- 55 new functions / 1072 in total
+- Additional Credit functionality exported from QuantLib to QuantLibAddin.
+  Thanks to Jose Aparicio.
+- Bug fix.  In the past, if you called function qlSimpleQuoteSetValue() with an
+  invalid value, the call failed.  This led to bugs, if you opened a
+  spreadsheet with stale rates, a quote could be set with an input that was
+  numerically valid but out of date.  Then if the live value was #NA, the update
+  failed, leaving the quote with an old stale value.  Now, if you call
+  qlSimpleQuoteSetValue() with an invalid input such as #NA, the quote object is
+  invalidated.
+
 <strong>Release 1.4.0 - June 2014</strong>
 
 REQUIRED PACKAGES

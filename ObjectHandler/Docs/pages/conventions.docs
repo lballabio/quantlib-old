@@ -36,11 +36,11 @@ s  is a letter indicating the status of the release - a(lpha), b(eta), or f(inal
 n  is an ordinal number \n
 
 For example, the number identifying the latest version of %ObjectHandler is
-1.5.0f0.
+1.6.0f0.
 
 The corresponding release my be referred to in the format Rxxyyzzsn, where R
-stands for release.  For example, the release corresponding to version 1.5.0f0
-is R010100f0.
+stands for release.  For example, the release corresponding to version 1.6.0f0
+is R010600f0.
 
 \section conv_binaries Binary Names
 
@@ -49,9 +49,9 @@ are named according to the conventions specified by the boost project:
 
 <a href="http://www.boost.org/more/getting_started/windows.html#library-naming">http://www.boost.org/more/getting_started/windows.html#library-naming</a>
 
-For example, when you compile %ObjectHandler version 1.5.0 using VC8 solution
+For example, when you compile %ObjectHandler version 1.6.0 using VC8 solution
 file ObjectHandler_vc8.sln, project ohlib, configuration Release (static runtime), the output
-file is ObjectHandler\lib\ObjectHandler-vc80-mt-s-1_5_0.lib.
+file is ObjectHandler\lib\ObjectHandler-vc80-mt-s-1_6_0.lib.
 
 \section conv_vc Visual C++ Versions and Files
 
@@ -65,6 +65,7 @@ files corresponding to that version:
 <tr><td>Visual C++ 2008</td><td>VC9</td><td>xxx_vc9.sln<br>xxx_vc9.vcproj</td></tr>
 <tr><td>Visual C++ 2010</td><td>VC10</td><td>xxx_vc10.sln<br>xxx_vc10.vcxproj</td></tr>
 <tr><td>Visual C++ 2012</td><td>VC11</td><td>xxx_vc11.sln<br>xxx_vc11.vcxproj</td></tr>
+<tr><td>Visual C++ 2013</td><td>VC12</td><td>xxx_vc12.sln<br>xxx_vc12.vcxproj</td></tr>
 </table>
 
 Be sure to open the files that correspond to the version of Visual C++ that you
@@ -73,7 +74,7 @@ project will be upgraded, but the dependencies will be wrong and the build will
 fail.
 
 In the installation instructions, solution files may be referred to as
-xxx_vc?.sln, where ? corresponds to 8, 9, 10, or 11 depending on the version of
+xxx_vc?.sln, where ? corresponds to 8, 9, 10, 11, or 12 depending on the version of
 Visual C++ that you are using.
 
 \section conv_vc Visual C++ Runtime Libraries

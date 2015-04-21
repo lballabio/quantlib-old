@@ -35,7 +35,11 @@ EXTRA_DIST = .time-stamp \
              ohgensrc_vc8.vcproj \
              ohgensrc_vc9.vcproj \
              ohgensrc_vc10.vcxproj \
+             ohgensrc_vc10.vcxproj.filters \
              ohgensrc_vc11.vcxproj \
+             ohgensrc_vc11.vcxproj.filters \
+             ohgensrc_vc12.vcxproj \
+             ohgensrc_vc12.vcxproj.filters \
              Makefile.vc \
              $(GENSRC_INPUTS)
 
