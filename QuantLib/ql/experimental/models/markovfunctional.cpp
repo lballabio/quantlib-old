@@ -144,7 +144,7 @@ namespace QuantLib {
         normalIntegralW_ = gaussHermite.weights();
         for (Size i = 0; i < normalIntegralX_.size(); i++) {
             normalIntegralW_[i] *=
-                exp(-normalIntegralX_[i] * normalIntegralX_[i]) * M_1_SQRTPI;
+                std::exp(-normalIntegralX_[i] * normalIntegralX_[i]) * M_1_SQRTPI;
             normalIntegralX_[i] *= M_SQRT2;
         }
 
@@ -632,8 +632,11 @@ namespace QuantLib {
                 modelOutputs_.marketZerorate_.push_back(
                     termStructure()->zeroRate(times_[i], QuantLib::Continuous,
                                               QuantLib::Annual));
+                // we need to put a small positive time here since the zerobond
+                // implementation optimizes the case t=0.0 then using the
+                // initial yts
                 modelOutputs_.modelZerorate_.push_back(
-                    -std::log(zerobond(times_[i])) / times_[i]);
+                    -std::log(zerobond(times_[i], 1.0E-10)) / times_[i]);
             }
 
             // volatility surface

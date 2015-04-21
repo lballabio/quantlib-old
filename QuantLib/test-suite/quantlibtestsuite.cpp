@@ -43,6 +43,7 @@
 #include "utilities.hpp"
 
 #include "americanoption.hpp"
+#include "amortizingbond.hpp"
 #include "array.hpp"
 #include "asianoptions.hpp"
 #include "assetswap.hpp"
@@ -56,6 +57,7 @@
 #include "blackformula.hpp"
 #include "bonds.hpp"
 #include "brownianbridge.hpp"
+#include "businessdayconventions.hpp"
 #include "calendars.hpp"
 #include "capfloor.hpp"
 #include "capflooredcoupon.hpp"
@@ -80,6 +82,8 @@
 #include "digitaloption.hpp"
 #include "distributions.hpp"
 #include "dividendoption.hpp"
+#include "doublebarrieroption.hpp"
+#include "doublebinaryoption.hpp"
 #include "europeanoption.hpp"
 #include "everestoption.hpp"
 #include "exchangerate.hpp"
@@ -168,6 +172,7 @@
 #include "varianceswaps.hpp"
 #include "volatilitymodels.hpp"
 #include "vpp.hpp"
+#include "zabr.hpp"
 
 #include <iostream>
 #include <iomanip>
@@ -267,6 +272,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(BlackFormulaTest::suite());
     test->add(BondTest::suite());
     test->add(BrownianBridgeTest::suite());
+    test->add(BusinessDayConventionTest::suite());
     test->add(CalendarTest::suite());
     test->add(CapFloorTest::suite());
     test->add(CapFlooredCouponTest::suite());
@@ -350,8 +356,10 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(VolatilityModelsTest::suite());
 
     // tests for experimental classes
+    test->add(AmortizingBondTest::suite());
     test->add(AsianOptionTest::experimental());
     test->add(BarrierOptionTest::experimental());
+    test->add(DoubleBarrierOptionTest::experimental());
     test->add(BlackDeltaCalculatorTest::suite());
     test->add(CatBondTest::suite());
     test->add(CdoTest::suite());
@@ -361,6 +369,8 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(CompoundOptionTest::suite());
     test->add(ConvertibleBondTest::suite());
     test->add(CreditRiskPlusTest::suite());
+    test->add(DoubleBarrierOptionTest::suite());
+    test->add(DoubleBinaryOptionTest::suite());
     test->add(EuropeanOptionTest::experimental());
     test->add(EverestOptionTest::suite());
     test->add(ExtendedTreesTest::suite());
@@ -378,6 +388,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(OdeTest::suite());
     test->add(PagodaOptionTest::suite());
     test->add(PartialTimeBarrierOptionTest::suite());
+    test->add(QuantoOptionTest::experimental());
     test->add(SpreadOptionTest::suite());
     test->add(SwingOptionTest::suite());
     test->add(TwoAssetBarrierOptionTest::suite());
@@ -385,6 +396,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(VarianceGammaTest::suite());
     test->add(VarianceOptionTest::suite());
     test->add(VPPTest::suite());
+    test->add(ZabrTest::suite());
 
     // tests for deprecated classes
     test->add(LiborMarketModelTest::suite());

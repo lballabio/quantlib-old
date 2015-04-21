@@ -308,6 +308,10 @@ namespace QuantLib {
                                                     : fixParameters);
         }
 
+        void update() {
+            LazyObject::update();
+        }
+
       protected:
 
         const Real numeraireImpl(const Time t, const Real y,
@@ -336,10 +340,6 @@ namespace QuantLib {
             std::vector<bool> c(volatilities_.size(), false);
             c[0] = true;
             return c;
-        }
-
-        void update() {
-            LazyObject::update();
         }
 
       private:
@@ -423,7 +423,7 @@ namespace QuantLib {
                        const CalibrationPoint &p, const Real marketPrice)
                 : model_(model), marketPrice_(marketPrice), expiry_(expiry),
                   p_(p) {}
-            double operator()(double strike) const {
+            Real operator()(Real strike) const {
                 Real modelPrice = model_->marketDigitalPrice(
                     expiry_, p_, Option::Call, strike);
                 return modelPrice - marketPrice_;

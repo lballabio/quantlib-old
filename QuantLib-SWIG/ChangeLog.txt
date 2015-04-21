@@ -1,377 +1,474 @@
-commit 0fca3d88b40658a49822a2905d56940d06041e76
+commit 088d7d5298af7db4ebef6e1a769b1cd0580b5766
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Tue, 4 Feb 2014 15:43:32 +0100
+Date:   Thu, 22 Jan 2015 17:50:43 +0100
 
-    Updated Visual C# 2012 project.
+    Add newer VS solutions to distribution.
 
-commit 2bf185f433d344d85f5d194eb48861ce2f5a941d
+ QuantLib-SWIG/CSharp/Makefile.am | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit e098e7e2a7633763353791a9826c4f68cb643ae5
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Tue, 4 Feb 2014 14:56:23 +0100
+Date:   Fri, 12 Dec 2014 12:07:05 +0100
 
-    Add list of changes for version 1.4.
-
-commit 81a6220996dc4c39d46486e52c80ddddc055836b
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Sun, 2 Feb 2014 17:15:37 +0100
-
-    Update C# projects
-
-commit 6520c4dd0bfa20a7e7a5fb870431486dc9485202
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Sat, 1 Feb 2014 23:51:53 +0100
-
-    Drop support for Visual C++ 2003 (VC++7).
+    Reorganize VC# projects.
     
-    The compiler is now more than 10 years old and no longer supported
-    by Microsoft.  Keeping the support is not worth the time and effort
-    required.  Anybody who is still stuck with this compiler and needs
-    the support can fork the repository and maintain the changes.
+    Add x64 targets; add VC12 solution; reuse projects in solutions
+    for VC10 and later.
 
-commit 8064ccec807b26e678ea0976ee179b62ac26efaa
+ QuantLib-SWIG/CSharp/QuantLib.props                |  15 +
+ QuantLib-SWIG/CSharp/QuantLib_vc10.sln             |  29 +-
+ QuantLib-SWIG/CSharp/QuantLib_vc11.sln             |  33 +-
+ QuantLib-SWIG/CSharp/QuantLib_vc12.sln             |  77 ++
+ QuantLib-SWIG/CSharp/cpp/QuantLibWrapper.vcxproj   | 196 +++++
+ .../CSharp/cpp/QuantLibWrapper.vcxproj.filters     |  33 +
+ .../CSharp/cpp/QuantlibWrapper_vc10.vcxproj        | 118 ---
+ .../cpp/QuantlibWrapper_vc10.vcxproj.filters       |  33 -
+ .../CSharp/cpp/QuantlibWrapper_vc11.vcxproj        | 120 ---
+ .../cpp/QuantlibWrapper_vc11.vcxproj.filters       |  33 -
+ QuantLib-SWIG/CSharp/csharp/NQuantLib.csproj       | 856 +++++++++++++++++++++
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc10.csproj  | 855 --------------------
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc11.csproj  | 855 --------------------
+ .../CSharp/examples/BermudanSwaption.csproj        | 145 ++++
+ .../CSharp/examples/BermudanSwaption_vc10.csproj   | 144 ----
+ .../CSharp/examples/BermudanSwaption_vc11.csproj   | 144 ----
+ QuantLib-SWIG/CSharp/examples/EquityOption.csproj  | 145 ++++
+ .../CSharp/examples/EquityOption_vc10.csproj       | 144 ----
+ .../CSharp/examples/EquityOption_vc11.csproj       | 144 ----
+ 19 files changed, 1519 insertions(+), 2600 deletions(-)
+
+commit fc6fad04636b41b4b1db6e243a8fcf68f6fc1201
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 27 Jan 2014 14:35:46 +0100
+Date:   Fri, 12 Dec 2014 18:08:03 +0100
 
-    Avoid empty /I or /L flags when compiling under Windows.
+    Update VC# projects.
+
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc10.csproj | 17 +++++++++++++++++
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc11.csproj | 17 +++++++++++++++++
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc8.csproj  | 17 +++++++++++++++++
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc9.csproj  | 17 +++++++++++++++++
+ 4 files changed, 68 insertions(+)
+
+commit ea10129a95cbd09406dfab1e71b0da72bb67a42e
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 12 Dec 2014 17:43:29 +0100
+
+    Fix misspelled class name.
+
+ QuantLib-SWIG/SWIG/calibrationhelpers.i | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1cb7150b3519d77857bad1088923dd75f48428e9
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Sun, 23 Nov 2014 21:46:28 +0100
+
+    Export monotonic log-discount curve.
     
-    Those were possible if the INCLUDE or LIB variables ended with
-    a trailing semicolon.
+    Also, add a few more traits for cubic interpolations.
 
-commit 335fa637f8816fa47fa8be4af1c46fece28c9d17
+ QuantLib-SWIG/SWIG/interpolation.i       | 25 +++++++++++++++++++++++++
+ QuantLib-SWIG/SWIG/piecewiseyieldcurve.i |  1 +
+ 2 files changed, 26 insertions(+)
+
+commit ade3fa6a3bd8b9fc8e94973f68d8be42c1d19f76
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Sat, 25 Jan 2014 14:48:05 +0100
+Date:   Wed, 15 Oct 2014 11:54:08 +0200
 
-    Avoid using deprecated features.
-
-commit dab3e221023985074ceb950cd5bb0f62c8bd57cb
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Sat, 25 Jan 2014 14:30:33 +0100
-
-    Exported a few more features through SWIG.
+    Disable kwargs feature for Java and C#.
     
-    - let Bond::settlementDate accept a Date argument;
-    - export Redemption and AmortizingPayment cash flows;
-    - export ZeroInflationIndex constructor to create custom instances;
-    - set default interpolation to Linear for piecewise inflation curves;
-    - export inflationBaseDate function;
-    - export more inspectors for ZeroCouponInflationSwap;
-    - renamed CashFlows::yield to yieldRate in Python to avoid keyword.
+    It was interfering with default arguments, forcing the caller
+    to pass all of them.
 
-commit 79dc964d374d87e90de4d1174cb1b68f3d1bf9f6
-Author: Mario Aleppo <mario.aleppo@statpro.com>
-Date:   Thu, 23 Jan 2014 21:12:50 +0100
+ QuantLib-SWIG/SWIG/basketoptions.i |  8 ++++++++
+ QuantLib-SWIG/SWIG/bonds.i         | 12 ++++++++++++
+ QuantLib-SWIG/SWIG/cashflows.i     | 18 ++++++++++++++++++
+ QuantLib-SWIG/SWIG/inflation.i     |  4 ++++
+ QuantLib-SWIG/SWIG/options.i       | 10 ++++++++++
+ QuantLib-SWIG/SWIG/swap.i          |  2 ++
+ QuantLib-SWIG/SWIG/volatilities.i  |  2 ++
+ 7 files changed, 56 insertions(+)
 
-    Piecewise-spreaded curve can now choose interpolation.
-
-commit 6fb9f3667c4b97589ec9fe9ecd7f12bc1086d7fa
+commit 5bc1a6cebe4d71f8e6509cb75cc14f8101f1a54d
+Merge: ffcbdb5 5bdb62c
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 23 Jan 2014 17:37:13 +0100
+Date:   Wed, 15 Oct 2014 10:23:40 +0200
 
-    Add utility class for creating custom Region instance.
+    Merge pull request #146.
 
-commit 7ae4c0e425fe1fa66c951cc676bca832d08a1947
+commit 5bdb62c914e850a676960f5f63e572c5d7340be9
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 9 Jan 2014 16:21:35 +0100
+Date:   Wed, 15 Oct 2014 09:11:09 +0200
 
-    Replace a call to a deprecated method.
+    Reorganize inclusions.
 
-commit a98276f11163c0d3d3697da019a430bfa73407f5
+ QuantLib-SWIG/SWIG/calibrationhelpers.i |  2 --
+ QuantLib-SWIG/SWIG/ql.i                 |  1 +
+ QuantLib-SWIG/SWIG/shortratemodels.i    | 13 +------------
+ 3 files changed, 2 insertions(+), 14 deletions(-)
+
+commit ffcbdb5d454437e5620c3d9d1d713e70fe9f6135
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 9 Jan 2014 13:58:34 +0100
+Date:   Wed, 15 Oct 2014 08:50:43 +0200
 
-    Export Callable fixed-rate bond and CPI bond.
+    Add default arguments to exported FloatingRateBond constructor.
     
-    Thanks to Simon Mazzucca.
+    Closes #144.
 
-commit f6345061d212adf3a108b8e7464e89112e0bea00
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Mon, 30 Dec 2013 22:30:45 -0600
+ QuantLib-SWIG/Python/examples/bonds.py | 11 +++--------
+ QuantLib-SWIG/SWIG/bonds.i             | 29 +++++++++++++++--------------
+ 2 files changed, 18 insertions(+), 22 deletions(-)
 
-    reset to 1.4
-
-commit 4bb9eb3c05250fcc1d67e2d2514f505fdac561db
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Mon, 30 Dec 2013 22:28:15 -0600
-
-    further fixes to setup.rb for Ruby 1.9
-
-commit ff3e6dc55a9c8daf8a3b68bb47adab1896084326
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Mon, 30 Dec 2013 20:49:04 -0600
-
-    patch for QL-SWIG and Ruby 1.9 (cf http://bugs.debian.org/733105)
-
-commit 8eddffdb3f12c7cc71f8126158956291050bb93f
-Merge: 08fe903 ec079f5
+commit e1cdd0b6b79fe9fb65f071f25b8806d9b15ba1e5
+Merge: 9b99d20 72c0e22
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 11 Nov 2013 14:48:40 +0100
+Date:   Tue, 14 Oct 2014 18:40:23 +0200
 
-    Merge pull request #54.
+    Merge pull request #142.
 
-commit 18906f8721d121d9d18489dc68f9ac8db13d3b8a
+commit 72c0e22f76d0a7e42bc9ffd0adce39473edc5b1e
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 11 Nov 2013 12:00:07 +0100
+Date:   Tue, 14 Oct 2014 18:19:50 +0200
 
-    Added the flag to the command line.
-    
-    The command is already hard-coded anyway.
+    Allow setting bilinear interpolation explicitly.
 
-commit 11f08541acf87dfe98761308cacf8a13b5af676d
-Author: piterdias <piter.dias@piterdias.com>
-Date:   Sat, 9 Nov 2013 21:13:46 -0200
+ QuantLib-SWIG/SWIG/volatilities.i | 18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
 
-    Upgrade QuantLibXL and its dependencies to Visual Studio 2012
-
-commit 9f01935cab0a0a1091c9294bcdfd88aae824788b
-Author: joequant <joequant@gmail.com>
-Date:   Thu, 7 Nov 2013 15:19:08 +0800
-
-    add -fPIC to java compile
-
-commit eff21582e42af9af3362f7f4b51008310d4eb87e
+commit 9b99d20164ab2131a9edca78d7e6df51619ebe19
+Merge: 1562702 a73036f
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 7 Oct 2013 17:02:54 +0200
+Date:   Tue, 14 Oct 2014 17:52:12 +0200
 
-    Check major version to select import syntax.
-    
-    This makes the module compatible with older Python versions.
+    Merge pull request #141.
 
-commit abc9b6b8d4dfd0084e16c95667ceab41a4873b98
+commit a73036fddf1e7e2869d9d1fcb5801683e0ab30bf
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 7 Oct 2013 16:42:15 +0200
+Date:   Tue, 14 Oct 2014 17:51:35 +0200
 
-    Remove unused imports and variables
+    Clean up tabs, variable names etc.
 
-commit a7c920be77df161c5fc41c7dbbd483527c45140d
+ QuantLib-SWIG/Python/examples/cds.py | 93 +++++++++++++++++++-----------------
+ 1 file changed, 48 insertions(+), 45 deletions(-)
+
+commit c229ae418d5bc28fa9cd513f509d73581992b663
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 7 Oct 2013 16:40:44 +0200
+Date:   Tue, 14 Oct 2014 17:25:21 +0200
 
-    Avoid using module function removed in Python 3
+    Add copyright attribution.
 
-commit 4bc29867ce621f658e9d8050131ccdac42066e22
+ QuantLib-SWIG/Python/examples/cds.py | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+commit 7597ea9869722e9a08b39fa8ff38ff196887ec61
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 7 Oct 2013 16:39:51 +0200
+Date:   Sun, 5 Oct 2014 12:08:05 +0200
 
-    Use Python 3-compatible syntax for print
+    Forward SWIG interface to correct method call.
 
-commit 12613bc60e475f9d6db419028456120342a82ed6
-Author: Minjae D Kim <minjaedkim@gmail.com>
-Date:   Sat, 5 Oct 2013 20:52:56 -0700
+ QuantLib-SWIG/SWIG/bondfunctions.i | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-    Port Python 2-specific syntax into Python 3-compatible syntax.
-    
-    Note that the resulting code is intended to be compatible with both
-    Python 2 and 3.
+commit e5e929cf73c8302a1064984617a96c1f02270f64
+Author: Ethical Banker <ethical.banker@gmail.com>
+Date:   Sat, 27 Sep 2014 21:30:43 +0100
 
-commit 1ab6ea7ab412af5490762e1069c946b70c94f4a0
-Author: Minjae D Kim <minjaedkim@gmail.com>
-Date:   Sat, 5 Oct 2013 15:34:34 -0700
+    Expose way of setting local vol surface interpolation method
 
-    Remove leading zeros from integer literals.
-    
-    Python 3 raises syntax errors for leading zeros in integer literal while
-    Python 2 interprets them as octal numbers.  Neither is a desired
-    behavior.
+ QuantLib-SWIG/SWIG/volatilities.i | 19 +++++++++++++------
+ 1 file changed, 13 insertions(+), 6 deletions(-)
 
-commit f20c164c2435cf5d7f6b29dbe74806287c0adace
-Author: Minjae D Kim <minjaedkim@gmail.com>
-Date:   Sat, 5 Oct 2013 14:14:02 -0700
+commit 5fa4ef22be373b9d22e2a0c1e37827e3010ea862
+Author: rglarix <rghetta@larix.it>
+Date:   Thu, 2 Oct 2014 17:35:24 +0200
 
-    Add __lt__ methods for Python 3 compatibility to date.i and money.i.
-    
-    Python 3 no longer supports __cmp__ methods and requires __lt__ methods
-    for comparison.  For backward compatibility with Python 2, previously
-    implemented __cmp__ methods in the .i files are not removed.
+    push calibration helpers in a separate file, return calibration parameters for heston and bayes
 
-commit 974cb0652aa27c71f8d7eea0d4a9a6f253d895b9
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Fri, 23 Aug 2013 17:26:52 +0200
+ QuantLib-SWIG/SWIG/calibrationhelpers.i | 211 ++++++++++++++++++++++++++++++++
+ QuantLib-SWIG/SWIG/options.i            |  49 +++++---
+ QuantLib-SWIG/SWIG/shortratemodels.i    | 143 ----------------------
+ 3 files changed, 241 insertions(+), 162 deletions(-)
 
-    Export new day counter to SWIG.
+commit fdc01d1ce076fd354a817d3d4420e24e7ccb73f5
+Author: rglarix <rghetta@larix.it>
+Date:   Wed, 1 Oct 2014 10:29:20 +0200
 
-commit 8875194de11057d1e0031f208a9af65e3ab8b38b
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Wed, 14 Aug 2013 16:12:22 +0200
+    SIWG: adds CDS to DateGeneration rule and IntegralCdsEngine to pricing engines
 
-    Removed unreachable return statement.
+ QuantLib-SWIG/SWIG/creditdefaultswap.i | 20 ++++++++++++++++++++
+ QuantLib-SWIG/SWIG/scheduler.i         |  2 +-
+ 2 files changed, 21 insertions(+), 1 deletion(-)
 
-commit 731a0b0e075242ee25c7be2f5b850e80ebc1a0d7
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Wed, 14 Aug 2013 13:35:00 +0200
+commit 0ae6f066be09328561af14fa3d9750310305afce
+Author: rglarix <rghetta@larix.it>
+Date:   Wed, 1 Oct 2014 10:20:32 +0200
 
-    Added newly generated file to distribution.
+    SWIG: adds missing parameter to upfrontcdshelper
 
-commit 8e8868315f806344ba0432677bc1f8620b420bff
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Wed, 14 Aug 2013 13:34:24 +0200
+ QuantLib-SWIG/SWIG/defaultprobability.i | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-    Added new example to tests.
+commit 1b7d06a816f7f03828d510303afc4fa4b9fb5759
+Author: rglarix <rghetta@larix.it>
+Date:   Wed, 1 Oct 2014 10:12:24 +0200
 
-commit 2287d071abc93fe92036a1cf83d84bbd247bb1c3
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Wed, 14 Aug 2013 13:32:53 +0200
+    Quantlib CDS example translated to python
 
-    Removed extraneous parameters.
+ QuantLib-SWIG/Python/examples/cds.py | 67 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
 
-commit 1bb752f12099aa3dd931fb09f3f200fb91fd529b
+commit 29b7c2dd03f44341bb895af0fdd4ab3e3a6484be
 Author: klausspanderen <klaus@spanderen.de>
-Date:   Fri, 2 Aug 2013 18:34:18 +0200
+Date:   Sun, 31 Aug 2014 13:43:30 +0200
 
-    added loadLibrary call
+    align C++ and SWIG interface for class Exercise
 
-commit f0351363e13555949fb828ad9c9ad3c1bf66a714
-Author: klausspanderen <klaus@spanderen.de>
-Date:   Fri, 2 Aug 2013 17:34:49 +0200
+ QuantLib-SWIG/SWIG/exercise.i | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-    revert version change back to 1.4
-
-commit c15fc79a2e98c8467173e205796b2502bd574fe2
-Author: klausspanderen <klaus@spanderen.de>
-Date:   Fri, 2 Aug 2013 17:18:49 +0200
-
-    improved formatting
-
-commit 4a55a0c553fc00a9080df08114222e577aff9feb
-Author: klausspanderen <klaus@spanderen.de>
-Date:   Fri, 2 Aug 2013 17:14:53 +0200
-
-    improved formatting
-
-commit 6028876eed38bab1b4ff360928e4e18efb3b7401
-Author: klausspanderen <klaus@spanderen.de>
-Date:   Fri, 2 Aug 2013 17:08:04 +0200
-
-    changed formatting
-
-commit bef488dde49c03f60a4cdb6f61e48f4868e5f380
-Author: klausspanderen <klaus@spanderen.de>
-Date:   Fri, 2 Aug 2013 17:04:34 +0200
-
-    added Java example for UnaryFunction callback
-
-commit 97e296ee67c3d66c3134b3c15a4b87d2601e90d0
-Author: klausspanderen <klaus@spanderen.de>
-Date:   Fri, 2 Aug 2013 17:02:19 +0200
-
-    additional integrals
-    added UnaryFunction support to Java interfaces for root finding and
-    integrals
-
-commit 1e91f658df53c581e3be2f440f35043eb3e3f302
+commit 8412da233cb47fb640812512d0141923dffa0218
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Fri, 2 Aug 2013 11:34:39 +0200
+Date:   Thu, 7 Aug 2014 11:39:47 +0200
 
-    Added package-cleanup file to distribution.
+    Export methods to retrieve parameters from fitted bond curve.
 
-commit 086edf70d45b40ee186ef9660fc9bf2ba7fa3ca8
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Wed, 31 Jul 2013 21:55:31 -0500
+ QuantLib-SWIG/SWIG/fittedbondcurve.i | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
-    some minor improvements to Makefile.am
-    add a (common for R packages) cleanup script to tidy src/*
-
-commit 4c44691bc0caa32b976e7a2f1f80fc2fd5dc7969
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Mon, 29 Jul 2013 21:30:25 -0500
-
-    minimal changes to make examples run
-
-commit f350370acf21c1c6dccd9b586019afadb9e25c6a
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Mon, 29 Jul 2013 21:26:14 -0500
-
-    minimal changes to make example run
-
-commit 5790edceb428be6e220b8274a0aa8e737f5202fd
+commit 2125f0aab92dd6cc818e91a3006754265136697c
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 29 Jul 2013 14:08:14 +0200
+Date:   Fri, 4 Jul 2014 14:41:23 +0200
 
-    Removed deleted file from Makefile
+    Export additional constructor parameters for ex-coupon dates.
 
-commit 927b620326c98851d5387e6b22c8c55956fbff61
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Sat, 27 Jul 2013 11:54:35 -0500
+ QuantLib-SWIG/SWIG/bonds.i       | 22 ++++++++++++++++++----
+ QuantLib-SWIG/SWIG/cashflows.i   | 10 ++++++++--
+ QuantLib-SWIG/SWIG/ratehelpers.i | 13 +++++++++++--
+ 3 files changed, 37 insertions(+), 8 deletions(-)
 
-    updated to match calls for current release
-
-commit 3f66c57627784017f5c575431f15f1986b6aa39f
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Sat, 27 Jul 2013 11:40:48 -0500
-
-    minor update to match calls for current release
-
-commit 298188cba5ec690998ed3877bb8d2ad5dd225c9d
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Sat, 27 Jul 2013 11:24:30 -0500
-
-    bonds example finalised
-
-commit e293727f11730264b69432044906d9317eca159b
-Merge: ea236f5 97e9798
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Fri, 26 Jul 2013 14:52:07 -0500
-
-    Merge remote-tracking branch 'upstream/master'
-
-commit 97e9798d988aba5695ccefaeffd0e4afa5f6a5b2
-Merge: a532864 ab660d2
+commit e1c0eeca38c75735f37fa983900fbe39221e01ca
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Fri, 26 Jul 2013 16:09:38 +0200
+Date:   Thu, 3 Jul 2014 17:41:46 +0200
 
-    Merge pull request #19.
+    Exported fitted bond discount curve to SWIG.
+
+ QuantLib-SWIG/SWIG/fittedbondcurve.i | 135 +++++++++++++++++++++++++++++++++++
+ QuantLib-SWIG/SWIG/ql.i              |   1 +
+ QuantLib-SWIG/SWIG/ratehelpers.i     |  22 +++++-
+ 3 files changed, 157 insertions(+), 1 deletion(-)
+
+commit 50bdcb823d122a11a319887fbf39ed932a34e503
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 30 Jun 2014 14:39:47 +0200
+
+    Export new convention to SWIG.
+
+ QuantLib-SWIG/SWIG/calendars.i | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+commit 6087f8a97d4fc765631f007184368bc8948fe622
+Merge: e466033 20a7814
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 26 Jun 2014 16:46:22 +0200
+
+    Merge pull request #107.
+
+commit 20a78141f48cdf702143dfc3dec4f878e14c4e6e
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 26 Jun 2014 16:45:44 +0200
+
+    Exported new index to SWIG wrappers.
+
+ QuantLib-SWIG/SWIG/inflation.i | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 0df512755b881be916e88d509e0be3e7f88d2754
+Merge: c7e7062 96d491b
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 20 Jun 2014 16:22:46 +0200
+
+    Merge pull request #106.
+
+commit 3f3a19b7e07438df944c43ce61a12604eb031d4b
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 12 Jun 2014 11:28:55 +0200
+
+    Translated Bonds example to Java (thanks to Giacomo Sergio).
+
+ QuantLib-SWIG/Java/Makefile.am         |   2 +-
+ QuantLib-SWIG/Java/examples/Bonds.java | 552 +++++++++++++++++++++++++++++++++
+ 2 files changed, 553 insertions(+), 1 deletion(-)
+
+commit 96d491b06614ce55533e3221b926aaeac279e5ac
+Author: klausspanderen <klaus@spanderen.de>
+Date:   Sun, 15 Jun 2014 15:16:41 +0200
+
+    added new CPIBond example for Scala
+
+ QuantLib-SWIG/Scala/examples/CPIBond.scala | 144 +++++++++++++++++++++++++++++
+ 1 file changed, 144 insertions(+)
+
+commit 02b8dab6bae96badde2d3aa03d4733e3c86590f9
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 6 Jun 2014 10:15:28 +0200
+
+    Update VC++/VC#/Dev-C++ projects.
+
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc10.csproj | 17 +++++++++++++----
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc11.csproj | 17 +++++++++++++----
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc8.csproj  | 17 +++++++++++++----
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc9.csproj  | 17 +++++++++++++----
+ 4 files changed, 52 insertions(+), 16 deletions(-)
+
+commit 27060dd33936004af38c5e4a4bebf52cd17c1b67
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 5 Jun 2014 18:15:02 +0200
+
+    Add FedFunds index.
+
+ QuantLib-SWIG/SWIG/indexes.i | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 716684ed4f2d3b88b6bb8ce89c6e4ed336dab62f
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 28 Apr 2014 12:55:51 +0200
+
+    Export new interbank Chinese calendar.
+
+ QuantLib-SWIG/SWIG/calendars.i | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit a66e6a44b09bf0a789b2251d02060a92daf71225
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 22 Apr 2014 14:59:42 +0200
+
+    Fixed arguments passed to CmsLeg in test case.
     
-    The R extension is now built as a standard R package.
+    I'm not sure how this was working previously. It's likely that
+    SWIG 2.0.x used less strict type checks and allowed conversion
+    to and from booleans. SWIG 3.0 no longer allows this.
 
-commit ab660d217a555a6b52f68bbb9d9cabd5134a33c9
+ QuantLib-SWIG/Python/test/assetswap.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 41496d95bf0ea755487ca080840e2381e30daf61
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Fri, 26 Jul 2013 16:08:09 +0200
+Date:   Fri, 18 Apr 2014 17:44:16 +0200
 
-    Fix compilation and installation rules.
-    
-    They now call the appropriate (I hope) R commands.
+    Export OIS rate helpers.
 
-commit e52700bb32159fe1025895e4e1810403cb42df87
+ QuantLib-SWIG/SWIG/ratehelpers.i | 45 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+
+commit 2d07e712961e61408052b0a7fc973890e46619ac
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Fri, 26 Jul 2013 15:16:57 +0200
+Date:   Fri, 18 Apr 2014 17:04:34 +0200
 
-    Add missing files to 'make dist' target.
+    Export overnight indexes.
 
-commit ea236f51f08a3cc229d4478d8b39d459531d5974
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Thu, 25 Jul 2013 20:36:51 -0500
+ QuantLib-SWIG/SWIG/indexes.i | 41 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
-    file no longer needed
-
-commit 4aa38bacd6606e5ef84b2f6e512b7ffdff001a8c
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Wed, 24 Jul 2013 21:25:19 -0500
-
-    minimal update to README.txt
-
-commit e0b1bdc0df29253914f5467501170531ae805d3c
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Wed, 24 Jul 2013 21:24:05 -0500
-
-    new file .Rinstignore
-    
-    Files listed in this file will not be installed by into the package install location
-
-commit a446d9f37081241258f1986a219be5b658d7cea6
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Wed, 24 Jul 2013 21:22:58 -0500
-
-    old examples/ is now demo/
-    
-    demo/ is a standard (though optional) R package directory
-    also added 00Index file
-
-commit 4abe63970b5100a3d6d75eca8454f2064005b745
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Wed, 24 Jul 2013 20:47:25 -0500
-
-    minimal R package framework for new 'QuantLib' R package generated by SWIG
-
-commit e54294c11322b2a0e24574c05517e16d8904cfe2
+commit 0b77006774a00aa92329a69b15a4f7b5f987f4b3
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Wed, 24 Jul 2013 15:00:58 +0200
+Date:   Fri, 18 Apr 2014 16:19:45 +0200
 
-    Increased version number to 1.4.
+    Export swap-helper constructors with discounting curve.
+
+ QuantLib-SWIG/SWIG/ratehelpers.i | 28 ++++++++++++++++++++--------
+ 1 file changed, 20 insertions(+), 8 deletions(-)
+
+commit 0c883047f6f6b0d9f1e2226855708ee32b5e8692
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 18 Apr 2014 15:48:01 +0200
+
+    Add index-based constructors to rate helpers.
+
+ QuantLib-SWIG/SWIG/ratehelpers.i | 74 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+
+commit d338ce6b5887be02aefda5fe748ea909361d8440
+Merge: 799627c 5b44bde
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Wed, 9 Apr 2014 12:05:03 +0200
+
+    Merge pull request #86.
+
+commit 3b0b64ed7586160dcbc021a61ccce697d5272286
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 1 Apr 2014 11:24:58 +0200
+
+    Update comment.
+
+ QuantLib-SWIG/SWIG/piecewiseyieldcurve.i | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+commit 59abc585b19fd47867008b27378db2bf80b59733
+Author: klausspanderen <klaus@spanderen.de>
+Date:   Sun, 16 Mar 2014 17:45:35 +0100
+
+    added FdBlackScholesVanillaEngine, FdBlackScholesAsianEngine and
+    ContinuousArithmeticAsianLevyEngine to the SWIG interface definition
+
+ QuantLib-SWIG/SWIG/options.i | 67 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
+
+commit 3338c447b4a9f054258afe478f6dc7b9ea870f6d
+Author: Alexandre Radicchi <alex.radi@gmail.com>
+Date:   Tue, 11 Mar 2014 19:20:29 +0100
+
+    replaced tabs with spaces on swig files
+
+ QuantLib-SWIG/SWIG/stochasticprocess.i | 5 ++---
+ QuantLib-SWIG/SWIG/zerocurve.i         | 8 ++++----
+ 2 files changed, 6 insertions(+), 7 deletions(-)
+
+commit 45f28068846765c877227c56407610562c8086d4
+Author: Alexandre Radicchi <alex.radi@gmail.com>
+Date:   Tue, 11 Mar 2014 09:04:20 +0100
+
+    Added zero rates conversion on InterpolatedZeroCurve, exposed some classes
+    to SWIG
+
+ QuantLib-SWIG/SWIG/piecewiseyieldcurve.i |  3 +++
+ QuantLib-SWIG/SWIG/stochasticprocess.i   | 15 +++++++++++++++
+ QuantLib-SWIG/SWIG/zerocurve.i           |  8 ++++++--
+ 3 files changed, 24 insertions(+), 2 deletions(-)
+
+commit b74278108f873566401bf227ccb30e05a389e041
+Merge: 630078f 37ed88e
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 27 Feb 2014 11:53:41 +0100
+
+    Merge latest changes from R01040x-branch.
+
+commit 8b256c839d81e86151c521ae71184ca614385a27
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Wed, 26 Feb 2014 12:20:31 +0100
+
+    Remove deprecated Domain and Surface classes.
+
+ QuantLib-SWIG/SWIG/ql.i      |  1 -
+ QuantLib-SWIG/SWIG/surface.i | 55 --------------------------------------------
+ 2 files changed, 56 deletions(-)
+
+commit 20ec2e468cf06f85e0d46e262e075840c274c8ef
+Merge: e161241 76bfac4
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 24 Feb 2014 12:39:06 +0100
+
+    Merge latest changes from R01040x-branch.
+
+commit f8c2edae7fe15d317d855e65bf837e84857c2c82
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Wed, 12 Feb 2014 15:07:48 +0100
+
+    Bump version number to 1.5.
+
+ QuantLib-SWIG/Guile/setup.scm    | 2 +-
+ QuantLib-SWIG/MzScheme/setup.scm | 2 +-
+ QuantLib-SWIG/Perl/Makefile.PL   | 2 +-
+ QuantLib-SWIG/Python/setup.py    | 2 +-
+ QuantLib-SWIG/Ruby/setup.rb      | 2 +-
+ QuantLib-SWIG/SWIG/ql.i          | 2 +-
+ QuantLib-SWIG/configure.ac       | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)

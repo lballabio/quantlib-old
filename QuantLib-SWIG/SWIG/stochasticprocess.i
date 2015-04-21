@@ -2,6 +2,7 @@
 /*
  Copyright (C) 2004, 2005, 2007, 2008 StatPro Italia srl
  Copyright (C) 2010 Klaus Spanderen
+ Copyright (C) 2015 Matthias Groncki
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -41,6 +42,40 @@ typedef boost::shared_ptr<StochasticProcess> StochasticProcess1DPtr;
 %rename(StochasticProcess1D) StochasticProcess1DPtr;
 class StochasticProcess1DPtr
     : public boost::shared_ptr<StochasticProcess> {
+  public:
+    %extend {
+      Real x0() {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)->x0();
+      }
+      Real drift(Time t, Real x) {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->drift(t, x);
+      }
+      Real diffusion(Time t, Real x) {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->diffusion(t, x);
+      }
+      Real expectation(Time t0, Real x0, Time dt) {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->expectation(t0, x0, dt);
+      }
+      Real stdDeviation(Time t0, Real x0, Time dt) {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->stdDeviation(t0, x0, dt);
+      }
+      Real variance(Time t0, Real x0, Time dt)  {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->variance(t0, x0, dt);
+      }
+      Real evolve(Time t0, Real x0, Time dt, Real dw) {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->evolve(t0, x0, dt, dw);
+      }
+      Real apply(Real x0, Real dx)  {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->apply(x0, dx);
+      }
+    }
   private:
     StochasticProcess1DPtr();
 };
@@ -320,6 +355,44 @@ class HullWhiteProcessPtr : public StochasticProcess1DPtr {
         }
     }
 };
+
+%{
+using QuantLib::GsrProcess;
+typedef boost::shared_ptr<StochasticProcess> GsrProcessPtr;
+%}
+
+%rename(GsrProcess) GsrProcessPtr;
+class GsrProcessPtr : public StochasticProcess1DPtr {
+    public:
+    %extend {
+        GsrProcessPtr(const Array &times, const Array &vols,
+                   const Array &reversions, const Real T = 60.0) {
+            return new GsrProcessPtr(new GsrProcess(times, vols, reversions, T));
+        }
+        Real sigma(Time t) {
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->sigma(t);
+        }
+        Real reversion(Time t){
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->reversion(t);
+        }
+        Real y(Time t) {
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->y(t);
+        }
+        Real G(Time t, Time T, Real x){
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->G(t, T, x);
+        }
+        void setForwardMeasureTime(Time t) {
+            boost::dynamic_pointer_cast<GsrProcess>(*self)->setForwardMeasureTime(t);
+        }
+    }
+};
+
+%inline %{
+    GsrProcessPtr as_gsr_process(
+                           const boost::shared_ptr<StochasticProcess>& proc) {
+        return boost::dynamic_pointer_cast<GsrProcess>(proc);
+    }
+%}
 
 // allow use of diffusion process vectors
 #if defined(SWIGCSHARP)

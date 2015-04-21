@@ -26,19 +26,12 @@
 #include <ql/math/integrals/trapezoidintegral.hpp>
 #include <ql/math/integrals/kronrodintegral.hpp>
 #include <ql/math/integrals/gausslobattointegral.hpp>
+#include <ql/math/integrals/discreteintegrals.hpp>
 #include <ql/math/interpolations/bilinearinterpolation.hpp>
 #include <ql/math/distributions/normaldistribution.hpp>
 #include <ql/termstructures/volatility/abcd.hpp>
 #include <ql/math/integrals/twodimensionalintegral.hpp>
-#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#endif
-#include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
-#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
-#pragma GCC diagnostic pop
-#endif
 
 using namespace QuantLib;
 using namespace boost::unit_test_framework;
@@ -148,6 +141,24 @@ void IntegralTest::testTwoDimensionalIntegration() {
     }
 }
 
+namespace {
+
+    class sineF {
+      public:
+        Real operator()(Real x) const {
+            return std::exp(-0.5*(x - M_PI_2/100));
+        }
+    };
+
+    class cosineF {
+      public:
+        Real operator()(Real x) const {
+            return std::exp(-0.5*x);
+        }
+    };
+
+}
+
 void IntegralTest::testFolinIntegration() {
     BOOST_TEST_MESSAGE("Testing Folin's integral formulae...");
 
@@ -161,20 +172,15 @@ void IntegralTest::testFolinIntegration() {
     const Real t = 100;
     const Real o = M_PI_2/t;
 
-    const boost::function<Real(Real)> sineF = boost::lambda::bind(
-        std::ptr_fun<Real,Real>(std::exp), -0.5*(boost::lambda::_1 - o));
-    const boost::function<Real(Real)> cosineF = boost::lambda::bind(
-        std::ptr_fun<Real,Real>(std::exp), -0.5*boost::lambda::_1);
-
     const Real tol = 1e-12;
 
     for (Size i=0; i < LENGTH(nr); ++i) {
         const Size n = nr[i];
         const Real calculatedCosine
-            = FilonIntegral(FilonIntegral::Cosine, t, n)(cosineF,0,2*M_PI);
+            = FilonIntegral(FilonIntegral::Cosine, t, n)(cosineF(),0,2*M_PI);
         const Real calculatedSine
             = FilonIntegral(FilonIntegral::Sine, t, n)
-                (sineF, o,2*M_PI + o);
+                (sineF(), o,2*M_PI + o);
 
         if (std::fabs(calculatedCosine-expected[i]) > tol) {
             BOOST_FAIL(std::setprecision(10)
@@ -191,6 +197,54 @@ void IntegralTest::testFolinIntegration() {
     }
 }
 
+namespace {
+
+    Real f1(Real x) {
+        return 1.2*x*x+3.2*x+3.1;
+    }
+
+    Real f2(Real x) {
+        return 4.3*(x-2.34)*(x-2.34)-6.2*(x-2.34) + f1(2.34);
+    }
+
+}
+
+void IntegralTest::testDiscreteIntegrals() {
+    BOOST_TEST_MESSAGE("Testing discrete integral formulae...");
+
+    Array x(6), f(6);
+    x[0] = 1.0; x[1] = 2.02; x[2] = 2.34; x[3] = 3.3; x[4] = 4.2; x[5] = 4.6;
+
+    std::transform(x.begin(), x.begin()+3, f.begin(),   f1);
+    std::transform(x.begin()+3, x.end(),   f.begin()+3, f2);
+
+    const Real expectedSimpson =
+        16.0401216 + 30.4137528 + 0.2*f2(4.2) + 0.2*f2(4.6);
+    const Real expectedTrapezoid =
+          0.5*(f1(1.0)  + f1(2.02))*1.02
+        + 0.5*(f1(2.02) + f1(2.34))*0.32
+        + 0.5*(f2(2.34) + f2(3.3) )*0.96
+        + 0.5*(f2(3.3)  + f2(4.2) )*0.9
+        + 0.5*(f2(4.2)  + f2(4.6) )*0.4;
+
+    const Real calculatedSimpson =  DiscreteSimpsonIntegral()(x, f);
+    const Real calculatedTrapezoid = DiscreteTrapezoidIntegral()(x, f);
+
+    const Real tol = 1e-12;
+    if (std::fabs(calculatedSimpson-expectedSimpson) > tol) {
+        BOOST_FAIL(std::setprecision(16)
+            << "discrete Simpson integration failed: "
+            << "\n    calculated: " << calculatedSimpson
+            << "\n    expected:   " << expectedSimpson);
+    }
+
+    if (std::fabs(calculatedTrapezoid-expectedTrapezoid) > tol) {
+        BOOST_FAIL(std::setprecision(16)
+            << "discrete Trapezoid integration failed: "
+            << "\n    calculated: " << calculatedTrapezoid
+            << "\n    expected:   " << expectedTrapezoid);
+    }
+}
 
 test_suite* IntegralTest::suite() {
     test_suite* suite = BOOST_TEST_SUITE("Integration tests");
@@ -203,6 +257,7 @@ test_suite* IntegralTest::suite() {
     suite->add(QUANTLIB_TEST_CASE(&IntegralTest::testGaussLobatto));
     suite->add(QUANTLIB_TEST_CASE(&IntegralTest::testTwoDimensionalIntegration));
     suite->add(QUANTLIB_TEST_CASE(&IntegralTest::testFolinIntegration));
+    suite->add(QUANTLIB_TEST_CASE(&IntegralTest::testDiscreteIntegrals));
     return suite;
 }
 

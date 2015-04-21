@@ -18,8 +18,8 @@
 */
 
 #include <ql/experimental/models/gsr.hpp>
-#include <boost/make_shared.hpp>
 #include <ql/quotes/simplequote.hpp>
+#include <boost/make_shared.hpp>
 
 namespace QuantLib {
 
@@ -157,6 +157,13 @@ namespace QuantLib {
                 PiecewiseConstantParameter(volsteptimes_, NoConstraint());
         }
 
+        for (Size i = 0; i < sigma_.size(); i++) {
+            sigma_.setParam(i, volatilities_[i]->value());
+        }
+        for (Size i = 0; i < reversion_.size(); i++) {
+            reversion_.setParam(i, reversions_[i]->value());
+        }
+
         stateProcess_ = boost::shared_ptr<GsrProcess>(new GsrProcess(
             volsteptimesArray_, sigma_.params(), reversion_.params(), T));
 
@@ -169,7 +176,6 @@ namespace QuantLib {
         for(Size i=0;i<volatilities_.size();++i)
             registerWith(volatilities_[i]);
 
-        updateState();
     }
 
     const Real Gsr::zerobondImpl(const Time T, const Time t, const Real y,
@@ -192,7 +198,7 @@ namespace QuantLib {
                                    termStructure()->discount(t, true)
                              : yts->discount(T, true) / yts->discount(t, true);
 
-        return d * exp(-x * gtT - 0.5 * p->y(t) * gtT * gtT);
+        return d * std::exp(-x * gtT - 0.5 * p->y(t) * gtT * gtT);
     }
 
     const Real Gsr::numeraireImpl(const Time t, const Real y,

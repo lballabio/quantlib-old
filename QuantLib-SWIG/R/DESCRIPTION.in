@@ -1,0 +1,11 @@
+Package: QuantLib
+Title: QuantLib bindings for R
+Version: @PACKAGE_VERSION@
+Date: $Date$
+Maintainer: Dirk Eddelbuettel <edd@debian.org>
+Author: The QuantLib Group
+Description: This package provides the SWIG-generated QuantLib bindings for R
+Depends: methods
+SystemRequirements: QuantLib library, Boost library
+License: QuantLib License
+URL: http://quantlib.org 
