@@ -260,7 +260,7 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::BondHelper>(new
             QuantLib::BondHelper(price, bond, useCleanPrice));
-        quoteName_ = f(properties->getSystemProperty("CleanPrice"));
+        quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     FixedRateBondHelper::FixedRateBondHelper(

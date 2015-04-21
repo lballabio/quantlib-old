@@ -44,10 +44,10 @@ import shutil
 # you want the find/replace to begin.
 ROOT_DIRS = (
     #'C:/erik/ql/R01020x-branch/log4cxx',
-    '/media/windows/linux/repos/quantlib/gensrc',
-    '/media/windows/linux/repos/quantlib/ObjectHandler',
-    '/media/windows/linux/repos/quantlib/QuantLibAddin',
-    '/media/windows/linux/repos/quantlib/QuantLibXL'
+    'C:/Users/erik/Documents/repos/quantlib.v1.5.x/gensrc',
+    'C:/Users/erik/Documents/repos/quantlib.v1.5.x/ObjectHandler',
+    'C:/Users/erik/Documents/repos/quantlib.v1.5.x/QuantLibAddin',
+    'C:/Users/erik/Documents/repos/quantlib.v1.5.x/QuantLibXL'
 )
 
 # CALLBACK FUNCTIONS - Called from regexes which require multiple passes
@@ -95,11 +95,11 @@ SUBSTITUTIONS = (
 #   (re.compile('abcDEFghi'), toLower),
 
 ##  Frequently used
-    (re.compile('1_4_0'), '1_5_0'),
-    (re.compile('1\.4\.0'), '1.5.0'),
-    (re.compile('0x010400'), '0x010500'),
-    (re.compile('R010401f0'), 'R010500f0'),
-    (re.compile('0\.10\.0d'), '0.10.0e'),
+    (re.compile('1_5_0'), '1_6_0'),
+    (re.compile('1\.5\.0'), '1.6.0'),
+    (re.compile('0x010500'), '0x010600'),
+    (re.compile('R010501f0'), 'R010600f0'),
+    (re.compile('0\.10\.0f'), '0.10.0g'),
 )
 
 # INCLUDE_FILES
@@ -133,6 +133,7 @@ IGNORE_FILES = (
     re.compile('^.+\.png$'),
     re.compile('^.+\.pyc$'),
     re.compile('^.+\.xls$'),
+    re.compile('^.+\.zip$'),
     re.compile('^.+~$'),
     re.compile('^\.'),
 
