@@ -25,7 +25,7 @@ $(BUILD_DIR) :
     if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
 
 $(BUILDFLAG) : $(INPUTS) $(BUILD_DIR)
-    $(GENSRC_DIR)\gensrc.py -a --oh_dir=$(OH_DIR)
+    python.exe $(GENSRC_DIR)\gensrc.py -a --oh_dir=$(OH_DIR)
 	echo flagged > $@
 
 CLEAN :
