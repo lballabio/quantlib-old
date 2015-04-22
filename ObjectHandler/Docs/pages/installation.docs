@@ -93,9 +93,9 @@ Before rebuilding %ObjectHandler you need to have Python 2.x installed on your
 machine.  Here is the link to the Python website:
 <a href="http://www.python.org/">http://www.python.org/</a>.
 
-If Python is installed on your machine so that .py files are associated with
-the Python executable, then the gensrc scripts should build OK with no
-modification required.
+On Windows, if Python is installed on your machine so that .py files are
+associated with the Python executable, then the gensrc scripts should build OK
+with no modification required.
 
 Otherwise, after you install gensrc (below), you might need to edit this
 file...
@@ -422,10 +422,10 @@ Download <tt>ObjectHandler-1.6.0.tgz</tt> and uncompress the package to
 \subsubsection inst_auto_log4cxx 3.2.1 Build log4cxx
 
 Support for log4cxx is optional.  If you do not require logging, then when you
-run \c configure (see below), pass in the argument \c --without-log4cxx, which
-will cause log messages to be written to stdout instead of the the log file.
-In that case you can skip ahead to the next section, \ref inst_auto_oh.  If you
-need logging, read on.
+configure ObjectHandler (see below), pass in the argument \c --without-log4cxx,
+which will cause log messages to be written to stdout instead of to the log
+file.  In that case you can skip ahead to the next section, \ref inst_auto_oh.
+If you need logging, read on.
 
 First you need to install apr and apr-utils.  Our copy of log4cxx includes
 source code for apr and apr-utils.  In the past we used to build them with
