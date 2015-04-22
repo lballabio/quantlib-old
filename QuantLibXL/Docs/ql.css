@@ -157,12 +157,14 @@ body {
 }
 
 #imghover img{
-    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
-    -moz-opacity: 1;
+  -webkit-transition: all 5s ease;
+     -moz-transition: all 5s ease;
+       -o-transition: all 5s ease;
+      -ms-transition: all 5s ease;
+          transition: all 5s ease;
 }
-
+ 
 #imghover:hover img{
-    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=75);
-    -moz-opacity: 0.75;
+ -webkit-filter: hue-rotate(200deg);
 }
 

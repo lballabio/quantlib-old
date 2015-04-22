@@ -34,16 +34,33 @@ EXTRA_DIST = \
     QuantLibAddin_vc9.sln \
     QuantLibAddin_vc10.sln \
     QuantLibAddin_vc11.sln \
+    QuantLibAddin_vc12.sln \
     QuantLibObjects_vc8.vcproj \
     QuantLibObjects_vc9.vcproj \
     QuantLibObjects_vc10.vcxproj \
+    QuantLibObjects_vc10.vcxproj.filters \
     QuantLibObjects_vc11.vcxproj \
+    QuantLibObjects_vc11.vcxproj.filters \
+    QuantLibObjects_vc12.vcxproj \
+    QuantLibObjects_vc12.vcxproj.filters \
     QuantLibObjects2_vc10.vcxproj \
+    QuantLibObjects2_vc10.vcxproj.filters \
     QuantLibObjects2_vc11.vcxproj \
+    QuantLibObjects2_vc11.vcxproj.filters \
+    QuantLibObjects2_vc12.vcxproj \
+    QuantLibObjects2_vc12.vcxproj.filters \
     QuantLibObjects3_vc10.vcxproj \
+    QuantLibObjects3_vc10.vcxproj.filters \
     QuantLibObjects3_vc11.vcxproj \
+    QuantLibObjects3_vc11.vcxproj.filters \
+    QuantLibObjects3_vc12.vcxproj \
+    QuantLibObjects3_vc12.vcxproj.filters \
     QuantLibObjects4_vc10.vcxproj \
+    QuantLibObjects4_vc10.vcxproj.filters \
     QuantLibObjects4_vc11.vcxproj \
+    QuantLibObjects4_vc11.vcxproj.filters \
+    QuantLibObjects4_vc12.vcxproj \
+    QuantLibObjects4_vc12.vcxproj.filters \
     README.txt \
     todo.txt
 

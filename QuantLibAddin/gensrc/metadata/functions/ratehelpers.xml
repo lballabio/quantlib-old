@@ -70,24 +70,24 @@
       </ReturnValue>
     </Member>
 
-      <Member name='qlRateHelperQuoteName' type='QuantLibAddin::RateHelper'>
-          <description>returns the objectID of the Quote wrapped in the given RateHelper object.</description>
-          <libraryFunction>quoteName</libraryFunction>
-          <SupportedPlatforms>
-              <SupportedPlatform name='Excel'/>
-              <SupportedPlatform name='Calc'/>
-              <SupportedPlatform name='Cpp'/>
-          </SupportedPlatforms>
-          <ParameterList>
-              <Parameters/>
-          </ParameterList>
-          <ReturnValue>
-              <type>string</type>
-              <tensorRank>scalar</tensorRank>
-          </ReturnValue>
-      </Member>
+    <Member name='qlRateHelperQuoteName' type='QuantLibAddin::RateHelper'>
+      <description>returns the objectID of the Quote wrapped in the given RateHelper object.</description>
+      <libraryFunction>quoteName</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
-      <Member name='qlRateHelperQuoteValue' type='QuantLib::RateHelper'>
+    <Member name='qlRateHelperQuoteValue' type='QuantLib::RateHelper'>
       <description>returns the value of the Quote wrapped in the given RateHelper object.</description>
       <libraryFunction>quote()->value</libraryFunction>
       <SupportedPlatforms>
@@ -343,8 +343,8 @@
       <libraryFunction>spread</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-	<!--SupportedPlatform name='Calc'/-->
-	<!--SupportedPlatform name='Cpp'/-->
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters/>
@@ -814,7 +814,7 @@
       <description>selects rate helpers for bootstrapping.</description>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-	<!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Calc'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

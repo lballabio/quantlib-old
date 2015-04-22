@@ -58,47 +58,51 @@ data feeds, creation of instruments, etc.
 
 \subsection fw_prerequisites 1.1 Prerequisites
 
-The Framework has been developed and tested under Excel 2002.  Limited testing
-under Excel 2003 has not highlighted any problems.  The application hasn't been
-tested under versions of Excel prior to 2002 nor on Excel 2007.
+The Framework was first developed under Excel 2002 and is currently in use
+under Excel 2010.  Not a lot of work has been done to ensure compatibility with
+different versions of Excel so it is possible that the Framework could
+malfunction under certain versions of Excel.
 
 \subsection fw_installation 1.2 Installation
 
-Download QuantLibXL-1.5.0-framework.zip from the 
-<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.5.0/">Downloads page</a>.
-
+Download
+<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.5.0/QuantLibXL-1.5.0-framework.zip/download">QuantLibXL-1.5.0-framework.zip</a>.
 Copy the zip file to your hard drive and uncompress it.
 
 \subsection fw_startup 1.3 Startup
 
+<b>NB</b>: The Framework is configured for 32-bit Excel.  If you are running
+64-bit Excel then before starting the Framework you need to edit workbook
+<tt>framework\\config\\Loader.xls</tt> and change the value of cell
+<tt>Loader.xls!$C$17</tt> to <tt>QuantLibXL-vc110-x64-mt-s-1_6_0.xll</tt>.
+
 To load the Framework into Excel, double click on file
-QuantLibXL-1.5.0\\Launcher.xla.
+<tt>framework\\QuantLibXL.xla</tt>.
 
 \subsection fw_ui 1.4 User Interface
 
-The Framework employs a few conventions regarding the customizations that it
-makes to the Excel user interface.  When the Framework is loaded, menu item
-QuantLibXL is added to the main menu bar, to the left of the Window entry.  The
-first two items in the QuantLibXL menu are context sensitive and change
-depending on which workbook or worksheet is active.  The remaining items on the
-menu are static.
+The Framework menu appears on the ribbon under the Add-Ins tab.
 
-The first item on the QuantLibXL corresponds to the active workbook.  If a menu
-function has been configured for the active workbook (based on its type), then
-the relevant menu item is displayed.  If no workbook is active, or if no menu
-function has been configured for the active workbook, then the first item in the
-QuantLibXL menu is the word [Workbook] which is grayed out and serves only as a
-placeholder.
+<div class="center"><img src="images/framework_menu.png"></div>
+
+The menu is context sensitive.  The first item in the menu displays the
+functions supported for the active workbook.  If no workbook is active, or if
+the active workbook does not belong to the Framework, then the menu placeholder
+[Workbook] appears grayed out as in the image above.
 
 Similarly the second item in the menu is the function configured for the active
 worksheet, if any, otherwise the word [Worksheet] grayed out.
 
-The third item in the menu is called Addin and any functions specific to loaded
-Addins appear here.
+The third item in the menu displays the functionality relating to whatever
+Addin is currently loaded.
 
-Right clicking in a cell brings up a QuantLibXL menu.  Similar to the main menu
-bar, the contents of the right click menu may change depending on which
-workbook, worksheet, or range is active, or which addins are loaded.
+Right clicking in a cell brings up a QuantLibXL menu.
+
+<div class="center"><img src="images/framework_right_click_menu.png"></div>
+
+Similar to the main menu bar, the contents of the right click menu may change
+depending on which workbook, worksheet, or range is active, or which addins are
+loaded.
 
 The functionality and configuration of context sensitive menus are described in
 greater detail in the demos below.
@@ -106,7 +110,7 @@ greater detail in the demos below.
 If the application is reset - for example if there is an unhandled exception,
 and the user clicks on the Reset (Stop) button in the VBA editor - then the
 Framework state is lost.  In particular the menus are lost.  Clicking
-Ctrl-Shift-R reinitializes the Framework configuration.
+<tt>Ctrl-Shift-R</tt> reinitializes the Framework configuration.
 
 \section fw_demos 2 Demos
 
@@ -118,20 +122,22 @@ functionality.
 This demo shows how the contents of the main menu and the right click cell menu
 change depending on which book, sheet, and range is active.
 
+<div class="center"><img src="images/framework_menu_demo.png"></div>
+
 \li Start Excel
-\li Load QuantLibXL.xla
-\li Do QuantLibXL / Load / Menu Demo
-\li Workbook MenuDemo.xls is loaded
+\li Load <tt>framework\\QuantLibXL.xla</tt>
+\li Do <tt>Addins / QuantLibXL / Load / Menu Demo</tt>
+\li Workbook <tt>MenuDemo.xls</tt> is loaded
 
 Various dummy menu functions are enabled depending on which book, sheet, or
 range is active:
 
-\li When the MenuDemo addin is loaded, menu item QuantLibXL / Menu Demo / Menu Demo is enabled.
-\li When the MenuDemo addin is loaded, cell right click menu item QuantLibXL / Menu Demo is enabled.
-\li When MenuDemo.xls is active, menu item QuantLibXL / Book Demo / Test1 is enabled.
-\li When sheet Demo2 is active, menu item QuantLibXL / Sheet Demo / Test2 is enabled.
-\li When sheet Demo2 is active, cell right click menu item QuantLibXL / Demo1 / Item 1 is enabled.
-\li When the blue range in sheet Demo2 is active, cell right click menu item QuantLibXL / Demo1 / Item 2 is enabled.
+\li When the <tt>MenuDemo</tt> addin is loaded, menu item <tt>QuantLibXL / Menu Demo / Menu Demo</tt> is enabled.
+\li When the <tt>MenuDemo</tt> addin is loaded, cell right click menu item <tt>QuantLibXL / Menu Demo</tt> is enabled.
+\li When <tt>MenuDemo.xls</tt> is active, menu item <tt>QuantLibXL / Book Demo / Test1</tt> is enabled.
+\li When sheet <tt>Demo2</tt> is active, menu item <tt>QuantLibXL / Sheet Demo / Test2</tt> is enabled.
+\li When sheet <tt>Demo2</tt> is active, cell right click menu item <tt>QuantLibXL / Demo1 / Item 1</tt> is enabled.
+\li When the blue range in sheet <tt>Demo2</tt> is active, cell right click menu item <tt>QuantLibXL / Demo1 / Item 2</tt> is enabled.
 
 \subsection fw_demo_xml1 2.2 Boost Serialization
 
@@ -139,54 +145,60 @@ Boost serialization is supported automatically for all QuantLib objects and is
 appropriate when you want to save/load a hierarchy of objects without worrying
 about the specifics of the corresponding XML.
 
+<div class="center"><img src="images/framework_serialization_demo.png"></div>
+
 Initialization
 
 \li Start Excel
-\li Load QuantLibXL.xla
-\li Do QuantLibXL / Load / Serialization Demo
-\li Workbook SerializationDemo.xls is loaded
-\li If today is not a business day then call qlSettingsSetEvaluationDate() to set the evaluation date to a working day
-\li Hit Ctrl-Alt-F9 to force a full recalculation of all cells
+\li Load <tt>framework\\QuantLibXL.xla</tt>
+\li Do <tt>Addins / QuantLibXL / Load / Serialization Demo</tt>
+\li Workbook <tt>SerializationDemo.xls</tt> is loaded
+\li If today is not a business day then call <tt>qlSettingsSetEvaluationDate()</tt> to set the evaluation date to a working day
+\li Hit <tt>Ctrl-Alt-F9</tt> to force a full recalculation of all cells
 
 Export
 
-\li Activate sheet Serialization
-\li Do QuantLibXL / Serialization Demo / Export
-\li In subdirectory QuantLibXL\framework\xml, files MarketData.xml and Swap.xml are created
+\li Activate sheet <tt>Serialization</tt>
+\li Do <tt>Addins / QuantLibXL / Serialization Demo / Export</tt>
+\li In subdirectory <tt>QuantLibXL\framework\xml</tt>, files <tt>MarketData.xml</tt> and <tt>Swap.xml</tt> are created
 
 Import
 
-\li Set the value of range Settings!H15 to Import
-\li Do QuantLibXL / ObjectHandler / Delete All Objects
-\li Activate sheet Serialization
-\li Do QuantLibXL / Serialization Demo / Import
-\li From subdirectory QuantLibXL\framework\xml, files MarketData.xml and Swap.xml are loaded
+\li Set the value of range <tt>Settings!H15</tt> to <tt>Import</tt>
+\li Do <tt>Addins / QuantLibXL / ObjectHandler / Delete All Objects</tt>
+\li Activate sheet <tt>Serialization</tt>
+\li Do <tt>Addins / QuantLibXL / Serialization Demo / Import</tt>
+\li From subdirectory <tt>QuantLibXL\\framework\\xml</tt>, files <tt>MarketData.xml</tt> and <tt>Swap.xml</tt> are loaded
 
 \subsection fw_demo_xml2 2.3 MSXML Serialization
 
 MSXML Serialization allows you to export/import the contents of a workbook
 while exerting fine grained control over the corresponding XML.
 
+<div class="center"><img src="images/framework_serialization_msxml_demo.png"></div>
+
 \li Start Excel
-\li Load QuantLibXL.xla
-\li Do QuantLibXL / Load / Serialization Demo - MSXML
-\li Workbook SerializationDemoMSXML.xls is loaded
-\li In cell H17, specify the desired directory for the export file
-\li Do QuantLibXL / Serialization Demo - MSXML / Export
-\li In the specified export directory, an export XML file is generated with a filename in the format xml_YYYYMMDDHHMMSS.xml
+\li Load <tt>framework\\QuantLibXL.xla</tt>
+\li Do <tt>Addins / QuantLibXL / Load / Serialization Demo - MSXML</tt>
+\li Workbook <tt>SerializationDemoMSXML.xls</tt> is loaded
+\li In cell <tt>H17</tt>, specify the desired directory for the export file
+\li Do <tt>Addins / QuantLibXL / Serialization Demo - MSXML / Export</tt>
+\li In the specified export directory, an export XML file is generated with a filename in the format <tt>xml_YYYYMMDDHHMMSS.xml</tt>
 
 \subsection fw_demo_swap 2.4 Swap Portfolio
 
 This demo workbook/addin provides a skeleton implementation for a workbook to
 calculate real time prices of a trading portfolio.
 
+<div class="center"><img src="images/framework_swap_demo.png"></div>
+
 \li Start Excel
-\li Load QuantLibXL.xla
-\li Do QuantLibXL / Load / Swap Demo
-\li Workbook SwapDemo.xls is loaded
-\li Hit Ctrl-Alt-F9 to force a full recalculation of all cells
+\li Load <tt>framework\\QuantLibXL.xla</tt>
+\li Do <tt>Addins / QuantLibXL / Load / Swap Demo</tt>
+\li Workbook <tt>SwapDemo.xls</tt> is loaded
+\li Hit <tt>Ctrl-Alt-F9</tt> to force a full recalculation of all cells
 \li Click on any cell(s) in row 18 and select a number of rows extending down
-\li Right click in the selection and do QuantLibXL / Swaps / Insert Row
+\li Right click in the selection and do <tt>Addins / QuantLibXL / Swaps / Insert Row</tt>
 
 This workbook is configured with calculation set to manual.  For production use
 you would want to set calculation to automatic.  The Inputs worksheet must be
@@ -194,23 +206,16 @@ extended to receive data from some live feed e.g. Reuters.
 
 \section fw_fi 3 Fixed Income
 
-Bootstrap the yield curve by invoking menu item QuantLibXL / Actions / Bootstrap
-QuantLib Yield Curve.
+The Fixed Income addin initializes a market environment which can be configured
+to accept live feeds from Reuters or Bloomberg in support of real time trading.
 
-<div class="center"><img src="images/framework_bootstrap.jpg"></div>
+<div class="center"><img src="images/framework_fixed_income.png"></div>
 
-Additional market data may need to be initialized depending upon the
-instruments to be priced.  In directory QuantLibXL\\Workbooks, spreadsheets
-ControlPanel.xls and MainChecks.xls can be used to get an overview of available
-market data and to perform global functions such as rolling the evaluation
-date.
+\li Start Excel
+\li Load <tt>Launcher.xla</tt>
 
-The Framework automatically detects if market data feeds from Reuters are
-available and if so these are used for live updates of market data.  If not the
-market data is taken from cells updated manually.
-
-Template instrument workbooks are found in directory
-QuantLibXL\\Workbooks\\InterestRateDerivatives.
+Startup parameters are loaded from file <tt>session_file.xml</tt>.  Edit that
+file as necessary to customize startup behavior.
 
 \section fw_code 4 Code
 
