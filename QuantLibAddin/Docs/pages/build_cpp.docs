@@ -301,6 +301,12 @@ make install
 
 \subsubsection build_cpp_auto_ql 3.3.3 Build QuantLib
 
+<table border="1" bgcolor="lightsteelblue" width=100%>
+<tr>
+<td>You need to apply <a href="https://github.com/eehlers/quantlib/commit/d1ff14e99b8d4c559bad0d7b3e99cd9b2fde0f84">this patch</a> to your copy of the %QuantLib source code.</td>
+</tr>
+</table>
+
 \verbatim
 cd /home/erik/build/QuantLib-1.6.0
 ./configure --prefix=/home/erik/install
