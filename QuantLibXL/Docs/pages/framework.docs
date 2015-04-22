@@ -18,7 +18,7 @@
 
 /*! \page framework Framework
 
-<table border="1" bgcolor="lightsteelblue">
+<table border="1" bgcolor="lightsteelblue" width=100%>
 <tr>
 <td><b>NB:</b> The Framework has not been included in the 1.5 release of
 QuantLibXL.</td>
