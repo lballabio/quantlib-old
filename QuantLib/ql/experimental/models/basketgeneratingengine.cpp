@@ -134,7 +134,9 @@ namespace QuantLib {
                 Real gamma = (npvp - 2.0 * npv + npvm) / (h * h);
 
                 QL_REQUIRE(npv * npv + delta * delta + gamma * gamma > 0.0,
-                           "(npv,delta,gamma) must have a positive norm");
+                           "(npv,delta,gamma) must have a positive norm (npv="
+                               << npv << ", delta=" << delta << ","
+                               << "gamma=" << gamma << ")");
 
                 // debug output
                 // std::cout << "EXOTIC npv " << npv << " delta " << delta
