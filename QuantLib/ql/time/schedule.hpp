@@ -62,6 +62,7 @@ namespace QuantLib {
         Date previousDate(const Date& refDate) const;
         Date nextDate(const Date& refDate) const;
         const std::vector<Date>& dates() const { return dates_; }
+        std::vector<Date>& datesModifyable() { return dates_; }
         bool isRegular(Size i) const;
         //@}
         //! \name Other inspectors
