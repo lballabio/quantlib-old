@@ -4,6 +4,9 @@
  Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
  Copyright (C) 2005 Johan Witters
  Copyright (C) 2013 Simon Shakeshaft
+ Copyright (C) 2014 Bitquant Research Laboratories (Asia) Ltd.
+ Copyright (C) 2015 Klaus Spanderen
+ 
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,10 +32,20 @@
 %{
 using QuantLib::Day;
 using QuantLib::Year;
+using QuantLib::Hour;
+using QuantLib::Minute;
+using QuantLib::Second;
+using QuantLib::Millisecond;
+using QuantLib::Microsecond;
 %}
 
 typedef Integer Day;
 typedef Integer Year;
+typedef boost::posix_time::hours::hour_type Hour;
+typedef boost::posix_time::minutes::min_type Minute;
+typedef boost::posix_time::minutes::sec_type Second;
+typedef boost::posix_time::time_duration::fractional_seconds_type Millisecond;
+typedef boost::posix_time::time_duration::fractional_seconds_type Microsecond;
 
 #if defined(SWIGJAVA)
 %javaconst(1);
@@ -98,10 +111,15 @@ using QuantLib::Days;
 using QuantLib::Weeks;
 using QuantLib::Months;
 using QuantLib::Years;
+using QuantLib::Hours;
+using QuantLib::Minutes;
+using QuantLib::Seconds;
+using QuantLib::Milliseconds;
+using QuantLib::Microseconds;
 %}
 
-enum TimeUnit { Days, Weeks, Months, Years };
-
+enum TimeUnit { Days, Weeks, Months, Years, Hours, Minutes, Seconds, 
+                Milliseconds,  Microseconds};
 
 %{
 using QuantLib::Frequency;
@@ -330,6 +348,9 @@ class Date {
   public:
     Date();
     Date(Day d, Month m, Year y);
+    Date(Day d, Month m, Year y,
+         Hour hours, Minute minutes, Second seconds,
+         Millisecond millisec = 0, Microsecond microsec = 0);   
     Date(BigInteger serialNumber);
     // access functions
     Weekday weekday() const;
@@ -337,12 +358,23 @@ class Date {
     Day dayOfYear() const;        // one-based
     Month month() const;
     Year year() const;
+    Hour hours() const;
+    Minute minutes() const;
+    Second seconds() const;
+    Millisecond milliseconds() const;
+    Microsecond microseconds() const;
+
+    Time fractionOfDay() const;
+    Time fractionOfSecond() const;
+    
     BigInteger serialNumber() const;
     // static methods
     static bool isLeap(Year y);
     static Date minDate();
     static Date maxDate();
     static Date todaysDate();
+    static Date localDateTime();
+    static Date universalDateTime();    
     static Date endOfMonth(const Date&);
     static bool isEndOfMonth(const Date&);
     static Date nextWeekday(const Date&, Weekday);
@@ -496,6 +528,8 @@ a
 
 %}
 
+
+Time daysBetween(const Date&, const Date&);
 bool operator==(const Date&, const Date&);
 bool operator!=(const Date&, const Date&);
 bool operator<(const Date&, const Date&);
