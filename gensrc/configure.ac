@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT([gensrc], [1.5.0],
+AC_INIT([gensrc], [1.6.0],
         [quantlib-dev@lists.sourceforge.net],
         [gensrc])
 AC_PREREQ(2.50)

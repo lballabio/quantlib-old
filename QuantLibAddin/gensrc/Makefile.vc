@@ -24,10 +24,18 @@ ALL : $(BUILDFLAG)
 $(BUILD_DIR) :
     if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
 
+# If Python is installed on your machine so that .py files are associated with
+# the Python executable, then the call below to Python should work OK, even if
+# the PYTHON variable is null.
+#
+# Otherwise, you might need to set the PYTHON variable equal to the location of
+# the Python executable on your machine, e.g:
+#PYTHON=C:\Python27\python.exe
+
 $(BUILDFLAG) : $(INPUTS) $(BUILD_DIR)
-    $(GENSRC_DIR)\gensrc.py -a --oh_dir=$(OH_DIR)
-	echo flagged > $@
+    $(PYTHON) $(GENSRC_DIR)\gensrc.py -a --oh_dir=$(OH_DIR)
+    echo flagged > $@
 
 CLEAN :
-	-@ if EXIST $(BUILD_DIR)\* del /f /q $(BUILD_DIR)\*
+    -@ if EXIST $(BUILD_DIR)\* del /f /q $(BUILD_DIR)\*
 
