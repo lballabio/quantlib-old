@@ -5,11 +5,19 @@ this_includedir=${includedir}/${subdir}
 this_include_HEADERS = \
     all.hpp \
     blackdeltacalculator.hpp \
-    deltavolquote.hpp
+    deltavolquote.hpp \
+    fxindex.hpp \
+    fxtarf.hpp \
+    mcfxtarfengine.hpp \
+    proxyfxtarfengine.hpp
 
 libFX_la_SOURCES = \
     blackdeltacalculator.cpp \
-    deltavolquote.cpp
+    deltavolquote.cpp \
+    fxindex.cpp \
+    fxtarf.cpp \
+    mcfxtarfengine.cpp \
+    proxyfxtarfengine.cpp
 
 noinst_LTLIBRARIES = libFX.la
 
