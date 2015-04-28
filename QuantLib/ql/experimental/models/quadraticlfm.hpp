@@ -79,8 +79,8 @@ class QuadraticLfm {
   private:
     class LocalVolHelper {
       public:
-        LocalVolHelper(QuadraticLfm *t, const Size n, const Size m,
-                       const Size step, const Array &k)
+        LocalVolHelper(QuadraticLfm *t, const Size& n, const Size& m,
+                       const Size& step, const Array &k)
             : t_(t), n_(n), m_(m), step_(step), k_(k) {}
         Disposable<Array> operator()(Real t) const {
             return t_->eta(n_, m_, step_, t, k_);
