@@ -7,4 +7,5 @@
 #include <ql/experimental/fx/fxtarf.hpp>
 #include <ql/experimental/fx/mcfxtarfengine.hpp>
 #include <ql/experimental/fx/proxyfxtarfengine.hpp>
+#include <ql/experimental/fx/proxyinstrument.hpp>
 

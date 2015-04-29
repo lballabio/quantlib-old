@@ -9,7 +9,8 @@ this_include_HEADERS = \
     fxindex.hpp \
     fxtarf.hpp \
     mcfxtarfengine.hpp \
-    proxyfxtarfengine.hpp
+    proxyfxtarfengine.hpp \
+    proxyinstrument.hpp
 
 libFX_la_SOURCES = \
     blackdeltacalculator.cpp \

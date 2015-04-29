@@ -26,7 +26,7 @@
 
 #include <ql/processes/blackscholesprocess.hpp>
 #include <ql/experimental/fx/fxtarf.hpp>
-#include <ql/experimental/fx/proxyengine.hpp>
+#include <ql/experimental/fx/proxyinstrument.hpp>
 #include <boost/make_shared.hpp>
 
 namespace QuantLib {
@@ -40,10 +40,6 @@ class McFxTarfEngine : public FxTarf::engine {
     }
 
     void calculate() const;
-
-    boost::shared_ptr<ProxyDescription> proxy() const {
-        return boost::make_shared<FxTarf::Proxy>();
-    }
 
   private:
     boost::shared_ptr<GeneralizedBlackScholesProcess> process_;

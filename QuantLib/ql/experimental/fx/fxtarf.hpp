@@ -25,14 +25,14 @@
 #define quantlib_fxtarf_hpp
 
 #include <ql/experimental/fx/fxindex.hpp>
-#include <ql/experimental/fx/proxyengine.hpp>
+#include <ql/experimental/fx/proxyinstrument.hpp>
 #include <ql/instrument.hpp>
 #include <ql/time/schedule.hpp>
 #include <ql/option.hpp>
 
 namespace QuantLib {
 
-class FxTarf : public Instrument {
+class FxTarf : public Instrument, public ProxyInstrument {
   public:
     class arguments;
     class results;
@@ -87,7 +87,7 @@ class FxTarf : public Instrument {
     const Real shortPositionFactor_;
     const Real target_;
     const Handle<Quote> accumulatedAmount_;
-    mutable boost::shared_ptr<FxTarf::Proxy> proxy_;
+    mutable boost::shared_ptr<ProxyDescription> proxy_;
 };
 
 class FxTarf::arguments : public virtual PricingEngine::arguments {

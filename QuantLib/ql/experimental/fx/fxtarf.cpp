@@ -92,7 +92,7 @@ Date FxTarf::startDate() const { return schedule_.dates().front(); }
 
 Date FxTarf::maturityDate() const { return schedule_.dates().back(); }
 
-boost::shared_ptr<ProxyDescription> FxTarf::proxy() const {
+boost::shared_ptr<ProxyInstrument::ProxyDescription> FxTarf::proxy() const {
     calculate();
     QL_REQUIRE(proxy_ != NULL, "no valid proxy available");
     return proxy_;

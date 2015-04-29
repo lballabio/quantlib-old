@@ -31,7 +31,7 @@ namespace QuantLib {
 
 class ProxyFxTarfEngine : public FxTarf::engine {
   public:
-    ProxyFxTarfEngine(boost::shared_ptr<ProxyDescription> proxy,
+    ProxyFxTarfEngine(boost::shared_ptr<ProxyInstrument::ProxyDescription> proxy,
                       Handle<Quote> exchangeRate)
         : exchangeRate_(exchangeRate) {
         registerWith(exchangeRate_);
