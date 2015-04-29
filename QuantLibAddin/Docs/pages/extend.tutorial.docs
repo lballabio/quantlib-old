@@ -237,7 +237,7 @@ Build solution <tt>QuantLibXL_full_vc?.sln</tt>, configuration
 are compiled and the binaries are linked.
 
 The build process creates the %QuantLibAddin XLL file
-<tt>QuantLibXL\\xll\\QuantLibXL-vc??-mt-s-1_5_0.xll</tt>.
+<tt>QuantLibXL\\xll\\QuantLibXL-vc??-mt-s-1_6_0.xll</tt>.
 
 \section extend_test 5 Test the New Functions
 

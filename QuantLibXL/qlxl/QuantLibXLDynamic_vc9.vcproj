@@ -82,15 +82,15 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-gd-1_5_0.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-gd-1_6_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-gd-1_5_0.pdb"
+				ProgramDatabaseFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-gd-1_6_0.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-gd-1_5_0.lib"
+				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-gd-1_6_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -186,16 +186,16 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib"
-				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_5_0.xll"
+				OutputFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_6_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_5_0.pdb"
+				ProgramDatabaseFile="..\..\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_6_0.pdb"
 				OptimizeReferences="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-1_5_0.lib"
+				ImportLibrary=".\buildDynamic\vc90\$(ConfigurationName)/QuantLibAddinDynamic-vc90-mt-1_6_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -243,6 +243,10 @@
 			</File>
 			<File
 				RelativePath="functions\assetswap.cpp"
+				>
+			</File>
+			<File
+				RelativePath="functions\basketlossmodels.cpp"
 				>
 			</File>
 			<File
@@ -306,6 +310,10 @@
 				>
 			</File>
 			<File
+				RelativePath="functions\defaultbasket.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\functions\defaulttermstructures.cpp"
 				>
 			</File>
@@ -343,6 +351,10 @@
 			</File>
 			<File
 				RelativePath="functions\interpolation.cpp"
+				>
+			</File>
+			<File
+				RelativePath="functions\latentmodels.cpp"
 				>
 			</File>
 			<File
@@ -514,6 +526,10 @@
 				>
 			</File>
 			<File
+				RelativePath="register\register_basketlossmodels.cpp"
+				>
+			</File>
+			<File
 				RelativePath="register\register_bonds.cpp"
 				>
 			</File>
@@ -574,6 +590,10 @@
 				>
 			</File>
 			<File
+				RelativePath="register\register_defaultbasket.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\register\register_defaulttermstructures.cpp"
 				>
 			</File>
@@ -607,6 +627,10 @@
 			</File>
 			<File
 				RelativePath="register\register_interpolation.cpp"
+				>
+			</File>
+			<File
+				RelativePath="register\register_latentmodels.cpp"
 				>
 			</File>
 			<File

@@ -1,0 +1,36 @@
+
+/*
+ Copyright (C) 2014 Eric Ehlers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software developed by the QuantLib Group; you can
+ redistribute it and/or modify it under the terms of the QuantLib License;
+ either version 1.0, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ QuantLib License for more details.
+
+ You should have received a copy of the QuantLib License along with this
+ program; if not, please email quantlib-dev@lists.sf.net
+
+ The QuantLib License is also available at <http://quantlib.org/license.shtml>
+ The members of the QuantLib Group are listed in the QuantLib License
+*/
+
+/*! \page compile Compile
+
+This site is intended for end users of the compiled QuantLibXL addin.
+
+If you want to recompile QuantLibXL yourself from source code or write
+new functions for the addin, please visit the parent site,
+<a href="http://www.quantlibaddin.org">QuantLibAddin</a>,
+in particular the following page:
+
+<a href="http://quantlib.org/quantlibaddin/tutorials.html">http://quantlib.org/quantlibaddin/tutorials.html</a>
+
+*/
+

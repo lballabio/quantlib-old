@@ -452,8 +452,7 @@
     <Constructor name='qlRendistatoCalculator'>
       <libraryFunction>RendistatoCalculator</libraryFunction>
       <SupportedPlatforms>
-        SupportedPlatform name='Excel' calcInWizard='false'/
-        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>

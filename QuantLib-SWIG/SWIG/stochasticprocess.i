@@ -30,8 +30,7 @@ using QuantLib::StochasticProcess;
 %}
 
 %ignore StochasticProcess;
-class StochasticProcess {
-};
+class StochasticProcess {};
 %template(StochasticProcess) boost::shared_ptr<StochasticProcess>;
 IsObservable(boost::shared_ptr<StochasticProcess>);
 
@@ -44,39 +43,39 @@ typedef boost::shared_ptr<StochasticProcess> StochasticProcess1DPtr;
 class StochasticProcess1DPtr
     : public boost::shared_ptr<StochasticProcess> {
   public:
-  %extend {
-        virtual Real x0() {
-            boost::dynamic_pointer_cast<StochasticProcess1D>(*self)->x0();
-        }
-        virtual Real drift(Time t, Real x) {
-            boost::dynamic_pointer_cast<StochasticProcess1D>(*self)->drift(t, x);
-        }
-
-        virtual Real diffusion(Time t, Real x) {
-            boost::dynamic_pointer_cast<StochasticProcess1D>(*self)->diffusion(t, x);
-        }
-
-        virtual Real expectation(Time t0, Real x0, Time dt) {
-            boost::dynamic_pointer_cast<StochasticProcess1D>(*self)->expectation(t0, x0, dt);
-        }
-
-        virtual Real stdDeviation(Time t0, Real x0, Time dt) {
-            boost::dynamic_pointer_cast<StochasticProcess1D>(*self)->stdDeviation(t0, x0, dt);
-        }
-
-        virtual Real variance(Time t0, Real x0, Time dt)  {
-            boost::dynamic_pointer_cast<StochasticProcess1D>(*self)->variance(t0, x0, dt);
-        }
-
-        virtual Real evolve(Time t0, Real x0, Time dt, Real dw) {
-            boost::dynamic_pointer_cast<StochasticProcess1D>(*self)->evolve(t0, x0, dt, dw);
-        }
-
-        virtual Real apply(Real x0, Real dx)  {
-            boost::dynamic_pointer_cast<StochasticProcess1D>(*self)->apply(x0, dx);
-        }
+    %extend {
+      Real x0() {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)->x0();
+      }
+      Real drift(Time t, Real x) {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->drift(t, x);
+      }
+      Real diffusion(Time t, Real x) {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->diffusion(t, x);
+      }
+      Real expectation(Time t0, Real x0, Time dt) {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->expectation(t0, x0, dt);
+      }
+      Real stdDeviation(Time t0, Real x0, Time dt) {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->stdDeviation(t0, x0, dt);
+      }
+      Real variance(Time t0, Real x0, Time dt)  {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->variance(t0, x0, dt);
+      }
+      Real evolve(Time t0, Real x0, Time dt, Real dw) {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->evolve(t0, x0, dt, dw);
+      }
+      Real apply(Real x0, Real dx)  {
+          return boost::dynamic_pointer_cast<StochasticProcess1D>(*self)
+              ->apply(x0, dx);
+      }
     }
-
   private:
     StochasticProcess1DPtr();
 };
@@ -371,16 +370,16 @@ class GsrProcessPtr : public StochasticProcess1DPtr {
             return new GsrProcessPtr(new GsrProcess(times, vols, reversions, T));
         }
         Real sigma(Time t) {
-            boost::dynamic_pointer_cast<GsrProcess>(*self)->sigma(t);
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->sigma(t);
         }
         Real reversion(Time t){
-            boost::dynamic_pointer_cast<GsrProcess>(*self)->reversion(t);
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->reversion(t);
         }
         Real y(Time t) {
-            boost::dynamic_pointer_cast<GsrProcess>(*self)->y(t);
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->y(t);
         }
         Real G(Time t, Time T, Real x){
-            boost::dynamic_pointer_cast<GsrProcess>(*self)->G(t, T, x);
+            return boost::dynamic_pointer_cast<GsrProcess>(*self)->G(t, T, x);
         }
         void setForwardMeasureTime(Time t) {
             boost::dynamic_pointer_cast<GsrProcess>(*self)->setForwardMeasureTime(t);
@@ -389,7 +388,8 @@ class GsrProcessPtr : public StochasticProcess1DPtr {
 };
 
 %inline %{
-    GsrProcessPtr as_GsrProcess(const boost::shared_ptr<StochasticProcess>& proc) {
+    GsrProcessPtr as_gsr_process(
+                           const boost::shared_ptr<StochasticProcess>& proc) {
         return boost::dynamic_pointer_cast<GsrProcess>(proc);
     }
 %}
