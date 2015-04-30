@@ -29,11 +29,15 @@
 #include <ql/instrument.hpp>
 #include <ql/time/schedule.hpp>
 #include <ql/option.hpp>
+#include <ql/instruments/payoffs.hpp>
 
 namespace QuantLib {
 
 class FxTarf : public Instrument, public ProxyInstrument {
   public:
+    //! coupon types
+    enum CouponType { none, capped, full };
+    //! forward declarations
     class arguments;
     class results;
     class engine;
@@ -45,12 +49,22 @@ class FxTarf : public Instrument, public ProxyInstrument {
     //@{
     /*! If the accumulatedAmount is not null, no past fixings are
         used to calculate the accumulated amount, but exactly this
-        number is assumed to represent this amount. */
+        number is assumed to represent this amount. The last amount
+        must then be fixed to the last fixed amount in order to
+        get consistent npvs between fixing and payment date.
+        Note that the accumulatedAmount should always assume a full
+        coupon (this is only used to check the target trigger and
+        the coupon type none would lead to false results then).
+    */
     FxTarf(const Schedule schedule, const boost::shared_ptr<FxIndex> &index,
-           const Real sourceNominal, const Real strike,
-           const Option::Type longPositionType, const Real shortPositionFactor,
-           const Real target,
-           const Handle<Quote> accumulatedAmount = Handle<Quote>());
+           const Real sourceNominal,
+           const boost::shared_ptr<StrikedTypePayoff> &shortPositionPayoff,
+           const boost::shared_ptr<StrikedTypePayoff> &longPositionPayoff,
+           const Real target, const CouponType couponType = capped,
+           const Real shortPositionGearing = 1.0,
+           const Real longPositionGearing = 1.0,
+           const Handle<Quote> accumulatedAmount = Handle<Quote>(),
+           const Handle<Quote> lastAmount = Handle<Quote>());
     //@}
     //! \name Instrument interface
     //@{
@@ -64,13 +78,26 @@ class FxTarf : public Instrument, public ProxyInstrument {
     //@{
     Date startDate() const;
     Date maturityDate() const;
+    /*! this is the accumulated amount, but always assuming
+        the coupon type full
+     */
     Real accumulatedAmount() const {
         return accumulatedAmountAndSettlement().first;
     }
-    bool accumulatedAmountSettled() const {
+    Real lastAmount() const;
+    bool lastAmountSettled() const {
         return accumulatedAmountAndSettlement().second;
     }
+    Real target() const { return target_; }
+    Real sourceNominal() const { return sourceNominal_; }
+    //! description for proxy pricing
     boost::shared_ptr<ProxyDescription> proxy() const;
+    /*! payout in domestic currency (for nominal 1) */
+    Real payout(const Real fixing) const;
+    /*! same as above, but assuming the given accumulated amount,
+        which is in addition updated to the new value after the
+        fixing */
+    Real payout(const Real fixing, Real &accumulatedAmount) const;
 
   protected:
     //! \name Instrument interface
@@ -79,27 +106,34 @@ class FxTarf : public Instrument, public ProxyInstrument {
     //@}
 
   private:
+    /* payout assuming a full coupon and the given accumulated amount,
+       which is updated at the same time (for nominal 1) */
+    Real nakedPayout(const Real fixing, Real &accumulatedAmount) const;
     std::pair<Real, bool> accumulatedAmountAndSettlement() const;
+    // termsheet data
     const Schedule schedule_;
     const boost::shared_ptr<FxIndex> index_;
-    const Real sourceNominal_, strike_;
-    const Option::Type longPositionType_;
-    const Real shortPositionFactor_;
+    const Real sourceNominal_;
+    const boost::shared_ptr<StrikedTypePayoff> shortPositionPayoff_,
+        longPositionPayoff_;
     const Real target_;
-    const Handle<Quote> accumulatedAmount_;
+    const CouponType couponType_;
+    const Real shortPositionGearing_, longPositionGearing_;
+    // additional data
+    std::vector<Date> openFixingDates_, openPaymentDates_;
+    Handle<Quote> accumulatedAmount_, lastAmount_;
+    // proxy pricing information
     mutable boost::shared_ptr<ProxyDescription> proxy_;
 };
 
 class FxTarf::arguments : public virtual PricingEngine::arguments {
   public:
     Schedule schedule;
+    std::vector<Date> openFixingDates, openPaymentDates;
     boost::shared_ptr<FxIndex> index;
-    Real sourceNominal;
-    Real strike;
-    Option::Type longPositionType;
-    Real shortPositionFactor;
-    Real target;
-    Real accumulatedAmount;
+    Real target, sourceNominal;
+    Real accumulatedAmount, lastAmount;
+    const FxTarf *instrument;
     void validate() const;
 };
 

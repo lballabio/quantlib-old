@@ -23,18 +23,32 @@
 namespace QuantLib {
 
 FxTarf::FxTarf(const Schedule schedule, const boost::shared_ptr<FxIndex> &index,
-               const Real sourceNominal, const Real strike,
-               const Option::Type longPositionType,
-               const Real shortPositionFactor, const Real target,
-               const Handle<Quote> accumulatedAmount)
+               const Real sourceNominal,
+               const boost::shared_ptr<StrikedTypePayoff> &shortPositionPayoff,
+               const boost::shared_ptr<StrikedTypePayoff> &longPositionPayoff,
+               const Real target, const CouponType couponType,
+               const Real shortPositionGearing, const Real longPositionGearing,
+               const Handle<Quote> accumulatedAmount,
+               const Handle<Quote> lastAmount)
     : schedule_(schedule), index_(index), sourceNominal_(sourceNominal),
-      strike_(strike), longPositionType_(longPositionType),
-      shortPositionFactor_(shortPositionFactor), target_(target),
-      accumulatedAmount_(accumulatedAmount) {
+      shortPositionPayoff_(shortPositionPayoff),
+      longPositionPayoff_(longPositionPayoff), target_(target),
+      couponType_(couponType), shortPositionGearing_(shortPositionGearing),
+      longPositionGearing_(longPositionGearing),
+      accumulatedAmount_(accumulatedAmount), lastAmount_(lastAmount) {
 
     QL_REQUIRE(schedule.size() >= 2,
                "FXTarf requires at least 2 schedule dates (" << schedule.size()
                                                              << ")");
+
+    for (Size i = 1; i < schedule.size(); ++i) {
+        Date fixingTmp = index_->fixingDate(schedule_.date(i));
+        if (!detail::simple_event(fixingTmp).hasOccurred()) {
+            openFixingDates_.push_back(fixingTmp);
+            openPaymentDates_.push_back(schedule_.date(i));
+        }
+    }
+
     registerWith(accumulatedAmount);
     registerWith(Settings::instance().evaluationDate());
 }
@@ -54,16 +68,61 @@ std::pair<Real, bool> FxTarf::accumulatedAmountAndSettlement() const {
     while (detail::simple_event(index_->fixingDate(schedule_.date(i)))
                .hasOccurred()) {
         if (accumulatedAmount_.empty()) {
-            acc += std::max(
-                static_cast<Real>(longPositionType_) *
-                    (index_->fixing(index_->fixingDate(schedule_.date(i))) -
-                     strike_),
-                0.);
+            payout(index_->fixing(index_->fixingDate(schedule_.date(i))), acc);
         }
         ++i;
     }
     bool settled = detail::simple_event(schedule_.date(i - 1)).hasOccurred();
     return std::make_pair(acc, settled);
+}
+
+Real FxTarf::lastAmount() const {
+    if (!accumulatedAmount_.empty()) {
+        if (lastAmount_.empty())
+            return 0.0;
+        else
+            return lastAmount_->value();
+    }
+    int i = 1;
+    while (detail::simple_event(index_->fixingDate(schedule_.date(i)))
+               .hasOccurred()) {
+        ++i;
+    }
+    return payout(index_->fixing(index_->fixingDate(schedule_.date(i - 1))));
+}
+
+Real FxTarf::nakedPayout(const Real fixing, Real& accAmount) const {
+    Real nakedPayoff = longPositionGearing_ *
+                       (*longPositionPayoff_)(fixing)-shortPositionGearing_ *(
+                           *shortPositionPayoff_)(fixing);
+    accAmount += nakedPayoff;
+    return nakedPayoff;
+}
+
+Real FxTarf::payout(const Real fixing, Real &accAmount) const {
+
+    Real accBefore = accAmount;
+    Real nakedPayoff = nakedPayout(fixing, accAmount);
+
+    if (accAmount < target_) {
+        return nakedPayoff;
+    }
+
+    switch (couponType_) {
+    case none:
+        return 0.0;
+    case capped:
+        return target_ - accBefore;
+    case full:
+        return nakedPayoff;
+    default:
+        QL_FAIL("unknown coupon type (" << couponType_ << ")");
+    }
+}
+
+Real FxTarf::payout(const Real fixing) const {
+    Real acc = accumulatedAmount();
+    return payout(fixing, acc);
 }
 
 void FxTarf::setupExpired() const { Instrument::setupExpired(); }
@@ -72,13 +131,14 @@ void FxTarf::setupArguments(PricingEngine::arguments *args) const {
     FxTarf::arguments *arguments = dynamic_cast<FxTarf::arguments *>(args);
     QL_REQUIRE(arguments != 0, "wrong argument type");
     arguments->schedule = schedule_;
+    arguments->openFixingDates = openFixingDates_;
+    arguments->openPaymentDates = openPaymentDates_;
     arguments->index = index_;
-    arguments->sourceNominal = sourceNominal_;
-    arguments->strike = strike_;
-    arguments->longPositionType = longPositionType_;
-    arguments->shortPositionFactor = shortPositionFactor_;
     arguments->target = target_;
+    arguments->sourceNominal = sourceNominal_;
     arguments->accumulatedAmount = accumulatedAmountAndSettlement().first;
+    arguments->lastAmount = lastAmount();
+    arguments->instrument = this;
 }
 
 void FxTarf::fetchResults(const PricingEngine::results *r) const {

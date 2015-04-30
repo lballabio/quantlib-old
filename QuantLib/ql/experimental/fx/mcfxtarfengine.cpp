@@ -21,11 +21,38 @@
 
 namespace QuantLib {
 
-void McFxTarfEngine::calculate() const {
-    // stub only
-    results_.value = 42.0;
-    results_.proxy = boost::make_shared<FxTarf::Proxy>();
-    return;
+FxTarfPathPricer::FxTarfPathPricer(const std::vector<Real> &fixingTimes,
+                                   const std::vector<Real> &discounts,
+                                   const Real accumulatedAmount,
+                                   const Real sourceNominal,
+                                   const FxTarf *instrument)
+    : fixingTimes_(fixingTimes), discounts_(discounts),
+      accumulatedAmount_(accumulatedAmount), sourceNominal_(sourceNominal),
+      instrument_(instrument) {
+    QL_REQUIRE(instrument_ != NULL, "no instrument given");
+}
+
+Real FxTarfPathPricer::operator()(const Path &path) const {
+    Real acc = accumulatedAmount_;
+    Real pathNpv = 0.0;
+    // we can precompute the fixing indices
+    if (fixingIndices_.size() == 0) {
+        for (Size i = 0; i < fixingTimes_.size(); ++i) {
+            if (close(fixingTimes_[i], path.time(i))) {
+                fixingIndices_.push_back(i);
+            }
+        }
+        QL_REQUIRE(fixingTimes_.size() == fixingIndices_.size(),
+                   "not all fixing times found in grid");
+    }
+    // regular computation
+    for (Size i = 0; i < fixingIndices_.size(); ++i) {
+        Real underlying = path[fixingIndices_[i]];
+        Real payout = instrument_->payout(underlying, acc);
+        acc += payout;
+        pathNpv += payout * discounts_[i] * sourceNominal_;
+    }
+    return pathNpv;
 }
 
 } // namespace QuantLib
