@@ -19,6 +19,8 @@
 
 #include <ql/experimental/fx/mcfxtarfengine.hpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
 FxTarfPathPricer::FxTarfPathPricer(const std::vector<Real> &fixingTimes,
@@ -37,20 +39,52 @@ Real FxTarfPathPricer::operator()(const Path &path) const {
     Real pathNpv = 0.0;
     // we can precompute the fixing indices
     if (fixingIndices_.size() == 0) {
-        for (Size i = 0; i < fixingTimes_.size(); ++i) {
-            if (close(fixingTimes_[i], path.time(i))) {
+        for (Size i = 0, j = 0; i < path.length(); ++i) {
+            if (close(fixingTimes_[j], path.time(i))) {
                 fixingIndices_.push_back(i);
+                ++j;
             }
         }
         QL_REQUIRE(fixingTimes_.size() == fixingIndices_.size(),
                    "not all fixing times found in grid");
     }
     // regular computation
-    for (Size i = 0; i < fixingIndices_.size(); ++i) {
-        Real underlying = path[fixingIndices_[i]];
-        Real payout = instrument_->payout(underlying, acc);
-        acc += payout;
-        pathNpv += payout * discounts_[i] * sourceNominal_;
+    //    std::cout << "***path***\n";
+    //    std::cout << "underlying;time;payout;acc" << std::endl;
+    // for (Size i = 0; i < fixingIndices_.size(); ++i) {
+    //     Real underlying = path[fixingIndices_[i]];
+    //     Real payout = instrument_->payout(underlying, acc);
+    //     pathNpv += payout * discounts_[i] * sourceNominal_;
+    //        std::cout << underlying << ";" << path.time(fixingIndices_[i]) <<
+    //        ";" << payout << ";" << acc << std::endl;
+    //    }
+
+    // computation writing out proxy information
+    std::vector<Real> partialNpvs(fixingTimes_.size(), 0.0), underlying(fixingTimes_.size(),0.0),
+        accumulatedAmount(fixingTimes_.size(), acc);
+    for (Size i = 0, j = 0; i < path.length(); ++i) {
+        if (i == fixingIndices_[j]) {
+            underlying[j] = path[i];
+            partialNpvs[j] = instrument_->payout(path[i], acc) * discounts_[j] *
+                             sourceNominal_;
+            accumulatedAmount[j] = acc;
+            pathNpv += partialNpvs[j];
+            ++j;
+        }
+    }
+    Real pathNpvTmp = pathNpv;
+    Size openFixingsTmp = fixingTimes_.size();
+    Real accumulatedTmp = accumulatedAmount_;
+    for (Size i = 0, j = 0; i < path.length(); ++i) {
+        if (i == fixingIndices_[j]) {
+            pathNpvTmp -= partialNpvs[j];
+            openFixingsTmp--;
+            accumulatedTmp = accumulatedAmount[j];
+            ++j;
+        }
+        Real residualTime = fixingTimes_.back() - path.time(i);
+        std::cout << openFixingsTmp << " " << path[i] << " " << residualTime
+                  << " " << accumulatedTmp << " " << pathNpvTmp << std::endl;
     }
     return pathNpv;
 }

@@ -35,6 +35,8 @@
 
 #include <boost/make_shared.hpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
 template <class RNG = PseudoRandom, class S = Statistics>
@@ -87,7 +89,8 @@ class MakeMcFxTarfEngine {
     MakeMcFxTarfEngine &withAbsoluteTolerance(Real tolerance);
     MakeMcFxTarfEngine &withMaxSamples(Size samples);
     MakeMcFxTarfEngine &withSeed(BigNatural seed);
-    MakeMcFxTarfEngine &withDiscount(const Handle<YieldTermStructure>& discount);
+    MakeMcFxTarfEngine &
+    withDiscount(const Handle<YieldTermStructure> &discount);
     // conversion to pricing engine
     operator boost::shared_ptr<PricingEngine>() const;
 
@@ -128,7 +131,7 @@ McFxTarfEngine<RNG, S>::McFxTarfEngine(
       process_(process), timeSteps_(timeSteps),
       timeStepsPerYear_(timeStepsPerYear), requiredSamples_(requiredSamples),
       maxSamples_(maxSamples), requiredTolerance_(requiredTolerance),
-      brownianBridge_(brownianBridge), seed_(seed) {
+    brownianBridge_(brownianBridge), seed_(seed), discount_(discount) {
     QL_REQUIRE(timeSteps != Null<Size>() || timeStepsPerYear != Null<Size>(),
                "no time steps provided");
     QL_REQUIRE(timeSteps == Null<Size>() || timeStepsPerYear == Null<Size>(),
@@ -138,6 +141,7 @@ McFxTarfEngine<RNG, S>::McFxTarfEngine(
     QL_REQUIRE(timeStepsPerYear != 0, "timeStepsPerYear must be positive, "
                                           << timeStepsPerYear
                                           << " not allowed");
+    QL_REQUIRE(!discount_.empty(),"no discount curve given");
     registerWith(process_);
 }
 
@@ -168,6 +172,7 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
         fixingTimes_.push_back(process_->time(arguments_.openFixingDates[i]));
         discounts_.push_back(
             discount_->discount(arguments_.openPaymentDates[i]));
+//        std::cout << "open fixing;" << arguments_.openFixingDates[i] << ";" << fixingTimes_[i] << std::endl;
     }
     McSimulation<SingleVariate, RNG, S>::calculate(
         requiredTolerance_, requiredSamples_, maxSamples_);
@@ -206,8 +211,7 @@ McFxTarfEngine<RNG, S>::pathGenerator() const {
 template <class RNG, class S>
 boost::shared_ptr<typename McFxTarfEngine<RNG, S>::path_pricer_type>
 McFxTarfEngine<RNG, S>::pathPricer() const {
-    return boost::make_shared<
-        typename McFxTarfEngine<RNG, S>::path_pricer_type>(
+    return boost::make_shared<FxTarfPathPricer>(
         fixingTimes_, discounts_, arguments_.accumulatedAmount,
         arguments_.sourceNominal, arguments_.instrument);
 }
@@ -281,8 +285,8 @@ MakeMcFxTarfEngine<RNG, S>::withSeed(BigNatural seed) {
 }
 
 template <class RNG, class S>
-inline MakeMcFxTarfEngine<RNG, S> &
-MakeMcFxTarfEngine<RNG, S>::withDiscount(const Handle<YieldTermStructure>& discount) {
+inline MakeMcFxTarfEngine<RNG, S> &MakeMcFxTarfEngine<RNG, S>::withDiscount(
+    const Handle<YieldTermStructure> &discount) {
     discount_ = discount;
     return *this;
 }
