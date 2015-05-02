@@ -91,11 +91,13 @@ Real FxTarf::lastAmount() const {
     return payout(index_->fixing(index_->fixingDate(schedule_.date(i - 1))));
 }
 
-Real FxTarf::nakedPayout(const Real fixing, Real& accAmount) const {
+Real FxTarf::nakedPayout(const Real fixing, Real &accAmount) const {
+    if (accAmount >= target_)
+        return 0.0;
     Real nakedPayoff = longPositionGearing_ *
                        (*longPositionPayoff_)(fixing)-shortPositionGearing_ *(
                            *shortPositionPayoff_)(fixing);
-    accAmount += nakedPayoff;
+    accAmount += std::max(nakedPayoff, 0.0);
     return nakedPayoff;
 }
 
@@ -106,17 +108,17 @@ Real FxTarf::payout(const Real fixing, Real &accAmount) const {
 
     if (accAmount < target_) {
         return nakedPayoff;
-    }
-
-    switch (couponType_) {
-    case none:
-        return 0.0;
-    case capped:
-        return target_ - accBefore;
-    case full:
-        return nakedPayoff;
-    default:
-        QL_FAIL("unknown coupon type (" << couponType_ << ")");
+    } else {
+        switch (couponType_) {
+        case none:
+            return 0.0;
+        case capped:
+            return std::max(target_ - accBefore, 0.0);
+        case full:
+            return nakedPayoff;
+        default:
+            QL_FAIL("unknown coupon type (" << couponType_ << ")");
+        }
     }
 }
 
