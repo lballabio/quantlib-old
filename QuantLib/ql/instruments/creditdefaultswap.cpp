@@ -51,24 +51,38 @@ namespace QuantLib {
       protectionStart_(protectionStart == Null<Date>() ? schedule[0] :
                                                          protectionStart) {
 
-		Date d = schedule[0];
-		if(schedule.fullInterface()) {
-			if(schedule.rule() == DateGeneration::CDS) {  // a standard CDS is identified by the schedule rule
-				Date evalDate = Settings::instance().evaluationDate();
-				if(protectionStart==Null<Date>()) protectionStart_ = evalDate + standardCdsStartDelayDays; // if protection start is given it is not set here
-				d = schedule.calendar().advance(evalDate,standardCdsUpfrontDelayDays*Days,schedule.businessDayConvention(),schedule.endOfMonth());
-				QL_REQUIRE(protectionStart_ >= schedule[0], "protection must start on or after accrual start for standard CDS");
-			}
-		}
-		else {
-			QL_REQUIRE(protectionStart_ <= schedule[0], "protection can not start after accrual for non standard CDS");
-		}
+        Date d = schedule[0];
+        try {
+            if (schedule.rule() ==
+                DateGeneration::CDS) { // a standard CDS is identified
+                                       // by the schedule rule
+                Date evalDate = Settings::instance().evaluationDate();
+                if (protectionStart == Null<Date>())
+                    protectionStart_ =
+                        evalDate + standardCdsStartDelayDays; // if
+                // protection
+                // start is
+                // given it
+                // is not set
+                // here
+                d = schedule.calendar().advance(
+                    evalDate, standardCdsUpfrontDelayDays * Days,
+                    schedule.businessDayConvention(), schedule.endOfMonth());
+                QL_REQUIRE(protectionStart_ >= schedule[0],
+                           "protection must start on or after "
+                           "accrual start for standard CDS");
+            }
+        } catch (...) {
+            QL_REQUIRE(protectionStart_ <= schedule[0],
+                       "protection can not start after accrual "
+                       "for non standard CDS");
+        }
 
         leg_ = FixedRateLeg(schedule)
-            .withNotionals(notional)
-            .withCouponRates(spread, dayCounter)
-            .withPaymentAdjustment(convention)
-			.withLastPeriodDayCounter(lastPeriodDayCounter);
+                   .withNotionals(notional)
+                   .withCouponRates(spread, dayCounter)
+                   .withPaymentAdjustment(convention)
+                   .withLastPeriodDayCounter(lastPeriodDayCounter);
         upfrontPayment_.reset(new SimpleCashFlow(0.0, d));
 
         if (!claim_)
@@ -96,25 +110,41 @@ namespace QuantLib {
       paysAtDefaultTime_(paysAtDefaultTime), claim_(claim),
       protectionStart_(protectionStart == Null<Date>() ? schedule[0] :
                                                          protectionStart) {
-		Date d = upfrontDate == Null<Date>() ? schedule[0] : upfrontDate;
 
-		if(schedule.fullInterface()) {
-			if(schedule.rule() == DateGeneration::CDS) {  // a standard CDS is identified by the schedule rule
-				Date evalDate = Settings::instance().evaluationDate();
-				if(protectionStart==Null<Date>()) protectionStart_ = evalDate + standardCdsStartDelayDays; // if protection start is given it is not set here
-				if(upfrontDate==Null<Date>()) d = schedule.calendar().advance(evalDate,standardCdsUpfrontDelayDays*Days,schedule.businessDayConvention(),schedule.endOfMonth()); // if upfront date is given it is not set here
-				QL_REQUIRE(protectionStart_ >= schedule[0], "protection must start on or after accrual start for standard CDS");
-			}
-		}
-		else {
-			QL_REQUIRE(protectionStart_ <= schedule[0], "protection can not start after accrual for non standard CDS");
-		}
+        Date d = upfrontDate == Null<Date>() ? schedule[0] : upfrontDate;
+
+        try {
+            if (schedule.rule() ==
+                DateGeneration::CDS) { // a standard CDS is identified
+                                       // by the schedule rule
+                Date evalDate = Settings::instance().evaluationDate();
+                if (protectionStart == Null<Date>())
+                    protectionStart_ =
+                        evalDate + standardCdsStartDelayDays; // if protection
+                // start is given it
+                // is not set here
+                if (upfrontDate == Null<Date>())
+                    d = schedule.calendar().advance(
+                        evalDate, standardCdsUpfrontDelayDays * Days,
+                        schedule.businessDayConvention(),
+                        schedule.endOfMonth()); // if upfront date is
+                                                // given it is not set
+                                                // here
+                QL_REQUIRE(protectionStart_ >= schedule[0],
+                           "protection must start on or after accrual "
+                           "start for standard CDS");
+            }
+        } catch (...) {
+            QL_REQUIRE(protectionStart_ <= schedule[0],
+                       "protection can not start after accrual for non "
+                       "standard CDS");
+        }
 
         leg_ = FixedRateLeg(schedule)
-            .withNotionals(notional)
-            .withCouponRates(runningSpread, dayCounter)
-            .withPaymentAdjustment(convention)
-			.withLastPeriodDayCounter(lastPeriodDayCounter);
+                   .withNotionals(notional)
+                   .withCouponRates(runningSpread, dayCounter)
+                   .withPaymentAdjustment(convention)
+                   .withLastPeriodDayCounter(lastPeriodDayCounter);
 
         upfrontPayment_.reset(new SimpleCashFlow(notional*upfront, d));
 
