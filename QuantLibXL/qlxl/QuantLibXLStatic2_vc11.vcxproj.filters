@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="register">
@@ -28,6 +28,9 @@
       <Filter>register</Filter>
     </ClCompile>
     <ClCompile Include="register\register_assetswap.cpp">
+      <Filter>register</Filter>
+    </ClCompile>
+    <ClCompile Include="register\register_basketlossmodels.cpp">
       <Filter>register</Filter>
     </ClCompile>
     <ClCompile Include="register\register_bonds.cpp">
@@ -75,6 +78,9 @@
     <ClCompile Include="register\register_daycounter.cpp">
       <Filter>register</Filter>
     </ClCompile>
+    <ClCompile Include="register\register_defaultbasket.cpp">
+      <Filter>register</Filter>
+    </ClCompile>
     <ClCompile Include="register\register_defaulttermstructures.cpp">
       <Filter>register</Filter>
     </ClCompile>
@@ -100,6 +106,9 @@
       <Filter>register</Filter>
     </ClCompile>
     <ClCompile Include="register\register_interpolation.cpp">
+      <Filter>register</Filter>
+    </ClCompile>
+    <ClCompile Include="register\register_latentmodels.cpp">
       <Filter>register</Filter>
     </ClCompile>
     <ClCompile Include="register\register_leg.cpp">
@@ -210,6 +219,9 @@
     <ClCompile Include="functions\assetswap.cpp">
       <Filter>functions</Filter>
     </ClCompile>
+    <ClCompile Include="functions\basketlossmodels.cpp">
+      <Filter>functions</Filter>
+    </ClCompile>
     <ClCompile Include="functions\bonds.cpp">
       <Filter>functions</Filter>
     </ClCompile>
@@ -252,6 +264,9 @@
     <ClCompile Include="functions\daycounter.cpp">
       <Filter>functions</Filter>
     </ClCompile>
+    <ClCompile Include="functions\defaultbasket.cpp">
+      <Filter>functions</Filter>
+    </ClCompile>
     <ClCompile Include="functions\defaulttermstructures.cpp">
       <Filter>functions</Filter>
     </ClCompile>
@@ -277,6 +292,9 @@
       <Filter>functions</Filter>
     </ClCompile>
     <ClCompile Include="functions\interpolation.cpp">
+      <Filter>functions</Filter>
+    </ClCompile>
+    <ClCompile Include="functions\latentmodels.cpp">
       <Filter>functions</Filter>
     </ClCompile>
     <ClCompile Include="functions\leg.cpp">

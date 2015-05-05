@@ -1,0 +1,386 @@
+<Category name='defaultbasket'>
+  <description>QuantLib Credit Basket</description>
+  <displayName>QuantLib Credit Basket</displayName>
+  <xlFunctionWizardCategory>QuantLib - Credit</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>ql/experimental/credit/basket.hpp</include>
+    <include>qlo/credit.hpp</include>
+    <include>qlo/defaultbasket.hpp</include>
+    <include>qlo/basketlossmodels.hpp</include>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>ql/experimental/credit/basket.hpp</include>
+    <include>qlo/credit.hpp</include>
+    <include>qlo/defaultbasket.hpp</include>
+    <include>qlo/basketlossmodels.hpp</include>
+  </serializationIncludes>
+  <copyright>
+    Copyright (C) 2014 Jose Aparicio
+  </copyright>
+
+  <Functions>
+
+    <Constructor name='qlCreditBasket'>
+      <libraryFunction>Basket</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='IssuerNames'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>Array containing the issuer names in the basket.</description>
+          </Parameter>
+          <Parameter name='Issuers'>
+            <type>QuantLib::Issuer</type>
+            <tensorRank>vector</tensorRank>
+            <description>Array of Issuers.</description>
+          </Parameter>
+          <!--FOR FIX NOTIONAL SIMPLE DEBT-->
+          <Parameter name='Notionals'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Notional by which each name enters the basket.</description>
+          </Parameter>
+          <Parameter name='ReferenceDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Basket inception date.</description>
+          </Parameter>
+          <Parameter name='AttachmentRatio'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Attachment ratio for losses affecting the basket.</description>
+          </Parameter>
+          <Parameter name='DettachmentRatio'>
+            <type>double</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Dettachment ratio for losses affecting the basket.</description>
+          </Parameter>
+          <Parameter name='Amortizing'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Whether is Quarterly amortizing.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlCreditBasketSetLossModel' type='QuantLib::Basket' >
+      <description>Assigns a Default Loss Model to a given basket. Subsequent basket computations will use that model.</description>
+      <libraryFunction>setLossModel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='DefaultLossModel'>
+            <type>QuantLib::DefaultLossModel</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Loss Model.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCreditBasketSize' type='QuantLib::Basket' >
+      <!--objectClass='QuantLibAddin::CreditBasket' libraryClass='QuantLib::Basket'-->
+      <description>Number of counterparties at inception.</description>
+      <libraryFunction>size</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Size</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Notional</description>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCreditBasketLiveNotional' type='QuantLib::Basket' > <!--objectClass='QuantLibAddin::CreditBasket' libraryClass='QuantLib::Basket'-->
+      <description>Non defaulted portfolio outstanding notional.</description>
+      <libraryFunction>remainingNotional</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Notional</description>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlCreditBasketLoss' type='QuantLib::Basket' > <!--objectClass='QuantLibAddin::CreditBasket' libraryClass='QuantLib::Basket'-->
+      <description>Losses from default events.</description>
+      <libraryFunction>cumulatedLoss</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Losses from default events.</description>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCrediBasketAttachLive' type='QuantLib::Basket' >
+      <!--objectClass='QuantLibAddin::CreditBasket' libraryClass='QuantLib::Basket'-->
+      <description>Remaining attach amount.</description>
+      <libraryFunction>remainingAttachmentAmount</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Remaining attach amount.</description>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCrediBasketDetachLive' type='QuantLib::Basket' >
+      <!--objectClass='QuantLibAddin::CreditBasket' libraryClass='QuantLib::Basket'-->
+      <description>Remaining detach amount.</description>
+      <libraryFunction>remainingDetachmentAmount</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Remaining detach amount.</description>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlExpectedTrancheLoss' type='QuantLib::Basket' >
+      <!--objectClass='QuantLibAddin::CreditBasket' libraryClass='QuantLib::Basket'-->
+      <description>Basket expected tranche according to the basket loss model.</description>
+      <libraryFunction>expectedTrancheLoss</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='DateForLoss' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Computes the expected loss on this date.</description>
+          </Parameter>
+        </Parameters>
+        </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Loss value.</description>
+      </ReturnValue>
+    </Member>
+  
+    <Member name='qlCreditBasketPercentile' type='QuantLib::Basket' >
+      <!--objectClass='QuantLibAddin::CreditBasket' libraryClass='QuantLib::Basket'-->
+      <description>Basket loss percentile amount (tranched).</description>
+      <libraryFunction>percentile</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='DateForLoss' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Computes the loss percentile on this date.</description>
+          </Parameter>
+          <Parameter name='PercentileValue'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Percentile requested.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Loss value for date and percentile.</description>
+      </ReturnValue>
+    </Member>
+    
+    <Member name='qlCreditBasketESF' type='QuantLib::Basket' >
+      <!--objectClass='QuantLibAddin::CreditBasket' libraryClass='QuantLib::Basket'-->
+      <description>Basket loss expected shortfall amount (tranched).</description>
+      <libraryFunction>expectedShortfall</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='DateForLoss' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Computes the loss percentile on this date.</description>
+          </Parameter>
+          <Parameter name='PercentileValue'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Percentile requested.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>ESF loss value for date and percentile.</description>
+      </ReturnValue>
+    </Member>
+
+    
+    <Member name='qlCreditBasketNthEventP' type='QuantLib::Basket' >
+      <!--objectClass='QuantLibAddin::CreditBasket' libraryClass='QuantLib::Basket'-->
+      <description>Probability of each basket name to default in the given order.</description>
+      <libraryFunction>probsBeingNthEvent</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='EventOrder' >
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The order of default for which the probability is returned.</description>
+          </Parameter>
+          <Parameter name='DateForLoss' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Computes the probabilities on this date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+        <description>Probabilities.</description>
+      </ReturnValue>
+    </Member>
+
+    
+    <Member name='qlCreditBasketProbLoss' type='QuantLib::Basket' >
+      <!--objectClass='QuantLibAddin::CreditBasket' libraryClass='QuantLib::Basket'-->
+      <description>Probability of basket losses to be over a value at a given date.</description>
+      <libraryFunction>probOverLoss</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='DateForLoss' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Computes the probabilities on this date.</description>
+          </Parameter>
+          <Parameter name='LossFractionValue' >
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Value of losses as a fraction of initial tanche amount.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Probability.</description>
+      </ReturnValue>
+    </Member>
+
+    
+    <Member name='qlCreditBasketSplitLoss' type='QuantLib::Basket' >
+      <!--objectClass='QuantLibAddin::CreditBasket' libraryClass='QuantLib::Basket'-->
+      <description>Splits a loss amount by counterparty contribution.</description>
+      <libraryFunction>splitVaRLevel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='DateForLoss' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Computes the probabilities on this date.</description>
+          </Parameter>
+          <Parameter name='LossValue' >
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Value of losses in absolute amount.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>vector</tensorRank>
+        <description>Probability.</description>
+      </ReturnValue>
+    </Member>
+
+    <!--
+    Disposable<std::vector<Real> > splitLossLevel(const Date& date, Real loss)
+    
+    std::vector<Size>& Basket::liveList()
+    std::vector<std::string>& Basket::remainingNames()
+    remainingTrancheNotional() 
+    Size remainingSize() 
+    
+    -->
+
+    <Member name='qlCreditBasketDefaulCorrel' type='QuantLib::Basket' >
+      <description>Default correlation between two basket issuers.</description>
+      <libraryFunction>defaultCorrelation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='DateCorrel' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Computes the correlation on this date.</description>
+          </Parameter>
+          <Parameter name='IndexIssuer1' >
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>First name.</description>
+          </Parameter>
+          <Parameter name='IndexIssuer2' >
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Second name.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Correlation.</description>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+
+</Category>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -90,10 +90,10 @@
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.xll</TargetExt>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibXLDynamic-vc120-mt-gd-1_5_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QuantLibXLDynamic-vc120-x64-mt-gd-1_5_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibXLDynamic-vc120-mt-1_5_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QuantLibXLDynamic-vc120-x64-mt-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibXLDynamic-vc120-mt-gd-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QuantLibXLDynamic-vc120-x64-mt-gd-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibXLDynamic-vc120-mt-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QuantLibXLDynamic-vc120-x64-mt-1_6_0</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
@@ -141,7 +141,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildDynamic\vc120\$(Platform)\$(Configuration)/QuantLibXLDynamic-vc120-mt-gd-1_5_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildDynamic\vc120\$(Platform)\$(Configuration)/QuantLibXLDynamic-vc120-mt-gd-1_6_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
@@ -195,7 +195,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildDynamic\vc120\$(Platform)\$(Configuration)/QuantLibXLDynamic-vc120-mt-gd-1_5_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildDynamic\vc120\$(Platform)\$(Configuration)/QuantLibXLDynamic-vc120-mt-gd-1_6_0.lib</ImportLibrary>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
@@ -250,7 +250,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildDynamic\vc120\$(Platform)\$(Configuration)/QuantLibXLDynamic-vc120-mt-1_5_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildDynamic\vc120\$(Platform)\$(Configuration)/QuantLibXLDynamic-vc120-mt-1_6_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>true</OptimizeReferences>
@@ -307,7 +307,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildDynamic\vc120\$(Platform)\$(Configuration)/QuantLibXLDynamic-vc120-mt-1_5_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildDynamic\vc120\$(Platform)\$(Configuration)/QuantLibXLDynamic-vc120-mt-1_6_0.lib</ImportLibrary>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>true</OptimizeReferences>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
@@ -322,6 +322,7 @@
     <ClCompile Include="functions\accountingengines.cpp" />
     <ClCompile Include="functions\alphaform.cpp" />
     <ClCompile Include="functions\assetswap.cpp" />
+    <ClCompile Include="functions\basketlossmodels.cpp" />
     <ClCompile Include="functions\bonds.cpp" />
     <ClCompile Include="functions\browniangenerators.cpp" />
     <ClCompile Include="functions\btp.cpp" />
@@ -337,6 +338,7 @@
     <ClCompile Include="functions\curvestate.cpp" />
     <ClCompile Include="functions\date.cpp" />
     <ClCompile Include="functions\daycounter.cpp" />
+    <ClCompile Include="functions\defaultbasket.cpp" />
     <ClCompile Include="functions\defaulttermstructures.cpp" />
     <ClCompile Include="functions\driftcalculators.cpp" />
     <ClCompile Include="functions\evolutiondescription.cpp" />
@@ -346,6 +348,7 @@
     <ClCompile Include="functions\index.cpp" />
     <ClCompile Include="functions\instruments.cpp" />
     <ClCompile Include="functions\interpolation.cpp" />
+    <ClCompile Include="functions\latentmodels.cpp" />
     <ClCompile Include="functions\leg.cpp" />
     <ClCompile Include="functions\manual.cpp" />
     <ClCompile Include="functions\marketmodelevolvers.cpp" />
@@ -386,6 +389,7 @@
     <ClCompile Include="register\register_all.cpp" />
     <ClCompile Include="register\register_alphaform.cpp" />
     <ClCompile Include="register\register_assetswap.cpp" />
+    <ClCompile Include="register\register_basketlossmodels.cpp" />
     <ClCompile Include="register\register_bonds.cpp" />
     <ClCompile Include="register\register_browniangenerators.cpp" />
     <ClCompile Include="register\register_btp.cpp" />
@@ -401,6 +405,7 @@
     <ClCompile Include="register\register_curvestate.cpp" />
     <ClCompile Include="register\register_date.cpp" />
     <ClCompile Include="register\register_daycounter.cpp" />
+    <ClCompile Include="register\register_defaultbasket.cpp" />
     <ClCompile Include="register\register_defaulttermstructures.cpp" />
     <ClCompile Include="register\register_driftcalculators.cpp" />
     <ClCompile Include="register\register_evolutiondescription.cpp" />
@@ -410,6 +415,7 @@
     <ClCompile Include="register\register_index.cpp" />
     <ClCompile Include="register\register_instruments.cpp" />
     <ClCompile Include="register\register_interpolation.cpp" />
+    <ClCompile Include="register\register_latentmodels.cpp" />
     <ClCompile Include="register\register_leg.cpp" />
     <ClCompile Include="register\register_marketmodelevolvers.cpp" />
     <ClCompile Include="register\register_marketmodels.cpp" />
@@ -470,7 +476,7 @@
     <ProjectReference Include="..\..\QuantLibAddin\QuantLibObjects4_vc12.vcxproj">
       <Project>{cab8330c-6424-4455-9285-3654587ef71f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\QuantLib\QuantLib_vc12.vcxproj">
+    <ProjectReference Include="..\..\QuantLib\QuantLib.vcxproj">
       <Project>{ad0a27da-91da-46a2-acbd-296c419ed3aa}</Project>
     </ProjectReference>
   </ItemGroup>

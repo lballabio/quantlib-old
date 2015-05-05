@@ -23,6 +23,10 @@
 
 /*! \page history Version History
 
+<strong>Release 1.5.0 - April 2015</strong>
+
+- Maintenance release.
+
 <strong>Release 1.4.0 - June 2014</strong>
 
 - When generating documentation files, suppress whitespace before ref directive
