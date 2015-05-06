@@ -37,14 +37,50 @@ class FxTarf : public Instrument, public ProxyInstrument {
   public:
     //! coupon types
     enum CouponType { none, capped, full };
+
     //! forward declarations
     class arguments;
     class results;
     class engine;
+
     //! proxy description
     struct Proxy : ProxyDescription {
-        bool dummy; // stub implementation
+        struct ProxyFunction {
+            virtual Real operator()(const Real spot) const = 0;
+        };
+        // maximum number of open fixings
+        Size maxNumberOpenFixings;
+        // buckets for accumulated amonut, e.g.
+        // 0.0, 0.1, 0.2, 0.3, 0.4 means
+        // [0.0,0.1) has index 0
+        // [0.1,0.2) has index 1
+        // ...
+        // [0.4,target] has index 4
+        std::vector<Real> accBucketLimits;
+        // proxy functions
+        // first index is openFixings-1
+        // second index is accAmountIndex
+        // A function F should implement
+        // operator()(Real spot) = npv
+        // min() = min spot seen in the simulation
+        // max() = max spot seen in the simulation
+        std::vector<std::vector<boost::shared_ptr<ProxyFunction> > > functions;
+        void validate() const {
+            QL_REQUIRE(functions.size() == maxNumberOpenFixings,
+                       "maximum number of open fixings ("
+                           << maxNumberOpenFixings
+                           << ") must be equal to function rows ("
+                           << functions.size() << ")");
+            for (Size i = 0; i < functions.size(); ++i) {
+                QL_REQUIRE(functions[i].size() == accBucketLimits.size(),
+                           "number of acc amount buckets ("
+                               << accBucketLimits.size()
+                               << ") must be equal to function columns ("
+                               << functions[i].size() << ") in row " << i);
+            }
+        }
     };
+
     //! \name Constructors
     //@{
     /*! If the accumulatedAmount is not null, no past fixings are
@@ -65,6 +101,7 @@ class FxTarf : public Instrument, public ProxyInstrument {
            const Real longPositionGearing = 1.0,
            const Handle<Quote> accumulatedAmount = Handle<Quote>(),
            const Handle<Quote> lastAmount = Handle<Quote>());
+
     //@}
     //! \name Instrument interface
     //@{
@@ -73,11 +110,13 @@ class FxTarf : public Instrument, public ProxyInstrument {
     bool isExpired() const;
     void setupArguments(PricingEngine::arguments *) const;
     void fetchResults(const PricingEngine::results *) const;
+
     //@}
     //! \name Additional interface
     //@{
     Date startDate() const;
     Date maturityDate() const;
+
     /*! this is the accumulated amount, but always assuming
         the coupon type full
      */
@@ -90,10 +129,13 @@ class FxTarf : public Instrument, public ProxyInstrument {
     }
     Real target() const { return target_; }
     Real sourceNominal() const { return sourceNominal_; }
+
     //! description for proxy pricing
     boost::shared_ptr<ProxyDescription> proxy() const;
+
     /*! payout in domestic currency (for nominal 1) */
     Real payout(const Real fixing) const;
+
     /*! same as above, but assuming the given accumulated amount,
         which is in addition updated to the new value after the
         fixing */
@@ -109,7 +151,9 @@ class FxTarf : public Instrument, public ProxyInstrument {
     /* payout assuming a full coupon and the given accumulated amount,
        which is updated at the same time (for nominal 1) */
     Real nakedPayout(const Real fixing, Real &accumulatedAmount) const;
+
     std::pair<Real, bool> accumulatedAmountAndSettlement() const;
+
     // termsheet data
     const Schedule schedule_;
     const boost::shared_ptr<FxIndex> index_;
@@ -119,9 +163,11 @@ class FxTarf : public Instrument, public ProxyInstrument {
     const Real target_;
     const CouponType couponType_;
     const Real shortPositionGearing_, longPositionGearing_;
+
     // additional data
     std::vector<Date> openFixingDates_, openPaymentDates_;
     Handle<Quote> accumulatedAmount_, lastAmount_;
+
     // proxy pricing information
     mutable boost::shared_ptr<ProxyDescription> proxy_;
 };
@@ -133,6 +179,7 @@ class FxTarf::arguments : public virtual PricingEngine::arguments {
     boost::shared_ptr<FxIndex> index;
     Real target, sourceNominal;
     Real accumulatedAmount, lastAmount;
+    bool isLastAmountSettled;
     const FxTarf *instrument;
     void validate() const;
 };

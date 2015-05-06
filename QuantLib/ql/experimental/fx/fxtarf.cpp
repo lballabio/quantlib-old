@@ -138,8 +138,10 @@ void FxTarf::setupArguments(PricingEngine::arguments *args) const {
     arguments->index = index_;
     arguments->target = target_;
     arguments->sourceNominal = sourceNominal_;
-    arguments->accumulatedAmount = accumulatedAmountAndSettlement().first;
     arguments->lastAmount = lastAmount();
+    std::pair<Real,bool> accSettlTmp = accumulatedAmountAndSettlement();
+    arguments->accumulatedAmount = accSettlTmp.first;
+    arguments->isLastAmountSettled = accSettlTmp.second;
     arguments->instrument = this;
 }
 
@@ -156,7 +158,8 @@ Date FxTarf::maturityDate() const { return schedule_.dates().back(); }
 
 boost::shared_ptr<ProxyInstrument::ProxyDescription> FxTarf::proxy() const {
     calculate();
-    QL_REQUIRE(proxy_ != NULL, "no valid proxy available");
+    QL_REQUIRE(proxy_ != NULL, "no proxy available");
+    proxy_->validate();
     return proxy_;
 }
 
