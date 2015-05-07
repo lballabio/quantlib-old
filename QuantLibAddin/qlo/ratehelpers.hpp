@@ -6,6 +6,7 @@
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2006, 2007, 2008, 2009, 2012 Ferdinando Ametrano
  Copyright (C) 2007 Marco Bianchetti
+ Copyright (C) 2015 Maddalena Zanzi
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -217,6 +218,24 @@ namespace QuantLibAddin {
             const bool useCleanPrice,
             bool permanent);
     };
+
+    class FxSwapRateHelper : public RateHelper {
+    public:
+        FxSwapRateHelper(
+         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+         const QuantLib::Handle<QuantLib::Quote>& fx,
+         const QuantLib::Handle<QuantLib::Quote>& spot,
+         const QuantLib::Period& tenor,
+         QuantLib::Natural fixingDays,
+         const QuantLib::Calendar& calendar,
+         QuantLib::BusinessDayConvention convention,
+         bool endOfMonth,
+         bool isCurrencyPairCollateralBased,
+         const QuantLib::Handle<QuantLib::YieldTermStructure>& collateralCurve,
+         bool permanent);
+
+    };
+
 
 
     // Processes the set of curve bootstrapping instruments

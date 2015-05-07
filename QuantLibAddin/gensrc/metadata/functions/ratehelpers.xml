@@ -33,6 +33,7 @@
     Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Aurelien Chanudet
+    Copyright (C) 2015 Maddalena Zanzi
   </copyright>
   <Functions>
 
@@ -809,6 +810,170 @@
         </Parameters>
       </ParameterList>
     </Constructor>
+
+    <Constructor name='qlFxSwapRateHelper'>
+      <libraryFunction>FxSwapRateHelper</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FxPoint' exampleValue='0.136565'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>fx point quote.</description>
+          </Parameter>
+          <Parameter name='Spot' exampleValue='1.076565'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>fx spot quote.</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='3M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fx swap length (e.g. 3M for three months).</description>
+          </Parameter>
+          <Parameter name='FixingDays' exampleValue='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 2).</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='Convention' exampleValue='Modified Following'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business day convention (e.g. Modified Following).</description>
+          </Parameter>
+          <Parameter name='EndOfMonth' exampleValue='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>End of Month rule (TRUE for end of month to end of month termination date, FALSE otherwise).</description>
+          </Parameter>
+          <Parameter name='IsCurrencyPairCollateralBased' exampleValue='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if collateral currency is the base currency of the currency pair, FALSE otherwise.</description>
+          </Parameter>
+          <Parameter name='CollateralCurve' exampleValue='EURON'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>collateral YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlFxSwapRateHelperSpotValue' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the fx spot quote value for the given FxSwapRateHelper object.</description>
+      <libraryFunction>spot</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperTenor' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the tenor for the given FxSwapRateHelper object.</description>
+      <libraryFunction>tenor</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperFixingDays' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the number of fixing days for the given FxSwapRateHelper object.</description>
+      <libraryFunction>fixingDays</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Natural</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperCalendar' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the calendar for the given FxSwapRateHelper object.</description>
+      <libraryFunction>calendar</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Calendar</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperBDC' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the business day convention for the given FxSwapRateHelper object.</description>
+      <libraryFunction>businessDayConvention</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::BusinessDayConvention</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperEOM' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the end of month flag for the given FxSwapRateHelper object.</description>
+      <libraryFunction>endOfMonth</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
     <Procedure name='qlRateHelperSelection'>
       <description>selects rate helpers for bootstrapping.</description>
