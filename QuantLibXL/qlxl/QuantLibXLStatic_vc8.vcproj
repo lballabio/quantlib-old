@@ -77,14 +77,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-sgd-1_5_0.xll"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-sgd-1_6_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-1_5_0.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-1_5_0.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-1_6_0.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-sgd-1_6_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -177,14 +177,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-gd-1_5_0.xll"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-gd-1_6_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-1_5_0.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-1_5_0.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-1_6_0.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-gd-1_6_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -277,13 +277,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-s-1_5_0.xll"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-s-1_6_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-1_5_0.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-1_5_0.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-1_6_0.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-s-1_6_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -376,13 +376,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc80-mt-1_5_0.xll"
+				OutputFile="..\xll\QuantLibXL-vc80-mt-1_6_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
-				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-1_5_0.pdb"
-				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-1_5_0.lib"
+				ProgramDatabaseFile=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-1_6_0.pdb"
+				ImportLibrary=".\buildStatic\vc80\$(ConfigurationName)/QuantLibAddinStatic-vc80-mt-1_6_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -448,6 +448,10 @@
 				>
 			</File>
 			<File
+				RelativePath="register\register_basketlossmodels.cpp"
+				>
+			</File>
+			<File
 				RelativePath="register\register_bonds.cpp"
 				>
 			</File>
@@ -508,6 +512,10 @@
 				>
 			</File>
 			<File
+				RelativePath="register\register_defaultbasket.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\register\register_defaulttermstructures.cpp"
 				>
 			</File>
@@ -541,6 +549,10 @@
 			</File>
 			<File
 				RelativePath="register\register_interpolation.cpp"
+				>
+			</File>
+			<File
+				RelativePath="register\register_latentmodels.cpp"
 				>
 			</File>
 			<File
@@ -692,6 +704,10 @@
 				>
 			</File>
 			<File
+				RelativePath="functions\basketlossmodels.cpp"
+				>
+			</File>
+			<File
 				RelativePath="functions\bonds.cpp"
 				>
 			</File>
@@ -752,6 +768,10 @@
 				>
 			</File>
 			<File
+				RelativePath="functions\defaultbasket.cpp"
+				>
+			</File>
+			<File
 				RelativePath="functions\defaulttermstructures.cpp"
 				>
 			</File>
@@ -789,6 +809,10 @@
 			</File>
 			<File
 				RelativePath="functions\interpolation.cpp"
+				>
+			</File>
+			<File
+				RelativePath="functions\latentmodels.cpp"
 				>
 			</File>
 			<File

@@ -260,7 +260,7 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::BondHelper>(new
             QuantLib::BondHelper(price, bond, useCleanPrice));
-        quoteName_ = f(properties->getSystemProperty("CleanPrice"));
+        quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     FixedRateBondHelper::FixedRateBondHelper(
@@ -544,9 +544,9 @@ namespace QuantLibAddin {
             void visit(QuantLib::FuturesRateHelper& h) {
                 QuantLib::Rate futureRate = 1.0 - h.quote()->value()/100.0;
                 QuantLib::Rate convAdj = h.convexityAdjustment();
-                QL_ENSURE(convAdj >= 0.0,
-                          "Negative (" << convAdj <<
-                          ") futures convexity adjustment");
+                // Convexity, as FRA/futures adjustment, has been used in the
+                // past to take into account futures margining vs FRA.
+                // Therefore, there's no requirement for it to be non-negative.
                 rate_ = futureRate - convAdj;
             }
             void visit(QuantLib::SwapRateHelper& h) {
