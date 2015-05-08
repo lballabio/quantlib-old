@@ -306,13 +306,13 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
     // then (spot,npv) pairs are divided into two segments
     // [spotMin,spotMin+relCutOff*(spotMax-spotMin)) and
     // [spotMin+relCutOff*(spotMax-spotMin,spotMax]
-    Real relCutoff = 0.75;
+    Real relCutoff = 0.80;
     // we require minCutoffRatio*(1.0-relCutoff)*totalNoDataPoints
     // to be still in the smaller (spot,npv) segment, otherwise
     // the cutoff will be lowered by a factor of cutoffShrinkFactor
     // until we reach this critical size
-    Real minCutoffRatio = 0.50;
-    Real cutoffShrinkFactor = 0.95;
+    Real minCutoffRatio = 0.33;
+    Real cutoffShrinkFactor = 0.99;
     // this is the minimum number of points required for regression
     Size minRegPoints = 3;
 
@@ -469,10 +469,9 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
             std::vector<Real> xTmp1, xTmp2, yTmp1, yTmp2;
             Real cutoff = spotMin + relCutoffTmp * (spotMax - spotMin);
             // we want a certain percentage of data still in the smaller
-            // data
-            // set, otherwise we lower the cutoff
+            // data set, otherwise we lower the cutoff
             Size minDataSegment =
-                static_cast<Size>(((1.0 - relCutoff) * minCutoffRatio) *
+                static_cast<Size>((1.0 - relCutoffTmp) * minCutoffRatio *
                                   xTmp.size()) +
                 1;
             Size sizeA, sizeB, criticalSize;
@@ -485,6 +484,7 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                           << "relCutoffTmp=" << relCutoffTmp
                           << " cutoff=" << cutoff
                           << ", segments size = " << sizeA << "," << sizeB
+                          << " minimum size required " << minDataSegment
                           << std::endl;
                 criticalSize = isCall ? sizeB : sizeA;
                 if (((isCall && relCutoffTmp > 0.5) ||
@@ -497,13 +497,15 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                         relCutoffTmp /= std::min(cutoffShrinkFactor, 1.0);
                     cutoff = spotMin + relCutoffTmp * (spotMax - spotMin);
                     std::cerr << "too few data in critical segment "
-                              << " (" << criticalSize
-                              << ") so adjust the cutoff to " << cutoff
-                              << std::endl;
+                              << " (" << criticalSize << "), should be "
+                              << minDataSegment << " so adjust the cutoff to "
+                              << cutoff << " (relCutoffTmp=" << relCutoffTmp
+                              << ")" << std::endl;
                 }
-            } while (((isCall && relCutoffTmp > 0.5) ||
-                      (!isCall && relCutoffTmp < 0.5)) &&
-                     (sizeB < minDataSegment || sizeB < minRegPoints));
+            } while (
+                ((isCall && relCutoffTmp > 0.5) ||
+                 (!isCall && relCutoffTmp < 0.5)) &&
+                (criticalSize < minDataSegment || criticalSize < minRegPoints));
             // copy the data to the final vectors used for the regression
             for (Size i = 0; i < xTmp.size(); ++i) {
                 if (xTmp[i].first <= cutoff) {
