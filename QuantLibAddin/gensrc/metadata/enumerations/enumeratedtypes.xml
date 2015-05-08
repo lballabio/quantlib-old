@@ -1468,11 +1468,11 @@
       <EnumeratedTypes>
         <EnumeratedType>
           <string>IMM</string>
-          <value>QuantLib::FuturesType::IMM</value>
+          <value>QuantLib::IMM</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>ASX</string>
-          <value>QuantLib::FuturesType::ASX</value>
+          <value>QuantLib::ASX</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
