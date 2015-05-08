@@ -1,11 +1,12 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2008, 2009, 2012 Ferdinando Ametrano
+ Copyright (C) 2006-2009, 2012, 2015 Ferdinando Ametrano
  Copyright (C) 2006, 2007 Marco Bianchetti
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2015 Maddalena Zanzi
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -93,20 +94,22 @@ namespace QuantLibAddin {
     FuturesRateHelper::FuturesRateHelper(
             const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
-            const QuantLib::Date& immDate,
+            QuantLib::FuturesType type,
+            const QuantLib::Date& date,
             const shared_ptr<QuantLib::IborIndex>& iborIndex,
             const QuantLib::Handle<QuantLib::Quote>& convAdj,
             bool permanent)
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
-            QuantLib::FuturesRateHelper(price, immDate, iborIndex, convAdj));
+            QuantLib::FuturesRateHelper(price, date, iborIndex,convAdj,type));
         quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     FuturesRateHelper::FuturesRateHelper(
             const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
-            const QuantLib::Date& immDate,
+            QuantLib::FuturesType type,
+            const QuantLib::Date& date,
             QuantLib::Natural lengthInMonths,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
@@ -117,20 +120,22 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FuturesRateHelper(price,
-                                        immDate,
+                                        date,
                                         lengthInMonths,
                                         calendar,
                                         convention,
                                         endOfMonth,
                                         dayCounter,
-                                        convAdj));
+                                        convAdj,
+                                        type));
         quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     FuturesRateHelper::FuturesRateHelper(
             const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
-            const QuantLib::Date& immDate,
+            QuantLib::FuturesType type,
+            const QuantLib::Date& date,
             const QuantLib::Date& endDate,
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& convAdj,
@@ -138,10 +143,11 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FuturesRateHelper(price,
-                                        immDate,
+                                        date,
                                         endDate,
                                         dayCounter,
-                                        convAdj));
+                                        convAdj,
+                                        type));
         quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
