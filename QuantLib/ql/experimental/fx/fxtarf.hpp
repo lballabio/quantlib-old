@@ -178,6 +178,7 @@ class FxTarf::arguments : public virtual PricingEngine::arguments {
     std::vector<Date> openFixingDates, openPaymentDates;
     boost::shared_ptr<FxIndex> index;
     Real target, sourceNominal;
+    Option::Type longPositionType;
     Real accumulatedAmount, lastAmount;
     bool isLastAmountSettled;
     const FxTarf *instrument;

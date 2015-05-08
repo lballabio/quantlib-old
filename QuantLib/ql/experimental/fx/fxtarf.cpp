@@ -138,6 +138,7 @@ void FxTarf::setupArguments(PricingEngine::arguments *args) const {
     arguments->index = index_;
     arguments->target = target_;
     arguments->sourceNominal = sourceNominal_;
+    arguments->longPositionType = longPositionPayoff_->optionType();
     arguments->lastAmount = lastAmount();
     std::pair<Real,bool> accSettlTmp = accumulatedAmountAndSettlement();
     arguments->accumulatedAmount = accSettlTmp.first;
