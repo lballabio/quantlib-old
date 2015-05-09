@@ -50,6 +50,8 @@ class FxTarf : public Instrument, public ProxyInstrument {
         };
         // maximum number of open fixings
         Size maxNumberOpenFixings;
+        // last payment date, the npvs are forward npvs w.r.t. this date
+        Date lastPaymentDate;
         // buckets for accumulated amonut, e.g.
         // 0.0, 0.1, 0.2, 0.3, 0.4 means
         // [0.0,0.1) has index 0
@@ -62,8 +64,6 @@ class FxTarf : public Instrument, public ProxyInstrument {
         // second index is accAmountIndex
         // A function F should implement
         // operator()(Real spot) = npv
-        // min() = min spot seen in the simulation
-        // max() = max spot seen in the simulation
         std::vector<std::vector<boost::shared_ptr<ProxyFunction> > > functions;
         void validate() const {
             QL_REQUIRE(functions.size() == maxNumberOpenFixings,

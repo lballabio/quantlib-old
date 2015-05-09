@@ -31,12 +31,10 @@
 
 namespace QuantLib {
 
-namespace {
-
 class FxTarfEngine : public FxTarf::engine {
   public:
     //! constructor
-    McFxTarfEngine(const Handle<YieldTermStructure> discount);
+    FxTarfEngine(const Handle<YieldTermStructure> discount);
 
     void calculate() const;
 
@@ -45,54 +43,6 @@ class FxTarfEngine : public FxTarf::engine {
     mutable Real unsettledAmountNpv_;
 };
 
-// Implementation
-
-FxTarfEngine::FxTarfEngine(const Handle<YieldTermStructure> discount)
-    : discount_(discount) {
-    QL_REQUIRE(!discount_.empty(), "no discount curve given");
-    registerWith(discount_);
-}
-
-FxTarfEngine::FxTarfEngine::calculate() const {
-
-    Date today = Settings::instance().evaluationDate();
-
-    // for the case where we have a non settled amount we need the discount
-    // factor for the associated payment date
-
-    int nextPaymentIndex = 1;
-    while (detail::simple_event(arguments_.schedule.date(nextPaymentIndex))
-               .hasOccurred())
-        ++nextPaymentIndex;
-
-    // npv of a already fixed, but unsettled amount
-
-    unsettledAmountNpv_ = 0.0;
-    if (!arguments_.isLastAmountSettled) {
-        unsettledAmountNpv_ =
-            arguments_.lastAmount *
-            discount_->discount(arguments_.schedule.date(nextPaymentIndex));
-    }
-
-    // case where only one fixing is left which is today or everything is
-    // fixed already
-
-    if (arguments_.openFixingDates.back() <= today) {
-        Real lastFixingNpv = 0.0;
-        if (arguments_.openFixingDates.back() == today) {
-            lastFixingNpv =
-                arguments_.instrument->payout(arguments_.index->fixing(
-                    arguments_.openFixingDates.back())) *
-                arguments_.sourceNominal * discount_->discount(today);
-        }
-        results_.value = unsettledAmountNpv + lastFixingNpv;
-        results_.errorEstimate = 0.0;
-        return;
-    }
-
-    // we have at least one fixing left which is tommorow or later
-    // this is handled by specialized engines ...
-}
 
 } // namespace QuantLib
 #endif

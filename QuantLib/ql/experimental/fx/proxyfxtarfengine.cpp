@@ -19,19 +19,50 @@
 
 #include <ql/experimental/fx/proxyfxtarfengine.hpp>
 
-#include <iostream>
+#include <iostream> // just for debug
 
 namespace QuantLib {
 
 void ProxyFxTarfEngine::calculate() const {
-    // stub only
-    results_.value = exchangeRate_->value();
-    // debug results
-    std::cout << "ProxyEngine: evalDate = " << Settings::instance().evaluationDate() << "\n";
-    std::cout << "             FX rate  = " << exchangeRate_->value() << "\n";
-    std::cout << "             acc      = " << arguments_.accumulatedAmount << "\n";
-    std::cout << "             mat      = " << arguments_.schedule.dates().back() << "\n";
-    return;
+
+    // handle the trivial cases
+    FxTarfEngine::calculate();
+
+    // determine the number of open fixings
+    Date today = Settings::instance().evaluationDate();
+    Size numberOpenFixings =
+        std::distance(std::upper_bound(arguments_.openFixingDates.begin(),
+                                       arguments_.openFixingDates.end(), today),
+                      arguments_.openFixingDates.end());
+
+    // determine the accumulated amount index
+    Size accInd = std::upper_bound(proxy_->accBucketLimits.begin(),
+                                   proxy_->accBucketLimits.end(),
+                                   arguments_.accumulatedAmount) -
+                  proxy_->accBucketLimits.begin() - 1;
+
+    // sanity checks
+    QL_REQUIRE(numberOpenFixings <= proxy_->maxNumberOpenFixings,
+               "number of open fixings ("
+                   << numberOpenFixings
+                   << ") must be less or equal the number of open fixings "
+                      "provided by the proxy object ("
+                   << proxy_->maxNumberOpenFixings << ")");
+    QL_REQUIRE(accInd >= 0 && accInd < proxy_->accBucketLimits.size(),
+               "accumulated amount index ("
+                   << accInd << ") out of range given by the proxy (0..."
+                   << proxy_->accBucketLimits.size() << ")");
+
+    // loggin
+    std::cerr << "proxy engine: use function (openFixingsIndex, accIndex) = ("
+              << (numberOpenFixings - 1) << "," << accInd << ")" << std::endl;
+
+    // get the proxy function and return the npv, on forward basis
+    results_.value =
+        proxy_->functions[numberOpenFixings - 1][accInd]->operator()(
+            exchangeRate_->value()) *
+            discount_->discount(proxy_->lastPaymentDate) +
+        unsettledAmountNpv_;
 }
 
 } // namespace QuantLib

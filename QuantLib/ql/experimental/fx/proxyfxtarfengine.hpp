@@ -24,19 +24,19 @@
 #ifndef quantlib_pricingengines_proxy_fxtarf_hpp
 #define quantlib_pricingengines_proxy_fxtarf_hpp
 
-#include <ql/processes/blackscholesprocess.hpp>
-#include <ql/experimental/fx/fxtarf.hpp>
+#include <ql/experimental/fx/fxtarfengine.hpp>
 
 namespace QuantLib {
 
-class ProxyFxTarfEngine : public FxTarf::engine {
+class ProxyFxTarfEngine : public FxTarfEngine {
   public:
-    ProxyFxTarfEngine(boost::shared_ptr<ProxyInstrument::ProxyDescription> proxy,
-                      Handle<Quote> exchangeRate)
-        : exchangeRate_(exchangeRate) {
+    ProxyFxTarfEngine(
+        boost::shared_ptr<ProxyInstrument::ProxyDescription> proxy,
+        Handle<Quote> exchangeRate, Handle<YieldTermStructure> discount)
+        : FxTarfEngine(discount), exchangeRate_(exchangeRate) {
         registerWith(exchangeRate_);
         proxy_ = boost::dynamic_pointer_cast<FxTarf::Proxy>(proxy);
-        QL_REQUIRE(proxy_,"no FxTarf::Proxy given");
+        QL_REQUIRE(proxy_, "no FxTarf::Proxy given");
     }
 
     void calculate() const;

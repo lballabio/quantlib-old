@@ -23,16 +23,17 @@
 
 namespace QuantLib {
 
-FxTarfPathPricer::FxTarfPathPricer(const std::vector<Real> &fixingTimes,
-                                   const std::vector<Real> &discounts,
-                                   const Real accumulatedAmount,
-                                   const Real sourceNominal, const Real target,
-                                   const FxTarf *instrument, ProxyData &data,
-                                   const std::vector<Real> &accBucketLimits)
+FxTarfPathPricer::FxTarfPathPricer(
+    const std::vector<Real> &fixingTimes, const std::vector<Real> &discounts,
+    const Real accumulatedAmount, const Real sourceNominal, const Real target,
+    const FxTarf *instrument, ProxyData &data,
+    const std::vector<Real> &accBucketLimits, const Date lastPaymentDate,
+    const Handle<YieldTermStructure> &discount, const bool generateProxy)
     : fixingTimes_(fixingTimes), discounts_(discounts),
       accumulatedAmount_(accumulatedAmount), sourceNominal_(sourceNominal),
       target_(target), instrument_(instrument), data_(data),
-      accBucketLimits_(accBucketLimits) {
+      accBucketLimits_(accBucketLimits), lastPaymentDate_(lastPaymentDate),
+      discount_(discount), generateProxy_(generateProxy) {
     QL_REQUIRE(instrument_ != NULL, "no instrument given");
 }
 
@@ -66,6 +67,9 @@ Real FxTarfPathPricer::operator()(const Path &path) const {
         pathNpv += partialNpvs[j];
     }
 
+    if (!generateProxy_)
+        return pathNpv;
+
     // collect data for regression analysis (on all grid points)
 
     Real pathNpvTmp = pathNpv;
@@ -90,18 +94,18 @@ Real FxTarfPathPricer::operator()(const Path &path) const {
                 accBucketLimits_.begin() - 1;
             std::vector<std::pair<Real, Real> > &spotVec =
                 data_[openFixingsTmp - 1][accInd];
-            std::pair<Real, Real> spotNpv = std::make_pair(path[i], pathNpvTmp);
-            std::vector<std::pair<Real, Real> >::const_iterator spotInd =
+            // we store the npvs as forward npvs as of the last payment date
+            std::pair<Real, Real> spotNpv = std::make_pair(
+                path[i], pathNpvTmp / discount_->discount(lastPaymentDate_));
+            std::vector<std::pair<Real, Real> >::iterator spotInd =
                 std::upper_bound(spotVec.begin(), spotVec.end(), spotNpv);
             spotVec.insert(spotInd, spotNpv);
-            Real residualTime = fixingTimes_.back() - path.time(i);
-            std::cout << openFixingsTmp << " " << path[i] << " " << residualTime
-                      << " " << accumulatedTmp << " " << pathNpvTmp
-                      << std::endl;
-            // output raw data for testing
-            // std::cout << path.time(i) << ";" << openFixingsTmp << ";"
-            //           << accumulatedTmp << ";" << accInd << ";" << path[i]
-            //           << ";" << pathNpvTmp << std::endl;
+            // for testing only
+            // Real residualTime = fixingTimes_.back() - path.time(i);
+            // std::cout << openFixingsTmp << " " << path[i] << " " <<
+            // residualTime
+            //           << " " << accumulatedTmp << " " << pathNpvTmp
+            //           << std::endl;
         }
     }
 

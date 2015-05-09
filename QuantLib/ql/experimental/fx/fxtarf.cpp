@@ -140,7 +140,7 @@ void FxTarf::setupArguments(PricingEngine::arguments *args) const {
     arguments->sourceNominal = sourceNominal_;
     arguments->longPositionType = longPositionPayoff_->optionType();
     arguments->lastAmount = lastAmount();
-    std::pair<Real,bool> accSettlTmp = accumulatedAmountAndSettlement();
+    std::pair<Real, bool> accSettlTmp = accumulatedAmountAndSettlement();
     arguments->accumulatedAmount = accSettlTmp.first;
     arguments->isLastAmountSettled = accSettlTmp.second;
     arguments->instrument = this;
@@ -166,6 +166,9 @@ boost::shared_ptr<ProxyInstrument::ProxyDescription> FxTarf::proxy() const {
 
 void FxTarf::arguments::validate() const {}
 
-void FxTarf::results::reset() { Instrument::results::reset(); }
+void FxTarf::results::reset() {
+    Instrument::results::reset();
+    proxy = boost::shared_ptr<FxTarf::Proxy>();
+}
 
 } // namespace QuantLib
