@@ -51,7 +51,9 @@ Real FxTarfPathPricer::operator()(const Path &path) const {
             }
         }
         QL_REQUIRE(fixingTimes_.size() == fixingIndices_.size(),
-                   "not all fixing times found in grid");
+                   "not all fixing times found in grid (found "
+                       << fixingIndices_.size() << " but expected "
+                       << fixingTimes_.size() << ")");
     }
 
     // computation of the npv (only on grid points that represent a fixing)
