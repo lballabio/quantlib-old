@@ -101,6 +101,7 @@ class McFxTarfEngine : public FxTarfEngine,
         const Handle<YieldTermStructure> discount, const bool generateProxy);
 
     void calculate() const;
+    void reset();
 
   protected:
     // McSimulation Interface
@@ -145,9 +146,10 @@ McFxTarfEngine<RNG, S>::QuadraticProxyFunction::QuadraticProxyFunction(
                                   << b2_ << ") must be positive");
     } else {
         extrapolationPoint2_ = -b2_ / (2.0 * a2_);
-        flatExtrapolationType1_ =
+        flatExtrapolationType2_ =
             (type_ == Option::Call ? 1.0 : -1.0) * (a2_ > 0.0 ? -1 : 1);
     }
+    // std::cerr << "constructed proxy function, exPt1=" << extrapolationPoint1_ << " dir1=" << flatExtrapolationType1_ << " exPt2=" << extrapolationPoint2_ << " dir2=" << flatExtrapolationType2_ << std::endl;
 }
 
 template <class RNG, class S>
@@ -252,6 +254,15 @@ McFxTarfEngine<RNG, S>::McFxTarfEngine(
     registerWith(process_);
 }
 
+template <class RNG, class S> void McFxTarfEngine<RNG, S>::reset() {
+    FxTarfEngine::reset();
+    fixingTimes_.clear();
+    discounts_.clear();
+    proxy_ = boost::shared_ptr<FxTarf::Proxy>();
+    data_.clear();
+    accBucketLimits_.clear();
+}
+
 template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
 
     Date today = Settings::instance().evaluationDate();
@@ -272,7 +283,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
 
     // prepare the data container on which the proxy pricing is estimated
     // later
-    this->data_.clear();
 
     // we use a number of heuristics in the following
     // number of buckets for accumulated amounts
@@ -302,7 +312,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
     if (generateProxy_) {
         // create the buckets
         std::cerr << "Buckets for accumulated amounts" << std::endl;
-        accBucketLimits_.clear();
         for (Size i = 0; i < nAccBuckets; ++i) {
             accBucketLimits_.push_back(
                 static_cast<Real>(i) / static_cast<Real>(nAccBuckets) *
@@ -517,15 +526,15 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 Array result1 = ls1.coefficients();
 
                 std::cerr << "regression results (set1 size " << xTmp1.size()
-                          << " set2 size " << xTmp2.size() << std::endl;
+                          << " set2 size " << xTmp2.size() << ")" << std::endl;
                 std::cerr << "f1(x)=" << result1[0] << "+x*" << result1[1]
                           << "+x**2*" << result1[2] << std::endl;
 
                 GeneralLinearLeastSquares ls2(xTmp2, yTmp2, v);
                 Array result2 = ls2.coefficients();
 
-                std::cerr << "f2(x)=" << result1[0] << "+x*" << result1[1]
-                          << "+x**2*" << result1[2] << std::endl;
+                std::cerr << "f2(x)=" << result2[0] << "+x*" << result2[1]
+                          << "+x**2*" << result2[2] << std::endl;
 
                 fct = boost::make_shared<QuadraticProxyFunction>(
                     arguments_.longPositionType, cutoff, result1[2], result1[1],
