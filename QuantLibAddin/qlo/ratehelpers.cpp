@@ -179,7 +179,7 @@ namespace QuantLibAddin {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::SwapRateHelper(rate,
                                      p, cal, fixFreq, fixConv, fixDC, ibor,
-                                     spread, forwardStart, discount));
+                                     spread, forwardStart, discount, settlementDays));
         quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
