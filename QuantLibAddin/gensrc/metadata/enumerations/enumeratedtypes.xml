@@ -1047,10 +1047,6 @@
         </EnumeratedType>
 
         <EnumeratedType>
-          <string>EUR</string>
-          <value>QuantLib::EURCurrency()</value>
-        </EnumeratedType>
-        <EnumeratedType>
           <string>ARS</string>
           <value>QuantLib::ARSCurrency()</value>
         </EnumeratedType>
@@ -1127,6 +1123,10 @@
           <value>QuantLib::ESPCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>EUR</string>
+          <value>QuantLib::EURCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>FIM</string>
           <value>QuantLib::FIMCurrency()</value>
         </EnumeratedType>
@@ -1149,6 +1149,10 @@
         <EnumeratedType>
           <string>HUF</string>
           <value>QuantLib::HUFCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>IDR</string>
+          <value>QuantLib::IDRCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>IEP</string>
@@ -1211,6 +1215,10 @@
           <value>QuantLib::MXNCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>MYR</string>
+          <value>QuantLib::MYRCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>NLG</string>
           <value>QuantLib::NLGCurrency()</value>
         </EnumeratedType>
@@ -1227,6 +1235,18 @@
           <value>QuantLib::NZDCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>PEH</string>
+          <value>QuantLib::PEHCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>PEI</string>
+          <value>QuantLib::PEICurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>PEN</string>
+          <value>QuantLib::PENCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>PKR</string>
           <value>QuantLib::PKRCurrency()</value>
         </EnumeratedType>
@@ -1241,6 +1261,14 @@
         <EnumeratedType>
           <string>ROL</string>
           <value>QuantLib::ROLCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>RON</string>
+          <value>QuantLib::RONCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>RUB</string>
+          <value>QuantLib::RUBCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>SAR</string>
@@ -1289,6 +1317,10 @@
         <EnumeratedType>
           <string>VEB</string>
           <value>QuantLib::VEBCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>VND</string>
+          <value>QuantLib::VNDCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>ZAR</string>
