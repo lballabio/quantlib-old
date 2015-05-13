@@ -41,14 +41,6 @@ FxTarf::FxTarf(const Schedule schedule, const boost::shared_ptr<FxIndex> &index,
                "FXTarf requires at least 2 schedule dates (" << schedule.size()
                                                              << ")");
 
-    for (Size i = 1; i < schedule.size(); ++i) {
-        Date fixingTmp = index_->fixingDate(schedule_.date(i));
-        if (!detail::simple_event(fixingTmp).hasOccurred()) {
-            openFixingDates_.push_back(fixingTmp);
-            openPaymentDates_.push_back(schedule_.date(i));
-        }
-    }
-
     registerWith(accumulatedAmount);
     registerWith(Settings::instance().evaluationDate());
 }
@@ -133,6 +125,15 @@ void FxTarf::setupArguments(PricingEngine::arguments *args) const {
     FxTarf::arguments *arguments = dynamic_cast<FxTarf::arguments *>(args);
     QL_REQUIRE(arguments != 0, "wrong argument type");
     arguments->schedule = schedule_;
+    openFixingDates_.clear();
+    openPaymentDates_.clear();
+    for (Size i = 1; i < schedule_.size(); ++i) {
+        Date fixingTmp = index_->fixingDate(schedule_.date(i));
+        if (!detail::simple_event(fixingTmp).hasOccurred()) {
+            openFixingDates_.push_back(fixingTmp);
+            openPaymentDates_.push_back(schedule_.date(i));
+        }
+    }
     arguments->openFixingDates = openFixingDates_;
     arguments->openPaymentDates = openPaymentDates_;
     arguments->index = index_;

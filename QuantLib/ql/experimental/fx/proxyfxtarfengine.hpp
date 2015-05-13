@@ -32,8 +32,10 @@ class ProxyFxTarfEngine : public FxTarfEngine {
   public:
     ProxyFxTarfEngine(
         boost::shared_ptr<ProxyInstrument::ProxyDescription> proxy,
-        Handle<Quote> exchangeRate, Handle<YieldTermStructure> discount)
-        : FxTarfEngine(discount), exchangeRate_(exchangeRate) {
+        Handle<Quote> exchangeRate, Handle<YieldTermStructure> discount,
+        bool interpolate = true)
+        : FxTarfEngine(discount), exchangeRate_(exchangeRate),
+          interpolate_(interpolate) {
         registerWith(exchangeRate_);
         proxy_ = boost::dynamic_pointer_cast<FxTarf::Proxy>(proxy);
         QL_REQUIRE(proxy_, "no FxTarf::Proxy given");
@@ -44,6 +46,7 @@ class ProxyFxTarfEngine : public FxTarfEngine {
   private:
     boost::shared_ptr<FxTarf::Proxy> proxy_;
     Handle<Quote> exchangeRate_;
+    bool interpolate_;
 };
 
 } // namespace QuantLib

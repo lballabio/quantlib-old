@@ -46,10 +46,15 @@ class FxTarf : public Instrument, public ProxyInstrument {
     //! proxy description
     struct Proxy : ProxyDescription {
         struct ProxyFunction {
+            // function fx spot => npv
             virtual Real operator()(const Real spot) const = 0;
+            // this should somehow represent the "trusted" region
+            virtual std::pair<Real,Real> coreRegion() const = 0;
         };
-        // maximum number of open fixings
-        Size maxNumberOpenFixings;
+        // open fixing dates
+        std::vector<Date> openFixingDates;
+        // original evaluation date
+        Date origEvalDate;
         // last payment date, the npvs are forward npvs w.r.t. this date
         Date lastPaymentDate;
         // buckets for accumulated amonut, e.g.
@@ -66,9 +71,9 @@ class FxTarf : public Instrument, public ProxyInstrument {
         // operator()(Real spot) = npv
         std::vector<std::vector<boost::shared_ptr<ProxyFunction> > > functions;
         void validate() const {
-            QL_REQUIRE(functions.size() == maxNumberOpenFixings,
-                       "maximum number of open fixings ("
-                           << maxNumberOpenFixings
+            QL_REQUIRE(functions.size() == openFixingDates.size(),
+                       "number of open fixing dates ("
+                           << openFixingDates.size()
                            << ") must be equal to function rows ("
                            << functions.size() << ")");
             for (Size i = 0; i < functions.size(); ++i) {
@@ -165,7 +170,7 @@ class FxTarf : public Instrument, public ProxyInstrument {
     const Real shortPositionGearing_, longPositionGearing_;
 
     // additional data
-    std::vector<Date> openFixingDates_, openPaymentDates_;
+    mutable std::vector<Date> openFixingDates_, openPaymentDates_;
     Handle<Quote> accumulatedAmount_, lastAmount_;
 
     // proxy pricing information

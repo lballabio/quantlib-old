@@ -18,6 +18,10 @@
 */
 
 #include <ql/experimental/fx/proxyfxtarfengine.hpp>
+#include <ql/math/matrix.hpp>
+#include <ql/math/interpolations/linearinterpolation.hpp>
+#include <ql/math/interpolations/bilinearinterpolation.hpp>
+#include <ql/math/interpolations/flatextrapolation2d.hpp>
 
 #include <iostream> // just for debug
 
@@ -30,6 +34,7 @@ void ProxyFxTarfEngine::calculate() const {
 
     // determine the number of open fixings
     Date today = Settings::instance().evaluationDate();
+
     Size numberOpenFixings =
         std::distance(std::upper_bound(arguments_.openFixingDates.begin(),
                                        arguments_.openFixingDates.end(), today),
@@ -42,27 +47,76 @@ void ProxyFxTarfEngine::calculate() const {
                   proxy_->accBucketLimits.begin() - 1;
 
     // sanity checks
-    QL_REQUIRE(numberOpenFixings <= proxy_->maxNumberOpenFixings,
+    QL_REQUIRE(
+        today >= proxy_->origEvalDate,
+        "evaluation date ("
+            << today
+            << ") must be greater or equal than original evaluation date ("
+            << proxy_->origEvalDate);
+    QL_REQUIRE(numberOpenFixings <= proxy_->openFixingDates.size(),
                "number of open fixings ("
                    << numberOpenFixings
                    << ") must be less or equal the number of open fixings "
                       "provided by the proxy object ("
-                   << proxy_->maxNumberOpenFixings << ")");
+                   << proxy_->openFixingDates.size() << ")");
     QL_REQUIRE(accInd >= 0 && accInd < proxy_->accBucketLimits.size(),
                "accumulated amount index ("
                    << accInd << ") out of range given by the proxy (0..."
                    << proxy_->accBucketLimits.size() << ")");
 
-    // loggin
-    std::cerr << "proxy engine: use function (openFixingsIndex, accIndex) = ("
-              << (numberOpenFixings - 1) << "," << accInd << ")" << std::endl;
+    // logging
+    // std::cerr << "proxy engine: use function (openFixingsIndex, accIndex) =
+    // ("
+    //           << (numberOpenFixings - 1) << "," << accInd
+    //           << ") discount(last payment date=" << proxy_->lastPaymentDate
+    //           << ") is " << discount_->discount(proxy_->lastPaymentDate)
+    //           << std::endl;
+
+    // set the core (trusted) region as addtional result
+    // todo in case of interpolation we should return the intersection of
+    // the core regions of the adjacent nodes
+    results_.additionalResults["coreRegionMin"] =
+        proxy_->functions[numberOpenFixings - 1][accInd]->coreRegion().first;
+    results_.additionalResults["coreRegionMax"] =
+        proxy_->functions[numberOpenFixings - 1][accInd]->coreRegion().second;
 
     // get the proxy function and return the npv, on forward basis
-    results_.value =
-        proxy_->functions[numberOpenFixings - 1][accInd]->operator()(
-            exchangeRate_->value()) *
-            discount_->discount(proxy_->lastPaymentDate) +
-        unsettledAmountNpv_;
-}
+    if (!interpolate_)
+        results_.value =
+            proxy_->functions[numberOpenFixings - 1][accInd]->operator()(
+                exchangeRate_->value()) *
+                discount_->discount(proxy_->lastPaymentDate) +
+            unsettledAmountNpv_;
 
+    if (interpolate_) {
+        std::vector<Real> accumulatedAmounts;
+        for (Size i = 1; i <= proxy_->accBucketLimits.size(); ++i) {
+            Real bucketMid = 0.5 * ((i < proxy_->accBucketLimits.size()
+                                         ? proxy_->accBucketLimits[i]
+                                         : arguments_.target) +
+                                    proxy_->accBucketLimits[i - 1]);
+            accumulatedAmounts.push_back(bucketMid);
+        }
+        std::vector<Real> proxies;
+        for (Size j = 0; j < proxy_->accBucketLimits.size(); ++j) {
+            proxies.push_back(
+                proxy_->functions[numberOpenFixings - 1][j]->operator()(
+                    exchangeRate_->value()));
+        }
+        boost::shared_ptr<LinearInterpolation> in =
+            boost::make_shared<LinearInterpolation>(accumulatedAmounts.begin(),
+                                                    accumulatedAmounts.end(),
+                                                    proxies.begin());
+        // for(Size i=0;i<data.columns();++i) {
+        //     std::cerr << *(data.row_begin(0)+i) << "-";
+        // }
+        in->enableExtrapolation();
+        results_.value = in->operator()(arguments_.accumulatedAmount) *
+                             discount_->discount(proxy_->lastPaymentDate) +
+                         unsettledAmountNpv_;
+        // std::cerr << "interpolated amount (accumulatedAmount=" <<
+        // arguments_.accumulatedAmount << " = " <<
+        // in->operator()(arguments_.accumulatedAmount) << std::endl;
+    }
+} // calculate
 } // namespace QuantLib

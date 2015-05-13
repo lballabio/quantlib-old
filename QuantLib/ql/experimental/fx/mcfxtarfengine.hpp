@@ -68,18 +68,26 @@ class McFxTarfEngine : public FxTarfEngine,
         (-\infty,cutoff] and (cutoff,\infty).
         Only the ascending (long calls) or descending (long puts) branch
         is used and then extrapolated flat.
+        For calls the extrapolation below the given lowerCutoff is done
+        linear (for puts above this value).
     */
     class QuadraticProxyFunction : public FxTarf::Proxy::ProxyFunction {
       public:
-        QuadraticProxyFunction(Option::Type, const Real cutoff, const Real a1,
-                               const Real b1, const Real c1, const Real a2,
-                               const Real b2, const Real c2);
+        QuadraticProxyFunction(Option::Type type, const Real cutoff,
+                               const Real a1, const Real b1, const Real c1,
+                               const Real a2, const Real b2, const Real c2,
+                               const Real lowerCutoff, const Real coreRegionMin,
+                               const Real coreRegionMax);
         Real operator()(const Real spot) const;
+        std::pair<Real, Real> coreRegion() const {
+            return std::make_pair(coreRegionMin_, coreRegionMax_);
+        }
 
       private:
         Option::Type type_;
         const Real a1_, b1_, c1_, a2_, b2_, c2_;
-        const Real cutoff_;
+        const Real cutoff_, lowerCutoff_;
+        const Real coreRegionMin_, coreRegionMax_;
         int flatExtrapolationType1_,
             flatExtrapolationType2_; // +1 = right, -1 = left
         Real extrapolationPoint1_, extrapolationPoint2_;
@@ -129,9 +137,11 @@ class McFxTarfEngine : public FxTarfEngine,
 template <class RNG, class S>
 McFxTarfEngine<RNG, S>::QuadraticProxyFunction::QuadraticProxyFunction(
     Option::Type type, const Real cutoff, const Real a1, const Real b1,
-    const Real c1, const Real a2, const Real b2, const Real c2)
+    const Real c1, const Real a2, const Real b2, const Real c2,
+    const Real lowerCutoff, const Real coreRegionMin, const Real coreRegionMax)
     : type_(type), cutoff_(cutoff), a1_(a1), b1_(b1), c1_(c1), a2_(a2), b2_(b2),
-      c2_(c2) {
+      c2_(c2), lowerCutoff_(lowerCutoff), coreRegionMin_(coreRegionMin),
+      coreRegionMax_(coreRegionMax) {
     // for calls we want ascending, for puts descending functions
     if (close(a1_, 0.0)) {
         QL_REQUIRE(b1_ > 0.0, "for a call and a1=0 b ("
@@ -149,7 +159,6 @@ McFxTarfEngine<RNG, S>::QuadraticProxyFunction::QuadraticProxyFunction(
         flatExtrapolationType2_ =
             (type_ == Option::Call ? 1.0 : -1.0) * (a2_ > 0.0 ? -1 : 1);
     }
-    // std::cerr << "constructed proxy function, exPt1=" << extrapolationPoint1_ << " dir1=" << flatExtrapolationType1_ << " exPt2=" << extrapolationPoint2_ << " dir2=" << flatExtrapolationType2_ << std::endl;
 }
 
 template <class RNG, class S>
@@ -157,11 +166,21 @@ Real McFxTarfEngine<RNG, S>::QuadraticProxyFunction::
 operator()(const Real spot) const {
     Real x = spot;
     if (spot <= cutoff_) {
+        if (spot <= lowerCutoff_ && type_ == Option::Call) {
+            // linear extrapolation instead of quadratic outside lowerCutoff
+            return (2.0 * a1_ * lowerCutoff_ + b1_) * spot + c1_ -
+                   a1_ * lowerCutoff_ * lowerCutoff_;
+        }
         x = flatExtrapolationType1_ *
             std::min(flatExtrapolationType1_ * extrapolationPoint1_,
                      flatExtrapolationType1_ * x);
         return a1_ * x * x + b1_ * x + c1_;
     } else {
+        if (spot >= lowerCutoff_ && type_ == Option::Put) {
+            // linear extrapolation instead of quadratic outside lowerCutoff
+            return (2.0 * a2_ * lowerCutoff_ + b2_) * spot + c2_ -
+                   a2_ * lowerCutoff_ * lowerCutoff_;
+        }
         x = flatExtrapolationType2_ *
             std::min(flatExtrapolationType2_ * extrapolationPoint2_,
                      flatExtrapolationType2_ * x);
@@ -303,24 +322,37 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
     // cutoffShrinkFactor until we reach this critical size
     Real minCutoffRatio = 0.33;
     Real cutoffShrinkFactor = 0.99;
+    // on the lower bound (for calls) a lowerCutoff is determined
+    // such that more than 1-minLowerExtr points are above this
+    // cutoff. Below this threshhold, a linear extrapolation is
+    // used.
+    Real minLowerExtr = 0.05;
+    // if the intersection of the two quadratic functions lies
+    // within (1-smoothInt)*cutoff, (1+smoothInt)*cutoff
+    // the cutoff is moved to the intersection points
+    Real smoothInt = 0.05;
+    // the "trusted" region (aka core region) is defined by chopping
+    // off the lower and upper coreCutoff part of the data
+    Real coreCutoff = 0.01;
+
     // this is the minimum number of points required for regression
     Size minRegPoints = 3;
 
     // set the number format for logging output
-    std::cerr << std::setprecision(12) << std::fixed;
+    // std::cerr << std::setprecision(12) << std::fixed;
 
     if (generateProxy_) {
         // create the buckets
-        std::cerr << "Buckets for accumulated amounts" << std::endl;
+        // std::cerr << "Buckets for accumulated amounts" << std::endl;
         for (Size i = 0; i < nAccBuckets; ++i) {
             accBucketLimits_.push_back(
                 static_cast<Real>(i) / static_cast<Real>(nAccBuckets) *
                     (arguments_.target - arguments_.accumulatedAmount) +
                 arguments_.accumulatedAmount);
-            std::cerr << "bucket;" << i << ";" << accBucketLimits_.back()
-                      << std::endl;
+            // std::cerr << "bucket;" << i << ";" << accBucketLimits_.back()
+            // << std::endl;
         }
-        std::cerr << std::endl;
+        // std::cerr << std::endl;
 
         // we set the first bucket limit to zero, which does not change
         // anything, but leaves no room that the given accumulated amount
@@ -351,10 +383,11 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
 
     // create the proxy object and initialize the members
     proxy_ = boost::make_shared<FxTarf::Proxy>();
-    proxy_->maxNumberOpenFixings = arguments_.openFixingDates.size();
+    proxy_->origEvalDate = today;
+    proxy_->openFixingDates = arguments_.openFixingDates;
     proxy_->accBucketLimits = accBucketLimits_;
     proxy_->lastPaymentDate = arguments_.schedule.dates().back();
-    for (Size i = 0; i < proxy_->maxNumberOpenFixings; ++i) {
+    for (Size i = 0; i < proxy_->openFixingDates.size(); ++i) {
         std::vector<boost::shared_ptr<FxTarf::Proxy::ProxyFunction> > fctVecTmp(
             accBucketLimits_.size());
         proxy_->functions.push_back(fctVecTmp);
@@ -362,8 +395,8 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
 
     // do the regression on appropriately merged data sets
     for (Size i = 0; i < arguments_.openFixingDates.size(); ++i) {
-        std::cerr << "open Fixings index i=" << i << " (i.e. " << (i + 1)
-                  << " open fixings left)" << std::endl;
+        // std::cerr << "open Fixings index i=" << i << " (i.e. " << (i + 1)
+        //           << " open fixings left)" << std::endl;
 
         // get the data for the specific number of open fixing times
         std::vector<std::vector<std::pair<Real, Real> > > &tmp = data_[i];
@@ -375,8 +408,9 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
             numberOfDataPoints += tmp[j].size();
 
         // merge data if pieces are too small
-        std::cerr << "total number of data points = " << numberOfDataPoints
-                  << std::endl;
+        // std::cerr << "total number of data points = " <<
+        // numberOfDataPoints
+        //           << std::endl;
 
         Size k0 = 0, k0Before = 0;
         do {
@@ -394,10 +428,11 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                     if (tmp[k0].back().first > spotMax)
                         spotMax = tmp[k0].back().first;
                 }
-                std::cerr
-                    << "collected accumulated amount segment with index k="
-                    << k0 << " yielding a total size of " << xTmp.size()
-                    << std::endl;
+                // std::cerr
+                //     << "collected accumulated amount segment with index
+                //     k="
+                //     << k0 << " yielding a total size of " << xTmp.size()
+                //     << std::endl;
                 k0++;
             } while (dFactor * xTmp.size() < numberOfDataPoints);
 
@@ -406,8 +441,9 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
             for (Size j = k0; j < tmp.size(); ++j)
                 remainingDataPoints += tmp[j].size();
 
-            std::cerr << "remaining data points = " << remainingDataPoints
-                      << std::endl;
+            // std::cerr << "remaining data points = " <<
+            // remainingDataPoints
+            //           << std::endl;
 
             // ... and join the rest of data if they are to few
             if (dFactor * remainingDataPoints < numberOfDataPoints) {
@@ -425,12 +461,13 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                     }
                 }
                 k0 = tmp.size();
-                std::cerr << "merged also the rest of the data because"
-                          << "it contains too few points, new total size is "
-                          << xTmp.size() << std::endl;
+                // std::cerr << "merged also the rest of the data because"
+                //           << "it contains too few points, new total size
+                //           is "
+                //           << xTmp.size() << std::endl;
             }
-            std::cerr << "data set statistics: min spot " << spotMin
-                      << " max spot " << spotMax << std::endl;
+            // std::cerr << "data set statistics: min spot " << spotMin
+            //           << " max spot " << spotMax << std::endl;
 
             // we rearrange the data to get two segments for the spot
             bool isCall = arguments_.longPositionType == Option::Call;
@@ -450,12 +487,13 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                                          std::make_pair(cutoff, 0.0)) -
                         xTmp.begin();
                 sizeB = xTmp.size() - sizeA;
-                std::cerr << std::setprecision(12)
-                          << "cutoff factor=" << relCutoffTmp
-                          << ", cutoff=" << cutoff
-                          << ", segments size = " << sizeA << "," << sizeB
-                          << " minimum size required " << minDataSegment
-                          << std::endl;
+                // std::cerr << std::setprecision(12)
+                //           << "cutoff factor=" << relCutoffTmp
+                //           << ", cutoff=" << cutoff
+                //           << ", segments size = " << sizeA << "," <<
+                //           sizeB
+                //           << " minimum size required " << minDataSegment
+                //           << std::endl;
                 criticalSize = isCall ? sizeB : sizeA;
                 if (((isCall && relCutoffTmp > 0.5) ||
                      (!isCall && relCutoffTmp < 0.5)) &&
@@ -466,10 +504,12 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                     else
                         relCutoffTmp /= std::min(cutoffShrinkFactor, 1.0);
                     cutoff = spotMin + relCutoffTmp * (spotMax - spotMin);
-                    std::cerr << "too few data in critical segment "
-                              << " (" << criticalSize
-                              << "), adjust cutoff factor to " << relCutoffTmp
-                              << " and cutoff to " << cutoff << std::endl;
+                    // std::cerr << "too few data in critical segment "
+                    //           << " (" << criticalSize
+                    //           << "), adjust cutoff factor to " <<
+                    //           relCutoffTmp
+                    //           << " and cutoff to " << cutoff <<
+                    //           std::endl;
                 }
             } while (
                 ((isCall && relCutoffTmp > 0.5) ||
@@ -487,6 +527,19 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 }
             }
 
+            // determine lower cutoff (in terms of calls), below which we
+            // extrapolate linear
+            Real lowerCutoff =
+                xTmp[xTmp.size() * (isCall ? minLowerExtr : 1.0 - minLowerExtr)]
+                    .first;
+            // determine the core (trusted) region
+            Real coreRegionMin =
+                xTmp[static_cast<int>(xTmp.size() * coreCutoff)].first;
+            Real coreRegionMax =
+                xTmp[static_cast<int>(xTmp.size() * (1.0 - coreCutoff))].first;
+            // std::cerr << "Lower cutoff point set to " << lowerCutoff
+            //           << std::endl;
+
             // the function object
             boost::shared_ptr<FxTarf::Proxy::ProxyFunction> fct;
 
@@ -502,10 +555,11 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 avg /= static_cast<double>(xTmp1.size() + xTmp2.size());
                 fct = boost::make_shared<QuadraticProxyFunction>(
                     arguments_.longPositionType, cutoff, 0.0, 0.0, avg, 0.0,
-                    0.0, avg);
-                std::cerr
-                    << "regression produced a constant function with value "
-                    << avg << std::endl;
+                    0.0, avg, -QL_MAX_REAL, spotMin, spotMax);
+                // std::cerr
+                //     << "regression produced a constant function with
+                //     value "
+                //     << avg << std::endl;
             } else {
 
                 // final sanity check before regression
@@ -525,20 +579,56 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 GeneralLinearLeastSquares ls1(xTmp1, yTmp1, v);
                 Array result1 = ls1.coefficients();
 
-                std::cerr << "regression results (set1 size " << xTmp1.size()
-                          << " set2 size " << xTmp2.size() << ")" << std::endl;
-                std::cerr << "f1(x)=" << result1[0] << "+x*" << result1[1]
-                          << "+x**2*" << result1[2] << std::endl;
+                // std::cerr << "regression results (set1 size " <<
+                // xTmp1.size()
+                //           << " set2 size " << xTmp2.size() << ")" <<
+                //           std::endl;
+                // std::cerr << "f1(x)=" << result1[0] << "+x*" <<
+                // result1[1]
+                //           << "+x**2*" << result1[2] << std::endl;
 
                 GeneralLinearLeastSquares ls2(xTmp2, yTmp2, v);
                 Array result2 = ls2.coefficients();
 
-                std::cerr << "f2(x)=" << result2[0] << "+x*" << result2[1]
-                          << "+x**2*" << result2[2] << std::endl;
+                // std::cerr << "f2(x)=" << result2[0] << "+x*" <<
+                // result2[1]
+                //           << "+x**2*" << result2[2] << std::endl;
+
+                // check if the cutoff should be moved to the intersection
+                // point of the two overlapping functions
+                Real a1 = result1[2];
+                Real b1 = result1[1];
+                Real c1 = result1[0];
+                Real a2 = result2[2];
+                Real b2 = result2[1];
+                Real c2 = result2[0];
+                if (close(a1, a2)) {
+                    if (!close(b1, b2)) {
+                        Real tmp = -(c1 - c2) / (b1 - b2);
+                        if (fabs((tmp - cutoff) / cutoff) < smoothInt) {
+                            cutoff = tmp;
+                        }
+                    }
+                } else {
+                    Real tmp1 =
+                        (-(b1 - b2) + std::sqrt((b1 - b2) * (b1 - b2) -
+                                                4.0 * (a1 - a2) * (c1 - c2))) /
+                        (2.0 * (a1 - a2));
+                    Real tmp2 =
+                        (-(b1 - b2) - std::sqrt((b1 - b2) * (b1 - b2) -
+                                                4.0 * (a1 - a2) * (c1 - c2))) /
+                        (2.0 * (a1 - a2));
+                    if (fabs((tmp1 - cutoff) / cutoff) < smoothInt)
+                        cutoff = tmp1;
+                    if (fabs((tmp2 - cutoff) / cutoff) < smoothInt)
+                        cutoff = tmp2;
+                }
+                // make sure that lower cutoff is still left from cutoff
+                lowerCutoff = std::min(lowerCutoff, cutoff);
 
                 fct = boost::make_shared<QuadraticProxyFunction>(
-                    arguments_.longPositionType, cutoff, result1[2], result1[1],
-                    result1[0], result2[2], result2[1], result2[0]);
+                    arguments_.longPositionType, cutoff, a1, b1, c1, a2, b2, c2,
+                    lowerCutoff, coreRegionMin, coreRegionMax);
             }
 
             // store the proxy function, please note that
@@ -546,12 +636,14 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
             // accumulated amount segments
             for (Size kk = k0Before; kk < k0; ++kk) {
                 proxy_->functions[i][kk] = fct;
-                std::cerr << "set computed function on indices "
-                             "(openFixings,accAmount) = (" << i << "," << kk
-                          << ")" << std::endl;
+                // std::cerr << "set computed function on indices "
+                //              "(openFixings,accAmount) = (" << i << "," <<
+                //              kk
+                //           << ")" << std::endl;
             }
             k0Before = k0;
-            std::cerr << "done, proceed with next openFixing index ...\n\n";
+            // std::cerr << "done, proceed with next openFixing index
+            // ...\n\n";
         } while (k0 < tmp.size()); // do-while over accumulated amount buckets
     }                              // for openFixingTimes
 
