@@ -7,8 +7,7 @@
   <Frameworks>
     <Framework name="QuantLibXL" displayName="QuantLibXL" fileName="QuantLibXL">
       <Components>
-        <Component path=".\ObjectHandler\xll\ObjectHandler-xll-vc120-mt-1_6_0.xll" />
-        <Component path=".\QuantLibXL\xll\QuantLibXLDynamic-vc120-mt-1_6_0.xll" />
+        <Component path=".\QuantLibXL\xll\QuantLibXL-vc120-mt-1_6_0.xll" />
         <Component path=".\QuantLibXL\framework\QuantLibXL.xla" />
       </Components>
       <StartupParameters>
@@ -22,9 +21,9 @@
         <StartupParameter name="Workbook Path" value=".\QuantLibXL\Workbooks" />
         <StartupParameter name="Help File Path" value=".\QuantLibXL\Docs\QuantLibXL-docs-1.3.0.chm" />
         <StartupParameter name="Metadata Path" value=".\QuantLibAddin\gensrc\metadata" />
-        <StartupParameter name="Set Evaluation Date" value="False" />
-        <StartupParameter name="Evaluation Date" value="2015-05-11" />
-        <StartupParameter name="Default Currency" value="HKD" />
+        <StartupParameter name="Set Evaluation Date" value="True" />
+        <StartupParameter name="Evaluation Date" value="2015-05-12" />
+        <StartupParameter name="Default Currency" value="GBP" />
         <StartupParameter name="Initialization Data Source" value="Excel" />
         <StartupParameter name="Open Main Checks" value="True" />
         <StartupParameter name="Update Euribor YTD Time Series (xls)" value="False" />
@@ -32,7 +31,7 @@
         <StartupParameter name="Load Index YTD Time Series (xml)" value="False" />
         <StartupParameter name="Bootstrap Yield Curves" value="True" />
         <StartupParameter name="Real Time Feed" value="Reuters" />
-        <StartupParameter name="Market Data" value="Live" />
+        <StartupParameter name="Market Data" value="Static" />
       </StartupParameters>
     </Framework>
   </Frameworks>
