@@ -142,6 +142,12 @@ McFxTarfEngine<RNG, S>::QuadraticProxyFunction::QuadraticProxyFunction(
     : type_(type), cutoff_(cutoff), a1_(a1), b1_(b1), c1_(c1), a2_(a2), b2_(b2),
       c2_(c2), lowerCutoff_(lowerCutoff), coreRegionMin_(coreRegionMin),
       coreRegionMax_(coreRegionMax) {
+    QL_REQUIRE((type == Option::Call && lowerCutoff_ <= cutoff) ||
+                   (type == Option::Put && lowerCutoff_ >= cutoff),
+               "lowerCutoff (" << lowerCutoff_
+                               << ") must be less or equal (call) or greater "
+                                  "equal (put) than cutoff (" << cutoff
+                               << ") for type " << type_);
     // for calls we want ascending, for puts descending functions
     if (close(a1_, 0.0)) {
         QL_REQUIRE(b1_ > 0.0, "for a call and a1=0 b ("
@@ -174,7 +180,15 @@ operator()(const Real spot) const {
         x = flatExtrapolationType1_ *
             std::min(flatExtrapolationType1_ * extrapolationPoint1_,
                      flatExtrapolationType1_ * x);
-        return a1_ * x * x + b1_ * x + c1_;
+        Real tmp = a1_ * x * x + b1_ * x + c1_;
+        // ensure global monotonicity
+        if (type_ == Option::Put) {
+            Real ct = flatExtrapolationType2_ *
+                      std::min(flatExtrapolationType2_ * extrapolationPoint2_,
+                               flatExtrapolationType2_ * cutoff_);
+            tmp = std::max(a2_ * ct * ct + b2_ * ct + c2_, tmp);
+        }
+        return tmp;
     } else {
         if (spot >= lowerCutoff_ && type_ == Option::Put) {
             // linear extrapolation instead of quadratic outside lowerCutoff
@@ -184,7 +198,15 @@ operator()(const Real spot) const {
         x = flatExtrapolationType2_ *
             std::min(flatExtrapolationType2_ * extrapolationPoint2_,
                      flatExtrapolationType2_ * x);
-        return a2_ * x * x + b2_ * x + c2_;
+        Real tmp = a2_ * x * x + b2_ * x + c2_;
+        // ensure global monotonicity
+        if (type_ == Option::Call) {
+            Real ct = flatExtrapolationType1_ *
+                        std::min(flatExtrapolationType1_ * extrapolationPoint1_,
+                                 flatExtrapolationType1_ * cutoff_);
+            tmp = std::max(a1_ * ct * ct + b1_ * ct + c1_, tmp);
+        }
+        return tmp;
     }
 }
 
@@ -330,7 +352,7 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
     // if the intersection of the two quadratic functions lies
     // within (1-smoothInt)*cutoff, (1+smoothInt)*cutoff
     // the cutoff is moved to the intersection points
-    Real smoothInt = 0.05;
+    // Real smoothInt = 0.05;
     // the "trusted" region (aka core region) is defined by chopping
     // off the lower and upper coreCutoff part of the data
     Real coreCutoff = 0.01;
@@ -602,27 +624,35 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 Real a2 = result2[2];
                 Real b2 = result2[1];
                 Real c2 = result2[0];
-                if (close(a1, a2)) {
-                    if (!close(b1, b2)) {
-                        Real tmp = -(c1 - c2) / (b1 - b2);
-                        if (fabs((tmp - cutoff) / cutoff) < smoothInt) {
-                            cutoff = tmp;
-                        }
-                    }
-                } else {
-                    Real tmp1 =
-                        (-(b1 - b2) + std::sqrt((b1 - b2) * (b1 - b2) -
-                                                4.0 * (a1 - a2) * (c1 - c2))) /
-                        (2.0 * (a1 - a2));
-                    Real tmp2 =
-                        (-(b1 - b2) - std::sqrt((b1 - b2) * (b1 - b2) -
-                                                4.0 * (a1 - a2) * (c1 - c2))) /
-                        (2.0 * (a1 - a2));
-                    if (fabs((tmp1 - cutoff) / cutoff) < smoothInt)
-                        cutoff = tmp1;
-                    if (fabs((tmp2 - cutoff) / cutoff) < smoothInt)
-                        cutoff = tmp2;
-                }
+                // std::cerr << "cutoff before adjustment = " << cutoff << " ";
+                // if (close(a1, a2)) {
+                //     if (!close(b1, b2)) {
+                //         Real tmp = -(c1 - c2) / (b1 - b2);
+                //         if (fabs((tmp - cutoff) / cutoff) < smoothInt) {
+                //             cutoff = tmp;
+                //         }
+                //     }
+                // } else {
+                //     Real tmp1 =
+                //         (-(b1 - b2) + std::sqrt((b1 - b2) * (b1 - b2) -
+                //                                 4.0 * (a1 - a2) * (c1 - c2)))
+                //                                 /
+                //         (2.0 * (a1 - a2));
+                //     Real tmp2 =
+                //         (-(b1 - b2) - std::sqrt((b1 - b2) * (b1 - b2) -
+                //                                 4.0 * (a1 - a2) * (c1 - c2)))
+                //                                 /
+                //         (2.0 * (a1 - a2));
+                //     // std::cerr << " tmp1=" << tmp1 << " tmp2=" << tmp2 << "
+                //     ";
+                //     if (fabs((tmp1 - cutoff) / cutoff) < smoothInt)
+                //         cutoff = tmp1;
+                //     if (fabs((tmp2 - cutoff) / cutoff) < smoothInt)
+                //         cutoff = tmp2;
+                // }
+                // std::cerr << "cutoff after adjustment = " << cutoff <<
+                // std::endl;
+
                 // make sure that lower cutoff is still left from cutoff
                 lowerCutoff = std::min(lowerCutoff, cutoff);
 
