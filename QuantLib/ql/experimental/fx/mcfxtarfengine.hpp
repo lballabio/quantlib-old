@@ -146,8 +146,10 @@ McFxTarfEngine<RNG, S>::QuadraticProxyFunction::QuadraticProxyFunction(
                    (type == Option::Put && lowerCutoff_ >= cutoff),
                "lowerCutoff (" << lowerCutoff_
                                << ") must be less or equal (call) or greater "
-                                  "equal (put) than cutoff (" << cutoff
-                               << ") for type " << type_);
+                                  "equal (put) than cutoff ("
+                               << cutoff
+                               << ") for type "
+                               << type_);
     // for calls we want ascending, for puts descending functions
     if (close(a1_, 0.0)) {
         QL_REQUIRE(b1_ > 0.0, "for a call and a1=0 b ("
@@ -172,8 +174,10 @@ Real McFxTarfEngine<RNG, S>::QuadraticProxyFunction::
 operator()(const Real spot) const {
     Real x = spot;
     if (spot <= cutoff_) {
-        if (spot <= lowerCutoff_ && type_ == Option::Call) {
+        if (spot <= lowerCutoff_ && type_ == Option::Call &&
+            flatExtrapolationType1_ == 1) {
             // linear extrapolation instead of quadratic outside lowerCutoff
+            // if flat extrapolation is to the right)
             return (2.0 * a1_ * lowerCutoff_ + b1_) * spot + c1_ -
                    a1_ * lowerCutoff_ * lowerCutoff_;
         }
@@ -190,8 +194,10 @@ operator()(const Real spot) const {
         }
         return tmp;
     } else {
-        if (spot >= lowerCutoff_ && type_ == Option::Put) {
-            // linear extrapolation instead of quadratic outside lowerCutoff
+        if (spot >= lowerCutoff_ && type_ == Option::Put &&
+            flatExtrapolationType2_ == -1) {
+            // linear extrapolation instead of quadratic outside lowerCutoff if
+            // flat extrapolation is to the left
             return (2.0 * a2_ * lowerCutoff_ + b2_) * spot + c2_ -
                    a2_ * lowerCutoff_ * lowerCutoff_;
         }
@@ -202,8 +208,8 @@ operator()(const Real spot) const {
         // ensure global monotonicity
         if (type_ == Option::Call) {
             Real ct = flatExtrapolationType1_ *
-                        std::min(flatExtrapolationType1_ * extrapolationPoint1_,
-                                 flatExtrapolationType1_ * cutoff_);
+                      std::min(flatExtrapolationType1_ * extrapolationPoint1_,
+                               flatExtrapolationType1_ * cutoff_);
             tmp = std::max(a1_ * ct * ct + b1_ * ct + c1_, tmp);
         }
         return tmp;
