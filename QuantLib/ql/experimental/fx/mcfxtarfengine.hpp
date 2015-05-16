@@ -186,12 +186,12 @@ operator()(const Real spot) const {
                      flatExtrapolationType1_ * x);
         Real tmp = a1_ * x * x + b1_ * x + c1_;
         // ensure global monotonicity
-        if (type_ == Option::Put) {
-            Real ct = flatExtrapolationType2_ *
-                      std::min(flatExtrapolationType2_ * extrapolationPoint2_,
-                               flatExtrapolationType2_ * cutoff_);
-            tmp = std::max(a2_ * ct * ct + b2_ * ct + c2_, tmp);
-        }
+        // if (type_ == Option::Put) {
+        //     Real ct = flatExtrapolationType2_ *
+        //               std::min(flatExtrapolationType2_ * extrapolationPoint2_,
+        //                        flatExtrapolationType2_ * cutoff_);
+        //     tmp = std::max(a2_ * ct * ct + b2_ * ct + c2_, tmp);
+        // }
         return tmp;
     } else {
         if (spot >= lowerCutoff_ && type_ == Option::Put &&
@@ -206,12 +206,12 @@ operator()(const Real spot) const {
                      flatExtrapolationType2_ * x);
         Real tmp = a2_ * x * x + b2_ * x + c2_;
         // ensure global monotonicity
-        if (type_ == Option::Call) {
-            Real ct = flatExtrapolationType1_ *
-                      std::min(flatExtrapolationType1_ * extrapolationPoint1_,
-                               flatExtrapolationType1_ * cutoff_);
-            tmp = std::max(a1_ * ct * ct + b1_ * ct + c1_, tmp);
-        }
+        // if (type_ == Option::Call) {
+        //     Real ct = flatExtrapolationType1_ *
+        //               std::min(flatExtrapolationType1_ * extrapolationPoint1_,
+        //                        flatExtrapolationType1_ * cutoff_);
+        //     tmp = std::max(a1_ * ct * ct + b1_ * ct + c1_, tmp);
+        // }
         return tmp;
     }
 }
@@ -348,7 +348,7 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
     // to be still in the smaller (spot,npv) segment, otherwise
     // the cutoff will be lowered (calls) by a factor of
     // cutoffShrinkFactor until we reach this critical size
-    Real minCutoffRatio = 0.33;
+    Real minCutoffRatio = 0.25;
     Real cutoffShrinkFactor = 0.99;
     // on the lower bound (for calls) a lowerCutoff is determined
     // such that more than 1-minLowerExtr points are above this
@@ -358,10 +358,10 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
     // if the intersection of the two quadratic functions lies
     // within (1-smoothInt)*cutoff, (1+smoothInt)*cutoff
     // the cutoff is moved to the intersection points
-    // Real smoothInt = 0.05;
+    Real smoothInt = 0.05;
     // the "trusted" region (aka core region) is defined by chopping
     // off the lower and upper coreCutoff part of the data
-    Real coreCutoff = 0.01;
+    Real coreCutoff = 0.001;
 
     // this is the minimum number of points required for regression
     Size minRegPoints = 3;
@@ -631,31 +631,29 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 Real b2 = result2[1];
                 Real c2 = result2[0];
                 // std::cerr << "cutoff before adjustment = " << cutoff << " ";
-                // if (close(a1, a2)) {
-                //     if (!close(b1, b2)) {
-                //         Real tmp = -(c1 - c2) / (b1 - b2);
-                //         if (fabs((tmp - cutoff) / cutoff) < smoothInt) {
-                //             cutoff = tmp;
-                //         }
-                //     }
-                // } else {
-                //     Real tmp1 =
-                //         (-(b1 - b2) + std::sqrt((b1 - b2) * (b1 - b2) -
-                //                                 4.0 * (a1 - a2) * (c1 - c2)))
-                //                                 /
-                //         (2.0 * (a1 - a2));
-                //     Real tmp2 =
-                //         (-(b1 - b2) - std::sqrt((b1 - b2) * (b1 - b2) -
-                //                                 4.0 * (a1 - a2) * (c1 - c2)))
-                //                                 /
-                //         (2.0 * (a1 - a2));
-                //     // std::cerr << " tmp1=" << tmp1 << " tmp2=" << tmp2 << "
-                //     ";
-                //     if (fabs((tmp1 - cutoff) / cutoff) < smoothInt)
-                //         cutoff = tmp1;
-                //     if (fabs((tmp2 - cutoff) / cutoff) < smoothInt)
-                //         cutoff = tmp2;
-                // }
+                if (close(a1, a2)) {
+                    if (!close(b1, b2)) {
+                        Real tmp = -(c1 - c2) / (b1 - b2);
+                        if (fabs((tmp - cutoff) / cutoff) < smoothInt) {
+                            cutoff = tmp;
+                        }
+                    }
+                } else {
+                    Real tmp1 =
+                        (-(b1 - b2) + std::sqrt((b1 - b2) * (b1 - b2) -
+                                                4.0 * (a1 - a2) * (c1 - c2)))
+                                                /
+                        (2.0 * (a1 - a2));
+                    Real tmp2 =
+                        (-(b1 - b2) - std::sqrt((b1 - b2) * (b1 - b2) -
+                                                4.0 * (a1 - a2) * (c1 - c2)))
+                                                /
+                        (2.0 * (a1 - a2));
+                    if (fabs((tmp1 - cutoff) / cutoff) < smoothInt)
+                        cutoff = tmp1;
+                    if (fabs((tmp2 - cutoff) / cutoff) < smoothInt)
+                        cutoff = tmp2;
+                }
                 // std::cerr << "cutoff after adjustment = " << cutoff <<
                 // std::endl;
 
