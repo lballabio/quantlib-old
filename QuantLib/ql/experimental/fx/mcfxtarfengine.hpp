@@ -684,6 +684,10 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
     // set proxy information generated during simulation as result
 
     results_.proxy = this->proxy_;
+
+    // clear the collected data
+
+    data_.clear();
 }
 
 template <class RNG, class S>
