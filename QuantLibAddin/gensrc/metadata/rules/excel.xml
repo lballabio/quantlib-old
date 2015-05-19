@@ -91,7 +91,8 @@
       <Rules>
         <Rule loop='true'/>
         <!--Rule tensorRank='scalar' type='QuantLib::Real' codeID='code12b'/-->
-        <Rule tensorRank='scalar' type='QuantLib::Real' default='true' codeID='code12'/>
+        <Rule tensorRank='scalar' type='QuantLib::Real' default='true' error='false' codeID='code12'/>
+        <Rule tensorRank='scalar' type='QuantLib::Real' default='true' error='true' codeID='code12c'/>
         <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code12b'/>
         <Rule tensorRank='scalar' superType='libraryQuote' type='QuantLib::Quote'/>
         <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code11'/>

@@ -107,6 +107,7 @@ export_piecewise_curve(PiecewiseFlatForward,ForwardRate,BackwardFlat);
 export_piecewise_curve(PiecewiseLinearForward,ForwardRate,Linear);
 export_piecewise_curve(PiecewiseLinearZero,ZeroYield,Linear);
 export_piecewise_curve(PiecewiseCubicZero,ZeroYield,Cubic);
+export_piecewise_curve(PiecewiseLogCubicDiscount,Discount,MonotonicLogCubic);
 // combine other traits as you wish
 
 

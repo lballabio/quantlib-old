@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLibObjects", "QuantLibObjects_vc10.vcxproj", "{CAB8330C-6424-4455-9285-3654587EF71F}"
@@ -19,7 +19,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ohgensrc", "..\ObjectHandle
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ohlib", "..\ObjectHandler\ohlib_vc10.vcxproj", "{CD623FE5-3B3E-4511-80A9-A99D893349A4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLib", "..\QuantLib\QuantLib_vc10.vcxproj", "{AD0A27DA-91DA-46A2-ACBD-296C419ED3AA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantLib", "..\QuantLib\QuantLib.vcxproj", "{AD0A27DA-91DA-46A2-ACBD-296C419ED3AA}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddinCpp", "Addins\Cpp\AddinCpp_vc10.vcxproj", "{E5C1A173-2885-4BAB-905B-F9521ACB8E31}"
 EndProject

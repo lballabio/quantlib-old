@@ -149,6 +149,7 @@
 %include bonds.i
 %include bondfunctions.i
 %include calendars.i
+%include calibrationhelpers.i
 %include callability.i
 %include capfloor.i
 %include cashflows.i
@@ -168,6 +169,7 @@
 %include forwardcurve.i
 %include fra.i
 %include functions.i
+%include gaussian1dmodel.i
 %include grid.i
 %include indexes.i
 %include inflation.i

@@ -28,6 +28,24 @@ implementation of QuantLibAddin.  For a summary of updates to the core
 QuantLibAddin project, please refer to
 <a href="http://www.quantlibaddin.org/history.html">http://www.quantlibaddin.org/history.html</a>
 
+<strong>Release 1.5.0 - April 2015</strong>
+
+- 55 new functions / 1072 in total
+- Additional Credit functionality exported from QuantLib to QuantLibXL.
+  Thanks to Jose Aparicio.
+- Example workbook StandaloneExamples/Analytics/InterestRateDerivatives.xlsx
+  now functions correctly on non working days.  Thanks to Paolo Mazzocchi.
+- Bug fix.  In the past, if you called function qlSimpleQuoteSetValue() with an
+  invalid value, the call failed.  This led to bugs, if you opened a
+  spreadsheet with stale rates, a quote could be set with an input that was
+  numerically valid but out of date.  Then if the live value was #NA, the update
+  failed, leaving the quote with an old stale value.  Now, if you call
+  qlSimpleQuoteSetValue() with an invalid input such as #NA, the quote object is
+  invalidated.
+  For more information please refer to file
+  QuantLibXL\StandaloneExamples\Bugs\qlSimpleQuoteSetValue_BugFix.xlsx.
+- The VBA Framework has not been updated for this release
+
 <strong>Release 1.4.0 - June 2014</strong>
 
 - 2 new functions / 1017 in total

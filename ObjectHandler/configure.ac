@@ -1,7 +1,7 @@
 
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([ObjectHandler], [1.5.0],
+AC_INIT([ObjectHandler], [1.6.0],
         [quantlib-dev@lists.sourceforge.net],
         [ObjectHandler])
 AC_PREREQ(2.50)
@@ -46,8 +46,19 @@ AC_LANG([C++])
 
 # Confirm existence of dependencies
 
-#AC_CHECK_HEADER([log4cxx/logger.h], [],
-#    [AC_MSG_ERROR([ObjectHandler depends on log4cxx which cannot be found])])
+# Configure and validate the path to log4cxx
+
+AC_ARG_WITH([log4cxx],
+    [AS_HELP_STRING([--without-log4cxx], [disable support for log4cxx, write log messages to stdout])],
+    [],
+    [with_log4cxx=yes])
+AS_IF([test "x$with_log4cxx" != xno],
+    [AC_CHECK_HEADER(
+        [log4cxx/logger.h],
+        [HAVE_LOG4CXX=1],
+        [AC_MSG_ERROR([log4cxx test failed (--without-log4cxx to disable)])])])
+AM_CONDITIONAL([OH_LINK_LOG4CXX], [test "$HAVE_LOG4CXX" -eq 1])
+AS_IF([test "$HAVE_LOG4CXX" -eq 1], AC_DEFINE([OH_INCLUDE_LOG4CXX], [1], [Support for logging]))
 
 # Check for tools needed for building documentation
 

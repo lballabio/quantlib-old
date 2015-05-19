@@ -30,9 +30,9 @@ page</a>.
 
 <h2 class="center">Books</h2>
 <ul>
-<li><strong>Implementing QuantLib</strong> (in progress)<br>
-Ballabio, L.<br>
-Available from <a href="http://implementingquantlib.blogspot.com/">the
+<li>Luigi Ballabio, <strong>Implementing QuantLib</strong> (in progress)<br>
+Available as an ebook from <a href="https://leanpub.com/implementingquantlib/">Leanpub</a>.
+Drafts are also posted on <a href="http://implementingquantlib.blogspot.com/">the
 accompanying blog</a>.
 </li>
 </ul>
@@ -62,102 +62,67 @@ along with the corresponding spreadsheets and additional material.
 <h2 class="center">Videos</h2>
 <ul>
 <li><strong>The QuantLib Notebooks</strong>
-is <a href="https://vimeo.com/channels/qlnotebooks">a series of
-screencasts</a> by Luigi Ballabio using IPython notebooks to
-demonstrate features of the QuantLib library.</li>
-</ul>
-
-<h2 class="center" id="qlws13">QuantLib User Meeting 2013</h2>
-
-The QuantLib User Meeting was held in D&uuml;sseldorf on November 13th
-and 14th, 2013, thanks to the sponsorship of
-<a href="http://www.ikb.de/">IKB</a>,
-<a href="http://www.quaternionrisk.com/">Quaternion</a> and
-<a href="http://www.d-fine.com/">d-fine</a>.  Most presentations from
-the meeting are available:
-<ul>
-<li><strong>Luigi Ballabio</strong>'s
-<a href="https://vimeo.com/lballabio/qlws13">opening keynote</a>;
-</li>
-<li><strong>Michael von den Driesch</strong>'s talk,
-<a href="slides/qlws13/von-den-driesch.pdf">
-<em>QuantLib at IKB</em></a>;
-</li>
-<li><strong>Roland Lichters</strong>'s talk,
-<a href="slides/qlws13/lichters.pdf">
-<em>Cross Asset CVA Application</em></a>;
-</li>
-<li><strong>Andr&eacute; Miemiec</strong>'s talk,
-<a href="slides/qlws13/miemiec.pdf">
-<em>Pricing of Accreting Swaptions using QuantLib</em></a>;
-</li>
-<li><strong>Peter Caspers</strong>'s talk,
-<a href="slides/qlws13/caspers.pdf">
-<em>Markov Functional Model</em></a>;
-</li>
-<li><strong>Sarp Kaya Acar</strong>'s talk,
-<a href="slides/qlws13/acar.pdf">
-<em>Inflation Modeling</em></a>;
-</li>
-<li><strong>Henning Segger</strong>'s talk,
-<a href="slides/qlws13/segger.pdf">
-<em>(J)CIR(++) Hazard Rate Model</em></a>;
-</li>
-<li><strong>Martin Dietrich</strong>'s talk,
-<a href="slides/qlws13/dietrich.pdf">
-<em>QuantLib Integration into Scala and Excel</em></a>;
-</li>
-<li><strong>Klaus Spanderen</strong>'s talk,
-<a href="slides/qlws13/spanderen.pdf">
-<em>Beyond Simple Monte-Carlo: Parallel Computing with QuantLib</em></a>;
-</li>
-<li><strong>Sebastian Schlenkrich</strong>'s talk,
-<a href="slides/qlws13/schlenkrich.pdf">
-<em>Design Patterns for Algorithmic Differentiation</em></a>.
-</li>
-</ul>
-
-<h2 class="center">First QuantLib Forum</h2>
-
-The first QuantLib forum was held in London on January 18th, 2011,
-thanks to the sponsorship of <a href="http://www.statpro.com/">StatPro</a>.
-<ul>
-<li>Slides of <strong>Ferdinando Ametrano</strong>'s
-presentation, <em>Yield curves for forward Euribor estimation and
-CSA-discounting</em>, are available here [<a href=
-"slides/rate-curves.pdf">PDF</a>].
-</li>
-<li>Slides of <strong>Marco Marchioro</strong>'s
-presentation, <em>Risk simulations for a bond in QuantLibXL</em>, are
-available from the <em>Conferences</em> page on his
-site, <a href="http://www.marchioro.org/">http://www.marchioro.org/</a>,
-along with the corresponding spreadsheet.
-</li>
-<li>A screencast of <strong>Luigi Ballabio</strong>'s
-presentation, <em>Code Arbitrage: or, how to get features for free in
-QuantLib</em>, is available in two parts
-at <a href="http://vimeo.com/lballabio/qlforum11-part1">http://vimeo.com/lballabio/qlforum11-part1</a>
-and <a href="http://vimeo.com/lballabio/qlforum11-part2">http://vimeo.com/lballabio/qlforum11-part2</a>.
-</li>
-<li>The brochure of the forum (just a historical curiosity by now) is
-available [<a href= "press/first-quantlib-forum.pdf">PDF</a>].
-</li>
+is <a href="https://www.youtube.com/playlist?list=PLu_PrO8j6XAvOAlZND9WUPwTHY_GYhJVr">a
+series of screencasts</a> by Luigi Ballabio using IPython notebooks to
+demonstrate features of the QuantLib library. It is also available
+  on <a href="https://vimeo.com/channels/qlnotebooks">Vimeo</a>.</li>
+<li><strong>Introduction to QuantLib</strong> is
+another <a href="https://www.youtube.com/user/eefelix/videos">series
+of screencasts</a> by Felix Lee, covering installation and usage of
+the library.</li>
+<li><strong>A Look at QuantLib Usage and Development</strong> is the
+recording of <a href="http://quantshub.com/qhworkshopview/63">a
+one-day workshop</a> given by Luigi Ballabio for Quants Hub. It is
+available for purchase separately or as part of their subscription
+service.</li>
 </ul>
 
 <h2 class="center">Blogs</h2>
 <ul>
-<li>Useful QuantLib-related posts appear in a few blogs, such as:<br>
+<li>Useful QuantLib-related posts appear in a number of blogs:<br>
 <strong>Klaus Spanderen's</strong> <a href="http://hpcquantlib.wordpress.com/">blog</a>;<br>
+<strong>Peter Caspers's</strong> <a href="http://quantlib.wordpress.com/">blog</a>;<br>
 <strong>Bojan Nikolic's</strong> <a href="http://www.bnikolic.co.uk/blog/">blog</a>;<br>
 <strong>&Eacute;douard Tallent's</strong> <a href="http://quantcorner.wordpress.com/">blog</a>;<br>
 <strong>Cogito Learning's</strong> <a href="http://cogitolearning.co.uk/?tag=quantlib-2">blog</a>;<br>
-<strong>Mick Hittesdorf's</strong> <a href="http://mhittesdorf.wordpress.com/category/quantlib/">blog</a>.<br>
+<strong>Mick Hittesdorf's</strong> <a href="http://mhittesdorf.wordpress.com/category/quantlib/">blog</a>;<br>
+<strong>John Orford's</strong> <a href="http://johnorford.blogspot.com/">blog</a>;<br>
+<strong>Luigi Ballabio's</strong> <a href="http://implementingquantlib.com/">blog</a>;<br>
+<strong>Matthias Groncki's</strong> <a href="https://ipythonquant.wordpress.com/">blog</a>.<br>
+<strong>Gouthaman Balaraman's</strong> <a href="http://gouthamanbalaraman.com/tag/quantlib.html">blog</a>.<br>
 </li>
 </ul>
 
+<h2 class="center" id="qlws13">Conference proceedings</h2>
+<ul>
+<li>The <strong id="qlws14"><a href="/qlws14.shtml">QuantLib User
+Meeting 2014</a></strong> was held in D&uuml;sseldorf on December 4th
+and 5th, 2014, thanks to the sponsorship of
+<a href="http://www.ikb.de/">IKB</a>;</li>
+<li>The <strong id="qlws13"><a href="/qlws13.shtml">QuantLib User
+Meeting 2013</a></strong> was held in D&uuml;sseldorf on November 13th
+and 14th, 2013, thanks to the sponsorship of
+<a href="http://www.ikb.de/">IKB</a>,
+<a href="http://www.quaternionrisk.com/">Quaternion</a> and
+<a href="http://www.d-fine.com/">d-fine</a>;</li>
+<li>The <strong><a href="/qlforum11.shtml">first QuantLib
+forum</a></strong> was held in London on January 18th, 2011, thanks to
+the sponsorship of <a href="http://www.statpro.com/">StatPro</a>.</li>
+</ul>
 
 <h2 class="center">Papers</h2>
 <ul>
+<li><strong>Derivatives Pricing using QuantLib: An Introduction</strong>
+[<a href="https://vineetv.wordpress.com/2015/04/03/wp-derivatives-pricing-using-quantlib/">abstract/download</a>]<br>
+Jayanth R. Varma, Vineet Virmani (2015)</li>
+<li><strong>Markov Functional One Factor Interest Rate Model
+Implementation in QuantLib</strong>
+[<a href="http://ssrn.com/abstract=2183721">abstract/download</a>]<br>
+Peter Caspers (2013)</li>
+<li><strong>Everything You Always Wanted to Know About Multiple
+Interest Rate Curve Bootstrapping but Were Afraid to Ask</strong>
+[<a href="http://ssrn.com/abstract=2219548">abstract/download</a>]<br>
+Ferdinando Ametrano, Marco Bianchetti (2013)</li>
 <li><strong>Option Engine: A Grid-Enabled Software Package to Evaluate
 Financial Options</strong> [<a href=
 "http://www.hpcwire.com/features/Option-Engine-A-Grid-Enabled-Software-Package-to-Evaluate-Financial-Options-59669252.html?viewAll=y">HTML</a>]<br>

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="qlmeta.inc"-->
+<meta name="author" content="StatPro Italia srl">
+<meta name="copyright" content="StatPro Italia srl (c) 2014">
+<meta name="description" content="Second QuantLib Workshop">
+<link rel="stylesheet" href="./styles/nosplash.css" type="text/css">
+<title>QuantLib User Meeting 2014</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="header.inc"-->
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
+<h1 class="center" id="qlws14">QuantLib User Meeting 2014</h1>
+
+<p>The QuantLib User Meeting 2014 was held in D&uuml;sseldorf on December 4th
+and 5th, thanks to the sponsorship of
+<a href="http://www.ikb.de/">IKB</a>.</p>
+
+<a href="/images/qlws14-large.png">
+<img class="foo" src="/images/qlws14.png" width="100%" border="0" alt="group photo">
+</a>
+
+<p>The slides for the talks are available by clicking on their title.</p>
+
+<h3>Thursday, December 4th</h3>
+<table>
+  <tr><td>Ferdinando Ametrano, <i><a href="https://speakerdeck.com/nando1970/open-source-finance-quantlib-opengamma-bitcoin">Open Source Finance: QuantLib, OpenGamma, and Bitcoin</a></i> (Keynote)</td></tr>
+  <tr><td>Roland Lichters, <i><a href="/slides/qlws14/lichters.pdf">American Monte Carlo for Bermudan CVA</a></i></td></tr>
+  <tr><td>Michael von der Driesch and Matthias Groncki, <i><a href="/slides/qlws14/groncki.pdf">ECB calls for lighter treatment of high-quality ABS. How QuantLib might help?</a></i> (with the accompanying <a href="/slides/qlws14/groncki.html">IPython notebook</a>)</td></tr>
+  <tr><td>Dirk Eddelbuettel, <i><a href="http://dirk.eddelbuettel.com/papers/r_and_quantlib_2014.pdf">QuantLib, R and Rcpp</a></i></td></tr>
+  <tr><td>Sebastian Schlenkrich, <i><a href="/slides/qlws14/schlenkrich.pdf">Choosing the Right Spread</a></i></td></tr>
+  <tr><td>Peter Caspers, <i><a href="/slides/qlws14/caspers.pdf">QuantLib Erlk&ouml;nige - A walk through some recent contributions</a></i></td></tr>
+</table>
+
+<h3>Friday, December 5th</h3>
+<table>
+  <tr><td>Daniel Duffy, <i><a href="/slides/qlws14/duffy.pdf">A PDE/FDM Software Framework in C++11 based on the Layers Software Pattern</a></i></td></tr>
+  <tr><td>Paolo Mazzocchi, <i><a href="https://speakerdeck.com/nando1970/eonia-jumps-and-proper-euribor-forwarding">Overnight Jumps and Proper Euribor Forwarding</a></i></td></tr>
+  <tr><td>Bernd Lewerenz, <i><a href="/slides/qlws14/lewerenz.pdf">A new pricing engine for arithmetic average price options</a></i></td></tr>
+  <tr><td>Eric Ehlers, <i><a href="/slides/qlws14/ehlers.pdf">The Reposit Project: An Improved Solution For Autogenerating QuantLibXL Source Code</a></i></td></tr>
+  <tr><td>Klaus Spanderen and Johannes G&ouml;ttker-Schnetmann, <i><a href="/slides/qlws14/spanderen.pdf">Towards a Stochastic Local Volatility Calibration in QuantLib</a></i></td></tr>
+  <tr><td>Andr&eacute; Miemiec, <i><a href="/slides/qlws14/miemiec.pdf">Pricing CMS-Spread Options with QuantLib</a></i></td></tr>
+</table>
+
+</div>
+
+<div id="menuafter">
+<!--#include virtual="usermenu.inc"-->
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 
-The convention for the names of the CVS branches is Rxxyyzzln where:
-R stand for Release
+The convention for the names of release tags used to be Rxxyyzzln where:
+R stands for Release
 xx is the major number
 yy is the minor number
 zz is the minor-minor number
@@ -11,21 +11,18 @@ n  is an ordinal number; 0 is only allowed when l equals f
 e.g. R010300a2 stands for Release 1.3.1a2
      R000501f0 stands for Release 0.5.1
 
-The current version number is 1.5 - 010500f0
+Since QuantLib 1.3, the tags are more readable. However, the above is
+still used in the code to check the version programmatically.
 
-This version number is in:
-    QuantLib/Announce.txt,
-    QuantLib/configure.ac,
-    QuantLib/ql/version.hpp,
+The current version number is 1.6 - R010600f0
+
+This version number needs to be updated manually in:
+
+    QuantLib/Announce.txt
+    QuantLib/configure.ac
+    QuantLib/ql/version.hpp
     
     QuantLib-SWIG/configure.ac
-    QuantLib-SWIG/Guile/setup.scm
-    QuantLib-SWIG/MzScheme/setup.scm
-    QuantLib-SWIG/Perl/Makefile.PL
-    QuantLib-SWIG/Python/setup.py
-    QuantLib-SWIG/R/DESCRIPTION
-    QuantLib-SWIG/Ruby/setup.rb
     QuantLib-SWIG/SWIG/ql.i
 
-
-in QuantLibXL.xla it must be updated manually
+    QuantLibXL/framework/QuantLibXL.xla

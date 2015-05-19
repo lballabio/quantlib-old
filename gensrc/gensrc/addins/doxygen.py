@@ -38,8 +38,8 @@ class Doxygen(addin.Addin):
     LINE_ENUM =          '    <tr><td>%s</td><td>%s</td></tr>\n'
     LINE_REF_CLASS =     '\\ref enum_class_%d\\n\n'
     LINE_REF_TYPE =      '\\ref enum_type_%d\\n\n'
-    LINE_SECTION_CLASS = '    \\section enum_class_%d %s\n'
-    LINE_SECTION_TYPE =  '    \\section enum_type_%d %s\n'
+    LINE_SECTION_CLASS = '    \\subsection enum_class_%d %s\n'
+    LINE_SECTION_TYPE =  '    \\subsection enum_type_%d %s\n'
     LINE_TABLE = """    <table>\n
     <tr><td><b>String</b></td><td><b>%s</b></td></tr>\n"""
 
