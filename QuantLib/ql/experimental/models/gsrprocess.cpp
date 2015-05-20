@@ -27,9 +27,11 @@ namespace QuantLib {
 
 GsrProcess::GsrProcess(const Array &times, const Array &vols,
                        const Array &reversions, const Array &adjusters,
-                       const Real T)
+                       const Real T, const Date &referenceDate,
+                       const DayCounter &dc)
     : ForwardMeasureProcess1D(T), times_(times), vols_(vols),
       reversions_(reversions), adjusters_(adjusters),
+      referenceDate_(referenceDate), dc_(dc),
       revZero_(reversions.size(), false) {
         QL_REQUIRE(times.size() == vols.size() - 1,
                    "number of volatilities ("
@@ -51,6 +53,13 @@ GsrProcess::GsrProcess(const Array &times, const Array &vols,
                                                     << " , " << times[i + 1]
                                                     << "@" << i + 1 << ")");
         flushCache();
+    }
+
+    Real GsrProcess::time(const Date &d) const {
+        QL_REQUIRE(
+            referenceDate_ != Null<Date>() && dc_ != DayCounter(),
+            "time can not be computed without reference date and day counter");
+        return dc_.yearFraction(referenceDate_, d);
     }
 
     Real GsrProcess::x0() const { return 0.0; }

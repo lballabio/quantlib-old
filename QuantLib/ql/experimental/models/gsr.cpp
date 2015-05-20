@@ -190,13 +190,15 @@ void Gsr::initialize(Real T) {
         reversion_.setParam(i, reversions_[i]->value());
     }
 
-    stateProcess_ = boost::shared_ptr<GsrProcess>(
-        new GsrProcess(volsteptimesArray_, sigma_.params(), reversion_.params(),
-                       unitAdjuster_.params(), T));
+    stateProcess_ = boost::shared_ptr<GsrProcess>(new GsrProcess(
+        volsteptimesArray_, sigma_.params(), reversion_.params(),
+        unitAdjuster_.params(), T, termStructure()->referenceDate(),
+        termStructure()->dayCounter()));
 
     adjustedStateProcess_ = boost::shared_ptr<GsrProcess>(
         new GsrProcess(volsteptimesArray_, sigma_.params(), reversion_.params(),
-                       adjuster_.params(), T));
+                       adjuster_.params(), T, termStructure()->referenceDate(),
+                       termStructure()->dayCounter()));
 
     registerWith(termStructure());
 

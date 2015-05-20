@@ -33,6 +33,7 @@
 
 #include <ql/processes/forwardmeasureprocess.hpp>
 #include <ql/math/comparison.hpp>
+#include <ql/time/daycounter.hpp>
 #include <map>
 
 namespace QuantLib {
@@ -42,7 +43,8 @@ namespace QuantLib {
     class GsrProcess : public ForwardMeasureProcess1D {
       public:
         GsrProcess(const Array &times, const Array &vols,
-                   const Array &reversions, const Array &adjusters, const Real T = 60.0);
+                   const Array &reversions, const Array &adjusters, const Real T = 60.0,
+                   const Date &referenceDate = Null<Date>(), const DayCounter &dc = DayCounter());
         //! \name StochasticProcess1D interface
         //@{
         Real x0() const;
@@ -51,6 +53,7 @@ namespace QuantLib {
         Real expectation(Time t0, Real x0, Time dt) const;
         Real stdDeviation(Time t0, Real x0, Time dt) const;
         Real variance(Time t0, Real, Time dt) const;
+        Real time(const Date& d) const;
         //@}
         Real sigma(Time t) const;
         Real reversion(Time t) const;
@@ -85,6 +88,8 @@ namespace QuantLib {
         mutable std::map<std::pair<Real, Real>, Real> cache1_, cache2_, cache3_,
             cache5_;
         mutable std::map<Real, Real> cache4_;
+        Date referenceDate_;
+        DayCounter dc_;
         mutable std::vector<bool> revZero_;
     };
 }
