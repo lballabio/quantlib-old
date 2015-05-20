@@ -44,7 +44,8 @@ Real FxTarfPathPricer::operator()(const Path &path) const {
     // we can precompute the fixing indices
 
     if (fixingIndices_.size() == 0) {
-        for (Size i = 0, j = 0; i < path.length(); ++i) {
+        for (Size i = 0, j = 0; i < path.length() && j < fixingTimes_.size();
+             ++i) {
             if (close(fixingTimes_[j], path.time(i))) {
                 fixingIndices_.push_back(i);
                 ++j;
