@@ -25,6 +25,7 @@ this_include_HEADERS = \
     gsrprocess.hpp \
     kahalesmilesection.hpp \
     markovfunctional.hpp \
+    mcgaussian1dnonstandardswaptionengine.hpp \
     mfstateprocess.hpp \
     nonstandardswap.hpp \
     nonstandardswaption.hpp \
@@ -53,6 +54,7 @@ libModels_la_SOURCES = \
     gsrprocess.cpp \
     kahalesmilesection.cpp \
     markovfunctional.cpp \
+    mcgaussian1dnonstandardswaptionengine.cpp \
     mfstateprocess.cpp \
     nonstandardswap.cpp \
     nonstandardswaption.cpp \

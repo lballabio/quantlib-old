@@ -22,6 +22,7 @@
 #include <ql/experimental/models/gsrprocess.hpp>
 #include <ql/experimental/models/kahalesmilesection.hpp>
 #include <ql/experimental/models/markovfunctional.hpp>
+#include <ql/experimental/models/mcgaussian1dnonstandardswaptionengine.hpp>
 #include <ql/experimental/models/mfstateprocess.hpp>
 #include <ql/experimental/models/nonstandardswap.hpp>
 #include <ql/experimental/models/nonstandardswaption.hpp>
