@@ -32,6 +32,7 @@
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
 #include <ql/models/calibrationhelper.hpp>
 #include <ql/utilities/disposable.hpp>
+#include <ql/experimental/fx/proxyinstrument.hpp>
 
 namespace QuantLib {
 
@@ -39,10 +40,32 @@ namespace QuantLib {
     /*! \ingroup instruments
     */
 
-    class NonstandardSwaption : public Option {
+    class NonstandardSwaption : public Option/*, public ProxyInstrument*/ {
       public:
         class arguments;
         class engine;
+
+        //! proxy description
+        // struct Proxy : ProxyDescription {
+        //     // exercise expiry dates
+        //     std::vector<Date> expiryDates;
+        //     // original evaluation date
+        //     Date origEvalDate;
+        //     // last payment date, the nps are forward npvs w.r.t. this date
+        //     Date lastPaymentDate;
+        //     // regression functions model state => (forward) npv
+        //     // currently only models with one dimensional state
+        //     // are supported
+        //     std::vector<boost::function1<Real, Real> > regression;
+        //     void validate() const {
+        //         QL_REQUIRE(regression.size() == expiryDates.size(),
+        //                    "Number of regression functions ("
+        //                        << regression.size()
+        //                        << ") does not match number of exercise dates ("
+        //                        << expiryDates.size() << ")");
+        //     }
+        // };
+
         NonstandardSwaption(const Swaption &fromSwaption);
         NonstandardSwaption(const boost::shared_ptr<NonstandardSwap> &swap,
                             const boost::shared_ptr<Exercise> &exercise,
