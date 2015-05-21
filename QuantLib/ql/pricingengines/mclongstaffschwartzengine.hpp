@@ -181,7 +181,6 @@ namespace QuantLib {
                 Time t = process_->time(this->arguments_.exercise->date(i));
                 if (t > 0.0)
                     requiredTimes.push_back(t);
-                std::cout << "required date " << this->arguments_.exercise->date(i) << " time " << t << std::endl;
             }
         }
         if (this->timeSteps_ != Null<Size>()) {
