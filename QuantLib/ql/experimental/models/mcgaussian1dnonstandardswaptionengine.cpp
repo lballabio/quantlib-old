@@ -20,14 +20,24 @@
 #include <ql/experimental/models/mcgaussian1dnonstandardswaptionengine.hpp>
 #include <ql/experimental/exercise/rebatedexercise.hpp>
 
-#include <iostream> // only debug
+#include <boost/math/special_functions/laguerre.hpp>
 
 namespace QuantLib {
 
 namespace {
+// Naive powers
 Real basis0(const Real x) { return 1; }
 Real basis1(const Real x) { return x; }
 Real basis2(const Real x) { return x * x; }
+Real basis3(const Real x) { return x * x * x; }
+Real basis4(const Real x) { return x * x * x * x; }
+// Laguerre
+// Real lag0(const Real x) { return boost::math::laguerre(0, x); }
+// Real lag1(const Real x) { return boost::math::laguerre(1, x); }
+// Real lag2(const Real x) { return boost::math::laguerre(2, x); }
+// Real lag3(const Real x) { return boost::math::laguerre(3, x); }
+// Real lag4(const Real x) { return boost::math::laguerre(4, x); }
+// Real lag5(const Real x) { return boost::math::laguerre(5, x); }
 }
 
 Gaussian1dNonstandardSwaptionPathPricer::
@@ -36,10 +46,20 @@ Gaussian1dNonstandardSwaptionPathPricer::
         const NonstandardSwaption::arguments *arguments,
         const Handle<YieldTermStructure> &discount, const Handle<Quote> &oas)
     : model_(model), arguments_(arguments), discount_(discount), oas_(oas) {
+
     // basis functions for ls regression
     basis_.push_back(boost::function1<Real, Real>(&basis0));
     basis_.push_back(boost::function1<Real, Real>(&basis1));
     basis_.push_back(boost::function1<Real, Real>(&basis2));
+    // basis_.push_back(boost::function1<Real, Real>(&basis3));
+    // basis_.push_back(boost::function1<Real, Real>(&basis4));
+    // basis_.push_back(boost::function1<Real, Real>(&lag0));
+    // basis_.push_back(boost::function1<Real, Real>(&lag1));
+    // basis_.push_back(boost::function1<Real, Real>(&lag2));
+    // basis_.push_back(boost::function1<Real, Real>(&lag3));
+    // basis_.push_back(boost::function1<Real, Real>(&lag4));
+    // basis_.push_back(boost::function1<Real, Real>(&lag5));
+
     // minimum alive exercise index
     Date today = Settings::instance().evaluationDate();
     minIdxAlive_ =
@@ -94,8 +114,7 @@ Real Gaussian1dNonstandardSwaptionPathPricer::operator()(const Path &path,
         model_->stateProcess()->stdDeviation(0.0, 0.0, path.time(*ex));
 
     // price all cashflows that belong to the exercise into right
-    // and return the non-deflated NPV
-
+    // and return the deflated NPV
     boost::shared_ptr<RebatedExercise> rebatedExercise =
         boost::dynamic_pointer_cast<RebatedExercise>(arguments_->exercise);
     Date exDate =
@@ -164,10 +183,12 @@ Real Gaussian1dNonstandardSwaptionPathPricer::operator()(const Path &path,
                                exDate, rebateDate)));
     }
     Real exerciseValue =
-        ((arguments_->type == VanillaSwap::Payer ? 1.0 : -1.0) *
-             (floatingLegNpv - fixedLegNpv) +
-         rebate * model_->zerobond(rebateDate, exDate, state, discount_) *
-             zSpreadDf) /
+        std::max(((arguments_->type == VanillaSwap::Payer ? 1.0 : -1.0) *
+                      (floatingLegNpv - fixedLegNpv) +
+                  rebate *
+                      model_->zerobond(rebateDate, exDate, state, discount_) *
+                      zSpreadDf),
+                 0.0) /
         model_->numeraire(exDate, state, discount_);
 
     return exerciseValue;

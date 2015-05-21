@@ -171,7 +171,7 @@ template <class RNG, class S>
 void McGaussian1dNonstandardSwaptionEngine<RNG, S>::calculate() const {
     // todo manage the proxy stuff ...
     base_class::calculate();
-    // transform the undeflated values into deflated ones
+    // transform the deflated values into plain ones
     this->results_.value *= model_->numeraire(0.0, 0.0, discountCurve_);
     this->results_.errorEstimate *= model_->numeraire(0.0, 0.0, discountCurve_);
 }
