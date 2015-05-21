@@ -821,13 +821,13 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
-          <Parameter name='FxPoint' exampleValue='0.136565'>
+          <Parameter name='FwdPoint' exampleValue='0.136565'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
-            <description>fx point quote.</description>
+            <description>forward point quote.</description>
           </Parameter>
-          <Parameter name='Spot' exampleValue='1.076565'>
+          <Parameter name='SpotFx' exampleValue='1.076565'>
             <type>QuantLib::Quote</type>
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
@@ -858,10 +858,10 @@
             <tensorRank>scalar</tensorRank>
             <description>End of Month rule (TRUE for end of month to end of month termination date, FALSE otherwise).</description>
           </Parameter>
-          <Parameter name='IsCurrencyPairCollateralBased' exampleValue='true'>
+          <Parameter name='IsFxBaseCurrencyCollateralCurrency' exampleValue='true'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if collateral currency is the base currency of the currency pair, FALSE otherwise.</description>
+            <description>TRUE if the base currency of the fx currency pair is the one used as collateral, FALSE otherwise.</description>
           </Parameter>
           <Parameter name='CollateralCurve' exampleValue='EURON'>
             <type>QuantLib::YieldTermStructure</type>
@@ -961,6 +961,23 @@
     <Member name='qlFxSwapRateHelperEOM' type='QuantLib::FxSwapRateHelper'>
       <description>returns the end of month flag for the given FxSwapRateHelper object.</description>
       <libraryFunction>endOfMonth</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperIsBaseCurrencyCollateralCurrency' type='QuantLib::FxSwapRateHelper'>
+      <description>returns TRUE if the base currency of the fx currency pair is the one used as collateral, FALSE otherwise.</description>
+      <libraryFunction>isFxBaseCurrencyCollateralCurrency</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Calc'/-->

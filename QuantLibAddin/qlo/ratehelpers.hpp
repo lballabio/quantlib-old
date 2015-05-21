@@ -223,14 +223,14 @@ namespace QuantLibAddin {
     public:
         FxSwapRateHelper(
          const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-         const QuantLib::Handle<QuantLib::Quote>& fx,
-         const QuantLib::Handle<QuantLib::Quote>& spot,
+         const QuantLib::Handle<QuantLib::Quote>& fwdPoint,
+         const QuantLib::Handle<QuantLib::Quote>& spotFx,
          const QuantLib::Period& tenor,
          QuantLib::Natural fixingDays,
          const QuantLib::Calendar& calendar,
          QuantLib::BusinessDayConvention convention,
          bool endOfMonth,
-         bool isCurrencyPairCollateralBased,
+         bool isFxBaseCurrencyCollateralCurrency,
          const QuantLib::Handle<QuantLib::YieldTermStructure>& collateralCurve,
          bool permanent);
 

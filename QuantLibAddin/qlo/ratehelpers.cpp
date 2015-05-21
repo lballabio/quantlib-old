@@ -307,28 +307,28 @@ namespace QuantLibAddin {
 
     FxSwapRateHelper::FxSwapRateHelper(
         const shared_ptr<ValueObject>& properties,
-        const QuantLib::Handle<QuantLib::Quote>& fx,
-        const QuantLib::Handle<QuantLib::Quote>& spot,
+        const QuantLib::Handle<QuantLib::Quote>& fwdPoint,
+        const QuantLib::Handle<QuantLib::Quote>& spotFx,
         const QuantLib::Period& tenor,
         QuantLib::Natural fixingDays,
         const QuantLib::Calendar& calendar,
         QuantLib::BusinessDayConvention convention,
         bool endOfMonth,
-        bool isCurrencyPairCollateralBased,
+        bool isFxBaseCurrencyCollateralCurrency,
         const QuantLib::Handle<QuantLib::YieldTermStructure>& collateralCurve,
         bool permanent)
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
-            QuantLib::FxSwapRateHelper(fx,
-                                       spot,
+            QuantLib::FxSwapRateHelper(fwdPoint,
+                                       spotFx,
                                        tenor,
                                        fixingDays,
                                        calendar,
                                        convention,
                                        endOfMonth,
-                                       isCurrencyPairCollateralBased,
+                                       isFxBaseCurrencyCollateralCurrency,
                                        collateralCurve));
-        quoteName_ = f(properties->getSystemProperty("FxPoint"));
+        quoteName_ = f(properties->getSystemProperty("FwdPoint"));
     }
 
 
