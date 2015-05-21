@@ -86,8 +86,6 @@ namespace QuantLib {
     //! Calibrated model class
     class CalibratedModel : public virtual Observer, public virtual Observable {
       public:
-        CalibratedModel(Size nArguments);
-
         void update() {
             generateArguments();
             notifyObservers();
@@ -130,6 +128,7 @@ namespace QuantLib {
         virtual void setParams(const Array& params);
 
       protected:
+        CalibratedModel(Size nArguments);
         virtual void generateArguments() {}
         std::vector<Parameter> arguments_;
         boost::shared_ptr<Constraint> constraint_;
