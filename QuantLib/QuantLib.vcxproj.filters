@@ -3994,6 +3994,9 @@
     <ClInclude Include="ql\models\shortrate\onefactormodels\markovfunctional.hpp">
       <Filter>models\shortrate\onefactormodels</Filter>
     </ClInclude>
+    <ClInclude Include="ql\termstructures\yield\compositediscountcurve.hpp">
+      <Filter>termstructures\yield</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -6433,6 +6436,9 @@
     </ClCompile>
     <ClCompile Include="ql\models\shortrate\onefactormodels\markovfunctional.cpp">
       <Filter>models\shortrate\onefactormodels</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\termstructures\yield\compositediscountcurve.cpp">
+      <Filter>termstructures\yield</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

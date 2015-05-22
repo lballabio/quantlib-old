@@ -1175,6 +1175,7 @@
     <ClInclude Include="ql\termstructures\yield\all.hpp" />
     <ClInclude Include="ql\termstructures\yield\bondhelpers.hpp" />
     <ClInclude Include="ql\termstructures\yield\bootstraptraits.hpp" />
+    <ClInclude Include="ql\termstructures\yield\compositediscountcurve.hpp" />
     <ClInclude Include="ql\termstructures\yield\discountcurve.hpp" />
     <ClInclude Include="ql\termstructures\yield\drifttermstructure.hpp" />
     <ClInclude Include="ql\termstructures\yield\fittedbonddiscountcurve.hpp" />
@@ -2187,6 +2188,7 @@
     <ClCompile Include="ql\termstructures\volatility\inflation\cpivolatilitystructure.cpp" />
     <ClCompile Include="ql\termstructures\volatility\inflation\yoyinflationoptionletvolatilitystructure.cpp" />
     <ClCompile Include="ql\termstructures\yield\bondhelpers.cpp" />
+    <ClCompile Include="ql\termstructures\yield\compositediscountcurve.cpp" />
     <ClCompile Include="ql\termstructures\yield\fittedbonddiscountcurve.cpp" />
     <ClCompile Include="ql\termstructures\yield\flatforward.cpp" />
     <ClCompile Include="ql\termstructures\yield\forwardstructure.cpp" />
