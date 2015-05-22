@@ -68,19 +68,7 @@ Gaussian1dNonstandardSwaptionPathPricer::
         arguments_->exercise->dates().begin();
 }
 
-Real Gaussian1dNonstandardSwaptionPathPricer::state(const Path &path,
-                                                    Size t) const {
-    return path[t];
-}
-
-std::vector<boost::function1<Real, Real> >
-Gaussian1dNonstandardSwaptionPathPricer::basisSystem() const {
-    return basis_;
-}
-
-Real Gaussian1dNonstandardSwaptionPathPricer::operator()(const Path &path,
-                                                         Size t) const {
-
+void Gaussian1dNonstandardSwaptionPathPricer::initExerciseIndices(const Path& path) const {
     // initialize the indices corresponding to the exercise dates
     if (exerciseIdx_.size() == 0) {
         for (Size i = 0, j = minIdxAlive_;
@@ -100,25 +88,36 @@ Real Gaussian1dNonstandardSwaptionPathPricer::operator()(const Path &path,
                        << ") in path times grid, only matched "
                        << exerciseIdx_.size() << " dates and grid times.");
     }
+}
 
-    // if we are on a path index that is not an exercise date we return 0.0
-    std::vector<Size>::const_iterator ex =
-        std::find(exerciseIdx_.begin(), exerciseIdx_.end(), t);
-    if (ex == exerciseIdx_.end())
-        return 0.0;
+Real Gaussian1dNonstandardSwaptionPathPricer::state(const Path &path,
+                                                    Size t) const {
+    initExerciseIndices(path);
+    return path[exerciseIdx_[t - 1]];
+}
+
+std::vector<boost::function1<Real, Real> >
+Gaussian1dNonstandardSwaptionPathPricer::basisSystem() const {
+    return basis_;
+}
+
+Real Gaussian1dNonstandardSwaptionPathPricer::operator()(const Path &path,
+                                                         Size t) const {
+
+    initExerciseIndices(path);
 
     // in the following we have to use a standardized state
-    Real state =
-        (path[*ex] -
-         model_->stateProcess()->expectation(0.0, 0.0, path.time(*ex))) /
-        model_->stateProcess()->stdDeviation(0.0, 0.0, path.time(*ex));
+    Real state = (path[exerciseIdx_[t - 1]] -
+                  model_->stateProcess()->expectation(
+                      0.0, 0.0, path.time(exerciseIdx_[t - 1]))) /
+                 model_->stateProcess()->stdDeviation(
+                     0.0, 0.0, path.time(exerciseIdx_[t - 1]));
 
     // price all cashflows that belong to the exercise into right
     // and return the deflated NPV
     boost::shared_ptr<RebatedExercise> rebatedExercise =
         boost::dynamic_pointer_cast<RebatedExercise>(arguments_->exercise);
-    Date exDate =
-        arguments_->exercise->date(minIdxAlive_ + (ex - exerciseIdx_.begin()));
+    Date exDate = arguments_->exercise->date(minIdxAlive_ + (t - 1));
     boost::shared_ptr<NonstandardSwap> swap = arguments_->swap;
     Schedule fixedSchedule = swap->fixedSchedule();
     Schedule floatingSchedule = swap->floatingSchedule();
@@ -171,10 +170,8 @@ Real Gaussian1dNonstandardSwaptionPathPricer::operator()(const Path &path,
     Real zSpreadDf = 1.0;
     Date rebateDate = exDate;
     if (rebatedExercise != NULL) {
-        rebate =
-            rebatedExercise->rebate(minIdxAlive_ + (ex - exerciseIdx_.begin()));
-        rebateDate = rebatedExercise->rebatePaymentDate(
-            minIdxAlive_ + (ex - exerciseIdx_.begin()));
+        rebate = rebatedExercise->rebate(minIdxAlive_ + (t - 1));
+        rebateDate = rebatedExercise->rebatePaymentDate(minIdxAlive_ + (t - 1));
         zSpreadDf =
             oas_.empty()
                 ? 1.0

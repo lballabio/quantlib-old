@@ -40,31 +40,37 @@ namespace QuantLib {
     /*! \ingroup instruments
     */
 
-    class NonstandardSwaption : public Option/*, public ProxyInstrument*/ {
+    class NonstandardSwaption : public Option, public ProxyInstrument {
       public:
         class arguments;
+        class results;
         class engine;
 
         //! proxy description
-        // struct Proxy : ProxyDescription {
-        //     // exercise expiry dates
-        //     std::vector<Date> expiryDates;
-        //     // original evaluation date
-        //     Date origEvalDate;
-        //     // last payment date, the nps are forward npvs w.r.t. this date
-        //     Date lastPaymentDate;
-        //     // regression functions model state => (forward) npv
-        //     // currently only models with one dimensional state
-        //     // are supported
-        //     std::vector<boost::function1<Real, Real> > regression;
-        //     void validate() const {
-        //         QL_REQUIRE(regression.size() == expiryDates.size(),
-        //                    "Number of regression functions ("
-        //                        << regression.size()
-        //                        << ") does not match number of exercise dates ("
-        //                        << expiryDates.size() << ")");
-        //     }
-        // };
+        struct Proxy : ProxyDescription {
+            struct ProxyFunction {
+                // function taking the model state and returning the npv
+                virtual Real operator()(const Real state) const = 0;
+            };
+            // open exercise expiry dates 
+            std::vector<Date> expiryDates;
+            // original evaluation date
+            Date origEvalDate;
+            // original model
+            boost::shared_ptr<Gaussian1dModel> model;
+            // regression functions model state => deflated npv
+            // currently only models with one dimensional state
+            // are supported
+            std::vector<ProxyFunction> regression;
+            void validate() const {
+                QL_REQUIRE(regression.size() == expiryDates.size() -1,
+                           "Number of regression functions ("
+                               << regression.size()
+                               << ") does not match number of exercise dates - 1 ("
+                               << expiryDates.size()-1 << ")");
+                QL_REQUIRE(model != NULL, "no model given");
+            }
+        };
 
         NonstandardSwaption(const Swaption &fromSwaption);
         NonstandardSwaption(const boost::shared_ptr<NonstandardSwap> &swap,
@@ -75,6 +81,7 @@ namespace QuantLib {
         //@{
         bool isExpired() const;
         void setupArguments(PricingEngine::arguments *) const;
+        void fetchResults(const PricingEngine::results *) const;
         //@}
         //! \name Inspectors
         //@{
@@ -84,6 +91,10 @@ namespace QuantLib {
             return swap_;
         }
         //@}
+
+        //! description for proxy pricing
+        boost::shared_ptr<ProxyDescription> proxy() const;
+
         Disposable<std::vector<boost::shared_ptr<CalibrationHelper> > >
         calibrationBasket(
             boost::shared_ptr<SwapIndex> standardSwapBase,
@@ -95,6 +106,8 @@ namespace QuantLib {
         // arguments
         boost::shared_ptr<NonstandardSwap> swap_;
         Settlement::Type settlementType_;
+        // proxy pricing information
+        mutable boost::shared_ptr<ProxyDescription> proxy_;        
     };
 
     //! %Arguments for nonstandard swaption calculation
@@ -107,10 +120,17 @@ namespace QuantLib {
         void validate() const;
     };
 
+    class NonstandardSwaption::results : public Option::results {
+      public:
+        void reset();
+        boost::shared_ptr<NonstandardSwaption::Proxy> proxy;
+    };
+
     //! base class for nonstandard swaption engines
     class NonstandardSwaption::engine
         : public GenericEngine<NonstandardSwaption::arguments,
-                               NonstandardSwaption::results> {};
+                               NonstandardSwaption::results> {
+    };
 }
 
 #endif
