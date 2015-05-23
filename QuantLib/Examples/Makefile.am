@@ -10,7 +10,6 @@ SUBDIRS = \
     CallableBonds \
 	CallableBonds2 \
     CDS \
-	CmsSwaption \
     ConvertibleBonds \
 	CreditRiskPlus \
     DiscreteHedging \
@@ -18,11 +17,9 @@ SUBDIRS = \
     FittedBondCurve \
     FRA \
     Gaussian1dModels \
-	InterestRateSmiles \
 	KahaleSmileSection \
     MarketModels \
 	MultitenorVols \
-	NonstandardSwaption \
     LatentModel \
     MultidimIntegral \
     Replication \
