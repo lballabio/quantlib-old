@@ -26,7 +26,7 @@
 
 #include <ql/qldefines.hpp>
 #include <ql/termstructures/volatility/smilesection.hpp>
-#include <ql/experimental/models/smilesectionutils.hpp>
+#include <ql/termstructures/volatility/smilesectionutils.hpp>
 #include <ql/math/interpolation.hpp>
 #include <ql/math/interpolations/cubicinterpolation.hpp>
 #include <ql/math/interpolations/linearinterpolation.hpp>

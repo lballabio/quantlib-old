@@ -18,7 +18,7 @@ this_include_HEADERS = \
     sabrinterpolatedsmilesection.hpp \
     sabrsmilesection.hpp \
     smilesection.hpp \
-    volatilitynature.hpp
+    volatilitynature.hpp \
     smilesectionutils.hpp \
     spreadedsmilesection.hpp
 

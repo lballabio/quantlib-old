@@ -34,7 +34,7 @@
 #include <ql/pricingengines/blackformula.hpp>
 
 #include <boost/make_shared.hpp>
-#include <ql/experimental/models/atmsmilesection.hpp>
+#include <ql/termstructures/volatility/atmsmilesection.hpp>
 
 namespace QuantLib {
 

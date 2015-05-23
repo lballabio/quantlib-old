@@ -27,7 +27,7 @@
 #include <ql/models/calibrationhelper.hpp>
 #include <ql/indexes/interestrateindex.hpp>
 #include <ql/cashflows/couponpricer.hpp>
-#include <ql/experimental/models/floatfloatswaption.hpp>
+#include <ql/instruments/floatfloatswaption.hpp>
 
 namespace QuantLib {
 

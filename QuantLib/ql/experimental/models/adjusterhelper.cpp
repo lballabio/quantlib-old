@@ -18,7 +18,7 @@
 */
 
 #include <ql/experimental/models/adjusterhelper.hpp>
-#include <ql/experimental/models/gaussian1dfloatfloatswaptionengine.hpp>
+#include <ql/pricingengines/swaption/gaussian1dfloatfloatswaptionengine.hpp>
 #include <ql/cashflows/cashflows.hpp>
 #include <ql/cashflows/couponpricer.hpp>
 

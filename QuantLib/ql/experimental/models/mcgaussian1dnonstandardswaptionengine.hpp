@@ -28,7 +28,7 @@
 #include <ql/pricingengines/genericmodelengine.hpp>
 #include <ql/pricingengines/mclongstaffschwartzengine.hpp>
 #include <ql/termstructures/yield/flatforward.hpp>
-#include <ql/experimental/models/nonstandardswaption.hpp>
+#include <ql/instruments/nonstandardswaption.hpp>
 
 #include <boost/make_shared.hpp>
 

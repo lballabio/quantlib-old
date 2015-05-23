@@ -80,7 +80,6 @@ namespace QuantLib {
     };
 
     void CalibratedModel::calibrate(
-<<<<<<< HEAD
         const std::vector<boost::shared_ptr<CalibrationHelper> >& instruments,
         OptimizationMethod& method,
         const EndCriteria& endCriteria,
@@ -128,10 +127,6 @@ namespace QuantLib {
         Array shortRateProblemValues_ = prob.values(result);
 
         notifyObservers();
-    }
-
-    EndCriteria::Type CalibratedModel::endCriteria() {
-        return shortRateEndCriteria_;
     }
 
     Real CalibratedModel::value(const Array& params,

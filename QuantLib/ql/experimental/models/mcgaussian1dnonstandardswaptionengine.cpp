@@ -18,7 +18,7 @@
 */
 
 #include <ql/experimental/models/mcgaussian1dnonstandardswaptionengine.hpp>
-#include <ql/experimental/exercise/rebatedexercise.hpp>
+#include <ql/rebatedexercise.hpp>
 
 #include <boost/math/special_functions/laguerre.hpp>
 

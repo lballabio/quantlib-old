@@ -25,7 +25,7 @@
 #define quantlib_xva_gaussian1dscenariogenerator_hpp
 
 #include <ql/experimental/xva/scenariogenerator.hpp>
-#include <ql/experimental/models/gaussian1dmodel.hpp>
+#include <ql/models/shortrate/onefactormodels/gaussian1dmodel.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 #include <ql/math/randomnumbers/mt19937uniformrng.hpp>
 #include <ql/math/randomnumbers/inversecumulativerng.hpp>

@@ -20,7 +20,7 @@
 #include <ql/termstructures/volatility/swaption/swaptionsinglesabrvol.hpp>
 #include <ql/termstructures/volatility/sabrsmilesection.hpp>
 #include <ql/math/solvers1d/newtonsafe.hpp>
-#include <ql/experimental/models/kahalesmilesection.hpp>
+#include <ql/termstructures/volatility/kahalesmilesection.hpp>
 
 namespace QuantLib {
 
