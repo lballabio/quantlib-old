@@ -3,64 +3,15 @@ AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 
 this_includedir=${includedir}/${subdir}
 this_include_HEADERS = \
-    adjusterhelper.hpp \
-    all.hpp \
-    adjusterhelper.hpp \
-    atmadjustedsmilesection.hpp \
-    atmsmilesection.hpp \
-    basketgeneratingengine.hpp \
-    bdksmilesection.hpp \
-    floatfloatswap.hpp \
-    floatfloatswaption.hpp \
-    gaussian1dmodel.hpp \
-    gaussian1dcapfloorengine.hpp \
-    gaussian1dfloatfloatswaptionengine.hpp \
-    gaussian1djamshidianswaptionengine.hpp \
-    gaussian1dnonstandardswaptionengine.hpp \
-    gaussian1dsmilesection.hpp \
-    gaussian1dswaptionengine.hpp \
-    gaussian1dswaptionvolatility.hpp \
-    gaussian1dyieldtermstructure.hpp \
-    gsr.hpp \
-    gsrprocess.hpp \
-    kahalesmilesection.hpp \
-    markovfunctional.hpp \
     mcgaussian1dnonstandardswaptionengine.hpp \
-    mfstateprocess.hpp \
-    nonstandardswap.hpp \
-    nonstandardswaption.hpp \
     quadraticlfm.hpp \
     sbsmilesection.hpp \
-    smilesectionutils.hpp \
     splinedensitysmilesection.hpp
 
 libModels_la_SOURCES = \
-    adjusterhelper.cpp \
-    atmadjustedsmilesection.cpp \
-    atmsmilesection.cpp \
-    basketgeneratingengine.cpp \
-    bdksmilesection.cpp \
-    floatfloatswap.cpp \
-    floatfloatswaption.cpp \
-    gaussian1dmodel.cpp \
-    gaussian1dcapfloorengine.cpp \
-    gaussian1dfloatfloatswaptionengine.cpp \
-    gaussian1djamshidianswaptionengine.cpp \
-    gaussian1dnonstandardswaptionengine.cpp \
-    gaussian1dsmilesection.cpp \
-    gaussian1dswaptionengine.cpp \
-    gaussian1dswaptionvolatility.cpp \
-    gsr.cpp \
-    gsrprocess.cpp \
-    kahalesmilesection.cpp \
-    markovfunctional.cpp \
     mcgaussian1dnonstandardswaptionengine.cpp \
-    mfstateprocess.cpp \
-    nonstandardswap.cpp \
-    nonstandardswaption.cpp \
     quadraticlfm.cpp \
     sbsmilesection.cpp \
-    smilesectionutils.cpp \
     splinedensitysmilesection.cpp
 
 noinst_LTLIBRARIES = libModels.la

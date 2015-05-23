@@ -23,6 +23,9 @@
 #include <ql/math/optimization/projection.hpp>
 #include <ql/math/optimization/projectedconstraint.hpp>
 
+using std::vector;
+using boost::shared_ptr;
+
 namespace QuantLib {
 
     namespace {
@@ -77,6 +80,7 @@ namespace QuantLib {
     };
 
     void CalibratedModel::calibrate(
+<<<<<<< HEAD
         const std::vector<boost::shared_ptr<CalibrationHelper> >& instruments,
         OptimizationMethod& method,
         const EndCriteria& endCriteria,
@@ -109,12 +113,11 @@ namespace QuantLib {
             c = *constraint_;
         else
             c = CompositeConstraint(*constraint_,additionalConstraint);
-        std::vector<Real> w = weights.empty() ?
-                              std::vector<Real>(instruments.size(), 1.0):
-                              weights;
+        vector<Real> w =
+            weights.empty() ? vector<Real>(instruments.size(), 1.0): weights;
 
         Array prms = params();
-        std::vector<bool> all(prms.size(), false);
+        vector<bool> all(prms.size(), false);
         Projection proj(prms,fixParameters.size()>0 ? fixParameters : all);
         CalibrationFunction f(this,instruments,w,proj);
         ProjectedConstraint pc(c,proj);

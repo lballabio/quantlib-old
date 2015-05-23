@@ -4,7 +4,6 @@ AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 this_includedir=${includedir}/${subdir}
 this_include_HEADERS = \
     all.hpp \
-    adaptiverungekutta.hpp \
     claytoncopularng.hpp \
     convolvedstudentt.hpp \
 	dynamiccreator.hpp \
@@ -15,8 +14,8 @@ this_include_HEADERS = \
     latentmodel.hpp \
     multidimintegrator.hpp \
     multidimquadrature.hpp \
+    numericaldifferentiation.hpp \
     polarstudenttrng.hpp \
-    simulatedannealing.hpp \
     tcopulapolicy.hpp \
     zigguratrng.hpp
 
@@ -27,6 +26,7 @@ libMath_la_SOURCES = \
     gaussiancopulapolicy.cpp \
     multidimintegrator.cpp \
     multidimquadrature.cpp \
+    numericaldifferentiation.cpp \
     tcopulapolicy.cpp \
     zigguratrng.cpp
 

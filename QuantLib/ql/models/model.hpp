@@ -57,11 +57,9 @@ namespace QuantLib {
 
         virtual Real discountBondOption(Option::Type type,
                                         Real strike,
-                                        Time maturity, Time bondStart,
-                                        Time bondMaturity) const {
-            return discountBondOption(type,strike,maturity,bondMaturity);
-        }
-
+                                        Time maturity,
+                                        Time bondStart,
+                                        Time bondMaturity) const;
     };
 
 
@@ -94,7 +92,7 @@ namespace QuantLib {
             notifyObservers();
         }
 
-        //! Calibrate to a set of market instruments (caps/swaptions)
+        //! Calibrate to a set of market instruments (usually caps/swaptions)
         /*! An additional constraint can be passed which must be
             satisfied in addition to the constraints of the model.
         */
@@ -121,8 +119,10 @@ namespace QuantLib {
                    const std::vector<boost::shared_ptr<CalibrationHelper> >&);
 
         const boost::shared_ptr<Constraint>& constraint() const;
-        //! returns end criteria result
-        EndCriteria::Type endCriteria();
+
+        //! Returns end criteria result
+        EndCriteria::Type endCriteria() const { return shortRateEndCriteria_; }
+
         //! Returns array of arguments on which calibration is done
         Disposable<Array> params() const;
 
@@ -150,7 +150,17 @@ namespace QuantLib {
         virtual boost::shared_ptr<Lattice> tree(const TimeGrid&) const = 0;
     };
 
+
     // inline definitions
+
+
+    inline Real AffineModel::discountBondOption(Option::Type type,
+                                                Real strike,
+                                                Time maturity,
+                                                Time,
+                                                Time bondMaturity) const {
+        return discountBondOption(type, strike, maturity, bondMaturity);
+    }
 
     inline const boost::shared_ptr<Constraint>&
     CalibratedModel::constraint() const {
