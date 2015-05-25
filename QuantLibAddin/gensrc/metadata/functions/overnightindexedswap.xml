@@ -21,7 +21,7 @@
     <include>ql/termstructures/yield/oisratehelper.hpp</include>
   </serializationIncludes>
   <copyright>
-    Copyright (C) 2009, 2011 Ferdinando Ametrano
+    Copyright (C) 2009, 2011, 2015 Ferdinando Ametrano
   </copyright>
   <Functions>
 
@@ -86,6 +86,11 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='SettlDays' default='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Number of days to spot date.</description>
+          </Parameter>
           <Parameter name='SwapTenor' exampleValue='5Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
@@ -104,7 +109,7 @@
           <Parameter name='ForwardStart' exampleValue='"0D"'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>forward start period.</description>
+            <description>forward start period (from spot date).</description>
           </Parameter>
           <Parameter name='FixDayCounter' default='"Actual/360"'>
             <type>QuantLib::DayCounter</type>

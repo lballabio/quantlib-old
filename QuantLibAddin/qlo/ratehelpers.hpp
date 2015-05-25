@@ -4,7 +4,7 @@
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005 Plamen Neykov
- Copyright (C) 2006, 2007, 2008, 2009, 2012 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009, 2012, 2015 Ferdinando Ametrano
  Copyright (C) 2007 Marco Bianchetti
 
  This file is part of QuantLib, a free-software/open-source library
@@ -129,6 +129,7 @@ namespace QuantLibAddin {
         SwapRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& quote,
+            QuantLib::Natural settlementDays,
             const QuantLib::Period& p,
             const QuantLib::Calendar& calendar,
             const QuantLib::Frequency& fixedFrequency,
