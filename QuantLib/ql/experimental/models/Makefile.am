@@ -3,15 +3,17 @@ AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 
 this_includedir=${includedir}/${subdir}
 this_include_HEADERS = \
-	all.hpp \
-	adjusterhelper.hpp \
+    all.hpp \
+    adjusterhelper.hpp \
+    betaeta.hpp \
     mcgaussian1dnonstandardswaptionengine.hpp \
     quadraticlfm.hpp \
     sbsmilesection.hpp \
     splinedensitysmilesection.hpp
 
 libModels_la_SOURCES = \
-	adjusterhelper.cpp \
+    adjusterhelper.cpp \
+    betaeta.cpp \
     mcgaussian1dnonstandardswaptionengine.cpp \
     quadraticlfm.cpp \
     sbsmilesection.cpp \
