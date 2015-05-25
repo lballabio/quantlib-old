@@ -48,6 +48,7 @@ class BetaEta {
     // transition density
     const Real p(const Time t0, const Real x0, const Real t,
                  const Real x) const;
+
     // singular term for y=0 (x=-1/beta)
     // and 1 > eta >= 0.5, otherwise 0 is returned
     const Real singularTerm_y_0(const Time t0, const Real x0,
