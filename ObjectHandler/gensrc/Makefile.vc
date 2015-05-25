@@ -29,7 +29,7 @@ $(BUILD_DIR) :
 #
 # Otherwise, you might need to set the PYTHON variable equal to the location of
 # the Python executable on your machine, e.g:
-#PYTHON=C:\Python27\python.exe
+PYTHON=C:\Python27\python.exe
 
 $(BUILDFLAG) : $(INPUTS) $(BUILD_DIR)
     $(PYTHON) $(GENSRC_DIR)\gensrc.py -xdlv --oh_dir=$(OH_DIR)

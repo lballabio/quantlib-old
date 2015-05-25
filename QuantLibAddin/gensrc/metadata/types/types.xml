@@ -181,6 +181,7 @@
 
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::TermStructure</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::YieldTermStructure</DataType>
+    <DataType defaultSuperType='libraryTermStructure'>QuantLib::CompositeDiscountCurve</DataType>
     <!--RL ADD 2010-07-22-->
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::DefaultProbabilityTermStructure</DataType>
     <DataType defaultSuperType='libraryTermStructure'>QuantLib::SwaptionVolatilityStructure</DataType>

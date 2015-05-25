@@ -4,13 +4,13 @@
   <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
   <serializationIncludes>
     <include>qlo/conversions/coercetermstructure.hpp</include>
-    
     <include>qlo/ratehelpers.hpp</include>
   </serializationIncludes>
   <addinIncludes>
+    <include>ql/termstructures/yield/compositediscountcurve.hpp</include>
+
     <include>qlo/handleimpl.hpp</include>
     <include>qlo/conversions/coercetermstructure.hpp</include>
-    
     <include>qlo/ratehelpers.hpp</include>
   </addinIncludes>
   <copyright>
@@ -18,6 +18,8 @@
     Copyright (C) 2006, 2007, 2009 Ferdinando Ametrano
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Aurelien Chanudet
+    Copyright (C) 2015 Paolo Mazzocchi
+    Copyright (C) 2015 Riccardo Barone
   </copyright>
   <Functions>
 
@@ -263,7 +265,7 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-	<!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Calc'/-->
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -507,12 +509,104 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlCompositeDiscountCurve'>
+      <libraryFunction>CompositeDiscountCurve</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FirstYieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>First YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='SecondYieldCurve' >
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Second YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='JoinDate'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the date at which the two curves are joined</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolatedJunction'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the first curve can be extrapolated until the join date, FALSE otherwise.</description>
+          </Parameter>
+          <Parameter name='AllowExtrapolation'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the second curve can be extrapolated, FALSE otherwise</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <!-- CompositeDiscountCurve interface -->
+    <Member name='qlCompositeDiscountCurveJoinDate' type='QuantLib::CompositeDiscountCurve' superType='libraryTermStructure'>
+      <description>Returns the join date for the given CompositeDiscountCurve object.</description>
+      <libraryFunction>joinDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCompositeDiscountCurveAllowExtrapolatedJunction' type='QuantLib::CompositeDiscountCurve' superType='libraryTermStructure'>
+      <description>TRUE if the extrapolation of the first curve until the junction date is allowed for the given CompositeDiscountCurve object, FALSE otherwise.</description>
+      <libraryFunction>allowExtrapolatedJunction</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlCompositeDiscountCurveAllowExtrapolation' type='QuantLib::CompositeDiscountCurve' superType='libraryTermStructure'>
+      <description>TRUE if the extrapolation of the second curve is allowed for the given CompositeDiscountCurve object, FALSE otherwise.</description>
+      <libraryFunction>allowExtrapolation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
     <Constructor name='qlInterpolatedYieldCurve'>
       <libraryFunction>InterpolatedYieldCurve</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-	<!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Calc'/-->
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>
