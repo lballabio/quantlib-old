@@ -43,11 +43,11 @@ class BetaEta {
 
     // transition density
     const Real p(const Time t0, const Real x0, const Real t, const Real x);
-    // singular term for y=0 (x=-1/beta) 
+    // singular term for y=0 (x=-1/beta)
     // and 1 > eta >= 0.5, otherwise 0 is returned
     const Real singularTerm_y_0(const Time t0, const Real x0, const Time t);
 
-    //private: // for debug
+    // private: // for debug
     const Real tau(const Time t) const;
     const Real y(const Real x) const;
     const Real dydx(const Real y) const;
@@ -79,9 +79,9 @@ inline const Real BetaEta::tau(const Real t) const {
 }
 
 inline const Real BetaEta::y(const Real x) const {
-    // for y==1.0, should we maybe write
-    // log(fabs(1.0+beta*x)) instead of log(1.0+beta*x) as in the paper ?
-    return close(eta_, 1.0) ? std::log(std::fabs(1.0 + beta_ * x)) / beta_
+    // for eta = 1 y is only well defined if x > -1/beta
+    // it is not the responsibility of the code here to ensure this
+    return close(eta_, 1.0) ? std::log(1.0 + beta_ * x) / beta_
                             : std::pow(std::fabs(1 + beta_ * x), 1.0 - eta_) /
                                   (beta_ * (1.0 - eta_));
 }
