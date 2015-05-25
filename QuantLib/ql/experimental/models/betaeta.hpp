@@ -27,6 +27,7 @@
 #include <ql/types.hpp>
 #include <ql/utilities/null.hpp>
 #include <ql/math/comparison.hpp>
+#include <ql/math/integrals/gausslobattointegral.hpp>
 
 #include <vector>
 
@@ -41,14 +42,20 @@ class BetaEta {
     BetaEta(const std::vector<Real> &times, const std::vector<Real> &alpha,
             const std::vector<Real> &lambda, const Real &beta, const Real &eta);
 
+    // M(t0,x0;t)
+    const Real M(const Real t0, const Real x0, const Real t) const;
+
     // transition density
-    const Real p(const Time t0, const Real x0, const Real t, const Real x);
+    const Real p(const Time t0, const Real x0, const Real t,
+                 const Real x) const;
     // singular term for y=0 (x=-1/beta)
     // and 1 > eta >= 0.5, otherwise 0 is returned
-    const Real singularTerm_y_0(const Time t0, const Real x0, const Time t);
+    const Real singularTerm_y_0(const Time t0, const Real x0,
+                                const Time t) const;
 
-    // private: // for debug
+  private:
     const Real tau(const Time t) const;
+    const Real tau(const Time t0, const Time t) const;
     const Real y(const Real x) const;
     const Real dydx(const Real y) const;
 
@@ -66,14 +73,22 @@ class BetaEta {
 
     const std::vector<Real> &times_, &alpha_, &lambda_;
     const Real &beta_, &eta_;
+
+    boost::shared_ptr<GaussLobattoIntegral> integrator_;
+
+    class mIntegrand;
+    friend class mIntegrand;
 };
 
 // implementation
 
-inline const Real BetaEta::tau(const Real t) const {
+inline const Real BetaEta::tau(const Real t) const { return tau(0.0, t); }
+
+inline const Real BetaEta::tau(const Real t0, const Real t) const {
     Real res = 0.0;
-    for (int i = 0; i < upperIndex(t); ++i) {
-        res += alpha_[i] * alpha_[i] * (cappedTime(i + 1, t) - flooredTime(i));
+    for (int i = lowerIndex(t0); i < upperIndex(t); ++i) {
+        res +=
+            alpha_[i] * alpha_[i] * (cappedTime(i + 1, t) - flooredTime(i, t0));
     }
     return res;
 }
