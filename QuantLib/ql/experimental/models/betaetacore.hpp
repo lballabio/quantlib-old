@@ -25,6 +25,7 @@
 #define quantlib_betaeta_hpp
 
 #include <ql/types.hpp>
+#include <ql/math/array.hpp>
 #include <ql/utilities/null.hpp>
 #include <ql/math/comparison.hpp>
 #include <ql/math/integrals/gausslobattointegral.hpp>
@@ -41,8 +42,8 @@ class BetaEtaCore {
   public:
     /*! We assume a piecewise constant reversion \kappa and
         set \lambda(t) := (1-exp(-\kappa*t))/\kappa */
-    BetaEtaCore(const std::vector<Real> &times, const std::vector<Real> &alpha,
-            const std::vector<Real> &kappa, const Real &beta, const Real &eta);
+    BetaEtaCore(const Array &times, const Array &alpha,
+            const Array &kappa, const Real &beta, const Real &eta);
 
     // M(t0,x0;t)
     const Real M(const Real t0, const Real x0, const Real t) const;
@@ -55,6 +56,9 @@ class BetaEtaCore {
     // and 1 > eta >= 0.5, otherwise 0 is returned
     const Real singularTerm_y_0(const Time t0, const Real x0,
                                 const Time t) const;
+    
+    // lambda(t)
+    const Real lambda(const Time t) const;
 
   private:
     const Real tau(const Time t) const;
@@ -73,9 +77,8 @@ class BetaEtaCore {
 
     const Real alpha(const Size index) const;
     const Real kappa(const Size index) const;
-    const Real lambda(const Time t) const;
 
-    const std::vector<Real> &times_, &alpha_, &kappa_;
+    const Array &times_, &alpha_, &kappa_;
     const Real &beta_, &eta_;
 
     boost::shared_ptr<GaussLobattoIntegral> integrator_;

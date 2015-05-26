@@ -5,7 +5,7 @@ this_includedir=${includedir}/${subdir}
 this_include_HEADERS = \
     all.hpp \
     adjusterhelper.hpp \
-    betaeta.hpp
+    betaeta.hpp \
     betaetacore.hpp \
     mcgaussian1dnonstandardswaptionengine.hpp \
     quadraticlfm.hpp \

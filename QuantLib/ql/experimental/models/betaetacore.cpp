@@ -25,8 +25,8 @@
 
 namespace QuantLib {
 
-BetaEtaCore::BetaEtaCore(const std::vector<Real> &times, const std::vector<Real> &alpha,
-                 const std::vector<Real> &kappa, const Real &beta,
+BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
+                 const Array &kappa, const Real &beta,
                  const Real &eta)
     : times_(times), alpha_(alpha), kappa_(kappa), beta_(beta), eta_(eta) {
     QL_REQUIRE(beta > 0.0, "beta (" << beta << ") must be positive");
