@@ -29,8 +29,8 @@ namespace {
 Real basis0(const Real x) { return 1; }
 Real basis1(const Real x) { return x; }
 Real basis2(const Real x) { return x * x; }
-Real basis3(const Real x) { return x * x * x; }
-Real basis4(const Real x) { return x * x * x * x; }
+// Real basis3(const Real x) { return x * x * x; }
+// Real basis4(const Real x) { return x * x * x * x; }
 // Laguerre
 // Real lag0(const Real x) { return boost::math::laguerre(0, x); }
 // Real lag1(const Real x) { return boost::math::laguerre(1, x); }
