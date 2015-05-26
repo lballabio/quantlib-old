@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2008, 2009, 2012 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009, 2012, 2015 Ferdinando Ametrano
  Copyright (C) 2006, 2007 Marco Bianchetti
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
@@ -164,6 +164,7 @@ namespace QuantLibAddin {
     SwapRateHelper::SwapRateHelper(
             const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
+            QuantLib::Natural settlementDays,
             const QuantLib::Period& p,
             const QuantLib::Calendar& cal,
             const QuantLib::Frequency& fixFreq,
@@ -178,7 +179,7 @@ namespace QuantLibAddin {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::SwapRateHelper(rate,
                                      p, cal, fixFreq, fixConv, fixDC, ibor,
-                                     spread, forwardStart, discount));
+                                     spread, forwardStart, discount, settlementDays));
         quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
