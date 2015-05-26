@@ -49,6 +49,9 @@ class SwapPtr : public boost::shared_ptr<Instrument> {
         Date maturityDate() {
             return boost::dynamic_pointer_cast<Swap>(*self)->maturityDate();
         }
+        const Leg & leg(Size i){
+            return boost::dynamic_pointer_cast<Swap>(*self)->leg(i);
+        }
     }
 };
 
