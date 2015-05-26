@@ -39,8 +39,10 @@ namespace QuantLib {
 
 class BetaEta {
   public:
+    /*! We assume a piecewise constant reversion \kappa and
+        set \lambda(t) := (1-exp(-\kappa*t))/\kappa */
     BetaEta(const std::vector<Real> &times, const std::vector<Real> &alpha,
-            const std::vector<Real> &lambda, const Real &beta, const Real &eta);
+            const std::vector<Real> &kappa, const Real &beta, const Real &eta);
 
     // M(t0,x0;t)
     const Real M(const Real t0, const Real x0, const Real t) const;
@@ -70,9 +72,10 @@ class BetaEta {
                            const Real floor = Null<Real>()) const;
 
     const Real alpha(const Size index) const;
-    const Real lambda(const Size index) const;
+    const Real kappa(const Size index) const;
+    const Real lambda(const Time t) const;
 
-    const std::vector<Real> &times_, &alpha_, &lambda_;
+    const std::vector<Real> &times_, &alpha_, &kappa_;
     const Real &beta_, &eta_;
 
     boost::shared_ptr<GaussLobattoIntegral> integrator_;
@@ -145,10 +148,15 @@ inline const Real BetaEta::alpha(const Size index) const {
     return alpha_[index];
 }
 
-inline const Real BetaEta::lambda(const Size index) const {
-    if (index >= lambda_.size())
-        return lambda_.back();
-    return lambda_[index];
+inline const Real BetaEta::kappa(const Size index) const {
+    if (index >= kappa_.size())
+        return kappa_.back();
+    return kappa_[index];
+}
+
+inline const Real BetaEta::lambda(const Time t) const {
+    Real kappa = this->kappa(lowerIndex(t));
+    return (1.0 - exp(-kappa * t)) / kappa;
 }
 
 } // namespace QuantLib
