@@ -94,7 +94,7 @@ namespace QuantLibAddin {
         FuturesRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
-            QuantLib::FuturesType type,
+            QuantLib::Futures::Type type,
             const QuantLib::Date& immDate,
             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             const QuantLib::Handle<QuantLib::Quote>& convAdj,
@@ -102,7 +102,7 @@ namespace QuantLibAddin {
         FuturesRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
-            QuantLib::FuturesType type,
+            QuantLib::Futures::Type type,
             const QuantLib::Date& immDate,
             QuantLib::Natural lengthInMonths,
             const QuantLib::Calendar& calendar,
@@ -114,7 +114,7 @@ namespace QuantLibAddin {
         FuturesRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
-            QuantLib::FuturesType type,
+            QuantLib::Futures::Type type,
             const QuantLib::Date& immDate,
             const QuantLib::Date& endDate,
             const QuantLib::DayCounter& dayCounter,
