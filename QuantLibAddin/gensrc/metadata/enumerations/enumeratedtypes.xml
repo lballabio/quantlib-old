@@ -1494,17 +1494,17 @@
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
-    <EnumeratedTypeGroup type='QuantLib::FuturesType'>
+    <EnumeratedTypeGroup type='QuantLib::Futures::Type'>
       <includeFile>oh/enumerations/typefactory.hpp</includeFile>
       <constructor>true</constructor>
       <EnumeratedTypes>
         <EnumeratedType>
           <string>IMM</string>
-          <value>QuantLib::IMM</value>
+          <value>QuantLib::Futures::IMM</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>ASX</string>
-          <value>QuantLib::ASX</value>
+          <value>QuantLib::Futures::ASX</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
