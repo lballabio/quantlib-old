@@ -4,7 +4,7 @@
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
- Copyright (C) 2011 Ferdinando Ametrano
+ Copyright (C) 2011, 2015 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -50,6 +50,7 @@ namespace QuantLibAddin {
             bool permanent);
         VanillaSwap( // MakeVanillaSwap
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Natural settlDays,
             const QuantLib::Period& swapTenor, 
             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
             QuantLib::Rate fixedRate,
