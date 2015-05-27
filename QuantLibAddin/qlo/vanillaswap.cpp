@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2005, 2006 Eric Ehlers
- Copyright (C) 2006, 2011 Ferdinando Ametrano
+ Copyright (C) 2006, 2011, 2015 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2006 Katiuscia Manzoni
@@ -66,7 +66,9 @@ namespace QuantLibAddin {
                                   paymentConvention));
     }
 
+    // MakeVanillaSwap
     VanillaSwap::VanillaSwap(const shared_ptr<ValueObject>& properties,
+                             QuantLib::Natural settlDays,
                              const QuantLib::Period& swapTenor, 
                              const shared_ptr<QuantLib::IborIndex>& index,
                              QuantLib::Rate fixedRate,
@@ -78,10 +80,11 @@ namespace QuantLibAddin {
     : Swap(properties, permanent)
     {
         libraryObject_ = MakeVanillaSwap(swapTenor, index, fixedRate, fwdStart)
-                            .withFixedLegDayCount(fixDayCounter)
-                            .withFloatingLegSpread(floatingLegSpread)
-                            .withPricingEngine(engine)
-                            .operator shared_ptr<QuantLib::VanillaSwap>();
+                                .withSettlementDays(settlDays)
+                                .withFixedLegDayCount(fixDayCounter)
+                                .withFloatingLegSpread(floatingLegSpread)
+                                .withPricingEngine(engine)
+                                .operator shared_ptr<QuantLib::VanillaSwap>();
     }
 
     VanillaSwap::VanillaSwap(const shared_ptr<ValueObject>& properties,
