@@ -309,4 +309,22 @@ const Real BetaEta::swapAnnuity(const Date &fixing, const Period &tenor,
     return annuity;
 }
 
+const Disposable<Array> BetaEta::xGrid(const Real stdDevs, const int gridPoints,
+                                       const Real T, const Real t,
+                                       const Real x) const {
+
+    Array result(2 * gridPoints + 1, 0.0);
+
+    // approximate standard deviation for x
+    Real s = std::sqrt(core_->tau(t, T));
+
+    Real h = stdDevs * s / (static_cast<Real>(gridPoints));
+
+    for (int j = -gridPoints; j <= gridPoints; ++j) {
+        result[j + gridPoints] = x + h * (static_cast<Real>(j));
+    }
+
+    return result;
+}
+
 } // namespace QuantLib

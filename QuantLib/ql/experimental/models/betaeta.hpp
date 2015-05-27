@@ -101,6 +101,22 @@ class BetaEta : public TermStructureConsistentModel,
                            boost::shared_ptr<SwapIndex> swapIdx =
                                boost::shared_ptr<SwapIndex>()) const;
 
+    /*! Generates a grid of values for the state variable $x$
+       at time $T$ conditional on $x(t)=x$, covering stdDevs
+       standard deviations assuming an approximate variance
+       $\int_t^T \alpha^2$ for $x$. The grid consists of
+       2*gridPoints+1 points */
+    const Disposable<Array> xGrid(const Real stdDevs, const int gridPoints,
+                                  const Real T = 1.0, const Real t = 0,
+                                  const Real x = 0) const;
+
+    /*! integrates f against the conditional density $x(t)|x(t0)=x0$
+        covering stdDevs approximate standard deviations in the same
+        sense as in the xGrid implementation */
+    const Real integrate(const Real stdDevs,
+                         const boost::function<Real(Real)> &f, const Real t0,
+                         const Real x0, const Real t) const;
+
   private:
     void generateArguments() { notifyObservers(); }
 
@@ -206,6 +222,15 @@ BetaEta::zerobond(const Date &maturity, const Date &referenceDate, const Real y,
                         ? termStructure()->timeFromReference(referenceDate)
                         : 0.0,
                     y, yts);
+}
+
+inline const Real BetaEta::integrate(const Real stdDevs,
+                                     const boost::function<Real(Real)> &f,
+                                     const Real t0, const Real x0,
+                                     const Real t) const {
+    Real s = core_->tau(t0, t);
+    boost::shared_ptr<Integrator> i = core_->integrator();
+    return (*i)(f, x0 - stdDevs * s, x0 + stdDevs * s);
 }
 
 } // namespace QuantLib

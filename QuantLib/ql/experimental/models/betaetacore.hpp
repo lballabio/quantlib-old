@@ -42,8 +42,8 @@ class BetaEtaCore {
   public:
     /*! We assume a piecewise constant reversion \kappa and
         set \lambda(t) := (1-exp(-\kappa*t))/\kappa */
-    BetaEtaCore(const Array &times, const Array &alpha,
-            const Array &kappa, const Real &beta, const Real &eta);
+    BetaEtaCore(const Array &times, const Array &alpha, const Array &kappa,
+                const Real &beta, const Real &eta);
 
     // M(t0,x0;t)
     const Real M(const Real t0, const Real x0, const Real t) const;
@@ -56,13 +56,18 @@ class BetaEtaCore {
     // and 1 > eta >= 0.5, otherwise 0 is returned
     const Real singularTerm_y_0(const Time t0, const Real x0,
                                 const Time t) const;
-    
+
     // lambda(t)
     const Real lambda(const Time t) const;
 
-  private:
+    // tau(0,t) and tau(t0,t)
     const Real tau(const Time t) const;
     const Real tau(const Time t0, const Time t) const;
+
+    // integrator
+    boost::shared_ptr<Integrator> integrator() const { return integrator_; }
+
+  private:
     const Real y(const Real x) const;
     const Real dydx(const Real y) const;
 
@@ -128,12 +133,13 @@ inline const int BetaEtaCore::upperIndex(const Time t) const {
            1;
 }
 
-inline const Real BetaEtaCore::cappedTime(const Size index, const Real cap) const {
+inline const Real BetaEtaCore::cappedTime(const Size index,
+                                          const Real cap) const {
     return cap != Null<Real>() ? std::min(cap, time2(index)) : time2(index);
 }
 
 inline const Real BetaEtaCore::flooredTime(const Size index,
-                                       const Real floor) const {
+                                           const Real floor) const {
     return floor != Null<Real>() ? std::max(floor, time2(index)) : time2(index);
 }
 
