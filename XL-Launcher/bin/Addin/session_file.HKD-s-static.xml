@@ -1,0 +1,38 @@
+<Environment relativePath=".">
+  <GlobalAddins>
+    <GlobalAddin name="Reuters" enabled="False" path="C:\Program Files\Reuters\PowerPlus\PPP.xla" />
+    <GlobalAddin name="Bloomberg" enabled="False" path="C:\blp\API\dde\BlpMain.xla" />
+    <GlobalAddin name="Oracle" enabled="False" path="C:\Program Files\Oracle\Oracle.xla" />
+  </GlobalAddins>
+  <Frameworks>
+    <Framework name="QuantLibXL" displayName="QuantLibXL" fileName="QuantLibXL">
+      <Components>
+        <Component path=".\xll\QuantLibXL-vc120-mt-s-1_6_0.xll" />
+        <Component path=".\framework\QuantLibXL.xla" />
+      </Components>
+      <StartupParameters>
+        <StartupParameter name="Environment" value="Fixed Income2" />
+
+        <!-- for FixedIncome (2) -->
+        <StartupParameter name="Root Path" value=".\" />
+        <StartupParameter name="Open Contributor" value="False" />
+
+        <!-- for FixedIncome (1) -->
+        <StartupParameter name="Workbook Path" value=".\Workbooks" />
+        <StartupParameter name="Help File Path" value=".\Docs\QuantLibXL-docs-1.3.0.chm" />
+        <StartupParameter name="Metadata Path" value=".\metadata" />
+        <StartupParameter name="Set Evaluation Date" value="True" />
+        <StartupParameter name="Evaluation Date" value="2015-05-11" />
+        <StartupParameter name="Default Currency" value="HKD" />
+        <StartupParameter name="Initialization Data Source" value="XML" />
+        <StartupParameter name="Open Main Checks" value="True" />
+        <StartupParameter name="Update Euribor YTD Time Series (xls)" value="False" />
+        <StartupParameter name="Update Index YTD Time Series (xls)" value="False" />
+        <StartupParameter name="Load Index YTD Time Series (xml)" value="False" />
+        <StartupParameter name="Bootstrap Yield Curves" value="True" />
+        <StartupParameter name="Real Time Feed" value="Reuters" />
+        <StartupParameter name="Market Data" value="Static" />
+      </StartupParameters>
+    </Framework>
+  </Frameworks>
+</Environment>
