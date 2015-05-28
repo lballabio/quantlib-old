@@ -30,9 +30,10 @@
   </addinIncludes>
   <copyright>
     Copyright (C) 2005, 2006 Eric Ehlers
-    Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008, 2009, 2015 Ferdinando Ametrano
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Aurelien Chanudet
+    Copyright (C) 2015 Maddalena Zanzi
   </copyright>
   <Functions>
 
@@ -286,6 +287,11 @@
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>quote.</description>
+          </Parameter>
+          <Parameter name='SettlDays' default='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Number of days to spot date.</description>
           </Parameter>
           <Parameter name='Tenor' exampleValue='10Y'>
             <type>QuantLib::Period</type>
@@ -693,10 +699,15 @@
             <tensorRank>scalar</tensorRank>
             <description>price quote.</description>
           </Parameter>
-          <Parameter name='IMM' exampleValue='H2'>
+          <Parameter name='FuturesType' default='"IMM"'>
+            <type>QuantLib::Futures::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Futures type.</description>
+          </Parameter>
+          <Parameter name='FuturesDate'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>IMM date (or code).</description>
+            <description>Futures date (IborIndex start date).</description>
           </Parameter>
           <Parameter name='IborIndex' default='"Euribor3M"'>
             <type>QuantLib::IborIndex</type>
@@ -729,10 +740,15 @@
             <tensorRank>scalar</tensorRank>
             <description>price quote.</description>
           </Parameter>
-          <Parameter name='IMM' exampleValue='H2'>
+          <Parameter name='FuturesType' default='"IMM"'>
+            <type>QuantLib::Futures::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Futures type.</description>
+          </Parameter>
+          <Parameter name='FuturesDate'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>IMM date (or code).</description>
+            <description>Futures date (IborIndex start date).</description>
           </Parameter>
           <Parameter name='LengthInMonths' default='3'>
             <type>long</type>
@@ -785,10 +801,15 @@
             <tensorRank>scalar</tensorRank>
             <description>price quote.</description>
           </Parameter>
-          <Parameter name='IMM' exampleValue='H2'>
+          <Parameter name='FuturesType' default='"IMM"'>
+            <type>QuantLib::Futures::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Futures type.</description>
+          </Parameter>
+          <Parameter name='FuturesDate'>
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
-            <description>IMM date (or code).</description>
+            <description>Futures date (IborIndex start date).</description>
           </Parameter>
           <Parameter name='EndDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>

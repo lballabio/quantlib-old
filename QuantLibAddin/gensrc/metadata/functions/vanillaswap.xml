@@ -29,7 +29,7 @@
     <include>ql/termstructures/yield/ratehelpers.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007, 2011 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2011, 2015 Ferdinando Ametrano
     Copyright (C) 2005, 2006 Eric Ehlers
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Aurelien Chanudet
@@ -113,6 +113,11 @@
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
+          <Parameter name='SettlDays' default='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Number of days to spot date.</description>
+          </Parameter>
           <Parameter name='SwapTenor' exampleValue='5Y'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
@@ -131,7 +136,7 @@
           <Parameter name='ForwardStart' exampleValue='"0D"'>
             <type>QuantLib::Period</type>
             <tensorRank>scalar</tensorRank>
-            <description>forward start period.</description>
+            <description>forward start period (from spot date).</description>
           </Parameter>
           <Parameter name='FixDayCounter' default='"DayCounter"'>
               <type>QuantLib::DayCounter</type>
