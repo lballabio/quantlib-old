@@ -33,9 +33,8 @@ namespace QuantLib {
 //! beta eta model swaption engine
 /*! \ingroup swaptionengines
 
-     All fixed coupons with start date greater or equal to the respective
-    option expiry are considered to be
-    part of the exercise into right.
+    All fixed coupons with start date greater or equal to the respective
+    option expiry are considered to be part of the exercise into right.
 
     \warning Cash settled swaptions are not supported
 */
@@ -44,6 +43,7 @@ class BetaEtaSwaptionEngine
     : public GenericModelEngine<BetaEta, Swaption::arguments,
                                 Swaption::results> {
 
+  public:
     BetaEtaSwaptionEngine(const boost::shared_ptr<BetaEta> &model,
                           const int gridPoints = 64, const Real stddevs = 6.0,
                           const Handle<YieldTermStructure> &discountCurve =

@@ -32,6 +32,8 @@
 
 #include <boost/unordered_map.hpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
 // there is a big overlap with the Gaussian1d model interface
@@ -202,6 +204,22 @@ class BetaEta : public TermStructureConsistentModel,
     mutable bool enforcesTodaysHistoricFixings_;
 
     boost::shared_ptr<BetaEtaCore> core_;
+
+    class integrand {
+      public:
+        integrand(const Real t0, const Real x0, const Real t,
+                  const boost::function<Real(Real)> &f, const BetaEtaCore &core)
+            : t0_(t0), x0_(x0), t_(t), f_(f), core_(core) {}
+        Real operator()(Real x) const {
+            return f_(x) * core_.p(t0_, x0_, t_, x);
+        }
+
+      private:
+        const Real t0_, x0_, t_;
+        const boost::function<Real(Real)> &f_;
+        const BetaEtaCore &core_;
+    };
+    friend class integrand;
 };
 
 // implementation
@@ -214,23 +232,34 @@ BetaEta::numeraire(const Date &referenceDate, const Real x,
 }
 
 inline const Real
-BetaEta::zerobond(const Date &maturity, const Date &referenceDate, const Real y,
+BetaEta::zerobond(const Date &maturity, const Date &referenceDate, const Real x,
                   const Handle<YieldTermStructure> &yts) const {
 
     return zerobond(termStructure()->timeFromReference(maturity),
                     referenceDate != Null<Date>()
                         ? termStructure()->timeFromReference(referenceDate)
                         : 0.0,
-                    y, yts);
+                    x, yts);
 }
 
 inline const Real BetaEta::integrate(const Real stdDevs,
                                      const boost::function<Real(Real)> &f,
                                      const Real t0, const Real x0,
                                      const Real t) const {
-    Real s = core_->tau(t0, t);
+    Real s = std::sqrt(core_->tau(t0, t));
     boost::shared_ptr<Integrator> i = core_->integrator();
-    return (*i)(f, x0 - stdDevs * s, x0 + stdDevs * s);
+    // std::cout << "integration I t0=" << t0 << " x0=" << x0 << " t=" << t
+    //           << " a=" << x0 - stdDevs * s << " b=" << x0 + stdDevs * s << "
+    //           ";
+    // Real x = x0-stdDevs*s;
+    // while( x <= x0+stdDevs*s) {
+    //     std::cout << x << " " << f(x) << std::endl;
+    //     x += stdDevs*s/25.0;
+    // }
+    integrand phi(t0, x0, t, f, *core_);
+    Real result = (*i)(phi, x0 - stdDevs * s, x0 + stdDevs * s);
+    // std::cout << "result = " << result << std::endl;
+    return result;
 }
 
 } // namespace QuantLib

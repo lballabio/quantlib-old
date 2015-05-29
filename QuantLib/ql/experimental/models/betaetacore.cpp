@@ -23,11 +23,12 @@
 
 #include <boost/math/special_functions/gamma.hpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
 BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
-                 const Array &kappa, const Real &beta,
-                 const Real &eta)
+                         const Array &kappa, const Real &beta, const Real &eta)
     : times_(times), alpha_(alpha), kappa_(kappa), beta_(beta), eta_(eta) {
     QL_REQUIRE(beta > 0.0, "beta (" << beta << ") must be positive");
     QL_REQUIRE(eta >= 0.0 && eta <= 1.0, " eta (" << eta
@@ -36,10 +37,10 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
                "alpha size (" << alpha.size()
                               << ") must be equal to times size ("
                               << times.size() << ") plus one");
-    QL_REQUIRE(kappa.size() == times.size() + 1,
+    QL_REQUIRE(kappa.size() == 1 || kappa.size() == times.size() + 1,
                "kappa size (" << kappa.size()
                               << ") must be equal to times size ("
-                              << times.size() << ") plus one");
+                              << times.size() << ") plus one or equal to one");
     for (Size i = 0; i < times.size(); ++i) {
         QL_REQUIRE(times[i] > 0.0, "time #" << i << " (" << times[i]
                                             << ") must be positive");
@@ -52,7 +53,7 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
     }
     // TODO move the magic constants to some better place
     integrator_ = boost::shared_ptr<GaussLobattoIntegral>(
-        new GaussLobattoIntegral(100, 1E-8));
+        new GaussLobattoIntegral(10000, 1E-8));
 };
 
 class BetaEtaCore::mIntegrand {
@@ -60,7 +61,8 @@ class BetaEtaCore::mIntegrand {
     const Real t0_, x0_, t_;
 
   public:
-    mIntegrand(const BetaEtaCore *model, const Real t0, const Real x0, const Real t)
+    mIntegrand(const BetaEtaCore *model, const Real t0, const Real x0,
+               const Real t)
         : model_(model), t0_(t0), x0_(x0), t_(t) {}
     Real operator()(Real x) const {
         return model_->p(t0_, x0_, t_, x) *
@@ -72,14 +74,30 @@ class BetaEtaCore::mIntegrand {
 const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t) const {
     // determine a suitable integration domain
     Real s = std::sqrt(tau(t0, t));
+    if (s < 1E-6)
+        return 0.0;
     // TODO move the magic constants to some better place
     Real a = x0 - 6.0 * s;
     Real b = x0 + 6.0 * s;
-    return std::log(integrator_->operator()(mIntegrand(this, t0, x0, t), a, b));
+    // std::cout << "integration M t0=" << t0 << " x0=" << x0 << " t=" << t
+    //           << " a=" << a << " b=" << b << " ";
+    // Real x=a;
+    // while(x <= b) {
+    //     std::cout << x << " " << this->p(t0,x0,t,x) << " " <<
+    //     exp(-lambda(t)*(x-x0)) << " " <<
+    //     this->p(t0,x0,t,x)*exp(-lambda(t)*(x-x0)) << std::endl;
+    //     x+=(b-a)/100.0;
+    // }
+    // Real result = integrator_->operator()(mIntegrand(this, t0, x0, t), a, b);
+    Real result = lambda(t)*x0+std::log(integrator_->operator()(mIntegrand(this, t0, x0, t), a, b));
+    // std::cout << "result = " << result << std::endl;
+    std::cout << std::setprecision(16) << "exp M(" << t0 << "," << x0 << "," << t << ")=" << result << std::endl;
+    // return std::log(result);
+    return result;
 };
 
 const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
-                      const Real x) const {
+                          const Real x) const {
     Real nu = 1.0 / (2.0 - 2.0 * eta_);
     Real y0 = this->y(x0);
     Real y = this->y(x);
@@ -131,7 +149,7 @@ const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
 };
 
 const Real BetaEtaCore::singularTerm_y_0(const Time t0, const Real x0,
-                                     const Time t) const {
+                                         const Time t) const {
     if (eta_ < 0.5 || close(eta_, 1.0))
         return 0.0;
     Real nu = 1.0 / (2.0 - 2.0 * eta_);

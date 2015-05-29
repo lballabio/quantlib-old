@@ -165,6 +165,8 @@ inline const Real BetaEtaCore::kappa(const Size index) const {
 
 inline const Real BetaEtaCore::lambda(const Time t) const {
     Real kappa = this->kappa(lowerIndex(t));
+    if (std::fabs(kappa) < 1E-6)
+        return 1.0;
     return (1.0 - exp(-kappa * t)) / kappa;
 }
 

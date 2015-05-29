@@ -98,7 +98,7 @@ void BetaEtaSwaptionEngine::calculate() const {
         #endif*/
 
         /* #pragma omp parallel for default(shared) \
-           firstprivate(p)*/ if (expiry0 > settlement)
+           firstprivate(p) if (expiry0 > settlement)*/
         for (Size k = 0; k < (expiry0 > settlement ? npv0.size() : 1); k++) {
 
             Real price = 0.0;
@@ -108,6 +108,7 @@ void BetaEtaSwaptionEngine::calculate() const {
                                            CubicInterpolation::Spline, true,
                                            CubicInterpolation::Lagrange, 0.0,
                                            CubicInterpolation::Lagrange, 0.0);
+                payoff0.enableExtrapolation(true);
                 price = model_->integrate(stddevs_, payoff0, expiry0Time, x[k],
                                           expiry1Time);
             }
@@ -134,10 +135,15 @@ void BetaEtaSwaptionEngine::calculate() const {
                         model_->zerobond(arguments_.fixedPayDates[l], expiry0,
                                          x[k], discountCurve_);
                 }
-                Real exerciseValue =
-                    (type == Option::Call ? 1.0 : -1.0) *
-                    (floatingLegNpv - fixedLegNpv) /
-                    model_->numeraire(expiry0Time, x[k], discountCurve_);
+                Real exerciseValue = /*
+                    model_->zerobond(10.0, expiry0Time, x[k], discountCurve_) /
+                    model_->numeraire(expiry0Time, x[k], discountCurve_);*/
+                 (type == Option::Call ? 1.0 : -1.0) *
+                     (floatingLegNpv - fixedLegNpv) /
+                     model_->numeraire(expiry0Time, x[k], discountCurve_);
+
+                std::cout << "k=" << k << " x[k] = " << x[k]
+                          << " floating = " << floatingLegNpv << " fixed = " << fixedLegNpv << " exercise value =" << exerciseValue << std::endl;
 
                 npv0[k] = std::max(npv0[k], exerciseValue);
             } // if expiry0 > settlement

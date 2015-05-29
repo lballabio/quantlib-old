@@ -181,7 +181,10 @@ const Real BetaEta::numeraire(const Time t, const Real x,
                               const Handle<YieldTermStructure> &yts) const {
     Real d =
         yts.empty() ? this->termStructure()->discount(t) : yts->discount(t);
-    return d * std::exp(core_->lambda(t) * x + core_->M(0, 0, t));
+    Real result = std::exp(core_->lambda(t) * x + core_->M(0, 0, t)) / d;
+    // std::cout << "numeraire(" << t << "," << x << ") = " << result <<
+    // std::endl;
+    return result;
 }
 
 const Real BetaEta::zerobond(const Time T, const Time t, const Real x,
@@ -192,9 +195,13 @@ const Real BetaEta::zerobond(const Time T, const Time t, const Real x,
                        this->termStructure()->discount(t)
                  : yts->discount(T) / yts->discount(t);
 
-    return d * std::exp(-(core_->lambda(T) - core_->lambda(t)) * x -
-                        (core_->M(0, 0, T) - core_->M(0, 0, t)) +
-                        core_->M(t, x, T));
+    Real result = d * std::exp(-(core_->lambda(T) - core_->lambda(t)) * x -
+                               (core_->M(0, 0, T) - core_->M(0, 0, t)) +
+                               core_->M(t, x, T));
+
+    std::cout << "zerobond(" << T << "," << t << "," << x << ") = " << result << std::endl;
+
+    return result;
 }
 
 const Real BetaEta::forwardRate(const Date &fixing, const Date &referenceDate,
