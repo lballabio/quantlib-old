@@ -171,7 +171,7 @@ void ZabrSmileSection<Evaluation>::init(const std::vector<Real> &moneyness,
         Real f = tmp[i] * forward_;
         if (f > 0.0) {
             if (!firstStrike) {
-                for (Size j = 1; j < fdRefinement_; j++) {
+                for (Size j = 1; j <= fdRefinement_; ++j) {
                     strikes_.push_back(lastF +
                                        ((double)j) * (f - lastF) /
                                            (fdRefinement_ + 1));
