@@ -40,7 +40,7 @@ BUILD
 FUNCTIONALITY
 
 - 55 new functions / 1072 in total
-- Additional Credit functionality exported from QuantLib to QuantLibAddin.
+- Additional Credit functionality exported from %QuantLib to %QuantLibAddin.
   Thanks to Jose Aparicio.
 - Bug fix.  In the past, if you called function qlSimpleQuoteSetValue() with an
   invalid value, the call failed.  This led to bugs, if you opened a

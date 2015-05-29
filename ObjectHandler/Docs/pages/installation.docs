@@ -93,9 +93,9 @@ Before rebuilding %ObjectHandler you need to have Python 2.x installed on your
 machine.  Here is the link to the Python website:
 <a href="http://www.python.org/">http://www.python.org/</a>.
 
-If Python is installed on your machine so that .py files are associated with
-the Python executable, then the gensrc scripts should build OK with no
-modification required.
+On Windows, if Python is installed on your machine so that .py files are
+associated with the Python executable, then the gensrc scripts should build OK
+with no modification required.
 
 Otherwise, after you install gensrc (below), you might need to edit this
 file...
@@ -120,10 +120,13 @@ on your machine, e.g:
 The Visual C++ project files for %ObjectHandler rely on relative pathnames
 to refer to prerequisite projects gensrc and log4cxx.  In order for this
 to work, these projects must reside side by side in the directory tree.
-By default the installer for each project uncompresses the source code to
-<tt>C:\\build_ql_1_6_0</tt>.  For purposes of this tutorial we assume the
-packages have been installed in this way:
 
+Create a new empty folder on your hard drive to serve as the root directory for
+the build.  You can use any path, for purposes of this tutorial the build
+directory is <tt>C:\\build_ql_1_5_0</tt>.  As described below you should copy
+all of the required source code zip files to that directory and then unzip them
+in place.  After all of the source code is unzipped you should have the
+following directory structure:
 \verbatim
 C:\build_ql_1_6_0\gensrc
 C:\build_ql_1_6_0\log4cxx
@@ -419,10 +422,10 @@ Download <tt>ObjectHandler-1.6.0.tgz</tt> and uncompress the package to
 \subsubsection inst_auto_log4cxx 3.2.1 Build log4cxx
 
 Support for log4cxx is optional.  If you do not require logging, then when you
-run \c configure (see below), pass in the argument \c --without-log4cxx, which
-will cause log messages to be written to stdout instead of the the log file.
-In that case you can skip ahead to the next section, \ref inst_auto_oh.  If you
-need logging, read on.
+configure ObjectHandler (see below), pass in the argument \c --without-log4cxx,
+which will cause log messages to be written to stdout instead of to the log
+file.  In that case you can skip ahead to the next section, \ref inst_auto_oh.
+If you need logging, read on.
 
 First you need to install apr and apr-utils.  Our copy of log4cxx includes
 source code for apr and apr-utils.  In the past we used to build them with
@@ -439,11 +442,12 @@ cd /home/erik/build/log4cxx-0.10.0/src/apr-util
 make install
 \endverbatim
 
-But those commands no longer seem to work on new linux systems.  On ubuntu you
-might try something like this:
+But those commands no longer seem to work on new linux systems.  There might be
+a binary release available for your platform, on ubuntu you might try something
+like this:
 
 \verbatim
-sudo apt-get install apr apr-utils
+sudo apt-get install libapr1-dev libaprutil1-dev
 \endverbatim
 
 Another possibility is to go to the apache web site and download the latest
@@ -481,7 +485,8 @@ If you don't need logging, pass in the argument \c --without-log4cxx to
 cd /home/erik/build/ObjectHandler-1.6.0
 ./configure --with-gensrc=/home/erik/build/gensrc-1.6.0 \
     --prefix=/home/erik/install \
-    CPPFLAGS=-I/home/erik/install/include LDFLAGS=-L/home/erik/install/lib
+    CPPFLAGS=-I/home/erik/install/include \
+    LDFLAGS=-L/home/erik/install/lib
 make install
 \endverbatim
 
