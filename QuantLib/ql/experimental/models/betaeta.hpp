@@ -32,8 +32,6 @@
 
 #include <boost/unordered_map.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
 // there is a big overlap with the Gaussian1d model interface
@@ -248,17 +246,8 @@ inline const Real BetaEta::integrate(const Real stdDevs,
                                      const Real t) const {
     Real s = std::sqrt(core_->tau(t0, t));
     boost::shared_ptr<Integrator> i = core_->integrator();
-    // std::cout << "integration I t0=" << t0 << " x0=" << x0 << " t=" << t
-    //           << " a=" << x0 - stdDevs * s << " b=" << x0 + stdDevs * s << "
-    //           ";
-    // Real x = x0-stdDevs*s;
-    // while( x <= x0+stdDevs*s) {
-    //     std::cout << x << " " << f(x) << std::endl;
-    //     x += stdDevs*s/25.0;
-    // }
     integrand phi(t0, x0, t, f, *core_);
     Real result = (*i)(phi, x0 - stdDevs * s, x0 + stdDevs * s);
-    // std::cout << "result = " << result << std::endl;
     return result;
 }
 

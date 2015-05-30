@@ -141,10 +141,6 @@ void BetaEtaSwaptionEngine::calculate() const {
                  (type == Option::Call ? 1.0 : -1.0) *
                      (floatingLegNpv - fixedLegNpv) /
                      model_->numeraire(expiry0Time, x[k], discountCurve_);
-
-                std::cout << "k=" << k << " x[k] = " << x[k]
-                          << " floating = " << floatingLegNpv << " fixed = " << fixedLegNpv << " exercise value =" << exerciseValue << std::endl;
-
                 npv0[k] = std::max(npv0[k], exerciseValue);
             } // if expiry0 > settlement
         }     // for k

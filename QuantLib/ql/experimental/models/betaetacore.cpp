@@ -23,8 +23,6 @@
 
 #include <boost/math/special_functions/gamma.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
 BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
@@ -72,6 +70,10 @@ class BetaEtaCore::mIntegrand {
 
 // TODO, due to (4.11b) M can be tabulated a priori to increase efficiency
 const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t) const {
+    if (eta_ < 1E-8) {
+        Real l = lambda(t);
+        return 0.5 * l * l * (tau(t) - tau(t0));
+    }
     // determine a suitable integration domain
     Real s = std::sqrt(tau(t0, t));
     if (s < 1E-6)
@@ -79,21 +81,8 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t) const {
     // TODO move the magic constants to some better place
     Real a = x0 - 6.0 * s;
     Real b = x0 + 6.0 * s;
-    // std::cout << "integration M t0=" << t0 << " x0=" << x0 << " t=" << t
-    //           << " a=" << a << " b=" << b << " ";
-    // Real x=a;
-    // while(x <= b) {
-    //     std::cout << x << " " << this->p(t0,x0,t,x) << " " <<
-    //     exp(-lambda(t)*(x-x0)) << " " <<
-    //     this->p(t0,x0,t,x)*exp(-lambda(t)*(x-x0)) << std::endl;
-    //     x+=(b-a)/100.0;
-    // }
-    // Real result = integrator_->operator()(mIntegrand(this, t0, x0, t), a, b);
-    Real result = lambda(t)*x0+std::log(integrator_->operator()(mIntegrand(this, t0, x0, t), a, b));
-    // std::cout << "result = " << result << std::endl;
-    std::cout << std::setprecision(16) << "exp M(" << t0 << "," << x0 << "," << t << ")=" << result << std::endl;
-    // return std::log(result);
-    return result;
+    Real result = integrator_->operator()(mIntegrand(this, t0, x0, t), a, b);
+    return std::log(result);
 };
 
 const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
@@ -111,7 +100,7 @@ const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
         }
         // 0.0 < eta < 0.5
         if (close(y, 0.0)) // i.e. x = -1/beta
-            return 0.0;    // TODO is it reasonable to return 0.0 here ?
+            return 0.0;    // TODO return an interpolated value around y = 0.0
         if (x > -1.0 / beta_) {
             return 0.5 * std::pow(y0 / y, nu) * y / (tau - tau0) *
                    (modifiedBesselFunction_i_exponentiallyWeighted(
@@ -130,7 +119,7 @@ const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
     // 0.5 <= eta <= 1.0
     // eta = 1.0
     if (close(eta_, 1.0)) {
-        // TODO is it reaonsable to return 0.0 here ?
+        // TODO is it reaonsable to return 0.0 here ? I guess yes ...
         if (x <= -1.0 / beta_ || x0 <= -1.0 / beta_)
             return 0.0;
         // if both x and x0 are > -1/beta, y and y0 are well defined
@@ -139,7 +128,7 @@ const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
                    (y - y0 + beta_ * (tau - tau0) / 2.0) /
                    (2.0 * (tau - tau0)));
     }
-    // TODO is it reasonable to return 0.0 here ?
+    // TODO is it reasonable to return 0.0 here ? Again, I think yes ...
     if (x <= -1 / beta_ || x0 <= -1.0 / beta_)
         return 0.0; // the singularTerm_y_0 contributes to the integral
     return std::pow(y0 / y, nu) * y / (tau - tau0) *
