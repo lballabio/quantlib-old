@@ -28,6 +28,7 @@
     <DataType defaultSuperType='enumeration'>QuantLib::Settlement::Type</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::OvernightIndexedSwap::Type</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::VanillaSwap::Type</DataType>
+    <DataType defaultSuperType='enumeration'>QuantLib::Futures::Type</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Weekday</DataType>
     <DataType defaultSuperType='enumeration'>QuantLibAddin::RateHelper::DepoInclusionCriteria</DataType>
     <DataType defaultSuperType='enumeration'>QuantLibAddin::SwapIndex::FixingType</DataType>

@@ -156,3 +156,21 @@ body {
     padding: 10px 0px 10px 10px;
 }
 
+#reposit_logo {
+    outline : none;
+    display: block;
+    margin: 0 auto;
+    width: 88px;
+    height: 46px;
+    background-image: url(images/logo_reposit.png);
+}
+
+#reposit_logo:hover {
+    outline : none;
+    display: block;
+    margin: 0 auto;
+    width: 88px;
+    height: 46px;
+    background-image: url(images/logo_reposit2.png);
+}
+
