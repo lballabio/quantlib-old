@@ -1,7 +1,8 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2009 Ferdinando Ametrano
+ Copyright (C) 2006, 2009, 2015 Ferdinando Ametrano
+ Copyright (C) 2015 Maddalena Zanzi
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -45,6 +46,11 @@ namespace QuantLibAddin {
                                                const std::vector<bool>& mainCycle);
 
     std::vector<std::string> qlIMMNextCodes(const QuantLib::Date& d,
+                                            const std::vector<bool>& mainCycle);
+    std::vector<QuantLib::Date> qlASXNextDates(const QuantLib::Date& d,
+                                               const std::vector<bool>& mainCycle);
+
+    std::vector<std::string> qlASXNextCodes(const QuantLib::Date& d,
                                             const std::vector<bool>& mainCycle);
     std::vector<QuantLib::Date> qlECBKnownDates();
 }

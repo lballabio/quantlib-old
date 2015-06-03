@@ -1,13 +1,14 @@
 <root>
 
   <enumeratedTypeCopyright>
-    Copyright (C) 2006, 2007, 2008, 2014 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008, 2014, 2015 Ferdinando Ametrano
     Copyright (C) 2007 Marco Bianchetti
     Copyright (C) 2005, 2006, 2007 Eric Ehlers
     Copyright (C) 2006 Giorgio Facchinetti
     Copyright (C) 2006 Chiara Fornarola
     Copyright (C) 2006 Katiuscia Manzoni
     Copyright (C) 2005 Plamen Neykov
+    Copyright (C) 2015 Maddalena Zanzi
   </enumeratedTypeCopyright>
 
   <EnumeratedTypeGroups>
@@ -1489,6 +1490,21 @@
         <EnumeratedType>
           <string>Receiver</string>
           <value>QuantLib::VanillaSwap::Receiver</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::Futures::Type'>
+      <includeFile>oh/enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>IMM</string>
+          <value>QuantLib::Futures::IMM</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ASX</string>
+          <value>QuantLib::Futures::ASX</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
