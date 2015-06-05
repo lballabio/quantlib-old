@@ -101,7 +101,6 @@ namespace QuantLib {
     {
         // sanity checks
         QL_REQUIRE(terminationDate != Date(), "null termination date");
-        if (tenor<1*Months) endOfMonth = false;
 
         // in many cases (e.g. non-expired bonds) the effective date is not
         // really necessary. In these cases a decent placeholder is enough
