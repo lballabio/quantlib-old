@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2008, 2010, 2011 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2010, 2011, 2015 Ferdinando Ametrano
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2009, 2012 StatPro Italia srl
 
