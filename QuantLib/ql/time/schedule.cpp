@@ -93,15 +93,15 @@ namespace QuantLib {
                        bool endOfMonth,
                        const Date& first,
                        const Date& nextToLast)
-    : tenor_(tenor), calendar_(cal),
-      convention_(convention),
-      terminationDateConvention_(terminationDateConvention),
-      rule_(rule), endOfMonth_(endOfMonth),
+    : tenor_(tenor), calendar_(cal), convention_(convention),
+      terminationDateConvention_(terminationDateConvention), rule_(rule),
+      endOfMonth_(tenor<1*Months ? false : endOfMonth),
       firstDate_(first==effectiveDate ? Date() : first),
       nextToLastDate_(nextToLast==terminationDate ? Date() : nextToLast)
     {
         // sanity checks
         QL_REQUIRE(terminationDate != Date(), "null termination date");
+        if (tenor<1*Months) endOfMonth = false;
 
         // in many cases (e.g. non-expired bonds) the effective date is not
         // really necessary. In these cases a decent placeholder is enough
@@ -414,6 +414,17 @@ namespace QuantLib {
             dates_.erase(dates_.begin());
             isRegular_.erase(isRegular_.begin());
         }
+
+        QL_ENSURE(dates_.size()>1,
+            "degenerate single date (" << dates_[0] << ") schedule"
+            << "\n    effective date: " << effectiveDate
+            << "\n        first date: " << first
+            << "\n next to last date: " << nextToLast
+            << "\n  termination date: " << terminationDate
+            << "\n   generation rule: " << rule
+            << "\n      end of month: " << endOfMonth
+            << "\n seed date: " << seed);
+
     }
 
 
