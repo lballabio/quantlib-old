@@ -209,7 +209,7 @@ namespace QuantLib {
             if (nextToLastDate_ != Date()) {
                 dates_.insert(dates_.begin(), nextToLastDate_);
                 Date temp = nullCalendar.advance(seed,
-                    -periods*(*tenor_), convention, endOfMonth);
+                    -periods*(*tenor_), convention, endOfMonth_);
                 if (temp!=nextToLastDate_)
                     isRegular_.insert(isRegular_.begin(), false);
                 else
@@ -223,7 +223,7 @@ namespace QuantLib {
 
             for (;;) {
                 Date temp = nullCalendar.advance(seed,
-                    -periods*(*tenor_), convention, endOfMonth);
+                    -periods*(*tenor_), convention, endOfMonth_);
                 if (temp < exitDate) {
                     if (firstDate_ != Date() &&
                         (calendar_.adjust(dates_.front(),convention)!=
@@ -256,7 +256,7 @@ namespace QuantLib {
           case DateGeneration::ThirdWednesday:
           case DateGeneration::OldCDS:
           case DateGeneration::CDS:
-            QL_REQUIRE(!endOfMonth,
+            QL_REQUIRE(!endOfMonth_,
                        "endOfMonth convention incompatible with " << *rule_ <<
                        " date generation rule");
           // fall through
@@ -274,7 +274,7 @@ namespace QuantLib {
             if (firstDate_!=Date()) {
                 dates_.push_back(firstDate_);
                 Date temp = nullCalendar.advance(seed, periods*(*tenor_),
-                                                 convention, endOfMonth);
+                                                 convention, endOfMonth_);
                 if (temp!=firstDate_)
                     isRegular_.push_back(false);
                 else
@@ -306,7 +306,7 @@ namespace QuantLib {
 
             for (;;) {
                 Date temp = nullCalendar.advance(seed, periods*(*tenor_),
-                                                 convention, endOfMonth);
+                                                 convention, endOfMonth_);
                 if (temp > exitDate) {
                     if (nextToLastDate_ != Date() &&
                         (calendar_.adjust(dates_.back(),convention)!=
@@ -354,7 +354,7 @@ namespace QuantLib {
                                              dates_[i].month(),
                                              dates_[i].year());
 
-        if (endOfMonth && calendar_.isEndOfMonth(seed)) {
+        if (endOfMonth_ && calendar_.isEndOfMonth(seed)) {
             // adjust to end of month
             if (convention == Unadjusted) {
                 for (Size i=1; i<dates_.size()-1; ++i)
@@ -417,12 +417,12 @@ namespace QuantLib {
         QL_ENSURE(dates_.size()>1,
             "degenerate single date (" << dates_[0] << ") schedule" <<
             "\n seed date: " << seed <<
-            "\n effective date: " << effectiveDate <<
-            "\n first date: " << first <<
-            "\n next to last date: " << nextToLast <<
-            "\n termination date: " << terminationDate <<
-            "\n generation rule: " << rule <<
-            "\n end of month: " << endOfMonth);
+            "\n effective date: " << effectiveDate_ <<
+            "\n first date: " << first_ <<
+            "\n next to last date: " << nextToLast_ <<
+            "\n termination date: " << terminationDate_ <<
+            "\n generation rule: " << rule_ <<
+            "\n end of month: " << endOfMonth_);
 
     }
 
