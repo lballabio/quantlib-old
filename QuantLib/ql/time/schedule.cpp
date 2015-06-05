@@ -417,10 +417,11 @@ namespace QuantLib {
         QL_ENSURE(dates_.size()>1,
             "degenerate single date (" << dates_[0] << ") schedule" <<
             "\n seed date: " << seed <<
-            "\n effective date: " << effectiveDate_ <<
-            "\n first date: " << first_ <<
-            "\n next to last date: " << nextToLast_ <<
-            "\n termination date: " << terminationDate_ <<
+            "\n exit date: " << exit <<
+            "\n effective date: " << effectiveDate <<
+            "\n first date: " << first <<
+            "\n next to last date: " << nextToLast <<
+            "\n termination date: " << terminationDate <<
             "\n generation rule: " << rule_ <<
             "\n end of month: " << endOfMonth_);
 
