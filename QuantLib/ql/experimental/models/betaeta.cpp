@@ -20,6 +20,7 @@
 #include <ql/experimental/models/betaeta.hpp>
 #include <ql/quotes/simplequote.hpp>
 #include <ql/time/schedule.hpp>
+#include <ql/math/integrals/gausslobattointegral.hpp>
 
 #include <boost/make_shared.hpp>
 
@@ -34,6 +35,7 @@ BetaEta::BetaEta(const Handle<YieldTermStructure> &termStructure,
       pEta_(arguments_[3]), volstepdates_(volstepdates) {
     QL_REQUIRE(!termStructure.empty(),
                "no yield term structure given (empty handle)");
+    integrator_ = boost::make_shared<GaussLobattoIntegral>(100000, 1E-8, 1E-8);
     volatilities_.resize(volatilities.size());
     for (Size i = 0; i < volatilities.size(); ++i)
         volatilities_[i] =

@@ -34,6 +34,11 @@
 
 namespace QuantLib {
 
+
+/*! cf. Hagan, Woodward: Markov interest rate models,
+    Applied Mathematical Finance 6, 233–260 (1999)
+*/
+
 // there is a big overlap with the Gaussian1d model interface
 // refactor this, i.e. create a common base class and build
 // the engines on top of this
@@ -202,6 +207,7 @@ class BetaEta : public TermStructureConsistentModel,
     mutable bool enforcesTodaysHistoricFixings_;
 
     boost::shared_ptr<BetaEtaCore> core_;
+    boost::shared_ptr<Integrator> integrator_;
 
     class integrand {
       public:
@@ -245,9 +251,8 @@ inline const Real BetaEta::integrate(const Real stdDevs,
                                      const Real t0, const Real x0,
                                      const Real t) const {
     Real s = std::sqrt(core_->tau(t0, t));
-    boost::shared_ptr<Integrator> i = core_->integrator();
     integrand phi(t0, x0, t, f, *core_);
-    Real result = (*i)(phi, x0 - stdDevs * s, x0 + stdDevs * s);
+    Real result = (*integrator_)(phi, x0 - stdDevs * s, x0 + stdDevs * s);
     return result;
 }
 

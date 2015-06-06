@@ -28,46 +28,53 @@
 #include <ql/math/array.hpp>
 #include <ql/utilities/null.hpp>
 #include <ql/math/comparison.hpp>
-#include <ql/math/integrals/gausslobattointegral.hpp>
+#include <ql/math/integrals/integral.hpp>
+#include <ql/math/integrals/gaussianquadratures.hpp>
 
 #include <vector>
 
 namespace QuantLib {
 
-/*! cf. Hagan, Woodward: Markov interest rate models,
-    Applied Mathematical Finance 6, 233–260 (1999)
-*/
+/*! warning: the parameters in the constructor are linked via references
+    to their sources to be able to reflect changes immediately, so you
+    should not initialize an instance of this class with numerical constants
+    or variables with a lifetime shorter than that of this instance. */
 
 class BetaEtaCore {
   public:
-    /*! We assume a piecewise constant reversion \kappa and
-        set \lambda(t) := (1-exp(-\kappa*t))/\kappa */
+    /*! we assume a piecewise constant reversion \kappa and
+        set \lambda(t) := (1-exp(-\kappa*t))/\kappa
+        note that these are effective (integrated) rather
+        than forward-forward reversions */
     BetaEtaCore(const Array &times, const Array &alpha, const Array &kappa,
                 const Real &beta, const Real &eta);
 
-    // M(t0,x0;t)
-    const Real M(const Real t0, const Real x0, const Real t) const;
+    const Real M(const Real t0, const Real x0, const Real t,
+                 const bool usePrecomputedValues = true) const;
 
-    // transition density
     const Real p(const Time t0, const Real x0, const Real t,
                  const Real x) const;
 
-    // singular term for y=0 (x=-1/beta)
-    // and 1 > eta >= 0.5, otherwise 0 is returned
+    // singular term for y=0 (x=-1/beta) and 1 > eta >= 0.5,
+    // otherwise 0 is returned
     const Real singularTerm_y_0(const Time t0, const Real x0,
                                 const Time t) const;
 
-    // lambda(t)
     const Real lambda(const Time t) const;
 
-    // tau(0,t) and tau(t0,t)
     const Real tau(const Time t) const;
     const Real tau(const Time t0, const Time t) const;
 
-    // integrator
-    boost::shared_ptr<Integrator> integrator() const { return integrator_; }
+    // inspectors
+    const Real beta() const { return beta_; }
+    const Real eta() const { return eta_; }
 
   private:
+    const Real M_precomputed(const Real t0, const Real x0, const Real t) const;
+    const Real p_y(const Real v, const Real y0, const Real y,
+                   const bool onePlusBetaXPos) const;
+    /* warning: for eta=1 x must be greater than -1/beta,
+       this is not checked */
     const Real y(const Real x) const;
     const Real dydx(const Real y) const;
 
@@ -86,10 +93,20 @@ class BetaEtaCore {
     const Array &times_, &alpha_, &kappa_;
     const Real &beta_, &eta_;
 
-    boost::shared_ptr<GaussLobattoIntegral> integrator_;
+    boost::shared_ptr<Integrator> integrator_;
+    boost::shared_ptr<Integrator> preIntegrator_;
+    boost::shared_ptr<GaussianQuadrature> ghIntegrator_;
 
-    class mIntegrand;
-    friend class mIntegrand;
+    // for compiler compatibility avoid lambda expressions
+    class mIntegrand1;
+    friend class mIntegrand1;
+    class mIntegrand2;
+    friend class mIntegrand2;
+    class mIntegrand3;
+    friend class mIntegrand3;
+
+    // constants
+    const Real integrateStdDevs_;
 };
 
 // implementation
@@ -106,8 +123,6 @@ inline const Real BetaEtaCore::tau(const Real t0, const Real t) const {
 }
 
 inline const Real BetaEtaCore::y(const Real x) const {
-    // for eta = 1 y is only well defined if x > -1/beta
-    // it is not the responsibility of the code here to ensure this
     return close(eta_, 1.0) ? std::log(1.0 + beta_ * x) / beta_
                             : std::pow(std::fabs(1 + beta_ * x), 1.0 - eta_) /
                                   (beta_ * (1.0 - eta_));
@@ -167,7 +182,8 @@ inline const Real BetaEtaCore::lambda(const Time t) const {
     Real kappa = this->kappa(lowerIndex(t));
     // the model collapses with kappa near zero,
     // so we just keep it away a bit - this is
-    // not a numerical issue, but model inherent
+    // not a numerical issue, but inherent in the
+    // model construction
     if (std::fabs(kappa) < 1E-6)
         kappa = kappa > 0.0 ? 1E-6 : -1E-6;
     return (1.0 - exp(-kappa * t)) / kappa;
