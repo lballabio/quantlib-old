@@ -124,7 +124,7 @@ def makeZipStatic():
     zfile = zipfile.ZipFile(zipFilePath, "w", zipfile.ZIP_DEFLATED)
 
     # Zip up some specific files from the QuantLibXL directory.
-    #zfile.write("Docs/QuantLibXL-docs-" + VERSION + ".chm", ROOT_DIR + "Docs/QuantLibXL-docs-" + VERSION + ".chm")
+    zfile.write("Docs/QuantLibXL-docs-" + VERSION + ".chm", ROOT_DIR + "Docs/QuantLibXL-docs-" + VERSION + ".chm")
     zfile.write("xll/QuantLibXL-" + VC_VERSION + "-mt-s-" + VERSION_ + ".xll", ROOT_DIR + "xll/QuantLibXL-" + VC_VERSION + "-mt-s-" + VERSION_ + ".xll")
     zfile.write("zip/README.txt", ROOT_DIR + "README.txt")
     # Recursively zip some subdirectories of the QuantLibXL directory.
