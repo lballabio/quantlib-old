@@ -10,6 +10,8 @@ import re
 
 QLXL = "QuantLibXL"
 VERSION = "1.6.0"
+VERSION_ = "1_6_0"
+VC_VERSION = "vc120"
 QLXL_VERSION = QLXL + "-" + VERSION
 ROOT_DIR = QLXL_VERSION + "\\"
 
@@ -122,8 +124,8 @@ def makeZipStatic():
     zfile = zipfile.ZipFile(zipFilePath, "w", zipfile.ZIP_DEFLATED)
 
     # Zip up some specific files from the QuantLibXL directory.
-    #zfile.write("Docs/QuantLibXL-docs-1.6.0.chm", ROOT_DIR + "Docs/QuantLibXL-docs-1.6.0.chm")
-    zfile.write("xll/QuantLibXL-vc120-mt-s-1_6_0.xll", ROOT_DIR + "xll/QuantLibXL-vc120-mt-s-1_6_0.xll")
+    #zfile.write("Docs/QuantLibXL-docs-" + VERSION + ".chm", ROOT_DIR + "Docs/QuantLibXL-docs-" + VERSION + ".chm")
+    zfile.write("xll/QuantLibXL-" + VC_VERSION + "-mt-s-" + VERSION_ + ".xll", ROOT_DIR + "xll/QuantLibXL-" + VC_VERSION + "-mt-s-" + VERSION_ + ".xll")
     zfile.write("zip/README.txt", ROOT_DIR + "README.txt")
     # Recursively zip some subdirectories of the QuantLibXL directory.
     #os.path.walk("Data", visit, (zfile, ".gitignore", None))
@@ -146,9 +148,9 @@ def makeZipStatic():
 
 def zipBinaryFiles(zipFile):
     zipFile.zip("zip\\README.txt", zipFile.root + "README.txt")
-    zipFile.zip("xll\\QuantLibXL-vc120-mt-s-1_6_0.xll")
-    zipFile.zip("xll\\QuantLibXL-vc120-x64-mt-s-1_6_0.xll")
-    zipFile.zip("Docs\\QuantLibXL-docs-1.6.0.chm")
+    zipFile.zip("xll\\QuantLibXL-" + VC_VERSION + "-mt-s-" + VERSION_ + ".xll")
+    zipFile.zip("xll\\QuantLibXL-" + VC_VERSION + "-x64-mt-s-" + VERSION_ + ".xll")
+    zipFile.zip("Docs\\QuantLibXL-docs-" + VERSION + ".chm")
     Selector(
         inputPath = 'StandaloneExamples',
         zipFile = zipFile,
