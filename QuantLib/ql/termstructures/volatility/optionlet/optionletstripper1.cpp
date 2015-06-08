@@ -83,7 +83,7 @@ namespace QuantLib {
             optionletAccrualPeriods_[i] = lFRC->accrualPeriod();
             optionletTimes_[i] = dc.yearFraction(referenceDate,
                                                  optionletDates_[i]);
-            atmOptionletRate_[i] = iborIndex_->fixing(optionletDates_[i]);
+            atmOptionletRate_[i] = lFRC->indexFixing(); //iborIndex_->fixing(optionletDates_[i]);
         }
 
         if (floatingSwitchStrike_ && capFlooMatrixNotInitialized_) {

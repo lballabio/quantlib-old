@@ -64,8 +64,8 @@ namespace {
         SavedSettings backup;
 
         CommonVars() {
-            accuracy = 1.0e-6;
-            tolerance = 2.5e-5;
+            accuracy = 1.0e-10;
+            tolerance = 1.0e-10;
         }
 
         void setTermStructure() {
