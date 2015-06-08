@@ -1,31 +1,11 @@
 
-Release 1.5 - February 2015
-Notable changes since release 1.4:
-- in sync with QuantLib 1.5;
-- upgraded to SWIG 3.0.2;
-- added Visual C# 2013 solution;
-- exported monotonic log-discount curve and added a few more traits
-  for cubic interpolations;
-- exported OIS rate helpers;
-- exported swap-helper constructors with exogenous discounting curve;
-- exported index-based constructors for rate helpers;
-- added method to return calibration parameters for Heston and Bates
-  models (thanks to Riccardo Ghetta);
-- added default arguments to exported FloatingRateBond constructor;
-- added parameter to set interpolation method for Black volatility surface;
-- exported CDS date-generation rule and IntegralCdsEngine, added
-  missing parameter to UpfrontCdsHelper (thanks to Riccardo Ghetta);
-- exported fitted bond curve;
-- added new constructor parameters to InterpolatedZeroCurve (thanks to
-  Alexandre Radicchi);
-- exported overnight indexes;
-- exported new South-African CPI index;
-- exported new Fed Funds index;
-- exported new interbank Chinese calendar;
-- exported additional bond constructor parameters for ex-coupon dates;
-- exported FdBlackScholesVanillaEngine, FdBlackScholesAsianEngine and
-  ContinuousArithmeticAsianLevyEngine (thanks to Klaus Spanderen);
-- exported Hull-White process (thanks to Alexandre Radicchi);
-- translated CDS example to Python (thanks to Riccardo Ghetta);
-- added new CPI bond example for Scala (thanks to Klaus Spanderen);
-- translated Bonds example to Java (thanks to Giacomo Sergio).
+Release 1.6 - June 2015
+Notable changes since release 1.5:
+- in sync with QuantLib 1.6;
+- upgraded to SWIG 3.0.5;
+- exported Gaussian1DModel, GSR, GsrProcess and
+  Gaussian1dSwaptionEngine (thanks to Matthias Groncki);
+- extended StochasticProcess1D interface (thanks to Matthias Groncki);
+- exported inspectors for swap legs (thanks to Matthias Groncki);
+- exported new IDR, MYR, RUB and VND currencies;
+- exported new Moscow Exchange calendar.
