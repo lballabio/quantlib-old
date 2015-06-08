@@ -135,7 +135,10 @@ namespace ObjectHandler {
         // Retrieve a reference to the CallingRange object associated to the active cell.
         boost::shared_ptr<CallingRange> getCallingRange();
         // Error associated with VBA
+#pragma warning(push)
+#pragma warning(disable: 4251)
         std::string vbaError_;
+#pragma warning(pop)
     };
 
 }
