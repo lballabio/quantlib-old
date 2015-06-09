@@ -69,6 +69,10 @@ class BetaEtaCore {
     const Real beta() const { return beta_; }
     const Real eta() const { return eta_; }
 
+    // precompute values
+    const void precompute(const Real u0_min, const Real u0_max,
+                          const Real vt_min, const Real vt_max) const;
+
   private:
     const Real M_precomputed(const Real t0, const Real x0, const Real t) const;
     const Real p_y(const Real v, const Real y0, const Real y,
@@ -95,6 +99,7 @@ class BetaEtaCore {
 
     boost::shared_ptr<Integrator> integrator_;
     boost::shared_ptr<Integrator> preIntegrator_;
+    boost::shared_ptr<Integrator> preIntegrator2_;
     boost::shared_ptr<GaussianQuadrature> ghIntegrator_;
 
     // for compiler compatibility avoid lambda expressions

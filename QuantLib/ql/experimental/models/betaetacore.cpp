@@ -22,6 +22,7 @@
 #include <ql/math/modifiedbessel.hpp>
 #include <ql/math/integrals/segmentintegral.hpp>
 #include <ql/math/integrals/gausslobattointegral.hpp>
+#include <ql/math/integrals/trapezoidintegral.hpp>
 
 #include <boost/math/special_functions/gamma.hpp>
 #include <boost/make_shared.hpp>
@@ -33,7 +34,7 @@ namespace QuantLib {
 BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
                          const Array &kappa, const Real &beta, const Real &eta)
     : times_(times), alpha_(alpha), kappa_(kappa), beta_(beta), eta_(eta),
-      integrateStdDevs_(6.0) {
+      integrateStdDevs_(8.0) {
     QL_REQUIRE(beta > 0.0, "beta (" << beta << ") must be positive");
     QL_REQUIRE(eta >= 0.0 && eta <= 1.0, " eta (" << eta
                                                   << ") must be in [0,1]");
@@ -55,9 +56,13 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
                            << " and " << times[i + 1] << " respectively");
         }
     }
+    preIntegrator_ =
+        boost::make_shared<GaussLobattoIntegral>(5000000, 1E-8, 1E-8);
+    preIntegrator2_ = boost::make_shared<SegmentIntegral>(1000);
+    // preIntegrator_ = boost::make_shared<SegmentIntegral>(1000);
+    // integrator_ = boost::make_shared<SegmentIntegral>(1000);
     integrator_ = boost::make_shared<GaussLobattoIntegral>(100000, 1E-8, 1E-8);
-    preIntegrator_ = boost::make_shared<SegmentIntegral>(100);
-    ghIntegrator_ = boost::make_shared<GaussHermiteIntegration>(8);
+    ghIntegrator_ = boost::make_shared<GaussHermiteIntegration>(16);
 };
 
 // integrand to compute M directly in terms of x
@@ -90,13 +95,12 @@ class BetaEtaCore::mIntegrand2 {
         if (close(u, 0))
             return 0.0; // is that reasonable or shall we interpolate ?
         Real eta = model_->eta();
-        Real s0 = onePlusBetaX0Pos_ ? 1.0 : -1.0;
-        Real s = onePlusBetaXPos_ ? 1.0 : -1.0;
+        Real s0 = 1.0; // onePlusBetaX0Pos_ ? 1.0 : -1.0;
+        Real s = 1.0;  // onePlusBetaXPos_ ? 1.0 : -1.0;
         Real res;
         res = s *
               model_->p_y(v_, std::pow(u0_, 1.0 - eta) / (1.0 - eta),
-                          std::pow(u, 1.0 - eta) / (1.0 - eta),
-                          onePlusBetaXPos_) *
+                          std::pow(u, 1.0 - eta) / (1.0 - eta), true) *
               std::exp(-(s * u - s0 * u0_));
         return res;
     }
@@ -121,12 +125,16 @@ class BetaEtaCore::mIntegrand3 {
 
 const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
                           const bool usePrecomputedValues) const {
+    if (x0 <= -1.0 / beta_)
+        return 0.0;
     Real lambda = this->lambda(t);
     Real y0 = this->y(x0);
     Real v = this->tau(t0, t);
-    if (close(eta_, 0.0)) {
-        return 0.5 * lambda * lambda * v;
-    }
+    if (close(v, 0.0))
+        return 0.0;
+    // if (close(eta_, 0.0)) {
+    //     return 0.5 * lambda * lambda * v;
+    // }
     if (close(eta_, 0.5)) {
         return (1.0 + beta_ * x0) * lambda * lambda * v /
                (2.0 + beta_ * lambda * v);
@@ -146,7 +154,7 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
     Real s = std::sqrt(tau(t0, t));
     if (close(s, 0.0))
         return 0.0;
-    Real a = x0 - integrateStdDevs_ * s;
+    Real a = std::max(x0 - integrateStdDevs_ * s, -1.0 / beta_);
     Real b = x0 + integrateStdDevs_ * s;
     Real result1 = integrator_->operator()(mIntegrand1(this, t0, x0, t), a, b);
     Real result2 = singularTerm_y_0(t0, x0, t);
@@ -157,14 +165,14 @@ const Real BetaEtaCore::M_precomputed(const Real t0, const Real x0,
                                       const Real t) const {
     Real v = this->tau(t0, t);
     Real lambda = this->lambda(t);
-    if (close(eta_, 0.0) || close(eta_, 0.5) || close(eta_, 1.0)) {
+    if (/*close(eta_, 0.0) ||*/ close(eta_, 0.5) || close(eta_, 1.0)) {
         return M(t0, x0, t);
     }
     Real stddev = std::sqrt(v);
     Real xmax = x0 + integrateStdDevs_ * stddev;
-    Real xmin = x0 - integrateStdDevs_ * stddev;
-    Real smin = 1.0 + beta_ * xmin > 0.0 ? 1.0 : -1.0;
-    Real smax = 1.0 + beta_ * xmax > 0.0 ? 1.0 : -1.0;
+    Real xmin = std::max(x0 - integrateStdDevs_ * stddev, -1.0 / beta_);
+    Real smin = 1.0 + beta_ * xmin >= 0.0 ? 1.0 : -1.0;
+    Real smax = 1.0 + beta_ * xmax >= 0.0 ? 1.0 : -1.0;
     Real u0 = lambda / beta_ * std::fabs(1.0 + beta_ * x0);
     Real umin = lambda / beta_ * std::fabs(1.0 + beta_ * xmin);
     Real umax = lambda / beta_ * std::fabs(1.0 + beta_ * xmax);
@@ -176,75 +184,145 @@ const Real BetaEtaCore::M_precomputed(const Real t0, const Real x0,
     Real b = std::max(umin, umax);
     Real i_type1_tt =
         preIntegrator_->operator()(mIntegrand2(this, vt, u0, true, true), a, b);
-    Real i_type1_ft = preIntegrator_->operator()(
-        mIntegrand2(this, vt, u0, false, true), a, b);
-    Real i_type1_tf = preIntegrator_->operator()(
-        mIntegrand2(this, vt, u0, true, false), a, b);
-    Real i_type1_ff = preIntegrator_->operator()(
-        mIntegrand2(this, vt, u0, false, false), a, b);
-    Real i_type2_t = preIntegrator_->operator()(
-                         mIntegrand2(this, vt, u0, true, true), 0.0, b) +
-                     preIntegrator_->operator()(
-                         mIntegrand2(this, vt, u0, true, false), 0.0, a);
-    Real i_type2_f = preIntegrator_->operator()(
-                         mIntegrand2(this, vt, u0, false, true), 0.0, b) +
-                     preIntegrator_->operator()(
-                         mIntegrand2(this, vt, u0, false, false), 0.0, a);
-    std::cout << "smin=" << smin << " smax=" << smax
-              << " 1+bx=" << (1.0 + beta_ * x0 >= 0.0) << " i1tt=" << i_type1_tt
-              << " i1ft=" << i_type1_ft << " i1tf=" << i_type1_tf
-              << " i1ff=" << i_type1_ff << " i2t=" << i_type2_t
-              << " i2f=" << i_type2_f << std::endl;
+    // Real i_type1_ft = preIntegrator_->operator()(
+    //     mIntegrand2(this, vt, u0, false, true), a, b);
+    // Real i_type1_tf = preIntegrator_->operator()(
+    //     mIntegrand2(this, vt, u0, true, false), a, b);
+    // Real i_type1_ff = preIntegrator_->operator()(
+    //     mIntegrand2(this, vt, u0, false, false), a, b);
+    // Real i_type2_t = preIntegrator_->operator()(
+    //                      mIntegrand2(this, vt, u0, true, true), 0.0, b) +
+    //                  preIntegrator_->operator()(
+    //                      mIntegrand2(this, vt, u0, true, false), 0.0, a);
+    // Real i_type2_f = preIntegrator_->operator()(
+    //                      mIntegrand2(this, vt, u0, false, true), 0.0, b) +
+    //                  preIntegrator_->operator()(
+    //                      mIntegrand2(this, vt, u0, false, false), 0.0, a);
+    // std::cout << "smin=" << smin << " smax=" << smax
+    //           << " 1+bx=" << (1.0 + beta_ * x0 >= 0.0) << " i1tt=" <<
+    //           i_type1_tt
+    //           << " i1ft=" << i_type1_ft << " i1tf=" << i_type1_tf
+    //           << " i1ff=" << i_type1_ff << " i2t=" << i_type2_t
+    //           << " i2f=" << i_type2_f << std::endl;
+    mIntegrand2 ig(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, true);
     // todo here we can use the values above
     if (smin > 0.0 && smax > 0.0) {
-        result += preIntegrator_->operator()(
-            mIntegrand2(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, true), a,
-            b); // type 1 limits
+        result += preIntegrator_->operator()(ig, a, b); // type 1 limits
     }
-    if (smin < 0.0 && smax > 0.0) {
-        result += preIntegrator_->operator()(
-            mIntegrand2(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, true), 0.0,
-            b); // type 2 limits
-        result += preIntegrator_->operator()(
-            mIntegrand2(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, false), 0.0, a);
-    }
-    if (smin < 0.0 && smax < 0.0) {
-        result += preIntegrator_->operator()(
-            mIntegrand2(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, false), a,
-            b); // type 1 limits
-    }
+    // if (smin < 0.0 && smax > 0.0) {
+    //     result += preIntegrator_->operator()(
+    //         mIntegrand2(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, true), 0.0,
+    //         b); // type 2 limits
+    //     result += preIntegrator_->operator()(
+    //         mIntegrand2(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, false), 0.0,
+    //         a);
+    // }
+    // if (smin < 0.0 && smax < 0.0) {
+    //     result += preIntegrator_->operator()(
+    //         mIntegrand2(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, false), a,
+    //         b); // type 1 limits
+    // }
     Real resultm = std::pow(beta_, -eta_ / (eta_ - 1.0));
     Real results = singularTerm_y_0(t0, x0, t);
+    std::cerr << std::setprecision(16) << "vt=" << vt << " u0=" << u0
+              << " a=" << a << " b=" << b << " result=" << result
+              << " resultm=" << resultm << std::endl;
     return std::log(result * resultm + results);
+}
+
+const void BetaEtaCore::precompute(const Real u0_min, const Real u0_max,
+                                   const Real vt_min, const Real vt_max) const {
+    Real m = 1.3;
+    Real h = 0.01;
+    for (Size i = 0; i < 100; ++i) {
+        for (Size j = 0; j < 100; ++j) {
+            Real u0 = u0_min + ((double)i) * (u0_max - u0_min) / 100.0;
+            Real u0h = u0 + h;
+            Real u0h2 = u0 + 2.0 * h;
+            Real vt = vt_min + ((double)j) * (vt_max - vt_min) / 100.0;
+            Real vth = vt + h;
+            Real vth2 = vt + 2.0 * h;
+            mIntegrand2 ig(this, vt, u0, true, true);
+            mIntegrand2 iguh(this, vt, u0h, true, true);
+            mIntegrand2 iguh2(this, vt, u0h2, true, true);
+            mIntegrand2 igvth(this, vth, u0, true, true);
+            mIntegrand2 igvth2(this, vth2, u0, true, true);
+            Real a = u0;
+            Real b = u0;
+            while (ig(b) > 1E-10) {
+                b *= m;
+            }
+            while (ig(a) > 1E-10 && a > 1E-10) {
+                a /= m;
+            }
+            Real res = 0.0;
+            Real res_u = 0.0;
+            Real res_vt = 0.0;
+            Real res_u2 = 0.0;
+            Real res_vt2 = 0.0;
+            try {
+                res += preIntegrator_->operator()(ig, a, b);
+                res_u += preIntegrator_->operator()(iguh, a, b);
+                res_vt += preIntegrator_->operator()(igvth, a, b);
+                res_u2 += preIntegrator_->operator()(iguh2, a, b);
+                res_vt2 += preIntegrator_->operator()(igvth2, a, b);
+            } catch (...) {
+            }
+            if (res < 1e-10) {
+                res += preIntegrator2_->operator()(ig, a, b);
+                res_u += preIntegrator2_->operator()(iguh, a, b);
+                res_vt += preIntegrator2_->operator()(igvth, a, b);
+                res_u2 += preIntegrator2_->operator()(iguh2, a, b);
+                res_vt2 += preIntegrator2_->operator()(igvth2, a, b);
+            }
+            Real lres = std::log(res);
+            Real lres_u =
+                (std::log(res_u2) - 2.0 * std::log(res_u) + std::log(res)) /
+                (h * h);
+            Real lres_vt =
+                (std::log(res_vt2) - 2.0 * std::log(res_vt) + std::log(res)) /
+                (h * h);
+            std::cout << u0 << " " << vt << " " << res << " " << lres << " "
+                      << lres_u << " " << lres_vt << std::endl;
+        }
+        std::cout << std::endl;
+    }
 }
 
 const Real BetaEtaCore::p_y(const Real v, const Real y0, const Real y,
                             const bool onePlusBetaXPos) const {
     Real nu = 1.0 / (2.0 - 2.0 * eta_);
     if (eta_ < 0.5) {
-        QL_REQUIRE(eta_ > 0.0, "eta must not be zero in call to p_y");
         // 0.0 < eta < 0.5
         if (close(y, 0.0)) // i.e. x, x0 = -1/beta
-            return 0.0;    // TODO return an interpolated value around y = 0.0
-        if (onePlusBetaXPos) {
-            return 0.5 * std::pow(y0 / y, nu) * y / v *
-                   (modifiedBesselFunction_i_exponentiallyWeighted(-nu,
-                                                                   y0 * y / v) +
-                    modifiedBesselFunction_i_exponentiallyWeighted(nu, y0 * y /
-                                                                           v)) *
-                   exp(-(y - y0) * (y - y0) / (2.0 * v)) * dydx(y);
-        } else {
-            return std::sin(M_PI * nu) * M_1_PI * std::pow(y0 / y, nu) * y / v *
-                   modifiedBesselFunction_k_exponentiallyWeighted(nu,
-                                                                  y0 * y / v) *
-                   exp(-(y - y0) * (y - y0) / (2.0 * v)) * dydx(y);
-        }
+            return 0.0;
+        return std::pow(y0 / y, nu) * y / v *
+               modifiedBesselFunction_i_exponentiallyWeighted(-nu, y0 * y / v) *
+               exp(-(y - y0) * (y - y0) / (2.0 * v)) * dydx(y);
+        // if (onePlusBetaXPos) {
+        //     return 0.5 * std::pow(y0 / y, nu) * y / v *
+        //            (modifiedBesselFunction_i_exponentiallyWeighted(-nu,
+        //                                                            y0 * y /
+        //                                                            v) +
+        //             modifiedBesselFunction_i_exponentiallyWeighted(nu, y0 * y
+        //             /
+        //                                                                    v))
+        //                                                                    *
+        //            exp(-(y - y0) * (y - y0) / (2.0 * v)) * dydx(y);
+        // } else {
+        //     return std::sin(M_PI * nu) * M_1_PI * std::pow(y0 / y, nu) * y /
+        //     v *
+        //            modifiedBesselFunction_k_exponentiallyWeighted(nu,
+        //                                                           y0 * y / v)
+        //                                                           *
+        //            exp(-(y - y0) * (y - y0) / (2.0 * v)) * dydx(y);
+        // }
     }
     // eta = 1.0
     if (close(eta_, 1.0)) {
         return exp(-beta_ * y) / std::sqrt(2.0 * M_PI * v) *
-               exp(-(y - y0 + beta_ * v / 2.0) * (y - y0 + beta_ * v / 2.0) /
-                   (2.0 * v));
+               exp(-0.5 * (y - y0 + 0.5 * beta_ * v) *
+                   (y - y0 + 0.5 * beta_ * v) / v);
     }
     // 0.5 <= eta < 1.0
     if (!onePlusBetaXPos || close(y, 0.0) || close(y0, 0.0))
@@ -256,18 +334,15 @@ const Real BetaEtaCore::p_y(const Real v, const Real y0, const Real y,
 
 const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
                           const Real x) const {
+    if (x < -1.0 / beta_)
+        return 0.0;
     Real v = this->tau(t0, t);
+    // if (close(eta_, 0.0)) {
+    //     return exp(-(x - x0) * (x - x0) / (2.0 * v)) /
+    //            std::sqrt(2.0 * M_PI * v);
+    // }
     Real y0 = this->y(x0);
     Real y = this->y(x);
-    if (close(eta_, 0.0)) {
-        return exp(-(x - x0) * (x - x0) / (2.0 * v)) /
-               std::sqrt(2.0 * M_PI * v);
-    }
-    if (close(eta_, 1.0)) {
-        return exp(-beta_ * y) / std::sqrt(2.0 * M_PI * v) *
-               exp(-0.5 * (y - y0 + 0.5 * beta_ * v) *
-                   (y - y0 + 0.5 * beta_ * v) / v);
-    }
     return p_y(v, y0, y, 1.0 + beta_ * x > 0);
 };
 
