@@ -7,7 +7,7 @@
     <include>qlo/schedule.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007, 2011 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2011, 2015 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet
   </copyright>
   <Functions>
@@ -313,7 +313,7 @@
           <Parameter name='EndOfMonth' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>end of month convention.</description>
+            <description>end of month convention. Ignored for Tenor below 1M.</description>
           </Parameter>
           <Parameter name='FirstDate' default='QuantLib::Date()'>
             <type>QuantLib::Date</type>
