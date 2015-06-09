@@ -132,6 +132,9 @@ Makefile.in
 *.log
 *.sdf
 *.opensdf
+*.pch
+*.idb
+*.ipch
 
 # Outputs
 QuantLib/Examples/BasketLosses/BasketLosses
