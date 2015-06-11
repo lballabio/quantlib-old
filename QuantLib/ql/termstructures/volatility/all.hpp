@@ -16,6 +16,7 @@
 #include <ql/termstructures/volatility/volatilitynature.hpp>
 #include <ql/termstructures/volatility/smilesectionutils.hpp>
 #include <ql/termstructures/volatility/spreadedsmilesection.hpp>
+#include <ql/termstructures/volatility/volatilitytype.hpp>
 
 #include <ql/termstructures/volatility/equityfx/all.hpp>
 #include <ql/termstructures/volatility/capfloor/all.hpp>

@@ -28,31 +28,28 @@
 
 #include <ql/quote.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
+#include <ql/termstructures/volatility/volatilitytype.hpp>
 #include <ql/patterns/lazyobject.hpp>
+
 #include <list>
+
 
 namespace QuantLib {
 
     class PricingEngine;
 
-    //! abstract base class for calibration helpers
-    class CalibrationHelperBase {
-      public:
-        //! returns the error resulting from the model valuation
-        virtual Real calibrationError() = 0;
-    };
-
-    //! liquid black76 market instrument used during calibration
-    class CalibrationHelper : public LazyObject, public CalibrationHelperBase {
+    //! liquid market instrument used during calibration
+    class CalibrationHelper : public LazyObject {
       public:
         enum CalibrationErrorType {
                             RelativePriceError, PriceError, ImpliedVolError};
         CalibrationHelper(const Handle<Quote>& volatility,
                           const Handle<YieldTermStructure>& termStructure,
-                          CalibrationErrorType calibrationErrorType 
-                                                          = RelativePriceError)
+                          CalibrationErrorType calibrationErrorType
+                          = RelativePriceError, const VolatilityType type = ShiftedLognormal,
+                          const Real shift = 0.0)
         : volatility_(volatility), termStructure_(termStructure),
-          calibrationErrorType_(calibrationErrorType) {
+          volatilityType_(type), shift_(shift), calibrationErrorType_(calibrationErrorType) {
             registerWith(volatility_);
             registerWith(termStructure_);
         }
@@ -71,7 +68,7 @@ namespace QuantLib {
         virtual Real modelValue() const = 0;
 
         //! returns the error resulting from the model valuation
-        Real calibrationError();
+        virtual Real calibrationError();
 
         virtual void addTimesTo(std::list<Time>& times) const = 0;
 
@@ -82,7 +79,7 @@ namespace QuantLib {
                                      Volatility minVol,
                                      Volatility maxVol) const;
 
-        //! Black price given a volatility
+        //! Black or Bachelier price given a volatility
         virtual Real blackPrice(Volatility volatility) const = 0;
 
         void setPricingEngine(const boost::shared_ptr<PricingEngine>& engine) {
@@ -94,6 +91,8 @@ namespace QuantLib {
         Handle<Quote> volatility_;
         Handle<YieldTermStructure> termStructure_;
         boost::shared_ptr<PricingEngine> engine_;
+        const VolatilityType volatilityType_;
+        const Real shift_;
 
       private:
         class ImpliedVolatilityHelper;
