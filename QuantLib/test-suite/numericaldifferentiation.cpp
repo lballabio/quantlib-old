@@ -69,8 +69,7 @@ namespace {
             BOOST_FAIL("Failed to reproduce " << comment
                         << " order derivative"
                         << "\n    calculated: " << calculated
-                        << "\n      expected: " << expected
-                        << "\n     tolerance: " << tol
+                        << "\n    expected:   " << expected
                         << "\n    difference: "
                         << expected - calculated);
     }
@@ -279,7 +278,7 @@ namespace {
         for (Size i=1; i < n; ++i) {
             const Real fact = Factorial::get(i);
             for (Size j=0; j < n; ++j)
-                m[i][j] = std::pow(q[j], Integer(i)) / fact;
+                m[i][j] = std::pow(q[j], double(i)) / fact;
         }
 
         Array b(n, 0.0);
