@@ -398,11 +398,6 @@
         </EnumeratedType>
         <EnumeratedType>
           <!-- Clone for Romania -->
-          <string>Romanian settlement</string>
-          <value>QuantLib::Romania()</value>
-        </EnumeratedType>
-        <EnumeratedType>
-          <!-- Clone for Romania -->
           <string>BVB</string>
           <value>QuantLib::Romania()</value>
         </EnumeratedType>
