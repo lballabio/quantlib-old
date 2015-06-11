@@ -37,6 +37,9 @@ namespace QuantLib {
 
 /*! cf. Hagan, Woodward: Markov interest rate models,
     Applied Mathematical Finance 6, 233–260 (1999)
+
+    We assume a reflecting barrier at x = -1/beta (cf.
+    the last paragraph on p. 241).
 */
 
 // there is a big overlap with the Gaussian1d model interface

@@ -35,6 +35,8 @@
 
 namespace QuantLib {
 
+/* see betaeta.hpp for references and more comments */
+
 /*! warning: the parameters in the constructor are linked via references
     to their sources to be able to reflect changes immediately, so you
     should not initialize an instance of this class with numerical constants
