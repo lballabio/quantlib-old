@@ -7,9 +7,11 @@
     <include>ql/time/date.hpp</include>
     <include>ql/time/imm.hpp</include>
     <include>ql/time/ecb.hpp</include>
+    <include>ql/time/asx.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2009 Ferdinando Ametrano
+    Copyright (C) 2006, 2009, 2015 Ferdinando Ametrano
+    Copyright (C) 2015 Maddalena Zanzi
   </copyright>
   <Functions>
 
@@ -275,6 +277,7 @@
       </ReturnValue>
     </Procedure>
 
+    <!-- IMM -->
     <Procedure name='qlIMMIsIMMdate' loopParameter='Date'>
       <description>returns whether or not the given date is an IMM date.</description>
       <alias>QuantLib::IMM::isIMMdate</alias>
@@ -332,7 +335,7 @@
     </Procedure>
 
     <Procedure name='qlIMMcode' loopParameter='IMMdate'>
-      <description>returns the code corresponding to a given IMM date (e.g. H6 for Wednesday, March 15th, 2006). It fails if the input date is not an IMM date.</description>
+      <description>returns the code corresponding to a given IMM date (e.g. H5 for Wednesday, March 18th, 2015). It fails if the input date is not an IMM date.</description>
       <alias>QuantLib::IMM::code</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -410,7 +413,7 @@
     </Procedure>
 
     <Procedure name='qlIMMdate' loopParameter='IMMcode'>
-      <description>returns the IMM date corresponding to the given IMM code (e.g. Wednesday, March 15th, 2006 for H6).</description>
+      <description>returns the IMM date corresponding to the given IMM code (e.g. Wednesday, March 18th, 2015 for H5).</description>
       <alias>QuantLib::IMM::date</alias>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -493,6 +496,228 @@
     </Procedure>
 
 
+
+
+    <!-- ASX -->
+    <Procedure name='qlASXIsASXdate' loopParameter='Date'>
+      <description>returns whether or not the given date is an ASX date.</description>
+      <alias>QuantLib::ASX::isASXdate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Date' exampleValue='42167'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>date.</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='true' const='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlASXIsASXcode' loopParameter='Code'>
+      <description>returns whether or not the given code is an ASX code.</description>
+      <alias>QuantLib::ASX::isASXcode</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Code' exampleValue='M5'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>2 letter string (e.g. M5).</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='true' const='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>FALSE to consider all futures (serial ones included), not just the main March/June/September/December (H, M, U, Z) cycle.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlASXcode' loopParameter='ASXdate'>
+      <description>returns the code corresponding to a given ASX date (e.g. H5 for Friday, March 13th, 2015). It fails if the input date is not an ASX date.</description>
+      <alias>QuantLib::ASX::code</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ASXdate' exampleValue='42167'>
+            <type>QuantLib::Date</type>
+            <tensorRank>vector</tensorRank>
+            <description>ASX date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlASXNextCode'>
+      <description>returns the code for the first contract listed in the Australian Securities Exchange.</description>
+      <alias>QuantLib::ASX::nextCode</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='true' const='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlASXNextCodes'>
+      <description>returns the codes for the next contracts listed in the Australian Securities Exchange.</description>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>string</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlASXdate' loopParameter='ASXcode'>
+      <description>returns the ASX date corresponding to the given ASX code (e.g. Friday, March 13th, 2015 for H5)).</description>
+      <alias>QuantLib::ASX::date</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='ASXcode' exampleValue='M5'>
+            <type>string</type>
+            <tensorRank>vector</tensorRank>
+            <description>2 letter ASX code (e.g. M5).</description>
+          </Parameter>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlASXNextDate'>
+      <description>returns the delivery date for the first contract listed in the Australian Securities Exchange.</description>
+      <alias>QuantLib::ASX::nextDate</alias>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='true' const='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+    <Procedure name='qlASXNextDates'>
+      <description>returns the delivery dates for the next contracts listed in the Australian Securities Exchange.</description>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='RefDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>date with respect to which the calculations are performed.</description>
+          </Parameter>
+          <Parameter name='MainCycle' default='std::vector&lt;bool&gt;(40, true)'>
+            <type>bool</type>
+            <tensorRank>vector</tensorRank>
+            <description>TRUE to consider the main March/June/September/December (H, M, U, Z) cycle only.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>vector</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
+
+    <!-- ECB -->
     <Procedure name='qlECBKnownDates'>
       <description>returns all the known ECB maintenance period start dates.</description>
       <SupportedPlatforms>

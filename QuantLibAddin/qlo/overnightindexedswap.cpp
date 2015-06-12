@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2009, 2011 Ferdinando Ametrano
+ Copyright (C) 2009, 2011, 2015 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -53,8 +53,10 @@ namespace QuantLibAddin {
                                            overnightIndex, overnightSpread));
     }
 
+    // MakeOIS
     OvernightIndexedSwap::OvernightIndexedSwap(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Natural settlDays,
             const QuantLib::Period& swapTenor,
             const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             QuantLib::Rate fixRate,
@@ -64,13 +66,14 @@ namespace QuantLibAddin {
             bool permanent)
     : Swap(properties, permanent)
     {
-        libraryObject_ = MakeOIS(swapTenor, overnightIndex,
-                                 fixRate, fwdStart)
-            .withFixedLegDayCount(fixDayCounter)
-            .withOvernightLegSpread(overnightSpread)
-            .operator shared_ptr<QuantLib::OvernightIndexedSwap>();
+        libraryObject_ = MakeOIS(swapTenor, overnightIndex, fixRate, fwdStart)
+                        .withSettlementDays(settlDays)
+                        .withFixedLegDayCount(fixDayCounter)
+                        .withOvernightLegSpread(overnightSpread)
+                        .operator shared_ptr<QuantLib::OvernightIndexedSwap>();
     }
 
+    // MakeDatedOIS
     OvernightIndexedSwap::OvernightIndexedSwap(
             const shared_ptr<ObjectHandler::ValueObject>& properties,
             const QuantLib::Date& startDate,

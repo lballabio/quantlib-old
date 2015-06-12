@@ -17,7 +17,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import os, sys
+import os, sys, math
 from distutils.cmd import Command
 from distutils.command.build_ext import build_ext
 from distutils.command.build import build
@@ -69,10 +69,16 @@ class my_wrap(Command):
     def run(self):
         print('Generating Python bindings for QuantLib...')
         swig_dir = os.path.join("..","SWIG")
-        os.system('swig -python -c++ -modern ' +
-                  '-I%s ' % swig_dir +
-                  '-outdir QuantLib -o QuantLib/quantlib_wrap.cpp ' +
-                  'quantlib.i')
+        if sys.version_info.major >= 3:
+            os.system('swig -python -py3 -c++ -modern ' +
+                      '-I%s ' % swig_dir +
+                      '-outdir QuantLib -o QuantLib/quantlib_wrap.cpp ' +
+                      'quantlib.i')
+        else:
+            os.system('swig -python -c++ -modern ' +
+                      '-I%s ' % swig_dir +
+                      '-outdir QuantLib -o QuantLib/quantlib_wrap.cpp ' +
+                      'quantlib.i')
 
 class my_build(build):
     user_options = build.user_options + [
@@ -124,12 +130,16 @@ class my_build_ext(build_ext):
             if 'LIB' in os.environ:
                 dirs = [dir for dir in os.environ['LIB'].split(';')]
                 self.library_dirs += [ d for d in dirs if d.strip() ]
-
+            dbit = round(math.log(sys.maxsize, 2) + 1)
+            if dbit == 64:
+                machinetype = '/machine:x64'
+            else:
+                machinetype = '/machine:x86'
             self.define += [('__WIN32__', None), ('WIN32', None),
                             ('NDEBUG', None), ('_WINDOWS', None),
                             ('NOMINMAX', None)]
-            extra_compile_args = ['/GR', '/FD', '/Zm250', '/EHsc' ]
-            extra_link_args = ['/subsystem:windows', '/machine:I386']
+            extra_compile_args = ['/GR', '/FD', '/Zm250', '/EHsc', '/bigobj' ]
+            extra_link_args = ['/subsystem:windows', machinetype]
 
             if self.debug:
                 if self.static:
