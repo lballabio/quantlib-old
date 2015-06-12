@@ -222,9 +222,9 @@ const Real BetaEtaCore::M_precomputed(const Real t0, const Real x0,
     // }
     Real resultm = std::pow(beta_, -eta_ / (eta_ - 1.0));
     Real results = singularTerm_y_0(t0, x0, t);
-    std::cerr << std::setprecision(16) << "vt=" << vt << " u0=" << u0
-              << " a=" << a << " b=" << b << " result=" << result
-              << " resultm=" << resultm << std::endl;
+    // std::cerr << std::setprecision(16) << "vt=" << vt << " u0=" << u0
+    //           << " a=" << a << " b=" << b << " result=" << result
+    //           << " resultm=" << resultm << std::endl;
     return std::log(result * resultm + results);
 }
 
@@ -280,10 +280,10 @@ const void BetaEtaCore::precompute(const Real u0_min, const Real u0_max,
             Real lres_vt =
                 (std::log(res_vt2) - 2.0 * std::log(res_vt) + std::log(res)) /
                 (h * h);
-            std::cout << u0 << " " << vt << " " << res << " " << lres << " "
-                      << lres_u << " " << lres_vt << std::endl;
+            // std::cout << u0 << " " << vt << " " << res << " " << lres << " "
+            //           << lres_u << " " << lres_vt << std::endl;
         }
-        std::cout << std::endl;
+        //std::cout << std::endl;
     }
 }
 

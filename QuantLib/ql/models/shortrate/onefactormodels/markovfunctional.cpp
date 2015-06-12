@@ -20,6 +20,8 @@
 #include <ql/models/shortrate/onefactormodels/markovfunctional.hpp>
 #include <ql/termstructures/volatility/smilesectionutils.hpp>
 
+//#include <iostream>
+
 namespace QuantLib {
 
     MarkovFunctional::MarkovFunctional(
@@ -846,7 +848,8 @@ namespace QuantLib {
 
     const Real
     MarkovFunctional::zerobondImpl(const Time T, const Time t, const Real y,
-                                   const Handle<YieldTermStructure> &yts) const {
+                                   const Handle<YieldTermStructure> &yts,
+                                   const bool adjusted) const {
 
         if (t == 0.0)
             return yts.empty() ? this->termStructure()->discount(T, true)

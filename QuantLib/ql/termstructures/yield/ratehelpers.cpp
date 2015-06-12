@@ -35,6 +35,8 @@
     #include <ql/cashflows/floatingratecoupon.hpp>
 #endif
 
+#include <iostream>
+
 using boost::shared_ptr;
 
 namespace QuantLib {
@@ -344,6 +346,7 @@ namespace QuantLib {
 
     Real DepositRateHelper::impliedQuote() const {
         QL_REQUIRE(termStructure_ != 0, "term structure not set");
+        std::cout << "deposit, require fixing for " << fixingDate_ << std::endl;
         return iborIndex_->fixing(fixingDate_, true);
     }
 
@@ -516,6 +519,7 @@ namespace QuantLib {
 
     Real FraRateHelper::impliedQuote() const {
         QL_REQUIRE(termStructure_ != 0, "term structure not set");
+        std::cout << "fra, require fixing for " << fixingDate_ << std::endl;
         return iborIndex_->fixing(fixingDate_, true);
     }
 

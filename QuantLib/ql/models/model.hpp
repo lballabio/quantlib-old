@@ -113,6 +113,9 @@ namespace QuantLib {
                    const std::vector<bool>& fixParameters = std::vector<bool>());
 
         Real value(const Array& params,
+                   const std::vector<boost::shared_ptr<CalibrationHelperBase> >&);
+        // for backward compatibility
+        Real value(const Array& params,
                    const std::vector<boost::shared_ptr<CalibrationHelper> >&);
 
         const boost::shared_ptr<Constraint>& constraint() const;

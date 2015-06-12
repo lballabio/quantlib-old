@@ -69,6 +69,7 @@ namespace QuantLib {
         const Array &times_;
         const Array &vols_;
         const Array &reversions_;
+        const Array &adjusters_;
 
       private:
         Real expectationp1(Time t0, Real x0,

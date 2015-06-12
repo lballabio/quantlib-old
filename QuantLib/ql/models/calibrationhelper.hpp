@@ -38,8 +38,15 @@ namespace QuantLib {
 
     class PricingEngine;
 
+    //! abstract base class for calibration helpers
+    class CalibrationHelperBase {
+      public:
+        //! returns the error resulting from the model valuation
+        virtual Real calibrationError() = 0;
+    };
+
     //! liquid market instrument used during calibration
-    class CalibrationHelper : public LazyObject {
+    class CalibrationHelper : public LazyObject, public CalibrationHelperBase {
       public:
         enum CalibrationErrorType {
                             RelativePriceError, PriceError, ImpliedVolError};

@@ -19,7 +19,7 @@ this_include_HEADERS = \
     sabrsmilesection.hpp \
     smilesection.hpp \
     smilesectionutils.hpp \
-    spreadedsmilesection.hpp
+    spreadedsmilesection.hpp \
     smilesectionutils.hpp \
     spreadedsmilesection.hpp \
     volatilitytype.hpp

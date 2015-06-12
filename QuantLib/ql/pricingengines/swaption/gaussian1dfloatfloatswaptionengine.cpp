@@ -18,7 +18,7 @@
 */
 
 #include <ql/pricingengines/swaption/gaussian1dfloatfloatswaptionengine.hpp>
-#include <ql/experimental/coupons/swapspreadindex.hpp> // internal
+#include <ql/experimental/coupons/swapspreadindex.hpp>
 
 namespace QuantLib {
 
@@ -465,12 +465,13 @@ namespace QuantLib {
                                 if(ibor1 != NULL) {
                                     estFixing = model_->forwardRate(
                                         arguments_.leg1FixingDates[j], event0,
-                                        zk, ibor1);
+                                        zk, ibor1, adjusted_);
                                 }
                                 if(cms1 != NULL) {
                                     estFixing = model_->swapRate(
                                         arguments_.leg1FixingDates[j],
-                                        cms1->tenor(), event0, zk, cms1);
+                                        cms1->tenor(), event0, zk, cms1,
+                                        adjusted_);
                                 }
                                 if (cmsspread1 != NULL)
                                     estFixing =
@@ -480,14 +481,16 @@ namespace QuantLib {
                                                 cmsspread1->swapIndex1()
                                                     ->tenor(),
                                                 event0, zk,
-                                                cmsspread1->swapIndex1()) +
+                                                cmsspread1->swapIndex1(),
+                                                adjusted_) +
                                         cmsspread1->gearing2() *
                                             model_->swapRate(
                                                 arguments_.leg1FixingDates[j],
                                                 cmsspread1->swapIndex2()
                                                     ->tenor(),
                                                 event0, zk,
-                                                cmsspread1->swapIndex2());
+                                                cmsspread1->swapIndex2(),
+                                                adjusted_);
                                 Real rate =
                                     arguments_.leg1Spreads[j] +
                                     arguments_.leg1Gearings[j] * estFixing;

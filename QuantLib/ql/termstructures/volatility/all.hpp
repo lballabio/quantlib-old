@@ -13,7 +13,8 @@
 #include <ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp>
 #include <ql/termstructures/volatility/sabrsmilesection.hpp>
 #include <ql/termstructures/volatility/smilesection.hpp>
-#include <ql/termstructures/volatility/volatilitynature.hpp>
+#include <ql/termstructures/volatility/smilesectionutils.hpp>
+#include <ql/termstructures/volatility/spreadedsmilesection.hpp>
 #include <ql/termstructures/volatility/smilesectionutils.hpp>
 #include <ql/termstructures/volatility/spreadedsmilesection.hpp>
 #include <ql/termstructures/volatility/volatilitytype.hpp>
