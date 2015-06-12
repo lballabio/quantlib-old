@@ -105,10 +105,19 @@ XL-Launcher/bin/Debug/
 XL-Launcher/bin/Release/
 XL-Launcher/obj/
 
+# Build outputs
+**/x64/Debug
+**/x64/Release
+**/Debug
+**/Release
+**/bin/*.xml
+**/bin/*.manifest
+
 # Artifacts created in multiple directories
 Makefile
 !QuantLibAddin/swig/Makefile
 Makefile.in
+testCaseCollection.xml
 .deps
 .libs
 *.la
