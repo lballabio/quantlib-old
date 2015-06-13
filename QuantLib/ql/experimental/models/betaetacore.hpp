@@ -72,10 +72,18 @@ class BetaEtaCore {
     const Real eta() const { return eta_; }
 
     // precompute values
+    const Real precompute(const Real u0, const Real vt) const;
     const void precompute(const Real u0_min, const Real u0_max,
-                          const Real vt_min, const Real vt_max) const;
+                          const Real vt_min, const Real vt_max,
+                          const Size usize, const Size vsize,
+                          const Size etasteps, const Real cu,
+                          const Real densityu, const Real cv,
+                          const Real densityv, const Real ce,
+                          const Real densitye);
 
   private:
+    const Real M_eta_1(const Real t0, const Real x0, const Real t) const;
+    const Real M_eta_05(const Real t0, const Real x0, const Real t) const;
     const Real M_precomputed(const Real t0, const Real x0, const Real t) const;
     const Real p_y(const Real v, const Real y0, const Real y,
                    const bool onePlusBetaXPos) const;
@@ -97,14 +105,19 @@ class BetaEtaCore {
     const Real kappa(const Size index) const;
 
     const Array &times_, &alpha_, &kappa_;
-    const Real &beta_, &eta_;
+    const Real &beta_; //, &eta_;
+    Real eta_;         // only for precomputation !
 
     boost::shared_ptr<Integrator> integrator_;
     boost::shared_ptr<Integrator> preIntegrator_;
     boost::shared_ptr<Integrator> preIntegrator2_;
     boost::shared_ptr<GaussianQuadrature> ghIntegrator_;
 
-    // for compiler compatibility avoid lambda expressions
+    // pretabulation
+    Size etaSize_, uSize_, vSize_;
+    std::vector<Real> eta_pre_, u_pre_, v_pre_;
+
+    // avoid lambda expressions for compiler compatibility
     class mIntegrand1;
     friend class mIntegrand1;
     class mIntegrand2;

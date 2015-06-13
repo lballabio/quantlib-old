@@ -18,14 +18,20 @@
 */
 
 #include <ql/experimental/models/betaetacore.hpp>
+
 #include <ql/errors.hpp>
 #include <ql/math/modifiedbessel.hpp>
 #include <ql/math/integrals/segmentintegral.hpp>
 #include <ql/math/integrals/gausslobattointegral.hpp>
 #include <ql/math/integrals/trapezoidintegral.hpp>
+#include <ql/methods/finitedifferences/meshers/concentrating1dmesher.hpp>
 
 #include <boost/math/special_functions/gamma.hpp>
 #include <boost/make_shared.hpp>
+
+#include <ql/experimental/models/betaetatabulation.cpp>
+
+#include <iostream>
 
 namespace QuantLib {
 
@@ -55,12 +61,20 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
         }
     }
     preIntegrator_ =
-        boost::make_shared<GaussLobattoIntegral>(5000000, 1E-8, 1E-8);
+        boost::make_shared<GaussLobattoIntegral>(100000, 1E-8, 1E-8);
     preIntegrator2_ = boost::make_shared<SegmentIntegral>(1000);
     // preIntegrator_ = boost::make_shared<SegmentIntegral>(1000);
     // integrator_ = boost::make_shared<SegmentIntegral>(1000);
     integrator_ = boost::make_shared<GaussLobattoIntegral>(100000, 1E-8, 1E-8);
     ghIntegrator_ = boost::make_shared<GaussHermiteIntegration>(16);
+
+    // set up pretabulation coordinate data
+    etaSize_ = sizeof(detail::eta_pre) / sizeof(detail::eta_pre[0]);
+    uSize_ = sizeof(detail::u_pre) / sizeof(detail::u_pre[0]);
+    vSize_ = sizeof(detail::v_pre) / sizeof(detail::v_pre[0]);
+    eta_pre_ = std::vector<Real>(detail::eta_pre, detail::eta_pre + etaSize_);
+    u_pre_ = std::vector<Real>(detail::u_pre, detail::u_pre + uSize_);
+    v_pre_ = std::vector<Real>(detail::v_pre, detail::v_pre + vSize_);
 };
 
 // integrand to compute M directly in terms of x
@@ -123,41 +137,70 @@ class BetaEtaCore::mIntegrand3 {
 
 const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
                           const bool usePrecomputedValues) const {
+    // since we are assuming a reflecting barrier we can
+    // return M = 0 for all eta when y is negative or zero
     if (x0 <= -1.0 / beta_)
         return 0.0;
     Real lambda = this->lambda(t);
-    Real y0 = this->y(x0);
     Real v = this->tau(t0, t);
+    // for zero volatility we obviously have M = 0
     if (close(v, 0.0))
         return 0.0;
-    // if (close(eta_, 0.0)) {
-    //     return 0.5 * lambda * lambda * v;
-    // }
+    // without the reflecting barrier at y=0 we could write
+    // M = 0.5 *lambda * lambda * v for eta = 0
+    // with the reflecting barrier assumed here, we do not
+    // have a closed form solution
     if (close(eta_, 0.5)) {
-        return (1.0 + beta_ * x0) * lambda * lambda * v /
-               (2.0 + beta_ * lambda * v);
+        return M_eta_05(t0, x0, t);
     }
     if (close(eta_, 1.0)) {
-        if (x0 < -1.0 / beta_)
-            return 0.0;
-        Real result =
-            M_1_SQRTPI *
-            ghIntegrator_->operator()(mIntegrand3(this, v, y0, lambda));
-        return std::log(result);
+        return M_eta_1(t0, x0, t);
     }
+    Real result1;
     if (usePrecomputedValues) {
-        return M_precomputed(t0, x0, t);
+        result1 = M_precomputed(t0, x0, t);
+    } else {
+        // determine a suitable integration domain
+        Real s = std::sqrt(tau(t0, t));
+        if (close(s, 0.0))
+            return 0.0;
+        Real a = std::max(x0 - integrateStdDevs_ * s, -1.0 / beta_);
+        Real b = x0 + integrateStdDevs_ * s;
+        result1 = integrator_->operator()(mIntegrand1(this, t0, x0, t), a, b);
+        result1 = std::log(result1);
     }
-    // determine a suitable integration domain
-    Real s = std::sqrt(tau(t0, t));
-    if (close(s, 0.0))
-        return 0.0;
-    Real a = std::max(x0 - integrateStdDevs_ * s, -1.0 / beta_);
-    Real b = x0 + integrateStdDevs_ * s;
-    Real result1 = integrator_->operator()(mIntegrand1(this, t0, x0, t), a, b);
-    Real result2 = singularTerm_y_0(t0, x0, t);
-    return std::log(result1 + result2);
+    Real result2 =
+        singularTerm_y_0(t0, x0, t) * exp(-lambda * (-1.0 / beta_ - x0));
+    if (result2 > std::exp(result1) * QL_EPSILON) {
+        std::cerr << "singular term, result2=" << result2
+                  << " result1=" << result1 << std::endl;
+        return std::log(std::exp(result1) + result2);
+    } else
+        return result1;
 };
+
+const Real BetaEtaCore::M_eta_1(const Real t0, const Real x0,
+                                const Real t) const {
+    if (x0 < -1.0 / beta_)
+        return 0.0;
+    Real lambda = this->lambda(t);
+    // eta may be not one, so we can not use the member function y
+    Real y0 = std::log(1.0 + beta_ * x0) / beta_;
+    Real v = this->tau(t0, t);
+    Real result = M_1_SQRTPI *
+                  ghIntegrator_->operator()(mIntegrand3(this, v, y0, lambda));
+    return std::log(result);
+}
+
+const Real BetaEtaCore::M_eta_05(const Real t0, const Real x0,
+                                 const Real t) const {
+    if (x0 < -1.0 / beta_)
+        return 0.0;
+    Real lambda = this->lambda(t);
+    Real v = this->tau(t0, t);
+    return (1.0 + beta_ * x0) * lambda * lambda * v /
+           (2.0 + beta_ * lambda * v);
+}
 
 const Real BetaEtaCore::M_precomputed(const Real t0, const Real x0,
                                       const Real t) const {
@@ -172,16 +215,98 @@ const Real BetaEtaCore::M_precomputed(const Real t0, const Real x0,
     Real smin = 1.0 + beta_ * xmin >= 0.0 ? 1.0 : -1.0;
     Real smax = 1.0 + beta_ * xmax >= 0.0 ? 1.0 : -1.0;
     Real u0 = lambda / beta_ * std::fabs(1.0 + beta_ * x0);
+    std::cerr << "u0 = " << u0 << " lambda=" << lambda << " beta=" << beta_
+              << std::endl;
     Real umin = lambda / beta_ * std::fabs(1.0 + beta_ * xmin);
     Real umax = lambda / beta_ * std::fabs(1.0 + beta_ * xmax);
     Real vt =
         v * std::pow(lambda, 2.0 - 2.0 * eta_) * std::pow(beta_, 2.0 * eta_);
-    // integration
+    // read pretabulated value
+    int etaIdx = std::upper_bound(eta_pre_.begin(), eta_pre_.end(), eta_) -
+                 eta_pre_.begin();
+    int uIdx =
+        std::upper_bound(u_pre_.begin(), u_pre_.end(), u0) - u_pre_.begin();
+    int vIdx =
+        std::upper_bound(v_pre_.begin(), v_pre_.end(), vt) - v_pre_.begin();
+    QL_REQUIRE(vIdx < static_cast<int>(v_pre_.size()),
+               "v (" << vt << ") out of range [0..." << v_pre_.back());
+    int uIdx_low, uIdx_high;
+    if (uIdx == 0) {
+        uIdx_low = 0;
+        uIdx_high = 1;
+    } else {
+        uIdx_high = std::min(uIdx, static_cast<int>(u_pre_.size()) - 1);
+        uIdx_low = uIdx_high - 1;
+    }
+    int vIdx_low = std::max(vIdx - 1, 0);
+    int vIdx_high = vIdx_low + 1;
+    Real u_weight_1 =
+        (u_pre_[uIdx_high] - u0) / (u_pre_[uIdx_high] - u_pre_[uIdx_low]);
+    Real u_weight_2 =
+        (u0 - u_pre_[uIdx_low]) / (u_pre_[uIdx_high] - u_pre_[uIdx_low]);
+    Real v_weight_1 =
+        (v_pre_[vIdx_high] - vt) / (v_pre_[vIdx_high] - v_pre_[vIdx_low]);
+    Real v_weight_2 =
+        (vt - v_pre_[vIdx_low]) / (v_pre_[vIdx_high] - v_pre_[vIdx_low]);
+    Real eta_weight_1 =
+        (etaIdx < static_cast<int>(eta_pre_.size()) ? eta_pre_[etaIdx] - eta_
+                                                    : 1.0 - eta_) /
+        (etaIdx < static_cast<int>(eta_pre_.size())
+             ? (eta_pre_[etaIdx] - eta_pre_[etaIdx - 1])
+             : (1.0 - eta_pre_[etaIdx - 1]));
+    Real eta_weight_2 = (eta_ - eta_pre_[etaIdx - 1]) /
+                        (etaIdx < static_cast<int>(eta_pre_.size())
+                             ? (eta_pre_[etaIdx] - eta_pre_[etaIdx - 1])
+                             : (1.0 - eta_pre_[etaIdx - 1]));
+    std::cerr << "u=" << u0 << " [" << u_pre_[uIdx_low] << ","
+              << u_pre_[uIdx_high] << "]" << std::endl;
+    std::cerr << "v=" << vt << " [" << v_pre_[vIdx_low] << ","
+              << v_pre_[vIdx_high] << "]" << std::endl;
+    std::cerr << "etaweight1 = " << eta_weight_1
+              << " etaweight2 = " << eta_weight_2 << std::endl;
+    std::cerr << "u_weight_1=" << u_weight_1 << " u_weight_2=" << u_weight_2
+              << std::endl;
+    std::cerr << "v_weight_1=" << v_weight_1 << " v_weight_2=" << v_weight_2
+              << std::endl;
+    Real result_eta_lower = detail::M_pre[etaIdx - 1][uIdx_low][vIdx_low] *
+                                u_weight_1 * v_weight_1 +
+                            detail::M_pre[etaIdx - 1][uIdx_low][vIdx_high] *
+                                u_weight_1 * v_weight_2 +
+                            detail::M_pre[etaIdx - 1][uIdx_high][vIdx_low] *
+                                u_weight_2 * v_weight_1 +
+                            detail::M_pre[etaIdx - 1][uIdx_high][vIdx_high] *
+                                u_weight_2 * v_weight_2;
+    std::cerr << detail::M_pre[etaIdx - 1][uIdx_low][vIdx_low] << " - "
+              << detail::M_pre[etaIdx - 1][uIdx_high][vIdx_low] << "\n";
+    std::cerr << detail::M_pre[etaIdx - 1][uIdx_low][vIdx_high] << " - "
+              << detail::M_pre[etaIdx - 1][uIdx_high][vIdx_high] << "\n";
+    std::cerr << precompute(u_pre_[uIdx_low], v_pre_[vIdx_low]) << " - "
+              << precompute(u_pre_[uIdx_high], v_pre_[vIdx_low]) << "\n";
+    std::cerr << precompute(u_pre_[uIdx_low], v_pre_[vIdx_high]) << " - "
+              << precompute(u_pre_[uIdx_high], v_pre_[vIdx_high]) << "\n";
+    Real result_eta_higher;
+    if (etaIdx < static_cast<int>(eta_pre_.size())) {
+        result_eta_higher = detail::M_pre[etaIdx][uIdx_low][vIdx_low] *
+                                u_weight_1 * v_weight_1 +
+                            detail::M_pre[etaIdx][uIdx_low][vIdx_high] *
+                                u_weight_1 * v_weight_2 +
+                            detail::M_pre[etaIdx][uIdx_high][vIdx_low] *
+                                u_weight_2 * v_weight_1 +
+                            detail::M_pre[etaIdx][uIdx_high][vIdx_high] *
+                                u_weight_2 * v_weight_2;
+    } else {
+        result_eta_higher = M_eta_1(t0, x0, t);
+    }
+    Real resultm = eta_ / (1.0 - eta_) * std::log(beta_);
+    std::cerr << "result lookup (low=" << result_eta_lower
+              << ", high=" << result_eta_higher
+              << ") = " << (resultm + (result_eta_lower * eta_weight_1 +
+                                       result_eta_higher * eta_weight_2))
+              << std::endl;
+    // // integration
     Real result = 0.0;
     Real a = std::min(umin, umax);
     Real b = std::max(umin, umax);
-    Real i_type1_tt =
-        preIntegrator_->operator()(mIntegrand2(this, vt, u0, true, true), a, b);
     // Real i_type1_ft = preIntegrator_->operator()(
     //     mIntegrand2(this, vt, u0, false, true), a, b);
     // Real i_type1_tf = preIntegrator_->operator()(
@@ -205,14 +330,20 @@ const Real BetaEtaCore::M_precomputed(const Real t0, const Real x0,
     mIntegrand2 ig(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, true);
     // todo here we can use the values above
     if (smin > 0.0 && smax > 0.0) {
-        result += preIntegrator_->operator()(ig, a, b); // type 1 limits
+        try {
+            result += preIntegrator_->operator()(ig, a, b); // type 1 limits
+        } catch (...) {
+            result += preIntegrator2_->operator()(ig, a, b); // type 1 limits
+        }
     }
+    result = std::log(result);
     // if (smin < 0.0 && smax > 0.0) {
     //     result += preIntegrator_->operator()(
     //         mIntegrand2(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, true), 0.0,
     //         b); // type 2 limits
     //     result += preIntegrator_->operator()(
-    //         mIntegrand2(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, false), 0.0,
+    //         mIntegrand2(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, false),
+    // 0.0,
     //         a);
     // }
     // if (smin < 0.0 && smax < 0.0) {
@@ -220,71 +351,138 @@ const Real BetaEtaCore::M_precomputed(const Real t0, const Real x0,
     //         mIntegrand2(this, vt, u0, 1.0 + beta_ * x0 >= 0.0, false), a,
     //         b); // type 1 limits
     // }
-    Real resultm = std::pow(beta_, -eta_ / (eta_ - 1.0));
-    Real results = singularTerm_y_0(t0, x0, t);
+    resultm = eta_ / (1.0 - eta_) * std::log(beta_);
     // std::cerr << std::setprecision(16) << "vt=" << vt << " u0=" << u0
     //           << " a=" << a << " b=" << b << " result=" << result
     //           << " resultm=" << resultm << std::endl;
-    return std::log(result * resultm + results);
+    std::cerr << "result pre =" << result << " + " << resultm << std::endl;
+    std::cerr << "result precomp(" << u0 << "," << vt
+              << ") = " << precompute(u0, vt) << std::endl;
+    return resultm + result;
+    return 0.0;
+}
+
+const Real BetaEtaCore::precompute(const Real u0, const Real vt) const {
+    Real res = 0.0;
+    Real m = 1.3;
+    if (close(vt, 0.0)) {
+        res = 1.0;
+    } else {
+        // Real vth = vt + h;
+        // Real vth2 = vt + 2.0 * h;
+        mIntegrand2 ig(this, vt, u0, true, true);
+        // mIntegrand2 iguh(this, vt, u0h, true, true);
+        // mIntegrand2 iguh2(this, vt, u0h2, true, true);
+        // mIntegrand2 igvth(this, vth, u0, true, true);
+        // mIntegrand2 igvth2(this, vth2, u0, true, true);
+        Real a = u0;
+        Real b = u0;
+        while (ig(b) > 1E-10) {
+            b *= m;
+        }
+        while (ig(a) > 1E-10 && a > 1E-10) {
+            a /= m;
+        }
+        // Real res_u = 0.0;
+        // Real res_vt = 0.0;
+        // Real res_u2 = 0.0;
+        // Real res_vt2 = 0.0;
+        try {
+            res += preIntegrator_->operator()(ig, a, b);
+            // res_u += preIntegrator_->operator()(iguh, a, b);
+            // res_vt += preIntegrator_->operator()(igvth, a, b);
+            // res_u2 += preIntegrator_->operator()(iguh2, a, b);
+            // res_vt2 += preIntegrator_->operator()(igvth2, a, b);
+        } catch (...) {
+        }
+        if (res < 1e-10) {
+            res += preIntegrator2_->operator()(ig, a, b);
+            // res_u += preIntegrator2_->operator()(iguh, a, b);
+            // res_vt += preIntegrator2_->operator()(igvth, a, b);
+            // res_u2 += preIntegrator2_->operator()(iguh2, a, b);
+            // res_vt2 += preIntegrator2_->operator()(igvth2, a, b);
+        }
+    }
+    Real lres = std::log(res);
+    return lres;
 }
 
 const void BetaEtaCore::precompute(const Real u0_min, const Real u0_max,
-                                   const Real vt_min, const Real vt_max) const {
-    Real m = 1.3;
-    Real h = 0.01;
-    for (Size i = 0; i < 100; ++i) {
-        for (Size j = 0; j < 100; ++j) {
-            Real u0 = u0_min + ((double)i) * (u0_max - u0_min) / 100.0;
-            Real u0h = u0 + h;
-            Real u0h2 = u0 + 2.0 * h;
-            Real vt = vt_min + ((double)j) * (vt_max - vt_min) / 100.0;
-            Real vth = vt + h;
-            Real vth2 = vt + 2.0 * h;
-            mIntegrand2 ig(this, vt, u0, true, true);
-            mIntegrand2 iguh(this, vt, u0h, true, true);
-            mIntegrand2 iguh2(this, vt, u0h2, true, true);
-            mIntegrand2 igvth(this, vth, u0, true, true);
-            mIntegrand2 igvth2(this, vth2, u0, true, true);
-            Real a = u0;
-            Real b = u0;
-            while (ig(b) > 1E-10) {
-                b *= m;
+                                   const Real vt_min, const Real vt_max,
+                                   const Size usize, const Size vsize,
+                                   const Size etasteps, const Real cu,
+                                   const Real densityu, const Real cv,
+                                   const Real densityv, const Real ce,
+                                   const Real densitye) {
+
+    Concentrating1dMesher um(u0_min, u0_max, usize,
+                             std::make_pair(cu, densityu), true);
+    Concentrating1dMesher vm(vt_min, vt_max, vsize,
+                             std::make_pair(cv, densityv), true);
+    Concentrating1dMesher em(0.0, 1.0, etasteps, std::make_pair(ce, densitye),
+                             true);
+    
+    std::cout << std::setprecision(6);
+    std::cout << "// this file was generated by BetaEtaCore::precompute\n";
+    std::cout << "// using the following parameters:\n";
+    std::cout << "// u0_min = " << u0_min << " u0_max = " << u0_max << "\n";
+    std::cout << "// vt_min = " << vt_min << " vt_max = " << vt_max << "\n";
+    std::cout << "// usize = " << usize << " vsize = " << vsize
+              << " etaSteps = " << etasteps << "\n";
+    std::cout << "// cu = " << cu << " densityu = " << densityu << "\n";
+    std::cout << "// cv = " << cv << " densityv = " << densityv << "\n";
+    std::cout << "// ce = " << ce << " densitye = " << densitye << "\n\n";
+    std::cout << "namespace QuantLib {\n"
+              << "namespace detail {\n\n";
+    std::cout << "const Real eta_pre[] = {";
+    for (Size i = 0; i < em.size()-1; ++i)
+        std::cout << em.location(i) << (i < em.size() - 2 ? "," : "};\n\n");
+    std::cout << "const Real u_pre[] = {";
+    for (Size i = 0; i < um.size(); ++i)
+        std::cout << um.location(i) << (i < um.size() - 1 ? "," : "};\n\n");
+    std::cout << "const Real v_pre[] = {";
+    for (int i = -1; i < static_cast<int>(vm.size()); ++i)
+        std::cout << (i == -1 ? 0.0 : vm.location(i))
+                  << (i < static_cast<int>(vm.size()) - 1 ? "," : "};\n\n");
+
+    std::cout << "const Real M_pre[][" << um.size() << "][" << (vm.size() + 1)
+              << "] = {\n";
+    // Real h = 0.01;
+    Real etaSave = eta_;
+    for (Size e = 0; e < etasteps-1; ++e) {
+        eta_ = em.location(e);
+        std::cout << "// ========================  eta=" << eta_ << "\n";
+        std::cout << "{ ";
+        for (Size i = 0; i < um.size(); ++i) {
+            Real u0 = um.location(i);
+            std::cout << "// eta=" << eta_ << " u=" << u0 << "\n";
+            std::cout << "{";
+            for (int j = -1; j < static_cast<int>(vm.size()); ++j) {
+                // Real u0h = u0 + h;
+                // Real u0h2 = u0 + 2.0 * h;
+                Real vt = j == -1 ? 0.0 : vm.location(j);
+                // Real lres_u =
+                //     (std::log(res_u2) - 2.0 * std::log(res_u) +
+                //     std::log(res)) /
+                //     (h * h);
+                // Real lres_vt = (std::log(res_vt2) - 2.0 * std::log(res_vt) +
+                //                 std::log(res)) /
+                //                (h * h);
+                // std::cout << u0 << " " << vt << " " << res << " " << lres <<
+                // " "
+                //           << lres_u << " " << lres_vt << std::endl;
+                Real lres = precompute(u0, vt);
+                std::cout << lres
+                          << (j < static_cast<int>(vm.size()) - 1 ? "," : "}");
             }
-            while (ig(a) > 1E-10 && a > 1E-10) {
-                a /= m;
-            }
-            Real res = 0.0;
-            Real res_u = 0.0;
-            Real res_vt = 0.0;
-            Real res_u2 = 0.0;
-            Real res_vt2 = 0.0;
-            try {
-                res += preIntegrator_->operator()(ig, a, b);
-                res_u += preIntegrator_->operator()(iguh, a, b);
-                res_vt += preIntegrator_->operator()(igvth, a, b);
-                res_u2 += preIntegrator_->operator()(iguh2, a, b);
-                res_vt2 += preIntegrator_->operator()(igvth2, a, b);
-            } catch (...) {
-            }
-            if (res < 1e-10) {
-                res += preIntegrator2_->operator()(ig, a, b);
-                res_u += preIntegrator2_->operator()(iguh, a, b);
-                res_vt += preIntegrator2_->operator()(igvth, a, b);
-                res_u2 += preIntegrator2_->operator()(iguh2, a, b);
-                res_vt2 += preIntegrator2_->operator()(igvth2, a, b);
-            }
-            Real lres = std::log(res);
-            Real lres_u =
-                (std::log(res_u2) - 2.0 * std::log(res_u) + std::log(res)) /
-                (h * h);
-            Real lres_vt =
-                (std::log(res_vt2) - 2.0 * std::log(res_vt) + std::log(res)) /
-                (h * h);
-            // std::cout << u0 << " " << vt << " " << res << " " << lres << " "
-            //           << lres_u << " " << lres_vt << std::endl;
+            std::cout << (i < um.size() - 1 ? ",\n" : "}");
+            // std::cout << std::endl;
         }
-        //std::cout << std::endl;
+        std::cout << (e < etasteps-1 ? ",\n" : "};\n");
     }
+    std::cout << "} // namespace detail\n"
+              << "} // namespace QuantLib\n";
+    eta_ = etaSave;
 }
 
 const Real BetaEtaCore::p_y(const Real v, const Real y0, const Real y,
