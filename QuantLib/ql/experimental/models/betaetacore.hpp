@@ -42,6 +42,8 @@ namespace QuantLib {
     should not initialize an instance of this class with numerical constants
     or variables with a lifetime shorter than that of this instance. */
 
+namespace detail {}
+
 class BetaEtaCore {
   public:
     /*! we assume a piecewise constant reversion \kappa and
@@ -58,7 +60,7 @@ class BetaEtaCore {
                  const Real x) const;
 
     // singular term for y=0 (x=-1/beta) and 1 > eta >= 0.5,
-    // otherwise 0 is returned
+    // for eta = 1 or eta < 0.5, 0 is returned
     const Real singularTerm_y_0(const Time t0, const Real x0,
                                 const Time t) const;
 
@@ -87,8 +89,7 @@ class BetaEtaCore {
     const Real M_precomputed(const Real t0, const Real x0, const Real t) const;
     const Real p_y(const Real v, const Real y0, const Real y,
                    const bool onePlusBetaXPos) const;
-    /* warning: for eta=1 x must be greater than -1/beta,
-       this is not checked */
+    const Real p_y_core(const Real v, const Real y0, const Real y) const;
     const Real y(const Real x) const;
     const Real dydx(const Real y) const;
 
@@ -143,13 +144,15 @@ inline const Real BetaEtaCore::tau(const Real t0, const Real t) const {
 }
 
 inline const Real BetaEtaCore::y(const Real x) const {
+    QL_REQUIRE(eta_ < 1.0 || x > -1.0 / beta_,
+               "for eta=1, x must be greater than -1/beta");
     return close(eta_, 1.0) ? std::log(1.0 + beta_ * x) / beta_
                             : std::pow(std::fabs(1 + beta_ * x), 1.0 - eta_) /
                                   (beta_ * (1.0 - eta_));
 }
 
 inline const Real BetaEtaCore::dydx(const Real y) const {
-    return close(y, 1.0)
+    return close(eta_, 1.0)
                ? std::exp(-beta_ * y)
                : std::pow((1.0 - eta_) * beta_ * y, -eta_ / (1.0 - eta_));
 }
