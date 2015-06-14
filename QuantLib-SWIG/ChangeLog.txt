@@ -1,3 +1,13 @@
+commit fe43575a9858afcb9a154698c5ad5ecdb370e3f3
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 4 Jun 2015 13:29:40 +0200
+
+    Update changes and contributors.
+
+ QuantLib-SWIG/ChangeLog.txt | 527 +++++++++++---------------------------------
+ QuantLib-SWIG/News.txt      |  40 +---
+ 2 files changed, 136 insertions(+), 431 deletions(-)
+
 commit e2c59e9cb1ae284630a0a20a54cfcf5e9dbdfc66
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
 Date:   Mon, 1 Jun 2015 13:32:19 +0200
