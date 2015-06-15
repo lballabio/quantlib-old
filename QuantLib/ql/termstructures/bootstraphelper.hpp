@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2005, 2006, 2007, 2008 StatPro Italia srl
- Copyright (C) 2007, 2009 Ferdinando Ametrano
+ Copyright (C) 2007, 2009, 2015 Ferdinando Ametrano
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -25,13 +25,9 @@
 #ifndef quantlib_bootstrap_helper_hpp
 #define quantlib_bootstrap_helper_hpp
 
-#include <ql/quote.hpp>
-#include <ql/time/date.hpp>
-#include <ql/handle.hpp>
-#include <ql/patterns/observable.hpp>
 #include <ql/patterns/visitor.hpp>
 #include <ql/quotes/simplequote.hpp>
-#include <ql/settings.hpp>
+#include <ql/models/calibrationhelper.hpp>
 
 namespace QuantLib {
 
@@ -46,11 +42,16 @@ namespace QuantLib {
         in the available bootstrap helpers.
     */
     template <class TS>
-    class BootstrapHelper : public Observer, public Observable {
+    class BootstrapHelper : public Observer, public Observable, 
+                            public CalibrationHelperBase {
       public:
         BootstrapHelper(const Handle<Quote>& quote);
         BootstrapHelper(Real quote);
         virtual ~BootstrapHelper() {}
+        //! \name CalibrationHelperBase interface
+        //@{
+        Real calibrationError() const { return quote_->value() - impliedQuote(); }
+        //@}
         //! \name BootstrapHelper interface
         //@{
         const Handle<Quote>& quote() const { return quote_; }
