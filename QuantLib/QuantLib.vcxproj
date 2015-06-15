@@ -485,6 +485,7 @@
     <ClInclude Include="ql\cashflows\cpicouponpricer.hpp" />
     <ClInclude Include="ql\math\polynomialmathfunction.hpp" />
     <ClInclude Include="ql\math\tartaglia.hpp" />
+    <ClInclude Include="ql\math\abcdmathfunction.hpp" />
     <ClInclude Include="ql\models\shortrate\onefactormodels\gaussian1dmodel.hpp" />
     <ClInclude Include="ql\models\shortrate\onefactormodels\gsr.hpp" />
     <ClInclude Include="ql\models\shortrate\onefactormodels\markovfunctional.hpp" />
@@ -1733,6 +1734,7 @@
     <ClCompile Include="ql\cashflows\cpicouponpricer.cpp" />
     <ClCompile Include="ql\math\polynomialmathfunction.cpp" />
     <ClCompile Include="ql\math\tartaglia.cpp" />
+    <ClCompile Include="ql\math\abcdmathfunction.cpp" />
     <ClCompile Include="ql\models\shortrate\onefactormodels\gaussian1dmodel.cpp" />
     <ClCompile Include="ql\models\shortrate\onefactormodels\gsr.cpp" />
     <ClCompile Include="ql\models\shortrate\onefactormodels\markovfunctional.cpp" />

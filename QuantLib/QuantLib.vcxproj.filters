@@ -3982,6 +3982,9 @@
     <ClInclude Include="ql\math\tartaglia.hpp">
       <Filter>math</Filter>
     </ClInclude>
+    <ClInclude Include="ql\math\abcdmathfunction.hpp">
+      <Filter>math</Filter>
+    </ClInclude>
     <ClInclude Include="ql\models\shortrate\onefactormodels\gaussian1dmodel.hpp">
       <Filter>models\shortrate\onefactormodels</Filter>
     </ClInclude>
@@ -6417,6 +6420,9 @@
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="ql\math\tartaglia.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\math\abcdmathfunction.cpp">
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="ql\models\shortrate\onefactormodels\gaussian1dmodel.cpp">
