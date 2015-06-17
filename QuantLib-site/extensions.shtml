@@ -25,9 +25,7 @@ GNU R and Objective Caml are also available; feedback is welcome.<br>
 Compilation of the Java module on Windows is performed by means of <a
 href="http://www.skwash.com/">sKWash</a>. A guide to the process can
 be found <a
-href="http://users.telenet.be/johan.witters/website/skwash.com/get/get3.html">here</a>.
-A guide to the compilation of the Java module on Linux is available <a
-href="http://puppetmastertrading.com/blog/2008/06/14/using-quantlib-from-java/">here</a>.<br>
+href="http://users.telenet.be/johan.witters/website/skwash.com/get/get3.html">here</a>.<br>
 
 <p><a href="http://quantlibaddin.org">QuantLibAddin</a> exports a
 procedural interface to a number of platforms including Microsoft
