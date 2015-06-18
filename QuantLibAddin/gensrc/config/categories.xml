@@ -57,6 +57,7 @@
     <categoryName>swap</categoryName>
     <categoryName>swaption</categoryName>
     <categoryName>swaptionvolstructure</categoryName>
+    <categoryName>tenorbasis</categoryName>
     <categoryName>termstructures</categoryName>
     <categoryName>timeseries</categoryName>
     <categoryName>utilities</categoryName>
