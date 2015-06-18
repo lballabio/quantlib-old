@@ -483,6 +483,8 @@
   <ItemGroup>
     <ClInclude Include="ql\cashflows\cpicoupon.hpp" />
     <ClInclude Include="ql\cashflows\cpicouponpricer.hpp" />
+    <ClInclude Include="ql\experimental\tenorbasis\tenorbasis.hpp" />
+    <ClInclude Include="ql\experimental\tenorbasis\tenorbasiscalibration.hpp" />
     <ClInclude Include="ql\math\polynomialmathfunction.hpp" />
     <ClInclude Include="ql\math\tartaglia.hpp" />
     <ClInclude Include="ql\math\abcdmathfunction.hpp" />
@@ -1733,6 +1735,8 @@
   <ItemGroup>
     <ClCompile Include="ql\cashflows\cpicoupon.cpp" />
     <ClCompile Include="ql\cashflows\cpicouponpricer.cpp" />
+    <ClCompile Include="ql\experimental\tenorbasis\tenorbasis.cpp" />
+    <ClCompile Include="ql\experimental\tenorbasis\tenorbasiscalibration.cpp" />
     <ClCompile Include="ql\math\polynomialmathfunction.cpp" />
     <ClCompile Include="ql\math\tartaglia.cpp" />
     <ClCompile Include="ql\math\abcdmathfunction.cpp" />

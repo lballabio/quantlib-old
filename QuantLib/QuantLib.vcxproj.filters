@@ -322,6 +322,9 @@
     <Filter Include="methods\finitedifferences\utilities">
       <UniqueIdentifier>{be723df5-2e58-41de-8071-8d2e2f62410a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="experimental\tenorbasis">
+      <UniqueIdentifier>{45c7e020-8d36-4881-9ea3-2c5e1ca4b4fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ql\methods\all.hpp">
@@ -3997,6 +4000,12 @@
     <ClInclude Include="ql\termstructures\yield\compositediscountcurve.hpp">
       <Filter>termstructures\yield</Filter>
     </ClInclude>
+    <ClInclude Include="ql\experimental\tenorbasis\tenorbasis.hpp">
+      <Filter>experimental\tenorbasis</Filter>
+    </ClInclude>
+    <ClInclude Include="ql\experimental\tenorbasis\tenorbasiscalibration.hpp">
+      <Filter>experimental\tenorbasis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ql\methods\montecarlo\brownianbridge.cpp">
@@ -6439,6 +6448,12 @@
     </ClCompile>
     <ClCompile Include="ql\termstructures\yield\compositediscountcurve.cpp">
       <Filter>termstructures\yield</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\experimental\tenorbasis\tenorbasis.cpp">
+      <Filter>experimental\tenorbasis</Filter>
+    </ClCompile>
+    <ClCompile Include="ql\experimental\tenorbasis\tenorbasiscalibration.cpp">
+      <Filter>experimental\tenorbasis</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
