@@ -7,7 +7,7 @@
 # with 'make dist', not from a working copy.)
 
 find ql -name '*.[hc]pp' -or -name '*.[hc]' \
-| grep -v 'ql/config\.hpp' | sort > ql.ref.files
+| grep -v 'ql/config\.hpp' | grep -v 'ql/ad\.hpp' | sort > ql.ref.files
 find test-suite -name '*.[hc]pp' \
 | grep -v 'quantlibbenchmark' | grep -v '/main\.cpp' \
 | sort > test-suite.ref.files
