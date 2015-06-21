@@ -1,7 +1,8 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2015 Peter Caspers, Roland Lichters
+ Copyright (C) 2015 Peter Caspers
+ Copyright (C) 2015 Roland Lichters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -33,7 +34,6 @@
 #include <boost/unordered_map.hpp>
 
 namespace QuantLib {
-
 
 /*! cf. Hagan, Woodward: Markov interest rate models,
     Applied Mathematical Finance 6, 233–260 (1999)
@@ -124,6 +124,14 @@ class BetaEta : public TermStructureConsistentModel,
     const Real integrate(const Real stdDevs,
                          const boost::function<Real(Real)> &f, const Real t0,
                          const Real x0, const Real t) const;
+
+    /*! for testing purposes we can switch off the usage of tabulated values */
+    const void useTabulation(const bool useTabulation) {
+        if (useTabulation_ != useTabulation) {
+            useTabulation_ = useTabulation;
+            update();
+        }
+    }
 
   private:
     void generateArguments() { notifyObservers(); }
@@ -227,6 +235,8 @@ class BetaEta : public TermStructureConsistentModel,
         const BetaEtaCore &core_;
     };
     friend class integrand;
+
+    bool useTabulation_; // for testing, normally it should be true
 };
 
 // implementation

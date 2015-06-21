@@ -1,7 +1,8 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2015 Peter Caspers, Roland Lichters
+ Copyright (C) 2015 Peter Caspers
+ Copyright (C) 2015 Roland Lichters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,6 +24,8 @@
 #include <ql/math/integrals/gausslobattointegral.hpp>
 
 #include <boost/make_shared.hpp>
+
+#include <iostream>
 
 namespace QuantLib {
 
@@ -133,6 +136,7 @@ void BetaEta::updateState() const {
 }
 
 void BetaEta::initialize() {
+    useTabulation(true);
     volsteptimesArray_ = Array(volstepdates_.size());
     updateTimes();
     QL_REQUIRE(volatilities_.size() == volsteptimes_.size() + 1,
@@ -183,7 +187,8 @@ const Real BetaEta::numeraire(const Time t, const Real x,
                               const Handle<YieldTermStructure> &yts) const {
     Real d =
         yts.empty() ? this->termStructure()->discount(t) : yts->discount(t);
-    Real result = std::exp(core_->lambda(t) * x + core_->M(0, 0, t)) / d;
+    Real result =
+        std::exp(core_->lambda(t) * x + core_->M(0, 0, t, useTabulation_)) / d;
     return result;
 }
 
@@ -195,8 +200,9 @@ const Real BetaEta::zerobond(const Time T, const Time t, const Real x,
                  : yts->discount(T) / yts->discount(t);
 
     Real result = d * std::exp(-(core_->lambda(T) - core_->lambda(t)) * x -
-                               (core_->M(0, 0, T) - core_->M(0, 0, t)) +
-                               core_->M(t, x, T));
+                               (core_->M(0, 0, T, useTabulation_) -
+                                core_->M(0, 0, t, useTabulation_)) +
+                               core_->M(t, x, T, useTabulation_));
     return result;
 }
 

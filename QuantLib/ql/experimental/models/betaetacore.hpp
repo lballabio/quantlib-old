@@ -1,7 +1,8 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2015 Peter Caspers, Roland Lichters
+ Copyright (C) 2015 Peter Caspers
+ Copyright (C) 2015 Roland Lichters
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -30,6 +31,9 @@
 #include <ql/math/comparison.hpp>
 #include <ql/math/integrals/integral.hpp>
 #include <ql/math/integrals/gaussianquadratures.hpp>
+#include <ql/math/interpolations/interpolation2d.hpp>
+
+#include <ostream>
 
 #include <vector>
 
@@ -42,19 +46,19 @@ namespace QuantLib {
     should not initialize an instance of this class with numerical constants
     or variables with a lifetime shorter than that of this instance. */
 
-namespace detail {}
-
 class BetaEtaCore {
   public:
     /*! we assume a piecewise constant reversion \kappa and
         set \lambda(t) := (1-exp(-\kappa*t))/\kappa
         note that these are effective (integrated) rather
-        than forward-forward reversions */
+        than forward-forward reversions though */
     BetaEtaCore(const Array &times, const Array &alpha, const Array &kappa,
                 const Real &beta, const Real &eta);
 
+    // normally tabulation should be used for efficiency reasons
+    // it can be switched off for validation purposes though
     const Real M(const Real t0, const Real x0, const Real t,
-                 const bool usePrecomputedValues = true) const;
+                 const bool useTabulation = true) const;
 
     const Real p(const Time t0, const Real x0, const Real t,
                  const Real x) const;
@@ -69,27 +73,22 @@ class BetaEtaCore {
     const Real tau(const Time t) const;
     const Real tau(const Time t0, const Time t) const;
 
-    // inspectors
+    // parameter inspectors
     const Real beta() const { return beta_; }
     const Real eta() const { return eta_; }
 
-    // precompute values
-    const Real precompute(const Real u0, const Real vt) const;
-    const void precompute(const Real u0_min, const Real u0_max,
-                          const Real vt_min, const Real vt_max,
-                          const Size usize, const Size vsize,
-                          const Size etasteps, const Real cu,
-                          const Real densityu, const Real cv,
-                          const Real densityv, const Real ce,
-                          const Real densitye);
+    // M in transformed variables, mainly there for tabulation purposes
+    const Real M(const Real u0, const Real v) const;
 
-  private:
+    //  private:
     const Real M_eta_1(const Real t0, const Real x0, const Real t) const;
     const Real M_eta_05(const Real t0, const Real x0, const Real t) const;
-    const Real M_precomputed(const Real t0, const Real x0, const Real t) const;
-    const Real p_y(const Real v, const Real y0, const Real y,
-                   const bool onePlusBetaXPos) const;
+    const Real M_tabulated(const Real t0, const Real x0, const Real t) const;
+    const Real M_tabulated(const Real u0, const Real v) const; // for debug
+
+    const Real p_y(const Real v, const Real y0, const Real y) const;
     const Real p_y_core(const Real v, const Real y0, const Real y) const;
+
     const Real y(const Real x) const;
     const Real dydx(const Real y) const;
 
@@ -106,29 +105,49 @@ class BetaEtaCore {
     const Real kappa(const Size index) const;
 
     const Array &times_, &alpha_, &kappa_;
-    const Real &beta_; //, &eta_;
-    Real eta_;         // only for precomputation !
+    const Real &beta_, &eta_;
 
-    boost::shared_ptr<Integrator> integrator_;
-    boost::shared_ptr<Integrator> preIntegrator_;
-    boost::shared_ptr<Integrator> preIntegrator2_;
+    boost::shared_ptr<Integrator> integrator_, integrator2_;
     boost::shared_ptr<GaussianQuadrature> ghIntegrator_;
+    boost::shared_ptr<Integrator> preIntegrator_, preIntegrator2_;
 
-    // pretabulation
+    // tabulation data
     Size etaSize_, uSize_, vSize_;
     std::vector<Real> eta_pre_, u_pre_, v_pre_;
+    std::vector<boost::shared_ptr<Matrix> > M_datasets_;
+    std::vector<boost::shared_ptr<Interpolation2D> > M_surfaces_;
 
     // avoid lambda expressions for compiler compatibility
     class mIntegrand1;
     friend class mIntegrand1;
     class mIntegrand2;
     friend class mIntegrand2;
+    class mIntegrand2a;
+    friend class mIntegrand2a;
     class mIntegrand3;
     friend class mIntegrand3;
 
     // constants
     const Real integrateStdDevs_;
+    const Size ghPoints_;
+    const Real multiplier_;
 };
+
+namespace detail {
+
+// tabulate values M(eta, u, v), a c++ source or
+// gnuplot file (for a single eta) is generated
+
+enum betaeta_tabulation_type { Cpp, GnuplotEUV, GnuplotUEV, GnuplotVEU };
+
+const void
+betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
+                 const Real eta_min, const Real eta_max, const Real u0_min,
+                 const Real u0_max, const Real v_min, const Real v_max,
+                 const Size usize, const Size vsize, const Size etasteps,
+                 const Real cu, const Real densityu, const Real cv,
+                 const Real densityv, const Real ce, const Real densitye);
+}
 
 // implementation
 
