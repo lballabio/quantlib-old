@@ -31,14 +31,18 @@
 #include <ql/methods/montecarlo/pathpricer.hpp>
 #include <ql/methods/montecarlo/earlyexercisepathpricer.hpp>
 
-#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#include <iostream>
+
+#if defined(__GNUC__) &&                                                       \
+    (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #endif
 
 #include <boost/bind.hpp>
 
-#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#if defined(__GNUC__) &&                                                       \
+    (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
 #pragma GCC diagnostic pop
 #endif
 
@@ -46,153 +50,187 @@
 
 namespace QuantLib {
 
-    //! Longstaff-Schwarz path pricer for early exercise options
-    /*! References:
+//! Longstaff-Schwarz path pricer for early exercise options
+/*! References:
 
-        Francis Longstaff, Eduardo Schwartz, 2001. Valuing American Options
-        by Simulation: A Simple Least-Squares Approach, The Review of
-        Financial Studies, Volume 14, No. 1, 113-147
+    Francis Longstaff, Eduardo Schwartz, 2001. Valuing American Options
+    by Simulation: A Simple Least-Squares Approach, The Review of
+    Financial Studies, Volume 14, No. 1, 113-147
 
-        \ingroup mcarlo
+    \ingroup mcarlo
 
-        \test the correctness of the returned value is tested by
-              reproducing results available in web/literature
-    */
-    template <class PathType>
-    class LongstaffSchwartzPathPricer : public PathPricer<PathType> {
-      public:
-        typedef typename EarlyExerciseTraits<PathType>::StateType StateType;
+    \test the correctness of the returned value is tested by
+          reproducing results available in web/literature
+*/
+template <class PathType>
+class LongstaffSchwartzPathPricer : public PathPricer<PathType> {
+  public:
+    typedef typename EarlyExerciseTraits<PathType>::StateType StateType;
 
-        LongstaffSchwartzPathPricer(
-            const TimeGrid& times,
-            const boost::shared_ptr<EarlyExercisePathPricer<PathType> >& ,
-            const boost::shared_ptr<YieldTermStructure>& termStructure);
+    LongstaffSchwartzPathPricer(
+        const TimeGrid &times,
+        const boost::shared_ptr<EarlyExercisePathPricer<PathType> > &,
+        const boost::shared_ptr<YieldTermStructure> &termStructure,
+        const bool calibrateOnAllPaths = false);
 
-        Real operator()(const PathType& path) const;
-        virtual void calibrate();
-        const boost::scoped_array<Array>& coefficients() { return coeff_; }
-        const std::vector<boost::function1<Real, StateType> >& basisSystem() { return v_; }
-
-      protected:
-        bool  calibrationPhase_;
-        const boost::shared_ptr<EarlyExercisePathPricer<PathType> >
-            pathPricer_;
-
-        boost::scoped_array<Array> coeff_;
-        boost::scoped_array<DiscountFactor> dF_;
-
-        mutable std::vector<PathType> paths_;
-        const   std::vector<boost::function1<Real, StateType> > v_;
-
-        const Size len_;
-    };
-
-    template <class PathType> inline
-    LongstaffSchwartzPathPricer<PathType>::LongstaffSchwartzPathPricer(
-        const TimeGrid& times,
-        const boost::shared_ptr<EarlyExercisePathPricer<PathType> >&
-            pathPricer,
-        const boost::shared_ptr<YieldTermStructure>& termStructure)
-    : calibrationPhase_(true),
-      pathPricer_(pathPricer),
-      coeff_     (new Array[times.size()-2]),
-      dF_        (new DiscountFactor[times.size()-1]),
-      v_         (pathPricer_->basisSystem()),
-      len_       (times.size()) {
-
-        for (Size i=0; i<times.size()-1; ++i) {
-            dF_[i] =   termStructure->discount(times[i+1])
-                     / termStructure->discount(times[i]);
-        }
+    Real operator()(const PathType &path) const;
+    virtual void calibrate();
+    const boost::scoped_array<Array> &coefficients() { return coeff_; }
+    const boost::scoped_array<Array> &coefficients2() { return coeff2_; }
+    const std::vector<boost::function1<Real, StateType> > &basisSystem() {
+        return v_;
+    }
+    const std::vector<boost::function1<Real, StateType> > &basisSystem2() {
+        return v2_;
     }
 
-    template <class PathType> inline
-    Real LongstaffSchwartzPathPricer<PathType>::operator()
-        (const PathType& path) const {
-        if (calibrationPhase_) {
-            // store paths for the calibration
-            paths_.push_back(path);
-            // result doesn't matter
-            return 0.0;
-        }
+  protected:
+    const bool calibrateOnAllPaths_;
+    bool calibrationPhase_;
+    const boost::shared_ptr<EarlyExercisePathPricer<PathType> > pathPricer_;
 
-        Real price = (*pathPricer_)(path, len_-1);
-        for (Size i=len_-2; i>0; --i) {
-            price*=dF_[i];
+    boost::scoped_array<Array> coeff_, coeff2_;
+    boost::scoped_array<DiscountFactor> dF_;
 
-            const Real exercise = (*pathPricer_)(path, i);
-            if (exercise > 0.0) {
-                const StateType regValue = pathPricer_->state(path, i);
+    mutable std::vector<PathType> paths_;
+    const std::vector<boost::function1<Real, StateType> > v_, v2_;
 
-                Real continuationValue = 0.0;
-                for (Size l=0; l<v_.size(); ++l) {
-                    continuationValue += coeff_[i-1][l] * v_[l](regValue);
-                }
+    const Size len_;
+};
 
-                if (continuationValue < exercise) {
-                    price = exercise;
-                }
-            }
-        }
+template <class PathType>
+inline LongstaffSchwartzPathPricer<PathType>::LongstaffSchwartzPathPricer(
+    const TimeGrid &times,
+    const boost::shared_ptr<EarlyExercisePathPricer<PathType> > &pathPricer,
+    const boost::shared_ptr<YieldTermStructure> &termStructure,
+    const bool calibrateOnAllPaths)
+    : calibrateOnAllPaths_(calibrateOnAllPaths), calibrationPhase_(true),
+      pathPricer_(pathPricer), coeff_(new Array[times.size() - 2]),
+      coeff2_(new Array[times.size() - 2]),
+      dF_(new DiscountFactor[times.size() - 1]), v_(pathPricer_->basisSystem()),
+      v2_(calibrateOnAllPaths
+              ? pathPricer_->basisSystem2()
+              : std::vector<boost::function1<Real, StateType> >()),
+      len_(times.size()) {
 
-        return price*dF_[0];
-    }
-
-    template <class PathType> inline
-    void LongstaffSchwartzPathPricer<PathType>::calibrate() {
-        const Size n = paths_.size();
-        Array prices(n), exercise(n);
-
-        for (Size i=0; i<n; ++i)
-            prices[i] = (*pathPricer_)(paths_[i], len_-1);
-
-        std::vector<Real>      y;
-        std::vector<StateType> x;
-        for (Size i=len_-2; i>0; --i) {
-            y.clear();
-            x.clear();
-
-            //roll back step
-            for (Size j=0; j<n; ++j) {
-                exercise[j]=(*pathPricer_)(paths_[j], i);
-
-                if (exercise[j]>0.0) {
-                    x.push_back(pathPricer_->state(paths_[j], i));
-                    y.push_back(dF_[i]*prices[j]);
-                }
-            }
-
-            if (v_.size() <=  x.size()) {
-                coeff_[i-1] = GeneralLinearLeastSquares(x, y, v_).coefficients();
-            }
-            else {
-            // if number of itm paths is smaller then the number of
-            // calibration functions then early exercise if exerciseValue > 0
-                coeff_[i-1] = Array(v_.size(), 0.0);
-            }
-
-            for (Size j=0, k=0; j<n; ++j) {
-                prices[j]*=dF_[i];
-                if (exercise[j]>0.0) {
-                    Real continuationValue = 0.0;
-                    for (Size l=0; l<v_.size(); ++l) {
-                        continuationValue += coeff_[i-1][l] * v_[l](x[k]);
-                    }
-                    if (continuationValue < exercise[j]) {
-                        prices[j] = exercise[j];
-                    }
-                    ++k;
-                }
-            }
-        }
-
-        // remove calibration paths and release memory
-        std::vector<PathType> empty;
-        paths_.swap(empty);
-        // entering the calculation phase
-        calibrationPhase_ = false;
+    for (Size i = 0; i < times.size() - 1; ++i) {
+        dF_[i] = termStructure->discount(times[i + 1]) /
+                 termStructure->discount(times[i]);
     }
 }
 
+template <class PathType>
+inline Real LongstaffSchwartzPathPricer<PathType>::
+operator()(const PathType &path) const {
+    if (calibrationPhase_) {
+        // store paths for the calibration
+        paths_.push_back(path);
+        // result doesn't matter
+        return 0.0;
+    }
+
+    Real price = (*pathPricer_)(path, len_ - 1);
+    for (Size i = len_ - 2; i > 0; --i) {
+        price *= dF_[i];
+
+        const Real exercise = (*pathPricer_)(path, i);
+        if (true /*exercise > 0.0*/) { // debug
+            const StateType regValue = pathPricer_->state(path, i);
+
+            Real continuationValue = 0.0;
+            // Real continuationValue2 = 0.0; // debug
+            for (Size l = 0; l < v_.size(); ++l) {
+                continuationValue += coeff_[i - 1][l] * v_[l](regValue);
+            }
+            // if (calibrateOnAllPaths_) {
+            //     for (Size l = 0; l < v2_.size(); ++l) {
+            //         continuationValue2 +=
+            //             coeff2_[i - 1][l] * v2_[l](regValue); // debug
+            //     }
+            //     std::cout << i - 1 << " " << regValue << " "
+            //               << (exercise > 0.0 ? continuationValue
+            //                                  : continuationValue2)
+            //               << "\n";
+            // }
+            if (continuationValue < exercise) {
+                price = exercise;
+            }
+        }
+    }
+
+    return price * dF_[0];
+}
+
+template <class PathType>
+inline void LongstaffSchwartzPathPricer<PathType>::calibrate() {
+    const Size n = paths_.size();
+    Array prices(n), exercise(n);
+
+    for (Size i = 0; i < n; ++i)
+        prices[i] = (*pathPricer_)(paths_[i], len_ - 1);
+
+    std::vector<Real> y, y2;
+    std::vector<StateType> x, x2;
+    for (Size i = len_ - 2; i > 0; --i) {
+        y.clear();
+        x.clear();
+        x2.clear();
+        y2.clear();
+
+        // roll back step
+        for (Size j = 0; j < n; ++j) {
+            exercise[j] = (*pathPricer_)(paths_[j], i);
+
+            if (exercise[j] > 0.0) {
+                x.push_back(pathPricer_->state(paths_[j], i));
+                y.push_back(dF_[i] * prices[j]);
+            } else {
+                if (calibrateOnAllPaths_) {
+                    StateType tmp = pathPricer_->state(paths_[j], i);
+                    x2.push_back(tmp);
+                    y2.push_back(dF_[i] * prices[j]);
+                }
+            }
+        }
+
+        if (v_.size() <= x.size()) {
+            coeff_[i - 1] = GeneralLinearLeastSquares(x, y, v_).coefficients();
+        } else {
+            // if number of itm paths is smaller then the number of
+            // calibration functions then early exercise if exerciseValue > 0
+            coeff_[i - 1] = Array(v_.size(), 0.0);
+        }
+
+        if (calibrateOnAllPaths_) {
+            if (v_.size() <= x2.size()) {
+                coeff2_[i - 1] =
+                    GeneralLinearLeastSquares(x2, y2, v2_).coefficients();
+            } else {
+                coeff2_[i - 1] = Array(v2_.size(), 0.0);
+            }
+        }
+
+        for (Size j = 0, k = 0; j < n; ++j) {
+            prices[j] *= dF_[i];
+            if (exercise[j] > 0.0) {
+                Real continuationValue = 0.0;
+                for (Size l = 0; l < v_.size(); ++l) {
+                    continuationValue += coeff_[i - 1][l] * v_[l](x[k]);
+                }
+                if (continuationValue < exercise[j]) {
+                    prices[j] = exercise[j];
+                }
+                ++k;
+            }
+        }
+    }
+
+    // remove calibration paths and release memory
+    std::vector<PathType> empty;
+    paths_.swap(empty);
+    // entering the calculation phase
+    calibrationPhase_ = false;
+}
+}
 
 #endif
