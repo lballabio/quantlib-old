@@ -20,7 +20,7 @@
 #include <ql/experimental/models/mcgaussian1dnonstandardswaptionengine.hpp>
 #include <ql/rebatedexercise.hpp>
 
-#include <boost/math/special_functions/laguerre.hpp>
+// #include <boost/math/special_functions/laguerre.hpp>
 
 namespace QuantLib {
 
@@ -38,6 +38,10 @@ Real basis2(const Real x) { return x * x; }
 // Real lag3(const Real x) { return boost::math::laguerre(3, x); }
 // Real lag4(const Real x) { return boost::math::laguerre(4, x); }
 // Real lag5(const Real x) { return boost::math::laguerre(5, x); }
+// complementary basis
+Real basis2_0(const Real x) { return 1; }
+Real basis2_1(const Real x) { return x; }
+Real basis2_2(const Real x) { return x*x; }
 }
 
 Gaussian1dNonstandardSwaptionPathPricer::
@@ -59,6 +63,10 @@ Gaussian1dNonstandardSwaptionPathPricer::
     // basis_.push_back(boost::function1<Real, Real>(&lag3));
     // basis_.push_back(boost::function1<Real, Real>(&lag4));
     // basis_.push_back(boost::function1<Real, Real>(&lag5));
+    // complementary basis functions
+    basis2_.push_back(boost::function1<Real, Real>(&basis2_0));
+    basis2_.push_back(boost::function1<Real, Real>(&basis2_1));
+    basis2_.push_back(boost::function1<Real, Real>(&basis2_2));
 
     // minimum alive exercise index
     Date today = Settings::instance().evaluationDate();
@@ -99,6 +107,11 @@ Real Gaussian1dNonstandardSwaptionPathPricer::state(const Path &path,
 std::vector<boost::function1<Real, Real> >
 Gaussian1dNonstandardSwaptionPathPricer::basisSystem() const {
     return basis_;
+}
+
+std::vector<boost::function1<Real, Real> >
+Gaussian1dNonstandardSwaptionPathPricer::basisSystem2() const {
+    return basis2_;
 }
 
 Real Gaussian1dNonstandardSwaptionPathPricer::operator()(const Path &path,

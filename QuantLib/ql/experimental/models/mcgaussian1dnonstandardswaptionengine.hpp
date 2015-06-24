@@ -56,14 +56,20 @@ class McGaussian1dNonstandardSwaptionEngine
 
     /*! proxy function */
     struct LsFunction : NonstandardSwaption::Proxy::ProxyFunction {
-        Real operator()(const Real state) const {
+        Real operator()(const Real state,
+                        const bool exerciseValuePositive) const {
             Real tmp = 0.0;
-            for(Size i=0;i<coeff.size();++i)
-                tmp += coeff[i] * v[i](state);
-            return tmp;
+            if (exerciseValuePositive) {
+                for (Size i = 0; i < coeff.size(); ++i)
+                    tmp += coeff[i] * v[i](state);
+            } else {
+                for (Size i = 0; i < coeff2.size(); ++i)
+                    tmp += coeff2[i] * v2[i](state);
+            }
+            return std::max(tmp, 0.0); // continuation value is always positive
         }
-        Array coeff;
-        std::vector<boost::function1<Real,Real> > v;
+        Array coeff, coeff2;
+        std::vector<boost::function1<Real, Real> > v, v2;
     };
 
     McGaussian1dNonstandardSwaptionEngine(
@@ -72,9 +78,9 @@ class McGaussian1dNonstandardSwaptionEngine
             &oas, // continuously compounded w.r.t. yts daycounter
         const Handle<YieldTermStructure> &discountCurve,
         Size timeSteps, Size timeStepsPerYear, bool brownianBridge,
-        bool antitheticVariate, Size requiredSamples,
-        Real requiredTolerance, Size maxSamples, BigNatural seed,
-        Size nCalibrationSamples, bool generateProxy);
+        bool antitheticVariate, Size requiredSamples, Real requiredTolerance,
+        Size maxSamples, BigNatural seed, Size nCalibrationSamples,
+        bool generateProxy);
 
     void calculate() const;
     void reset() const;
@@ -141,14 +147,15 @@ class Gaussian1dNonstandardSwaptionPathPricer
     Real operator()(const Path &path, Size t) const;
     Real state(const Path &path, Size t) const;
     std::vector<boost::function1<Real, Real> > basisSystem() const;
+    std::vector<boost::function1<Real, Real> > basisSystem2() const;
 
   private:
-    void initExerciseIndices(const Path& path) const;
+    void initExerciseIndices(const Path &path) const;
     const boost::shared_ptr<Gaussian1dModel> model_;
     const NonstandardSwaption::arguments *arguments_;
     const Handle<YieldTermStructure> discount_;
     const Handle<Quote> oas_;
-    std::vector<boost::function1<Real, Real> > basis_;
+    std::vector<boost::function1<Real, Real> > basis_, basis2_;
     mutable std::vector<Size> exerciseIdx_;
     Size minIdxAlive_;
 };
@@ -163,9 +170,9 @@ McGaussian1dNonstandardSwaptionEngine<RNG, S>::
             &oas, // continuously compounded w.r.t. yts daycounter
         const Handle<YieldTermStructure> &discountCurve,
         Size timeSteps, Size timeStepsPerYear, bool brownianBridge,
-        bool antitheticVariate, Size requiredSamples,
-        Real requiredTolerance, Size maxSamples, BigNatural seed,
-        Size nCalibrationSamples, bool generateProxy)
+        bool antitheticVariate, Size requiredSamples, Real requiredTolerance,
+        Size maxSamples, BigNatural seed, Size nCalibrationSamples,
+        bool generateProxy)
     : MCLongstaffSchwartzEngine<
           GenericModelEngine<Gaussian1dModel, NonstandardSwaption::arguments,
                              NonstandardSwaption::results>,
@@ -188,30 +195,38 @@ void McGaussian1dNonstandardSwaptionEngine<RNG, S>::calculate() const {
     // transform the deflated values into plain ones
     this->results_.value *= model_->numeraire(0.0, 0.0, discountCurve_);
     this->results_.errorEstimate *= model_->numeraire(0.0, 0.0, discountCurve_);
-    // test
-    return;
-    // generate proxy
-    this->proxy_ = boost::make_shared<NonstandardSwaption::Proxy>();
-    Date today = Settings::instance().evaluationDate();
-    // original evaluation date
-    this->proxy_->origEvalDate = today;
-    // open expiry dates
-    std::vector<Date>::const_iterator start =
-        std::upper_bound(this->arguments_.exercise->dates().begin(),
-                         this->arguments_.exercise->dates().end(), today);
-    for (std::vector<Date>::const_iterator i = start;
-         i != this->arguments_.exercise->dates().end(); ++i)
-        this->proxy_->expiryDates.push_back(*i);
-    // model
-    this->proxy_->model = model_;
-    // regression functions for continuation values
-    for(Size i=0;i<=this->proxy_->expiryDates.size()-2;--i) {
-        // BUG: this works only with steps=1 !
-        boost::shared_ptr<LsFunction> lsTmp;
-        lsTmp->coeff = this->pathPricer_->coefficients()[i];
-        lsTmp->v = this->pathPricer_->basisSystem();
+    if (generateProxy_) {
+        // generate proxy
+        this->proxy_ = boost::make_shared<NonstandardSwaption::Proxy>();
+        Date today = Settings::instance().evaluationDate();
+        // original evaluation date
+        // open expiry dates
+        std::vector<Date>::const_iterator start =
+            std::upper_bound(this->arguments_.exercise->dates().begin(),
+                             this->arguments_.exercise->dates().end(), today);
+        for (std::vector<Date>::const_iterator i = start;
+             i != this->arguments_.exercise->dates().end(); ++i) {
+            this->proxy_->expiryDates.push_back(*i);
+        }
+        // model
+        this->proxy_->model = model_;
+        // discount curve (may be empty)
+        this->proxy_->discount = discountCurve_;
+        // oas (may be empty)
+        this->proxy_->oas = oas_;
+        // regression functions for continuation values
+        for (int i = 0;
+             i < static_cast<int>(this->proxy_->expiryDates.size()) - 1; ++i) {
+            boost::shared_ptr<LsFunction> lsTmp =
+                boost::make_shared<LsFunction>();
+            lsTmp->coeff = this->pathPricer_->coefficients()[i];
+            lsTmp->coeff2 = this->pathPricer_->coefficients2()[i];
+            lsTmp->v = this->pathPricer_->basisSystem();
+            lsTmp->v2 = this->pathPricer_->basisSystem2();
+            this->proxy_->regression.push_back(lsTmp);
+        }
+        this->results_.proxy = this->proxy_;
     }
-    this->results_.proxy = this->proxy_;
 }
 
 template <class RNG, class S>
@@ -228,11 +243,12 @@ McGaussian1dNonstandardSwaptionEngine<RNG, S>::lsmPathPricer() const {
     // reduced grid which only contains the exercise times and 0
     std::vector<Real> exerciseTimes;
     exerciseTimes.push_back(0.0);
-    for(Size i=0;i<this->arguments_.exercise->dates().size();++i) {
+    for (Size i = 0; i < this->arguments_.exercise->dates().size(); ++i) {
         exerciseTimes.push_back(
             model_->stateProcess()->time(this->arguments_.exercise->date(i)));
     }
-    TimeGrid exerciseGrid = TimeGrid(exerciseTimes.begin(), exerciseTimes.end());
+    TimeGrid exerciseGrid =
+        TimeGrid(exerciseTimes.begin(), exerciseTimes.end());
     boost::shared_ptr<Gaussian1dNonstandardSwaptionPathPricer>
         earlyExercisePricer =
             boost::make_shared<Gaussian1dNonstandardSwaptionPathPricer>(
@@ -243,7 +259,7 @@ McGaussian1dNonstandardSwaptionEngine<RNG, S>::lsmPathPricer() const {
         boost::make_shared<FlatForward>(0, NullCalendar(), 0.0,
                                         Actual365Fixed());
     return boost::make_shared<LongstaffSchwartzPathPricer<Path> >(
-        exerciseGrid, earlyExercisePricer, dummyCurve);
+        exerciseGrid, earlyExercisePricer, dummyCurve, true);
 }
 
 template <class RNG, class S>
