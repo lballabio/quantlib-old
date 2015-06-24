@@ -9,6 +9,7 @@ this_include_HEADERS = \
     betaetacore.hpp \
     betaetaswaptionengine.hpp \
     mcgaussian1dnonstandardswaptionengine.hpp \
+    proxynonstandardswaptionengine.hpp \
     quadraticlfm.hpp \
     sbsmilesection.hpp \
     splinedensitysmilesection.hpp
@@ -19,6 +20,7 @@ libModels_la_SOURCES = \
     betaetacore.cpp \
     betaetaswaptionengine.cpp \
     mcgaussian1dnonstandardswaptionengine.cpp \
+    proxynonstandardswaptionengine.cpp \
     quadraticlfm.cpp \
     sbsmilesection.cpp \
     splinedensitysmilesection.cpp

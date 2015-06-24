@@ -1,0 +1,272 @@
+/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+
+/*
+ Copyright (C) 2015 Peter Caspers
+
+ This file is part of QuantLib, a free-software/open-source library
+ for financial quantitative analysts and developers - http://quantlib.org/
+
+ QuantLib is free software: you can redistribute it and/or modify it
+ under the terms of the QuantLib license.  You should have received a
+ copy of the license along with this program; if not, please email
+ <quantlib-dev@lists.sf.net>. The license is also available online at
+ <http://quantlib.org/license.shtml>.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+*/
+
+#include <ql/experimental/models/proxynonstandardswaptionengine.hpp>
+#include <ql/math/solvers1d/brent.hpp>
+#include <ql/rebatedexercise.hpp>
+
+#include <iostream>
+#include <boost/make_shared.hpp>
+#include <ql/indexes/swap/euriborswap.hpp>
+
+namespace QuantLib {
+
+void ProxyNonstandardSwaptionEngine::calculate() const {
+
+    Date today = Settings::instance().evaluationDate();
+
+    int offset = includeTodaysExercise_ ? -1 : 0;
+
+    std::vector<Date>::const_iterator nextExerciseDate = std::upper_bound(
+        proxy_->expiryDates.begin(), proxy_->expiryDates.end(), today + offset);
+
+    // if no exercise date is left, the npv of the swaption is zero
+    // a possibly generated physical swap is not valued here
+    if (nextExerciseDate == proxy_->expiryDates.end()) {
+        results_.value = 0.0;
+        results_.additionalResults["exerciseValue"] = 0.0;
+        return;
+    }
+
+    std::vector<Date>::const_iterator nextExerciseDateOrig =
+        std::upper_bound(arguments_.exercise->dates().begin(),
+                         arguments_.exercise->dates().end(), today);
+
+    Size exerciseIdx = nextExerciseDate - proxy_->expiryDates.begin();
+    Size exerciseIdxOrig =
+        nextExerciseDateOrig - arguments_.exercise->dates().begin();
+
+    Real todaysTime = proxy_->model->termStructure()->timeFromReference(today);
+
+    Real nextExerciseTime =
+        proxy_->model->termStructure()->timeFromReference(*nextExerciseDate);
+
+    // sanity checks
+    QL_REQUIRE(
+        today >= proxy_->origEvalDate,
+        "evaluation date ("
+            << today
+            << ") must be greater or equal than original evaluation date ("
+            << proxy_->origEvalDate);
+
+    // imply the model state from the given reference rate and period
+    struct StateHelper {
+        StateHelper(Gaussian1dModel *model, const Real rate,
+                    const Real maturity, const Real referenceTime)
+            : model_(model), rate_(rate), maturity_(maturity),
+              referenceTime_(referenceTime) {}
+        const Real operator()(const Real y) const {
+            return -std::log(model_->zerobond(maturity_ + referenceTime_,
+                                              referenceTime_, y)) /
+                       maturity_ -
+                   rate_;
+        }
+        Gaussian1dModel *model_;
+        Real rate_, maturity_;
+        Real referenceTime_;
+    };
+
+    StateHelper helper(&(*proxy_->model), referenceRate_->value(),
+                       referenceMaturity_->value(), todaysTime);
+    Brent b;
+    Real todaysState;
+    try {
+        todaysState = b.solve(helper, 1E-4, 0.0, 0.0010);
+    } catch (QuantLib::Error e) {
+        QL_FAIL("could not imply model state (reference rate="
+                << referenceRate_->value()
+                << ", reference maturity=" << referenceMaturity_->value()
+                << ", reference date=" << today << ")");
+    }
+
+    // we have to use the discount curve from the original pricing
+    Handle<YieldTermStructure> discountTmp = proxy_->discount;
+
+    boost::shared_ptr<RebatedExercise> rebatedExercise =
+        boost::dynamic_pointer_cast<RebatedExercise>(arguments_.exercise);
+    boost::shared_ptr<NonstandardSwap> swap = arguments_.swap;
+    Schedule fixedSchedule = swap->fixedSchedule();
+    Schedule floatingSchedule = swap->floatingSchedule();
+    Size j1 =
+        std::upper_bound(fixedSchedule.dates().begin(),
+                         fixedSchedule.dates().end(), *nextExerciseDate - 1) -
+        fixedSchedule.dates().begin();
+    Size k1 = std::upper_bound(floatingSchedule.dates().begin(),
+                               floatingSchedule.dates().end(),
+                               *nextExerciseDate - 1) -
+              floatingSchedule.dates().begin();
+
+    // integrate over the exercise / continuation values on the next expiry date
+    // if the next exercise date is the last one the continuation value is zero
+    // if the next expiry date is equal to the valuation date we do not need to
+    // integrate
+
+    Array y(1, todaysState), z(1, 0.0), p(1, 0.0), p2(1, 0.0);
+
+    if (!close(nextExerciseTime, todaysTime) && !integrationPoints_ == 0) {
+        y = proxy_->model->yGrid(stdDevs_, integrationPoints_, nextExerciseTime,
+                                 todaysTime, todaysState);
+        z = proxy_->model->yGrid(stdDevs_, integrationPoints_);
+        p = Array(z.size(), 0.0);
+        p2 = Array(z.size(), 0.0);
+    }
+
+    for (Size i = 0; i < y.size(); ++i) {
+
+        // model state expressed in x
+        Real nextExState = y[i] *
+                               proxy_->model->stateProcess()->stdDeviation(
+                                   0.0, 0.0, nextExerciseTime) +
+                           proxy_->model->stateProcess()->expectation(
+                               0.0, 0.0, nextExerciseTime);
+
+        // exercise value (this is more or less copied from
+        // gaussian1dnonstandardswaptionengine.cpp)
+        // price all cashflows that belong to the exercise into right
+        // and return the deflated NPV
+
+        // this is more or less copied from
+        // gaussian1dnonstandardswaptionengine.cpp
+        Real floatingLegNpv = 0.0;
+        for (Size l = k1; l < arguments_.floatingCoupons.size(); l++) {
+            Real zSpreadDf =
+                proxy_->oas.empty()
+                    ? 1.0
+                    : std::exp(
+                          -proxy_->oas->value() *
+                          (proxy_->model->termStructure()
+                               ->dayCounter()
+                               .yearFraction(*nextExerciseDate,
+                                             arguments_.floatingPayDates[l])));
+            Real amount;
+            if (arguments_.floatingIsRedemptionFlow[l])
+                amount = arguments_.floatingCoupons[l];
+            else
+                amount = arguments_.floatingNominal[l] *
+                         arguments_.floatingAccrualTimes[l] *
+                         (arguments_.floatingGearings[l] *
+                              proxy_->model->forwardRate(
+                                  arguments_.floatingFixingDates[l],
+                                  *nextExerciseDate, y[i],
+                                  arguments_.swap->iborIndex()) +
+                          arguments_.floatingSpreads[l]);
+            floatingLegNpv +=
+                amount *
+                proxy_->model->zerobond(arguments_.floatingPayDates[l],
+                                        *nextExerciseDate, y[i], discountTmp) *
+                zSpreadDf;
+        }
+        Real fixedLegNpv = 0.0;
+        for (Size l = j1; l < arguments_.fixedCoupons.size(); l++) {
+            Real zSpreadDf =
+                proxy_->oas.empty()
+                    ? 1.0
+                    : std::exp(
+                          -proxy_->oas->value() *
+                          (proxy_->model->termStructure()
+                               ->dayCounter()
+                               .yearFraction(*nextExerciseDate,
+                                             arguments_.fixedPayDates[l])));
+            fixedLegNpv +=
+                arguments_.fixedCoupons[l] *
+                proxy_->model->zerobond(arguments_.fixedPayDates[l],
+                                        *nextExerciseDate, y[i], discountTmp) *
+                zSpreadDf;
+        }
+        Real rebate = 0.0;
+        Real zSpreadDf = 1.0;
+        Date rebateDate = *nextExerciseDate;
+        if (rebatedExercise != NULL) {
+            rebate = rebatedExercise->rebate(exerciseIdxOrig);
+            rebateDate = rebatedExercise->rebatePaymentDate(exerciseIdxOrig);
+            zSpreadDf = proxy_->oas.empty()
+                            ? 1.0
+                            : std::exp(-proxy_->oas->value() *
+                                       (proxy_->model->termStructure()
+                                            ->dayCounter()
+                                            .yearFraction(*nextExerciseDate,
+                                                          rebateDate)));
+        }
+        Real exerciseValue =
+            std::max(((arguments_.type == VanillaSwap::Payer ? 1.0 : -1.0) *
+                          (floatingLegNpv - fixedLegNpv) +
+                      rebate *
+                          proxy_->model->zerobond(rebateDate, *nextExerciseDate,
+                                                  y[i], discountTmp) *
+                          zSpreadDf),
+                     0.0) /
+            proxy_->model->numeraire(*nextExerciseDate, y[i], discountTmp);
+
+        // continuation value (as per regression)
+        Real continuationValue = 0.0;
+        // on the last exercise date the continuation value is zero
+        // also, the regression is done only for states where the
+        // exercise value is positive, so we assume a zero continuation
+        // value here otherwise as well.
+        if (exerciseIdx < proxy_->expiryDates.size() - 1) {
+            continuationValue = proxy_->regression[exerciseIdx]->operator()(
+                nextExState, exerciseValue > 0.0);
+        }
+
+        p[i] = std::max(continuationValue, exerciseValue);
+        p2[i] = exerciseValue;
+
+    } // for i
+
+    Real zSpreadDf =
+        proxy_->oas.empty()
+            ? 1.0
+            : std::exp(-proxy_->oas->value() * (nextExerciseTime - todaysTime));
+
+    Real price = 0.0, exercisePrice = 0.0;
+    if (y.size() == 1) {
+        price = p[0];
+        exercisePrice = p2[0];
+    } else {
+        CubicInterpolation payoff(z.begin(), z.end(), p.begin(),
+                                  CubicInterpolation::Spline, true,
+                                  CubicInterpolation::Lagrange, 0.0,
+                                  CubicInterpolation::Lagrange, 0.0);
+        CubicInterpolation payoff2(z.begin(), z.end(), p2.begin(),
+                                   CubicInterpolation::Spline, true,
+                                   CubicInterpolation::Lagrange, 0.0,
+                                   CubicInterpolation::Lagrange, 0.0);
+        for (Size i = 0; i < z.size() - 1; ++i) {
+            price +=
+                proxy_->model->gaussianShiftedPolynomialIntegral(
+                    0.0, payoff.cCoefficients()[i], payoff.bCoefficients()[i],
+                    payoff.aCoefficients()[i], p[i], z[i], z[i], z[i + 1]) *
+                zSpreadDf;
+            exercisePrice +=
+                proxy_->model->gaussianShiftedPolynomialIntegral(
+                    0.0, payoff2.cCoefficients()[i], payoff2.bCoefficients()[i],
+                    payoff2.aCoefficients()[i], p2[i], z[i], z[i], z[i + 1]) *
+                zSpreadDf;
+        }
+    }
+
+    // discount back continuation value and exercise value
+
+    Real df = proxy_->model->numeraire(today, todaysState, discountTmp);
+
+    results_.value = df * price;
+    results_.additionalResults["exerciseValue"] = df * exercisePrice;
+}
+
+} // namespace QuantLib

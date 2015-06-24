@@ -6,6 +6,7 @@
 #include <ql/experimental/models/betaetacore.hpp>
 #include <ql/experimental/models/betaetaswaptionengine.hpp>
 #include <ql/experimental/models/mcgaussian1dnonstandardswaptionengine.hpp>
+#include <ql/experimental/models/proxynonstandardswaptionengine.hpp>
 #include <ql/experimental/models/quadraticlfm.hpp>
 #include <ql/experimental/models/sbsmilesection.hpp>
 #include <ql/experimental/models/splinedensitysmilesection.hpp>
