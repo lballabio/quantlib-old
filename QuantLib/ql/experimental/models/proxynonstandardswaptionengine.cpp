@@ -21,10 +21,6 @@
 #include <ql/math/solvers1d/brent.hpp>
 #include <ql/rebatedexercise.hpp>
 
-#include <iostream>
-#include <boost/make_shared.hpp>
-#include <ql/indexes/swap/euriborswap.hpp>
-
 namespace QuantLib {
 
 void ProxyNonstandardSwaptionEngine::calculate() const {
