@@ -284,6 +284,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\functions\tenorbasis.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\functions\termstructures.xml"
 				>
 			</File>

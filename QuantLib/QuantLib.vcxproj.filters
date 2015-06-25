@@ -4003,6 +4003,9 @@
     <ClInclude Include="ql\termstructures\yield\compositediscountcurve.hpp">
       <Filter>termstructures\yield</Filter>
     </ClInclude>
+    <ClInclude Include="ql\experimental\tenorbasis\all.hpp">
+      <Filter>experimental\tenorbasis</Filter>
+    </ClInclude>
     <ClInclude Include="ql\experimental\tenorbasis\tenorbasis.hpp">
       <Filter>experimental\tenorbasis</Filter>
     </ClInclude>

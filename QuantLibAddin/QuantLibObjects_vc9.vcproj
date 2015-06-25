@@ -843,6 +843,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\valueobjects\vo_tenorbasis.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\valueobjects\vo_tenorbasis.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\valueobjects\vo_termstructures.cpp"
 				>
 			</File>
@@ -903,6 +911,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\tenorbasis.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\tenorbasis.hpp"
+				>
+			</File>
+			<File
 				RelativePath="qlo\yieldtermstructures.cpp"
 				>
 			</File>
@@ -914,6 +930,14 @@
 		<Filter
 			Name="Math"
 			>
+			<File
+				RelativePath=".\qlo\abcdmathfunction.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\abcdmathfunction.hpp"
+				>
+			</File>
 			<File
 				RelativePath="qlo\extrapolator.cpp"
 				>
@@ -948,6 +972,14 @@
 			</File>
 			<File
 				RelativePath="qlo\mathf.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\polynomialmathfunction.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\polynomialmathfunction.hpp"
 				>
 			</File>
 			<File
@@ -1444,6 +1476,10 @@
 			</File>
 			<File
 				RelativePath="qlo\loop\loop_swaptionvolstructure.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\loop\loop_tenorbasis.hpp"
 				>
 			</File>
 			<File
@@ -1970,6 +2006,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\qlo\serialization\create\create_tenorbasis.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\create\create_tenorbasis.hpp"
+					>
+				</File>
+				<File
 					RelativePath="qlo\serialization\create\create_termstructures.cpp"
 					>
 				</File>
@@ -2430,6 +2474,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\qlo\serialization\register\serialization_tenorbasis.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_tenorbasis.hpp"
+					>
+				</File>
+				<File
 					RelativePath="qlo\serialization\register\serialization_termstructures.cpp"
 					>
 				</File>
@@ -2629,6 +2681,14 @@
 		</File>
 		<File
 			RelativePath="qlo\index.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\model.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\model.hpp"
 			>
 		</File>
 		<File

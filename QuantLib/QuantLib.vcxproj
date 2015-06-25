@@ -1573,6 +1573,7 @@
     <ClInclude Include="ql\experimental\mcbasket\mcpathbasketengine.hpp" />
     <ClInclude Include="ql\experimental\mcbasket\pathmultiassetoption.hpp" />
     <ClInclude Include="ql\experimental\mcbasket\pathpayoff.hpp" />
+    <ClInclude Include="ql\experimental\tenorbasis\all.hpp" />
     <ClInclude Include="ql\experimental\tenorbasis\tenorbasis.hpp" />
     <ClInclude Include="ql\experimental\tenorbasis\tenorbasiscalibration.hpp" />
     <ClInclude Include="ql\math\ode\all.hpp" />

@@ -9206,6 +9206,30 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="tenorbasis"
+				>
+				<File
+					RelativePath=".\ql\experimental\tenorbasis\all.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\tenorbasis\tenorbasis.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\tenorbasis\tenorbasis.cpp"
+					>
+				</File>	
+				<File
+					RelativePath=".\ql\experimental\tenorbasis\tenorbasiscalibration.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\tenorbasis\tenorbasiscalibration.cpp"
+					>
+				</File>
+			</Filter>				
 		</Filter>
 		<File
 			RelativePath=".\ql\auto_link.hpp"

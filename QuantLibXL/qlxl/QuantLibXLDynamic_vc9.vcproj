@@ -470,6 +470,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\functions\tenorbasis.cpp"
+				>
+			</File>
+			<File
 				RelativePath="functions\termstructures.cpp"
 				>
 			</File>
@@ -731,6 +735,10 @@
 			</File>
 			<File
 				RelativePath="register\register_swaptionvolstructure.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\register\register_tenorbasis.cpp"
 				>
 			</File>
 			<File
