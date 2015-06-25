@@ -12,6 +12,7 @@ include_HEADERS = \
     loop_interpolation.hpp \
     loop_swaptionvolstructure.hpp \
     loop_termstructures.hpp \
+    loop_tenorbasis.hpp \
     loop_timeseries.hpp \
     loop_valueobjects.hpp
 

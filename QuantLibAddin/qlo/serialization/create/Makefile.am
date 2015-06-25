@@ -57,6 +57,7 @@ include_HEADERS = \
     create_swaption.hpp \
     create_swaptionvolstructure.hpp \
     create_termstructures.hpp \
+    create_tenorbasis.hpp \
     create_timeseries.hpp \
     create_vanillaswap.hpp \
     create_volatilities.hpp \
@@ -114,6 +115,7 @@ libCreate_la_SOURCES = \
     create_swaption.cpp \
     create_swaptionvolstructure.cpp \
     create_termstructures.cpp \
+    create_tenorbasis.cpp \
     create_timeseries.cpp \
     create_vanillaswap.cpp \
     create_volatilities.cpp \

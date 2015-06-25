@@ -86,6 +86,7 @@ include_HEADERS = \
     swaptionvolstructure.hpp \
     symmetricschurdecomposition.hpp \
     termstructures.hpp \
+    tenorbasis.hpp \
     timeseries.hpp \
     utilities.hpp \
     vanillaoption.hpp \
@@ -164,7 +165,8 @@ libQuantLibAddin_la_SOURCES = \
     swaption.cpp \
     swaptionvolstructure.cpp \
     symmetricschurdecomposition.cpp \
-    timeseries.cpp \
+    tenorbasis.cpp \
+    timeseries.cpp \	
     utilities.cpp \
     vanillaoption.cpp \
     vanillaswap.cpp \
