@@ -434,6 +434,7 @@ AC_CONFIG_FILES([
     Examples/MultitenorVols/Makefile
     Examples/NonstandardSwaption/Makefile
     Examples/MultidimIntegral/Makefile
+    Examples/ProxyPricing/Makefile
     Examples/Replication/Makefile
     Examples/Repo/Makefile
     Examples/SimulatedAnnealing/Makefile
