@@ -3227,7 +3227,7 @@
     </ClInclude>
     <ClInclude Include="ql\models\shortrate\onefactormodels\markovfunctional.hpp">
       <Filter>models\shortrate\onefactormodels</Filter>
-    </ClInclude>	
+    </ClInclude>
     <ClInclude Include="ql\processes\mfstateprocess.hpp">
       <Filter>processes</Filter>
     </ClInclude>
@@ -5873,7 +5873,7 @@
     </ClCompile>
     <ClCompile Include="ql\models\shortrate\onefactormodels\gaussian1dmodel.cpp">
       <Filter>models\shortrate\onefactormodels</Filter>
-    </ClCompile>	
+    </ClCompile>
     <ClCompile Include="ql\pricingengines\swaption\gaussian1dnonstandardswaptionengine.cpp">
       <Filter>pricingengines\swaption</Filter>
     </ClCompile>
@@ -5888,7 +5888,7 @@
     </ClCompile>
     <ClCompile Include="ql\models\shortrate\onefactormodels\gsr.cpp">
       <Filter>models\shortrate\onefactormodels</Filter>
-    </ClCompile>	
+    </ClCompile>
     <ClCompile Include="ql\processes\gsrprocess.cpp">
       <Filter>processes</Filter>
     </ClCompile>
@@ -5897,7 +5897,7 @@
     </ClCompile>
     <ClCompile Include="ql\models\shortrate\onefactormodels\markovfunctional.cpp">
       <Filter>models\shortrate\onefactormodels</Filter>
-    </ClCompile>	
+    </ClCompile>
     <ClCompile Include="ql\processes\mfstateprocess.cpp">
       <Filter>processes</Filter>
     </ClCompile>
