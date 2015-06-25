@@ -212,9 +212,6 @@ void ProxyNonstandardSwaptionEngine::calculate() const {
         // continuation value (as per regression)
         Real continuationValue = 0.0;
         // on the last exercise date the continuation value is zero
-        // also, the regression is done only for states where the
-        // exercise value is positive, so we assume a zero continuation
-        // value here otherwise as well.
         if (exerciseIdx < proxy_->expiryDates.size() - 1) {
             continuationValue = proxy_->regression[exerciseIdx]->operator()(
                 nextExState, exerciseValue > 0.0);
