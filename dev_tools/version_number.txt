@@ -14,7 +14,7 @@ e.g. R010300a2 stands for Release 1.3.1a2
 Since QuantLib 1.3, the tags are more readable. However, the above is
 still used in the code to check the version programmatically.
 
-The current version number is 1.6 - R010600f0
+The current version number is 1.7 - R010700f0
 
 This version number needs to be updated manually in:
 
