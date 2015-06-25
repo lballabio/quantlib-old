@@ -28,14 +28,14 @@
 
 namespace QuantLib {
 
-/*! \warning the gaussian 1d model originally used for pricing must not
-  use a floating reference date when using the proxy engine. Neither must
-  the yield term structure of the model or any curve needed for pricing
-  (like the optional discount curve or forwarding curves attached to the
-  ibor coupons) use a floating reference date. The reason is that the proxy
-  engine uses them and needs them to have the original reference date.
-  The option adjusted spread from the original pricing is reused here,
-  its value can not be changed. */
+/*! \warning the gaussian 1d model originally used for pricing is reused
+  here, together with all curves possibly attached to the instrument
+  (the model curve, forwarding curves attached to the instrument's coupons,
+  the optional discounting curve of the original pricing engine).
+  Therefore these term structures must not use a floating reference date
+  nor should the curves be changed between the original pricing and the
+  proxy pricing here. Furthermore, the option adjusted spread from the
+  original pricing is reused here as well, its value can not be changed. */
 
 class ProxyNonstandardSwaptionEngine : public NonstandardSwaption::engine {
 
