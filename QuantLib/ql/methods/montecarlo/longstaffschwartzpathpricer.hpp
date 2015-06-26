@@ -70,30 +70,24 @@ class LongstaffSchwartzPathPricer : public PathPricer<PathType> {
     LongstaffSchwartzPathPricer(
         const TimeGrid &times,
         const boost::shared_ptr<EarlyExercisePathPricer<PathType> > &,
-        const boost::shared_ptr<YieldTermStructure> &termStructure,
-        const bool calibrateOnAllPaths = false);
+        const boost::shared_ptr<YieldTermStructure> &termStructure);
 
     Real operator()(const PathType &path) const;
     virtual void calibrate();
-    const boost::scoped_array<Array> &coefficients() { return coeff_; }
-    const boost::scoped_array<Array> &coefficients2() { return coeff2_; }
-    const std::vector<boost::function1<Real, StateType> > &basisSystem() {
-        return v_;
-    }
-    const std::vector<boost::function1<Real, StateType> > &basisSystem2() {
-        return v2_;
-    }
 
   protected:
-    const bool calibrateOnAllPaths_;
+    virtual void post_processing(const Size i, const std::vector<StateType> &x_itm,
+                                 const std::vector<Real> &y_itm,
+                                 const std::vector<StateType> &x_otm,
+                                 const std::vector<Real> &y_otm) {}
     bool calibrationPhase_;
     const boost::shared_ptr<EarlyExercisePathPricer<PathType> > pathPricer_;
 
-    boost::scoped_array<Array> coeff_, coeff2_;
+    boost::scoped_array<Array> coeff_;
     boost::scoped_array<DiscountFactor> dF_;
 
     mutable std::vector<PathType> paths_;
-    const std::vector<boost::function1<Real, StateType> > v_, v2_;
+    const std::vector<boost::function1<Real, StateType> > v_;
 
     const Size len_;
 };
@@ -102,15 +96,10 @@ template <class PathType>
 inline LongstaffSchwartzPathPricer<PathType>::LongstaffSchwartzPathPricer(
     const TimeGrid &times,
     const boost::shared_ptr<EarlyExercisePathPricer<PathType> > &pathPricer,
-    const boost::shared_ptr<YieldTermStructure> &termStructure,
-    const bool calibrateOnAllPaths)
-    : calibrateOnAllPaths_(calibrateOnAllPaths), calibrationPhase_(true),
+    const boost::shared_ptr<YieldTermStructure> &termStructure)
+    : calibrationPhase_(true),
       pathPricer_(pathPricer), coeff_(new Array[times.size() - 2]),
-      coeff2_(new Array[times.size() - 2]),
       dF_(new DiscountFactor[times.size() - 1]), v_(pathPricer_->basisSystem()),
-      v2_(calibrateOnAllPaths
-              ? pathPricer_->basisSystem2()
-              : std::vector<boost::function1<Real, StateType> >()),
       len_(times.size()) {
 
     for (Size i = 0; i < times.size() - 1; ++i) {
@@ -134,24 +123,13 @@ operator()(const PathType &path) const {
         price *= dF_[i];
 
         const Real exercise = (*pathPricer_)(path, i);
-        if (true /*exercise > 0.0*/) { // debug
+        if (exercise > 0.0) { 
             const StateType regValue = pathPricer_->state(path, i);
 
             Real continuationValue = 0.0;
-            // Real continuationValue2 = 0.0; // debug
             for (Size l = 0; l < v_.size(); ++l) {
                 continuationValue += coeff_[i - 1][l] * v_[l](regValue);
             }
-            // if (calibrateOnAllPaths_) {
-            //     for (Size l = 0; l < v2_.size(); ++l) {
-            //         continuationValue2 +=
-            //             coeff2_[i - 1][l] * v2_[l](regValue); // debug
-            //     }
-            //     std::cout << i - 1 << " " << regValue << " "
-            //               << (exercise > 0.0 ? continuationValue
-            //                                  : continuationValue2)
-            //               << "\n";
-            // }
             if (continuationValue < exercise) {
                 price = exercise;
             }
@@ -169,13 +147,13 @@ inline void LongstaffSchwartzPathPricer<PathType>::calibrate() {
     for (Size i = 0; i < n; ++i)
         prices[i] = (*pathPricer_)(paths_[i], len_ - 1);
 
-    std::vector<Real> y, y2;
-    std::vector<StateType> x, x2;
+    std::vector<Real> y, y_otm;
+    std::vector<StateType> x, x_otm;
     for (Size i = len_ - 2; i > 0; --i) {
         y.clear();
         x.clear();
-        x2.clear();
-        y2.clear();
+        x_otm.clear();
+        y_otm.clear();
 
         // roll back step
         for (Size j = 0; j < n; ++j) {
@@ -185,13 +163,13 @@ inline void LongstaffSchwartzPathPricer<PathType>::calibrate() {
                 x.push_back(pathPricer_->state(paths_[j], i));
                 y.push_back(dF_[i] * prices[j]);
             } else {
-                if (calibrateOnAllPaths_) {
-                    StateType tmp = pathPricer_->state(paths_[j], i);
-                    x2.push_back(tmp);
-                    y2.push_back(dF_[i] * prices[j]);
-                }
+                x_otm.push_back(pathPricer_->state(paths_[j], i));
+                y_otm.push_back(dF_[i] * prices[j]);
             }
         }
+
+        // optional post processing step
+        post_processing(i, x, y, x_otm, y_otm);
 
         if (v_.size() <= x.size()) {
             coeff_[i - 1] = GeneralLinearLeastSquares(x, y, v_).coefficients();
@@ -199,15 +177,6 @@ inline void LongstaffSchwartzPathPricer<PathType>::calibrate() {
             // if number of itm paths is smaller then the number of
             // calibration functions then early exercise if exerciseValue > 0
             coeff_[i - 1] = Array(v_.size(), 0.0);
-        }
-
-        if (calibrateOnAllPaths_) {
-            if (v_.size() <= x2.size()) {
-                coeff2_[i - 1] =
-                    GeneralLinearLeastSquares(x2, y2, v2_).coefficients();
-            } else {
-                coeff2_[i - 1] = Array(v2_.size(), 0.0);
-            }
         }
 
         for (Size j = 0, k = 0; j < n; ++j) {
