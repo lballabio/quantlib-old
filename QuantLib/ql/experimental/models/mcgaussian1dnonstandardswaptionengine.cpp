@@ -25,23 +25,9 @@
 namespace QuantLib {
 
 namespace {
-// Naive powers
 Real basis0(const Real x) { return 1; }
 Real basis1(const Real x) { return x; }
 Real basis2(const Real x) { return x * x; }
-// Real basis3(const Real x) { return x * x * x; }
-// Real basis4(const Real x) { return x * x * x * x; }
-// Laguerre
-// Real lag0(const Real x) { return boost::math::laguerre(0, x); }
-// Real lag1(const Real x) { return boost::math::laguerre(1, x); }
-// Real lag2(const Real x) { return boost::math::laguerre(2, x); }
-// Real lag3(const Real x) { return boost::math::laguerre(3, x); }
-// Real lag4(const Real x) { return boost::math::laguerre(4, x); }
-// Real lag5(const Real x) { return boost::math::laguerre(5, x); }
-// complementary basis
-Real basis2_0(const Real x) { return 1; }
-Real basis2_1(const Real x) { return x; }
-Real basis2_2(const Real x) { return x*x; }
 }
 
 Gaussian1dNonstandardSwaptionPathPricer::
@@ -55,18 +41,6 @@ Gaussian1dNonstandardSwaptionPathPricer::
     basis_.push_back(boost::function1<Real, Real>(&basis0));
     basis_.push_back(boost::function1<Real, Real>(&basis1));
     basis_.push_back(boost::function1<Real, Real>(&basis2));
-    // basis_.push_back(boost::function1<Real, Real>(&basis3));
-    // basis_.push_back(boost::function1<Real, Real>(&basis4));
-    // basis_.push_back(boost::function1<Real, Real>(&lag0));
-    // basis_.push_back(boost::function1<Real, Real>(&lag1));
-    // basis_.push_back(boost::function1<Real, Real>(&lag2));
-    // basis_.push_back(boost::function1<Real, Real>(&lag3));
-    // basis_.push_back(boost::function1<Real, Real>(&lag4));
-    // basis_.push_back(boost::function1<Real, Real>(&lag5));
-    // complementary basis functions
-    basis2_.push_back(boost::function1<Real, Real>(&basis2_0));
-    basis2_.push_back(boost::function1<Real, Real>(&basis2_1));
-    basis2_.push_back(boost::function1<Real, Real>(&basis2_2));
 
     // minimum alive exercise index
     Date today = Settings::instance().evaluationDate();
@@ -76,7 +50,8 @@ Gaussian1dNonstandardSwaptionPathPricer::
         arguments_->exercise->dates().begin();
 }
 
-void Gaussian1dNonstandardSwaptionPathPricer::initExerciseIndices(const Path& path) const {
+void Gaussian1dNonstandardSwaptionPathPricer::initExerciseIndices(
+    const Path &path) const {
     // initialize the indices corresponding to the exercise dates
     if (exerciseIdx_.size() == 0) {
         for (Size i = 0, j = minIdxAlive_;
@@ -107,11 +82,6 @@ Real Gaussian1dNonstandardSwaptionPathPricer::state(const Path &path,
 std::vector<boost::function1<Real, Real> >
 Gaussian1dNonstandardSwaptionPathPricer::basisSystem() const {
     return basis_;
-}
-
-std::vector<boost::function1<Real, Real> >
-Gaussian1dNonstandardSwaptionPathPricer::basisSystem2() const {
-    return basis2_;
 }
 
 Real Gaussian1dNonstandardSwaptionPathPricer::operator()(const Path &path,

@@ -27,6 +27,7 @@
 
 #include <ql/pricingengines/genericmodelengine.hpp>
 #include <ql/pricingengines/mclongstaffschwartzengine.hpp>
+#include <ql/experimental/models/longstaffschwartzproxypathpricer.hpp>
 #include <ql/termstructures/yield/flatforward.hpp>
 #include <ql/instruments/nonstandardswaption.hpp>
 
@@ -60,16 +61,16 @@ class McGaussian1dNonstandardSwaptionEngine
                         const bool exerciseValuePositive) const {
             Real tmp = 0.0;
             if (exerciseValuePositive) {
-                for (Size i = 0; i < coeff.size(); ++i)
-                    tmp += coeff[i] * v[i](state);
+                for (Size i = 0; i < coeffItm.size(); ++i)
+                    tmp += coeffItm[i] * v[i](state);
             } else {
-                for (Size i = 0; i < coeff2.size(); ++i)
-                    tmp += coeff2[i] * v2[i](state);
+                for (Size i = 0; i < coeffOtm.size(); ++i)
+                    tmp += coeffOtm[i] * v[i](state);
             }
             return std::max(tmp, 0.0); // continuation value is always positive
         }
-        Array coeff, coeff2;
-        std::vector<boost::function1<Real, Real> > v, v2;
+        Array coeffItm, coeffOtm;
+        std::vector<boost::function1<Real, Real> > v;
     };
 
     McGaussian1dNonstandardSwaptionEngine(
@@ -219,10 +220,12 @@ void McGaussian1dNonstandardSwaptionEngine<RNG, S>::calculate() const {
              i < static_cast<int>(this->proxy_->expiryDates.size()) - 1; ++i) {
             boost::shared_ptr<LsFunction> lsTmp =
                 boost::make_shared<LsFunction>();
-            lsTmp->coeff = this->pathPricer_->coefficients()[i];
-            lsTmp->coeff2 = this->pathPricer_->coefficients2()[i];
-            lsTmp->v = this->pathPricer_->basisSystem();
-            lsTmp->v2 = this->pathPricer_->basisSystem2();
+            boost::shared_ptr<LongstaffSchwartzProxyPathPricer> pathPricer =
+                boost::dynamic_pointer_cast<LongstaffSchwartzProxyPathPricer>(
+                    this->pathPricer_);
+            lsTmp->coeffItm = pathPricer->coefficientsItm()[i];
+            lsTmp->coeffOtm = pathPricer->coefficientsOtm()[i];
+            lsTmp->v = pathPricer->basisSystem();
             this->proxy_->regression.push_back(lsTmp);
         }
         this->results_.proxy = this->proxy_;
@@ -258,8 +261,13 @@ McGaussian1dNonstandardSwaptionEngine<RNG, S>::lsmPathPricer() const {
     boost::shared_ptr<YieldTermStructure> dummyCurve =
         boost::make_shared<FlatForward>(0, NullCalendar(), 0.0,
                                         Actual365Fixed());
-    return boost::make_shared<LongstaffSchwartzPathPricer<Path> >(
-        exerciseGrid, earlyExercisePricer, dummyCurve, true);
+    if (generateProxy_) {
+        return boost::make_shared<LongstaffSchwartzProxyPathPricer>(
+            exerciseGrid, earlyExercisePricer, dummyCurve);
+    } else {
+        return boost::make_shared<LongstaffSchwartzPathPricer<Path> >(
+            exerciseGrid, earlyExercisePricer, dummyCurve);
+    }
 }
 
 template <class RNG, class S>
