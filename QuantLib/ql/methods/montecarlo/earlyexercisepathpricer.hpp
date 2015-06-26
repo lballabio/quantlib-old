@@ -73,10 +73,6 @@ namespace QuantLib {
             state(const PathType& path, TimeType t) const = 0;
         virtual std::vector<boost::function1<ValueType, StateType> >
             basisSystem() const = 0;
-        virtual std::vector<boost::function1<ValueType, StateType> >
-            basisSystem2() const {
-                QL_FAIL("basis system 2 not provided");
-            }
     };
 }
 
