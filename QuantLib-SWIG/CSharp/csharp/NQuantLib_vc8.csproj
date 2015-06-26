@@ -391,6 +391,9 @@
     <Compile Include="GaussGegenbauerIntegration.cs" />
     <Compile Include="GaussHermiteIntegration.cs" />
     <Compile Include="GaussHyperbolicIntegration.cs" />
+    <Compile Include="Gaussian1dModel.cs" />
+    <Compile Include="Gaussian1dNonstandardSwaptionEngine.cs" />
+    <Compile Include="Gaussian1dSwaptionEngine.cs" />
     <Compile Include="GaussianLowDiscrepancySequenceGenerator.cs" />
     <Compile Include="GaussianMultiPathGenerator.cs" />
     <Compile Include="GaussianPathGenerator.cs" />
@@ -410,6 +413,8 @@
     <Compile Include="Germany.cs" />
     <Compile Include="GFunctionFactory.cs" />
     <Compile Include="GRDCurrency.cs" />
+    <Compile Include="Gsr.cs" />
+    <Compile Include="GsrProcess.cs" />
     <Compile Include="HaltonRsg.cs" />
     <Compile Include="HazardRate.cs" />
     <Compile Include="HazardRateCurve.cs" />
@@ -427,6 +432,7 @@
     <Compile Include="IborCouponPricer.cs" />
     <Compile Include="IborIndex.cs" />
     <Compile Include="Iceland.cs" />
+    <Compile Include="IDRCurrency.cs" />
     <Compile Include="IEPCurrency.cs" />
     <Compile Include="ILSCurrency.cs" />
     <Compile Include="IMM.cs" />
@@ -535,6 +541,7 @@
     <Compile Include="MultipleStatistics.cs" />
     <Compile Include="MultiplicativePriceSeasonalityPtr.cs" />
     <Compile Include="MXNCurrency.cs" />
+    <Compile Include="MYRCurrency.cs" />
     <Compile Include="NelsonSiegelFitting.cs" />
     <Compile Include="NeumannBC.cs" />
     <Compile Include="NewZealand.cs" />
@@ -626,6 +633,7 @@
     <Compile Include="ROLCurrency.cs" />
     <Compile Include="RONCurrency.cs" />
     <Compile Include="Rounding.cs" />
+    <Compile Include="RUBCurrency.cs" />
     <Compile Include="Russia.cs" />
     <Compile Include="SalvagingAlgorithm.cs" />
     <Compile Include="SampleArray.cs" />
@@ -691,7 +699,9 @@
     <Compile Include="Sweden.cs" />
     <Compile Include="SWIGTYPE_p_BlackVolTermStructure.cs" />
     <Compile Include="SWIGTYPE_p_boost__shared_ptrT_EndCriteria_t.cs" />
+    <Compile Include="SWIGTYPE_p_boost__shared_ptrT_IborIndex_t.cs" />
     <Compile Include="SWIGTYPE_p_boost__shared_ptrT_OptimizationMethod_t.cs" />
+    <Compile Include="SWIGTYPE_p_boost__shared_ptrT_SwapIndex_t.cs" />
     <Compile Include="SWIGTYPE_p_CalibratedModel.cs" />
     <Compile Include="SWIGTYPE_p_CallabilitySchedule.cs" />
     <Compile Include="SWIGTYPE_p_CapFloorTermVolatilityStructure.cs" />
@@ -701,6 +711,7 @@
     <Compile Include="SWIGTYPE_p_Dividend.cs" />
     <Compile Include="SWIGTYPE_p_EndCriteria__Type.cs" />
     <Compile Include="SWIGTYPE_p_FloatingRateCouponPricer.cs" />
+    <Compile Include="SWIGTYPE_p_Gaussian1dModel.cs" />
     <Compile Include="SWIGTYPE_p_Index.cs" />
     <Compile Include="SWIGTYPE_p_InflationTermStructure.cs" />
     <Compile Include="SWIGTYPE_p_Instrument.cs" />
@@ -761,6 +772,7 @@
     <Compile Include="VarianceGammaProcess.cs" />
     <Compile Include="Vasicek.cs" />
     <Compile Include="VEBCurrency.cs" />
+    <Compile Include="VNDCurrency.cs" />
     <Compile Include="Weekday.cs" />
     <Compile Include="WeekendsOnly.cs" />
     <Compile Include="YearOnYearInflationSwap.cs" />

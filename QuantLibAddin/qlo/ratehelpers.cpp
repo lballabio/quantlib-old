@@ -307,7 +307,7 @@ namespace QuantLibAddin {
                                           exCouponConvention,
                                           exCouponEndOfMonth,
                                           useCleanPrice));
-        quoteName_ = f(properties->getSystemProperty("CleanPrice"));
+        quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     FxSwapRateHelper::FxSwapRateHelper(
