@@ -28,7 +28,7 @@ FxTarfEngine::FxTarfEngine(const Handle<YieldTermStructure> discount)
     registerWith(Settings::instance().evaluationDate());
 }
 
-void FxTarfEngine::FxTarfEngine::calculate() const {
+void FxTarfEngine::calculate() const {
 
     Date today = Settings::instance().evaluationDate();
 
