@@ -43,7 +43,7 @@ class Timer {
         npvRef = swaptionRef2->NPV(); \
         timer.start(); \
         npvProxy = swaption2->NPV(); \
-        underlyingProxy = swaption2->result<Real>("exerciseValue"); \
+        underlyingProxy = 0.0; /*swaption2->result<Real>("exerciseValue");*/ \
         timer.stop(); \
         npvProxyTiming = timer.elapsed(); \
         std::clog << "\nPricing results on " \
@@ -52,8 +52,8 @@ class Timer {
                   << " with maturity " << maturityRefQuote->value() << "\n"; \
         std::clog << "Integral engine npv = " << npvRef << "\n"; \
         std::clog << "Proxy    engine npv = " << npvProxy \
-                  << " (timing: " << npvProxyTiming \
-        << "s), underlying npv = " << underlyingProxy << "\n";
+                  << " (timing: " << npvProxyTiming*1000000.0 \
+        << "mus)" /*<< ", underlying npv = " << underlyingProxy*/ << "\n";
 // here the main part of the code starts
 
 int main(int argc, char *argv[]) {
@@ -172,7 +172,7 @@ int main(int argc, char *argv[]) {
 
         boost::shared_ptr<PricingEngine> integralEngine =
             boost::make_shared<Gaussian1dNonstandardSwaptionEngine>(
-                gsrFloating, 64, 7.0, true, false, Handle<Quote>(), ytsRef);
+                gsrFloating, 8, 5.0, true, false, Handle<Quote>(), ytsRef);
 
         // compute a reference price for the inital pricing
 
@@ -206,9 +206,9 @@ int main(int argc, char *argv[]) {
         std::clog << "Pricing results on the original reference date ("
                   << refDateOrig << "):\n";
         std::clog << "Integral engine npv = " << npvOrigIntegral
-                  << " (timing: " << npvOrigIntegralTiming << "s)\n";
+                  << " (timing: " << npvOrigIntegralTiming*1000000.0 << "mus)\n";
         std::clog << "MC       engine npv = " << npvOrigMc << " error estimate "
-                  << errorOrigMc << " (timing: " << npvOrigMcTiming << "s)\n";
+                  << errorOrigMc << " (timing: " << npvOrigMcTiming*1000000.0 << "mus)\n";
 
         // proxy pricing, that is what this example is really about
 
@@ -224,7 +224,7 @@ int main(int argc, char *argv[]) {
 
         boost::shared_ptr<PricingEngine> proxyEngine =
             boost::make_shared<ProxyNonstandardSwaptionEngine>(
-                swaption2->proxy(), rateLevelRef, maturityRef, 16, 5.0, true);
+                swaption2->proxy(), rateLevelRef, maturityRef, 8, 5.0, true);
 
         Real npvRef, npvProxy, underlyingProxy, npvProxyTiming;
 
@@ -272,18 +272,18 @@ int main(int argc, char *argv[]) {
 
         // check exercise
 
-        Settings::instance().evaluationDate() = Date(10, January, 2020);
-        rateLevelRefQuote->setValue(0.005);
-        maturityRefQuote->setValue(6.0);
-        npvProxy = swaption2->NPV();
-        underlyingProxy = swaption2->result<Real>("exerciseValue");
-        std::clog << "\nExercise check (" << Settings::instance().evaluationDate() << "):\n";
-        std::clog << "otm option: exercise value=" << underlyingProxy << " npv=" << npvProxy << std::endl;
+        // Settings::instance().evaluationDate() = Date(10, January, 2020);
+        // rateLevelRefQuote->setValue(0.005);
+        // maturityRefQuote->setValue(6.0);
+        // npvProxy = swaption2->NPV();
+        // underlyingProxy = swaption2->result<Real>("exerciseValue");
+        // std::clog << "\nExercise check (" << Settings::instance().evaluationDate() << "):\n";
+        // std::clog << "otm option: exercise value=" << underlyingProxy << " npv=" << npvProxy << std::endl;
 
-        rateLevelRefQuote->setValue(0.04);
-        npvProxy = swaption2->NPV();
-        underlyingProxy = swaption2->result<Real>("exerciseValue");
-        std::clog << "itm option: exercise value=" << underlyingProxy << " npv=" << npvProxy << std::endl;
+        // rateLevelRefQuote->setValue(0.04);
+        // npvProxy = swaption2->NPV();
+        // underlyingProxy = swaption2->result<Real>("exerciseValue");
+        // std::clog << "itm option: exercise value=" << underlyingProxy << " npv=" << npvProxy << std::endl;
 
         return 0;
 
