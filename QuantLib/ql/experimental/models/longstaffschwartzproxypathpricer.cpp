@@ -26,12 +26,28 @@ LongstaffSchwartzProxyPathPricer::LongstaffSchwartzProxyPathPricer(
     const boost::shared_ptr<EarlyExercisePathPricer<PathType> > &pricer,
     const boost::shared_ptr<YieldTermStructure> &termStructure)
     : LongstaffSchwartzPathPricer<PathType>(times, pricer, termStructure),
-      coeffItm_(times.size() - 2), coeffOtm_(times.size() - 2) {}
+      coeffItm_(times.size() - 1), coeffOtm_(times.size() - 1) {}
 
 void LongstaffSchwartzProxyPathPricer::post_processing(
-    const Size i, const std::vector<StateType> &x_itm,
-    const std::vector<Real> &y_itm, const std::vector<StateType> &x_otm,
-    const std::vector<Real> &y_otm) {
+    const Size i, const std::vector<StateType> &state,
+    const std::vector<Real> &price, const std::vector<Real> &exercise) {
+
+    std::vector<StateType> x_itm, x_otm;
+    std::vector<Real> y_itm, y_otm;
+
+    cutoff_ = -QL_MAX_REAL;
+
+    for (Size j = 0; j < state.size(); ++j) {
+        if (exercise[j] > 0.0) {
+            x_itm.push_back(state[j]);
+            y_itm.push_back(price[j]);
+        } else {
+            x_otm.push_back(state[j]);
+            y_otm.push_back(price[j]);
+            if(state[j]>cutoff_)
+                cutoff_ = state[j];
+        }
+    }
 
     if (v_.size() <= x_itm.size()) {
         coeffItm_[i - 1] =

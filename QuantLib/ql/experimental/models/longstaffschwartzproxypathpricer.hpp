@@ -46,14 +46,15 @@ class LongstaffSchwartzProxyPathPricer
     }
     const std::vector<Array> coefficientsItm() const { return coeffItm_; }
     const std::vector<Array> coefficientsOtm() const { return coeffOtm_; }
+    const StateType cutoff() const { return cutoff_; }
 
   protected:
-    void post_processing(const Size i, const std::vector<StateType> &x_itm,
-                         const std::vector<Real> &y_itm,
-                         const std::vector<StateType> &x_otm,
-                         const std::vector<Real> &y_otm);
+    void post_processing(const Size i, const std::vector<StateType> &state,
+                         const std::vector<Real> &price,
+                         const std::vector<Real> &exercise);
 
     std::vector<Array> coeffItm_, coeffOtm_;
+    StateType cutoff_;
 };
 
 } // namespace

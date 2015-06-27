@@ -49,13 +49,9 @@ class NonstandardSwaption : public Option, public ProxyInstrument {
     //! proxy description
     struct Proxy : ProxyDescription {
         struct ProxyFunction {
-            // Function taking the model state and exercise value and
-            // returning the continuation value. The reason that the
-            // sign of the exercise value is required is that the
-            // regression is split into two regions defined by
-            // the sign.
-            virtual Real operator()(const Real state,
-                                    const bool exerciseValuePositive) const = 0;
+            // Function taking the model state and
+            // returning the value.
+            virtual Real operator()(const Real state) const = 0;
         };
         // open exercise expiry dates
         std::vector<Date> expiryDates;
@@ -72,11 +68,11 @@ class NonstandardSwaption : public Option, public ProxyInstrument {
         // are supported
         std::vector<boost::shared_ptr<ProxyFunction> > regression;
         void validate() const {
-            QL_REQUIRE(regression.size() == expiryDates.size() - 1,
+            QL_REQUIRE(regression.size() == expiryDates.size(),
                        "Number of regression functions ("
                            << regression.size()
-                           << ") does not match number of exercise dates - 1 ("
-                           << expiryDates.size() - 1 << ")");
+                           << ") does not match number of exercise dates ("
+                           << expiryDates.size() << ")");
             QL_REQUIRE(model != NULL, "no model given");
         }
     };

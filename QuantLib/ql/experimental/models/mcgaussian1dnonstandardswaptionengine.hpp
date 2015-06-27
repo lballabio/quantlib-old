@@ -57,10 +57,9 @@ class McGaussian1dNonstandardSwaptionEngine
 
     /*! proxy function */
     struct LsFunction : NonstandardSwaption::Proxy::ProxyFunction {
-        Real operator()(const Real state,
-                        const bool exerciseValuePositive) const {
+        Real operator()(const Real state) const {
             Real tmp = 0.0;
-            if (exerciseValuePositive) {
+            if (state > cutoff) {
                 for (Size i = 0; i < coeffItm.size(); ++i)
                     tmp += coeffItm[i] * v[i](state);
             } else {
@@ -70,6 +69,7 @@ class McGaussian1dNonstandardSwaptionEngine
             return std::max(tmp, 0.0); // continuation value is always positive
         }
         Array coeffItm, coeffOtm;
+        Real cutoff;
         std::vector<boost::function1<Real, Real> > v;
     };
 
@@ -215,9 +215,9 @@ void McGaussian1dNonstandardSwaptionEngine<RNG, S>::calculate() const {
         this->proxy_->discount = discountCurve_;
         // oas (may be empty)
         this->proxy_->oas = oas_;
-        // regression functions for continuation values
+        // regression functions for values
         for (int i = 0;
-             i < static_cast<int>(this->proxy_->expiryDates.size()) - 1; ++i) {
+             i < static_cast<int>(this->proxy_->expiryDates.size()); ++i) {
             boost::shared_ptr<LsFunction> lsTmp =
                 boost::make_shared<LsFunction>();
             boost::shared_ptr<LongstaffSchwartzProxyPathPricer> pathPricer =
@@ -225,6 +225,7 @@ void McGaussian1dNonstandardSwaptionEngine<RNG, S>::calculate() const {
                     this->pathPricer_);
             lsTmp->coeffItm = pathPricer->coefficientsItm()[i];
             lsTmp->coeffOtm = pathPricer->coefficientsOtm()[i];
+            lsTmp->cutoff = pathPricer->cutoff();
             lsTmp->v = pathPricer->basisSystem();
             this->proxy_->regression.push_back(lsTmp);
         }
