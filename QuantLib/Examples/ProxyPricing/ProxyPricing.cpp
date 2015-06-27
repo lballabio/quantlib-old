@@ -43,7 +43,7 @@ class Timer {
         npvRef = swaptionRef2->NPV(); \
         timer.start(); \
         npvProxy = swaption2->NPV(); \
-        underlyingProxy = 0.0; /*swaption2->result<Real>("exerciseValue");*/ \
+        /*underlyingProxy = 0.0; swaption2->result<Real>("exerciseValue");*/ \
         timer.stop(); \
         npvProxyTiming = timer.elapsed(); \
         std::clog << "\nPricing results on " \
@@ -172,7 +172,7 @@ int main(int argc, char *argv[]) {
 
         boost::shared_ptr<PricingEngine> integralEngine =
             boost::make_shared<Gaussian1dNonstandardSwaptionEngine>(
-                gsrFloating, 8, 5.0, true, false, Handle<Quote>(), ytsRef);
+                gsrFloating, 64, 7.0, true, false, Handle<Quote>(), ytsRef);
 
         // compute a reference price for the inital pricing
 
@@ -218,15 +218,11 @@ int main(int argc, char *argv[]) {
             boost::make_shared<SimpleQuote>();
         Handle<Quote> maturityRef(maturityRefQuote);
 
-        // we include option expiries on the reference date to be able to check
-        // for exercise later on, however note that this is not consistent
-        // with the integral engine which excludes today as an expiry date always.
-
         boost::shared_ptr<PricingEngine> proxyEngine =
             boost::make_shared<ProxyNonstandardSwaptionEngine>(
-                swaption2->proxy(), rateLevelRef, maturityRef, 8, 5.0, true);
+                swaption2->proxy(), rateLevelRef, maturityRef, 64, 7.0, false);
 
-        Real npvRef, npvProxy, underlyingProxy, npvProxyTiming;
+        Real npvRef, npvProxy, npvProxyTiming;
 
         swaptionRef2->setPricingEngine(integralEngine);
         swaption2->setPricingEngine(proxyEngine);
