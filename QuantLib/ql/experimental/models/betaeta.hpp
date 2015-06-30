@@ -220,7 +220,7 @@ class BetaEta : public TermStructureConsistentModel,
     mutable bool enforcesTodaysHistoricFixings_;
 
     boost::shared_ptr<BetaEtaCore> core_;
-    boost::shared_ptr<Integrator> integrator_;
+    boost::shared_ptr<Integrator> integrator_, integrator2_;
 
     class integrand {
       public:
@@ -267,7 +267,12 @@ inline const Real BetaEta::integrate(const Real stdDevs,
                                      const Real t) const {
     Real s = std::sqrt(core_->tau(t0, t));
     integrand phi(t0, x0, t, f, *core_);
-    Real result = (*integrator_)(phi, x0 - stdDevs * s, x0 + stdDevs * s);
+    Real result;
+    try {
+        result = (*integrator_)(phi, x0 - stdDevs * s, x0 + stdDevs * s);
+    } catch (QuantLib::Error) {
+        result = (*integrator2_)(phi, x0 - stdDevs * s, x0 + stdDevs * s);
+    }
     return result;
 }
 
