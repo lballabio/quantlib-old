@@ -33,14 +33,12 @@
 
 #include <ql/experimental/models/betaetatabulation.cpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
 BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
                          const Array &kappa, const Real &beta, const Real &eta)
     : times_(times), alpha_(alpha), kappa_(kappa), beta_(beta), eta_(eta),
-      integrateStdDevs_(8.0), ghPoints_(16), multiplier_(1.00001) {
+      integrateStdDevs_(8.0), ghPoints_(8) {
 
     QL_REQUIRE(beta > 0.0, "beta (" << beta << ") must be positive");
     QL_REQUIRE(eta >= 0.0 && eta <= 1.0, " eta (" << eta
@@ -113,40 +111,24 @@ class BetaEtaCore::mIntegrand1 {
     }
 };
 
-// integrand to precompute M, 0 < eta < 1, eta != 0.5, first approach
+// integrand to precompute M, 0 < eta < 1, eta != 0.5
 class BetaEtaCore::mIntegrand2 {
     const BetaEtaCore *model_;
-    const Real v_, u0_;
+    const Real S_, u0_;
 
   public:
-    mIntegrand2(const BetaEtaCore *model, const Real v, const Real u0)
-        : model_(model), v_(v), u0_(u0) {}
+    mIntegrand2(const BetaEtaCore *model, const Real S, const Real u0)
+        : model_(model), S_(S), u0_(u0) {}
     Real operator()(Real u) const {
         if (close(u, 0))
             return 0.0;
         Real eta = model_->eta();
-        return model_->p_y_core(v_, 1.0 / (1.0 - eta),
-                                std::pow(u / u0_, 1.0 - eta) / (1.0 - eta)) *
-               std::exp(-(u - u0_));
-    }
-};
-
-// alternative implementation in v*,w
-class BetaEtaCore::mIntegrand2a {
-    const BetaEtaCore *model_;
-    const Real v_, w0_;
-
-  public:
-    mIntegrand2a(const BetaEtaCore *model, const Real v, const Real w0)
-        : model_(model), v_(v), w0_(w0) {}
-    Real operator()(Real w) const {
-        if (close(w, 0))
-            return 0.0;
-        Real eta = model_->eta();
-        return std::pow(w, eta / (1.0 - eta)) * model_->p_y_core(1.0, w0_, w) *
-               std::exp(-std::pow(v_, 1.0 / (2.0 - 2.0 * eta)) * (1.0 - eta) *
-                        (std::pow(w, 1.0 / (1.0 - eta)) -
-                         std::pow(w0_, 1.0 / (1.0 - eta))));
+        return model_->p_y_core(
+                   S_ * std::pow(1.0 - eta, 2.0 * eta) *
+                       std::pow(u0_, 2.0 - 2.0 * eta),
+                   std::pow(u0_, 1.0 - eta) * std::pow(1.0 - eta, eta - 1.0),
+                   std::pow(u, 1.0 - eta) * std::pow(1.0 - eta, eta - 1.0)) *
+               exp(-(u - u0_));
     }
 };
 
@@ -219,10 +201,6 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
         }
     }
 
-    std::cout << t0 << " " << x0 << " " << t << " " << result << " ";
-    // tabulated=" << useTabulation << "\n";
-    M_tabulated(t0, x0, t);
-
     Real singularTerm =
         singularTerm_y_0(t0, x0, t) * exp(-lambda * (-1.0 / beta_ - x0));
     // only take the singular term into account if numerically significant
@@ -268,8 +246,9 @@ const Real BetaEtaCore::M_tabulated(const Real t0, const Real x0,
     }
 
     Real u0 = lambda / beta_ * std::fabs(1.0 + beta_ * x0);
-    Real v =
-        vraw * beta_ * beta_ / std::pow(1.0 + beta_ * x0, 2.0 - 2.0 * eta_);
+    Real Su = vraw * beta_ * beta_ /
+              std::pow(1.0 + beta_ * x0, 2.0 - 2.0 * eta_) *
+              std::pow(u0, 2.0 - 0.5 * eta_);
 
     int etaIdx = std::upper_bound(eta_pre_.begin(), eta_pre_.end(), eta_) -
                  eta_pre_.begin();
@@ -286,54 +265,13 @@ const Real BetaEtaCore::M_tabulated(const Real t0, const Real x0,
                              ? (eta_pre_[etaIdx] - eta_pre_[etaIdx - 1])
                              : (1.0 - eta_pre_[etaIdx - 1]));
 
-    Real result_eta_lower = M_surfaces_[etaIdx - 1]->operator()(u0, v);
+    Real result_eta_lower = M_surfaces_[etaIdx - 1]->operator()(u0, Su);
 
     Real result_eta_higher;
     if (etaIdx < static_cast<int>(eta_pre_.size())) {
-        result_eta_higher = M_surfaces_[etaIdx]->operator()(u0, v);
+        result_eta_higher = M_surfaces_[etaIdx]->operator()(u0, Su);
     } else {
         result_eta_higher = M_eta_1(t0, x0, t);
-    }
-
-    Real add = eta_ / (eta_ - 1.0) * std::log(1.0 - eta_) - std::log(u0);
-
-    Real result = add + (result_eta_lower * eta_weight_1 +
-                         result_eta_higher * eta_weight_2);
-
-    std::cout << u0 << " " << v << " " << result << " " << M(u0, v) + add
-              << "\n";
-
-    return result;
-}
-
-// for debug
-const Real BetaEtaCore::M_tabulated(const Real u0, const Real v) const {
-
-    QL_REQUIRE(eta_ <= eta_pre_.back(), "M_tabulated(u,S) only defined for eta("
-                                            << eta_
-                                            << ") <= " << eta_pre_.back());
-    int etaIdx = std::upper_bound(eta_pre_.begin(), eta_pre_.end(), eta_) -
-                 eta_pre_.begin();
-
-    Real eta_weight_1 =
-        (etaIdx < static_cast<int>(eta_pre_.size()) ? eta_pre_[etaIdx] - eta_
-                                                    : 1.0 - eta_) /
-        (etaIdx < static_cast<int>(eta_pre_.size())
-             ? (eta_pre_[etaIdx] - eta_pre_[etaIdx - 1])
-             : (1.0 - eta_pre_[etaIdx - 1]));
-
-    Real eta_weight_2 = (eta_ - eta_pre_[etaIdx - 1]) /
-                        (etaIdx < static_cast<int>(eta_pre_.size())
-                             ? (eta_pre_[etaIdx] - eta_pre_[etaIdx - 1])
-                             : (1.0 - eta_pre_[etaIdx - 1]));
-
-    Real result_eta_lower = M_surfaces_[etaIdx - 1]->operator()(u0, v);
-
-    Real result_eta_higher;
-    if (etaIdx < static_cast<int>(eta_pre_.size())) {
-        result_eta_higher = M_surfaces_[etaIdx]->operator()(u0, v);
-    } else {
-        QL_FAIL("we should never end up here ...");
     }
 
     Real result =
@@ -342,21 +280,26 @@ const Real BetaEtaCore::M_tabulated(const Real u0, const Real v) const {
     return result;
 }
 
-const Real BetaEtaCore::M(const Real u0, const Real S) const {
+const Real BetaEtaCore::M(const Real u0, const Real Su) const {
     Real res;
-    if (close(S, 0.0)) {
+    if (close(Su, 0.0)) {
         res = 1.0;
     } else {
-        QL_REQUIRE(!close(eta_, 1.0), "M(u,S) is only defined for eta < 1");
-        mIntegrand2 ig(this, S, u0);
+        QL_REQUIRE(!close(eta_, 1.0), "M(u0,Su) is only defined for eta < 1");
+        mIntegrand2 ig(this, Su / std::pow(u0, 2.0 - 0.5 * eta_), u0);
         // bisection to determine the integration domain
         Real t = 1E-10, t2 = 1E-12;
-        Real la = u0;
-        Real lb = u0;
-        while (ig(la) > t && la > 1E-8)
-            la /= multiplier_;
-        while (ig(lb) > t)
-            lb *= multiplier_;
+        Real tmpMult = 0.01;
+        Real la, lb;
+        do {
+            la = u0;
+            lb = u0;
+            while (ig(la) > t && la > 1E-8)
+                la /= (1.0 + tmpMult);
+            while (ig(lb) > t)
+                lb *= (1.0 + tmpMult);
+            tmpMult /= 10.0;
+        } while (close(la, lb) && tmpMult > 1E-8);
         Real tmpa = la;
         Real tmpb = u0;
         Real m = tmpa;
@@ -383,181 +326,25 @@ const Real BetaEtaCore::M(const Real u0, const Real S) const {
             }
         }
         Real b = m;
-        // while (ig(b) > 1E-20) {
-        //     b *= multiplier_;
-        // }
-        // while (ig(a) > 1E-20 && a > 1E-6) {
-        //     a /= multiplier_;
-        // }
-        // std::cout << "u0=" << u0 << " S=" << S << " a=" << a << " b=" << b
-        //           << std::endl;
-        // Real tmp = a;
-        // while (tmp <= b) {
-        //     std::cout << tmp << " " << ig(tmp) << "\n";
-        //     tmp += (b - a) / 100.0;
-        // }
         try {
             res = preIntegrator_->operator()(ig, a, b);
-            // std::cout << "result(gl)=" << res << "\n";
         } catch (...) {
             try {
                 res = preIntegrator2_->operator()(ig, a, b);
-                // std::cout << "result(sg)=" << res << "\n";
             } catch (...) {
                 QL_FAIL("could not compute M("
-                        << u0 << "," << S << "), tried integration over " << a
+                        << u0 << "," << Su << "), tried integration over " << a
                         << "..." << b);
             }
         }
+        if (close(res, 0.0))
+            std::clog << "u0 " << u0 << " Su " << Su
+                      << " integration bounds are " << a << " and " << b
+                      << "\n";
     }
-    return std::log(res);
+    Real a = close(res, 0.0) ? -50.0 : std::log(res);
+    return a;
 }
-
-// alternative implementaiton in w,v*
-// const Real BetaEtaCore::M_tabulated(const Real t0, const Real x0,
-//                                     const Real t) const {
-
-//     Real vraw = this->tau(t0, t);
-//     Real lambda = this->lambda(t);
-
-//     if (close(eta_, 0.5) || close(eta_, 1.0)) {
-//         return M(t0, x0, t);
-//     }
-
-//     Real v = vraw * std::pow(lambda, 2.0 - 2.0 * eta_) *
-//              std::pow(beta_, 2.0 * eta_) * std::pow(1.0 - eta_, 2.0 *
-//              eta_);
-//     Real u0 = lambda / beta_ * std::fabs(1.0 + beta_ * x0);
-//     u0 = std::pow(u0, 1.0 - eta_) * std::pow(1.0 - eta_, eta_ - 1.0) /
-//          std::sqrt(v);
-
-//     int etaIdx = std::upper_bound(eta_pre_.begin(), eta_pre_.end(), eta_)
-//     -
-//                  eta_pre_.begin();
-//     int uIdx =
-//         std::upper_bound(u_pre_.begin(), u_pre_.end(), u0) -
-//         u_pre_.begin();
-
-//     int vIdx =
-//         std::upper_bound(v_pre_.begin(), v_pre_.end(), v) -
-//         v_pre_.begin();
-
-//     // QL_REQUIRE(vIdx < static_cast<int>(v_pre_.size()),
-//     //            "M_tabulated can not extrapolate in v direction, v is "
-//     //                << v << ", bound is " << v_pre_.back());
-
-//     int uIdx_low, uIdx_high;
-//     if (uIdx == 0) {
-//         uIdx_low = 0;
-//         uIdx_high = 1;
-//     } else {
-//         uIdx_high = std::min(uIdx, static_cast<int>(u_pre_.size()) - 1);
-//         uIdx_low = uIdx_high - 1;
-//     }
-
-//     int vIdx_low = std::max(vIdx - 1, 0);
-//     int vIdx_high = vIdx_low + 1;
-
-//     Real u_weight_1 =
-//         (u_pre_[uIdx_high] - u0) / (u_pre_[uIdx_high] -
-//         u_pre_[uIdx_low]);
-//     Real u_weight_2 =
-//         (u0 - u_pre_[uIdx_low]) / (u_pre_[uIdx_high] - u_pre_[uIdx_low]);
-
-//     Real v_weight_1 =
-//         (v_pre_[vIdx_high] - v) / (v_pre_[vIdx_high] - v_pre_[vIdx_low]);
-//     Real v_weight_2 =
-//         (v - v_pre_[vIdx_low]) / (v_pre_[vIdx_high] - v_pre_[vIdx_low]);
-
-//     Real eta_weight_1 =
-//         (etaIdx < static_cast<int>(eta_pre_.size()) ? eta_pre_[etaIdx] -
-//         eta_
-//                                                     : 1.0 - eta_) /
-//         (etaIdx < static_cast<int>(eta_pre_.size())
-//              ? (eta_pre_[etaIdx] - eta_pre_[etaIdx - 1])
-//              : (1.0 - eta_pre_[etaIdx - 1]));
-
-//     Real eta_weight_2 = (eta_ - eta_pre_[etaIdx - 1]) /
-//                         (etaIdx < static_cast<int>(eta_pre_.size())
-//                              ? (eta_pre_[etaIdx] - eta_pre_[etaIdx - 1])
-//                              : (1.0 - eta_pre_[etaIdx - 1]));
-
-//     Real result_eta_lower = detail::M_pre[etaIdx - 1][uIdx_low][vIdx_low]
-//     *
-//                                 u_weight_1 * v_weight_1 +
-//                             detail::M_pre[etaIdx -
-//                             1][uIdx_low][vIdx_high] *
-//                                 u_weight_1 * v_weight_2 +
-//                             detail::M_pre[etaIdx -
-//                             1][uIdx_high][vIdx_low] *
-//                                 u_weight_2 * v_weight_1 +
-//                             detail::M_pre[etaIdx -
-//                             1][uIdx_high][vIdx_high] *
-//                                 u_weight_2 * v_weight_2;
-
-//     // std::cout << "eta lower extrapolation\n";
-//     // std::cout << "        " << v_pre_[vIdx_low] << " " <<
-//     // v_pre_[vIdx_high]
-//     //           << std::endl;
-//     // std::cout << u_pre_[uIdx_low] << " "
-//     //           << detail::M_pre[etaIdx - 1][uIdx_low][vIdx_low] << " "
-//     //           << detail::M_pre[etaIdx - 1][uIdx_low][vIdx_high] <<
-//     "\n";
-//     // std::cout << u_pre_[uIdx_high] << " "
-//     //           << detail::M_pre[etaIdx - 1][uIdx_high][vIdx_low] << " "
-//     //           << detail::M_pre[etaIdx - 1][uIdx_high][vIdx_high] <<
-//     "\n";
-
-//     Real result_eta_higher;
-//     if (etaIdx < static_cast<int>(eta_pre_.size())) {
-//         result_eta_higher = detail::M_pre[etaIdx][uIdx_low][vIdx_low] *
-//                                 u_weight_1 * v_weight_1 +
-//                             detail::M_pre[etaIdx][uIdx_low][vIdx_high] *
-//                                 u_weight_1 * v_weight_2 +
-//                             detail::M_pre[etaIdx][uIdx_high][vIdx_low] *
-//                                 u_weight_2 * v_weight_1 +
-//                             detail::M_pre[etaIdx][uIdx_high][vIdx_high] *
-//                                 u_weight_2 * v_weight_2;
-//     } else {
-//         result_eta_higher = M_eta_1(t0, x0, t);
-//     }
-
-//     Real i = result_eta_lower * eta_weight_1 + result_eta_higher *
-//     eta_weight_2;
-
-//     // debug: we return not an interpolated, but the full precomputable
-//     value
-//     std::cout << u0 << " " << v << " " << M(u0, v) << "\n";
-//     //
-//     return i;
-// }
-
-// // alternative implementation in w, v*
-// const Real BetaEtaCore::M(const Real w0, const Real v) const {
-//     const Real m = 1.3; // multiplier to determine integration domain
-//     Real res = 0.0;
-//     if (close(v, 0.0)) {
-//         res = 1.0;
-//     } else {
-//         QL_REQUIRE(!close(eta_, 1.0), "M(w,v) is only defined for eta <
-//         1");
-//         mIntegrand2a ig(this, v, w0);
-//         Real a = w0;
-//         Real b = w0;
-//         while (ig(b) > 1E-10) {
-//             b *= m;
-//         }
-//         while (ig(a) > 1E-10 && a > 1E-10) {
-//             a /= m;
-//         }
-//         try {
-//             res += preIntegrator_->operator()(ig, a, b);
-//         } catch (...) {
-//             res += preIntegrator2_->operator()(ig, a, b);
-//         }
-//     }
-//     return std::log(res);
-// }
 
 const Real BetaEtaCore::p_y_core(const Real v, const Real y0,
                                  const Real y) const {
@@ -601,6 +388,9 @@ const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
     return p_y(v, y0, y);
 };
 
+// TODO, this can obviously be tabulated in eta, y0, tau-tau0
+// it seems that this should be done for performance reasons
+// (the cases eta < 0.5 work much faster than eta >= 0.5)
 const Real BetaEtaCore::singularTerm_y_0(const Time t0, const Real x0,
                                          const Time t) const {
     if (eta_ < 0.5 || close(eta_, 1.0))
@@ -634,7 +424,7 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
 
         out << "/* -*- mode: c++; tab-width: 4; indent-tabs-mode:"
             << "nil; c-basic-offset: 4 -*- */\n"
-            << " \n "
+            << "\n "
             << "/*\n"
             << " Copyright (C) 2015 Peter Caspers\n"
             << " Copyright (C) 2015 Roland Lichters\n"
@@ -696,9 +486,6 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
     Array alpha(1, 0.01);
     Array kappa(1, 0.01);
 
-    Real h = 1E-4; // step to compute finite difference second derivatives in
-                   // the plots
-
     if (type == Cpp) {
         for (Size e = 0; e < etasteps - 1; ++e) {
             Real eta = em.location(e);
@@ -732,20 +519,7 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
                 for (int j = 0; j < static_cast<int>(vm.size()); ++j) {
                     Real v = j == -1 ? 0.0 : vm.location(j);
                     Real lres = core.M(u0, v);
-                    // Real lresTab = core.M_tabulated(u0, v); // for debug
-                    // output currently tabulated values
-                    // Real lres_u_h = core.M(u0 + h, v);
-                    // Real lres_u_2h = core.M(u0 + 2.0 * h, v);
-                    // Real lres_v_h = core.M(u0, v + h);
-                    // Real lres_v_2h = core.M(u0, v + 2.0 * h);
-                    // Real lres_u = (lres_u_2h - 2.0 * lres_u_h + lres) / (h *
-                    // h);
-                    // Real lres_v = (lres_v_2h - 2.0 * lres_v_h + lres) / (h *
-                    // h);
-                    // out << eta << " " << u0 << " " << v << " " << lres << " "
-                    //     << lres_u << " " << lres_v << "\n";
-                    out << eta << " " << u0 << " " << v << " " << lres
-                        << " " /*<< lresTab*/ << "\n";
+                    out << eta << " " << u0 << " " << v << " " << lres << "\n";
                 }
                 out << "\n";
             }

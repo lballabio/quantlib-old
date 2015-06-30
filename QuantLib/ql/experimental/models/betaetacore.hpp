@@ -48,10 +48,6 @@ namespace QuantLib {
 
 class BetaEtaCore {
   public:
-    /*! we assume a piecewise constant reversion \kappa and
-        set \lambda(t) := (1-exp(-\kappa*t))/\kappa
-        note that these are effective (integrated) rather
-        than forward-forward reversions though */
     BetaEtaCore(const Array &times, const Array &alpha, const Array &kappa,
                 const Real &beta, const Real &eta);
 
@@ -78,9 +74,9 @@ class BetaEtaCore {
     const Real eta() const { return eta_; }
 
     // M in transformed variables, mainly there for tabulation purposes
-    const Real M(const Real u0, const Real v) const;
+    const Real M(const Real u0, const Real Su) const;
 
-    //  private:
+  private:
     const Real M_eta_1(const Real t0, const Real x0, const Real t) const;
     const Real M_eta_05(const Real t0, const Real x0, const Real t) const;
     const Real M_tabulated(const Real t0, const Real x0, const Real t) const;
@@ -130,7 +126,6 @@ class BetaEtaCore {
     // constants
     const Real integrateStdDevs_;
     const Size ghPoints_;
-    const Real multiplier_;
 };
 
 namespace detail {
