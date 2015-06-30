@@ -75,21 +75,21 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
     // tabulation data
     etaSize_ = sizeof(detail::eta_pre) / sizeof(detail::eta_pre[0]);
     uSize_ = sizeof(detail::u_pre) / sizeof(detail::u_pre[0]);
-    vSize_ = sizeof(detail::v_pre) / sizeof(detail::v_pre[0]);
+    vSize_ = sizeof(detail::Su_pre) / sizeof(detail::Su_pre[0]);
     eta_pre_ = std::vector<Real>(detail::eta_pre, detail::eta_pre + etaSize_);
     u_pre_ = std::vector<Real>(detail::u_pre, detail::u_pre + uSize_);
-    v_pre_ = std::vector<Real>(detail::v_pre, detail::v_pre + vSize_);
+    Su_pre_ = std::vector<Real>(detail::Su_pre, detail::Su_pre + vSize_);
     // spline interpolation
     for (Size i = 0; i < etaSize_; ++i) {
         boost::shared_ptr<Matrix> zTmp =
-            boost::make_shared<Matrix>(v_pre_.size(), u_pre_.size());
+            boost::make_shared<Matrix>(Su_pre_.size(), u_pre_.size());
         for (Size uu = 0; uu < uSize_; ++uu)
             for (Size vv = 0; vv < vSize_; ++vv)
                 (*zTmp)[vv][uu] = detail::M_pre[i][uu][vv];
         M_datasets_.push_back(zTmp);
         boost::shared_ptr<BilinearInterpolation> tmp =
             boost::make_shared<BilinearInterpolation>(
-                u_pre_.begin(), u_pre_.end(), v_pre_.begin(), v_pre_.end(),
+                u_pre_.begin(), u_pre_.end(), Su_pre_.begin(), Su_pre_.end(),
                 *(M_datasets_[i]));
         tmp->enableExtrapolation();
         M_surfaces_.push_back(tmp);
@@ -337,10 +337,6 @@ const Real BetaEtaCore::M(const Real u0, const Real Su) const {
                         << "..." << b);
             }
         }
-        if (close(res, 0.0))
-            std::clog << "u0 " << u0 << " Su " << Su
-                      << " integration bounds are " << a << " and " << b
-                      << "\n";
     }
     Real a = close(res, 0.0) ? -50.0 : std::log(res);
     return a;
@@ -407,17 +403,17 @@ namespace detail {
 const void
 betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
                  const Real eta_min, const Real eta_max, const Real u0_min,
-                 const Real u0_max, const Real v_min, const Real v_max,
-                 const Size usize, const Size vsize, const Size etasteps,
-                 const Real cu, const Real densityu, const Real cv,
-                 const Real densityv, const Real ce, const Real densitye) {
+                 const Real u0_max, const Real Su_min, const Real Su_max,
+                 const Size u_size, const Size Su_size, const Size eta_size,
+                 const Real c_u, const Real density_u, const Real c_Su,
+                 const Real density_Su, const Real c_e, const Real density_e) {
 
-    Concentrating1dMesher um(u0_min, u0_max, usize,
-                             std::make_pair(cu, densityu), true);
-    Concentrating1dMesher vm(v_min, v_max, vsize, std::make_pair(cv, densityv),
-                             true);
-    Concentrating1dMesher em(eta_min, eta_max, etasteps,
-                             std::make_pair(ce, densitye), true);
+    Concentrating1dMesher um(u0_min, u0_max, u_size,
+                             std::make_pair(c_u, density_u), true);
+    Concentrating1dMesher sum(Su_min, Su_max, Su_size,
+                              std::make_pair(c_Su, density_Su), true);
+    Concentrating1dMesher em(eta_min, eta_max, eta_size,
+                             std::make_pair(c_e, density_e), true);
 
     out.precision(8);
     if (type == Cpp) {
@@ -459,12 +455,12 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
                "QuantLib::detail::betaeta_tabulate\n"
                "// using the following parameters:\n";
         out << "// u0_min = " << u0_min << " u0_max = " << u0_max << "\n";
-        out << "// v_min = " << v_min << " v_max = " << v_max << "\n";
-        out << "// usize = " << usize << " vsize = " << vsize
-            << " etaSteps = " << etasteps << "\n";
-        out << "// cu = " << cu << " densityu = " << densityu << "\n";
-        out << "// cv = " << cv << " densityv = " << densityv << "\n";
-        out << "// ce = " << ce << " densitye = " << densitye << "\n\n";
+        out << "// Su_min = " << Su_min << " Su_max = " << Su_max << "\n";
+        out << "// u_size = " << u_size << " Su_size = " << Su_size
+            << " eta_size = " << eta_size << "\n";
+        out << "// c_u = " << c_u << " density_u = " << density_u << "\n";
+        out << "// c_Su = " << c_Su << " density_Su = " << density_Su << "\n";
+        out << "// c_e = " << c_e << " density_e = " << density_e << "\n\n";
         out << "namespace QuantLib {\n"
             << "namespace detail {\n\n";
         out << "const Real eta_pre[] = {";
@@ -473,12 +469,12 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
         out << "const Real u_pre[] = {";
         for (Size i = 0; i < um.size(); ++i)
             out << um.location(i) << (i < um.size() - 1 ? "," : "};\n\n");
-        out << "const Real v_pre[] = {";
-        for (int i = 0; i < static_cast<int>(vm.size()); ++i)
-            out << (i == -1 ? 0.0 : vm.location(i))
-                << (i < static_cast<int>(vm.size()) - 1 ? "," : "};\n\n");
+        out << "const Real Su_pre[] = {";
+        for (int i = 0; i < static_cast<int>(sum.size()); ++i)
+            out << (i == -1 ? 0.0 : sum.location(i))
+                << (i < static_cast<int>(sum.size()) - 1 ? "," : "};\n\n");
 
-        out << "const Real M_pre[][" << um.size() << "][" << (vm.size())
+        out << "const Real M_pre[][" << um.size() << "][" << (sum.size())
             << "] = {\n";
     }
 
@@ -487,7 +483,7 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
     Array kappa(1, 0.01);
 
     if (type == Cpp) {
-        for (Size e = 0; e < etasteps - 1; ++e) {
+        for (Size e = 0; e < eta_size - 1; ++e) {
             Real eta = em.location(e);
             BetaEtaCore core(times, alpha, kappa, 1.0, eta);
             out << "// ========================  eta=" << eta << "\n";
@@ -496,28 +492,28 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
                 Real u0 = um.location(i);
                 out << "// eta=" << eta << " u=" << u0 << "\n";
                 out << "{";
-                for (int j = 0; j < static_cast<int>(vm.size()); ++j) {
-                    Real v = j == -1 ? 0.0 : vm.location(j);
+                for (int j = 0; j < static_cast<int>(sum.size()); ++j) {
+                    Real v = j == -1 ? 0.0 : sum.location(j);
                     Real lres = core.M(u0, v);
                     out << lres
-                        << (j < static_cast<int>(vm.size()) - 1 ? "," : "}");
+                        << (j < static_cast<int>(sum.size()) - 1 ? "," : "}");
                 }
                 out << (i < um.size() - 1 ? ",\n" : "}");
             }
-            out << (e < etasteps - 2 ? ",\n" : "};\n");
+            out << (e < eta_size - 2 ? ",\n" : "};\n");
         }
         out << "} // namespace detail\n"
             << "} // namespace QuantLib\n";
     }
 
     if (type == GnuplotEUV) {
-        for (Size e = 0; e < etasteps - 1; ++e) {
+        for (Size e = 0; e < eta_size - 1; ++e) {
             Real eta = em.location(e);
             BetaEtaCore core(times, alpha, kappa, 1.0, eta);
             for (Size i = 0; i < um.size(); ++i) {
                 Real u0 = um.location(i);
-                for (int j = 0; j < static_cast<int>(vm.size()); ++j) {
-                    Real v = j == -1 ? 0.0 : vm.location(j);
+                for (int j = 0; j < static_cast<int>(sum.size()); ++j) {
+                    Real v = j == -1 ? 0.0 : sum.location(j);
                     Real lres = core.M(u0, v);
                     out << eta << " " << u0 << " " << v << " " << lres << "\n";
                 }
@@ -529,11 +525,11 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
     if (type == GnuplotUEV) {
         for (Size i = 0; i < um.size(); ++i) {
             Real u0 = um.location(i);
-            for (Size e = 0; e < etasteps - 1; ++e) {
+            for (Size e = 0; e < eta_size - 1; ++e) {
                 Real eta = em.location(e);
                 BetaEtaCore core(times, alpha, kappa, 1.0, eta);
-                for (int j = 0; j < static_cast<int>(vm.size()); ++j) {
-                    Real v = j == -1 ? 0.0 : vm.location(j);
+                for (int j = 0; j < static_cast<int>(sum.size()); ++j) {
+                    Real v = j == -1 ? 0.0 : sum.location(j);
                     Real lres = core.M(u0, v);
                     out << u0 << " " << eta << " " << v << " " << lres << "\n";
                 }
@@ -543,9 +539,9 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
     }
 
     if (type == GnuplotVEU) {
-        for (int j = -1; j < static_cast<int>(vm.size()); ++j) {
-            Real v = j == -1 ? 0.0 : vm.location(j);
-            for (Size e = 0; e < etasteps - 1; ++e) {
+        for (int j = -1; j < static_cast<int>(sum.size()); ++j) {
+            Real v = j == -1 ? 0.0 : sum.location(j);
+            for (Size e = 0; e < eta_size - 1; ++e) {
                 Real eta = em.location(e);
                 BetaEtaCore core(times, alpha, kappa, 1.0, eta);
                 for (Size i = 0; i < um.size(); ++i) {

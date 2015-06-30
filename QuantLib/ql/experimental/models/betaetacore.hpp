@@ -109,7 +109,7 @@ class BetaEtaCore {
 
     // tabulation data
     Size etaSize_, uSize_, vSize_;
-    std::vector<Real> eta_pre_, u_pre_, v_pre_;
+    std::vector<Real> eta_pre_, u_pre_, Su_pre_;
     std::vector<boost::shared_ptr<Matrix> > M_datasets_;
     std::vector<boost::shared_ptr<Interpolation2D> > M_surfaces_;
 
