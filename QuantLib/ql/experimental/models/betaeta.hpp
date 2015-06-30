@@ -40,11 +40,16 @@ namespace QuantLib {
 
     We assume a reflecting barrier at x = -1/beta (cf.
     the last paragraph on p. 241).
+
+    We assume a piecewise constant reversion \kappa and
+    set \lambda(t) := (1-exp(-\kappa*t))/\kappa
+    note that these are effective (integrated) rather
+    than forward-forward reversions though
 */
 
-// there is a big overlap with the Gaussian1d model interface
-// refactor this, i.e. create a common base class and build
-// the engines on top of this
+// TODO there is a big overlap with the Gaussian1d model interface
+// refactor this, i.e. create a common base class and build the
+// engines on top of this
 
 class BetaEta : public TermStructureConsistentModel,
                 public CalibratedModel,
@@ -136,10 +141,7 @@ class BetaEta : public TermStructureConsistentModel,
   private:
     void generateArguments() { notifyObservers(); }
 
-    // It is of great importance for performance reasons to cache underlying
-    // swaps generated from indexes. In addition the indexes may only be given
-    // as templates for the conventions with the tenor replaced by the actual
-    // one later on.
+    // see Gaussian1dModel
 
     struct CachedSwapKey {
         const boost::shared_ptr<SwapIndex> index;
