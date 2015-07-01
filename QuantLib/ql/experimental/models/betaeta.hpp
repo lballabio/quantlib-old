@@ -268,10 +268,13 @@ inline const Real BetaEta::integrate(const Real stdDevs,
     Real s = std::sqrt(core_->tau(t0, t));
     integrand phi(t0, x0, t, f, *core_);
     Real result;
+    // left integration bound should be greater or equal to barrier
+    Real a = std::max(x0 - stdDevs * s, -1.0 / beta_->value());
+    Real b = x0 + stdDevs * s;
     try {
-        result = (*integrator_)(phi, x0 - stdDevs * s, x0 + stdDevs * s);
+        result = (*integrator_)(phi, a, b);
     } catch (QuantLib::Error) {
-        result = (*integrator2_)(phi, x0 - stdDevs * s, x0 + stdDevs * s);
+        result = (*integrator2_)(phi, a, b);
     }
     return result;
 }

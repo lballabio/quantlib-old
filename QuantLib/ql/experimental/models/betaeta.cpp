@@ -23,6 +23,7 @@
 #include <ql/time/schedule.hpp>
 #include <ql/math/integrals/gausslobattointegral.hpp>
 #include <ql/math/integrals/segmentintegral.hpp>
+#include <ql/math/interpolations/linearinterpolation.hpp>
 
 #include <boost/make_shared.hpp>
 
@@ -332,8 +333,21 @@ const Disposable<Array> BetaEta::xGrid(const Real stdDevs, const int gridPoints,
 
     Real h = stdDevs * s / (static_cast<Real>(gridPoints));
 
+    // ensure that only grid points greater or equal the barrier are generated
+    // do this by scaling the points left from x linearly
+    std::vector<Real> hx, hy;
+    Real leftX = x - h * static_cast<Real>(gridPoints);
+    hx.push_back(leftX);
+    hx.push_back(x);
+    hy.push_back(std::max(leftX, -1.0 / beta_->value()));
+    hy.push_back(x);
+
+    LinearInterpolation l(hx.begin(), hx.end(), hy.begin());
+
     for (int j = -gridPoints; j <= gridPoints; ++j) {
-        result[j + gridPoints] = x + h * (static_cast<Real>(j));
+        Real tmp = x + h * (static_cast<Real>(j));
+        result[j + gridPoints] =
+            (j < 0 && gridPoints > 0 && h > 0.0) ? l(tmp) : tmp;
     }
 
     return result;
