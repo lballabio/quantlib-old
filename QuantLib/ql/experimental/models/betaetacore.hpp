@@ -82,10 +82,12 @@ class BetaEtaCore {
     const Real M_tabulated(const Real t0, const Real x0, const Real t) const;
     const Real M_tabulated(const Real u0, const Real v) const; // for debug
 
-    const Real p_y(const Real v, const Real y0, const Real y) const;
-    const Real p_y_core(const Real v, const Real y0, const Real y) const;
+    const Real p_y(const Real v, const Real y0, const Real y,
+                   const Real eta) const;
+    const Real p_y_core(const Real v, const Real y0, const Real y,
+                        const Real eta) const;
 
-    const Real y(const Real x) const;
+    const Real y(const Real x, const Real eta) const;
     const Real dydx(const Real y) const;
 
     const int lowerIndex(const Time t) const;
@@ -157,12 +159,12 @@ inline const Real BetaEtaCore::tau(const Real t0, const Real t) const {
     return res;
 }
 
-inline const Real BetaEtaCore::y(const Real x) const {
-    QL_REQUIRE(eta_ < 1.0 || x > -1.0 / beta_,
-               "for eta=1, x must be greater than -1/beta");
-    return close(eta_, 1.0) ? std::log(1.0 + beta_ * x) / beta_
-                            : std::pow(std::fabs(1 + beta_ * x), 1.0 - eta_) /
-                                  (beta_ * (1.0 - eta_));
+inline const Real BetaEtaCore::y(const Real x, const Real eta) const {
+    QL_REQUIRE(eta < 1.0 || x > -1.0 / beta_,
+               "for eta = 1, x must be greater than - 1 / beta");
+    return close(eta, 1.0) ? std::log(1.0 + beta_ * x) / beta_
+                           : std::pow(std::fabs(1 + beta_ * x), 1.0 - eta) /
+                                 (beta_ * (1.0 - eta));
 }
 
 inline const Real BetaEtaCore::dydx(const Real y) const {

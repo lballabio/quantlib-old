@@ -127,7 +127,8 @@ class BetaEtaCore::mIntegrand2 {
                    S_ * std::pow(1.0 - eta, 2.0 * eta) *
                        std::pow(u0_, 2.0 - 2.0 * eta),
                    std::pow(u0_, 1.0 - eta) * std::pow(1.0 - eta, eta - 1.0),
-                   std::pow(u, 1.0 - eta) * std::pow(1.0 - eta, eta - 1.0)) *
+                   std::pow(u, 1.0 - eta) * std::pow(1.0 - eta, eta - 1.0),
+                   eta) *
                exp(-(u - u0_));
     }
 };
@@ -216,9 +217,7 @@ const Real BetaEtaCore::M_eta_1(const Real t0, const Real x0,
         return 0.0;
     Real lambda = this->lambda(t);
 
-    // eta_ may be not one when this function is called, so we
-    // can not use the member function y() to compute y0 here
-    Real y0 = std::log(1.0 + beta_ * x0) / beta_;
+    Real y0 = y(x0, 1.0);
     Real v = this->tau(t0, t);
     Real result = M_1_SQRTPI *
                   ghIntegrator_->operator()(mIntegrand3(this, v, y0, lambda));
@@ -342,46 +341,60 @@ const Real BetaEtaCore::M(const Real u0, const Real Su) const {
     return a;
 }
 
-const Real BetaEtaCore::p_y_core(const Real v, const Real y0,
-                                 const Real y) const {
-    QL_REQUIRE(!close(eta_, 1.0), "eta must not be one in p_y_core");
+const Real BetaEtaCore::p_y_core(const Real v, const Real y0, const Real y,
+                                 const Real eta) const {
+    QL_REQUIRE(!close(eta, 1.0), "eta must not be one in p_y_core");
     if (close(y, 0.0) || close(y0, 0.0)) // i.e. x, x0 = -1/beta
         return 0.0;
-    Real nu = 1.0 / (2.0 - 2.0 * eta_);
+    Real nu = 1.0 / (2.0 - 2.0 * eta);
     // 0.0 <= eta < 0.5
-    if (eta_ < 0.5) {
+    if (eta < 0.5) {
         return std::pow(y0 / y, nu) * y / v *
                modifiedBesselFunction_i_exponentiallyWeighted(-nu, y0 * y / v) *
                exp(-(y - y0) * (y - y0) / (2.0 * v)) *
-               std::pow(y, eta_ / (eta_ - 1.0));
+               std::pow(y, eta / (eta - 1.0));
     }
     // 0.5 <= eta < 1.0
     return std::pow(y0 / y, nu) * y / v *
            modifiedBesselFunction_i_exponentiallyWeighted(nu, y0 * y / v) *
            exp(-(y - y0) * (y - y0) / (2.0 * v)) *
-           std::pow(y, eta_ / (eta_ - 1.0));
+           std::pow(y, eta / (eta - 1.0));
 }
 
-const Real BetaEtaCore::p_y(const Real v, const Real y0, const Real y) const {
+const Real BetaEtaCore::p_y(const Real v, const Real y0, const Real y,
+                            const Real eta) const {
     // eta = 1.0
-    if (close(eta_, 1.0)) {
+    if (close(eta, 1.0)) {
         return exp(-beta_ * y) / std::sqrt(2.0 * M_PI * v) *
                exp(-0.5 * (y - y0 + 0.5 * beta_ * v) *
                    (y - y0 + 0.5 * beta_ * v) / v);
     }
     // eta < 1.0
-    return p_y_core(v, y0, y) * std::pow(1.0 - eta_, eta_ / (eta_ - 1.0)) *
-           std::pow(beta_, eta_ / (eta_ - 1.0));
+    return p_y_core(v, y0, y, eta) * std::pow(1.0 - eta, eta / (eta - 1.0)) *
+           std::pow(beta_, eta / (eta - 1.0));
 }
 
 const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
                           const Real x) const {
     if (x <= -1.0 / beta_)
         return 0.0;
+    // to avoid numerical instabilities when eta is close to
+    // but not equal to one we interpolate the density between the largest
+    // stable value for eta and one. Since the tabulation should be
+    // stable w.r.t. the spanned eta grid, we use the largest grid value
+    // from there as the cutoff value (which may be e.g. 0.99).
     Real v = this->tau(t0, t);
-    Real y0 = this->y(x0);
-    Real y = this->y(x);
-    return p_y(v, y0, y);
+    if (eta_ <= eta_pre_.back()) {
+        Real y0 = this->y(x0, eta_);
+        Real y = this->y(x, eta_);
+        return p_y(v, y0, y, eta_);
+    } else {
+        Real y0a = this->y(x0, eta_pre_.back());
+        Real ya = this->y(x, eta_pre_.back());
+        Real y0b = this->y(x0, 1.0);
+        Real yb = this->y(x, 1.0);
+        return 0.5 * (p_y(v, y0a, ya, eta_pre_.back()) + p_y(v, y0b, yb, 1.0));
+    }
 };
 
 // TODO, this can obviously be tabulated in eta, y0, tau-tau0
@@ -392,7 +405,7 @@ const Real BetaEtaCore::singularTerm_y_0(const Time t0, const Real x0,
     if (eta_ < 0.5 || close(eta_, 1.0))
         return 0.0;
     Real nu = 1.0 / (2.0 - 2.0 * eta_);
-    Real y0 = this->y(x0);
+    Real y0 = this->y(x0, eta_);
     Real tau0 = this->tau(t0);
     Real tau = this->tau(t);
     return boost::math::gamma_q(nu, y0 * y0 / (2.0 * (tau - tau0)));
