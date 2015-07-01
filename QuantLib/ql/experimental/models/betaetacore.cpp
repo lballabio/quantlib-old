@@ -276,6 +276,12 @@ const Real BetaEtaCore::M_tabulated(const Real t0, const Real x0,
     Real result =
         (result_eta_lower * eta_weight_1 + result_eta_higher * eta_weight_2);
 
+    if (u0 > u_pre_.back() || Su > Su_pre_.back())
+        QL_FAIL("tabulated value lookup ("
+                << u0 << "," << Su
+                << ") would require extrapolation, bounds are u0_max="
+                << u_pre_.back() << " and Su_max=" << Su_pre_.back());
+
     return result;
 }
 
