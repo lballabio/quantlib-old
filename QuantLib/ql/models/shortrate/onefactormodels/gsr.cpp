@@ -136,16 +136,36 @@ void Gsr::updateTimes() const {
     }
     if (stateProcess_ != NULL)
         boost::static_pointer_cast<GsrProcess>(stateProcess_)->flushCache();
+    if (adjustedStateProcess_ != NULL)
+        boost::static_pointer_cast<GsrProcess>(adjustedStateProcess_)
+            ->flushCache();
 }
 
-void Gsr::updateState() const {
+void Gsr::updateVolatility() {
     for (Size i = 0; i < sigma_.size(); i++) {
         sigma_.setParam(i, volatilities_[i]->value());
     }
+    boost::static_pointer_cast<GsrProcess>(stateProcess_)->flushCache();
+    boost::static_pointer_cast<GsrProcess>(adjustedStateProcess_)->flushCache();
+    update();
+}
+
+void Gsr::updateReversion() {
     for (Size i = 0; i < reversion_.size(); i++) {
         reversion_.setParam(i, reversions_[i]->value());
     }
     boost::static_pointer_cast<GsrProcess>(stateProcess_)->flushCache();
+    boost::static_pointer_cast<GsrProcess>(adjustedStateProcess_)->flushCache();
+    update();
+}
+
+void Gsr::updateAdjuster() {
+    for (Size i = 0; i < adjuster_.size(); i++) {
+        adjuster_.setParam(i, adjusters_[i]->value());
+    }
+    boost::static_pointer_cast<GsrProcess>(stateProcess_)->flushCache();
+    boost::static_pointer_cast<GsrProcess>(adjustedStateProcess_)->flushCache();
+    update();
 }
 
 void Gsr::initialize(Real T) {
@@ -166,7 +186,8 @@ void Gsr::initialize(Real T) {
     // PiecewiseConstantParameter(volsteptimes_,PositiveConstraint());
     sigma_ = PiecewiseConstantParameter(volsteptimes_, NoConstraint());
     adjuster_ = PiecewiseConstantParameter(volsteptimes_, PositiveConstraint());
-    unitAdjuster_ = PiecewiseConstantParameter(volsteptimes_, PositiveConstraint());
+    unitAdjuster_ =
+        PiecewiseConstantParameter(volsteptimes_, PositiveConstraint());
 
     QL_REQUIRE(reversions_.size() == 1 ||
                    reversions_.size() == volsteptimes_.size() + 1,
@@ -184,7 +205,7 @@ void Gsr::initialize(Real T) {
     }
     for (Size i = 0; i < adjuster_.size(); i++) {
         adjuster_.setParam(i, adjusters_[i]->value());
-        unitAdjuster_.setParam(i,1.0);
+        unitAdjuster_.setParam(i, 1.0);
     }
     for (Size i = 0; i < reversion_.size(); i++) {
         reversion_.setParam(i, reversions_[i]->value());
@@ -203,14 +224,20 @@ void Gsr::initialize(Real T) {
     registerWith(termStructure());
 
     registerWith(stateProcess_);
+    registerWith(adjustedStateProcess_);
+
+    volatilityObserver_ = boost::make_shared<VolatilityObserver>(this);
+    reversionObserver_ = boost::make_shared<ReversionObserver>(this);
+    adjusterObserver_ = boost::make_shared<AdjusterObserver>(this);
+
     for (Size i = 0; i < reversions_.size(); ++i)
-        registerWith(reversions_[i]);
+        reversionObserver_->registerWith(reversions_[i]);
 
     for (Size i = 0; i < volatilities_.size(); ++i)
-        registerWith(volatilities_[i]);
+        volatilityObserver_->registerWith(volatilities_[i]);
 
     for (Size i = 0; i < adjusters_.size(); ++i)
-        registerWith(adjusters_[i]);
+        adjusterObserver_->registerWith(adjusters_[i]);
 }
 
 const Real Gsr::zerobondImpl(const Time T, const Time t, const Real y,
@@ -223,9 +250,10 @@ const Real Gsr::zerobondImpl(const Time T, const Time t, const Real y,
         return yts.empty() ? this->termStructure()->discount(T, true)
                            : yts->discount(T, true);
 
-    boost::shared_ptr<GsrProcess> p = adjusted ?
-        boost::dynamic_pointer_cast<GsrProcess>(adjustedStateProcess_) :
-        boost::dynamic_pointer_cast<GsrProcess>(stateProcess_);
+    boost::shared_ptr<GsrProcess> p =
+        adjusted
+            ? boost::dynamic_pointer_cast<GsrProcess>(adjustedStateProcess_)
+            : boost::dynamic_pointer_cast<GsrProcess>(stateProcess_);
 
     Real x = y * stateProcess_->stdDeviation(0.0, 0.0, t) +
              stateProcess_->expectation(0.0, 0.0, t);

@@ -186,7 +186,8 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
         const std::vector<Real> &weights = std::vector<Real>()) {
 
         for (Size i = 0; i < helpers.size(); i++) {
-            std::vector<boost::shared_ptr<CalibrationHelperBase> > h(1, helpers[i]);
+            std::vector<boost::shared_ptr<CalibrationHelperBase> > h(
+                1, helpers[i]);
             calibrate(h, method, endCriteria, constraint, weights,
                       MoveAdjuster(i));
         }
@@ -212,12 +213,14 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
     void performCalculations() const {
         Gaussian1dModel::performCalculations();
         updateTimes();
-        updateState();
     }
 
   private:
     void updateTimes() const;
-    void updateState() const;
+    void updateVolatility();
+    void updateReversion();
+    void updateAdjuster();
+
     void initialize(Real);
 
     Parameter &reversion_, &sigma_, &adjuster_;
@@ -232,7 +235,27 @@ class Gsr : public Gaussian1dModel, public CalibratedModel {
     mutable std::vector<Time> volsteptimes_;
     mutable Array volsteptimesArray_; // FIXME this is redundant (just a copy of
                                       // volsteptimes_)
-    boost::shared_ptr<StochasticProcess1D> adjustedStateProcess_;    
+    boost::shared_ptr<StochasticProcess1D> adjustedStateProcess_;
+
+    struct VolatilityObserver : public Observer {
+        VolatilityObserver(Gsr *p) : p_(p) {}
+        void update() { p_->updateVolatility(); }
+        Gsr *p_;
+    };
+    struct ReversionObserver : public Observer {
+        ReversionObserver(Gsr *p) : p_(p) {}
+        void update() { p_->updateReversion(); }
+        Gsr *p_;
+    };
+    struct AdjusterObserver : public Observer {
+        AdjusterObserver(Gsr *p) : p_(p) {}
+        void update() { p_->updateAdjuster(); }
+        Gsr *p_;
+    };
+
+    boost::shared_ptr<VolatilityObserver> volatilityObserver_;
+    boost::shared_ptr<ReversionObserver> reversionObserver_;
+    boost::shared_ptr<AdjusterObserver> adjusterObserver_;
 };
 
 inline const Real Gsr::numeraireTime() const {

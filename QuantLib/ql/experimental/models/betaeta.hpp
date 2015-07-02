@@ -114,6 +114,11 @@ class BetaEta : public TermStructureConsistentModel,
                            boost::shared_ptr<SwapIndex> swapIdx =
                                boost::shared_ptr<SwapIndex>()) const;
 
+    const Array &reversion() const { return reversion_.params(); }
+    const Array &volatility() const { return sigma_.params(); }
+    const Real beta() const { return pBeta_.params()[0]; }
+    const Real eta() const { return pEta_.params()[0]; }
+
     /*! Generates a grid of values for the state variable $x$
        at time $T$ conditional on $x(t)=x$, covering stdDevs
        standard deviations assuming an approximate variance
@@ -135,6 +140,35 @@ class BetaEta : public TermStructureConsistentModel,
         if (useTabulation_ != useTabulation) {
             useTabulation_ = useTabulation;
             update();
+        }
+    }
+
+    // calibration constraints
+    // TODO what is of practical use here ?
+
+    Disposable<std::vector<bool> > MoveVolatility(Size i) {
+        QL_REQUIRE(i < volatilities_.size(),
+                   "volatility with index " << i << " does not exist (0..."
+                                            << volatilities_.size() - 1 << ")");
+        std::vector<bool> res(reversions_.size() + volatilities_.size() + 2,
+                              true);
+        res[reversions_.size() + i] = false;
+        return res;
+    }
+
+    // With fixed reversion, beta and eta calibrate the volatilities
+    // one by one to the given helpers. The same comments as in the
+    // corresonding method in Gsr hold.
+    void calibrateVolatilitiesIterative(
+        const std::vector<boost::shared_ptr<CalibrationHelper> > &helpers,
+        OptimizationMethod &method, const EndCriteria &endCriteria,
+        const Constraint &constraint = Constraint(),
+        const std::vector<Real> &weights = std::vector<Real>()) {
+
+        for (Size i = 0; i < helpers.size(); i++) {
+            std::vector<boost::shared_ptr<CalibrationHelper> > h(1, helpers[i]);
+            calibrate(h, method, endCriteria, constraint, weights,
+                      MoveVolatility(i));
         }
     }
 
@@ -194,11 +228,14 @@ class BetaEta : public TermStructureConsistentModel,
         enforcesTodaysHistoricFixings_ =
             Settings::instance().enforcesTodaysHistoricFixings();
         updateTimes();
-        updateState();
     }
 
     void updateTimes() const;
-    void updateState() const;
+    void updateVolatility();
+    void updateReversion();
+    void updateBeta();
+    void updateEta();
+
     void initialize();
 
     Parameter &reversion_, &sigma_, &pBeta_, &pEta_;
@@ -239,6 +276,32 @@ class BetaEta : public TermStructureConsistentModel,
     friend class integrand;
 
     bool useTabulation_; // for testing, normally it should be true
+
+    struct VolatilityObserver : public Observer {
+        VolatilityObserver(BetaEta *p) : p_(p) {}
+        void update() { p_->updateVolatility(); }
+        BetaEta *p_;
+    };
+    struct ReversionObserver : public Observer {
+        ReversionObserver(BetaEta *p) : p_(p) {}
+        void update() { p_->updateReversion(); }
+        BetaEta *p_;
+    };
+    struct BetaObserver : public Observer {
+        BetaObserver(BetaEta *p) : p_(p) {}
+        void update() { p_->updateBeta(); }
+        BetaEta *p_;
+    };
+    struct EtaObserver : public Observer {
+        EtaObserver(BetaEta *p) : p_(p) {}
+        void update() { p_->updateEta(); }
+        BetaEta *p_;
+    };
+
+    boost::shared_ptr<VolatilityObserver> volatilityObserver_;
+    boost::shared_ptr<ReversionObserver> reversionObserver_;
+    boost::shared_ptr<BetaObserver> betaObserver_;
+    boost::shared_ptr<EtaObserver> etaObserver_;
 };
 
 // implementation

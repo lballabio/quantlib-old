@@ -126,17 +126,30 @@ void BetaEta::updateTimes() const {
     }
 }
 
-void BetaEta::updateState() const {
+void BetaEta::updateReversion() {
     for (Size i = 0; i < reversion_.size(); i++) {
         reversion_.setParam(i, reversions_[i]->value());
     }
+    update();
+}
+
+void BetaEta::updateVolatility() {
     for (Size i = 0; i < sigma_.size(); i++) {
         sigma_.setParam(i, volatilities_[i]->value());
     }
+    update();
+}
+
+void BetaEta::updateBeta() {
     pBeta_.setParam(0, beta_->value());
-    pEta_.setParam(0, eta_->value());
     betaLink_ = beta_->value();
+    update();
+}
+
+void BetaEta::updateEta() {
+    pEta_.setParam(0, eta_->value());
     etaLink_ = eta_->value();
+    update();
 }
 
 void BetaEta::initialize() {
@@ -174,13 +187,18 @@ void BetaEta::initialize() {
 
     registerWith(termStructure());
 
-    for (Size i = 0; i < reversions_.size(); ++i)
-        registerWith(reversions_[i]);
-    for (Size i = 0; i < volatilities_.size(); ++i)
-        registerWith(volatilities_[i]);
+    volatilityObserver_ = boost::make_shared<VolatilityObserver>(this);
+    reversionObserver_ = boost::make_shared<ReversionObserver>(this);
+    betaObserver_ = boost::make_shared<BetaObserver>(this);
+    etaObserver_ = boost::make_shared<EtaObserver>(this);
 
-    registerWith(beta_);
-    registerWith(eta_);
+    for (Size i = 0; i < reversions_.size(); ++i)
+        reversionObserver_->registerWith(reversions_[i]);
+    for (Size i = 0; i < volatilities_.size(); ++i)
+        volatilityObserver_->registerWith(volatilities_[i]);
+
+    betaObserver_->registerWith(beta_);
+    etaObserver_->registerWith(eta_);
 
     core_ = boost::make_shared<BetaEtaCore>(volsteptimesArray_, sigma_.params(),
                                             reversion_.params(), betaLink_,
