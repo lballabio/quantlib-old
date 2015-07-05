@@ -201,12 +201,10 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
             return 0.0;
         mIntegrand1 in(this, t0, x0, t);
         mIntegrand1Check inC(this, t0, x0, t);
-        std::clog << "integration domain ..." << std::endl;
         std::pair<Real, Real> d = detail::domain(
             inC, x0, 1E-10, 1E-12, 1E-6, 1E-4, -QL_MAX_REAL, QL_MAX_REAL);
         Real a = std::max(d.first, -1.0 / beta_);
         Real b = d.second;
-        std::clog << "... is " << a << "," << b << std::endl;
         try {
             result = std::log(integrator_->operator()(in, a, b));
             singularProb = 1.0 - integrator_->operator()(inC, a, b);
@@ -230,9 +228,9 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
         result = std::log(std::exp(result) + singularTerm);
     }
     // debug
-    std::clog << "M(" << t0 << "," << x0 << "," << t << ") " << singularProb
-              << " (" << singularTerm_y_0(t0, x0, t) << ") " << singularTerm
-              << std::endl;
+    // std::clog << "M(" << t0 << "," << x0 << "," << t << ") " << singularProb
+    //           << " (" << singularTerm_y_0(t0, x0, t) << ") " << singularTerm
+    //           << std::endl;
     return result;
 };
 
